@@ -19,7 +19,7 @@ I mean. Having completely random uuids for everything is probably the most flexi
 
 Or, we have a little script where you can shove any id in and it will do the correct database lookups and render a summary for you. Since ids are typed, you can tell which table you have to query simply from the id's prefix. Super handy.
 
-Typescript has had [template literal types](https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html) for quite a while now, and we can use that to even encode that information into the type system.
+Typescript has had [template literal types](https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html) for quite a while now, and we can use that to even encode that information in the type system.
 
 ```typescript
 type ResourceGreenId = `rg-${string}`;
