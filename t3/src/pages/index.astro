@@ -1,0 +1,81 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			main {
+				width: 960px;
+			}
+			ul {
+				display: flex;
+				flex-direction: column;
+				list-style-type: none;
+				margin: 0;
+				padding: 0;
+			}
+			ul li * {
+				text-decoration: none;
+			}
+			ul li img {
+				margin-bottom: 0.5rem;
+				border-radius: 12px;
+			}
+			ul li a {
+				display: flex;
+				flex-direction: row;
+				gap: 0.5rem;
+			}
+			.title {
+				margin: 0;
+				color: var(--nord4);
+			}
+
+			a:hover .title {
+				color: inherit;
+			}
+
+			.date {
+				margin: 0;
+				color: var(--nord3);
+			}
+			
+			ul a:hover img {
+				box-shadow: var(--box-shadow);
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section>
+				<h2>Blog</h2>
+				<ul>
+					{
+						posts.map((post) => (
+							<li>
+								<a href={`/blog/${post.id}/`}>
+									<span class="date">
+										[<FormattedDate date={post.data.pubDate} />]
+									</span>
+									<header class="title">{post.data.title}</header>
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</section>
+		</main>
+	</body>
+</html>
