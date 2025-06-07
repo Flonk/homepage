@@ -11,3 +11,5 @@ Append `string & {}` to your string unions, and you have a type that allows any 
 ## How does it work?
 
 If you have a type like `type Fruit = "apple" | "pear" | string`, the typescript compiler will simplify the type to just `string`, and no autocomplete suggestions will be given.
+
+The trick is to append a type that we know is equivalent to `string`, but the typescript compiler does not.
