@@ -7,7 +7,7 @@ pubDate: "May 07 2025"
 I mean I am aware of hungarian notation. And the Win32 API disaster, featuring ridiculous names like `lpszFoo` referring to a "long pointer to zero-terminated string Foo", even though `lpszFoo` is likely not even a "long pointer" anymore because this is not the 1990s. But they can't ever change the name for backwards compatibility reasons.
 
 So hungarian notation is probably not right for every use case.
-dns2.p09.nsone.net
+
 But, right now I'm working on a project where we added type information to our database entities' ids instead of using just raw uuids. And hey, it's kinda nice!
 
 We have.. users, for example `usr-12345`.
