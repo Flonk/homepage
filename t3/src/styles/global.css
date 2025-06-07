@@ -47,7 +47,30 @@ body {
   color: var(--nord5);
   font-size: 14px;
   line-height: 1.7;
+
+  --sb-size: 12px;
 }
+
+body::-webkit-scrollbar {
+  width: var(--sb-size);
+  height: var(--sb-size);
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--nordbg);
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-left: 2px solid var(--nordbg);
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  body {
+    scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+  }
+}
+
 main {
   width: 720px;
   max-width: calc(100% - 4em);
@@ -131,7 +154,7 @@ blockquote {
 }
 hr {
   border: none;
-  border-top: 1px solid rgb(var(--nord3));
+  border-top: 1px solid rgb(var(--nord4));
 }
 @media (max-width: 720px) {
   body {
