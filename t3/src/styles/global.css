@@ -49,6 +49,11 @@ body {
   line-height: 1.7;
 
   --sb-size: 12px;
+
+  display: flex;
+  flex-direction: column;
+  max-width: 100vw;
+  box-sizing: border-box;
 }
 
 body::-webkit-scrollbar {
@@ -72,16 +77,15 @@ body::-webkit-scrollbar-thumb {
 }
 
 main {
-  width: 720px;
-  max-width: calc(100% - 6em);
+  max-width: calc(min(100%, 720px));
   margin: auto;
-  padding: 3em 3em;
+  padding: 4em 2em;
+  box-sizing: border-box;
 }
 
 @media (max-width: 720px) {
   main {
     padding: 0.5em 0.5em;
-    max-width: calc(100% - 1em);
   }
 }
 
@@ -97,9 +101,12 @@ h1 {
   font-size: 2.25em;
 }
 h2 {
-  margin: 5rem 0 0.5rem 0;
   line-height: 1.2;
   font-size: 2em;
+}
+
+* + h2 {
+  margin: 5rem 0 0.5rem 0;
 }
 
 h2::before {
@@ -170,6 +177,7 @@ img {
   border-radius: 8px;
   padding: 1em;
   border: 1px solid var(--nord2);
+  box-sizing: border-box;
 }
 code {
   padding: 3px 6px;
