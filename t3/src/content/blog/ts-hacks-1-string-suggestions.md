@@ -6,7 +6,7 @@ pubDate: "Sep 5, 2023"
 
 Append `string & {}` to your string unions, and you have a type that allows any string, but autocomplete will also show you some values as suggestions.
 
-![String Suggestions](/public/assets/ts-hacks-1-string-suggestions/1_lMIIJSrcW1BOOFTxU0tkIw.webp)
+![String Suggestions](/assets/ts-hacks-1-string-suggestions/1_lMIIJSrcW1BOOFTxU0tkIw.webp)
 
 ## How does it work?
 
