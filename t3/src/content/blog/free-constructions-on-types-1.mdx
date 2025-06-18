@@ -1,5 +1,5 @@
 ---
-title: "Free constructions #1 - Semigroups & Multisets"
+title: "Free constructions #1 - Groups & Multisets"
 description: ""
 pubDate: "June 07 2025"
 ---
@@ -8,7 +8,7 @@ Let's take a binary operation that is _associative_ and _commutative_, like addi
 
 In case you forgot, addition is associative because you can swap brackets around or leave them out altoghether without changing the result, like $ (2 + 4) + 3 = 2 + (4 + 3) = 2 + 4 + 3 = 9 $. And it is commutative because you can swap the order of the numbers too, like $ 2 + 4 = 4 + 2 $.
 
-We call this -- a binary operation like addition, and some set, like numbes -- a **semigroup** by the way. Addition on numbers $(\mathbb{R}, +)$ is a semigroup for example, multiplication on numbers $(\mathbb{R}, \cdot)$, as another example.
+We call this -- a binary operation like addition, and some set, like numbes -- a **group** by the way. Or more appropriately an associative quasigroup but let's not complicate things. Addition on numbers $(\mathbb{R}, +)$ is a group for example, multiplication on numbers $(\mathbb{R}, \cdot)$ is another example.
 
 And say that instead of just calculating the result, we would like to keep tack of what numbers
 were added together, so that we can reconstruct the result later.
@@ -132,22 +132,22 @@ There's three things I'd like you to take away from this:
 - We have found a way to decouple data from evaluation. We've stated
   the addition problem in a way that just stores all the data,
   but does not compute anything until we call `evaluate`.
-- The multiset is like the mother-of-all-semigroups. Given a
-  multiset, we can "move" into the addition semigroup just by
+- The multiset is like the mother-of-all-groups. Given a
+  multiset, we can "move" into the addition group just by
   calling `evaluate` with the addition operation. And we can
-  move into the multiplication semigroup by calling `evaluate`
+  move into the multiplication group by calling `evaluate`
   with the multiplication operation. We can't move from the addition
-  semigroup to the multiplication semigroup this way, i.e. we
+  group to the multiplication group this way, i.e. we
   can't reconstruct 96 from 16.
 
 And most importantly.
 
-Not all types have well-known semigroups, like numbers have addition
+Not all types have well-known groups, like numbers have addition
 or multiplication. You can't add two objects of type
 `DatabaseRepository` or `DogApple`, generally speaking. **But,
-given any type `T`, we always know there is at least one semigroup:
+given any type `T`, we always know there is at least one group:
 `Multiset<T>`**.
 
-This is why we call `Multiset<T>` the **free semigroup** on type `T`.
+This is why we call `Multiset<T>` the **free group** on type `T`.
 
 We get it for free so to speak, it just always exists.
