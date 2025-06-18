@@ -92,7 +92,7 @@ the microservice landscape that requires a looot of ceremony--the
 callee needs to implement an endpoint, update the openapi, and
 release a new version.
 
-By adding more friction to certain actions in your monolith,
+By **adding** more friction to certain actions in your monolith,
 you can control how it will grow, and define pathways for your
 devs that they will naturally adhere to. That way you get a lot
 of the benefits of microservices without a lot of the hassle.
