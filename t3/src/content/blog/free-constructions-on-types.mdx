@@ -1,5 +1,5 @@
 ---
-title: "[DRAFT] Free constructions"
+title: "Free constructions #1 - Semigroups & Multisets"
 description: ""
 pubDate: "June 07 2025"
 ---
@@ -9,262 +9,150 @@ import Red from "../../components/Red.astro";
 
 **DRAFT -- this is very much work in progress.**
 
-Turns out binary finger trees, lists and multisets are very closely related, and I'd like to tell you about it.
+Let's take a binary operation that is _associative_ and _commutative_, like addition on numbers.
 
-Remember first semester maths? Yeah? No? Maybe?
+In case you forgot, addition is associative because you can swap brackets around or leave them out altoghether without changing the result, like $ (2 + 4) + 3 = 2 + (4 + 3) = 2 + 4 + 3 = 9 $. And it is commutative because you can swap the order of the numbers too, like $ 2 + 4 = 4 + 2 $.
 
-If no, here's a refresher.
+We call this -- a binary operation like addition, and some set, like numbes -- a **semigroup** by the way. Addition on numbers $(\mathbb{R}, +)$ is a semigroup for example, multiplication on numbers $(\mathbb{R}, \cdot)$, as another example.
 
-Know we can swap numbers around when adding, like $ 2 + 4 = 4 + 2 $? That's what we call **commutativity**.
+And say that instead of just calculating the result, we would like to keep tack of what numbers
+were added together, so that we can reconstruct the result later.
 
-And then there's the bracketing thing, called **associativity**. It means that order of operations doesn't matter when adding many numbers, because in whichever order we sum the numbers, the result is the same: $ (2 + 4) + 3 = 2 + (4 + 3) = 2 + 4 + 3 = 9 $.
+For associative and commutative operations, the "smallest" possible datatype that can store that information is a **multiset**.
 
-Usually we also try to isolate a special **identity element** that does _nothing_ in a sense, that would be $ 0 $ for addition. We'll gloss over that today though.
+For example, the addition expression $ 1 + 1 + 1 + 2 + 3 + 4 + 4 $ could be represented, in
+(almost) typescript, like so:
 
-Let's try to find some examples of operations that do and do not have these properties.
+```ts
+type Multiset<T> = Map<T, number>;
 
-## Examples
-
-Obviously we found **addition** on numbers $(\mathbb{R}, +)$. It's both commutative and associative:
-
-- **<Green>Commutativity</Green>**: $ 2 + 4 = 4 + 2 $
-- **<Green>Associativity</Green>**: $ (2 + 4) + 3 = 2 + (4 + 3) = 2 + 4 + 3 = 9 $
-
-**Multiplication** $(\mathbb{R}, \cdot)$ satisfies these properties aswell:
-
-- **<Green>Commutativity</Green>**: $ 2 \cdot 4 = 4 \cdot 2 $
-- **<Green>Associativity</Green>**: $ (2 \cdot 4) \cdot 3 = 2 \cdot (4 \cdot 3) = 2
-  \cdot 4 \cdot 3 = 24 $
-
-<p></p>
-
-**Subtraction** $(\mathbb{R}, -)$ does not have these properties:
-
-- **<Red>Commutativity</Red>**: $ 2 - 4 = -2$, but $ 4 - 2 = 2 $
-- **<Red>Associativity</Red>**: $ (2 - 4) - 3 = -5$, but $ 2 - (4 - 3) = 1 $
-
-<p></p>
-
-**Division** $(\mathbb{R}, /)$ does not have these properties either:
-
-- **<Red>Commutativity</Red>**: $ 2 / 4 = 0.5$, but $ 4 / 2 = 2 $
-- **<Red>Associativity</Red>**: $ (2 / 4) / 3 = 0.041\overline{6}$, but $ 2 / (4 / 3) = 1.5 $
-
-<p></p>
-
-It's kinda interesting how addition and multiplication have these properties, but their inverse operations subtraction and division do not.
-
-Anyway, how about an operation that is associative but not commutative? Check out **concatenation of strings** $(string, +)$:
-
-- **<Red>Commutativity</Red>**: `"foo" + "bar" ===  "foobar"`, but `"bar" + "foo" === "barfoo"`
-- **<Green>Associativity</Green>**: `("foo" + "bar") + "baz" === "foo" + ("bar" + "baz") === "foobarbaz"`
-
-Okay.. and here's a fun operation that is commutative but not associative: **Rock Paper Scissors**, $(\{Rock, Paper, Scissors\}, ✊)$:
-
-- **<Green>Commutativity</Green>**: `Rock ✊ Paper === Paper ✊ Rock === Paper`
-- **<Red>Associativity</Red>**: `(Rock ✊ Paper) ✊ Scissors === Scissors`, but `Rock ✊ (Paper ✊ Scissors) === Rock`
-
-<p></p>
-
-### A couple more maths words
-
-Usually we organize these operations into a hierarchy, based on the properties they have.
-
-- **Magma**: Anything. Just any set or type, and any binary operation on it. Like subtraction on numbers.
-- **Semigroup**: A magma that is associative.
-- **Commutative Semigroup**: A semigroup that is commutative.
-
-Any commutative semigroup is also a semigroup, and any semigroup is also a magma. Keep that in mind.
-
-## Magmas make trees?
-
-Let's take our old friend subtraction on numbers, and a fairly complicated expression like
-
-$$
-(1 - 2) - (3 - ((4 - 5) - 6))
-$$
-
-If you take the outermost "-" and pinch it with your fingers, letting the rest of the expression dangle, you will see a tree structure emerge:
-
-```haskell
-     ( )
-    /   \
-  ( )    \
- /   \    \
-1     2    \
-           ( )
-          /   \
-         3    ( )
-             /   \
-           ( )    6
-          /   \
-         4     5
+const multiset: Multiset<number> = new Map([
+  [1, 3],
+  [2, 1],
+  [3, 1],
+  [4, 2],
+]);
 ```
 
-If you were to evaluate this expression, you'd start from the bottom -- corresponding to the innermost bracket -- and work your way up.
+That is, three ones, one two, one three, and two fours.
 
-```haskell
-     ( )                     ( )                     ( )
-    /   \                   /   \                   /   \
-  ( )    \                ( )    \                ( )    \
- /   \    \              /   \    \              /   \    \
-1     2    \     -->    1     2    \     -->    1     2    \     -->
-           ( )                     ( )                     ( )
-          /   \                   /   \                   /   \
-         3    ( )                3    ( )                3    -7
-             /   \                   /   \
-           ( )    6                 -1    6
-          /   \
-         4     5
+And we can then reconstruct the addition expression by iterating over the multiset and adding the numbers together, like so:
 
-
-      ( )
-     /   \
-   ( )    \   -->    ( )    -->   -11
-  /   \    \        /   \
- 1     2    10    -1    10
-
-```
-
-What's interesting about this tree right here is that only the leaf nodes contain actual values, and all the other nodes contain no useful information. This is a special type of tree, called a **(binary) finger tree**.
-
-What's also interesting is that this tree representation doesn't contain any information about the operation we used. If we instead tried to make a tree for $ (1 \cdot 2) \cdot (3 \cdot ((4 \cdot 5) \cdot 6)) $ it would look exactly the same.
-
-Let's try to put this into typescript. Here you see a binary finger tree type, aswell as an evaluate function that does what we just did above.
-
-```typescript
-type BFT<T> =
-  | { type: "leaf"; value: T }
-  | {
-      type: "node";
-      left: BFT<T>;
-      right: BFT<T>;
-    };
-
+```ts
 type BinaryOperation<T> = (a: T, b: T) => T;
-
-const evaluate = <T>(tree: BFT<T>, operation: BinaryOperation<T>): T => {
-  if (tree.type === "leaf") return tree.value;
-
-  return operation(
-    evaluate(tree.left, operation),
-    evaluate(tree.right, operation)
-  );
-};
-
-const subtract: BinaryOperation<number> = (a, b) => a - b;
-evaluate(exampleTree, subtract); // -11
-```
-
-## The free magma
-
-It turns out that `BFT<T>` forms a **magma** by itself. Remember that a magma is just any set and a binary operation; the set here is all `BFT<T>` for a fixed `T`, and we can find a binary operation that takes two trees and merges them.
-
-```typescript
-const merge = <T>(a: BFT<T>, b: BFT<T>): BFT<T> => ({
-  type: "node",
-  left: a,
-  right: b,
-});
-```
-
-And this magma right here `(BFT<T>, merge)`, is a special one! It's what we call the **free magma** on type `T`.
-
-As we've shown, you can translate any subtraction expression into an equivalent expression in our binary finger tree magma. And if we want to get back into the realm of subtraction and recover the result we would have gotten by subtracting instead of merging trees, we can do that by running our `evaluate` function with the `subtract` operation.
-
-In other words, these two snippets do the same:
-
-```typescript
-const subtraction = 1 - (2 - 3);
-
-//////////////////////////////////////
-
-const leaf = (value: number) => ({ type: "leaf", value }); // helper function
-
-const tree = merge(leaf(1), merge(leaf(2), leaf(3)));
-const result = evaluate(tree, subtract);
-```
-
-<p></p>
-
-How cool is that.
-
-There's a few points to make here:
-
-- We've successfully seperated data from evaluation. `merge` is like a binary operation that doesn't actually calculate anything, it just records all the values that went into the expression.
-- Evaluation in the magma of subtraction destroys information, in a way that BFTs do not. Give any BFT we can recover the result of the subtraction, but given the result of a subtraction, we can't reconstruct the BFT that caused the result. _This makes the free magma special, and unique among all the magmas_.
-- The free magma, BFTs, exist for _any_ type. Like, addition is well-defined on numbers, but not on `DatabaseRepository` or `DogApple`. A BFT does not care about what type it contains.
-
-## Free Semigroups
-
-So that's neat. We can find a similar construction for semigroups; let's take our string concatenation semigroup we defined in the beginning. Given
-
-$$
-("1" + "2") + ("3" + (("4" + "5") + "6"))
-$$
-
-we could obviously construct a BFT from it also. After all, all semigroups are magmas so everything we said before holds for semigroups aswell.
-
-But remember that associativity means that we can swap brackets around whichever way we want, so all these expressions are the same:
-
-$$
-("1" + "2") + ("3" + (("4" + "5") + "6")) \\
-("1" + "2") + ("3" + ("4" + ("5" + "6"))) \\
-("1" + ("2" + ("3" + ("4" + ("5" + "6")))))
-$$
-
-And therefor, all the BFTs we could generate from these expressions evaluate to the same result aswell:
-
-```haskell
-     ( )                   ( )                       ( )
-    /   \                 /   \                     /   \
-  ( )    \              ( )    \                   1    ( )
- /   \    \            /   \    \                      /   \
-1     2    \          1     2    \                    2    ( )
-           ( )                   ( )                      /   \
-          /   \                 /   \                    3    ( )
-         3    ( )              3    ( )                      /   \
-             /   \                 /   \                    4    ( )
-           ( )    6               4    ( )                      /   \
-          /   \                       /   \                    5     6
-         4     5                     5     6
-```
-
-So our BFT type is perhaps not the most tightly fitting type for semigroups.
-
-At the end of the day I'm saying in a very roundabout way we established at the very beginning: that we can drop all brackets for associative operations:
-
-$$
-"1" + "2" + "3" + "4" + "5" + "6"
-$$
-
-This more closely resembles a list of strings that are being added together in sequence.
-
-This gives rise to our next free construction, the **free semigroup** on type `T`, which is just a (nonempty) list of `T`, together with the binary operation of list concatenation.
-
-Typescript already has all of this built in so we're just giving fancy names to existing things.
-
-```typescript
-type FreeSemigroup<T> = [T, ...T[]];
-
-const concat = <T>(
-  a: FreeSemigroup<T>,
-  b: FreeSemigroup<T>
-): FreeSemigroup<T> => a.concat(b);
+const add: BinaryOperation<number> = (a, b) => a + b;
 
 const evaluate = <T>(
-  list: FreeSemigroup<T>,
+  multiset: Multiset<T>,
   operation: BinaryOperation<T>
-): T => list.reduce((acc, curr) => operation(acc, curr));
+): T => {
+  let result: T;
+
+  for (const [value, count] of multiset.entries()) {
+    for (let i = 0; i < count; i++) {
+      result = result === undefined ? value : operation(result, value);
+    }
+  }
+
+  return result;
+};
+
+const result = evaluate(multiset, add); // 16
 ```
 
-And just like before, we have found a way to seperate data from evaluation.
+I've also introduced a type `BinaryOperation<T>` and
+abstracted the addition away, since technically the multiset
+doesn't store any information about the operation we use to
+evaluate it. The multiset for the expression
+$ 1 \cdot 1 \cdot 1 \cdot 2 \cdot 3 \cdot 4 \cdot 4 $ would
+look exactly the same, and we could use the same `evaluate`
+function and pass `(a, b) => a * b` as the operation to get the
+result (96).
 
-```typescript
-const concatenation = "1" + "2" + "3" + "4" + "5" + "6";
+That makes the multiset rather special! Like, given just the result
+of the addition (16), there would be no way to reconstruct the
+result of the multiplication (96) from it, because solving
+the addition problem destroyed information about the numbers
+that went in, in a way that the multiset does not.
 
-//////////////////////////////////////
+And in a way the multiset doesn't evaluate anything, it just keeps
+track of what is supposed to happen.
 
-const list: FreeSemigroup<string> = ["1", "2", "3", "4", "5", "6"];
-const result = evaluate(list, (a, b) => a + b);
+Not only that, we can also _define a binary operation on multisets
+themselves_ that is both associative and commutative. Look at this:
+
+```ts
+const merge = <T>(a: Multiset<T>, b: Multiset<T>): Multiset<T> => {
+  const result = new Map<T, number>(a);
+
+  for (const [value, count] of b.entries()) {
+    result.set(value, (result.get(value) ?? 0) + count);
+  }
+
+  return result;
+};
 ```
+
+And ok, I will only do this once, but lets take our original
+addition problem $ 1 + 1 + 1 + 2 + 3 + 4 + 4 $ again and move it
+into the realm of multisets:
+
+```ts
+// helper function to not go insane
+const lift = <T>(value: T): Multiset<T> => new Map([[value, 1]]);
+
+const expression = merge(
+  merge(
+    merge(merge(lift(1), lift(1)), merge(lift(1), lift(2))),
+    merge(lift(3), merge(lift(4), lift(4)))
+  )
+);
+
+const result = evaluate(expression, add); // 16
+```
+
+I've nested the merge calls rather arbitrarily, but that's okay
+since our operation is associative, meaning bracketing doesn't
+matter!
+
+## Exercises
+
+1. Go ahead an convince yourself that `expression` and our
+   original addition problem are equivalent. To do that, just replace
+   each call to `merge` with `+`, and `lift` with nothing I guess.
+
+2. Convince yourself that the `merge` operation is associative.
+   Do that by taking some multisets `a`, `b`, and `c`, and
+   showing that `merge(merge(a, b), c)` is the same as
+   `merge(a, merge(b, c))`.
+
+3. Convince yourself that the `merge` operation is commutative.
+   Do that by taking some multisets `a` and `b`, and
+   showing that `merge(a, b)` is the same as `merge(b, a)`.
+
+## Final thoughts
+
+There's three things I'd like you to take away from this:
+
+- We have found a way to decouple data from evaluation. We've stated
+  the addition problem in a way that just stores all the data,
+  but does not compute anything until we call `evaluate`.
+- The multiset is like the mother-of-all-semigroups. Given a
+  multiset, we can "move" into the addition semigroup just by
+  calling `evaluate` with the addition operation. And we can
+  move into the multiplication semigroup by calling `evaluate`
+  with the multiplication operation. We can't move from the addition
+  semigroup to the multiplication semigroup this way, i.e. we
+  can't reconstruct 96 from 16.
+
+And most importantly.
+
+Not all types have well-known semigroups, like numbers have addition
+or multiplication. You can't add two objects of type
+`DatabaseRepository` or `DogApple`, generally speaking. **But,
+given any type `T`, we always know there is at least one semigroup:
+`Multiset<T>`**.
+
+This is why we call `Multiset<T>` the **free semigroup** on type `T`.
+
+We get it for free so to speak, it just always exists.
