@@ -1,7 +1,7 @@
 ---
 title: "Enforcing Architecture through Ceremony"
 description: ""
-pubDate: "June 18 2025"
+pubDate: "June 16 2025"
 ---
 
 I don't believe in enforcing architectural decisions through
