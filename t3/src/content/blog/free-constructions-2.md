@@ -15,29 +15,24 @@ example.
 "World" + " Hello"; // "World Hello"
 ```
 
-Clearly not the same.
+Order of operation matters!
 
-But, string concatenation is still associatve:
+But, string concatenation is still a **monoid**, just not a
+commutative one, because it follows the associativity law. And
+it also has the empty string `""` as an identity element.
 
 ```ts
 ("a" + "b"\) + "c"; // "abc"
 "a" + ("b" + "c"); // "abc"
 ```
 
-And also we have an identity element, the empty string `""`.
-
-```ts
-"a" + ""; // "a"
-"" + "a"; // "a"
-```
-
-Hence, string concatenation is a **monoid**. Just not a
-commutative one.
-
 Dropping the commutativity requirement, we can no longer store
-complex expressions like `a + b + c` in a multiset, because
-the order of the elements suddenly matters. To see that, lets
-try to construct a multiset for the expression
+complex expressions like `a + b + c` in a multiset like we did
+in [part 1](../free-constructions-1), because the order of the
+elements suddenly matters and multisets don't track the order
+in which elements were added to it.
+
+To see that, lets try to construct a multiset for the expression
 `"a" + "a" + "b" + "c" + "a"`, like we did last post.
 
 ```ts
@@ -53,17 +48,15 @@ const result = evaluate(expression, (a, b) => a + b); // "aaabc"
 
 ---
 
-Clearly that's not the right result, which should be `"aabca"`;
-this is because multisets don't keep track of which order the
-elements were added in.
+As expected, that is not the right result, which would be `"aabca"`.
 
-So, multisets don't cut it anymore. We need a new data
+So, multisets don't cut it anymore and we need a new data
 structure that can store expressions for non-commutative
 monoids.
 
 ## Lists
 
-For monoids, that datastructure is the plain old **list**.
+That datastructure turns out to be the plain old **list**.
 
 Lists behave a lot like multisets, in the sense that they count
 how often any given element has been added to them; but they also
@@ -144,7 +137,7 @@ way around.
 
 As in, given the result `"aabca"`, we don't know whether it
 came from `"aa" + "bca"` or `"a" + "a" + "b" + "c" + "a"`;
-information was lost while computing the result. Lists on the
+that information was lost while computing the result. Lists on the
 other hand preserve the information about how the
 elements were added, so we can reconstruct the original
 expression.
@@ -156,8 +149,8 @@ and some of you might have come across the term before.
 
 In particluar I'd like to shout out [Bartosz Milewski's excellent
 "Categories for Programmers"](https://bartoszmilewski.com/2015/07/21/free-monoids/)
-where he also discusses free monoids, albeit in a more technical
-way.
+where he also discusses free monoids, albeit in the context
+of category theory.
 
 In the next post we'll take a look at **free magmas**, before
 tying it all together in a theoretical framework.
