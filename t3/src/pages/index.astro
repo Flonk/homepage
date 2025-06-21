@@ -22,11 +22,18 @@ const posts = (await getCollection('blog')).sort(
 				margin: 0;
 				padding: 0;
 			}
+
 			@media (max-width: 768px) {
 				ul {
 					gap: 1.8rem;
 				}
+
+				li a {
+					display: flex;
+					flex-direction: column;
+				}
 			}
+			
 			ul li * {
 				text-decoration: none;
 			}
