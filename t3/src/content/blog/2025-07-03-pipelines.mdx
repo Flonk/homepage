@@ -1,0 +1,17 @@
+---
+title: "Pipeline runs grow n² with the number of open PRs"
+description: ""
+pubDate: "July 03 2025"
+---
+
+There are $ n $ open pull requests. One pull requests is merged;
+now $ n - 1 $ developers will press the "sync" button on their
+PR, resulting in $ n - 1 $ pipeline runs.
+
+Continue until all PRs are merged, and you end up with
+$ \mathcal{O}(n^2) $ pipeline runs in total.
+
+I guess what I'm saying is that if you're in one of those well-
+managed teams where nobody merges anything until the end of the
+sprint where suddenly everyone gets stressed out, that hurts
+your bottom line in more ways than one.
