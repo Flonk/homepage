@@ -1,0 +1,147 @@
+---
+title: "Free constructions #3 - Magmas & Binary Finger Trees"
+description: ""
+pubDate: "July 04 2025"
+---
+
+This is part 3 of a series on free constructions.
+[You can find part 2 here](./2025-06-19-free-constructions-2).
+
+Not all operations are associative! In fact I'd think that given
+the infinite space of all possible binary operations, 100% of
+them are not. But tbh I wouldn't really know about that and I'm
+just talking out of my ass.
+
+But, take subtraction of numbers for example. Parentheses matter!
+
+```ts
+⟮1 - 2) - 3; // -4
+1 - (2 - 3); // 2
+```
+
+In the previous posts we were able to store these kinds of
+expressions in multisets and lists, but, dropping the associativity
+requirement, we can no longer do that.
+
+We can see that by naively constructing the list `[1, 2, 3]` for
+the expressions above -- how would our `evaluate` function know
+whether to return `-4` or `2`? It can't, because lists do not track
+the way in which way operands were grouped.
+
+We call this -- a non-associative monoid if you will -- a
+**magma**. And basically, any set with any binary operation
+meets the definition of a magma, so it's a very general
+concept.
+
+## Binary Finger Trees
+
+If we want to construct a data structure that can store expressions
+for any magma, a tree-like structure will do. You can imagine
+"pinching" the outermost `-` in our expression above and then letting
+the rest of the expression dangle from it.
+
+```ts
+"A tree for (1 - 2) - 3:"
+
+      -
+     / \
+    -   3
+   / \
+  1   2
+
+"And a tree for 1 - (2 - 3):"
+
+      -
+     / \
+    1   -
+       / \
+      2   3
+```
+
+We call this tree _binary_, because each node has two children;
+and we call it _finger_, because only leaf nodes have values,
+and all the intermediate nodes contain no data.
+
+Don't ask my why they call them finger trees. Maybe some kid named
+"finger" invented them or something.
+
+![Kid named finger](/assets/2025-07-04-free-constructions-3/kid_named_finger.jpg)
+
+Let's jot down the type definition, and our `evaluate` function:
+
+```ts
+type BFT<T> =
+  | { type: "leaf"; value: T }
+  | { type: "node"; left: BFT<T>; right: BFT<T> };
+
+type BinaryOperation<T> = (a: T, b: T) => T;
+
+const evaluate = <T>(tree: BFT<T>, op: BinaryOperation<T>): T => {
+  if (tree.type === "leaf") {
+    return tree.value;
+  }
+  return op(evaluate(tree.left, op), evaluate(tree.right, op));
+};
+```
+
+We can now construct a tree for our subtraction example like so:
+
+```ts
+const expression = {
+  type: "node",
+  left: {
+    type: "node",
+    left: { type: "leaf", value: 1 },
+    right: { type: "leaf", value: 2 },
+  },
+  right: { type: "leaf", value: 3 },
+};
+
+const result = evaluate(expression, (a, b) => a - b); // -4
+```
+
+## A free magma
+
+Since we've done this two times before, it shouldn't surprise you
+that BFTs themselves are a magma. We can define a `merge`
+operation that concatenates two trees, and returns a new tree:
+
+```ts
+const merge = <T>(a: BFT<T>, b: BFT<T>): BFT<T> => {
+  return { type: "node", left: a, right: b };
+};
+```
+
+And of course, just like before, we can express `(1 - 2) - 3` only
+in terms of binary finger trees and their `merge` operation:
+
+```ts
+const lift = <T>(value: T): BFT<T> => ({ type: "leaf", value });
+
+const expression = merge(merge(lift(1), lift(2)), lift(3));
+```
+
+Neat!
+
+## Exercises
+
+1. Go ahead an convince yourself that `expression` and our
+   original concatenation problem are equivalent. To do that,
+   replace each call to `merge` with `-`, and `lift` with
+   nothing.
+
+2. Convince yourself that the `merge` operation is **not** associative.
+   Do that by taking some multisets `a`, `b`, and `c`, and
+   showing that `merge(merge(a, b), c)` is not the same as
+   `merge(a, merge(b, c))`.
+
+3. Convince yourself that the `merge` operation is **not**
+   commutative. Do that by taking some multisets `a` and `b`, and
+   showing that `merge(a, b)` is not the same as `merge(b, a)`.
+
+## Final thoughts
+
+There it is, the **free magma** on `T`, the last of the three
+free constructions we will be looking at in this series.
+
+(This blog post is continued in part 4 - which is work in progress.)
