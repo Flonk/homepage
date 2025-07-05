@@ -1,0 +1,369 @@
+---
+title: "A fractal modulith"
+description: ""
+pubDate: "July 05 2025"
+---
+
+Modulith has a very specific meaning in a Spring context but
+apart from that I really don't like the word. Like. Oh, you're
+splitting your monolith into meaningful parts like a good little
+coder?
+
+Like. Yeah? I mean that's just programming. I mean, what's
+even the alternative?
+
+"Yeah no at my company we don't organize code. We just have a
+big file called index.ts in the repo. We call it the gigabyte
+file architecture and it works better for us."
+
+Said no one ever.
+
+---
+
+Anyway, let me tell you how I start my monoliths. I've at least
+5 apps in production that started a bit like this; basically it's
+the minimal way to get configuration from the environment and
+a basic service architecture with dependency injection. Stole the
+idea from the C# ASP.NET HostBuilder but it's probably a common pattern.
+
+To parse the environment:
+
+```typescript
+// appConfiguration.ts
+
+type AppEnvironment = Partial<{
+  FOO_USER: string;
+  FOO_PASSWORD: string;
+  LOG_LEVEL: string;
+}>;
+
+type AppConfiguration = {
+  foo: {
+    user: string;
+    password: string;
+  };
+  logLevel: LogLevel;
+};
+
+const error = (msg: string) => {
+  throw new Error(msg);
+};
+
+const parseAppEnvironment = (
+  env = process.env as AppEnvironment
+): AppConfiguration => ({
+  foo: {
+    user: env.FOO_USER ?? error("FOO_USER is required"),
+    password: env.FOO_PASSWORD ?? error("FOO_PASSWORD is required"),
+  },
+  logLevel: parseLogLevel(env.LOG_LEVEL) ?? "debug",
+});
+```
+
+Note how `process.env` goes in as an argument, so you can override
+it in tests.
+
+Okay, next, the service architecture.
+
+```typescript
+// createApplication.ts
+import { parseAppEnvironment } from "./appConfiguration";
+import { FooService } from "../service/foo/FooService";
+import { BarService } from "../service/bar/BarService";
+
+type Service = {
+  new (app: Application, config: AppConfiguration): Service;
+
+  start?: () => void;
+  stop?: () => void;
+};
+
+type Application = {
+  config: AppConfiguration;
+  service: {
+    Foo: FooService;
+    Bar: BarService;
+  };
+  start: () => void;
+  stop: () => void;
+};
+
+const ServicesInInitializationOrder = [
+  ["Foo", FooService],
+  ["Bar", BarService],
+];
+
+const createApplication = (config = parseAppEnvironment()): Application => {
+  const service = {} as Services;
+
+  for (const [name, Service] of ServicesInInitializationOrder) {
+    service[name] = new Service(config);
+  }
+
+  const start = () => {
+    for (const service of Object.keys(ServicesInInitializationOrder)) {
+      service[service].start?.();
+    }
+  };
+
+  const stop = () => {
+    const reverseOrder = [...ServicesInInitializationOrder].reverse();
+    for (const service of Object.keys(reverseOrder)) {
+      service[service].stop?.();
+    }
+  };
+
+  return {
+    config,
+    service,
+    start,
+    stop,
+  };
+};
+```
+
+And that's it. We get dependency injection because every service
+gets the `Application` object, containing all other services.
+
+All that's left to do is to start the application:
+
+```typescript
+// index.ts
+import { createApplication } from "./app/createApplication";
+
+createApplication()
+  .start()
+  .catch((err) => {
+    console.error("Failed to start application:", err);
+    process.exit(1);
+  });
+```
+
+Note how we have a single entrypoint into our application,
+a single `createApplication` function that does everything. Which
+you'd think is common practice, but many people (and frameworks!)
+choose to pollute the global scope instead which I don't really
+get.
+
+Having an `Application` object and a factory for it is great for
+testing too because you can create 20 apps in parallel if you
+want and also the mocking becomes a lot easier.
+
+"Yeah but spring boot does this for me if I slap 40 annotations
+on an empty class, aren't you just creating your own framework?"
+-- yeah, maybe. But this took me 5 minutes to set it up and it works in
+any stack. Note how I'm not opinionated about the logger or the
+http framework or the database. All I do is start services.
+You kind of need that flexibility in javascript.
+
+Your `HttpService` can do all the controller stuff.
+
+---
+
+Now, the classic service architecture is one we are all very
+familiar with. Which is cool, so all the devs will feel right
+at home and can get cracking!
+
+Let's say we have added a couple of features
+to our monolith and the file structure looks like this:
+
+```
+src/
+  ├── README.md
+  ├── package.json
+  ├── tsconfig.json
+  ├── .env
+  ├── app/
+  │   ├── appConfiguration.ts
+  │   └── createApplication.ts
+  └── service/
+      ├── foo/
+      │   ├── FooService.ts
+      │   └── FooController.ts
+      ├── bar/
+      │   ├── BarService.ts
+      │   └── BarController.ts
+      └── http/
+          └── HttpService.ts
+```
+
+Usually I like to go deep on my APIs, meaning the services
+will end up with few methods but a lot of code behind it. A
+service is a module, basically.
+
+Let's examine how one of our services, or modules, may grow
+over time. The humble FooService will probably start as a single file.
+
+```
+foo/
+  ├── FooService.ts
+  └── FooController.ts
+```
+
+Once shoving everything into a single class becomes unmaintainable,
+I'd usually have the service class just contain all the function
+headers and move the implementation to a file called `utils.ts`
+for lack of a better name.
+
+```
+foo/
+  ├── FooService.ts
+  ├── FooController.ts
+  └── utils.ts
+```
+
+Eventually we split all the methods of our service into more and
+more files as new features are added.
+
+```
+foo/
+  ├── FooService.ts
+  ├── FooController.ts
+  ├── parser/
+  │   ├── parseXml.ts
+  │   ├── parseTimestamp.ts
+  │   └── types.ts
+  ├── validator/
+  │   ├── validateEmail.ts
+  │   ├── validatePassword.ts
+  │   └── types.ts
+  └── utils.ts
+
+```
+
+And eventually, you will hit the point where the service gets
+simply too large. What ends up happening then is that you split
+the service into multiple services; or as you add new features,
+choose to not add them to the existing service, but create
+a new one instead.
+
+```
+service/
+  ├── foo/
+  │   ├── FooService.ts
+  │   ├── FooController.ts
+  │   └── utils.ts
+  ├── parser/
+  │   ├── ParserService.ts
+  │   ├── parseXml.ts
+  │   ├── parseTimestamp.ts
+  │   └── types.ts
+  ├── validator/
+  │   ├── ValidatorService.ts
+  │   ├── validateEmail.ts
+  │   ├── validatePassword.ts
+  │   └── types.ts
+  └── ...
+
+```
+
+This is a problem, because now he have created architecture
+that exists in our heads, but not in the codebase.
+
+_We_ know that `FooService`, `ParserService` and `ValidatorService`
+are all part of a single logical unit; they are tightly coupled
+with `FooService` acting as a parent of `ParserService` and
+`ValidatorService`, but the codebase does not reflect that.
+
+That's because our `service/` directory is a flat structure, and
+we have no way to express these tree-like relationships.
+
+(There's also a second way to arrive at similar structures, that
+is by starting out with seperate services that end up getting
+tightly coupled over time.)
+
+Now we could just move these three services into a folder,
+[but that's not enough ceremony](../2025-06-15-enforcing-architecture-through-ceremony)
+and doesn't isolate the logical units at all. You have to rely
+on the goodwill of the developers to add services to the right
+folder, and there is neither punishment nor reward for
+doing so.
+
+---
+
+Well the other night I woke up at 3am and I think I have found
+a solution to this problem.
+
+Setting up an application takes 5 minutes and it's 2 files,
+so why aren't we creating these hierarchical structures by
+nesting applications within applications?
+
+```
+src/
+  ├── README.md
+  ├── package.json
+  ├── tsconfig.json
+  ├── .env
+  ├── app/
+  │   ├── appConfiguration.ts
+  │   └── createApplication.ts
+  └── service/
+      ├── bar/
+      ├── http/
+      └── fooApplication/
+          ├── README.md
+          ├── app/
+          │   ├── appConfiguration.ts
+          │   ├── createApplication.ts
+          |   └── FooApplicationService.ts
+          └── service/
+              ├── foo/
+              ├── parser/
+              └── validator/
+```
+
+Here, `fooApplication/app/createApplication.ts` creates an
+Application much like the root app, and the addtional `FooApplicationService`
+provices a service class that the root application instantiates,
+which in turn creates a new FooApplication, creating all the
+subservices.
+
+## The fractal modulith
+
+This is the fractal modulith. You can nest these applications
+arbitrarily deep, and if your sub-applications get too large,
+or your team grows, you can even turn these applications into
+seperate deployables/microservices by just dragging the
+`fooApplication/` folder into a new repository.
+
+And then all the function calls from the sub-application to the
+root application need to be replaced with HTTP calls, as do all
+the calls from the root application to the sub-application.
+
+If you have good enough architecture and organized enough devs,
+you can even define two classes `Ingress` and `Egress` that you
+can use to funnel all calls between the applications through,
+and then migrating from a sub-application to a microservice
+is just a matter of replacing the `Ingress` and `Egress` classes
+with HTTP calls.
+
+And, wild idea, if you have a way to create `HttpRequest` objects
+in your code, the `Ingress` and `Egress` classes can even call
+your controllers directly, making the migration to HTTP calls
+even easier.
+
+## I have not actually done this in production
+
+I have not actually done this in production, but if I get the
+chance, I will try it out in the next medium to large
+greenfield project. There might be a way to streamline this
+concept too but I haven't fully explored the space of possibilities
+yet.
+
+Maybe it makes sense to have a package.json in each sub-application
+or maybe it doesn't. Running tests for each sub-application should
+be easy but I haven't done the proof-of-concept. Do we need to
+enforce somehow that crossing application boundaries is forbidden?
+I wouldn't think so because if sub-app-1 needs to access sub-app-2,
+It would need to go through the root application, which leads to
+increadibly awkward-to-read-code, discouraging devs from doing
+that. How are we dealing with shared utilities?
+
+The fractal modulith concept does make a lot of sense to me though,
+as we've found a way to smoothly transition from a single class to
+a fully-blown microservice, which seems like a very agile way to
+approach things.
+
+But, lots of questions still to answer. But they are similar
+question to the ones we have to answer when designing microservice
+architectures.

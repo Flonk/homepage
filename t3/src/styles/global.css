@@ -203,11 +203,17 @@ hr {
 }
 @media (max-width: 720px) {
   body {
-    font-size: 18px;
+    font-size: 15px;
   }
   main {
     padding: 1em;
   }
+}
+
+hr {
+  margin: 2em 0;
+  border: none;
+  border-top: 1px solid var(--nord2);
 }
 
 strong,
