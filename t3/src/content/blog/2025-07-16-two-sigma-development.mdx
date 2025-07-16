@@ -1,0 +1,68 @@
+---
+title: "Two-sigma development"
+description: ""
+pubDate: "July 17 2025"
+---
+
+No I'm not lowballing, just realistic.
+
+---
+
+Programs exist in only two states: buggy, and formally correct.
+
+Of course we all think we write formally correct code but then
+due to `$NOT_MY_FAULT_REASON` that one function that shouldn't throw _here_,
+because I know it doesn't throw _here_, actually throws.
+
+The other extreme is formal correctness, where "formal" in the
+everyday sense means "operating correctly" under a predefined set
+of business rules and assumptions over the entire problem domain.
+
+Not only can we never get there because formal verification is hard
+and expensive, but also because our business rules are usually not well-defined,
+and assumptions are false.
+
+And even if we had a way to know formally correct behaviour,
+we usually don't have the time and money to implement it.
+
+So my new way of developing software is pretending to know formally
+correct behaviour and to _consider_ all the edge cases, but opt-out
+when I don't think that edge case has a high enough probability
+of happening.
+
+Which is a fancy way of saying I did a try-catch today and I'm
+patting myself on the back for it.
+
+```typescript
+function main() {
+  const result = thisDoesntThrowHerePinkyPromise();
+}
+```
+
+This is a bug waiting to happen, whereas this is two-sigma development:
+
+```typescript
+function main() {
+  try {
+    const result = thisDoesntThrowHerePinkyPromise();
+  } catch (e) {
+    throw new UnreachableError(
+      "I have no fucking clue what to do in this case",
+      e
+    );
+  }
+}
+```
+
+The latter snippet communicates to other developers that I considered
+the possibility of an error, but that I didn't consider it worth
+handling.
+
+If the three-sigma event happens, we know where to look, and where
+to implement a fix.
+
+This doesn't influence the time it takes to implement my feature,
+but everyone benefits. It's an easy win.
+
+Though obviously this will never fly at code review so you have to
+be a bit more subtle about it.
