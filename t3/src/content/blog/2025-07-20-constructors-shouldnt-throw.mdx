@@ -1,0 +1,62 @@
+---
+title: "Constructors shouldn't throw"
+description: ""
+pubDate: "July 20 2025"
+---
+
+I mean this is nothing new but it bears repeating.
+
+Constructors should not throw exceptions. Nor should they do
+any asynchronous stuff, or really, perform any side effects at all.
+
+## But my Date constructor needs to parse a string!
+
+Okay I'm not in the business of writing Date libraries, but still,
+if you need to parse a string, write a parser. And then write
+a factory method `Date.parse(string)` that uses that parser and
+calls a private constructor.
+
+## But my Database constructor needs to connect to the database!
+
+Hell it does. Turn your `Database` class into a state machine
+with an `uninitialized` and a `connected` state.
+Then have a `Database.connect()` method that transitions the state
+from `uninitialized` to `connected`. Your unit tests will love it.
+
+## But my service needs to perform an API request!
+
+Good grief please don't. A factory method will be your friend here,
+you can do the fetch request in your factory and pass the value of
+the resolved promise to the constructor.
+
+## But my constructor needs to log something!
+
+Okay that's fine. I'm not that militant.
+
+## Why are you militant at all?
+
+The C++ core guidelines say that "default constructors" should not
+throw -- those are the ones that take no arguments. In the C++
+context especially that makes sense because there we have RAII
+and you really don't want a simple declaration like `Foo foo;`
+to throw an exception. If it does, you end up with half-constructed
+objects and memory leaks and complicated cleanup. The C++
+container classes assume `noexcept` constructors for this reason,
+because creating a list of size 20 calls your constructor 20 times,
+and the cleanup gets so much messier.
+
+We don't have to worry about this in JavaScript at all, but I think
+even there it's good practice to avoid throwing exceptions in not
+just no-arg constructors, but all of them.
+
+Because the semantics of a constructor is to bring an object
+into a valid state and you don't expect it to perform any
+functionality. Constructors should be simple and predictable.
+
+Often your objects are constructed in completely different
+places than where they are used so you really don't want to
+know about or deal with the implementation details of every class
+at construction time. It's a separation of concerns thing.
+
+If your objects have a complicated lifecycle you should design
+their APIs to reflect that.
