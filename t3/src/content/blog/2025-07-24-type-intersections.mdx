@@ -1,0 +1,57 @@
+---
+title: "Type intersections"
+description: ""
+pubDate: "July 24 2025"
+---
+
+`&` in TypeScript is called the intersection operator.
+
+Why tho? If you're familiar with set intersections it might
+seem like `&` works exactly the wrong way around... like,
+intersecting the sets `{1, 2, 3}` and `{2, 3, 4}` gives you
+`{2, 3}` -- it's the set of elements that are present
+in both sets.
+
+But in Typescript, `{ foo: string } & { bar: number }` gives
+`{ foo: string, bar: number }` -- it's the set of elements that
+are present in either type. Isn't that more like a union?
+
+## Well
+
+No.
+
+There's a very formal reason why the "type intersection" is called
+as such, and it has to do with the Lizkov Substitution Principle.
+
+Let's look at the following Venn Diagram, which is a visual
+representation of the intersection of two sets:
+
+TODO
+
+Now, am I allowed to visit the Blah convention?
+
+Yes, because I am in the intersection of Blah and Blurgh, and
+the intersection is a subset of both sets.
+
+Now, take a look at the following function definitions:
+
+```ts
+const foo = (x: { foo: string }) => x.foo;
+const bar = (x: { bar: number }) => x.bar;
+```
+
+`foo` takes `Foo`s, and `bar` takes `Bar`s, but our intersection
+type `{ foo: string } & { bar: number }` can be passed to both
+functions; it's like the middle part of the Venn Diagram.
+
+It is kind of funny tho how the type with _more_ properties
+will be a subtype of the type with _fewer_ properties but that's
+just what follows from the above.
+
+And what follows from that is that the empty type `{}` isn't
+actually a subtype of any other type, while the empty set `{}`
+is a subset of every set. The "empty set" equivalent of types
+would actually be the type that contains _all_ properties, where
+each property is `any`-typed, perhaps `Record<any, any>`.
+
+Or actually, typescript has a built-in type for that; it's called `unknown`.
