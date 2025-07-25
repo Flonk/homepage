@@ -9,30 +9,21 @@ pubDate: "July 24 2025"
 Why tho? If you're familiar with set intersections it might
 seem like `&` works exactly the wrong way around... like,
 intersecting the sets `{1, 2, 3}` and `{2, 3, 4}` gives you
-`{2, 3}` -- it's the set of elements that are present
+`{2, 3}` -- it's the subset of elements that exist
 in both sets.
 
 But in Typescript, `{ foo: string } & { bar: number }` gives
-`{ foo: string, bar: number }` -- it's the set of elements that
-are present in either type. Isn't that more like a union?
+`{ foo: string, bar: number }` -- we get all properties of either
+type. Isn't that more like a union?
 
 ## Well
 
 No.
 
 There's a very formal reason why the "type intersection" is called
-as such, and it has to do with the Lizkov Substitution Principle.
+as such, and it has to do with the Liskov Substitution Principle.
 
-Let's look at the following Venn Diagram I stole off google,
-which is a visual representation of the intersection of two sets:
-
-![Venn Diagram](/assets/2025-07-24-type-intersections/venn.png)
-
-Now, will Tomatoes be allowed to visit the round fruits club?
-
-Yes, because it exists in the intersection of all round fruits.
-
-Now, take a look at the following function definitions:
+Take a look at the following function definitions:
 
 ```ts
 const foo = (x: { foo: string }) => x.foo;
@@ -40,8 +31,16 @@ const bar = (x: { bar: number }) => x.bar;
 ```
 
 `foo` takes `Foo`s, and `bar` takes `Bar`s, but our intersection
-type `{ foo: string } & { bar: number }` can be passed to both
-functions; it's like the middle part of the Venn Diagram.
+type `{ foo: string } & { bar: number }` can be passed to either
+function.
+
+So if you imagine `{ foo: string }` and `{ bar: number }` as circles
+on a Venn Diagram, then our intersection type is like the middle part.
+Our foobar can go to the foo club _and_ the bar club, so to speak, because
+the foobar is a subtype of the foos and a subtype of the bars.
+
+The Venn Diagram and it's intersection in this case doesn't show a
+subset relationship, but rather a subtype relationship!
 
 It is kind of funny tho how the type with _more_ properties
 will be a subtype of the type with _fewer_ properties but that's
@@ -50,7 +49,7 @@ just what follows from the above.
 And what follows from that is that the empty type `{}` isn't
 actually a subtype of any other type, while the empty set `{}`
 is a subset of every set. The "empty set" equivalent of types
-would actually be the type that contains _all_ properties, where
+would be the type that contains _all_ properties, where
 each property is `any`-typed, perhaps `Record<any, any>`.
 
-Or actually, typescript has a built-in type for that: it's called `unknown`.
+Or, well, turns out typescript has a built-in type for that: `unknown`.
