@@ -1,0 +1,131 @@
+---
+title: "Free objects #4"
+description: ""
+pubDate: "July 30 2025"
+---
+
+This is part 4 of a series on Free objects.
+[You can find part 3 here](/blog/2025-07-04-free-objects-3).
+
+We've seen three types of mathematical structures: Commutative monoids, monoids, and magmas. They each spawn three types of data structures,
+their so-called _Free objects_: Multisets, lists, and binary finger trees.
+
+Now, if we recall the definition of monoid or magma, we will know that
+it's trivially true that any commutative monoid is also a monoid, and any monoid is also a magma; since a monoid for example is any binary operation on a set that is associative and has a unit; and a commutative monoid is just
+that plus extra stuff.
+
+I've been keeping the maths fairly light but we could formalize this
+by defining what's called a _forgetful functor_ that takes any
+commutative monoid and forgets about the commutativity; what's left
+over is just a regular monoid. But let's not get into the details
+of that.
+
+Anyway we can define a sort of hierarchy between these three
+structures that looks like so:
+
+$$
+\begin{CD}
+\text{Magma} @<<< \text{Monoid} @<<< \text{C.\ Monoid}
+\end{CD}
+$$
+
+Obviously the _forgetting_ won't work so easily in the other direction, like
+no matter how hard you try you won't be able to make subtraction
+on numbers a monoid by making it associative.
+
+What's perhaps even more interesting though is that the emergent
+data structures also form a hierarchy, but in the other direction!
+
+That is, we can take any binary finger tree and turn it into
+a list, in a canonical way. If you've worked with trees before, you might
+be familiar with the term \*in-order tree traversal\*\* -- it's where
+you take a tree, and you visit the left child, then the parent, and then the right child, recursively. In code:
+
+```ts
+type BFT<T> =
+  | { type: "leaf"; value: T }
+  | { type: "node"; left: BFT<T>; right: BFT<T> };
+
+const forgetBft = <T>(tree: BFT<T>): T[] => {
+  if (tree.type === "leaf") return [tree.value];
+  return [...forget(tree.left), ...forget(tree.right)];
+};
+```
+
+This would turn both of the trees from our previous post:
+
+```ts
+"A tree for (1 - 2) - 3:"
+
+      -
+     / \
+    -   3
+   / \
+  1   2
+
+"And a tree for 1 - (2 - 3):"
+
+      -
+     / \
+    1   -
+       / \
+      2   3
+```
+
+into the same list `[1, 2, 3]`.
+
+And we can also turn lists into multisets, by counting how often
+any value appears in the list. I will leave that as an exercise for you.
+
+This yields a very interesting looking diagram:
+
+$$
+\begin{CD}
+\text{Magma} @<<< \text{Monoid} @<<< \text{C.\ Monoid} \\
+@V{\mathrm{Free}}VV @V{\mathrm{Free}}VV @V{\mathrm{Free}}VV \\
+\text{BFT} @>>> \text{List} @>>> \text{Multiset}
+\end{CD}
+$$
+
+What I think is interesting about this is how when the binary
+operation gets more restrictive, the data structure gets
+more general.
+
+Like, a commutative monoid is a very specific kind of algebraic structure, and the free object for it is a multiset, which is a very "loose"
+collection of values. Magmas on the other hand are very general --
+pretty much every binary operation forms a magma. But, the resulting
+free object, the binary finger tree, is much more structured than
+the multiset.
+
+How will that help you in your day-to-day programming?
+
+Probably not at all. Perhaps we could make a deep point about how
+data and evaluation are two sides of the same coin, and perhaps I
+could invite you to look into your own codebases and spot all the magmas
+and monoids you spawn ad-hoc everyday when you call `.reduce` on
+your lists.
+
+But I'm a bit peckish and I haven't showered yet so I'ma do that
+instead.
+
+---
+
+Though, it can be fun to think about what kinds of algebraic
+structures give rise to which data structures. Take magmas that
+are commutative but not associative for example! Rock-paper-scissors
+is one:
+
+```
+🪨 <> 📄 = 🪨
+📄 <> ✂️ = 📄
+✂️ <> 🪨 = ✂️
+
+commutativity: yes! 🪨 <> 📄 = 📄 <> 🪨 = 🪨
+associativity: no! (🪨 <> 📄) <> ✂️ = 🪨 <> ✂️, but 📄 <> (✂️ <> 🪨) = 📄
+```
+
+What free object would rock-paper-scissors give rise to?
+
+Take a datastructure that is even less structured than a multiset,
+like sets! What algebraic structure would you need such that it's
+free object is a set?
