@@ -1,0 +1,57 @@
+---
+title: "Angular and Greenspun's Tenth Rule"
+description: ""
+pubDate: "August 01 2025"
+---
+
+I'm currently looking at angular docs to try and get up to speed
+because I will be working on an angular project soon.
+
+And I'm known to be unbelievably biased against heavy frameworks,
+so I might be triggered easily. And I've seen plenty of design flaws
+in angular already, just from a few hours of perusing docs. But what
+really tipped me over the edge was **template expression syntax**:
+
+```ts
+import { Component } from "@angular/core";
+
+@Component({
+  selector: "app-input-only",
+  standalone: true,
+  template: `
+    <input
+      [value]="value"
+      (input)="value = $event.target.value"
+      placeholder="Type something…"
+    />
+  `,
+})
+export class MyComponent {
+  value = "";
+}
+```
+
+Ugh. You design a shitty framework, run into shitty poblems (naturally),
+which you patch with even shittier solutions. It's the circle
+of life.
+
+Did someone actually sit down and think: You know what?
+
+Let's put a DSL (`value = $event.target.value`) inside a DSL (`(input)="..."`),
+inside JavaScript.
+
+Like, that is the cleanest solution to frontend. One more DSL will
+solve all our problems. Please bro. Just one more layer of indirection bro.
+
+I guess there's a reason why react has 100x the amount of downloads
+on npm (and it's not because react users are not "enterprise" enough)
+
+But yeah. Yikes man.
+
+It immediately reminded me of Greenspun's Tenth Rule from the early 90s:
+
+> Any sufficiently complicated C or Fortran program contains an ad-hoc,
+> informally-specified, bug-ridden, slow implementation of half of
+> Common Lisp.
+
+Good to see that the industry has learned.
