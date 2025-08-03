@@ -1,0 +1,76 @@
+---
+import ColorShower from './ColorShower.astro';
+
+export interface Props {
+  /** Array of OKLCH swatches */
+  swatches: { l: number; c: number; h: number }[];
+  /** Bar height (e.g. `30`, `"2rem"`) */
+  height?: number | string;
+  /** Fixed defaults for each axis when overlaying other axes */
+  defaultL?: number;
+  defaultC?: number;
+  defaultH?: number;
+}
+
+const {
+  swatches,
+  height = 30,
+  defaultL = 50,
+  defaultC = 0.3,
+  defaultH = 40
+} = Astro.props as Props;
+
+const heightCss = typeof height === 'number' ? `${height}px` : height;
+---
+
+<style>
+.grid-3d {
+  display: grid;
+  gap: 0rem;
+  background: #000;
+  padding: 1rem;
+  border-radius: 0.2rem;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+.grid-3d > div {
+  display: flex;
+  align-items: center;
+}
+.axis-label {
+  text-align: right;
+  margin-right: 0.2rem;
+}
+</style>
+
+<div class="grid-3d">
+  <!-- Hue axis (varies hue, fixed L/C) -->
+  <div style="margin-bottom: 1rem;">
+    <ColorShower
+      axis="hue"
+      l={defaultL}
+      c={defaultC}
+      height={"3rem"}
+      swatches={swatches}
+    />
+  </div>
+
+  <div>
+    <ColorShower
+      axis="chroma"
+      l={50}
+      h={defaultH}
+      height={"0.8rem"}
+      swatches={swatches}
+    />
+  </div>
+
+  <div>
+    <ColorShower
+      axis="lightness"
+      c={0}
+      h={defaultH}
+      height={"0.8rem"}
+      swatches={swatches}
+    />
+  </div>
+</div>

@@ -1,0 +1,83 @@
+---
+export interface Props {
+  size?: number;
+  chroma?: number;
+  /** Lightness bounds (0–100%) for the wheel: center = maxLightness, edge = minLightness */
+  minLightness?: number;
+  maxLightness?: number;
+  /** each entry is { c: chroma, h: hue-deg } */
+  swatches?: { c: number; h: number }[];
+}
+const {
+  size = 400,
+  chroma = 0.22,
+  minLightness = 0,
+  maxLightness = 100,
+  swatches = []
+} = Astro.props;
+---
+
+<canvas
+  id="oklch-wheel"
+  width={size}
+  height={size}
+  style="border-radius:50%; display:block;"
+  data-chroma={chroma}
+  data-min-lightness={minLightness}
+  data-max-lightness={maxLightness}
+  data-swatches={JSON.stringify(swatches)}
+  client:load
+></canvas>
+
+<script is:client>
+  const canvas = document.getElementById('oklch-wheel');
+  const ctx = /** @type {CanvasRenderingContext2D} */(canvas.getContext('2d'));
+
+  const D = canvas.width;
+  const chrom = parseFloat(canvas.dataset.chroma);
+  const minL = parseFloat(canvas.dataset.minLightness);
+  const maxL = parseFloat(canvas.dataset.maxLightness);
+  const swatches = JSON.parse(canvas.dataset.swatches);
+
+  const cx = D/2, cy = D/2;
+  const radius = D/2;
+
+  // paint the OKLCH wheel stretched between maxL at center and minL at edge
+  for (let y = 0; y < D; y++) {
+    for (let x = 0; x < D; x++) {
+      const dx = x - cx, dy = y - cy;
+      const r = Math.hypot(dx, dy);
+      if (r > radius) continue;
+
+      let hue = Math.atan2(dy, dx) * 180 / Math.PI;
+      if (hue < 0) hue += 360;
+
+      const frac = r / radius;              // 0 at center → 1 at edge
+      const Lpct = maxL + (minL - maxL) * frac;
+      const C = chrom * frac;
+
+      ctx.fillStyle = `oklch(${Lpct}% ${C} ${hue}deg)`;
+      ctx.fillRect(x, y, 1, 1);
+    }
+  }
+
+  // overlay swatch markers, clamped to the ring
+  const markerRadius = Math.max(4, D * 0.02);
+  swatches.forEach(({ c, h }) => {
+    // find the radial fraction needed to reach chroma c
+    let frac = c / chrom;
+    frac = Math.min(Math.max(frac, 0), 1);
+
+    // map to r
+    const r = frac * radius;
+    const θ = ((h % 360) + 360) % 360 * Math.PI / 180;
+    const x0 = cx + r * Math.cos(θ);
+    const y0 = cy + r * Math.sin(θ);
+
+    ctx.beginPath();
+    ctx.arc(x0, y0, markerRadius, 0, 2 * Math.PI);
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = 'black';
+    ctx.stroke();
+  });
+</script>

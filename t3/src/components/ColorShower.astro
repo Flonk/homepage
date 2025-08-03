@@ -1,0 +1,145 @@
+---
+// Compute true max chroma for given L/h using culori's clampChroma
+import { clampChroma } from 'culori';
+
+const computeMaxChroma = ({ l, h }: { l: number; h: number }) => {
+  // culori expects L in [0,1]
+  const color = { mode: 'oklch', l: l / 100, c: 1000, h } as any;
+  const clamped = clampChroma(color, 'oklch') as any;
+  return clamped.c;
+};
+
+export interface Swatch {
+  /** Lightness in percentage (0–100) */
+  l: number;
+  /** Chroma */
+  c: number;
+  /** Hue in degrees (0–360) */
+  h: number;
+}
+
+export interface Props {
+  /** Which axis to vary */
+  axis?: 'hue' | 'lightness' | 'chroma';
+  /** Fixed chroma (for hue/lightness axes) */
+  c?: number;
+  /** Fixed lightness (for hue/chroma axes) */
+  l?: number;
+  /** Fixed hue in degrees (for lightness/chroma axes) */
+  h?: number;
+  /** Height of the bar (e.g. `50`, `"2rem"`) */
+  height?: number | string;
+  /** Array of swatches to overlay */
+  swatches?: Swatch[];
+  /** Optional min/max bounds for the varying axis */
+  min?: number;
+  max?: number;
+}
+
+const {
+  axis = 'hue',
+  c = 0.22,
+  l = 50,
+  h = 0,
+  height = 50,
+  swatches = [],
+  min,
+  max
+} = Astro.props as Props;
+
+const heightCss = typeof height === 'number' ? `${height}px` : height;
+
+// Determine axis bounds
+let axisMin: number;
+let axisMax: number;
+switch (axis) {
+  case 'lightness':
+    axisMin = min ?? 0;
+    axisMax = max ?? 100;
+    break;
+  case 'chroma':
+    axisMin = min ?? 0;
+    // Compute safe max chroma for this L/h
+    const safeMax = computeMaxChroma({ l, h });
+    // Determine axisMax: either provided max, or max of safeMax and all swatch c values
+    const swatchMax = swatches.reduce((maxC, sw) => Math.max(maxC, sw.c), 0);
+    axisMax = max ?? Math.max(safeMax, swatchMax);
+    break;
+  case 'hue':
+  default:
+    axisMin = 0;
+    axisMax = 360;
+}
+
+// Gradient stops every 10%
+const percStops = Array.from({ length: 11 }, (_, i) => i * 10) as number[];
+const bgOpacity = 0.12; 
+const gradientStops = percStops
+  .map((p) => {
+    const val = axisMin + ((axisMax - axisMin) * p) / 100;
+    let color: string;
+    if (axis === 'hue') color = `oklch(${l}% ${c} ${val}deg / ${bgOpacity})`;
+    else if (axis === 'lightness') color = `oklch(${val}% ${c} ${h}deg / ${bgOpacity})`;
+    else /* chroma */ color = `oklch(${l}% ${val} ${h}deg / ${bgOpacity})`;
+    return `${color} ${p}%`;
+  })
+  .join(', ');
+---
+
+<style>
+.color-shower-bar {
+  position: relative;
+  width: 100%;
+  background: linear-gradient(to right, var(--gradient-stops));
+  height: var(--bar-height);
+  border-radius: 0.2rem;
+  overflow: hidden;
+}
+.color-shower-swatch {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 2px;
+  pointer-events: none;
+}
+</style>
+
+<div
+  class="color-shower-bar"
+  style={`--bar-height: ${heightCss}; --gradient-stops: ${gradientStops};`}
+>
+  {swatches.sort((a, b) => a.c - b.c).map((sw, idx) => {
+    // Determine raw axis value
+    let val: number;
+    if (axis === 'hue') {
+      val = ((sw.h % 360 + 360) % 360);
+    } else if (axis === 'lightness') {
+      val = sw.l;
+    } else {
+      val = sw.c;
+    }
+
+    // Normalize between axisMin..axisMax
+    let pct = (val - axisMin) / (axisMax - axisMin);
+    pct = Math.min(Math.max(pct, 0), 1);
+    const leftPct = pct * 100;
+
+    // Opacity based on chroma when in hue axis mode
+    let alpha = 1;
+    if (axis === 'hue') {
+      const maxCForHue = computeMaxChroma({ l: sw.l, h: sw.h });
+      alpha = maxCForHue > 0 ? Math.min(sw.c / maxCForHue, 1) : 0; // 0 chroma → 0 opacity, max chroma → opaque
+    }
+
+    const bg = `oklch(${sw.l}% ${sw.c} ${sw.h}deg)`;
+
+    return (
+      <div
+        key={idx}
+        class="color-shower-swatch"
+        style={`left: ${leftPct}%; background: ${bg}; box-shadow:0 0 2px 1px ${bg}`}
+        aria-label={`Swatch at ${Math.round(leftPct)}% along ${axis}`}
+      />
+    );
+  })}
+</div>

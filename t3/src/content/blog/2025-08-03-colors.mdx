@@ -1,0 +1,288 @@
+---
+title: "Color themes"
+description: ""
+pubDate: "August 04 2025"
+---
+
+import ColorShower3D from "../../components/ColorShower3D.astro";
+
+I wanted to find an objective way to compare color schemes for code
+and came up with the idea of plotting them like emission lines
+in a spectrum.
+
+Jury is still out on whether this is helpful, truthfully these
+charts are somewhat hard to parse and they don't really convey
+how the theme looks in practice.
+
+Still, we can see some interesting patterns. Both catpuccin's and
+dracula's colors seem very evenly distributed across the OKHCL
+color space. For dracula especially... they took OKHCL,
+sliced it into evenly spaced slices, and added a few whiteish hues.
+It makes sense since they claim they have designed their color themes
+for "maximum legibility".
+
+First line is hue, second line is chroma, and thrid is lightness.
+
+#### Catpuccin Mocha
+
+<ColorShower3D
+  height={30}
+  swatches={[
+    { name: "Rosewater", h: 21.4, c: 0.036, l: 95.1 },
+    { name: "Flamingo", h: 9.3, c: 0.058, l: 89.7 },
+    { name: "Pink", h: 318.5, c: 0.103, l: 88.6 },
+    { name: "Mauve", h: 283.2, c: 0.218, l: 78.5 },
+    { name: "Red", h: 347.1, c: 0.252, l: 71.4 },
+    { name: "Maroon", h: 356.7, c: 0.117, l: 72.2 },
+    { name: "Peach", h: 24.6, c: 0.17, l: 79.8 },
+    { name: "Yellow", h: 78.4, c: 0.214, l: 89.5 },
+    { name: "Green", h: 136.2, c: 0.175, l: 76.8 },
+    { name: "Teal", h: 170.3, c: 0.18, l: 80.1 },
+    { name: "Sky", h: 195.5, c: 0.158, l: 82.2 },
+    { name: "Sapphire", h: 198.3, c: 0.218, l: 77.1 },
+    { name: "Blue", h: 229.4, c: 0.218, l: 80.5 },
+    { name: "Lavender", h: 250.3, c: 0.18, l: 82.4 },
+    { name: "Text", h: 226.3, c: 0.147, l: 88.6 },
+    { name: "Subtext 1", h: 227.3, c: 0.095, l: 80.3 },
+    { name: "Subtext 0", h: 228.1, c: 0.07, l: 70.4 },
+    { name: "Overlay 2", h: 228.7, c: 0.048, l: 54.5 },
+    { name: "Overlay 1", h: 230.1, c: 0.033, l: 44.7 },
+    { name: "Overlay 0", h: 231.4, c: 0.025, l: 32.9 },
+    { name: "Surface 2", h: 233.1, c: 0.019, l: 39.6 },
+    { name: "Surface 1", h: 234.4, c: 0.013, l: 31.3 },
+    { name: "Surface 0", h: 236.7, c: 0.009, l: 23.9 },
+    { name: "Base", h: 239.8, c: 0.008, l: 15.2 },
+    { name: "Mantle", h: 239.8, c: 0.005, l: 12.3 },
+    { name: "Crust", h: 239.1, c: 0.004, l: 8.6 },
+  ]}
+/>
+
+---
+
+#### Dracula
+
+<ColorShower3D
+  height={30}
+  swatches={[
+    { name: "Background", h: 243.8, c: 0.022, l: 12.1 },
+    { name: "Current Line", h: 243.2, c: 0.028, l: 26.0 },
+    { name: "Foreground", h: 68.5, c: 0.02, l: 97.3 },
+    { name: "Comment", h: 236.0, c: 0.075, l: 60.4 },
+    { name: "Cyan", h: 191.2, c: 0.189, l: 86.8 },
+    { name: "Green", h: 139.1, c: 0.219, l: 81.3 },
+    { name: "Orange", h: 59.4, c: 0.254, l: 80.2 },
+    { name: "Pink", h: 327.8, c: 0.308, l: 77.5 },
+    { name: "Purple", h: 282.1, c: 0.209, l: 78.9 },
+    { name: "Red", h: 27.9, c: 0.192, l: 65.7 },
+    { name: "Yellow", h: 86.1, c: 0.212, l: 88.2 },
+  ]}
+/>
+
+---
+
+Most color themes use blueish hues for background colors, gruvbox
+being the odd one out.
+
+#### Gruvbox Dark
+
+<ColorShower3D
+  height={30}
+  swatches={[
+    { hex: "#282828", h: 0, c: 0, l: 27.7 },
+    { hex: "#cc241d", h: 28.7, c: 0.203, l: 54.6 },
+    { hex: "#98971a", h: 109.1, c: 0.135, l: 65.6 },
+    { hex: "#d79921", h: 77.7, c: 0.143, l: 72.5 },
+    { hex: "#458588", h: 199.5, c: 0.066, l: 57.6 },
+    { hex: "#b16286", h: 352.2, c: 0.111, l: 59.7 },
+    { hex: "#689d6a", h: 145.3, c: 0.094, l: 64.5 },
+    { hex: "#bdae93", h: 82.3, c: 0.041, l: 75.6 },
+    { hex: "#7c6f64", h: 62.6, c: 0.023, l: 55 },
+    { hex: "#fb4934", h: 30.4, c: 0.218, l: 66 },
+    { hex: "#b8bb26", h: 110.8, c: 0.158, l: 76.5 },
+    { hex: "#fabd2f", h: 83, c: 0.159, l: 83.2 },
+    { hex: "#83a598", h: 169.8, c: 0.042, l: 69.3 },
+    { hex: "#d3869b", h: 2.2, c: 0.098, l: 70.5 },
+    { hex: "#8ec07c", h: 137.7, c: 0.108, l: 75.6 },
+    { hex: "#ebdbb2", h: 89.2, c: 0.057, l: 89.4 },
+  ]}
+/>
+
+---
+
+Most themes have red, yellow, and green hues. Which makes sense,
+because there is a common design language of for example delete
+buttons being red. If we filter out those common hues, Gruvbux and
+Nord show huge gaps in their color spectrum.
+
+As a Nord and Gruvbox enjoyer myself I quite like it when color themes
+are confined this way. When your programs are nord-themed,
+you can pick a crass orange color (like the one you see on this website)
+for your window manager for example and it will really pop. When
+your code editor renders the entire rainbow you can't really pick
+a color range that you can use for something else.
+
+---
+
+#### Nord
+
+<ColorShower3D
+  height={30}
+  swatches={[
+    { name: "nord1", hex: "#3B4252", h: 266.5, c: 0.029, l: 37.9 },
+    { name: "nord2", hex: "#434C5E", h: 264.1, c: 0.032, l: 41.6 },
+    { name: "nord3", hex: "#4C566A", h: 264.1, c: 0.035, l: 45.2 },
+    { name: "nord4", hex: "#D8DEE9", h: 262.7, c: 0.016, l: 89.9 },
+    { name: "nord5", hex: "#E5E9F0", h: 261.8, c: 0.01, l: 93.3 },
+    { name: "nord6", hex: "#ECEFF4", h: 260.7, c: 0.007, l: 95.1 },
+    { name: "nord7", hex: "#8FBCBB", h: 194.5, c: 0.048, l: 76.3 },
+    { name: "nord8", hex: "#88C0D0", h: 217.5, c: 0.062, l: 77.5 },
+    { name: "nord9", hex: "#81A1C1", h: 248.7, c: 0.059, l: 69.7 },
+    { name: "nord10", hex: "#5E81AC", h: 254, c: 0.077, l: 59.4 },
+    { name: "nord11", hex: "#BF616A", h: 15.3, c: 0.121, l: 60.6 },
+    { name: "nord12", hex: "#D08770", h: 38.2, c: 0.096, l: 69.3 },
+    { name: "nord13", hex: "#EBCB8B", h: 84.1, c: 0.089, l: 85.5 },
+  ]}
+/>
+
+---
+
+#### VsCode Dark
+
+<ColorShower3D
+  height={30}
+  swatches={[
+    { h: 251.3, c: 0.167, l: 56.8 },
+    { h: 0, c: 0, l: 20.9 },
+    { h: 0, c: 0, l: 28.9 },
+    { h: 0, c: 0, l: 87.9 },
+    { h: 0, c: 0, l: 62 },
+    { h: 0, c: 0, l: 100 },
+    { h: 0, c: 0, l: 49.3 },
+    { h: 0, c: 0, l: 97.9 },
+    { h: 250.9, c: 0.154, l: 53.2 },
+    { h: 0, c: 0, l: 31.3 },
+    { h: 0, c: 0, l: 84.5 },
+    { h: 0, c: 0, l: 35.6 },
+    { h: 258.2, c: 0.092, l: 39.9 },
+    { h: 258.1, c: 0.118, l: 77.1 },
+    { h: 77.5, c: 0.077, l: 82.5 },
+    { h: 0, c: 0, l: 69.6 },
+    { h: 0, c: 0, l: 23.9 },
+    { h: 74.9, c: 0.118, l: 56.5 },
+    { h: 146.2, c: 0.166, l: 62.2 },
+    { h: 27, c: 0.205, l: 66.5 },
+    { h: 256.3, c: 0.02, l: 56.3 },
+    { h: 248.3, c: 0.019, l: 10.4 },
+    { h: 0, c: 0, l: 24.4 },
+    { h: 0, c: 0, l: 68 },
+    { h: 248.5, c: 0.152, l: 61.5 },
+    { h: 249, c: 0.153, l: 61.3 },
+    { h: 75.9, c: 0.133, l: 64.4 },
+    { h: 0, c: 0, l: 25.2 },
+    { h: 242.9, c: 0.099, l: 72.4 },
+    { h: 248.2, c: 0.149, l: 71.8 },
+    { h: 0, c: 0, l: 85.8 },
+    { h: 256.8, c: 0.015, l: 26.7 },
+  ]}
+/>
+
+---
+
+And I guess it's also interesting to see that no matter the
+color theme, a full UI will always need more hues than your
+design system provides. My vscode is absolutely loaded with color,
+even though I use a really muted nord theme.
+
+#### My VsCode settings
+
+<ColorShower3D
+  height={30}
+  swatches={[
+    { hex: "#1a1b1d", h: 264.5, c: 0.004, l: 22.2 },
+    { hex: "#70949e", h: 216.7, c: 0.043, l: 64.3 },
+    { hex: "#4f4f4f", h: 0, c: 0, l: 42.8 },
+    { hex: "#70949ebf", h: 216.7, c: 0.043, l: 64.3 },
+    { hex: "#ffffff", h: 0, c: 0, l: 100 },
+    { hex: "#e0e0e0", h: 0, c: 0, l: 90.7 },
+    { hex: "#131517", h: 248.1, c: 0.005, l: 19.4 },
+    { hex: "#ededed", h: 0, c: 0, l: 94.6 },
+    { hex: "#6e6e6e", h: 0, c: 0, l: 53.8 },
+    { hex: "#32555f", h: 218, c: 0.044, l: 42.7 },
+    { hex: "#466973", h: 217.6, c: 0.043, l: 49.8 },
+    { hex: "#420b0d", h: 23.7, c: 0.084, l: 25.3 },
+    { hex: "#50505040", h: 0, c: 0, l: 43.1 },
+    { hex: "#dbdbdb", h: 0, c: 0, l: 89.1 },
+    { hex: "#ffa20077", h: 69.1, c: 0.172, l: 78.7 },
+    { hex: "#50505020", h: 0, c: 0, l: 43.1 },
+    { hex: "#7c90a6", h: 250.9, c: 0.04, l: 64.5 },
+    { hex: "#999999", h: 0, c: 0, l: 68.3 },
+    { hex: "#dddddd", h: 0, c: 0, l: 89.8 },
+    { hex: "#ff000049", h: 29.2, c: 0.258, l: 62.8 },
+    { hex: "#ff0000", h: 29.2, c: 0.258, l: 62.8 },
+    { hex: "#974b53", h: 14.8, c: 0.102, l: 50.9 },
+    { hex: "#000900", h: 142.5, c: 0.041, l: 12.1 },
+    { hex: "#2f0000", h: 29.2, c: 0.079, l: 19.2 },
+    { hex: "#000000", h: 0, c: 0, l: 0 },
+    { hex: "#eeeeeeb3", h: 0, c: 0, l: 94.9 },
+    { hex: "#008000", h: 142.5, c: 0.177, l: 52 },
+    { hex: "#4e94ce", h: 245.8, c: 0.112, l: 64.6 },
+    { hex: "#2d2d30", h: 286.1, c: 0.005, l: 29.8 },
+    { hex: "#974b53bf", h: 14.8, c: 0.102, l: 50.9 },
+    { hex: "#f6b94db3", h: 78.6, c: 0.141, l: 82.3 },
+    { hex: "#40a6ff80", h: 248.7, c: 0.16, l: 70.7 },
+    { hex: "#60606066", h: 0, c: 0, l: 48.9 },
+    { hex: "#40c8ae80", h: 177.3, c: 0.122, l: 75.4 },
+    { hex: "#40c8ae33", h: 177.3, c: 0.122, l: 75.4 },
+    { hex: "#58111f", h: 14.7, c: 0.102, l: 30.8 },
+    { hex: "#121288b3", h: 268.7, c: 0.182, l: 30.5 },
+    { hex: "#128812b3", h: 142.7, c: 0.177, l: 54.5 },
+    { hex: "#007acc99", h: 248.5, c: 0.155, l: 56.7 },
+    { hex: "#2d2d2d", h: 0, c: 0, l: 29.7 },
+    { hex: "#ffffff11", h: 0, c: 0, l: 100 },
+    { hex: "#222224", h: 286.1, c: 0.004, l: 25.3 },
+    { hex: "#a6a6a6", h: 0, c: 0, l: 72.5 },
+    { hex: "#360000", h: 29.2, c: 0.086, l: 20.9 },
+    { hex: "#363637", h: 286.3, c: 0.002, l: 33.3 },
+    { hex: "#1b0000", h: 29.2, c: 0.057, l: 13.9 },
+    { hex: "#230c00", h: 53.3, c: 0.047, l: 18.8 },
+    { hex: "#b89500", h: 92, c: 0.14, l: 68.2 },
+    { hex: "#3794ff", h: 254.6, c: 0.181, l: 66.6 },
+    { hex: "#0e70c0", h: 250.5, c: 0.149, l: 53.7 },
+    { hex: "#000005", h: 264.1, c: 0.036, l: 5.2 },
+    { hex: "#4f4f4fbf", h: 0, c: 0, l: 42.8 },
+    { hex: "#363637bf", h: 286.3, c: 0.002, l: 33.3 },
+    { hex: "#424242bf", h: 0, c: 0, l: 37.9 },
+    { hex: "#b5b5b5", h: 0, c: 0, l: 77.3 },
+    { hex: "#2b2b2d", h: 286.2, c: 0.004, l: 29 },
+    { hex: "#e9e9e9", h: 0, c: 0, l: 93.4 },
+    { hex: "#505050", h: 0, c: 0, l: 43.1 },
+    { hex: "#cdd6f4", h: 272.3, c: 0.043, l: 87.9 },
+    { hex: "#bac2de", h: 272.9, c: 0.04, l: 81.7 },
+    { hex: "#a6adc8", h: 273.9, c: 0.04, l: 75.1 },
+    { hex: "#9399b2", h: 274.7, c: 0.037, l: 68.7 },
+    { hex: "#7f849c", h: 276, c: 0.037, l: 61.8 },
+    { hex: "#6c7086", h: 277.1, c: 0.034, l: 55 },
+    { hex: "#585b70", h: 278.6, c: 0.034, l: 47.7 },
+    { hex: "#45475a", h: 280.2, c: 0.032, l: 40.4 },
+    { hex: "#313244", h: 282, c: 0.032, l: 32.4 },
+    { hex: "#1e1e2e", h: 283.9, c: 0.03, l: 24.3 },
+    { hex: "#181825", h: 284.1, c: 0.025, l: 21.6 },
+    { hex: "#11111b", h: 284.2, c: 0.02, l: 18.3 },
+    { hex: "#000080", h: 264.1, c: 0.188, l: 27.1 },
+    { hex: "#515660", h: 264.4, c: 0.018, l: 45.2 },
+    { hex: "#ac92a7", h: 332.6, c: 0.043, l: 69 },
+    { hex: "#e7cc98", h: 83.5, c: 0.074, l: 85.6 },
+    { hex: "#d4d4d4", h: 0, c: 0, l: 87 },
+    { hex: "#6a9955", h: 136.6, c: 0.109, l: 63.2 },
+    { hex: "#6796e6", h: 260.5, c: 0.13, l: 67.5 },
+    { hex: "#efefef", h: 0, c: 0, l: 95.2 },
+    { hex: "#9fb9b8", h: 193.7, c: 0.028, l: 76.6 },
+    { hex: "#a8bc96", h: 130.3, c: 0.057, l: 77 },
+    { hex: "#b79cb2", h: 332.3, c: 0.044, l: 72.4 },
+    { hex: "#b6676d", h: 15.7, c: 0.101, l: 60.4 },
+    { hex: "#98bdc8", h: 217.8, c: 0.043, l: 77.5 },
+    { hex: "#cd9731", h: 79.1, c: 0.13, l: 71.1 },
+    { hex: "#f44747", h: 25.2, c: 0.21, l: 64.8 },
+    { hex: "#b267e6", h: 309.3, c: 0.192, l: 65.1 },
+  ]}
+/>
