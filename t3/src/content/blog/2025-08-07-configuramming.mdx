@@ -1,0 +1,178 @@
+---
+title: "Please just give me a programming language man"
+description: ""
+pubDate: "August 07 2025"
+---
+
+It's the age old adage. People write custom languages, so we can
+configure their tools in a declarative fashion. Eventually their
+tools get popular and suddenly "declarative" config doesn't cut
+it anymore, which is when the languages will be retrofitted with
+if statements and for loops to get closer to turing-completeness.
+
+I call this brand of languages "configuramming" languages because
+as soon as you add logic to configuration, you're neither writing
+config, nor programs, but something in between.
+
+What configuramming languages all have in common is that
+documentation is lacking and the languages are underspecified.
+Because obviously for example javascript has literal tens of
+millions of devs and a standards body that does nothing but
+specify the language, whereas the configuramming language
+designed in-house at atlassian is an expression of technical
+debt that accrued over time with no overarching design behind it.
+
+How else could you explain these?
+
+## gitlab pipelines
+
+We have no loops in gitlab pipelines but shoutout to crappy
+conditionals. `if` statements are called OnlyVariables here,
+perhaps to encourage users to pay for premium.
+
+```yaml
+nightly_test:
+  stage: test
+  script:
+    - npm run build
+  only:
+    variables:
+      - $NIGHTLY_TEST == "True"
+```
+
+If that sounds too silly we have the new and improved `rules`
+configuramming construct which we can use to make if statements
+even more convoluted.
+
+```yaml
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - when: always
+```
+
+I'm sure this made sense to someone when they designed it.
+
+## Terraform HCL
+
+If you were to design terraform from scratch, would _this_ be the
+loop syntax you come up with?
+
+```terraform
+resource "azurerm_resource_group" "rg" {
+  for_each = tomap({
+    a_group       = "eastus"
+    another_group = "westus2"
+  })
+  name     = each.key
+  location = each.value
+}
+```
+
+## Make
+
+I have love for a good old Makefile and most people are keeping
+it sane, but you can do extremely terrible things with it like
+generating steps dynamically.
+
+```make
+STEPS := $(shell echo step1 step2 step3)
+$(foreach step,$(STEPS), \
+  $(eval $(step): ; @echo "Running $(step)...") \
+)
+```
+
+From the docs:
+
+> The `eval` function is very special. [...] It's important to
+> realize that the `eval` argument is expanded _twice_; first by the `eval` function, then the results of that expansion are expanded again when they are parsed as makefile syntax. This means you may need to provide extra levels of escaping for “$” characters when using `eval`.
+
+We love to hear it.
+
+## CloudFormation (AWS)
+
+```yaml
+Parameters:
+  UseNAT:
+    Type: String
+    Default: false
+
+Conditions:
+  ShouldCreateNAT: !Equals [!Ref UseNAT, true]
+```
+
+We love stringly typed variables aswell. CloudFormation has this absolutely insane feature where you can _deploy a lambda_ and the YAML will call it to transform itself, which deserves special mention. You can deploy your for loop to AWS before running it; it's configuramming-as-a-service!!
+
+```yaml
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: MyForLoop
+
+Resources:
+  RepeatExample:
+    Type: Repeat::Resource
+    Properties:
+      Count: 3
+      Template:
+        Type: AWS::S3::Bucket
+        Properties:
+          BucketName: !Sub "repeat-bucket-${Index}"
+```
+
+## Helm
+
+Advice to all junior devs: If a manager or senior suggests using
+YAML for anything really please shit on their desk and show them
+[this page](https://noyaml.com).
+
+```yaml
+toppings: |-
+  {{- range $.Values.pizzaToppings }}
+  - {{ . | title | quote }}
+  {{- end }}
+```
+
+Helm is configuramming at it's peak: Full-blown turing
+completeness but terrible code editor support, terrible tooling
+to go along with it and the resulting code is unreadable as soon
+as you've written it. You spend 3/4ths of your time fixing
+indentation and quoting too because at the end of the day you're
+using YAML to generate YAML.
+
+---
+
+Okay so that was enough ranting. What should we do instead?
+
+## Just use a programming language
+
+Terraform has a CDK now for major programming languages,
+including typescript (cdktf). Pulumi looks like a cool
+alternative too though I have no experience with it.
+
+Or handroll your own one-off scripts! Nobody is stopping you from
+generating yaml in vanilla typescript. It can be worth it if your
+config is complex enough—at least you have code editor support.
+
+## Use Nix?
+
+Nix tries to solve the very hard problem of generating
+configuration in arbitrary formats, for every piece software you
+have installed, systemwide, down to hardware configuration. It is
+a fully-blown functional programming language with a module
+system and while I think the compiler does need some work
+(error messages are cryptic), and documentation is not well
+structured, and the learning curve can be a bit steep, the
+language does an excellent job at tackling the challenge it has
+set out to do.
+
+And if Nix is good at defining configuration.. we should be using it!
+
+People in the Nix community are using nix to replace
+dockerfiles (allowing for byte-for-byte reproducible builds), and
+there is also the `kubenix` project that lets you manage
+kubernetes clusters in nix. Not having to touch Helm/Kustomize
+configuramming and managing your multi-cluster setup in a nix
+flake sounds like such a lovely time, I really wonder why not
+more people are doing it.
+
+Perhaps in a few years time.
