@@ -1,0 +1,46 @@
+---
+title: "Side-effect decoherence"
+description: ""
+pubDate: "August 28 2025"
+---
+
+Side effects are what makes programming hard — all the non-trivial pure code has
+already been written by smart people with degrees, all the trivial pure code can
+be generated with LLMs; and in side-effect free programs you can't even print
+anything to the console so any pure program is just equivalent to the program
+that does nothing.
+
+To do anything useful in a program always involves invoking side-effects, to
+some extent.
+
+But then if I design an API for others to use, I will try to design it in such a
+way that the consuming party doesn't know anything about my database, or perhaps
+upstream limits imposed onto me by a third party. I'll add a cache so you can do
+as many API requests as you want!
+
+Essentially I'm trying to hide all the side-effects so to you the API you're
+consuming looks as pure as plausible.
+
+This leads to an effect I call "side-effect decoherence" (stolen from quantum
+physics), where the further you are removed from a side-effect, the less you
+need to worry about it, and the more you can pretend like it does not exist,
+making impure code pure again, or at least "pure enough".
+
+A small scale example would be, everytime I write a "pure" program in javascript
+like `const x = 1 + 2;`, and then run it, I'm actually causing heaps of side
+effects.. in my CPU there are registers that I'm setting and overwriting and
+probably I'm also producing a lot of heat. _Some_ programmer in the chain of
+programmers that allowed me to write cute javascript programs in my fancy
+electron-based editor must have had to worry about CPU heat but don't have to
+care about it and that's great!
+
+Even in corporate projects with tight deadlines where I don't have the time to
+tidy up my API for you that tends to happen. If I'm calling a neighbouring
+microservice then I might need to worry about doing API requests in the right
+order and with enough delay in between because oh my god what are these guys
+doing why is their API so bad. But if I'm dependent on data that worked it's
+way through three microservices to get to me then these issues never seem to pop
+up; and that's because the devs in between me and the buggy API have added their
+own fixes and workarounds and abstractions.
+
+On the bigger scale, the side-effects have decohered.
