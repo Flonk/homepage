@@ -6,10 +6,12 @@ pubDate: "November 19 2025"
 
 Probably not.
 
-But, AI has made me rather lazy to say the least. I just let the AI generate AI slop and as long as it conforms to the types and validation rules I set out, I'm happy. And I don't really care about code style anymore -- I might suggest refactorings to DRY up the AI slop a bit but for the most part I don't even read code anymore, just the AI summary.
+But, AI has made me rather lazy to say the least. I just let the AI generate AI slop and as long as it conforms to the types and validation rules I set out, I'm happy. And I don't really care about code style anymore -- I might suggest refactorings to DRY up the AI slop a bit but for the most part I don't even read code anymore either, just the AI summary.
 
 In Haskell, there is that old saying that if your code compiles, it's probably correct. That's because the type system is super expressive and strong, and you'll have to model all your side effects in the type system as well. That leads to an interesting way of writing code, where most of what you do is to just get your code to typecheck, and by the time your code typechecks, you've found all the edge cases and bugs in your implementation.
 
-Well -- if all I do in my day-to-day typescript work is writing down types and having the AI generate all the stuff in between, then isn't Haskell a better fit? I can write down very precise types, and then I have the AI generate AI slop, but it'll be very restricted AI slop, and by restricting the AI we are setting it up to stumble into correcterer solutions.
+(There is a more mathematical explanation for this aswell, refer to the paper "Theorems for Free!" by Philip Wadler et al. if you're interested... or have AI generate a summary for you, lol. The extreme example from that paper is that when you have a function that takes a generic type `T` and returns a `T`, then there is only one possible implementation for it: `f = x => x`. Since you know nothing about `T`, you can't do anything to it, so the only way to return any `T` at all is to return what went in. Types restrict possible implementations for functions, and generally speaking, the more generic your types are, the fewer possible implementations there are.)
+
+Anyway -- if all I do in my day-to-day typescript work is writing down types and having the AI generate all the stuff in between, then isn't Haskell a better fit? I can write down very precise types, and then I have the AI generate AI slop, but it'll be very restricted AI slop, and by restricting the AI we are setting it up to stumble into correcterer solutions.
 
 Now I'm not sure what the next five years will hold for programmers, or what coding will look like, but to me it seems very certain that we, developers, will be moving higher up in the lambada calculus chain -- meaning more types, less code. And Haskell may not be the language to take over, but I do think that the future will be functional.
