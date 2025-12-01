@@ -85,7 +85,32 @@ main {
 
 @media (max-width: 720px) {
   main {
-    padding: 0.5em 0.5em;
+    padding: 0.5em 0;
+  }
+
+  .prose p,
+  .prose ul,
+  .prose ol,
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4,
+  .prose h5,
+  .prose h6,
+  .prose pre,
+  .prose blockquote,
+  .prose .title .date {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .prose ul,
+  .prose ol {
+    padding-left: 3rem;
+  }
+
+  .prose .title .date {
+    margin-bottom: 2rem;
   }
 }
 
@@ -206,7 +231,7 @@ hr {
     font-size: 15px;
   }
   main {
-    padding: 1em;
+    padding: 0.5em 0;
   }
 }
 

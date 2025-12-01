@@ -1,0 +1,188 @@
+---
+title: "A Hierarchy of Type Systems #1: Untyped Lambda Calculus"
+description: ""
+pubDate: "November 28 2025"
+---
+
+import Question from "../../components/Question.astro";
+
+We all know and love the lambda calculus. It's the world's simplest programming
+language, yet strong enough to compute anything that is computable, which
+encompasses pretty much everything you can think of.
+
+The lambda calculus has only three constructs:
+
+- **Variables**: Im a fan of `x` and `y` myself, but you can use any names or symbols you like.
+- **Functions**: `λx. y` is a function that takes an argument `x` and returns `y`. In javascrpt, this would be written as `(x) => y`.
+- **Application**: `x y` means calling the function `x` with argument `y`. In javascript, this would be written as `x(y)`.
+
+That's all you need to compute anything ever, but to make the initial examples
+easier, let's assume we have special symbols `0`, `1`, `2` that behave like
+integers, and a special function `add x y` that performs `x + y`.
+
+Plow through these examples real quick to get a feel for the language:
+
+<Question n={1} question="add 3 4">
+**Solution:** 7.
+
+We call the function `add` with arguments `3` and `4`.
+
+</Question>
+
+<Question n={2} question="(λx. add x 1) 5">
+**Solution:** 6
+
+We call the labmda, which means we substitute `5` for `x` in the body of
+the function, giving us `add 5 1`.
+
+</Question>
+
+<Question n={3} question="(λx. (λy. add x y)) 2 3">
+**Solution:** 5
+
+First we substitute `2` for `x`, giving us `(λy. add 2 y) 3`. Then we substitute
+`3` for `y`, giving us `add 2 3`.
+
+</Question>
+
+<Question n={4} question="(λf. f 3) (λx. add x 4)">
+**Solution:** 7
+
+We first substitute `(λx. add x 4)` for `f`, giving us
+`(λx. add x 4) 3`. Then we substitute `3` for `x`, giving us `add 3 4`.
+
+</Question>
+
+<Question n={5} question="(λf. (λx. f (f x))) (λx. add x 1) 21">
+**Solution:** 23
+
+```
+(λf. (λx. f (f x))) (λx. add x 1) 21 =
+(λx. (λx. add x 1) ((λx. add x 1) x)) 21 =
+(λx. add x 1) ((λx. add x 1) 21) =
+(λx. add x 1) 22 = 23
+```
+
+Or to make it a bit easier to read, lets give `(λx. add x 1)` a temporary name,
+perhaps `succ`; after all, it is the function that gives you the successor of a number.
+
+```
+(λf. (λx. f (f x))) succ 21 =
+(λx. succ (succ x)) 21 =
+succ (succ 21) =
+succ 22 = 23
+```
+
+(To know what `succ 21` evaluates to, re-substitute `(λx. add x 1)` for `succ`
+again; I left that step out for brevity.)
+
+The term `(λf. (λx. f (f x)))` takes a function and runs it twice on its argument,
+so we could even give it a cute name like `twice`, and then our program becomes
+briefly
+
+```
+twice succ 21
+```
+
+Voila -- we are building abstractions out of simple lambda terms! It's almost
+like we are programming :)
+
+</Question>
+
+---
+
+Got them all? Good.
+
+## Church Encodings
+
+We pulled the numbers above, aswell as the `add` function, out of thin air.
+But even without "special" symbols and function, we can define integers using
+just what lambda calculus provides! The canonical way to do this is using
+so-called _Church encodings_.
+
+Let me show you a way of encoding booleans in pure lambda calculus, as those
+are slightly simpler than the integers. Let's define `true` and `false` as follows:
+
+- `true = λx. λy. x`
+- `false = λx. λy. y`
+
+Defining booleans as functions may seem weird, but it works! Our two lambda terms
+here are functions with two parameters, where `true` always takes the left path,
+and `false` always takes the right path -- so we are encoding the concept of
+"branching", or "two-valued-ness", in some abstract sense.
+
+Well, okay... what can we do with booleans in normal programming languages? We
+could perhaps do a logical `and`. In lambda calculus we could do so with the following definition:
+
+- `and = λp. λq. p q false`
+
+And if you have never seen church encodings before, then this lambda term
+should rightfully make no sense at all. Even to me it still seems like an "accounting trick"
+that just happens to produce correct results... but yeah, it all checks out!
+
+<Question n={6} question="and true true">
+**Solution:** `true`
+
+```
+and true true =
+(λp. λq. p q false) true true =
+(λq. true q false) true =
+true true false =
+(λx. λy. x) true false =
+true
+```
+
+</Question>
+
+<Question n={7} question="and true false">
+**Solution:** `false`
+
+```
+and true false =
+(λp. λq. p q false) true false =
+(λq. true q false) false =
+true false false =
+(λx. λy. x) false false =
+false
+```
+
+</Question>
+
+And you could also define `or`, `not`, `if`, by finding clever lambda terms.
+
+And then there are also ways of modeling recursion, which I will not get into
+in this post. (Ask ChatGPT about the "Y combinator" if this topic sounds interesting
+to you.)
+
+Point being: As we all know, if your language has branching and loops/recursion,
+then it's probably Turing complete, meaning you can program anything you want
+with it.
+
+This makes the lambda calculus really a sort of "primordial" programming language,
+that acts as a basis for all the others. It's so minimalistic that you can't remove
+anything from it without losing Turing completeness; there is no way to strip down
+the concept of "computation" any further.
+
+(I much prefer lambda calculus to Turing machines as a model of computation. Alan
+really just slapped together a random assortment of stuff and called it a machine --
+I mean Turing machines are what, a septuple of sets and functions? Lambda calculus
+is so much more elegant in comparison.)
+
+## Lambda Calculus is untyped
+
+But okay, enough of the grunt work.
+
+Before we can talk about the typed lambda calculi, I wanted to give a quick
+recap of the untyped lambda calculus, and show that we really can express
+everything with it.
+
+The untyped lambda calculus does have one big shortcoming: There are no types.
+
+That is to say, we have defined a clever `and` function above, but nothing stops
+us from writing down `and true horse`. Since everything is just a lambda term,
+we have no way of distinguishing between booleans, integers, functions, horses,
+or whatever else we might want to model. That would not really fly in day-to-day
+programming.
+
+We can fix that by introducing types! And we will do so in the next post,
+where we will look at the simply typed lambda calculus.
