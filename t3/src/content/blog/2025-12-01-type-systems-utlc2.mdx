@@ -1,0 +1,66 @@
+---
+title: "Type Systems #2: Untyped Lambda Calculus, again"
+description: ""
+pubDate: "December 1 2025"
+---
+
+_(This is part 2 in a series on type systems. You can find part 1 [here](/blog/2025-11-28-type-systems-utlc).)_
+
+There's another, less obvious reason why the untyped lambda calculus makes
+us yearn for types: Undecidability.
+
+For this one I need to bust out my nerd hat.
+
+When I give you a lambda term like `(λx. add x 1) 5`, you will probably tell me
+that the "result" is `6`. Like, I gave you a "program" and you "evaluated" it to
+arrive at `6`.
+
+And you know what? Fair enough.
+
+But let me subvert that notion of "evaluating" a little bit, by first
+formalizing what we are allowed to do to any given lambda-term:
+
+- **beta-reduction**: Also known as a "function call" by normal people. For example, `(λx. add x 1) 5` beta-reduces to `add 5 1` -- we take all the `x`s and replace them with `5`s.
+- **alpha-conversion**: We can rename parameters; `λx. add x 1` is the same as
+  `λy. add y 1`.
+- **eta-conversion**: We can turn `f` into `λx. f x` and vice versa.
+
+I'm not sure why Alonzo Church used these weird maths names with the greek
+letters and stuff. It's almost like computers weren't invented yet or something.
+
+Anyway, when I give you a "program" and you "evaluate" it, what you are really
+doing is applying one of these three rules over and over again, until you
+arrive at a term that cannot be reduced any further. Really, when you are
+evaluating, you become the worlds most boring rewrite engine.
+
+And that's fine! You're doing great sweetheart.
+
+We could even formalize what it means to "arrive at a result" by saying that
+a term is a "result" if it cannot be beta-reduced any further. That happens to
+be the formal definition too, though we call that result a "normal form".
+
+Sounds good?
+
+Well it shouldn't: Please my dear rewrite engine, evaluate the lambda term `(λx. x x) (λx. x x)`. (Spoiler: You will never arrive
+at a normal form.)
+
+**It gets worse**: Some lambda terms have a normal form, sometimes, and other
+times they do not, depending on which way you beta-reduce. For example, consider the term `(λx. 5) ((λx. x x) (λx. x x))` -- if you plug that right term into the
+left function you will get `5`, which is a normal form. But if you try to beta-reduce
+the right term first, you run into the same infinite loop as before.
+
+**It gets worser**: There is no general algorithm that can tell you whether
+an arbitrary lambda term has a normal form or not. This is called the
+"halting problem", and it is provably undecidable.
+
+### Types to the rescue
+
+A type system can help with that. Not because it helps untangle infinte loops,
+but rather because any reasonable language with types will prevent you from
+writing down a term like `(λx. x x)` in the first place.
+
+The typescript equivalent of this term is `const f = x => x(x);`. Go ahead, try
+to give that function a type without using `any` or `unknown`!
+I'll wait.
+
+_(This post is continued in [Type Systems #3: Simply Typed Lambda Calculus](/blog/2025-12-02-type-systems-stlc).)_

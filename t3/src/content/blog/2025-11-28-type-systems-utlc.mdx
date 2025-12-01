@@ -1,5 +1,5 @@
 ---
-title: "A Hierarchy of Type Systems #1: Untyped Lambda Calculus"
+title: "Type Systems #1: Untyped Lambda Calculus"
 description: ""
 pubDate: "November 28 2025"
 ---
@@ -13,12 +13,17 @@ encompasses pretty much everything you can think of.
 The lambda calculus has only three constructs:
 
 - **Variables**: Im a fan of `x` and `y` myself, but you can use any names or symbols you like.
-- **Functions**: `λx. y` is a function that takes an argument `x` and returns `y`. In javascrpt, this would be written as `(x) => y`.
+- **Functions**: `λx. y` is a function that takes an argument `x` and returns `y`. In javascript, this would be written as `(x) => y`.
 - **Application**: `x y` means calling the function `x` with argument `y`. In javascript, this would be written as `x(y)`.
 
 That's all you need to compute anything ever, but to make the initial examples
 easier, let's assume we have special symbols `0`, `1`, `2` that behave like
 integers, and a special function `add x y` that performs `x + y`.
+
+(The nerds will tell you about lambda calculus' special rules: alpha-conversion,
+beta-reduction, and eta-conversion. But we are not nerds; the tl;dr is that
+lambda calculus behaves like you would expect a sane programming language
+to behave.)
 
 Plow through these examples real quick to get a feel for the language:
 
@@ -116,7 +121,7 @@ could perhaps do a logical `and`. In lambda calculus we could do so with the fol
 
 - `and = λp. λq. p q false`
 
-And if you have never seen church encodings before, then this lambda term
+If you have never seen church encodings before, then this lambda term
 should rightfully make no sense at all. Even to me it still seems like an "accounting trick"
 that just happens to produce correct results... but yeah, it all checks out!
 
@@ -151,15 +156,15 @@ false
 And you could also define `or`, `not`, `if`, by finding clever lambda terms.
 
 And then there are also ways of modeling recursion, which I will not get into
-in this post. (Ask ChatGPT about the "Y combinator" if this topic sounds interesting
-to you.)
+in this post -- ask ChatGPT about the "Y combinator" if this topic sounds interesting
+to you.
 
 Point being: As we all know, if your language has branching and loops/recursion,
 then it's probably Turing complete, meaning you can program anything you want
 with it.
 
 This makes the lambda calculus really a sort of "primordial" programming language,
-that acts as a basis for all the others. It's so minimalistic that you can't remove
+which acts as a basis for all the others. It's so minimalistic that you can't remove
 anything from it without losing Turing completeness; there is no way to strip down
 the concept of "computation" any further.
 
@@ -186,3 +191,5 @@ programming.
 
 We can fix that by introducing types! And we will do so in the next post,
 where we will look at the simply typed lambda calculus.
+
+_(This is part 1 of a series on type systems. You can find part 2 [here](/blog/2025-12-01-type-systems-utlc2).)_

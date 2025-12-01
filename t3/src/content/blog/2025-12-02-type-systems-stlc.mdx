@@ -1,0 +1,101 @@
+---
+title: "Type Systems #3: Simply Typed Lambda Calculus"
+description: ""
+pubDate: "December 2 2025"
+---
+
+_(This is part 3 in a series on type systems. You can find part 2 [here](/blog/2025-12-01-type-systems-utlc2).)_
+
+import Question from "../../components/Question.astro";
+
+Okay so in previous posts we explored why we probably want to have types in our
+lambda calculus. The **simply typed lambda calculus** gives the most basic type
+system we can slap on top of the untyped lambda calculus, and it solves both
+problems we discussed before: It prevents nonsensical programs like
+`add true horse`, and it prevents us from writing down terms that might not
+terminate, like `(λx. x x) (λx. x x)`.
+
+The type system itself is really really simple -- we just need two things.
+
+### Base Types
+
+First, we define a list of primitive types that our language supports.
+For example `Int`, `Boolean`, and `String`.
+
+Our types also need inhabitants, so we add a few so-called "typing
+judgements" aswell: For example, we define `true` and `false` to be `Boolean`;
+`0, 1, 2, ...` to be `Int`, and so on.
+
+Unlike in untyped lambda calculus, where everything is lambdas all the way down,
+our symbols `true` and `false` here are atomic, definition-less tokens that
+have no further structure -- they just _are_. The list of base types and values
+are god-given if you will, you get to choose what you want your language to support.
+
+One problem we run into here is that for example, we can never write down a
+function definition for `if`... I mean how would you do it? `if = λbool. λthen. λelse. ???` -- what goes in the body? We can't pattern match on `bool` because
+we don't have pattern matching in lambda calculus. We can't check for equality
+either.
+
+The solution is to **treat `if` as a primitive** aswell, it's a god-given
+function that just exists, and it works on booleans. Or rather, it's not
+really a function is it, it's more like... a syntactical construct.
+
+We could say that the syntax is `if b then x else y`, and it reduces to `x` or `y`
+depending what `b` is.
+
+For our integers, we add a bunch more primitives like `add`, `subtract`, `multiply`, and so on, too.
+
+### Function Types
+
+In the simply typed lambda calculus, every function parameter must be annotated
+with a type. Here's an example `not` function operating on booleans:
+
+```
+not = λb: Boolean. if b then false else true
+```
+
+The syntax for typing should be familiar from typescript.
+
+The type of `not` would naturally be `Boolean -> Boolean`, meaning it takes
+a boolean and returns a boolean.
+
+`Boolean -> Boolean` is not part of our base types, but the "function type" rule
+allows us to build more complex types from existing types.
+
+---
+
+And that's it! Given just these two extra bits, we can now typecheck any lambda
+term. Have a few more examples and decide whether they typecheck, and if so,
+what their type is.
+
+<Question n={1} question="λx: Int. add x 1">
+  **Solution:** `Int -> Int`.
+</Question>
+
+<Question n={2} question="λx: Boolean. add x 1">
+  **Solution:** Does not typecheck, assuming that `add` expects two `Int`s.
+</Question>
+
+<Question n={3} question="λx: Int. (λy: Int. add x y)">
+  **Solution:** `Int -> (Int -> Int)`.
+
+Subtle syntactical point: We usually write this type as `Int -> Int -> Int`,
+since `->` is right associative. (This also means in particular that
+`(Int -> Int) -> Int` is different from `Int -> Int -> Int`.)
+
+</Question>
+
+<Question n={4} question="(λf: (Int -> Int). f 3) (λx: Int. add x 4)">
+  **Solution:** `7`, which is of type `Int`.
+
+Explanation: The left function has type `(Int -> Int) -> Int`, and we
+feed an `Int -> Int` into it. The result type of the left function is
+`Int`, so the whole term typechecks and has type `Int`.
+
+</Question>
+
+---
+
+We got types, nice!
+
+_(This is part 3 in a series on type systems. Part 4 is a work in progress.)_
