@@ -1,0 +1,119 @@
+---
+title: "Type Systems #5: System F"
+description: ""
+pubDate: "December 4 2025"
+---
+
+_(This is part 5 in a series on type systems. You can find part 4 [here](/blog/2025-12-03-type-systems-stlc2).)_
+
+import Question from "../../components/Question.astro";
+
+Okay, so we want to add generics to our toy language! This is what **System F** is all about,
+and if you're familiar with other programming languages, this should not be a huge conceptual
+leap; though the syntax takes some getting used to.
+
+System F extends the simply typed lambda calculus by adding two new constructs called
+"type abstraction" and "type application"; basically meaning "defining generics" and
+"using generics", respectively.
+
+For defining generics, we add a new construct `Λ` -- uppercase lambda -- to introduce type variables.
+
+Our `apply` function from before can now be expressed as a generic like so:
+
+```
+apply = ΛA. ΛB. λf: (A -> B). λx: A. f x
+```
+
+Now this might read like a mouthful if you are not used to it, but contrast
+this with the typescript equivalent which is even longer:
+
+```typescript
+const apply =
+  <A, B>(f: (a: A) => B) =>
+  (x: A): B =>
+    f(x);
+```
+
+Take your time to digest the syntax.
+
+The `ΛA. ΛB.` is the equivalent of typescript's `<A, B>`; inside the body of `apply`, we
+can then use `A` and `B` as if they were normal, concrete types.
+
+What is kind of interesting is that we have defined a function here that reads like it takes
+four parameters: two type parameters `A` and `B`, and two value parameters `f` and `x` -- and, well,
+that is exactly what is happening!
+
+In regular programming languages all the generic stuff is usually handled at compile time,
+and by the time the program runs, all the generic types have been erased and they don't
+really exist anymore. For example, say you have a C++ template function:
+
+```C++
+template <typename T>
+T addOne(T x) {
+  return x + 1;
+}
+```
+
+When you call `addOne(5)`, the compiler will generate a version of `addOne` that takes an `int`,
+and when you call `addOne(3.14)`, it will generate a version that takes a `double`. They actually
+exist as separate functions in the compiled binary, and no reference to a `T` variable ever having
+existed remains.
+
+I suspect that this split of compile time and runtime is the reason for why syntax for generics in
+programming languages often look so separate from normal function syntax. In System F however,
+there is no such distinction; remember, when you are "evaluating" lambda terms, you are just
+applying rewrite rules over and over again.
+
+Now. We have _defined_ the `apply` function; but what is it's type? For this we need to bust out even
+mathsier syntax, namely the `∀` symbol, meaning "for all" which you might remember from maths class.
+
+The type of `apply` would be:
+
+```
+apply: ∀A. ∀B. (A -> B) -> A -> B
+```
+
+While unusual, it does read quite naturally: "For all types `A` and `B`, `apply` takes a function `A -> B` and an `A`, and returns a `B`." For reference, here is the typescript equivalent again:
+
+```typescript
+const apply: <A, B>(f: (a: A) => B) => (x: A) => B = ...
+```
+
+To get the syntax really hammered in, let's work through more examples -- try to figure out the types of
+the following terms, and also describe what the function does.
+
+<Question n={1} question="ΛA. λx: A. x">
+  **Solution:** `∀A. A -> A`.
+
+This is the polymorphic identity function: it returns whatever you give it, regardless of type.
+
+</Question>
+
+<Question n={2} question="ΛA. λx: A. λy: A. x">
+  **Solution:** `∀A. A -> A -> A`.
+
+For any type `A`, it takes two `A`s and always returns the first.
+
+</Question>
+
+<Question
+  n={3}
+  question="ΛA. ΛB. λf: (A -> B). λx: B. f x"
+>
+  **Solution:** This doesn't typecheck!
+
+`f` expects an `A`, but we are giving it a `B` instead.
+
+</Question>
+
+<Question n={4} question="ΛA. ΛB. ΛC. λf: (A -> B). λg: (B -> C). λx: A. g (f x)">
+  **Solution:** `∀A. ∀B. ∀C. (A -> B) -> (B -> C) -> A -> C`.
+
+This is function composition generalized to any three types.
+
+</Question>
+
+Now that we've defined generic functions, it's time to use them; but since this
+post is already quite long, we'll continue in post 6.
+
+_(This is part 5 in a series on type systems. Part 6 is a work in progress.)_

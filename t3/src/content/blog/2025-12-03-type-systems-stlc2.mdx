@@ -4,7 +4,7 @@ description: ""
 pubDate: "December 3 2025"
 ---
 
-_(This is part 4 in a series on type systems. You can find part 3 [here](/blog/2025-12-01-type-systems-stlc).)_
+_(This is part 4 in a series on type systems. You can find part 3 [here](/blog/2025-12-02-type-systems-stlc).)_
 
 import Question from "../../components/Question.astro";
 
@@ -28,7 +28,7 @@ in STLC must be of a type that's allowed by the language, and that's either
 a base type (we chose `Int`, `Boolean`, `String` previously), or a function type like
 `Int -> Int`.
 
-That is to say, STLC will allow us to define concrete instances of `apply`, Like
+That is to say, STLC will allow us to define concrete instances of `apply`, like
 these:
 
 ```
@@ -40,4 +40,4 @@ But we can't define a generic `apply` that works for all types. This is the
 hard limit of STLC, and we will need to move to a more powerful type system
 to express these kinds of functions.
 
-_(This is part 4 in a series on type systems. Part 5 is a work in progress.)_
+_(This is part 4 in a series on type systems. You can find part 5 [here](/blog/2025-12-04-type-systems-system-f).)_
