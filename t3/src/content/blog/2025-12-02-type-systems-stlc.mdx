@@ -9,7 +9,7 @@ _(This is part 3 in a series on type systems. You can find part 2 [here](/blog/2
 import Question from "../../components/Question.astro";
 
 Okay so in previous posts we explored why we probably want to have types in our
-lambda calculus. The **simply typed lambda calculus** gives the most basic type
+lambda calculus. The **simply typed lambda calculus** (STLC) gives the most basic type
 system we can slap on top of the untyped lambda calculus, and it solves both
 problems we discussed before: It prevents nonsensical programs like
 `add true horse`, and it prevents us from writing down terms that might not
@@ -23,7 +23,7 @@ First, we define a list of primitive types that our language supports.
 For example `Int`, `Boolean`, and `String`.
 
 Our types also need inhabitants, so we add a few so-called "typing
-judgements" aswell: For example, we define `true` and `false` to be `Boolean`;
+judgements" as well: For example, we define `true` and `false` to be `Boolean`;
 `0, 1, 2, ...` to be `Int`, and so on.
 
 Unlike in untyped lambda calculus, where everything is lambdas all the way down,
@@ -36,12 +36,16 @@ function definition for `if`... I mean how would you do it? `if = λbool. λthen
 we don't have pattern matching in lambda calculus. We can't check for equality
 either.
 
-The solution is to **treat `if` as a primitive** aswell, it's a god-given
+The solution is to **treat `if` as a primitive** as well, it's a god-given
 function that just exists, and it works on booleans. Or rather, it's not
 really a function is it, it's more like... a syntactical construct.
 
 We could say that the syntax is `if b then x else y`, and it reduces to `x` or `y`
 depending what `b` is.
+
+(We could say that in addition to alpha/eta-conversion and beta-reduction,
+we add an extension to our language called if-reduction; this implies that STLC
+isn't a single language per se, rather it's whatever you want it to be.)
 
 For our integers, we add a bunch more primitives like `add`, `subtract`, `multiply`, and so on, too.
 
@@ -98,4 +102,4 @@ feed an `Int -> Int` into it. The result type of the left function is
 
 We got types, nice!
 
-_(This is part 3 in a series on type systems. Part 4 is a work in progress.)_
+_(This is part 3 in a series on type systems. You can find part 4 [here](/blog/2025-12-03-type-systems-stlc2).)_

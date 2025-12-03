@@ -31,7 +31,7 @@ letters and stuff. It's almost like computers weren't invented yet or something.
 Anyway, when I give you a "program" and you "evaluate" it, what you are really
 doing is applying one of these three rules over and over again, until you
 arrive at a term that cannot be reduced any further. Really, when you are
-evaluating, you become the worlds most boring rewrite engine.
+evaluating, you become the 'world's most boring rewrite engine.
 
 And that's fine! You're doing great sweetheart.
 
@@ -55,7 +55,7 @@ an arbitrary lambda term has a normal form or not. This is called the
 
 ### Types to the rescue
 
-A type system can help with that. Not because it helps untangle infinte loops,
+A type system can help with that. Not because it helps untangle infinite loops,
 but rather because any reasonable language with types will prevent you from
 writing down a term like `(λx. x x)` in the first place.
 
@@ -63,4 +63,4 @@ The typescript equivalent of this term is `const f = x => x(x);`. Go ahead, try
 to give that function a type without using `any` or `unknown`!
 I'll wait.
 
-_(This post is continued in [Type Systems #3: Simply Typed Lambda Calculus](/blog/2025-12-02-type-systems-stlc).)_
+_(This is part 2 of a series on type systems. You can find part 3 [here](/blog/2025-12-02-type-systems-stlc).)_

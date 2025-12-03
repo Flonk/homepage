@@ -4,6 +4,9 @@ description: ""
 pubDate: "November 28 2025"
 ---
 
+_These blog posts are made for the LLM era. Brevity is preferred over completeness -
+you can always ask ChatGPT to fill in the gaps._
+
 import Question from "../../components/Question.astro";
 
 We all know and love the lambda calculus. It's the world's simplest programming
@@ -12,7 +15,7 @@ encompasses pretty much everything you can think of.
 
 The lambda calculus has only three constructs:
 
-- **Variables**: Im a fan of `x` and `y` myself, but you can use any names or symbols you like.
+- **Variables**: I'm a fan of `x` and `y`, but you can use any names or symbols you like.
 - **Functions**: `λx. y` is a function that takes an argument `x` and returns `y`. In javascript, this would be written as `(x) => y`.
 - **Application**: `x y` means calling the function `x` with argument `y`. In javascript, this would be written as `x(y)`.
 
@@ -21,7 +24,7 @@ easier, let's assume we have special symbols `0`, `1`, `2` that behave like
 integers, and a special function `add x y` that performs `x + y`.
 
 (The nerds will tell you about lambda calculus' special rules: alpha-conversion,
-beta-reduction, and eta-conversion. But we are not nerds; the tl;dr is that
+beta-reduction, and eta-conversion, but we are not nerds. The tl;dr is that
 lambda calculus behaves like you would expect a sane programming language
 to behave.)
 
@@ -37,7 +40,7 @@ We call the function `add` with arguments `3` and `4`.
 <Question n={2} question="(λx. add x 1) 5">
 **Solution:** 6
 
-We call the labmda, which means we substitute `5` for `x` in the body of
+We call the lambda, which means we substitute `5` for `x` in the body of
 the function, giving us `add 5 1`.
 
 </Question>
@@ -100,8 +103,8 @@ Got them all? Good.
 
 ## Church Encodings
 
-We pulled the numbers above, aswell as the `add` function, out of thin air.
-But even without "special" symbols and function, we can define integers using
+We pulled the numbers above, as well as the `add` function, out of thin air.
+But even without "special" symbols and functions, we can define integers using
 just what lambda calculus provides! The canonical way to do this is using
 so-called _Church encodings_.
 
@@ -114,7 +117,7 @@ are slightly simpler than the integers. Let's define `true` and `false` as follo
 Defining booleans as functions may seem weird, but it works! Our two lambda terms
 here are functions with two parameters, where `true` always takes the left path,
 and `false` always takes the right path -- so we are encoding the concept of
-"branching", or "two-valued-ness", in some abstract sense.
+"branching", or "two-valuedness", in some abstract sense.
 
 Well, okay... what can we do with booleans in normal programming languages? We
 could perhaps do a logical `and`. In lambda calculus we could do so with the following definition:

@@ -1,0 +1,62 @@
+---
+title: "Type Systems #4: STLC is not enough!"
+description: ""
+pubDate: "December 3 2025"
+---
+
+_(This is part 4 in a series on type systems. You can find part 3 [here](/blog/2025-12-01-type-systems-stlc).)_
+
+import Question from "../../components/Question.astro";
+
+I have brought a fresh lambda term for you, but I forgot to type it! What do you
+think it's type should be?
+
+<Question n={1} question="apply = λf. (λx. f x)">
+  🤔
+</Question>
+
+Not so easy is it. It feels like `apply`s type should depend on whatever function
+you pass in.. if you pass in `plusOne`, then `apply plusOne` should be a function
+`Int -> Int`. But if you pass in `not`, then `apply not` should be a function
+`Boolean -> Boolean`.
+
+Or in other words, we would really like `apply` to be generic.
+
+But if we recall what types are known in the simply typed lambda calculus,
+then we see that we have no way to express this genericism. Function parameters
+in STLC must be of a type that's allowed by the language, and that's either
+a base type (we chose `Int`, `Boolean`, `String` previously), or a function type like
+`Int -> Int`.
+
+That is to say, STLC will allow us to write specific instances of `apply`, Like
+these:
+
+```
+applyInt = λf: (Int -> Int). λx: Int. f x
+applyBool = λf: (Boolean -> Boolean). λx: Boolean. f x
+```
+
+But we can't express a generic `apply` that works for all types. As a spoiler,
+we in other typed lambda calculi we would define `apply` like so:
+
+```
+apply = ΛA. ΛB. λf: (A -> B). λx: A. f x
+```
+
+Where `A`, `B` act like type parameters. It might look like a mouthful, but
+really the typescript equivalent is even more verbose:
+
+```typescript
+const apply = <A, B>(f: (a: A) => B) => (x: A): B => f(x);
+```
+
+Okay.. and what would the type of `apply` be in this case?
+
+```
+apply: ∀A. ∀B. (A -> B) -> A -> B
+```
+
+Where that `∀` symbol means "for all", which you may remember from math class;
+and the symbol `Λ` is an uppercase lambda by the way.
+
+_(This is part 3 in a series on type systems. Part 4 is a work in progress.)_

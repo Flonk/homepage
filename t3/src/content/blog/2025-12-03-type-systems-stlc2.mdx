@@ -1,0 +1,43 @@
+---
+title: "Type Systems #4: STLC is not enough!"
+description: ""
+pubDate: "December 3 2025"
+---
+
+_(This is part 4 in a series on type systems. You can find part 3 [here](/blog/2025-12-01-type-systems-stlc).)_
+
+import Question from "../../components/Question.astro";
+
+I have brought a fresh lambda term for you, but I forgot to type it! What do you
+think its type should be?
+
+<Question n={1} question="apply = λf. (λx. f x)">
+  🤔
+</Question>
+
+Not so easy, is it. It feels like `apply`s type should depend on whatever function
+you pass in.. if you pass in `plusOne`, then `apply plusOne` should be a function
+`Int -> Int`. But if you pass in `not`, then `apply not` should be a function
+`Boolean -> Boolean`.
+
+Or in other words, we would really like `apply` to be generic.
+
+But if we recall the rules of simply typed lambda calculus, then we see that
+we have no way to express this genericity. Function parameters
+in STLC must be of a type that's allowed by the language, and that's either
+a base type (we chose `Int`, `Boolean`, `String` previously), or a function type like
+`Int -> Int`.
+
+That is to say, STLC will allow us to define concrete instances of `apply`, Like
+these:
+
+```
+applyInt = λf: (Int -> Int). λx: Int. f x
+applyBool = λf: (Boolean -> Boolean). λx: Boolean. f x
+```
+
+But we can't define a generic `apply` that works for all types. This is the 
+hard limit of STLC, and we will need to move to a more powerful type system
+to express these kinds of functions.
+
+_(This is part 4 in a series on type systems. Part 5 is a work in progress.)_
