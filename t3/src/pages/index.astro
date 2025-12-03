@@ -15,6 +15,10 @@ const posts = (await getCollection('blog')).sort(
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 		<style>
+			.index-wrapper {
+				/* desktop can stay as-is */
+			}
+
 			ul {
 				display: flex;
 				flex-direction: column;
@@ -24,6 +28,11 @@ const posts = (await getCollection('blog')).sort(
 			}
 
 			@media (max-width: 768px) {
+				.index-wrapper {
+					padding: 0 1.5rem;
+					box-sizing: border-box;
+				}
+
 				ul {
 					gap: 1.8rem;
 				}
@@ -64,7 +73,7 @@ const posts = (await getCollection('blog')).sort(
 	<body>
 		<Header />
 		<main>
-			<section>
+			<section class="index-wrapper">
 				<h2>Blog</h2>
 				<ul>
 					{
