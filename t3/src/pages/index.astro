@@ -5,7 +5,7 @@ import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
-const HIDE_FUTURE_POSTS = !true;
+const HIDE_FUTURE_POSTS = true;
 const now = Date.now();
 
 const posts = (await getCollection('blog'))
