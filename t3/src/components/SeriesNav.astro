@@ -1,0 +1,60 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+  seriesName: string;
+  currentPart: string;
+  prevPart?: string;
+  nextPart?: string;
+  position?: 'header' | 'footer';
+}
+
+const { seriesName, currentPart, prevPart, nextPart, position = 'header' } = Astro.props;
+
+const allPosts = await getCollection('blog');
+const now = Date.now();
+
+// Find the previous and next posts by part number within the same series
+const titlePrefix = 'Type Systems #';
+const seriesPosts = allPosts.filter(
+  (p) => typeof p.data.title === 'string' && p.data.title.startsWith(titlePrefix),
+);
+
+const getPartLabel = (title: string) => {
+  const match = title.match(/^Type Systems #(.*?):/);
+  return match ? match[1].trim() : null;
+};
+
+const prevPost =
+  prevPart != null
+    ? seriesPosts.find((p) => getPartLabel(p.data.title as string) === prevPart)
+    : null;
+const nextPost =
+  nextPart != null
+    ? seriesPosts.find((p) => getPartLabel(p.data.title as string) === nextPart)
+    : null;
+
+// Check if next post is in the future
+const nextIsFuture = nextPost && nextPost.data.pubDate.valueOf() > now;
+---
+
+{position === 'header' && prevPart && (
+  <p>
+    <em>
+      (This is part {currentPart} in a series on {seriesName}. <a href={`/blog/${prevPost?.id}`}>You can find part {prevPart} here</a>.)
+    </em>
+  </p>
+)}
+
+{position === 'footer' && nextPart && (
+  <p>
+    <em>
+      (This is part {currentPart} in a series on {seriesName}.{' '}
+      {!nextPost || nextIsFuture ? (
+        `Part ${nextPart} is a work in progress.`
+      ) : (
+        <a href={`/blog/${nextPost.id}`}>You can find part {nextPart} here.</a>
+      )})
+    </em>
+  </p>
+)}

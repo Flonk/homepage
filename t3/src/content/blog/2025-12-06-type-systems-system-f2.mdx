@@ -1,0 +1,173 @@
+---
+title: "Type Systems #7: Using Generics"
+description: ""
+pubDate: "December 6 2025"
+---
+
+import Question from "../../components/Question.astro";
+import SeriesNav from "../../components/SeriesNav.astro";
+
+<SeriesNav
+  seriesName="type systems"
+  currentPart="7"
+  prevPart="5"
+  nextPart="8"
+/>
+
+In the last post we looked at how we can define generic functions in System F,
+using the `Λ` construct. What I still owe you though is actually using those
+functions.
+
+Here, take a function that takes a function and applies
+it twice to a value. Let me introduce pseudo-Haskell syntax to annotate
+types; what goes after `::` is the type of the thing before it, and what goes
+after `=` is the definition.
+
+```typescript
+twice :: ∀A. (A -> A) -> A -> A
+twice = ΛA.
+  λf: (A -> A).
+  λx: A.
+  f (f x)
+```
+
+If you can read this, congratulations! You have a pretty solid understanding of
+type systems already. Many programming languages' type systems are based on
+System F, or weaker versions of it (which we will look at later), so you have
+already aquired very foundational knowledge of most day-to-day languages.
+
+---
+
+Anyway, let's also assume we have our trusty `plusOne :: Int -> Int` at our disposal.
+To call our `twice` function with `plusOne`, we first need to specialize the generic function to the type `Int`, which we can do by using square brackets.
+
+```typescript
+twice [Int] plusOne 3 // 5
+```
+
+That is to say, `a [b]` is a way to call `Λ` terms, and `a b` is a way to call
+`λ` terms.
+
+And that's really all there is to it!
+
+Since we've been dealing with a lot of syntax, let's spend this post working
+through some more examples. Let's assume we have the following helper functions
+at our disposal:
+
+```haskell
+plusOne :: Int -> Int
+toString :: ∀A. A -> String
+concat :: String -> String -> String
+```
+
+<Question
+  n={1}
+  question={`(ΛA. λx: A. x) [Int]`}
+>
+  **Type:** `Int -> Int`.
+
+**Evaluation:** `λx: Int. x`
+
+</Question>
+
+<Question
+  n={2}
+  question="(ΛA. λx: A. x) [Int] [Bool]"
+>
+  **Type:** Does not typecheck! We are plugging two types into a function 
+  that only expects one.
+
+</Question>
+
+<Question
+  n={3}
+  question={`f = ΛA. ΛB.
+    λf: (A -> B).
+    λx: A.
+    f x
+
+f [Int] [Int] plusOne 3`}
+
+>
+
+**Evaluation:**
+
+```typescript
+f [Int] [Int] plusOne 3
+
+= (λf: (Int -> Int). λx: Int. f x)
+  plusOne 3
+
+= (λx: Int. plusOne x) 3
+= plusOne 3
+= 4
+```
+
+**Type:** `Int`.
+
+</Question>
+
+<Question
+  n={4}
+  question={`on = ΛA. ΛB. ΛC.
+    λop: (B -> B -> C).
+    λf: (A -> B).
+    λx: A. λy: A.
+    op (f x) (f y))
+
+on [Int] [String] [String] (toString [Int]) plusOne 6 7`}>
+
+**Evaluation:**
+
+```typescript
+let on2 = on [Int] [String] [String] =
+  λop: (String -> String -> String).
+    λf: (Int -> String).
+    λx: Int. λy: Int.
+    op (f x) (f y)
+
+---
+
+on2 concat (toString [Int]) 6 7
+
+= (λf: (Int -> String).
+    λx: Int. λy: Int.
+    concat (f x) (f y)
+  ) (toString [Int]) 6 7
+
+= (λx: Int. λy: Int.
+    concat
+    (toString [Int] x)
+    (toString [Int] y)
+  ) 6 7
+
+= concat
+    (toString [Int] 6)
+    (toString [Int] 7)
+
+= concat "6" "7"
+= "67"
+```
+
+**Type:** `String`.
+
+You might think that this is a contrived example, but the `on` function is
+actually part of the Haskell standard library! It's used for sorting quite often.
+
+</Question>
+
+Good!
+
+The next posts will be a bit lighter on examples, I promise. We do have to have
+a common understanding of lambda terms however, so the later chapters are more
+accessible.
+
+See you then!
+
+<SeriesNav
+  seriesName="type systems"
+  currentPart="7"
+  prevPart="5"
+  nextPart="8"
+  position="footer"
+/>

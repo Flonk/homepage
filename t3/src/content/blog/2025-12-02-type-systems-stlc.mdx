@@ -4,9 +4,15 @@ description: ""
 pubDate: "December 2 2025"
 ---
 
-_(This is part 3 in a series on type systems. You can find part 2 [here](/blog/2025-12-01-type-systems-utlc2).)_
-
 import Question from "../../components/Question.astro";
+import SeriesNav from "../../components/SeriesNav.astro";
+
+<SeriesNav
+  seriesName="type systems"
+  currentPart="3"
+  prevPart="2"
+  nextPart="4"
+/>
 
 Okay so in previous posts we explored why we probably want to have types in our
 lambda calculus. The **simply typed lambda calculus** (STLC) gives the most basic type
@@ -102,4 +108,10 @@ feed an `Int -> Int` into it. The result type of the left function is
 
 We got types, nice!
 
-_(This is part 3 in a series on type systems. You can find part 4 [here](/blog/2025-12-03-type-systems-stlc2).)_
+<SeriesNav
+  seriesName="type systems"
+  currentPart="3"
+  prevPart="2"
+  nextPart="4"
+  position="footer"
+/>

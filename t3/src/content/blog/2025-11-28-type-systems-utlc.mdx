@@ -5,6 +5,9 @@ pubDate: "November 28 2025"
 ---
 
 import Question from "../../components/Question.astro";
+import SeriesNav from "../../components/SeriesNav.astro";
+
+<SeriesNav seriesName="type systems" currentPart="1" nextPart="1.6" />
 
 We all know and love the lambda calculus. It's the world's simplest programming
 language, yet strong enough to compute anything that is computable, which
@@ -191,4 +194,9 @@ programming.
 
 We can fix that by introducing types! And we will do so in the next few posts. Stay tuned!
 
-_(This is part 1 of a series on type systems. You can find part 2 [here](/blog/2025-12-01-type-systems-utlc2).)_
+<SeriesNav
+  seriesName="type systems"
+  currentPart="1"
+  nextPart="1.6"
+  position="footer"
+/>

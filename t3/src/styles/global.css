@@ -208,10 +208,14 @@ code {
   padding: 3px 6px;
   border: 1px solid var(--nord2);
   border-radius: 4px;
+  white-space: nowrap;
+  overflow-wrap: break-word;
 }
 pre {
   padding: 1.5em;
   border-radius: 8px;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
 }
 pre > code {
   all: unset;

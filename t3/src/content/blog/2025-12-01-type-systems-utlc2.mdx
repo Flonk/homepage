@@ -4,7 +4,15 @@ description: ""
 pubDate: "December 1 2025"
 ---
 
-_(This is part 2 in a series on type systems. You can find part 1 [here](/blog/2025-11-28-type-systems-utlc).)_
+import SeriesNav from "../../components/SeriesNav.astro";
+
+<SeriesNav
+  seriesName="type systems"
+  currentPart="2"
+  prevPart="1.6"
+  nextPart="3"
+/>
+
 
 There's another, less obvious reason why the untyped lambda calculus makes
 us yearn for types: Undecidability.
@@ -63,4 +71,10 @@ The typescript equivalent of this term is `const f = x => x(x);`. Go ahead, try
 to give that function a type without using `any` or `unknown`!
 I'll wait.
 
-_(This is part 2 of a series on type systems. You can find part 3 [here](/blog/2025-12-02-type-systems-stlc).)_
+<SeriesNav
+  seriesName="type systems"
+  currentPart="2"
+  prevPart="1.6"
+  nextPart="3"
+  position="footer"
+/>

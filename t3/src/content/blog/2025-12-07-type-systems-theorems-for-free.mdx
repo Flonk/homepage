@@ -1,0 +1,66 @@
+---
+title: "Type Systems #8: Theorems for Free!"
+description: ""
+pubDate: "December 7 2025"
+---
+
+import Question from "../../components/Question.astro";
+import SeriesNav from "../../components/SeriesNav.astro";
+
+<SeriesNav
+  seriesName="type systems"
+  currentPart="8"
+  prevPart="7"
+  nextPart="9"
+/>
+
+With generic functions under our belt, we can type many a function you 
+encounter in day-to-day programming. Like those!
+
+```typescript
+toString :: ∀A. A -> String
+ifThenElse :: ∀A. Boolean -> A -> A -> A
+equals :: ∀A. A -> A -> Boolean
+```
+We've seen plenty of functions now that are generic in their arguments,
+and we can even define functions that are generic only in their return type, although
+that's less common in practice.
+
+```typescript
+applyTo42 :: ∀R. (Int -> R) -> R
+applyTo42 = ΛR. λf: (Int -> R). f 42
+```
+
+From just the type we can tell that `applyTo42` doesn't really care about what the function it recieves returns -- it'll just forward the return value anyway. What's important to `applyTo42` is only that the function takes an `Int`, so that it can
+shove `42` into it.
+
+In particular, by making the return type generic, we can ensure *at the type level*
+that `applyTo42` doesn't do anything funny to the return value of `f` -- all it can do is
+return it.
+
+Why? You know nothing about `R` or it's shape or it's properties, so you can't do equality checks on it, as equality might not be defined for all types, and you can't manipulate existing `R`s either, because not every type is manipulable in the same ways. You can't create an `R` ex nihilo, as `R` might not have a constructor. `applyTo42`s only way to even obtain an `R` is to call the function that it recieves as an argument, and then it can't do anything to that `R`, so it has to return it.
+
+This, among other observations, is the basis of a very interesting paper by Philip Wadler called "Theorems for Free!". The idea is that by just looking at the type of a generic function, you can deduce certain properties about the function itself, without even looking at its implementation.
+
+(This is assuming a pure language without side effects, and without reflection, of course.)
+
+Here are some other examples of what you can deduce from types alone:
+
+- A function of type `∀A. A -> A` must be the identity function, because it can't do anything to the input value of type `A` except return it.
+- A function of type `∀A. A -> Boolean` must be a constant function, because it can't inspect the value of type `A` to decide what boolean to return.
+- A function of type `∀A. A[] -> Int` returns either a constant, or some value derived from the length of the array, because it can't inspect the array's elements to compute anything else. (System F can't do lists but we can ignore that for now.)
+- A function of type `∀R. String -> R` can never return, because whoever calls the
+function could choose any type `R`, and the function can't possibly construct a value
+for every possible type. The function only has the option of diverging (looping forever), or in the case of Haskell, throwing an error; `error` being the only function that is allowed to have type `∀R. String -> R`.
+
+Enforcing these properties at the type level makes a compelling case for studying and using powerful type systems like System F or what lies beyond. Compilers can leverage these properties for optimizations, programmers can gain confidence in their code's behavior just by looking at types, libraries can provide stronger guarantees about their APIs, and LLMs can better reason about code when generating or analyzing it.
+
+And if that isn't a sales pitch for type systems, I don't know what is! Let's get back to System F in the next post, so we can look at more types.
+
+<SeriesNav
+  seriesName="type systems"
+  currentPart="8"
+  prevPart="7"
+  nextPart="9"
+  position="footer"
+/>

@@ -1,0 +1,179 @@
+---
+title: "Type Systems #1.6: Currying"
+description: ""
+pubDate: "December 5 2025"
+---
+
+import Question from "../../components/Question.astro";
+import SeriesNav from "../../components/SeriesNav.astro";
+
+<SeriesNav
+  seriesName="type systems"
+  currentPart="1.6"
+  prevPart="1"
+  nextPart="2"
+/>
+
+My blog is being featured by my employer! Shout out to [andamp.io](https://andamp.io) for being a great place to work at.
+
+---
+
+While the untyped lambda calculus is rather simple, I have done a bit of a speedrun through its
+concepts to get to the juicy parts quicker. It never hurts to have a strong foundation though,
+so let me take a minute to show you probably the most important tool in the functional programmer's
+toolbox, **currying**. I'm wedging this between posts 1 and 2 since everyone should know about
+it before diving into the typed lambda calculi.
+
+## Currying
+
+Functions in the lambda calculus only ever take a single argument. The function `plusOne = λx. add x 1` for example
+expects a single `x` and returns a value. To define functions with two parameters, regular programming languages like
+typescript give us a few options:
+
+```typescript
+// Just create a function that takes two parameters, it's literally built in
+const add = (x: number, y: number) => x + y;
+
+// Create a function that takes a single tuple
+type Pair = [number, number];
+const addPair = ([x, y]: Pair) => x + y;
+
+// Create a function that returns a function
+const addCurried = (x: number) => (y: number) => x + y;
+```
+
+_Calling_ these functions is slightly different in each case:
+
+```typescript
+add(2, 3); // 5
+addPair([2, 3]); // 5
+addCurried(2)(3); // 5
+```
+
+But really, these notations are all equivalent and you could easily come up with a function that
+converts between these representations.
+
+Wait -- can you?
+
+Write a typescript function `curry` that takes any function in two parameters like `add`,
+and returns a version that can be called like `addCurried`! Generically, of course, so place no restrictions on
+the types of the parameters or return value. To see if you got it right, your function must pass this test:
+
+```typescript
+const foo = (x: number, y: string) => [x, y];
+const fooCurried = curry(foo); // todo implement curry
+
+foo(42, "hello"); // [42, "hello"]
+fooCurried(42)("hello"); // [42, "hello"]
+```
+
+<Question n={1} question="const curry = ???">
+  **Solution:**
+
+```typescript
+const curry =
+  <A, B, C>(f: (a: A, b: B) => C):
+    ((a: A) => (b: B) => C) =>
+      (a: A) => (b: B) => f(a, b);
+```
+
+</Question>
+
+---
+
+All this is to say that in the lambda calculus, we **always** curry our functions, and we have seen many
+examples in the last post. Sloppily we say that the function `λx. (λy. add x y)` "takes two parameters",
+but that's just shorthand for saying it takes a single parameter `x` and returns a function `λy. add x y`.
+
+But the sloppy wording is okay, since we know that the two things really mean the same thing and you
+can freely convert between them, via `curry` (and its inverse, `uncurry`).
+
+### Parentheses
+
+For this reason, we have the liberty to omit parentheses in ceratin situations. For example, we often just
+write `λx. λy. add x y` instead of `λx. (λy. (add x y))` -- we would know where to add the parentheses if we
+needed to.
+
+In later blogposts, we will introduce types, and I would like to introduce a similar convention for function types.
+
+A function that takes an integer and returns an integer would be typed as `Int -> Int`. A function that takes
+_two_ integers and returns an integer, would be written as `Int -> Int -> Int`, which 
+should look weird if you are coming from a typescript background -- like, why are there two arrows?
+
+But with currying in mind, it makes perfect sense: A two-parameter function is actually just a one-parameter function
+that returns another one-parameter function.
+
+We define the arrow operator to be **right associative** by the way, meaning that `Int -> Int -> Int` is shorthand
+for `Int -> (Int -> Int)`.
+
+<Question n={2} question="What does the type '(Int -> Int) -> Int' represent?">
+  **Solution:** It's a function, that takes a function, and then returns an integer.
+
+Need an example?
+
+```typescript
+const applyToFive = (f: (x: number) => number) => f(5);
+```
+
+</Question>
+
+### Currying brings out interesting symmetries
+
+Consider the following expression, where we map over a list of numbers.
+
+```typescript
+[1, 2, 3].map((x) => x + 1);
+```
+
+Let's genericize this snippet by defining a `map` function that, well,
+maps over a list:
+
+```typescript
+const map = <A, B>(f: (a: A) => B, list: A[]) => list.map(f);
+```
+
+With curring in mind, we have several ways of giving this function a type:
+
+```typescript
+(A -> B, A[]) -> B[] // sloppily, a function that takes a pair
+(A -> B) -> A[] -> B[] // curried version
+(A -> B) -> (A[] -> B[]) // since parentheses are right-associative
+```
+
+All these are equivalent, right? The last interpretation of the `map` function
+is particularly interesting, however: it says that `map` takes a function on
+values, and returns a function on lists.
+
+`map` "lifts" arbitrary functions into the realm of lists in some sense,
+which is a really unique way of looking at the map function, that is just totally
+lost in everyday programming. We tend to think of mapping as a sort of iterating
+kind of operation, but the functional viewpoint reveals a much deeper
+structure -- `map` is actually a function transformer! <sup>[1]</sup>
+
+Anyway, I am getting way ahead of myself. Let's continue with the untyped
+lambda calculus in the next post.
+
+<SeriesNav
+  seriesName="type systems"
+  currentPart="1.6"
+  prevPart="1"
+  nextPart="2"
+  position="footer"
+/>
+
+---
+
+<sub>
+**[1]** Of course there are infinitely many functions of type `(A -> B) ->
+(A[] -> B[])`. But it turns out that any function of this type can be decomposed
+into `map` and some "post-processing" function. Any `f' :: (A -> B) -> (A[] -> B[])`
+can always be written as:
+
+```haskell
+f' g xs = h (map g xs)
+```
+
+for some function `h :: B[] -> B[]`. This makes the `map` function a sort of
+"universal" function transformer for lists.
+
+</sub>

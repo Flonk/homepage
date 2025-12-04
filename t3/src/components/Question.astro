@@ -1,11 +1,23 @@
 ---
+import { codeToHtml } from 'shiki';
+
 interface Props {
   n: number;
-  question: any;
+  question: string;
   children: any;
+  multiline?: boolean;
+  lang?: string;
 }
 
-const { n, question } = Astro.props;
+const { n, question, multiline = true, lang = 'typescript' } = Astro.props;
+
+let highlightedCode = question;
+if (multiline && lang) {
+  highlightedCode = await codeToHtml(question, {
+    lang,
+    theme: 'one-dark-pro',
+  });
+}
 ---
 
 <div class="qa-wrapper">
@@ -21,7 +33,11 @@ const { n, question } = Astro.props;
       </button>
     </div>
     <div class="question-text">
-      <code>{question}</code>
+      {multiline ? (
+        <div class="question-code" set:html={highlightedCode} />
+      ) : (
+        <code>{question}</code>
+      )}
     </div>
   </div>
   <div class="spoiler-content">
@@ -89,14 +105,35 @@ const { n, question } = Astro.props;
     white-space: nowrap;
   }
 
+  .question-code {
+    margin: 0;
+    overflow-x: auto;
+  }
+
+  .question-code :global(pre) {
+    margin: 0;
+    padding: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.95em;
+  }
+
   .spoiler-button:hover {
     background-color: #555;
   }
 
   .spoiler-content {
     display: none;
-    padding: 1em;
+    padding: 1rem 0.5rem;
     border-top: 1px solid #444;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .spoiler-content :global(pre) {
+    padding: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.05) !important;
   }
 
   .spoiler-content.revealed {
