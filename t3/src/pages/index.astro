@@ -81,7 +81,7 @@ const posts = (await getCollection('blog'))
 				<ul>
 					{
 						posts.map((post) => (
-							<li>
+							<li data-pubdate={post.data.pubDate.valueOf()}>
 								<a href={`/blog/${post.id}/`}>
 									<span class="date">
 										[<FormattedDate date={post.data.pubDate} />]
@@ -94,5 +94,34 @@ const posts = (await getCollection('blog'))
 				</ul>
 			</section>
 		</main>
+	<script>
+		(function () {
+			const items = document.querySelectorAll('li[data-pubdate]');
+			if (!items.length) return;
+
+			const now = new Date();
+			const todayUTC = Date.UTC(
+				now.getUTCFullYear(),
+				now.getUTCMonth(),
+				now.getUTCDate(),
+			);
+
+			items.forEach((li) => {
+				const ms = Number(li.getAttribute('data-pubdate'));
+				if (!Number.isFinite(ms)) return;
+
+				const d = new Date(ms);
+				const postUTC = Date.UTC(
+					d.getUTCFullYear(),
+					d.getUTCMonth(),
+					d.getUTCDate(),
+				);
+
+				if (postUTC > todayUTC) {
+					li.style.display = 'none';
+				}
+			});
+		})();
+	</script>
 	</body>
 </html>
