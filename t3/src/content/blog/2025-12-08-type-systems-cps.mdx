@@ -52,7 +52,7 @@ readFile('file.txt', 'utf-8', (_, data) => {
 });
 ```
 
-In javascript we were calling continuations "callbacks", but it's the same idea:
+In javascript we are calling continuations "callbacks", but it's the same idea:
 the `readFile` function does some computation to produce some value (reading a file),
 and then it hands off this value to the continuation. And also, `readFile` really doesn't care what happens to the data after that.
 
@@ -101,7 +101,7 @@ saved(result + 1);
 Makes no sense? Good.
 
 As soon as we call `callCC`, the entire rest of the program is captured 
-nto `k` -- that is to say, we split our program into two parts: the part
+into `k` -- that is to say, we split our program into two parts: the part
 before `callCC`, and the part after it.
 
 ```typescript
