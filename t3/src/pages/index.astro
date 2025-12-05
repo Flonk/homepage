@@ -5,11 +5,7 @@ import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
-const HIDE_FUTURE_POSTS = true;
-const now = Date.now();
-
 const posts = (await getCollection('blog'))
-	.filter((post) => !HIDE_FUTURE_POSTS || post.data.pubDate.valueOf() <= now)
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
@@ -100,24 +96,24 @@ const posts = (await getCollection('blog'))
 			if (!items.length) return;
 
 			const now = new Date();
-			const todayUTC = Date.UTC(
-				now.getUTCFullYear(),
-				now.getUTCMonth(),
-				now.getUTCDate(),
-			);
+			const todayLocal = new Date(
+				now.getFullYear(),
+				now.getMonth(),
+				now.getDate(),
+			).getTime();
 
 			items.forEach((li) => {
 				const ms = Number(li.getAttribute('data-pubdate'));
 				if (!Number.isFinite(ms)) return;
 
 				const d = new Date(ms);
-				const postUTC = Date.UTC(
-					d.getUTCFullYear(),
-					d.getUTCMonth(),
-					d.getUTCDate(),
-				);
+				const postLocalDay = new Date(
+					d.getFullYear(),
+					d.getMonth(),
+					d.getDate(),
+				).getTime();
 
-				if (postUTC > todayUTC) {
+				if (postLocalDay > todayLocal) {
 					li.style.display = 'none';
 				}
 			});
