@@ -102,7 +102,8 @@ which is not `∀R. FileHandle -> R`, so it won't typecheck.
 
 Again, we've enforced a very desirable property **at the type level**. We can 
 safely assume that the continuation has done whatever it needed to do with the
-file, and `withFile` can close it afterwards. In so many other
+file and the file is no longer needed, so `withFile` can close it after the continuation
+ran. In so many other
 programming languages, this would require careful runtime checks by the programmer...
 here we just get it for free by the type system, and the compiler can enforce it for us! <sup>[1]</sup>
 
