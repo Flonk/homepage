@@ -82,7 +82,7 @@ the program as a value and call it later, which to be honest really is
 programming dark magic.
 
 I don't really want to make you read scheme code, so let's assume we have a 
-javascript functon `callCC` (call-with-current-continuation) that allows us to
+javascript functon `callCC` ([call-with-current-continuation](https://en.wikipedia.org/wiki/Call-with-current-continuation)) that allows us to
 capture the rest of the program as a function. We can do really, really crazy
 things with it. Do not worry if this is too complicated, you won't need this
 later -- I just want to show you cool stuff.
@@ -137,13 +137,11 @@ saved(result + 1); // timewarp
 // ...
 ```
 
-Fascinating stuff, isn't it?
+Fascinating, isn't it?
 
 `callCC` is an extremely powerful construct, and it's like the mother of all
 control flow mechanisms. Promises, exceptions, generators, coroutines,
-if statements, loops, you name it -- they can all be implemented using continuations.
-
-
+loops, you name it -- they can all be implemented using `callCC`.
 
 <SeriesNav
   seriesName="type systems"
