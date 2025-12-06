@@ -31,21 +31,21 @@ apply42 :: ∀R. (Int -> R) -> R
 apply42 = ΛR. λf: (Int -> R). f 42
 ```
 
-From just the type we can tell that `apply42` doesn't really care about what the function it recieves returns -- it'll just forward the return value anyway. What's important to `apply42` is only that the function takes an `Int`, so that it can
+From just the type we can tell that `apply42` doesn't really care about what the function it recieves returns -- it'll just forward the return value of `f`. What's important to `apply42` is only that the function takes an `Int`, so that it can
 shove `42` into it.
 
-In particular, by making the return type generic, we can ensure *at the type level*
+Actually, by making the return type generic, we can ensure *at the type level*
 that `apply42` doesn't do anything funny to the return value of `f` -- the type
 forces it to return whatever `f` returns, without modification.
 
 Why? Well, the implementation of `apply42` knows nothing about `R` or it's shape or it's properties, so it can't do equality checks on it, as equality might not be defined for all types, and it can't manipulate existing `R`s either, because whatever you do to any instance of `R` like `Int`s, generally won't work on other instances 
 of `R`, like `Horse`s. You can't create an `R` ex nihilo, as `R` might not have a constructor. `apply42`s only way to obtain an `R` then is to call the function that it recieves as an argument, and then it can't do anything to that `R`, so it has to return it!
 
-This, among other observations, is the basis of a very interesting paper by Philip Wadler called "Theorems for Free!". The idea is that by just looking at the type of a generic function, you can deduce certain properties about the function itself, without knowing its implementation.
+This, among other observations, is the basis of a very interesting paper by Philip Wadler called "Theorems for Free!". The idea is that by just looking at the type of a function, you can deduce certain properties about the function itself, without knowing its implementation.
 
 (This is assuming a pure language without side effects, and without reflection.)
 
-Here are some other examples of what you can deduce from types alone:
+Here are some examples of what you can deduce from types alone:
 
 - A function of type `∀A. A -> A` must be the identity function, because it can't do anything to the input value of type `A` except return it.
 - A function of type `∀A. A -> Boolean` must be a constant function, because it can't inspect the value of type `A` to decide what boolean to return.
@@ -54,7 +54,7 @@ Here are some other examples of what you can deduce from types alone:
 
 Enforcing these properties at the type level makes a compelling case for studying and using powerful type systems like System F or what lies beyond. Compilers can leverage these properties for optimizations, programmers can gain confidence in their code's behavior just by looking at types, libraries can provide stronger guarantees about their APIs, and LLMs can better reason about code when generating or analyzing it.
 
-And if that isn't a sales pitch for type systems, I don't know what is! Let's get back to System F in the next post, so we can look at more types.
+And if that isn't a sales pitch for type systems, I don't know what is! Let's get back to System F in the next post, so we can look at more theory... shall we?
 
 <SeriesNav
   seriesName="type systems"

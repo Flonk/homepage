@@ -58,10 +58,10 @@ and then it hands off this value to the continuation. And also, `readFile` reall
 
 If we were to give `readFile` a type, it would be something like
 `FilePath -> Encoding -> (Error -> String -> Void) -> Void`, which is not a 
-generic function, so we have to squint a little to see the connection.
+generic function, so we have to squint a little to see the connection...
 
-If we were to write a version of `readFile` that instead of returning `Void`
-is generic in it's return type, like `∀R. FilePath -> Encoding -> (Error -> String -> R) -> R`, we do start to see similarities to `apply42`'s type, however.
+but if we were to write a version of `readFile` that instead of returning `Void`
+is generic in it's return type, like `∀R. FilePath -> Encoding -> (Error -> String -> R) -> R`, we do start to see similarities to `apply42`'s type.
 
 This particular variant would not work in javascript, because it would imply we
 can capture the return value of the continuation like so:
@@ -81,11 +81,10 @@ continuations are first-class citizens, and you can "capture" the rest of
 the program as a value and call it later, which to be honest really is
 programming dark magic.
 
-I don't really want to make you read scheme code, so let's assume we have a 
+Since I don't want to make you read scheme code, let's assume we have a 
 javascript functon `callCC` ([call-with-current-continuation](https://en.wikipedia.org/wiki/Call-with-current-continuation)) that allows us to
 capture the rest of the program as a function. We can do really, really crazy
-things with it. Do not worry if this is too complicated, you won't need this
-later -- I just want to show you cool stuff.
+things with it.
 
 ```typescript
 let saved;
@@ -113,7 +112,8 @@ where `$$$` is the rest of the program, which will be captured into `k`, which
 we will store into `saved`, so we can call it later. `callCC` then returns `0`, so
 `result` is `0`.
 
-We log `result` to the console, which prints `0`, and then we call `saved(result + 1)`, which **jumps back in time** to our `$$$` marker, but instead of rerunning the `callCC` expression, that line becomes `let result = result + 1` and from then on 
+We log `result` to the console, which prints `0`, and then we call `saved(result + 1)`, which **jumps back in time** to our `$$$` marker,
+but instead of invoking `callCC`, that line becomes `let result = result + 1` and from then on 
 we rerun the rest of the program which gets us back to `console.log` and rerunning
 `saved` again, resulting in a loop.
 
