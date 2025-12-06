@@ -85,7 +85,7 @@ you scratch your head, because such a function can never return, or in a Haskell
 context, only return an error.
 
 I must clarify then that returning an error in Haskell is perfectly fine and will
-not blow up your program, as long as you don't try to access the result. That is to say, the 
+not blow up your program, as long as you don't try to access it. That is to say, the 
 Haskell snippet `let x = error "oops!" in 42` will happily evaluate to `42` without
 crashing. `let x = error "oops!" in x` on the other hand will blow up.
 
