@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import SeriesNavClient from './SeriesNavClient.astro';
 
 interface Props {
   seriesName: string;
@@ -12,7 +13,6 @@ interface Props {
 const { seriesName, currentPart, prevPart, nextPart, position = 'header' } = Astro.props;
 
 const allPosts = await getCollection('blog');
-const now = Date.now();
 
 // Find the previous and next posts by part number within the same series
 const titlePrefix = 'Type Systems #';
@@ -26,35 +26,28 @@ const getPartLabel = (title: string) => {
 };
 
 const prevPost =
-  prevPart != null
-    ? seriesPosts.find((p) => getPartLabel(p.data.title as string) === prevPart)
-    : null;
+	prevPart != null
+		? seriesPosts.find((p) => getPartLabel(p.data.title as string) === prevPart)
+		: null;
 const nextPost =
-  nextPart != null
-    ? seriesPosts.find((p) => getPartLabel(p.data.title as string) === nextPart)
-    : null;
+	nextPart != null
+		? seriesPosts.find((p) => getPartLabel(p.data.title as string) === nextPart)
+		: null;
 
-// Check if next post is in the future
-const nextIsFuture = nextPost && nextPost.data.pubDate.valueOf() > now;
+const prevHref = prevPost ? `/blog/${prevPost.id}/` : undefined;
+const prevDate = prevPost ? (prevPost.data.pubDate as Date).valueOf() : undefined;
+const nextHref = nextPost ? `/blog/${nextPost.id}/` : undefined;
+const nextDate = nextPost ? (nextPost.data.pubDate as Date).valueOf() : undefined;
 ---
+<SeriesNavClient
+	client:load
+	currentPart={currentPart}
+	prevPart={prevPart}
+	nextPart={nextPart}
+	position={position}
+	prevHref={prevHref}
+	prevDate={prevDate}
+	nextHref={nextHref}
+	nextDate={nextDate}
+/>
 
-{position === 'header' && prevPart && (
-  <p>
-    <em>
-      (This is part {currentPart} in a series on {seriesName}. <a href={`/blog/${prevPost?.id}`}>You can find part {prevPart} here</a>.)
-    </em>
-  </p>
-)}
-
-{position === 'footer' && nextPart && (
-  <p>
-    <em>
-      (This is part {currentPart} in a series on {seriesName}.{' '}
-      {!nextPost || nextIsFuture ? (
-        `Part ${nextPart} is a work in progress.`
-      ) : (
-        <a href={`/blog/${nextPost.id}`}>You can find part {nextPart} here.</a>
-      )})
-    </em>
-  </p>
-)}

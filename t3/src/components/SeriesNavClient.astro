@@ -1,0 +1,97 @@
+---
+interface Props {
+	currentPart: string;
+	prevPart?: string;
+	nextPart?: string;
+	position?: 'header' | 'footer';
+	prevHref?: string;
+	prevDate?: number;
+	nextHref?: string;
+	nextDate?: number;
+}
+
+const {
+	currentPart,
+	prevPart,
+	nextPart,
+	position = 'header',
+	prevHref,
+	prevDate,
+	nextHref,
+	nextDate,
+} = Astro.props;
+---
+
+{position === 'header' && prevPart && (
+	<p>
+		<em>
+			(This is part {currentPart} in a series on type systems.
+			<span
+				data-series-link="prev"
+				data-series-part={prevPart}
+				data-series-href={prevHref}
+				data-series-date={prevDate}
+			>
+				You can find part {prevPart} here
+			</span>{"."})
+		</em>
+	</p>
+)}
+
+{position === 'footer' && nextPart && (
+	<p>
+		<em>
+			(This is part {currentPart} in a series on type systems.
+			<span
+				data-series-link="next"
+				data-series-part={nextPart}
+				data-series-href={nextHref}
+				data-series-date={nextDate}
+			>
+				You can find part {nextPart} here
+			</span>{"."})
+		</em>
+	</p>
+)}
+
+<script>
+	(function () {
+		document.querySelectorAll('[data-series-link]').forEach((el) => {
+			const span = el as HTMLSpanElement;
+			const part = span.getAttribute('data-series-part') || '';
+			const href = span.getAttribute('data-series-href') || '';
+			const ms = Number(span.getAttribute('data-series-date'));
+
+			if (!href || !Number.isFinite(ms)) {
+				span.textContent = `Part ${part} is a work in progress`;
+				return;
+			}
+
+			const now = new Date();
+			const today = new Date(
+				now.getFullYear(),
+				now.getMonth(),
+				now.getDate(),
+			).getTime();
+
+			const d = new Date(ms);
+			const day = new Date(
+				d.getFullYear(),
+				d.getMonth(),
+				d.getDate(),
+			).getTime();
+
+			if (day > today) {
+				span.textContent = `Part ${part} is a work in progress`;
+				return;
+			}
+
+			// Use trimmed text content so no leading/trailing spaces end up inside the link.
+			const text = (span.textContent || '').trim();
+			const a = document.createElement('a');
+			a.href = href;
+			a.textContent = text;
+			span.replaceWith(a);
+		});
+	})();
+</script>

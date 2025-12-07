@@ -14,7 +14,28 @@ import SeriesNav from "../../components/SeriesNav.astro";
   nextPart="12"
 />
 
-blabla
+We've seen the "for all" quantifier `∀` in System F now, which allows
+us to define generic functions that must work for any type. We've also
+seen that such functions are very limited in what they can do with their
+arguments, since the only things you can do with a value of a generic type
+`A` are things that you can do to any type, whether it's `Int`, `String`, or
+`Horse`.
+
+There is also a related but dual concept called **existential quantification**,
+which is written with the symbol `∃`, meaning "there exists". This will allow 
+us to express things like "I need a value of some type, but I don't care what type it is,
+as long as it satisfies certain properties".
+
+An example will be better than words here. Let's assume a mishmash of System F and
+typescript:
+
+```typescript
+type Showable = ∃A. { value: A, toString: (A -> String) };
+
+function show(s: Showable): String {
+  return s.toString(s.value);
+}
+```
 
 <SeriesNav
   seriesName="type systems"
