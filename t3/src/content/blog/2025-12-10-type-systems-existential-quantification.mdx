@@ -14,28 +14,104 @@ import SeriesNav from "../../components/SeriesNav.astro";
   nextPart="12"
 />
 
-We've seen the "for all" quantifier `∀` in System F now, which allows
-us to define generic functions that must work for any type. We've also
+We've looked at universal quantification with `∀` in System F now, which allows
+us to define generic functions that must work for any type, like we see them everyday
+in programming. We've also
 seen that such functions are very limited in what they can do with their
-arguments, since the only things you can do with a value of a generic type
-`A` are things that you can do to any type, whether it's `Int`, `String`, or
-`Horse`.
+arguments, since the only things you can do with a value of a generic type are
+things that you can do to any type, which is not a whole lot.
 
-There is also a related but dual concept called **existential quantification**,
+There is also a related and dual concept called **existential quantification**,
 which is written with the symbol `∃`, meaning "there exists". This will allow 
 us to express things like "I need a value of some type, but I don't care what type it is,
 as long as it satisfies certain properties".
 
-An example will be better than words here. Let's assume a mishmash of System F and
-typescript:
+Here's the most basic example:
+
+```typescript
+getAny :: ∃A. A
+```
+
+This type says "there exists a type `A`, and `getAny` will be a value of that type".
+But which type is it? I won't tell! It could be `Int`, it could be `String`, it
+could be `Horse`. But there definitely *is* some type `A` such that `getAny` has it.
+Pinky promise.
+
+Now, rest assured I will rarely talk about Java in a series about advanced type systems.
+But, we gotta give credit where credit is due, and Java as one of few languages does
+have a very basic form of existential quantification built in: **wildcards**!
+
+```java
+void printAll(List<?> xs) {
+    for (Object o : xs) {
+        System.out.println(o);
+    }
+}
+```
+
+Now, `printAll` could have just as easily been a universal quantification, 
+with `void <T> printAll(List<T> xs)`, and this turns out to be true for many
+cases. In Java you tend to use wildcards when you can't or don't need to introduce
+a type parameter -- often it's simply more convenient.
+
+Another example is heterogeneous collections:
+
+```java
+List<List<?>> matrix = new ArrayList<>();
+
+matrix.add(List.of(1, 2, 3));
+matrix.add(List.of("a", "b"));
+matrix.add(List.of(true, false));
+```
+
+Since we aren't defining a single concrete type for the inner lists, we can put
+many different things into it. But at the same time, we know that each inner list
+is a list of *something* -- "there exists a type", but I don't know which one.
+
+Existential quantification is also related to interfaces or abstract classes.
+Assume a mishmash of typescript and pseudocode:
 
 ```typescript
 type Showable = ∃A. { value: A, toString: (A -> String) };
 
-function show(s: Showable): String {
-  return s.toString(s.value);
-}
+const show = (s: Showable) =>
+  s.toString(s.value);
 ```
+
+A `Showable` is a value that contains some type `A` inside it, but since it's 
+generic, the `show` function can never inspect it. But whatever that `A` is, we know
+we can do one thing with it: call `toString` on it to get a `String` representation.
+
+Now, `Showable`/`show` could have just as easily been defined via universial quantification,
+with `const show = <T>(s: Showable<T>) => ...` but... wait. I'm repeating myself.
+
+It turns out that existential quantification and universal quantification are really
+two sides of the same coin. In mathematical logic, there is a process called **Skolemization**
+that allows you to convert statements with existential quantifiers into statements
+with only universal quantifiers, and vice versa. Type theory and mathematical logic
+*also* turn out to be two sides of the same coin, so types can also be skolemized.
+
+Though not as freely as in logic I have heard, but to be honest I have never done due diligence
+to research the specifics on that. Feel free to write in!
+
+All that is to say that existentials are nice-to-have, but they don't give us more
+expressive power than plain old universals already do. System F for example has no built-in
+concept for them.
+
+In my opinion, the real usefulness of existential types is mostly a separation of concerns thing.
+If we define a regular generic type and function like `const show = <T>(s: Showable<T>) => ...`,
+then the caller of `show` needs to pick a type `T` to specialize it to, before calling it.
+
+Under the existential definition `const show = (s: Showable) => ...`, the caller
+of `show` doesn't get to pick the type inside the `Showable` -- that was already
+chosen by the code that created the `Showable`, which might have happend much earlier.
+
+This can be a useful distinction to make in APIs, as it allows library authors
+to hide implementation details from users. Like, just like we hide access
+to raw data behind functions and methods, we can hide type details behind existential types.
+This is related to **opaque types** or **opaque pointers** (which to be clear are
+usually not implemented with existential quantification, but *could* be.)
+
 
 <SeriesNav
   seriesName="type systems"
