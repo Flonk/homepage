@@ -49,8 +49,7 @@ just what follows from the above.
 And what follows from that is that the empty type `{}` isn't
 actually a subtype of any other type, while the empty set `{}`
 is a subset of every set. The "empty set" equivalent of types
-would be the type that contains _all_ properties, and where
-each property can be anything.
+would be a sort of impossible type that contains _all_ properties,
+and where each property can be anything.
 
-Turns out typescript has not one but two built-in types for that:
-`unknown`, and `any`.
+In typescript, that type is called `never`.

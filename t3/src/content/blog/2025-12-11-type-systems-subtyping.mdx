@@ -1,0 +1,165 @@
+---
+title: "Type Systems #12: Subtyping"
+description: ""
+pubDate: "December 11 2025"
+---
+
+import Question from "../../components/Question.astro";
+import SeriesNav from "../../components/SeriesNav.astro";
+
+<SeriesNav
+  seriesName="type systems"
+  currentPart="12"
+  prevPart="11"
+  nextPart="13"
+/>
+
+When you ask people what they remember about certain school topics, they 
+all respond with the same things which is so funny to me. In maths it's always
+"Pythagoras" or pi = 3.14, in chemistry it's "dihydrogen monoxide", physics gets 
+E=mc², Schrödinger's cat and higgs bosons. CS wasn't really a thing when I was in high
+school (is it now?), but when you ask programmers the same thing about cs theory,
+it's always Dijkstra's algorithm and the Liskov Substitution Principle.
+
+Big W for computer science though, because the Liskov Substitution Principle
+is a really fundamental and big concept that is worth knowing, even though
+much like Schrödinger's cat, it's often misunderstood. So, just to be annyoing,
+I will not explain the Liskov Substitution Principle in this post at all.
+
+Let's talk about subtyping.
+
+---
+
+## Structural Subtyping
+
+Typescript is structurally typed, and it's subtyping mechanic is aptly called
+**structural subtyping**. Most of us will be very familiar with how it works,
+so let me throw you a pop quiz real quick. One word about notation: 
+we write `A <: B` to mean "A is a subtype of B".
+
+Are the following statements true or false?
+
+
+<Question
+  n={1}
+  question={`number <: string`}
+>
+Obviously not.
+</Question>
+
+<Question
+  n={2}
+  question={`{ foo: number, bar: string } <: { foo: number }`}
+>
+  True! This is sometimes called "width subtyping" -- a type with more fields
+  can be used where a type with fewer fields is expected.
+</Question>
+
+<Question
+  n={3}
+  question={`1 <: number`}
+>
+  True! 
+
+  The fact that typescript has literal types for numbers and strings is just
+  so nice man.
+
+</Question>
+
+<Question
+  n={4}
+  question={`given A <: B: { foo: A } <: { foo: B }`}
+>
+  True! This is called **covariance**.
+</Question>
+
+<Question
+  n={5}
+  question={`given A <: B: (a: A) => void <: (b: B) => void`}
+>
+  False! Function argument types are **contravariant**. `A` is more specific
+  than `B`, so a function that takes only `A`s can't stand in for a function
+  that expects more general `B`s.
+</Question>
+
+<Question
+  n={6}
+  question={`number <: object`}
+>
+  True! In typescript, every type except `null` and `undefined` is a subtype of `object`.
+</Question>
+
+## Nominal Subtyping
+
+Java, C# and C++ do what's called **nominal subtyping**. In nominal subtyping,
+types have names, and subtyping relationships are explicitly declared.
+
+```java
+class Animal { ... }
+class Dog extends Animal { ... }
+```
+
+Even if `Dog` and `Animal` had the exact same structure, `Dog` would not be
+a subtype of `Animal` -- we must explicitly declare the relationship with `extends`.
+
+In my opinion this is a direct result over over-OOPing, and typescript does it much better, I'm sorry.
+
+### Typescript also does nominal subtyping
+
+At some point in time typescript wanted to become java, so they added access modifiers
+to classes with java semantics. Sadly, `private` variables get us into trouble under structural
+subtyping, so typescript had to implement nominal subtyping for classes as well. Take
+a look:
+
+```typescript
+class BankAccount {
+  private balance = 0;
+}
+
+class EvilHacker {
+  private balance = 0;
+}
+
+const x: BankAccount = new EvilHacker();
+```
+
+A method of `BankAccount` can obviously access it's own private `balance` field, but 
+if the above snippet were legal, then the `BankAccount`'s `this` would actually be
+an `EvilHacker`, and the method would access the `EvilHacker`'s `balance` field instead, breaking
+encapsulation. So typescript checks subtyping of private and protected fields nominally. While 
+this behaviour is understandable, I find it inconsistent and not obvious, since you have to know
+whether a class has all public fields to know whether it's structurally or nominally typed.
+
+## Behavioral Subtyping
+
+Okay I lied, I can't not not talk about the Liskov Substitution Principle (LSP). In addition
+to the syntactic rules for subtyping we discussed above, like covariance in return types
+and contravariance in argument types, there is also a semantic aspect to LSP.
+
+LSP says that if `S <: T`, then any property that holds for values of type `T`
+must also hold for values of type `S`, where "any property" is very broad,
+and not really enforcible by a compiler. If you have for example a File class with a
+`close()` method, and you create a "subtype" that also has a `close()` method with the
+same signature but doesn't actually close the file, then you have violated LSP, even though
+your type checks just fine.
+
+This is perhaps the only argument for preferring nominal subtyping to structural subtyping;
+typescript's approach of "if it quacks like a duck" can't really prevent these semantic LSP
+violations. However if you have to explicitly declare a subtyping relationship, you can at
+least can manually decide whether LSP holds or not. All in all I find that argument to not
+be very strong, as in practice, structural subtyping is just so much more conventient.
+
+## Haskell btw
+Subtyping feels like something that no programming language could possibly do without, right?
+But, Haskell for example doesn't do subtyping at all. Here, type classes are used for many of
+the same use cases, though the mechanics are very different. Haskell is a really interesting
+language in general, everyone should try it for a few weeks! Rust, being very FP inspired,
+also only does very limited subtyping, for lifetimes.
+
+<SeriesNav
+  seriesName="type systems"
+  currentPart="12"
+  prevPart="11"
+  nextPart="13"
+  position="footer"
+/>

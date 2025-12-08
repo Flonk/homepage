@@ -23,8 +23,8 @@ think its type should be?
 
 Not so easy, is it. It feels like `apply`s type should depend on whatever function
 you pass in.. if you pass in `plusOne`, then `apply plusOne` should be a function
-`Int -> Int`. But if you pass in `not`, then `apply not` should be a function
-`Boolean -> Boolean`.
+`Int → Int`. But if you pass in `not`, then `apply not` should be a function
+`Boolean → Boolean`.
 
 Or in other words, we would really like `apply` to be generic.
 
@@ -32,14 +32,14 @@ But if we recall the rules of simply typed lambda calculus, then we see that
 we have no way to express this genericity. Function parameters
 in STLC must be of a type that's allowed by the language, and that's either
 a base type (we chose `Int`, `Boolean`, `String` previously), or a function type like
-`Int -> Int`.
+`Int → Int`.
 
 That is to say, STLC will allow us to define concrete instances of `apply`, like
 these:
 
 ```typescript
-applyInt = λf: (Int -> Int). λx: Int. f x
-applyBool = λf: (Boolean -> Boolean). λx: Boolean. f x
+applyInt = λf: (Int → Int). λx: Int. f x
+applyBool = λf: (Boolean → Boolean). λx: Boolean. f x
 ```
 
 But we can't define a generic `apply` that works for all types. This is the 

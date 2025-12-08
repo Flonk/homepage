@@ -1,0 +1,135 @@
+---
+title: "Type Systems #13: System F<:, Tops and Bottoms"
+description: ""
+pubDate: "December 12 2025"
+---
+
+import Question from "../../components/Question.astro";
+import SeriesNav from "../../components/SeriesNav.astro";
+
+<SeriesNav
+  seriesName="type systems"
+  currentPart="13"
+  prevPart="12"
+  nextPart="14"
+/>
+
+
+In the spirit of type theory and this series, we could ask ourselves which minimal
+set of features we need to add subtyping to System F. Other people have
+wondered the same thing, and the canonical answer is described in **System F\<:**
+(pronounced "System F sub").
+
+We do this by removing the universal quantification we used previously for defining
+generic functions, and replacing it with bounded quantification. This is a fancy
+way of saying that if we want to express the following typescript type:
+
+```typescript
+const show = <T extends Showable>(x: T): string => {
+  return x.show();
+};
+```
+we would write it like this in System F\<::
+
+```typescript
+show :: ∀A <: Showable. A → String
+```
+
+Quantification is now "bounded" because for each type variable `A`, we specify
+a supertype that `A` must be a subtype of -- in this case `Showable`.
+
+## Top types
+
+Having to supply a bound everywhere would mean we can no longer express completely
+generic functions like `toString :: ∀A. A → String`, but this is easily solved by
+adding a special type that acts as a supertype of all types. This is called the **top type**,
+often written as `⊤`, or simply `Top`. In typescript we call it `unknown`,
+and in many other languages, it's roughly equivalent to `Object`.
+
+Given an average programming language with structural subtyping rules, we can
+deduce that a top type must be some sort of empty structure, because as soon as
+you add a single property `foo` to it, any `foo`less type would no longer be a subtype of it.
+
+With a top type, our `toString` function from plain System F can now be expressed in System F\<: like so:
+
+```typescript
+toString :: ∀A <: Top. A → String
+```
+
+We usually don't use typescript's `unknown` like this, but you will find that
+`const foo = <T extends unknown>(x: T) => x;` is a perfectly valid definition,
+and dropping the `extends unknown` part would not change anything, because
+everything extends `unknown` anyway so extending from it places no additional constraints.
+
+Also, tbh, we can just write `toString :: ∀A. A → String`, and we can imply the
+upper bound `Top` from that if we know we are working in System F\<: or any other typed
+lambda calculus with subtyping. I will use this shorthand too for brevity.
+
+## Bottom types
+
+The opposite of top types are bottom types, which conversely are types that are a subtype of all types.
+They are often written as `⊥`, or `Bottom`. Many programming languages don't explicitly have a bottom type,
+but in typescript for example it's called `never`, and in Haskell it's the uninhabited type
+`Void` (which is different from `void` in other languages. That's not Haskell's fault, it's all
+the other languages that got it wrong. The proper name for `void` would be `Unit`, but that's a
+story for another day).
+
+Bottom types usually have no values. After all, if there was a value of type `Bottom`, then
+that value would have to be castable to any other type, which is impossible. `null` sometimes gets close,
+but that can not be cast to primitive types like `Int` or `Bool` in most languages, so it's not a true bottom type.
+
+Functions with a bottom type in their type signature are usually very degenerate cases too: For example,
+the function `absurd :: Bottom → String` can never never be called because you can never construct
+a `Bottom` value that you could call the function with; and `error :: String → Bottom` can never
+return a valid value, so it must loop forever or crash the program.
+
+## System F\<: subtyping rules
+
+For completeness, let's spell out how we can determine whether one type is a subtype of another
+in System F\<:. First, there's the usual covariance-and-contravariance rules for function types:
+
+- `A2 → B1 <: A1 → B2`, iff `A1 <: A2` and `B1 <: B2`
+
+Then, we have the rule for bounded quantification which is slightly harder to formalize, but
+essentially all major programming languages with generics and subtyping have this rule in some form or another:
+
+- `(∀A1 <: T1. B1) <: (∀A2 <: T2. B2)`, iff `T2 <: T1` and `B1[A2 := T2] <: B2`
+
+We haven't discussed the notation `B1[A2 := T2]` because I try to be no too maths heavy and keep it handwavy,
+but in words we can say that generic functions can be in subtype relationships aswell, as long as the subtype's
+bounds are more specific and it's body is a subtype of the supertype's body.
+
+Here are typescript examples to illustrate this rule:
+
+```typescript
+type T1 = <T extends Showable>(x: T) => String;
+type T2 = <T extends unknown>(x: T) => String;
+
+const f1: T1 = (x) => x.toString();
+const f2: T2 = f1; // this works because Showable <: unknown
+```
+```typescript
+type T1 = <T extends unknown>(x: T) => Object;
+type T2 = <T extends Showable>(x: T) => String;
+
+const f1: T1 = (x) => x.toString();
+const f2: T2 = f1; // this does not work because Showable </: unknown
+```
+```typescript
+type T1 = <T extends Showable>(x: T) => Showable[];
+type T2 = <T extends Showable>(x: T) => T[];
+
+const f1: T1 = (x) => [x];
+const f2: T2 = f1; // this does not work as Showable[] </: T[]
+```
+
+But yeah. Them's details.
+
+
+<SeriesNav
+  seriesName="type systems"
+  currentPart="13"
+  prevPart="12"
+  nextPart="14"
+  position="footer"
+/>

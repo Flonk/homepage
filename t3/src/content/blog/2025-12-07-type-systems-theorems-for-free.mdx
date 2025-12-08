@@ -18,17 +18,17 @@ With generic functions under our belt, we can type many a function you
 encounter in day-to-day programming. Like those!
 
 ```typescript
-toString :: ∀A. A -> String
-ifThenElse :: ∀A. Boolean -> A -> A -> A
-equals :: ∀A. A -> A -> Boolean
+toString :: ∀A. A → String
+ifThenElse :: ∀A. Boolean → A → A → A
+equals :: ∀A. A → A → Boolean
 ```
 We've seen plenty of functions now that are generic in their arguments,
 and we can even define functions that are generic only in their return type, although
 that's less common in practice.
 
 ```typescript
-apply42 :: ∀R. (Int -> R) -> R
-apply42 = ΛR. λf: (Int -> R). f 42
+apply42 :: ∀R. (Int → R) → R
+apply42 = ΛR. λf: (Int → R). f 42
 ```
 
 From just the type we can tell that `apply42` doesn't really care about what the function it recieves returns -- it'll just forward the return value of `f`. What's important to `apply42` is only that the function takes an `Int`, so that it can
@@ -47,10 +47,10 @@ This, among other observations, is the basis of a very interesting paper by Phil
 
 Here are some examples of what you can deduce from types alone:
 
-- A function of type `∀A. A -> A` must be the identity function, because it can't do anything to the input value of type `A` except return it.
-- A function of type `∀A. A -> Boolean` must be a constant function, because it can't inspect the value of type `A` to decide what boolean to return.
-- A function of type `∀A. A[] -> Int` returns either a constant, or some value derived from the length of the array, because it can't inspect the array's elements to compute anything else. (System F can't do lists but we ignore that for now.)
-- A function of type `∀R. String -> R` can never return ever, because whoever calls the function is free to choose anything for type `R`, and the function can't possibly construct a value for every possible type. The function only has the option of diverging (looping forever), or in the case of Haskell, throwing an error; `error` being the only function that is allowed to have type `∀R. String -> R`.
+- A function of type `∀A. A → A` must be the identity function, because it can't do anything to the input value of type `A` except return it.
+- A function of type `∀A. A → Boolean` must be a constant function, because it can't inspect the value of type `A` to decide what boolean to return.
+- A function of type `∀A. A[] → Int` returns either a constant, or some value derived from the length of the array, because it can't inspect the array's elements to compute anything else. (System F can't do lists but we ignore that for now.)
+- A function of type `∀R. String → R` can never return ever, because whoever calls the function is free to choose anything for type `R`, and the function can't possibly construct a value for every possible type. The function only has the option of diverging (looping forever), or in the case of Haskell, throwing an error; `error` being the only function that is allowed to have type `∀R. String → R`.
 
 Enforcing these properties at the type level makes a compelling case for studying and using powerful type systems like System F or what lies beyond. Compilers can leverage these properties for optimizations, programmers can gain confidence in their code's behavior just by looking at types, libraries can provide stronger guarantees about their APIs, and LLMs can better reason about code when generating or analyzing it.
 

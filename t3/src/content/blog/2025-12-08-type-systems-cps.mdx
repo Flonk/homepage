@@ -23,8 +23,8 @@ is both a very mind-bending concept, aswell as very common in practice!
 Remember the function from last post that was generic in it's return type?
 
 ```typescript
-apply42 :: ∀R. (Int -> R) -> R
-apply42 = ΛR. λf: (Int -> R). f 42
+apply42 :: ∀R. (Int → R) → R
+apply42 = ΛR. λf: (Int → R). f 42
 ```
 
 We said that `apply42` doesn't care about the result type `R` at all; it's just
@@ -57,11 +57,11 @@ the `readFile` function does some computation to produce some value (reading a f
 and then it hands off this value to the continuation. And also, `readFile` really doesn't care what happens to the data after that.
 
 If we were to give `readFile` a type, it would be something like
-`FilePath -> Encoding -> (Error -> String -> Void) -> Void`, which is not a 
+`FilePath → Encoding → (Error → String → Void) → Void`, which is not a 
 generic function, so we have to squint a little to see the connection...
 
 but if we were to write a version of `readFile` that instead of returning `Void`
-is generic in it's return type, like `∀R. FilePath -> Encoding -> (Error -> String -> R) -> R`, we do start to see similarities to `apply42`'s type.
+is generic in it's return type, like `∀R. FilePath → Encoding → (Error → String → R) → R`, we do start to see similarities to `apply42`'s type.
 
 This particular variant would not work in javascript, because it would imply we
 can capture the return value of the continuation like so:

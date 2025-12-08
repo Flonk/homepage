@@ -72,7 +72,7 @@ Existential quantification is also related to interfaces or abstract classes.
 Assume a mishmash of typescript and pseudocode:
 
 ```typescript
-type Showable = ∃A. { value: A, toString: (A -> String) };
+type Showable = ∃A. { value: A, toString: (A → String) };
 
 const show = (s: Showable) =>
   s.toString(s.value);
@@ -109,8 +109,8 @@ chosen by the code that created the `Showable`, which might have happend much ea
 This can be a useful distinction to make in APIs, as it allows library authors
 to hide implementation details from users. Like, just like we hide access
 to raw data behind functions and methods, we can hide type details behind existential types.
-This is related to **opaque types** or **opaque pointers** (which to be clear are
-usually not implemented with existential quantification, but *could* be.)
+(Refer also to **opaque types** or **opaque pointers** which are sometimes talked about
+in API design. It's a similar idea.)
 
 
 <SeriesNav

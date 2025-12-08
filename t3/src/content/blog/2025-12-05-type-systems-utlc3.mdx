@@ -96,17 +96,17 @@ needed to.
 
 In later blogposts, we will introduce types, and I would like to introduce a similar convention for function types.
 
-A function that takes an integer and returns an integer would be typed as `Int -> Int`. A function that takes
-_two_ integers and returns an integer, would be written as `Int -> Int -> Int`, which 
+A function that takes an integer and returns an integer would be typed as `Int → Int`. A function that takes
+_two_ integers and returns an integer, would be written as `Int → Int → Int`, which 
 should look weird if you are coming from a typescript background -- like, why are there two arrows?
 
 But with currying in mind, it makes perfect sense: A two-parameter function is actually just a one-parameter function
 that returns another one-parameter function.
 
-We define the arrow operator to be **right associative** by the way, meaning that `Int -> Int -> Int` is shorthand
-for `Int -> (Int -> Int)`.
+We define the arrow operator to be **right associative** by the way, meaning that `Int → Int → Int` is shorthand
+for `Int → (Int → Int)`.
 
-<Question n={2} question="What does the type '(Int -> Int) -> Int' represent?">
+<Question n={2} question="What does the type '(Int → Int) → Int' represent?">
   **Solution:** It's a function, that takes a function, and then returns an integer.
 
 Need an example?
@@ -135,9 +135,9 @@ const map = <A, B>(f: (a: A) => B, list: A[]) => list.map(f);
 With curring in mind, we have several ways of giving this function a type:
 
 ```typescript
-(A -> B, A[]) -> B[] // sloppily, a function that takes a pair
-(A -> B) -> A[] -> B[] // curried version
-(A -> B) -> (A[] -> B[]) // since parentheses are right-associative
+(A → B, A[]) → B[] // sloppily, a function that takes a pair
+(A → B) → A[] → B[] // curried version
+(A → B) → (A[] → B[]) // since parentheses are right-associative
 ```
 
 All these are equivalent, right? The last interpretation of the `map` function
@@ -164,9 +164,9 @@ lambda calculus in the next post.
 ---
 
 <sub>
-**[1]** Of course there are infinitely many functions of type `(A -> B) ->
-(A[] -> B[])`. But it turns out that any function of this type can be decomposed
-into `map` and some "post-processing" function. Any `f' :: (A -> B) -> (A[] -> B[])`
+**[1]** Of course there are infinitely many functions of type `(A → B) →
+(A[] → B[])`. But it turns out that any function of this type can be decomposed
+into `map` and some "post-processing" function. Any `f' :: (A → B) → (A[] → B[])`
 can always be written as:
 
 ```haskell

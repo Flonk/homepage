@@ -24,7 +24,7 @@ types; what goes after `::` is the type of the thing before it, and what goes
 after `=` is the definition.
 
 ```typescript
-twice :: ∀A. (A -> A) -> A -> A
+twice :: ∀A. (A → A) → A → A
 twice = ΛA.
   λf: (A -> A).
   λx: A.
@@ -55,16 +55,16 @@ through some more examples. Let's assume we have the following helper functions
 at our disposal:
 
 ```haskell
-plusOne :: Int -> Int
-toString :: ∀A. A -> String
-concat :: String -> String -> String
+plusOne :: Int → Int
+toString :: ∀A. A → String
+concat :: String → String → String
 ```
 
 <Question
   n={1}
   question={`(ΛA. λx: A. x) [Int]`}
 >
-  **Type:** `Int -> Int`.
+  **Type:** `Int → Int`.
 
 **Evaluation:** `λx: Int. x`
 
@@ -82,7 +82,7 @@ concat :: String -> String -> String
 <Question
   n={3}
   question={`f = ΛA. ΛB.
-    λf: (A -> B).
+    λf: (A → B).
     λx: A.
     f x
 
@@ -95,7 +95,7 @@ f [Int] [Int] plusOne 3`}
 ```typescript
 f [Int] [Int] plusOne 3
 
-= (λf: (Int -> Int). λx: Int. f x)
+= (λf: (Int → Int). λx: Int. f x)
   plusOne 3
 
 = (λx: Int. plusOne x) 3
@@ -110,8 +110,8 @@ f [Int] [Int] plusOne 3
 <Question
   n={4}
   question={`on = ΛA. ΛB. ΛC.
-    λop: (B -> B -> C).
-    λf: (A -> B).
+    λop: (B → B → C).
+    λf: (A → B).
     λx: A. λy: A.
     op (f x) (f y))
 
@@ -121,8 +121,8 @@ on [Int] [String] [String] (toString [Int]) plusOne 6 7`}>
 
 ```typescript
 let on2 = on [Int] [String] [String] =
-  λop: (String -> String -> String).
-    λf: (Int -> String).
+  λop: (String → String → String).
+    λf: (Int → String).
     λx: Int. λy: Int.
     op (f x) (f y)
 

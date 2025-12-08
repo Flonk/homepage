@@ -15,10 +15,10 @@ import SeriesNav from "../../components/SeriesNav.astro";
 />
 
 In post #5 I claimed that System F generics shouldn't be a huge conceptual leap.
-Looking at a type like `toString :: ∀A. A -> String`, you'll probably immediately
+Looking at a type like `toString :: ∀A. A → String`, you'll probably immediately
 know what it does -- the function takes anything and turns it into a string.
 
-In post #8 we even looked at a very degenerate case, `error :: ∀R. String -> R`,
+In post #8 we even looked at a very degenerate case, `error :: ∀R. String → R`,
 that can never return at all, which is probably less obvious to most.
 
 But there is one thing all the generic functions we've looked at so far have in
@@ -39,7 +39,7 @@ that later.)
 Have a look at this function definition:
 
 ```typescript
-apply10 :: (∀A. A -> A) -> Int
+apply10 :: (∀A. A → A) → Int
 apply10 = λf. f 10
 ```
 
@@ -48,7 +48,7 @@ inside the function argument. We call this sort of type a **Rank-N Type**,
 where the `N` indicates how deeply nested the universal quantifier is, in this
 case `2`.
 
-This is markedly different form the rank-1 type `weird :: ∀A. (A -> A) -> Int`,
+This is markedly different form the rank-1 type `weird :: ∀A. (A → A) → Int`,
 because whoever calls `weird` gets to choose what `A` is -- this is not the case
 for `apply10`: if you wish to call `apply10`, you have to provide a generic 
 function.
@@ -61,7 +61,7 @@ function.
 >
   **Solution:** It always returns `10`.
 
-  You must provide an argument of type `∀A. A -> A`, and as discussed in post #8,
+  You must provide an argument of type `∀A. A → A`, and as discussed in post #8,
   there is only one function that has this type: the identity function that does
   nothing but return its input.
 
@@ -73,13 +73,13 @@ Let me show you an actually useful example of a rank-2 type as well, assuming
 Haskell semantics for a moment:
 
 ```typescript
-withFile :: FilePath -> (∀R. FileHandle -> R) -> Void
+withFile :: FilePath → (∀R. FileHandle → R) → Void
 ```
 
 This function takes a path to a file, and a continuation. So `withFile` will do
 all the file opening logic and then hand off the opened file's handle to it's continuation.
 
-As discussed in post #8, the continuation's type `∀R. FileHandle -> R` might make
+As discussed in post #8, the continuation's type `∀R. FileHandle → R` might make
 you scratch your head, because such a function can never return, or in a Haskell
 context, only return an error.
 
@@ -97,8 +97,8 @@ outside world in sneaky ways**.
 Haskell does have a way to reference "global-ish" state using `IORef`s, but if 
 you want to for example call `modifyIORef` to sneakily put the file handle in a 
 global state so you can use it later, Haskell would force you to return a value
-of type `IO ()`, meaning the continuation would have a type of `FileHandle -> IO ()`,
-which is not `∀R. FileHandle -> R`, so it won't typecheck.
+of type `IO ()`, meaning the continuation would have a type of `FileHandle → IO ()`,
+which is not `∀R. FileHandle → R`, so it won't typecheck.
 
 Again, we've enforced a very desirable property **at the type level**. We can 
 safely assume that the continuation has done whatever it needed to do with the

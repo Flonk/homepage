@@ -66,10 +66,10 @@ not = λb: Boolean. if b then false else true
 
 The syntax for typing should be familiar from typescript.
 
-The type of `not` would naturally be `Boolean -> Boolean`, meaning it takes
+The type of `not` would naturally be `Boolean → Boolean`, meaning it takes
 a boolean and returns a boolean.
 
-`Boolean -> Boolean` is not part of our base types, but the "function type" rule
+`Boolean → Boolean` is not part of our base types, but the "function type" rule
 allows us to build more complex types from existing types.
 
 ---
@@ -79,7 +79,7 @@ term. Have a few more examples and decide whether they typecheck, and if so,
 what their type is.
 
 <Question n={1} question="λx: Int. add x 1">
-  **Solution:** `Int -> Int`.
+  **Solution:** `Int → Int`.
 </Question>
 
 <Question n={2} question="λx: Boolean. add x 1">
@@ -87,19 +87,19 @@ what their type is.
 </Question>
 
 <Question n={3} question="λx: Int. (λy: Int. add x y)">
-  **Solution:** `Int -> (Int -> Int)`.
+  **Solution:** `Int → (Int → Int)`.
 
-Subtle syntactical point: We usually write this type as `Int -> Int -> Int`,
-since `->` is right associative. (This also means in particular that
-`(Int -> Int) -> Int` is different from `Int -> Int -> Int`.)
+Subtle syntactical point: We usually write this type as `Int → Int → Int`,
+since `→` is right associative. (This also means in particular that
+`(Int → Int) → Int` is different from `Int → Int → Int`.)
 
 </Question>
 
-<Question n={4} question="(λf: (Int -> Int). f 3) (λx: Int. add x 4)">
+<Question n={4} question="(λf: (Int → Int). f 3) (λx: Int. add x 4)">
   **Solution:** `7`, which is of type `Int`.
 
-Explanation: The left function has type `(Int -> Int) -> Int`, and we
-feed an `Int -> Int` into it. The result type of the left function is
+Explanation: The left function has type `(Int → Int) → Int`, and we
+feed an `Int → Int` into it. The result type of the left function is
 `Int`, so the whole term typechecks and has type `Int`.
 
 </Question>
