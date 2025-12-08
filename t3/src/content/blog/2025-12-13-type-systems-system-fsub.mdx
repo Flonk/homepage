@@ -1,0 +1,116 @@
+---
+title: "Type Systems #14: System F<:, Tops and Bottoms"
+description: ""
+pubDate: "December 13 2025"
+---
+
+import Question from "../../components/Question.astro";
+import SeriesNav from "../../components/SeriesNav.astro";
+
+<SeriesNav
+  seriesName="type systems"
+  currentPart="14"
+  prevPart="13"
+  nextPart="15"
+/>
+
+
+In the spirit of type theory and this series, we could ask ourselves which minimal
+set of features we need to add subtyping to System F. Other people have
+wondered the same thing, and the canonical answer is described in
+"An extension of system F with subtyping" by Luca Cardelli et al. in 1991, which
+introduces a system called **System F\<:**, pronounced "F sub".
+
+We do this by removing the universal quantification we used previously for defining
+generic functions, and replacing it with bounded quantification. This is a fancy
+way of saying that if we want to express the following typescript type:
+
+```typescript
+const show = <T extends Showable>(x: T): string => {
+  return x.show();
+};
+```
+we would write it like this in System F\<::
+
+```typescript
+show :: ∀A <: Showable. A → String
+```
+
+Quantification is now "bounded" because for each type variable `A`, we specify
+that it must be a subtype of some other type, in this case `Showable`.
+
+## Top types
+
+Having to supply a bound everywhere would mean we can no longer express completely
+generic functions like `toString :: ∀A. A → String`, but this is easily solved by
+adding a special type that acts as a supertype of all types, like `unknown` in typescript.
+This type is called a *top type*.
+
+Given an average programming language with structural subtyping rules, we can
+deduce that a top type must be some sort of empty structure, because as soon as
+you add a single property `foo` to it, any `foo`less type would no longer be a subtype of it.
+
+Once we add such a top type to System F\<:, our `toString` function from plain System F
+can now be expressed again:
+
+```typescript
+toString :: ∀A <: Top. A → String
+```
+
+But tbh, we can just write `toString :: ∀A. A → String` as a shorthand -- we can infer
+the `Top` upper bound via common sense.
+
+## Bottom types
+
+The opposite of top types are bottom types, which conversely are types that are a subtype of all types,
+like typescript's `never`. Haskell calls it `Void`, Kotlin calls it `Nothing`. Many languages don't have an explicit bottom type, especially the older ones, though "null" sometimes gets close.
+
+Bottom types usually have no values. After all, if there was a value of type `Bottom`, then
+that value would have to be castable to any other type, which is impossible. (If your bottom type had
+a value, I could construct a type without that value, and that's even bottomer than your bottom -- a contradiction!)
+
+Functions with a bottom type in their type signature are usually very degenerate cases too: For example,
+the function `absurd :: Bottom → String` can never never be called because you can never construct
+a `Bottom` value that you could call the function with; and `error :: String → Bottom` can never
+return a valid value, so it must loop forever or crash the program.
+
+## System F\<: subtyping rules
+
+The System F\<: paper goes into detail about how subtyping behaves with generics,
+and functions. Since it's mostly a formal exercise there's no point of going into
+the full details here, but here are a few typescript examples to illustrate how 
+subtyping and generics interact, and that pretty much maps 1:1 to System F\<:'s rules.
+
+// TODO fix these
+```typescript
+type T1 = <T extends Showable>(x: T) => String;
+type T2 = <T extends unknown>(x: T) => String;
+
+const f1: T1 = (x) => x.toString();
+const f2: T2 = f1; // this works because Showable <: unknown
+```
+```typescript
+type T1 = <T extends unknown>(x: T) => Object;
+type T2 = <T extends Showable>(x: T) => String;
+
+const f1: T1 = (x) => x.toString();
+const f2: T2 = f1; // 
+```
+```typescript
+type T1 = <T extends Showable>(x: T) => Showable[];
+type T2 = <T extends Showable>(x: T) => T[];
+
+const f1: T1 = (x) => [x];
+const f2: T2 = f1; // this does not work as Showable[] </: T[]
+```
+
+But yeah. Them's details.
+
+
+<SeriesNav
+  seriesName="type systems"
+  currentPart="14"
+  prevPart="13"
+  nextPart="15"
+  position="footer"
+/>

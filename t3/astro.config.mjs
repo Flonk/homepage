@@ -5,6 +5,8 @@ import { defineConfig } from "astro/config";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
 
+import react from "@astrojs/react";
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://example.com",
@@ -19,5 +21,6 @@ export default defineConfig({
       rehypePlugins: [rehypeKatex],
     }),
     sitemap(),
+    react(),
   ],
 });
