@@ -76,8 +76,8 @@ Haskell semantics for a moment:
 withFile :: FilePath → (∀R. FileHandle → R) → Void
 ```
 
-This function takes a path to a file, and a continuation. So `withFile` will do
-all the file opening logic and then hand off the opened file's handle to it's continuation.
+This function takes a path to a file, and a continuation. `withFile` will do
+some file opening logic and then hand a file to another function.
 
 As discussed in post #8, the continuation's type `∀R. FileHandle → R` might make
 you scratch your head, because such a function can never return, or in a Haskell

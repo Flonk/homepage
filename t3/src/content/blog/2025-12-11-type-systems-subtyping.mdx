@@ -34,7 +34,7 @@ Let's talk about subtyping.
 
 Typescript is structurally typed, and it's subtyping mechanic is aptly called
 **structural subtyping**. Most of us will be very familiar with how it works,
-so let me throw you a pop quiz real quick. One word about notation: 
+so let me simply throw you a pop quiz real quick. One word about notation: 
 we write `A <: B` to mean "A is a subtype of B".
 
 Are the following statements true or false?
@@ -75,7 +75,7 @@ Obviously not.
 
 <Question
   n={5}
-  question={`given A <: B: (a: A) => void <: (b: B) => void`}
+  question={`given A <: B: ((a: A) => void) <: ((b: B) => void)`}
 >
   False! Function argument types are **contravariant**. `A` is more specific
   than `B`, so a function that takes only `A`s can't stand in for a function
@@ -86,7 +86,8 @@ Obviously not.
   n={6}
   question={`number <: object`}
 >
-  True! In typescript, every type except `null` and `undefined` is a subtype of `object`.
+  False! In typescript, `number` is a primitive type. Only non-primitive types
+  are subtypes of `object`.
 </Question>
 
 ## Nominal Subtyping
@@ -100,7 +101,7 @@ class Dog extends Animal { ... }
 ```
 
 Even if `Dog` and `Animal` had the exact same structure, `Dog` would not be
-a subtype of `Animal` -- we must explicitly declare the relationship with `extends`.
+a subtype of `Animal` unless explicitly declared using `extends`.
 
 In my opinion this is a direct result over over-OOPing, and typescript does it much better, I'm sorry.
 
@@ -133,28 +134,26 @@ whether a class has all public fields to know whether it's structurally or nomin
 ## Behavioral Subtyping
 
 Okay I lied, I can't not not talk about the Liskov Substitution Principle (LSP). In addition
-to the syntactic rules for subtyping we discussed above, like covariance in return types
+to the usua syntactic rules for subtyping like covariance in return types
 and contravariance in argument types, there is also a semantic aspect to LSP.
 
-LSP says that if `S <: T`, then any property that holds for values of type `T`
-must also hold for values of type `S`, where "any property" is very broad,
-and not really enforcible by a compiler. If you have for example a File class with a
-`close()` method, and you create a "subtype" that also has a `close()` method with the
-same signature but doesn't actually close the file, then you have violated LSP, even though
-your type checks just fine.
+LSP says that `S <: T` only iff any property that holds for values of type `T` hold for values of
+type `S`, where "any property" is very broad, and not really enforcible by a compiler. If you have
+for example a File class with a `close()` method, and you create a "subtype" that also has a `close()`
+method with the same signature but doesn't actually close the file, then you have violated LSP,
+even though your type checks just fine.
 
 This is perhaps the only argument for preferring nominal subtyping to structural subtyping;
 typescript's approach of "if it quacks like a duck" can't really prevent these semantic LSP
 violations. However if you have to explicitly declare a subtyping relationship, you can at
-least can manually decide whether LSP holds or not. All in all I find that argument to not
+least can manually decide whether LSP holds or not. All in all I find this argument to not
 be very strong, as in practice, structural subtyping is just so much more conventient.
 
 ## Haskell btw
 Subtyping feels like something that no programming language could possibly do without, right?
 But, Haskell for example doesn't do subtyping at all. Here, type classes are used for many of
-the same use cases, though the mechanics are very different. Haskell is a really interesting
-language in general, everyone should try it for a few weeks! Rust, being very FP inspired,
-also only does very limited subtyping, for lifetimes.
+the same use cases, though the mechanics are very different. Rust, being very FP inspired,
+also doesn't do subtyping (except for lifetimes), and uses traits for similar use cases as well.
 
 <SeriesNav
   seriesName="type systems"

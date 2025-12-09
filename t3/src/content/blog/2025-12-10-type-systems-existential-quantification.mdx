@@ -49,6 +49,18 @@ void printAll(List<?> xs) {
 }
 ```
 
+Here the individual elements have some type but we don't know which one, and we don't care.
+Though, sloppily, the individual elements are then typed as `Object`, but yeah Java's 
+existentials are very rudimentary. More accurate would be the following pseudo-Java:
+
+```java
+void printAll(List<∃T. T> xs) {
+    for (T o : xs) {
+        System.out.println(o);
+    }
+}
+```
+
 Now, `printAll` could have just as easily been a universal quantification, 
 with `void <T> printAll(List<T> xs)`, and this turns out to be true for many
 cases. In Java you tend to use wildcards when you can't or don't need to introduce
@@ -89,7 +101,8 @@ It turns out that existential quantification and universal quantification are re
 two sides of the same coin. In mathematical logic, there is a process called **Skolemization**
 that allows you to convert statements with existential quantifiers into statements
 with only universal quantifiers, and vice versa. Type theory and mathematical logic
-*also* turn out to be two sides of the same coin, so types can also be skolemized.
+*also* turn out to be two sides of the same coin (via the Curry-Howard isomorphism),
+so types can also be skolemized.
 
 Though not as freely as in logic I have heard, but to be honest I have never done due diligence
 to research the specifics on that. Feel free to write in!
@@ -109,8 +122,8 @@ chosen by the code that created the `Showable`, which might have happend much ea
 This can be a useful distinction to make in APIs, as it allows library authors
 to hide implementation details from users. Like, just like we hide access
 to raw data behind functions and methods, we can hide type details behind existential types.
-(Refer also to **opaque types** or **opaque pointers** which are sometimes talked about
-in API design. It's a similar idea.)
+Refer also to **opaque types** or **opaque pointers** which are sometimes talked about
+in API design. It's a similar idea!
 
 
 <SeriesNav

@@ -15,29 +15,57 @@ import SeriesNav from "../../components/SeriesNav.astro";
 />
 
 
-In the spirit of type theory and this series, we could ask ourselves which minimal
-set of features we need to add subtyping to System F. Other people have
+In the spirit of type theory and this series, we could ask ourselves what the minimal
+set of features is so we can add subtyping to System F. Other people have
 wondered the same thing, and the canonical answer is described in
 "An extension of system F with subtyping" by Luca Cardelli et al. in 1991, which
 introduces a system called **System F\<:**, pronounced "F sub".
 
-We do this by removing the universal quantification we used previously for defining
-generic functions, and replacing it with bounded quantification. This is a fancy
-way of saying that if we want to express the following typescript type:
+Turns out we just need to two more ingredients: **bounded quantification** and
+a **top type**.
+
+## Bounded Quantification
+
+Say we have this restricted generic function in typescript:
 
 ```typescript
-const show = <T extends Showable>(x: T): string => {
-  return x.show();
-};
+const show = <T extends Showable>(x: T): string =>
+  x.show();
 ```
-we would write it like this in System F\<::
+
+We would write it's type like this in System F\<::
 
 ```typescript
 show :: ∀A <: Showable. A → String
 ```
 
-Quantification is now "bounded" because for each type variable `A`, we specify
-that it must be a subtype of some other type, in this case `Showable`.
+Quantification here is "bounded" because our forall quantifier `∀A` is now
+restricted to only range over subtypes of `Showable`, written `A <: Showable`.
+
+Going over what exactly constitutes a subtype in System F\<: would be a bit
+dry, but since you all know typescript I don't think it's necessary -- it's safe
+to say that there are subtleties in how bounded quantification interacts with
+subtyping, but the rules are mostly the same in System F\<: and typescript.
+Here is such an example subtlety so you get the idea:
+
+```typescript
+type Foo = { foo: string };
+type Bar = Foo & { bar: number };
+
+type T1 = <T extends Foo>(arg: T) => void;
+type T2 = <T extends Bar>(arg: T) => void;
+
+// This works, as T2 is more restrictive than T1
+const f1: T1 = () => {};
+const f2: T2 = f1;
+
+// This conversely does not
+const g1: T2 = () => {};
+const g2: T1 = g1; // Error: Type 'T2' is not assignable to type 'T1'.
+```
+
+But yeah, them's details.
+
 
 ## Top types
 
@@ -46,9 +74,15 @@ generic functions like `toString :: ∀A. A → String`, but this is easily solv
 adding a special type that acts as a supertype of all types, like `unknown` in typescript.
 This type is called a *top type*.
 
-Given an average programming language with structural subtyping rules, we can
-deduce that a top type must be some sort of empty structure, because as soon as
-you add a single property `foo` to it, any `foo`less type would no longer be a subtype of it.
+Given an average programming language, we can deduce that a top type must be
+some sort of empty structure, because as soon as you add a single property `foo`
+to it, any `foo`less type would no longer be a subtype of it.
+
+And if values of the top type are shapeless and empty, maybe roughly "empty object"
+kind of values, then it must follow that `Top` only has a single inhabitant! If `Top`
+had two distinct values, then those two values would have to differ in some way, meaning one
+of them would have to have some property that the other one doesn't, contradicting the fact
+that both are of type `Top`.
 
 Once we add such a top type to System F\<:, our `toString` function from plain System F
 can now be expressed again:
@@ -62,49 +96,68 @@ the `Top` upper bound via common sense.
 
 ## Bottom types
 
-The opposite of top types are bottom types, which conversely are types that are a subtype of all types,
-like typescript's `never`. Haskell calls it `Void`, Kotlin calls it `Nothing`. Many languages don't have an explicit bottom type, especially the older ones, though "null" sometimes gets close.
+The opposite of top types are bottom types, which conversely are types
+that are a subtype of all types, like Typescript's `never`, Haskell's `Void`,
+or Kotlin's `Nothing`. (Many expecially older languages don't have an explicit
+bottom type at all.)
 
-Bottom types usually have no values. After all, if there was a value of type `Bottom`, then
-that value would have to be castable to any other type, which is impossible. (If your bottom type had
-a value, I could construct a type without that value, and that's even bottomer than your bottom -- a contradiction!)
+The bottom type has no inhabitants. After all, if your `Bottom` type had
+a value, I could construct another type `Bottom2` without that value, and
+then how do you find a function, or a cast, that  convert's a `Bottom` to a
+`Bottom2`? You can't, hence `Bottom2` is even bottomer than `Bottom`,
+contradicting the assumption that `Bottom` is a subtype of all types.
 
-Functions with a bottom type in their type signature are usually very degenerate cases too: For example,
-the function `absurd :: Bottom → String` can never never be called because you can never construct
-a `Bottom` value that you could call the function with; and `error :: String → Bottom` can never
+Functions with a bottom type in their type signature are usually very
+degenerate cases too: For example, the function `absurd :: Bottom → String`
+can never never be called because you can never construct a `Bottom` value
+that you could call the function with; and `error :: String → Bottom` can never
 return a valid value, so it must loop forever or crash the program.
 
-## System F\<: subtyping rules
+## Meets and Joins
 
-The System F\<: paper goes into detail about how subtyping behaves with generics,
-and functions. Since it's mostly a formal exercise there's no point of going into
-the full details here, but here are a few typescript examples to illustrate how 
-subtyping and generics interact, and that pretty much maps 1:1 to System F\<:'s rules.
+Top and bottom sit on the extreme ends of the type hierarchy, but in a lot
+of languages we can find "mini-tops" and "mini-bottoms" everywhere. That is,
+for any two types we can find a common supertype (called a **join**)
+and a common subtype (called a **meet**).
 
-// TODO fix these
-```typescript
-type T1 = <T extends Showable>(x: T) => String;
-type T2 = <T extends unknown>(x: T) => String;
+In typescript for example, a type that is both a supertype of `string` and
+`number` is `string | number` -- the union type; and the subtype of both `A`
+and `B` would be `A & B` -- the intersection type.
 
-const f1: T1 = (x) => x.toString();
-const f2: T2 = f1; // this works because Showable <: unknown
-```
-```typescript
-type T1 = <T extends unknown>(x: T) => Object;
-type T2 = <T extends Showable>(x: T) => String;
+I've been saying the word "type" so much that it might have lost all meaning
+for you, but let's just remind us of what that means:
+`string <: string | number` means that if a function expects a
+`string | number`, you can pass it a `string` just fine. Conversely,
+`A & B <: A` means that if a function expects an `A`, you can pass it an
+`A & B` just fine.
 
-const f1: T1 = (x) => x.toString();
-const f2: T2 = f1; // 
-```
-```typescript
-type T1 = <T extends Showable>(x: T) => Showable[];
-type T2 = <T extends Showable>(x: T) => T[];
+And, of course, if you take the join of all types, you get `Top`, and if you take
+the meet of all types, you get `Bottom`.
 
-const f1: T1 = (x) => [x];
-const f2: T2 = f1; // this does not work as Showable[] </: T[]
-```
+The fact that we can find a meet and a join for any two types means our type
+system forms what's called a **lattice**. You learn about these things in
+maths 1 at uni, but the example that's usually given is boring natural numbers,
+where meet is `min(a,b)` and join is `max(a,b)`, which was always deeply
+unsatisfying to me and always had me asking "okay, but where else". I think it's
+so cool to see lattices pop up in a totally different context!
 
-But yeah. Them's details.
+But maybe it's just me who gets excited about these things.
+
+Plain System F\<: does not form a lattice,
+because it doesnt have intersection and union types built in like typescript
+does, but as always, people have defined extensions to
+System F\<: that add these features; refer to for example "Programming with
+Intersection Types and Bounded Polymorphism" by Benjamin Pierce from 1991, for example.
+
+---
+
+I tried thinking of some deep thing to say to close out this post and to tie it
+all together, but I couldn't really think of anything. The average programming
+languages' type landscape shows a lot of hidden patterns if you dig deep I guess,
+and typescript gets a lot of things right!
+
+Read my blog!
+
 
 
 <SeriesNav
