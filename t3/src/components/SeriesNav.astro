@@ -40,7 +40,6 @@ const nextHref = nextPost ? `/blog/${nextPost.id}/` : undefined;
 const nextDate = nextPost ? (nextPost.data.pubDate as Date).valueOf() : undefined;
 ---
 <SeriesNavClient
-	client:load
 	currentPart={currentPart}
 	prevPart={prevPart}
 	nextPart={nextPart}
