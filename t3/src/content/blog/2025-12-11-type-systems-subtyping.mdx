@@ -62,7 +62,7 @@ Obviously not.
   True! 
 
   The fact that typescript has literal types for numbers and strings is just
-  so nice man.
+  so nice man. `const n = 1 as const` will literally give `n` the type `1`, not `number`.
 
 </Question>
 
@@ -134,7 +134,7 @@ whether a class has all public fields to know whether it's structurally or nomin
 ## Behavioral Subtyping
 
 Okay I lied, I can't not not talk about the Liskov Substitution Principle (LSP). In addition
-to the usua syntactic rules for subtyping like covariance in return types
+to the usual syntactic rules for subtyping like covariance in return types
 and contravariance in argument types, there is also a semantic aspect to LSP.
 
 LSP says that `S <: T` only iff any property that holds for values of type `T` hold for values of
@@ -153,7 +153,7 @@ be very strong, as in practice, structural subtyping is just so much more conven
 Subtyping feels like something that no programming language could possibly do without, right?
 But, Haskell for example doesn't do subtyping at all. Here, type classes are used for many of
 the same use cases, though the mechanics are very different. Rust, being very FP inspired,
-also doesn't do subtyping (except for lifetimes), and uses traits for similar use cases as well.
+also doesn't do subtyping (except for lifetimes), and uses traits for similar use cases.
 
 <SeriesNav
   seriesName="type systems"

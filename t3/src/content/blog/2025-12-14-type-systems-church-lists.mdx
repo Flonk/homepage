@@ -30,24 +30,25 @@ juicy bits however, we will need a more complicated data structure we can use
 for examples.
 
 All the way back in post #1 we saw how we can encode booleans in the
-untyped lambda calculus using so-called Church encodings...  and while it's a 
+untyped lambda calculus using so-called Church encodings... and while it's a 
 fun party trick, and Church encodings are very prevalent in every post or paper
 about type theory, I purposefully avoided giving them too much attention, because
 in regular programming languages you never use them. Like yes you can encode
 `true` as `λt. λf. t` -- but in the real world we just use a single bit
 instead.
 
-Anyhow, it turns out that the type of a church-encoded list of integers is
-`IntList = ∀R. R → (Int → R → R) → R`, which looks scary at first, but it'll 
+Anyhow, the type of a Church-encoded list of integers is
+`IntList = ∀R. R → (Int → R → R) → R`, which looks scary at first, but it will
 turn out that you knew it all along.
 
 
 ## Church Encoding of Lists
 
 As programmers, we sometimes get to ask questions like, "what even *is* an 
-AbstractDtoFactory? What is it's essence?", and then spend hours on delineating
-what does and what doesn't constitute the essence of an AbstractDtoFactory. It
-makes me feel like a philosopher at times.
+AbstractDtoFactory? What is it's essence?", and then we spend hours on delineating
+what does and what doesn't constitute the essence of an AbstractDtoFactory, what
+to put int that class and what to put somewhere else. It really makes me feel like a
+philosopher at times.
 
 So... yeah, what is the essence of a list? Can we single out a single core 
 property that all lists have? Like a single thing you can *do* with a list, that
@@ -60,13 +61,13 @@ one.
 
 Well, these are all good candidates, but there is one that is more fundamental
 than all of them: A **fold**, or what we could call `reduce` in typescript.
-Folds allow you to merge a list into a single value, for example to sum a list
-of integers. The "single value" you are returning can be of any type though, 
+Folds allow you to merge a list into a single value, for example to take a list
+of integers and sum them. The "single value" you are returning can be of any type though, 
 and that includes lists themselves, which makes folds powerful enough to express `map`,
 and `filter`, and `concatenate` as well.
 
 It's a fun exercise so give it a try! Implement the other three functions
-in terms of just `list.reduce(fn, initialValue)`!
+in terms of just `list.reduce(fn, initialValue)` -- in typescript!
 
 
 <Question
@@ -108,23 +109,23 @@ const concatenate = <A>(list1: A[], list2: A[]): A[] => {
   return list1.reduce((acc, a) => {
     acc.push(a);
     return acc;
-  }, list2.slice());
+  }, list2);
 };
 ```
 </Question>
 
+Folds are powerful!
 
-
-Yeah.. folds are powerful. What would the type of a fold be though? It takes
+What would the type of a fold be though? It takes
 an initial value, and a function that merges an element of the list and the
-accumulated value, and then we return the next accumulator. If the list contains
-`Int`s, and the accumulator is of type `R`, then the type of `fold` would be:
+accumulator, and then we return the next accumulator. If the list contains
+`Int`s, and the accumulator is of any type `R`, then the type of `fold` would be:
 
 ```typescript
 fold :: ∀R. R → (Int → R → R) → R
 ```
 
-Wait. What was the type of our church encoded list again?
+Wait. What was the type of our Church encoded list again?
 
 ```typescript
 IntList = ∀R. R → (Int → R → R) → R
@@ -132,34 +133,36 @@ IntList = ∀R. R → (Int → R → R) → R
 
 Oh yeah. It's the same.
 
+A List is literally just it's own fold function. Mind = blown!
+
 
 ## For completeness
 
-Let's write out the full church encoding of lists of integers for completeness.
-We use a linked-list kind of structure here, where `nil` is the empty list, and
+Let's write out the full Church encoding of lists of integers for completeness.
+We use a linked-list kind of construction here, where `nil` is the empty list, and
 `cons head tail` constructs a new list with `head` as the first element, and
 `tail` as the rest of the list.
 
 When we define `nil` and `cons` constructors that return `IntLists` (that have
 the same type as a fold), we are essentially defining how a fold should behave
-for those two cases. Folding a `nil` returns the `nilCase` or `initialValue`,
-and folding a `const head tail` recursively applies a 2-parameter function to `head`,
+for those two cases. Folding a `nil` returns the initial value,
+and folding a `cons head tail` recursively applies a 2-parameter function to `head`,
 and the result of folding the `tail`.
 
 
 ```typescript
 nil : IntList
 nil = ΛR.
-  λnilCase: R.
-  λconsCase: Int → R → R.
-    nilCase
+  λinitialValue: R.
+  λx: Int → R → R.
+    initialValue
 
 cons : Int → IntList → IntList
 cons = λhead: Int. λtail: IntList.
     ΛR.
-      λnilCase: R.
-      λconsCase: Int → R → R.
-        consCase head (tail [R] nilCase consCase)
+      λinitialValue: R.
+      λaggregate: Int → R → R.
+        aggregate head (tail [R] initialValue aggregate)
 ```
 
 With these helper functions we can now easily construct a list like so:
@@ -170,11 +173,10 @@ myList = cons 1 (cons 2 (cons 3 nil))
 ```
 
 This is the list containing the integers 1, 2, and 3. And, well, folding
-a list is pretty easy, since a list is literally just it's own fold function:
+a list is pretty easy, since a list is just it's own fold function:
 
 ```typescript
-fold = λlist. list
-sum = fold [Int] myList 0 (λx. λacc. add x acc) // sum == 6
+sum = myList 0 (λx. λacc. add x acc) // sum == 6
 ```
 
 And once we have folds, we can do any other list operation, meaning we have successfully
@@ -182,11 +184,22 @@ defined lists in terms of just pure lambda calculus! It's functions all the way 
 
 ---
 
-I'm aware that I have rushed through this a bit, but this definition of lists
-is merely a vessel to demonstrate more advanced type system features in the
-coming posts. Feel free to implement this church-encoding of lists in typescript
-to get a better feel, it really is a fun exercise, and you'll get to really 
-learn functional programming concepts doing it!
+Church encodings can be a bit rough if you are not used to them. It took me a 
+long long time until I was able to shake the feeling of "what do you mean
+everything is a function, at some point you *must* hit atomic values", or "what
+do you mean a list is a fold, the list *is the thing you fold*, where does a fold
+function even store data". Pure lambda calculus can be a mind twister for sure and
+it takes a while to build intuition.
+
+For this reason, for the purposes of this series, I try to avoid Church encodings
+and just assume "Integers are given" and "Lists are given" wherever possible. I
+mean, even the integers in this examples I took as given, but you could Church-encode
+those as well if you wanted to go full lambda.
+
+Feel free to implement this Church encoding of lists in typescript
+to get a better feel, it really is a fun exercise. You'll see how the data propagates
+through your program and you can slowly trace which funtions call which. And you'll get to
+really learn functional programming concepts along the way!
 
 <SeriesNav
   seriesName="type systems"

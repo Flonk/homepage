@@ -76,7 +76,7 @@ This type is called a *top type*.
 
 Given an average programming language, we can deduce that a top type must be
 some sort of empty structure, because as soon as you add a single property `foo`
-to it, any `foo`less type would no longer be a subtype of it.
+to `Top`, any `foo`less type would no longer be a subtype of that enriched `Top`.
 
 And if values of the top type are shapeless and empty, maybe roughly "empty object"
 kind of values, then it must follow that `Top` only has a single inhabitant! If `Top`
@@ -108,7 +108,7 @@ then how do you find a function, or a cast, that  convert's a `Bottom` to a
 contradicting the assumption that `Bottom` is a subtype of all types.
 
 Functions with a bottom type in their type signature are usually very
-degenerate cases too: For example, the function `absurd :: Bottom → String`
+degenerate cases: For example, the function `absurd :: Bottom → String`
 can never never be called because you can never construct a `Bottom` value
 that you could call the function with; and `error :: String → Bottom` can never
 return a valid value, so it must loop forever or crash the program.
@@ -146,7 +146,7 @@ But maybe it's just me who gets excited about these things.
 Plain System F\<: does not form a lattice,
 because it doesnt have intersection and union types built in like typescript
 does, but as always, people have defined extensions to
-System F\<: that add these features; refer to for example "Programming with
+System F\<: that add these features; refer to "Programming with
 Intersection Types and Bounded Polymorphism" by Benjamin Pierce from 1991, for example.
 
 ---
@@ -157,8 +157,6 @@ languages' type landscape shows a lot of hidden patterns if you dig deep I guess
 and typescript gets a lot of things right!
 
 Read my blog!
-
-
 
 <SeriesNav
   seriesName="type systems"

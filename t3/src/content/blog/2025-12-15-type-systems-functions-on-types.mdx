@@ -1,0 +1,77 @@
+---
+title: "Type Systems #16: Functions... on Types?"
+description: ""
+pubDate: "December 15 2025"
+---
+
+import Question from "../../components/Question.astro";
+import SeriesNav from "../../components/SeriesNav.astro";
+
+<SeriesNav
+  seriesName="type systems"
+  currentPart="16"
+  prevPart="15"
+  nextPart="17"
+/>
+
+Hmm.. okay. So a list of integers has type 
+
+```typescript
+IntList = ∀R. R → (Int → R → R) → R
+```
+
+What about a list of booleans, or strings? Well, those would obviously be
+
+```typescript
+BoolList = ∀R. R → (Boolean → R → R) → R
+StringList = ∀R. R → (String → R → R) → R
+```
+
+It feels like we have been here before, all the way back in post #4 when we wanted to
+an `apply` function that was generic in it's argument. We're running into the exact
+same problem, just at the type level.
+
+I think we're finally ready to move to the next level of abstraction: **Type Operators**!
+It only took us 12 posts.
+
+Conceptually, type operators should not be a huge leap either, because we use them all
+the time in regular programming -- there we call them simply "generics", `List<T>`
+being an example, or `Promise<T>`. 
+
+To fit them into our theoretical framework, it would be nice to take these
+three list types we defined above and make the `Int`, `Boolean`, and `String`
+parts into a variable.
+
+And usually we do that via functions, right? So can't we just write, like...
+
+```typescript
+List = λA. ∀R. R → (A → R → R) → R
+```
+
+And uhm... well, yeah! We can totally do that. We just define functions on 
+the type level! I mean if you squint a little, `List<T>` also looks like a function
+call, but where we use angle brackets instead of parentheses.
+
+With our `List` type-function we can type our list from last post as
+
+```typescript 
+myList :: List Int
+myList = cons 1 (cons 2 (cons 3 nil))
+```
+
+which is super elegant I must say. It's just a function call, truly a very lambda
+way of approaching the problem. The `List` thingy is a function that takes a type
+and returns a type.
+
+This extension to System F is called **System Fω** -- System F omega -- and it
+adds a lambda calculus at the type level. It's one of the most important and
+foundational type systems out there, forming the theoretical underpinnings of
+many modern programming languages.
+
+<SeriesNav
+  seriesName="type systems"
+  currentPart="16"
+  prevPart="15"
+  nextPart="17"
+  position="footer"
+/>

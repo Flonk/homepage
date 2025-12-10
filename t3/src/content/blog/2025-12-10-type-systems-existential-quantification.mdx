@@ -50,8 +50,8 @@ void printAll(List<?> xs) {
 ```
 
 Here the individual elements have some type but we don't know which one, and we don't care.
-Though, sloppily, the individual elements are then typed as `Object`, but yeah Java's 
-existentials are very rudimentary. More accurate would be the following pseudo-Java:
+Though, sloppily, the individual elements are then typed as `Object`, but that's a Java
+limitation. More accurate would be the following pseudo-Java:
 
 ```java
 void printAll(List<∃T. T> xs) {
