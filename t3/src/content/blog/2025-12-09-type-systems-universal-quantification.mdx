@@ -14,11 +14,11 @@ import SeriesNav from "../../components/SeriesNav.astro";
   nextPart="11"
 />
 
-In post #5 I claimed that System F generics shouldn't be a huge conceptual leap.
+In [post #5](/blog/2025-12-04-type-systems-system-f) I claimed that System F generics shouldn't be a huge conceptual leap.
 Looking at a type like `toString :: ∀A. A → String`, you'll probably immediately
 know what it does -- the function takes anything and turns it into a string.
 
-In post #8 we even looked at a very degenerate case, `error :: ∀R. String → R`,
+In [post #8](/blog/2025-12-07-type-systems-theorems-for-free) we even looked at a very degenerate case, `error :: ∀R. String → R`,
 that can never return at all, which is probably less obvious to most.
 
 But there is one thing all the generic functions we've looked at so far have in
@@ -61,7 +61,7 @@ function.
 >
   **Solution:** It always returns `10`.
 
-  You must provide an argument of type `∀A. A → A`, and as discussed in post #8,
+  You must provide an argument of type `∀A. A → A`, and as discussed in [post #8](/blog/2025-12-07-type-systems-theorems-for-free),
   there is only one function that has this type: the identity function that does
   nothing but return its input.
 
@@ -79,7 +79,7 @@ withFile :: FilePath → (∀R. FileHandle → R) → Void
 This function takes a path to a file, and a continuation. `withFile` will do
 some file opening logic and then hand a file to another function.
 
-As discussed in post #8, the continuation's type `∀R. FileHandle → R` might make
+As discussed in [post #8](/blog/2025-12-07-type-systems-theorems-for-free), the continuation's type `∀R. FileHandle → R` might make
 you scratch your head, because such a function can never return, or in a Haskell
 context, only return an error.
 
