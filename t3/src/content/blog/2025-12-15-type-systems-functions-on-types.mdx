@@ -39,10 +39,10 @@ the time in regular programming -- there we call them simply "generics", `List<T
 being an example, or `Promise<T>`. 
 
 To fit them into our theoretical framework, it would be nice to take these
-three list types we defined above and make the `Int`, `Boolean`, and `String`
+three list types we defined above and turn the `Int`, `Boolean`, and `String`
 parts into a variable.
 
-And usually we do that via functions, right? So can't we just write, like...
+And usually we parametrize values via functions, right? So can't we just write, like...
 
 ```typescript
 List = λA. ∀R. R → (A → R → R) → R
@@ -50,9 +50,9 @@ List = λA. ∀R. R → (A → R → R) → R
 
 And uhm... well, yeah! We can totally do that. We just define functions on 
 the type level! I mean if you squint a little, `List<T>` also looks like a function
-call, but where we use angle brackets instead of parentheses.
+call, kind of, but we use angle brackets instead of parentheses.
 
-With our `List` type-function we can type our list from last post as
+With our `List` "type function" we can type our list from last post as
 
 ```typescript 
 myList :: List Int

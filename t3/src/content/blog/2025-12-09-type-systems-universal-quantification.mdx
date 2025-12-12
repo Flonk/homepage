@@ -48,7 +48,7 @@ inside the function argument. We call this sort of type a **Rank-N Type**,
 where the `N` indicates how deeply nested the universal quantifier is, in this
 case `2`.
 
-This is markedly different form the rank-1 type `weird :: ∀A. (A → A) → Int`,
+This is markedly different from the rank-1 type `weird :: ∀A. (A → A) → Int`,
 because whoever calls `weird` gets to choose what `A` is -- this is not the case
 for `apply10`: if you wish to call `apply10`, you have to provide a generic 
 function.

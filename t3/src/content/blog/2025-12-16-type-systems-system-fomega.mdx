@@ -1,0 +1,121 @@
+---
+title: "Type Systems #17: System Fω, and Kinds"
+description: ""
+pubDate: "December 16 2025"
+---
+
+import Question from "../../components/Question.astro";
+import SeriesNav from "../../components/SeriesNav.astro";
+
+<SeriesNav
+  seriesName="type systems"
+  currentPart="17"
+  prevPart="16"
+  nextPart="18"
+/>
+
+I don't know about you guys but anything with an omega (ω) in the name sounds
+pretty mighty and important.
+
+System Fω definitely lives up to that
+name, because barring the fact that we can't create structs or objects yet and we
+have to define data structures via church encodings, with generic types we are
+getting pretty close to a fully-featured programming language,
+or, as we've seen in [post #10 about Rank-N types](/blog/2025-12-09-type-systems-universal-quantification),
+a language that is in many ways even more expressive than most mainstream
+programming languages.
+
+We've seen generic lists already, let me throw you some more church-encoded types, just for the fun of it; you can ask ChatGPT do decipher them for you.
+
+```typescript 
+List = λA. ∀R. R → (A → R → R) → R
+Pair = λA. λB. ∀R. (A → B → R) → R
+Nullable = λA. ∀R. R → (A → R) → R
+```
+
+Since we've looked at a lot of foreign symbols like `λ`, `Λ`, or `∀`. let's remind ourselves of what these mean in for example the List type.
+
+The `λA. ...` means that `List` is a generic type, taking a type parameter `A`.
+It's the `T` that goes into `List<T>` in typescript.
+
+The `∀R. ...` rest specifies the type of a concrete list, for example
+lists specialized to `Int`. The `∀` here means that the list's fold
+function is generic in the result type `R` -- it's like you can plug
+in functions of any type into typescript's `myList.reduce(...)`.
+
+## Kinds
+
+The number `4` is what we call a value, and it's type is `Int`. `List Int` is also a type -- the type of lists of integers -- and we've seen values of this
+type too, an example being `cons 1 (cons 2 nil)`.
+
+But what is `List`? It's obviously not a value. But it's not really a type
+either, because it's something that you need to *give* a type like `Int` to, to
+get a type, `List Int`.
+
+So obviously `Int`, or `List Int`, are different a different *kind* of thing
+than `List`. If we wanted to capture this difference somehow, we could
+introduce types for types, and then we give `Int` and `List Int` some type,
+and we can give `List` some other.
+
+If you think about it, it's the whole untyped lambda calculus Spiel all over again --
+we have these lambda functions like `List = λA. ∀R. ...`, but no types
+for them! So that's what we do -- we add a simply typed lambda calculus,
+at the type level. This simply typed lambda calculus has only one base
+type, called `Type`.
+
+This level of meta will surely throw you off balance, but an example
+will clear things up. To say that `Int` is a type, we would write the
+following:
+
+```typescript
+Int :: Type
+```
+
+And using regular STLC syntax, we can now assign a meaningful type-type
+to `List` like so:
+
+```typescript
+List :: Type → Type
+List = λA: Type. ∀R: Type. R → (A → R → R) → R
+```
+
+This "type-type" is what we call a **kind** -- Kinds are the types of types.
+
+So `Int` has kind `Type`, and `List` has kind `Type → Type`, and `Pair` has kind
+`Type → Type → Type`, and so on. (In literature, kinds are often written with asterisks: `* → *` instead of `Type → Type`, but I prefer to be explicit.)
+
+Let's revisit the defintion of lists one last time. With kinds introduced to
+System Fω, we can now write out a full definition of lists, including kind
+annotations -- just like we assign types to parameters in lambdas like
+`λx: Int. ...`, we can now assign kinds to type parameters in big lambdas
+like `λA: Type. ...`!
+
+```typescript
+List :: Type → Type
+List = λA: Type. ∀R: Type. R → (A → R → R) → R
+
+cons :: ∀A: Type. A → List A → List A
+cons = ΛA: Type. λhead: A. λtail: List A.
+    ΛR: Type.
+      λinitialValue: R.
+      λaggregate: A → R → R.
+        aggregate head (tail [R] initialValue aggregate)
+```
+
+System Fω gives us not only generic types, but we also get a whole nother
+simply typed lambda calculus at the type level, for free!
+
+Now, even though generics are conceptually simple, jumping around between
+three different layers of abstraction -- values, types, and kinds -- is 
+not easy to get into. The way I learned these concepts is to basically 
+look at stuff until I nope out, and then I revisit the same concepts a few
+months later and things start to click. So if you are feeling lost, don't
+worry -- just give it time.
+
+<SeriesNav
+  seriesName="type systems"
+  currentPart="17"
+  prevPart="16"
+  nextPart="18"
+  position="footer"
+/>

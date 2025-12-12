@@ -41,16 +41,25 @@ Anyhow, the type of a Church-encoded list of integers is
 `IntList = ∀R. R → (Int → R → R) → R`, which looks scary at first, but it will
 turn out that you knew it all along.
 
+I will rush through this a bit, because there is no way not to rush through this
+-- Church encodings really deserve a series of their own.
+For the purposes of this series I just want to give some justification for when I
+will say things like "the type of a list is `∀R. R → (Int → R → R) → R`" in the future.
+If you are interested in constructing
+lists ex nihilo, I recommend you to program along in typescript as we go through this.
+That way you can see how data flows through the functions, and in which order
+things are called, which is really helpful to build intuition. It's also a fun exercise!
 
-## Church Encoding of Lists
+
+## Lists in pure lambda calculus
 
 As programmers, we sometimes get to ask questions like, "what even *is* an 
-AbstractDtoFactory? What is it's essence?", and then we spend hours on delineating
-what does and what doesn't constitute the essence of an AbstractDtoFactory, what
-to put int that class and what to put somewhere else. It really makes me feel like a
+`AbstractDtoFactory`? What is it's essence?", and then we spend hours delineating
+what does and what doesn't constitute the essence of an `AbstractDtoFactory`, what
+to put into that class and what to put somewhere else. It really makes me feel like a
 philosopher at times.
 
-So... yeah, what is the essence of a list? Can we single out a single core 
+What would you say is the essence of a list? Can we single out a single core 
 property that all lists have? Like a single thing you can *do* with a list, that
 you cannot do to non-lists?
 
@@ -59,7 +68,7 @@ Or perhaps `filter` is more fundamental? Are lists collections you can filter?
 Maybe what defines lists is that you can `concatenate` two of them to make a larger
 one.
 
-Well, these are all good candidates, but there is one that is more fundamental
+Well, these are all good candidates, but there is one operation that is more fundamental
 than all of them: A **fold**, or what we could call `reduce` in typescript.
 Folds allow you to merge a list into a single value, for example to take a list
 of integers and sum them. The "single value" you are returning can be of any type though, 
@@ -72,7 +81,7 @@ in terms of just `list.reduce(fn, initialValue)` -- in typescript!
 
 <Question
   n={1}
-  question={`Implement const map = <A, B>(list: A[], fn: (a: A) => B): B[]`}
+  question={`Implement const map = <A, B>(list: A[], fn: (a: A) => B): B[] => ...`}
 >
 ```typescript
 const map = <A, B>(list: A[], fn: (a: A) => B): B[] => {
@@ -86,7 +95,7 @@ const map = <A, B>(list: A[], fn: (a: A) => B): B[] => {
 
 <Question
   n={2}
-  question={`Implement const filter = <A>(list: A[], predicate: (a: A) => boolean): A[]`}
+  question={`Implement const filter = <A>(list: A[], predicate: (a: A) => boolean): A[] => ...`}
 >
 ```typescript
 const filter = <A>(list: A[], predicate: (a: A) => boolean): A[] => {
@@ -102,7 +111,7 @@ const filter = <A>(list: A[], predicate: (a: A) => boolean): A[] => {
 
 <Question
   n={3}
-  question={`Implement const concatenate = <A>(list1: A[], list2: A[]): A[]`}
+  question={`Implement const concatenate = <A>(list1: A[], list2: A[]): A[] => ...`}
 >
 ```typescript
 const concatenate = <A>(list1: A[], list2: A[]): A[] => {
@@ -116,10 +125,9 @@ const concatenate = <A>(list1: A[], list2: A[]): A[] => {
 
 Folds are powerful!
 
-What would the type of a fold be though? It takes
-an initial value, and a function that merges an element of the list and the
-accumulator, and then we return the next accumulator. If the list contains
-`Int`s, and the accumulator is of any type `R`, then the type of `fold` would be:
+What would the type of a fold be? It takes an initial value, and a function merging
+a value with an accumulator, and returning the next accumulator. If the list
+contains `Int`s, and the accumulator is of any type `R`, then the type of `fold` would be:
 
 ```typescript
 fold :: ∀R. R → (Int → R → R) → R
@@ -165,7 +173,7 @@ cons = λhead: Int. λtail: IntList.
         aggregate head (tail [R] initialValue aggregate)
 ```
 
-With these helper functions we can now easily construct a list like so:
+With these helper functions we can now construct a list like so:
 
 ```typescript
 myList : IntList
@@ -189,17 +197,16 @@ long long time until I was able to shake the feeling of "what do you mean
 everything is a function, at some point you *must* hit atomic values", or "what
 do you mean a list is a fold, the list *is the thing you fold*, where does a fold
 function even store data". Pure lambda calculus can be a mind twister for sure and
-it takes a while to build intuition.
+it takes a while to really grok it.
 
 For this reason, for the purposes of this series, I try to avoid Church encodings
 and just assume "Integers are given" and "Lists are given" wherever possible. I
 mean, even the integers in this examples I took as given, but you could Church-encode
 those as well if you wanted to go full lambda.
 
-Feel free to implement this Church encoding of lists in typescript
-to get a better feel, it really is a fun exercise. You'll see how the data propagates
-through your program and you can slowly trace which funtions call which. And you'll get to
-really learn functional programming concepts along the way!
+I do hope I gave enough intuition and context for you to understand that lists
+are just folds, and what the type `∀R. R → (Int → R → R) → R` means when I
+say "this is the type of a list of integers" -- we'll need this later.
 
 <SeriesNav
   seriesName="type systems"
