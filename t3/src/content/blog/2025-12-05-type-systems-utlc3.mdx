@@ -148,7 +148,7 @@ values, and returns a function on lists.
 which is a really unique way of looking at the map function, that is just totally
 lost in everyday programming. We tend to think of mapping as a sort of iterating
 kind of operation, but the functional viewpoint reveals a much deeper
-structure -- `map` is actually a function transformer! <sup>[1]</sup>
+structure -- `map` is actually a function transformer!
 
 Anyway, I am getting way ahead of myself. Let's continue with the untyped
 lambda calculus in the next post.
@@ -160,20 +160,3 @@ lambda calculus in the next post.
   nextPart="2"
   position="footer"
 />
-
----
-
-<sub>
-**[1]** Of course there are infinitely many functions of type `(A → B) →
-(A[] → B[])`. But it turns out that any function of this type can be decomposed
-into `map` and some "post-processing" function. Any `f' :: (A → B) → (A[] → B[])`
-can always be written as:
-
-```haskell
-f' g xs = h (map g xs)
-```
-
-for some function `h :: B[] -> B[]`. This makes the `map` function a sort of
-"universal" function transformer for lists.
-
-</sub>
