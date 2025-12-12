@@ -25,7 +25,8 @@ or, as we've seen in [post #10 about Rank-N types](/blog/2025-12-09-type-systems
 a language that is in many ways even more expressive than most mainstream
 programming languages.
 
-We've seen generic lists already, let me throw you some more church-encoded types, just for the fun of it; you can ask ChatGPT do decipher them for you.
+We've seen generic lists already, let me throw you some more church-encoded
+types, just for the fun of it; you can ask ChatGPT do decipher them for you.
 
 ```typescript 
 List = λA. ∀R. R → (A → R → R) → R
@@ -33,7 +34,8 @@ Pair = λA. λB. ∀R. (A → B → R) → R
 Nullable = λA. ∀R. R → (A → R) → R
 ```
 
-Since we've looked at a lot of foreign symbols like `λ`, `Λ`, or `∀`. let's remind ourselves of what these mean in for example the List type.
+Since we've looked at a lot of foreign symbols like `λ`, `Λ`, or `∀`. let's
+remind ourselves of what these mean in for example the List type.
 
 The `λA. ...` means that `List` is a generic type, taking a type parameter `A`.
 It's the `T` that goes into `List<T>` in typescript.
@@ -45,7 +47,8 @@ in functions of any type into typescript's `myList.reduce(...)`.
 
 ## Kinds
 
-The number `4` is what we call a value, and it's type is `Int`. `List Int` is also a type -- the type of lists of integers -- and we've seen values of this
+The number `4` is what we call a value, and it's type is `Int`. `List Int` is
+also a type -- the type of lists of integers -- and we've seen values of this
 type too, an example being `cons 1 (cons 2 nil)`.
 
 But what is `List`? It's obviously not a value. But it's not really a type
@@ -82,7 +85,8 @@ List = λA: Type. ∀R: Type. R → (A → R → R) → R
 This "type-type" is what we call a **kind** -- Kinds are the types of types.
 
 So `Int` has kind `Type`, and `List` has kind `Type → Type`, and `Pair` has kind
-`Type → Type → Type`, and so on. (In literature, kinds are often written with asterisks: `* → *` instead of `Type → Type`, but I prefer to be explicit.)
+`Type → Type → Type`, and so on. (In literature, kinds are often written with
+asterisks: `* → *` instead of `Type → Type`, but I prefer to be explicit.)
 
 Let's revisit the defintion of lists one last time. With kinds introduced to
 System Fω, we can now write out a full definition of lists, including kind

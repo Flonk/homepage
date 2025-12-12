@@ -15,12 +15,8 @@ import SeriesNav from "../../components/SeriesNav.astro";
 />
 
 We've seen a lot of lambda calucli so far, haven't we! Each one builds upon the 
-last, adding new features and new concepts. We saw...
-- The untyped lambda calculus, which has no types at all.
-- The simply typed lambda calculus, which adds simple types like `Bool` and `Int`,
-and function types like `Int → Int`.
-- System F, which adds generic functions, like `toString :: ∀A. A → String`.
-- System F\<:, which adds subtyping.
+last, adding new features and new concepts. We saw the untyped lambda calculus,
+then the simply typed lambda calculus, then System F, and then System F\<:.
 
 Quite an impressive repertoire -- we've built that up from nothing, and you know
 all the nitty-gritty details now!
@@ -151,8 +147,8 @@ We use a linked-list kind of construction here, where `nil` is the empty list, a
 `cons head tail` constructs a new list with `head` as the first element, and
 `tail` as the rest of the list.
 
-When we define `nil` and `cons` constructors that return `IntLists` (that have
-the same type as a fold), we are essentially defining how a fold should behave
+When we define `nil` and `cons` constructors that return `IntLists`, that are
+just folds, we are essentially defining how a fold should behave
 for those two cases. Folding a `nil` returns the initial value,
 and folding a `cons head tail` recursively applies a 2-parameter function to `head`,
 and the result of folding the `tail`.

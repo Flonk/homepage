@@ -27,12 +27,15 @@ BoolList = ∀R. R → (Boolean → R → R) → R
 StringList = ∀R. R → (String → R → R) → R
 ```
 
-It feels like we have been here before, all the way back in [post #4](/blog/2025-12-03-type-systems-stlc2) when we wanted to
+It feels like we have been here before, all the way back in
+[post #4](/blog/2025-12-03-type-systems-stlc2) when we wanted to
 define an `apply` function that was generic in it's argument. We're running into the exact
 same problem, just at the type level.
 
 I think we're finally ready to move to the next level of abstraction: **Type Operators**!
-It only took us 12 posts.
+It only took us 12 posts. Warning however: The next few posts are going to
+up the abstraction a lot, it's not exactly easily digestible material. Though
+of course I will try to break it down for you.
 
 Conceptually, type operators should not be a huge leap either, because we use them all
 the time in regular programming -- there we call them simply "generics", `List<T>`

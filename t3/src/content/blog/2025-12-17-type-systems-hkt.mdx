@@ -1,0 +1,152 @@
+---
+title: "Type Systems #18: Higher-Kinded Types"
+description: ""
+pubDate: "December 17 2025"
+---
+
+import Question from "../../components/Question.astro";
+import SeriesNav from "../../components/SeriesNav.astro";
+
+<SeriesNav
+  seriesName="type systems"
+  currentPart="18"
+  prevPart="17"
+  nextPart="19"
+/>
+
+System Fω does generics! We love generics, people. Tremendous generics.
+Many of my friends are generics. Other type systems? Total disasters.
+
+A `List<T>`? It has kind `Type → Type`, since it takes a single type parameter.
+A `Pair<A, B>` has kind `Type → Type → Type`, since it takes two type parameters,
+similarly `Map<K, V>` has kind `Type → Type → Type` aswell.
+
+And in fact any day-to-day generic you can think of has a kind similar to these
+ones, that is to say a linear chain of `Type → ... → Type`, where the number of
+`Type`s before the final `Type` corresponds to the number of type parameters.
+
+But we have a full simply typed lambda calculus at our disposal here, so let's 
+friggin' put it to use!
+
+How about a `(Type → Type) → Type` -- something that takes a generic and returns
+a type? Or what about `(Type -> Type) → (Type → Type)`, some sort of generics
+transformer? Do these map to meaningful concepts in programming?
+
+Turns out they do! These are called **Higher-Kinded Types** (HKT)s, and both
+examples above map to perfectly valid types.
+
+I would like to single out one example of one such kind for us to dig into, namely
+`(Type → Type) → (Type → Type) → Type`. It represents *something* that takes two
+generics and returns something concrete.
+
+One instance of this kind is what we will call "natural transformations". It takes
+two generics and then establishes a correspondence between them, by returning a function
+that does a mapping between them.
+
+```typescript
+Natural :: (Type → Type) → (Type → Type) → Type
+Natural = λF. λG. ∀A. F A → G A
+```
+
+Now, "natural transformation" is a very specific and precise term from maths, but
+we won't care about that. A thing to note however is that we can employ a
+theorems-for-free kind of argument here: since the function we return
+`∀A. F A → G A` has to work for *any* type `A`, the map between our generics must
+be a very, well, natural one. The function can't inspect the type `A` after all, so
+it can't really do anything outrageous.
+
+## Getting head
+
+Okay, so to get to actual types, we would need to "instantiate" `Natural`
+with two generics, for example `List` and `Nullable`. Then we can implement
+a generic function between lists and nullables, to get down to value land.
+
+To not have to deal with church encodings, let's assume we have the following
+functions at our disposal which I will describe with words:
+
+- `isEmpty list then else` -- if the list is empty, run `then`, otherwise run `else`
+- `head list` -- gets the first element of the list, or nukes the universe if the list is empty
+- `null` -- the nullable's "null" value
+- `just x` -- the nullable's "non-null" constructor, wrapping `x`
+- `reverse list` -- reverses a list
+
+
+```typescript
+performHead :: Natural List Nullable
+performHead = ΛA. λlist: List A.
+  isEmpty list
+    null
+    (just (head list))
+```
+
+And of course we can then call it:
+
+```typescript
+myList :: List Int
+myList = cons 1 (cons 2 (cons 3 nil))
+
+myEmptyList :: List Int 
+myEmptyList = nil
+
+result1 = performHead [Int] myList // just 1
+result2 = performHead [Int] myEmptyList // null
+```
+
+---
+
+Okay. But what have we gained? I mean, `performHead` could have simply been
+typed as `∀A. List A → Nullable A`, right? Why go through the trouble
+of defining `Natural`?
+
+Well, if we deem `Natural` a useful abstraction, we can now define functions that
+take `Natural`s as arguments. Simple as that!
+
+```typescript
+reverseAnything :: ∀F: Type → Type. ∀A: Type.
+  Natural F List → Natural List F → F A → F A
+
+reverseAnything = ΛF. ΛA.
+  λtoList.
+  λfromList.
+  λcontainer.
+    fromList [A] (reverse (toList [A] container))
+```
+
+This function takes any "container of values" `F A` and "reverses" it by 
+transforming it to a list, reversing the list, and transforming it back.
+
+`reverseAnything` doesn't care about the container type, or what values
+it holds -- all it needs to know is how to transform it to and from a list.
+
+Now, the OOP folks might mumble something about interfaces or abstract classes
+to achieve the same result, and yeah, HKTs are kind of like that, though more
+lightweight and powerful. In the example above, `Natural F List` almost reads like 
+a constraint on `F` or an interface that `F` has to conform to, rather than
+"just another parameter", even though mechanically it is just another parameter
+and there is nothing particularly special about it.
+
+To me, HKTs hint at a completely different way of programming, where we express
+as much as possible in the type system, and we use types as a vessel for
+encoding preconditions, postconditions, invariants, to arbitrary precision.
+HKTs and System Fω are not the end of the road, and type systems 
+can be even more expressive than this -- a fact that becomes very useful for
+when you are trying to write automated theorem provers, or create rigorously
+correct software.
+
+<SeriesNav
+  seriesName="type systems"
+  currentPart="18"
+  prevPart="17"
+  nextPart="19"
+  position="footer"
+/>
+
+---
+
+<small>
+You know. In other languages interfaces, generics, classes, they all feel like
+completely separate constructs that need special treatment by the compiler and
+special syntax. In System Fω, it all just emerges from really basic ingredients.
+You can fit the entire mathematical description of System Fω on a single napkin
+-- at the end of the day it's all just functions and types.
+</small>

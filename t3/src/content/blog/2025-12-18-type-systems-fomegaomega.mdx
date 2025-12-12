@@ -1,0 +1,143 @@
+---
+title: "Type Systems #19: System Fωω..? A Recap of Type Systems"
+description: ""
+pubDate: "December 18 2025"
+---
+
+import Question from "../../components/Question.astro";
+import SeriesNav from "../../components/SeriesNav.astro";
+
+<SeriesNav
+  seriesName="type systems"
+  currentPart="19"
+  prevPart="18"
+  nextPart="20"
+/>
+
+Phew. That was a lot of material in the last few posts, wasn't it?
+Are.. are any of you even still here? Did anyone make it this far?
+
+If you did, congratulations! This stuff is not easy and very niche,
+and I'm proud of you.
+
+Last post we looked at Higher-Kinded Types which is a huge step up
+in abstraction, so lets take a breather today and look at how far
+we've come.
+
+## Untyped Lambda Calculus
+
+The very beginning of this series! Do you still remember when we
+wrote our first lambdas 🥲
+
+```typescript
+id = λx. x
+fiveTimes = λf. λx. f (f (f (f (f x))))
+``` 
+
+Functions and function application, that's all you need to compute
+anything! You can even model Lists or Numbers or the 2020 Ford Mustang
+Mach-E with Church encodings.
+
+But oh no, there are no types!
+
+## Simply Typed Lambda Calculus
+
+We chucked a couple of base types in there and made our lambdas
+typesafe 😌
+
+```typescript
+add :: Int → Int → Int
+
+addTwice :: Int → Int → Int
+addTwice = λx: Int. λy: Int. add (add x y) y
+```
+
+Having types is just so nice man. It prevents all the bugs.
+
+## System F
+
+Generic functions are lowkey fire 🔥
+
+```typescript
+toString :: ∀A. A → String
+```
+
+Imagine having to spell out literally infinite variants of the
+`toString` function for every type in your program. No thanks.
+
+Generic functions can even be rank-n like `(∀A. A → A) → Int`,
+and we can implement type hiding via existential types, like
+`∃A. (A, A → Int, A → String)`. Juicy! 🧃
+
+## System F\<:
+
+We can define functions that work on a whole bunch of types,
+but not necessarily all of them. 🌙
+
+```typescript
+toString :: ∀A <: Stringifiable. A → String
+toString = ΛA. λx: A. magic
+```
+
+Without subtyping, typescript would be ultra useless!
+
+## System Fω
+
+Generic types are nice for like containers and stuff 🧺 But we
+need kinds to distinguish types from generics.
+
+```typescript
+List :: Type → Type
+List = λA: Type. ∀R: Type. R → (A → R → R) → R
+
+Natural :: (Type → Type) → (Type → Type) → Type
+Natural = λF. λG. ∀A. F A → G A
+```
+
+It's literally a lambda calculus on top of a lambda calculus! 😵
+
+## System Fω\<:
+
+Okay we didn't actually look at this one but you literally just
+take System F and tack on the subtyping part and the generics as well.
+I think it goes by many names but "Fω with subtyping" is
+probably the most accurate. So there you go, you know that one aswell 👍
+
+---
+
+That's pretty good hey! So many type systems, all building on each other.
+It's a beautiful thing. And we've learned them all, from the ground up!
+
+## What's next? System Fωω?
+
+Err so the jump from STLC to System F introduced quantification over
+types right, like `∀A. A → A`. And then System Fω introduced
+kinds. 
+
+BUT LIKE WHAT IF.
+
+HEAR ME OUT.
+
+Let's add quantification over kinds?
+
+???
+
+```typescript
+PolyKinded :: ∀K1: Kind. ∀K2: Kind. (K1 → K2) → Type
+```
+
+What would that even do?
+
+No I mean, just no, stop. Today was supposed to be a breather. [Read
+through this](https://ghc.gitlab.haskell.org/ghc/doc/users_guide/exts/poly_kinds.html)
+if kind polymorphism sounds interesting to you, Haskell internals
+have a usecase for it. But I'm not gonna touch that with a ten foot
+pole today.
+
+<SeriesNav
+  seriesName="type systems"
+  currentPart="19"
+  prevPart="18"
+  nextPart="20"
+  position="footer"
+/>
