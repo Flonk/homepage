@@ -76,7 +76,7 @@ but not necessarily all of them. 🌙
 
 ```typescript
 toString :: ∀A <: Stringifiable. A → String
-toString = ΛA. λx: A. magic
+toString = ΛA <: Stringifiable. λx: A. magic
 ```
 
 Without subtyping, typescript would be ultra useless!
@@ -118,7 +118,9 @@ BUT LIKE WHAT IF.
 
 HEAR ME OUT.
 
-Let's add quantification over kinds?
+Let's add quantification over kinds? Like, just one more layer of
+abstraction bro. Please bro. One more quantifier makes us so expressive
+bro.
 
 ???
 
@@ -126,7 +128,7 @@ Let's add quantification over kinds?
 PolyKinded :: ∀K1: Kind. ∀K2: Kind. (K1 → K2) → Type
 ```
 
-What would that even do?
+What would that do?
 
 No I mean, just no, stop. Today was supposed to be a breather. [Read
 through this](https://ghc.gitlab.haskell.org/ghc/doc/users_guide/exts/poly_kinds.html)

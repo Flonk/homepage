@@ -1,0 +1,105 @@
+---
+title: "Type Systems #20: Algebraic Data Types"
+description: ""
+pubDate: "December 18 2025"
+---
+
+import Question from "../../components/Question.astro";
+import SeriesNav from "../../components/SeriesNav.astro";
+
+<SeriesNav
+  seriesName="type systems"
+  currentPart="20"
+  prevPart="19"
+  nextPart="21"
+/>
+
+Let's take a bit of a detour and look at algebraic data types today.
+
+One of the main things we do in regular programming is take data
+and shape it into a structure that makes sense for our application,
+and usually that involves taking multiple pieces of data and combining
+them into something bigger.
+
+In typescript you'll probably know your plain old type definition:
+
+```typescript
+type User = {
+  id: number;
+  name: string;
+  isAdmin: boolean;
+};
+```
+
+## Product Types
+
+Here we've taken three pieces of data, with three distinct types even,
+and turned it into a single type. Though, really the notation above
+is just shorthand for this:
+
+```typescript
+type User = { id: number }
+  & { name: string }
+  & { isAdmin: boolean };
+```
+
+And, really, the property names `"id"`, `"name"`, and `"isAdmin"` are 
+just nice to have label, and they're super optional. We can capture the same
+structure like this:
+
+```typescript
+type User = [number, string, boolean]; // or even
+type User = [number, [string, boolean]];
+```
+
+And we could prove that too by defining mapper functions between those
+representations. That last representation is especially interesting because
+it implies that any record type can be represented as just a bunch of tuples.
+
+The type intersection, or the tuple, yields what is called a **product type**,
+for reasons that will become clear in a second. Product types allow us to express
+things like "I have both a number and a string here".
+
+## Sum Types
+
+The other primitive "combining types" operation in typescript is the union type:
+
+```typescript
+type HttpResponse = 
+  | { status: 200; data: string }
+  | { status: 404; error: string };
+```
+
+Here we've defined a type here that expresses "I have either a 200, or a 404, but
+not both at the same time". This is called a **sum type**.
+
+### Discriminated Unions
+
+One small caveat with sum types in typescript vs in theory is that we must be
+able to distinguish the different cases at runtime somehow and in typescript
+that is not the default. That is to say, given
+
+```typescript
+type EitherNumberOrNumber = number | number;
+```
+
+we have no way of knowing whether a value of type `EitherNumberOrNumber` is
+the left kind of number or the right kind, and in fact typescript would collapse
+this union into just `number`. So for the purposes of this post, our typescript
+unions will always add a discriminant field:
+
+```typescript
+type EitherNumberOrNumber = 
+  | { type: "left"; value: number }
+  | { type: "right"; value: number };
+```
+
+
+
+<SeriesNav
+  seriesName="type systems"
+  currentPart="20"
+  prevPart="19"
+  nextPart="21"
+  position="footer"
+/>
