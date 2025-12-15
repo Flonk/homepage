@@ -1,0 +1,154 @@
+---
+title: "Type Systems #20: An Equivalence between Types"
+description: ""
+pubDate: "December 19 2025"
+---
+
+import Question from "../../components/Question.astro";
+import SeriesNav from "../../components/SeriesNav.astro";
+
+<SeriesNav
+  seriesName="type systems"
+  currentPart="20"
+  prevPart="19"
+  nextPart="21"
+/>
+
+When are two types the same?
+
+That depends on what you mean by "the same", of course. "Equality"
+is one of those concepts that is super ill-defined, I mean just in
+regular programming we have two different notions of equality of
+values: Referential equality (`==` in Java), and structural equality
+(`.equals()` in Java).
+
+As far as types go, the working programmer does have an implicit 
+notion of type equivalence though probably you don't think about it
+too much.
+
+For example, when you have to model a bag of balls, where the balls
+can be either red or black, you'll probably immediately have a few
+solutions in mind:
+
+- An `isRed: boolean` flag on each ball
+- An enum `Color { Red, Black }` and a `color: Color` property
+- Two classes `RedBall` and `BlackBall` that both extend a base class `Ball`
+- A discriminated union `type Ball = { type: "red" } | { type: "black" }`
+
+And you'll have an implicit understanding that all of these
+representations are equivalent, in that they all contain the same
+amount of "information", even though it's expressed differently.
+
+Let's formalize this concept by defining what's called an **isomorphism**
+between types, which basically means you can convert back and forth in
+a way that doesn't lose any information.
+
+An isomorphism between two types `A` and `B` is a pair of functions:
+
+```typescript
+toB: A → B
+toA: B → A
+```
+
+where if we apply them in succession, we get back what we started with:
+
+```typescript
+// isomorphism laws
+toA (toB a) === a
+toB (toA b) === b
+```
+
+## `boolean` is isomorphic to `Color`
+
+Let's define an isomorphism between the first two representations above,
+so we can definitely prove that they are equivalent!
+
+```typescript
+type Color = "Red" | "Black";
+
+const boolToColor = (b: boolean): Color =>
+  b ? "Red" : "Black";
+
+const colorToBool = (c: Color): boolean =>
+  c === "Red";
+```
+
+Ensuring that the isomorphism laws hold is left as an exercise to
+the reader. (Hint: Test all possible inputs!)
+
+## 2
+
+Given this new notion of isomorphism, it seems pretty obvious that
+any enum with two values is isomorphic to `boolean`, right? They
+are also isomorphic to one another, for that matter.
+
+For this reason we often call `boolean`, or any such enum,
+simply `2`, because they have two possible values.
+
+## 1
+
+An enum with a single value, or any other type
+with just one inhabitant, is called `1`. An example would be
+`type Unit = {}`, but actually we've seen another example
+before: The top type, `unknown`!
+
+Defining an isomorphism between `Unit` and `unknown` is 
+a bit awkward in typescript, but how about this one:
+
+```typescript
+const unitToUnknown = (u: Unit): unknown => null as unknown;
+const unknownToUnit = (u: unknown): Unit => ({});
+```
+
+`unknown` has no "native inhabitants", but it doesn't really matter
+because everything is castable to `unknown`, by definition. The
+isomorphism doesn't care about the value anyway since it never
+needs to inspect it to decide what to return -- it's always going
+to be the same single value of type `Unit`.
+
+## 0
+
+Finally, the type with no inhabitants at all is called `0`. We've
+seen one such type before as well: The bottom type, `never`.
+
+Defining isomorphisms involving never is even awkwarder, but let's
+assume we have a `never2` type that is isomorphic to `never`:
+
+```typescript
+const neverToNever2 = (n: never): never2 => {
+  throw new Error("unreachable");
+};
+
+const never2ToNever = (n: never2): never => {
+  throw new Error("unreachable");
+};
+```
+
+You can never call any of these functions anyway, since you can 
+never find values `n` to call the function with, so it's a very 
+degenerate case of an isomorphism. Looking at the "proof":
+
+```typescript
+never2ToNever (neverToNever2 n) === n
+```
+
+we see that the left hand side is never actually computable, so
+the equality holds vacuously. (Ex falso quodlibet and all that.)
+
+## 3, 4, 5, 6, ...
+
+Defining the other "number types" is also straightforward,
+right? You just define an enum with the corresponding number
+of values.
+
+But. What do we do, now that we have equated integers with types?
+
+Arithmetic! 
+
+<SeriesNav
+  seriesName="type systems"
+  currentPart="20"
+  prevPart="19"
+  nextPart="21"
+  position="footer"
+/>

@@ -1,0 +1,133 @@
+---
+title: "Type Systems #21: Algebraic Data Types"
+description: ""
+pubDate: "December 20 2025"
+---
+
+import Question from "../../components/Question.astro";
+import SeriesNav from "../../components/SeriesNav.astro";
+
+<SeriesNav
+  seriesName="type systems"
+  currentPart="21"
+  prevPart="20"
+  nextPart="22"
+/>
+
+Last post we have defined numbers, now let's define some operations.
+
+Because I'm funny like that, let's define multiplication
+`number * string` as a discriminated intersection:
+
+```typescript
+type numberTimesString =
+  { prop1: number } &
+  { prop2: string };
+```
+
+The important bit is just that each part of the intersection
+gets a unique label. `string & number` is a non-sensical type
+in typescript, so this is our workaround.
+
+And because I'm funny like that, let's define addition
+`number + string` as a discriminated union:
+
+```typescript
+type numberPlusString =
+  | { type: "left"; value: number }
+  | { type: "right"; value: string };
+```
+
+Again the important bit is the discriminant `type` property that
+makes sure we can tell the variants apart.
+
+With just these definitions, we can do maths!
+
+
+## 2 * string = string + string
+
+Yeah, that's right. It's basic arithmetic, but with types!
+
+`2 * string` is a record containing a boolean and a string;
+`string + string` is something that is either a string tagged
+"left" or a string tagged "right".
+
+I'll jot down the isomorphism for you:
+
+```typescript
+type TwoTimesString = 
+  { prop1: boolean } & 
+  { prop2: string };  
+
+type StringPlusString =
+  | { type: "left"; value: string }
+  | { type: "right"; value: string };
+
+
+// TwoTimesString → StringPlusString
+const toSum = (p) => 
+  p.prop1
+    ? { type: "left", value: p.prop2 }
+    : { type: "right", value: p.prop2 };
+
+// StringPlusString → TwoTimesString
+const toProduct = (s) =>
+  s.type === "left"
+    ? { prop1: true, prop2: s.value }
+    : { prop1: false, prop2: s.value };
+```
+
+You might wonder where this is useful, but keep in mind that
+`TwoTimesString` comes in many forms in day-to-day programming:
+
+```typescript
+type User = {
+  isAdmin: boolean;
+  name: string;
+}
+```
+
+It's the same thing!
+
+## 6 = 2 * 3
+
+Here, pop quiz for ya. Try to prove that `6 = 2 * 3` by finding
+an isomoprhism, given these types!
+
+```typescript
+type Two = boolean;
+type Three = boolean | null;
+type Six = "a" | "b" | "c" | "d" | "e" | "f";
+```
+
+---
+
+Algebraic Data Types (ADTs), as they are called, were actually my
+first foray into type theory. There is something deeply satisfying
+about solving an equation like `2 * string = string + string`, and
+then seeing which types that maps to, in say Java.
+
+It really feels like you're refactoring half of your codebase in
+in your head in half a second, just by doing basic maths. Like,
+`2 * 3 = 6` is such a short statement but would
+produce a whole lot of code if you were to spell it out.
+
+It's another tool in the toolbox that occasionally comes in super
+handy and potentially gives you lots of leverage. You might have
+a super weird class hierarchy in your codebase, and you don't quite
+know how to approach a refactor because everything is so tangled
+up... But hey! Subclasses are just sums! Can't that be simplified
+to a product, like a class with no subclasses, but with a bunch of
+fields instead?
+
+And you know, treating types like numbers is just fun and such a 
+unique viewpoint.
+
+
+<SeriesNav
+  seriesName="type systems"
+  currentPart="21"
+  prevPart="20"
+  nextPart="22"
+  position="footer"
+/>

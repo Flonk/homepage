@@ -49,11 +49,11 @@ Natural = λF. λG. ∀A. F A → G A
 ```
 
 Now, "natural transformation" is a very specific and precise term from maths, but
-we won't care about that. A thing to note however is that we can employ a
-theorems-for-free kind of argument here: since the function we return
-`∀A. F A → G A` has to work for *any* type `A`, the map between our generics must
-be a very, well, natural one. The function can't inspect the type `A` after all, so
-it can't really do anything outrageous.
+we let's not get into that at this point. A thing to note however is that the function
+type that `Natural F G` represents is *generic* in `A` -- it works for any type `A`, so
+we can establish a theorems-for-free kind of argument here: The function can't inspect the
+type `A` after all, so it can't really do anything outrageous to it and the transformation
+must be very, well, "natural", in some sense.
 
 ## Getting head
 
@@ -119,7 +119,7 @@ transforming it to a list, reversing the list, and transforming it back.
 it holds -- all it needs to know is how to transform it to and from a list.
 
 Now, the OOP folks might mumble something about interfaces or abstract classes
-to achieve the same result, and yeah, HKTs are kind of like that, though more
+to achieve the same result, and yeah, HKTs are kind of like that, though both more
 lightweight and powerful. In the example above, `Natural F List` almost reads like 
 a constraint on `F` or an interface that `F` has to conform to, rather than
 "just another parameter", even though mechanically it is just another parameter

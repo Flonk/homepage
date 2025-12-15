@@ -1,7 +1,7 @@
 ---
 title: "Type Systems #20: Algebraic Data Types"
 description: ""
-pubDate: "December 18 2025"
+pubDate: "December 19 2025"
 ---
 
 import Question from "../../components/Question.astro";
@@ -14,7 +14,7 @@ import SeriesNav from "../../components/SeriesNav.astro";
   nextPart="21"
 />
 
-Let's take a bit of a detour and look at algebraic data types today.
+Let's take a bit of a detour and look at algebraic data types.
 
 One of the main things we do in regular programming is take data
 and shape it into a structure that makes sense for our application,
@@ -93,6 +93,84 @@ type EitherNumberOrNumber =
   | { type: "left"; value: number }
   | { type: "right"; value: number };
 ```
+
+## 0, 1, 2
+
+The type `boolean` has two values, right? `true` and `false`. Let's make up a
+fantasy magic world where we call `boolean` simply `2` instead.
+
+What would be `1`? The type with just a single value. We've seen such a type before,
+it's the top type from previous posts. Alternatively, lets just make one up:
+
+```typescript
+type Unit = {};
+```
+
+And `0`? The type with no values. Again, we've seen such a type before, it's
+the bottom type, `never`.
+
+In our fantasy magic world, we call the product type of `A` and `B` simply `A * B`, and
+the sum type of `A` and `B` we call `A + B`.
+
+## 2 + 2 = 4
+
+`2 + 2`, lets see... that would be the discriminated union of two booleans:
+
+```typescript
+type BoolOrBool = 
+  | { type: "left"; value: boolean }
+  | { type: "right"; value: boolean };
+```
+
+How many values does `BoolOrBool` have? Let's list them out:
+1. `{ type: "left"; value: true }`
+2. `{ type: "left"; value: false }`
+3. `{ type: "right"; value: true }`
+4. `{ type: "right"; value: false }`
+
+Four! The answer is four. `2 + 2 = 4`.
+
+## 2 * string = string + string
+`2 * string` would be a product type of a boolean and a string:
+
+```typescript
+type BoolString = { flag: boolean; text: string };
+```
+
+How many values does `BoolString` have? Well.. infinitely many,
+so we need to come up  with a different way of counting. First,
+let's contrast this type with `string + string`:
+
+```typescript
+type StringOrString = 
+  | { type: "left"; value: string }
+  | { type: "right"; value: string };
+``` 
+
+How can we prove that these two types are equivalent, therefor
+proving the equation `2 * string = string + string`?
+
+Finding a mapping `f: BoolString → StringOrString` and a
+mapping from `g: StringOrString → BoolString` would be a good start.
+Easy enough:
+
+```typescript
+const f = ({ flag, text }: BoolString): StringOrString =>
+  flag
+    ? { type: "left", value: text }
+    : { type: "right", value: text };
+
+const g = (s: StringOrString): BoolString =>
+  s.type === "left"
+    ? { flag: true, text: s.value }
+    : { flag: false, text: s.value };
+```
+
+You'll find that these function are inverses of each other, meaning
+no information is lost in either direction. Thus the two types
+are isomorphic, and we have proven the equation!
+
+
 
 
 
