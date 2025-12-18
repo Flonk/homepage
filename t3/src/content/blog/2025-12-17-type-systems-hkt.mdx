@@ -19,7 +19,7 @@ Many of my friends are generics. Other type systems? Total disasters.
 
 A `List<T>`? It has kind `Type → Type`, since it takes a single type parameter.
 A `Pair<A, B>` has kind `Type → Type → Type`, since it takes two type parameters,
-similarly `Map<K, V>` has kind `Type → Type → Type` aswell.
+similarly `Map<K, V>` has kind `Type → Type → Type` as well.
 
 And in fact any day-to-day generic you can think of has a kind similar to these
 ones, that is to say a linear chain of `Type → ... → Type`, where the number of
@@ -29,10 +29,10 @@ But we have a full simply typed lambda calculus at our disposal here, so let's
 friggin' put it to use!
 
 How about a `(Type → Type) → Type` -- something that takes a generic and returns
-a type? Or what about `(Type -> Type) → (Type → Type)`, some sort of generics
+a type? Or what about `(Type → Type) → (Type → Type)`, some sort of generics
 transformer? Do these map to meaningful concepts in programming?
 
-Turns out they do! These are called **Higher-Kinded Types** (HKT)s, and both
+Turns out they do! These are called **Higher-Kinded Types** (HKTs), and both
 examples above map to perfectly valid types.
 
 I would like to single out one example of one such kind for us to dig into, namely
@@ -49,9 +49,9 @@ Natural = λF. λG. ∀A. F A → G A
 ```
 
 Now, "natural transformation" is a very specific and precise term from maths, but
-we let's not get into that at this point. A thing to note however is that the function
+let's not get into that at this point. A thing to note however is that the function
 type that `Natural F G` represents is *generic* in `A` -- it works for any type `A`, so
-we can establish a theorems-for-free kind of argument here: The function can't inspect the
+we can establish a theorems-for-free argument here: The function can't inspect the
 type `A` after all, so it can't really do anything outrageous to it and the transformation
 must be very, well, "natural", in some sense.
 
@@ -144,7 +144,7 @@ correct software.
 ---
 
 <small>
-You know. In other languages interfaces, generics, classes, they all feel like
+You know. In other languages, interfaces, generics, classes, they all feel like
 completely separate constructs that need special treatment by the compiler and
 special syntax. In System Fω, it all just emerges from really basic ingredients.
 You can fit the entire mathematical description of System Fω on a single napkin

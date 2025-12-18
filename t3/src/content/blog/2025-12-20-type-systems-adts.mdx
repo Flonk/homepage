@@ -14,7 +14,7 @@ import SeriesNav from "../../components/SeriesNav.astro";
   nextPart="22"
 />
 
-Last post we have defined numbers, now let's define some operations.
+Last post we defined numbers, now let's define some operations.
 
 Because I'm funny like that, let's define multiplication
 `number * string` as a discriminated intersection:
@@ -26,8 +26,8 @@ type numberTimesString =
 ```
 
 The important bit is just that each part of the intersection
-gets a unique label. `string & number` is a non-sensical type
-in typescript, so this is our workaround.
+gets a unique label. `string & number` is a nonsensical type
+in TypeScript, so this is our workaround.
 
 And because I'm funny like that, let's define addition
 `number + string` as a discriminated union:
@@ -92,7 +92,7 @@ It's the same thing!
 ## 6 = 2 * 3
 
 Here, pop quiz for ya. Try to prove that `6 = 2 * 3` by finding
-an isomoprhism, given these types!
+an isomorphism, given these types!
 
 ```typescript
 type Two = boolean;
@@ -108,7 +108,7 @@ about solving an equation like `2 * string = string + string`, and
 then seeing which types that maps to, in say Java.
 
 It really feels like you're refactoring half of your codebase in
-in your head in half a second, just by doing basic maths. Like,
+your head in half a second, just by doing basic maths. Like,
 `2 * 3 = 6` is such a short statement, but it would
 produce a whole lot of code if you were to spell it out.
 

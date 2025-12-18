@@ -21,7 +21,7 @@ If you did, congratulations! This stuff is not easy and very niche,
 and I'm proud of you.
 
 Last post we looked at Higher-Kinded Types which is a huge step up
-in abstraction, so lets take a breather today and look at how far
+in abstraction, so let's take a breather today and look at how far
 we've come.
 
 ## Untyped Lambda Calculus
@@ -79,7 +79,7 @@ toString :: ∀A <: Stringifiable. A → String
 toString = ΛA <: Stringifiable. λx: A. magic
 ```
 
-Without subtyping, typescript would be ultra useless!
+Without subtyping, TypeScript would be ultra useless!
 
 ## System Fω
 
@@ -102,6 +102,7 @@ Okay we didn't actually look at this one but you literally just
 take System F and tack on the subtyping part and the generics as well.
 I think it goes by many names but "Fω with subtyping" is
 probably the most accurate. So there you go, you know that one aswell 👍
+probably the most accurate. So there you go, you know that one as well 👍
 
 ---
 
