@@ -1,0 +1,262 @@
+---
+title: "Type Systems #22: Zippers and One-Hole Contexts"
+description: ""
+pubDate: "December 21 2025"
+---
+
+import Question from "../../components/Question.astro";
+import SeriesNav from "../../components/SeriesNav.astro";
+
+<SeriesNav
+  seriesName="type systems"
+  currentPart="22"
+  prevPart="21"
+  nextPart="23"
+/>
+
+Ok... so `string * boolean` is a record with a string and a boolean,
+right? And `string + boolean` is a discriminated union. That's as
+far as ADTs go really, but it hasn't stopped people from playing
+around with other algebra concepts and see what that maps to on types.
+
+Let's revisit our favourite generic once again, Lists. In an 
+ADT context, where we have just addition and multiplication, we can
+actually express them!
+
+Because, what is a list, really? A list is either empty, or it has
+one element, or it has two elements, or three elements, or...
+
+And we know how to express "either this or that or that...", right?
+That would be a sum. And "three elements" of type `X` would be
+`X * X * X`. That means we can express a list of `X` as:
+
+```typescript
+List X = 1 + X + (X * X) + (X * X * X) + ...
+```
+
+And `1` represents the empty list. More compactly, we can write it
+as the infinite sum:
+
+$$
+\text{List } X = \sum_{n=0}^{\infty} X^n
+$$
+
+That's interesting in its own right, though if you take any list of 
+values like `[ "a", "b", "c" ]`, you'll see that it will be 
+encompassed by this type, because it has three elements, and 
+the three element case is part of the infinite discriminated union.
+
+And uhm.. if we squint a little, and then squint some more, this
+looks a whole lot like a geometric series, right? We've seen
+a formula for those back in high school math class!
+
+$$
+\sum_{n=0}^{\infty} X^n = \frac{1}{1 - X}
+$$
+
+So uhm. A List of `string`s is `1 / (1 - string)`?
+
+I mean  "dividing by string" or "subtracting a string" seems like
+a really dumb concept. Like, division is the opposite of multiplication,
+and multiplying `a * b` amounts to creating a record with an `a` and a `b`.
+So what would "dividing by string" even mean? Like, you're removing
+a string from a type that wasn't even a record, and that had no strings
+to begin with?
+
+But hey let's not worry about it! Let's take the derivative instead :D
+
+drum roll...
+
+$$
+List' X = \left( \frac{1}{1 - X} \right)' = \frac{1}{(1 - X)^2} = \text{List } X * \text{List } X
+$$
+
+The derivative of a list is... two lists!
+
+I guess!
+
+An alternative definition for lists would have been the "linked-list" type 
+definition that is recursive:
+
+$$
+\text{List } X = 1 + (X * \text{List } X)
+$$
+
+That is to say, a list is either empty, or it's an element paired with the
+rest of the list. If you take the derivative of this definition,
+you'll get to the same result, which is reassuring.
+
+$$
+List' X = 0 + (1 * \text{List } X + X * \text{List }' X) = \text{List } X + X * \text{List }' X
+$$
+
+rearrange..
+
+$$
+List' X - X * \text{List }' X = \text{List } X
+$$
+
+solve for `List' X`...
+
+$$
+List' X = \frac{\text{List } X}{1 - X} = \text{List } X * \frac{1}{1 - X} = \text{List } X * \text{List } X
+$$
+
+---
+
+Okay but so what?
+
+There is a point to this but let me show you the derivative of binary trees aswell real quick.
+
+Here's a recursive definition of binary trees -- it says, a tree is either an empty leaf (`1`),
+or it's a node with a value of type `X`, a left subtree, and a right subtree.
+
+$$
+\text{T } X = 1 + (X * \text{T } X * \text{T } X)
+$$
+
+I'll spare you the steps, but we can find the derivative using the good old
+product rule.
+
+$$
+T' X = (T X)^2 + X * T' X * T X + X * T X * T' X
+$$
+
+So.. it's either a tuple of two trees, or something that looks similar to a tree node,
+or that same something again. ¯\\\_(°\_o)\_/¯
+
+---
+
+Is this getting us anywhere?
+
+Yeup! Conor McBride wondered the same thing, and wrote a paper
+about it called ["The Derivative of a Regular Type is its Type
+of One-Hole Contexts"](http://strictlypositive.org/diff.pdf).
+
+To me it's really fascinating that doing such an ill-defined operation
+like "taking the derivative of a type" actually leads to something
+meaningful, and it leads to *the same* meaningful thing for different
+types. I mean, we did so much hand-waving here.. subtracting types, 
+dividing types, and.. taking a derivative usually requires limits
+and infinitesimals, which makes no sense on types either! Nevertheless,
+we get something consistent out of it. Maths is wild.
+
+Props to Conor for spotting the pattern though, I definitely
+wouldn't have.
+
+## One-Hole Contexts
+
+Here's his interpretation of type derivatives:
+
+> A one-hole context for a data structure is a data structure of the same shape,
+> but with one element missing, indicated by a hole.
+
+(not an actual quote.)
+
+That is to say, our derivative of lists, which was `List X * List X`, can be
+interpreted as "the list of elements before the hole",
+and "the list of elements after the hole".
+
+That is to say, the type we get here is something that keeps track of where
+we are in our original list, by having a "hole" in it. This is super useful
+for navigating data structures, and updating them aswell!
+
+## A List Zipper
+
+Let's put this one-hole context of lists into types:
+
+```typescript
+// The derivative of List<A>
+type ListCtx<A> = {
+  before: A[];
+  after: A[];
+};
+```
+
+The very related concept of a "zipper" takes this context and pairs it
+with whatever is supposed to go in the hole:
+
+```typescript
+type ListZipper<A> = {
+  context: ListCtx<A>;
+  focus: A;
+};
+```
+
+And this zipper is like.. like an iterator that can go in either direction.
+We can take a step left by moving the focus element to the front of the "after" list,
+and popping an element from the end of the "before" list to become the new focus;
+moving right works analogously.
+
+And "updating the currently focused element" is just replacing the `focus` property.
+
+This might not sound terribly useful for ordinary arrays, but if you have linked
+lists for example, where updating an element at position `n` is `O(n)`, having
+a zipper that keeps track of your position is useful, because it makes updates
+`O(1)`!
+
+And yeah again like why would taking a derivative even do this? So cool.
+
+It gets even cooler for trees.
+
+## A Tree Zipper
+
+Taking the derivative of our binary tree type earlier, we got this:
+
+$$
+T' X = (T X)^2 + X * T' X * T X + X * T X * T' X
+$$
+
+In code:
+
+```typescript
+type Tree<A> =
+  | { type: "leaf" }
+  | { type: "node"; value: A; left: Tree<A>; right: Tree<A> };
+
+// The derivative of Tree<A>
+type TreeCtx<A> =
+  | { type: "holeAtRoot", left: Tree<A>; right: Tree<A> }
+  | { type: "holeInLeft", value: A; left: TreeCtx<A>; right: Tree<A> }
+  | { type: "holeInRight", value: A; left: Tree<A>; right: TreeCtx<A> };
+
+// The Tree Zipper -- the context plus the focused element
+type TreeZipper<A> = {
+  context: TreeCtx<A>;
+  focus: A;
+};
+```
+
+This type is a bit harder to digest so let me spell it out for you.
+
+The first case of `TreeCtx` says that "the hole" in our original tree
+is at the root of the tree, therefor the hole is not in either
+subtree, and we just keep track of the left and right subtrees.
+
+The second case says that the hole is in the left subtree, so we keep track
+of the value at the current node, the right subtree, and a context for
+the left subtree, which itself has a hole in it. The third case is analogous.
+
+In a "real world" implementation of trees, where tree nodes additionally
+keep track of their parent node, the zipper would do likewise, which makes
+tree zippers *the* most convenient way of navigating and updating trees.
+
+Moving up and down the zipper is `O(1)`, and updating the focused element
+is `O(1)` aswell! And not only that, you can use zippers to model
+infinite trees, because you can lazily expand the tree as you navigate it!
+
+I know that this series about type theory is very dense and often doesn't
+obviously connect to day-to-day programming, but really do read up on
+these things. I've used tree zippers in real projects multiple times,
+leading to super efficient and elegant solutions that I would never have
+found had I not known about Conor McBride's work.
+
+
+
+<SeriesNav
+  seriesName="type systems"
+  currentPart="22"
+  prevPart="21"
+  nextPart="23"
+  position="footer"
+/>
