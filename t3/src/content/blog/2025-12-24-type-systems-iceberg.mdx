@@ -1,0 +1,81 @@
+---
+title: "Type Systems #25: The Lambda Iceberg and Lambda Cube"
+description: ""
+pubDate: "December 24 2025"
+---
+
+import Question from "../../components/Question.astro";
+import SeriesNav from "../../components/SeriesNav.astro";
+
+<SeriesNav
+  seriesName="type systems"
+  currentPart="25"
+  prevPart="24"
+/>
+
+Hey I had a blast writing this series, hope you enjoyed it too!
+
+As a small christmas gift to you all, I've distilled all the things
+we have discussed into meme format, so you can send it to all your type
+theory friends. I present to you: The Lambda Iceberg!
+
+![The Lambda Iceberg](/assets/2025-12-type-systems/types-iceberg.jpg)
+
+---
+
+On a more serious note.
+
+Why the hell would we need all this? Haven't we been writing javascript
+and python code just fine? What do I need kind polymorphism
+for, or dependent types? Can we not leave that to the nerds?
+
+Well. [I've mused about AI requiring stricter type systems on this blog
+before](/blog/2025-11-19-ai-haskell) -- if we can put tighter constraints on the
+code we want the AI to generate, results will be less sloppy and more predictable.
+Other people seem to mirror the sentiment, just this week the article
+[Prediction: AI will make formal verification go mainstream](https://martin.kleppmann.com/2025/12/08/ai-formal-verification.html)
+was trending on Hacker News.
+
+At the moment, we use prompting to steer AI, but we do all know how hit-and-miss
+that can be... AI slop is called AI slop for a reason.
+
+I believe that types will be the common language that connects programmers or
+"prompt engineers" with AI systems in the future, as they are precise, unambiguous,
+and at the same time expressive enough to capture complex constraints.
+
+So, now more than ever, it seems prudent to learn about advanced type systems;
+as AI takes over the lower levels of programming, humans will naturally move up
+the abstraction ladder. Nobody will be writing javascript in a few years -- I'm
+already using copilot for everything -- and descriptions of what we want to build
+will be all that remain.
+
+One could even say that with AI generating code, and you refining types depending
+on AI output, that *you* are the formal verification system, using "dependent" types
+to guide the AI to produce correct code.
+
+## Parting Thought: Barendregt's Lambda Cube
+
+There are probably more type systems than there are type systems researchers,
+but the canonical type systems hierarchy that I have stuck to this series is
+Barendregt's Lambda Cube.
+
+![The Lambda Cube](/assets/2025-12-type-systems/lambda-cube.png)
+
+It organizes lambda calculi by expressiveness along three axes, and in this past month,
+we've explored one path through the cube:
+
+- `λ→` is simply typed lambda calculus.
+- `λ2` is System F, adding generic types
+- `λω` is System Fω, adding kinds
+- `λC` is the calculus of constructions, adding dependent types
+
+There are other paths through the cube aswell, but the one we've taken is
+the most natural one. The other type systems are interesting in their own right --
+for example `λP` adds just dependent types to the simply typed lambda calculus but
+not generics or kinds -- but they are mostly of theoretical interest.
+
+But hey, if we want to dive deeper into type theory in the future, maybe
+I'll do another series like this one, exploring more type systems and
+concepts. For now however, I wish you all a merry christmas and happy holidays,
+and see you next time!
+

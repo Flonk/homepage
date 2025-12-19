@@ -1,0 +1,108 @@
+---
+title: "Type Systems #24: The Calculus of Constructions and Dependent Types"
+description: ""
+pubDate: "December 23 2025"
+---
+
+import Question from "../../components/Question.astro";
+import SeriesNav from "../../components/SeriesNav.astro";
+
+<SeriesNav
+  seriesName="type systems"
+  currentPart="24"
+  prevPart="23"
+  nextPart="25"
+/>
+
+We've typed our terms. We've quantified over types. We've typed our types even,
+with kinds. And we can quantify over kinds aswell... But, there is one last frontier
+of expressiveness that we have yet to explore: Dependent Types.
+
+The definition is simple: A dependent type is a type that depends on a value.
+
+Right off the bat this would not work in any mainstream programming language,
+because type things happen at compile time, by the type checker, and value things
+happen at runtime, by the program. You would never be able to compute a value,
+and then derive a type from it, because by the time the value exists, the types
+are long gone.
+
+There is a brand of programming languages however, called *dependently typed
+programming languages*, that blur the line between compile time and runtime,
+and allow types to depend on values.
+
+Really you wouldn't use these languages for everyday programming, but they are
+are being used in specialized fields like formal verification, or mathematics.
+Modern maths after all is often very heavily assisted by computers,
+so a lot of the proofs that people have figured out in the past millenia have
+been re-done in proof assistants like Coq or Agda, which are dependently typed
+languages, for ease of machine-checking and discovering new theorems.
+
+(I've read somewhere that like half of the theorems in those proof assistant databases
+are from category theory because it's very primordial, abstract, and connects
+seemingly unrelated areas in maths, which is why I personally have an interest
+in the topic though sadly I know very little about it.)
+
+The canonical example of a dependent type is the type of lists of a given length.
+
+```typescript
+List : Nat → Type
+```
+
+Here `List` is a type constructor that takes an `Nat` value, representing
+the length of the list, and returns a type, namely the type of lists of
+that length. So, `List 3` would be the type of lists of length 3. You might think
+"this is possible in typescript", but the difference here is that the `3` in `List 3`
+is a value, not a type as in typescript's literal types.
+
+This distinction is important because it means we could for example define a
+`concatenate` function that takes a `List n` and a `List m` and returns
+a `List (n + m)`, where `n + m` is computed during type checking by adding the two
+lengths together.
+
+To make dependent types work at all, the **Calculus of Constructions** (CoC)
+unifies the concepts of kinds, types, and values into a single system (formally,
+a hierarchy of "universes"). We obviously know that `3 :: Nat`, but never `Nat :: 3`,
+so `3` and `Nat` live at different levels of this hierarchy, but the layers 
+do blur enough to where we don't call "kinds" kinds anymore, and "kinds" are just types
+that have types in their definition. Similarly you could write down types that have
+these "kinds" in their definition, and so on.
+
+What having values available at type-check time buys you is that you can for
+example define a function `head` that does not work on lists of length 0,
+by construction, and you couldn't even call it with such a list!
+
+```typescript
+head :: ∀n: Nat. List (n + 1) → A
+```
+
+More usefully, what this would look like in practice is that you would for example
+jot down a set of theorems (i.e. types!) on what constitues say a vector space,
+and then you could prove that a certain data structure conforms to those theorems,
+and then you could use that data structure wherever a vector space is required,
+and the type checker would verify that all the vector space laws are upheld, and
+then you can prove more theorems about your data structure, knowing that it is a
+vector space.
+
+propositions-as-types, as we've discussed in the post about the Curry-Howard isomorphism,
+is really taken to the extreme in dependently typed programming. Types allow you to
+express any sort of constraint or property that you want your data to uphold,
+and proving that your data conforms to those properties is as simple as providing
+a value of the corresponding type. The proof assistant by virtue of type checking
+then verifies that your proof is sound.
+
+---
+
+Why should you care about dependent types if you don't plan on using
+a dependently typed programming language?
+
+Join me next time for the final post in this series, where we'll wrap this thing
+up!
+
+
+<SeriesNav
+  seriesName="type systems"
+  currentPart="24"
+  prevPart="23"
+  nextPart="25"
+  position="footer"
+/>
