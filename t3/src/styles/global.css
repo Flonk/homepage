@@ -180,6 +180,17 @@ a {
 a:hover {
   color: var(--accent);
 }
+
+a.footnote,
+a.footnote:visited,
+a.footnote:hover,
+a.footnote:active,
+a.footnote:focus,
+a.footnote:focus-visible {
+  color: inherit;
+  text-decoration: none;
+  cursor: text;
+}
 p {
   margin-bottom: 1em;
 }

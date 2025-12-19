@@ -69,16 +69,54 @@ path through the cube:
 - `λ→` is simply typed lambda calculus.
 - `λ2` is System F, adding generic types
 - `λω` is System Fω, adding kinds
-- `λC` is the calculus of constructions, adding dependent types
+- `λC` is the Calculus of Constructions, adding dependent types
 
 There are other paths through the cube aswell, but ours is
 the most natural one. The other type systems are interesting in their own right --
 for example `λP` adds just dependent types to the simply typed lambda calculus but
 not generics or kinds -- but they are mostly of theoretical interest.
 
-But hey, if we want to dive deeper into type theory in the future, maybe
-I'll do another series like this one, exploring perhaps not type systems,
-but type theory in general. Monads, GADTs, Category Theory, Linear Types,
+And `λC` is really the pinnacle of type system expressiveness; there is no obvious
+way to go any further. There exists for example the Calculus of Inductive
+Constructions (CIC) that underpins Coq, but it doesn't give more expressive
+power over `λC`, just more convenience. 
+
+Now.. we're really reaching the boundaries of my knowledge here, but as I understand, not
+all theorems in mathematics are provable by constructive proofs, which is what
+the Curry-Howard isomorphism gives us access to. So there will always be 
+mathematical truths that are outside the reach of any type system, that are
+provable under for example the set of axioms known as Zermelo-Fraenkel set
+theory with the axiom of choice (ZFC). ZFC is provably more expressive than
+`λC` or any other type system we can come up with, because the axiom of choice
+gives us access to non-constructive proofs.
+
+And the real real ceiling of course is Gödel's incompleteness theorems, which state that
+any formal system that is expressive enough to do arithmetic, and is consistent
+(i.e. does not both prove a statement and disprove it) is necessarily incomplete,
+meaning there are always true statements that cannot be proven within the system.
+
+The Calculus of Constructions sits right at this boundary -- adding more expressiveness
+to it would make it inconsistent in some ways. This can be desirable; for example,
+allowing general recursion makes a type system inconsistent and allows you to
+create proofs of false statements, which is bad, but obviously any practical
+programming language needs general recursion to be useful.
+
+Either way this gives us no clear path forward to even more expressive type systems,
+as for everything gained, something else is lost, This makes the Calculus of Constructions
+the sweet spot for both theoretical exploration and practical use, and the 
+lambda cube a natural representation of type systems -- from the most simple
+to the most expressive!
+
+---
+
+With our newfound knowledge of the Calculus of Constructions and the Lambda Cube,
+I'll release you back into the wild. We've reached the end of this series on type systems;
+to be honest writing a blog post every day for almost a month was quite a challenge,
+but time flies when you're having fun eh :D 
+
+If we ever want to dive deeper into type theory in the future, maybe
+I'll do another series like this one -- theres still so many topics that I 
+didn't have the time to cover here. Monads, GADTs, Category Theory, Linear Types,
 Hindley-Milner Type Inference, Martin Löf Type Theory, Homotopy Type Theory (haha
 probably not that one), the list really is endless.
 

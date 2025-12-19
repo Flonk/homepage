@@ -84,20 +84,27 @@ then you can prove more theorems about your data structure, knowing that it is a
 vector space.
 
 propositions-as-types, as we've discussed in the post about the Curry-Howard isomorphism,
-is really taken to the extreme in dependently typed programming. Types allow you to
-express any sort of constraint or property that you want your data to uphold,
-and proving that your data conforms to those properties is as simple as providing
-a value of the corresponding type. The proof assistant by virtue of type checking
-then verifies that your proof is sound.
+is really taken to the extreme in dependently typed programming. When you're using
+proof assistants like Coq or Agda, you're not really "programming" in the traditional sense,
+where you want to compute some result at "runtime" (though sometimes you do, Coq has a `Compute` instructionS),
+you're really just writing down formalismsm, and the interesting part is the type
+checking phase, where the proof assistant verifies that your formalisms are correct.
+I've refrained from giving Coq code examples because I'm not too familiar with it myself,
+but it is really interesting to peek arount Coq codebases, it's a whole different world.
 
----
+I mean picture this. The `=` operator for checking equality isn't some built-in primitive
+that compares two values and returns a boolean, no no no. Instead, `=` is a *type constructor*,
+a.k.a. a generic; sloppily: `= :: ∀A: Prop. A → A → Prop`, where `Prop` is the type of logical propositions.
+It comes with only one constructor, or axiom if you will, `eq_refl :: x = x`, stating that
+any value is equal to itself. 
 
-Why should you care about dependent types if you don't plan on using
-a dependently typed programming language?
+So `2 = 1 + 1` is actually *a type*, and proving it -- by the Curry-Howard isomorphism
+-- amounts to constructing a value of type `2 = 1 + 1`.
 
-Join me next time for the final post in this series, where we'll wrap this thing
-up!
+And yeah you need dependent types to express this, because the type `1 + 1`
+depends on the value `1`. 
 
+Mind-bending really.
 
 <SeriesNav
   seriesName="type systems"
