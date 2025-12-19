@@ -50,7 +50,7 @@ already using copilot for everything -- and descriptions of what we want to buil
 will be all that remain.
 
 One could even say that with AI generating code, and you refining types depending
-on AI output, that *you* are the formal verification system, using "dependent" types
+on AI output, that *you are* the formal verification system, using "dependent" types
 to guide the AI to produce correct code.
 
 ## Parting Thought: Barendregt's Lambda Cube
@@ -61,21 +61,29 @@ Barendregt's Lambda Cube.
 
 ![The Lambda Cube](/assets/2025-12-type-systems/lambda-cube.png)
 
-It organizes lambda calculi by expressiveness along three axes, and in this past month,
-we've explored one path through the cube:
+It organizes lambda calculi by expressiveness along three axes, and explores how
+the calculus of constructions can be arrived at by incrementally adding features
+to the simply typed lambda calculus. This past month, we've taken one particular
+path through the cube:
 
 - `λ→` is simply typed lambda calculus.
 - `λ2` is System F, adding generic types
 - `λω` is System Fω, adding kinds
 - `λC` is the calculus of constructions, adding dependent types
 
-There are other paths through the cube aswell, but the one we've taken is
+There are other paths through the cube aswell, but ours is
 the most natural one. The other type systems are interesting in their own right --
 for example `λP` adds just dependent types to the simply typed lambda calculus but
 not generics or kinds -- but they are mostly of theoretical interest.
 
 But hey, if we want to dive deeper into type theory in the future, maybe
-I'll do another series like this one, exploring more type systems and
-concepts. For now however, I wish you all a merry christmas and happy holidays,
-and see you next time!
+I'll do another series like this one, exploring perhaps not type systems,
+but type theory in general. Monads, GADTs, Category Theory, Linear Types,
+Hindley-Milner Type Inference, Martin Löf Type Theory, Homotopy Type Theory (haha
+probably not that one), the list really is endless.
+
+
+For now however, let's stop with all the thinking. Go drive some cookies
+into your gut, will ya! Merry christmas and see you around next time :)
+
 

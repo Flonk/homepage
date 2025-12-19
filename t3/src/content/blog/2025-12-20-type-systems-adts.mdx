@@ -39,7 +39,8 @@ type numberPlusString =
 ```
 
 Again the important bit is the discriminant `type` property that
-makes sure we can tell the variants apart.
+makes sure we can tell the variants apart, otherwise `string + string`
+would collapse into just `string`.
 
 With just these definitions, we can do maths!
 
