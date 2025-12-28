@@ -1,0 +1,181 @@
+---
+title: "Brooklyn 99: Captain Holt Seesaw Puzzle"
+description: ""
+pubDate: "December 28 2025"
+---
+
+I'm not really sure why, but that one puzzle from Brooklyn 99
+popped back into my head today.
+
+That show was hilarious in general, and that particular scene
+really caught me off guard and had me puzzling through the rest of
+the episode, and beyond that. I ended up busting out coins
+and spread them out on the kitchen table, and only after a good
+night's sleep did I find the solution!
+
+Here it is, from S02E18:
+
+> There are 12 men on an island. 11 weigh exactly the same amount,
+> but one of them is slightly lighter or heavier.
+> You must figure out which.
+>
+> The island has no scales, but there is a seesaw. You can only
+> use it three times.
+
+And also, you must determine whether the odd man is lighter or heavier.
+
+Go ahead, try to figure it out yourself before reading on!
+
+---
+
+It always seemed to me like you need three-and-a-quarter weighings
+to solve this problem, like after three weighings you're always
+lacking just the tiniest smidge of information. For example:
+
+- Split the men into groups of four. Weigh two groups.
+- If they balance, figure out which of the remaining four is
+  the odd one out, which is doable.
+- If they don't balance, you're left with 8 men which is just
+  so many. If you weigh 2 and 2, you then end up in situations
+  involving finding the odd one out of 4 men which is simply
+  impossible in a single weighing.
+
+And nothing I tried seemed to work!
+
+## The Solution
+
+Well instead of telling you the solution, let me share my approach,
+which was reducing the problem to simpler subproblems.
+
+A key insight for me was that you have known neutral men at your
+disposal and they turn out to be really useful for weighing against
+unknown men.
+
+We use the following labels for men:
+
+- "h" = heavy or neutral
+- "l" = light or neutral
+- "?" = unknown (could be heavy, light or neutral)
+- "n" = known neutral
+
+---
+
+### Three Men, one is heavier - 1 weighing
+
+Let's call this case "hhh" meaning we have three men that are
+potentially heavy. You can do it in **1** weighing:
+
+- Weigh h against h.
+- If they balance, the third h is the heavy one.
+- Else, wherever the seesaw tips down, that man is the heavy one.
+
+The "hhl" case turns out to be the same as the "hhh" case by the way,
+meaning if two men are potentially heavy and one is potentially light, you can
+still find the odd one out in a single weighing:
+
+- Weigh h against h.
+- If they balance, l is the light one.
+- Else, wherever the seesaw tips down, that man is the heavy one.
+
+And naturally "llh" is the same aswell.
+
+---
+
+### Three Men, one is odd - 2 weighings
+
+Let's call this case "???" meaning we have three men of unknown
+weight but one of them is lighter or heaviier. For this case we now
+need a second weighing:
+
+- Weigh ? against ?
+- If they balance, the third ? is the odd one out.
+  - Weigh it against n to see if it's heavy or light.
+- If the seesaw tips left, either the left ? is heavy or the right ? is light;
+  we have specified our men to be "hln". Weigh h against n.
+  - If the seesaw tips left, h is heavy.
+  - If they balance, l is light.
+  - If the seesaw tips right, the universe explodes.
+- If the seesaw tips right, it's the same procedure but reversed.
+
+---
+
+### Four men, ???? - 2 weighings
+
+The four man case stumped me for quite a while, until I realized
+that grabbing _more_ men that aren't part of the unknown set is
+actually helpful here. The neutral men are the key to this puzzle.
+
+Here is a solution that **does not** work.
+
+- Weigh ? against ?
+- If the seesaw tips left, either the left ? is heavy or the right ? is light, so we have specified our men to be "hlnn".
+- Weigh h againt n.
+  - If they balance, l is light.
+  - If the seesaw tips left, h is heavy.
+  - If the seesaw tips right, the universe explodes.
+- If the seesaw tips right, it's symmetric.
+- If they balance, we have ?? left.
+  - Weigh ? against n.
+  - If they balance, the fourth ? is the odd one. _[not completely specified! We don't know if it's heavy or light]_
+  - If the seesaw tips left, ? is heavy.
+  - If the seesaw tips right, ? is light.
+
+It's this smidgeon of missing information I mentioned eariler,
+it always seems to pop up somewhere.
+
+That is, unless we use "external" neutrals!
+
+- Weigh ??? against nnn.
+- If they balance, the fourth ? is the odd one.
+  - Weigh ? against n to see if it's heavy or light.
+- If the seesaw tips left, goto "hhh".
+- If the seesaw tips right, goto "lll".
+
+---
+
+### Four men, hhhh - 2 weighings
+
+If potential weight is known, four men still requires two weighings,
+unfortunately.
+
+- Weigh hh against hh.
+- If they balance, the universe explodes.
+- If the seesaw tips left, goto "hh".
+- If the seesaw tips right, goto "hh".
+
+Or:
+
+- Weigh hhh against nnn.
+- If they balance, the fourth h is the odd one.
+- If the seesaw tips left, goto "hhh".
+- If the seesaw tips right, the universe explodes.
+
+---
+
+## The actual Solution - 3 weighings
+
+With all the easier subproblems solved, we can now tackle the original
+problem of ???? ???? ????.
+
+- Weigh ???? against ????
+- If they balance, goto "????" with the remaining four men.
+- If the seesaw tips left, we are left with "hhhh llll" with
+  the other four men known to be neutral, and have to solve that in
+  two weighings.
+- If the seesaw tips right, it's symmetric.
+
+The "hhhh llll" case is also very tricky because it's just so many
+people to weigh. But we have a good grasp on what's possible to
+find out in a single weighing now: to make the third weigh work,
+we need to always reduce the problem to a three-man hhh, hhl, or llh.
+
+It's a very sneaky thing you have to figure out there, we're weighing
+8 men again which seems strange and also we have both heavies and lights
+on both sides of the seesaw.
+
+- Weigh hhll against hlnn
+- If they balance, there's a single h and l left that are potentially odd. hl is easily solved in the third weighing.
+- If the seesaw tips left, either the left hh is heavy or the right l is light, so goto "hhl".
+- If the seesaw tips right, wither the left ll is light or the right h is heavy, so goto "llh".
+
+And that's it! Three weighings to find the odd man out of twelve.
