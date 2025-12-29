@@ -15,7 +15,7 @@ import SeriesNav from "../../components/SeriesNav.astro";
 />
 
 We've typed our terms. We've quantified over types. We've typed our types even,
-with kinds. And we can quantify over kinds aswell... But, there is one last frontier
+with kinds. And we can quantify over kinds as well... But, there is one last frontier
 of expressiveness that we have yet to explore: Dependent Types.
 
 The definition is simple: A dependent type is a type that depends on a value.
@@ -26,14 +26,14 @@ happen at runtime, by the program. You would never be able to compute a value,
 and then derive a type from it, because by the time the value exists, the types
 are long gone.
 
-There is a brand of programming languages however, called *dependently typed
-programming languages*, that blur the line between compile time and runtime,
+There is a brand of programming languages however, called _dependently typed
+programming languages_, that blur the line between compile time and runtime,
 and allow types to depend on values.
 
 Really you wouldn't use these languages for everyday programming, but they are
-are being used in specialized fields like formal verification, or mathematics.
+being used in specialized fields like formal verification, or mathematics.
 Modern maths after all is often very heavily assisted by computers,
-so a lot of the proofs that people have figured out in the past millenia have
+so a lot of the proofs that people have figured out in the past millennia have
 been re-done in proof assistants like Coq or Agda, which are dependently typed
 languages, for ease of machine-checking and discovering new theorems.
 
@@ -62,7 +62,7 @@ lengths together.
 To make dependent types work at all, the **Calculus of Constructions** (CoC)
 unifies the concepts of kinds, types, and values into a single system (formally,
 a hierarchy of "universes"). We obviously know that `3 :: Nat`, but never `Nat :: 3`,
-so `3` and `Nat` live at different levels of this hierarchy, but the layers 
+so `3` and `Nat` live at different levels of this hierarchy, but the layers
 do blur enough to where we don't call "kinds" kinds anymore, and "kinds" are just types
 that have types in their definition. Similarly you could write down types that have
 these "kinds" in their definition, and so on.
@@ -86,23 +86,23 @@ vector space.
 propositions-as-types, as we've discussed in the post about the Curry-Howard isomorphism,
 is really taken to the extreme in dependently typed programming. When you're using
 proof assistants like Coq or Agda, you're not really "programming" in the traditional sense,
-where you want to compute some result at "runtime" (though sometimes you do, Coq has a `Compute` instructionS),
-you're really just writing down formalismsm, and the interesting part is the type
+where you want to compute some result at "runtime" (though sometimes you do, Coq has a `Compute` instruction),
+you're really just writing down formalisms, and the interesting part is the type
 checking phase, where the proof assistant verifies that your formalisms are correct.
 I've refrained from giving Coq code examples because I'm not too familiar with it myself,
-but it is really interesting to peek arount Coq codebases, it's a whole different world.
+but it is really interesting to peek around Coq codebases, it's a whole different world.
 
 I mean picture this. The `=` operator for checking equality isn't some built-in primitive
-that compares two values and returns a boolean, no no no. Instead, `=` is a *type constructor*,
+that compares two values and returns a boolean, no no no. Instead, `=` is a _type constructor_,
 a.k.a. a generic; sloppily: `= :: ∀A: Prop. A → A → Prop`, where `Prop` is the type of logical propositions.
 It comes with only one constructor, or axiom if you will, `eq_refl :: x = x`, stating that
-any value is equal to itself. 
+any value is equal to itself.
 
-So `2 = 1 + 1` is actually *a type*, and proving it -- by the Curry-Howard isomorphism
+So `2 = 1 + 1` is actually _a type_, and proving it -- by the Curry-Howard isomorphism
 -- amounts to constructing a value of type `2 = 1 + 1`.
 
 And yeah you need dependent types to express this, because the type `1 + 1`
-depends on the value `1`. 
+depends on the value `1`.
 
 Mind-bending really.
 

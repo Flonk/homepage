@@ -43,7 +43,7 @@ Curry-Howard says we can map this proposition to a distinct type:
 proposition :: A * B → A
 ```
 
-That is, the "and" operator `^` in logic corresponds to the product type `*` 
+That is, the "and" operator `^` in logic corresponds to the product type `*`
 (as discussed last post; it's the tuple type), and the implication `→` in logic
 corresponds to the function type `→` in programming languages.
 
@@ -63,16 +63,16 @@ That code typechecks, so the proposition is true!
 
 The other common logical operators map similarly:
 
-| Logic            | Programming Type      |
-|------------------|-----------------------|
-| `A ∧ B` (and)    | `A * B` (product)    |
-| `A ∨ B` (or)     | `A + B` (sum)        |
-| `A → B` (implies)| `A → B` (function) |
-| `⊤` (true)       | `1` (top type)     |
-| `⊥` (false)      | `0` (bottom type)    |
+| Logic             | Programming Type   |
+| ----------------- | ------------------ |
+| `A ∧ B` (and)     | `A * B` (product)  |
+| `A ∨ B` (or)      | `A + B` (sum)      |
+| `A → B` (implies) | `A → B` (function) |
+| `⊤` (true)        | `1` (top type)     |
+| `⊥` (false)       | `0` (bottom type)  |
 
 To prove a false proposition like `A → ⊥` (if `A` then false),
-we would need to find a value of type 
+we would need to find a value of type
 
 ```typescript
 const falseProof = <A>(a: A): never => ...
@@ -83,28 +83,27 @@ never produce a value of type `never`. Checkmate, proposition is false! <sup>[1]
 
 ---
 
-The Curry-Howard isomorphism is really cool and to me anyway came 
-completely out of the blue when I first heard of it, like it's two 
-separate areas that I didn't expect to be connected, coming from a 
+The Curry-Howard isomorphism is really cool and to me anyway came
+completely out of the blue when I first heard of it, like it's two
+separate areas that I didn't expect to be connected, coming from a
 typescript background.
 
-It's also really a really nice trick for
-toddlers like me who know programming but not logic. Whenever I 
-come across a logical proposition in the wild, I usually map it to types 
+It's also a really nice trick for
+toddlers like me who know programming but not logic. Whenever I
+come across a logical proposition in the wild, I usually map it to types
 and then I'm like "aah, I understand what this is saying now" :D
 
-Of course, then there are the grown-ups who know both maths *and*
+Of course, then there are the grown-ups who know both maths _and_
 programming, and they are interested in Curry-Howard for a totally different
 reason: All mathematical proof-finding is just an application of logic at
 the end of the day, so a type checker for any sufficiently expressive type
-system is *also* something that can prove (or verify) mathematical theorems
+system is _also_ something that can prove (or verify) mathematical theorems
 for you!
 
 Proof assistants like Coq or Agda use this fact to help mathematicians
 formalize and check their proofs by letting them write proofs as programs
 in a particularly strong variant of the lambda calculus -- the Calculus
 of Constructions.
-
 
 <SeriesNav
   seriesName="type systems"
@@ -116,7 +115,11 @@ of Constructions.
 
 ---
 
-<a name="footnote1" class="footnote"><sup>[1] There is a one concrete type `A`
-for which you could implement this function, namely when `A` is itself `never`.
-That maps to the proposition `⊥ → ⊥`, which is true. But the original proposition
-as stated is not true, as `A` is generic. </sup></a>
+<a name="footnote1" class="footnote">
+  <sup>
+    [1] There is a one concrete type `A` for which you could implement this
+    function, namely when `A` is itself `never`. That maps to the proposition `⊥
+    → ⊥`, which is true. But the original proposition as stated is not true, as
+    `A` is generic.{" "}
+  </sup>
+</a>

@@ -22,7 +22,7 @@ arguments, since the only things you can do with a value of a generic type are
 things that you can do to any type, which is not a whole lot.
 
 There is also a related and dual concept called **existential quantification**,
-which is written with the symbol `∃`, meaning "there exists". This will allow 
+which is written with the symbol `∃`, meaning "there exists". This will allow
 us to express things like "I need a value of some type, but I don't care what type it is,
 as long as it satisfies certain properties".
 
@@ -34,7 +34,7 @@ getAny :: ∃A. A
 
 This type says "there exists a type `A`, and `getAny` will be a value of that type".
 But which type is it? I won't tell! It could be `Int`, it could be `String`, it
-could be `Horse`. But there definitely *is* some type `A` such that `getAny` has it.
+could be `Horse`. But there definitely _is_ some type `A` such that `getAny` has it.
 Pinky promise.
 
 Now, rest assured I will rarely talk about Java in a series about advanced type systems.
@@ -61,7 +61,7 @@ void printAll(List<∃T. T> xs) {
 }
 ```
 
-Now, `printAll` could have just as easily been a universal quantification, 
+Now, `printAll` could have just as easily been a universal quantification,
 with `void <T> printAll(List<T> xs)`, and this turns out to be true for many
 cases. In Java you tend to use wildcards when you can't or don't need to introduce
 a type parameter -- often it's simply more convenient.
@@ -78,7 +78,7 @@ matrix.add(List.of(true, false));
 
 Since we aren't defining a single concrete type for the inner lists, we can put
 many different things into it. But at the same time, we know that each inner list
-is a list of *something* -- "there exists a type", but I don't know which one.
+is a list of _something_ -- "there exists a type", but I don't know which one.
 
 Existential quantification is also related to interfaces or abstract classes.
 Assume a mishmash of typescript and pseudocode:
@@ -90,7 +90,7 @@ const show = (s: Showable) =>
   s.toString(s.value);
 ```
 
-A `Showable` is a value that contains some type `A` inside it, but since it's 
+A `Showable` is a value that contains some type `A` inside it, but since it's
 generic, the `show` function can never inspect it. But whatever that `A` is, we know
 we can do one thing with it: call `toString` on it to get a `String` representation.
 
@@ -101,7 +101,7 @@ It turns out that existential quantification and universal quantification are re
 two sides of the same coin. In mathematical logic, there is a process called **Skolemization**
 that allows you to convert statements with existential quantifiers into statements
 with only universal quantifiers, and vice versa. Type theory and mathematical logic
-*also* turn out to be two sides of the same coin (via the Curry-Howard isomorphism),
+_also_ turn out to be two sides of the same coin (via the Curry-Howard isomorphism),
 so types can also be skolemized.
 
 Though not as freely as in logic I have heard, but to be honest I have never done due diligence
@@ -117,14 +117,13 @@ then the caller of `show` needs to pick a type `T` to specialize it to, before c
 
 Under the existential definition `const show = (s: Showable) => ...`, the caller
 of `show` doesn't get to pick the type inside the `Showable` -- that was already
-chosen by the code that created the `Showable`, which might have happend much earlier.
+chosen by the code that created the `Showable`, which might have happened much earlier.
 
 This can be a useful distinction to make in APIs, as it allows library authors
 to hide implementation details from users. Like, just like we hide access
 to raw data behind functions and methods, we can hide type details behind existential types.
 Refer also to **opaque types** or **opaque pointers** which are sometimes talked about
 in API design. It's a similar idea!
-
 
 <SeriesNav
   seriesName="type systems"

@@ -17,10 +17,10 @@ _(This is not part of the main series! Feel free to skip it.)_
 
 While not strictly related to type systems, I would like to spend a few minutes
 talking about **Continuation-Passing Style** (CPS), a programming pattern
-that has interesting interactions with type systems, and which at the same time 
-is both a very mind-bending concept, aswell as very common in practice!
+that has interesting interactions with type systems, and which at the same time
+is both a very mind-bending concept, as well as very common in practice!
 
-Remember the function from last post that was generic in it's return type?
+Remember the function from last post that was generic in its return type?
 
 ```typescript
 apply42 :: ∀R. (Int → R) → R
@@ -30,8 +30,8 @@ apply42 = ΛR. λf: (Int → R). f 42
 We said that `apply42` doesn't care about the result type `R` at all; it's just
 going to forward whatever `f` returns.
 
-A way to look at this is that `apply42` does a certain computation, or has some 
-knowledge about some data (in this case, the number `42`), and it then hands 
+A way to look at this is that `apply42` does a certain computation, or has some
+knowledge about some data (in this case, the number `42`), and it then hands
 this special knowledge off to another function `f` that is interested in this
 knowledge. What `f` does with this knowledge is super irrelevant to `apply42` though,
 hence the generic return type.
@@ -39,15 +39,15 @@ hence the generic return type.
 Or in other words, we split our program into two parts: one part that produces
 some data, and a "continuation" that represents "the rest of the program".
 
-When you put it into words it might sound a bit abstact, but in a world before
+When you put it into words it might sound a bit abstract, but in a world before
 Promises and async/await, this is exactly the pattern we were using in javascript
 to handle asynchronous computations! Remember these?
 
 ```javascript
-import { readFile } from 'fs';
+import { readFile } from "fs";
 
-readFile('file.txt', 'utf-8', (_, data) => {
-  console.log('File contents:', data);
+readFile("file.txt", "utf-8", (_, data) => {
+  console.log("File contents:", data);
   // ... run the rest of your program here
 });
 ```
@@ -57,7 +57,7 @@ the `readFile` function does some computation to produce some value (reading a f
 and then it hands off this value to the continuation. And also, `readFile` really doesn't care what happens to the data after that.
 
 If we were to give `readFile` a type, it would be something like
-`FilePath → Encoding → (Error → String → Void) → Void`, which is not a 
+`FilePath → Encoding → (Error → String → Void) → Void`, which is not a
 generic function, so we have to squint a little to see the connection...
 
 but if we were to write a version of `readFile` that instead of returning `Void`
@@ -67,7 +67,7 @@ This particular variant would not work in javascript, because it would imply we
 can capture the return value of the continuation like so:
 
 ```typescript
-let result = readFile('file.txt', 'utf-8', (_, data) => {
+let result = readFile("file.txt", "utf-8", (_, data) => {
   return data.length;
 });
 
@@ -77,18 +77,18 @@ console.log(result); // length of file contents
 And that doesn't work because of how javascript handles asynchronous code.
 
 There are programming languages however, like Scheme or Standard ML, where
-continuations are first-class citizens, and you can "capture" the rest of 
+continuations are first-class citizens, and you can "capture" the rest of
 the program as a value and call it later, which to be honest really is
 programming dark magic.
 
-Since I don't want to make you read scheme code, let's assume we have a 
+Since I don't want to make you read scheme code, let's assume we have a
 javascript functon `callCC` ([call-with-current-continuation](https://en.wikipedia.org/wiki/Call-with-current-continuation)) that allows us to
 capture the rest of the program as a function. We can do really, really crazy
 things with it.
 
 ```typescript
 let saved;
-let result = callCC(k => {
+let result = callCC((k) => {
   saved = k;
   return 0;
 });
@@ -99,13 +99,13 @@ saved(result + 1);
 
 Makes no sense? Good.
 
-As soon as we call `callCC`, the entire rest of the program is captured 
+As soon as we call `callCC`, the entire rest of the program is captured
 into `k` -- that is to say, we split our program into two parts: the part
 before `callCC`, and the part after it.
 
 ```typescript
 let saved;
-let result = $$$
+let result = $$$;
 ```
 
 where `$$$` is the rest of the program, which will be captured into `k`, which
@@ -113,7 +113,7 @@ we will store into `saved`, so we can call it later. `callCC` then returns `0`, 
 `result` is `0`.
 
 We log `result` to the console, which prints `0`, and then we call `saved(result + 1)`, which **jumps back in time** to our `$$$` marker,
-but instead of invoking `callCC`, that line becomes `let result = result + 1` and from then on 
+but instead of invoking `callCC`, that line becomes `let result = result + 1` and from then on
 we rerun the rest of the program which gets us back to `console.log` and rerunning
 `saved` again, resulting in a loop.
 
@@ -122,17 +122,17 @@ which lines of code are being run in which order, if you were to trace them out 
 
 ```typescript
 let saved;
-let result = callCC(k => {    
-  saved = k;                   
-  return 0;                      
-});                              
-console.log(result); // prints 0              
+let result = callCC((k) => {
+  saved = k;
+  return 0;
+});
+console.log(result); // prints 0
 saved(result + 1); // timewarp to after callCC returns, but with `result + 1` in place of `callCC`'s return value
-let result = result + 1; 
-console.log(result); // prints 1              
+let result = result + 1;
+console.log(result); // prints 1
 saved(result + 1); // timewarp
-let result = result + 1; 
-console.log(result); // prints 2              
+let result = result + 1;
+console.log(result); // prints 2
 saved(result + 1); // timewarp
 // ...
 ```

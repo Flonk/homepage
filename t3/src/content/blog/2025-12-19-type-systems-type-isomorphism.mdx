@@ -22,7 +22,7 @@ regular programming we have two different notions of equality of
 values: Referential equality (`==` in Java), and structural equality
 (`.equals()` in Java).
 
-As far as types go, the working programmer does have an implicit 
+As far as types go, the working programmer does have an implicit
 notion of a certain kind of type equivalence, though probably you
 don't think about it too much.
 
@@ -66,11 +66,9 @@ so we can definitely prove that they are equivalent!
 ```typescript
 type Color = "Red" | "Black";
 
-const boolToColor = (b: boolean): Color =>
-  b ? "Red" : "Black";
+const boolToColor = (b: boolean): Color => (b ? "Red" : "Black");
 
-const colorToBool = (c: Color): boolean =>
-  c === "Red";
+const colorToBool = (c: Color): boolean => c === "Red";
 ```
 
 Ensuring that the isomorphism laws hold is left as an exercise to
@@ -92,8 +90,8 @@ with just one inhabitant, is called `1`. An example would be
 `type Unit = {}`, but actually we've seen another example
 before: The top type, `unknown`!
 
-Defining an isomorphism between `Unit` and `unknown` is 
-a bit awkward in TypeScript, but how about this one:
+Defining an isomorphism between `Unit` and `unknown` is
+a bit more awkward in TypeScript, but how about this one:
 
 ```typescript
 const unitToUnknown = (u: Unit): unknown => null as unknown;
@@ -124,8 +122,8 @@ const never2ToNever = (n: never2): never => {
 };
 ```
 
-You can never call any of these functions anyway, since you can 
-never find values `n` to call the function with, so it's a very 
+You can never call any of these functions anyway, since you can
+never find values `n` to call the function with, so it's a very
 degenerate case of an isomorphism. Looking at the "proof":
 
 ```typescript
@@ -143,7 +141,7 @@ of values.
 
 But. What do we do, now that we have equated integers with types?
 
-Arithmetic! 
+Arithmetic!
 
 <SeriesNav
   seriesName="type systems"

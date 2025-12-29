@@ -19,7 +19,7 @@ right? And `string + boolean` is a discriminated union. That's as
 far as ADTs go really, but it hasn't stopped people from playing
 around with other algebra concepts and see what that maps to on types.
 
-Let's revisit our favourite generic once again, Lists. In an 
+Let's revisit our favourite generic once again, Lists. In an
 ADT context, where we have just addition and multiplication, we can
 actually express them!
 
@@ -41,9 +41,9 @@ $$
 \text{List } X = \sum_{n=0}^{\infty} X^n
 $$
 
-That's interesting in its own right, though if you take any list of 
-values like `[ "a", "b", "c" ]`, you'll see that it will be 
-encompassed by this type, because it has three elements, and 
+That's interesting in its own right, though if you take any list of
+values like `[ "a", "b", "c" ]`, you'll see that it will be
+encompassed by this type, because it has three elements, and
 the three element case is part of the infinite discriminated union.
 
 And uhm.. if we squint a little, and then squint some more, this
@@ -56,7 +56,7 @@ $$
 
 So uhm. A List of `string`s is `1 / (1 - string)`?
 
-I mean  "dividing by string" or "subtracting a string" seems like
+I mean "dividing by string" or "subtracting a string" seems like
 a really dumb concept. Like, division is the opposite of multiplication,
 and multiplying `a * b` amounts to creating a record with an `a` and a `b`.
 So what would "dividing by string" even mean? Like, you're removing
@@ -75,7 +75,7 @@ The derivative of a list is... two lists!
 
 I guess!
 
-An alternative definition for lists would have been the "linked-list" type 
+An alternative definition for lists would have been the "linked-list" type
 definition that is recursive:
 
 $$
@@ -123,7 +123,7 @@ T' X = (T X)^2 + X * T' X * T X + X * T X * T' X
 $$
 
 So.. it's either a tuple of two trees, or something that looks similar to a tree node,
-or that same something again. ¯\\\_(°\_o)\_/¯
+or that same something again. ¯\\\_(°_o)\_/¯
 
 ---
 
@@ -135,8 +135,8 @@ of One-Hole Contexts"](http://strictlypositive.org/diff.pdf).
 
 To me it's really fascinating that doing such an ill-defined operation
 like "taking the derivative of a type" actually leads to something
-meaningful, and it leads to *the same* meaningful thing for different
-types. I mean, we did so much hand-waving here.. subtracting types, 
+meaningful, and it leads to _the same_ meaningful thing for different
+types. I mean, we did so much hand-waving here.. subtracting types,
 dividing types, and.. taking a derivative usually requires limits
 and infinitesimals, which makes no sense on types either! Nevertheless,
 we get something consistent out of it. Maths is wild.
@@ -216,9 +216,9 @@ type Tree<A> =
 
 // The derivative of Tree<A>
 type TreeCtx<A> =
-  | { type: "holeAtRoot", left: Tree<A>; right: Tree<A> }
-  | { type: "holeInLeft", value: A; left: TreeCtx<A>; right: Tree<A> }
-  | { type: "holeInRight", value: A; left: Tree<A>; right: TreeCtx<A> };
+  | { type: "holeAtRoot"; left: Tree<A>; right: Tree<A> }
+  | { type: "holeInLeft"; value: A; left: TreeCtx<A>; right: Tree<A> }
+  | { type: "holeInRight"; value: A; left: Tree<A>; right: TreeCtx<A> };
 
 // The Tree Zipper -- the context plus the focused element
 type TreeZipper<A> = {
@@ -239,10 +239,10 @@ the left subtree, which itself has a hole in it. The third case is analogous.
 
 In a "real world" implementation of trees, where tree nodes additionally
 keep track of their parent node, the zipper would do likewise, which makes
-tree zippers *the* most convenient way of navigating and updating trees.
+tree zippers _the_ most convenient way of navigating and updating trees.
 
 Moving up and down the zipper is `O(1)`, and updating the focused element
-is `O(1)` aswell! And not only that, you can use zippers to model
+is `O(1)` as well! And not only that, you can use zippers to model
 infinite trees, because you can lazily expand the tree as you navigate it!
 
 I know that this series about type theory is very dense and often doesn't
@@ -250,8 +250,6 @@ obviously connect to day-to-day programming, but really do read up on
 these things. I've used tree zippers in real projects multiple times,
 leading to super efficient and elegant solutions that I would never have
 found had I not known about Conor McBride's work.
-
-
 
 <SeriesNav
   seriesName="type systems"

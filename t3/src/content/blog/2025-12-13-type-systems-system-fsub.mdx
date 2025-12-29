@@ -14,14 +14,13 @@ import SeriesNav from "../../components/SeriesNav.astro";
   nextPart="15"
 />
 
-
 In the spirit of type theory and this series, we could ask ourselves what the minimal
 set of features is so we can add subtyping to System F. Other people have
 wondered the same thing, and the canonical answer is described in
 "An extension of system F with subtyping" by Luca Cardelli et al. in 1991, which
 introduces a system called **System F\<:**, pronounced "F sub".
 
-Turns out we just need to two more ingredients: **bounded quantification** and
+Turns out we just need two more ingredients: **bounded quantification** and
 a **top type**.
 
 ## Bounded Quantification
@@ -29,11 +28,10 @@ a **top type**.
 Say we have this restricted generic function in typescript:
 
 ```typescript
-const show = <T extends Showable>(x: T): string =>
-  x.show();
+const show = <T extends Showable>(x: T): string => x.show();
 ```
 
-We would write it's type like this in System F\<::
+We would write its type like this in System F\<::
 
 ```typescript
 show :: ∀A <: Showable. A → String
@@ -66,13 +64,12 @@ const g2: T1 = g1; // Error: Type 'T2' is not assignable to type 'T1'.
 
 But yeah, them's details.
 
-
 ## Top types
 
 Having to supply a bound everywhere would mean we can no longer express completely
 generic functions like `toString :: ∀A. A → String`, but this is easily solved by
 adding a special type that acts as a supertype of all types, like `unknown` in typescript.
-This type is called a *top type*.
+This type is called a _top type_.
 
 Given an average programming language, we can deduce that a top type must be
 some sort of empty structure, because as soon as you add a single property `foo`
@@ -98,18 +95,18 @@ the `Top` upper bound via common sense.
 
 The opposite of top types are bottom types, which conversely are types
 that are a subtype of all types, like Typescript's `never`, Haskell's `Void`,
-or Kotlin's `Nothing`. (Many expecially older languages don't have an explicit
+or Kotlin's `Nothing`. (Many especially older languages don't have an explicit
 bottom type at all.)
 
 The bottom type has no inhabitants. After all, if your `Bottom` type had
 a value, I could construct another type `Bottom2` without that value, and
-then how do you find a function, or a cast, that  convert's a `Bottom` to a
+then how do you find a function, or a cast, that converts a `Bottom` to a
 `Bottom2`? You can't, hence `Bottom2` is even bottomer than `Bottom`,
 contradicting the assumption that `Bottom` is a subtype of all types.
 
 Functions with a bottom type in their type signature are usually very
 degenerate cases: For example, the function `absurd :: Bottom → String`
-can never never be called because you can never construct a `Bottom` value
+can never be called because you can never construct a `Bottom` value
 that you could call the function with; and `error :: String → Bottom` can never
 return a valid value, so it must loop forever or crash the program.
 
@@ -144,7 +141,7 @@ so cool to see lattices pop up in a totally different context!
 But maybe it's just me who gets excited about these things.
 
 Plain System F\<: does not form a lattice,
-because it doesnt have intersection and union types built in like typescript
+because it doesn't have intersection and union types built in like typescript
 does, but as always, people have defined extensions to
 System F\<: that add these features; refer to "Programming with
 Intersection Types and Bounded Polymorphism" by Benjamin Pierce from 1991, for example.

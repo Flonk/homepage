@@ -14,7 +14,7 @@ import SeriesNav from "../../components/SeriesNav.astro";
   nextPart="17"
 />
 
-Hmm... okay. So a list of integers has type 
+Hmm... okay. So a list of integers has type
 
 ```typescript
 IntList = ∀R. R → (Int → R → R) → R
@@ -29,7 +29,6 @@ StringList = ∀R. R → (String → R → R) → R
 
 It feels like we have been here before, all the way back in
 [post #4](/blog/2025-12-03-type-systems-stlc2) when we wanted to
-define an `apply` function that was generic in it's argument. We're running into the exact
 define an `apply` function that was generic in its argument. We're running into the exact
 same problem, just at the type level.
 
@@ -40,7 +39,7 @@ of course I will try to break it down for you.
 
 Conceptually, type operators should not be a huge leap either, because we use them all
 the time in regular programming -- there we call them simply "generics", `List<T>`
-being an example, or `Promise<T>`. 
+being an example, or `Promise<T>`.
 
 To fit them into our theoretical framework, it would be nice to take these
 three list types we defined above and turn the `Int`, `Boolean`, and `String`
@@ -52,13 +51,13 @@ And usually we parametrize values via functions, right? So can't we just write, 
 List = λA. ∀R. R → (A → R → R) → R
 ```
 
-And uhm... well, yeah! We can totally do that. We just define functions on 
+And uhm... well, yeah! We can totally do that. We just define functions on
 the type level! I mean if you squint a little, `List<T>` also looks like a function
 call, kind of, but we use angle brackets instead of parentheses.
 
 With our `List` "type function" we can type our list from last post as
 
-```typescript 
+```typescript
 myList :: List Int
 myList = cons 1 (cons 2 (cons 3 nil))
 ```

@@ -14,16 +14,16 @@ import SeriesNav from "../../components/SeriesNav.astro";
   nextPart="13"
 />
 
-When you ask people what they remember about certain school topics, they 
+When you ask people what they remember about certain school topics, they
 all respond with the same things which is so funny to me. In maths it's always
-"Pythagoras" or pi = 3.14, in chemistry it's "dihydrogen monoxide", physics gets 
+"Pythagoras" or pi = 3.14, in chemistry it's "dihydrogen monoxide", physics gets
 E=mc², Schrödinger's cat and higgs bosons. CS wasn't really a thing when I was in high
 school (is it now?), but when you ask programmers the same thing about cs theory,
 it's always Dijkstra's algorithm and the Liskov Substitution Principle.
 
 Big W for computer science though, because the Liskov Substitution Principle
 is a really fundamental and big concept that is worth knowing, even though
-much like Schrödinger's cat, it's often misunderstood. So, just to be annyoing,
+much like Schrödinger's cat, it's often misunderstood. So, just to be annoying,
 I will not explain the Liskov Substitution Principle in this post at all.
 
 Let's talk about subtyping.
@@ -34,23 +34,16 @@ Let's talk about subtyping.
 
 Typescript is structurally typed, and it's subtyping mechanic is aptly called
 **structural subtyping**. Most of us will be very familiar with how it works,
-so let me simply throw you a pop quiz real quick. One word about notation: 
+so let me simply throw you a pop quiz real quick. One word about notation:
 we write `A <: B` to mean "A is a subtype of B".
 
 Are the following statements true or false?
 
-
-<Question
-  n={1}
-  question={`number <: string`}
->
-Obviously not. Numbers are not strings.
+<Question n={1} question={`number <: string`}>
+  Obviously not. Numbers are not strings.
 </Question>
 
-<Question
-  n={2}
-  question={`{ foo: number, bar: string } <: { foo: number }`}
->
+<Question n={2} question={`{ foo: number, bar: string } <: { foo: number }`}>
   True! This is sometimes called "width subtyping" -- a type with more fields
   can be used where a type with fewer fields is expected.
 </Question>
@@ -59,33 +52,24 @@ Obviously not. Numbers are not strings.
   n={3}
   question={`1 <: number`}
 >
-  True! 
+  True!
 
-  The fact that typescript has literal types for numbers and strings is just
-  so nice man. `const n = 1 as const` will literally give `n` the type `1`, not `number`.
+The fact that typescript has literal types for numbers and strings is just
+so nice man. `const n = 1 as const` will literally give `n` the type `1`, not `number`.
 
 </Question>
 
-<Question
-  n={4}
-  question={`given A <: B: { foo: A } <: { foo: B }`}
->
+<Question n={4} question={`given A <: B: { foo: A } <: { foo: B }`}>
   True! This is called **covariance**.
 </Question>
 
-<Question
-  n={5}
-  question={`given A <: B: ((a: A) => void) <: ((b: B) => void)`}
->
+<Question n={5} question={`given A <: B: ((a: A) => void) <: ((b: B) => void)`}>
   False! Function argument types are **contravariant**. `A` is more specific
   than `B`, so a function that takes only `A`s can't stand in for a function
   that expects more general `B`s.
 </Question>
 
-<Question
-  n={6}
-  question={`number <: object`}
->
+<Question n={6} question={`number <: object`}>
   False! In typescript, `number` is a primitive type. Only non-primitive types
   are subtypes of `object`.
 </Question>
@@ -103,7 +87,7 @@ class Dog extends Animal { ... }
 Even if `Dog` and `Animal` had the exact same structure, `Dog` would not be
 a subtype of `Animal` unless explicitly declared using `extends`.
 
-In my opinion this is a direct result over over-OOPing, and typescript does it much better, I'm sorry.
+In my opinion this is a direct result of over-OOPing, and typescript does it much better, I'm sorry.
 
 ### Typescript also does nominal subtyping
 
@@ -124,10 +108,10 @@ class EvilHacker {
 const x: BankAccount = new EvilHacker();
 ```
 
-A method of `BankAccount` can obviously access it's own private `balance` field, but 
+A method of `BankAccount` can obviously access its own private `balance` field, but
 if the above snippet were legal, then the `BankAccount`'s `this` would actually be
 an `EvilHacker`, and the method would access the `EvilHacker`'s `balance` field instead, breaking
-encapsulation. So typescript checks subtyping of private and protected fields nominally. While 
+encapsulation. So typescript checks subtyping of private and protected fields nominally. While
 this behaviour is understandable, I find it inconsistent and not obvious, since you have to know
 whether a class has all public fields to know whether it's structurally or nominally typed.
 
@@ -146,10 +130,11 @@ even though your type checks just fine.
 This is perhaps the only argument for preferring nominal subtyping to structural subtyping;
 typescript's approach of "if it quacks like a duck" can't really prevent these semantic LSP
 violations. However if you have to explicitly declare a subtyping relationship, you can at
-least can manually decide whether LSP holds or not. All in all I find this argument to not
-be very strong, as in practice, structural subtyping is just so much more conventient.
+least manually decide whether LSP holds or not. All in all I find this argument to not
+be very strong, as in practice, structural subtyping is just so much more convenient.
 
 ## Haskell btw
+
 Subtyping feels like something that no programming language could possibly do without, right?
 But, Haskell for example doesn't do subtyping at all. Here, type classes are used for many of
 the same use cases, though the mechanics are very different. Rust, being very FP inspired,

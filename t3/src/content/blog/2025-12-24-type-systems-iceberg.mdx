@@ -7,15 +7,11 @@ pubDate: "December 24 2025"
 import Question from "../../components/Question.astro";
 import SeriesNav from "../../components/SeriesNav.astro";
 
-<SeriesNav
-  seriesName="type systems"
-  currentPart="25"
-  prevPart="24"
-/>
+<SeriesNav seriesName="type systems" currentPart="25" prevPart="24" />
 
 Hey I had a blast writing this series, hope you enjoyed it too!
 
-As a small christmas gift to you all, I've distilled all the things
+As a small Christmas gift to you all, I've distilled all the things
 we have discussed into meme format, so you can send it to all your type
 theory friends. I present to you: The Lambda Iceberg!
 
@@ -50,7 +46,7 @@ already using copilot for everything -- and descriptions of what we want to buil
 will be all that remain.
 
 One could even say that with AI generating code, and you refining types depending
-on AI output, that *you are* the formal verification system, using "dependent" types
+on AI output, that _you are_ the formal verification system, using "dependent" types
 to guide the AI to produce correct code.
 
 ## Parting Thought: Barendregt's Lambda Cube
@@ -71,7 +67,7 @@ path through the cube:
 - `λω` is System Fω, adding kinds
 - `λC` is the Calculus of Constructions, adding dependent types
 
-There are other paths through the cube aswell, but ours is
+There are other paths through the cube as well, but ours is
 the most natural one. The other type systems are interesting in their own right --
 for example `λP` adds just dependent types to the simply typed lambda calculus but
 not generics or kinds -- but they are mostly of theoretical interest.
@@ -79,11 +75,11 @@ not generics or kinds -- but they are mostly of theoretical interest.
 And `λC` is really the pinnacle of type system expressiveness; there is no obvious
 way to go any further. There exists for example the Calculus of Inductive
 Constructions (CIC) that underpins Coq, but it doesn't give more expressive
-power over `λC`, just more convenience. 
+power over `λC`, just more convenience.
 
 Now.. we're really reaching the boundaries of my knowledge here, but as I understand, not
 all theorems in mathematics are provable by constructive proofs, which is what
-the Curry-Howard isomorphism gives us access to. So there will always be 
+the Curry-Howard isomorphism gives us access to. So there will always be
 mathematical truths that are outside the reach of any type system, that are
 provable under for example the set of axioms known as Zermelo-Fraenkel set
 theory with the axiom of choice (ZFC). ZFC is provably more expressive than
@@ -103,7 +99,7 @@ programming language needs general recursion to be useful.
 
 Either way this gives us no clear path forward to even more expressive type systems,
 as for everything gained, something else is lost. This makes the Calculus of Constructions
-the sweet spot for both theoretical exploration and practical use, and the 
+the sweet spot for both theoretical exploration and practical use, and the
 lambda cube a natural visualization of type systems -- from the most simple
 to the most expressive!
 
@@ -112,16 +108,13 @@ to the most expressive!
 With our newfound knowledge of the Calculus of Constructions and the Lambda Cube,
 I'll release you back into the wild. We've reached the end of this series on type systems;
 to be honest writing a blog post every day for almost a month was quite a challenge,
-but time flies when you're having fun eh :D 
+but time flies when you're having fun eh :D
 
 If we ever want to dive deeper into type theory in the future, maybe
-I'll do another series like this one -- theres still so many topics that I 
+I'll do another series like this one -- there's still so many topics that I
 didn't have the time to cover here. Monads, GADTs, Category Theory, Linear Types,
 Hindley-Milner Type Inference, Martin Löf Type Theory, Homotopy Type Theory (haha
 probably not that one), the list really is endless.
 
-
 For now however, let's stop with all the thinking. Go drive some cookies
-into your gut, will ya! Merry christmas and see you around next time :)
-
-
+into your gut, will ya! Merry Christmas and see you around next time :)

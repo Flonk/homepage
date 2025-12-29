@@ -14,7 +14,7 @@ import SeriesNav from "../../components/SeriesNav.astro";
   nextPart="9"
 />
 
-With generic functions under our belt, we can type many a function you 
+With generic functions under our belt, we can type many a function you
 encounter in day-to-day programming. Like those!
 
 ```typescript
@@ -22,6 +22,7 @@ toString :: ∀A. A → String
 ifThenElse :: ∀A. Boolean → A → A → A
 equals :: ∀A. A → A → Boolean
 ```
+
 We've seen plenty of functions now that are generic in their arguments,
 and we can even define functions that are generic only in their return type, although
 that's less common in practice.
@@ -31,15 +32,15 @@ apply42 :: ∀R. (Int → R) → R
 apply42 = ΛR. λf: (Int → R). f 42
 ```
 
-From just the type we can tell that `apply42` doesn't really care about what the function it recieves returns -- it'll just forward the return value of `f`. What's important to `apply42` is only that the function takes an `Int`, so that it can
+From just the type we can tell that `apply42` doesn't really care about what the function it receives returns -- it'll just forward the return value of `f`. What's important to `apply42` is only that the function takes an `Int`, so that it can
 shove `42` into it.
 
-Actually, by making the return type generic, we can ensure *at the type level*
+Actually, by making the return type generic, we can ensure _at the type level_
 that `apply42` doesn't do anything funny to the return value of `f` -- the type
 forces it to return whatever `f` returns, without modification.
 
-Why? Well, the implementation of `apply42` knows nothing about `R` or it's shape or it's properties, so it can't do equality checks on it, as equality might not be defined for all types, and it can't manipulate existing `R`s either, because whatever you do to any instance of `R` like `Int`s, generally won't work on other instances 
-of `R`, like `Horse`s. You can't create an `R` ex nihilo, as `R` might not have a constructor. `apply42`s only way to obtain an `R` then is to call the function that it recieves as an argument, and then it can't do anything to that `R`, so it has to return it!
+Why? Well, the implementation of `apply42` knows nothing about `R` or its shape or its properties, so it can't do equality checks on it, as equality might not be defined for all types, and it can't manipulate existing `R`s either, because whatever you do to any instance of `R` like `Int`s, generally won't work on other instances
+of `R`, like `Horse`s. You can't create an `R` ex nihilo, as `R` might not have a constructor. `apply42`s only way to obtain an `R` then is to call the function that it receives as an argument, and then it can't do anything to that `R`, so it has to return it!
 
 This, among other observations, is the basis of a very interesting paper by Philip Wadler called "Theorems for Free!". The idea is that by just looking at the type of a function, you can deduce certain properties about the function itself, without knowing its implementation.
 

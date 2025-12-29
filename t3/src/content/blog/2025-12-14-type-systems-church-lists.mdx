@@ -14,7 +14,7 @@ import SeriesNav from "../../components/SeriesNav.astro";
   nextPart="16"
 />
 
-We've seen a lot of lambda calucli so far, haven't we! Each one builds upon the 
+We've seen a lot of lambda calculi so far, haven't we! Each one builds upon the
 last, adding new features and new concepts. We saw the untyped lambda calculus,
 then the simply typed lambda calculus, then System F, and then System F\<:.
 
@@ -26,7 +26,7 @@ juicy bits however, we will need a more complicated data structure we can use
 for examples.
 
 All the way back in [post #1](/blog/2025-11-28-type-systems-utlc) we saw how we can encode booleans in the
-untyped lambda calculus using so-called Church encodings... and while it's a 
+untyped lambda calculus using so-called Church encodings... and while it's a
 fun party trick, and Church encodings are very prevalent in every post or paper
 about type theory, I purposefully avoided giving them too much attention, because
 in regular programming languages you never use them. Like yes you can encode
@@ -46,17 +46,16 @@ lists ex nihilo, I recommend you to program along in typescript as we go through
 That way you can see how data flows through the functions, and in which order
 things are called, which is really helpful to build intuition. It's also a fun exercise!
 
-
 ## Lists in pure lambda calculus
 
-As programmers, we sometimes get to ask questions like, "what even *is* an 
-`AbstractDtoFactory`? What is it's essence?", and then we spend hours delineating
+As programmers, we sometimes get to ask questions like, "what even _is_ an
+`AbstractDtoFactory`? What is its essence?", and then we spend hours delineating
 what does and what doesn't constitute the essence of an `AbstractDtoFactory`, what
 to put into that class and what to put somewhere else. It really makes me feel like a
 philosopher at times.
 
-What would you say is the essence of a list? Can we single out a single core 
-property that all lists have? Like a single thing you can *do* with a list, that
+What would you say is the essence of a list? Can we single out a single core
+property that all lists have? Like a single thing you can _do_ with a list, that
 you cannot do to non-lists?
 
 We could argue that lists are mappable, and that `map` is the essence of lists.
@@ -67,13 +66,12 @@ one.
 Well, these are all good candidates, but there is one operation that is more fundamental
 than all of them: A **fold**, or what we could call `reduce` in typescript.
 Folds allow you to merge a list into a single value, for example to take a list
-of integers and sum them. The "single value" you are returning can be of any type though, 
+of integers and sum them. The "single value" you are returning can be of any type though,
 and that includes lists themselves, which makes folds powerful enough to express `map`,
 and `filter`, and `concatenate` as well.
 
 It's a fun exercise so give it a try! Implement the other three functions
 in terms of just `list.reduce(fn, initialValue)` -- in typescript!
-
 
 <Question
   n={1}
@@ -139,7 +137,6 @@ Oh yeah. It's the same.
 
 A List is literally just it's own fold function. Mind = blown!
 
-
 ## For completeness
 
 Let's write out the full Church encoding of lists of integers for completeness.
@@ -152,7 +149,6 @@ just folds, we are essentially defining how a fold should behave
 for those two cases. Folding a `nil` returns the initial value,
 and folding a `cons head tail` recursively applies a 2-parameter function to `head`,
 and the result of folding the `tail`.
-
 
 ```typescript
 nil : IntList
@@ -188,10 +184,10 @@ defined lists in terms of just pure lambda calculus! It's functions all the way 
 
 ---
 
-Church encodings can be a bit rough if you are not used to them. It took me a 
+Church encodings can be a bit rough if you are not used to them. It took me a
 long long time until I was able to shake the feeling of "what do you mean
-everything is a function, at some point you *must* hit atomic values", or "what
-do you mean a list is a fold, the list *is the thing you fold*, where does a fold
+everything is a function, at some point you _must_ hit atomic values", or "what
+do you mean a list is a fold, the list _is the thing you fold_, where does a fold
 function even store data". Pure lambda calculus can be a mind twister for sure and
 it takes a while to really grok it.
 

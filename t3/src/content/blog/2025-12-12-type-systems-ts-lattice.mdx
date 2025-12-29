@@ -19,7 +19,12 @@ On the thirteenth day of christmas, my true love gave to me... a typescript type
 
 Here is a non-exhaustive diagram of types that exist in typescript, and their subtypes.
 
-<ZoomableImage client:load src="/assets/2025-12-type-systems/ts-lattice.png" alt="TypeScript type system lattice diagram" initialZoom={2} />
+<ZoomableImage
+  client:load
+  src="/assets/2025-12-type-systems/ts-lattice.png"
+  alt="TypeScript type system lattice diagram"
+  initialZoom={2}
+/>
 
 Arrows represent a subtype relationship -- so for example, `1` is a subtype of `number`, and `number`
 is a subtype of `unknown`. Teal squares represent literal types -- as many of you will know, `0` is not
@@ -33,24 +38,22 @@ the subtype of all types. This is not something that we think about in day-to-da
 but it's true: the function `const foo = <T extends unknown>(x: T) => {}` and `const foo = <T>(x: T) => {}`
 are the same -- since everything inherits from `unknown` anyway, it's redundant to specify it.
 
-`never` is typically used to denote dead code paths, or impossible types, so it maybe seems odd to 
+`never` is typically used to denote dead code paths, or impossible types, so it maybe seems odd to
 call it a subtype of all types. For now the only justification I will give is "in typescript it's true",
-meanining if you have `const foo = <T extends number>(x: T) => {}`, you can indeed call `foo` with a value of type `never`.
-You'll have a hard type finding a value of type `never`, but your code will typecheck just fine.
-
+meaning if you have `const foo = <T extends number>(x: T) => {}`, you can indeed call `foo` with a value of type `never`.
+You'll have a hard time finding a value of type `never`, but your code will typecheck just fine.
 
 Oh yeah. And then there's `any`.
 
 ![any](/assets/2025-12-type-systems/ts-any.png)
 
-It's *simultaneously* the subtype and supertype of all types, which pretty much ruins any
+It's _simultaneously_ the subtype and supertype of all types, which pretty much ruins any
 mathematical framework we can establish, and breaks many nice mathematical
 properties. `any` is more like an escape hatch that disables type checking
 though, so it's not really meant to be used in the same way as other types
 and we choose to ignore it whenever convenient.
 
 Hope that's okay!
-
 
 <SeriesNav
   seriesName="type systems"

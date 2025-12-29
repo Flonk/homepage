@@ -67,11 +67,11 @@ existed remains.
 
 I suspect that this split of compile time and runtime is the reason for why syntax for generics in
 programming languages often look so separate from normal function syntax. In System F however,
-there is no such distinction; remember, when you are "evaluating" lambda terms, you are just
+and there is no such distinction; remember, when you are "evaluating" lambda terms, you are just
 applying rewrite rules over and over again. This brings out a really beautiful notion of type parameters
 being just parameters, which is not usually how we think about generics.
 
-Now. We have _defined_ the `apply` function; but what is it's type? For this we need to bust out even
+Now. We have _defined_ the `apply` function; but what is its type? For this we need to bust out even
 mathsier syntax, namely the `∀` symbol, meaning "for all", which you might remember from maths class.
 
 The type of `apply` would be:

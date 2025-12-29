@@ -72,9 +72,10 @@ fooCurried(42)("hello"); // [42, "hello"]
 
 ```typescript
 const curry =
-  <A, B, C>(f: (a: A, b: B) => C):
-    ((a: A) => (b: B) => C) =>
-      (a: A) => (b: B) => f(a, b);
+  <A, B, C>(f: (a: A, b: B) => C): ((a: A) => (b: B) => C) =>
+  (a: A) =>
+  (b: B) =>
+    f(a, b);
 ```
 
 </Question>
@@ -90,14 +91,14 @@ can freely convert between them, via `curry` (and its inverse, `uncurry`).
 
 ### Parentheses
 
-For this reason, we have the liberty to omit parentheses in ceratin situations. For example, we often just
+For this reason, we have the liberty to omit parentheses in certain situations. For example, we often just
 write `λx. λy. add x y` instead of `λx. (λy. (add x y))` -- we would know where to add the parentheses if we
 needed to.
 
 In later blogposts, we will introduce types, and I would like to introduce a similar convention for function types.
 
 A function that takes an integer and returns an integer would be typed as `Int → Int`. A function that takes
-_two_ integers and returns an integer, would be written as `Int → Int → Int`, which 
+_two_ integers and returns an integer, would be written as `Int → Int → Int`, which
 should look weird if you are coming from a typescript background -- like, why are there two arrows?
 
 But with currying in mind, it makes perfect sense: A two-parameter function is actually just a one-parameter function
