@@ -103,7 +103,7 @@ which is so horrible to look at that no developer would ever do this, and no cod
 
 The right (and natural) thing to do is to move the `SortingService` up one layer into the `FulfillmentCenterApplication`,
 and then pass it down though all the `Returns` applications, so the service that needs it can write `app.services.Sorting.sortPackages()`.
-We're naturally incentivising developers to keep the tree structure intact, which is a sign of good architecture.
+We are naturally incentivising developers to keep the tree structure intact, an no further architecture enforcement is needed.
 
 And if we ever would like to move `ReturnsApplication` into its own microservice, this helps us easily see what we need to migrate:
 Just follow the tree upwards, all the adjacent tree nodes are not needed for the service to work.
