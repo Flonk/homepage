@@ -96,13 +96,13 @@ I would argue no! [As I have argued before](2025-06-15-enforcing-architecture-th
 architecture is to add friction to doing the wrong thing, and make doing the right thing easy. Developers aren't malicious
 after all, but they choose the path of least resistance just like the rest of us.
 
-The fractal modulith does this auomatically. Say you are three applications deep in `ReturnsApplication` and suddenly
+The fractal modulith does this auomatically. Say you are two applications deep in `ReturnsApplication` and suddenly
 realize you need to call a method in `SortingService` in the `WarehouseApplication`. To do this the "wrong" way you would
-need to call `app.parent.parent.‌parent.Warehouse.‌services.Sorting.‌sortPackages()`,
+need to call `app.parent.parent.Warehouse.‌services.Sorting`,
 which is so horrible to look at that no developer would ever do this, and no code reviewer would ever approve it.
 
 The right (and natural) thing to do is to move the `SortingService` up one layer into the `FulfillmentCenterApplication`,
-and then pass it down though all the `Returns` applications, so the service that needs it can write `app.services.Sorting.sortPackages()`.
+and then pass it down though all the `Returns` applications, so the service that needs it can write `app.services.Sorting`.
 We are naturally incentivising developers to keep the tree structure intact, an no further architecture enforcement is needed.
 
 And if we ever would like to move `ReturnsApplication` into its own microservice, this helps us easily see what we need to migrate:
