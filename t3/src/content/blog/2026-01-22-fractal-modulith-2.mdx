@@ -28,7 +28,7 @@ Since then I've come up with the absolute minimal example of this pattern, which
 Here we've modeled a fulfillment center application that contains services (`Inventory`, `OrderProcessing`, `Shipping`), 
 and also sub-applications (`Returns`, `Warehouse`) that in turn contain their own services. The sub-applications 
 have access to the services of their parent application, and can use them like their own. This is useful because every
-sub-sub-app will likely need access to core services like databases and logging for example, so you just pass those down
+sub-sub-app will likely need access to core services like databases and metrics for example, so you just pass those down
 from the top-level application.
 
 The folder structure is very simple, applications have two folders: `app` containing the app definition, and `service`,
@@ -36,6 +36,8 @@ containg a folder for each service or sub-application.
 
 The `_framework` folder contains the minimal implementation of the fractal modulith pattern. It's basically two type 
 definitions, though I've had to add a single bit of framework magic, to ensure that services are only started once.
+
+I've also shipped a logger for nice colorful logs but this is of course optional.
 
 But before I give you more thoughts about why I think this is useful, let's take a step back first.
 We're doing basic research on this blog after all.
