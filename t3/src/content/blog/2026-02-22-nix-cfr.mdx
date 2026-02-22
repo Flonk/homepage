@@ -1,0 +1,58 @@
+---
+title: "NixOS as an exercise in Cross-Functional Requirements"
+description: ""
+pubDate: "February 22 2026"
+---
+
+I use NixOS btw, which means I have my entire system configuration in a [git repository](https://github.com/Flonk/dotfiles)
+in a single unified format.
+
+This is great because my operating system is versioned and I can roll back to any previous state, and it's also great
+because I can easily share my configuration with other people, and it's also great because I can easily deploy my entire
+system onto a new machine by just cloning the repository and running a single command.
+
+Together with direnv I also have *a different software stack* whenever I `cd` into any repository, which means I never
+have to worry about installing new versions of node and it breaking old procects.
+
+Really, installing software any other way and managing your system with a bunch of ramshackle bash files and version managers
+feels like such neanderthal technology. It's.. it's just really hard to emphasize how much better the nix way of doing things is.
+Yall are still on jQuery, and I'm out here with React 18, you know what I mean?
+
+(apt comparison actually because react is declarative, like nix)
+
+But to be honest, managing a system isn't an easy task! One thing you come across early is that system configuration and user
+configuration are separate stages in the "build process". Applying system config does not trigger installing user software,
+and vice versa. Really you're managing two separate systems in the same repo. (System config includes things like drivers,
+file system partitions, networking, etc. User config is everything else.)
+
+This leads to interesting challenges:
+- Sometimes user config needs to know which machine it is running on.
+- Sometimes system config needs to know which user is running it.
+- You typically package configuration into "modules", like one for google chrome, one for vscode, etc. User modules live
+in `home/modules` and system modules live in `nixos/modules`.
+- Some modules are part user, part system.
+
+And then there are requirements that I have set for myself:
+- Some modules are work-specific. I would like to set a single flag to `false` to uninstall all work software.
+- Some modules are project-specific. I would like to set a single flag to `false` to remove all configuration for a specific project.
+- I would like to globally manage which apps open which file types. I can only set "use chrome for pdfs" if chrome is installed.
+- I would like to expose a single cli command `skynet` that provides utility scripts. Which scripts those are depends on which modules are enabled.
+- You need a global design system so apps look coherent.
+- Some theming is work-specific.
+- Secrets should be stored in a secure way in the repository.
+- Some secrets are project-specific.
+
+
+etc. etc. etc.
+
+There are a lot of cross-cutting concerns everywhere, even more so than in your typical codebase I'd say, because
+everything is so interconnected. But, designing your nix configuration is part of the fun, and it's a really good
+exercise in software architecture! It's been nice to see my nix flake evolve over time to be just as flexible as I need
+it to be.
+
+And the experience of working on NixOS is great! Updating your system is as easy as running `nixos-rebuild switch --upgrade`,
+and as opposed to my previous ubuntu or windows setups, everything still works after you update! I've
+been known to be a nix evangelist but I really can't recommend it enough, you should all give it a try.
+
+
+
