@@ -1,0 +1,180 @@
+---
+title: "Angular sucks"
+description: ""
+pubDate: "March 18 2026"
+---
+
+## Using Functions
+
+Right, so our monorepo has multiple Applications. Each application has a `name`, that we would sometimes like to `frobnicate`.
+
+Call me old-fashioned but I would probably come up with the following code:
+
+```typescript
+// apps/delivery/config.ts
+export const config: Configuration = { name: "Delivery" };
+
+// apps/fulfillment/config.ts
+export const config: Configuration = { name: "Fulfillment" };
+
+// utils/frobnicate.ts
+export const frobnicate = ({ name }: Configuration) => ...
+```
+
+A consumer is free to grab the configuration object and call `frobnicate` on it. Functions are cool like that.
+
+### The angular way
+
+Heresy! One cannot simply `frobnicate` -- we obviously need someone to manage the frobnication. Naturally, a `FrobnicationService` is in order. Since we need one per application, we define a parent class.
+
+```typescript
+// shared/AbstractFrobnicationService.ts
+class AbstractFrobnicationService {
+  constructor(protected config: Configuration) {}
+
+  private name = this.config.name;
+
+  frobnicate() {
+    ...
+  }
+}
+
+// apps/delivery/DeliveryFrobnicationService.ts
+@Injectable({ providedIn: "root" })
+class DeliveryFrobnicationService extends AbstractFrobnicationService {
+  constructor() {
+    super({ name: "Delivery" });
+  }
+}
+
+// apps/fulfillment/FulfillmentFrobnicationService.ts
+@Injectable({ providedIn: "root" }) 
+class FulfillmentFrobnicationService extends AbstractFrobnicationService {
+  constructor() {
+    super({ name: "Fulfillment" });
+  }
+}
+```
+
+A consumer can now... define.. an injection token for an `AbstractFrobnicationService`.. so later we can inject the frobnication provider, so that we can frobnicate.
+
+```typescript
+// shared/FrobnicationToken.ts
+export const FrobnicationToken = new InjectionToken<AbstractFrobnicationService>("FrobnicationService");
+
+// shared/SomeComponent.ts
+@Component(...)
+class SomeComponent {
+  constructor(@Inject(FrobnicationToken) private frobnicationService: AbstractFrobnicationService) {} 
+} 
+
+// apps/delivery/DeliveryModule.ts
+@NgModule({
+  providers: [
+    { provide: FrobnicationToken, useClass: DeliveryFrobnicationService }
+  ]
+})
+class DeliveryModule {
+
+  doSomething() {
+    this.frobnicationService.frobnicate();
+  }
+
+}
+```
+
+Sorry, but I just vomited in my mouth a little.
+
+----
+
+## Components
+
+Out here in reactland it's so easy to define components, that we do it all the time, even for simple, one-off things.
+
+```typescript
+import { MyButton } from "../my-button/my-button.component";
+import { MyList } from "../my-list/my-list.component";
+
+const DeliveryHeader = () => <header>
+  <MyButton />
+  <MyList/>
+</header>;
+```
+
+We love components.
+
+### The angular way
+
+Components need to be FAT. The more lines of code, the better. Only FAT components are meaningful, because slim components can't possibly do anything worthwhile. If they did anything worthwhile, they would have more lines of code.
+
+For each component, we at least need an html file, an scss file, a ts file. And a folder to put them in. 
+
+And like just to make sure our components are really really fat, we list all of our imports twice, because the more code we have, the more production-ready it looks.
+
+```typescript
+// delivery-header.component.ts
+import { Component } from "@angular/core";
+import { MyButton } from "../my-button/my-button.component";
+import { MyList } from "../my-list/my-list.component";
+
+@Component({
+  selector: "app-delivery-header",
+  templateUrl: "./delivery-header.component.html",
+  styleUrls: ["./delivery-header.component.scss"],
+  standalone: true,
+  imports: [
+    MyButton,
+    MyList
+  ]
+})
+export class DeliveryHeaderComponent {}
+
+// delivery-header.component.html
+<header>
+  <app-my-button></app-my-button>
+  <app-my-list></app-my-list>
+</header>
+
+// delivery-header.component.scss
+-- empty
+```
+
+---
+
+## Separation of Concerns
+
+Call me old-fashioned, but a component should only ever do one thing. In react we've quickly settled on a pattern where you have a component defining the layout and managing UI things, and another component managing state, or reading from a store/context, or dealing with other complicated side-effects.
+
+```typescript
+type UiButtonProps = {
+  onClick: () => void;
+  label: string;
+}
+const UiButton = ({ onClick, label }: UiButtonProps) =>
+  <button onClick={onClick}>{label}</button>;
+
+const Button = () => {
+  const [count, setCount] = useState(0);
+
+  return <UiButton onClick={() => setCount(count + 1)} label={`Clicked ${count} times`} />
+};
+```
+
+### The angular way
+
+Since components are FAT, they can do as many things as they want! In fact every component gets a whole class to itself, so let's put that class to use.. the more services we inject into our components, the FATTER and more powerful it is!
+
+Does that mean that everytime a service moves to a different app, or a component moves to a different app, we need to rewrite half of the code? Yes, but that's just the price we pay for having such powerful components.
+
+
+---
+
+Sorry, I had to vent.
+
+Can many of these problems be mitigated with good architecture? Sure. But put 30 footguns in front of your codemonkeys and they're gonna shoot themselves in the foot, even if it's out of boredom.
+
+Working in a big angular codebase really is like wading through a swamp, my experience in the past half year has not been exactly great.
+
+I do tend to dislike "sprawly" frameworks in general, by which I mean for example in Angular everything is `@Injectable` or `@Component` so you can never use any code written in an angular project anywhere else. The same might be true for react to some extent, because everything is `useMemo` or `useEffect`, but it's way less bad.
+
+Can't wait until I don't have to write backend Java and frontend wannabe-Java anymore and can just write good old fashioned typescript everywhere.
