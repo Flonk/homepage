@@ -8,7 +8,7 @@ It does.
 
 ## Components
 
-Out here in reactland it's so easy to define components, that we do it all the time, even for simple, one-off things.
+Out here in reactland it's so easy to define components, that we do it all the time, even for simple, one-off things. Call me old-fashioned, but this is what peak component design looks like:
 
 ```typescript
 import { MyButton } from "../my-button/my-button.component";
@@ -92,7 +92,7 @@ Does that mean that everytime a service moves to a different app, or a component
 
 Right, so our monorepo has multiple Applications. Each application has a `name`, that we would sometimes like to `frobnicate`.
 
-Call me old-fashioned but I would probably come up with the following code:
+Call me Sally but I would probably come up with the following code:
 
 ```typescript
 // apps/delivery/config.ts
@@ -105,7 +105,7 @@ export const config: Configuration = { name: "Fulfillment" };
 export const frobnicate = ({ name }: Configuration) => ...
 ```
 
-A consumer is free to grab the configuration object and call `frobnicate` on it. Functions are cool like that.
+A consumer is free to grab the configuration object and call `frobnicate` with it. Functions are cool like that.
 
 ### The angular way
 
