@@ -4,88 +4,7 @@ description: ""
 pubDate: "March 18 2026"
 ---
 
-## Using Functions
-
-Right, so our monorepo has multiple Applications. Each application has a `name`, that we would sometimes like to `frobnicate`.
-
-Call me old-fashioned but I would probably come up with the following code:
-
-```typescript
-// apps/delivery/config.ts
-export const config: Configuration = { name: "Delivery" };
-
-// apps/fulfillment/config.ts
-export const config: Configuration = { name: "Fulfillment" };
-
-// utils/frobnicate.ts
-export const frobnicate = ({ name }: Configuration) => ...
-```
-
-A consumer is free to grab the configuration object and call `frobnicate` on it. Functions are cool like that.
-
-### The angular way
-
-Heresy! One cannot simply `frobnicate` -- we obviously need someone to manage the frobnication. Naturally, a `FrobnicationService` is in order. Since we need one per application, we define a parent class.
-
-```typescript
-// shared/AbstractFrobnicationService.ts
-class AbstractFrobnicationService {
-  constructor(protected config: Configuration) {}
-
-  private name = this.config.name;
-
-  frobnicate() {
-    ...
-  }
-}
-
-// apps/delivery/DeliveryFrobnicationService.ts
-@Injectable({ providedIn: "root" })
-class DeliveryFrobnicationService extends AbstractFrobnicationService {
-  constructor() {
-    super({ name: "Delivery" });
-  }
-}
-
-// apps/fulfillment/FulfillmentFrobnicationService.ts
-@Injectable({ providedIn: "root" }) 
-class FulfillmentFrobnicationService extends AbstractFrobnicationService {
-  constructor() {
-    super({ name: "Fulfillment" });
-  }
-}
-```
-
-A consumer can now... define.. an injection token for an `AbstractFrobnicationService`.. so later we can inject the frobnication provider, so that we can frobnicate.
-
-```typescript
-// shared/FrobnicationToken.ts
-export const FrobnicationToken = new InjectionToken<AbstractFrobnicationService>("FrobnicationService");
-
-// shared/SomeComponent.ts
-@Component(...)
-class SomeComponent {
-  constructor(@Inject(FrobnicationToken) private frobnicationService: AbstractFrobnicationService) {} 
-} 
-
-// apps/delivery/DeliveryModule.ts
-@NgModule({
-  providers: [
-    { provide: FrobnicationToken, useClass: DeliveryFrobnicationService }
-  ]
-})
-class DeliveryModule {
-
-  doSomething() {
-    this.frobnicationService.frobnicate();
-  }
-
-}
-```
-
-Sorry, but I just vomited in my mouth a little.
-
-----
+It does.
 
 ## Components
 
@@ -165,6 +84,90 @@ const Button = () => {
 Since components are FAT, they can do as many things as they want! In fact every component gets a whole class to itself, so let's put that class to use.. the more services we inject into our components, the FATTER and more powerful it is!
 
 Does that mean that everytime a service moves to a different app, or a component moves to a different app, we need to rewrite half of the code? Yes, but that's just the price we pay for having such powerful components.
+
+---
+
+
+## Using Functions
+
+Right, so our monorepo has multiple Applications. Each application has a `name`, that we would sometimes like to `frobnicate`.
+
+Call me old-fashioned but I would probably come up with the following code:
+
+```typescript
+// apps/delivery/config.ts
+export const config: Configuration = { name: "Delivery" };
+
+// apps/fulfillment/config.ts
+export const config: Configuration = { name: "Fulfillment" };
+
+// utils/frobnicate.ts
+export const frobnicate = ({ name }: Configuration) => ...
+```
+
+A consumer is free to grab the configuration object and call `frobnicate` on it. Functions are cool like that.
+
+### The angular way
+
+Heresy! One cannot simply `frobnicate` -- we obviously need someone to manage the frobnication. Naturally, a `FrobnicationService` is in order. Since we need one per application, we define a parent class.
+
+```typescript
+// shared/AbstractFrobnicationService.ts
+class AbstractFrobnicationService {
+  constructor(protected config: Configuration) {}
+
+  private name = this.config.name;
+
+  frobnicate() {
+    ...
+  }
+}
+
+// apps/delivery/DeliveryFrobnicationService.ts
+@Injectable({ providedIn: "root" })
+class DeliveryFrobnicationService extends AbstractFrobnicationService {
+  constructor() {
+    super({ name: "Delivery" });
+  }
+}
+
+// apps/fulfillment/FulfillmentFrobnicationService.ts
+@Injectable({ providedIn: "root" }) 
+class FulfillmentFrobnicationService extends AbstractFrobnicationService {
+  constructor() {
+    super({ name: "Fulfillment" });
+  }
+}
+```
+
+A consumer can now... define.. an injection token for an `AbstractFrobnicationService`.. so later we can inject the frobnication provider, so that we can frobnicate.
+
+```typescript
+// shared/FrobnicationToken.ts
+export const FrobnicationToken = new InjectionToken<AbstractFrobnicationService>("FrobnicationService");
+
+// shared/SomeComponent.ts
+@Component(...)
+class SomeComponent {
+  constructor(@Inject(FrobnicationToken) private frobnicationService: AbstractFrobnicationService) {} 
+} 
+
+// apps/delivery/DeliveryModule.ts
+@NgModule({
+  providers: [
+    { provide: FrobnicationToken, useClass: DeliveryFrobnicationService }
+  ]
+})
+class DeliveryModule {
+
+  doSomething() {
+    this.frobnicationService.frobnicate();
+  }
+
+}
+```
+
+I think I just vomited in my mouth a little.
 
 
 ---
