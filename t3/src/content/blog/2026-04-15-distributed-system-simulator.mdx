@@ -7,13 +7,11 @@ pubDate: "April 15 2026"
 I've come up with a great way to replicate the distributed monolith architecture but in a regular monolith!
 
 ```typescript
-
 const call = async (fn, ...args) => {
   await sleep((Math.random() ** 7) * 2000);
   if (Math.random() < 0.001) throw new Exception();
   return fn(...args);
 };
-
 ```
 
 The game is you are no longer allowed to call any function directly and you have to do it through `call`, yet have to find a way to make your software resilient.

@@ -1,0 +1,401 @@
+---
+title: "Parser Combinators"
+description: ""
+pubDate: "April 19 2026"
+---
+
+I feel like in an age of JSON and API-first development, writing parsers has become a bit of a lost art, at least on the web. Or, well... recalling the [classic stackoverflow post about parsing HTML with regex](https://stackoverflow.com/questions/1732348/regex-match-open-tags-except-xhtml-self-contained-tags/1732454#1732454), maybe on the web, writing parsers was never an art form to begin with.
+
+![Regex queries are not equipped to break down HTML into its meaningful parts](/assets/2026-04-16-parser-combinators/1.png)
+
+Anyway, regex gets a bad rep. People have built horrendous things with it yes, and yes, if misused, it looks like you smashed your head against the keyboard. Still, it's a good tool for parsing everyday strings, and perhaps more commonly, performing string validation. Of course if you need heavyweight parsing, like when parsing a programming langue into an abstract syntax tree, then these days you would use [tree-sitter](https://tree-sitter.github.io/tree-sitter/index.html), or in esoteric cases, hand-roll a recursive descent parser.
+
+But what if I told you that there's *a secret third thing* -- use cases that are kind of too hard to parse with regex but you're like still doing a one-off thing so you don't want to write a formal grammar or drag in a heavy dependency. This is the realm where bad decisions have been made -- the realm of the regex abominations, the `x.substring(1, x.length-1)`, and the `.split('[').map(x => x.indexOf(']'))`, and many many other string slicing crimes.
+
+## Parser Combinators
+
+For these use cases I would like to show you some functional programming magic known as "Parser Combinators", which in my opinion are a great and ergonomic way to write those semi-complicated, one-off parsers. Any major programming language will have a ready-made parser combinator library ready to use, but for the purposes of this post we will create our own!
+
+The most important bit is understanding this type definition -- the *partial parser*:
+
+```typescript
+type Parser<T> = (input: string) => [T, string]
+```
+
+What's it do? It's a functin that takes a string, consumes a part of the front of the string and turns that into a parsed value of type `T`; in the second entry of the tuple, we return the rest of the string.
+
+Here's a very simple parser, parsing an exact string:
+
+```typescript
+const pHello: Parser<string> = (input: string) => {
+  if (!input.startsWith("Hello"))
+    throw new Error();
+    
+  return ["Hello", input.substring(5)];
+}
+```
+
+Using it is simple too:
+
+```typescript
+const input = "Hello, world!";
+pHello(input); // ["Hello", ", world!"]
+
+const input2 = "Hola, world!";
+pHello(input2); // Error ;c
+```
+
+Congratulations, we've built a partial parser! It parses (or validates) that the input string starts with "Hello". 
+
+It is no doubt easy to see where we are headed just from this initial example -- we can take "the rest of the string" and pipe that into another partial parser to build a "parser-chain" returning many different tokens.
+
+Instead of writing a parser function for every single string though, lets put our friend regex to use -- we can use it to consume arbitrary things from the front of our input string. It would be a waste not to do that, that's what regex is really good at!
+
+For completeness let's create a less general `pString` function aswell, that matches constant strings.
+
+```typescript
+const pRegex = (regex: RegExp): Parser<string> =>
+  (input: string) => {
+     const match = input.match(regex);
+     if (match == null) throw new Error();
+     return [match[0], input.substring(match[0].length)];
+   }
+
+const pStringOfDigits = pRegex(/^\d+/);
+
+const input3 = "420 world!";
+pStringOfDigits(input3); // ["420", " world!"]
+
+const pString = (match: string): Parser<string> =>
+  (input: string) => {
+    if(!input.startsWith(match))
+      throw new Error();
+    return [match, input.substring(match.length)];
+  };
+
+const input4 = "Hello world";
+pString("Hello")(input4); //  ["Hello", " world"]
+```
+
+Already we are getting more functional, here we have functions that return functions; or perhaps parser factories if you are so inclined.
+
+And while that's cool and all, the real power of parser combinators... it comes from the combinating.
+
+Lets try to chain some of these parsers and then lets see if we can generalize this somehow!
+
+```typescript
+const input = "Hello 420";
+
+const pHello = pString("Hello");
+const pWhitespace = pRegex(/^\s+/);
+const pStringOfDigits = pRegex(/^\d+/);
+
+const [token1, input2] = pHello(input);
+const [token2, input3] = pWhitespace(input2);
+const [token3, input4] = pStringOfDigits(input3);
+
+console.log(token1, token2, token3); // "Hello", " ", "420"
+console.log(input4); // empty!
+```
+
+Ok.. so to apply parsers in sequence we collect all the first entries of the result tuple into a list, and the remainder goes into the next parser.
+
+If this feels somehow related to `.reduce` in typescript then you have good instincts, and if it does not then I will think no less of you (maybe I will silently judge you in private). What we are doing here is actually the exact opposite of a reduction -- instead of combining two values into one, we are splitting one into two. In funtional circles we call this an `unfold`.
+
+But I digress, lets turn our "apply a sequence of parsers" pattern into a generic function. When variadic arguments are involved the types always get a bit funky, but I think it's really cool that typescript is strong enough to express these types at all!
+
+```typescript
+type Parsers<T extends unknown[]> = { [K in keyof T]: Parser<T[K]> };
+
+const pSeq = <T extends unknown[]>(...parsers: Parsers<T>): Parser<T> =>
+  (input) => {
+    const results = [] as unknown as T;
+    let rest = input;
+    for (const p of parsers) {
+      const [val, next] = (p as Parser<unknown>)(rest);
+      results.push(val);
+      rest = next;
+    }
+    return [results, rest];
+  };
+```
+
+And then:
+
+```typescript
+const parser = pSeq(
+  pHello,
+  pWhitespace,
+  pStringOfDigits
+);
+
+parser("Hello 420"); // [["Hello", " ", "420"], ""];
+```
+
+Isn't that neat?
+
+We should really take a step back to admire that `pSeq` is a function that takes three functions (And those functions were in turn generated by a function returning functions), and it returns a function, taking a string. Proper functional madness!
+
+One thing we would probably like to do is to have parsers returning things other than strings -- usually when parsing the goal is to *get away* from string representations and into more structured data after all. Of course when hand-rolling a parser function like `pHello` you can return whatever you want, but let's leverage our existing infrastructure and just map over existing parsers instead, using another combinator!
+
+```typescript
+const pMap = <T, R>(parser: Parser<T>, fn: (value: T) => R): Parser<R> =>
+  (input: string) => {
+    const [token, rest] = parser(input);
+    return [fn(token), rest];
+  };
+
+const pInteger = pMap(
+  pRegex(/^\d+/),
+  (n: string) => Number(n)
+);
+
+pInteger("420"); // [420, ""];
+```
+
+Simple as that! The fact that we can map over parsers like that makes our type `Parser<T>` "functorial" which probably means nothing to you but it does make me all giddy. Rarely outside of academia do you get such a density of functional concepts in one place, which is why I think parser combinators are so fascinating!
+
+## A practical example
+
+Given just those two combinators `pSeq` and `pMap` we can build pretty powerful parsers!
+
+For a more practical example I've pinged 1.1.1.1 to get the following output in my terminal:
+
+```
+PING 1.1.1.1 (1.1.1.1) 56(84) bytes of data.
+64 bytes from 1.1.1.1: icmp_seq=1 ttl=52 time=389 ms
+64 bytes from 1.1.1.1: icmp_seq=2 ttl=52 time=68.7 ms
+64 bytes from 1.1.1.1: icmp_seq=3 ttl=52 time=47.1 ms
+64 bytes from 1.1.1.1: icmp_seq=4 ttl=52 time=48.6 ms
+64 bytes from 1.1.1.1: icmp_seq=5 ttl=52 time=85.8 ms
+64 bytes from 1.1.1.1: icmp_seq=6 ttl=52 time=84.8 ms
+64 bytes from 1.1.1.1: icmp_seq=7 ttl=52 time=87.4 ms
+--- 1.1.1.1 ping statistics ---
+8 packets transmitted, 7 received, 12.5% packet loss, time 7008ms
+rtt min/avg/max/mdev = 47.129/115.880/388.750/112.515 ms
+```
+
+Lets say we want to turn this text into useful structural data. Perhaps this can be our target type:
+
+```typescript
+type IcmpPacket = {
+  byteCount: number;
+  from: string;
+  seq: number;
+  ttl: number;
+  time: number;
+};
+
+type PingHeader = {
+  targetIp: string; // 1.1.1.1
+  resolvedIp: string; // 1.1.1.1 but in parentheses
+  icmpPayloadSize: number; // 56
+  totalPacketSize: number; // 84
+};
+
+type PingStatistics = {
+  packetsTransmitted: number;
+  packetsRecieved: number;
+  packetLoss: number;
+  time: number;
+  rtt: {
+    min: number;
+    avg: number;
+    max: number;
+    mdev: number;
+  }
+};
+
+type PingResult = {
+  header: PingHeader;
+  packets: IcmpPacket[];
+  statistics: PingStatistics;
+};
+```
+
+Ok -- let's try to get from A to B then. The first line should be easy right, it's just some `pSeq` and then a `pMap` to finagle it into `PingHeader` shape.
+
+```typescript
+const pByte = pMap(
+  pInteger,
+  n => {
+    if (n < 0 || n > 255) throw new Error();
+    return n;
+  }
+);
+const pDot = pString(".");
+
+const pIpV4Address = pMap(
+  pSeq(pByte, pDot, pByte, pDot, pByte, pDot, pByte),
+  parts => parts.join(""),
+);
+
+const pWhitespace = pRegex(/^\s+/);
+const pOptionalWhitespace = pRegex(/^\s*/);
+
+const pPingHeaderParts = pSeq(
+  pString("PING"),
+  pWhitespace,
+  pIpV4Address,
+  pWhitespace,
+  pString("("),
+  pIpV4Address,
+  pString(")"),
+  pWhitespace,
+  pInteger,
+  pString("("),
+  pInteger,
+  pString(")"),
+  pString(" bytes of data."),
+  pOptionalWhitespace
+);
+
+const pPingHeader = pMap(
+  pPingHeaderParts,
+  ([a, b, c, d, e, f, g, h, i, j, k, l, m]) => ({
+    targetIp: c,
+    resolvedIp: f,
+    icmpPayloadSize: i,
+    totalPacketSize: k
+  })
+);
+```
+
+Next, the packets! Here we have to parse a floating point number ("84.2 ms") but apart from that it's much the same.
+
+```typescript
+const pFloat = pMap(
+  pRegex(/^\d+\.?\d*/),
+  Number
+);
+
+const pIcmpPacketParts = pSeq(
+  pInteger,
+  pString(" bytes from "),
+  pIpV4Address,
+  pString(": icmp_seq="),
+  pInteger,
+  pString(" ttl="),
+  pInteger,
+  pString(" time="),
+  pFloat,
+  pString(" ms"),
+  pOptionalWhitespace
+);
+
+const pIcmpPacket = pMap(
+  pIcmpPacketParts,
+  ([a, b, c, d, e, f, g, h, i]) => ({
+    byteCount: a,
+    from: c,
+    seq: e,
+    ttl: g,
+    time: i
+  })
+);
+```
+Good, and lastly, the statistics.
+
+```typescript
+const pUselessLine = pRegex(/^---[^\n]+---\s*/);
+const pStatsLine1 = pSeq(
+  pInteger,
+  pString(" packets transmitted, "),
+  pInteger,
+  pString(" received, "),
+  pFloat,
+  pString("% packet loss, time "),
+  pInteger,
+  pString("ms"),
+  pOptionalWhitespace
+);
+
+const pStatsLine2 = pSeq(
+  pString("rtt min/avg/max/mdev = "),
+  pFloat,
+  pString("/"),
+  pFloat,
+  pString("/"),
+  pFloat,
+  pString("/"),
+  pFloat,
+  pString(" ms"),
+  pOptionalWhitespace
+);
+
+
+const pPingStatisticsParts = pSeq(
+  pUselessLine,
+  pStatsLine1,
+  pStatsLine2
+);
+
+const pPingStatistics = pMap(
+  pPingStatisticsParts,
+  ([
+    _,
+    [a, b, c, d, e, f, g, h],
+    [i, j, k, l, m, n, o, p, q],
+  ]) => ({
+    packetsTransmitted: a,
+    packetsRecieved: c,
+    packetLoss: e,
+    time: g,
+    rtt: {
+      min: j,
+      avg: l,
+      max: n,
+      mdev: p
+    }
+  })
+);
+```
+
+Is it kind of weird that I'm using single letter variable names from a through q? Yes, but I'm really trying to push out the quickest and dirtiest parser here -- in production you'd pick more sensible intermediate representations.
+
+Anyway, we've got the three main sections assembled -- time to build the entire thing! Since the list of packets is variable length, we'll need a `pRepeat` parser that continuously applies a parser until it can't -- similarly to `*` in regex.
+
+`*` is actually called the Kleene Star, after Stephen Kleene, in case you didn't know.
+
+```typescript
+const pRepeat = <T>(parser: Parser<T>): Parser<T[]> => 
+  (input: string) => {
+    const parts: T[] = [];
+    let next = input;
+    
+    while (next.length > 0) {
+      try {
+        const [token, rest] = parser(next);
+        next = rest;
+        parts.push(token);
+      } catch (e) {
+        break;
+      }
+    }
+    
+    return [parts, next];
+  };
+
+const pPingParts = pSeq(
+  pPingHeader,
+  pRepeat(pIcmpPacket),
+  pPingStatistics 
+);
+
+const pPingSummary: Parser<PingSummary> = pMap(
+  pPingParts,
+  ([header, packets, statistics]) => ({
+    header, packets, statistics
+  })
+);
+```
+
+And there you go! I even annotated the last parser's type as a little victory celebration.
+
+In a single blog post, we built up a very complicated parser from literally zero, and we even came up with a hand-rolled parser combinator library along the way!
+
+Of course as mentioned earlier, *usually* you wouldn't have to write the combinators yourself, javascript for example has the `parsimmon` library which has been getting some traction in recent years. Other than the combinators which might need some brainpower, the writing of the parser itself is super straight-forward, wouldn't you say?
+
+It's much easier to create correct parsers with these things than with a regex; especially once you start nesting `pSeq` calls and such, the equivalent regex would just become an unreadable mess. The parser combinator approach resulted in a squeaky clean result!
+
+Go give parser combinators a try next time you have to parse something, in my opinion it's a really elegant solution to the parser problem.
