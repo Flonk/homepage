@@ -8,7 +8,7 @@ I feel like in an age of JSON and API-first development, writing parsers has bec
 
 ![Regex queries are not equipped to break down HTML into its meaningful parts](/assets/2026-04-16-parser-combinators/1.png)
 
-Anyway, regex gets a bad rep. People have built horrendous things with it yes, and yes, if misused, it looks like you smashed your head against the keyboard. Still, it's a good tool for parsing everyday strings, and perhaps more commonly, performing string validation. Of course if you need heavyweight parsing, like when parsing a programming langue into an abstract syntax tree, then these days you would use [tree-sitter](https://tree-sitter.github.io/tree-sitter/index.html), or in esoteric cases, hand-roll a recursive descent parser.
+Anyway, regex gets a bad rep. People have built horrendous things with it yes, and yes, if misused, it looks like you smashed your head against the keyboard. Still, it's a good tool for parsing everyday strings, and perhaps more commonly, performing string validation. Of course if you need heavyweight parsing, like when parsing a programming language into an abstract syntax tree, then these days you would use [tree-sitter](https://tree-sitter.github.io/tree-sitter/index.html), or in esoteric cases, hand-roll a recursive descent parser.
 
 But what if I told you that there's *a secret third thing* -- use cases that are kind of too hard to parse with regex but you're like still doing a one-off thing so you don't want to write a formal grammar or drag in a heavy dependency. This is the realm where bad decisions have been made -- the realm of the regex abominations, the `x.substring(1, x.length-1)`, and the `.split('[').map(x => x.indexOf(']'))`, and many many other string slicing crimes.
 
