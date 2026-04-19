@@ -77,11 +77,9 @@ const input4 = "Hello world";
 pString("Hello")(input4); //  ["Hello", " world"]
 ```
 
-Already we are getting more functional, here we have functions that return functions; or perhaps parser factories if you are so inclined.
+Already we are getting more functional, as here we have functions that return functions. To get the OOP folks on board we could perhaps call them parser factories or something.
 
-And while that's cool and all, the real power of parser combinators... it comes from the combinating.
-
-Lets try to chain some of these parsers and then lets see if we can generalize this somehow!
+Anyway, while that's cool and all, the real power of parser combinators... it comes from the combinating and the chaining, so lets try to chain some of these parsers, and then lets see if we can generalize this somehow.
 
 ```typescript
 const input = "Hello 420";
