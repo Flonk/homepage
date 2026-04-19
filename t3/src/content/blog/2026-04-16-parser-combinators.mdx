@@ -211,7 +211,7 @@ type PingResult = {
 };
 ```
 
-Ok -- let's try to get from A to B then. The first line should be easy right, it's just some `pSeq` and then a `pMap` to finagle it into `PingHeader` shape.
+Ok -- let's try to get from A to B then. The first line should be easy right, it's just some `pSeq` of parsers and then a `pMap` to finagle it into `PingHeader` shape.
 
 ```typescript
 const pByte = pMap(
