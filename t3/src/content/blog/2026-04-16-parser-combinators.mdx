@@ -22,7 +22,7 @@ The most important bit is understanding this type definition -- the *partial par
 type Parser<T> = (input: string) => [T, string]
 ```
 
-What's it do? It's a functin that takes a string, consumes a part of the front of the string and turns that into a parsed value of type `T`; in the second entry of the tuple, we return the rest of the string.
+What's it do? `Parser<T>` is a function that takes a string, consumes a part of the front of the string and turns that into a parsed value of type `T`; in the second entry of the tuple, we return the rest of the string.
 
 Here's a very simple parser, parsing an exact string:
 
