@@ -321,7 +321,6 @@ const pStatsLine2 = pSeq(
   pOptionalWhitespace
 );
 
-
 const pPingStatisticsParts = pSeq(
   pUselessLine,
   pStatsLine1,
@@ -394,6 +393,6 @@ In a single blog post, we built up a very complicated parser from literally zero
 
 Of course as mentioned earlier, *usually* you wouldn't have to write the combinators yourself, javascript for example has the `parsimmon` library which has been getting some traction in recent years. Other than the combinators which might need some brainpower, the writing of the parser itself is super straight-forward, wouldn't you say?
 
-It's much easier to create correct parsers with these things than with a regex; especially once you start nesting `pSeq` calls and such, the equivalent regex would just become an unreadable mess. The parser combinator approach resulted in a squeaky clean result!
+It's much easier to create correct parsers with these things than with a regex; especially once you start nesting `pSeq` calls and such, the equivalent regex would just become an unreadable mess, while the parser combinator approach resulted in a squeaky clean parser!
 
 Go give parser combinators a try next time you have to parse something, in my opinion it's a really elegant solution to the parser problem.
