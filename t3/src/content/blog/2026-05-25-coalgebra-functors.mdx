@@ -1,0 +1,105 @@
+---
+title: "Classes are Coalgebras #1: Functors"
+description: ""
+pubDate: "May 26 2026"
+---
+
+I love type theory! If the 25-part series about it wasn't evidence enough, today we are going to look at a theoretical underpinning of classes -- that is, regular old classes you know from OOP!
+
+It turns out there is a mathematical structure called a coalgebra that classes map to pretty naturally. Coalgebras capture the concept of "destructuring state", that is, we can observe a stateful value's constituent parts; in OOP terms, we observe state by "reading a public field".
+
+Why would we care? For the love of pure mathematics, for one, and secondly, because coalgebras are a more general concept than classes themselves -- as Bart Jacobs puts it in "Introduction to Coalgebra", every programming language is actually just an algebra and a coalgebra! Let's see if we can understand what he meant by that eh?
+
+Also, we are going to dive into some interesting functional programming concepts along the way so whats not to like :)
+
+## Functors
+
+To understand coalgebra, we first need to understand functors -- and in the everyday sense, a functor is a generic data type that can be *mapped over*.
+
+Lists? You can map over them. Take a list of numbers, and map over it with `.toString`, and you get a list of strings. We do this so often in programming that this is hardly a novel concept to anybody, but I would like to point out two details:
+
+- The function you pass to `map` doesn't know it is being used on a list. In javascript this is only true if you squint a little, since the function you pass to `[1,2,3].map()` gets three arguments actually, the element, the index, and the array itself, but this isn't true in most other languages. `map` in it's "purest" form only gets one argument, the element.
+- The `map` function does not know anything about or care about the data that's inside the list. It only knows how to apply a function to each element, whatever the elements may be. This is evidenced by the fact that `map` is completely generic -- it works with anything you throw at it.
+
+To formalize, we say a datatype is a functor, if it satisfies these properties:
+- It is generic in (at least) one type parameter, in other words you have a `Something<T>`
+- It has a `map: (A -> B) -> Something<A> -> Something<B>` function that takes a function `A -> B` and returns a new `Something<B>` (if the function syntax is weird to you read Appendix A)
+- `map` satisfies **Functor Laws**
+
+## Functor Laws
+
+Once we move into more abstract concepts, we usually require things to satisfy laws. Say you are the first person on earth and you have never heard about the List's `map`, you could come up with all sorts of dumb functions that have the type `(A -> B) -> List<A> -> List<B>`, but they wouldn't make for particularly good `map` functions:
+
+```typescript
+const dumbMap = (fn, list) => []
+const dumbMap2 = (fn, list) => list.reverse().map(fn)
+const dumbMap3 = (fn, list) => list.length === 0 ? [] : [fn(list[0]), fn(list[0]), fn(list[0])]
+```
+
+The way to rectify this and to make sure that the only valid implementation for `map` is the one we know and love, is to pose two laws:
+
+**Identity Law**: `list.map(x => x) === list`, or, mapping the function that does nothing doesn't change the list. This makes sure that `map` doesn't delete or add any elements to the list, or re-arranges the elements in any way.
+
+**Composition Law**: `list.map(x => f(g(x))) === list.map(f).map(g)`, or, if you have two functions and you wish to apply both, you can either do two passes over the list, or one, and it should yield the same result. This forces `map` to be "honest" -- it can only apply the function once to each element, and not inspect the function to do sneaky manipulations. 
+
+Though this result is not obvious!
+
+It's also not so important, and I'm also not much of a formal proof guy, but consider a sneaky map function that spots if it was given the identity function so it can sneakily pass the first law, and does evil things otherwise:
+
+```typescript
+const sneakyMap = (list, fn) => {
+  const mapped = list.map(fn);
+  if (mapped === list) return mapped;
+  return mapped.reverse();
+};
+```
+
+While satisfying the identity law, `sneakyMap` doesn't satisfy composition. Take for example `[1,2,3].sneakyMap(x => x + 1)`; our sneaky function would reverse the list, which may or may not be fine. However, we can "decompose" our function into two steps: `[1,2,3].sneakyMap(x => x - 1).sneakyMap(x => x + 2)`. A sane map function would return the same result as the previous statement, but our `sneakyMap` function here would reverse the list twice, thus breaking the composition law.
+
+Thus, `sneakyMap` cannot be `map`.
+
+## Other Functors
+
+Okay, so Lists can be mapped over. What else?
+
+I would argue that most real-world generics can be mapped over in this way. I mean, your data type is generic so you don't know anything about the data it contains, which means you're using the generic as a sort of container that is specifically meant to be mapped or iterated over. And since we're not trying to shoot ourselves in our feet, we want our mapping functions to behave in a sane way, which usually means it should satisfy the functor laws.
+
+Take for example, `Optional<T>` that represents either a `null` value or a `T` value. Typescript doesn't have a built-in `Optional` type, but we can easily define one, and the mapping function along with it:
+
+```typescript
+type Optional<T> = T | null;
+const mapOptional = (optional, fn) => optional === null ? null : fn(optional);
+```
+
+`Optional<T>` satisfies the functor laws -- convince yourself if you don't believe me.
+
+Another example is `Promise<T>`:
+
+```typescript
+type Promise<T> = // ... built in magic;
+const mapPromise = (promise, fn) => promise.then(fn);
+```
+
+This one is a neat party trick if you haven't seen it before, but a `Promise<A>`'s `.then` method takes a function `A -> B` and returns a `Promise<B>`, so it behaves just like a list's `map`! It also satisfies the functor laws which is super neat.*
+
+One more -- how about C++ pointers? My pseudo-typescript notation would be too weird to write down here, but if you have say, a `Pointer<A>`, you could dereference the pointer to get an `A` value, and then apply your function to map it to a `B` value, then take the address of the `B` value to get a `Pointer<B>`. It's also a mapping!
+
+HashSets, tuples, signals, streams... they are all functors.
+
+---
+
+<small>
+
+## Appendix A: Function Syntax
+All over this blog really, I'm using haskell-style function syntax. A function `A -> B` is a function that takes an `A` and returns a `B`; a function `A -> B -> C` is a function that takes an `A` and a `B` and returns a `C`.
+
+That is to say, the thing after the last arrow is the return type, and the things before the last arrow are the argument types. The fact that we use the same arrow symbol `->` to separate both arguments and return values might seem confusing, but I'm purposely skipping the why in this post; if this sounds interesting to you, read up about currying.
+
+`map: (A -> B) -> List<A> -> List<B>` denotes a function that takes two parameters and has a return type therefore; the arguments are a function `A -> B` and a `List<A>`, and the return type is a `List<B>`.
+
+</small>
+---
+
+<small>
+*[\*] `Promise<T>` actually only almost satisfies the functor laws. If you have a promise returning another promise, then javascript will flatten the `Promise<Promise<T>>` into a `Promise<T>` automatically. This technically breaks functor laws but we'll just gloss over that detail.*
+</small>

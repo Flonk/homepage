@@ -1,0 +1,255 @@
+---
+title: "Iterators are just colist coalgebras"
+description: ""
+pubDate: "May 21 2026"
+---
+
+Iterators are just colist coalgebras. What's the problem?
+
+## Algebra
+
+What even is "an" algebra?
+
+I mean certainly we learn "the" algebra in primary school; it tells us how to add or multiply numbers. And then there is another "the" algebra called linear algebra that we learn somewhere in high school, which is about how to add or multiply matrices and vectors.
+
+Generally speaking however, "an" algebra is just some set and then a bunch of operations on that set. Nothing more, nothing less.
+
+"The" algebra from primary school has as it's set the integers, and as operations addition and multiplication. Linear algebra has as it's set vectors, and as operations addition and multiplication.
+
+But hey, here's another algebra: As the set all possible oreo cookies and as an operation taking two oreo cookies, opening them and scraping the white part off one to combine them into a double stuf cookie.
+
+Ok I'm bad at examples but all I'm saying is it's not that deep.
+
+## Functor
+
+Functors are kind of deep -- they more or less represent generic types that can be mapped over.
+
+For example, can you turn a `List<A>` into a `List<B>`? Sure, I mean as programmers we map over lists every day, that's what `[].map` does! All you need to supply is a function working on an indiviual element, `f: A -> B`.
+
+Lists are the trivial archetype of things that are supposed to be mapped over; let me show you some other examples:
+
+```typescript
+type Boxed<T> = { value: T };
+
+// Boxed is a functor, because
+const mapBox = <T, U>(f: (t: T) => U, { value }: Boxed<T>)
+  => ({ value: f(value) });
+```
+
+`Boxed` is a functor, as we can find a canonical way of turning a `Boxed<A>` into a `Boxed<B>` -- via `mapBox`. `Boxed` being a functor should not be too surprising however as it is more or less a list with one element dressed up in fancy clothes.
+
+How about `Promise`? Bet you've never considered it, but they are functorial, and you can turn a `Promise<A>` into a `Promise<B>`:
+
+```typescript
+const p: Promise<number> = Promise.resolve(0);
+const mapped: Promise<string> = p.then((n) => String(n));
+```
+
+Here we've turned a `Promise<number>` into a `Promise<string>`, and of course this works for any other types you want -- the mapping function `.then` is perfectly generic.
+
+## Algebraic Data Types
+
+Usually what we do with primitive types is to turn them into more complex, composite types. If you have a `number` and a `string` and you really want a type that has both, you can use a record type:
+
+```typescript
+type User = { age: number; name: string };
+```
+
+As a shorthand, in maths notation, we usually write `number * string` denoting such a record. (Note that we don't care about the property names `age` and `name` at all).
+
+The other thing we usually want to do with primitive types is to provide alternatives, like for example you want to say that something can be either a `Dog` or a `Cat`.
+
+```typescript
+type Animal = Dog | Cat;
+```
+
+This "union" type is usually denoted as `Dog + Cat` in maths notation.
+
+An important caveat: What about `Cat + Cat`? You can't just translate this to `type Foo = Cat | Cat` in typescript because tsc just collapses `Cat | Cat` into `Cat`. We need to add some sort of discriminator to differentiate the two `Cat` types in our sum. I will add those as needed, for example:
+
+```typescript
+type CatOrCat =
+  | { type: "leftCat"; cat: Cat }
+  | { type: "rightCat"; cat: Cat };
+```
+
+That way we can distinguish between the cats in the expression `Cat + Cat` again.
+
+**Abstraction alert**: These two mechanisms make datatypes in typescript "an" algebra: The set is the set of all types, and our operations are `*` and `+`.
+
+We say typescript has "algebraic data types" (ADTs) for this reason: You have a base set of types and you can make more types from them with our two operations. We even call those operations `*` and `+` so it looks mathsy, and like we're doing regular algebra on numbers.
+
+## Products are functorial
+
+Above we saw that `Boxed<T>` is a functor. What about `Boxed<T> * Boxed<T>`? Remember that taking the product of two types means creating a record with two fields:
+
+```typescript
+type DoubleBox<T> = {
+  box1: Boxed<T>;
+  box2: Boxed<T>;
+};
+```
+
+Can you find a function that maps a `DoubleBox<A>` to a `DoubleBox<B>`? 
+
+Yes! We already know how to map regular boxes, so we just use that function twice, once for each part of our product:
+
+```typescript
+const mapDoubleBox = <A, B>(f: (a: A) => B) => ({ box1, box2 }: DoubleBox<A>)  => ({
+  box1: mapBox(f)(box1),
+  box2: mapBox(f)(box2),
+});
+```
+
+Okay, take a quick breather to digest what happened here because we've moved up the abstraction level.
+
+We've taken a functor like `Boxed`, and used it to build a new functor `DoubleBox`. Yes?
+
+And `mapDoubleBox` didn't even need to know a whole lot about how `Box` is implemented underneath -- it can just use the functorial nature of `Boxed` and delegate the mapping of each part to `mapBox`.
+
+And if we move up the abstraction ladder once more, what does this mean for products in general? `DoubleBox` is a product of two `Boxed`s, but we could have easily taken the product `List<T> * List<T>` or `List<T> * Boxed<T>` and implemented the mapping functions for those types just as easily. To map boxes we call `mapBox`, to map lists we call `.map`.
+
+In languages that allow it, we "overload" just a single `fmap` function to work on anything that is declared "functor". In that case the mapping function for products literally just calls `fmap` twice and it doesn't even care what types you are multiplying -- as long as that type has `fmap` defined it works.
+
+This means that product types are functorial.
+
+And stepping down the abstraction ladder a bit, the product functor in some abstract sense performs the mapping, by mapping over each part of the product.
+
+## Sums are functorial
+
+Sums are also functorial. Consider the sum `Boxed<T> + Boxed<T>`, which, recalling the definition, we could write as:
+
+```typescript
+type BoxOrBox<T> = 
+  | { type: "left"; box: Boxed<T> }
+  | { type: "right"; box: Boxed<T> };
+```
+
+How to make it a functor? We define a function from `BoxOrBox<A>` to `BoxOrBox<B>`.
+
+The way to do that naturally is to pattern-match on the discriminant.
+
+```typescript
+function mapBoxOrBox<A, B>(f: (a: A) => B, boxOrBox: BoxOrBox<A>): BoxOrBox<B> {
+  switch (boxOrBox.type) {
+    case "left":
+      return { type: "left"; box: mapBox(f, boxOrBox.box) };
+    case "right":
+      return { type: "right"; box: mapBox(f, boxOrBox.box) };
+  }
+}
+```
+
+Again the mapping function doesn't particularly care about what types you are summing -- as long as the two subparts can be mapped over, `mapBoxOrBox` will naturally generalize to any two types.
+
+## Formalizing "the" algebra
+
+When I said that "an algebra" is just a set with some operations on it, that was very sloppy wording, but nevertheless correct wording.
+
+We do have a way of formalizing the concept via so called F-algebras, but lets start with an example -- "the" primary school algebra, which we have said is the natural numbers together with addition and multiplication. Here I have a few "the" algebra problems for you:
+
+```
+4 + 3
+7 * 2
+```
+
+Riveting!
+
+If we were to build a computer program that was capable of solving these algebra problems, we would need to design two main parts:
+  - A "language" or maybe a json schema for writing down the algebra problems
+  - An "interpreter" taking the data and spitting out the result
+  
+The language part we can solve elegantly using our algebraic data types.
+
+```typescript
+type Expression<T> =
+  | { type: "add"; left: Expression<T>; right: Expression<T> }
+  | { type: "mul"; left: Expression<T>; right: Expression<T> }
+  | { type: "lit"; value: T }
+```
+
+I kept it generic so it can be used with any type `T` -- for primary school algebra, `T` would be `number`. Our little expression language right here can encode any algebra problem; for example, `(4 + 3) * 2` could be represented as
+
+```typescript
+const expr: Expression<number> = {
+  type: "mul",
+  left: { type: "add", 
+    left: { type: "lit", value: 4 },
+    right: { type: "lit", value: 3 }
+  },
+  right: { type: "lit", value: 2 },
+};
+```
+
+Writing an interpreter for primary school algebra comes down to recursively evaluating the expression tree.
+
+```typescript
+const evaluate = (expr: Expression<number>): number => {
+  switch (expr.type) {
+    case "add":
+      return evaluate(expr.left) + evaluate(expr.right);
+    case "mul":
+      return evaluate(expr.left) * evaluate(expr.right);
+    case "lit":
+      return expr.value;
+  }
+};
+```
+
+## F-Algebra
+
+We now have everything we need to formalize the concept of an algebra using F-algebras. The ingredients are:
+  - A functor, for example `Expression` (The F in F-Algebra stands for functor)
+  - A fixed set of things. For primary school algebra, that's all `number`s
+  - An evaluation function, for example `evaluate`
+  
+Note how this definition of algebra no longer includes "a set of operations" -- we have encoded those operations directly into the functor! `Expression` has addition and multiplication in it's definition, and any possible `evaluate` function must be able to deal with either case somehow.
+
+Many things are F-algebras. Primary school algebra we have seen, it's our `Expression` functor with our `evaluate` function. Linear algebra is perhaps a bit more complicated to formalize. Our functor would need to encode `add` for adding vectors, `mul` for piecewise multiplication, and you can even do funky things like vector projection, and perhaps you'd need to encode matrix multiplication to unlock more advanced linear algebra concepts. But it can be done!
+
+## Lists are F-algebras
+
+Less obviously, lists are also F-algebras, and here is where we really go into abstract territory, so brace yourself!
+
+Remember that for an F-Algebra, we need three things, the first being a functor. So, consider the functor `F(L) = 1 + number * L` -- `1` in this context is an enum with just one case, read it as "empty list".
+
+```typescript
+type Cons<L> = 
+  | { tag: "empty" }
+  | { tag: "cons", head: number, tail: L }
+```
+
+On top of this functor, we can define infinitely many algebras, so let me start with a simple one... a sum algebra.
+
+The second thing we need for any F-algebra is a set of things, that means we fix a type `L`; lets call that `number` aswell. The third thing then is an evaluation function `Cons<number> -> number`.
+
+```typescript
+const sumAlgebra = (f: Cons<number>): number => {
+  if (f.tag === "empty") return 0
+  if (f.tag === "cons") return f.head + sumAlgebra(f.tail)
+}
+```
+
+Another example would be the product algebra, which multiplies all the numbers in the list together.
+
+```typescript
+const productAlgebra = (f: Cons<number>): number => {
+  if (f.tag === "empty") return 1
+  if (f.tag === "cons") return f.head * productAlgebra(f.tail)
+}
+```
+
+And lists of numbers? Well. They are F-algebras on the same functor!
+
+Looking at the type `Cons`, we see it looks very much like a "cons cell" from a linked list -- either it's empty, or it has a head and a tail. Unlike a linked list however, the tail here is not a another list, but rather an `L` value.
+
+`L` can be a type of our choosing though right? So we could pass `Cons<L>` as the generic argument to `Cons`, meaning we want the tail to be another cons cell. This yields the type `Cons<Cons<L>>`. This allows us to write down 0-element, or 1-element, or 2-element, lists. We run into a problem with 3-element lists though, because the tail's tail is again `L` when we would need another cons cell.
+
+**Recursion alert**: To express lists of arbitrary length, we need to set `L` to a value that is always a cons cell, no matter how deep down you go. Meaning `L` must be `F<L>` at any stage, so the tail is always a cons cell. Given that we would like `L = Cons<L>`, we can run a substitution chain to get the final type for lists: `L = Cons<L> = Cons<Cons<L>> = Cons<Cons<Cons<...`.
+
+Solving an equation `x = f(x)` for any function in mathematics is called "finding the fixed point" of `f`. Doing this in types is pretty unusual for most people, and this is also where the typescript compiler fails us, but languages with stronger type systems could express something like the following:
+
+```typescript
+type Fix<F, L> = F<Fix<F, L>> 
+type List<L> = Fix<Cons, L>
+```
