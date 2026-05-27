@@ -28,7 +28,7 @@ To formalize, we say a datatype is a functor, if it satisfies these properties:
 
 ## Functor Laws
 
-Once we move into more abstract concepts, we usually require things to satisfy laws. Say you are the first person on earth and you have never heard about the List's `map`, you could come up with all sorts of dumb functions that have the type `(A -> B) -> List<A> -> List<B>`, but they wouldn't make for particularly good `map` functions:
+Once we move into more abstract concepts, we usually require things to satisfy laws. Say you are the first person on earth and you have never heard about the List's `map`, then how would you implement it? You could come up with all sorts of dumb functions that have the type `(A -> B) -> List<A> -> List<B>`, but they wouldn't make for particularly good `map` functions:
 
 ```typescript
 const dumbMap = (fn, list) => []
