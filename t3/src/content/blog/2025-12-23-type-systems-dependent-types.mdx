@@ -94,7 +94,7 @@ but it is really interesting to peek around Coq codebases, it's a whole differen
 
 I mean picture this. The `=` operator for checking equality isn't some built-in primitive
 that compares two values and returns a boolean, no no no. Instead, `=` is a _type constructor_,
-a.k.a. a generic; sloppily: `= :: ∀A: Prop. A → A → Prop`, where `Prop` is the type of logical propositions.
+a.k.a. a generic; sloppily: `= :: ∀A: Type. A → A → Prop`, where `Prop` is the type of logical propositions.
 It comes with only one constructor, or axiom if you will, `eq_refl :: x = x`, stating that
 any value is equal to itself.
 

@@ -96,10 +96,6 @@ const ServicesInInitializationOrder = [
 const createApplication = (config = parseAppEnvironment()): Application => {
   const service = {} as Services;
 
-  for (const [name, Service] of ServicesInInitializationOrder) {
-    service[name] = new Service(config);
-  }
-
   const start = () => {
     for (const service of Object.keys(ServicesInInitializationOrder)) {
       service[service].start?.();
@@ -113,12 +109,13 @@ const createApplication = (config = parseAppEnvironment()): Application => {
     }
   };
 
-  return {
-    config,
-    service,
-    start,
-    stop,
-  };
+  const application = { config, service, start, stop };
+
+  for (const [name, Service] of ServicesInInitializationOrder) {
+    service[name] = new Service(application, config);
+  }
+
+  return application;
 };
 ```
 
