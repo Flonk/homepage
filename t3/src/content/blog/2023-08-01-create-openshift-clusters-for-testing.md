@@ -112,7 +112,7 @@ It’s just a bit of a hassle to set up. Here’s a rough overview of how you wo
 
 We recommend at least 8 cores and at least 32 Gigs of RAM. The `Standard_D8ds_v4` machine type has worked well for us. I don’t think it’s strictly necessary, but we chose to use a CentOS 7 image, which is like an open-source Red Hat Enterprise distribution.
 
-Be sure to open incoming TCP ports 22, 80, 443, and 6443. (The last one is used by the OpenShift container registry.)
+Be sure to open incoming TCP ports 22, 80, 443, and 6443. (The last one is used by the OpenShift/Kubernetes API server.)
 
 We chose to open all outgoing ports because whatever you deploy into the cluster might need them, but this is optional.
 

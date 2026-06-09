@@ -71,15 +71,12 @@ generic functions like `toString :: ∀A. A → String`, but this is easily solv
 adding a special type that acts as a supertype of all types, like `unknown` in typescript.
 This type is called a _top type_.
 
-Given an average programming language, we can deduce that a top type must be
-some sort of empty structure, because as soon as you add a single property `foo`
+Given an average programming language, we can deduce that a top type must demand
+*nothing* of its values, because as soon as you require a single property `foo`
 to `Top`, any `foo`less type would no longer be a subtype of that enriched `Top`.
 
-And if values of the top type are shapeless and empty, maybe roughly "empty object"
-kind of values, then it must follow that `Top` only has a single inhabitant! If `Top`
-had two distinct values, then those two values would have to differ in some way, meaning one
-of them would have to have some property that the other one doesn't, contradicting the fact
-that both are of type `Top`.
+And precisely because `Top` imposes no requirements, every value passes the bar --
+`42`, `"foo"`, `{ a: 1 }`, `[]`, you name it.
 
 Once we add such a top type to System F\<:, our `toString` function from plain System F
 can now be expressed again:

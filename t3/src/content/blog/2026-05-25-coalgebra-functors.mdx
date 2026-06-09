@@ -40,7 +40,7 @@ The way to rectify this and to make sure that the only valid implementation for 
 
 **Identity Law**: `list.map(x => x) === list`, or, mapping the function that does nothing doesn't change the list. This makes sure that `map` doesn't delete or add any elements to the list, or re-arrange the elements in any way.
 
-**Composition Law**: `list.map(x => f(g(x))) === list.map(f).map(g)`, or, if you have two functions and you wish to apply both, you can either do two passes over the list, or one, and it should yield the same result. This forces `map` to be "honest" -- it can only apply the function once to each element, and not inspect the function to do sneaky manipulations. 
+**Composition Law**: `list.map(x => f(g(x))) === list.map(g).map(f)`, or, if you have two functions and you wish to apply both, you can either do two passes over the list, or one, and it should yield the same result. This forces `map` to be "honest" -- it can only apply the function once to each element, and not inspect the function to do sneaky manipulations. 
 
 Though this result is not obvious!
 
