@@ -1,0 +1,130 @@
+---
+title: "Classes are Coalgebras #2: Algebraic Data Types"
+description: ""
+pubDate: "May 26 2026"
+---
+
+I'm using algebraic data types (ADTs) on this blog extensively, and while the term is floating around in programming circles quite a lot, I feel like nobody really understand what it means, so let me clear up the confusion for you.
+
+ADTs are like an abstract way to describe complex types, without us needing to be concerned about the specifics of any specific programming language. Say we are in typescript with a set of primitive types like `string`, `number`, `boolean`, and we want to make more complex types out of them, then what are we usually doing?
+
+- We take many types and pack them into a bundle of things -- for example via tuples, records, or classes
+- We provide a way to give "either/or" options -- for example via enums or union types
+
+This, along with a type for specifying functions, is all you need to model pretty much anything in any programming language. As a result, most programming languages feature ADTs in some form or another, though some languages are more direct about it than others.
+
+Without further ado lets keep this one short and terse and hop right into it.
+
+## Product Types
+
+Say you have an integer and a string and you would like two store both in a single variable. How do you do it?
+
+Well—for one-off things, you could pack them into a tuple like `[2, "a"]`. If you are going to reuse the type a lot, perhaps you'd make a type definition like
+
+```typescript
+type Foo = {
+  num: number,
+  str: string
+};
+```
+
+Or equivalently, a class definition.
+
+We say that all of those representations are **the product** of an integer and a string, and we even write this type as `number * string`, with the multiplication symbol.
+
+So, whenever you see me refer to `number * string` in an upcoming blog post, you are free to translate it into any of the above representations.
+
+I really don't care which one; they are equivalent, in a very mathematically rigorous way: You can write two functions that convert between the tuple and `Foo` representations without losing any information. This is an exercise left to the reader!
+
+## Sum Types
+
+To encode alternatives, we use **sum types**. When we write `string + number` we understand the `+` sign to represent a **discriminated union**.
+
+Discriminated unions are common in API design, but it might be foreign to some. So to clarify, a discriminated union is a regular union, given you can tell the "branches" apart. Take for example the type `T + 1`, which in non-nerd speak means `Nullable<T>`:
+
+```typescript
+type Nullable<T> = T | null;
+```
+
+(Why `null` translates to `1` we will get into in a second.)
+
+Given any value of our type `T + 1`, you can immediately tell if it's a `T` or a `null` by doing a null check:
+
+```typescript
+const isNull<T> = (value: Nullable<T>): value is null => value === null;
+```
+
+A problem however arises when we try to represent a type like `string + string` -- in typescript, a regular union won't do:
+
+```typescript
+type StringPlusString = string | string;
+```
+
+This type will collapse into `string`, and if you have a value of type `StringPlusString`, you can't tell if it's a "left" or a "right" string. This is why we need another field that acts as a discriminator.
+
+```typescript
+type StringPlusString =
+  | { type: "left", value: string }
+  | { type: "right", value: string };
+```
+
+Again, what the extra prop's value is called or what it's value is, is irrelevant -- it's just a mechanical crutch for translating the maths description of `string + string` into a typescript type.
+
+There is by the way another common implementation of sum types in a lot of programming languages: subclasses!
+
+```typescript
+abstract class StringPlusString { }
+class Left extends StringPlusString {
+  public value: string;
+}
+class Right extends StringPlusString {
+  public value: string;
+}
+```
+
+The discriminator in this case can be checked via `typeof` or checking the `.constructor.name` property.
+
+Take a moment to reflect on the fact that subclasses and unions are two expressions of the same concept -- I think that's a really cool and deep insight into the nature of types!
+
+## 0, 1, 2, 3, ...
+Above we saw that I translated the `null` type as `1` in the definition of `Nullable<T>`.
+
+Without going into too much detail, we can say that when a type definition contains a number like that, we mean it to be the "enum that contains N values".
+
+For example, when we write the type `string * 2`, then the `2` refers to an enum that contains 2 values. Again, the actual names in the enum don't matter to us, they are all equivalent for our purposes. That being said, a popular choice for names are `true` and `false`, which is why we often call `2` the type of "booleans".
+
+Similarly `1` is the type of any enum with one value — `null` fits the bill, because how many different values of type `null` are there? There is only one: `null` itself.
+
+`0` is a special case — an enum with no values. In typescript we typically call it `never`.
+
+`3` obviously is the enum with three values, like `"red" | "green" | "blue"`.
+
+## It's all just algebra
+It might seem weird to you that we're using maths symbols like `+` and `*` to define types, and we're using numbers even for enums. And I agree, it does take some getting used to!
+
+But let me hit you with a real clanker: You can do algebra with algebraic data types.
+
+It's almost like it's in the name.
+
+That is to say, a simple maths problem like `2 * x == x + x`, also applies to types. Let's fix `x` as `string` for a second:
+
+```typescript
+type TwoTimesString = [boolean, string];
+type StringPlusString = 
+ | { t: "left", value: string }
+ | { t: "right", value: string };
+```
+
+Now, we say that those types are "equivalent", if we can find two functions that convert between them, in a way that preserves all the information.
+
+```typescript
+const to = ([b, s]: TwoTimesString) => b
+  ? { t: "left", value: s }
+  : { t: "right", value: s };
+
+const from = ({ t, value }: StringPlusString) => t === "left"
+  ? [true, value]
+  : [false, value];
+```
+
+Hello??? How cool is that! With ADTs, you can refactor your codebase by using binomial equations!
