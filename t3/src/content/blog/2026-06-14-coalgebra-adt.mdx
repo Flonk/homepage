@@ -4,14 +4,16 @@ description: ""
 pubDate: "June 14 2026"
 ---
 
-I'm using algebraic data types (ADTs) on this blog extensively, and while the term is floating around in programming circles quite a lot, I feel like nobody really understand what it means, so let me clear up the confusion for you.
+I feel like the term "algebraic data type" is floating around programming circles quite a lot, but nobody really understand what it means, so let me clear up the confusion for you.
 
-ADTs are like an abstract way to describe complex types, without us needing to be concerned about the specifics of any specific programming language. Say we are in typescript with a set of primitive types like `string`, `number`, `boolean`, and we want to make more complex types out of them, then what are we usually doing?
+In a nutshell, ADTs give us a way to specify types, without us having to dig into the specifics of any particular programming language. ADTs use the `+` and `*` symbols to combine types together, as opposed to whatever niche syntax is available to us in programming like java's `abstract class {}` or ruby's `<< self` or swift's `extension Int {}`. Now, it may seem like a statement like `number * string * boolean` is maths and maths is hard, but let me assure you it's not rocket science.
+
+Say we are in typescript with a set of primitive types like `string`, `number`, `boolean`, and we want to make more complex types out of them, then what are we usually doing?
 
 - We take many types and pack them into a bundle of things -- for example via tuples, records, or classes
 - We provide a way to give "either/or" options -- for example via enums or union types
 
-This, along with a type for specifying functions, is all you need to model pretty much anything in any programming language. As a result, most programming languages feature ADTs in some form or another, though some languages are more direct about it than others.
+This, along with functions, is all you need to model pretty much anything in any programming language. As a result, most programming languages feature ADTs in some form or another, though some languages are more direct about it than others.
 
 Without further ado lets keep this one short and terse and hop right into it.
 
