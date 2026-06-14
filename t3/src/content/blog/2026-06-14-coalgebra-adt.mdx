@@ -4,9 +4,9 @@ description: ""
 pubDate: "June 14 2026"
 ---
 
-I feel like the term "algebraic data type" is floating around programming circles quite a lot, but nobody really understand what it means, so let me clear up the confusion for you.
+I feel like the term "algebraic data type" is floating around programming circles quite a lot, but nobody really understands what it means, so let me clear up the confusion for you.
 
-In a nutshell, ADTs give us a way to specify types, without us having to dig into the specifics of any particular programming language. ADTs use the `+` and `*` symbols to combine types together, as opposed to whatever niche syntax is available to us in programming like java's `abstract class {}` or ruby's `<< self` or swift's `extension Int {}`. Now, it may seem like a statement like `number * string * boolean` is maths and maths is hard, but let me assure you it's not rocket science.
+In a nutshell, ADTs give us a way to specify types without us having to dig into the specifics of any particular programming language. ADTs use the `+` and `*` symbols to combine types together, as opposed to whatever niche syntax is available to us in programming. Now, it may seem like a statement like `number * string * boolean` is maths and maths is hard, but let me assure you it's not rocket science.
 
 Say we are in typescript with a set of primitive types like `string`, `number`, `boolean`, and we want to make more complex types out of them, then what are we usually doing?
 
@@ -15,11 +15,11 @@ Say we are in typescript with a set of primitive types like `string`, `number`, 
 
 This, along with functions, is all you need to model pretty much anything in any programming language. As a result, most programming languages feature ADTs in some form or another, though some languages are more direct about it than others.
 
-Without further ado lets keep this one short and terse and hop right into it.
+Without further ado, let's keep this one short and terse and hop right into it.
 
 ## Product Types
 
-Say you have an integer and a string and you would like two store both in a single variable. How do you do it?
+Say you have an integer and a string and you would like to store both in a single variable. How do you do it?
 
 Well—for one-off things, you could pack them into a tuple like `[2, "a"]`. If you are going to reuse the type a lot, perhaps you'd make a type definition like
 
@@ -32,7 +32,7 @@ type Foo = {
 
 Or equivalently, a class definition.
 
-We say that all of those representations are **the product** of an integer and a string, and we even write this type as `number * string`, with the multiplication symbol.
+We say that all of those representations are **the product** of a number and a string, and we even write this type as `number * string`, with the multiplication symbol.
 
 So, whenever you see me refer to `number * string` in an upcoming blog post, you are free to translate it into any of the above representations.
 
@@ -42,7 +42,7 @@ I really don't care which one; they are equivalent, in a very mathematically rig
 
 To encode alternatives, we use **sum types**. When we write `string + number` we understand the `+` sign to represent a **discriminated union**.
 
-Discriminated unions are common in API design, but it might be foreign to some. So to clarify, a discriminated union is a regular union, given you can tell the "branches" apart. Take for example the type `T + 1`, which in non-nerd speak means `Nullable<T>`:
+Discriminated unions are common in API design, but the concept might be foreign to some. So to clarify, a discriminated union is a regular union, given you can tell the "branches" apart. Take for example the type `T + 1`, which in non-nerd speak means `Nullable<T>`:
 
 ```typescript
 type Nullable<T> = T | null;
@@ -50,7 +50,7 @@ type Nullable<T> = T | null;
 
 (Why `null` translates to `1` we will get into in a second.)
 
-Given any value of our type `T + 1`, you can immediately tell if it's a `T` or a `null` by doing a null check:
+Given any value of `Nullable<T>`, you can immediately tell if it's a `T` or a `null` by doing a null check:
 
 ```typescript
 const isNull<T> = (value: Nullable<T>): value is null => value === null;
@@ -70,9 +70,9 @@ type StringPlusString =
   | { type: "right", value: string };
 ```
 
-Again, what the extra prop's value is called or what it's value is, is irrelevant -- it's just a mechanical crutch for translating the maths description of `string + string` into a typescript type.
+Again, what the extra prop's value is called or what its value is, is irrelevant -- it's just a mechanical crutch for translating the maths description of `string + string` into a typescript type.
 
-There is by the way another common implementation of sum types in a lot of programming languages: subclasses!
+Another common implementation of sum types in a lot of programming languages by the way is subclasses!
 
 ```typescript
 abstract class StringPlusString { }
@@ -84,16 +84,16 @@ class Right extends StringPlusString {
 }
 ```
 
-The discriminator in this case can be checked via `typeof` or checking the `.constructor.name` property.
+In this example, you can discriminate via `instanceof` or checking the `.constructor.name` property.
 
 Take a moment to reflect on the fact that subclasses and unions are two expressions of the same concept -- I think that's a really cool and deep insight into the nature of types!
 
 ## 0, 1, 2, 3, ...
 Above we saw that I translated the `null` type as `1` in the definition of `Nullable<T>`.
 
-Without going into too much detail, we can say that when a type definition contains a number like that, we mean it to be the "enum that contains N values".
+Without going into too much detail, we say that the **type** `N` is simply "an enum that contains N values".
 
-For example, when we write the type `string * 2`, then the `2` refers to an enum that contains 2 values. Again, the actual names in the enum don't matter to us, they are all equivalent for our purposes. That being said, a popular choice for names are `true` and `false`, which is why we often call `2` the type of "booleans".
+For example, when we write the type `string * 2`, then the `2` refers to an enum that contains 2 values. Again, the actual names in the enum don't matter, they are all equivalent for our purposes. That being said, a popular choice for names are `true` and `false`, which is why we often call `2` the type of "booleans".
 
 Similarly `1` is the type of any enum with one value — `null` fits the bill, because how many different values of type `null` are there? There is only one: `null` itself.
 
@@ -111,7 +111,9 @@ It's almost like it's in the name.
 That is to say, a simple maths problem like `2 * x == x + x`, also applies to types. Let's fix `x` as `string` for a second:
 
 ```typescript
-type TwoTimesString = [boolean, string];
+type Two = true | false;
+type TwoTimesString = [Two, string];
+
 type StringPlusString = 
  | { t: "left", value: string }
  | { t: "right", value: string };
