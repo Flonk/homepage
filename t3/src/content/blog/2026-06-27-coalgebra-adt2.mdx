@@ -1,0 +1,82 @@
+---
+title: "Classes are Coalgebras #3: ADTs are functorial"
+description: ""
+pubDate: "June 27 2026"
+---
+
+In post #1 we defined that a functor is something that can be mapped over, and in post #2 we defined algebraic data types, specifically the `*` and `+` operators on types. In this post we will show that these operators are actually functors, and pretty trivially so!
+
+The product `*` might not read like a generic type because we are programmers and `Generic<T>` types usually have the angle brackets and everything, so let me translate it to angle bracket language for you:
+
+```typescript
+type Product<A, B> = {
+  first: A,
+  second: B
+};
+```
+
+The type `Product` is obviously generic in two arguments, and as previously discussed, `Product<A, B>` is a valid way of implementing the `A * B` operator.
+
+And, well, `Product` is actually a functor. Actually actually we can find two equally good functors for the `Product` type, which I will demonstrate by providing the functor's mapping functions:
+
+```typescript
+const mapFirst = <A, B, R>(
+  { first, second }: Product<A, B>,
+  fn: (value: A) => R
+) => {
+  return {
+    first: fn(first),
+    second
+  };
+};
+
+const mapSecond = <A, B, R>(
+  { first, second }: Product<A, B>,
+  fn: (value: B) => R
+) => {
+  return {
+    first,
+    second: fn(second)
+  };
+};
+```
+
+To be fair we have not looked at functors on types that are generic in more than one parameter, so for the sake of explanation let's "fix" the second type parameter to `Product<A, ???>` and you'll see that `mapFirst` will transform values of this type to `Product<R, ???>`, so if for a moment we pretend like the second type parameter is not there it reads like pretty much a regular functor. Similarly if we keep the first parameter fixed and the second stays variable, then `mapSecond` will be our mapping function of choice to produce a second functor instance.
+
+Having two equally good functor instances, one for each type parameter, is why we call `Product` a "bifunctor". Functorial in two arguments as it were.
+
+`+` is also a bifunctor. You should be able to come up with both functor instances yourself, so try to think it through before you look at the code below.
+
+```typescript
+type Sum<A, B> = 
+  | { type: "left", value: A }
+  | { type: "right", value: B };
+
+const mapLeft = <A, B, R>(
+  { type, value }: Sum<A, B>,
+  fn: (value: A) => R
+) => {
+  if (type === "left") {
+    return {
+      type,
+      value: fn(value)
+    }
+  }
+
+  return { type, value };
+}
+
+const mapRight = <A, B, R>(
+  { type, value }: Sum<A, B>,
+  fn: (value: A) => R
+) => {
+  if (type === "right") {
+    return {
+      type,
+      value: fn(value)
+    }
+  }
+
+  return { type, value };
+}
+```
