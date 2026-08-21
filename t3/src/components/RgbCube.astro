@@ -63,7 +63,7 @@ const { idleResume = 3 } = Astro.props;
 				d="M -10 112 C 48 88, 52 12, 110 -12 L 112 112 Z"
 			></path>
 		</svg>
-		<span class="hex" data-hex>#808080</span>
+		<span class="rgb-string" data-rgb>rgb(128, 128, 128)</span>
 	</div>
 </div>
 
@@ -244,14 +244,17 @@ const { idleResume = 3 } = Astro.props;
 
 	/* Bottom-left, so it is always over the beige rather than over the disc,
 	   whose colour is anything at all. */
-	.hex {
+	/* Bottom-right, which the S always fills, so this always sits on the colour
+	   itself. Its ink flips between black and white for whichever gives more
+	   contrast against that colour — see the render loop. */
+	.rgb-string {
 		position: absolute;
 		z-index: 1;
-		left: 0.75rem;
+		right: 0.75rem;
 		bottom: 0.4rem;
-		font-size: 0.75rem;
-		color: var(--ink-dim);
+		font-size: 1.125rem;
 		font-variant-numeric: tabular-nums;
+		color: var(--readout-ink, #000);
 		pointer-events: none;
 	}
 
@@ -269,10 +272,18 @@ const { idleResume = 3 } = Astro.props;
 		.bars {
 			gap: 0.4rem;
 		}
-		.bar input,
-		.bar input::-webkit-slider-runnable-track,
-		.bar input::-webkit-slider-thumb,
-		.bar input::-moz-range-track,
+		.bar input {
+			width: 1.25rem;
+		}
+		.bar input::-webkit-slider-runnable-track {
+			width: 1.25rem;
+		}
+		.bar input::-webkit-slider-thumb {
+			width: 1.25rem;
+		}
+		.bar input::-moz-range-track {
+			width: 1.25rem;
+		}
 		.bar input::-moz-range-thumb {
 			width: 1.25rem;
 		}
@@ -284,18 +295,27 @@ const { idleResume = 3 } = Astro.props;
 			--pad-right: 0.6rem;
 			--bar-gap: 0.6rem;
 		}
-		.bar input,
-		.bar input::-webkit-slider-runnable-track,
-		.bar input::-webkit-slider-thumb,
-		.bar input::-moz-range-track,
+		.bar input {
+			width: 0.9rem;
+		}
+		.bar input::-webkit-slider-runnable-track {
+			width: 0.9rem;
+		}
+		.bar input::-webkit-slider-thumb {
+			width: 0.9rem;
+		}
+		.bar input::-moz-range-track {
+			width: 0.9rem;
+		}
 		.bar input::-moz-range-thumb {
 			width: 0.9rem;
 		}
 		.bar-val {
 			display: none;
 		}
-		.hex {
-			display: none;
+		/* Would otherwise run off a pane this narrow. */
+		.rgb-string {
+			font-size: 0.85rem;
 		}
 	}
 
@@ -344,31 +364,41 @@ const { idleResume = 3 } = Astro.props;
 			writing-mode: horizontal-tb;
 			direction: ltr;
 			width: 100%;
-			height: 1rem;
+			height: 1.1rem;
 			cursor: ew-resize;
 		}
 
-		.bar input::-webkit-slider-runnable-track,
-		.bar input::-moz-range-track {
+		/* Lying down, the ramp runs to the right: minimum at the left, where a
+		   left-to-right slider starts. The thumb mirrors the upright case — it
+		   spans the bar's thickness and is narrow along its length. */
+		.bar input::-webkit-slider-runnable-track {
 			width: 100%;
-			height: 1rem;
+			height: 1.1rem;
 			background: linear-gradient(to right, #000, var(--channel));
 		}
 
-		.bar input::-webkit-slider-thumb,
+		.bar input::-moz-range-track {
+			width: 100%;
+			height: 1.1rem;
+			background: linear-gradient(to right, #000, var(--channel));
+		}
+
+		.bar input::-webkit-slider-thumb {
+			width: 0.55rem;
+			height: 1.1rem;
+			margin-left: 0;
+			margin-top: 0;
+		}
+
 		.bar input::-moz-range-thumb {
-			width: 0.45rem;
-			height: 1rem;
+			width: 0.55rem;
+			height: 1.1rem;
 			margin-left: 0;
 		}
 
 		.stage {
 			flex: 1;
 			min-height: 0;
-		}
-
-		.hex {
-			display: none;
 		}
 	}
 </style>
@@ -521,7 +551,16 @@ const { idleResume = 3 } = Astro.props;
 		const inputs = Array.from(root.querySelectorAll<HTMLInputElement>('input[type="range"]'));
 		const vals = Array.from(root.querySelectorAll<HTMLElement>('.bar-val'));
 		const swatch = root.querySelector<HTMLElement>('[data-swatch]')!;
-		const hexOut = root.querySelector<HTMLElement>('[data-hex]')!;
+		const rgbOut = root.querySelector<HTMLElement>('[data-rgb]')!;
+
+		/** sRGB relative luminance, for choosing readable ink over a colour. */
+		const luminance = (r: number, g: number, b: number) => {
+			const lin = (c: number) => {
+				const v = c / 255;
+				return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+			};
+			return 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b);
+		};
 
 		const IDLE_MS = (Number(root.dataset.idleResume) || 3) * 1000;
 		const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -705,8 +744,13 @@ const { idleResume = 3 } = Astro.props;
 			if (css !== lastCss) {
 				lastCss = css;
 				root.style.setProperty('--swatch-color', css);
-				hexOut.textContent =
-					'#' + [r8, g8, b8].map((v) => v.toString(16).padStart(2, '0')).join('');
+				rgbOut.textContent = `rgb(${r8}, ${g8}, ${b8})`;
+				// Black and white contrast equally against luminance 0.179, so that
+				// is the crossover that keeps the label as legible as it can be.
+				root.style.setProperty(
+					'--readout-ink',
+					luminance(r8, g8, b8) > 0.179 ? '#000' : '#fff',
+				);
 				const bytes = [r8, g8, b8];
 				for (let i = 0; i < 3; i++) {
 					vals[i].textContent = String(bytes[i]);
