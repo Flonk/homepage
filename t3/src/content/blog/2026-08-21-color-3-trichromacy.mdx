@@ -1,0 +1,28 @@
+---
+title: "Colour #3: Human Trichromacy"
+series: "Colour"
+format: "deck"
+ground: "dark"
+description: ""
+pubDate: "August 21 2026"
+---
+
+import DeckCard from "../../components/DeckCard.astro";
+import DeckViz from "../../components/DeckViz.astro";
+import PhotonWave from "../../components/PhotonWave.astro";
+
+{/* Carried over from part two so the post opens where the last one left off:
+    the visible band, filling the axis, with the mark in the reader's hands.
+    The eye's own picture — three cones and what each of them makes of a
+    wavelength — wants a viz of its own, and that is the next thing to build
+    here. Cards drive whatever is in here with vizProps; see DeckViz for the
+    whole contract. */}
+<DeckViz>
+  <PhotonWave sweep={[373, 820]} spectral zoom drag />
+</DeckViz>
+
+<DeckCard>
+  ## Three kinds of cone
+
+  Bla di bla
+</DeckCard>
