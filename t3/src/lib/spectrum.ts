@@ -258,6 +258,12 @@ const encode = (v: number) => {
 	return c <= 0.0031308 ? 12.92 * c : 1.055 * Math.pow(c, 1 / 2.4) - 0.055;
 };
 
+/** And back to light, for anything that has to do arithmetic on a drawn colour. */
+const decode = (v: number) => {
+	const c = Math.max(0, Math.min(1, v));
+	return c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+};
+
 /**
  * An sRGB rendering of a single wavelength, optionally as it looks to an eye
  * short of one kind of cone.
@@ -316,6 +322,25 @@ export function dichromatMatrix(vision: Exclude<Vision, 'normal'>): number[] {
 export function wavelengthCss(nm: number, vision: Vision = 'normal'): string {
 	const [r, g, b] = wavelengthRgb(nm, vision);
 	return `rgb(${r} ${g} ${b})`;
+}
+
+/**
+ * The same colour with some fraction of the light taken away — a filter in
+ * front of it, say.
+ *
+ * Undone and redone through the transfer curve rather than multiplied where it
+ * stands. Halving an encoded channel is not halving the light: 128 of 255 is
+ * about a fifth of the photons of 255, so scaling the stored numbers dims far
+ * faster than the filter does and would have the swatch black while the filter
+ * was still passing a good part of the band.
+ */
+export function dimRgb(rgb: [number, number, number], keep: number): [number, number, number] {
+	const k = Math.max(0, keep);
+	return rgb.map((v) => Math.round(255 * encode(decode(v / 255) * k))) as [
+		number,
+		number,
+		number,
+	];
 }
 
 /* ---- adding lights together ----------------------------------------------
