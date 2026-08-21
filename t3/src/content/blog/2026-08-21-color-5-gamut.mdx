@@ -59,7 +59,11 @@ import ChromaticityChart from "../../components/ChromaticityChart.astro";
     same area as sRGB while overlapping it badly — about a sixth of each falls
     outside the other. See CMYK_GAMUT in lib/spectrum.ts for the provenance. */}
 <DeckCard vizProps={{ gamuts: ["srgb"], fill: "all", cmyk: true, white: false }}>
-  ## Print is a different shape entirely
+  ## The CMYK gamut
 
-  Bla di bla
+  Print uses a subtractive color model, meaning that mixing all the colors together produces black, and mixing none of them produces white. This is the opposite of monitors, which use an additive color model, where mixing all the colors together produces white, and mixing none of them produces black.
+
+  CMYK also works with different primary colors than monitors -- cyan, magenta and yellow -- which means that the colors it can produce is different from the triangle of colors a monitor can produce. The result is that CMYK can produce some colors that monitors cannot, and vice versa.
+
+  Since mixing pigment is quite a bit different than mixing light, printing a photo on paper will never look quite the same as displaying it on a monitor. But nobody is printing photos anymore, right?
 </DeckCard>
