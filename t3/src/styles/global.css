@@ -36,7 +36,14 @@
   --nord14: #a3be8c;
   --nord15: #b48ead;
 
-  border: solid 2px var(--accent);
+  /* Shared by the site header and a deck post's T3 mark, so the orange block is
+     the same size whichever layout you are in. */
+  --header-height: 5rem;
+
+  /* The accent frame around the whole page. Full-viewport layouts have to
+     subtract it from 100dvh — see .deck-page. */
+  --page-border: 2px;
+  border: solid var(--page-border) var(--accent);
   min-height: 100vh;
   box-sizing: border-box;
 }
@@ -448,11 +455,13 @@ em {
    auto margins, which collapse to 0 once an element is wider than its
    containing block. The 4rem keeps a gutter at the viewport edge. */
 @media (min-width: 1100px) {
-  .prose > pre,
-  .prose > figure,
-  .prose > table,
-  .prose > p:has(> img),
-  .prose > p:has(> video) {
+  /* .deck-prose is a card's own column, not the page column — the breakout
+     below is measured against the viewport and would escape the card. */
+  .prose:not(.deck-prose) > pre,
+  .prose:not(.deck-prose) > figure,
+  .prose:not(.deck-prose) > table,
+  .prose:not(.deck-prose) > p:has(> img),
+  .prose:not(.deck-prose) > p:has(> video) {
     display: block;
     /* border-box so the floor and cap below describe the visible box. `pre`
        carries 1.5em of padding, which would otherwise hang outside the text
@@ -465,5 +474,75 @@ em {
     max-width: min(55.5rem, calc(100vw - 4rem));
     margin-left: 50%;
     transform: translateX(-50%);
+  }
+}
+
+/* ==========================================================================
+   Deck posts
+   --------------------------------------------------------------------------
+   The deck format is aimed at readers who are not programmers, so it drops the
+   two things that mark the rest of the site as a dev blog: monospace headings
+   and their ## markers. Body copy is already the prose serif; here the headings
+   join it. Must come after the .prose rules above — same specificity, so source
+   order decides.
+   ========================================================================== */
+
+.deck-prose h1,
+.deck-prose h2,
+.deck-prose h3,
+.deck-prose h4,
+.deck-prose h5,
+.deck-prose h6 {
+  font-family: var(--font-prose);
+  font-weight: 700;
+  letter-spacing: -0.005em;
+  color: var(--nord6);
+}
+
+/* No "##" / "###" decorations. */
+.deck-prose h1::before,
+.deck-prose h2::before,
+.deck-prose h3::before,
+.deck-prose h4::before,
+.deck-prose h5::before,
+.deck-prose h6::before {
+  content: none;
+}
+
+.deck-prose h2 {
+  font-size: 1.5em;
+  line-height: 1.25;
+}
+
+.deck-prose h3 {
+  font-size: 1.2em;
+}
+
+/* ==========================================================================
+   View transitions
+   --------------------------------------------------------------------------
+   A plain cross-fade between pages. Native cross-document transitions, so no
+   client router is involved: nothing about the site's script lifecycle changes
+   and browsers without support just navigate as before.
+
+   Deliberately no per-element view-transition-name — pairing the header bar
+   with the deck's T3 square morphed one into the other, which was far more
+   motion than a page change warrants.
+   ========================================================================== */
+
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 260ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
   }
 }

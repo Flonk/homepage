@@ -10,6 +10,11 @@ const blog = defineCollection({
 		description: z.string(),
 		// Posts sharing a `series` are grouped into one collapsible section on the index.
 		series: z.string().optional(),
+		// Which layout renders the post. "deck" is the split-screen format: a
+		// visualization up top, swipeable cards below. See layouts/DeckPost.astro.
+		// NB: not called `layout` — that is reserved by Astro markdown for a
+		// layout component path, and MDX tries to import whatever it holds.
+		format: z.enum(['prose', 'deck']).default('prose'),
 		// Transform string to Date object
 		pubDate: z.coerce.date(),
 		updatedDate: z.coerce.date().optional(),
