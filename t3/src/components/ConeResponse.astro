@@ -32,8 +32,14 @@ interface Props {
 	 * disc and the swatch to what is left — all three, because a rainbow that
 	 * still had colours the missing cone was needed to tell apart would be
 	 * showing something the graph beneath it says cannot be seen.
+	 *
+	 * "filtered" is the odd one out: a pair of eyes behind a short-pass and a
+	 * long-pass filter, which splits L in two and hands the brain a fourth
+	 * reading. The rainbow is left alone there, because what such a pair would
+	 * see is not something this strip can show — see lib/cones.ts for what the
+	 * arrangement does and does not amount to.
 	 */
-	vision?: 'normal' | 'deuteranopia' | 'protanopia' | 'mirrored';
+	vision?: 'normal' | 'deuteranopia' | 'protanopia' | 'mirrored' | 'filtered';
 	/**
 	 * Wavelengths to keep marked, whatever the moving mark is doing. For a card
 	 * arguing about particular lights — two of them arriving together, say —
@@ -121,6 +127,12 @@ const markList = marks
 				<dt>L</dt>
 				<dd><span class="tally-bar"><i data-bar="l"></i></span><b data-val="l">0.00</b></dd>
 			</div>
+			{/* The far half of a split L. Nothing but the filtered eye has it, and
+			    on every other card it is faded out along with its row. */}
+			<div class="tally-row" data-cone="l2">
+				<dt>L'</dt>
+				<dd><span class="tally-bar"><i data-bar="l2"></i></span><b data-val="l2">0.00</b></dd>
+			</div>
 		</dl>
 	</div>
 
@@ -152,6 +164,7 @@ const markList = marks
 		--l: #ff6b6b;
 		--m: #64d98a;
 		--s: #6fa8ff;
+		--l2: #ffb020;
 		color: var(--ink);
 	}
 
@@ -210,6 +223,12 @@ const markList = marks
 		font-weight: 700;
 	}
 
+	/* All four together, so the one card with a primed name on it keeps its
+	   column and the other ten are left exactly as they were. */
+	.cones[data-vision='filtered'] .tally dt {
+		width: 2ch;
+	}
+
 	.tally dd {
 		margin: 0;
 		display: flex;
@@ -249,6 +268,10 @@ const markList = marks
 		color: var(--s);
 	}
 
+	.tally-row[data-cone='l2'] dt {
+		color: var(--l2);
+	}
+
 	.tally-row[data-cone='l'] .tally-bar i {
 		background: var(--l);
 	}
@@ -261,6 +284,10 @@ const markList = marks
 		background: var(--s);
 	}
 
+	.tally-row[data-cone='l2'] .tally-bar i {
+		background: var(--l2);
+	}
+
 	/* Faded rather than removed. The bars that remain do not move, so the two
 	   cards can be read against each other, and the gap is the point being
 	   made. */
@@ -271,6 +298,31 @@ const markList = marks
 	.cones[data-vision='deuteranopia'] .tally-row[data-cone='m'],
 	.cones[data-vision='protanopia'] .tally-row[data-cone='l'] {
 		opacity: 0;
+	}
+
+	/* The other way round, and taken out of the flow rather than faded: a
+	   missing cone leaves a gap worth seeing, but a reading no ordinary eye has
+	   would only push the three that every card does show off centre. It fades
+	   in on arrival, since it cannot fade in from nothing. */
+	.tally-row[data-cone='l2'] {
+		display: none;
+	}
+
+	.cones[data-vision='filtered'] .tally-row[data-cone='l2'] {
+		display: flex;
+		animation: tally-in 0.5s ease;
+	}
+
+	@keyframes tally-in {
+		from {
+			opacity: 0;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.cones[data-vision='filtered'] .tally-row[data-cone='l2'] {
+			animation: none;
+		}
 	}
 
 	.tally b {
@@ -353,6 +405,7 @@ const markList = marks
 		MIRRORED_LAPS,
 		coneResponse,
 		eyeResponse,
+		splitL,
 		mirroredStandIn,
 	} from '../lib/cones';
 
@@ -389,6 +442,11 @@ const markList = marks
 		{ key: 's', name: 'S', at: 2, css: '#6fa8ff' },
 		{ key: 'm', name: 'M', at: 1, css: '#64d98a' },
 		{ key: 'l', name: 'L', at: 0, css: '#ff6b6b' },
+		/* Only on the filtered eye, and drawn last so it lies over L where the
+		   two overlap. Amber rather than another red: the two long-wavelength
+		   readings are the whole point of that card and have to be tellable
+		   apart at a glance. */
+		{ key: 'l2', name: "L'", at: 3, css: '#ffb020' },
 	] as const;
 
 	const RANGE_STEPS = 1000;
@@ -399,12 +457,20 @@ const markList = marks
 		deuteranopia: 'm',
 		protanopia: 'l',
 		mirrored: null,
+		filtered: null,
 	};
 
 	/** A hypothetical eye, rather than one missing a cone: L moved, not lost. */
-	type Eyes = Vision | 'mirrored';
+	type Eyes = Vision | 'mirrored' | 'filtered';
 	const readVision = (v: unknown): Eyes =>
-		v === 'deuteranopia' || v === 'protanopia' || v === 'mirrored' ? v : 'normal';
+		v === 'deuteranopia' || v === 'protanopia' || v === 'mirrored' || v === 'filtered'
+			? v
+			: 'normal';
+
+	/* The second L exists on one eye and no other; every other curve exists
+	   unless that eye is short of it. */
+	const present = (key: string, eye: Eyes) =>
+		key === 'l2' ? eye === 'filtered' : MISSING[eye] !== key;
 
 	function initCones(root: HTMLElement) {
 		if (root.dataset.ready === 'true') return;
@@ -561,7 +627,7 @@ const markList = marks
 
 		/** Each cone's presence, so one leaving the graph fades rather than cuts. */
 		const alpha: Record<string, number> = { s: 1, m: 1, l: 1 };
-		for (const c of CONES) alpha[c.key] = MISSING[AUTHORED_VISION] === c.key ? 0 : 1;
+		for (const c of CONES) alpha[c.key] = present(c.key, AUTHORED_VISION) ? 1 : 0;
 
 		/* The colour of light of this wavelength, part way between two eyes.
 		   Cached per column: at one call per pixel per frame this was the most
@@ -589,6 +655,10 @@ const markList = marks
 		   is a colour; for the mirrored eye it is a stand-in, and the lap it came
 		   from is what the hatching below announces. */
 		const eyeRgb = (at: number): [number, number, number] => {
+			/* Nothing to remap: a pair of filtered eyes does not lose colours the
+			   way a missing cone does, and what its fourth reading would add is
+			   not something a strip of ours can show. */
+			if (shown === 'filtered') return wavelengthRgb(at);
 			if (shown !== 'mirrored') return wavelengthRgb(at, shown);
 			const k = falloff(at);
 			const rgb = wavelengthRgb(mirroredStandIn(at).nm);
@@ -687,17 +757,26 @@ const markList = marks
 			accentC = cs.getPropertyValue('--accent').trim() || accentC;
 		};
 
-		/* The response the graph is drawing: the mirrored eye differs from ours
-		   only in L, and that curve slides from one to the other with the mix. */
-		const responseAt = (at: number): [number, number, number] => {
+		/* The response the graph is drawing. Both of the eyes that are not ours
+		   differ from it only in L — moved, in one case, and cut in two in the
+		   other — and that curve slides from ours to theirs with the mix. The
+		   fourth reading is the far half of the split, and is nothing at all on
+		   any other eye. */
+		const responseAt = (at: number): [number, number, number, number] => {
 			const h = coneResponse(at);
-			if (shown !== 'mirrored' || mix <= 0) return h;
-			const m = eyeResponse(at, 'mirrored');
-			return [h[0] + (m[0] - h[0]) * mix, h[1], h[2]];
+			if (mix <= 0) return [h[0], h[1], h[2], 0];
+			if (shown === 'mirrored') {
+				const m = eyeResponse(at, 'mirrored');
+				return [h[0] + (m[0] - h[0]) * mix, h[1], h[2], 0];
+			}
+			if (shown === 'filtered') {
+				const [near, far] = splitL(at);
+				return [h[0] + (near - h[0]) * mix, h[1], h[2], far * mix];
+			}
+			return [h[0], h[1], h[2], 0];
 		};
 
 		const tally = () => {
-			const gone = MISSING[vision];
 			if (!probe) {
 				/* The marks, arriving together. Both readings come out of the same
 				   pair of functions the light mixer uses, so the disc and the bars
@@ -705,7 +784,7 @@ const markList = marks
 				const lights = markLights();
 				const sum = lights.length ? mixCones(lights) : ([0, 0, 0] as [number, number, number]);
 				for (const c of CONES) {
-					const v = sum[c.at];
+					const v = sum[c.at] ?? 0;
 					bars[c.key].style.width = `${(Math.min(1, v) * 100).toFixed(1)}%`;
 					vals[c.key].textContent = v.toFixed(2);
 				}
@@ -726,7 +805,7 @@ const markList = marks
 				pickEl.setAttribute(
 					'aria-valuetext',
 					`${Math.round(nm)} nanometres. ` +
-						CONES.filter((c) => c.key !== gone)
+						CONES.filter((c) => present(c.key, vision))
 							.map((c) => `${c.name} ${r[c.at].toFixed(2)}`)
 							.join(', '),
 				);
@@ -1077,9 +1156,8 @@ const markList = marks
 				mix += (wantMix - mix) * k;
 				if (Math.abs(wantMix - mix) < 0.002) mix = wantMix;
 			}
-			const gone = MISSING[vision];
 			for (const c of CONES) {
-				const want = gone === c.key ? 0 : 1;
+				const want = present(c.key, vision) ? 1 : 0;
 				if (alpha[c.key] === want) continue;
 				alpha[c.key] += (want - alpha[c.key]) * k;
 				if (Math.abs(want - alpha[c.key]) < 0.002) alpha[c.key] = want;

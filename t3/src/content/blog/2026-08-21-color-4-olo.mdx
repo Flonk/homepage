@@ -1,5 +1,5 @@
 ---
-title: "Colour #4: Pink, Olo and Other Impossible Colors"
+title: "Colour #4: Pink, Olo and 4D colors"
 series: "Colour"
 format: "deck"
 ground: "dark"
@@ -88,4 +88,15 @@ import VizStill from "../../components/VizStill.astro";
   There are infinitely different combinations of light that can produce the same color. Two sets of lights producing the same color are called *metamers* of each other.
 
   The fact that we perceive light via three different detectors means that by just picking three wavelengths of light, preferably spaced out across the visible spectrum, we can mix any color that our eyes can see, even the non-spectral ones. This is what makes screens work! 
+</DeckCard>
+
+{/* The same graph once more, with L split in two by a pair of filters. The
+    rainbow deliberately does not change: what such a pair of eyes would see is
+    no more drawable than the mirrored eye of part three was, and here there is
+    not even a stand-in to offer. See lib/cones.ts for the filters, and for
+    what the arrangement does and does not amount to. */}
+<DeckCard vizProps={{ phase: "cones", vision: "filtered", marks: [], probe: true }}>
+  ## A fourth channel, bought at the shops
+
+  Bla di bla
 </DeckCard>

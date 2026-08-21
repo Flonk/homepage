@@ -175,6 +175,52 @@ export function eyeResponse(nm: number, eye: Eye = 'human'): [number, number, nu
 	return [coneResponse(MIRROR_ABOUT - nm)[2], h[1], h[2]];
 }
 
+/* ---- a fourth channel, bought with filters --------------------------------
+   Put a filter passing only short wavelengths over one eye and one passing
+   only long wavelengths over the other, and the L cone — which both eyes have
+   the same — is looking at two different bands. The brain is then handed four
+   readings where it usually gets three: S, M, and the two halves of L.
+
+   Note what this is and is not. It is not a fourth kind of cone: there is no
+   new pigment, and each eye on its own is as trichromatic as it ever was. It
+   is one cone type split across two eyes, and whether the brain can put the
+   two halves together into a colour sense with a genuine fourth dimension — or
+   whether the eyes simply fight, which is what usually happens when they are
+   shown different things — is not something this curve can settle. What the
+   curve shows is the signal being made available; the seeing is another
+   question.
+
+   The edges are eased rather than square. A real dielectric filter takes a
+   band to go from passing to blocking, and drawing a cliff would be claiming a
+   part its steepness the filter does not have. */
+export const FILTER_SHORT_NM = 610; // one eye keeps what is below this
+export const FILTER_LONG_NM = 625; // the other keeps what is above
+const FILTER_EDGE_NM = 12;
+
+const smoothstep = (t: number) => {
+	const x = Math.min(1, Math.max(0, t));
+	return x * x * (3 - 2 * x);
+};
+
+/** How much of this wavelength each of the two filters lets through. */
+export function filterPair(nm: number): { short: number; long: number } {
+	return {
+		short: 1 - smoothstep((nm - (FILTER_SHORT_NM - FILTER_EDGE_NM / 2)) / FILTER_EDGE_NM),
+		long: smoothstep((nm - (FILTER_LONG_NM - FILTER_EDGE_NM / 2)) / FILTER_EDGE_NM),
+	};
+}
+
+/**
+ * The two long-wavelength readings such an arrangement produces: the same L
+ * cone behind each filter. S and M are left out because both are already
+ * silent by 610nm — the filters take nothing from them that the cones had.
+ */
+export function splitL(nm: number): [number, number] {
+	const l = coneResponse(nm)[0];
+	const t = filterPair(nm);
+	return [l * t.short, l * t.long];
+}
+
 /* ---- how much colour an eye has ------------------------------------------
    Only the ratios between the cones carry colour; the overall size is
    brightness. So walk along the band adding up how far that ratio moves, and
