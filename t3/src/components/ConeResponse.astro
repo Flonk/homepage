@@ -501,6 +501,21 @@ const markList = marks
 		let ceiling = 1;
 		const walkable = () => span[1] > span[0];
 
+		/* Left to itself the handle goes back and forth along the line, because
+		   the whole claim of the card is that the mixture can change and the
+		   colour cannot, and a still picture makes only half of it. Sinusoidal
+		   rather than linear: the ends of the line are where a light has just
+		   gone out or is about to, which is the part worth dwelling on, and a
+		   constant rate arrives at the turn and reverses with a jolt. */
+		const WALK_SECS = 12;
+		let walkT = 0;
+		const walkAt = (t: number) => (1 - Math.cos((2 * Math.PI * t) / WALK_SECS)) / 2;
+		/* Where in the cycle to start so that it carries on upward from wherever
+		   the reader let go, rather than jumping back to where it would have got
+		   to on its own. */
+		const walkEntry = (at: number) =>
+			(WALK_SECS * Math.acos(1 - 2 * Math.min(1, Math.max(0, at)))) / (2 * Math.PI);
+
 		const setWalk = (t: number) => {
 			walk = Math.min(1, Math.max(0, t));
 			const at = span[0] + (span[1] - span[0]) * walk;
@@ -1007,6 +1022,7 @@ const markList = marks
 			probe = 'probe' in p ? Boolean(p.probe) : AUTHORED_PROBE;
 			// A card's mixture is its own, and starts where the card put it.
 			walk = 0;
+			walkT = 0;
 			rebuildLine();
 			// The graph's share of the pane depends on both of them.
 			resize();
@@ -1050,6 +1066,7 @@ const markList = marks
 				manual = false;
 				// Picked up where the reader left it, not where it would have got to.
 				if (sweeping) sweepT = sweepEntry(nm, sweeping);
+				if (walkable()) walkT = walkEntry(walk);
 			}
 
 			// Towards the eye this card is asking for, and each cone towards
@@ -1070,6 +1087,9 @@ const markList = marks
 
 			if (manual) {
 				// Held exactly where it was put.
+			} else if (walkable() && !reduceMotion) {
+				walkT += dt;
+				setWalk(walkAt(walkT));
 			} else if (sweeping && !reduceMotion) {
 				sweepT += dt;
 				nm = sweepAt(sweepT, sweeping);
