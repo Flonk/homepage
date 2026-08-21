@@ -7,11 +7,14 @@ pubDate: "August 21 2026"
 ---
 
 import DeckCard from "../../components/DeckCard.astro";
+import DeckViz from "../../components/DeckViz.astro";
 import RgbCube from "../../components/RgbCube.astro";
 
-<DeckCard label="Three numbers">
-  <RgbCube slot="viz" />
+<DeckViz>
+  <RgbCube />
+</DeckViz>
 
+<DeckCard label="Three numbers">
   ## Every colour on your screen is three numbers
 
   Your screen makes colour by mixing three lights: red, green and blue. Each one
@@ -23,8 +26,6 @@ import RgbCube from "../../components/RgbCube.astro";
 </DeckCard>
 
 <DeckCard label="A cube">
-  <RgbCube slot="viz" />
-
   ## Three dials make a cube
 
   One dial gives you a line. Two dials give you a square. Three dials give you a
@@ -35,9 +36,7 @@ import RgbCube from "../../components/RgbCube.astro";
   are full. Every other colour lives somewhere in between.
 </DeckCard>
 
-<DeckCard label="The corners">
-  <RgbCube slot="viz" />
-
+<DeckCard label="The corners" vizProps={{ lock: [1, 0, 0] }}>
   ## The corners are the colours you can name
 
   Eight corners, eight familiar colours. Black and white at opposite ends. Red,
@@ -48,9 +47,7 @@ import RgbCube from "../../components/RgbCube.astro";
   started.
 </DeckCard>
 
-<DeckCard label="Wandering">
-  <RgbCube slot="viz" />
-
+<DeckCard label="Wandering" vizProps={{ lock: null }}>
   ## The dot is taking a walk
 
   Left alone, the dot wanders through the cube on a path that never quite
@@ -61,8 +58,6 @@ import RgbCube from "../../components/RgbCube.astro";
 </DeckCard>
 
 <DeckCard label="Why it matters">
-  <RgbCube slot="viz" />
-
   ## A cube is a bad map of colour
 
   This is a faithful picture of how a screen works, and a poor picture of how

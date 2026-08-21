@@ -18,14 +18,32 @@
  * over. See the shaders below for what does and does not happen to a value.
  */
 interface Props {
-	/** Seconds of no input before the dot resumes its Lissajous curve. */
+	/** Seconds of no input before the dot resumes its resting behaviour. */
 	idleResume?: number;
+	/** Ambient rotation. */
+	spin?: boolean;
+	/**
+	 * Pin the dot at this colour, 0-1 per channel, instead of letting it trace.
+	 * It eases there rather than jumping, and the bars still override it for a
+	 * few seconds at a time.
+	 */
+	lock?: [number, number, number] | null;
 }
 
-const { idleResume = 3 } = Astro.props;
+/* These are the starting values. In a deck they are also the parameters a card
+   can change with `vizProps` — see DeckViz for how that reaches the listener
+   further down. */
+const { idleResume = 3, spin = true, lock = null } = Astro.props;
 ---
 
-<div class="rgb-cube" data-rgb-cube data-no-swipe data-idle-resume={idleResume}>
+<div
+	class="rgb-cube"
+	data-rgb-cube
+	data-no-swipe
+	data-idle-resume={idleResume}
+	data-spin={String(spin)}
+	data-lock={lock ? lock.join(',') : undefined}
+>
 	<div class="bars" role="group" aria-label="Colour channels">
 		<label class="bar" style="--channel: #f16d6d">
 			<input type="range" min="0" max="255" value="128" aria-label="Red" />
@@ -764,8 +782,22 @@ const { idleResume = 3 } = Astro.props;
 			return 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b);
 		};
 
-		const IDLE_MS = (Number(root.dataset.idleResume) || 3) * 1000;
+		let idleMs = (Number(root.dataset.idleResume) || 3) * 1000;
+		let spin = root.dataset.spin !== 'false';
+		let lock: number[] | null = root.dataset.lock
+			? root.dataset.lock.split(',').map(Number)
+			: null;
+		let wasLocked = lock !== null;
 		const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+		/* The pane, or the phase of it, that this belongs to when it is inside a
+		   deck. Parameters arrive there rather than here, so one event reaches
+		   every piece a stage happens to hold. */
+		const host =
+			root.closest<HTMLElement>('[data-viz-phase]') ??
+			root.closest<HTMLElement>('[data-viz-stage]');
+		// Only a stage split into phases can have an inactive one.
+		const gate = root.closest<HTMLElement>('[data-viz-phase]');
 
 		/* ---- orientation ---------------------------------------------------
 		   Ambient spin about a deliberately irregular axis, plus a user offset
@@ -810,9 +842,23 @@ const { idleResume = 3 } = Astro.props;
 				// since `rgb` has not caught up yet.
 				if (at >= manualUntil) manual = rgb.slice();
 				manual[i] = Number(input.value) / 255;
-				manualUntil = at + IDLE_MS;
+				manualUntil = at + idleMs;
 				resumeFrom = null;
 			});
+		});
+
+		/* Anything a card does not mention is left alone, so it can change one
+		   parameter without restating the rest. */
+		host?.addEventListener('viz:props', (e) => {
+			const p = (e as CustomEvent).detail ?? {};
+			if ('spin' in p) spin = p.spin !== false;
+			if ('lock' in p) lock = Array.isArray(p.lock) ? p.lock.map(Number) : null;
+			if ('idleResume' in p) idleMs = (Number(p.idleResume) || 3) * 1000;
+		});
+		// Coming back on stage after a long absence, the elapsed time is not a
+		// step the animation should try to take.
+		host?.addEventListener('viz:enter', () => {
+			last = 0;
 		});
 
 		canvas.addEventListener('pointerdown', (e) => {
@@ -888,16 +934,16 @@ const { idleResume = 3 } = Astro.props;
 		function frame(now: number) {
 			requestAnimationFrame(frame);
 
-			// Other cards stay in the DOM but are invisible; don't burn frames.
-			const card = root.closest<HTMLElement>('[data-card]');
-			if (card && card.dataset.state && card.dataset.state !== 'active') return;
+			// An unshown phase is still in the DOM; don't burn frames on it. With
+			// no phases there is only one viz and it always runs.
+			if (gate && gate.dataset.vizActive === 'false') return;
 			if (!w || !h || root.dataset.ready !== 'true') return;
 
 			const dt = last ? Math.min(0.05, (now - last) / 1000) : 0.016;
 			last = now;
 
 			// --- orientation
-			if (!reduceMotion) ambient += AMBIENT_RATE * dt;
+			if (!reduceMotion && spin) ambient += AMBIENT_RATE * dt;
 			if (!dragging) {
 				const decay = Math.exp(-1.8 * dt);
 				velX *= decay;
@@ -927,13 +973,28 @@ const { idleResume = 3 } = Astro.props;
 			if (now < manualUntil) {
 				rgb = manual;
 				resumeFrom = null;
+			} else if (lock) {
+				// Pinned. Ease toward the colour rather than jumping to it, so a
+				// card that pins the dot shows it travelling there; exponential, so
+				// moving the target mid-flight needs no special case.
+				manualUntil = 0;
+				resumeFrom = null;
+				wasLocked = true;
+				const k = 1 - Math.exp(-4 * dt);
+				rgb = [
+					rgb[0] + (lock[0] - rgb[0]) * k,
+					rgb[1] + (lock[1] - rgb[1]) * k,
+					rgb[2] + (lock[2] - rgb[2]) * k,
+				];
 			} else {
 				const target = lissajous(t);
-				if (manualUntil) {
-					// Ease out of manual control rather than snapping back.
+				if (manualUntil || wasLocked) {
+					// Ease back out of manual control, or out of a lock just lifted,
+					// rather than snapping onto the curve.
 					resumeFrom = rgb.slice();
 					resumeAt = now;
 					manualUntil = 0;
+					wasLocked = false;
 				}
 				if (resumeFrom) {
 					const k = Math.min(1, (now - resumeAt) / 800);

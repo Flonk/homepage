@@ -1,0 +1,56 @@
+---
+/**
+ * One alternative inside a <DeckViz>: the way a deck shows a different
+ * component without that being a different mechanism from changing a
+ * parameter. Cards switch between phases with `vizProps={{ phase: 'name' }}`,
+ * and DeckPost cross-fades them.
+ *
+ * Every phase is rendered up front and only revealed on demand — Astro
+ * components are built on the server, so there is nothing to instantiate
+ * later. Keep that in mind before putting anything expensive in one: a phase
+ * that is never shown still costs whatever its markup and scripts cost. Each
+ * WebGL viz, for instance, holds a context, and browsers keep only around a
+ * dozen and a half of those alive at once.
+ */
+interface Props {
+	/** The name cards switch to with `vizProps={{ phase: '…' }}`. */
+	name: string;
+}
+
+const { name } = Astro.props;
+---
+
+<div class="viz-phase" data-viz-phase={name} data-viz-active="false" inert>
+	<slot />
+</div>
+
+<style>
+	.viz-phase {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 0;
+		min-height: 0;
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity 0.35s ease;
+	}
+
+	.viz-phase[data-viz-active='true'] {
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	.viz-phase > :global(*) {
+		width: 100%;
+		height: 100%;
+		min-width: 0;
+		min-height: 0;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.viz-phase {
+			transition-duration: 0.01ms;
+		}
+	}
+</style>

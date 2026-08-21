@@ -1,0 +1,65 @@
+---
+/**
+ * The visualization pane of a deck: declared once, shared by every card.
+ *
+ * Cards deliberately do not own their viz. If they did, two cards showing the
+ * same thing would be two separate instances, and moving between them could
+ * only ever cross-fade one into the other — never carry the same one across
+ * with its state intact, and never hand it new parameters. So the viz lives
+ * out here, and a card says only how it should be set up while that card is on
+ * screen. Parameters are the whole interface:
+ *
+ *   <DeckViz><RgbCube /></DeckViz>
+ *
+ *   <DeckCard vizProps={{ lock: [1, 0, 0] }}>…</DeckCard>   reconfigure it
+ *   <DeckCard>…</DeckCard>                                  change nothing
+ *
+ * Showing a different component is the same move, not a second mechanism: wrap
+ * each one in a <VizPhase> and switch with the reserved `phase` parameter,
+ * which is the one key DeckPost keeps for itself. Everything else is forwarded
+ * to whatever is on stage.
+ *
+ *   <DeckViz>
+ *     <VizPhase name="cube"><RgbCube /></VizPhase>
+ *     <VizPhase name="gamut"><GamutSlice /></VizPhase>
+ *   </DeckViz>
+ *
+ *   <DeckCard vizProps={{ phase: 'gamut' }}>…</DeckCard>    cross-fades
+ *
+ * A visualization is handed its parameters as the `detail` of a `viz:props`
+ * event, and hears `viz:enter` / `viz:exit` as its phase comes and goes. All
+ * three fire on the enclosing <VizPhase>, or on this element when there are
+ * none — so a stage holding several pieces reaches all of them at once.
+ */
+---
+
+<div class="deck-viz" data-viz-stage>
+	<slot />
+</div>
+
+<style>
+	.deck-viz {
+		grid-area: viz;
+		min-width: 0;
+		min-height: 0;
+		/* A size container, so a visualization can lay itself out from the shape
+		   of its own pane rather than the viewport. `size` rather than
+		   `inline-size` because whether the pane is portrait or landscape is
+		   the interesting question, and that needs both axes. */
+		container: viz / size;
+		/* One cell, so phases stack and can cross-fade. A lone visualization
+		   simply fills it. */
+		display: grid;
+		grid-template: 'pane' minmax(0, 1fr) / minmax(0, 1fr);
+		/* No bottom padding: a viz may run to the pane edge and be clipped by it. */
+		padding: 1rem 1rem 0;
+		overflow: hidden;
+	}
+
+	/* :global, because slotted children carry the caller's scope, not ours. */
+	.deck-viz > :global(*) {
+		grid-area: pane;
+		min-width: 0;
+		min-height: 0;
+	}
+</style>

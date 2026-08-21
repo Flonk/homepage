@@ -260,6 +260,73 @@ const { title, description, pubDate, series } = Astro.props;
 
 				let index = 0;
 
+				/* ---- the visualization ------------------------------------------
+				   A card contributes parameters, not a viz of its own. Anything it
+				   does not mention it inherits from the card before it, which makes
+				   "leave it exactly as it is" the default and the cheapest thing
+				   that can happen on a card change. Resolving the chain once, going
+				   forward, means a card looks the same whichever direction you
+				   arrive from. */
+				const stage = deck.querySelector<HTMLElement>('[data-viz-stage]');
+				const phases = stage
+					? Array.from(stage.querySelectorAll<HTMLElement>('[data-viz-phase]'))
+					: [];
+
+				const vizPlan = (() => {
+					// Seeded with the deck's starting phase, so the set is never
+					// missing one. Complete sets are what make going backwards work:
+					// card four still has to know it wants the cube, even though it
+					// was card five that switched away to something else.
+					let acc: Record<string, unknown> = phases.length
+						? { phase: phases[0].dataset.vizPhase }
+						: {};
+					return cards.map((card) => {
+						// Merged onto what came before, not substituted for it, so a
+						// card can change one parameter without restating the rest.
+						if (card.dataset.vizProps) {
+							acc = { ...acc, ...JSON.parse(card.dataset.vizProps) };
+						}
+						return JSON.stringify(acc);
+					});
+				})();
+
+				let phaseName: string | null = null;
+				let applied: string | null = null;
+
+				if (phases.length) {
+					phases[0].dataset.vizActive = 'true';
+					phases[0].inert = false;
+					phaseName = phases[0].dataset.vizPhase ?? null;
+				}
+
+				function showPhase(name: string) {
+					if (name === phaseName) return;
+					phaseName = name;
+					for (const el of phases) {
+						const on = el.dataset.vizPhase === name;
+						const was = el.dataset.vizActive === 'true';
+						el.dataset.vizActive = String(on);
+						el.inert = !on;
+						if (was !== on) {
+							el.dispatchEvent(new CustomEvent(on ? 'viz:enter' : 'viz:exit'));
+						}
+					}
+				}
+
+				function renderViz() {
+					const props = vizPlan[index];
+					// Byte-identical to the card before: do not touch the viz at all.
+					if (props === applied) return;
+					applied = props;
+					// `phase` is the deck's; every other key belongs to the viz.
+					const { phase, ...rest } = JSON.parse(props) as Record<string, unknown>;
+					if (phases.length && typeof phase === 'string') showPhase(phase);
+					const host = phases.length
+						? phases.find((el) => el.dataset.vizPhase === phaseName)
+						: stage;
+					host?.dispatchEvent(new CustomEvent('viz:props', { detail: rest }));
+				}
+
 				function render() {
 					cards.forEach((card, i) => {
 						const state = i === index ? 'active' : i < index ? 'before' : 'after';
@@ -267,9 +334,8 @@ const { title, description, pubDate, series } = Astro.props;
 						// Keep off-screen cards out of the tab order and the a11y tree.
 						const text = card.querySelector<HTMLElement>('.card-text');
 						if (text) text.inert = i !== index;
-						const viz = card.querySelector<HTMLElement>('.card-viz');
-						if (viz) viz.inert = i !== index;
 					});
+					renderViz();
 					if (count) count.textContent = `${index + 1} / ${cards.length}`;
 					if (label) {
 						const name = cards[index]?.dataset.cardLabel;

@@ -1,32 +1,40 @@
 ---
 /**
- * One card in a deck post: a visualization and the prose that explains it.
+ * One card in a deck post: the prose, and a note about what the visualization
+ * should be doing while that prose is on screen.
  *
- * The two halves live on opposite sides of the screen, but they are authored
- * together so the viz state sits next to the text describing it. That works
- * because the card itself is `display: contents` — it generates no box, so
- * .card-viz and .card-text become grid items of the deck directly and can be
- * placed into its "viz" and "text" areas independently.
+ * The viz itself lives in the deck's <DeckViz>, not in here, so that
+ * consecutive cards share one instance instead of cross-fading between copies
+ * of it. A card contributes only parameters, and the three things you might
+ * want when moving forward all fall out of one rule — anything a card does not
+ * mention it inherits from the card before it:
  *
- *   <DeckCard>
- *     <ColorWheel slot="viz" ... />
+ *   <DeckCard>…</DeckCard>                                nothing changes
+ *   <DeckCard vizProps={{ lock: [1, 0, 0] }}>…</DeckCard> same viz, new setup
+ *   <DeckCard vizProps={{ phase: 'gamut' }}>…</DeckCard>  a different component
  *
- *     ## Hue
- *     Hue is the angle around the wheel.
- *   </DeckCard>
+ * The card is `display: contents`, so it generates no box and .card-text
+ * becomes a grid item of the deck directly, landing in its "text" area.
  */
 interface Props {
 	/** Short name for the card, read out with its number by screen readers. */
 	label?: string;
+	/**
+	 * Parameters for the deck's visualization while this card is showing.
+	 * Omit to leave it exactly as the previous card had it.
+	 */
+	vizProps?: Record<string, unknown>;
 }
 
-const { label } = Astro.props;
+const { label, vizProps } = Astro.props;
 ---
 
-<article class="deck-card" data-card data-card-label={label}>
-	<div class="card-viz">
-		<slot name="viz" />
-	</div>
+<article
+	class="deck-card"
+	data-card
+	data-card-label={label}
+	data-viz-props={vizProps ? JSON.stringify(vizProps) : undefined}
+>
 	<div class="card-text">
 		<div class="card-text-inner prose deck-prose">
 			<slot />
@@ -35,46 +43,16 @@ const { label } = Astro.props;
 </article>
 
 <style>
-	/* No box of its own, so the two halves land in the deck grid directly. */
+	/* No box of its own, so the text lands in the deck grid directly. */
 	.deck-card {
 		display: contents;
 	}
 
-	.card-viz,
-	.card-text {
-		/* Every card occupies the same two cells; only the active one is shown. */
-		min-width: 0;
-		min-height: 0;
-		transition:
-			opacity 0.35s ease,
-			transform 0.35s ease;
-	}
-
-	.card-viz {
-		grid-area: viz;
-		/* A size container, so a visualization can lay itself out from the shape
-		   of its own pane rather than the viewport. `size` rather than
-		   `inline-size` because whether the pane is portrait or landscape is
-		   the interesting question, and that needs both axes. */
-		container: viz / size;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		/* No bottom padding: a viz may run to the pane edge and be clipped by it. */
-		padding: 1rem 1rem 0;
-		overflow: hidden;
-		opacity: 0;
-		pointer-events: none;
-	}
-
-	/* Whole components swap between cards, so they cross-fade rather than tween. */
-	.deck-card[data-state='active'] .card-viz {
-		opacity: 1;
-		pointer-events: auto;
-	}
-
 	.card-text {
 		grid-area: text;
+		/* Every card occupies the same cell; only the active one is shown. */
+		min-width: 0;
+		min-height: 0;
 		display: flex;
 		justify-content: center;
 		overflow-y: auto;
@@ -84,6 +62,9 @@ const { label } = Astro.props;
 		transform: translateX(2.5rem);
 		pointer-events: none;
 		visibility: hidden;
+		transition:
+			opacity 0.35s ease,
+			transform 0.35s ease;
 	}
 
 	.deck-card[data-state='active'] .card-text {
@@ -108,7 +89,6 @@ const { label } = Astro.props;
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		.card-viz,
 		.card-text {
 			transition-duration: 0.01ms;
 		}
