@@ -54,8 +54,26 @@ import PhotonWave from "../../components/PhotonWave.astro";
     both ends: far enough out that the light is all but gone at the turns, and
     the mark is a little way into the infrared and the ultraviolet when it
     happens. */}
-<DeckCard vizProps={{ sweep: [371, 817], spectrumBar: true, zoom: true, spectral: true }}>
+<DeckCard vizProps={{ sweep: [373, 820], spectrumBar: true, zoom: true, spectral: true, drag: true }}>
   ## The visible spectrum is the rainbow
 
-  Bla di bla
+  The tiny sliver of light our eyes can detect is called the *visible spectrum*, and it contains all the colors of the rainbow. You may remember the mnemonic ROYGBIV: Red, Orange, Yellow, Green, Blue, Indigo, Violet. 
+  
+  Exact boundaries between visible and invisible light are a little fuzzy and vary from person to person, but on the ends of the visible spectrum you will see light slowly fade into infrared and ultraviolet and out of sight. 
+
+  A bunch of nerds called the *International Commission on Illumination* (CIE) define what's called the "CIE standard observer", a hypothetical person with perfectly average eyes, and they have run tests on people in the 360-830 nanometers range. The parts of the spectrum that are visible *well for most* however is probably closer to like 380-780 nanometers.
+
+</DeckCard>
+
+<DeckCard vizProps={{ sweep: [373, 820], spectrumBar: true, zoom: true, spectral: true, drag: true }}>
+  ## Where is pink?
+
+  You might notice a strange absence of pink in the visible spectrum. Last I checked it's a color that exists, so where is it?
+
+  And also, do you notice how like red, yellow, and green take up a lot of the visible spectrum, but blue and violet get a comparatively small share? Why is that?
+
+  Well, the answer is that colors are basically hallucinations of our brain and pink isn't real, and our eyes are bad sensors shaped by evolution!
+
+  Well no that's a bit overdramatic. But stay tuned for next posts, where we will explore the human visual system, to answer all those questions and more!
+
 </DeckCard>

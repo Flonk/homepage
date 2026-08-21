@@ -79,6 +79,16 @@ interface Props {
 	 * left for them to tell apart.
 	 */
 	zoom?: boolean;
+	/**
+	 * Let the reader take hold of the mark on the spectrum axis and pick a
+	 * frequency for themselves. What they pick holds for `idleResume` seconds
+	 * after they last touch it, and then the wave goes back to what it was
+	 * doing — carrying on from the frequency they left it at rather than
+	 * snapping back to one.
+	 */
+	drag?: boolean;
+	/** Seconds a reader's pick is held before the wave takes over again. */
+	idleResume?: number;
 }
 
 const {
@@ -88,6 +98,8 @@ const {
 	sweepSeconds = 22,
 	spectrumBar = true,
 	zoom = false,
+	drag = false,
+	idleResume = 6,
 } = Astro.props;
 ---
 
@@ -100,6 +112,8 @@ const {
 	data-sweep-seconds={sweepSeconds}
 	data-spectrum-bar={spectrumBar ? 'true' : 'false'}
 	data-zoom={zoom ? 'true' : 'false'}
+	data-drag={drag ? 'true' : 'false'}
+	data-idle-resume={idleResume}
 >
 	<canvas data-canvas></canvas>
 	<div class="spectrum" data-spectrum data-on={spectrumBar ? 'true' : 'false'}>
@@ -107,7 +121,23 @@ const {
 		    its name is called out above the bar on a leader instead. */}
 		<div class="spectrum-callout"><span data-spectrum-callout>Visible</span></div>
 		<div class="spectrum-bar" data-spectrum-track>
-			<div class="spectrum-mark" data-spectrum-mark></div>
+			<div class="spectrum-mark" data-spectrum-mark>
+				<span class="spectrum-knob"></span>
+			</div>
+			{/* A real range, so the axis can be worked from the keyboard and reads
+			    as the control it is. Its own thumb is a hairline and invisible —
+			    the mark is the thumb — which also means a press anywhere along
+			    the bar takes the wave straight there. */}
+			<input
+				class="spectrum-range"
+				type="range"
+				min="0"
+				max="1000"
+				step="1"
+				value="500"
+				aria-label="Frequency"
+				data-spectrum-range
+			/>
 		</div>
 		<div class="spectrum-bands" data-spectrum-bands></div>
 		{/* What the rainbow runs into once the axis has closed in on it and the
@@ -238,6 +268,88 @@ const {
 		box-shadow:
 			0 0 0 1px rgba(0, 0, 0, 0.75),
 			0 0 7px 1px rgba(255, 255, 255, 0.45);
+	}
+
+	/* The affordance, and the only part of the control that is drawn: shown
+	   only where a card has asked for one. */
+	.spectrum-knob {
+		display: none;
+		position: absolute;
+		left: 50%;
+		bottom: calc(100% + 3px);
+		width: 0;
+		height: 0;
+		transform: translateX(-50%);
+		border-left: 5px solid transparent;
+		border-right: 5px solid transparent;
+		border-top: 6px solid #fff;
+		filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.7));
+	}
+
+	.spectrum[data-drag='true'] .spectrum-knob {
+		display: block;
+	}
+
+	/* Laid over the bar with a little margin above and below, so it is worth
+	   aiming at on a touchscreen. Everything it would draw for itself is off:
+	   what the reader sees is the mark and the knob. */
+	.spectrum-range {
+		display: none;
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: -8px;
+		bottom: -8px;
+		width: 100%;
+		margin: 0;
+		padding: 0;
+		appearance: none;
+		-webkit-appearance: none;
+		background: transparent;
+		cursor: grab;
+	}
+
+	.spectrum[data-drag='true'] .spectrum-range {
+		display: block;
+		pointer-events: auto;
+	}
+
+	.spectrum-range:active {
+		cursor: grabbing;
+	}
+
+	.spectrum-range:focus-visible {
+		outline: 2px solid var(--accent);
+		outline-offset: 4px;
+		border-radius: 3px;
+	}
+
+	/* A hairline rather than nothing at all: a range insets its thumb by half
+	   its width at both ends, and this keeps that under a pixel so the mark
+	   stays under the finger the whole way across. Vendor pseudo-elements have
+	   to be in rules of their own — one browser not knowing a selector throws
+	   out the whole rule. */
+	.spectrum-range::-webkit-slider-thumb {
+		-webkit-appearance: none;
+		width: 1px;
+		height: 100%;
+		background: transparent;
+		border: 0;
+	}
+
+	.spectrum-range::-moz-range-thumb {
+		width: 1px;
+		height: 100%;
+		background: transparent;
+		border: 0;
+	}
+
+	.spectrum-range::-webkit-slider-runnable-track {
+		background: transparent;
+	}
+
+	.spectrum-range::-moz-range-track {
+		background: transparent;
 	}
 
 	.spectrum-bands {
@@ -499,6 +611,7 @@ const {
 		const bandsEl = root.querySelector<HTMLElement>('[data-spectrum-bands]')!;
 		const calloutEl = root.querySelector<HTMLElement>('[data-spectrum-callout]')!;
 		const edgesEl = root.querySelector<HTMLElement>('[data-spectrum-edges]')!;
+		const rangeEl = root.querySelector<HTMLInputElement>('[data-spectrum-range]')!;
 		const ctx = canvas.getContext('2d')!;
 		const outLight = root.querySelector<HTMLElement>('[data-light]')!;
 		const outSlow = root.querySelector<HTMLElement>('[data-slowdown]')!;
@@ -588,10 +701,21 @@ const {
 		const AUTHORED_SWEEP = parseSweep(root.dataset.sweep);
 		const AUTHORED_BAR = root.dataset.spectrumBar !== 'false';
 		const AUTHORED_ZOOM = root.dataset.zoom === 'true';
+		const AUTHORED_DRAG = root.dataset.drag === 'true';
+		const RESUME_MS = Math.max(0, Number(root.dataset.idleResume) || 6) * 1000;
 		const SWEEP_SECS = Math.max(1, Number(root.dataset.sweepSeconds) || 22);
 		let wanted = AUTHORED;
 		let spectral = AUTHORED_SPECTRAL;
 		let showBar = AUTHORED_BAR;
+		let canDrag = AUTHORED_DRAG;
+
+		/* ---- the reader's hand ----------------------------------------------
+		   A pick holds for as long as it is warm and then lets go. The wave does
+		   not jump back: it re-enters its sweep at the frequency it was left at,
+		   so what the reader chose is where it carries on from. */
+		let manual = false;
+		let manualUntil = 0;
+		const RANGE_STEPS = 1000;
 
 		/* ---- the zoom -------------------------------------------------------
 		   Timed and eased at both ends rather than chased exponentially: this is
@@ -613,10 +737,21 @@ const {
 		// still has to show the axis.
 		const applyBar = () => {
 			spectrumEl.dataset.on = showBar ? 'true' : 'false';
+			spectrumEl.dataset.drag = canDrag ? 'true' : 'false';
+			rangeEl.disabled = !canDrag;
 		};
 		const placeMark = () => {
 			const p = Math.min(1, Math.max(0, spectrumPos(freqThz * 1e12, win)));
 			markEl.style.left = `${(p * 100).toFixed(3)}%`;
+		};
+		const showLight = () => {
+			const nm = C_NM_PER_S / (freqThz * 1e12);
+			const text = `${Math.round(nm)} nm · ${Math.round(freqThz)} THz`;
+			outLight.textContent = text;
+			// The same words the readout is showing, for anyone working the axis
+			// without seeing it. Set here rather than in the frame so it cannot
+			// fall behind the value it is describing.
+			if (canDrag) rangeEl.setAttribute('aria-valuetext', text);
 		};
 		applyBar();
 		repaint();
@@ -651,6 +786,38 @@ const {
 			return (ping * SWEEP_SECS) / 2;
 		};
 
+		/* The axis is logarithmic, so the control is too: the same distance
+		   dragged is the same ratio in frequency wherever it is dragged, and the
+		   thumb sits under the mark by construction rather than by arithmetic
+		   that has to be kept in step with it. */
+		const freqFromRange = (v: number) =>
+			(win[0] * Math.pow(win[1] / win[0], v / RANGE_STEPS)) / 1e12;
+		const rangeFromFreq = (thz: number) =>
+			Math.round(RANGE_STEPS * Math.min(1, Math.max(0, spectrumPos(thz * 1e12, win))));
+
+		const hold = () => {
+			manual = true;
+			manualUntil = performance.now() + RESUME_MS;
+		};
+		// Touching it is enough to stop the wave wandering out from under the
+		// hand that is reaching for it.
+		rangeEl.addEventListener('pointerdown', hold);
+		rangeEl.addEventListener('input', () => {
+			hold();
+			/* Bounded by the axis, not by a number of its own: the window reaches
+			   down to 1 MHz when it is showing the whole spectrum, and a floor of
+			   1 THz would take a press a quarter of the way along the bar and put
+			   it two fifths of the way instead. */
+			const v = Math.min(RANGE_STEPS, Math.max(0, Number(rangeEl.value) || 0));
+			freqThz = freqFromRange(v);
+			/* Answered here rather than left to the next frame. The wave itself
+			   has to wait for one — it is drawn on a canvas — but the mark and the
+			   readout are the parts the hand is actually moving, and they should
+			   not lag behind it or stall if frames are being withheld. */
+			placeMark();
+			showLight();
+		});
+
 		const setSweep = (next: [number, number] | null) => {
 			const same =
 				(!next && !sweeping) ||
@@ -668,7 +835,10 @@ const {
 			spectral = 'spectral' in p ? Boolean(p.spectral) : AUTHORED_SPECTRAL;
 			setSweep('sweep' in p ? parseSweep(p.sweep) : AUTHORED_SWEEP);
 			showBar = 'spectrumBar' in p ? Boolean(p.spectrumBar) : AUTHORED_BAR;
+			canDrag = 'drag' in p ? Boolean(p.drag) : AUTHORED_DRAG;
 			zoomWanted = ('zoom' in p ? Boolean(p.zoom) : AUTHORED_ZOOM) ? 1 : 0;
+			// A pick belongs to the card it was made on.
+			manual = false;
 			applyBar();
 			/* The deck sets the opening card's parameters as the page loads, and
 			   that first setting must not animate — otherwise a deck whose first
@@ -739,7 +909,16 @@ const {
 			const dt = last ? Math.min(0.05, (now - last) / 1000) : 0.016;
 			last = now;
 
-			if (sweeping && !reduceMotion) {
+			if (manual && now >= manualUntil) {
+				manual = false;
+				// Picked up where the reader left it, not where it would have got
+				// to: no jump, and the pick is what the sweep continues from.
+				if (sweeping) sweepT = sweepEntry(freqThz, sweeping);
+			}
+
+			if (manual) {
+				// Held exactly where it was put.
+			} else if (sweeping && !reduceMotion) {
 				sweepT += dt;
 				freqThz = sweepAt(sweepT, sweeping);
 			} else if (freqThz !== wanted) {
@@ -832,7 +1011,7 @@ const {
 			ctx.restore();
 			ctx.globalAlpha = 1;
 
-			outLight.textContent = `${Math.round(nm)} nm · ${Math.round(freqThz)} THz`;
+			showLight();
 
 			if (zoomAt !== zoomWanted) {
 				const step = dt / ZOOM_SECS;
@@ -843,6 +1022,10 @@ const {
 				repaint();
 			}
 			placeMark();
+			if (canDrag && !manual) {
+				const v = String(rangeFromFreq(freqThz));
+				if (rangeEl.value !== v) rangeEl.value = v;
+			}
 		}
 
 		requestAnimationFrame(frame);
