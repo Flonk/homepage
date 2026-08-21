@@ -26,6 +26,14 @@ interface Props {
 	drag?: boolean;
 	/** Seconds a reader's pick is held before the walk takes over again. */
 	idleResume?: number;
+	/**
+	 * Whose eye this is. Anything but "normal" takes the missing cone's curve
+	 * off the graph and its reading off the tally, and remaps the rainbow, the
+	 * disc and the swatch to what is left — all three, because a rainbow that
+	 * still had colours the missing cone was needed to tell apart would be
+	 * showing something the graph beneath it says cannot be seen.
+	 */
+	vision?: 'normal' | 'deuteranopia' | 'protanopia';
 }
 
 const {
@@ -34,6 +42,7 @@ const {
 	sweepSeconds = 22,
 	drag = true,
 	idleResume = 6,
+	vision = 'normal',
 } = Astro.props;
 ---
 
@@ -45,6 +54,7 @@ const {
 	data-sweep-seconds={sweepSeconds}
 	data-drag={drag ? 'true' : 'false'}
 	data-idle-resume={idleResume}
+	data-vision={vision}
 >
 	<canvas data-canvas></canvas>
 
@@ -201,6 +211,18 @@ const {
 		background: var(--s);
 	}
 
+	/* Faded rather than removed. The bars that remain do not move, so the two
+	   cards can be read against each other, and the gap is the point being
+	   made. */
+	.tally-row {
+		transition: opacity 0.5s ease;
+	}
+
+	.cones[data-vision='deuteranopia'] .tally-row[data-cone='m'],
+	.cones[data-vision='protanopia'] .tally-row[data-cone='l'] {
+		opacity: 0;
+	}
+
 	.tally b {
 		width: 4ch;
 		font-weight: 400;
@@ -274,7 +296,7 @@ const {
 </style>
 
 <script>
-	import { wavelengthCss } from '../lib/spectrum';
+	import { wavelengthRgb, type Vision } from '../lib/spectrum';
 	import { CONE_FIRST_NM, CONE_LAST_NM, coneResponse } from '../lib/cones';
 
 	/* The plot runs the length of the measured range. Not the visible band:
@@ -305,6 +327,16 @@ const {
 	] as const;
 
 	const RANGE_STEPS = 1000;
+
+	/** Which cone each kind of dichromacy is short of. */
+	const MISSING: Record<Vision, string | null> = {
+		normal: null,
+		deuteranopia: 'm',
+		protanopia: 'l',
+	};
+
+	const readVision = (v: unknown): Vision =>
+		v === 'deuteranopia' || v === 'protanopia' ? v : 'normal';
 
 	function initCones(root: HTMLElement) {
 		if (root.dataset.ready === 'true') return;
@@ -342,6 +374,7 @@ const {
 		const AUTHORED_NM = clampNm(Number(root.dataset.wavelength) || 550);
 		const AUTHORED_SWEEP = parseSweep(root.dataset.sweep);
 		const AUTHORED_DRAG = root.dataset.drag !== 'false';
+		const AUTHORED_VISION = readVision(root.dataset.vision);
 		const SWEEP_SECS = Math.max(1, Number(root.dataset.sweepSeconds) || 22);
 		const RESUME_MS = Math.max(0, Number(root.dataset.idleResume) || 6) * 1000;
 
@@ -352,6 +385,38 @@ const {
 		let sweepT = 0;
 		let manual = false;
 		let manualUntil = 0;
+
+		/* ---- whose eye ------------------------------------------------------
+		   Crossed rather than switched. The rainbow is mixed from where it was
+		   towards where it is going, so a card that takes a cone away shows the
+		   colours it can no longer tell apart running together, instead of
+		   simply presenting a different picture. `shown` is held after a return
+		   to normal vision, because it is still the far end of the mix on the
+		   way back. */
+		let vision: Vision = AUTHORED_VISION;
+		let shown: Exclude<Vision, 'normal'> =
+			AUTHORED_VISION === 'normal' ? 'deuteranopia' : AUTHORED_VISION;
+		let mix = AUTHORED_VISION === 'normal' ? 0 : 1;
+
+		/** Each cone's presence, so one leaving the graph fades rather than cuts. */
+		const alpha: Record<string, number> = { s: 1, m: 1, l: 1 };
+		for (const c of CONES) alpha[c.key] = MISSING[AUTHORED_VISION] === c.key ? 0 : 1;
+
+		/* The colour of light of this wavelength, part way between two eyes.
+		   Cached per column: at one call per pixel per frame this was the most
+		   expensive thing on the canvas, and it only changes when the mix, the
+		   vision or the width does. */
+		let stripKey = '';
+		let strip: string[] = [];
+		const colourAt = (at: number): string => {
+			const a = wavelengthRgb(at);
+			if (mix <= 0) return `rgb(${a[0]} ${a[1]} ${a[2]})`;
+			const b = wavelengthRgb(at, shown);
+			if (mix >= 1) return `rgb(${b[0]} ${b[1]} ${b[2]})`;
+			return `rgb(${Math.round(a[0] + (b[0] - a[0]) * mix)} ${Math.round(
+				a[1] + (b[1] - a[1]) * mix,
+			)} ${Math.round(a[2] + (b[2] - a[2]) * mix)})`;
+		};
 
 		/* Linear in wavelength, because that is the axis these curves are always
 		   drawn against and the one their shapes are read from. */
@@ -428,16 +493,19 @@ const {
 
 		const tally = () => {
 			const r = coneResponse(nm);
+			const gone = MISSING[vision];
 			for (const c of CONES) {
 				bars[c.key].style.width = `${(r[c.at] * 100).toFixed(1)}%`;
 				vals[c.key].textContent = r[c.at].toFixed(2);
 			}
-			swatchEl.style.background = wavelengthCss(nm);
+			swatchEl.style.background = colourAt(nm);
 			if (canDrag) {
 				pickEl.setAttribute(
 					'aria-valuetext',
 					`${Math.round(nm)} nanometres. ` +
-						CONES.map((c) => `${c.name} ${r[c.at].toFixed(2)}`).join(', '),
+						CONES.filter((c) => c.key !== gone)
+							.map((c) => `${c.name} ${r[c.at].toFixed(2)}`)
+							.join(', '),
 				);
 			}
 			return r;
@@ -466,8 +534,15 @@ const {
 			   what. It runs out at both ends on its own, which is the same fact
 			   the curves are showing. */
 			const stripY = plot.y + plot.h + STRIP_GAP;
-			for (let x = 0; x < plot.w; x++) {
-				ctx.fillStyle = wavelengthCss(nmOf(plot.x + x));
+			const key = `${Math.round(plot.w)}|${shown}|${Math.round(mix * 255)}`;
+			if (key !== stripKey) {
+				stripKey = key;
+				strip = Array.from({ length: Math.round(plot.w) }, (_, x) =>
+					colourAt(nmOf(plot.x + x)),
+				);
+			}
+			for (let x = 0; x < strip.length; x++) {
+				ctx.fillStyle = strip[x];
 				ctx.fillRect(plot.x + x, stripY, 1.5, STRIP_H);
 			}
 			ctx.textAlign = 'center';
@@ -480,6 +555,8 @@ const {
 			   Sampled per pixel, so the shape is the data's rather than a
 			   polyline's idea of it. */
 			for (const cone of CONES) {
+				const a = alpha[cone.key];
+				if (a <= 0.002) continue;
 				ctx.beginPath();
 				for (let x = 0; x <= plot.w; x++) {
 					const v = coneResponse(nmOf(plot.x + x))[cone.at];
@@ -494,7 +571,7 @@ const {
 				ctx.lineTo(plot.x + plot.w, yOf(0));
 				ctx.lineTo(plot.x, yOf(0));
 				ctx.closePath();
-				ctx.globalAlpha = 0.1;
+				ctx.globalAlpha = 0.1 * a;
 				ctx.fillStyle = cone.css;
 				ctx.fill();
 				ctx.restore();
@@ -507,10 +584,13 @@ const {
 					if (x === 0) ctx.moveTo(px, py);
 					else ctx.lineTo(px, py);
 				}
+				ctx.save();
+				ctx.globalAlpha = a;
 				ctx.strokeStyle = cone.css;
 				ctx.lineWidth = 2;
 				ctx.lineJoin = 'round';
 				ctx.stroke();
+				ctx.restore();
 			}
 
 			/* ---- the mark ---------------------------------------------------
@@ -530,7 +610,7 @@ const {
 			/* A swatch of the light itself where the mark meets its own axis. Wide
 			   enough that the colour is the thing you see: at six pixels with a
 			   pale outline either side there was more outline than light. */
-			ctx.fillStyle = wavelengthCss(nm);
+			ctx.fillStyle = colourAt(nm);
 			ctx.fillRect(mx - 5, stripY - 3, 10, STRIP_H + 6);
 			ctx.lineWidth = 1;
 			ctx.strokeStyle = 'rgba(0,0,0,0.65)';
@@ -539,6 +619,10 @@ const {
 			ctx.strokeRect(mx - 6.5, stripY - 4.5, 13, STRIP_H + 9);
 
 			for (const cone of CONES) {
+				const a = alpha[cone.key];
+				if (a <= 0.002) continue;
+				ctx.save();
+				ctx.globalAlpha = a;
 				ctx.beginPath();
 				ctx.arc(mx, yOf(r[cone.at]), 4, 0, Math.PI * 2);
 				ctx.fillStyle = cone.css;
@@ -546,6 +630,7 @@ const {
 				ctx.strokeStyle = 'rgba(0,0,0,0.55)';
 				ctx.lineWidth = 1;
 				ctx.stroke();
+				ctx.restore();
 			}
 		};
 
@@ -569,6 +654,9 @@ const {
 			const p = (e as CustomEvent).detail ?? {};
 			resting = 'wavelength' in p ? clampNm(Number(p.wavelength) || AUTHORED_NM) : AUTHORED_NM;
 			canDrag = 'drag' in p ? Boolean(p.drag) : AUTHORED_DRAG;
+			vision = 'vision' in p ? readVision(p.vision) : AUTHORED_VISION;
+			if (vision !== 'normal') shown = vision;
+			root.dataset.vision = vision;
 			setSweep('sweep' in p ? parseSweep(p.sweep) : AUTHORED_SWEEP);
 			// A pick belongs to the card it was made on.
 			manual = false;
@@ -599,6 +687,22 @@ const {
 				manual = false;
 				// Picked up where the reader left it, not where it would have got to.
 				if (sweeping) sweepT = sweepEntry(nm, sweeping);
+			}
+
+			// Towards the eye this card is asking for, and each cone towards
+			// being there or not.
+			const k = 1 - Math.exp(-4.5 * dt);
+			const wantMix = vision === 'normal' ? 0 : 1;
+			if (mix !== wantMix) {
+				mix += (wantMix - mix) * k;
+				if (Math.abs(wantMix - mix) < 0.002) mix = wantMix;
+			}
+			const gone = MISSING[vision];
+			for (const c of CONES) {
+				const want = gone === c.key ? 0 : 1;
+				if (alpha[c.key] === want) continue;
+				alpha[c.key] += (want - alpha[c.key]) * k;
+				if (Math.abs(want - alpha[c.key]) < 0.002) alpha[c.key] = want;
 			}
 
 			if (manual) {

@@ -19,7 +19,29 @@ import ConeResponse from "../../components/ConeResponse.astro";
 </DeckViz>
 
 <DeckCard>
-  ## Three kinds of cone
+  ## We detect light via cones
+
+  Inside our eyes are three different kinds of light-sensitive cells called *cones*, which are each tuned to a different range of frequencies. We call them S, M, and L for short, medium, and long wavelength cones, though they are sometimes also called blue, green, and red cones.
+
+  Above, you are looking at the *normalized cone response diagram* from Stockman & Sharpe (2000), which shows how sensitive each cone is to different frequencies of light. 
+
+  Basically, when your eyes recieve a say 580nm photon, your brain will get a strong L signal, a medium M signal and no S signal. The brain then goes, hey I know this, this is yellow!
+</DeckCard>
+
+<DeckCard>
+  ## Why do we need 3?
+
+  Notice how the M and L cones are relatively close together, and the S cone is far away? This is because M and L cones are actually genetic mutations of a common ancestor cone that drifted apart over time!
+
+  It may seem like the M cone is also redundant because S and L already cover the entire visible spectrum. So, let's look at what happens if when we take the M cone away, and you'll see that the M/L split turns out to be very useful.
+</DeckCard>
+
+{/* The M cone goes, and the rainbow goes with it: what is drawn is what is
+    left to see. See lib/spectrum.ts for the model, and note that the two
+    rainbows differ only by the missing cone — same matching functions, same
+    matrices, same clipping. */}
+<DeckCard vizProps={{ vision: "deuteranopia" }}>
+  ## Take one away
 
   Bla di bla
 </DeckCard>
