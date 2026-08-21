@@ -1,0 +1,611 @@
+---
+/**
+ * The three cone response curves, drawn against wavelength.
+ *
+ * This is the picture the whole of trichromacy rests on: three overlapping
+ * humps, and the fact that a wavelength arriving at the eye is reduced, right
+ * there, to exactly three numbers. Everything downstream — every colour space,
+ * every screen, every argument about what pink is — is working with what
+ * survives that.
+ *
+ * The curves are measurements rather than a model; see lib/cones.ts for where
+ * they come from. The mark is the reader's: it can be dragged along the axis,
+ * and it says what each cone makes of the light it is standing on.
+ */
+interface Props {
+	/** Where the mark rests, in nanometres. */
+	wavelength?: number;
+	/**
+	 * Walk the mark back and forth between these two wavelengths instead of
+	 * holding one, at a constant rate. Low first.
+	 */
+	sweep?: [number, number];
+	/** How long one round trip of that walk takes, in seconds. */
+	sweepSeconds?: number;
+	/** Let the reader take the mark and put it where they like. */
+	drag?: boolean;
+	/** Seconds a reader's pick is held before the walk takes over again. */
+	idleResume?: number;
+}
+
+const {
+	wavelength = 550,
+	sweep,
+	sweepSeconds = 22,
+	drag = true,
+	idleResume = 6,
+} = Astro.props;
+---
+
+<div
+	class="cones"
+	data-cones
+	data-wavelength={wavelength}
+	data-sweep={sweep ? sweep.join(' ') : undefined}
+	data-sweep-seconds={sweepSeconds}
+	data-drag={drag ? 'true' : 'false'}
+	data-idle-resume={idleResume}
+>
+	<canvas data-canvas></canvas>
+
+	{/* The three numbers the eye actually gets. Laid out as a list so the
+	    readout is legible to a screen reader in the order it is drawn. */}
+	<dl class="tally" data-tally>
+		<div class="tally-row" data-cone="l">
+			<dt>L</dt>
+			<dd><span class="tally-bar"><i data-bar="l"></i></span><b data-val="l">0.00</b></dd>
+		</div>
+		<div class="tally-row" data-cone="m">
+			<dt>M</dt>
+			<dd><span class="tally-bar"><i data-bar="m"></i></span><b data-val="m">0.00</b></dd>
+		</div>
+		<div class="tally-row" data-cone="s">
+			<dt>S</dt>
+			<dd><span class="tally-bar"><i data-bar="s"></i></span><b data-val="s">0.00</b></dd>
+		</div>
+	</dl>
+
+	<div class="readout" data-readout></div>
+
+	{/* The deck reads a horizontal drag as a swipe to the next card, which is
+	    the gesture this wants for itself. */}
+	<input
+		class="pick"
+		data-no-swipe
+		data-pick
+		type="range"
+		min="0"
+		max="1000"
+		step="1"
+		value="500"
+		aria-label="Wavelength"
+	/>
+</div>
+
+<style>
+	.cones {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		min-width: 0;
+		min-height: 0;
+		font-family: var(--font-mono);
+		--ink: var(--deck-ink, #35302a);
+		--ink-dim: var(--deck-ink-dim, #7a7264);
+		--l: #ff6b6b;
+		--m: #64d98a;
+		--s: #6fa8ff;
+		color: var(--ink);
+	}
+
+	.cones canvas {
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	.tally {
+		position: absolute;
+		top: 2.5rem;
+		right: 1rem;
+		margin: 0;
+		display: grid;
+		gap: 0.2rem;
+		font-size: 0.8rem;
+		font-variant-numeric: tabular-nums;
+		pointer-events: none;
+	}
+
+	.tally-row {
+		display: flex;
+		align-items: center;
+		gap: 0.45rem;
+	}
+
+	.tally dt {
+		width: 1ch;
+		font-weight: 700;
+	}
+
+	.tally dd {
+		margin: 0;
+		display: flex;
+		align-items: center;
+		gap: 0.45rem;
+	}
+
+	/* A bar each, so the three can be compared at a glance rather than read. */
+	.tally-bar {
+		display: block;
+		width: 5rem;
+		height: 0.45rem;
+		border-radius: 2px;
+		background: color-mix(in srgb, var(--ink) 14%, transparent);
+		overflow: hidden;
+	}
+
+	.tally-bar i {
+		display: block;
+		height: 100%;
+		width: 0;
+		border-radius: 2px;
+	}
+
+	.tally-row[data-cone='l'] dt,
+	.tally-row[data-cone='l'] .tally-bar i {
+		color: var(--l);
+		background: var(--l);
+	}
+
+	.tally-row[data-cone='m'] dt,
+	.tally-row[data-cone='m'] .tally-bar i {
+		color: var(--m);
+		background: var(--m);
+	}
+
+	.tally-row[data-cone='s'] dt,
+	.tally-row[data-cone='s'] .tally-bar i {
+		color: var(--s);
+		background: var(--s);
+	}
+
+	.tally b {
+		width: 4ch;
+		font-weight: 400;
+		color: var(--ink-dim);
+	}
+
+	/* Above the tally rather than down in the corner, which is where the
+	   wavelength axis and its numbers are. */
+	.readout {
+		position: absolute;
+		right: 1rem;
+		top: 0.6rem;
+		font-size: 1.125rem;
+		font-variant-numeric: tabular-nums;
+		pointer-events: none;
+	}
+
+	/* Laid over the plot, so the mark can be taken anywhere along it. Its own
+	   thumb is a transparent hairline; what the reader sees is drawn on the
+	   canvas. */
+	.pick {
+		display: none;
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		margin: 0;
+		padding: 0;
+		appearance: none;
+		-webkit-appearance: none;
+		background: transparent;
+		cursor: grab;
+		touch-action: none;
+	}
+
+	.cones[data-drag='true'] .pick {
+		display: block;
+	}
+
+	.pick:active {
+		cursor: grabbing;
+	}
+
+	.pick:focus-visible {
+		outline: 2px solid var(--accent);
+		outline-offset: -4px;
+		border-radius: 4px;
+	}
+
+	/* Vendor pseudo-elements go in rules of their own: one browser not knowing
+	   a selector throws out the whole rule. */
+	.pick::-webkit-slider-thumb {
+		-webkit-appearance: none;
+		width: 1px;
+		height: 100%;
+		background: transparent;
+		border: 0;
+	}
+
+	.pick::-moz-range-thumb {
+		width: 1px;
+		height: 100%;
+		background: transparent;
+		border: 0;
+	}
+
+	.pick::-webkit-slider-runnable-track {
+		background: transparent;
+	}
+
+	.pick::-moz-range-track {
+		background: transparent;
+	}
+
+	@container viz (max-width: 30rem) {
+		.tally {
+			font-size: 0.65rem;
+		}
+		.tally-bar {
+			width: 3rem;
+		}
+		.readout {
+			font-size: 0.85rem;
+		}
+	}
+</style>
+
+<script>
+	import { wavelengthCss } from '../lib/spectrum';
+	import { CONE_FIRST_NM, CONE_LAST_NM, coneResponse } from '../lib/cones';
+
+	/* The plot runs the length of the measured range. Not the visible band:
+	   where the curves give out is itself the answer to where the visible band
+	   comes from, and cropping to one would be assuming the other. */
+	const LO_NM = CONE_FIRST_NM;
+	const HI_NM = CONE_LAST_NM;
+
+	/* Room around the plot: for the rainbow strip and its labels underneath,
+	   for the tally above, and a little at the top so a peak at 1 is not drawn
+	   against the edge. */
+	const PAD = { top: 26, right: 18, bottom: 40, left: 34 };
+	const STRIP_H = 10; // the rainbow along the wavelength axis
+	const STRIP_GAP = 7;
+
+	const CONES = [
+		{ key: 'l', name: 'L', css: '#ff6b6b' },
+		{ key: 'm', name: 'M', css: '#64d98a' },
+		{ key: 's', name: 'S', css: '#6fa8ff' },
+	] as const;
+
+	const RANGE_STEPS = 1000;
+
+	function initCones(root: HTMLElement) {
+		if (root.dataset.ready === 'true') return;
+		root.dataset.ready = 'true';
+
+		const canvas = root.querySelector<HTMLCanvasElement>('[data-canvas]')!;
+		const ctx = canvas.getContext('2d')!;
+		const pickEl = root.querySelector<HTMLInputElement>('[data-pick]')!;
+		const readoutEl = root.querySelector<HTMLElement>('[data-readout]')!;
+		const bars = Object.fromEntries(
+			CONES.map((c) => [c.key, root.querySelector<HTMLElement>(`[data-bar='${c.key}']`)!]),
+		);
+		const vals = Object.fromEntries(
+			CONES.map((c) => [c.key, root.querySelector<HTMLElement>(`[data-val='${c.key}']`)!]),
+		);
+
+		const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+		const host =
+			root.closest<HTMLElement>('[data-viz-phase]') ??
+			root.closest<HTMLElement>('[data-viz-stage]');
+		const gate = root.closest<HTMLElement>('[data-viz-phase]');
+
+		const clampNm = (nm: number) => Math.min(HI_NM, Math.max(LO_NM, nm));
+
+		/** A pair of wavelengths, low first, or null for anything else. */
+		const parseSweep = (v: unknown): [number, number] | null => {
+			const raw = typeof v === 'string' ? v.split(/[\s,]+/) : Array.isArray(v) ? v : null;
+			if (!raw || raw.length !== 2) return null;
+			const [a, b] = raw.map(Number);
+			if (!Number.isFinite(a) || !Number.isFinite(b) || a === b) return null;
+			return [clampNm(Math.min(a, b)), clampNm(Math.max(a, b))];
+		};
+
+		const AUTHORED_NM = clampNm(Number(root.dataset.wavelength) || 550);
+		const AUTHORED_SWEEP = parseSweep(root.dataset.sweep);
+		const AUTHORED_DRAG = root.dataset.drag !== 'false';
+		const SWEEP_SECS = Math.max(1, Number(root.dataset.sweepSeconds) || 22);
+		const RESUME_MS = Math.max(0, Number(root.dataset.idleResume) || 6) * 1000;
+
+		let nm = AUTHORED_NM;
+		let resting = AUTHORED_NM;
+		let sweeping = AUTHORED_SWEEP;
+		let canDrag = AUTHORED_DRAG;
+		let sweepT = 0;
+		let manual = false;
+		let manualUntil = 0;
+
+		/* Linear in wavelength, because that is the axis these curves are always
+		   drawn against and the one their shapes are read from. */
+		const sweepAt = (t: number, [lo, hi]: [number, number]) => {
+			const lap = (t / SWEEP_SECS) % 1;
+			const ping = lap <= 0.5 ? 2 * lap : 2 - 2 * lap;
+			return lo + (hi - lo) * ping;
+		};
+
+		/* Where to start the clock so the walk is passing through `at` on its way
+		   up, so it carries on from wherever the mark already is. */
+		const sweepEntry = (at: number, [lo, hi]: [number, number]) => {
+			const ping = Math.min(1, Math.max(0, (at - lo) / (hi - lo)));
+			return (ping * SWEEP_SECS) / 2;
+		};
+
+		const setSweep = (next: [number, number] | null) => {
+			const same =
+				(!next && !sweeping) ||
+				(next && sweeping && next[0] === sweeping[0] && next[1] === sweeping[1]);
+			if (same) return;
+			if (next) sweepT = sweepEntry(nm, next);
+			sweeping = next;
+		};
+
+		/* ---- geometry -------------------------------------------------------
+		   Worked out on resize and kept, so the frame does not recompute what has
+		   not changed. */
+		let w = 0;
+		let h = 0;
+		let dpr = 1;
+		let plot = { x: 0, y: 0, w: 0, h: 0 };
+
+		const xOf = (v: number) => plot.x + ((v - LO_NM) / (HI_NM - LO_NM)) * plot.w;
+		const yOf = (v: number) => plot.y + (1 - v) * plot.h;
+		const nmOf = (x: number) => LO_NM + ((x - plot.x) / plot.w) * (HI_NM - LO_NM);
+
+		const resize = () => {
+			dpr = Math.min(window.devicePixelRatio || 1, 2);
+			const r = canvas.getBoundingClientRect();
+			w = r.width;
+			h = r.height;
+			canvas.width = Math.max(1, Math.round(w * dpr));
+			canvas.height = Math.max(1, Math.round(h * dpr));
+			plot = {
+				x: PAD.left,
+				y: PAD.top,
+				w: Math.max(1, w - PAD.left - PAD.right),
+				h: Math.max(1, h - PAD.top - PAD.bottom),
+			};
+		};
+		/* Redrawn on the spot, not on the next frame. The curves are the same
+		   whether anything is moving or not, and a pane that is holding still —
+		   or one the browser has stopped animating — still has to show them. */
+		new ResizeObserver(() => {
+			resize();
+			readInk();
+			tally();
+			draw();
+		}).observe(canvas);
+		resize();
+
+		/* Read once and kept. These come from the deck's ground, which a post
+		   picks and does not then change, and getComputedStyle in a frame loop is
+		   a style recalculation for an answer that is already known. */
+		let inkC = '#e6e9ef';
+		let dimC = '#8891a0';
+		const readInk = () => {
+			const cs = getComputedStyle(root);
+			inkC = cs.getPropertyValue('--ink').trim() || inkC;
+			dimC = cs.getPropertyValue('--ink-dim').trim() || dimC;
+		};
+
+		const tally = () => {
+			const r = coneResponse(nm);
+			CONES.forEach((c, i) => {
+				bars[c.key].style.width = `${(r[i] * 100).toFixed(1)}%`;
+				vals[c.key].textContent = r[i].toFixed(2);
+			});
+			readoutEl.textContent = `${Math.round(nm)} nm`;
+			if (canDrag) {
+				pickEl.setAttribute(
+					'aria-valuetext',
+					`${Math.round(nm)} nanometres. L ${r[0].toFixed(2)}, M ${r[1].toFixed(2)}, S ${r[2].toFixed(2)}`,
+				);
+			}
+			return r;
+		};
+
+		const applyDrag = () => {
+			root.dataset.drag = canDrag ? 'true' : 'false';
+			pickEl.disabled = !canDrag;
+		};
+
+		const syncPick = () => {
+			const v = String(Math.round((RANGE_STEPS * (nm - LO_NM)) / (HI_NM - LO_NM)));
+			if (pickEl.value !== v) pickEl.value = v;
+		};
+
+		const draw = () => {
+			ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+			ctx.clearRect(0, 0, w, h);
+
+			/* ---- the frame --------------------------------------------------
+			   Only the horizontals, and only at the values worth naming. A full
+			   grid would be three more things to look at than the shapes need. */
+			ctx.font = '10px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
+			ctx.textBaseline = 'middle';
+			ctx.textAlign = 'right';
+			for (const v of [0, 0.5, 1]) {
+				const y = yOf(v);
+				ctx.strokeStyle = `color-mix(in srgb, ${inkC} ${v === 0 ? 26 : 11}%, transparent)`;
+				ctx.beginPath();
+				ctx.moveTo(plot.x, y);
+				ctx.lineTo(plot.x + plot.w, y);
+				ctx.stroke();
+				ctx.fillStyle = dimC;
+				ctx.fillText(v.toFixed(1), plot.x - 8, y);
+			}
+
+			/* ---- the wavelength axis ----------------------------------------
+			   The rainbow is the axis: the reader should not have to convert a
+			   number into a colour in their head to see which cone is looking at
+			   what. It runs out at both ends on its own, which is the same fact
+			   the curves are showing. */
+			const stripY = plot.y + plot.h + STRIP_GAP;
+			for (let x = 0; x < plot.w; x++) {
+				ctx.fillStyle = wavelengthCss(nmOf(plot.x + x));
+				ctx.fillRect(plot.x + x, stripY, 1.5, STRIP_H);
+			}
+			ctx.textAlign = 'center';
+			ctx.fillStyle = dimC;
+			for (let v = 400; v <= HI_NM; v += 50) {
+				ctx.fillText(String(v), xOf(v), stripY + STRIP_H + 10);
+			}
+
+			/* ---- the curves -------------------------------------------------
+			   Sampled per pixel, so the shape is the data's rather than a
+			   polyline's idea of it. */
+			CONES.forEach((cone, i) => {
+				ctx.beginPath();
+				for (let x = 0; x <= plot.w; x++) {
+					const v = coneResponse(nmOf(plot.x + x))[i];
+					const px = plot.x + x;
+					const py = yOf(v);
+					if (x === 0) ctx.moveTo(px, py);
+					else ctx.lineTo(px, py);
+				}
+				// A wash underneath, so three overlapping curves still read as
+				// three rather than as a tangle of lines.
+				ctx.save();
+				ctx.lineTo(plot.x + plot.w, yOf(0));
+				ctx.lineTo(plot.x, yOf(0));
+				ctx.closePath();
+				ctx.globalAlpha = 0.1;
+				ctx.fillStyle = cone.css;
+				ctx.fill();
+				ctx.restore();
+
+				ctx.beginPath();
+				for (let x = 0; x <= plot.w; x++) {
+					const v = coneResponse(nmOf(plot.x + x))[i];
+					const px = plot.x + x;
+					const py = yOf(v);
+					if (x === 0) ctx.moveTo(px, py);
+					else ctx.lineTo(px, py);
+				}
+				ctx.strokeStyle = cone.css;
+				ctx.lineWidth = 2;
+				ctx.lineJoin = 'round';
+				ctx.stroke();
+			});
+
+			/* ---- the mark ---------------------------------------------------
+			   One wavelength, and what the three of them make of it. */
+			const r = coneResponse(nm);
+			const mx = xOf(nm);
+			ctx.save();
+			ctx.strokeStyle = `color-mix(in srgb, ${inkC} 55%, transparent)`;
+			ctx.lineWidth = 1;
+			ctx.setLineDash([3, 3]);
+			ctx.beginPath();
+			ctx.moveTo(mx, plot.y);
+			ctx.lineTo(mx, plot.y + plot.h);
+			ctx.stroke();
+			ctx.restore();
+
+			/* A swatch of the light itself where the mark meets its own axis. Wide
+			   enough that the colour is the thing you see: at six pixels with a
+			   pale outline either side there was more outline than light. */
+			ctx.fillStyle = wavelengthCss(nm);
+			ctx.fillRect(mx - 5, stripY - 3, 10, STRIP_H + 6);
+			ctx.lineWidth = 1;
+			ctx.strokeStyle = 'rgba(0,0,0,0.65)';
+			ctx.strokeRect(mx - 5.5, stripY - 3.5, 11, STRIP_H + 7);
+			ctx.strokeStyle = `color-mix(in srgb, ${inkC} 70%, transparent)`;
+			ctx.strokeRect(mx - 6.5, stripY - 4.5, 13, STRIP_H + 9);
+
+			CONES.forEach((cone, i) => {
+				const y = yOf(r[i]);
+				ctx.beginPath();
+				ctx.arc(mx, y, 4, 0, Math.PI * 2);
+				ctx.fillStyle = cone.css;
+				ctx.fill();
+				ctx.strokeStyle = 'rgba(0,0,0,0.55)';
+				ctx.lineWidth = 1;
+				ctx.stroke();
+			});
+		};
+
+		/* ---- the reader's hand --------------------------------------------- */
+		const hold = () => {
+			manual = true;
+			manualUntil = performance.now() + RESUME_MS;
+		};
+		pickEl.addEventListener('pointerdown', hold);
+		pickEl.addEventListener('input', () => {
+			hold();
+			const v = Math.min(RANGE_STEPS, Math.max(0, Number(pickEl.value) || 0));
+			nm = LO_NM + ((HI_NM - LO_NM) * v) / RANGE_STEPS;
+			// Answered here rather than on the next frame: these are the parts the
+			// hand is moving, and they should not lag behind it.
+			tally();
+			draw();
+		});
+
+		host?.addEventListener('viz:props', (e) => {
+			const p = (e as CustomEvent).detail ?? {};
+			resting = 'wavelength' in p ? clampNm(Number(p.wavelength) || AUTHORED_NM) : AUTHORED_NM;
+			canDrag = 'drag' in p ? Boolean(p.drag) : AUTHORED_DRAG;
+			setSweep('sweep' in p ? parseSweep(p.sweep) : AUTHORED_SWEEP);
+			// A pick belongs to the card it was made on.
+			manual = false;
+			applyDrag();
+		});
+
+		applyDrag();
+		setSweep(AUTHORED_SWEEP);
+		readInk();
+		tally();
+		syncPick();
+		draw();
+
+		let last = 0;
+		host?.addEventListener('viz:enter', () => {
+			last = 0;
+		});
+
+		function frame(now: number) {
+			requestAnimationFrame(frame);
+			if (gate && gate.dataset.vizActive === 'false') return;
+			if (!w || !h) return;
+
+			const dt = last ? Math.min(0.05, (now - last) / 1000) : 0.016;
+			last = now;
+
+			if (manual && now >= manualUntil) {
+				manual = false;
+				// Picked up where the reader left it, not where it would have got to.
+				if (sweeping) sweepT = sweepEntry(nm, sweeping);
+			}
+
+			if (manual) {
+				// Held exactly where it was put.
+			} else if (sweeping && !reduceMotion) {
+				sweepT += dt;
+				nm = sweepAt(sweepT, sweeping);
+			} else if (nm !== resting) {
+				const k = 1 - Math.exp(-4 * dt);
+				nm += (resting - nm) * k;
+				if (Math.abs(resting - nm) < 0.05) nm = resting;
+			}
+
+			tally();
+			draw();
+			if (canDrag && !manual) syncPick();
+		}
+
+		requestAnimationFrame(frame);
+	}
+
+	document.querySelectorAll<HTMLElement>('[data-cones]').forEach(initCones);
+</script>

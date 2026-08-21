@@ -9,16 +9,13 @@ pubDate: "August 21 2026"
 
 import DeckCard from "../../components/DeckCard.astro";
 import DeckViz from "../../components/DeckViz.astro";
-import PhotonWave from "../../components/PhotonWave.astro";
+import ConeResponse from "../../components/ConeResponse.astro";
 
-{/* Carried over from part two so the post opens where the last one left off:
-    the visible band, filling the axis, with the mark in the reader's hands.
-    The eye's own picture — three cones and what each of them makes of a
-    wavelength — wants a viz of its own, and that is the next thing to build
-    here. Cards drive whatever is in here with vizProps; see DeckViz for the
-    whole contract. */}
+{/* The measured cone fundamentals, with the mark walking the band and the
+    reader free to take it. Cards drive whatever is in here with vizProps; see
+    DeckViz for the whole contract. */}
 <DeckViz>
-  <PhotonWave sweep={[373, 820]} spectral zoom drag />
+  <ConeResponse sweep={[400, 700]} drag />
 </DeckViz>
 
 <DeckCard>
