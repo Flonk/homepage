@@ -50,8 +50,8 @@ interface Props {
 	 *
 	 * Both ends are limited by the drawing rather than by physics. At the top
 	 * the trace holds one height per pixel of travel, so the wave runs out of
-	 * samples: 6000 THz leaves 14.5 of them to a wave and 8000 THz leaves 10.9,
-	 * which flattens a peak by 4%. At the bottom the limit is not the frequency
+	 * samples: 6000 THz leaves 14.5 of them to a wave, which flattens a peak by
+	 * 2%, and 8000 THz leaves 10.9. At the bottom the limit is not the frequency
 	 * but the window — a wave has to fit in the pane to be seen as a wave, and
 	 * the photon has to get through a turn of it while the sweep is down there.
 	 * 120 THz is a 724px wave and a 4.2s turn, which is one whole wave on a

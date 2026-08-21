@@ -31,10 +31,10 @@ import PhotonWave from "../../components/PhotonWave.astro";
 </DeckCard>
 
 {/* The card is about the range, so the wave runs the range: infrared up to
-    the near end of X-rays and back. Both ends are past where the drawing is
-    comfortable — at the bottom a wave is wider than a laptop pane, at the top
-    there are eleven pixels to a wave — which is the point of going there. */}
-<DeckCard vizProps={{ sweep: [80, 8000] }}>
+    the near end of X-rays and back. The bottom is past where the drawing is
+    comfortable — a wave down there is wider than a laptop pane — which is
+    fair enough on a card about how much spectrum there is. */}
+<DeckCard vizProps={{ sweep: [80, 6000] }}>
   ## There are many kinds of light
 
   Light is traveling in a wave motion, and how fast the wave oscillates is called its *frequency*. The higher the frequency, the more energy each photon has. The higher the frequency, the shorter the *wavelength*, which is the distance between two peaks of the wave.
