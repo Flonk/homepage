@@ -78,7 +78,7 @@ const { idleResume = 3 } = Astro.props;
 		--pad-left: clamp(1rem, 10vw, 9rem); /* space before the bars */
 		--pad-right: clamp(1rem, 8vw, 7rem); /* space after the cube */
 		--bar-gap: clamp(0.75rem, 2vw, 1.75rem); /* bars to cube */
-		--cube-scale: 0.5; /* cube size, as a fraction of the pane's short side */
+		--cube-scale: 0.55; /* cube size, as a fraction of the pane's short side */
 
 		position: relative;
 		display: flex;
@@ -225,9 +225,16 @@ const { idleResume = 3 } = Astro.props;
 	.swatch {
 		position: absolute;
 		z-index: 0;
-		inset: -1rem -1rem 0;
-		width: auto;
-		height: auto;
+		top: -1rem;
+		right: -1rem;
+		bottom: 0;
+		left: -1rem;
+		/* Sized explicitly, not by the insets: an svg carrying a viewBox is a
+		   replaced element, so width/height:auto would give it the viewBox's own
+		   1:1 ratio and render it square, dropping most of the S below the pane.
+		   The extra rem covers .card-viz's padding, so the S meets the edges. */
+		width: calc(100% + 2rem);
+		height: calc(100% + 1rem);
 		pointer-events: none;
 	}
 
@@ -686,10 +693,19 @@ const { idleResume = 3 } = Astro.props;
 				hullY[i] = py(X, Y, Z);
 			}
 			const hull = convexHull(hullX, hullY);
+			// The shadow bleeds outward from the silhouette, and the canvas is the
+			// only surface it can land on, so a blur wider than the gap to the
+			// canvas edge gets sliced off square. Give it no more room than there
+			// is, and it fades out instead of being cut.
+			let gap = Infinity;
+			for (const k of hull) {
+				gap = Math.min(gap, hullX[k], w - hullX[k], hullY[k], h - hullY[k]);
+			}
+			const room = Math.max(0, gap - 1);
 			ctx.save();
 			ctx.shadowColor = "rgba(40, 30, 14, 0.55)";
-			ctx.shadowBlur = Math.max(20, scale * 0.34);
-			ctx.shadowOffsetY = Math.max(6, scale * 0.09);
+			ctx.shadowBlur = Math.min(scale * 0.34, room * 0.8);
+			ctx.shadowOffsetY = Math.min(scale * 0.09, room * 0.2);
 			ctx.fillStyle = "#000";
 			ctx.beginPath();
 			for (let i = 0; i < hull.length; i++) {
