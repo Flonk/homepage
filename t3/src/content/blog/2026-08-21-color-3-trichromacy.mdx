@@ -10,12 +10,23 @@ pubDate: "August 21 2026"
 import DeckCard from "../../components/DeckCard.astro";
 import DeckViz from "../../components/DeckViz.astro";
 import ConeResponse from "../../components/ConeResponse.astro";
+import VizPhase from "../../components/VizPhase.astro";
+import VisionSplit from "../../components/VisionSplit.astro";
 
 {/* The measured cone fundamentals, with the mark walking the band and the
     reader free to take it. Cards drive whatever is in here with vizProps; see
     DeckViz for the whole contract. */}
 <DeckViz>
-  <ConeResponse sweep={[400, 700]} drag />
+  <VizPhase name="cones">
+    <ConeResponse sweep={[400, 700]} drag />
+  </VizPhase>
+  <VizPhase name="photo">
+    <VisionSplit
+      src="/assets/2026-08-21-color-3-trichromacy/forest.jpg"
+      alt="A path through an autumn forest, deep in red and orange fallen leaves, with yellow and green still in the canopy."
+      credit="Photo: Michal Bednarek / Dreamstime"
+    />
+  </VizPhase>
 </DeckViz>
 
 <DeckCard>
@@ -45,7 +56,27 @@ import ConeResponse from "../../components/ConeResponse.astro";
 
   There are people without M cones, which leads to a form of red-green colour blindness called *deuteranopia*. As you see, the lack of M makes our rainbow collapse into a very limited range of colours!
 
-  Anything past 550-ish nanometers suddenly becomes indistinguishable from one another, because only the L cone is active.
+  Many colors become completely indistinguishable, and we can see why: The L cone response is roughly symmetric, and the S cone is far away and doesn't overlap past 550nm, meaning the brain has no way to tell between the symmetric L responses.
+
+  The M cone is necessary to give the brain a second signal to compare against.
+</DeckCard>
+
+<DeckCard vizProps={{ phase: "photo" }}>
+  ## Overlap is good
+
+  There are people without M cones, which leads to a form of red-green colour blindness called *deuteranopia*. As you see, the lack of M makes our rainbow collapse into a very limited range of colours!
+
+  Many colors become completely indistinguishable, and we can see why: The L cone response is roughly symmetric, and the S cone is far away and doesn't overlap past 550nm, meaning the brain has no way to tell between the symmetric L responses.
+
+  The M cone is necessary to give the brain a second signal to compare against.
+</DeckCard>
+
+<DeckCard vizProps={{ phase: "cones", vision: "normal" }}>
+  ## Less overlap would be better
+
+  There are people without M cones, which leads to a form of red-green colour blindness called *deuteranopia*. As you see, the lack of M makes our rainbow collapse into a very limited range of colours!
+
+  Many colors become completely indistinguishable, and we can see why: The L cone response is roughly symmetric, and the S cone is far away and doesn't overlap past 550nm, meaning the brain has no way to tell between the symmetric L responses.
 
   The M cone is necessary to give the brain a second signal to compare against.
 </DeckCard>

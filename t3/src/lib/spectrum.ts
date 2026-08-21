@@ -283,6 +283,33 @@ export function wavelengthRgb(raw: number, vision: Vision = 'normal'): [number, 
 	];
 }
 
+/**
+ * The whole projection as one matrix on linear sRGB, row-major, which is what
+ * an SVG feColorMatrix wants — filters interpolate in linear light, which is
+ * the space this is derived in, so the filter and the code above agree rather
+ * than merely resemble each other.
+ *
+ * Handed out rather than written down anywhere else: whatever is drawn through
+ * the filter and whatever is drawn through wavelengthRgb come from one model,
+ * and cannot drift apart.
+ */
+export function dichromatMatrix(vision: Exclude<Vision, 'normal'>): number[] {
+	const p = PLANES[vision];
+	// The projection itself: identity, but for the row of the cone that is not
+	// there, which is read off the other two instead.
+	const P: M3 = [
+		[1, 0, 0],
+		[0, 1, 0],
+		[0, 0, 1],
+	];
+	P[p.missing] = [0, 0, 0];
+	P[p.missing][p.keep] = p.from;
+	P[p.missing][2] = p.s;
+	const mm = (a: M3, b: M3): M3 =>
+		a.map((row) => [0, 1, 2].map((j) => row[0] * b[0][j] + row[1] * b[1][j] + row[2] * b[2][j]));
+	return mm(mm(XYZ_TO_RGB, LMS_TO_XYZ), mm(P, mm(XYZ_TO_LMS, RGB_TO_XYZ))).flat();
+}
+
 /** The same, ready to hand to a canvas or a gradient stop. */
 export function wavelengthCss(nm: number, vision: Vision = 'normal'): string {
 	const [r, g, b] = wavelengthRgb(nm, vision);
