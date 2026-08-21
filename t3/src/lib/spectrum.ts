@@ -174,33 +174,58 @@ const LMS_TO_XYZ = invert(XYZ_TO_LMS);
    The plane is fixed by that axis and by an invariant hue — a wavelength they
    and a trichromat agree on — which is 475nm for both of these.
 
-   Worked out here rather than written down, so it follows from the table above
-   rather than from coefficients copied out of a paper that used some other
-   scaling of cone space.
+   Worked out from the drawn colours rather than from coefficients copied out
+   of the paper, which are stated in a different scaling of cone space. Doing
+   it this way makes the invariant hue exactly invariant, which those
+   coefficients are not: they drift 475nm by about 90 units of 255.
+
+   The simulation runs on the colour as drawn, not on the light it stands for,
+   and that is the whole difference between a rainbow that darkens towards its
+   ends and one that stays a flat gold across them. What is being asked is
+   "how does the strip above look to this reader", and the strip above is what
+   the answer has to come out of, brightness and all. Take the light instead
+   and the brightness relationship is thrown away by the normalising, leaving
+   pure red as bright as pure yellow, which it is not.
 
    Tritanopia is deliberately missing: it needs two half-planes that are
    nowhere near coplanar, so the one-plane shortcut that is fine for these two
    would not be. */
 export type Vision = 'normal' | 'deuteranopia' | 'protanopia';
 
-const NEUTRAL_LMS = (() => {
-	// Equal energy across the band: these are spectra, so that is the white
-	// they are spread around.
-	let x = 0;
-	let y = 0;
-	let z = 0;
-	for (const c of CIE_XYZ) {
-		x += c[0];
-		y += c[1];
-		z += c[2];
-	}
-	return apply(XYZ_TO_LMS, [x, y, z]);
-})();
+/** Linear sRGB to CIE XYZ, D65 — the way back. */
+const RGB_TO_XYZ: M3 = [
+	[0.4124564, 0.3575761, 0.1804375],
+	[0.2126729, 0.7151522, 0.072175],
+	[0.0193339, 0.119192, 0.9503041],
+];
+
+/**
+ * The colour a wavelength is drawn as, in linear light, before any of this.
+ *
+ * No spectral colour is inside sRGB, so something has to give. Negative
+ * channels are clipped rather than washed out towards white — washing them out
+ * turns the far red end pink, which is a worse lie than losing saturation — and
+ * then the brightest channel is taken to full, so what survives is the hue, at
+ * the most of it a screen can manage.
+ */
+function drawnLinear(nm: number): [number, number, number] {
+	const lin = apply(XYZ_TO_RGB, spectralXyz(nm));
+	const r = Math.max(0, lin[0]);
+	const g = Math.max(0, lin[1]);
+	const b = Math.max(0, lin[2]);
+	const top = Math.max(r, g, b, 1e-9);
+	return [r / top, g / top, b / top];
+}
+
+const rgbToLms = (lin: number[]) => apply(XYZ_TO_LMS, apply(RGB_TO_XYZ, lin));
+const lmsToRgb = (lms: number[]) => apply(XYZ_TO_RGB, apply(LMS_TO_XYZ, lms));
 
 /** The plane, as: the missing cone would have read from * kept + s * S. */
 const planeThrough = (anchorNm: number, missing: 0 | 1) => {
-	const a = apply(XYZ_TO_LMS, spectralXyz(anchorNm));
-	const w = NEUTRAL_LMS;
+	const a = rgbToLms(drawnLinear(anchorNm));
+	// The axis the reader's eye is adapted to is the white of the screen they
+	// are reading it on, not the average of the spectrum.
+	const w = rgbToLms([1, 1, 1]);
 	const n = [
 		w[1] * a[2] - w[2] * a[1],
 		w[2] * a[0] - w[0] * a[2],
@@ -215,12 +240,13 @@ const PLANES = {
 	protanopia: planeThrough(475, 0),
 };
 
-function throughDichromat(xyz: number[], vision: Exclude<Vision, 'normal'>) {
-	const lms = apply(XYZ_TO_LMS, xyz);
+function throughDichromat(lin: number[], vision: Exclude<Vision, 'normal'>) {
+	const lms = rgbToLms(lin);
 	const p = PLANES[vision];
 	const out: [number, number, number] = [lms[0], lms[1], lms[2]];
 	out[p.missing] = p.from * lms[p.keep] + p.s * lms[2];
-	return apply(LMS_TO_XYZ, out);
+	// Clamped, not rescaled: rescaling is what would put the brightness back.
+	return lmsToRgb(out);
 }
 
 /* The sRGB transfer curve, so the ramp from dark to bright is the one the
@@ -231,19 +257,12 @@ const encode = (v: number) => {
 };
 
 /**
- * An sRGB rendering of a single wavelength, optionally as seen by an eye short
- * of one kind of cone.
- *
- * No spectral colour is inside sRGB, so something has to give. Negative
- * channels are clipped rather than washed out towards white — washing them out
- * turns the far red end pink, which is a worse lie than losing saturation — and
- * then the brightest channel is taken to full, so what survives is the hue, at
- * the most of it a screen can manage.
+ * An sRGB rendering of a single wavelength, optionally as it looks to an eye
+ * short of one kind of cone.
  */
 export function wavelengthRgb(raw: number, vision: Vision = 'normal'): [number, number, number] {
-	const xyz = spectralXyz(raw);
-	const lin = apply(XYZ_TO_RGB, vision === 'normal' ? xyz : throughDichromat(xyz, vision));
-	const top = Math.max(lin[0], lin[1], lin[2], 1e-9);
+	const drawn = drawnLinear(raw);
+	const lin = vision === 'normal' ? drawn : throughDichromat(drawn, vision);
 
 	/* The eye's response tails off at both ends of the visible range, and then
 	   keeps going: a third of the way at the edge of the band, out altogether a
@@ -258,9 +277,9 @@ export function wavelengthRgb(raw: number, vision: Vision = 'normal'): [number, 
 	else if (raw < 380) fade *= Math.max(0, (raw - VIOLET_OUT) / (380 - VIOLET_OUT));
 
 	return [
-		Math.round(255 * encode(Math.max(0, lin[0]) / top) * fade),
-		Math.round(255 * encode(Math.max(0, lin[1]) / top) * fade),
-		Math.round(255 * encode(Math.max(0, lin[2]) / top) * fade),
+		Math.round(255 * encode(lin[0]) * fade),
+		Math.round(255 * encode(lin[1]) * fade),
+		Math.round(255 * encode(lin[2]) * fade),
 	];
 }
 
