@@ -48,24 +48,30 @@ const {
 >
 	<canvas data-canvas></canvas>
 
-	{/* The three numbers the eye actually gets. Laid out as a list so the
-	    readout is legible to a screen reader in the order it is drawn. */}
-	<dl class="tally" data-tally>
-		<div class="tally-row" data-cone="l">
-			<dt>L</dt>
-			<dd><span class="tally-bar"><i data-bar="l"></i></span><b data-val="l">0.00</b></dd>
-		</div>
-		<div class="tally-row" data-cone="m">
-			<dt>M</dt>
-			<dd><span class="tally-bar"><i data-bar="m"></i></span><b data-val="m">0.00</b></dd>
-		</div>
-		<div class="tally-row" data-cone="s">
-			<dt>S</dt>
-			<dd><span class="tally-bar"><i data-bar="s"></i></span><b data-val="s">0.00</b></dd>
-		</div>
-	</dl>
-
-	<div class="readout" data-readout></div>
+	{/* The light on the left, and on the right the only three numbers that
+	    survive it reaching the eye. Short wavelengths first, so the order
+	    matches the axis underneath. A list, so the three read in that order to
+	    a screen reader too. */}
+	<div class="head">
+		<figure class="swatch">
+			<div class="swatch-disc" data-swatch></div>
+			<figcaption data-readout>&nbsp;</figcaption>
+		</figure>
+		<dl class="tally" data-tally>
+			<div class="tally-row" data-cone="s">
+				<dt>S</dt>
+				<dd><span class="tally-bar"><i data-bar="s"></i></span><b data-val="s">0.00</b></dd>
+			</div>
+			<div class="tally-row" data-cone="m">
+				<dt>M</dt>
+				<dd><span class="tally-bar"><i data-bar="m"></i></span><b data-val="m">0.00</b></dd>
+			</div>
+			<div class="tally-row" data-cone="l">
+				<dt>L</dt>
+				<dd><span class="tally-bar"><i data-bar="l"></i></span><b data-val="l">0.00</b></dd>
+			</div>
+		</dl>
+	</div>
 
 	{/* The deck reads a horizontal drag as a swipe to the next card, which is
 	    the gesture this wants for itself. */}
@@ -104,16 +110,50 @@ const {
 		height: 100%;
 	}
 
-	.tally {
+	/* The top half of the pane. The graph has the bottom half, and the two do
+	   not overlap, so neither has to be laid out around the other. */
+	.head {
 		position: absolute;
-		top: 2.5rem;
-		right: 1rem;
+		inset: 0 0 50% 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: clamp(1.25rem, 5cqw, 3rem);
+		pointer-events: none;
+	}
+
+	.swatch {
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	/* The light itself. A ring, because towards the ends of the band the colour
+	   goes very dark and a disc with no edge would simply vanish. */
+	.swatch-disc {
+		width: clamp(3rem, 26cqh, 7.5rem);
+		aspect-ratio: 1;
+		border-radius: 50%;
+		background: #000;
+		box-shadow:
+			0 0 0 1px color-mix(in srgb, var(--ink) 22%, transparent),
+			0 0 22px 2px rgb(0 0 0 / 0.35);
+	}
+
+	.swatch figcaption {
+		font-size: 1.125rem;
+		font-variant-numeric: tabular-nums;
+		color: var(--ink);
+	}
+
+	.tally {
 		margin: 0;
 		display: grid;
-		gap: 0.2rem;
-		font-size: 0.8rem;
+		gap: 0.35rem;
+		font-size: 0.9rem;
 		font-variant-numeric: tabular-nums;
-		pointer-events: none;
 	}
 
 	.tally-row {
@@ -137,7 +177,7 @@ const {
 	/* A bar each, so the three can be compared at a glance rather than read. */
 	.tally-bar {
 		display: block;
-		width: 5rem;
+		width: clamp(4rem, 14cqw, 9rem);
 		height: 0.45rem;
 		border-radius: 2px;
 		background: color-mix(in srgb, var(--ink) 14%, transparent);
@@ -151,21 +191,30 @@ const {
 		border-radius: 2px;
 	}
 
-	.tally-row[data-cone='l'] dt,
-	.tally-row[data-cone='l'] .tally-bar i {
+	/* The letter takes the cone's colour as ink; the bar takes it as fill.
+	   Setting both on both painted each letter out in a block of its own
+	   colour. */
+	.tally-row[data-cone='l'] dt {
 		color: var(--l);
+	}
+
+	.tally-row[data-cone='m'] dt {
+		color: var(--m);
+	}
+
+	.tally-row[data-cone='s'] dt {
+		color: var(--s);
+	}
+
+	.tally-row[data-cone='l'] .tally-bar i {
 		background: var(--l);
 	}
 
-	.tally-row[data-cone='m'] dt,
 	.tally-row[data-cone='m'] .tally-bar i {
-		color: var(--m);
 		background: var(--m);
 	}
 
-	.tally-row[data-cone='s'] dt,
 	.tally-row[data-cone='s'] .tally-bar i {
-		color: var(--s);
 		background: var(--s);
 	}
 
@@ -177,15 +226,6 @@ const {
 
 	/* Above the tally rather than down in the corner, which is where the
 	   wavelength axis and its numbers are. */
-	.readout {
-		position: absolute;
-		right: 1rem;
-		top: 0.6rem;
-		font-size: 1.125rem;
-		font-variant-numeric: tabular-nums;
-		pointer-events: none;
-	}
-
 	/* Laid over the plot, so the mark can be taken anywhere along it. Its own
 	   thumb is a transparent hairline; what the reader sees is drawn on the
 	   canvas. */
@@ -244,12 +284,10 @@ const {
 
 	@container viz (max-width: 30rem) {
 		.tally {
-			font-size: 0.65rem;
+			font-size: 0.7rem;
+			gap: 0.25rem;
 		}
-		.tally-bar {
-			width: 3rem;
-		}
-		.readout {
+		.swatch figcaption {
 			font-size: 0.85rem;
 		}
 	}
@@ -265,17 +303,25 @@ const {
 	const LO_NM = CONE_FIRST_NM;
 	const HI_NM = CONE_LAST_NM;
 
-	/* Room around the plot: for the rainbow strip and its labels underneath,
-	   for the tally above, and a little at the top so a peak at 1 is not drawn
-	   against the edge. */
-	const PAD = { top: 26, right: 18, bottom: 40, left: 34 };
+	/* Room around the plot: the top half of the pane for the light and what
+	   the cones make of it, the rainbow strip and its numbers underneath, and a
+	   little air above the curves so a peak at 1 is not drawn against the head.
+
+	   No room at the left for a scale. Every one of these curves is normalised
+	   to its own peak, so the height axis has no unit to label — what it is
+	   worth reading off is the shape, and where one curve crosses another. */
+	const PAD = { top: 14, right: 18, bottom: 40, left: 18 };
+	const HEAD_FRAC = 0.5; // of the pane, given over to the swatch and the tally
 	const STRIP_H = 10; // the rainbow along the wavelength axis
 	const STRIP_GAP = 7;
 
+	/* In the order they are shown, shortest wavelength first, which is the
+	   order they sit in along the axis. `at` is where each one is in the triple
+	   coneResponse hands back, which is the order the published table uses. */
 	const CONES = [
-		{ key: 'l', name: 'L', css: '#ff6b6b' },
-		{ key: 'm', name: 'M', css: '#64d98a' },
-		{ key: 's', name: 'S', css: '#6fa8ff' },
+		{ key: 's', name: 'S', at: 2, css: '#6fa8ff' },
+		{ key: 'm', name: 'M', at: 1, css: '#64d98a' },
+		{ key: 'l', name: 'L', at: 0, css: '#ff6b6b' },
 	] as const;
 
 	const RANGE_STEPS = 1000;
@@ -288,6 +334,7 @@ const {
 		const ctx = canvas.getContext('2d')!;
 		const pickEl = root.querySelector<HTMLInputElement>('[data-pick]')!;
 		const readoutEl = root.querySelector<HTMLElement>('[data-readout]')!;
+		const swatchEl = root.querySelector<HTMLElement>('[data-swatch]')!;
 		const bars = Object.fromEntries(
 			CONES.map((c) => [c.key, root.querySelector<HTMLElement>(`[data-bar='${c.key}']`)!]),
 		);
@@ -370,11 +417,12 @@ const {
 			h = r.height;
 			canvas.width = Math.max(1, Math.round(w * dpr));
 			canvas.height = Math.max(1, Math.round(h * dpr));
+			const top = h * HEAD_FRAC + PAD.top;
 			plot = {
 				x: PAD.left,
-				y: PAD.top,
+				y: top,
 				w: Math.max(1, w - PAD.left - PAD.right),
-				h: Math.max(1, h - PAD.top - PAD.bottom),
+				h: Math.max(1, h - top - PAD.bottom),
 			};
 		};
 		/* Redrawn on the spot, not on the next frame. The curves are the same
@@ -401,15 +449,17 @@ const {
 
 		const tally = () => {
 			const r = coneResponse(nm);
-			CONES.forEach((c, i) => {
-				bars[c.key].style.width = `${(r[i] * 100).toFixed(1)}%`;
-				vals[c.key].textContent = r[i].toFixed(2);
-			});
+			for (const c of CONES) {
+				bars[c.key].style.width = `${(r[c.at] * 100).toFixed(1)}%`;
+				vals[c.key].textContent = r[c.at].toFixed(2);
+			}
 			readoutEl.textContent = `${Math.round(nm)} nm`;
+			swatchEl.style.background = wavelengthCss(nm);
 			if (canDrag) {
 				pickEl.setAttribute(
 					'aria-valuetext',
-					`${Math.round(nm)} nanometres. L ${r[0].toFixed(2)}, M ${r[1].toFixed(2)}, S ${r[2].toFixed(2)}`,
+					`${Math.round(nm)} nanometres. ` +
+						CONES.map((c) => `${c.name} ${r[c.at].toFixed(2)}`).join(', '),
 				);
 			}
 			return r;
@@ -429,22 +479,8 @@ const {
 			ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 			ctx.clearRect(0, 0, w, h);
 
-			/* ---- the frame --------------------------------------------------
-			   Only the horizontals, and only at the values worth naming. A full
-			   grid would be three more things to look at than the shapes need. */
 			ctx.font = '10px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
 			ctx.textBaseline = 'middle';
-			ctx.textAlign = 'right';
-			for (const v of [0, 0.5, 1]) {
-				const y = yOf(v);
-				ctx.strokeStyle = `color-mix(in srgb, ${inkC} ${v === 0 ? 26 : 11}%, transparent)`;
-				ctx.beginPath();
-				ctx.moveTo(plot.x, y);
-				ctx.lineTo(plot.x + plot.w, y);
-				ctx.stroke();
-				ctx.fillStyle = dimC;
-				ctx.fillText(v.toFixed(1), plot.x - 8, y);
-			}
 
 			/* ---- the wavelength axis ----------------------------------------
 			   The rainbow is the axis: the reader should not have to convert a
@@ -465,10 +501,10 @@ const {
 			/* ---- the curves -------------------------------------------------
 			   Sampled per pixel, so the shape is the data's rather than a
 			   polyline's idea of it. */
-			CONES.forEach((cone, i) => {
+			for (const cone of CONES) {
 				ctx.beginPath();
 				for (let x = 0; x <= plot.w; x++) {
-					const v = coneResponse(nmOf(plot.x + x))[i];
+					const v = coneResponse(nmOf(plot.x + x))[cone.at];
 					const px = plot.x + x;
 					const py = yOf(v);
 					if (x === 0) ctx.moveTo(px, py);
@@ -487,7 +523,7 @@ const {
 
 				ctx.beginPath();
 				for (let x = 0; x <= plot.w; x++) {
-					const v = coneResponse(nmOf(plot.x + x))[i];
+					const v = coneResponse(nmOf(plot.x + x))[cone.at];
 					const px = plot.x + x;
 					const py = yOf(v);
 					if (x === 0) ctx.moveTo(px, py);
@@ -497,7 +533,7 @@ const {
 				ctx.lineWidth = 2;
 				ctx.lineJoin = 'round';
 				ctx.stroke();
-			});
+			}
 
 			/* ---- the mark ---------------------------------------------------
 			   One wavelength, and what the three of them make of it. */
@@ -524,16 +560,15 @@ const {
 			ctx.strokeStyle = `color-mix(in srgb, ${inkC} 70%, transparent)`;
 			ctx.strokeRect(mx - 6.5, stripY - 4.5, 13, STRIP_H + 9);
 
-			CONES.forEach((cone, i) => {
-				const y = yOf(r[i]);
+			for (const cone of CONES) {
 				ctx.beginPath();
-				ctx.arc(mx, y, 4, 0, Math.PI * 2);
+				ctx.arc(mx, yOf(r[cone.at]), 4, 0, Math.PI * 2);
 				ctx.fillStyle = cone.css;
 				ctx.fill();
 				ctx.strokeStyle = 'rgba(0,0,0,0.55)';
 				ctx.lineWidth = 1;
 				ctx.stroke();
-			});
+			}
 		};
 
 		/* ---- the reader's hand --------------------------------------------- */
