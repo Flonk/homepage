@@ -93,7 +93,7 @@ const {
 	data-spectrum-bar={spectrumBar ? 'true' : 'false'}
 >
 	<canvas data-canvas></canvas>
-	<div class="spectrum" data-spectrum>
+	<div class="spectrum" data-spectrum data-on={spectrumBar ? 'true' : 'false'}>
 		{/* The visible band is too narrow to letter, which is the point of it, so
 		    its name is called out above the bar on a leader instead. */}
 		<div class="spectrum-callout"><span data-spectrum-callout>Visible</span></div>
@@ -143,8 +143,35 @@ const {
 		text-transform: uppercase;
 	}
 
-	.spectrum[hidden] {
-		display: none;
+	/* Faded rather than dropped: it is out of the flow anyway, so there is
+	   nothing for the layout to notice, and going the whole way to
+	   `visibility` keeps it off the pointer and out of the a11y tree once it
+	   has gone. That switch is held back until the fade is done on the way out,
+	   and taken immediately on the way in. */
+	.spectrum[data-on='false'] {
+		opacity: 0;
+		visibility: hidden;
+	}
+
+	/* Only once the deck has settled the opening card; see the script. */
+	.spectrum[data-anim='on'] {
+		transition:
+			opacity 0.45s ease,
+			visibility 0s linear 0s;
+	}
+
+	.spectrum[data-anim='on'][data-on='false'] {
+		transition:
+			opacity 0.45s ease,
+			visibility 0s linear 0.45s;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.spectrum[data-anim='on'],
+		.spectrum[data-anim='on'][data-on='false'] {
+			transition-duration: 0.01ms;
+			transition-delay: 0s;
+		}
 	}
 
 	.spectrum-callout {
@@ -423,7 +450,7 @@ const {
 		// Settled now rather than on the next frame: a pane that is not animating
 		// still has to show the axis.
 		const applyBar = () => {
-			if (spectrumEl.hidden === showBar) spectrumEl.hidden = !showBar;
+			spectrumEl.dataset.on = showBar ? 'true' : 'false';
 		};
 		const placeMark = () => {
 			const p = Math.min(1, Math.max(0, spectrumPos(freqThz * 1e12)));
@@ -479,6 +506,15 @@ const {
 			setSweep('sweep' in p ? parseSweep(p.sweep) : AUTHORED_SWEEP);
 			showBar = 'spectrumBar' in p ? Boolean(p.spectrumBar) : AUTHORED_BAR;
 			applyBar();
+			/* The deck sets the opening card's parameters as the page loads, and
+			   that first setting must not animate — otherwise a deck whose first
+			   card has no axis is greeted by one fading away. Reading a layout
+			   property commits the state above before transitions are turned on,
+			   so only card changes from here on fade. */
+			if (spectrumEl.dataset.anim !== 'on') {
+				void spectrumEl.offsetWidth;
+				spectrumEl.dataset.anim = 'on';
+			}
 		});
 
 		/* ---- the trace ------------------------------------------------------
@@ -634,7 +670,7 @@ const {
 
 			outLight.textContent = `${Math.round(nm)} nm · ${Math.round(freqThz)} THz`;
 
-			if (showBar) placeMark();
+			placeMark();
 		}
 
 		requestAnimationFrame(frame);
