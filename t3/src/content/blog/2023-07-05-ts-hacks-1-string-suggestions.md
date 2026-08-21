@@ -1,5 +1,6 @@
 ---
 title: "Typescript Hacks #1: String suggestions"
+series: "Typescript Hacks"
 description: ""
 pubDate: "Sep 5, 2023"
 ---

@@ -8,6 +8,8 @@ const blog = defineCollection({
 	schema: ({ image }) => z.object({
 		title: z.string(),
 		description: z.string(),
+		// Posts sharing a `series` are grouped into one collapsible section on the index.
+		series: z.string().optional(),
 		// Transform string to Date object
 		pubDate: z.coerce.date(),
 		updatedDate: z.coerce.date().optional(),

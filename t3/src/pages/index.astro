@@ -4,9 +4,44 @@ import BaseHead from '../components/BaseHead.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { SERIES_BLURBS } from '../series';
 
 const posts = (await getCollection('blog'))
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+type Post = (typeof posts)[number];
+type Entry =
+	| { kind: 'post'; post: Post }
+	| { kind: 'series'; name: string; posts: Post[] };
+
+// Collect every post of a series into one section, anchored where the series'
+// newest post would have been. A series of one stays a plain entry.
+const entries: Entry[] = [];
+const seenSeries = new Set<string>();
+
+for (const post of posts) {
+	const series = post.data.series;
+	if (!series) {
+		entries.push({ kind: 'post', post });
+		continue;
+	}
+	if (seenSeries.has(series)) continue;
+	seenSeries.add(series);
+
+	// Oldest first inside a section, so a series reads from #1 downwards.
+	const members = posts.filter((p) => p.data.series === series).reverse();
+	entries.push(
+		members.length > 1
+			? { kind: 'series', name: series, posts: members }
+			: { kind: 'post', post },
+	);
+}
+
+// Inside a section the heading already says the series name, so drop it from the title.
+const stripSeriesPrefix = (title: string, series: string) => {
+	if (!title.startsWith(series)) return title;
+	return title.slice(series.length).replace(/^[\s:–—-]+/, '') || title;
+};
 ---
 
 <!doctype html>
@@ -41,7 +76,7 @@ const posts = (await getCollection('blog'))
 					flex-direction: column;
 				}
 			}
-			
+
 			ul li * {
 				text-decoration: none;
 			}
@@ -67,6 +102,86 @@ const posts = (await getCollection('blog'))
 			ul a:hover img {
 				box-shadow: var(--box-shadow);
 			}
+
+			/* --- series sections --- */
+
+			.series {
+				margin: 1.75rem 0;
+			}
+
+			.series > details {
+				border: 1px solid var(--nord1);
+				border-left: 3px solid var(--accent);
+				border-radius: 6px;
+				background: rgba(46, 52, 64, 0.35);
+				padding: 0.9rem 1.15rem;
+			}
+
+			.series > details > summary {
+				cursor: pointer;
+				list-style: none;
+				display: flex;
+				flex-direction: column;
+				gap: 0.3rem;
+			}
+
+			.series > details > summary::-webkit-details-marker {
+				display: none;
+			}
+
+			.series-head {
+				display: flex;
+				align-items: baseline;
+				gap: 0.6rem;
+			}
+
+			.series-head::before {
+				content: '▸';
+				display: inline-block;
+				color: var(--accent);
+				transition: transform 0.15s ease;
+			}
+
+			.series > details[open] .series-head::before {
+				transform: rotate(90deg);
+			}
+
+			.series-name {
+				font-size: 1.15rem;
+				font-weight: 700;
+				letter-spacing: 0.02em;
+				color: var(--nord8);
+			}
+
+			summary:hover .series-name {
+				color: var(--nord6);
+			}
+
+			.series-count {
+				color: var(--nord3);
+				font-size: 0.8rem;
+			}
+
+			.series-blurb {
+				padding-left: 1.1rem;
+				max-width: 62ch;
+				font-size: 0.9rem;
+				line-height: 1.65;
+				color: var(--nord4);
+				opacity: 0.6;
+			}
+
+			.series-posts {
+				gap: 0.2rem;
+				margin: 1rem 0 0.2rem;
+				padding-left: 1.1rem;
+			}
+
+			@media (max-width: 768px) {
+				.series-posts {
+					gap: 1.2rem;
+				}
+			}
 		</style>
 	</head>
 	<body>
@@ -76,24 +191,56 @@ const posts = (await getCollection('blog'))
 				<h2>Blog</h2>
 				<ul>
 					{
-						posts.map((post) => (
-							<li data-pubdate={post.data.pubDate.valueOf()}>
-								<a href={`/blog/${post.id}/`}>
-									<span class="date">
-										[<FormattedDate date={post.data.pubDate} />]
-									</span>
-									<header class="title">{post.data.title}</header>
-								</a>
-							</li>
-						))
+						entries.map((entry) =>
+							entry.kind === 'series' ? (
+								<li class="series" data-series={entry.name}>
+									<details open>
+										<summary>
+											<span class="series-head">
+												<span class="series-name">{entry.name}</span>
+												<span class="series-count" data-series-count>
+													{entry.posts.length} posts
+												</span>
+											</span>
+											{SERIES_BLURBS[entry.name] && (
+												<span class="series-blurb">{SERIES_BLURBS[entry.name]}</span>
+											)}
+										</summary>
+										<ul class="series-posts">
+											{entry.posts.map((post) => (
+												<li data-pubdate={post.data.pubDate.valueOf()}>
+													<a href={`/blog/${post.id}/`}>
+														<span class="date">
+															[<FormattedDate date={post.data.pubDate} />]
+														</span>
+														<header class="title">
+															{stripSeriesPrefix(post.data.title, entry.name)}
+														</header>
+													</a>
+												</li>
+											))}
+										</ul>
+									</details>
+								</li>
+							) : (
+								<li data-pubdate={entry.post.data.pubDate.valueOf()}>
+									<a href={`/blog/${entry.post.id}/`}>
+										<span class="date">
+											[<FormattedDate date={entry.post.data.pubDate} />]
+										</span>
+										<header class="title">{entry.post.data.title}</header>
+									</a>
+								</li>
+							),
+						)
 					}
 				</ul>
 			</section>
 		</main>
 	<script>
 		(function () {
-		  // return; 
-			const items = document.querySelectorAll('li[data-pubdate]');
+		  // return;
+			const items = document.querySelectorAll<HTMLElement>('li[data-pubdate]');
 			if (!items.length) return;
 
 			const now = new Date();
@@ -116,6 +263,24 @@ const posts = (await getCollection('blog'))
 
 				if (postLocalDay > todayLocal) {
 					li.style.display = 'none';
+				}
+			});
+
+			// A series section only counts the posts that are actually visible,
+			// and disappears entirely once none are.
+			document.querySelectorAll<HTMLElement>('li[data-series]').forEach((group) => {
+				const visible = Array.from(
+					group.querySelectorAll<HTMLElement>('li[data-pubdate]'),
+				).filter((li) => li.style.display !== 'none');
+
+				if (!visible.length) {
+					group.style.display = 'none';
+					return;
+				}
+
+				const count = group.querySelector('[data-series-count]');
+				if (count) {
+					count.textContent = `${visible.length} post${visible.length === 1 ? '' : 's'}`;
 				}
 			});
 		})();
