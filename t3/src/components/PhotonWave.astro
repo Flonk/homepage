@@ -110,6 +110,13 @@ const {
 			<div class="spectrum-mark" data-spectrum-mark></div>
 		</div>
 		<div class="spectrum-bands" data-spectrum-bands></div>
+		{/* What the rainbow runs into once the axis has closed in on it and the
+		    band names have gone. Anchored to the ends rather than to a
+		    frequency: they name what is off the bar, not what is on it. */}
+		<div class="spectrum-edges" data-spectrum-edges>
+			<span class="spectrum-edge-lo">&lsaquo; Infrared</span>
+			<span class="spectrum-edge-hi">Ultraviolet &rsaquo;</span>
+		</div>
 	</div>
 	<div class="readout">
 		<span data-light></span>
@@ -247,6 +254,31 @@ const {
 		top: 0;
 		transform: translateX(-50%);
 		white-space: nowrap;
+	}
+
+	/* Laid over the row the band names use, so the two swap without moving. */
+	.spectrum-edges {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		height: 1rem;
+		opacity: 0;
+		color: var(--ink-dim);
+	}
+
+	.spectrum-edges span {
+		position: absolute;
+		top: 0;
+		white-space: nowrap;
+	}
+
+	.spectrum-edge-lo {
+		left: 0;
+	}
+
+	.spectrum-edge-hi {
+		right: 0;
 	}
 
 	.readout {
@@ -451,6 +483,7 @@ const {
 		const markEl = root.querySelector<HTMLElement>('[data-spectrum-mark]')!;
 		const bandsEl = root.querySelector<HTMLElement>('[data-spectrum-bands]')!;
 		const calloutEl = root.querySelector<HTMLElement>('[data-spectrum-callout]')!;
+		const edgesEl = root.querySelector<HTMLElement>('[data-spectrum-edges]')!;
 		const ctx = canvas.getContext('2d')!;
 		const outLight = root.querySelector<HTMLElement>('[data-light]')!;
 		const outSlow = root.querySelector<HTMLElement>('[data-slowdown]')!;
@@ -521,6 +554,10 @@ const {
 			const ink = Math.max(0, 1 - zoom / 0.4);
 			bandsEl.style.opacity = `${ink}`;
 			calloutEl.style.opacity = `${ink}`;
+			/* And the two that survive the zoom arrive after they have gone, once
+			   the slivers at the ends are wide enough to be worth naming. */
+			const edge = Math.max(0, (zoom - 0.55) / 0.45);
+			edgesEl.style.opacity = `${edge * edge * (3 - 2 * edge)}`;
 		};
 
 		/* Parameters arrive at the stage, or at the phase of it this belongs to;
@@ -699,7 +736,14 @@ const {
 			}
 
 			const nm = C_NM_PER_S / (freqThz * 1e12);
-			const [r, g, b] = wavelengthRgb(nm);
+			/* Held inside the range the approximation is defined over, the same
+			   way the bar's rainbow is. A hair outside it and the branches all
+			   fall through: 781nm comes back pure black rather than a deep red,
+			   and 379.96nm comes back a flat blue rather than violet. The sweep
+			   on the visible band runs to 780.9 and 379.96, so both ends of it
+			   land there. Dimming towards the ends is the eye running out of
+			   response and is meant to be seen; going out altogether is not. */
+			const [r, g, b] = wavelengthRgb(Math.min(780, Math.max(380, nm)));
 			const colour = spectral ? `rgb(${r} ${g} ${b})` : '#ffffff';
 
 			if (!reduceMotion) {
