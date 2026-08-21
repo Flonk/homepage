@@ -1,5 +1,5 @@
 ---
-title: "Colour #4: Olo and Other Impossible Colors"
+title: "Colour #4: Pink, Olo and Other Impossible Colors"
 series: "Colour"
 format: "deck"
 ground: "dark"
@@ -10,19 +10,30 @@ pubDate: "August 21 2026"
 import DeckCard from "../../components/DeckCard.astro";
 import DeckViz from "../../components/DeckViz.astro";
 import ConeResponse from "../../components/ConeResponse.astro";
+import VizPhase from "../../components/VizPhase.astro";
+import VizStill from "../../components/VizStill.astro";
 
-{/* Part three's graph, carried over, because this post picks up exactly where
-    it left off: the curves are what say which cone signals light can and
-    cannot produce, and olo is one of the ones it cannot. A viz of its own —
-    the space of possible signals, with the unreachable part marked — is the
-    thing to build here when the prose knows what it wants. Cards drive
-    whatever is in here with vizProps; see DeckViz for the whole contract. */}
+{/* The prism first, then part three's graph, carried over because this post
+    picks up exactly where that one left off: the curves are what say which
+    cone signals light can and cannot produce, and olo is one of the ones it
+    cannot. A viz of its own — the space of possible signals, with the
+    unreachable part marked — is the thing to build here when the prose knows
+    what it wants. The first phase listed is the one a deck opens on. */}
 <DeckViz>
-  <ConeResponse sweep={[400, 700]} drag />
+  <VizPhase name="prism">
+    <VizStill
+      src="/assets/2026-08-21-color-4-olo/prism.png"
+      alt="A beam of white light entering a glass prism and leaving it spread into a band of colour."
+      credit="George Hardie, 1973"
+    />
+  </VizPhase>
+  <VizPhase name="cones">
+    <ConeResponse sweep={[400, 700]} drag />
+  </VizPhase>
 </DeckViz>
 
 <DeckCard>
-  ## A colour nobody had seen
+  ## The real world isn't single wavelength
 
-  Bla di bla
+  The sun, being a massive ball of plasma, among basically any other white light source, will be emitting photons across the entire visible spectrum, and not just one wavelength. Whatever reaches our eye at any given moment will rarely be a single wavelength of photons, meaning we really need to look at the *combined* effect of all the photons hitting our cones, and not just one wavelength at a time.
 </DeckCard>

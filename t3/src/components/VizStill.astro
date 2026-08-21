@@ -1,0 +1,76 @@
+---
+/**
+ * A picture that *is* the visualization, rather than one laid over it.
+ *
+ * The third of the three ways a deck can put an image on screen, and the
+ * plainest. <VizImage> lays one over a running viz and keeps it running
+ * underneath; <VisionSplit> shows one twice, filtered down the middle. This
+ * just fills the pane, for a card whose picture is the whole point.
+ *
+ *   <DeckViz>
+ *     <VizPhase name="prism"><VizStill src="…" alt="…" /></VizPhase>
+ *     <VizPhase name="cones"><ConeResponse /></VizPhase>
+ *   </DeckViz>
+ *
+ * No frame and no border by default: a picture that already carries its own
+ * ground — and most do, on a deck — looks pinned rather than presented once
+ * something is drawn around it.
+ */
+interface Props {
+	src: string;
+	alt: string;
+	/** Shown under the picture, quietly. */
+	credit?: string;
+	/** Scale with hard pixel edges, for enlargements of detail. */
+	pixelated?: boolean;
+}
+
+const { src, alt, credit, pixelated = false } = Astro.props;
+---
+
+<figure class:list={['viz-still', pixelated && 'crisp']}>
+	<img src={src} alt={alt} />
+	{credit && <figcaption>{credit}</figcaption>}
+</figure>
+
+<style>
+	.viz-still {
+		width: 100%;
+		height: 100%;
+		min-width: 0;
+		min-height: 0;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		font-family: var(--font-mono);
+	}
+
+	/* The site gives every img an inch of padding and a border. Neither belongs
+	   on one that is filling a pane. */
+	.viz-still img {
+		display: block;
+		min-height: 0;
+		max-width: 100%;
+		max-height: 100%;
+		width: auto;
+		height: auto;
+		object-fit: contain;
+		padding: 0;
+		border: 0;
+	}
+
+	.crisp img {
+		image-rendering: pixelated;
+	}
+
+	.viz-still figcaption {
+		flex: none;
+		font-size: 0.62rem;
+		letter-spacing: 0.04em;
+		color: var(--deck-ink-dim, #7a7264);
+		text-align: center;
+	}
+</style>
