@@ -42,8 +42,13 @@ const { title, description, pubDate, series } = Astro.props;
 				<button type="button" class="deck-arrow" data-deck-prev aria-label="Previous card">
 					&#8249;
 				</button>
-				<div class="deck-dots" data-deck-dots role="tablist" aria-label="Cards"></div>
-				<span class="deck-counter" data-deck-counter aria-live="polite"></span>
+				{/* A dot per card stops scaling somewhere around a dozen; the count
+				    reads the same at five cards or fifty. The card's label rides
+				    along for screen readers, which otherwise hear only a number. */}
+				<span class="deck-counter" data-deck-counter aria-live="polite">
+					<span data-deck-count></span>
+					<span class="sr-only" data-deck-label></span>
+				</span>
 				<button type="button" class="deck-arrow" data-deck-next aria-label="Next card">
 					&#8250;
 				</button>
@@ -218,35 +223,14 @@ const { title, description, pubDate, series } = Astro.props;
 				cursor: default;
 			}
 
-			.deck-dots {
-				display: flex;
-				align-items: center;
-				gap: 0.4rem;
-			}
-
-			.deck-dots button {
-				width: 0.55rem;
-				height: 0.55rem;
-				padding: 0;
-				border-radius: 50%;
-				border: 1px solid var(--nord2);
-				background: transparent;
-				cursor: pointer;
-				transition:
-					background-color 0.15s ease,
-					border-color 0.15s ease;
-			}
-
-			.deck-dots button[aria-selected='true'] {
-				background-color: var(--accent);
-				border-color: var(--accent);
-			}
-
+			/* The only position indicator now, so it carries a little more weight
+			   than it did beside the dots. Wide enough for two-digit counts, so
+			   the arrows do not shift as the number grows. */
 			.deck-counter {
 				font-family: var(--font-mono);
-				font-size: 0.75rem;
-				color: var(--nord3);
-				min-width: 5ch;
+				font-size: 0.8rem;
+				color: var(--nord4);
+				min-width: 7ch;
 				text-align: center;
 			}
 
@@ -256,9 +240,6 @@ const { title, description, pubDate, series } = Astro.props;
 				}
 				.deck-title {
 					font-size: 1.1rem;
-				}
-				.deck-counter {
-					display: none;
 				}
 			}
 		</style>
@@ -274,22 +255,10 @@ const { title, description, pubDate, series } = Astro.props;
 			if (deck && cards.length) {
 				const prevBtn = document.querySelector<HTMLButtonElement>('[data-deck-prev]');
 				const nextBtn = document.querySelector<HTMLButtonElement>('[data-deck-next]');
-				const counter = document.querySelector<HTMLElement>('[data-deck-counter]');
-				const dotsBox = document.querySelector<HTMLElement>('[data-deck-dots]');
+				const count = document.querySelector<HTMLElement>('[data-deck-count]');
+				const label = document.querySelector<HTMLElement>('[data-deck-label]');
 
 				let index = 0;
-
-				const dots = cards.map((card, i) => {
-					const dot = document.createElement('button');
-					dot.type = 'button';
-					dot.setAttribute('role', 'tab');
-					const label = card.dataset.cardLabel || `Card ${i + 1}`;
-					dot.setAttribute('aria-label', label);
-					dot.title = label;
-					dot.addEventListener('click', () => go(i));
-					dotsBox?.appendChild(dot);
-					return dot;
-				});
 
 				function render() {
 					cards.forEach((card, i) => {
@@ -301,10 +270,11 @@ const { title, description, pubDate, series } = Astro.props;
 						const viz = card.querySelector<HTMLElement>('.card-viz');
 						if (viz) viz.inert = i !== index;
 					});
-					dots.forEach((dot, i) =>
-						dot.setAttribute('aria-selected', String(i === index)),
-					);
-					if (counter) counter.textContent = `${index + 1} / ${cards.length}`;
+					if (count) count.textContent = `${index + 1} / ${cards.length}`;
+					if (label) {
+						const name = cards[index]?.dataset.cardLabel;
+						label.textContent = name ? `, ${name}` : '';
+					}
 					if (prevBtn) prevBtn.disabled = index === 0;
 					if (nextBtn) nextBtn.disabled = index === cards.length - 1;
 				}
