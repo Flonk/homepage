@@ -44,9 +44,11 @@ interface Props {
 	/**
 	 * Run the frequency up and down between these two, in THz, instead of
 	 * holding one — the whole spectrum going past rather than a sample of it.
-	 * Low first. The sweep is geometric, so equal times cover equal ratios and
-	 * it does not spend nearly all of itself at the top end, and it is weighted
-	 * towards the bottom, because that is the end that needs the time.
+	 * Low first. The sweep is geometric and runs at a constant rate, so equal
+	 * times cover equal ratios: the mark crosses the spectrum axis at an even
+	 * speed and turns round at the ends. Linear in the frequency itself would
+	 * be no use — nine tenths of that range is above the visible band, so it
+	 * would spend nine tenths of the time up there.
 	 *
 	 * Both ends are limited by the drawing rather than by physics. At the top
 	 * the trace holds one height per pixel of travel, so the wave runs out of
@@ -75,7 +77,7 @@ const {
 	frequency = 545,
 	spectral = false,
 	sweep,
-	sweepSeconds = 13,
+	sweepSeconds = 22,
 	spectrumBar = true,
 } = Astro.props;
 ---
@@ -413,7 +415,7 @@ const {
 		const AUTHORED_SPECTRAL = root.dataset.spectral === 'true';
 		const AUTHORED_SWEEP = parseSweep(root.dataset.sweep);
 		const AUTHORED_BAR = root.dataset.spectrumBar !== 'false';
-		const SWEEP_SECS = Math.max(1, Number(root.dataset.sweepSeconds) || 13);
+		const SWEEP_SECS = Math.max(1, Number(root.dataset.sweepSeconds) || 22);
 		let wanted = AUTHORED;
 		let spectral = AUTHORED_SPECTRAL;
 		let showBar = AUTHORED_BAR;
@@ -432,31 +434,30 @@ const {
 		let freqThz = AUTHORED;
 
 		/* ---- the sweep ------------------------------------------------------
-		   A round trip low → high → low, geometric in frequency and eased at
-		   both turning points, driven by a clock of its own.
+		   A round trip low → high → low at a constant rate, driven by a clock of
+		   its own: a triangle in the exponent, so the frequency multiplies by
+		   the same factor every second and the mark on the axis above moves at
+		   an even speed rather than easing in and out of the turns.
 
-		   Bent towards the bottom of the range, because the two ends do not need
-		   the same amount of time. A fast wave shows what it is in a fraction of
-		   a second; a slow one has to travel most of the pane before there is a
-		   whole wave to look at, and the photon takes seconds to turn over. An
-		   even sweep leaves the low end as an arc that never resolves. */
-		const SWEEP_BIAS = 2.2;
-
+		   The low end still gets the longer look, but out of the length of the
+		   loop rather than out of any bend in it — the bottom of the range needs
+		   seconds to show what it is, because the photon has to travel most of
+		   the pane before there is a whole wave to see. */
 		let sweeping: [number, number] | null = null;
 		let sweepT = 0;
 
 		const sweepAt = (t: number, [lo, hi]: [number, number]) => {
-			const ping = (1 - Math.cos((2 * Math.PI * t) / SWEEP_SECS)) / 2;
-			return lo * Math.pow(hi / lo, Math.pow(ping, SWEEP_BIAS));
+			const lap = (t / SWEEP_SECS) % 1;
+			const ping = lap <= 0.5 ? 2 * lap : 2 - 2 * lap;
+			return lo * Math.pow(hi / lo, ping);
 		};
 
 		/* Where to start that clock so the sweep is passing through `f` on its
 		   way up: the wave then carries on from whatever it was already doing
 		   instead of snapping to the bottom of the range. */
 		const sweepEntry = (f: number, [lo, hi]: [number, number]) => {
-			const u = Math.min(1, Math.max(0, Math.log(f / lo) / Math.log(hi / lo)));
-			const ping = Math.pow(u, 1 / SWEEP_BIAS);
-			return (SWEEP_SECS / (2 * Math.PI)) * Math.acos(1 - 2 * ping);
+			const ping = Math.min(1, Math.max(0, Math.log(f / lo) / Math.log(hi / lo)));
+			return (ping * SWEEP_SECS) / 2;
 		};
 
 		const setSweep = (next: [number, number] | null) => {
