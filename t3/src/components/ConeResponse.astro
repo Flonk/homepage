@@ -592,7 +592,11 @@ const markList = marks
 
 		const rebuildLine = () => {
 			const base = marks.map((m) => m.weight ?? 0);
-			const enough = metamer && marks.length > CONES.length && marks.every((m) => m.weight !== null);
+			/* More lights than the three numbers a colour is, which is what leaves
+			   one weight free. Three, not CONES.length: that list is however many
+			   curves are being drawn, and the filtered eye has four of them
+			   without there being a fourth number for metamerLine to hold still. */
+			const enough = metamer && marks.length > 3 && marks.every((m) => m.weight !== null);
 			const line = enough
 				? metamerLine(
 						marks.map((m) => m.nm),
