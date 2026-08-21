@@ -25,12 +25,23 @@ interface Props {
 	alt: string;
 	/** Set into the frame itself. Public domain work still deserves a name. */
 	credit?: string;
+	/**
+	 * Scale with hard pixel edges. For enlargements of detail too small to see,
+	 * where smoothing blurs out the thing being shown. Wrong for photographs,
+	 * which is why it is off by default.
+	 */
+	pixelated?: boolean;
 }
 
-const { name, src, alt, credit } = Astro.props;
+const { name, src, alt, credit, pixelated = false } = Astro.props;
 ---
 
-<figure class="viz-image" data-viz-overlay={name} data-viz-active="false" inert>
+<figure
+	class:list={['viz-image', pixelated && 'crisp']}
+	data-viz-overlay={name}
+	data-viz-active="false"
+	inert
+>
 	<img src={src} alt={alt} />
 	{credit && <figcaption>{credit}</figcaption>}
 </figure>
@@ -86,8 +97,9 @@ const { name, src, alt, credit } = Astro.props;
 		max-height: calc(100cqh - 3.5rem);
 		width: auto;
 		height: auto;
-		/* These are enlargements of detail too small to see; smoothing them blurs
-		   out exactly what they were included for. */
+	}
+
+	.viz-image.crisp img {
 		image-rendering: pixelated;
 	}
 
