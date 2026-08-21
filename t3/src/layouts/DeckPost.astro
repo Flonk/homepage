@@ -260,6 +260,27 @@ const { title, description, pubDate, series } = Astro.props;
 
 				let index = 0;
 
+				/* ---- deep links ---------------------------------------------------
+				   The card number lives in the fragment, so any card can be linked
+				   to directly. replaceState rather than pushState: a deck can run to
+				   twenty cards, and making Back walk out of it one card at a time
+				   would trap the reader inside the post. */
+				const clamp = (n: number) => Math.max(0, Math.min(cards.length - 1, n));
+
+				const fromHash = () => {
+					const n = Number(location.hash.slice(1));
+					return Number.isInteger(n) && n > 0 ? clamp(n - 1) : null;
+				};
+
+				function syncHash() {
+					// Card one is the post itself, and keeps the bare URL.
+					const base = location.pathname + location.search;
+					history.replaceState(null, '', index === 0 ? base : `${base}#${index + 1}`);
+				}
+
+				const linked = fromHash();
+				if (linked !== null) index = linked;
+
 				/* ---- the visualization ------------------------------------------
 				   A card contributes parameters, not a viz of its own. Anything it
 				   does not mention it inherits from the card before it, which makes
@@ -293,10 +314,15 @@ const { title, description, pubDate, series } = Astro.props;
 				let phaseName: string | null = null;
 				let applied: string | null = null;
 
+				/* Straight to the phase the starting card asks for — which is not
+				   necessarily the first one, if the reader arrived on a deep link. */
 				if (phases.length) {
-					phases[0].dataset.vizActive = 'true';
-					phases[0].inert = false;
-					phaseName = phases[0].dataset.vizPhase ?? null;
+					phaseName = JSON.parse(vizPlan[index]).phase ?? null;
+					for (const el of phases) {
+						const on = el.dataset.vizPhase === phaseName;
+						el.dataset.vizActive = String(on);
+						el.inert = !on;
+					}
 				}
 
 				function showPhase(name: string) {
@@ -346,11 +372,21 @@ const { title, description, pubDate, series } = Astro.props;
 				}
 
 				function go(next: number) {
-					const clamped = Math.max(0, Math.min(cards.length - 1, next));
+					const clamped = clamp(next);
 					if (clamped === index) return;
 					index = clamped;
 					render();
+					syncHash();
 				}
+
+				// Someone editing the fragment, or following a link to another card
+				// of the post they are already reading.
+				window.addEventListener('hashchange', () => {
+					const n = fromHash();
+					if (n === null) return;
+					go(n);
+					syncHash(); // a number past the end becomes the card it landed on
+				});
 
 				prevBtn?.addEventListener('click', () => go(index - 1));
 				nextBtn?.addEventListener('click', () => go(index + 1));
@@ -425,6 +461,11 @@ const { title, description, pubDate, series } = Astro.props;
 				deck.addEventListener('pointercancel', endSwipe);
 
 				render();
+				/* Rewrite a card number past the end to the card actually shown. A
+				   fragment that is not a card number is left alone rather than
+				   claimed — it may well be a heading anchor, and the deck only owns
+				   the ones it recognises. */
+				if (fromHash() !== null) syncHash();
 			}
 		</script>
 	</body>
