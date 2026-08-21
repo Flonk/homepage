@@ -4,7 +4,7 @@ import BaseHead from '../components/BaseHead.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
-import { SERIES_BLURBS } from '../series';
+import { SERIES_BLURBS, sortSeries } from '../series';
 
 const posts = (await getCollection('blog'))
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
@@ -29,7 +29,7 @@ for (const post of posts) {
 	seenSeries.add(series);
 
 	// Oldest first inside a section, so a series reads from #1 downwards.
-	const members = posts.filter((p) => p.data.series === series).reverse();
+	const members = sortSeries(posts.filter((p) => p.data.series === series));
 	entries.push(
 		members.length > 1
 			? { kind: 'series', name: series, posts: members }

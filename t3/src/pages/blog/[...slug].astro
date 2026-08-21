@@ -2,23 +2,44 @@
 import { type CollectionEntry, getCollection, render } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
 import DeckPost from '../../layouts/DeckPost.astro';
+import { sortSeries } from '../../series';
 
 export async function getStaticPaths() {
 	const posts = await getCollection('blog');
-	return posts.map((post) => ({
-		params: { slug: post.id },
-		props: post,
-	}));
+	/* A post's neighbours in its own series, so a deck can offer the next part
+	   when the reader reaches its last card. Worked out here because this is
+	   where the whole collection is in hand; the layout only ever sees one post. */
+	return posts.map((post) => {
+		const run = post.data.series
+			? sortSeries(posts.filter((p) => p.data.series === post.data.series))
+			: [];
+		const at = run.findIndex((p) => p.id === post.id);
+		const link = (p: (typeof run)[number] | undefined, part: number) =>
+			p ? { href: `/blog/${p.id}/`, part, title: p.data.title } : undefined;
+		return {
+			params: { slug: post.id },
+			props: {
+				...post,
+				// Part numbers come from the running order, not from parsing titles.
+				prevPart: link(run[at - 1], at),
+				nextPart: link(run[at + 1], at + 2),
+			},
+		};
+	});
 }
-type Props = CollectionEntry<'blog'>;
+export type SeriesLink = { href: string; part: number; title: string };
+type Props = CollectionEntry<'blog'> & {
+	prevPart?: SeriesLink;
+	nextPart?: SeriesLink;
+};
 
-const post = Astro.props;
+const { prevPart, nextPart, ...post } = Astro.props;
 const { Content } = await render(post);
 
 // `format` in the frontmatter picks the layout; see content.config.ts.
 const Layout = post.data.format === 'deck' ? DeckPost : BlogPost;
 ---
 
-<Layout {...post.data}>
+<Layout {...post.data} prevPart={prevPart} nextPart={nextPart}>
 	<Content />
 </Layout>
