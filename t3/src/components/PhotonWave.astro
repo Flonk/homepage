@@ -48,14 +48,15 @@ interface Props {
 	 * it does not spend nearly all of itself at the top end, and it is weighted
 	 * towards the bottom, because that is the end that needs the time.
 	 *
-	 * Both ends are limited by the drawing rather than by physics. At the top,
-	 * above about 6000 THz, there are too few pixels of trace per wave to draw
-	 * one. At the bottom the limit is not the frequency but the window: a wave
-	 * has to fit in the pane to be seen as a wave at all, and the photon has to
-	 * get through a turn of it while the sweep is down there. At 120 THz that
-	 * is a 724px wave and a 4.2s turn — one whole wave on a laptop, and about
-	 * two on a wide screen. An octave lower is a 1.4km-long wave arriving once
-	 * every eight seconds, which no amount of dwelling can make visible.
+	 * Both ends are limited by the drawing rather than by physics. At the top
+	 * the trace holds one height per pixel of travel, so the wave runs out of
+	 * samples: 6000 THz leaves 14.5 of them to a wave and 8000 THz leaves 10.9,
+	 * which flattens a peak by 4%. At the bottom the limit is not the frequency
+	 * but the window — a wave has to fit in the pane to be seen as a wave, and
+	 * the photon has to get through a turn of it while the sweep is down there.
+	 * 120 THz is a 724px wave and a 4.2s turn, which is one whole wave on a
+	 * laptop; 80 THz is 1087px and 6.3s, which needs a wide screen. Much below
+	 * that the wave is longer than any pane and no amount of dwelling helps.
 	 *
 	 * The readout keeps saying what is actually being shown.
 	 */
