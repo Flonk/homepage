@@ -23,7 +23,7 @@ import RgbCube from "../../components/RgbCube.astro";
   set to 255, and every other colour is somewhere in between. The three numbers are called the RGB values of the colour.
 </DeckCard>
 
-<DeckCard label="A cube">
+<DeckCard label="A cube" vizProps={{ guides: true }}>
   ## Three dimensions make a cube
 
   We can take each of the three numbers and use it as a coordinate in a three-dimensional space. The red value is how far along the x-axis we go, the green value is how far along the y-axis we go, and the blue value is how far along the z-axis we go.
@@ -32,7 +32,7 @@ import RgbCube from "../../components/RgbCube.astro";
   color your screen can display.
 </DeckCard>
 
-<DeckCard label="The corners" vizProps={{ tour: 2 }}>
+<DeckCard label="The corners" vizProps={{ tour: 2, guides: false }}>
   ## The corners have familiar colours
 
   In each cube's corner, all of the RGB values are either completely
@@ -41,7 +41,7 @@ import RgbCube from "../../components/RgbCube.astro";
   The primary colours are the red, green and blue we picked out earlier, the secondary colors you get by mixing two primaries together, and black and white are the extremes of all three colors being off or on.
 </DeckCard>
 
-<DeckCard label="Wandering" vizProps={{ tour: null, line: true }}>
+<DeckCard label="Wandering" vizProps={{ tour: null, line: true, guides: true }}>
   ## A line through the cube is a gradient
 
   Left alone, the dot wanders through the cube on a path that never quite
@@ -51,7 +51,7 @@ import RgbCube from "../../components/RgbCube.astro";
   and it wanders off again.
 </DeckCard>
 
-<DeckCard label="Why it matters" vizProps={{ line: false }}>
+<DeckCard label="Why it matters" vizProps={{ line: false, guides: false }}>
   ## A cube is a bad map of colour
 
   This is a faithful picture of how a screen works, and a poor picture of how

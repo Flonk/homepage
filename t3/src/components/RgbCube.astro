@@ -45,6 +45,13 @@ interface Props {
 	 * exactly a linear gradient between its ends.
 	 */
 	line?: boolean;
+	/**
+	 * Three lines through each dot, one along each axis and each spanning the
+	 * cube, saying where the dot sits on all three channels at once. Off by
+	 * default: it is a lot of extra ink for a card that is not making a point
+	 * about coordinates.
+	 */
+	guides?: boolean;
 }
 
 /* The two ends are told apart by shape rather than by hue: solid for the first,
@@ -69,6 +76,7 @@ const {
 	lock = null,
 	tour = null,
 	line = false,
+	guides = false,
 } = Astro.props;
 ---
 
@@ -81,6 +89,7 @@ const {
 	data-lock={lock ? lock.join(',') : undefined}
 	data-tour={tour ?? undefined}
 	data-line={String(line)}
+	data-guides={String(guides)}
 >
 	<div class="bars" role="group" aria-label="Colour channels">
 		{
@@ -662,9 +671,11 @@ const {
 		EDGES.forEach((e, i) => writeLine(EDGE_VERTS, i, corner(e.a), corner(e.b)));
 	}
 
-	/* How solid the white lines painted over the solid are — the far edges, and
-	   the guides on the faces the chord leaves through. */
+	/* The white lines painted over the opaque faces. The cube's own far edges
+	   carry more weight than the guides through the dots, which are a reading
+	   aid rather than part of the shape. */
 	const WIRE_ALPHA = 0.35;
+	const GUIDE_ALPHA = 0.2;
 
 	/* Three guides a dot, and there can be two dots. */
 	const GUIDES = 6;
@@ -1041,11 +1052,12 @@ const {
 			: null;
 		let tour: number | null = root.dataset.tour ? Number(root.dataset.tour) : null;
 		let line = root.dataset.line === 'true';
+		let guides = root.dataset.guides === 'true';
 		/* How this was authored. A card's parameter set is complete rather than a
 		   patch — the deck has already merged it onto the sets before it — so a
 		   card that says nothing about a parameter is saying it should be back to
 		   this, not that it should be left wherever the last card put it. */
-		const AUTHORED = { idleMs, spin, lock, tour, line };
+		const AUTHORED = { idleMs, spin, lock, tour, line, guides };
 		const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 		/* The pane, or the phase of it, that this belongs to when it is inside a
@@ -1207,6 +1219,7 @@ const {
 			else lock = Array.isArray(p.lock) ? p.lock.map(Number) : null;
 			if (!('tour' in p)) tour = AUTHORED.tour;
 			else tour = p.tour == null ? null : Number(p.tour);
+			guides = 'guides' in p ? p.guides === true : AUTHORED.guides;
 			const wantLine = 'line' in p ? p.line === true : AUTHORED.line;
 			if (wantLine !== line) {
 				line = wantLine;
@@ -1386,7 +1399,7 @@ const {
 			   solid cannot give you on its own. */
 			const span = line ? chord(ends[0].rgb, ends[1].rgb) : null;
 			let nGuides = 0;
-			for (let e = 0; e < (line ? 2 : 1); e++) {
+			for (let e = 0; guides && e < (line ? 2 : 1); e++) {
 				const P = ends[e].rgb;
 				for (let w = 0; w < 3; w++) {
 					const a = P.slice();
@@ -1485,8 +1498,9 @@ const {
 				if (!seen(e)) gl.drawArrays(gl.TRIANGLES, e * 6, 6);
 			}
 
-			// Same program and the same white, just a buffer that changes each frame.
+			// Same program, a fainter white, and a buffer that changes each frame.
 			if (nGuides) {
+				gl.uniform4f(U.edge.color, 1, 1, 1, GUIDE_ALPHA);
 				gl.bindBuffer(gl.ARRAY_BUFFER, bufGuides);
 				gl.bufferSubData(gl.ARRAY_BUFFER, 0, guideData.subarray(0, nGuides * 8 * 6));
 				gl.vertexAttribPointer(A.p0, 3, gl.FLOAT, false, 32, 0);
