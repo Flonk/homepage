@@ -788,6 +788,11 @@ const { idleResume = 3, spin = true, lock = null } = Astro.props;
 			? root.dataset.lock.split(',').map(Number)
 			: null;
 		let wasLocked = lock !== null;
+		/* How this was authored. A card's parameter set is complete rather than a
+		   patch — the deck has already merged it onto the sets before it — so a
+		   card that says nothing about a parameter is saying it should be back to
+		   this, not that it should be left wherever the last card put it. */
+		const AUTHORED = { idleMs, spin, lock };
 		const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 		/* The pane, or the phase of it, that this belongs to when it is inside a
@@ -847,13 +852,13 @@ const { idleResume = 3, spin = true, lock = null } = Astro.props;
 			});
 		});
 
-		/* Anything a card does not mention is left alone, so it can change one
-		   parameter without restating the rest. */
 		host?.addEventListener('viz:props', (e) => {
 			const p = (e as CustomEvent).detail ?? {};
-			if ('spin' in p) spin = p.spin !== false;
-			if ('lock' in p) lock = Array.isArray(p.lock) ? p.lock.map(Number) : null;
-			if ('idleResume' in p) idleMs = (Number(p.idleResume) || 3) * 1000;
+			spin = 'spin' in p ? p.spin !== false : AUTHORED.spin;
+			idleMs =
+				'idleResume' in p ? (Number(p.idleResume) || 3) * 1000 : AUTHORED.idleMs;
+			if (!('lock' in p)) lock = AUTHORED.lock;
+			else lock = Array.isArray(p.lock) ? p.lock.map(Number) : null;
 		});
 		// Coming back on stage after a long absence, the elapsed time is not a
 		// step the animation should try to take.
