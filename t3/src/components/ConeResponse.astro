@@ -39,8 +39,21 @@ interface Props {
 	 * arguing about particular lights — two of them arriving together, say —
 	 * rather than about the shape of the curves in general. They are read off,
 	 * not taken hold of: nothing here moves them.
+	 *
+	 * Give one a weight and it is drawn as a bar of that height instead of a
+	 * hairline, so a card can show how much of each light there is and not only
+	 * where it is. Heights are relative to the tallest bar the card ever puts
+	 * up, so nothing is silently rescaled underneath the reader.
 	 */
-	marks?: number[];
+	marks?: (number | { nm: number; weight: number })[];
+	/**
+	 * Hand the reader the line of mixtures of the marks that all look exactly
+	 * alike, instead of the wavelength axis. The bars rise and fall, one goes
+	 * out altogether and another takes its place, and the disc and the three
+	 * readings do not stir — which is metamerism, and is the whole point of
+	 * such a card. Needs one more weighted mark than there are cones.
+	 */
+	metamer?: boolean;
 	/**
 	 * The reader's own mark — the one that walks the band and can be taken hold
 	 * of. Turn it off for a card that is about particular wavelengths rather
@@ -62,8 +75,16 @@ const {
 	idleResume = 6,
 	vision = 'normal',
 	marks,
+	metamer = false,
 	probe = true,
 } = Astro.props;
+
+/* "460:0.53" for a weighted mark, plain "650" for a hairline one. The same
+   string a card can send through vizProps, so the authored value and a
+   card's override go down one road. */
+const markList = marks
+	?.map((m) => (typeof m === 'number' ? String(m) : `${m.nm}:${m.weight}`))
+	.join(' ');
 ---
 
 <div
@@ -75,7 +96,8 @@ const {
 	data-drag={drag ? 'true' : 'false'}
 	data-idle-resume={idleResume}
 	data-vision={vision}
-	data-marks={marks ? marks.join(' ') : undefined}
+	data-marks={markList}
+	data-metamer={metamer ? 'true' : 'false'}
 	data-probe={probe ? 'true' : 'false'}
 >
 	<canvas data-canvas></canvas>
@@ -324,7 +346,7 @@ const {
 </style>
 
 <script>
-	import { mixCones, mixRgb, wavelengthRgb, type Vision } from '../lib/spectrum';
+	import { metamerLine, mixCones, mixRgb, wavelengthRgb, type Vision } from '../lib/spectrum';
 	import {
 		CONE_FIRST_NM,
 		CONE_LAST_NM,
@@ -358,6 +380,7 @@ const {
 	const NO_HEAD_FRAC = 0.1; // and what is left above the curves without them
 	const STRIP_H = 20; // the rainbow along the wavelength axis
 	const STRIP_GAP = 7;
+	const SLIDER_ROOM = 34; // and below the numbers, when there is a line to walk
 
 	/* In the order they are shown, shortest wavelength first, which is the
 	   order they sit in along the axis. `at` is where each one is in the triple
@@ -420,14 +443,31 @@ const {
 		const AUTHORED_SWEEP = parseSweep(root.dataset.sweep);
 		const AUTHORED_DRAG = root.dataset.drag !== 'false';
 		const AUTHORED_VISION = readVision(root.dataset.vision);
-		const readMarks = (v: unknown): number[] => {
+		/* A mark is a wavelength, and optionally how much of it there is. Written
+		   "460:0.53" in the attribute, or as {nm, weight} when a card sends one
+		   through vizProps; a bare number is a mark with no amount attached, which
+		   is drawn as a hairline rather than a bar. */
+		type Mark = { nm: number; weight: number | null };
+		const readMark = (v: unknown): Mark | null => {
+			if (typeof v === 'object' && v !== null) {
+				const o = v as { nm?: unknown; weight?: unknown };
+				const at = Number(o.nm);
+				if (!Number.isFinite(at) || at <= 0) return null;
+				const wt = Number(o.weight);
+				return { nm: clampNm(at), weight: Number.isFinite(wt) ? wt : null };
+			}
+			const [a, b] = String(v).split(':');
+			const at = Number(a);
+			if (!Number.isFinite(at) || at <= 0) return null;
+			const wt = Number(b);
+			return { nm: clampNm(at), weight: b !== undefined && Number.isFinite(wt) ? wt : null };
+		};
+		const readMarks = (v: unknown): Mark[] => {
 			const raw = typeof v === 'string' ? v.split(/[\s,]+/) : Array.isArray(v) ? v : [];
-			return raw
-				.map(Number)
-				.filter((n) => Number.isFinite(n) && n > 0)
-				.map(clampNm);
+			return raw.map(readMark).filter((m): m is Mark => m !== null);
 		};
 		const AUTHORED_MARKS = readMarks(root.dataset.marks);
+		const AUTHORED_METAMER = root.dataset.metamer === 'true';
 		const AUTHORED_PROBE = root.dataset.probe !== 'false';
 		const SWEEP_SECS = Math.max(1, Number(root.dataset.sweepSeconds) || 22);
 		const RESUME_MS = Math.max(0, Number(root.dataset.idleResume) || 6) * 1000;
@@ -441,7 +481,53 @@ const {
 		/* Something is worth saying above the graph if the reader has a mark of
 		   their own, or if the card has put any down to be added up. */
 		const hasHead = () => probe || marks.length > 0;
-		const markLights = () => marks.map((at) => ({ nm: at, weight: 1 }));
+		/* A mark with no amount attached is one whole light of it: a card that
+		   only names wavelengths is asking what they come to together. */
+		const markLights = () => marks.map((m, i) => ({ nm: m.nm, weight: weights[i] ?? 1 }));
+
+		/* ---- the line of mixtures that all look alike -----------------------
+		   The weights a card authors are one mixture; with a light more than
+		   there are cones they are also one point on a line of mixtures the eye
+		   cannot tell apart, and `walk` is how far along it the reader has gone.
+		   See metamerLine in lib/spectrum.ts for which three numbers are being
+		   held still, and why it has to be those. */
+		let metamer = AUTHORED_METAMER;
+		let walk = 0;
+		let dir: number[] = [];
+		let span: [number, number] = [0, 0];
+		let weights: (number | null)[] = [];
+		/* Fixed from the tallest bar anywhere along the line, so the bars are not
+		   quietly rescaled underneath a reader who is dragging. */
+		let ceiling = 1;
+		const walkable = () => span[1] > span[0];
+
+		const setWalk = (t: number) => {
+			walk = Math.min(1, Math.max(0, t));
+			const at = span[0] + (span[1] - span[0]) * walk;
+			weights = marks.map((m, i) =>
+				m.weight === null ? null : Math.max(0, m.weight + at * (dir[i] ?? 0)),
+			);
+		};
+
+		const rebuildLine = () => {
+			const base = marks.map((m) => m.weight ?? 0);
+			const enough = metamer && marks.length > CONES.length && marks.every((m) => m.weight !== null);
+			const line = enough
+				? metamerLine(
+						marks.map((m) => m.nm),
+						base,
+					)
+				: { dir: marks.map(() => 0), lo: 0, hi: 0 };
+			dir = line.dir;
+			span = [line.lo, line.hi];
+			ceiling = Math.max(
+				...[span[0], span[1], 0].flatMap((t) => base.map((b, i) => Math.max(0, b + t * dir[i]))),
+				1e-6,
+			);
+			setWalk(walk);
+		};
+		rebuildLine();
+
 		let sweepT = 0;
 		let manual = false;
 		let manualUntil = 0;
@@ -549,11 +635,12 @@ const {
 			canvas.height = Math.max(1, Math.round(h * dpr));
 			const top = h * (hasHead() ? HEAD_FRAC : NO_HEAD_FRAC) + PAD.top;
 			const pw = Math.min(Math.max(1, w - PAD.left - PAD.right), MAX_PLOT_W);
+			const bottom = PAD.bottom + (walkable() ? SLIDER_ROOM : 0);
 			plot = {
 				x: Math.round((w - pw) / 2),
 				y: top,
 				w: pw,
-				h: Math.max(1, h - top - PAD.bottom),
+				h: Math.max(1, h - top - bottom),
 			};
 			/* The mark is dragged along the plot, so its track has to be the
 			   plot and not the pane — otherwise the mark sits a little away from
@@ -577,10 +664,12 @@ const {
 		   a style recalculation for an answer that is already known. */
 		let inkC = '#e6e9ef';
 		let dimC = '#8891a0';
+		let accentC = '#f0a020';
 		const readInk = () => {
 			const cs = getComputedStyle(root);
 			inkC = cs.getPropertyValue('--ink').trim() || inkC;
 			dimC = cs.getPropertyValue('--ink-dim').trim() || dimC;
+			accentC = cs.getPropertyValue('--accent').trim() || accentC;
 		};
 
 		/* The response the graph is drawing: the mirrored eye differs from ours
@@ -630,15 +719,24 @@ const {
 			return r;
 		};
 
+		/* The handle does one of two jobs. On a card about the band it takes the
+		   mark along the wavelength axis; on a card about a mixture it walks the
+		   line of look-alike mixtures instead. Never both, since only one of them
+		   is what the card is asking. */
 		const applyDrag = () => {
-			root.dataset.drag = canDrag && probe ? 'true' : 'false';
+			const usable = canDrag && (probe || walkable());
+			root.dataset.drag = usable ? 'true' : 'false';
 			root.dataset.probe = probe ? 'true' : 'false';
+			root.dataset.metamer = walkable() ? 'true' : 'false';
 			root.dataset.head = hasHead() ? 'true' : 'false';
-			pickEl.disabled = !canDrag || !probe;
+			pickEl.disabled = !usable;
+			pickEl.setAttribute('aria-label', walkable() ? 'Which of the mixtures that make this colour' : 'Wavelength');
 		};
 
 		const syncPick = () => {
-			const v = String(Math.round((RANGE_STEPS * (nm - LO_NM)) / (HI_NM - LO_NM)));
+			const v = walkable()
+				? String(Math.round(RANGE_STEPS * walk))
+				: String(Math.round((RANGE_STEPS * (nm - LO_NM)) / (HI_NM - LO_NM)));
 			if (pickEl.value !== v) pickEl.value = v;
 		};
 
@@ -753,9 +851,29 @@ const {
 			   and quieter than it — a solid hairline rather than the dashes, a
 			   smaller dot, a narrower swatch — so that at a glance it is obvious
 			   which mark is the reader's and which are the card's. */
-			for (const at of marks) {
+			for (let i = 0; i < marks.length; i++) {
+				const at = marks[i].nm;
 				const fx = xOf(at);
 				const fr = responseAt(at);
+
+				/* A mark with an amount attached is a bar of that height, standing
+				   on the axis under the curves that are reading it. Nothing else is
+				   drawn for it: the dots and the label belong to a mark that is
+				   asking about one wavelength, and these are asking about how much
+				   of each. */
+				const weight = weights[i];
+				if (weight !== null && weight !== undefined) {
+					const bh = Math.max(0, (weight / ceiling) * plot.h);
+					if (bh > 0.5) {
+						ctx.fillStyle = colourAt(at);
+						ctx.fillRect(fx - 5, yOf(0) - bh, 10, bh);
+						ctx.lineWidth = 1;
+						ctx.strokeStyle = 'rgba(0,0,0,0.5)';
+						ctx.strokeRect(fx - 5.5, yOf(0) - bh - 0.5, 11, bh + 1);
+					}
+					continue;
+				}
+
 				ctx.save();
 				ctx.strokeStyle = `color-mix(in srgb, ${inkC} 30%, transparent)`;
 				ctx.lineWidth = 1;
@@ -789,6 +907,33 @@ const {
 				ctx.textAlign = 'center';
 				ctx.fillStyle = dimC;
 				ctx.fillText(`${Math.round(at)} nm`, fx, plot.y - 6);
+			}
+
+			/* ---- the walk ---------------------------------------------------
+			   Where along the line of look-alike mixtures the reader has got to.
+			   Drawn rather than left to the range input, like every other handle
+			   here, so it sits on the same axis as the bars it is moving. */
+			if (walkable()) {
+				const sy = stripY + STRIP_H + SLIDER_ROOM - 6;
+				const kx = plot.x + plot.w * walk;
+				ctx.save();
+				ctx.lineCap = 'round';
+				ctx.lineWidth = 4;
+				ctx.strokeStyle = `color-mix(in srgb, ${inkC} 16%, transparent)`;
+				ctx.beginPath();
+				ctx.moveTo(plot.x + 2, sy);
+				ctx.lineTo(plot.x + plot.w - 2, sy);
+				ctx.stroke();
+				ctx.strokeStyle = accentC;
+				ctx.beginPath();
+				ctx.moveTo(plot.x + 2, sy);
+				ctx.lineTo(Math.max(plot.x + 2, kx), sy);
+				ctx.stroke();
+				ctx.beginPath();
+				ctx.arc(kx, sy, 6, 0, Math.PI * 2);
+				ctx.fillStyle = accentC;
+				ctx.fill();
+				ctx.restore();
 			}
 
 			/* ---- the mark ---------------------------------------------------
@@ -845,7 +990,8 @@ const {
 		pickEl.addEventListener('input', () => {
 			hold();
 			const v = Math.min(RANGE_STEPS, Math.max(0, Number(pickEl.value) || 0));
-			nm = LO_NM + ((HI_NM - LO_NM) * v) / RANGE_STEPS;
+			if (walkable()) setWalk(v / RANGE_STEPS);
+			else nm = LO_NM + ((HI_NM - LO_NM) * v) / RANGE_STEPS;
 			// Answered here rather than on the next frame: these are the parts the
 			// hand is moving, and they should not lag behind it.
 			tally();
@@ -857,8 +1003,12 @@ const {
 			resting = 'wavelength' in p ? clampNm(Number(p.wavelength) || AUTHORED_NM) : AUTHORED_NM;
 			canDrag = 'drag' in p ? Boolean(p.drag) : AUTHORED_DRAG;
 			marks = 'marks' in p ? readMarks(p.marks) : AUTHORED_MARKS;
+			metamer = 'metamer' in p ? Boolean(p.metamer) : AUTHORED_METAMER;
 			probe = 'probe' in p ? Boolean(p.probe) : AUTHORED_PROBE;
-			// The graph's share of the pane depends on it.
+			// A card's mixture is its own, and starts where the card put it.
+			walk = 0;
+			rebuildLine();
+			// The graph's share of the pane depends on both of them.
 			resize();
 			vision = 'vision' in p ? readVision(p.vision) : AUTHORED_VISION;
 			if (vision !== 'normal') shown = vision;

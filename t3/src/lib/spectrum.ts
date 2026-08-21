@@ -393,6 +393,90 @@ export function lightColumns(nm: number): { xyz: [number, number, number]; lms: 
 }
 
 /**
+ * The direction a set of rows does not notice: the one combination of the
+ * columns that comes to nothing. Gauss–Jordan, then read the free column off.
+ * Null if there is no free column, which is to say the rows pin everything down
+ * and there is nothing to walk along.
+ */
+function nullDirection(rows: number[][]): number[] | null {
+	const m = rows.map((r) => [...r]);
+	const n = m[0].length;
+	const pivots: number[] = [];
+	let row = 0;
+	for (let c = 0; c < n && row < m.length; c++) {
+		let best = 1e-12;
+		let p = -1;
+		for (let r = row; r < m.length; r++) {
+			if (Math.abs(m[r][c]) > best) {
+				best = Math.abs(m[r][c]);
+				p = r;
+			}
+		}
+		if (p < 0) continue;
+		[m[row], m[p]] = [m[p], m[row]];
+		const d = m[row][c];
+		for (let k = 0; k < n; k++) m[row][k] /= d;
+		for (let r = 0; r < m.length; r++) {
+			if (r === row) continue;
+			const f = m[r][c];
+			for (let k = 0; k < n; k++) m[r][k] -= f * m[row][k];
+		}
+		pivots.push(c);
+		row++;
+	}
+	const free = [...Array(n).keys()].find((c) => !pivots.includes(c));
+	if (free === undefined) return null;
+	const dir = new Array(n).fill(0);
+	dir[free] = 1;
+	pivots.forEach((c, i) => {
+		dir[c] = -m[i][free];
+	});
+	return dir;
+}
+
+/**
+ * The mixtures of these lights that all look exactly alike, as a line through
+ * the weights given.
+ *
+ * Three numbers cannot pin down four lights, so one weight is free and the
+ * answer is not a mixture but a whole family of them: base + t·dir, for t
+ * anywhere between the two bounds returned, which is as far as it can go before
+ * some light would have to shine a negative amount. That family is metamerism,
+ * and what it costs is the point of it: whatever arrived, the eye keeps three
+ * numbers and throws the rest away.
+ *
+ * Which three numbers is the whole difficulty. The cone fundamentals and the
+ * colour on screen come from two different measurements of the standard
+ * observer — Stockman & Sharpe for the cones, the CIE 1931 matching functions
+ * for the drawn colour — and they do not quite agree. Hold the cone readings
+ * still and the drawn colour drifts by 34 of 255, which is plainly visible and
+ * reads as a bug. So the direction is taken from XYZ, which makes the drawn
+ * colour exactly constant, and it is left to the caller to choose wavelengths
+ * at which the cone readings come along: at 460, 530, 580 and 660nm they move
+ * by 0.001, which is nothing at two decimal places. Both hold still because the
+ * lights were picked so they could.
+ */
+export function metamerLine(
+	nms: number[],
+	base: number[],
+): { dir: number[]; lo: number; hi: number } {
+	const columns = nms.map(lightColumns);
+	const dir = nullDirection([0, 1, 2].map((i) => columns.map((c) => c.xyz[i])));
+	if (!dir) return { dir: nms.map(() => 0), lo: 0, hi: 0 };
+
+	let lo = -Infinity;
+	let hi = Infinity;
+	dir.forEach((d, i) => {
+		if (Math.abs(d) < 1e-9) return;
+		const bound = -(base[i] ?? 0) / d;
+		if (d > 0) lo = Math.max(lo, bound);
+		else hi = Math.min(hi, bound);
+	});
+	if (!Number.isFinite(lo) || !Number.isFinite(hi) || hi <= lo) return { dir, lo: 0, hi: 0 };
+	return { dir, lo, hi };
+}
+
+/**
  * The single wavelength that comes closest to a mixture, and how far off it
  * still is — which is the number that says whether a colour is in the spectrum
  * at all.

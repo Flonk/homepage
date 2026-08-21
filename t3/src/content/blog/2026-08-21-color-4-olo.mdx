@@ -12,8 +12,6 @@ import DeckViz from "../../components/DeckViz.astro";
 import ConeResponse from "../../components/ConeResponse.astro";
 import VizPhase from "../../components/VizPhase.astro";
 import VizStill from "../../components/VizStill.astro";
-import LightMix from "../../components/LightMix.astro";
-import MetamerMix from "../../components/MetamerMix.astro";
 
 {/* The prism first, then part three's graph, carried over because this post
     picks up exactly where that one left off: the curves are what say which
@@ -29,25 +27,6 @@ import MetamerMix from "../../components/MetamerMix.astro";
       credit="George Hardie, 1973"
     />
   </VizPhase>
-  <VizPhase name="mix">
-    {/* 600, 470 and 560nm at these shares come to #ff9fc4, which is as
-        ordinary a pink as there is. Move any of them and the mixture moves
-        with it; the reading underneath says how far the result is from
-        anything the spectrum can do on its own. */}
-    <LightMix
-      lights={[
-        { nm: 600, weight: 1 },
-        { nm: 470, weight: 0.6 },
-        { nm: 560, weight: 0.3 },
-      ]}
-    />
-  </VizPhase>
-  <VizPhase name="metamer">
-    {/* Four lights and one knob. Three cones cannot pin down four lights, so
-        the mixtures making this colour are a line rather than a point, and the
-        knob walks along it: the spikes change places, the colour cannot. */}
-    <MetamerMix />
-  </VizPhase>
   <VizPhase name="cones">
     <ConeResponse sweep={[400, 700]} drag />
   </VizPhase>
@@ -61,9 +40,7 @@ import MetamerMix from "../../components/MetamerMix.astro";
   This will create situations in which cones are stimulated in ways that single wavelength light cannot, leading to us seeing *non-spectral* colors.
 </DeckCard>
 
-{/* Part three's curves, to look at combined stimulation on. The light
-    mixer is still wired up as the "mix" phase if it turns out to be wanted
-    here. */}
+{/* Part three's curves, to look at combined stimulation on. */}
 <DeckCard vizProps={{ phase: "cones", marks: [650, 420], probe: false }}>
   ## Is pink a real color?
 
@@ -88,9 +65,25 @@ import MetamerMix from "../../components/MetamerMix.astro";
 
   Is it real? Well, it is a distinct perceptual experience that humans can have. The 5 people who have seen it have described it as a cyan that is more intense than any cyan they have ever seen before. There probably aren't many olo-colored things in real life, but all I can say is that I'm jealous that I haven't gotten to experience it yet!
 </DeckCard>
-{/* The spectrum moves, the colour does not. */}
-<DeckCard vizProps={{ phase: "metamer" }}>
+{/* The same graph again, with four lights on it as bars rather than one
+    wavelength as a mark, and the handle walking the line of mixtures that all
+    come to this colour instead of walking the band. The bars change places;
+    the disc and the three readings do not. The wavelengths are not free: see
+    metamerLine in lib/spectrum.ts for why these four. */}
+<DeckCard
+  vizProps={{
+    phase: "cones",
+    probe: false,
+    metamer: true,
+    marks: [
+      { nm: 460, weight: 0.53 },
+      { nm: 530, weight: 0.53 },
+      { nm: 580, weight: 0.53 },
+      { nm: 660, weight: 0.53 },
+    ],
+  }}
+>
   ## Same colour, different light
 
-  Bla di bla
+  There are many different combinations of light that can produce the same color. Two sets of lights producing the same color are called *metamers* of each other
 </DeckCard>
