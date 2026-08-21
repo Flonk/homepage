@@ -265,8 +265,8 @@ const {
 	.pick {
 		display: none;
 		position: absolute;
-		inset: 0;
-		width: 100%;
+		inset: 0 auto 0 var(--plot-left, 0px);
+		width: var(--plot-w, 100%);
 		margin: 0;
 		padding: 0;
 		appearance: none;
@@ -348,6 +348,12 @@ const {
 	   to its own peak, so the height axis has no unit to label — what it is
 	   worth reading off is the shape, and where one curve crosses another. */
 	const PAD = { top: 14, right: 18, bottom: 50, left: 18 };
+	/* And a limit on how wide it is allowed to get. Given a whole wide display
+	   the curves flatten out into three long ridges and the shape stops being
+	   readable — which is the one thing this graph is for. Past this the plot
+	   is centred and the pane keeps the rest. 46rem, the same as the metamer
+	   plot in post 4, so the two read at the same scale. */
+	const MAX_PLOT_W = 736;
 	const HEAD_FRAC = 0.5; // of the pane, given over to the swatch and the tally
 	const NO_HEAD_FRAC = 0.1; // and what is left above the curves without them
 	const STRIP_H = 20; // the rainbow along the wavelength axis
@@ -542,12 +548,18 @@ const {
 			canvas.width = Math.max(1, Math.round(w * dpr));
 			canvas.height = Math.max(1, Math.round(h * dpr));
 			const top = h * (hasHead() ? HEAD_FRAC : NO_HEAD_FRAC) + PAD.top;
+			const pw = Math.min(Math.max(1, w - PAD.left - PAD.right), MAX_PLOT_W);
 			plot = {
-				x: PAD.left,
+				x: Math.round((w - pw) / 2),
 				y: top,
-				w: Math.max(1, w - PAD.left - PAD.right),
+				w: pw,
 				h: Math.max(1, h - top - PAD.bottom),
 			};
+			/* The mark is dragged along the plot, so its track has to be the
+			   plot and not the pane — otherwise the mark sits a little away from
+			   the finger, by more and more as the pane gets wider. */
+			root.style.setProperty('--plot-left', `${plot.x}px`);
+			root.style.setProperty('--plot-w', `${plot.w}px`);
 		};
 		/* Redrawn on the spot, not on the next frame. The curves are the same
 		   whether anything is moving or not, and a pane that is holding still —
