@@ -10,6 +10,14 @@
 
   --accent: #ffa200;
 
+  /* Monospace is the site's voice: nav, headings, code, the post index.
+     Long-form prose bodies use the serif stack instead — see .prose below. */
+  --font-mono: ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas,
+    "DejaVu Sans Mono", "Liberation Mono", monospace;
+  /* Self-hosted and bundled (see BaseHead), so the trailing generic is only
+     ever reached if the woff2 fails to load — no system UI face by design. */
+  --font-prose: "Source Serif 4", serif;
+
   --nordbg: #1d1f21;
   --nord0: #2e3440;
   --nord1: #3b4252;
@@ -34,7 +42,7 @@
 }
 
 body {
-  font-family: monospace;
+  font-family: var(--font-mono);
   margin: 0;
   padding: 0;
   text-align: left;
@@ -194,9 +202,6 @@ a.footnote:focus-visible {
 p {
   margin-bottom: 1em;
 }
-.prose p {
-  margin-bottom: 2em;
-}
 textarea {
   width: 100%;
   font-size: 16px;
@@ -277,4 +282,178 @@ em {
   clip-path: inset(50%);
   /* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
   white-space: nowrap;
+}
+
+/* ==========================================================================
+   Long-form prose
+   --------------------------------------------------------------------------
+   Body copy switches to a serif for readability; everything that carries the
+   site's terminal character — headings and their ## markers, code, the date —
+   stays monospace. Everything shares one ~70 character column; on wide screens
+   assets (code, images, tables, embeds) may grow past it — see the bottom of
+   this file.
+   ========================================================================== */
+
+/* One column for everything — prose, code blocks, images, embedded components.
+   37rem lands at roughly 70 characters per line for this face.
+   Deliberately not in `ch`: that unit is the width of the "0" glyph, which is
+   far wider than the average letter in running text, so a `68ch` cap actually
+   permits ~89 characters. It is set here rather than per-element so nothing
+   can stick out past the text, and centred because `main` is wider. */
+.prose {
+  font-family: var(--font-prose);
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--nord5);
+  max-width: 37rem;
+  margin-inline: auto;
+}
+
+.prose p {
+  margin: 0 0 1.3em;
+  text-wrap: pretty; /* avoids one-word last lines */
+}
+
+/* Headings keep the monospace ## voice. */
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  font-family: var(--font-mono);
+  text-wrap: balance;
+}
+
+.prose h2 {
+  font-size: 1.6em;
+}
+.prose h3 {
+  font-size: 1.3em;
+}
+.prose h4 {
+  font-size: 1.15em;
+}
+.prose h5 {
+  font-size: 1.05em;
+}
+
+/* The #-markers are decoration, so they sit behind the heading text. */
+.prose h2::before,
+.prose h3::before,
+.prose h4::before,
+.prose h5::before {
+  color: var(--nord3);
+}
+
+/* Space above a heading, proportional to its rank. */
+.prose * + h2 {
+  margin: 3.5rem 0 1rem;
+}
+.prose * + h3 {
+  margin: 2.5rem 0 0.75rem;
+}
+.prose * + h4,
+.prose * + h5 {
+  margin: 2rem 0 0.5rem;
+}
+
+.prose ul,
+.prose ol {
+  margin: 0 0 1.3em;
+  padding-left: 1.5em;
+}
+
+.prose li {
+  margin-bottom: 0.4em;
+}
+
+.prose li > ul,
+.prose li > ol {
+  margin: 0.4em 0 0;
+}
+
+.prose blockquote {
+  margin: 1.8em 0;
+  padding-left: 1.25em;
+}
+
+/* `pre > code { all: unset }` drops the font, which would otherwise inherit
+   the sans from .prose — anchor both back to monospace explicitly. */
+.prose pre,
+.prose pre > code {
+  font-family: var(--font-mono);
+}
+
+.prose pre {
+  font-size: 0.85em;
+  line-height: 1.6;
+  margin: 1.6em 0;
+}
+
+/* Monospace runs optically larger than sans at the same size, so inline code
+   is stepped down to sit on the same visual line as its surrounding text. */
+.prose :not(pre) > code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+
+.prose a {
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1px;
+}
+
+/* The post's own dateline belongs to the site chrome, not the prose. */
+.prose .title .date {
+  font-family: var(--font-mono);
+  font-size: 14px;
+}
+
+.prose img,
+.prose table {
+  margin: 1.6em 0;
+}
+
+/* Restore the mobile edge gutters: the rules above are later in source order
+   and would otherwise win inside the max-width:720px block. */
+@media (max-width: 720px) {
+  .prose ul,
+  .prose ol {
+    padding-left: 3rem;
+  }
+
+  .prose {
+    font-size: 16px;
+  }
+}
+
+/* Assets — code blocks, images, tables, embeds.
+   On wide screens these break out of the reading column, up to 1.5x its width,
+   so wide content fits instead of being squeezed into the prose measure. They
+   stay centred on the page rather than flush left with the text.
+
+   Only direct children of .prose: an asset nested inside a Question box has to
+   stay within that box's overflow:hidden border. Markdown wraps a bare image in
+   a paragraph, hence the :has() selectors.
+
+   `width: max-content` shrinks each asset to its own content, so narrow ones
+   don't stretch. Centring uses margin-left:50% + translateX(-50%) rather than
+   auto margins, which collapse to 0 once an element is wider than its
+   containing block. The 4rem keeps a gutter at the viewport edge. */
+@media (min-width: 1100px) {
+  .prose > pre,
+  .prose > figure,
+  .prose > table,
+  .prose > p:has(> img),
+  .prose > p:has(> video),
+  .prose > p:has(> astro-island),
+  .prose > astro-island {
+    display: block;
+    width: max-content;
+    max-width: min(55.5rem, calc(100vw - 4rem));
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
 }

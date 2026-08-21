@@ -47,7 +47,9 @@ if (multiline && lang) {
 
 <style>
   .qa-wrapper {
-    margin: 1em;
+    /* Vertical only — a horizontal margin would inset the box relative to the
+       surrounding prose column and read as accidentally centred. */
+    margin: 1.5em 0;
     border: 1px solid #444;
     border-radius: 6px;
     overflow: hidden;

@@ -3,6 +3,12 @@
 // all pages through the use of the <BaseHead /> component.
 import type { ImageMetadata } from 'astro';
 import { SITE_TITLE } from '../consts';
+// Self-hosted prose face (see --font-prose). Bundled by Vite, so no CDN
+// request and no dependency on whatever font the OS happens to default to.
+import '@fontsource/source-serif-4/400.css';
+import '@fontsource/source-serif-4/400-italic.css';
+import '@fontsource/source-serif-4/700.css';
+import '@fontsource/source-serif-4/700-italic.css';
 import '../styles/global.css';
 
 interface Props {
@@ -28,10 +34,6 @@ const { title, description } = Astro.props;
 	href={new URL('rss.xml', Astro.site)}
 />
 <meta name="generator" content={Astro.generator} />
-
-<!-- Font preloads -->
-<link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin />
-<link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin />
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
