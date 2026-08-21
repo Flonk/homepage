@@ -128,8 +128,13 @@ const {
 			    as the control it is. Its own thumb is a hairline and invisible —
 			    the mark is the thumb — which also means a press anywhere along
 			    the bar takes the wave straight there. */}
+			{/* The deck reads a horizontal drag as a swipe to the next card, which
+			    is exactly the gesture this wants for itself. Opting out here
+			    rather than on the whole viz, so the empty parts of the pane can
+			    still be swiped. */}
 			<input
 				class="spectrum-range"
+				data-no-swipe
 				type="range"
 				min="0"
 				max="1000"
@@ -307,6 +312,8 @@ const {
 		-webkit-appearance: none;
 		background: transparent;
 		cursor: grab;
+		/* And the browser's own panning is a second claim on the same gesture. */
+		touch-action: none;
 	}
 
 	.spectrum[data-drag='true'] .spectrum-range {
