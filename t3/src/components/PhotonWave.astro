@@ -72,6 +72,13 @@ interface Props {
 	 * the wave rather than about this bar.
 	 */
 	spectrumBar?: boolean;
+	/**
+	 * Close the spectrum axis in on the visible band, so the rainbow fills the
+	 * bar with a slice of the infrared and the ultraviolet left at the ends.
+	 * The band names go with it: once the axis is all rainbow there is nothing
+	 * left for them to tell apart.
+	 */
+	zoom?: boolean;
 }
 
 const {
@@ -80,6 +87,7 @@ const {
 	sweep,
 	sweepSeconds = 22,
 	spectrumBar = true,
+	zoom = false,
 } = Astro.props;
 ---
 
@@ -91,6 +99,7 @@ const {
 	data-sweep={sweep ? sweep.join(' ') : undefined}
 	data-sweep-seconds={sweepSeconds}
 	data-spectrum-bar={spectrumBar ? 'true' : 'false'}
+	data-zoom={zoom ? 'true' : 'false'}
 >
 	<canvas data-canvas></canvas>
 	<div class="spectrum" data-spectrum data-on={spectrumBar ? 'true' : 'false'}>
@@ -354,8 +363,13 @@ const {
 	   The unlit bands are tinted rather than coloured, and the two either side
 	   of the rainbow lean warm and cool: infrared is beyond red, ultraviolet is
 	   beyond violet, and the names are only worth so much. */
-	const SPECTRUM_LO_HZ = 1e6;
-	const SPECTRUM_HI_HZ = 1e21;
+	const SPECTRUM_FULL: [number, number] = [1e6, 1e21];
+
+	/* Where the axis goes when a card asks to be shown the visible band: it and
+	   about an eighth of the bar at each end, so what it sits between is still
+	   in the picture. Worked out from the band itself rather than written down,
+	   so the two cannot drift apart. */
+	const ZOOM_SHARE = 0.76; // of the bar the visible band should fill
 	const BANDS: { name: string; to: number; tint: string | null }[] = [
 		{ name: 'Radio', to: 3e8, tint: '#39404a' },
 		{ name: 'Microwave', to: 3e11, tint: '#454d5a' },
@@ -363,12 +377,60 @@ const {
 		{ name: 'Visible', to: 7.889e14, tint: null },
 		{ name: 'Ultraviolet', to: 3e16, tint: '#453569' },
 		{ name: 'X-ray', to: 3e19, tint: '#4a5560' },
-		{ name: 'Gamma', to: SPECTRUM_HI_HZ, tint: '#5e6773' },
+		{ name: 'Gamma', to: 1e21, tint: '#5e6773' },
 	];
 
+	const VISIBLE = BANDS.find((b) => !b.tint)!;
+	const VISIBLE_AT = BANDS.indexOf(VISIBLE);
+	const VISIBLE_FROM = BANDS[VISIBLE_AT - 1].to;
+
+	/* How much of each end of the rainbow settles into the band beyond it, as a
+	   share of the band's width. The eye's own response runs out at both ends of
+	   the visible range rather than stopping, so red and violet should arrive
+	   and leave rather than butt up against their neighbours. */
+	const EDGE_FADE = 0.12;
+	const hexRgb = (hex: string): [number, number, number] => [
+		parseInt(hex.slice(1, 3), 16),
+		parseInt(hex.slice(3, 5), 16),
+		parseInt(hex.slice(5, 7), 16),
+	];
+	const BELOW_RED = hexRgb(BANDS[VISIBLE_AT - 1].tint!);
+	const ABOVE_VIOLET = hexRgb(BANDS[VISIBLE_AT + 1].tint!);
+
+	/** 1 across the middle of the band, easing to 0 at either end of it. */
+	const rainbowInk = (t: number) => {
+		const d = Math.min(t, 1 - t) / EDGE_FADE;
+		return d >= 1 ? 1 : d * d * (3 - 2 * d);
+	};
+	const SPECTRUM_ZOOMED: [number, number] = (() => {
+		const margin = Math.pow(VISIBLE.to / VISIBLE_FROM, (1 / ZOOM_SHARE - 1) / 2);
+		return [VISIBLE_FROM / margin, VISIBLE.to * margin];
+	})();
+
 	/** Where a frequency in Hz falls along the axis, as a fraction of its width. */
-	const spectrumPos = (hz: number) =>
-		Math.log(hz / SPECTRUM_LO_HZ) / Math.log(SPECTRUM_HI_HZ / SPECTRUM_LO_HZ);
+	const spectrumPos = (hz: number, [lo, hi]: [number, number]) =>
+		Math.log(hz / lo) / Math.log(hi / lo);
+
+	/* The axis between its two settings. A zoom is about a point, so this is
+	   built from one: the width shrinks geometrically, which is what makes the
+	   magnification climb at a steady rate, and the point being zoomed into is
+	   held at a known fraction of the bar the whole way — where it already
+	   happens to sit, easing to the middle.
+
+	   Interpolating the centre and the width separately, which is the obvious
+	   thing to do, does not work. The full axis is centred down in the radio
+	   band, so a centre creeping up while the width collapses sweeps the
+	   visible band out to the right-hand edge and back: two thirds of the way
+	   through it is 1.4% from falling off the bar. */
+	const spectrumWindow = (z: number): [number, number] => {
+		const logSpan = (w: [number, number]) => Math.log(w[1]) - Math.log(w[0]);
+		const focus = (Math.log(SPECTRUM_ZOOMED[0]) + Math.log(SPECTRUM_ZOOMED[1])) / 2;
+		const at0 = (focus - Math.log(SPECTRUM_FULL[0])) / logSpan(SPECTRUM_FULL);
+		const at = at0 * (1 - z) + 0.5 * z;
+		const span = Math.pow(logSpan(SPECTRUM_FULL), 1 - z) * Math.pow(logSpan(SPECTRUM_ZOOMED), z);
+		const lo = focus - at * span;
+		return [Math.exp(lo), Math.exp(lo + span)];
+	};
 
 	/** A pair of frequencies in THz, low first, or null for anything else. */
 	function parseSweep(v: unknown): [number, number] | null {
@@ -396,40 +458,70 @@ const {
 
 		const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-		/* The axis is fixed, so it is drawn once as a gradient and a row of
-		   labels rather than redrawn per frame; only the mark moves. */
-		(function buildSpectrum() {
+		/* One label per named band, made once; where they sit is a matter of
+		   which window the axis is showing, so that is settled in paintSpectrum. */
+		const bandLabels = BANDS.filter((b) => b.tint).map((band) => {
+			const el = document.createElement('span');
+			el.textContent = band.name;
+			bandsEl.append(el);
+			return { band, el };
+		});
+
+		/* Redrawn whenever the window moves, which during a zoom is every frame.
+		   Rebuilt rather than scaled: a gradient stretched by a transform is
+		   rasterised at the size it was laid out, and the rainbow is two percent
+		   of the bar to begin with — magnifying that raster forty times would
+		   show every one of its pixels. Rebuilding costs a string and a style
+		   write, and stays sharp at any magnification. */
+		const paintSpectrum = (win: [number, number], zoom: number) => {
 			const stops: string[] = [];
-			const pct = (hz: number) => spectrumPos(hz) * 100;
-			let from = SPECTRUM_LO_HZ;
+			const pct = (hz: number) => spectrumPos(hz, win) * 100;
+			// Stops far outside the bar are pulled in: a gradient reaches its edge
+			// colour outwards anyway, and at full zoom the far bands would
+			// otherwise be placed thousands of percent away.
+			const clamp = (v: number) => Math.min(140, Math.max(-40, v));
+			let from = SPECTRUM_FULL[0];
+			let labelAt = 0;
 			for (const band of BANDS) {
 				const a = pct(from);
 				const z = pct(band.to);
-				const mid = (a + z) / 2;
 				if (band.tint) {
 					// Hard stops at both edges, so the bands read as bands.
-					stops.push(`${band.tint} ${a}%`, `${band.tint} ${z}%`);
-					const label = document.createElement('span');
-					label.textContent = band.name;
-					label.style.left = `${mid}%`;
-					bandsEl.append(label);
+					if (z > -40 && a < 140) {
+						stops.push(`${band.tint} ${clamp(a)}%`, `${band.tint} ${clamp(z)}%`);
+					}
+					bandLabels[labelAt++].el.style.left = `${(a + z) / 2}%`;
 				} else {
 					// Sampled geometrically, matching the axis, so the rainbow is not
 					// bunched towards one end of its own band.
-					const STEPS = 24;
+					const STEPS = 32;
 					for (let i = 0; i <= STEPS; i++) {
 						const t = i / STEPS;
 						const hz = from * Math.pow(band.to / from, t);
 						const nm = Math.min(780, Math.max(380, C_NM_PER_S / hz));
 						const [r, g, b] = wavelengthRgb(nm);
-						stops.push(`rgb(${r} ${g} ${b}) ${a + (z - a) * t}%`);
+						// Carried into the band on the far side rather than cut off at
+						// the boundary.
+						const [nr, ng, nb] = t < 0.5 ? BELOW_RED : ABOVE_VIOLET;
+						const k = rainbowInk(t);
+						const mix = (edge: number, lit: number) => Math.round(edge + (lit - edge) * k);
+						stops.push(
+							`rgb(${mix(nr, r)} ${mix(ng, g)} ${mix(nb, b)}) ${a + (z - a) * t}%`
+						);
 					}
-					calloutEl.style.left = `${mid}%`;
+					calloutEl.style.left = `${(a + z) / 2}%`;
 				}
 				from = band.to;
 			}
 			trackEl.style.background = `linear-gradient(to right, ${stops.join(', ')})`;
-		})();
+			/* The lettering goes early in the zoom and comes back late. Once the
+			   axis is a rainbow filling the bar there is nothing left for a name
+			   to distinguish, and the names that would still be true are sliding
+			   off the ends. */
+			const ink = Math.max(0, 1 - zoom / 0.4);
+			bandsEl.style.opacity = `${ink}`;
+			calloutEl.style.opacity = `${ink}`;
+		};
 
 		/* Parameters arrive at the stage, or at the phase of it this belongs to;
 		   see DeckViz. A card's set is complete rather than a patch, so anything
@@ -443,20 +535,39 @@ const {
 		const AUTHORED_SPECTRAL = root.dataset.spectral === 'true';
 		const AUTHORED_SWEEP = parseSweep(root.dataset.sweep);
 		const AUTHORED_BAR = root.dataset.spectrumBar !== 'false';
+		const AUTHORED_ZOOM = root.dataset.zoom === 'true';
 		const SWEEP_SECS = Math.max(1, Number(root.dataset.sweepSeconds) || 22);
 		let wanted = AUTHORED;
 		let spectral = AUTHORED_SPECTRAL;
 		let showBar = AUTHORED_BAR;
+
+		/* ---- the zoom -------------------------------------------------------
+		   Timed and eased at both ends rather than chased exponentially: this is
+		   a move the reader is meant to watch land, not a value settling. */
+		const ZOOM_SECS = 1.14;
+		let zoomWanted = AUTHORED_ZOOM ? 1 : 0;
+		let zoomAt = zoomWanted;
+		let painted = -1;
+		const easeZoom = (t: number) => t * t * (3 - 2 * t);
+		const repaint = () => {
+			const z = easeZoom(zoomAt);
+			if (z === painted) return;
+			painted = z;
+			win = spectrumWindow(z);
+			paintSpectrum(win, z);
+		};
+		let win = spectrumWindow(easeZoom(zoomAt));
 		// Settled now rather than on the next frame: a pane that is not animating
 		// still has to show the axis.
 		const applyBar = () => {
 			spectrumEl.dataset.on = showBar ? 'true' : 'false';
 		};
 		const placeMark = () => {
-			const p = Math.min(1, Math.max(0, spectrumPos(freqThz * 1e12)));
+			const p = Math.min(1, Math.max(0, spectrumPos(freqThz * 1e12, win)));
 			markEl.style.left = `${(p * 100).toFixed(3)}%`;
 		};
 		applyBar();
+		repaint();
 		// Eased rather than jumped, so a card changing the colour shows the wave
 		// stretching into its new shape instead of cutting to it.
 		let freqThz = AUTHORED;
@@ -505,6 +616,7 @@ const {
 			spectral = 'spectral' in p ? Boolean(p.spectral) : AUTHORED_SPECTRAL;
 			setSweep('sweep' in p ? parseSweep(p.sweep) : AUTHORED_SWEEP);
 			showBar = 'spectrumBar' in p ? Boolean(p.spectrumBar) : AUTHORED_BAR;
+			zoomWanted = ('zoom' in p ? Boolean(p.zoom) : AUTHORED_ZOOM) ? 1 : 0;
 			applyBar();
 			/* The deck sets the opening card's parameters as the page loads, and
 			   that first setting must not animate — otherwise a deck whose first
@@ -670,6 +782,14 @@ const {
 
 			outLight.textContent = `${Math.round(nm)} nm · ${Math.round(freqThz)} THz`;
 
+			if (zoomAt !== zoomWanted) {
+				const step = dt / ZOOM_SECS;
+				zoomAt =
+					zoomWanted > zoomAt
+						? Math.min(zoomWanted, zoomAt + step)
+						: Math.max(zoomWanted, zoomAt - step);
+				repaint();
+			}
 			placeMark();
 		}
 

@@ -40,10 +40,19 @@ import PhotonWave from "../../components/PhotonWave.astro";
 <DeckCard vizProps={{ sweep: [40, 6000], spectrumBar: true }}>
   ## There are many kinds of light
 
-  Light is traveling in a wave motion, and how fast the wave oscillates is called its *frequency* (measured in Terahertz, THz). The higher the frequency, the more energy each photon has. The higher the frequency, the shorter the *wavelength* (measured in nanomenters, nm), which is the distance between two peaks of the wave.
+  Photons are traveling in a wave motion, and how fast the wave oscillates is called a photon's *frequency* (measured in Terahertz, THz). The higher the frequency, the more energy each photon has, and the shorter the *wavelength* (measured in nanomenters, nm), which is the distance between two peaks of the wave.
 
   Our eyes can only detect a very small range of frequencies, which we call the *visible spectrum*. The rest of the electromagnetic spectrum is invisible to us, but it is still light! When you microwave your food, or when you listen to the radio, get an X-Ray, or when you use your phone's Wi-Fi -- it's all just photons.
   
   You might have heard stories
   of people's organs literally melting after being exposed to radioactive gamma rays, because the photons are so high in energy that they are ripping your cells apart -- it's safe to say that evolution hasn't really equipped us to deal with that part of the spectrum. However, it's probably good that our eyes aren't able to detect the low-energy radio waves, because if they could, we'd be constantly blinded by the Wi-Fi signals in our homes.
+</DeckCard>
+
+{/* The axis closes in on the visible band, and the sweep closes in with it —
+    otherwise the mark would spend most of its loop pinned to one end of a bar
+    it has left behind. 384 to 789 THz is the band itself, edge to edge. */}
+<DeckCard vizProps={{ sweep: [384, 789], spectrumBar: true, zoom: true }}>
+  ## The visible spectrum is the rainbow
+
+  Bla di bla
 </DeckCard>
