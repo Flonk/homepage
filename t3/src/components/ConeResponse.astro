@@ -418,13 +418,31 @@ const {
 		   vision or the width does. */
 		let stripKey = '';
 		let strip: string[] = [];
+		/* Faked, and only for the mirrored strip: a wind-down over the last
+		   stretch of the band so it does not run to the edge as bright as the
+		   middle. The stand-in colours out there are borrowed from the green and
+		   cyan end, which are bright where the reds they are standing for are
+		   dark, and the strip ends up glaring exactly where it should be giving
+		   out. This is a drawing convenience for one card and nothing is being
+		   claimed by it — the honest version, matching the brightness of the
+		   wavelength each colour stands for, was tried and looked worse. */
+		const FALLOFF_FROM = 670;
+		const FALLOFF_TO = 740;
+		const falloff = (at: number) => {
+			if (at <= FALLOFF_FROM) return 1;
+			const t = Math.min(1, (at - FALLOFF_FROM) / (FALLOFF_TO - FALLOFF_FROM));
+			return 1 - 0.88 * t * t * (3 - 2 * t);
+		};
+
 		/* What the eye on show makes of this wavelength. For a missing cone that
 		   is a colour; for the mirrored eye it is a stand-in, and the lap it came
 		   from is what the hatching below announces. */
-		const eyeRgb = (at: number) =>
-			shown === 'mirrored'
-				? wavelengthRgb(mirroredStandIn(at).nm)
-				: wavelengthRgb(at, shown);
+		const eyeRgb = (at: number): [number, number, number] => {
+			if (shown !== 'mirrored') return wavelengthRgb(at, shown);
+			const k = falloff(at);
+			const rgb = wavelengthRgb(mirroredStandIn(at).nm);
+			return [Math.round(rgb[0] * k), Math.round(rgb[1] * k), Math.round(rgb[2] * k)];
+		};
 
 		const colourAt = (at: number): string => {
 			const a = wavelengthRgb(at);

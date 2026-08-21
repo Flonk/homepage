@@ -18,7 +18,7 @@ import VisionSplit from "../../components/VisionSplit.astro";
     DeckViz for the whole contract. */}
 <DeckViz>
   <VizPhase name="cones">
-    <ConeResponse sweep={[400, 700]} drag />
+    <ConeResponse sweep={[400, 700]} drag vision="mirrored" />
   </VizPhase>
   <VizPhase name="photo">
     <VisionSplit
@@ -92,5 +92,5 @@ import VisionSplit from "../../components/VisionSplit.astro";
 
   There really isn't a way to visualize this, because we do not see as many colors as this hypothetical eye would, and I can hardly ask you to "imagine a new color", much like a deuteranope cannot imagine a distinct red and green.
 
-  As a result I've colored the "extra colors" in the rainbow with a hatching pattern and reused part of the red and cyan spectrum. These colors are not red or cyan however, they are colors that are imperceptible to us.
+  As a result I've marked the "extra colors" in the rainbow with a hatching pattern and reused part of the red and cyan spectrum. These colors are not red or cyan however, they are colors that are imperceptible to us.
 </DeckCard>
