@@ -57,8 +57,9 @@ interface Props {
 	 * but the window — a wave has to fit in the pane to be seen as a wave, and
 	 * the photon has to get through a turn of it while the sweep is down there.
 	 * 120 THz is a 724px wave and a 4.2s turn, which is one whole wave on a
-	 * laptop; 80 THz is 1087px and 6.3s, which needs a wide screen. Much below
-	 * that the wave is longer than any pane and no amount of dwelling helps.
+	 * laptop; 80 THz is 1087px and 6.3s, which needs a wide screen; 40 THz is
+	 * 2173px and 12.5s, which no pane can hold, and which arrives as an arc
+	 * that never closes. Below that there is nothing left to see at all.
 	 *
 	 * The readout keeps saying what is actually being shown.
 	 */
