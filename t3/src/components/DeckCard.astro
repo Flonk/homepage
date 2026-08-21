@@ -52,9 +52,17 @@ const { vizProps } = Astro.props;
 		min-height: 0;
 		display: flex;
 		justify-content: center;
+		/* Not stretched: a stretched item is forced to the container's height, so
+		   its own bottom padding ends up behind the content overflowing it rather
+		   than below it. Sized to its content, the padding is really at the end. */
+		align-items: flex-start;
 		overflow-y: auto;
 		overscroll-behavior: contain;
-		padding: 1.5rem;
+		/* Bottom spacing lives on the content below, not here: a scroll
+		   container's end padding is left out of its scrollable area once the
+		   overflow comes from a stretched flex item, so scrolling to the bottom
+		   put the last line flat against the edge. */
+		padding: 1.5rem 1.5rem 0;
 		opacity: 0;
 		transform: translateX(2.5rem);
 		pointer-events: none;
@@ -78,11 +86,18 @@ const { vizProps } = Astro.props;
 
 	.card-text-inner {
 		width: 100%;
+		padding-bottom: 1.5rem;
 	}
 
-	/* The card is its own column; it must not also apply the page measure. */
+	/* The card is its own column; it must not also apply the page measure. The
+	   margins at both ends go, so the space above and below the text is the
+	   padding and nothing else, and the two match. */
 	.card-text-inner :global(> :first-child) {
 		margin-top: 0;
+	}
+
+	.card-text-inner :global(> :last-child) {
+		margin-bottom: 0;
 	}
 
 	@media (prefers-reduced-motion: reduce) {
