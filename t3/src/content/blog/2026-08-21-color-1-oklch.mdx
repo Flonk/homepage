@@ -1,0 +1,75 @@
+---
+title: "Colour #1: The Cube"
+series: "Colour"
+format: "deck"
+description: ""
+pubDate: "August 21 2026"
+---
+
+import DeckCard from "../../components/DeckCard.astro";
+import RgbCube from "../../components/RgbCube.astro";
+
+<DeckCard label="Three numbers">
+  <RgbCube slot="viz" />
+
+  ## Every colour on your screen is three numbers
+
+  Your screen makes colour by mixing three lights: red, green and blue. Each one
+  has a dial that runs from off to full, and every colour you have ever seen on a
+  screen is just some setting of those three dials.
+
+  The bars on the left are those dials. Drag one and watch the circle on the
+  right change.
+</DeckCard>
+
+<DeckCard label="A cube">
+  <RgbCube slot="viz" />
+
+  ## Three dials make a cube
+
+  One dial gives you a line. Two dials give you a square. Three dials give you a
+  cube — and that is exactly what you are looking at.
+
+  Every point inside holds a different colour. The corner nearest the origin is
+  black, where all three lights are off; the far corner is white, where all three
+  are full. Every other colour lives somewhere in between.
+</DeckCard>
+
+<DeckCard label="The corners">
+  <RgbCube slot="viz" />
+
+  ## The corners are the colours you can name
+
+  Eight corners, eight familiar colours. Black and white at opposite ends. Red,
+  green and blue where a single light is on by itself. Then the ones you get by
+  mixing exactly two: yellow, cyan and magenta.
+
+  Give the cube a spin — grab it and throw it. It will drift back to where it
+  started.
+</DeckCard>
+
+<DeckCard label="Wandering">
+  <RgbCube slot="viz" />
+
+  ## The dot is taking a walk
+
+  Left alone, the dot wanders through the cube on a path that never quite
+  repeats, and the bars and the swatch follow wherever it goes.
+
+  Take hold of a bar and the dot stops to do what you say. Let go, wait a moment,
+  and it wanders off again.
+</DeckCard>
+
+<DeckCard label="Why it matters">
+  <RgbCube slot="viz" />
+
+  ## A cube is a bad map of colour
+
+  This is a faithful picture of how a screen works, and a poor picture of how
+  seeing works. Move a fixed distance through the cube and the change you notice
+  depends entirely on where you started — a nudge among the dark colours is
+  obvious, the same nudge among the light ones is invisible.
+
+  So the cube is where we begin, not where we end up. Next time we go looking for
+  a better shape.
+</DeckCard>

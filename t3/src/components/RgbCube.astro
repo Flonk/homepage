@@ -1,0 +1,616 @@
+---
+/**
+ * An interactive RGB colour cube.
+ *
+ *   bars (R/G/B)  |  translucent spinning cube  |  swatch
+ *
+ * A dot traces a Lissajous curve through the cube; the bars and the swatch show
+ * the colour at the dot. Drag the cube to spin it — it keeps its momentum and
+ * eases back to its ambient rotation. Move any bar and the dot stops tracing to
+ * follow your input, resuming a few seconds after you stop.
+ */
+interface Props {
+	/** Grid subdivisions per cube face. Higher is smoother and slower. */
+	detail?: number;
+	/** Seconds of no input before the dot resumes its Lissajous curve. */
+	idleResume?: number;
+}
+
+const { detail = 9, idleResume = 3 } = Astro.props;
+---
+
+<div
+	class="rgb-cube"
+	data-rgb-cube
+	data-no-swipe
+	data-detail={detail}
+	data-idle-resume={idleResume}
+>
+	<div class="bars" role="group" aria-label="Colour channels">
+		<label class="bar" style="--channel: #f16d6d">
+			<input type="range" min="0" max="255" value="128" aria-label="Red" />
+			<span class="bar-key">R</span>
+			<span class="bar-val">128</span>
+		</label>
+		<label class="bar" style="--channel: #7bd88f">
+			<input type="range" min="0" max="255" value="128" aria-label="Green" />
+			<span class="bar-key">G</span>
+			<span class="bar-val">128</span>
+		</label>
+		<label class="bar" style="--channel: #6d9bf1">
+			<input type="range" min="0" max="255" value="128" aria-label="Blue" />
+			<span class="bar-key">B</span>
+			<span class="bar-val">128</span>
+		</label>
+	</div>
+
+	<div class="stage">
+		<canvas data-canvas></canvas>
+	</div>
+
+	<div class="readout">
+		<div class="swatch" data-swatch></div>
+		<span class="hex" data-hex>#808080</span>
+	</div>
+</div>
+
+<style>
+	.rgb-cube {
+		display: flex;
+		max-width: 60rem;
+		margin-inline: auto;
+		align-items: stretch;
+		gap: clamp(0.75rem, 2vw, 1.75rem);
+		width: 100%;
+		height: 100%;
+		min-height: 0;
+		font-family: var(--font-mono);
+		color: var(--nord4);
+	}
+
+	/* --- channel bars --- */
+
+	.bars {
+		flex: none;
+		display: flex;
+		gap: 0.6rem;
+		align-items: stretch;
+		padding: 0.25rem 0;
+	}
+
+	.bar {
+		display: grid;
+		grid-template-rows: minmax(0, 1fr) auto auto;
+		justify-items: center;
+		gap: 0.3rem;
+		min-height: 0;
+	}
+
+	/* Real range inputs, so keyboard and touch work. writing-mode makes them
+	   vertical and direction:rtl puts the maximum at the top. */
+	.bar input {
+		writing-mode: vertical-lr;
+		direction: rtl;
+		appearance: none;
+		-webkit-appearance: none;
+		width: 1.15rem;
+		height: 100%;
+		min-height: 0;
+		margin: 0;
+		padding: 0;
+		background: transparent;
+		cursor: ns-resize;
+		touch-action: none;
+	}
+
+	.bar input::-webkit-slider-runnable-track {
+		width: 1.15rem;
+		height: 100%;
+		border-radius: 3px;
+		border: 1px solid var(--nord2);
+		background: linear-gradient(to top, #000, var(--channel));
+	}
+
+	.bar input::-moz-range-track {
+		width: 1.15rem;
+		height: 100%;
+		border-radius: 3px;
+		border: 1px solid var(--nord2);
+		background: linear-gradient(to top, #000, var(--channel));
+	}
+
+	.bar input::-webkit-slider-thumb {
+		appearance: none;
+		-webkit-appearance: none;
+		width: 1.55rem;
+		height: 0.4rem;
+		margin-left: -0.2rem;
+		border-radius: 2px;
+		background: var(--nord6);
+		box-shadow: 0 0 0 1px #000;
+	}
+
+	.bar input::-moz-range-thumb {
+		width: 1.55rem;
+		height: 0.4rem;
+		border: none;
+		border-radius: 2px;
+		background: var(--nord6);
+		box-shadow: 0 0 0 1px #000;
+	}
+
+	.bar input:focus-visible::-webkit-slider-runnable-track {
+		border-color: var(--accent);
+	}
+
+	.bar-key {
+		font-size: 0.7rem;
+		color: var(--nord3);
+	}
+
+	.bar-val {
+		font-size: 0.7rem;
+		font-variant-numeric: tabular-nums;
+		color: var(--nord4);
+	}
+
+	/* --- cube --- */
+
+	.stage {
+		flex: 1;
+		min-width: 0;
+		min-height: 0;
+		display: flex;
+	}
+
+	.stage canvas {
+		width: 100%;
+		height: 100%;
+		cursor: grab;
+		touch-action: none;
+	}
+
+	.stage canvas:active {
+		cursor: grabbing;
+	}
+
+	/* --- swatch --- */
+
+	.readout {
+		flex: none;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+	}
+
+	.swatch {
+		width: clamp(2.5rem, 8vh, 4.5rem);
+		aspect-ratio: 1;
+		border-radius: 50%;
+		border: 1px solid var(--nord2);
+		background: #808080;
+	}
+
+	.hex {
+		font-size: 0.7rem;
+		color: var(--nord3);
+		font-variant-numeric: tabular-nums;
+	}
+
+	@media (max-width: 560px) {
+		.rgb-cube {
+			gap: 0.6rem;
+		}
+		.hex {
+			display: none;
+		}
+	}
+</style>
+
+<script>
+	type Quat = [number, number, number, number]; // x, y, z, w
+
+	const IDENTITY: Quat = [0, 0, 0, 1];
+
+	const qMul = (a: Quat, b: Quat): Quat => [
+		a[3] * b[0] + a[0] * b[3] + a[1] * b[2] - a[2] * b[1],
+		a[3] * b[1] - a[0] * b[2] + a[1] * b[3] + a[2] * b[0],
+		a[3] * b[2] + a[0] * b[1] - a[1] * b[0] + a[2] * b[3],
+		a[3] * b[3] - a[0] * b[0] - a[1] * b[1] - a[2] * b[2],
+	];
+
+	const qNorm = (q: Quat): Quat => {
+		const l = Math.hypot(q[0], q[1], q[2], q[3]) || 1;
+		return [q[0] / l, q[1] / l, q[2] / l, q[3] / l];
+	};
+
+	const qAxisAngle = (x: number, y: number, z: number, a: number): Quat => {
+		const l = Math.hypot(x, y, z);
+		if (!l || !a) return IDENTITY;
+		const s = Math.sin(a / 2) / l;
+		return [x * s, y * s, z * s, Math.cos(a / 2)];
+	};
+
+	/** Nudge `q` toward `target` by `t`, taking the short way round. */
+	const qSlerp = (q: Quat, target: Quat, t: number): Quat => {
+		let dot = q[0] * target[0] + q[1] * target[1] + q[2] * target[2] + q[3] * target[3];
+		let to = target;
+		if (dot < 0) {
+			to = [-target[0], -target[1], -target[2], -target[3]];
+			dot = -dot;
+		}
+		if (dot > 0.9995) {
+			return qNorm([
+				q[0] + (to[0] - q[0]) * t,
+				q[1] + (to[1] - q[1]) * t,
+				q[2] + (to[2] - q[2]) * t,
+				q[3] + (to[3] - q[3]) * t,
+			]);
+		}
+		const theta = Math.acos(dot);
+		const s = Math.sin(theta);
+		return qNorm([
+			(q[0] * Math.sin((1 - t) * theta) + to[0] * Math.sin(t * theta)) / s,
+			(q[1] * Math.sin((1 - t) * theta) + to[1] * Math.sin(t * theta)) / s,
+			(q[2] * Math.sin((1 - t) * theta) + to[2] * Math.sin(t * theta)) / s,
+			(q[3] * Math.sin((1 - t) * theta) + to[3] * Math.sin(t * theta)) / s,
+		]);
+	};
+
+	/** 3x3 rotation matrix (column-major) from a quaternion. */
+	const qMatrix = (q: Quat) => {
+		const [x, y, z, w] = q;
+		return [
+			1 - 2 * (y * y + z * z), 2 * (x * y + z * w), 2 * (x * z - y * w),
+			2 * (x * y - z * w), 1 - 2 * (x * x + z * z), 2 * (y * z + x * w),
+			2 * (x * z + y * w), 2 * (y * z - x * w), 1 - 2 * (x * x + y * y),
+		];
+	};
+
+	function initCube(root: HTMLElement) {
+		if (root.dataset.ready === 'true') return;
+		root.dataset.ready = 'true';
+
+		const canvas = root.querySelector<HTMLCanvasElement>('[data-canvas]')!;
+		const ctx = canvas.getContext('2d')!;
+		const inputs = Array.from(root.querySelectorAll<HTMLInputElement>('input[type="range"]'));
+		const vals = Array.from(root.querySelectorAll<HTMLElement>('.bar-val'));
+		const swatch = root.querySelector<HTMLElement>('[data-swatch]')!;
+		const hexOut = root.querySelector<HTMLElement>('[data-hex]')!;
+
+		const N = Math.max(2, Math.min(20, Number(root.dataset.detail) || 9));
+		const IDLE_MS = (Number(root.dataset.idleResume) || 3) * 1000;
+		const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+		/* ---- geometry, built once -----------------------------------------
+		   Each face is subdivided into an N x N grid of flat-shaded quads; that
+		   fakes the bilinear colour variation across a face, which a single
+		   canvas gradient cannot express. Corner positions and fill colours are
+		   constant, so only the projection is recomputed per frame. */
+		const QUADS = 6 * N * N;
+		const quadXYZ = new Float64Array(QUADS * 12); // 4 corners * xyz
+		const quadFill: string[] = new Array(QUADS);
+
+		let qi = 0;
+		for (let axis = 0; axis < 3; axis++) {
+			for (const val of [0, 1]) {
+				const u = (axis + 1) % 3;
+				const v = (axis + 2) % 3;
+				for (let i = 0; i < N; i++) {
+					for (let j = 0; j < N; j++) {
+						const us = [i / N, (i + 1) / N, (i + 1) / N, i / N];
+						const vs = [j / N, j / N, (j + 1) / N, (j + 1) / N];
+						for (let c = 0; c < 4; c++) {
+							const p = [0, 0, 0];
+							p[axis] = val;
+							p[u] = us[c];
+							p[v] = vs[c];
+							quadXYZ[qi * 12 + c * 3] = p[0];
+							quadXYZ[qi * 12 + c * 3 + 1] = p[1];
+							quadXYZ[qi * 12 + c * 3 + 2] = p[2];
+						}
+						const mid = [0, 0, 0];
+						mid[axis] = val;
+						mid[u] = (i + 0.5) / N;
+						mid[v] = (j + 0.5) / N;
+						quadFill[qi] =
+							`rgb(${Math.round(mid[0] * 255)} ${Math.round(mid[1] * 255)} ${Math.round(mid[2] * 255)})`;
+						qi++;
+					}
+				}
+			}
+		}
+
+		// 12 cube edges, each taken from its lower-indexed vertex
+		const edgeXYZ: number[] = [];
+		for (let i = 0; i < 8; i++) {
+			for (let bit = 0; bit < 3; bit++) {
+				const j = i | (1 << bit);
+				if (j === i) continue;
+				edgeXYZ.push(
+					(i >> 0) & 1, (i >> 1) & 1, (i >> 2) & 1,
+					(j >> 0) & 1, (j >> 1) & 1, (j >> 2) & 1,
+				);
+			}
+		}
+		const EDGES = edgeXYZ.length / 6;
+
+		// Scratch buffers, reused every frame so the loop allocates nothing.
+		const ITEMS = QUADS + EDGES + 1;
+		const DOT = ITEMS - 1;
+		const sx = new Float64Array(QUADS * 4 + EDGES * 2 + 1);
+		const sy = new Float64Array(sx.length);
+		const depth = new Float64Array(ITEMS);
+		const order = new Int32Array(ITEMS);
+		for (let i = 0; i < ITEMS; i++) order[i] = i;
+		const orderArr = Array.from(order); // sort() needs a real Array
+
+		/* ---- orientation ---------------------------------------------------
+		   Ambient spin about a deliberately irregular axis, plus a user offset
+		   that carries its own momentum and decays back to nothing. */
+		const AMBIENT_AXIS = [0.35, 1, 0.22];
+		const AMBIENT_RATE = 0.22; // rad/s
+		// Start on a three-quarter view; face-on it just reads as a flat square.
+		const BASE: Quat = qNorm(qMul(qAxisAngle(1, 0, 0, 0.46), qAxisAngle(0, 1, 0, -0.62)));
+		let ambient = 0;
+		let offset: Quat = IDENTITY;
+		let velX = 0; // rad/s, from throwing the cube
+		let velY = 0;
+		let dragging = false;
+		let pointerId: number | null = null;
+
+		/* ---- the dot -------------------------------------------------------
+		   Incommensurate frequencies, so the curve never quite repeats. */
+		const FREQ = [0.031, 0.044, 0.027];
+		const PHASE = [0, 1.7, 3.1];
+		let t = 0;
+		let manualUntil = 0;
+		let manual = [0.5, 0.5, 0.5];
+		let resumeFrom: number[] | null = null;
+		let resumeAt = 0;
+		let rgb = [0.5, 0.5, 0.5];
+		let lastCss = '';
+
+		const lissajous = (time: number) => [
+			0.5 + 0.5 * Math.sin(time * FREQ[0] * Math.PI * 2 + PHASE[0]),
+			0.5 + 0.5 * Math.sin(time * FREQ[1] * Math.PI * 2 + PHASE[1]),
+			0.5 + 0.5 * Math.sin(time * FREQ[2] * Math.PI * 2 + PHASE[2]),
+		];
+
+		/* ---- input ---------------------------------------------------------- */
+
+		inputs.forEach((input, i) => {
+			input.addEventListener('input', () => {
+				const at = performance.now();
+				// Seed from the dot only when *entering* manual control. Re-seeding on
+				// every event would lose any change made earlier in the same frame,
+				// since `rgb` has not caught up yet.
+				if (at >= manualUntil) manual = rgb.slice();
+				manual[i] = Number(input.value) / 255;
+				manualUntil = at + IDLE_MS;
+				resumeFrom = null;
+			});
+		});
+
+		canvas.addEventListener('pointerdown', (e) => {
+			dragging = true;
+			pointerId = e.pointerId;
+			canvas.setPointerCapture(e.pointerId);
+			velX = 0;
+			velY = 0;
+			e.preventDefault();
+		});
+
+		canvas.addEventListener('pointermove', (e) => {
+			if (!dragging || e.pointerId !== pointerId) return;
+			const k = 0.01;
+			const dx = e.movementX * k;
+			const dy = e.movementY * k;
+			// Horizontal drag spins about the screen's vertical axis, and vice versa.
+			offset = qNorm(qMul(qMul(qAxisAngle(0, 1, 0, dx), qAxisAngle(1, 0, 0, dy)), offset));
+			velY = dx * 60;
+			velX = dy * 60;
+		});
+
+		const endDrag = (e: PointerEvent) => {
+			if (e.pointerId !== pointerId) return;
+			dragging = false;
+			pointerId = null;
+		};
+		canvas.addEventListener('pointerup', endDrag);
+		canvas.addEventListener('pointercancel', endDrag);
+
+		/* ---- sizing ---------------------------------------------------------- */
+
+		let w = 0;
+		let h = 0;
+		const resize = () => {
+			const dpr = Math.min(window.devicePixelRatio || 1, 2);
+			const r = canvas.getBoundingClientRect();
+			w = r.width;
+			h = r.height;
+			canvas.width = Math.max(1, Math.round(w * dpr));
+			canvas.height = Math.max(1, Math.round(h * dpr));
+			ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+		};
+		new ResizeObserver(resize).observe(canvas);
+		resize();
+
+		/* ---- render loop ------------------------------------------------------ */
+
+		let last = 0;
+
+		function frame(now: number) {
+			requestAnimationFrame(frame);
+
+			// Other cards stay in the DOM but are invisible; don't burn frames.
+			const card = root.closest<HTMLElement>('[data-card]');
+			if (card && card.dataset.state && card.dataset.state !== 'active') return;
+			if (!w || !h) return;
+
+			const dt = last ? Math.min(0.05, (now - last) / 1000) : 0.016;
+			last = now;
+
+			// --- orientation
+			if (!reduceMotion) ambient += AMBIENT_RATE * dt;
+			if (!dragging) {
+				const decay = Math.exp(-1.8 * dt);
+				velX *= decay;
+				velY *= decay;
+				if (Math.abs(velX) > 1e-4 || Math.abs(velY) > 1e-4) {
+					offset = qNorm(
+						qMul(
+							qMul(qAxisAngle(0, 1, 0, velY * dt), qAxisAngle(1, 0, 0, velX * dt)),
+							offset,
+						),
+					);
+				}
+				// spring home to the ambient orientation
+				offset = qSlerp(offset, IDENTITY, 1 - Math.exp(-1.1 * dt));
+			}
+			const m = qMatrix(
+				qMul(
+					qMul(
+						offset,
+						qAxisAngle(AMBIENT_AXIS[0], AMBIENT_AXIS[1], AMBIENT_AXIS[2], ambient),
+					),
+					BASE,
+				),
+			);
+
+			// --- the dot
+			if (!reduceMotion) t += dt;
+			if (now < manualUntil) {
+				rgb = manual;
+				resumeFrom = null;
+			} else {
+				const target = lissajous(t);
+				if (manualUntil) {
+					// Ease out of manual control rather than snapping back.
+					resumeFrom = rgb.slice();
+					resumeAt = now;
+					manualUntil = 0;
+				}
+				if (resumeFrom) {
+					const k = Math.min(1, (now - resumeAt) / 800);
+					const e = k * k * (3 - 2 * k);
+					rgb = [
+						resumeFrom[0] + (target[0] - resumeFrom[0]) * e,
+						resumeFrom[1] + (target[1] - resumeFrom[1]) * e,
+						resumeFrom[2] + (target[2] - resumeFrom[2]) * e,
+					];
+					if (k >= 1) resumeFrom = null;
+				} else {
+					rgb = target;
+				}
+			}
+
+			// --- readouts, only touched when they actually change
+			const r8 = Math.round(Math.min(1, Math.max(0, rgb[0])) * 255);
+			const g8 = Math.round(Math.min(1, Math.max(0, rgb[1])) * 255);
+			const b8 = Math.round(Math.min(1, Math.max(0, rgb[2])) * 255);
+			const css = `rgb(${r8} ${g8} ${b8})`;
+			if (css !== lastCss) {
+				lastCss = css;
+				swatch.style.background = css;
+				hexOut.textContent =
+					'#' + [r8, g8, b8].map((v) => v.toString(16).padStart(2, '0')).join('');
+				const bytes = [r8, g8, b8];
+				for (let i = 0; i < 3; i++) {
+					vals[i].textContent = String(bytes[i]);
+					if (document.activeElement !== inputs[i]) inputs[i].value = String(bytes[i]);
+				}
+			}
+
+			// --- project
+			const scale = Math.min(w, h) * 0.52;
+			const cx = w / 2;
+			const cy = h / 2;
+			const FOCAL = 3.2;
+			let n = 0;
+
+			const project = (x: number, y: number, z: number) => {
+				const px = x - 0.5;
+				const py = y - 0.5;
+				const pz = z - 0.5;
+				const rx = m[0] * px + m[3] * py + m[6] * pz;
+				const ry = m[1] * px + m[4] * py + m[7] * pz;
+				const rz = m[2] * px + m[5] * py + m[8] * pz;
+				const p = FOCAL / (FOCAL - rz);
+				sx[n] = cx + rx * scale * p;
+				sy[n] = cy - ry * scale * p;
+				n++;
+				return rz;
+			};
+
+			for (let i = 0; i < QUADS; i++) {
+				let z = 0;
+				for (let c = 0; c < 4; c++) {
+					z += project(
+						quadXYZ[i * 12 + c * 3],
+						quadXYZ[i * 12 + c * 3 + 1],
+						quadXYZ[i * 12 + c * 3 + 2],
+					);
+				}
+				depth[i] = z / 4;
+			}
+			for (let i = 0; i < EDGES; i++) {
+				const z1 = project(edgeXYZ[i * 6], edgeXYZ[i * 6 + 1], edgeXYZ[i * 6 + 2]);
+				const z2 = project(edgeXYZ[i * 6 + 3], edgeXYZ[i * 6 + 4], edgeXYZ[i * 6 + 5]);
+				depth[QUADS + i] = (z1 + z2) / 2;
+			}
+			depth[DOT] = project(rgb[0], rgb[1], rgb[2]);
+
+			// --- painter's algorithm, back to front, so translucency composites
+			orderArr.sort((a, b) => depth[a] - depth[b]);
+
+			ctx.clearRect(0, 0, w, h);
+			ctx.globalAlpha = 0.5;
+			ctx.lineWidth = 1;
+
+			for (let k = 0; k < ITEMS; k++) {
+				const id = orderArr[k];
+				if (id < QUADS) {
+					const o = id * 4;
+					ctx.beginPath();
+					ctx.moveTo(sx[o], sy[o]);
+					ctx.lineTo(sx[o + 1], sy[o + 1]);
+					ctx.lineTo(sx[o + 2], sy[o + 2]);
+					ctx.lineTo(sx[o + 3], sy[o + 3]);
+					ctx.closePath();
+					ctx.fillStyle = quadFill[id];
+					ctx.fill();
+				} else if (id < QUADS + EDGES) {
+					const o = QUADS * 4 + (id - QUADS) * 2;
+					ctx.beginPath();
+					ctx.moveTo(sx[o], sy[o]);
+					ctx.lineTo(sx[o + 1], sy[o + 1]);
+					ctx.strokeStyle = 'rgba(236,239,244,0.4)';
+					ctx.stroke();
+				} else {
+					const o = QUADS * 4 + EDGES * 2;
+					// The dot is opaque; the translucent faces in front of it still
+					// wash over it, which is what sells it as being inside the cube.
+					ctx.globalAlpha = 1;
+					ctx.beginPath();
+					ctx.arc(sx[o], sy[o], Math.max(3.5, scale * 0.035), 0, Math.PI * 2);
+					ctx.fillStyle = '#000';
+					ctx.fill();
+					ctx.lineWidth = 1.5;
+					ctx.strokeStyle = 'rgba(255,255,255,0.9)';
+					ctx.stroke();
+					ctx.lineWidth = 1;
+					ctx.globalAlpha = 0.5;
+				}
+			}
+
+			ctx.globalAlpha = 1;
+		}
+
+		requestAnimationFrame(frame);
+	}
+
+	document.querySelectorAll<HTMLElement>('[data-rgb-cube]').forEach(initCube);
+</script>
