@@ -1,0 +1,310 @@
+---
+/**
+ * A dot travelling right while oscillating up and down, drawing the sine wave
+ * it traces out behind it, in the colour of the light it stands for.
+ *
+ * Everything on screen comes from two scale factors and nothing else: one for
+ * space, one for time. Fix those and the wavelength, the travel speed and the
+ * rate of the wiggle all follow, and they stay in step with each other the way
+ * the real quantities do — light of every colour travels at the same speed, so
+ * the dot's rate across the pane never changes, and only the wave it leaves
+ * gets longer or shorter.
+ *
+ * The dot riding the wave is a picture, not a photon. A real photon has no
+ * position wiggling about a line, and the wave is an amplitude of a field
+ * rather than a displacement of anything; the height here carries no units at
+ * all. What is faithful is the relationship between colour, wavelength and
+ * frequency, which is the point of the card.
+ */
+interface Props {
+	/**
+	 * Frequency of the light, in terahertz. Visible light runs roughly 400 THz
+	 * at the red end to 790 THz at the violet end.
+	 */
+	frequency?: number;
+}
+
+const { frequency = 545 } = Astro.props;
+---
+
+<div class="photon" data-photon data-frequency={frequency}>
+	<canvas data-canvas></canvas>
+	<div class="readout">
+		<span data-light></span>
+		<span class="dim" data-slowdown></span>
+	</div>
+</div>
+
+<style>
+	.photon {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		min-width: 0;
+		min-height: 0;
+		font-family: var(--font-mono);
+		/* The viz sits on a light ground, so its chrome is inked dark. */
+		--ink: #35302a;
+		--ink-dim: #7a7264;
+		color: var(--ink);
+	}
+
+	.photon canvas {
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	.readout {
+		position: absolute;
+		right: 0.75rem;
+		bottom: 0.4rem;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		gap: 0.05rem;
+		font-size: 1.125rem;
+		font-variant-numeric: tabular-nums;
+		pointer-events: none;
+	}
+
+	.readout .dim {
+		font-size: 0.8rem;
+		color: var(--ink-dim);
+	}
+
+	@container viz (max-width: 30rem) {
+		.readout {
+			font-size: 0.85rem;
+		}
+		.readout .dim {
+			font-size: 0.65rem;
+		}
+	}
+</style>
+
+<script>
+	/* ---- the two scales -------------------------------------------------
+	   Space: how many screen pixels stand for a nanometre. Time: how much
+	   slower than life this runs. Everything else is worked out from them, so
+	   the picture stays self-consistent whatever frequency it is showing.
+
+	   The slowdown is the number it is because of what it has to achieve.
+	   Green light oscillates about 545 million million times a second; to see
+	   that as a wiggle roughly once a second, the factor has to be around ten
+	   to the fourteenth. Nothing smaller is in the running — at a factor of a
+	   thousand it would still be flickering 545 billion times a second. */
+	const C_NM_PER_S = 2.99792458e17; // the speed of light, in nanometres a second
+	const SLOWDOWN = 5e14;
+	const PX_PER_NM = 0.29;
+
+	/* How much of the trace behind the dot is lit, and how finely that fade is
+	   stepped. A couple of wavelengths' worth: enough to read as a trail, short
+	   enough that it is clearly the dot dragging it. */
+	const TAIL_PX = 280;
+	const TAIL_STEP = 10;
+
+	/** How the slowdown is written out, once, rather than derived by eye. */
+	const SLOWDOWN_TEXT = '5 × 10¹⁴';
+
+	/* An approximate sRGB rendering of a single wavelength. It cannot be an
+	   exact one: a pure spectral colour is outside what three fixed primaries
+	   can mix, so every one of these is a nearest-available stand-in, and the
+	   saturated ends are the furthest off. Which is, more or less, what this
+	   series is about. */
+	function wavelengthRgb(nm: number): [number, number, number] {
+		let r = 0;
+		let g = 0;
+		let b = 0;
+		if (nm >= 380 && nm < 440) {
+			r = -(nm - 440) / 60;
+			b = 1;
+		} else if (nm < 490) {
+			g = (nm - 440) / 50;
+			b = 1;
+		} else if (nm < 510) {
+			g = 1;
+			b = -(nm - 510) / 20;
+		} else if (nm < 580) {
+			r = (nm - 510) / 70;
+			g = 1;
+		} else if (nm < 645) {
+			r = 1;
+			g = -(nm - 645) / 65;
+		} else if (nm <= 780) {
+			r = 1;
+		}
+		// The eye's response tails off at both ends of the visible range.
+		let fade = 1;
+		if (nm >= 380 && nm < 420) fade = 0.3 + (0.7 * (nm - 380)) / 40;
+		else if (nm > 700 && nm <= 780) fade = 0.3 + (0.7 * (780 - nm)) / 80;
+		const enc = (v: number) => Math.round(255 * Math.pow(Math.max(0, v) * fade, 0.8));
+		return [enc(r), enc(g), enc(b)];
+	}
+
+	function initPhoton(root: HTMLElement) {
+		if (root.dataset.ready === 'true') return;
+		root.dataset.ready = 'true';
+
+		const canvas = root.querySelector<HTMLCanvasElement>('[data-canvas]')!;
+		const ctx = canvas.getContext('2d')!;
+		const outLight = root.querySelector<HTMLElement>('[data-light]')!;
+		const outSlow = root.querySelector<HTMLElement>('[data-slowdown]')!;
+		outSlow.textContent = `time slowed ${SLOWDOWN_TEXT}`;
+
+		const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+		/* Parameters arrive at the stage, or at the phase of it this belongs to;
+		   see DeckViz. A card's set is complete rather than a patch, so anything
+		   it leaves out goes back to how this was authored. */
+		const host =
+			root.closest<HTMLElement>('[data-viz-phase]') ??
+			root.closest<HTMLElement>('[data-viz-stage]');
+		const gate = root.closest<HTMLElement>('[data-viz-phase]');
+
+		const AUTHORED = Math.max(1, Number(root.dataset.frequency) || 545);
+		let wanted = AUTHORED;
+		// Eased rather than jumped, so a card changing the colour shows the wave
+		// stretching into its new shape instead of cutting to it.
+		let freqThz = AUTHORED;
+
+		host?.addEventListener('viz:props', (e) => {
+			const p = (e as CustomEvent).detail ?? {};
+			wanted = 'frequency' in p ? Math.max(1, Number(p.frequency) || AUTHORED) : AUTHORED;
+		});
+
+		/* ---- the trace ------------------------------------------------------
+		   One height per column, written as the dot goes past. Kept rather than
+		   recomputed so that changing the frequency leaves the wave already
+		   drawn alone, and the new shape grows out of the old one. */
+		let w = 0;
+		let h = 0;
+		let dpr = 1;
+		let trace = new Float32Array(2);
+		let dist = 0; // total distance travelled, in css pixels
+		let phase = 0;
+
+		const amplitude = () => h * 0.24;
+		const lambdaPx = () => (C_NM_PER_S / (freqThz * 1e12)) * PX_PER_NM;
+
+		/** Height the dot had, or would have had, at column `d` of its travel. */
+		const heightAt = (d: number) =>
+			amplitude() * Math.sin(phase - (2 * Math.PI * (dist - d)) / lambdaPx());
+
+		const writeSpan = (from: number, to: number) => {
+			const L = trace.length;
+			for (let d = Math.ceil(from); d <= Math.floor(to); d++) {
+				trace[((d % L) + L) % L] = heightAt(d);
+			}
+		};
+
+		const resize = () => {
+			dpr = Math.min(window.devicePixelRatio || 1, 2);
+			const r = canvas.getBoundingClientRect();
+			w = r.width;
+			h = r.height;
+			canvas.width = Math.max(1, Math.round(w * dpr));
+			canvas.height = Math.max(1, Math.round(h * dpr));
+			trace = new Float32Array(Math.max(2, Math.round(w)));
+			// Lay down a full wave straight away, so the pane is never blank; the
+			// dot's first pass then just runs along what is already there.
+			writeSpan(dist - trace.length, dist);
+		};
+		new ResizeObserver(resize).observe(canvas);
+		resize();
+
+		let last = 0;
+		host?.addEventListener('viz:enter', () => {
+			last = 0;
+		});
+
+		function frame(now: number) {
+			requestAnimationFrame(frame);
+			if (gate && gate.dataset.vizActive === 'false') return;
+			if (!w || !h) return;
+
+			const dt = last ? Math.min(0.05, (now - last) / 1000) : 0.016;
+			last = now;
+
+			if (freqThz !== wanted) {
+				const k = 1 - Math.exp(-3 * dt);
+				freqThz += (wanted - freqThz) * k;
+				if (Math.abs(wanted - freqThz) < 0.01) freqThz = wanted;
+			}
+
+			const nm = C_NM_PER_S / (freqThz * 1e12);
+			const [r, g, b] = wavelengthRgb(nm);
+			const colour = `rgb(${r} ${g} ${b})`;
+
+			if (!reduceMotion) {
+				// Both follow from the scales: the dot covers a slowed, magnified
+				// speed of light, and turns over once per wavelength it covers.
+				const speed = (C_NM_PER_S * PX_PER_NM) / SLOWDOWN;
+				const was = dist;
+				dist += speed * dt;
+				phase += ((2 * Math.PI * freqThz * 1e12) / SLOWDOWN) * dt;
+				writeSpan(was, dist);
+			}
+
+			const L = trace.length;
+			const head = dist - Math.floor(dist / L) * L; // where the dot is, on screen
+			const cy = h / 2;
+
+			ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+			ctx.clearRect(0, 0, w, h);
+			ctx.lineJoin = 'round';
+			ctx.lineCap = 'round';
+			ctx.strokeStyle = colour;
+			ctx.lineWidth = 2.5;
+
+			const stroke = (from: number, to: number) => {
+				ctx.beginPath();
+				for (let i = from; i <= to; i++) {
+					const y = cy + trace[i];
+					if (i === from) ctx.moveTo(i, y);
+					else ctx.lineTo(i, y);
+				}
+				ctx.stroke();
+			};
+
+			/* The whole wave at one strength, then a tail brightening into the dot.
+			   Deliberately no distinction between what this pass has drawn and what
+			   the last one left: the dot laps the pane every few seconds, and any
+			   such distinction has to flip across the whole width the moment it
+			   does. The tail carries the sense of a trace being drawn instead, and
+			   it comes and goes with the dot rather than with the lap. */
+			ctx.globalAlpha = 0.45;
+			stroke(0, L - 1);
+
+			const headX = Math.floor(head);
+			for (let s = 0; s < TAIL_PX; s += TAIL_STEP) {
+				const from = headX - s - TAIL_STEP;
+				if (from < 0) break;
+				// Squared, so it leans bright near the dot and tails off gently.
+				const t = 1 - s / TAIL_PX;
+				ctx.globalAlpha = 0.45 + 0.55 * t * t;
+				stroke(from, Math.min(L - 1, headX - s));
+			}
+			ctx.globalAlpha = 1;
+
+			// The dot, with a glow of its own colour. shadowBlur is in device
+			// pixels and ignores the transform, so it is scaled by hand.
+			const dotY = cy + amplitude() * Math.sin(phase);
+			ctx.save();
+			ctx.shadowColor = colour;
+			ctx.shadowBlur = 16 * dpr;
+			ctx.fillStyle = colour;
+			ctx.beginPath();
+			ctx.arc(head, dotY, 5, 0, Math.PI * 2);
+			ctx.fill();
+			ctx.restore();
+			ctx.globalAlpha = 1;
+
+			outLight.textContent = `${Math.round(nm)} nm · ${Math.round(freqThz)} THz`;
+		}
+
+		requestAnimationFrame(frame);
+	}
+
+	document.querySelectorAll<HTMLElement>('[data-photon]').forEach(initPhoton);
+</script>
