@@ -17,37 +17,29 @@ import RgbCube from "../../components/RgbCube.astro";
 <DeckCard label="Three numbers">
   ## Every colour on your screen is three numbers
 
-  Your screen makes colour by mixing three lights: red, green and blue. Each one
-  has a dial that runs from off to full, and every colour you have ever seen on a
-  screen is just some setting of those three dials.
+  Your screen makes colour by mixing three lights: red, green and blue, each ranging from off (0) to full (255 or 1, depending on what the vibe is). Every colour you see is a combination of those three numbers.
 
-  The bars on the left are those dials. Drag one and watch the circle on the
-  right change.
+  Black is when all the dials are set to 0, white is when they are all
+  set to 255, and every other colour is somewhere in between. The three numbers are called the RGB values of the colour.
 </DeckCard>
 
 <DeckCard label="A cube">
-  ## Three dials make a cube
+  ## Three dimensions make a cube
 
-  One dial gives you a line. Two dials give you a square. Three dials give you a
-  cube — and that is exactly what you are looking at.
+  We can take each of the three numbers and use it as a coordinate in a three-dimensional space. The red value is how far along the x-axis we go, the green value is how far along the y-axis we go, and the blue value is how far along the z-axis we go.
 
-  Every point inside holds a different colour. The corner nearest the origin is
-  black, where all three lights are off; the far corner is white, where all three
-  are full. Every other colour lives somewhere in between.
+  This forms a cube, where each point in the cube corresponds to an RGB
+  color your screen can display.
 </DeckCard>
 
-<DeckCard label="The corners" vizProps={{ lock: [1, 0, 0] }}>
-  ## The corners are the colours you can name
+<DeckCard label="The corners" vizProps={{ tour: 2 }}>
+  ## The corners have familiar colours
 
-  Eight corners, eight familiar colours. Black and white at opposite ends. Red,
-  green and blue where a single light is on by itself. Then the ones you get by
-  mixing exactly two: yellow, cyan and magenta.
-
-  Give the cube a spin — grab it and throw it. It will drift back to where it
-  started.
+  In each cube's corner, all of the RGB values are either completely
+  off or completely full, making those colors very distinct from one another.
 </DeckCard>
 
-<DeckCard label="Wandering" vizProps={{ lock: null }}>
+<DeckCard label="Wandering" vizProps={{ tour: null }}>
   ## The dot is taking a walk
 
   Left alone, the dot wanders through the cube on a path that never quite
