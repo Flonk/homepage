@@ -29,18 +29,12 @@ const { idleResume = 3 } = Astro.props;
 	<div class="bars" role="group" aria-label="Colour channels">
 		<label class="bar" style="--channel: #f16d6d">
 			<input type="range" min="0" max="255" value="128" aria-label="Red" />
-			<span class="bar-key">R</span>
-			<span class="bar-val">128</span>
 		</label>
 		<label class="bar" style="--channel: #7bd88f">
 			<input type="range" min="0" max="255" value="128" aria-label="Green" />
-			<span class="bar-key">G</span>
-			<span class="bar-val">128</span>
 		</label>
 		<label class="bar" style="--channel: #6d9bf1">
 			<input type="range" min="0" max="255" value="128" aria-label="Blue" />
-			<span class="bar-key">B</span>
-			<span class="bar-val">128</span>
 		</label>
 	</div>
 
@@ -118,11 +112,12 @@ const { idleResume = 3 } = Astro.props;
 		padding: 0.25rem 0;
 	}
 
+	/* Only the track lives here now — the readout at the corner says what the
+	   numbers are, so the labels under each bar were repeating it. Dropping
+	   them hands their space back to the track. */
 	.bar {
-		display: grid;
-		grid-template-rows: minmax(0, 1fr) auto auto;
-		justify-items: center;
-		gap: 0.3rem;
+		display: flex;
+		min-width: 0;
 		min-height: 0;
 	}
 
@@ -183,17 +178,6 @@ const { idleResume = 3 } = Astro.props;
 
 	.bar input:focus-visible::-webkit-slider-runnable-track {
 		border-color: var(--accent);
-	}
-
-	.bar-key {
-		font-size: 0.7rem;
-		color: var(--ink-dim);
-	}
-
-	.bar-val {
-		font-size: 0.7rem;
-		font-variant-numeric: tabular-nums;
-		color: var(--ink);
 	}
 
 	/* --- cube --- */
@@ -330,9 +314,6 @@ const { idleResume = 3 } = Astro.props;
 		.bar input::-moz-range-thumb {
 			width: 0.9rem;
 		}
-		.bar-val {
-			display: none;
-		}
 		/* Would otherwise run off a pane this narrow. */
 		.rgb-string {
 			font-size: 0.85rem;
@@ -359,25 +340,6 @@ const { idleResume = 3 } = Astro.props;
 
 		.bar {
 			width: 100%;
-			grid-template-rows: auto;
-			grid-template-columns: auto minmax(0, 1fr) auto;
-			align-items: center;
-			gap: 0.45rem;
-		}
-
-		.bar-key {
-			grid-column: 1;
-			grid-row: 1;
-		}
-		.bar input {
-			grid-column: 2;
-			grid-row: 1;
-		}
-		.bar-val {
-			grid-column: 3;
-			grid-row: 1;
-			min-width: 3ch;
-			text-align: right;
 		}
 
 		.bar input {
@@ -697,7 +659,6 @@ const { idleResume = 3 } = Astro.props;
 
 		const canvas = root.querySelector<HTMLCanvasElement>('[data-canvas]')!;
 		const inputs = Array.from(root.querySelectorAll<HTMLInputElement>('input[type="range"]'));
-		const vals = Array.from(root.querySelectorAll<HTMLElement>('.bar-val'));
 		const rgbOut = root.querySelector<HTMLElement>('[data-rgb]')!;
 
 		/* Multisampling handles the silhouette; the gradients inside need no help,
@@ -1005,7 +966,6 @@ const { idleResume = 3 } = Astro.props;
 				);
 				const bytes = [r8, g8, b8];
 				for (let i = 0; i < 3; i++) {
-					vals[i].textContent = String(bytes[i]);
 					if (document.activeElement !== inputs[i]) inputs[i].value = String(bytes[i]);
 				}
 			}
