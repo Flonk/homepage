@@ -17,8 +17,6 @@
  * becomes a grid item of the deck directly, landing in its "text" area.
  */
 interface Props {
-	/** Short name for the card, read out with its number by screen readers. */
-	label?: string;
 	/**
 	 * Parameters for the deck's visualization while this card is showing.
 	 * Omit to leave it exactly as the previous card had it.
@@ -26,13 +24,12 @@ interface Props {
 	vizProps?: Record<string, unknown>;
 }
 
-const { label, vizProps } = Astro.props;
+const { vizProps } = Astro.props;
 ---
 
 <article
 	class="deck-card"
 	data-card
-	data-card-label={label}
 	data-viz-props={vizProps ? JSON.stringify(vizProps) : undefined}
 >
 	<div class="card-text">

@@ -56,12 +56,8 @@ const { title, description, pubDate, series, prevPart, nextPart } = Astro.props;
 					&#8249;
 				</button>
 				{/* A dot per card stops scaling somewhere around a dozen; the count
-				    reads the same at five cards or fifty. The card's label rides
-				    along for screen readers, which otherwise hear only a number. */}
-				<span class="deck-counter" data-deck-counter aria-live="polite">
-					<span data-deck-count></span>
-					<span class="sr-only" data-deck-label></span>
-				</span>
+				    reads the same at five cards or fifty. */}
+				<span class="deck-counter" data-deck-counter aria-live="polite"></span>
 				<button type="button" class="deck-arrow" data-deck-next aria-label="Next card">
 					&#8250;
 				</button>
@@ -309,8 +305,7 @@ const { title, description, pubDate, series, prevPart, nextPart } = Astro.props;
 				const nextBtn = document.querySelector<HTMLButtonElement>('[data-deck-next]');
 				const jumpPrev = document.querySelector<HTMLElement>('[data-deck-jump-prev]');
 				const jumpNext = document.querySelector<HTMLElement>('[data-deck-jump-next]');
-				const count = document.querySelector<HTMLElement>('[data-deck-count]');
-				const label = document.querySelector<HTMLElement>('[data-deck-label]');
+				const counter = document.querySelector<HTMLElement>('[data-deck-counter]');
 
 				let index = 0;
 
@@ -431,11 +426,7 @@ const { title, description, pubDate, series, prevPart, nextPart } = Astro.props;
 						if (text) text.inert = i !== index;
 					});
 					renderViz();
-					if (count) count.textContent = `${index + 1} / ${cards.length}`;
-					if (label) {
-						const name = cards[index]?.dataset.cardLabel;
-						label.textContent = name ? `, ${name}` : '';
-					}
+					if (counter) counter.textContent = `${index + 1} / ${cards.length}`;
 					/* At an end, hand over to the neighbouring part if there is one;
 					   otherwise the arrow just greys out as before. */
 					const atStart = index === 0;
