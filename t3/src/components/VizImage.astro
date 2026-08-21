@@ -1,0 +1,117 @@
+---
+/**
+ * A picture laid over a deck's visualization, for a card whose point is made by
+ * something photographed rather than something computed.
+ *
+ * It sits *over* the viz rather than replacing it — that is what separates this
+ * from a <VizPhase>, which swaps the viz out entirely — so whatever is running
+ * underneath keeps running and stays visible around it. It never takes pointer
+ * events, so a cube behind it is still there to be grabbed.
+ *
+ *   <DeckViz>
+ *     <RgbCube />
+ *     <VizImage name="subpixels" src="…" alt="…" credit="…" />
+ *   </DeckViz>
+ *
+ *   <DeckCard vizProps={{ overlay: 'subpixels' }}>…</DeckCard>   show it
+ *   <DeckCard vizProps={{ overlay: null }}>…</DeckCard>          put it away
+ *
+ * `overlay` is a reserved parameter, like `phase`; see DeckPost.
+ */
+interface Props {
+	/** The name cards show it by, with `vizProps={{ overlay: '…' }}`. */
+	name: string;
+	src: string;
+	alt: string;
+	/** Set into the frame itself. Public domain work still deserves a name. */
+	credit?: string;
+}
+
+const { name, src, alt, credit } = Astro.props;
+---
+
+<figure class="viz-image" data-viz-overlay={name} data-viz-active="false" inert>
+	<img src={src} alt={alt} />
+	{credit && <figcaption>{credit}</figcaption>}
+</figure>
+
+<style>
+	/* Shrink-wrapped around the picture and centred in the pane, rather than
+	   filling it: the frame has to be the picture's own edge for the credit to
+	   sit in it. */
+	.viz-image {
+		--frame-w: 1.5rem;
+
+		place-self: center;
+		position: relative;
+		/* Over everything the viz puts up: parts of it carry a z-index of their
+		   own, and `position: relative` alone would leave this underneath them. */
+		z-index: 2;
+		margin: 0;
+		/* A frame, not a hairline. This sits over a viz that is still moving and
+		   has to read as a separate object rather than a patch of it. */
+		border: var(--frame-w) solid var(--frame-ink, #fff);
+		border-radius: 0.5rem;
+		/* Two layers rather than one: a tight one to sit the frame down on the
+		   viz, and a wide one to lift it off. It is the only thing telling the
+		   reader this is laid over the picture and not part of it. */
+		box-shadow:
+			0 0.25rem 0.75rem rgba(0, 0, 0, 0.3),
+			0 1.25rem 3rem rgba(0, 0, 0, 0.45);
+		/* No descender gap between the picture and the bottom of the frame. */
+		line-height: 0;
+		opacity: 0;
+		/* Never, even when shown: whatever is underneath stays reachable. */
+		pointer-events: none;
+		transition: opacity 0.35s ease;
+	}
+
+	.viz-image[data-viz-active='true'] {
+		opacity: 1;
+	}
+
+	/* Capped against the viz pane directly — `cq` units answer to the size
+	   container DeckViz establishes, which is the one thing here that knows how
+	   much room there is. Going through the ancestors instead would mean asking
+	   a shrink-wrapped box how big it is before it knows. */
+	.viz-image img {
+		display: block;
+		/* global.css frames every image on the site with a 1px rule set 1em off
+		   the picture. That gap is transparent, so over a moving viz the thing
+		   shows through it — and the frame below is doing that job here anyway. */
+		padding: 0;
+		border: 0;
+		border-radius: 0;
+		max-width: calc(100cqw - 3.5rem);
+		max-height: calc(100cqh - 3.5rem);
+		width: auto;
+		height: auto;
+		/* These are enlargements of detail too small to see; smoothing them blurs
+		   out exactly what they were included for. */
+		image-rendering: pixelated;
+	}
+
+	/* Set into the bottom band of the frame. The offset is the frame's own width,
+	   in rem rather than em so it means the same here as it does up there. */
+	figcaption {
+		position: absolute;
+		left: 0.4rem;
+		right: 0.4rem;
+		bottom: calc(-1 * var(--frame-w));
+		height: var(--frame-w);
+		display: flex;
+		align-items: center;
+		font-family: var(--font-mono);
+		font-size: 0.6rem;
+		line-height: 1;
+		color: #8d8577;
+		white-space: nowrap;
+		overflow: hidden;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.viz-image {
+			transition-duration: 0.01ms;
+		}
+	}
+</style>

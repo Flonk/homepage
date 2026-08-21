@@ -292,6 +292,12 @@ const { title, description, pubDate, series } = Astro.props;
 				const phases = stage
 					? Array.from(stage.querySelectorAll<HTMLElement>('[data-viz-phase]'))
 					: [];
+				/* Overlays differ from phases in that they do not replace the viz,
+				   they sit over it — so any number can be declared but only the one
+				   a card names is shown, and whatever is underneath keeps running. */
+				const overlays = stage
+					? Array.from(stage.querySelectorAll<HTMLElement>('[data-viz-overlay]'))
+					: [];
 
 				const vizPlan = (() => {
 					// Seeded with the deck's starting phase, so the set is never
@@ -344,9 +350,18 @@ const { title, description, pubDate, series } = Astro.props;
 					// Byte-identical to the card before: do not touch the viz at all.
 					if (props === applied) return;
 					applied = props;
-					// `phase` is the deck's; every other key belongs to the viz.
-					const { phase, ...rest } = JSON.parse(props) as Record<string, unknown>;
+					// `phase` and `overlay` are the deck's; every other key belongs
+					// to the viz.
+					const { phase, overlay, ...rest } = JSON.parse(props) as Record<
+						string,
+						unknown
+					>;
 					if (phases.length && typeof phase === 'string') showPhase(phase);
+					for (const el of overlays) {
+						const on = el.dataset.vizOverlay === overlay;
+						el.dataset.vizActive = String(on);
+						el.inert = !on;
+					}
 					const host = phases.length
 						? phases.find((el) => el.dataset.vizPhase === phaseName)
 						: stage;

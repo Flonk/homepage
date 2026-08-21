@@ -8,10 +8,17 @@ pubDate: "August 21 2026"
 
 import DeckCard from "../../components/DeckCard.astro";
 import DeckViz from "../../components/DeckViz.astro";
+import VizImage from "../../components/VizImage.astro";
 import RgbCube from "../../components/RgbCube.astro";
 
 <DeckViz>
   <RgbCube />
+  <VizImage
+    name="subpixels"
+    src="/assets/2026-08-21-color-1-oklch/subpixels.png"
+    alt="A capital W rendered with ClearType, enlarged until the individual red, green and blue subpixels of each screen pixel are visible."
+    credit="Michael Geary, public domain"
+  />
 </DeckViz>
 
 <DeckCard label="Three numbers">
@@ -42,16 +49,34 @@ import RgbCube from "../../components/RgbCube.astro";
 </DeckCard>
 
 <DeckCard label="Wandering" vizProps={{ tour: null, line: true, guides: true }}>
-  ## A line through the cube is a gradient
+  ## A line segment through the cube is a gradient
 
-  Left alone, the dot wanders through the cube on a path that never quite
-  repeats, and the bars and the swatch follow wherever it goes.
+  A gradient is what we get when we smoothly transition from one colour to another. Typically, this is achieved via *linear interpolation*.
 
-  Take hold of a bar and the dot stops to do what you say. Let go, wait a moment,
-  and it wanders off again.
+  Say your two colors have red channels `10` and `70`, and you want to *linearly interpolate* between 10 and 70 via a "knob" that goes from 0 to 1. Then the formula goes:
+
+  ```typescript
+  red = knob * 70 + (1 - knob) * 10
+  ```
+
+  Basically: Take `knob` percent from the second colour, and the rest from the first colour. Do the same for green and blue, and you have a gradient.
 </DeckCard>
 
-<DeckCard label="Why it matters" vizProps={{ line: false, guides: false }}>
+<DeckCard label="Wandering2" vizProps={{ tour: null, line: true, guides: true }}>
+  ## A line segment through the cube is a gradient
+
+  We can interpret this geometrically, too: A gradient is just a line segment through the RGB cube, where the two endpoints are the two colours we want to transition between. Each point along the line segment corresponds to a colour in the gradient.
+
+  The linear interpolation formula from before is just a way to find the coordinates of a point along that line segment.
+</DeckCard>
+
+<DeckCard label="Subpixels" vizProps={{ overlay: "subpixels" }}>
+  ## Screens actually work like this
+
+  Your screen is made up of a grid of pixels, and each pixel is made up of three or more *subpixels*, consisting of LEDs that emit red, green and blue light. They are small enough and far enough away that your eye blends them together, and you see a single colour.
+</DeckCard>
+
+<DeckCard label="Why it matters" vizProps={{ overlay: null, line: false, guides: false }}>
   ## A cube is a bad map of colour
 
   This is a faithful picture of how a screen works, and a poor picture of how
