@@ -58,7 +58,12 @@ const { idleResume = 3 } = Astro.props;
 		height: 100%;
 		min-height: 0;
 		font-family: var(--font-mono);
-		color: var(--nord4);
+		/* The viz sits on a light ground (see --deck-ground), so its chrome is
+		   inked dark rather than light. */
+		--ink: #35302a;
+		--ink-dim: #7a7264;
+		--line: #b3a993;
+		color: var(--ink);
 	}
 
 	/* --- channel bars --- */
@@ -101,7 +106,7 @@ const { idleResume = 3 } = Astro.props;
 		width: 2rem;
 		height: 100%;
 		border-radius: 4px;
-		border: 1px solid var(--nord2);
+		border: 1px solid var(--line);
 		background: linear-gradient(to top, #000, var(--channel));
 	}
 
@@ -109,28 +114,29 @@ const { idleResume = 3 } = Astro.props;
 		width: 2rem;
 		height: 100%;
 		border-radius: 4px;
-		border: 1px solid var(--nord2);
+		border: 1px solid var(--line);
 		background: linear-gradient(to top, #000, var(--channel));
 	}
 
 	.bar input::-webkit-slider-thumb {
 		appearance: none;
 		-webkit-appearance: none;
-		width: 1.5rem;
-		height: 0.45rem;
-		margin-left: 0.25rem; /* (track 2rem - thumb 1.5rem) / 2 */
+		/* Spans the bar rather than sitting inside it. */
+		width: 2rem;
+		height: 0.5rem;
+		margin-left: 0;
 		border-radius: 2px;
-		background: var(--nord6);
-		box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.65);
+		background: var(--ink);
+		box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.55);
 	}
 
 	.bar input::-moz-range-thumb {
-		width: 1.5rem;
-		height: 0.45rem;
+		width: 2rem;
+		height: 0.5rem;
 		border: none;
 		border-radius: 2px;
-		background: var(--nord6);
-		box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.65);
+		background: var(--ink);
+		box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.55);
 	}
 
 	.bar input:focus-visible::-webkit-slider-runnable-track {
@@ -139,13 +145,13 @@ const { idleResume = 3 } = Astro.props;
 
 	.bar-key {
 		font-size: 0.7rem;
-		color: var(--nord3);
+		color: var(--ink-dim);
 	}
 
 	.bar-val {
 		font-size: 0.7rem;
 		font-variant-numeric: tabular-nums;
-		color: var(--nord4);
+		color: var(--ink);
 	}
 
 	/* --- cube --- */
@@ -183,13 +189,13 @@ const { idleResume = 3 } = Astro.props;
 		width: clamp(6rem, 20vh, 11rem);
 		aspect-ratio: 1;
 		border-radius: 50%;
-		border: 1px solid var(--nord2);
+		border: 1px solid var(--line);
 		background: #808080;
 	}
 
 	.hex {
 		font-size: 0.75rem;
-		color: var(--nord3);
+		color: var(--ink-dim);
 		font-variant-numeric: tabular-nums;
 	}
 
@@ -322,6 +328,29 @@ const { idleResume = 3 } = Astro.props;
 		return faceTex;
 	}
 
+	/** Indices of the convex hull of a point set, counter-clockwise (monotone chain). */
+	const convexHull = (xs: number[], ys: number[]) => {
+		const idx = xs.map((_, i) => i).sort((a, b) => xs[a] - xs[b] || ys[a] - ys[b]);
+		const cross = (o: number, a: number, b: number) =>
+			(xs[a] - xs[o]) * (ys[b] - ys[o]) - (ys[a] - ys[o]) * (xs[b] - xs[o]);
+		const lower: number[] = [];
+		for (const i of idx) {
+			while (lower.length >= 2 && cross(lower[lower.length - 2], lower[lower.length - 1], i) <= 0)
+				lower.pop();
+			lower.push(i);
+		}
+		const upper: number[] = [];
+		for (let k = idx.length - 1; k >= 0; k--) {
+			const i = idx[k];
+			while (upper.length >= 2 && cross(upper[upper.length - 2], upper[upper.length - 1], i) <= 0)
+				upper.pop();
+			upper.push(i);
+		}
+		lower.pop();
+		upper.pop();
+		return lower.concat(upper);
+	};
+
 	function initCube(root: HTMLElement) {
 		if (root.dataset.ready === 'true') return;
 		root.dataset.ready = 'true';
@@ -437,6 +466,8 @@ const { idleResume = 3 } = Astro.props;
 		const FOCAL = 3.4;
 		let last = 0;
 		const front = new Int32Array(6);
+		const hullX: number[] = new Array(8).fill(0);
+		const hullY: number[] = new Array(8).fill(0);
 
 		function frame(now: number) {
 			requestAnimationFrame(frame);
@@ -590,6 +621,33 @@ const { idleResume = 3 } = Astro.props;
 			ctx.imageSmoothingQuality = "high";
 			ctx.globalAlpha = 1;
 
+			// --- contact shadow. Fill the silhouette — the hull of the eight
+			// projected corners — with a heavily blurred black, then paint the
+			// opaque faces over the top. Only the bleed around the edges survives,
+			// which reads as ambient occlusion for the cost of one extra fill.
+			for (let i = 0; i < 8; i++) {
+				const X = (i >> 0) & 1;
+				const Y = (i >> 1) & 1;
+				const Z = (i >> 2) & 1;
+				hullX[i] = px(X, Y, Z);
+				hullY[i] = py(X, Y, Z);
+			}
+			const hull = convexHull(hullX, hullY);
+			ctx.save();
+			ctx.shadowColor = "rgba(40, 30, 14, 0.55)";
+			ctx.shadowBlur = Math.max(20, scale * 0.34);
+			ctx.shadowOffsetY = Math.max(6, scale * 0.09);
+			ctx.fillStyle = "#000";
+			ctx.beginPath();
+			for (let i = 0; i < hull.length; i++) {
+				const k = hull[i];
+				if (i === 0) ctx.moveTo(hullX[k], hullY[k]);
+				else ctx.lineTo(hullX[k], hullY[k]);
+			}
+			ctx.closePath();
+			ctx.fill();
+			ctx.restore();
+
 			for (let k = 0; k < nFront; k++) {
 				const f = front[k];
 				const { axis, val } = FACES[f];
@@ -660,7 +718,7 @@ const { idleResume = 3 } = Astro.props;
 					else ctx.lineTo(X, Y);
 				}
 				ctx.closePath();
-				ctx.strokeStyle = "rgba(236,239,244,0.28)";
+				ctx.strokeStyle = "rgba(0,0,0,0.22)";
 				ctx.lineWidth = 1;
 				ctx.stroke();
 			}

@@ -34,6 +34,7 @@ const { title, description, pubDate, series } = Astro.props;
 
 			<!-- Every card renders into these two areas; only the active one shows. -->
 			<div class="deck" data-deck>
+				<div class="deck-ground" aria-hidden="true"></div>
 				<slot />
 			</div>
 
@@ -55,6 +56,10 @@ const { title, description, pubDate, series } = Astro.props;
 			   divide, otherwise the rows size to their content and push the nav
 			   off-screen. */
 			.deck-page {
+				--deck-ground: var(--viz-beige);
+				--deck-ink: #35302a;
+				--deck-ink-dim: #7a7264;
+				--deck-eyebrow: #a86a00;
 				/* Minus the accent frame :root draws around the page, which sits
 				   outside body's box and would otherwise overflow the viewport. */
 				height: calc(100dvh - 2 * var(--page-border));
@@ -73,7 +78,9 @@ const { title, description, pubDate, series } = Astro.props;
 			}
 
 			/* No padding of its own — the home mark butts against the page edge and
-			   the text half carries the inset instead. */
+			   the headings carry the inset instead. The masthead shares the ground of
+			   the visualization below it, with no rule between, so they read as one
+			   surface. */
 			.deck-head {
 				--home-size: var(--header-height);
 				flex: none;
@@ -81,7 +88,12 @@ const { title, description, pubDate, series } = Astro.props;
 				align-items: flex-start;
 				min-height: var(--home-size);
 				padding: 0;
-				border-bottom: 1px solid var(--nord1);
+				background: var(--deck-ground);
+			}
+
+			.deck-ground {
+				grid-area: viz;
+				background: var(--deck-ground);
 			}
 
 			/* Stands in for the site header: the only way back out of the deck.
@@ -129,17 +141,18 @@ const { title, description, pubDate, series } = Astro.props;
 			}
 
 			.deck-series {
-				color: var(--accent);
+				color: var(--deck-eyebrow);
 				letter-spacing: 0.14em;
 				text-transform: uppercase;
 			}
 
 			.deck-date {
-				color: var(--nord3);
+				color: var(--deck-ink-dim);
 				letter-spacing: 0.03em;
 			}
 
 			.deck-title {
+				color: var(--deck-ink);
 				font-family: var(--font-prose);
 				font-size: 1.6rem;
 				font-weight: 700;
@@ -162,6 +175,7 @@ const { title, description, pubDate, series } = Astro.props;
 			.deck::before {
 				content: '';
 				grid-area: text;
+				z-index: 1;
 				border-top: 1px solid var(--nord1);
 				align-self: start;
 				width: 100%;
