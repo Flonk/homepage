@@ -405,7 +405,7 @@ const markList = marks
 		MIRRORED_LAPS,
 		coneResponse,
 		eyeResponse,
-		splitL,
+		filteredResponse,
 		mirroredStandIn,
 	} from '../lib/cones';
 
@@ -774,8 +774,13 @@ const markList = marks
 				return [h[0] + (m[0] - h[0]) * mix, h[1], h[2], 0];
 			}
 			if (shown === 'filtered') {
-				const [near, far] = splitL(at);
-				return [h[0] + (near - h[0]) * mix, h[1], h[2], far * mix];
+				const f = filteredResponse(at);
+				return [
+					h[0] + (f[0] - h[0]) * mix,
+					h[1] + (f[1] - h[1]) * mix,
+					h[2] + (f[2] - h[2]) * mix,
+					f[3] * mix,
+				];
 			}
 			return [h[0], h[1], h[2], 0];
 		};

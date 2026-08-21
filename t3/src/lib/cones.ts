@@ -210,15 +210,44 @@ export function filterPair(nm: number): { short: number; long: number } {
 	};
 }
 
+/** Each curve at its own peak, so that dividing by these normalises them. */
+const filteredPeaks = (() => {
+	const peak = [0, 0, 0, 0];
+	for (let nm = CONE_FIRST_NM; nm <= CONE_LAST_NM; nm += 0.25) {
+		const c = coneResponse(nm);
+		const t = filterPair(nm);
+		const v = [c[0] * t.short, c[1] * t.short, c[2] * t.short, c[0] * t.long];
+		for (let i = 0; i < 4; i++) peak[i] = Math.max(peak[i], v[i]);
+	}
+	return peak.map((v) => v || 1);
+})();
+
 /**
- * The two long-wavelength readings such an arrangement produces: the same L
- * cone behind each filter. S and M are left out because both are already
- * silent by 610nm — the filters take nothing from them that the cones had.
+ * What such a pair of eyes reads: [L, M, S] from behind the short-pass, and L
+ * again from behind the long-pass.
+ *
+ * All three of the near eye's cones are behind its filter, M included. M is
+ * not silent where the filter bites — it still reads a sixth of its peak at
+ * 610nm, and a fifth of that at 630 — so leaving it whole would be drawing a
+ * cone seeing light its eye is not being given.
+ *
+ * Normalised to their own peaks, which is what every other curve on this graph
+ * is and the only reason their shapes can be compared at all. It matters for
+ * the far half of L and nowhere else: the other three peak below 610, where
+ * their filter is still fully open, so dividing changes nothing. The far half
+ * peaks at a third of L's height before this, purely because it is a tail —
+ * worth remembering that the light behind it really is that much dimmer, which
+ * is a fact about the arrangement rather than about the channel.
  */
-export function splitL(nm: number): [number, number] {
-	const l = coneResponse(nm)[0];
+export function filteredResponse(nm: number): [number, number, number, number] {
+	const c = coneResponse(nm);
 	const t = filterPair(nm);
-	return [l * t.short, l * t.long];
+	return [
+		(c[0] * t.short) / filteredPeaks[0],
+		(c[1] * t.short) / filteredPeaks[1],
+		(c[2] * t.short) / filteredPeaks[2],
+		(c[0] * t.long) / filteredPeaks[3],
+	];
 }
 
 /* ---- how much colour an eye has ------------------------------------------
