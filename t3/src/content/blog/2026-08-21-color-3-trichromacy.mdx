@@ -18,7 +18,7 @@ import VisionSplit from "../../components/VisionSplit.astro";
     DeckViz for the whole contract. */}
 <DeckViz>
   <VizPhase name="cones">
-    <ConeResponse sweep={[400, 700]} drag vision="mirrored" />
+    <ConeResponse sweep={[400, 700]} drag />
   </VizPhase>
   <VizPhase name="photo">
     <VisionSplit
@@ -29,7 +29,7 @@ import VisionSplit from "../../components/VisionSplit.astro";
   </VizPhase>
 </DeckViz>
 
-<DeckCard>
+<DeckCard vizProps={{ phase: "cones", vision: "normal" }}>
   ## We detect light via cones
 
   Inside our eyes are three different kinds of light-sensitive cells called *cones*, which are each tuned to a different range of frequencies. We call them S, M, and L for short, medium, and long wavelength cones, though they are sometimes also called blue, green, and red cones.
@@ -39,7 +39,7 @@ import VisionSplit from "../../components/VisionSplit.astro";
   Basically, when your eyes recieve a say 580nm photon, your brain will get a strong L signal, a medium M signal and no S signal. The brain then goes, hey I know this, this is yellow!
 </DeckCard>
 
-<DeckCard>
+<DeckCard vizProps={{ phase: "cones", vision: "normal" }}>
   ## Why do we need 3?
 
   Notice how the M and L cones are relatively close together, and the S cone is far away? This is because M and L cones are actually genetic mutations of a common ancestor cone that drifted apart over time!
@@ -74,9 +74,9 @@ import VisionSplit from "../../components/VisionSplit.astro";
 <DeckCard vizProps={{ phase: "cones", vision: "normal" }}>
   ## Less overlap would be better
 
-  You can also imagine how in normal vision, if the M and L cones were even closer together, the signals would become more and more similar and we would approach a deuteranopia situation.
+  You can also imagine how in normal vision, if the M and L cones were even closer together, we would be approaching a deuteranopia situation, because the 2 signals would be too similar to distinguish.
 
-  And even in normal vision, we have a bit of a color blindness situation on the red end of the spectrum, where the reds all look very similar across a 100 or so nanometers, because M and L are so close.
+  And even in normal vision, we have a bit of a color blindness situation on the red end of the spectrum, where the reds all look very similar across a 100 or so nanometers, because the M and L signals are so similar.
 
   So while the overlap is useful, it would be better to have *just enough* overlap to distinguish colors, and move the L cones further into the longer wavelengths to give us more range.
 </DeckCard>
@@ -90,7 +90,18 @@ import VisionSplit from "../../components/VisionSplit.astro";
 
   Here we've moved the L cone to be a mirror image of the S cone about the M cone's peak. This still gives us overlap in all the places we need, but now we get extra color resolution in the red end of the spectrum, and about a 50% wider range of colors overall.
 
-  There really isn't a way to visualize this, because we do not see as many colors as this hypothetical eye would, and I can hardly ask you to "imagine a new color", much like a deuteranope cannot imagine a distinct red and green.
+  There really isn't a way to visualize this, because we do not see as many colors as this hypothetical eye would, and I can hardly ask you to "imagine new kinds of red", much like a deuteranope cannot imagine a distinct red and green.
 
   As a result I've marked the "extra colors" in the rainbow with a hatching pattern and reused part of the red and cyan spectrum. These colors are not red or cyan however, they are colors that are imperceptible to us.
+</DeckCard>
+
+
+<DeckCard vizProps={{ phase: "cones", vision: "normal" }}>
+  ## But that's not us
+
+  Using the three cones we have, we can see about a million different colors, and using technology, we've found ways to trick our eyes into seeing them all using just red, green, and blue LEDs. 
+
+  This works by stimulating each of the three cones in a way that is indistinguishable from the way they would be stimulated by a real photon of that color. This is called *metamerism*, and it is the reason why we can see all the colors on our screens, even though they are not real.
+
+  Stay tuned for the next posts, where we will explore how this works in more detail, and how we can use it to create all the colors we see on our screens.
 </DeckCard>
