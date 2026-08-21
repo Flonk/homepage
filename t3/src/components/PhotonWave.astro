@@ -17,6 +17,11 @@
  * the rate the wave streams past never changes, and only the wave itself gets
  * longer or shorter.
  *
+ * Along the top runs the spectrum itself, on a logarithmic axis from 1 MHz
+ * to 10²¹ Hz, with a mark showing where the light being drawn sits on it. That
+ * axis is the honest way to show fifteen decades at once, and it is what makes
+ * the visible band come out as the two-percent slice it really is.
+ *
  * The dot riding the wave is a picture, not a photon. A real photon has no
  * position wiggling about a line, and the wave is an amplitude of a field
  * rather than a displacement of anything; the height here carries no units at
@@ -57,9 +62,21 @@ interface Props {
 	sweep?: [number, number];
 	/** How long one round trip of the sweep takes, in seconds. */
 	sweepSeconds?: number;
+	/**
+	 * Show the spectrum axis along the top, with a mark at the light being
+	 * drawn. Not to be confused with `spectral`, which is about the colour of
+	 * the wave rather than about this bar.
+	 */
+	spectrumBar?: boolean;
 }
 
-const { frequency = 545, spectral = false, sweep, sweepSeconds = 13 } = Astro.props;
+const {
+	frequency = 545,
+	spectral = false,
+	sweep,
+	sweepSeconds = 13,
+	spectrumBar = true,
+} = Astro.props;
 ---
 
 <div
@@ -69,8 +86,18 @@ const { frequency = 545, spectral = false, sweep, sweepSeconds = 13 } = Astro.pr
 	data-spectral={spectral ? 'true' : 'false'}
 	data-sweep={sweep ? sweep.join(' ') : undefined}
 	data-sweep-seconds={sweepSeconds}
+	data-spectrum-bar={spectrumBar ? 'true' : 'false'}
 >
 	<canvas data-canvas></canvas>
+	<div class="spectrum" data-spectrum>
+		{/* The visible band is too narrow to letter, which is the point of it, so
+		    its name is called out above the bar on a leader instead. */}
+		<div class="spectrum-callout"><span data-spectrum-callout>Visible</span></div>
+		<div class="spectrum-bar" data-spectrum-track>
+			<div class="spectrum-mark" data-spectrum-mark></div>
+		</div>
+		<div class="spectrum-bands" data-spectrum-bands></div>
+	</div>
 	<div class="readout">
 		<span data-light></span>
 		<span class="dim" data-slowdown></span>
@@ -99,6 +126,89 @@ const { frequency = 545, spectral = false, sweep, sweepSeconds = 13 } = Astro.pr
 		height: 100%;
 	}
 
+	/* Laid over the canvas along the top. The wave keeps to the middle half of
+	   the pane, so the two do not meet. */
+	.spectrum {
+		position: absolute;
+		top: 0.7rem;
+		left: 1rem;
+		right: 1rem;
+		pointer-events: none;
+		font-size: 0.62rem;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	.spectrum[hidden] {
+		display: none;
+	}
+
+	.spectrum-callout {
+		position: relative;
+		height: 1.15rem;
+	}
+
+	.spectrum-callout span {
+		position: absolute;
+		bottom: 0.35rem;
+		transform: translateX(-50%);
+		white-space: nowrap;
+		color: var(--ink);
+	}
+
+	/* A leader down to the sliver the label belongs to, which is far too narrow
+	   to letter and would be easy to mistake for a band boundary otherwise. */
+	.spectrum-callout span::after {
+		content: '';
+		position: absolute;
+		left: 50%;
+		top: 100%;
+		width: 1px;
+		height: 0.35rem;
+		background: currentColor;
+		opacity: 0.55;
+	}
+
+	.spectrum-bar {
+		position: relative;
+		height: 0.85rem;
+		border-radius: 2px;
+		/* Filled in from the band table; see the script. */
+		background: transparent;
+	}
+
+	/* Rides over the rainbow as well as over the dim bands, so it carries its
+	   own dark outline rather than relying on contrast with what is behind. */
+	.spectrum-mark {
+		position: absolute;
+		/* Standing proud of the bar at both ends, so that it reads as a mark
+		   against the scale rather than as one more stripe of the rainbow. */
+		top: -3px;
+		bottom: -3px;
+		width: 2px;
+		margin-left: -1px;
+		background: #fff;
+		box-shadow:
+			0 0 0 1px rgba(0, 0, 0, 0.75),
+			0 0 7px 1px rgba(255, 255, 255, 0.45);
+	}
+
+	.spectrum-bands {
+		position: relative;
+		height: 1rem;
+		margin-top: 0.3rem;
+		color: var(--ink-dim);
+	}
+
+	/* :global, because these labels are made by the script, and so never carry
+	   the attribute a scoped selector is compiled to look for. */
+	.spectrum-bands :global(span) {
+		position: absolute;
+		top: 0;
+		transform: translateX(-50%);
+		white-space: nowrap;
+	}
+
 	.readout {
 		position: absolute;
 		right: 0.75rem;
@@ -123,6 +233,12 @@ const { frequency = 545, spectral = false, sweep, sweepSeconds = 13 } = Astro.pr
 		}
 		.readout .dim {
 			font-size: 0.65rem;
+		}
+		.spectrum {
+			left: 0.6rem;
+			right: 0.6rem;
+			font-size: 0.5rem;
+			letter-spacing: 0.05em;
 		}
 	}
 </style>
@@ -191,6 +307,38 @@ const { frequency = 545, spectral = false, sweep, sweepSeconds = 13 } = Astro.pr
 		return [enc(r), enc(g), enc(b)];
 	}
 
+	/* ---- the spectrum axis ----------------------------------------------
+	   Fifteen decades, so the axis has to be logarithmic; a linear one would
+	   put everything below X-rays in the first pixel. The ends are chosen to
+	   take in what the card talks about — AM radio at the bottom, gamma at the
+	   top — and the visible band comes out as the two percent of it that it
+	   really is, which is worth more than any amount of saying so.
+
+	   Boundaries between bands are conventional rather than physical: nothing
+	   happens to the light at 300 GHz. The visible band is the exception, and
+	   it is set to 380–780nm, which is the range the colour approximation
+	   above is defined over — so the rainbow runs to the ends of the band
+	   rather than stopping short of them or running past into black.
+
+	   The unlit bands are tinted rather than coloured, and the two either side
+	   of the rainbow lean warm and cool: infrared is beyond red, ultraviolet is
+	   beyond violet, and the names are only worth so much. */
+	const SPECTRUM_LO_HZ = 1e6;
+	const SPECTRUM_HI_HZ = 1e21;
+	const BANDS: { name: string; to: number; tint: string | null }[] = [
+		{ name: 'Radio', to: 3e8, tint: '#39404a' },
+		{ name: 'Microwave', to: 3e11, tint: '#454d5a' },
+		{ name: 'Infrared', to: 3.843e14, tint: '#5c3a33' },
+		{ name: 'Visible', to: 7.889e14, tint: null },
+		{ name: 'Ultraviolet', to: 3e16, tint: '#453569' },
+		{ name: 'X-ray', to: 3e19, tint: '#4a5560' },
+		{ name: 'Gamma', to: SPECTRUM_HI_HZ, tint: '#5e6773' },
+	];
+
+	/** Where a frequency in Hz falls along the axis, as a fraction of its width. */
+	const spectrumPos = (hz: number) =>
+		Math.log(hz / SPECTRUM_LO_HZ) / Math.log(SPECTRUM_HI_HZ / SPECTRUM_LO_HZ);
+
 	/** A pair of frequencies in THz, low first, or null for anything else. */
 	function parseSweep(v: unknown): [number, number] | null {
 		const raw = typeof v === 'string' ? v.split(/[\s,]+/) : Array.isArray(v) ? v : null;
@@ -205,12 +353,52 @@ const { frequency = 545, spectral = false, sweep, sweepSeconds = 13 } = Astro.pr
 		root.dataset.ready = 'true';
 
 		const canvas = root.querySelector<HTMLCanvasElement>('[data-canvas]')!;
+		const spectrumEl = root.querySelector<HTMLElement>('[data-spectrum]')!;
+		const trackEl = root.querySelector<HTMLElement>('[data-spectrum-track]')!;
+		const markEl = root.querySelector<HTMLElement>('[data-spectrum-mark]')!;
+		const bandsEl = root.querySelector<HTMLElement>('[data-spectrum-bands]')!;
+		const calloutEl = root.querySelector<HTMLElement>('[data-spectrum-callout]')!;
 		const ctx = canvas.getContext('2d')!;
 		const outLight = root.querySelector<HTMLElement>('[data-light]')!;
 		const outSlow = root.querySelector<HTMLElement>('[data-slowdown]')!;
 		outSlow.textContent = `time slowed ${SLOWDOWN_TEXT}`;
 
 		const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+		/* The axis is fixed, so it is drawn once as a gradient and a row of
+		   labels rather than redrawn per frame; only the mark moves. */
+		(function buildSpectrum() {
+			const stops: string[] = [];
+			const pct = (hz: number) => spectrumPos(hz) * 100;
+			let from = SPECTRUM_LO_HZ;
+			for (const band of BANDS) {
+				const a = pct(from);
+				const z = pct(band.to);
+				const mid = (a + z) / 2;
+				if (band.tint) {
+					// Hard stops at both edges, so the bands read as bands.
+					stops.push(`${band.tint} ${a}%`, `${band.tint} ${z}%`);
+					const label = document.createElement('span');
+					label.textContent = band.name;
+					label.style.left = `${mid}%`;
+					bandsEl.append(label);
+				} else {
+					// Sampled geometrically, matching the axis, so the rainbow is not
+					// bunched towards one end of its own band.
+					const STEPS = 24;
+					for (let i = 0; i <= STEPS; i++) {
+						const t = i / STEPS;
+						const hz = from * Math.pow(band.to / from, t);
+						const nm = Math.min(780, Math.max(380, C_NM_PER_S / hz));
+						const [r, g, b] = wavelengthRgb(nm);
+						stops.push(`rgb(${r} ${g} ${b}) ${a + (z - a) * t}%`);
+					}
+					calloutEl.style.left = `${mid}%`;
+				}
+				from = band.to;
+			}
+			trackEl.style.background = `linear-gradient(to right, ${stops.join(', ')})`;
+		})();
 
 		/* Parameters arrive at the stage, or at the phase of it this belongs to;
 		   see DeckViz. A card's set is complete rather than a patch, so anything
@@ -223,9 +411,21 @@ const { frequency = 545, spectral = false, sweep, sweepSeconds = 13 } = Astro.pr
 		const AUTHORED = Math.max(1, Number(root.dataset.frequency) || 545);
 		const AUTHORED_SPECTRAL = root.dataset.spectral === 'true';
 		const AUTHORED_SWEEP = parseSweep(root.dataset.sweep);
+		const AUTHORED_BAR = root.dataset.spectrumBar !== 'false';
 		const SWEEP_SECS = Math.max(1, Number(root.dataset.sweepSeconds) || 13);
 		let wanted = AUTHORED;
 		let spectral = AUTHORED_SPECTRAL;
+		let showBar = AUTHORED_BAR;
+		// Settled now rather than on the next frame: a pane that is not animating
+		// still has to show the axis.
+		const applyBar = () => {
+			if (spectrumEl.hidden === showBar) spectrumEl.hidden = !showBar;
+		};
+		const placeMark = () => {
+			const p = Math.min(1, Math.max(0, spectrumPos(freqThz * 1e12)));
+			markEl.style.left = `${(p * 100).toFixed(3)}%`;
+		};
+		applyBar();
 		// Eased rather than jumped, so a card changing the colour shows the wave
 		// stretching into its new shape instead of cutting to it.
 		let freqThz = AUTHORED;
@@ -267,12 +467,15 @@ const { frequency = 545, spectral = false, sweep, sweepSeconds = 13 } = Astro.pr
 			sweeping = next;
 		};
 		setSweep(AUTHORED_SWEEP);
+		placeMark();
 
 		host?.addEventListener('viz:props', (e) => {
 			const p = (e as CustomEvent).detail ?? {};
 			wanted = 'frequency' in p ? Math.max(1, Number(p.frequency) || AUTHORED) : AUTHORED;
 			spectral = 'spectral' in p ? Boolean(p.spectral) : AUTHORED_SPECTRAL;
 			setSweep('sweep' in p ? parseSweep(p.sweep) : AUTHORED_SWEEP);
+			showBar = 'spectrumBar' in p ? Boolean(p.spectrumBar) : AUTHORED_BAR;
+			applyBar();
 		});
 
 		/* ---- the trace ------------------------------------------------------
@@ -427,6 +630,8 @@ const { frequency = 545, spectral = false, sweep, sweepSeconds = 13 } = Astro.pr
 			ctx.globalAlpha = 1;
 
 			outLight.textContent = `${Math.round(nm)} nm · ${Math.round(freqThz)} THz`;
+
+			if (showBar) placeMark();
 		}
 
 		requestAnimationFrame(frame);
