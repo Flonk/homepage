@@ -2,10 +2,11 @@
 /**
  * An interactive RGB colour cube.
  *
- *   bars (R/G/B)  |  translucent spinning cube  |  swatch
+ *   bars (R/G/B)  |  spinning cube  |  swatch
  *
  * A dot traces a Lissajous curve through the cube; the bars and the swatch show
- * the colour at the dot. Drag the cube to spin it — it keeps its momentum and
+ * the colour at the dot. The cube is opaque, so the dot is always drawn on top
+ * and its opacity stands in for how much material is in front of it. Drag the cube to spin it — it keeps its momentum and
  * eases back to its ambient rotation. Move any bar and the dot stops tracing to
  * follow your input, resuming a few seconds after you stop.
  */
@@ -270,16 +271,22 @@ const { idleResume = 3 } = Astro.props;
 	/* --- face textures ------------------------------------------------------
 	   A face's colours never change, only where it is on screen. So each face is
 	   rasterised once, pixel by pixel, into its own texture and then mapped onto
-	   the projected face with an affine transform. That gives an exact gradient
-	   with no subdivision at all — the grid of flat-shaded quads this replaced
-	   could only ever approximate one, and showed visible banding.
+	   the projected face. That gives an exact gradient rather than the banded
+	   approximation a grid of flat-shaded quads produced.
 
-	   It is also why the projection is orthographic: an affine transform can map
-	   a square onto a parallelogram, which is what a cube face projects to
-	   without perspective, but not onto the general quadrilateral perspective
-	   would give. Textures are identical for every instance, so they are built
-	   once and shared. */
+	   Under perspective a face projects to a general quadrilateral, which no
+	   affine transform can hit, so each face is drawn as a K x K grid of texture
+	   pieces. The corners of every piece are projected properly, so the face's
+	   outline — and the cube's silhouette — stay exact; only the interpolation
+	   inside a piece is approximated, and that error falls off as 1/K². Each
+	   face is clipped to its own outline so the deliberate overlap between
+	   pieces, which hides hairline seams, cannot spill past the edge.
+
+	   Textures are identical for every instance, so they are built once and
+	   shared. */
 	const TEX = 128;
+	const SUB = 8; // pieces per face edge; TEX must divide by this
+	const STEP = TEX / SUB;
 	const FACES: Array<{ axis: number; val: number }> = [];
 	for (let axis = 0; axis < 3; axis++) for (const val of [0, 1]) FACES.push({ axis, val });
 
@@ -330,19 +337,6 @@ const { idleResume = 3 } = Astro.props;
 		const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 		const textures = buildFaceTextures();
 
-		// 12 cube edges, each taken from its lower-indexed vertex
-		const edgeXYZ: number[] = [];
-		for (let i = 0; i < 8; i++) {
-			for (let bit = 0; bit < 3; bit++) {
-				const j = i | (1 << bit);
-				if (j === i) continue;
-				edgeXYZ.push(
-					(i >> 0) & 1, (i >> 1) & 1, (i >> 2) & 1,
-					(j >> 0) & 1, (j >> 1) & 1, (j >> 2) & 1,
-				);
-			}
-		}
-		const EDGES = edgeXYZ.length / 6;
 
 		/* ---- orientation ---------------------------------------------------
 		   Ambient spin about a deliberately irregular axis, plus a user offset
@@ -438,19 +432,11 @@ const { idleResume = 3 } = Astro.props;
 
 		/* ---- render loop ------------------------------------------------------ */
 
+		// Distance from the eye to the origin, in cube-side units. Drives both the
+		// projection and the ray used to measure material in front of the dot.
+		const FOCAL = 3.4;
 		let last = 0;
-		const order: number[] = [];
-		for (let i = 0; i < 6 + EDGES + 1; i++) order.push(i);
-		const depth = new Float64Array(6 + EDGES + 1);
-		const DOT = 6 + EDGES;
-
-		// scratch: projected face corners (origin, +u, +v) and edge endpoints
-		const fx = new Float64Array(18);
-		const fy = new Float64Array(18);
-		const ex = new Float64Array(EDGES * 2);
-		const ey = new Float64Array(EDGES * 2);
-		let dotX = 0;
-		let dotY = 0;
+		const front = new Int32Array(6);
 
 		function frame(now: number) {
 			requestAnimationFrame(frame);
@@ -533,107 +519,165 @@ const { idleResume = 3 } = Astro.props;
 				}
 			}
 
-			// --- project (orthographic; see the note on face textures)
-			const scale = Math.min(w, h) * 0.5;
+			// --- project (perspective)
+			const scale = Math.min(w, h) * 0.44;
 			const cx = w / 2;
 			const cy = h / 2;
 
-			const px = (x: number, y: number, z: number) =>
-				cx + (m[0] * (x - 0.5) + m[3] * (y - 0.5) + m[6] * (z - 0.5)) * scale;
-			const py = (x: number, y: number, z: number) =>
-				cy - (m[1] * (x - 0.5) + m[4] * (y - 0.5) + m[7] * (z - 0.5)) * scale;
+			const vx = (x: number, y: number, z: number) =>
+				m[0] * (x - 0.5) + m[3] * (y - 0.5) + m[6] * (z - 0.5);
+			const vy = (x: number, y: number, z: number) =>
+				m[1] * (x - 0.5) + m[4] * (y - 0.5) + m[7] * (z - 0.5);
 			const pz = (x: number, y: number, z: number) =>
 				m[2] * (x - 0.5) + m[5] * (y - 0.5) + m[8] * (z - 0.5);
 
+			const px = (x: number, y: number, z: number) =>
+				cx + vx(x, y, z) * scale * (FOCAL / (FOCAL - pz(x, y, z)));
+			const py = (x: number, y: number, z: number) =>
+				cy - vy(x, y, z) * scale * (FOCAL / (FOCAL - pz(x, y, z)));
+
+			// --- which faces point at us. The solid is opaque and convex, so the
+			// front-facing set never overlaps itself and needs no depth sorting.
+			const camV = [0, 0, FOCAL];
+			let nFront = 0;
 			for (let f = 0; f < 6; f++) {
 				const { axis, val } = FACES[f];
 				const u = (axis + 1) % 3;
 				const v = (axis + 2) % 3;
-				const corner = (uu: number, vv: number) => {
+				const mid = [0.5, 0.5, 0.5];
+				mid[axis] = val;
+				const nModel = [0, 0, 0];
+				nModel[axis] = val === 1 ? 1 : -1;
+				// outward normal and centre, both in view space
+				const nvx = m[0] * nModel[0] + m[3] * nModel[1] + m[6] * nModel[2];
+				const nvy = m[1] * nModel[0] + m[4] * nModel[1] + m[7] * nModel[2];
+				const nvz = m[2] * nModel[0] + m[5] * nModel[1] + m[8] * nModel[2];
+				const cvx = vx(mid[0], mid[1], mid[2]);
+				const cvy = vy(mid[0], mid[1], mid[2]);
+				const cvz = pz(mid[0], mid[1], mid[2]);
+				const facing =
+					nvx * (camV[0] - cvx) + nvy * (camV[1] - cvy) + nvz * (camV[2] - cvz);
+				if (facing <= 0) continue;
+				front[nFront++] = f;
+				void u;
+				void v;
+			}
+
+			// --- how much cube sits between the dot and the camera.
+			// Work in model space, where the cube is the unit box and the dot is
+			// simply its own rgb. The camera is the view-space eye rotated back.
+			const camM = [
+				0.5 + m[2] * FOCAL,
+				0.5 + m[5] * FOCAL,
+				0.5 + m[8] * FOCAL,
+			];
+			const dm = [rgb[0] - camM[0], rgb[1] - camM[1], rgb[2] - camM[2]];
+			let tEnter = 0;
+			for (let a = 0; a < 3; a++) {
+				if (Math.abs(dm[a]) < 1e-9) continue;
+				const ta = (0 - camM[a]) / dm[a];
+				const tb = (1 - camM[a]) / dm[a];
+				tEnter = Math.max(tEnter, Math.min(ta, tb));
+			}
+			// t = 1 is the dot, so the remaining fraction is the material in front.
+			const thickness = Math.max(0, 1 - tEnter) * Math.hypot(dm[0], dm[1], dm[2]);
+			// Beer-Lambert-ish, with a floor so a deep dot stays findable.
+			const dotAlpha = Math.max(0.16, Math.exp(-1.7 * thickness));
+
+			ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+			ctx.clearRect(0, 0, w, h);
+			ctx.imageSmoothingEnabled = true;
+			ctx.imageSmoothingQuality = "high";
+			ctx.globalAlpha = 1;
+
+			for (let k = 0; k < nFront; k++) {
+				const f = front[k];
+				const { axis, val } = FACES[f];
+				const u = (axis + 1) % 3;
+				const v = (axis + 2) % 3;
+				const at = (uu: number, vv: number) => {
 					const p = [0, 0, 0];
 					p[axis] = val;
 					p[u] = uu;
 					p[v] = vv;
 					return p;
 				};
-				const c00 = corner(0, 0);
-				const c10 = corner(1, 0);
-				const c01 = corner(0, 1);
-				const c11 = corner(1, 1);
-				fx[f * 3] = px(c00[0], c00[1], c00[2]);
-				fy[f * 3] = py(c00[0], c00[1], c00[2]);
-				fx[f * 3 + 1] = px(c10[0], c10[1], c10[2]);
-				fy[f * 3 + 1] = py(c10[0], c10[1], c10[2]);
-				fx[f * 3 + 2] = px(c01[0], c01[1], c01[2]);
-				fy[f * 3 + 2] = py(c01[0], c01[1], c01[2]);
-				depth[f] =
-					(pz(c00[0], c00[1], c00[2]) +
-						pz(c10[0], c10[1], c10[2]) +
-						pz(c01[0], c01[1], c01[2]) +
-						pz(c11[0], c11[1], c11[2])) /
-					4;
-			}
 
-			for (let i = 0; i < EDGES; i++) {
-				const o = i * 6;
-				ex[i * 2] = px(edgeXYZ[o], edgeXYZ[o + 1], edgeXYZ[o + 2]);
-				ey[i * 2] = py(edgeXYZ[o], edgeXYZ[o + 1], edgeXYZ[o + 2]);
-				ex[i * 2 + 1] = px(edgeXYZ[o + 3], edgeXYZ[o + 4], edgeXYZ[o + 5]);
-				ey[i * 2 + 1] = py(edgeXYZ[o + 3], edgeXYZ[o + 4], edgeXYZ[o + 5]);
-				depth[6 + i] =
-					(pz(edgeXYZ[o], edgeXYZ[o + 1], edgeXYZ[o + 2]) +
-						pz(edgeXYZ[o + 3], edgeXYZ[o + 4], edgeXYZ[o + 5])) /
-					2;
-			}
-
-			dotX = px(rgb[0], rgb[1], rgb[2]);
-			dotY = py(rgb[0], rgb[1], rgb[2]);
-			depth[DOT] = pz(rgb[0], rgb[1], rgb[2]);
-
-			// --- painter's algorithm, back to front, so translucency composites.
-			// Faces of a convex solid never interpenetrate, so sorting the six of
-			// them is enough — no per-fragment sorting needed.
-			order.sort((a, b) => depth[a] - depth[b]);
-
-			ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-			ctx.clearRect(0, 0, w, h);
-			ctx.imageSmoothingEnabled = true;
-			ctx.imageSmoothingQuality = 'high';
-
-			for (const id of order) {
-				if (id < 6) {
-					// Map the face's texture onto its projected parallelogram.
-					const o = id * 3;
-					const ax = (fx[o + 1] - fx[o]) / TEX;
-					const ay = (fy[o + 1] - fy[o]) / TEX;
-					const bx = (fx[o + 2] - fx[o]) / TEX;
-					const by = (fy[o + 2] - fy[o]) / TEX;
-					ctx.globalAlpha = 0.5;
-					ctx.setTransform(
-						dpr * ax, dpr * ay,
-						dpr * bx, dpr * by,
-						dpr * fx[o], dpr * fy[o],
-					);
-					// Slightly over-draw to hide hairline seams between faces.
-					ctx.drawImage(textures[id], 0, 0, TEX, TEX, -0.5, -0.5, TEX + 1, TEX + 1);
-					ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-				} else if (id < 6 + EDGES) {
-					const i = id - 6;
-					ctx.globalAlpha = 0.5;
-					ctx.beginPath();
-					ctx.moveTo(ex[i * 2], ey[i * 2]);
-					ctx.lineTo(ex[i * 2 + 1], ey[i * 2 + 1]);
-					ctx.strokeStyle = 'rgba(236,239,244,0.4)';
-					ctx.lineWidth = 1;
-					ctx.stroke();
-				} else {
-					ctx.globalAlpha = 1;
-					ctx.beginPath();
-					ctx.arc(dotX, dotY, Math.max(4, scale * 0.038), 0, Math.PI * 2);
-					ctx.fillStyle = '#000';
-					ctx.fill();
+				// clip to the face outline, so piece overlap cannot spill past it
+				const q = [at(0, 0), at(1, 0), at(1, 1), at(0, 1)];
+				ctx.save();
+				ctx.beginPath();
+				for (let c = 0; c < 4; c++) {
+					const X = px(q[c][0], q[c][1], q[c][2]);
+					const Y = py(q[c][0], q[c][1], q[c][2]);
+					if (c === 0) ctx.moveTo(X, Y);
+					else ctx.lineTo(X, Y);
 				}
+				ctx.closePath();
+				ctx.clip();
+
+				for (let i = 0; i < SUB; i++) {
+					for (let j = 0; j < SUB; j++) {
+						const u0 = i / SUB;
+						const u1 = (i + 1) / SUB;
+						const v0 = j / SUB;
+						const v1 = (j + 1) / SUB;
+						const p00 = at(u0, v0);
+						const p10 = at(u1, v0);
+						const p01 = at(u0, v1);
+						const X0 = px(p00[0], p00[1], p00[2]);
+						const Y0 = py(p00[0], p00[1], p00[2]);
+						const ax = (px(p10[0], p10[1], p10[2]) - X0) / STEP;
+						const ay = (py(p10[0], p10[1], p10[2]) - Y0) / STEP;
+						const bx = (px(p01[0], p01[1], p01[2]) - X0) / STEP;
+						const by = (py(p01[0], p01[1], p01[2]) - Y0) / STEP;
+						const sxs = i * STEP;
+						const sys = j * STEP;
+						ctx.setTransform(
+							dpr * ax, dpr * ay,
+							dpr * bx, dpr * by,
+							dpr * (X0 - ax * sxs - bx * sys),
+							dpr * (Y0 - ay * sxs - by * sys),
+						);
+						// overdraw by half a texel; the clip keeps it inside the face
+						ctx.drawImage(
+							textures[f],
+							sxs, sys, STEP, STEP,
+							sxs - 0.5, sys - 0.5, STEP + 1, STEP + 1,
+						);
+					}
+				}
+				ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+				ctx.restore();
+
+				// face outline: adjacent faces share an edge colour exactly, so
+				// without these the solid reads as a blob with no visible structure
+				ctx.beginPath();
+				for (let c = 0; c < 4; c++) {
+					const X = px(q[c][0], q[c][1], q[c][2]);
+					const Y = py(q[c][0], q[c][1], q[c][2]);
+					if (c === 0) ctx.moveTo(X, Y);
+					else ctx.lineTo(X, Y);
+				}
+				ctx.closePath();
+				ctx.strokeStyle = "rgba(236,239,244,0.28)";
+				ctx.lineWidth = 1;
+				ctx.stroke();
 			}
+
+			// --- the dot, always on top. Its opacity stands in for how much of the
+			// (now opaque) cube is in front of it.
+			ctx.globalAlpha = dotAlpha;
+			ctx.beginPath();
+			ctx.arc(
+				px(rgb[0], rgb[1], rgb[2]),
+				py(rgb[0], rgb[1], rgb[2]),
+				Math.max(4, scale * 0.038),
+				0,
+				Math.PI * 2,
+			);
+			ctx.fillStyle = "#000";
+			ctx.fill();
 
 			ctx.globalAlpha = 1;
 		}
