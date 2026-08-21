@@ -241,11 +241,16 @@ const humanHueAt = (fraction: number) => {
  * So this is a tally rather than a likeness. At the wavelength where their eye
  * is a third of the way through everything it can tell apart, we show the
  * colour a third of the way through everything we can — and when they run past
- * the end of ours, the rainbow starts over. `lap` counts how many times, so
- * the drawing can say so rather than quietly pretending the colours repeat.
+ * the end of ours, the rainbow turns round and comes back rather than starting
+ * over from the far end. Turning round keeps the join continuous: the first
+ * lap arrives at red and the second sets off from red, so nothing snaps, and
+ * the reader can still see that the same colours are being spent twice.
+ * `lap` counts how many times, so the drawing can say so rather than quietly
+ * letting the repeat pass for a coincidence.
  */
 export function mirroredStandIn(nm: number): { nm: number; lap: number } {
 	const along = arcAt(MIRRORED_HUE.arc, nm) / HUMAN_HUE.total;
 	const lap = Math.floor(along);
-	return { lap, nm: humanHueAt(along - lap) };
+	const into = along - lap;
+	return { lap, nm: humanHueAt(lap % 2 === 0 ? into : 1 - into) };
 }

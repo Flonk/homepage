@@ -587,15 +587,20 @@ const {
 						ctx.beginPath();
 						ctx.rect(plot.x + from, stripY, x - from, STRIP_H);
 						ctx.clip();
-						ctx.globalAlpha = 0.32 * Math.min(1, (mix - 0.5) * 2);
+						ctx.globalAlpha = 0.35 * Math.min(1, (mix - 0.5) * 2);
 						ctx.strokeStyle = '#000';
-						ctx.lineWidth = 2;
-						for (let d = -STRIP_H; d < x - from; d += 7) {
-							ctx.beginPath();
+						ctx.lineWidth = 1.5;
+						/* Both diagonals in one path and one stroke: stroked
+						   separately, the alpha would double wherever they cross and
+						   the crossings would be the loudest thing on the strip. */
+						ctx.beginPath();
+						for (let d = -STRIP_H; d < x - from + STRIP_H; d += 9) {
 							ctx.moveTo(plot.x + from + d, stripY + STRIP_H);
 							ctx.lineTo(plot.x + from + d + STRIP_H, stripY);
-							ctx.stroke();
+							ctx.moveTo(plot.x + from + d, stripY);
+							ctx.lineTo(plot.x + from + d + STRIP_H, stripY + STRIP_H);
 						}
+						ctx.stroke();
 						ctx.restore();
 						from = -1;
 					}
