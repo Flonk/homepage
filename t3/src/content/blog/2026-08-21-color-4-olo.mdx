@@ -1,0 +1,28 @@
+---
+title: "Colour #4: Olo and Other Impossible Colors"
+series: "Colour"
+format: "deck"
+ground: "dark"
+description: ""
+pubDate: "August 21 2026"
+---
+
+import DeckCard from "../../components/DeckCard.astro";
+import DeckViz from "../../components/DeckViz.astro";
+import ConeResponse from "../../components/ConeResponse.astro";
+
+{/* Part three's graph, carried over, because this post picks up exactly where
+    it left off: the curves are what say which cone signals light can and
+    cannot produce, and olo is one of the ones it cannot. A viz of its own —
+    the space of possible signals, with the unreachable part marked — is the
+    thing to build here when the prose knows what it wants. Cards drive
+    whatever is in here with vizProps; see DeckViz for the whole contract. */}
+<DeckViz>
+  <ConeResponse sweep={[400, 700]} drag />
+</DeckViz>
+
+<DeckCard>
+  ## A colour nobody had seen
+
+  Bla di bla
+</DeckCard>
