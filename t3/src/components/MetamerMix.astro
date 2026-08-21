@@ -1,0 +1,384 @@
+---
+/**
+ * Four lights, one knob, and a colour that cannot move.
+ *
+ * Three cones cannot pin down four lights. So the mixtures that produce a
+ * given colour are not one mixture but a whole line of them, and this walks
+ * along it: the spikes rise and fall, one of them goes out altogether and
+ * another takes its place, and the disc and the three readings do not stir.
+ *
+ * That is metamerism, and the point is what the stillness costs. Whatever
+ * arrived — a spike here, a broad hump there, sunlight, a screen — the eye
+ * keeps three numbers and throws the rest away, and two lights that agree on
+ * those three are the same colour for good. No looking closer will separate
+ * them, because there is nothing left to look at.
+ *
+ * The invariance is exact rather than close. See the script for what had to be
+ * true for that, and what it cost to get it.
+ */
+import { wavelengthCss } from '../lib/spectrum';
+
+interface Props {
+	/** The wavelengths, in nanometres. Four of them: three would pin the mixture. */
+	lights?: number[];
+	/** Where on the line to start, as a weight per light. */
+	base?: number[];
+	/** The stretch of spectrum the spikes stand on. */
+	from?: number;
+	to?: number;
+}
+
+const {
+	lights = [460, 530, 580, 660],
+	/* Not 0.5: at that height the L reading sits a thousandth from a rounding
+	   boundary, and the 0.001 the two observers disagree by is enough to tip the
+	   printed digit once during the travel — which reads as the thing moving. */
+	base = [0.53, 0.53, 0.53, 0.53],
+	from = 400,
+	to = 700,
+} = Astro.props;
+
+const STOPS = 60;
+const bar = Array.from({ length: STOPS + 1 }, (_, i) => {
+	const t = i / STOPS;
+	return `${wavelengthCss(from + (to - from) * t)} ${(t * 100).toFixed(2)}%`;
+}).join(', ');
+---
+
+<div
+	class="meta"
+	data-metamer
+	data-from={from}
+	data-to={to}
+	data-lights={JSON.stringify(lights)}
+	data-base={JSON.stringify(base)}
+	style={`--bar: linear-gradient(to right, ${bar})`}
+>
+	<div class="meta-head">
+		<div class="meta-disc" data-out></div>
+		<dl class="tally">
+			<div class="tally-row" data-cone="s">
+				<dt>S</dt>
+				<dd><span class="tally-bar"><i data-bar="s"></i></span><b data-val="s">0.00</b></dd>
+			</div>
+			<div class="tally-row" data-cone="m">
+				<dt>M</dt>
+				<dd><span class="tally-bar"><i data-bar="m"></i></span><b data-val="m">0.00</b></dd>
+			</div>
+			<div class="tally-row" data-cone="l">
+				<dt>L</dt>
+				<dd><span class="tally-bar"><i data-bar="l"></i></span><b data-val="l">0.00</b></dd>
+			</div>
+		</dl>
+	</div>
+
+	{/* The mixture itself: one spike per light, standing on the spectrum it is
+	    drawn from. */}
+	<div class="meta-plot">
+		<div class="meta-spikes" data-spikes></div>
+		<div class="meta-bar"></div>
+	</div>
+
+	<input
+		class="meta-range"
+		data-no-swipe
+		data-knob
+		type="range"
+		min="0"
+		max="1000"
+		step="1"
+		value="0"
+		aria-label="Which of the mixtures that make this colour"
+	/>
+</div>
+
+<style>
+	.meta {
+		width: 100%;
+		height: 100%;
+		min-width: 0;
+		min-height: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: clamp(0.6rem, 3cqh, 1.5rem);
+		padding: 0 1.5rem;
+		font-family: var(--font-mono);
+		--ink: var(--deck-ink, #35302a);
+		--ink-dim: var(--deck-ink-dim, #7a7264);
+		--l: #ff6b6b;
+		--m: #64d98a;
+		--s: #6fa8ff;
+		color: var(--ink);
+	}
+
+	.meta-head {
+		display: flex;
+		align-items: center;
+		gap: clamp(1.25rem, 5cqw, 3rem);
+	}
+
+	.meta-disc {
+		width: clamp(2.5rem, 18cqh, 5.5rem);
+		aspect-ratio: 1;
+		border-radius: 50%;
+		background: #000;
+		box-shadow:
+			0 0 0 1px color-mix(in srgb, var(--ink) 22%, transparent),
+			0 0 22px 2px rgb(0 0 0 / 0.35);
+	}
+
+	.tally {
+		margin: 0;
+		display: grid;
+		gap: 0.3rem;
+		font-size: 0.85rem;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.tally-row {
+		display: flex;
+		align-items: center;
+		gap: 0.45rem;
+	}
+
+	.tally dt {
+		width: 1ch;
+		font-weight: 700;
+	}
+
+	.tally dd {
+		margin: 0;
+		display: flex;
+		align-items: center;
+		gap: 0.45rem;
+	}
+
+	.tally-bar {
+		display: block;
+		width: clamp(3.5rem, 12cqw, 8rem);
+		height: 0.45rem;
+		border-radius: 2px;
+		background: color-mix(in srgb, var(--ink) 14%, transparent);
+		overflow: hidden;
+	}
+
+	.tally-bar i {
+		display: block;
+		height: 100%;
+		width: 0;
+		border-radius: 2px;
+	}
+
+	.tally-row[data-cone='l'] dt {
+		color: var(--l);
+	}
+	.tally-row[data-cone='m'] dt {
+		color: var(--m);
+	}
+	.tally-row[data-cone='s'] dt {
+		color: var(--s);
+	}
+	.tally-row[data-cone='l'] .tally-bar i {
+		background: var(--l);
+	}
+	.tally-row[data-cone='m'] .tally-bar i {
+		background: var(--m);
+	}
+	.tally-row[data-cone='s'] .tally-bar i {
+		background: var(--s);
+	}
+
+	.tally b {
+		width: 4ch;
+		font-weight: 400;
+		color: var(--ink-dim);
+	}
+
+	.meta-plot {
+		width: min(100%, 46rem);
+	}
+
+	.meta-spikes {
+		position: relative;
+		height: clamp(3rem, 20cqh, 8rem);
+	}
+
+	/* One spike per light. Absolute, so a weight is a height and nothing has to
+	   be laid out around anything. */
+	.meta-spikes :global(i) {
+		position: absolute;
+		bottom: 0;
+		width: 0.7rem;
+		margin-left: -0.35rem;
+		border-radius: 2px 2px 0 0;
+		box-shadow: 0 0 0 1px rgb(0 0 0 / 0.5);
+	}
+
+	.meta-bar {
+		height: 1.1rem;
+		border-radius: 0 0 3px 3px;
+		background: var(--bar);
+	}
+
+	.meta-range {
+		width: min(100%, 46rem);
+		margin: 0;
+		accent-color: var(--accent);
+		touch-action: none;
+		cursor: grab;
+	}
+
+	.meta-range:active {
+		cursor: grabbing;
+	}
+
+	@container viz (max-width: 30rem) {
+		.tally {
+			font-size: 0.7rem;
+			gap: 0.22rem;
+		}
+	}
+</style>
+
+<script>
+	import { lightColumns, mixCones, mixRgb, type Light } from '../lib/spectrum';
+
+	/* ---- the line of mixtures that all look alike ------------------------
+	   Four lights, three numbers to match. One weight is free, so the answer
+	   is a line: any weights of the form base + t·n, where n is the direction
+	   the three numbers do not notice.
+
+	   Which three numbers, though, is the whole difficulty. The cones and the
+	   colour on screen come from two different measurements of the standard
+	   observer — the cone fundamentals from Stockman & Sharpe, the drawn
+	   colour by way of the CIE 1931 matching functions — and they do not quite
+	   agree. Hold the cone readings still and the disc drifts by 34 of 255,
+	   which is plainly visible and would look like a bug. So the direction is
+	   taken from XYZ, which makes the drawn colour exactly constant, and the
+	   wavelengths were then chosen so that the cone readings come along: at
+	   460, 530, 580 and 660nm they move by 0.001, which is nothing at two
+	   decimal places. Both readings hold still because the lights were picked
+	   so they could. */
+	function nullDirection(rows: number[][]): number[] | null {
+		const m = rows.map((r) => [...r]);
+		const n = m[0].length;
+		const pivots: number[] = [];
+		let row = 0;
+		for (let c = 0; c < n && row < m.length; c++) {
+			let best = 1e-12;
+			let p = -1;
+			for (let r = row; r < m.length; r++) {
+				if (Math.abs(m[r][c]) > best) {
+					best = Math.abs(m[r][c]);
+					p = r;
+				}
+			}
+			if (p < 0) continue;
+			[m[row], m[p]] = [m[p], m[row]];
+			const d = m[row][c];
+			for (let k = 0; k < n; k++) m[row][k] /= d;
+			for (let r = 0; r < m.length; r++) {
+				if (r === row) continue;
+				const f = m[r][c];
+				for (let k = 0; k < n; k++) m[r][k] -= f * m[row][k];
+			}
+			pivots.push(c);
+			row++;
+		}
+		const free = [...Array(n).keys()].find((c) => !pivots.includes(c));
+		if (free === undefined) return null;
+		const dir = new Array(n).fill(0);
+		dir[free] = 1;
+		pivots.forEach((c, i) => {
+			dir[c] = -m[i][free];
+		});
+		return dir;
+	}
+
+	function initMetamer(root: HTMLElement) {
+		if (root.dataset.ready === 'true') return;
+		root.dataset.ready = 'true';
+
+		const outEl = root.querySelector<HTMLElement>('[data-out]')!;
+		const spikesEl = root.querySelector<HTMLElement>('[data-spikes]')!;
+		const knob = root.querySelector<HTMLInputElement>('[data-knob]')!;
+		const bars = Object.fromEntries(
+			(['s', 'm', 'l'] as const).map((k) => [k, root.querySelector<HTMLElement>(`[data-bar='${k}']`)!]),
+		);
+		const vals = Object.fromEntries(
+			(['s', 'm', 'l'] as const).map((k) => [k, root.querySelector<HTMLElement>(`[data-val='${k}']`)!]),
+		);
+
+		const nm: number[] = JSON.parse(root.dataset.lights ?? '[]');
+		const base: number[] = JSON.parse(root.dataset.base ?? '[]');
+		const from = Number(root.dataset.from) || 400;
+		const to = Number(root.dataset.to) || 700;
+
+		const columns = nm.map(lightColumns);
+		const dir = nullDirection([0, 1, 2].map((i) => columns.map((c) => c.xyz[i]))) ?? nm.map(() => 0);
+
+		/* How far along the line we can go before a light would have to shine a
+		   negative amount, which is where the mixtures stop being mixtures. */
+		let lo = -Infinity;
+		let hi = Infinity;
+		dir.forEach((d, i) => {
+			if (Math.abs(d) < 1e-9) return;
+			const bound = -base[i] / d;
+			if (d > 0) lo = Math.max(lo, bound);
+			else hi = Math.min(hi, bound);
+		});
+		if (!Number.isFinite(lo) || !Number.isFinite(hi) || hi <= lo) {
+			lo = 0;
+			hi = 0;
+		}
+
+		const at = (t: number) => base.map((b, i) => Math.max(0, b + t * dir[i]));
+		// Fixed once, from the tallest spike anywhere along the line, so the
+		// spikes are not silently rescaled as the reader drags.
+		const ceiling = Math.max(
+			...[lo, hi, 0].flatMap((t) => at(t)),
+			1e-6,
+		);
+
+		const spikes = nm.map((at_nm) => {
+			const el = document.createElement('i');
+			el.style.left = `${((at_nm - from) / (to - from)) * 100}%`;
+			el.style.background = wavelengthCssFor(at_nm);
+			spikesEl.append(el);
+			return el;
+		});
+
+		function wavelengthCssFor(v: number) {
+			const [r, g, b] = mixRgb([{ nm: v, weight: 1 }]);
+			return `rgb(${r} ${g} ${b})`;
+		}
+
+		const render = () => {
+			const t = lo + ((hi - lo) * Number(knob.value)) / 1000;
+			const weights = at(t);
+			const lights: Light[] = nm.map((v, i) => ({ nm: v, weight: weights[i] }));
+
+			weights.forEach((w, i) => {
+				spikes[i].style.height = `${((w / ceiling) * 100).toFixed(2)}%`;
+			});
+
+			const [r, g, b] = mixRgb(lights);
+			outEl.style.background = `rgb(${r} ${g} ${b})`;
+
+			const cones = mixCones(lights);
+			const order = { s: 2, m: 1, l: 0 } as const;
+			for (const k of ['s', 'm', 'l'] as const) {
+				const v = cones[order[k]];
+				bars[k].style.width = `${(Math.min(1, v) * 100).toFixed(1)}%`;
+				vals[k].textContent = v.toFixed(2);
+			}
+		};
+
+		knob.addEventListener('input', render);
+		render();
+	}
+
+	document.querySelectorAll<HTMLElement>('[data-metamer]').forEach(initMetamer);
+</script>

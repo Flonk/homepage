@@ -332,27 +332,39 @@ export function wavelengthCss(nm: number, vision: Vision = 'normal'): string {
    out the magenta anyone would expect. */
 export type Light = { nm: number; weight: number };
 
-/** A wavelength's colour in linear light, at the brightness its swatch has. */
-function unitLinear(nm: number): [number, number, number] {
+/** How much of a light there has to be for it to be drawn at full brightness. */
+function unitPower(nm: number): number {
 	const lin = apply(XYZ_TO_RGB, spectralXyz(nm));
+	const top = Math.max(Math.max(0, lin[0]), Math.max(0, lin[1]), Math.max(0, lin[2]), 1e-9);
+	return 1 / top;
+}
+
+/**
+ * What a handful of lights arriving together look like.
+ *
+ * The lights are added, and only then converted and clipped. Adding up what
+ * each one is *drawn* as instead — which is what this did at first — is not
+ * the same sum: every one of them has already had its out-of-gamut part cut
+ * off by then, and cutting off then adding is not adding then cutting off. It
+ * is close enough to pass by eye, which is how it survived, and wrong enough
+ * to break anything that leans on the arithmetic: two mixtures with identical
+ * XYZ came out as visibly different colours.
+ */
+export function mixRgb(lights: Light[]): [number, number, number] {
+	let x = 0;
+	let y = 0;
+	let z = 0;
+	for (const light of lights) {
+		const c = spectralXyz(light.nm);
+		const k = light.weight * unitPower(light.nm);
+		x += c[0] * k;
+		y += c[1] * k;
+		z += c[2] * k;
+	}
+	const lin = apply(XYZ_TO_RGB, [x, y, z]);
 	const r = Math.max(0, lin[0]);
 	const g = Math.max(0, lin[1]);
 	const b = Math.max(0, lin[2]);
-	const top = Math.max(r, g, b, 1e-9);
-	return [r / top, g / top, b / top];
-}
-
-/** What a handful of lights arriving together look like. */
-export function mixRgb(lights: Light[]): [number, number, number] {
-	let r = 0;
-	let g = 0;
-	let b = 0;
-	for (const light of lights) {
-		const u = unitLinear(light.nm);
-		r += u[0] * light.weight;
-		g += u[1] * light.weight;
-		b += u[2] * light.weight;
-	}
 	// Scaled back only if it has gone over full, so a dim mixture stays dim and
 	// taking a light away makes the result darker rather than merely different.
 	const top = Math.max(r, g, b, 1);
@@ -361,6 +373,23 @@ export function mixRgb(lights: Light[]): [number, number, number] {
 		Math.round(255 * encode(g / top)),
 		Math.round(255 * encode(b / top)),
 	];
+}
+
+/**
+ * The three cone readings a mixture comes to, and the XYZ it comes to, as
+ * columns — one per light, at weight 1. What a caller wants this for is the
+ * set of mixtures that all look alike: three numbers cannot pin down four
+ * lights, so with four of them the answer is a line rather than a point, and
+ * the direction of that line is the null space of these rows.
+ */
+export function lightColumns(nm: number): { xyz: [number, number, number]; lms: [number, number, number] } {
+	const k = unitPower(nm);
+	const c = spectralXyz(nm);
+	const cone = coneResponse(nm);
+	return {
+		xyz: [c[0] * k, c[1] * k, c[2] * k],
+		lms: [cone[0] * k, cone[1] * k, cone[2] * k],
+	};
 }
 
 /**
@@ -378,10 +407,7 @@ export function nearestWavelength(lights: Light[]): { nm: number; distance: numb
 	let z = 0;
 	for (const light of lights) {
 		const c = spectralXyz(light.nm);
-		const lin = apply(XYZ_TO_RGB, c);
-		// The same scaling mixRgb uses, so the two agree about the mixture.
-		const top = Math.max(Math.max(0, lin[0]), Math.max(0, lin[1]), Math.max(0, lin[2]), 1e-9);
-		const k = light.weight / top;
+		const k = light.weight * unitPower(light.nm);
 		x += c[0] * k;
 		y += c[1] * k;
 		z += c[2] * k;
@@ -417,9 +443,7 @@ export function mixCones(lights: Light[]): [number, number, number] {
 	let m = 0;
 	let s = 0;
 	for (const light of lights) {
-		const lin = apply(XYZ_TO_RGB, spectralXyz(light.nm));
-		const top = Math.max(Math.max(0, lin[0]), Math.max(0, lin[1]), Math.max(0, lin[2]), 1e-9);
-		const k = light.weight / top;
+		const k = light.weight * unitPower(light.nm);
 		const c = coneResponse(light.nm);
 		l += c[0] * k;
 		m += c[1] * k;
