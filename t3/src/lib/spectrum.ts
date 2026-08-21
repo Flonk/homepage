@@ -315,3 +315,84 @@ export function wavelengthCss(nm: number, vision: Vision = 'normal'): string {
 	const [r, g, b] = wavelengthRgb(nm, vision);
 	return `rgb(${r} ${g} ${b})`;
 }
+
+/* ---- adding lights together ----------------------------------------------
+   Adding light is adding XYZ, which is most of the reason XYZ is worth having:
+   two lights arriving at the same place stimulate the cones by the sum of what
+   each would alone, and XYZ is a linear picture of that.
+
+   A weight here is a share of the light's own full brightness — the brightness
+   its swatch is drawn at — rather than a share of its power. Power is not
+   something anyone can judge by eye, and mixing by it goes wrong in a way that
+   matters here: at equal power a deep blue swamps everything, because 450nm
+   carries some twenty times the Z per unit of luminance that 630nm carries of
+   X. Even-handed by power comes out violet. Even-handed by brightness comes
+   out the magenta anyone would expect. */
+export type Light = { nm: number; weight: number };
+
+/** A wavelength's colour in linear light, at the brightness its swatch has. */
+function unitLinear(nm: number): [number, number, number] {
+	const lin = apply(XYZ_TO_RGB, spectralXyz(nm));
+	const r = Math.max(0, lin[0]);
+	const g = Math.max(0, lin[1]);
+	const b = Math.max(0, lin[2]);
+	const top = Math.max(r, g, b, 1e-9);
+	return [r / top, g / top, b / top];
+}
+
+/** What a handful of lights arriving together look like. */
+export function mixRgb(lights: Light[]): [number, number, number] {
+	let r = 0;
+	let g = 0;
+	let b = 0;
+	for (const light of lights) {
+		const u = unitLinear(light.nm);
+		r += u[0] * light.weight;
+		g += u[1] * light.weight;
+		b += u[2] * light.weight;
+	}
+	// Scaled back only if it has gone over full, so a dim mixture stays dim and
+	// taking a light away makes the result darker rather than merely different.
+	const top = Math.max(r, g, b, 1);
+	return [
+		Math.round(255 * encode(r / top)),
+		Math.round(255 * encode(g / top)),
+		Math.round(255 * encode(b / top)),
+	];
+}
+
+/**
+ * The single wavelength that comes closest to a mixture, and how far off it
+ * still is — which is the number that says whether a colour is in the spectrum
+ * at all.
+ *
+ * Measured in the chromaticity the light actually has rather than in what it
+ * gets drawn as, so it is a statement about the light and not about the
+ * screen. For scale, everything the eye can see is about 0.8 across.
+ */
+export function nearestWavelength(lights: Light[]): { nm: number; distance: number } {
+	let x = 0;
+	let y = 0;
+	let z = 0;
+	for (const light of lights) {
+		const c = spectralXyz(light.nm);
+		const lin = apply(XYZ_TO_RGB, c);
+		// The same scaling mixRgb uses, so the two agree about the mixture.
+		const top = Math.max(Math.max(0, lin[0]), Math.max(0, lin[1]), Math.max(0, lin[2]), 1e-9);
+		const k = light.weight / top;
+		x += c[0] * k;
+		y += c[1] * k;
+		z += c[2] * k;
+	}
+	const sum = x + y + z || 1e-9;
+	const px = x / sum;
+	const py = y / sum;
+	let best = { nm: 380, distance: Infinity };
+	for (let nm = CIE_FIRST_NM; nm <= 700; nm += 1) {
+		const c = spectralXyz(nm);
+		const s = c[0] + c[1] + c[2] || 1e-9;
+		const d = Math.hypot(c[0] / s - px, c[1] / s - py);
+		if (d < best.distance) best = { nm, distance: d };
+	}
+	return best;
+}

@@ -1,0 +1,333 @@
+---
+/**
+ * A few monochromatic lights with a handle each, and what they come to when
+ * they arrive together.
+ *
+ * The point it exists to make is that the answer is often a colour that is
+ * nowhere in the spectrum. Pink is the everyday case: everyone believes in it,
+ * everyone has seen it, and no wavelength is it. So the mixture is shown
+ * beside the closest single wavelength there is, along with how far off that
+ * still leaves it — because "not in the rainbow" is a claim with a number
+ * behind it, and the number is worth showing.
+ */
+import { mixRgb, nearestWavelength, wavelengthCss, type Light } from '../lib/spectrum';
+
+interface Props {
+	/** The lights, in nanometres, each with a share of its own full brightness. */
+	lights?: Light[];
+	/** The stretch of spectrum the handles run over. */
+	from?: number;
+	to?: number;
+}
+
+const {
+	lights = [
+		{ nm: 600, weight: 1 },
+		{ nm: 470, weight: 0.6 },
+		{ nm: 560, weight: 0.3 },
+	],
+	from = 400,
+	to = 700,
+} = Astro.props;
+
+/* The rainbow behind the handles, built here rather than in the browser: it
+   never changes, so there is nothing for a script to do with it. */
+const STOPS = 60;
+const bar = Array.from({ length: STOPS + 1 }, (_, i) => {
+	const t = i / STOPS;
+	return `${wavelengthCss(from + (to - from) * t)} ${(t * 100).toFixed(2)}%`;
+}).join(', ');
+---
+
+<div
+	class="mix"
+	data-mix
+	data-from={from}
+	data-to={to}
+	data-lights={JSON.stringify(lights)}
+	style={`--bar: linear-gradient(to right, ${bar})`}
+>
+	<div class="mix-head">
+		<figure class="mix-out">
+			<div class="mix-disc" data-out></div>
+			<figcaption>together</figcaption>
+		</figure>
+
+		<div class="mix-verdict">
+			<figure class="mix-out mix-out-small">
+				<div class="mix-disc" data-near></div>
+				<figcaption data-near-label></figcaption>
+			</figure>
+			<p data-verdict></p>
+		</div>
+	</div>
+
+	<div class="mix-bar">
+		{lights.map((light, i) => (
+			<input
+				class="mix-range"
+				data-no-swipe
+				data-light={i}
+				type="range"
+				min={from}
+				max={to}
+				step="1"
+				value={light.nm}
+				aria-label={`Light ${i + 1}, wavelength in nanometres`}
+			/>
+		))}
+	</div>
+
+	<div class="mix-legend" data-legend></div>
+</div>
+
+<style>
+	.mix {
+		width: 100%;
+		height: 100%;
+		min-width: 0;
+		min-height: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: clamp(0.75rem, 4cqh, 2rem);
+		padding: 0 1.5rem;
+		font-family: var(--font-mono);
+		--ink: var(--deck-ink, #35302a);
+		--ink-dim: var(--deck-ink-dim, #7a7264);
+		color: var(--ink);
+	}
+
+	.mix-head {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: clamp(1.5rem, 6cqw, 4rem);
+	}
+
+	.mix-out {
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.45rem;
+	}
+
+	.mix-disc {
+		width: clamp(3rem, 22cqh, 6.5rem);
+		aspect-ratio: 1;
+		border-radius: 50%;
+		background: #000;
+		box-shadow:
+			0 0 0 1px color-mix(in srgb, var(--ink) 22%, transparent),
+			0 0 22px 2px rgb(0 0 0 / 0.35);
+	}
+
+	.mix-out-small .mix-disc {
+		width: clamp(2rem, 13cqh, 3.75rem);
+	}
+
+	.mix-out figcaption {
+		font-size: 0.62rem;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--ink-dim);
+	}
+
+	.mix-verdict {
+		display: flex;
+		align-items: center;
+		gap: 0.9rem;
+		max-width: 22rem;
+	}
+
+	.mix-verdict p {
+		margin: 0;
+		font-size: 0.72rem;
+		line-height: 1.5;
+		color: var(--ink-dim);
+	}
+
+	.mix-verdict :global(b) {
+		color: var(--ink);
+		font-weight: 400;
+	}
+
+	/* The handles sit on the spectrum they are picking out of. */
+	.mix-bar {
+		position: relative;
+		width: min(100%, 46rem);
+		height: 1.1rem;
+		border-radius: 3px;
+		background: var(--bar);
+	}
+
+	.mix-range {
+		position: absolute;
+		inset: -0.55rem 0;
+		width: 100%;
+		margin: 0;
+		padding: 0;
+		appearance: none;
+		-webkit-appearance: none;
+		background: transparent;
+		touch-action: none;
+		/* Three of these lie on top of one another, so the input itself must be
+		   transparent to the pointer and only its handle may catch it —
+		   otherwise the last one declared would swallow every drag. */
+		pointer-events: none;
+	}
+
+	.mix-range:focus-visible {
+		outline: 2px solid var(--accent);
+		outline-offset: 3px;
+		border-radius: 4px;
+	}
+
+	/* Vendor pseudo-elements go in rules of their own: one browser not knowing
+	   a selector throws out the whole rule. */
+	.mix-range::-webkit-slider-thumb {
+		-webkit-appearance: none;
+		pointer-events: auto;
+		width: 1.1rem;
+		height: 1.1rem;
+		border-radius: 50%;
+		background: var(--knob, #fff);
+		border: 2px solid #fff;
+		box-shadow: 0 0 0 1px rgb(0 0 0 / 0.65);
+		cursor: grab;
+	}
+
+	.mix-range::-moz-range-thumb {
+		pointer-events: auto;
+		width: 1.1rem;
+		height: 1.1rem;
+		border-radius: 50%;
+		background: var(--knob, #fff);
+		border: 2px solid #fff;
+		box-shadow: 0 0 0 1px rgb(0 0 0 / 0.65);
+		cursor: grab;
+	}
+
+	.mix-range::-webkit-slider-runnable-track {
+		background: transparent;
+	}
+
+	.mix-range::-moz-range-track {
+		background: transparent;
+	}
+
+	.mix-legend {
+		display: flex;
+		gap: 1.25rem;
+		font-size: 0.7rem;
+		font-variant-numeric: tabular-nums;
+		color: var(--ink-dim);
+	}
+
+	.mix-legend :global(span) {
+		display: flex;
+		align-items: center;
+		gap: 0.35rem;
+	}
+
+	.mix-legend :global(i) {
+		width: 0.6rem;
+		height: 0.6rem;
+		border-radius: 50%;
+		box-shadow: 0 0 0 1px rgb(255 255 255 / 0.35);
+	}
+
+	@container viz (max-width: 30rem) {
+		.mix-verdict p {
+			font-size: 0.62rem;
+		}
+		.mix-legend {
+			gap: 0.7rem;
+			font-size: 0.6rem;
+		}
+	}
+</style>
+
+<script>
+	import { mixRgb, nearestWavelength, wavelengthCss, type Light } from '../lib/spectrum';
+
+	function initMix(root: HTMLElement) {
+		if (root.dataset.ready === 'true') return;
+		root.dataset.ready = 'true';
+
+		const outEl = root.querySelector<HTMLElement>('[data-out]')!;
+		const nearEl = root.querySelector<HTMLElement>('[data-near]')!;
+		const nearLabel = root.querySelector<HTMLElement>('[data-near-label]')!;
+		const verdictEl = root.querySelector<HTMLElement>('[data-verdict]')!;
+		const legendEl = root.querySelector<HTMLElement>('[data-legend]')!;
+		const ranges = Array.from(root.querySelectorAll<HTMLInputElement>('[data-light]'));
+
+		const lights: Light[] = JSON.parse(root.dataset.lights ?? '[]');
+		const host =
+			root.closest<HTMLElement>('[data-viz-phase]') ??
+			root.closest<HTMLElement>('[data-viz-stage]');
+
+		const AUTHORED = lights.map((l) => l.nm);
+
+		const legend = lights.map(() => {
+			const span = document.createElement('span');
+			const dot = document.createElement('i');
+			const text = document.createElement('em');
+			text.style.fontStyle = 'normal';
+			span.append(dot, text);
+			legendEl.append(span);
+			return { dot, text };
+		});
+
+		const render = () => {
+			for (const [i, light] of lights.entries()) {
+				const css = wavelengthCss(light.nm);
+				ranges[i].style.setProperty('--knob', css);
+				legend[i].dot.style.background = css;
+				legend[i].text.textContent = `${Math.round(light.nm)} nm`;
+			}
+
+			const [r, g, b] = mixRgb(lights);
+			outEl.style.background = `rgb(${r} ${g} ${b})`;
+
+			const near = nearestWavelength(lights);
+			nearEl.style.background = wavelengthCss(near.nm);
+			nearLabel.textContent = `${near.nm} nm`;
+
+			/* The number is the argument. Anything under a hundredth or so is a
+			   colour the spectrum does have, and saying so when it does is what
+			   makes saying it does not mean something. */
+			verdictEl.innerHTML =
+				near.distance < 0.01
+					? `That is a colour the spectrum has: <b>${near.nm} nm</b> on its own looks the same.`
+					: `No wavelength is that colour. The closest, <b>${near.nm} nm</b>, is still ` +
+						`<b>${near.distance.toFixed(2)}</b> away — and everything the eye can see spans about 0.8.`;
+		};
+
+		for (const [i, range] of ranges.entries()) {
+			range.addEventListener('input', () => {
+				lights[i].nm = Number(range.value);
+				render();
+			});
+		}
+
+		/* A card can move the lights; anything it leaves out goes back to how
+		   this was authored. See DeckViz for the contract. */
+		host?.addEventListener('viz:props', (e) => {
+			const p = (e as CustomEvent).detail ?? {};
+			const want = Array.isArray(p.lights) ? p.lights : null;
+			for (const [i, light] of lights.entries()) {
+				const nm = want && want[i] != null ? Number(want[i]) : AUTHORED[i];
+				light.nm = Number.isFinite(nm) ? nm : AUTHORED[i];
+				ranges[i].value = String(light.nm);
+			}
+			render();
+		});
+
+		render();
+	}
+
+	document.querySelectorAll<HTMLElement>('[data-mix]').forEach(initMix);
+</script>

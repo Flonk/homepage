@@ -12,6 +12,7 @@ import DeckViz from "../../components/DeckViz.astro";
 import ConeResponse from "../../components/ConeResponse.astro";
 import VizPhase from "../../components/VizPhase.astro";
 import VizStill from "../../components/VizStill.astro";
+import LightMix from "../../components/LightMix.astro";
 
 {/* The prism first, then part three's graph, carried over because this post
     picks up exactly where that one left off: the curves are what say which
@@ -27,6 +28,19 @@ import VizStill from "../../components/VizStill.astro";
       credit="George Hardie, 1973"
     />
   </VizPhase>
+  <VizPhase name="mix">
+    {/* 600, 470 and 560nm at these shares come to #ff9fc4, which is as
+        ordinary a pink as there is. Move any of them and the mixture moves
+        with it; the reading underneath says how far the result is from
+        anything the spectrum can do on its own. */}
+    <LightMix
+      lights={[
+        { nm: 600, weight: 1 },
+        { nm: 470, weight: 0.6 },
+        { nm: 560, weight: 0.3 },
+      ]}
+    />
+  </VizPhase>
   <VizPhase name="cones">
     <ConeResponse sweep={[400, 700]} drag />
   </VizPhase>
@@ -35,5 +49,14 @@ import VizStill from "../../components/VizStill.astro";
 <DeckCard>
   ## The real world isn't single wavelength
 
-  The sun, being a massive ball of plasma, among basically any other white light source, will be emitting photons across the entire visible spectrum, and not just one wavelength. Whatever reaches our eye at any given moment will rarely be a single wavelength of photons, meaning we really need to look at the *combined* effect of all the photons hitting our cones, and not just one wavelength at a time.
+  The sun, being a massive ball of plasma, among basically any other white light source, will be emitting photons across the entire visible spectrum -- whatever reaches our eye at any given moment will rarely be a single wavelength of photons, meaning we really need to look at the *combined* effect of multiple wavelengths hitting our cones.
+
+  This will create situations in which cones are stimulated in ways that single wavelength light cannot, leading to us seeing *non-spectral* colors.
+</DeckCard>
+
+{/* Three lights, and a pink that is not in the rainbow. */}
+<DeckCard vizProps={{ phase: "mix" }}>
+  ## Pink is not a wavelength
+
+  Bla di bla
 </DeckCard>
