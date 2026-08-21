@@ -52,6 +52,11 @@ const { label } = Astro.props;
 
 	.card-viz {
 		grid-area: viz;
+		/* A size container, so a visualization can lay itself out from the shape
+		   of its own pane rather than the viewport. `size` rather than
+		   `inline-size` because whether the pane is portrait or landscape is
+		   the interesting question, and that needs both axes. */
+		container: viz / size;
 		display: flex;
 		align-items: center;
 		justify-content: center;
