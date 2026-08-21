@@ -35,6 +35,13 @@ interface Props {
 	wavelengths?: boolean;
 	/** Mark the white point the gamuts are defined against. */
 	white?: boolean;
+	/**
+	 * Outline what a printing press reaches, which is not a triangle: ink takes
+	 * light away rather than adding it, so there are no primaries spanning
+	 * anything and the boundary is wherever the inks and the paper land. See
+	 * CMYK_GAMUT in lib/spectrum.ts for whose measurements these are.
+	 */
+	cmyk?: boolean;
 }
 
 const {
@@ -42,6 +49,7 @@ const {
 	fill = 'all',
 	wavelengths = true,
 	white = false,
+	cmyk = false,
 } = Astro.props;
 ---
 
@@ -52,6 +60,7 @@ const {
 	data-fill={fill}
 	data-wavelengths={wavelengths ? 'true' : 'false'}
 	data-white={white ? 'true' : 'false'}
+	data-cmyk={cmyk ? 'true' : 'false'}
 >
 	<canvas data-canvas></canvas>
 	<dl class="key" data-key></dl>
@@ -104,6 +113,12 @@ const {
 		border-top-style: solid;
 	}
 
+	/* Dashed, like the outline it stands for, because it is the one entry in
+	   here that is not three primaries and a triangle. */
+	.key :global(dt[data-dashed]) {
+		border-top-style: dashed;
+	}
+
 	.key :global(dd) {
 		margin: 0;
 		color: var(--ink-dim);
@@ -118,6 +133,8 @@ const {
 
 <script>
 	import {
+		CMYK_GAMUT,
+		CMYK_SOLIDS,
 		GAMUTS,
 		LOCUS_FIRST_NM,
 		LOCUS_LAST_NM,
@@ -140,6 +157,7 @@ const {
 		p3: '#ffd166',
 		rec2020: '#7fd1ff',
 	};
+	const CMYK_INK = '#b28dff';
 
 	const readGamuts = (v: unknown): GamutName[] => {
 		const raw = typeof v === 'string' ? v.split(/[\s,]+/) : Array.isArray(v) ? v : [];
@@ -162,11 +180,13 @@ const {
 		const AUTHORED_FILL = root.dataset.fill === 'srgb' ? 'srgb' : 'all';
 		const AUTHORED_WAVELENGTHS = root.dataset.wavelengths !== 'false';
 		const AUTHORED_WHITE = root.dataset.white === 'true';
+		const AUTHORED_CMYK = root.dataset.cmyk === 'true';
 
 		let gamuts = AUTHORED_GAMUTS;
 		let fill: 'all' | 'srgb' = AUTHORED_FILL;
 		let wavelengths = AUTHORED_WAVELENGTHS;
 		let white = AUTHORED_WHITE;
+		let cmyk = AUTHORED_CMYK;
 
 		let inkC = '#e6e9ef';
 		let dimC = '#8891a0';
@@ -360,6 +380,54 @@ const {
 				}
 			}
 
+			// ---- what ink reaches, if the card is asking
+			if (cmyk) {
+				ctx.save();
+				ctx.lineJoin = 'round';
+				/* A dark pass underneath, because this outline runs right round the
+				   saturated edge of the chart and there is no one colour that stays
+				   legible against cyan, magenta and yellow in turn. */
+				tracePath(CMYK_GAMUT);
+				ctx.closePath();
+				ctx.strokeStyle = 'rgba(0,0,0,0.55)';
+				ctx.lineWidth = 4;
+				ctx.stroke();
+				ctx.setLineDash([6, 4]);
+				ctx.strokeStyle = CMYK_INK;
+				ctx.lineWidth = 1.75;
+				ctx.stroke();
+				ctx.restore();
+
+				ctx.textAlign = 'center';
+				ctx.textBaseline = 'middle';
+				for (const { label, xy } of CMYK_SOLIDS) {
+					const px = xOf(xy[0]);
+					const py = yOf(xy[1]);
+					ctx.beginPath();
+					ctx.arc(px, py, 3, 0, Math.PI * 2);
+					ctx.fillStyle = CMYK_INK;
+					ctx.fill();
+					ctx.lineWidth = 1;
+					ctx.strokeStyle = 'rgba(0,0,0,0.6)';
+					ctx.stroke();
+					/* Inward, towards the middle of the shape. Outward is where the
+					   wavelength labels already are, and the red corner in particular
+					   sits close enough to 620nm that its letter disappeared into the
+					   tick. Inside there is nothing but colour, and the dark outline
+					   on the letter is enough to carry it over any of that. */
+					const dx = xOf(0.33) - px;
+					const dy = yOf(0.35) - py;
+					const len = Math.hypot(dx, dy) || 1;
+					const lx = px + (dx / len) * 13;
+					const ly = py + (dy / len) * 13;
+					ctx.lineWidth = 3;
+					ctx.strokeStyle = 'rgba(0,0,0,0.7)';
+					ctx.strokeText(label, lx, ly);
+					ctx.fillStyle = CMYK_INK;
+					ctx.fillText(label, lx, ly);
+				}
+			}
+
 			// ---- the triangles
 			for (const name of gamuts) {
 				const g = GAMUTS[name];
@@ -402,12 +470,18 @@ const {
 
 		const drawKey = () => {
 			keyEl.replaceChildren();
-			for (const name of gamuts) {
+			const entries: { ink: string; label: string; dashed?: boolean }[] = gamuts.map((name) => ({
+				ink: GAMUT_INK[name],
+				label: GAMUTS[name].label,
+			}));
+			if (cmyk) entries.push({ ink: CMYK_INK, label: 'CMYK (FOGRA39)', dashed: true });
+			for (const e of entries) {
 				const row = document.createElement('div');
 				const dt = document.createElement('dt');
-				dt.style.borderTopColor = GAMUT_INK[name];
+				dt.style.borderTopColor = e.ink;
+				if (e.dashed) dt.dataset.dashed = 'true';
 				const dd = document.createElement('dd');
-				dd.textContent = GAMUTS[name].label;
+				dd.textContent = e.label;
 				row.append(dt, dd);
 				keyEl.append(row);
 			}
@@ -428,6 +502,7 @@ const {
 			fill = 'fill' in p ? (p.fill === 'srgb' ? 'srgb' : 'all') : AUTHORED_FILL;
 			wavelengths = 'wavelengths' in p ? Boolean(p.wavelengths) : AUTHORED_WAVELENGTHS;
 			white = 'white' in p ? Boolean(p.white) : AUTHORED_WHITE;
+			cmyk = 'cmyk' in p ? Boolean(p.cmyk) : AUTHORED_CMYK;
 			drawKey();
 			draw();
 		});

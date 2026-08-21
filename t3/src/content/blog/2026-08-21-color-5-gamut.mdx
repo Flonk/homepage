@@ -21,33 +21,45 @@ import ChromaticityChart from "../../components/ChromaticityChart.astro";
 <DeckCard vizProps={{ gamuts: [], fill: "all", wavelengths: true }}>
   ## Every colour, laid out flat
 
-  Bla di bla
-</DeckCard>
+  The CIE chromaticity chart shows all colors available to the human eye, laid out flat. The curve shows all spectral colors, and the bottom dotted line shows our non-spectral purples. 
 
-{/* The purples are the one part of the outline no single wavelength can
-    reach, which is where part two's "where is pink?" finally gets answered. */}
-<DeckCard vizProps={{ gamuts: [], fill: "all", wavelengths: true }}>
-  ## The edge is the spectrum
-
-  Bla di bla
-</DeckCard>
-
-<DeckCard vizProps={{ gamuts: ["srgb"], fill: "all", white: true }}>
-  ## Three primaries make a triangle
-
-  Bla di bla
+  It has to be said though that you are only looking at a *representation* of the chart, because your montior likely cannot display all the colors your eye can see.
 </DeckCard>
 
 {/* The honest one. Everything the page cannot reach goes grey, and what is
     left is a good deal smaller than the card before it suggested. */}
 <DeckCard vizProps={{ gamuts: ["srgb"], fill: "srgb", white: true }}>
-  ## So the last two slides were lying to you
+  ## Monitors show a subset of all colours
 
-  Bla di bla
+  Given that monitors use three LEDs to produce color, they can only show a triangle's worth of colors on the chromaticity chart, and never the whole horseshoe.
+  
+  sRGB is probably the most common color space for monitors, and it has been for a long time (1996). It has actually been so prevalent that it has become a problem: Modern monitors can often show colors outside of the sRGB triangle, but everyone on the web assumes sRGB, leading to you seeing over-saturated colors on better monitors, essentially punishing you for having a better monitor than the person who made the content.
 </DeckCard>
 
 <DeckCard vizProps={{ gamuts: ["srgb", "p3", "rec2020"], fill: "all" }}>
-  ## Bigger triangles
+  ## P3 and Rec.2020 gamuts
+
+  The color space problem is slowly being solved, with P3 monitors becoming more common, and Rec.2020 monitors starting to appear.
+
+  CSS has gotten support for color spaces beyond sRGB via the `color()` function in around 2023:
+
+  ```css
+  .p3 {
+    color: rgb(255 0 0); /* graceful fallback */
+    color: color(display-p3 1 0 0);
+  }
+  .rec2020 {
+    color: color(rec2020 1 0 0);
+  }
+  ```
+</DeckCard>
+
+{/* Not a triangle, and measured rather than modelled: the outline of the 1485
+    FOGRA39 patches, adapted from their D50 to this chart's D65. Nearly the
+    same area as sRGB while overlapping it badly — about a sixth of each falls
+    outside the other. See CMYK_GAMUT in lib/spectrum.ts for the provenance. */}
+<DeckCard vizProps={{ gamuts: ["srgb"], fill: "all", cmyk: true, white: false }}>
+  ## Print is a different shape entirely
 
   Bla di bla
 </DeckCard>

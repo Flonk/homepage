@@ -677,3 +677,71 @@ export function insideGamut(x: number, y: number, name: GamutName): boolean {
 	}
 	return true;
 }
+
+/* ---- and what a printing press can do --------------------------------------
+   Not a triangle. Ink is subtractive — each layer takes light away rather than
+   adding it — so there are no three primaries spanning anything, and the
+   boundary is whatever the inks and the paper happen to reach. Six corners
+   rather than three: the three inks, and the three places two of them lie on
+   top of each other.
+
+   Measured, not modelled. This is the outline of the FOGRA39 characterization
+   set, 1485 patches printed and read on coated art paper under ISO 12647-2:
+
+     https://registry.color.org/cmyk-registry/chardata/FOGRA39.txt
+
+   The measurements are D50 and this chart is D65, so they are adapted across
+   with Bradford before the brightness is divided out; without that the whole
+   shape sits visibly warm against the triangles it is there to be compared
+   with. Paper white lands at (0.308, 0.324) afterwards, a shade bluer than D65
+   itself, which is the optical brightener in the paper and is what it should
+   be. The convex hull of the patches is what is drawn: the patches fill it to
+   within 0.005 on average and 0.023 at the worst, up by the green corner where
+   the sampling thins out, so the outline is the measurements' own shape rather
+   than a smoothing of them.
+
+   It is worth knowing how nearly the same size this is as sRGB — 98% of the
+   area — while overlapping it so poorly. About a sixth of each lies outside
+   the other. Print reaches cyans and greens no screen has, and misses reds and
+   oranges every screen has, which is the whole difficulty of getting a
+   photograph to come off a press looking like it did on the monitor. */
+export const CMYK_GAMUT: [number, number][] = [
+	[0.1544, 0.2145],
+	[0.1579, 0.2039],
+	[0.1606, 0.1976],
+	[0.1637, 0.1912],
+	[0.1701, 0.1795],
+	[0.1789, 0.1655],
+	[0.1893, 0.1504],
+	[0.2003, 0.1368],
+	[0.4665, 0.2372],
+	[0.4803, 0.2458],
+	[0.5711, 0.3033],
+	[0.6034, 0.324],
+	[0.4399, 0.4959],
+	[0.4297, 0.4994],
+	[0.4192, 0.5029],
+	[0.4055, 0.5069],
+	[0.3889, 0.511],
+	[0.3578, 0.5178],
+	[0.3177, 0.5242],
+	[0.2714, 0.5282],
+	[0.2223, 0.5276],
+	[0.2092, 0.4759],
+	[0.1946, 0.4142],
+	[0.1816, 0.3548],
+	[0.1711, 0.3053],
+	[0.1655, 0.2769],
+	[0.1611, 0.2528],
+	[0.1575, 0.2324],
+];
+
+/** The corners worth naming, for a card that wants to point at them. */
+export const CMYK_SOLIDS: { label: string; xy: [number, number] }[] = [
+	{ label: 'C', xy: [0.1544, 0.2145] },
+	{ label: 'B', xy: [0.2003, 0.1368] },
+	{ label: 'M', xy: [0.4665, 0.2372] },
+	{ label: 'R', xy: [0.6034, 0.324] },
+	{ label: 'Y', xy: [0.4399, 0.4959] },
+	{ label: 'G', xy: [0.2223, 0.5276] },
+];
