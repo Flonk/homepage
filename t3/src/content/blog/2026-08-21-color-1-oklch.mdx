@@ -1,5 +1,5 @@
 ---
-title: "Colour #1: The Cube"
+title: "Colour #1: The RGB Cube"
 series: "Colour"
 format: "deck"
 description: ""
@@ -74,16 +74,14 @@ import RgbCube from "../../components/RgbCube.astro";
   ## Screens actually work like this
 
   Your screen is made up of a grid of pixels, and each pixel is made up of three or more *subpixels*, consisting of LEDs that emit red, green and blue light. They are small enough and far enough away that your eye blends them together, and you see a single colour.
+  
+  If you are able to defocus your eyes really hard, you can make the image above blur into a single grey color; squinting helps too. It's a bit like you're lowering your eye's resolution to 360p!
 </DeckCard>
 
-<DeckCard label="Why it matters" vizProps={{ overlay: null, line: false, guides: false }}>
-  ## A cube is a bad map of colour
+<DeckCard label="Subpixels" vizProps={{ overlay: "subpixels" }}>
+  ## The real world does not
 
-  This is a faithful picture of how a screen works, and a poor picture of how
-  seeing works. Move a fixed distance through the cube and the change you notice
-  depends entirely on where you started — a nudge among the dark colours is
-  obvious, the same nudge among the light ones is invisible.
+  When you look into the sun (please don't) or even manmade light, you will never see subpixels like this. The sun emits *spectral light* -- it's the real thing that screens can only ever approximate. 
 
-  So the cube is where we begin, not where we end up. Next time we go looking for
-  a better shape.
+  Light is photons, and photons have a wavelength, and the wavelength determines the colour -- the fact that just three wavelengths of light (red, green, blue) can be mixed to approximate all the other colours we see is a fascinating quirk of our eyes, which, along with the physics of light, we will explore in the next few posts!
 </DeckCard>

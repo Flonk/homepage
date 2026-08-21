@@ -8,6 +8,9 @@ export const SERIES_BLURBS: Record<string, string> = {
 	'Free objects':
 		'Take an algebraic structure, add nothing beyond what its laws demand, and see which ' +
 		'data structure falls out the other end — multisets, lists, finger trees.',
+	Colour:
+		'Where colour comes from, how a screen fakes it with three lights, and why ' +
+		'every obvious way of arranging it turns out to be wrong.',
 	'Classes are Coalgebras':
 		'Everything is a function, and so are classes. Those turn out to be a special kind of function called F-coalgebras.'
 };
