@@ -36,8 +36,10 @@
   --nord14: #a3be8c;
   --nord15: #b48ead;
 
-  /* Ground for a deck card's visualization half, when it opts into one. */
+  /* Grounds for a deck card's visualization half, when it opts into one.
+     Which of the two a post uses is its `ground` frontmatter; see DeckPost. */
   --viz-beige: #e8e1d4;
+  --viz-dark: #14161a;
 
   /* Shared by the site header and a deck post's T3 mark, so the orange block is
      the same size whichever layout you are in. */

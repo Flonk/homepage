@@ -9,7 +9,7 @@ type Props = CollectionEntry<'blog'>['data'] & {
 	nextPart?: SeriesLink;
 };
 
-const { title, description, pubDate, series, prevPart, nextPart } = Astro.props;
+const { title, description, pubDate, series, ground, prevPart, nextPart } = Astro.props;
 ---
 
 <html lang="en">
@@ -21,7 +21,7 @@ const { title, description, pubDate, series, prevPart, nextPart } = Astro.props;
 		/>
 	</head>
 
-	<body class="deck-page">
+	<body class:list={['deck-page', ground === 'dark' && 'deck-dark']}>
 		{/* No site header here — the deck is a full-screen reading surface, so the
 		    only chrome is the accent frame :root draws and the home mark below. */}
 		<main class="deck-main">
@@ -88,6 +88,17 @@ const { title, description, pubDate, series, prevPart, nextPart } = Astro.props;
 				   outside body's box and would otherwise overflow the viewport. */
 				height: calc(100dvh - 2 * var(--page-border));
 				overflow: hidden;
+			}
+
+			/* The other ground. The masthead and the viz are one surface, so the
+			   ink has to turn over with them — a post picks the pair, not just the
+			   colour behind the picture. A visualization inside reads the same
+			   tokens, and so needs to know nothing about which post it is in. */
+			.deck-page.deck-dark {
+				--deck-ground: var(--viz-dark);
+				--deck-ink: #e6e9ef;
+				--deck-ink-dim: #8891a0;
+				--deck-eyebrow: var(--accent);
 			}
 
 			.deck-main {

@@ -15,6 +15,10 @@ const blog = defineCollection({
 		// NB: not called `layout` — that is reserved by Astro markdown for a
 		// layout component path, and MDX tries to import whatever it holds.
 		format: z.enum(['prose', 'deck']).default('prose'),
+		// Deck only: which ground the visualization half — and the masthead that
+		// shares it — is painted on. A post about light wants the dark one; a
+		// post about ink or screens wants the light one.
+		ground: z.enum(['light', 'dark']).default('light'),
 		// Transform string to Date object
 		pubDate: z.coerce.date(),
 		updatedDate: z.coerce.date().optional(),

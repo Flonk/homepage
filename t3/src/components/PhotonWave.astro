@@ -1,14 +1,21 @@
 ---
 /**
- * A dot travelling right while oscillating up and down, drawing the sine wave
- * it traces out behind it, in the colour of the light it stands for.
+ * A photon oscillating up and down, drawing the sine wave it traces out
+ * behind it as it goes.
+ *
+ * The camera travels with it, so the dot holds its place and the wave it has
+ * already laid down streams away to the left. Nothing about the light differs
+ * from watching the dot cross a fixed pane — it is the same motion from a
+ * different seat — but it puts the thing you are meant to be looking at in one
+ * place, and gets rid of the lap: the wave never has to wrap around and
+ * overwrite itself at the edge.
  *
  * Everything on screen comes from two scale factors and nothing else: one for
  * space, one for time. Fix those and the wavelength, the travel speed and the
  * rate of the wiggle all follow, and they stay in step with each other the way
  * the real quantities do — light of every colour travels at the same speed, so
- * the dot's rate across the pane never changes, and only the wave it leaves
- * gets longer or shorter.
+ * the rate the wave streams past never changes, and only the wave itself gets
+ * longer or shorter.
  *
  * The dot riding the wave is a picture, not a photon. A real photon has no
  * position wiggling about a line, and the wave is an amplitude of a field
@@ -22,12 +29,24 @@ interface Props {
 	 * at the red end to 790 THz at the violet end.
 	 */
 	frequency?: number;
+	/**
+	 * Draw the wave in an approximation of the colour that light of this
+	 * frequency looks like, rather than in white. Off by default: that colour is
+	 * a claim about the eye rather than about the light, and a card is entitled
+	 * to talk about wavelength and frequency before making it.
+	 */
+	spectral?: boolean;
 }
 
-const { frequency = 545 } = Astro.props;
+const { frequency = 545, spectral = false } = Astro.props;
 ---
 
-<div class="photon" data-photon data-frequency={frequency}>
+<div
+	class="photon"
+	data-photon
+	data-frequency={frequency}
+	data-spectral={spectral ? 'true' : 'false'}
+>
 	<canvas data-canvas></canvas>
 	<div class="readout">
 		<span data-light></span>
@@ -43,9 +62,11 @@ const { frequency = 545 } = Astro.props;
 		min-width: 0;
 		min-height: 0;
 		font-family: var(--font-mono);
-		/* The viz sits on a light ground, so its chrome is inked dark. */
-		--ink: #35302a;
-		--ink-dim: #7a7264;
+		/* Inherited from the deck, which knows whether this post's viz sits on
+		   the light ground or the dark one; the fallbacks are the light pair, for
+		   a use outside a deck. */
+		--ink: var(--deck-ink, #35302a);
+		--ink-dim: var(--deck-ink-dim, #7a7264);
 		color: var(--ink);
 	}
 
@@ -103,6 +124,11 @@ const { frequency = 545 } = Astro.props;
 	   enough that it is clearly the dot dragging it. */
 	const TAIL_PX = 280;
 	const TAIL_STEP = 10;
+
+	/* Where along the pane the photon sits. Off to the right, so that nearly all
+	   of the width is given to the wave streaming back from it, with enough room
+	   ahead for its glow. */
+	const HEAD_FRAC = 0.72;
 
 	/** How the slowdown is written out, once, rather than derived by eye. */
 	const SLOWDOWN_TEXT = '5 × 10¹⁴';
@@ -163,7 +189,9 @@ const { frequency = 545 } = Astro.props;
 		const gate = root.closest<HTMLElement>('[data-viz-phase]');
 
 		const AUTHORED = Math.max(1, Number(root.dataset.frequency) || 545);
+		const AUTHORED_SPECTRAL = root.dataset.spectral === 'true';
 		let wanted = AUTHORED;
+		let spectral = AUTHORED_SPECTRAL;
 		// Eased rather than jumped, so a card changing the colour shows the wave
 		// stretching into its new shape instead of cutting to it.
 		let freqThz = AUTHORED;
@@ -171,6 +199,7 @@ const { frequency = 545 } = Astro.props;
 		host?.addEventListener('viz:props', (e) => {
 			const p = (e as CustomEvent).detail ?? {};
 			wanted = 'frequency' in p ? Math.max(1, Number(p.frequency) || AUTHORED) : AUTHORED;
+			spectral = 'spectral' in p ? Boolean(p.spectral) : AUTHORED_SPECTRAL;
 		});
 
 		/* ---- the trace ------------------------------------------------------
@@ -180,7 +209,8 @@ const { frequency = 545 } = Astro.props;
 		let w = 0;
 		let h = 0;
 		let dpr = 1;
-		let trace = new Float32Array(2);
+		let trace = new Float32Array(8);
+		let headX = 0; // the photon's column, fixed
 		let dist = 0; // total distance travelled, in css pixels
 		let phase = 0;
 
@@ -205,7 +235,11 @@ const { frequency = 545 } = Astro.props;
 			h = r.height;
 			canvas.width = Math.max(1, Math.round(w * dpr));
 			canvas.height = Math.max(1, Math.round(h * dpr));
-			trace = new Float32Array(Math.max(2, Math.round(w)));
+			headX = Math.round(w * HEAD_FRAC);
+			// One slot per column behind the photon, and a few spare: the wave is
+			// read a column early for the sub-pixel offset, and one column past
+			// the head keeps the ring's ends from meeting on a visible sample.
+			trace = new Float32Array(Math.max(8, headX + 4));
 			// Lay down a full wave straight away, so the pane is never blank; the
 			// dot's first pass then just runs along what is already there.
 			writeSpan(dist - trace.length, dist);
@@ -234,11 +268,12 @@ const { frequency = 545 } = Astro.props;
 
 			const nm = C_NM_PER_S / (freqThz * 1e12);
 			const [r, g, b] = wavelengthRgb(nm);
-			const colour = `rgb(${r} ${g} ${b})`;
+			const colour = spectral ? `rgb(${r} ${g} ${b})` : '#ffffff';
 
 			if (!reduceMotion) {
-				// Both follow from the scales: the dot covers a slowed, magnified
-				// speed of light, and turns over once per wavelength it covers.
+				// Both follow from the scales: the wave streams past at a slowed,
+				// magnified speed of light, and the photon turns over once per
+				// wavelength that goes by.
 				const speed = (C_NM_PER_S * PX_PER_NM) / SLOWDOWN;
 				const was = dist;
 				dist += speed * dt;
@@ -247,8 +282,20 @@ const { frequency = 545 } = Astro.props;
 			}
 
 			const L = trace.length;
-			const head = dist - Math.floor(dist / L) * L; // where the dot is, on screen
 			const cy = h / 2;
+
+			/* Screen column i shows the height the photon had `headX - i` pixels
+			   of travel ago, so the whole wave slides left as `dist` grows. The
+			   trace is written at whole pixels of travel; the fraction left over
+			   is carried by shifting the drawn path, so the wave streams smoothly
+			   rather than in pixel steps. */
+			const D = Math.floor(dist);
+			const sub = dist - D;
+			const dotY = cy + amplitude() * Math.sin(phase);
+			const at = (i: number) => {
+				const d = D - headX + i;
+				return trace[((d % L) + L) % L];
+			};
 
 			ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 			ctx.clearRect(0, 0, w, h);
@@ -260,42 +307,43 @@ const { frequency = 545 } = Astro.props;
 			const stroke = (from: number, to: number) => {
 				ctx.beginPath();
 				for (let i = from; i <= to; i++) {
-					const y = cy + trace[i];
-					if (i === from) ctx.moveTo(i, y);
-					else ctx.lineTo(i, y);
+					const y = cy + at(i);
+					const x = i - sub;
+					if (i === from) ctx.moveTo(x, y);
+					else ctx.lineTo(x, y);
 				}
+				// The trace is sampled at whole pixels of travel, so its last
+				// sample is up to a pixel short of where the photon actually is.
+				// Finish at the photon itself rather than near it.
+				if (to === headX) ctx.lineTo(headX, dotY);
 				ctx.stroke();
 			};
 
-			/* The whole wave at one strength, then a tail brightening into the dot.
-			   Deliberately no distinction between what this pass has drawn and what
-			   the last one left: the dot laps the pane every few seconds, and any
-			   such distinction has to flip across the whole width the moment it
-			   does. The tail carries the sense of a trace being drawn instead, and
-			   it comes and goes with the dot rather than with the lap. */
+			/* The whole wave at one strength, then a tail brightening into the
+			   photon, which is what carries the sense of a trace being laid down.
+			   The wave is drawn one column past its left edge so that the sub-pixel
+			   shift cannot open a gap there. */
 			ctx.globalAlpha = 0.45;
-			stroke(0, L - 1);
+			stroke(-1, headX);
 
-			const headX = Math.floor(head);
 			for (let s = 0; s < TAIL_PX; s += TAIL_STEP) {
 				const from = headX - s - TAIL_STEP;
-				if (from < 0) break;
+				if (from < -1) break;
 				// Squared, so it leans bright near the dot and tails off gently.
 				const t = 1 - s / TAIL_PX;
 				ctx.globalAlpha = 0.45 + 0.55 * t * t;
-				stroke(from, Math.min(L - 1, headX - s));
+				stroke(from, headX - s);
 			}
 			ctx.globalAlpha = 1;
 
-			// The dot, with a glow of its own colour. shadowBlur is in device
+			// The photon, with a glow of its own colour. shadowBlur is in device
 			// pixels and ignores the transform, so it is scaled by hand.
-			const dotY = cy + amplitude() * Math.sin(phase);
 			ctx.save();
 			ctx.shadowColor = colour;
 			ctx.shadowBlur = 16 * dpr;
 			ctx.fillStyle = colour;
 			ctx.beginPath();
-			ctx.arc(head, dotY, 5, 0, Math.PI * 2);
+			ctx.arc(headX, dotY, 5, 0, Math.PI * 2);
 			ctx.fill();
 			ctx.restore();
 			ctx.globalAlpha = 1;
