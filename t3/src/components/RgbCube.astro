@@ -1074,7 +1074,7 @@ const {
 		   that carries its own momentum and decays back to nothing. Keeping them
 		   separate is what lets the cube take a throw and still come home. */
 		const AMBIENT_AXIS = [0.35, 1, 0.22];
-		const AMBIENT_RATE = 0.22; // rad/s
+		const AMBIENT_RATE = 0.11; // rad/s
 		// Start on a three-quarter view; face-on it just reads as a flat square.
 		const BASE: Quat = qNorm(qMul(qAxisAngle(1, 0, 0, 0.46), qAxisAngle(0, 1, 0, -0.62)));
 		let ambient = 0;
