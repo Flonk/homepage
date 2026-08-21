@@ -34,6 +34,13 @@ interface Props {
 	 * showing something the graph beneath it says cannot be seen.
 	 */
 	vision?: 'normal' | 'deuteranopia' | 'protanopia' | 'mirrored';
+	/**
+	 * Wavelengths to keep marked, whatever the moving mark is doing. For a card
+	 * arguing about particular lights — two of them arriving together, say —
+	 * rather than about the shape of the curves in general. They are read off,
+	 * not taken hold of: nothing here moves them.
+	 */
+	marks?: number[];
 }
 
 const {
@@ -43,6 +50,7 @@ const {
 	drag = true,
 	idleResume = 6,
 	vision = 'normal',
+	marks,
 } = Astro.props;
 ---
 
@@ -55,6 +63,7 @@ const {
 	data-drag={drag ? 'true' : 'false'}
 	data-idle-resume={idleResume}
 	data-vision={vision}
+	data-marks={marks ? marks.join(' ') : undefined}
 >
 	<canvas data-canvas></canvas>
 
@@ -385,6 +394,14 @@ const {
 		const AUTHORED_SWEEP = parseSweep(root.dataset.sweep);
 		const AUTHORED_DRAG = root.dataset.drag !== 'false';
 		const AUTHORED_VISION = readVision(root.dataset.vision);
+		const readMarks = (v: unknown): number[] => {
+			const raw = typeof v === 'string' ? v.split(/[\s,]+/) : Array.isArray(v) ? v : [];
+			return raw
+				.map(Number)
+				.filter((n) => Number.isFinite(n) && n > 0)
+				.map(clampNm);
+		};
+		const AUTHORED_MARKS = readMarks(root.dataset.marks);
 		const SWEEP_SECS = Math.max(1, Number(root.dataset.sweepSeconds) || 22);
 		const RESUME_MS = Math.max(0, Number(root.dataset.idleResume) || 6) * 1000;
 
@@ -392,6 +409,7 @@ const {
 		let resting = AUTHORED_NM;
 		let sweeping = AUTHORED_SWEEP;
 		let canDrag = AUTHORED_DRAG;
+		let marks = AUTHORED_MARKS;
 		let sweepT = 0;
 		let manual = false;
 		let manualUntil = 0;
@@ -672,6 +690,49 @@ const {
 				ctx.restore();
 			}
 
+			/* ---- the fixed marks --------------------------------------------
+			   Wavelengths a card wants kept in view. Drawn before the moving one
+			   and quieter than it — a solid hairline rather than the dashes, a
+			   smaller dot, a narrower swatch — so that at a glance it is obvious
+			   which mark is the reader's and which are the card's. */
+			for (const at of marks) {
+				const fx = xOf(at);
+				const fr = responseAt(at);
+				ctx.save();
+				ctx.strokeStyle = `color-mix(in srgb, ${inkC} 30%, transparent)`;
+				ctx.lineWidth = 1;
+				ctx.beginPath();
+				ctx.moveTo(fx, plot.y);
+				ctx.lineTo(fx, plot.y + plot.h);
+				ctx.stroke();
+				ctx.restore();
+
+				ctx.fillStyle = colourAt(at);
+				ctx.fillRect(fx - 3, stripY - 2, 6, STRIP_H + 4);
+				ctx.lineWidth = 1;
+				ctx.strokeStyle = 'rgba(0,0,0,0.65)';
+				ctx.strokeRect(fx - 3.5, stripY - 2.5, 7, STRIP_H + 5);
+
+				for (const cone of CONES) {
+					const a = alpha[cone.key];
+					if (a <= 0.002) continue;
+					ctx.save();
+					ctx.globalAlpha = a;
+					ctx.beginPath();
+					ctx.arc(fx, yOf(fr[cone.at]), 3, 0, Math.PI * 2);
+					ctx.fillStyle = cone.css;
+					ctx.fill();
+					ctx.strokeStyle = 'rgba(0,0,0,0.55)';
+					ctx.lineWidth = 1;
+					ctx.stroke();
+					ctx.restore();
+				}
+
+				ctx.textAlign = 'center';
+				ctx.fillStyle = dimC;
+				ctx.fillText(`${Math.round(at)} nm`, fx, plot.y - 6);
+			}
+
 			/* ---- the mark ---------------------------------------------------
 			   One wavelength, and what the three of them make of it. */
 			const r = responseAt(nm);
@@ -733,6 +794,7 @@ const {
 			const p = (e as CustomEvent).detail ?? {};
 			resting = 'wavelength' in p ? clampNm(Number(p.wavelength) || AUTHORED_NM) : AUTHORED_NM;
 			canDrag = 'drag' in p ? Boolean(p.drag) : AUTHORED_DRAG;
+			marks = 'marks' in p ? readMarks(p.marks) : AUTHORED_MARKS;
 			vision = 'vision' in p ? readVision(p.vision) : AUTHORED_VISION;
 			if (vision !== 'normal') shown = vision;
 			root.dataset.vision = vision;
@@ -740,6 +802,13 @@ const {
 			// A pick belongs to the card it was made on.
 			manual = false;
 			applyDrag();
+			/* Repainted here rather than left to the next frame. Some of what a
+			   card changes is eased and needs frames anyway, but some of it —
+			   where the fixed marks are, whether the handle is offered — is
+			   simply true as soon as the card says so, and a pane that is not
+			   animating would otherwise never show it. */
+			tally();
+			draw();
 		});
 
 		applyDrag();
