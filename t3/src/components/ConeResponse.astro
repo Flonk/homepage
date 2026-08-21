@@ -41,6 +41,17 @@ interface Props {
 	 * not taken hold of: nothing here moves them.
 	 */
 	marks?: number[];
+	/**
+	 * The reader's own mark — the one that walks the band and can be taken hold
+	 * of. Turn it off for a card that is about particular wavelengths rather
+	 * than about any one you like: the disc and the tally then report on the
+	 * marks instead, added together, which is the question such a card is
+	 * asking. With neither a probe nor any marks there is nothing left to
+	 * report, and the head goes.
+	 *
+	 * Not to be confused with `marks`, which are the card's and do not move.
+	 */
+	probe?: boolean;
 }
 
 const {
@@ -51,6 +62,7 @@ const {
 	idleResume = 6,
 	vision = 'normal',
 	marks,
+	probe = true,
 } = Astro.props;
 ---
 
@@ -64,6 +76,7 @@ const {
 	data-idle-resume={idleResume}
 	data-vision={vision}
 	data-marks={marks ? marks.join(' ') : undefined}
+	data-probe={probe ? 'true' : 'false'}
 >
 	<canvas data-canvas></canvas>
 
@@ -128,6 +141,12 @@ const {
 
 	/* The top half of the pane. The graph has the bottom half, and the two do
 	   not overlap, so neither has to be laid out around the other. */
+	/* Nothing above the graph reports on anything once the reader's mark is
+	   gone, so it goes too. */
+	.cones[data-head='false'] .head {
+		display: none;
+	}
+
 	.head {
 		position: absolute;
 		inset: 0 0 50% 0;
@@ -305,7 +324,7 @@ const {
 </style>
 
 <script>
-	import { wavelengthRgb, type Vision } from '../lib/spectrum';
+	import { mixCones, mixRgb, wavelengthRgb, type Vision } from '../lib/spectrum';
 	import {
 		CONE_FIRST_NM,
 		CONE_LAST_NM,
@@ -330,6 +349,7 @@ const {
 	   worth reading off is the shape, and where one curve crosses another. */
 	const PAD = { top: 14, right: 18, bottom: 50, left: 18 };
 	const HEAD_FRAC = 0.5; // of the pane, given over to the swatch and the tally
+	const NO_HEAD_FRAC = 0.1; // and what is left above the curves without them
 	const STRIP_H = 20; // the rainbow along the wavelength axis
 	const STRIP_GAP = 7;
 
@@ -402,6 +422,7 @@ const {
 				.map(clampNm);
 		};
 		const AUTHORED_MARKS = readMarks(root.dataset.marks);
+		const AUTHORED_PROBE = root.dataset.probe !== 'false';
 		const SWEEP_SECS = Math.max(1, Number(root.dataset.sweepSeconds) || 22);
 		const RESUME_MS = Math.max(0, Number(root.dataset.idleResume) || 6) * 1000;
 
@@ -410,6 +431,11 @@ const {
 		let sweeping = AUTHORED_SWEEP;
 		let canDrag = AUTHORED_DRAG;
 		let marks = AUTHORED_MARKS;
+		let probe = AUTHORED_PROBE;
+		/* Something is worth saying above the graph if the reader has a mark of
+		   their own, or if the card has put any down to be added up. */
+		const hasHead = () => probe || marks.length > 0;
+		const markLights = () => marks.map((at) => ({ nm: at, weight: 1 }));
 		let sweepT = 0;
 		let manual = false;
 		let manualUntil = 0;
@@ -515,7 +541,7 @@ const {
 			h = r.height;
 			canvas.width = Math.max(1, Math.round(w * dpr));
 			canvas.height = Math.max(1, Math.round(h * dpr));
-			const top = h * HEAD_FRAC + PAD.top;
+			const top = h * (hasHead() ? HEAD_FRAC : NO_HEAD_FRAC) + PAD.top;
 			plot = {
 				x: PAD.left,
 				y: top,
@@ -555,8 +581,26 @@ const {
 		};
 
 		const tally = () => {
-			const r = responseAt(nm);
 			const gone = MISSING[vision];
+			if (!probe) {
+				/* The marks, arriving together. Both readings come out of the same
+				   pair of functions the light mixer uses, so the disc and the bars
+				   are two readings of one mixture rather than two mixtures. */
+				const lights = markLights();
+				const sum = lights.length ? mixCones(lights) : ([0, 0, 0] as [number, number, number]);
+				for (const c of CONES) {
+					const v = sum[c.at];
+					bars[c.key].style.width = `${(Math.min(1, v) * 100).toFixed(1)}%`;
+					vals[c.key].textContent = v.toFixed(2);
+				}
+				if (lights.length) {
+					const [mr, mg, mb] = mixRgb(lights);
+					swatchEl.style.background = `rgb(${mr} ${mg} ${mb})`;
+				}
+				return sum;
+			}
+
+			const r = responseAt(nm);
 			for (const c of CONES) {
 				bars[c.key].style.width = `${(r[c.at] * 100).toFixed(1)}%`;
 				vals[c.key].textContent = r[c.at].toFixed(2);
@@ -575,8 +619,10 @@ const {
 		};
 
 		const applyDrag = () => {
-			root.dataset.drag = canDrag ? 'true' : 'false';
-			pickEl.disabled = !canDrag;
+			root.dataset.drag = canDrag && probe ? 'true' : 'false';
+			root.dataset.probe = probe ? 'true' : 'false';
+			root.dataset.head = hasHead() ? 'true' : 'false';
+			pickEl.disabled = !canDrag || !probe;
 		};
 
 		const syncPick = () => {
@@ -734,7 +780,11 @@ const {
 			}
 
 			/* ---- the mark ---------------------------------------------------
-			   One wavelength, and what the three of them make of it. */
+			   One wavelength, and what the three of them make of it. Absent on a
+			   card that is about particular wavelengths and not about any one the
+			   reader likes. */
+			if (!probe) return;
+
 			const r = responseAt(nm);
 			const mx = xOf(nm);
 			ctx.save();
@@ -795,6 +845,9 @@ const {
 			resting = 'wavelength' in p ? clampNm(Number(p.wavelength) || AUTHORED_NM) : AUTHORED_NM;
 			canDrag = 'drag' in p ? Boolean(p.drag) : AUTHORED_DRAG;
 			marks = 'marks' in p ? readMarks(p.marks) : AUTHORED_MARKS;
+			probe = 'probe' in p ? Boolean(p.probe) : AUTHORED_PROBE;
+			// The graph's share of the pane depends on it.
+			resize();
 			vision = 'vision' in p ? readVision(p.vision) : AUTHORED_VISION;
 			if (vision !== 'normal') shown = vision;
 			root.dataset.vision = vision;

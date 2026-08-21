@@ -57,9 +57,11 @@ import LightMix from "../../components/LightMix.astro";
 {/* Part three's curves, to look at combined stimulation on. The light
     mixer is still wired up as the "mix" phase if it turns out to be wanted
     here. */}
-<DeckCard vizProps={{ phase: "cones", marks: [650, 420] }}>
+<DeckCard vizProps={{ phase: "cones", marks: [650, 420], probe: false }}>
   ## Pink is not a wavelength
 
   Look at the intersection of the S and L cones above. You will see that
   there is no single wavelength of color that will stimulate the S and L cones without also stimulating the M cone.
+
+  But there totally are ways to do exactly that, by using two different wavelengths -- here I've marked 650nm and 420nm, which are red and blue light. If you mix those two together, you will get a color that stimulates the S and L cones without stimulating the M cone at all -- this is what we perceive as pink!
 </DeckCard>
