@@ -191,10 +191,15 @@ const { idleResume = 3 } = Astro.props;
 
 	/* --- cube --- */
 
+	/* Square, so it is only as wide as the cube can actually be — the cube is
+	   sized from the pane's short side, which is its height. Left to flex:1 the
+	   stage would swallow all the spare width and centre the cube inside it,
+	   pushing the bars away from it as the pane widens. */
 	.stage {
 		position: relative;
 		z-index: 1;
-		flex: 1;
+		flex: 0 0 auto;
+		aspect-ratio: 1;
 		min-width: 0;
 		min-height: 0;
 		display: flex;
@@ -398,6 +403,7 @@ const { idleResume = 3 } = Astro.props;
 
 		.stage {
 			flex: 1;
+			aspect-ratio: auto;
 			min-height: 0;
 		}
 	}
@@ -647,17 +653,24 @@ const { idleResume = 3 } = Astro.props;
 
 		let w = 0;
 		let h = 0;
-		let dpr = 1;
+		/* Canvas-to-device scale. Deliberately more than the device pixel ratio:
+		   each face is clipped to its outline, and canvas clipping is not
+		   anti-aliased, so face edges land on hard pixel boundaries and stair-
+		   step. Rendering into a backing store larger than the element and
+		   letting the browser scale it down averages those edges away — plain
+		   supersampling, which is the only anti-aliasing a 2d context offers. */
+		let px2dev = 2;
 		let cubeScale = 0.5;
 		const resize = () => {
-			dpr = Math.min(window.devicePixelRatio || 1, 2);
+			const dpr = Math.min(window.devicePixelRatio || 1, 2);
+			px2dev = Math.min(dpr * 2, 3);
 			cubeScale =
 				parseFloat(getComputedStyle(root).getPropertyValue('--cube-scale')) || 0.5;
 			const r = canvas.getBoundingClientRect();
 			w = r.width;
 			h = r.height;
-			canvas.width = Math.max(1, Math.round(w * dpr));
-			canvas.height = Math.max(1, Math.round(h * dpr));
+			canvas.width = Math.max(1, Math.round(w * px2dev));
+			canvas.height = Math.max(1, Math.round(h * px2dev));
 		};
 		new ResizeObserver(resize).observe(canvas);
 		resize();
@@ -823,7 +836,7 @@ const { idleResume = 3 } = Astro.props;
 			// Beer-Lambert-ish, with a floor so a deep dot stays findable.
 			const dotAlpha = Math.max(0.16, Math.exp(-1.7 * thickness));
 
-			ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+			ctx.setTransform(px2dev, 0, 0, px2dev, 0, 0);
 			ctx.clearRect(0, 0, w, h);
 			ctx.imageSmoothingEnabled = true;
 			ctx.imageSmoothingQuality = "high";
@@ -852,8 +865,11 @@ const { idleResume = 3 } = Astro.props;
 			const room = Math.max(0, gap - 1);
 			ctx.save();
 			ctx.shadowColor = "rgba(40, 30, 14, 0.55)";
-			ctx.shadowBlur = Math.min(scale * 0.34, room * 0.8);
-			ctx.shadowOffsetY = Math.min(scale * 0.09, room * 0.2);
+			// Shadow blur and offset are device-space and ignore the current
+			// transform, so they are scaled by hand — otherwise the shadow
+			// shrinks as the backing store grows.
+			ctx.shadowBlur = Math.min(scale * 0.34, room * 0.8) * px2dev;
+			ctx.shadowOffsetY = Math.min(scale * 0.09, room * 0.2) * px2dev;
 			ctx.fillStyle = "#000";
 			ctx.beginPath();
 			for (let i = 0; i < hull.length; i++) {
@@ -909,10 +925,10 @@ const { idleResume = 3 } = Astro.props;
 						const sxs = i * STEP;
 						const sys = j * STEP;
 						ctx.setTransform(
-							dpr * ax, dpr * ay,
-							dpr * bx, dpr * by,
-							dpr * (X0 - ax * sxs - bx * sys),
-							dpr * (Y0 - ay * sxs - by * sys),
+							px2dev * ax, px2dev * ay,
+							px2dev * bx, px2dev * by,
+							px2dev * (X0 - ax * sxs - bx * sys),
+							px2dev * (Y0 - ay * sxs - by * sys),
 						);
 						// overdraw by half a texel; the clip keeps it inside the face
 						ctx.drawImage(
@@ -922,7 +938,7 @@ const { idleResume = 3 } = Astro.props;
 						);
 					}
 				}
-				ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+				ctx.setTransform(px2dev, 0, 0, px2dev, 0, 0);
 				ctx.restore();
 
 				// face outline: adjacent faces share an edge colour exactly, so
