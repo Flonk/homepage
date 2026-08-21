@@ -11,6 +11,8 @@
  * if the one difference between them is the missing cone.
  */
 
+import { coneResponse } from './cones';
+
 /** The speed of light, in nanometres a second. */
 export const C_NM_PER_S = 2.99792458e17;
 
@@ -395,4 +397,33 @@ export function nearestWavelength(lights: Light[]): { nm: number; distance: numb
 		if (d < best.distance) best = { nm, distance: d };
 	}
 	return best;
+}
+
+/**
+ * What a mixture comes to at the three kinds of cone.
+ *
+ * Each light is scaled exactly as mixRgb scales it, so the numbers here and
+ * the colour there are two readings of the same mixture rather than two
+ * mixtures. Each cone's own response is a fraction of its own peak — the same
+ * scale part three's graph is drawn on — so the three can be compared with the
+ * curves there.
+ *
+ * This is the reading that says what a colour *is*, as far as anything past
+ * the eye is concerned: three numbers, and no record at all of what arrived to
+ * produce them.
+ */
+export function mixCones(lights: Light[]): [number, number, number] {
+	let l = 0;
+	let m = 0;
+	let s = 0;
+	for (const light of lights) {
+		const lin = apply(XYZ_TO_RGB, spectralXyz(light.nm));
+		const top = Math.max(Math.max(0, lin[0]), Math.max(0, lin[1]), Math.max(0, lin[2]), 1e-9);
+		const k = light.weight / top;
+		const c = coneResponse(light.nm);
+		l += c[0] * k;
+		m += c[1] * k;
+		s += c[2] * k;
+	}
+	return [l, m, s];
 }

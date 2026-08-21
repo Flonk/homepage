@@ -5,12 +5,15 @@
  *
  * The point it exists to make is that the answer is often a colour that is
  * nowhere in the spectrum. Pink is the everyday case: everyone believes in it,
- * everyone has seen it, and no wavelength is it. So the mixture is shown
- * beside the closest single wavelength there is, along with how far off that
- * still leaves it — because "not in the rainbow" is a claim with a number
- * behind it, and the number is worth showing.
+ * everyone has seen it, and no wavelength is it.
+ *
+ * Beside the mixture are the three numbers it comes to at the cones, which is
+ * the whole of what leaves the eye. Read them and you can see why no
+ * wavelength will do: the pattern pink makes — the two ends lit and the middle
+ * behind them — is one the curves in part three never produce from a single
+ * light, because M sits under L the whole way along.
  */
-import { mixRgb, nearestWavelength, wavelengthCss, type Light } from '../lib/spectrum';
+import { mixCones, mixRgb, wavelengthCss, type Light } from '../lib/spectrum';
 
 interface Props {
 	/** The lights, in nanometres, each with a share of its own full brightness. */
@@ -53,13 +56,22 @@ const bar = Array.from({ length: STOPS + 1 }, (_, i) => {
 			<figcaption>together</figcaption>
 		</figure>
 
-		<div class="mix-verdict">
-			<figure class="mix-out mix-out-small">
-				<div class="mix-disc" data-near></div>
-				<figcaption data-near-label></figcaption>
-			</figure>
-			<p data-verdict></p>
-		</div>
+		{/* The same three, in the same order and the same colours, as part
+		    three's graph — so the two can be read against each other. */}
+		<dl class="tally" data-tally>
+			<div class="tally-row" data-cone="s">
+				<dt>S</dt>
+				<dd><span class="tally-bar"><i data-bar="s"></i></span><b data-val="s">0.00</b></dd>
+			</div>
+			<div class="tally-row" data-cone="m">
+				<dt>M</dt>
+				<dd><span class="tally-bar"><i data-bar="m"></i></span><b data-val="m">0.00</b></dd>
+			</div>
+			<div class="tally-row" data-cone="l">
+				<dt>L</dt>
+				<dd><span class="tally-bar"><i data-bar="l"></i></span><b data-val="l">0.00</b></dd>
+			</div>
+		</dl>
 	</div>
 
 	<div class="mix-bar">
@@ -124,10 +136,6 @@ const bar = Array.from({ length: STOPS + 1 }, (_, i) => {
 			0 0 22px 2px rgb(0 0 0 / 0.35);
 	}
 
-	.mix-out-small .mix-disc {
-		width: clamp(2rem, 13cqh, 3.75rem);
-	}
-
 	.mix-out figcaption {
 		font-size: 0.62rem;
 		letter-spacing: 0.08em;
@@ -135,23 +143,81 @@ const bar = Array.from({ length: STOPS + 1 }, (_, i) => {
 		color: var(--ink-dim);
 	}
 
-	.mix-verdict {
+	.tally {
+		margin: 0;
+		display: grid;
+		gap: 0.35rem;
+		font-size: 0.9rem;
+		font-variant-numeric: tabular-nums;
+		--l: #ff6b6b;
+		--m: #64d98a;
+		--s: #6fa8ff;
+	}
+
+	.tally-row {
 		display: flex;
 		align-items: center;
-		gap: 0.9rem;
-		max-width: 22rem;
+		gap: 0.45rem;
 	}
 
-	.mix-verdict p {
+	.tally dt {
+		width: 1ch;
+		font-weight: 700;
+	}
+
+	.tally dd {
 		margin: 0;
-		font-size: 0.72rem;
-		line-height: 1.5;
-		color: var(--ink-dim);
+		display: flex;
+		align-items: center;
+		gap: 0.45rem;
 	}
 
-	.mix-verdict :global(b) {
-		color: var(--ink);
+	.tally-bar {
+		display: block;
+		width: clamp(4rem, 14cqw, 9rem);
+		height: 0.45rem;
+		border-radius: 2px;
+		background: color-mix(in srgb, var(--ink) 14%, transparent);
+		overflow: hidden;
+	}
+
+	.tally-bar i {
+		display: block;
+		height: 100%;
+		width: 0;
+		border-radius: 2px;
+	}
+
+	/* Ink on the letter, fill on the bar. Setting both on both paints each
+	   letter out in a block of its own colour. */
+	.tally-row[data-cone='l'] dt {
+		color: var(--l);
+	}
+
+	.tally-row[data-cone='m'] dt {
+		color: var(--m);
+	}
+
+	.tally-row[data-cone='s'] dt {
+		color: var(--s);
+	}
+
+	.tally-row[data-cone='l'] .tally-bar i {
+		background: var(--l);
+	}
+
+	.tally-row[data-cone='m'] .tally-bar i {
+		background: var(--m);
+	}
+
+	.tally-row[data-cone='s'] .tally-bar i {
+		background: var(--s);
+	}
+
+	.tally b {
+		width: 4ch;
 		font-weight: 400;
+		color: var(--ink-dim);
 	}
 
 	/* The handles sit on the spectrum they are picking out of. */
@@ -240,8 +306,9 @@ const bar = Array.from({ length: STOPS + 1 }, (_, i) => {
 	}
 
 	@container viz (max-width: 30rem) {
-		.mix-verdict p {
-			font-size: 0.62rem;
+		.tally {
+			font-size: 0.7rem;
+			gap: 0.25rem;
 		}
 		.mix-legend {
 			gap: 0.7rem;
@@ -251,17 +318,26 @@ const bar = Array.from({ length: STOPS + 1 }, (_, i) => {
 </style>
 
 <script>
-	import { mixRgb, nearestWavelength, wavelengthCss, type Light } from '../lib/spectrum';
+	import { mixCones, mixRgb, wavelengthCss, type Light } from '../lib/spectrum';
+
+	const CONES = [
+		{ key: 's', at: 2 },
+		{ key: 'm', at: 1 },
+		{ key: 'l', at: 0 },
+	] as const;
 
 	function initMix(root: HTMLElement) {
 		if (root.dataset.ready === 'true') return;
 		root.dataset.ready = 'true';
 
 		const outEl = root.querySelector<HTMLElement>('[data-out]')!;
-		const nearEl = root.querySelector<HTMLElement>('[data-near]')!;
-		const nearLabel = root.querySelector<HTMLElement>('[data-near-label]')!;
-		const verdictEl = root.querySelector<HTMLElement>('[data-verdict]')!;
 		const legendEl = root.querySelector<HTMLElement>('[data-legend]')!;
+		const bars = Object.fromEntries(
+			CONES.map((c) => [c.key, root.querySelector<HTMLElement>(`[data-bar='${c.key}']`)!]),
+		);
+		const vals = Object.fromEntries(
+			CONES.map((c) => [c.key, root.querySelector<HTMLElement>(`[data-val='${c.key}']`)!]),
+		);
 		const ranges = Array.from(root.querySelectorAll<HTMLInputElement>('[data-light]'));
 
 		const lights: Light[] = JSON.parse(root.dataset.lights ?? '[]');
@@ -292,18 +368,16 @@ const bar = Array.from({ length: STOPS + 1 }, (_, i) => {
 			const [r, g, b] = mixRgb(lights);
 			outEl.style.background = `rgb(${r} ${g} ${b})`;
 
-			const near = nearestWavelength(lights);
-			nearEl.style.background = wavelengthCss(near.nm);
-			nearLabel.textContent = `${near.nm} nm`;
-
-			/* The number is the argument. Anything under a hundredth or so is a
-			   colour the spectrum does have, and saying so when it does is what
-			   makes saying it does not mean something. */
-			verdictEl.innerHTML =
-				near.distance < 0.01
-					? `That is a colour the spectrum has: <b>${near.nm} nm</b> on its own looks the same.`
-					: `No wavelength is that colour. The closest, <b>${near.nm} nm</b>, is still ` +
-						`<b>${near.distance.toFixed(2)}</b> away — and everything the eye can see spans about 0.8.`;
+			/* Drawn against the strongest of the three, so what is shown is the
+			   pattern between them, which is the part that carries the colour.
+			   Their sizes together are brightness, and the disc is already
+			   saying that. */
+			const cones = mixCones(lights);
+			const top = Math.max(cones[0], cones[1], cones[2], 1e-6);
+			for (const c of CONES) {
+				bars[c.key].style.width = `${((cones[c.at] / top) * 100).toFixed(1)}%`;
+				vals[c.key].textContent = (cones[c.at] / top).toFixed(2);
+			}
 		};
 
 		for (const [i, range] of ranges.entries()) {
