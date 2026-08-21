@@ -20,7 +20,9 @@ import PhotonWave from "../../components/PhotonWave.astro";
   <PhotonWave />
 </DeckViz>
 
-<DeckCard>
+{/* Just the one photon to look at here. The spectrum turns up on the next
+    card, which is where it is the subject. */}
+<DeckCard vizProps={{ spectrumBar: false }}>
   ## Colour starts as light
 
   Our senses are our way of perceiving the world around us. Some senses are tuned to detect big organic molecules, like smell. The sour receptors in your tongue detect hydrogen ions, arguably some of the smaller things that exist.
@@ -35,7 +37,7 @@ import PhotonWave from "../../components/PhotonWave.astro";
     can keep up — a wave down there is wider than the pane, and only ever
     arrives as an arc — which is fair enough on a card about how much
     spectrum there is, and how little of it we are built for. */}
-<DeckCard vizProps={{ sweep: [40, 6000] }}>
+<DeckCard vizProps={{ sweep: [40, 6000], spectrumBar: true }}>
   ## There are many kinds of light
 
   Light is traveling in a wave motion, and how fast the wave oscillates is called its *frequency*. The higher the frequency, the more energy each photon has. The higher the frequency, the shorter the *wavelength*, which is the distance between two peaks of the wave.
