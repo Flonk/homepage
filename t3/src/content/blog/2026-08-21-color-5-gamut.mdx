@@ -1,0 +1,53 @@
+---
+title: "Colour #5: Gamut"
+series: "Colour"
+format: "deck"
+ground: "dark"
+description: ""
+pubDate: "August 21 2026"
+---
+
+import DeckCard from "../../components/DeckCard.astro";
+import DeckViz from "../../components/DeckViz.astro";
+import ChromaticityChart from "../../components/ChromaticityChart.astro";
+
+{/* One chart for the whole post. Every card drives it with vizProps: which
+    triangles are on it, and whether it is painting every colour or only the
+    ones this page can really show. See DeckViz for the whole contract. */}
+<DeckViz>
+  <ChromaticityChart gamuts={[]} fill="all" />
+</DeckViz>
+
+<DeckCard vizProps={{ gamuts: [], fill: "all", wavelengths: true }}>
+  ## Every colour, laid out flat
+
+  Bla di bla
+</DeckCard>
+
+{/* The purples are the one part of the outline no single wavelength can
+    reach, which is where part two's "where is pink?" finally gets answered. */}
+<DeckCard vizProps={{ gamuts: [], fill: "all", wavelengths: true }}>
+  ## The edge is the spectrum
+
+  Bla di bla
+</DeckCard>
+
+<DeckCard vizProps={{ gamuts: ["srgb"], fill: "all", white: true }}>
+  ## Three primaries make a triangle
+
+  Bla di bla
+</DeckCard>
+
+{/* The honest one. Everything the page cannot reach goes grey, and what is
+    left is a good deal smaller than the card before it suggested. */}
+<DeckCard vizProps={{ gamuts: ["srgb"], fill: "srgb", white: true }}>
+  ## So the last two slides were lying to you
+
+  Bla di bla
+</DeckCard>
+
+<DeckCard vizProps={{ gamuts: ["srgb", "p3", "rec2020"], fill: "all" }}>
+  ## Bigger triangles
+
+  Bla di bla
+</DeckCard>

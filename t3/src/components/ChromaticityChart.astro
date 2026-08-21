@@ -1,0 +1,442 @@
+---
+/**
+ * The CIE 1931 chromaticity chart: every colour there is, laid out flat, with
+ * the triangle a screen can actually reach drawn on top of it.
+ *
+ * Brightness has been divided out, which is what makes the picture work.
+ * Mixing two lights lands you somewhere on the straight line between them,
+ * whatever the amounts — so the colours three primaries can produce are
+ * exactly the triangle they span, and the gap between that triangle and the
+ * horseshoe around it is the whole argument about gamut, in one look.
+ *
+ * The horseshoe's edge is the spectrum, one wavelength per point, running from
+ * violet at the bottom left round to red at the right. The straight line
+ * closing it is the purples, which are not wavelengths at all: they are the
+ * mixtures of the two ends, and they are the only part of the outline no
+ * single light can produce.
+ *
+ * A warning that is also the point of card three: outside the sRGB triangle
+ * this chart is lying, because a screen has no way to draw the colours out
+ * there and is showing the nearest thing it has instead. Every printed copy of
+ * this diagram anywhere has the same problem.
+ */
+import { GAMUTS, type GamutName } from '../lib/spectrum';
+
+interface Props {
+	/** Which gamuts to outline, drawn in the order given. */
+	gamuts?: GamutName[];
+	/**
+	 * Paint every chromaticity, or only the ones the page can really show.
+	 * "srgb" greys out everything the triangle cannot reach, which is the
+	 * honest version and looks a good deal emptier.
+	 */
+	fill?: 'all' | 'srgb';
+	/** Label the spectral locus with the wavelengths along it. */
+	wavelengths?: boolean;
+	/** Mark the white point the gamuts are defined against. */
+	white?: boolean;
+}
+
+const {
+	gamuts = ['srgb'],
+	fill = 'all',
+	wavelengths = true,
+	white = false,
+} = Astro.props;
+---
+
+<div
+	class="chart"
+	data-chart
+	data-gamuts={gamuts.join(' ')}
+	data-fill={fill}
+	data-wavelengths={wavelengths ? 'true' : 'false'}
+	data-white={white ? 'true' : 'false'}
+>
+	<canvas data-canvas></canvas>
+	<dl class="key" data-key></dl>
+</div>
+
+<style>
+	.chart {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		min-width: 0;
+		min-height: 0;
+		font-family: var(--font-mono);
+		--ink: var(--deck-ink, #35302a);
+		--ink-dim: var(--deck-ink-dim, #7a7264);
+		color: var(--ink);
+	}
+
+	.chart canvas {
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	/* Beside the chart rather than on it: the corners of the triangles are
+	   already crowded, and a label on each would sit exactly where the colours
+	   are most worth seeing. Placed against the chart's own edge rather than the
+	   pane's, or on a wide display it would drift off to sit by itself. */
+	.key {
+		position: absolute;
+		top: var(--key-top, 1rem);
+		left: var(--key-left, auto);
+		margin: 0;
+		display: grid;
+		gap: 0.4rem;
+		font-size: 0.8rem;
+		pointer-events: none;
+	}
+
+	.key :global(div) {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.key :global(dt) {
+		width: 1.4rem;
+		height: 0;
+		border-top-width: 2px;
+		border-top-style: solid;
+	}
+
+	.key :global(dd) {
+		margin: 0;
+		color: var(--ink-dim);
+	}
+
+	@container viz (max-width: 30rem) {
+		.key {
+			font-size: 0.65rem;
+		}
+	}
+</style>
+
+<script>
+	import {
+		GAMUTS,
+		LOCUS_FIRST_NM,
+		LOCUS_LAST_NM,
+		chromaticityRgb,
+		insideGamut,
+		spectralXy,
+		type GamutName,
+	} from '../lib/spectrum';
+
+	/* Room for the horseshoe and no more. It reaches x = 0.735 at the red end
+	   and y = 0.834 at the top of the green, so this is those plus a margin. */
+	const X_MAX = 0.76;
+	const Y_MAX = 0.86;
+	const PAD = { top: 16, right: 18, bottom: 34, left: 34 };
+
+	/* One per gamut, kept apart from the colours underneath: a triangle drawn in
+	   any of the hues it contains would disappear into its own contents. */
+	const GAMUT_INK: Record<GamutName, string> = {
+		srgb: '#ffffff',
+		p3: '#ffd166',
+		rec2020: '#7fd1ff',
+	};
+
+	const readGamuts = (v: unknown): GamutName[] => {
+		const raw = typeof v === 'string' ? v.split(/[\s,]+/) : Array.isArray(v) ? v : [];
+		return raw.filter((g): g is GamutName => g === 'srgb' || g === 'p3' || g === 'rec2020');
+	};
+
+	function initChart(root: HTMLElement) {
+		if (root.dataset.ready === 'true') return;
+		root.dataset.ready = 'true';
+
+		const canvas = root.querySelector<HTMLCanvasElement>('[data-canvas]')!;
+		const ctx = canvas.getContext('2d')!;
+		const keyEl = root.querySelector<HTMLElement>('[data-key]')!;
+
+		const host =
+			root.closest<HTMLElement>('[data-viz-phase]') ??
+			root.closest<HTMLElement>('[data-viz-stage]');
+
+		const AUTHORED_GAMUTS = readGamuts(root.dataset.gamuts);
+		const AUTHORED_FILL = root.dataset.fill === 'srgb' ? 'srgb' : 'all';
+		const AUTHORED_WAVELENGTHS = root.dataset.wavelengths !== 'false';
+		const AUTHORED_WHITE = root.dataset.white === 'true';
+
+		let gamuts = AUTHORED_GAMUTS;
+		let fill: 'all' | 'srgb' = AUTHORED_FILL;
+		let wavelengths = AUTHORED_WAVELENGTHS;
+		let white = AUTHORED_WHITE;
+
+		let inkC = '#e6e9ef';
+		let dimC = '#8891a0';
+		const readInk = () => {
+			const cs = getComputedStyle(root);
+			inkC = cs.getPropertyValue('--ink').trim() || inkC;
+			dimC = cs.getPropertyValue('--ink-dim').trim() || dimC;
+		};
+
+		let w = 0;
+		let h = 0;
+		let dpr = 1;
+		let plot = { x: 0, y: 0, w: 1, h: 1 };
+
+		const xOf = (x: number) => plot.x + (x / X_MAX) * plot.w;
+		const yOf = (y: number) => plot.y + plot.h - (y / Y_MAX) * plot.h;
+
+		/* The outline, sampled once: it is the same shape at every size, and at a
+		   nanometre a step it is smooth well past what any of this is drawn at. */
+		const locus: [number, number][] = [];
+		for (let nm = LOCUS_FIRST_NM; nm <= LOCUS_LAST_NM; nm += 1) locus.push(spectralXy(nm));
+
+		/* The fill, as an image. Per-pixel colour over the whole horseshoe is far
+		   too much to redo on a resize, let alone a frame, so it is painted once
+		   at a fixed size and stretched — the gradient is smooth enough that no
+		   one can tell, and the outline and triangles are drawn crisply on top. */
+		const FILL_PX = 512;
+		const fillCache = new Map<string, ImageBitmap | HTMLCanvasElement>();
+
+		const paintFill = (mode: 'all' | 'srgb') => {
+			const cached = fillCache.get(mode);
+			if (cached) return cached;
+			const off = document.createElement('canvas');
+			off.width = FILL_PX;
+			off.height = FILL_PX;
+			const octx = off.getContext('2d')!;
+			const img = octx.createImageData(FILL_PX, FILL_PX);
+			for (let py = 0; py < FILL_PX; py++) {
+				const y = ((FILL_PX - 1 - py) / (FILL_PX - 1)) * Y_MAX;
+				for (let px = 0; px < FILL_PX; px++) {
+					const x = (px / (FILL_PX - 1)) * X_MAX;
+					const i = (py * FILL_PX + px) * 4;
+					if (!insideLocus(x, y)) continue;
+					const { rgb } = chromaticityRgb(x, y);
+					const out = mode === 'srgb' && !insideGamut(x, y, 'srgb');
+					if (out) {
+						/* Not left blank: the shape of what is missing is the point,
+						   and a hole would read as "nothing is there" rather than
+						   "something is there that you are not being shown". */
+						const grey = Math.round(0.2 * rgb[0] + 0.7 * rgb[1] + 0.1 * rgb[2]);
+						img.data[i] = img.data[i + 1] = img.data[i + 2] = Math.round(28 + grey * 0.16);
+					} else {
+						img.data[i] = rgb[0];
+						img.data[i + 1] = rgb[1];
+						img.data[i + 2] = rgb[2];
+					}
+					img.data[i + 3] = 255;
+				}
+			}
+			octx.putImageData(img, 0, 0);
+			fillCache.set(mode, off);
+			return off;
+		};
+
+		/* Inside the horseshoe, by the winding of the outline. The shape is convex
+		   in fact, but saying so in code would be trusting a table not to have a
+		   wobble in it. */
+		function insideLocus(x: number, y: number): boolean {
+			let inside = false;
+			const n = locus.length;
+			for (let i = 0, j = n - 1; i < n; j = i++) {
+				const [xi, yi] = locus[i];
+				const [xj, yj] = locus[j];
+				if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) inside = !inside;
+			}
+			return inside;
+		}
+
+		const resize = () => {
+			dpr = Math.min(window.devicePixelRatio || 1, 2);
+			const r = canvas.getBoundingClientRect();
+			w = r.width;
+			h = r.height;
+			canvas.width = Math.max(1, Math.round(w * dpr));
+			canvas.height = Math.max(1, Math.round(h * dpr));
+			/* Square, so that a distance across is the same as a distance up: the
+			   chart is a map, and reading one is reading how far apart things are. */
+			const side = Math.max(
+				1,
+				Math.min(w - PAD.left - PAD.right, h - PAD.top - PAD.bottom),
+			);
+			plot = {
+				x: PAD.left + (w - PAD.left - PAD.right - side) / 2,
+				y: PAD.top + (h - PAD.top - PAD.bottom - side) / 2,
+				w: side,
+				h: side,
+			};
+			root.style.setProperty('--key-left', `${Math.round(plot.x + plot.w + 14)}px`);
+			root.style.setProperty('--key-top', `${Math.round(plot.y)}px`);
+		};
+
+		const tracePath = (points: [number, number][]) => {
+			ctx.beginPath();
+			points.forEach(([x, y], i) => {
+				const px = xOf(x);
+				const py = yOf(y);
+				if (i === 0) ctx.moveTo(px, py);
+				else ctx.lineTo(px, py);
+			});
+		};
+
+		const TICKS = [460, 480, 490, 500, 520, 540, 560, 580, 600, 620, 650];
+
+		const draw = () => {
+			ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+			ctx.clearRect(0, 0, w, h);
+			ctx.font = '10px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
+
+			// ---- the colours, clipped to the horseshoe
+			ctx.save();
+			tracePath(locus);
+			ctx.closePath();
+			ctx.clip();
+			ctx.imageSmoothingEnabled = true;
+			ctx.drawImage(paintFill(fill), plot.x, plot.y, plot.w, plot.h);
+			ctx.restore();
+
+			// ---- the axes, which are only there to say what the numbers are
+			ctx.strokeStyle = `color-mix(in srgb, ${inkC} 25%, transparent)`;
+			ctx.lineWidth = 1;
+			ctx.beginPath();
+			ctx.moveTo(plot.x, plot.y);
+			ctx.lineTo(plot.x, plot.y + plot.h);
+			ctx.lineTo(plot.x + plot.w, plot.y + plot.h);
+			ctx.stroke();
+			ctx.fillStyle = dimC;
+			ctx.textAlign = 'center';
+			ctx.textBaseline = 'top';
+			for (let v = 0; v <= 0.8; v += 0.2) {
+				if (v > X_MAX) continue;
+				ctx.fillText(v.toFixed(1), xOf(v), plot.y + plot.h + 6);
+			}
+			ctx.textAlign = 'right';
+			ctx.textBaseline = 'middle';
+			for (let v = 0.2; v <= 0.8; v += 0.2) {
+				if (v > Y_MAX) continue;
+				ctx.fillText(v.toFixed(1), plot.x - 6, yOf(v));
+			}
+
+			// ---- the outline: the spectrum, then the purples closing it
+			ctx.strokeStyle = `color-mix(in srgb, ${inkC} 70%, transparent)`;
+			ctx.lineWidth = 1.5;
+			ctx.lineJoin = 'round';
+			tracePath(locus);
+			ctx.stroke();
+			ctx.save();
+			ctx.setLineDash([4, 4]);
+			ctx.beginPath();
+			ctx.moveTo(xOf(locus[locus.length - 1][0]), yOf(locus[locus.length - 1][1]));
+			ctx.lineTo(xOf(locus[0][0]), yOf(locus[0][1]));
+			ctx.stroke();
+			ctx.restore();
+
+			// ---- which wavelength is where, along the outside of the curve
+			if (wavelengths) {
+				ctx.fillStyle = dimC;
+				ctx.textAlign = 'left';
+				ctx.textBaseline = 'middle';
+				for (const nm of TICKS) {
+					const [x, y] = spectralXy(nm);
+					const [bx, by] = spectralXy(nm + 4);
+					const [ax, ay] = spectralXy(nm - 4);
+					// Outward is the normal to the curve, which keeps the labels off
+					// the colours whatever part of the horseshoe they are on.
+					let nx = yOf(by) - yOf(ay);
+					let ny = -(xOf(bx) - xOf(ax));
+					const len = Math.hypot(nx, ny) || 1;
+					nx /= len;
+					ny /= len;
+					const px = xOf(x) + nx * 5;
+					const py = yOf(y) + ny * 5;
+					ctx.beginPath();
+					ctx.moveTo(xOf(x), yOf(y));
+					ctx.lineTo(px, py);
+					ctx.strokeStyle = `color-mix(in srgb, ${inkC} 45%, transparent)`;
+					ctx.lineWidth = 1;
+					ctx.stroke();
+					ctx.textAlign = nx < -0.2 ? 'right' : nx > 0.2 ? 'left' : 'center';
+					ctx.textBaseline = ny > 0.2 ? 'top' : ny < -0.2 ? 'bottom' : 'middle';
+					ctx.fillText(String(nm), px + nx * 2, py + ny * 2);
+				}
+			}
+
+			// ---- the triangles
+			for (const name of gamuts) {
+				const g = GAMUTS[name];
+				const ink = GAMUT_INK[name];
+				tracePath(g.primaries);
+				ctx.closePath();
+				ctx.save();
+				ctx.strokeStyle = ink;
+				ctx.lineWidth = 1.75;
+				ctx.lineJoin = 'round';
+				ctx.stroke();
+				ctx.restore();
+				for (const [x, y] of g.primaries) {
+					ctx.beginPath();
+					ctx.arc(xOf(x), yOf(y), 3, 0, Math.PI * 2);
+					ctx.fillStyle = ink;
+					ctx.fill();
+					ctx.lineWidth = 1;
+					ctx.strokeStyle = 'rgba(0,0,0,0.6)';
+					ctx.stroke();
+				}
+			}
+
+			// ---- the white the whole thing is hung on
+			if (white && gamuts.length) {
+				const [x, y] = GAMUTS[gamuts[0]].white;
+				ctx.beginPath();
+				ctx.arc(xOf(x), yOf(y), 4, 0, Math.PI * 2);
+				ctx.fillStyle = '#fff';
+				ctx.fill();
+				ctx.lineWidth = 1;
+				ctx.strokeStyle = 'rgba(0,0,0,0.7)';
+				ctx.stroke();
+				ctx.fillStyle = dimC;
+				ctx.textAlign = 'left';
+				ctx.textBaseline = 'middle';
+				ctx.fillText('D65', xOf(x) + 8, yOf(y));
+			}
+		};
+
+		const drawKey = () => {
+			keyEl.replaceChildren();
+			for (const name of gamuts) {
+				const row = document.createElement('div');
+				const dt = document.createElement('dt');
+				dt.style.borderTopColor = GAMUT_INK[name];
+				const dd = document.createElement('dd');
+				dd.textContent = GAMUTS[name].label;
+				row.append(dt, dd);
+				keyEl.append(row);
+			}
+		};
+
+		/* Redrawn on the spot rather than on the next frame: nothing here moves on
+		   its own, and a pane the browser has stopped animating still has to show
+		   what the card asked for. */
+		new ResizeObserver(() => {
+			resize();
+			readInk();
+			draw();
+		}).observe(canvas);
+
+		host?.addEventListener('viz:props', (e) => {
+			const p = (e as CustomEvent).detail ?? {};
+			gamuts = 'gamuts' in p ? readGamuts(p.gamuts) : AUTHORED_GAMUTS;
+			fill = 'fill' in p ? (p.fill === 'srgb' ? 'srgb' : 'all') : AUTHORED_FILL;
+			wavelengths = 'wavelengths' in p ? Boolean(p.wavelengths) : AUTHORED_WAVELENGTHS;
+			white = 'white' in p ? Boolean(p.white) : AUTHORED_WHITE;
+			drawKey();
+			draw();
+		});
+
+		resize();
+		readInk();
+		drawKey();
+		draw();
+	}
+
+	document.querySelectorAll<HTMLElement>('[data-chart]').forEach(initChart);
+</script>

@@ -560,3 +560,120 @@ export function mixCones(lights: Light[]): [number, number, number] {
 	}
 	return [l, m, s];
 }
+
+/* ---- the chromaticity chart ------------------------------------------------
+   Colour with the brightness divided out. Any XYZ scaled by any amount lands
+   on the same (x, y), so what is left is the two numbers that say which colour
+   it is and nothing about how much of it there is. That is what makes the
+   chart worth drawing: every mixture of two lights lies on the straight line
+   between them, so the set of colours three primaries can reach is exactly the
+   triangle they span, and the whole argument about gamut becomes a picture. */
+
+/** Brightness divided out of an XYZ. */
+export function xyOf([X, Y, Z]: [number, number, number]): [number, number] {
+	const sum = X + Y + Z || 1e-12;
+	return [X / sum, Y / sum];
+}
+
+/** Where a single wavelength sits on the chart — a point of the horseshoe. */
+export function spectralXy(nm: number): [number, number] {
+	return xyOf(spectralXyz(nm));
+}
+
+/** The two ends of the spectral locus, between which the purples close it. */
+export const LOCUS_FIRST_NM = 380;
+export const LOCUS_LAST_NM = 700;
+
+/**
+ * The best sRGB rendering of a chromaticity, and whether it is an honest one.
+ *
+ * Taken at full brightness — the largest the channels can be without one going
+ * over — since the chart has no brightness of its own to report. `inGamut` is
+ * the thing worth knowing: false means at least one channel came out negative,
+ * which is the screen being asked for more of a primary than none, and no
+ * amount of arranging pixels will do it. Those are clipped and drawn anyway,
+ * because a hole in the horseshoe would be worse, but what is drawn there is
+ * the nearest colour the screen has rather than the colour asked for.
+ */
+export function chromaticityRgb(
+	x: number,
+	y: number,
+): { rgb: [number, number, number]; inGamut: boolean } {
+	if (y <= 1e-6) return { rgb: [0, 0, 0], inGamut: false };
+	const lin = apply(XYZ_TO_RGB, [x / y, 1, (1 - x - y) / y]);
+	const inGamut = lin[0] >= -1e-6 && lin[1] >= -1e-6 && lin[2] >= -1e-6;
+	const r = Math.max(0, lin[0]);
+	const g = Math.max(0, lin[1]);
+	const b = Math.max(0, lin[2]);
+	const top = Math.max(r, g, b, 1e-9);
+	return {
+		rgb: [
+			Math.round(255 * encode(r / top)),
+			Math.round(255 * encode(g / top)),
+			Math.round(255 * encode(b / top)),
+		],
+		inGamut,
+	};
+}
+
+/**
+ * Three sets of primaries, as published, with the white they are defined
+ * against. All three are D65, so the difference between them is only how far
+ * out the corners reach.
+ *
+ * sRGB is Rec.709's primaries, which is to say a 1990 studio monitor's, and is
+ * what a page is assumed to be in. Display P3 is the DCI cinema primaries on
+ * that same white, which is what recent Apple and many phone screens do.
+ * Rec.2020 is the ultra-high-definition set, whose red and green are single
+ * wavelengths — no display reaches it in full.
+ */
+export type GamutName = 'srgb' | 'p3' | 'rec2020';
+
+export const GAMUTS: Record<
+	GamutName,
+	{ label: string; primaries: [number, number][]; white: [number, number] }
+> = {
+	srgb: {
+		label: 'sRGB',
+		primaries: [
+			[0.64, 0.33],
+			[0.3, 0.6],
+			[0.15, 0.06],
+		],
+		white: [0.3127, 0.329],
+	},
+	p3: {
+		label: 'Display P3',
+		primaries: [
+			[0.68, 0.32],
+			[0.265, 0.69],
+			[0.15, 0.06],
+		],
+		white: [0.3127, 0.329],
+	},
+	rec2020: {
+		label: 'Rec. 2020',
+		primaries: [
+			[0.708, 0.292],
+			[0.17, 0.797],
+			[0.131, 0.046],
+		],
+		white: [0.3127, 0.329],
+	},
+};
+
+/** Whether a chromaticity is inside the triangle these primaries span. */
+export function insideGamut(x: number, y: number, name: GamutName): boolean {
+	const p = GAMUTS[name].primaries;
+	let sign = 0;
+	for (let i = 0; i < 3; i++) {
+		const [ax, ay] = p[i];
+		const [bx, by] = p[(i + 1) % 3];
+		const cross = (bx - ax) * (y - ay) - (by - ay) * (x - ax);
+		if (Math.abs(cross) < 1e-12) continue;
+		const s = cross > 0 ? 1 : -1;
+		if (sign === 0) sign = s;
+		else if (s !== sign) return false;
+	}
+	return true;
+}
