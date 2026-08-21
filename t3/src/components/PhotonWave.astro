@@ -349,7 +349,18 @@ const {
 	   can mix, so every one of these is a nearest-available stand-in, and the
 	   saturated ends are the furthest off. Which is, more or less, what this
 	   series is about. */
-	function wavelengthRgb(nm: number): [number, number, number] {
+	/* Where the response is spent altogether. Past the ends of the band the
+	   approximation above has no branch to offer and every channel falls
+	   through to nothing, so the hue is held at the edge and the brightness
+	   carries on down instead — which is what the eye does, over rather more
+	   nanometres than these. Reaching zero is the point: it lets a sweep run
+	   out past the band and take the light out with it. */
+	const RED_OUT = 820;
+	const VIOLET_OUT = 362;
+
+	function wavelengthRgb(raw: number): [number, number, number] {
+		// The hue is only defined across the band; beyond it, it is the last one.
+		const nm = Math.min(780, Math.max(380, raw));
 		let r = 0;
 		let g = 0;
 		let b = 0;
@@ -371,10 +382,14 @@ const {
 		} else if (nm <= 780) {
 			r = 1;
 		}
-		// The eye's response tails off at both ends of the visible range.
+		// The eye's response tails off at both ends of the visible range, and
+		// then keeps going: a third of the way at the edge of the band, and out
+		// altogether a few tens of nanometres past it.
 		let fade = 1;
-		if (nm >= 380 && nm < 420) fade = 0.3 + (0.7 * (nm - 380)) / 40;
-		else if (nm > 700 && nm <= 780) fade = 0.3 + (0.7 * (780 - nm)) / 80;
+		if (nm < 420) fade = 0.3 + (0.7 * (nm - 380)) / 40;
+		else if (nm > 700) fade = 0.3 + (0.7 * (780 - nm)) / 80;
+		if (raw > 780) fade *= Math.max(0, (RED_OUT - raw) / (RED_OUT - 780));
+		else if (raw < 380) fade *= Math.max(0, (raw - VIOLET_OUT) / (380 - VIOLET_OUT));
 		const enc = (v: number) => Math.round(255 * Math.pow(Math.max(0, v) * fade, 0.8));
 		return [enc(r), enc(g), enc(b)];
 	}
@@ -736,14 +751,7 @@ const {
 			}
 
 			const nm = C_NM_PER_S / (freqThz * 1e12);
-			/* Held inside the range the approximation is defined over, the same
-			   way the bar's rainbow is. A hair outside it and the branches all
-			   fall through: 781nm comes back pure black rather than a deep red,
-			   and 379.96nm comes back a flat blue rather than violet. The sweep
-			   on the visible band runs to 780.9 and 379.96, so both ends of it
-			   land there. Dimming towards the ends is the eye running out of
-			   response and is meant to be seen; going out altogether is not. */
-			const [r, g, b] = wavelengthRgb(Math.min(780, Math.max(380, nm)));
+			const [r, g, b] = wavelengthRgb(nm);
 			const colour = spectral ? `rgb(${r} ${g} ${b})` : '#ffffff';
 
 			if (!reduceMotion) {

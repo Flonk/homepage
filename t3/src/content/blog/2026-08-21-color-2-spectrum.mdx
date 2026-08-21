@@ -50,8 +50,11 @@ import PhotonWave from "../../components/PhotonWave.astro";
 
 {/* The axis closes in on the visible band, and the sweep closes in with it —
     otherwise the mark would spend most of its loop pinned to one end of a bar
-    it has left behind. 384 to 789 THz is the band itself, edge to edge. */}
-<DeckCard vizProps={{ sweep: [384, 789], spectrumBar: true, zoom: true, spectral: true }}>
+    it has left behind. 371 to 817 THz overshoots the band by the same ratio at
+    both ends: far enough out that the light is all but gone at the turns, and
+    the mark is a little way into the infrared and the ultraviolet when it
+    happens. */}
+<DeckCard vizProps={{ sweep: [371, 817], spectrumBar: true, zoom: true, spectral: true }}>
   ## The visible spectrum is the rainbow
 
   Bla di bla
