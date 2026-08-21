@@ -23,9 +23,22 @@ import PhotonWave from "../../components/PhotonWave.astro";
 <DeckCard>
   ## Colour starts as light
 
-  Our senses are our way of perceiving the world around us. Some senses are tuned to detect big organic molecules, like smell. The sour receptors in your tongue detect hydrogen ions, arguably one of the smaller things that exist.
+  Our senses are our way of perceiving the world around us. Some senses are tuned to detect big organic molecules, like smell. The sour receptors in your tongue detect hydrogen ions, arguably some of the smaller things that exist.
   
   Your eyes detect photons, which are the most fundamental particles in the universe, and which are what light is made of! They are the only things that can travel at light speed (hence the name), and they have zero mass. Fascinating things!
 
   The sun happens to emit a literal bajillion of them every second, and they love bouncing off of things, which is why many animals have evolved eyes to catch them.
+</DeckCard>
+
+{/* The card is about the range, so the wave runs the range: infrared up to
+    the near end of X-rays and back, once every nine seconds. */}
+<DeckCard vizProps={{ sweep: [30, 6000] }}>
+  ## There are many kinds of light
+
+  Light is traveling in a wave motion, and how fast the wave oscillates is called its *frequency*. The higher the frequency, the more energy each photon has.
+
+  Our eyes can only detect a very small range of frequencies, which we call the *visible spectrum*. The rest of the electromagnetic spectrum is invisible to us, but it is still light! When you microwave your food, or when you listen to the radio, get an X-Ray, or when you use your phone's Wi-Fi, you are using light!
+  
+  You might have heard stories
+  of people's organs literally melting after being exposed to radioactive gamma rays, because the photons are so high in energy that they are ripping your cells apart -- it's safe to say that evolution hasn't really equipped us to deal with that part of the spectrum. Similarly, it's probably good that our eyes aren't able to detect the low-energy radio waves, because if they could, we'd be constantly blinded by the Wi-Fi signals in our homes.
 </DeckCard>

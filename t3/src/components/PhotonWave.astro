@@ -36,9 +36,23 @@ interface Props {
 	 * to talk about wavelength and frequency before making it.
 	 */
 	spectral?: boolean;
+	/**
+	 * Run the frequency up and down between these two, in THz, instead of
+	 * holding one — the whole spectrum going past rather than a sample of it.
+	 * Low first. The sweep is geometric, so equal times cover equal ratios and
+	 * it does not spend nearly all of itself at the top end.
+	 *
+	 * Both ends are limited by the drawing rather than by physics: below about
+	 * 30 THz a wavelength is several panes long and there is nothing left to
+	 * see, and above about 6000 THz there are too few pixels per wave to draw
+	 * one. The readout keeps saying what is actually being shown.
+	 */
+	sweep?: [number, number];
+	/** How long one round trip of the sweep takes, in seconds. */
+	sweepSeconds?: number;
 }
 
-const { frequency = 545, spectral = false } = Astro.props;
+const { frequency = 545, spectral = false, sweep, sweepSeconds = 9 } = Astro.props;
 ---
 
 <div
@@ -46,6 +60,8 @@ const { frequency = 545, spectral = false } = Astro.props;
 	data-photon
 	data-frequency={frequency}
 	data-spectral={spectral ? 'true' : 'false'}
+	data-sweep={sweep ? sweep.join(' ') : undefined}
+	data-sweep-seconds={sweepSeconds}
 >
 	<canvas data-canvas></canvas>
 	<div class="readout">
@@ -168,6 +184,15 @@ const { frequency = 545, spectral = false } = Astro.props;
 		return [enc(r), enc(g), enc(b)];
 	}
 
+	/** A pair of frequencies in THz, low first, or null for anything else. */
+	function parseSweep(v: unknown): [number, number] | null {
+		const raw = typeof v === 'string' ? v.split(/[\s,]+/) : Array.isArray(v) ? v : null;
+		if (!raw || raw.length !== 2) return null;
+		const [a, b] = raw.map(Number);
+		if (!(a > 0) || !(b > 0) || a === b) return null;
+		return [Math.min(a, b), Math.max(a, b)];
+	}
+
 	function initPhoton(root: HTMLElement) {
 		if (root.dataset.ready === 'true') return;
 		root.dataset.ready = 'true';
@@ -190,16 +215,48 @@ const { frequency = 545, spectral = false } = Astro.props;
 
 		const AUTHORED = Math.max(1, Number(root.dataset.frequency) || 545);
 		const AUTHORED_SPECTRAL = root.dataset.spectral === 'true';
+		const AUTHORED_SWEEP = parseSweep(root.dataset.sweep);
+		const SWEEP_SECS = Math.max(1, Number(root.dataset.sweepSeconds) || 9);
 		let wanted = AUTHORED;
 		let spectral = AUTHORED_SPECTRAL;
 		// Eased rather than jumped, so a card changing the colour shows the wave
 		// stretching into its new shape instead of cutting to it.
 		let freqThz = AUTHORED;
 
+		/* ---- the sweep ------------------------------------------------------
+		   A round trip low → high → low, geometric in frequency and eased at
+		   both turning points, driven by a clock of its own. */
+		let sweeping: [number, number] | null = null;
+		let sweepT = 0;
+
+		const sweepAt = (t: number, [lo, hi]: [number, number]) => {
+			const u = (1 - Math.cos((2 * Math.PI * t) / SWEEP_SECS)) / 2;
+			return lo * Math.pow(hi / lo, u);
+		};
+
+		/* Where to start that clock so the sweep is passing through `f` on its
+		   way up: the wave then carries on from whatever it was already doing
+		   instead of snapping to the bottom of the range. */
+		const sweepEntry = (f: number, [lo, hi]: [number, number]) => {
+			const u = Math.min(1, Math.max(0, Math.log(f / lo) / Math.log(hi / lo)));
+			return (SWEEP_SECS / (2 * Math.PI)) * Math.acos(1 - 2 * u);
+		};
+
+		const setSweep = (next: [number, number] | null) => {
+			const same =
+				(!next && !sweeping) ||
+				(next && sweeping && next[0] === sweeping[0] && next[1] === sweeping[1]);
+			if (same) return;
+			if (next) sweepT = sweepEntry(freqThz, next);
+			sweeping = next;
+		};
+		setSweep(AUTHORED_SWEEP);
+
 		host?.addEventListener('viz:props', (e) => {
 			const p = (e as CustomEvent).detail ?? {};
 			wanted = 'frequency' in p ? Math.max(1, Number(p.frequency) || AUTHORED) : AUTHORED;
 			spectral = 'spectral' in p ? Boolean(p.spectral) : AUTHORED_SPECTRAL;
+			setSweep('sweep' in p ? parseSweep(p.sweep) : AUTHORED_SWEEP);
 		});
 
 		/* ---- the trace ------------------------------------------------------
@@ -260,7 +317,12 @@ const { frequency = 545, spectral = false } = Astro.props;
 			const dt = last ? Math.min(0.05, (now - last) / 1000) : 0.016;
 			last = now;
 
-			if (freqThz !== wanted) {
+			if (sweeping && !reduceMotion) {
+				sweepT += dt;
+				freqThz = sweepAt(sweepT, sweeping);
+			} else if (freqThz !== wanted) {
+				// Not while sweeping: the sweep is the frequency, and easing towards
+				// a resting value at the same time would only drag against it.
 				const k = 1 - Math.exp(-3 * dt);
 				freqThz += (wanted - freqThz) * k;
 				if (Math.abs(wanted - freqThz) < 0.01) freqThz = wanted;
