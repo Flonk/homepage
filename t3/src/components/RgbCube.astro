@@ -6,9 +6,16 @@
  *
  * A dot traces a Lissajous curve through the cube; the bars and the swatch show
  * the colour at the dot. The cube is opaque, so the dot is always drawn on top
- * and its opacity stands in for how much material is in front of it. Drag the cube to spin it — it keeps its momentum and
- * eases back to its ambient rotation. Move any bar and the dot stops tracing to
- * follow your input, resuming a few seconds after you stop.
+ * and its opacity stands in for how much material is in front of it. Drag the
+ * cube to spin it — it keeps its momentum and eases back to its ambient
+ * rotation. Move any bar and the dot stops tracing to follow your input,
+ * resuming a few seconds after you stop.
+ *
+ * Rendered with WebGL, and deliberately without a 3D library: the point of the
+ * picture is that the colours are right, and every engine worth using has a
+ * colour-management and tone-mapping stage that would quietly rewrite them on
+ * the way to the screen. Twelve triangles are not worth losing that control
+ * over. See the shaders below for what does and does not happen to a value.
  */
 interface Props {
 	/** Seconds of no input before the dot resumes its Lissajous curve. */
@@ -205,11 +212,19 @@ const { idleResume = 3 } = Astro.props;
 		display: flex;
 	}
 
+	/* The contact shadow. The canvas is transparent outside the cube, so a
+	   drop-shadow over its own alpha *is* the silhouette's shadow — no second
+	   surface to draw it on, and it is clipped by the pane rather than by the
+	   canvas box, so it fades out at tight sizes instead of being sliced off.
+	   The two lengths are set from the cube's on-screen size by the script. */
 	.stage canvas {
 		width: 100%;
 		height: 100%;
 		cursor: grab;
 		touch-action: none;
+		filter: drop-shadow(
+			0 var(--shadow-y, 6px) var(--shadow-blur, 18px) rgba(40, 30, 14, 0.55)
+		);
 	}
 
 	.stage canvas:active {
@@ -471,93 +486,313 @@ const { idleResume = 3 } = Astro.props;
 		];
 	};
 
-	/* --- face textures ------------------------------------------------------
-	   A face's colours never change, only where it is on screen. So each face is
-	   rasterised once, pixel by pixel, into its own texture and then mapped onto
-	   the projected face. That gives an exact gradient rather than the banded
-	   approximation a grid of flat-shaded quads produced.
-
-	   Under perspective a face projects to a general quadrilateral, which no
-	   affine transform can hit, so each face is drawn as a K x K grid of texture
-	   pieces. The corners of every piece are projected properly, so the face's
-	   outline — and the cube's silhouette — stay exact; only the interpolation
-	   inside a piece is approximated, and that error falls off as 1/K². Each
-	   face is clipped to its own outline so the deliberate overlap between
-	   pieces, which hides hairline seams, cannot spill past the edge.
-
-	   Textures are identical for every instance, so they are built once and
-	   shared. */
-	const TEX = 128;
-	const SUB = 8; // pieces per face edge; TEX must divide by this
-	const STEP = TEX / SUB;
-	const FACES: Array<{ axis: number; val: number }> = [];
-	for (let axis = 0; axis < 3; axis++) for (const val of [0, 1]) FACES.push({ axis, val });
-
-	let faceTex: HTMLCanvasElement[] | null = null;
-
-	function buildFaceTextures() {
-		if (faceTex) return faceTex;
-		faceTex = FACES.map(({ axis, val }) => {
-			const u = (axis + 1) % 3;
-			const v = (axis + 2) % 3;
-			const c = document.createElement('canvas');
-			c.width = TEX;
-			c.height = TEX;
-			const g = c.getContext('2d')!;
-			const img = g.createImageData(TEX, TEX);
-			const d = img.data;
-			for (let j = 0; j < TEX; j++) {
-				for (let i = 0; i < TEX; i++) {
-					const p = [0, 0, 0];
-					p[axis] = val;
-					p[u] = i / (TEX - 1);
-					p[v] = j / (TEX - 1);
-					const o = (j * TEX + i) * 4;
-					d[o] = p[0] * 255;
-					d[o + 1] = p[1] * 255;
-					d[o + 2] = p[2] * 255;
-					d[o + 3] = 255;
-				}
-			}
-			g.putImageData(img, 0, 0);
-			return c;
-		});
-		return faceTex;
+	/* --- geometry -----------------------------------------------------------
+	   The cube is the unit box, so a point's coordinates *are* its sRGB channel
+	   values, and a corner's position is its own colour. That is the whole
+	   reason this can be exact: give the GPU one colour per corner and its
+	   perspective-correct interpolation reproduces the colour under every
+	   fragment with no error at all. Colour is an affine function of position,
+	   and affine functions are exactly what that interpolation reconstructs. No
+	   textures, no subdivision, no seams. */
+	const CORNERS = new Float32Array(24);
+	for (let i = 0; i < 8; i++) {
+		CORNERS[i * 3] = (i >> 0) & 1;
+		CORNERS[i * 3 + 1] = (i >> 1) & 1;
+		CORNERS[i * 3 + 2] = (i >> 2) & 1;
 	}
 
-	/** Indices of the convex hull of a point set, counter-clockwise (monotone chain). */
-	const convexHull = (xs: number[], ys: number[]) => {
-		const idx = xs.map((_, i) => i).sort((a, b) => xs[a] - xs[b] || ys[a] - ys[b]);
-		const cross = (o: number, a: number, b: number) =>
-			(xs[a] - xs[o]) * (ys[b] - ys[o]) - (ys[a] - ys[o]) * (xs[b] - xs[o]);
-		const lower: number[] = [];
-		for (const i of idx) {
-			while (lower.length >= 2 && cross(lower[lower.length - 2], lower[lower.length - 1], i) <= 0)
-				lower.pop();
-			lower.push(i);
+	/* Corner indices per face, wound counter-clockwise seen from outside, so the
+	   back half can simply be culled. Face f covers axis f>>1 at the low end
+	   when f is even and the high end when it is odd. */
+	const FACE_QUADS = [
+		[0, 4, 6, 2], // -x
+		[1, 3, 7, 5], // +x
+		[0, 1, 5, 4], // -y
+		[2, 6, 7, 3], // +y
+		[0, 2, 3, 1], // -z
+		[4, 5, 7, 6], // +z
+	];
+
+	const FACE_INDICES = new Uint16Array(36);
+	FACE_QUADS.forEach((q, f) => {
+		FACE_INDICES.set([q[0], q[1], q[2], q[0], q[2], q[3]], f * 6);
+	});
+
+	/* The twelve edges, each tagged with the two faces it belongs to: an edge is
+	   visible exactly when at least one of them faces us, which is cheaper and
+	   more exact than depth-testing lines that lie in the plane of a face. */
+	const EDGES: Array<{ a: number; b: number; f0: number; f1: number }> = [];
+	for (let axis = 0; axis < 3; axis++) {
+		const u = (axis + 1) % 3;
+		const v = (axis + 2) % 3;
+		for (let i = 0; i < 8; i++) {
+			if ((i >> axis) & 1) continue; // take each edge from its low end only
+			EDGES.push({
+				a: i,
+				b: i | (1 << axis),
+				f0: u * 2 + ((i >> u) & 1),
+				f1: v * 2 + ((i >> v) & 1),
+			});
 		}
-		const upper: number[] = [];
-		for (let k = idx.length - 1; k >= 0; k--) {
-			const i = idx[k];
-			while (upper.length >= 2 && cross(upper[upper.length - 2], upper[upper.length - 1], i) <= 0)
-				upper.pop();
-			upper.push(i);
+	}
+
+	/* Six vertices per edge: two triangles for a screen-space quad. aEnd picks
+	   which endpoint, aSide which flank. */
+	const EDGE_VERTS = new Float32Array(EDGES.length * 6 * 8);
+	{
+		const corner = (i: number) => [CORNERS[i * 3], CORNERS[i * 3 + 1], CORNERS[i * 3 + 2]];
+		const pattern = [
+			[0, -1], [1, -1], [1, 1],
+			[0, -1], [1, 1], [0, 1],
+		];
+		let o = 0;
+		for (const e of EDGES) {
+			const A = corner(e.a);
+			const B = corner(e.b);
+			for (const [end, side] of pattern) {
+				EDGE_VERTS.set(A, o);
+				EDGE_VERTS.set(B, o + 3);
+				EDGE_VERTS[o + 6] = end;
+				EDGE_VERTS[o + 7] = side;
+				o += 8;
+			}
 		}
-		lower.pop();
-		upper.pop();
-		return lower.concat(upper);
-	};
+	}
+
+	// Distance from the eye to the cube's centre, in cube-side units. Drives the
+	// projection and the ray that measures how much material hides the dot.
+	const FOCAL = 3.4;
+
+	/* --- shaders ------------------------------------------------------------
+	   One projection, shared. The eye sits at (0, 0, FOCAL) looking down -z;
+	   uScale already folds in the cube's on-screen size and the viewport's
+	   aspect, so the clip-space divide is the only perspective step. */
+	const PROJ = `
+		uniform mat3 uRot;
+		uniform vec2 uScale;
+		vec4 proj(vec3 p) {
+			vec3 v = uRot * (p - 0.5);
+			return vec4(v.x * uScale.x, v.y * uScale.y, -v.z, ${FOCAL.toFixed(4)} - v.z);
+		}
+	`;
+
+	const FACE_VS = `
+		attribute vec3 aPos;
+		varying vec3 vColor;
+		${PROJ}
+		void main() {
+			vColor = aPos;
+			gl_Position = proj(aPos);
+		}
+	`;
+
+	/* The colour arrives exact and then has to survive being written to eight
+	   bits a channel, which on a ramp this wide would show as a staircase of
+	   flat bands. A sub-LSB dither scatters each pixel across the two nearest
+	   representable values so the local average lands on the true colour: the
+	   error stops being a visible contour and becomes noise below the level
+	   anyone can see. */
+	const FACE_FS = `
+		precision highp float;
+		varying vec3 vColor;
+		void main() {
+			float n = fract(sin(dot(gl_FragCoord.xy, vec2(12.9898, 78.233))) * 43758.5453);
+			gl_FragColor = vec4(vColor + (n - 0.5) / 255.0, 1.0);
+		}
+	`;
+
+	/* Edges are expanded to quads here rather than drawn with gl.LINES, whose
+	   width is capped at one device pixel almost everywhere — that would make
+	   the outline coarser on ordinary displays and hairline-thin on dense ones. */
+	const EDGE_VS = `
+		attribute vec3 aP0;
+		attribute vec3 aP1;
+		attribute float aEnd;
+		attribute float aSide;
+		uniform vec2 uHalf;
+		uniform float uWidth;
+		${PROJ}
+		void main() {
+			vec4 c0 = proj(aP0);
+			vec4 c1 = proj(aP1);
+			vec2 s0 = c0.xy / c0.w * uHalf;
+			vec2 s1 = c1.xy / c1.w * uHalf;
+			vec2 d = s1 - s0;
+			float len = length(d);
+			// An edge pointing straight at the eye projects to a point; give it
+			// an arbitrary direction rather than dividing by zero.
+			vec2 dir = len > 1e-5 ? d / len : vec2(1.0, 0.0);
+			vec2 nrm = vec2(-dir.y, dir.x);
+			vec4 c = mix(c0, c1, aEnd);
+			// Overhang by half a width at each end, so corners meet cleanly.
+			vec2 s = mix(s0, s1, aEnd)
+				+ (nrm * aSide + dir * (aEnd * 2.0 - 1.0)) * uWidth * 0.5;
+			gl_Position = vec4(s / uHalf * c.w, c.z, c.w);
+		}
+	`;
+
+	const EDGE_FS = `
+		precision highp float;
+		uniform float uAlpha;
+		void main() {
+			gl_FragColor = vec4(0.0, 0.0, 0.0, uAlpha);
+		}
+	`;
+
+	/* A screen-facing quad around the dot's projected centre; the fragment
+	   shader carves the disc out of it, so the dot stays round and smooth-edged
+	   whatever the cube is doing. */
+	const DOT_VS = `
+		attribute vec2 aCorner;
+		uniform vec3 uDot;
+		uniform vec2 uHalf;
+		uniform float uRadius;
+		varying vec2 vOffset;
+		${PROJ}
+		void main() {
+			vec4 c = proj(uDot);
+			vOffset = aCorner * uRadius;
+			vec2 s = c.xy / c.w * uHalf + vOffset;
+			gl_Position = vec4(s / uHalf * c.w, c.z, c.w);
+		}
+	`;
+
+	const DOT_FS = `
+		precision highp float;
+		uniform float uCore;
+		uniform float uAlpha;
+		varying vec2 vOffset;
+		void main() {
+			float a = uAlpha * (1.0 - smoothstep(uCore - 0.75, uCore + 0.75, length(vOffset)));
+			gl_FragColor = vec4(0.0, 0.0, 0.0, a);
+		}
+	`;
+
+	type GL = WebGLRenderingContext | WebGL2RenderingContext;
+
+	function compile(gl: GL, type: number, src: string) {
+		const sh = gl.createShader(type)!;
+		gl.shaderSource(sh, src);
+		gl.compileShader(sh);
+		if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) {
+			throw new Error(gl.getShaderInfoLog(sh) || 'shader failed to compile');
+		}
+		return sh;
+	}
+
+	function program(gl: GL, vs: string, fs: string) {
+		const p = gl.createProgram()!;
+		gl.attachShader(p, compile(gl, gl.VERTEX_SHADER, vs));
+		gl.attachShader(p, compile(gl, gl.FRAGMENT_SHADER, fs));
+		gl.linkProgram(p);
+		if (!gl.getProgramParameter(p, gl.LINK_STATUS)) {
+			throw new Error(gl.getProgramInfoLog(p) || 'program failed to link');
+		}
+		return p;
+	}
 
 	function initCube(root: HTMLElement) {
 		if (root.dataset.ready === 'true') return;
 		root.dataset.ready = 'true';
 
 		const canvas = root.querySelector<HTMLCanvasElement>('[data-canvas]')!;
-		const ctx = canvas.getContext('2d')!;
 		const inputs = Array.from(root.querySelectorAll<HTMLInputElement>('input[type="range"]'));
 		const vals = Array.from(root.querySelectorAll<HTMLElement>('.bar-val'));
-		const swatch = root.querySelector<HTMLElement>('[data-swatch]')!;
 		const rgbOut = root.querySelector<HTMLElement>('[data-rgb]')!;
+
+		/* Multisampling handles the silhouette; the gradients inside need no help,
+		   since every fragment is computed rather than resampled from a texture.
+		   `alpha` so the beige ground shows through and the drop shadow CSS puts
+		   under the canvas has a silhouette to work from. */
+		const OPTS: WebGLContextAttributes = {
+			alpha: true,
+			antialias: true,
+			depth: true,
+			premultipliedAlpha: true,
+			powerPreference: 'low-power',
+		};
+		const gl = (canvas.getContext('webgl2', OPTS) ||
+			canvas.getContext('webgl', OPTS)) as GL | null;
+		// Without WebGL there is nothing sensible to draw; the bars, the swatch
+		// and the readout all still work.
+		if (!gl) {
+			canvas.style.display = 'none';
+			return;
+		}
+
+		/* The channel values are sRGB code values and are written to the frame
+		   buffer as-is: no lighting, no tone mapping, no transfer-function
+		   round trip, nothing that could shift them. Widening to Display P3 later
+		   is one line here — `gl.drawingBufferColorSpace = 'display-p3'` — after
+		   which the same coordinates address the wider gamut instead. */
+		if ('drawingBufferColorSpace' in gl) gl.drawingBufferColorSpace = 'srgb';
+
+		const progFace = program(gl, FACE_VS, FACE_FS);
+		const progEdge = program(gl, EDGE_VS, EDGE_FS);
+		const progDot = program(gl, DOT_VS, DOT_FS);
+
+		const bufCorners = gl.createBuffer();
+		gl.bindBuffer(gl.ARRAY_BUFFER, bufCorners);
+		gl.bufferData(gl.ARRAY_BUFFER, CORNERS, gl.STATIC_DRAW);
+
+		const bufFaceIdx = gl.createBuffer();
+		gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, bufFaceIdx);
+		gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, FACE_INDICES, gl.STATIC_DRAW);
+
+		const bufEdges = gl.createBuffer();
+		gl.bindBuffer(gl.ARRAY_BUFFER, bufEdges);
+		gl.bufferData(gl.ARRAY_BUFFER, EDGE_VERTS, gl.STATIC_DRAW);
+
+		const bufQuad = gl.createBuffer();
+		gl.bindBuffer(gl.ARRAY_BUFFER, bufQuad);
+		gl.bufferData(
+			gl.ARRAY_BUFFER,
+			new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]),
+			gl.STATIC_DRAW,
+		);
+
+		const uni = (p: WebGLProgram, n: string) => gl.getUniformLocation(p, n);
+		const U = {
+			face: { rot: uni(progFace, 'uRot'), scale: uni(progFace, 'uScale') },
+			edge: {
+				rot: uni(progEdge, 'uRot'),
+				scale: uni(progEdge, 'uScale'),
+				half: uni(progEdge, 'uHalf'),
+				width: uni(progEdge, 'uWidth'),
+				alpha: uni(progEdge, 'uAlpha'),
+			},
+			dot: {
+				rot: uni(progDot, 'uRot'),
+				scale: uni(progDot, 'uScale'),
+				half: uni(progDot, 'uHalf'),
+				radius: uni(progDot, 'uRadius'),
+				core: uni(progDot, 'uCore'),
+				alpha: uni(progDot, 'uAlpha'),
+				pos: uni(progDot, 'uDot'),
+			},
+		};
+
+		const A = {
+			pos: gl.getAttribLocation(progFace, 'aPos'),
+			p0: gl.getAttribLocation(progEdge, 'aP0'),
+			p1: gl.getAttribLocation(progEdge, 'aP1'),
+			end: gl.getAttribLocation(progEdge, 'aEnd'),
+			side: gl.getAttribLocation(progEdge, 'aSide'),
+			corner: gl.getAttribLocation(progDot, 'aCorner'),
+		};
+
+		/* Attribute arrays are global state, not per-program, so anything left
+		   enabled by the previous draw would still be read by the next one. */
+		const useAttribs = (locs: number[]) => {
+			for (let i = 0; i < 4; i++) gl.disableVertexAttribArray(i);
+			for (const l of locs) if (l >= 0) gl.enableVertexAttribArray(l);
+		};
+
+		gl.clearColor(0, 0, 0, 0);
+		gl.depthFunc(gl.LESS);
+		gl.frontFace(gl.CCW);
+		gl.cullFace(gl.BACK);
+		gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA); // sources are premultiplied
 
 		/** sRGB relative luminance, for choosing readable ink over a colour. */
 		const luminance = (r: number, g: number, b: number) => {
@@ -570,8 +805,6 @@ const { idleResume = 3 } = Astro.props;
 
 		const IDLE_MS = (Number(root.dataset.idleResume) || 3) * 1000;
 		const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-		const textures = buildFaceTextures();
-
 
 		/* ---- orientation ---------------------------------------------------
 		   Ambient spin about a deliberately irregular axis, plus a user offset
@@ -653,37 +886,43 @@ const { idleResume = 3 } = Astro.props;
 
 		let w = 0;
 		let h = 0;
-		/* Canvas-to-device scale. Deliberately more than the device pixel ratio:
-		   each face is clipped to its outline, and canvas clipping is not
-		   anti-aliased, so face edges land on hard pixel boundaries and stair-
-		   step. Rendering into a backing store larger than the element and
-		   letting the browser scale it down averages those edges away — plain
-		   supersampling, which is the only anti-aliasing a 2d context offers. */
-		let px2dev = 2;
+		let dpr = 1;
 		let cubeScale = 0.5;
 		const resize = () => {
-			const dpr = Math.min(window.devicePixelRatio || 1, 2);
-			px2dev = Math.min(dpr * 2, 3);
+			dpr = Math.min(window.devicePixelRatio || 1, 2);
 			cubeScale =
 				parseFloat(getComputedStyle(root).getPropertyValue('--cube-scale')) || 0.5;
 			const r = canvas.getBoundingClientRect();
 			w = r.width;
 			h = r.height;
-			canvas.width = Math.max(1, Math.round(w * px2dev));
-			canvas.height = Math.max(1, Math.round(h * px2dev));
+			canvas.width = Math.max(1, Math.round(w * dpr));
+			canvas.height = Math.max(1, Math.round(h * dpr));
+			gl.viewport(0, 0, canvas.width, canvas.height);
+			// The contact shadow is a CSS drop-shadow over the canvas' own alpha,
+			// so it tracks the silhouette exactly and is clipped by the pane rather
+			// than by the canvas box. Its size still has to follow the cube's.
+			const scale = Math.min(w, h) * cubeScale;
+			canvas.style.setProperty('--shadow-blur', `${(scale * 0.34).toFixed(2)}px`);
+			canvas.style.setProperty('--shadow-y', `${(scale * 0.09).toFixed(2)}px`);
 		};
 		new ResizeObserver(resize).observe(canvas);
 		resize();
 
+		/* A lost context leaves a blank canvas for good unless everything above is
+		   rebuilt, so drop the guard flag and re-run init on restore. */
+		canvas.addEventListener('webglcontextlost', (e) => {
+			e.preventDefault();
+			root.dataset.ready = 'lost';
+		});
+		canvas.addEventListener('webglcontextrestored', () => {
+			delete root.dataset.ready;
+			initCube(root);
+		});
+
 		/* ---- render loop ------------------------------------------------------ */
 
-		// Distance from the eye to the origin, in cube-side units. Drives both the
-		// projection and the ray used to measure material in front of the dot.
-		const FOCAL = 3.4;
 		let last = 0;
-		const front = new Int32Array(6);
-		const hullX: number[] = new Array(8).fill(0);
-		const hullY: number[] = new Array(8).fill(0);
+		const frontFacing = [false, false, false, false, false, false];
 
 		function frame(now: number) {
 			requestAnimationFrame(frame);
@@ -691,7 +930,7 @@ const { idleResume = 3 } = Astro.props;
 			// Other cards stay in the DOM but are invisible; don't burn frames.
 			const card = root.closest<HTMLElement>('[data-card]');
 			if (card && card.dataset.state && card.dataset.state !== 'active') return;
-			if (!w || !h) return;
+			if (!w || !h || root.dataset.ready !== 'true') return;
 
 			const dt = last ? Math.min(0.05, (now - last) / 1000) : 0.016;
 			last = now;
@@ -771,58 +1010,23 @@ const { idleResume = 3 } = Astro.props;
 				}
 			}
 
-			// --- project (perspective)
+			/* --- which faces point at us. A face's outward normal in view space is
+			   its own column of the rotation, signed; its centre sits half a unit
+			   along that same normal. Working the facing test through by hand, the
+			   whole thing collapses to one comparison: under perspective a face is
+			   visible exactly when its normal leans more than 1/(2·FOCAL) toward
+			   the eye, which is why faces disappear a little before edge-on. */
 			const scale = Math.min(w, h) * cubeScale;
-			const cx = w / 2;
-			const cy = h / 2;
-
-			const vx = (x: number, y: number, z: number) =>
-				m[0] * (x - 0.5) + m[3] * (y - 0.5) + m[6] * (z - 0.5);
-			const vy = (x: number, y: number, z: number) =>
-				m[1] * (x - 0.5) + m[4] * (y - 0.5) + m[7] * (z - 0.5);
-			const pz = (x: number, y: number, z: number) =>
-				m[2] * (x - 0.5) + m[5] * (y - 0.5) + m[8] * (z - 0.5);
-
-			const px = (x: number, y: number, z: number) =>
-				cx + vx(x, y, z) * scale * (FOCAL / (FOCAL - pz(x, y, z)));
-			const py = (x: number, y: number, z: number) =>
-				cy - vy(x, y, z) * scale * (FOCAL / (FOCAL - pz(x, y, z)));
-
-			// --- which faces point at us. The solid is opaque and convex, so the
-			// front-facing set never overlaps itself and needs no depth sorting.
-			const camV = [0, 0, FOCAL];
-			let nFront = 0;
 			for (let f = 0; f < 6; f++) {
-				const { axis, val } = FACES[f];
-				const u = (axis + 1) % 3;
-				const v = (axis + 2) % 3;
-				const mid = [0.5, 0.5, 0.5];
-				mid[axis] = val;
-				const nModel = [0, 0, 0];
-				nModel[axis] = val === 1 ? 1 : -1;
-				// outward normal and centre, both in view space
-				const nvx = m[0] * nModel[0] + m[3] * nModel[1] + m[6] * nModel[2];
-				const nvy = m[1] * nModel[0] + m[4] * nModel[1] + m[7] * nModel[2];
-				const nvz = m[2] * nModel[0] + m[5] * nModel[1] + m[8] * nModel[2];
-				const cvx = vx(mid[0], mid[1], mid[2]);
-				const cvy = vy(mid[0], mid[1], mid[2]);
-				const cvz = pz(mid[0], mid[1], mid[2]);
-				const facing =
-					nvx * (camV[0] - cvx) + nvy * (camV[1] - cvy) + nvz * (camV[2] - cvz);
-				if (facing <= 0) continue;
-				front[nFront++] = f;
-				void u;
-				void v;
+				const axis = f >> 1;
+				const sign = f & 1 ? 1 : -1;
+				frontFacing[f] = m[axis * 3 + 2] * sign > 0.5 / FOCAL;
 			}
 
-			// --- how much cube sits between the dot and the camera.
-			// Work in model space, where the cube is the unit box and the dot is
-			// simply its own rgb. The camera is the view-space eye rotated back.
-			const camM = [
-				0.5 + m[2] * FOCAL,
-				0.5 + m[5] * FOCAL,
-				0.5 + m[8] * FOCAL,
-			];
+			/* --- how much cube sits between the dot and the camera. Work in model
+			   space, where the cube is the unit box and the dot is simply its own
+			   rgb. The camera is the view-space eye rotated back. */
+			const camM = [0.5 + m[2] * FOCAL, 0.5 + m[5] * FOCAL, 0.5 + m[8] * FOCAL];
 			const dm = [rgb[0] - camM[0], rgb[1] - camM[1], rgb[2] - camM[2]];
 			let tEnter = 0;
 			for (let a = 0; a < 3; a++) {
@@ -836,141 +1040,64 @@ const { idleResume = 3 } = Astro.props;
 			// Beer-Lambert-ish, with a floor so a deep dot stays findable.
 			const dotAlpha = Math.max(0.16, Math.exp(-1.7 * thickness));
 
-			ctx.setTransform(px2dev, 0, 0, px2dev, 0, 0);
-			ctx.clearRect(0, 0, w, h);
-			ctx.imageSmoothingEnabled = true;
-			ctx.imageSmoothingQuality = "high";
-			ctx.globalAlpha = 1;
+			// --- draw
+			const sx = (FOCAL * scale) / (w / 2);
+			const sy = (FOCAL * scale) / (h / 2);
+			const halfX = canvas.width / 2;
+			const halfY = canvas.height / 2;
 
-			// --- contact shadow. Fill the silhouette — the hull of the eight
-			// projected corners — with a heavily blurred black, then paint the
-			// opaque faces over the top. Only the bleed around the edges survives,
-			// which reads as ambient occlusion for the cost of one extra fill.
-			for (let i = 0; i < 8; i++) {
-				const X = (i >> 0) & 1;
-				const Y = (i >> 1) & 1;
-				const Z = (i >> 2) & 1;
-				hullX[i] = px(X, Y, Z);
-				hullY[i] = py(X, Y, Z);
-			}
-			const hull = convexHull(hullX, hullY);
-			// The shadow bleeds outward from the silhouette, and the canvas is the
-			// only surface it can land on, so a blur wider than the gap to the
-			// canvas edge gets sliced off square. Give it no more room than there
-			// is, and it fades out instead of being cut.
-			let gap = Infinity;
-			for (const k of hull) {
-				gap = Math.min(gap, hullX[k], w - hullX[k], hullY[k], h - hullY[k]);
-			}
-			const room = Math.max(0, gap - 1);
-			ctx.save();
-			ctx.shadowColor = "rgba(40, 30, 14, 0.55)";
-			// Shadow blur and offset are device-space and ignore the current
-			// transform, so they are scaled by hand — otherwise the shadow
-			// shrinks as the backing store grows.
-			ctx.shadowBlur = Math.min(scale * 0.34, room * 0.8) * px2dev;
-			ctx.shadowOffsetY = Math.min(scale * 0.09, room * 0.2) * px2dev;
-			ctx.fillStyle = "#000";
-			ctx.beginPath();
-			for (let i = 0; i < hull.length; i++) {
-				const k = hull[i];
-				if (i === 0) ctx.moveTo(hullX[k], hullY[k]);
-				else ctx.lineTo(hullX[k], hullY[k]);
-			}
-			ctx.closePath();
-			ctx.fill();
-			ctx.restore();
+			gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-			for (let k = 0; k < nFront; k++) {
-				const f = front[k];
-				const { axis, val } = FACES[f];
-				const u = (axis + 1) % 3;
-				const v = (axis + 2) % 3;
-				const at = (uu: number, vv: number) => {
-					const p = [0, 0, 0];
-					p[axis] = val;
-					p[u] = uu;
-					p[v] = vv;
-					return p;
-				};
+			// Opaque and convex, so culling the back half is all the sorting needed.
+			gl.enable(gl.DEPTH_TEST);
+			gl.enable(gl.CULL_FACE);
+			gl.disable(gl.BLEND);
+			gl.useProgram(progFace);
+			gl.uniformMatrix3fv(U.face.rot, false, m);
+			gl.uniform2f(U.face.scale, sx, sy);
+			useAttribs([A.pos]);
+			gl.bindBuffer(gl.ARRAY_BUFFER, bufCorners);
+			gl.vertexAttribPointer(A.pos, 3, gl.FLOAT, false, 12, 0);
+			gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, bufFaceIdx);
+			gl.drawElements(gl.TRIANGLES, 36, gl.UNSIGNED_SHORT, 0);
 
-				// clip to the face outline, so piece overlap cannot spill past it
-				const q = [at(0, 0), at(1, 0), at(1, 1), at(0, 1)];
-				ctx.save();
-				ctx.beginPath();
-				for (let c = 0; c < 4; c++) {
-					const X = px(q[c][0], q[c][1], q[c][2]);
-					const Y = py(q[c][0], q[c][1], q[c][2]);
-					if (c === 0) ctx.moveTo(X, Y);
-					else ctx.lineTo(X, Y);
-				}
-				ctx.closePath();
-				ctx.clip();
-
-				for (let i = 0; i < SUB; i++) {
-					for (let j = 0; j < SUB; j++) {
-						const u0 = i / SUB;
-						const u1 = (i + 1) / SUB;
-						const v0 = j / SUB;
-						const v1 = (j + 1) / SUB;
-						const p00 = at(u0, v0);
-						const p10 = at(u1, v0);
-						const p01 = at(u0, v1);
-						const X0 = px(p00[0], p00[1], p00[2]);
-						const Y0 = py(p00[0], p00[1], p00[2]);
-						const ax = (px(p10[0], p10[1], p10[2]) - X0) / STEP;
-						const ay = (py(p10[0], p10[1], p10[2]) - Y0) / STEP;
-						const bx = (px(p01[0], p01[1], p01[2]) - X0) / STEP;
-						const by = (py(p01[0], p01[1], p01[2]) - Y0) / STEP;
-						const sxs = i * STEP;
-						const sys = j * STEP;
-						ctx.setTransform(
-							px2dev * ax, px2dev * ay,
-							px2dev * bx, px2dev * by,
-							px2dev * (X0 - ax * sxs - bx * sys),
-							px2dev * (Y0 - ay * sxs - by * sys),
-						);
-						// overdraw by half a texel; the clip keeps it inside the face
-						ctx.drawImage(
-							textures[f],
-							sxs, sys, STEP, STEP,
-							sxs - 0.5, sys - 0.5, STEP + 1, STEP + 1,
-						);
-					}
-				}
-				ctx.setTransform(px2dev, 0, 0, px2dev, 0, 0);
-				ctx.restore();
-
-				// face outline: adjacent faces share an edge colour exactly, so
-				// without these the solid reads as a blob with no visible structure
-				ctx.beginPath();
-				for (let c = 0; c < 4; c++) {
-					const X = px(q[c][0], q[c][1], q[c][2]);
-					const Y = py(q[c][0], q[c][1], q[c][2]);
-					if (c === 0) ctx.moveTo(X, Y);
-					else ctx.lineTo(X, Y);
-				}
-				ctx.closePath();
-				ctx.strokeStyle = "rgba(0,0,0,0.22)";
-				ctx.lineWidth = 1;
-				ctx.stroke();
+			/* Adjacent faces share their common edge's colours exactly, so with
+			   nothing drawn over the joins the solid reads as a blob. */
+			gl.disable(gl.DEPTH_TEST);
+			gl.disable(gl.CULL_FACE);
+			gl.enable(gl.BLEND);
+			gl.useProgram(progEdge);
+			gl.uniformMatrix3fv(U.edge.rot, false, m);
+			gl.uniform2f(U.edge.scale, sx, sy);
+			gl.uniform2f(U.edge.half, halfX, halfY);
+			gl.uniform1f(U.edge.width, dpr);
+			gl.uniform1f(U.edge.alpha, 0.22);
+			useAttribs([A.p0, A.p1, A.end, A.side]);
+			gl.bindBuffer(gl.ARRAY_BUFFER, bufEdges);
+			gl.vertexAttribPointer(A.p0, 3, gl.FLOAT, false, 32, 0);
+			gl.vertexAttribPointer(A.p1, 3, gl.FLOAT, false, 32, 12);
+			gl.vertexAttribPointer(A.end, 1, gl.FLOAT, false, 32, 24);
+			gl.vertexAttribPointer(A.side, 1, gl.FLOAT, false, 32, 28);
+			for (let e = 0; e < EDGES.length; e++) {
+				if (!frontFacing[EDGES[e].f0] && !frontFacing[EDGES[e].f1]) continue;
+				gl.drawArrays(gl.TRIANGLES, e * 6, 6);
 			}
 
 			// --- the dot, always on top. Its opacity stands in for how much of the
-			// (now opaque) cube is in front of it.
-			ctx.globalAlpha = dotAlpha;
-			ctx.beginPath();
-			ctx.arc(
-				px(rgb[0], rgb[1], rgb[2]),
-				py(rgb[0], rgb[1], rgb[2]),
-				Math.max(4, scale * 0.038),
-				0,
-				Math.PI * 2,
-			);
-			ctx.fillStyle = "#000";
-			ctx.fill();
-
-			ctx.globalAlpha = 1;
+			// (opaque) cube is in front of it.
+			const core = Math.max(4, scale * 0.038) * dpr;
+			gl.useProgram(progDot);
+			gl.uniformMatrix3fv(U.dot.rot, false, m);
+			gl.uniform2f(U.dot.scale, sx, sy);
+			gl.uniform2f(U.dot.half, halfX, halfY);
+			gl.uniform3f(U.dot.pos, rgb[0], rgb[1], rgb[2]);
+			gl.uniform1f(U.dot.radius, core + 1.0); // room for the soft edge
+			gl.uniform1f(U.dot.core, core);
+			gl.uniform1f(U.dot.alpha, dotAlpha);
+			useAttribs([A.corner]);
+			gl.bindBuffer(gl.ARRAY_BUFFER, bufQuad);
+			gl.vertexAttribPointer(A.corner, 2, gl.FLOAT, false, 8, 0);
+			gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
 		}
 
 		requestAnimationFrame(frame);
