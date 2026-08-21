@@ -36,11 +36,13 @@ import RgbCube from "../../components/RgbCube.astro";
   ## The corners have familiar colours
 
   In each cube's corner, all of the RGB values are either completely
-  off or completely full, making those colors very distinct from one another.
+  off or completely full, making those colors very distinct from one another. In fact, the corners of the cube are exactly all the *primary colours*, *secondary colours*, as well as black and white.
+
+  The primary colours are the red, green and blue we picked out earlier, the secondary colors you get by mixing two primaries together, and black and white are the extremes of all three colors being off or on.
 </DeckCard>
 
-<DeckCard label="Wandering" vizProps={{ tour: null }}>
-  ## The dot is taking a walk
+<DeckCard label="Wandering" vizProps={{ tour: null, line: true }}>
+  ## A line through the cube is a gradient
 
   Left alone, the dot wanders through the cube on a path that never quite
   repeats, and the bars and the swatch follow wherever it goes.
@@ -49,7 +51,7 @@ import RgbCube from "../../components/RgbCube.astro";
   and it wanders off again.
 </DeckCard>
 
-<DeckCard label="Why it matters">
+<DeckCard label="Why it matters" vizProps={{ line: false }}>
   ## A cube is a bad map of colour
 
   This is a faithful picture of how a screen works, and a poor picture of how

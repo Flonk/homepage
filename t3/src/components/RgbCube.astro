@@ -18,7 +18,12 @@
  * over. See the shaders below for what does and does not happen to a value.
  */
 interface Props {
-	/** Seconds of no input before the dot resumes its resting behaviour. */
+	/**
+	 * Seconds of no input before the dots resume their resting behaviour.
+	 * Touching any thumb holds *both* ends still for this long, not just the one
+	 * being moved: setting one colour against another is hard if the other keeps
+	 * drifting while you do it.
+	 */
 	idleResume?: number;
 	/** Ambient rotation. */
 	spin?: boolean;
@@ -33,12 +38,38 @@ interface Props {
 	 * holding each for this many seconds. Takes precedence over `lock`.
 	 */
 	tour?: number | null;
+	/**
+	 * Show a second colour: a second set of thumbs on each bar, a second dot in
+	 * the cube, and the line between the two. The swatch becomes the gradient
+	 * along that line, which is the point — a straight line through the cube is
+	 * exactly a linear gradient between its ends.
+	 */
+	line?: boolean;
 }
+
+/* The two ends are told apart by shape rather than by hue: solid for the first,
+   hollow for the second. Colouring them would be a lie in a picture whose whole
+   subject is which colour is where. */
+const CHANNELS = [
+	{ name: 'Red', ramp: '#f16d6d', a: 128, b: 40 },
+	{ name: 'Green', ramp: '#7bd88f', a: 128, b: 200 },
+	{ name: 'Blue', ramp: '#6d9bf1', a: 128, b: 90 },
+];
+
+// Gradient ids are document-global, so more than one cube on a page would
+// otherwise share — and fight over — the same one.
+const gradId = `swatch-${Math.random().toString(36).slice(2, 9)}`;
 
 /* These are the starting values. In a deck they are also the parameters a card
    can change with `vizProps` — see DeckViz for how that reaches the listener
    further down. */
-const { idleResume = 3, spin = true, lock = null, tour = null } = Astro.props;
+const {
+	idleResume = 5,
+	spin = true,
+	lock = null,
+	tour = null,
+	line = false,
+} = Astro.props;
 ---
 
 <div
@@ -49,17 +80,29 @@ const { idleResume = 3, spin = true, lock = null, tour = null } = Astro.props;
 	data-spin={String(spin)}
 	data-lock={lock ? lock.join(',') : undefined}
 	data-tour={tour ?? undefined}
+	data-line={String(line)}
 >
 	<div class="bars" role="group" aria-label="Colour channels">
-		<label class="bar" style="--channel: #f16d6d">
-			<input type="range" min="0" max="255" value="128" aria-label="Red" />
-		</label>
-		<label class="bar" style="--channel: #7bd88f">
-			<input type="range" min="0" max="255" value="128" aria-label="Green" />
-		</label>
-		<label class="bar" style="--channel: #6d9bf1">
-			<input type="range" min="0" max="255" value="128" aria-label="Blue" />
-		</label>
+		{
+			/* Two real range inputs per channel, stacked in one grid cell. The
+			   second draws no track of its own, so the pair reads as one bar with
+			   two thumbs on it — and each end stays keyboard-reachable, which a
+			   pair of hand-rolled handles would not be. */
+			CHANNELS.map((ch) => (
+				<label class="bar" style={`--channel: ${ch.ramp}`}>
+					<input type="range" min="0" max="255" value={ch.a} aria-label={ch.name} />
+					<input
+						class="second"
+						type="range"
+						min="0"
+						max="255"
+						value={ch.b}
+						aria-label={`${ch.name}, second colour`}
+						hidden={!line}
+					/>
+				</label>
+			))
+		}
 	</div>
 
 	<div class="stage">
@@ -84,11 +127,27 @@ const { idleResume = 3, spin = true, lock = null, tour = null } = Astro.props;
 			preserveAspectRatio="none"
 			aria-hidden="true"
 		>
+			<defs>
+				{/* Bottom-left to top-right: the diagonal the S itself runs along,
+				    and the one whose two ends both land on filled area. The box's
+				    other diagonal starts in the upper-left, which the shape leaves
+				    empty, so half the ramp would go unseen. With one colour both
+				    stops hold it and the fill is flat, so the single-ended case
+				    needs no second code path. */}
+				<linearGradient id={gradId} x1="0" y1="1" x2="1" y2="0">
+					<stop offset="0" stop-color="var(--swatch-a, #808080)" />
+					<stop offset="1" stop-color="var(--swatch-b, var(--swatch-a, #808080))" />
+				</linearGradient>
+			</defs>
 			<path
 				d="M -10 112 C 48 88, 52 12, 110 -12 L 112 112 Z"
+				fill={`url(#${gradId})`}
 			></path>
 		</svg>
-		<span class="rgb-string" data-rgb>rgb(128, 128, 128)</span>
+		<div class="readout-text">
+			<span class="rgb-string" data-rgb>rgb(128, 128, 128)</span>
+			<span class="rgb-string second" data-rgb-b hidden>rgb(128, 128, 128)</span>
+		</div>
 	</div>
 </div>
 
@@ -139,10 +198,16 @@ const { idleResume = 3, spin = true, lock = null, tour = null } = Astro.props;
 	/* Only the track lives here now — the readout at the corner says what the
 	   numbers are, so the labels under each bar were repeating it. Dropping
 	   them hands their space back to the track. */
+	/* One cell, so a channel's two inputs stack exactly and read as one bar. */
 	.bar {
-		display: flex;
+		display: grid;
+		grid-template: 'track' minmax(0, 1fr) / minmax(0, 1fr);
 		min-width: 0;
 		min-height: 0;
+	}
+
+	.bar input {
+		grid-area: track;
 	}
 
 	/* Real range inputs, so keyboard and touch work. writing-mode makes them
@@ -198,6 +263,43 @@ const { idleResume = 3, spin = true, lock = null, tour = null } = Astro.props;
 		border-radius: 2px;
 		background: var(--ink);
 		box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.55);
+	}
+
+	.bar input.second::-webkit-slider-runnable-track {
+		background: transparent;
+		border-color: transparent;
+	}
+
+	.bar input.second::-moz-range-track {
+		background: transparent;
+		border-color: transparent;
+	}
+
+	/* Hollow, to the first thumb's solid — the same pairing the two dots use. */
+	.bar input.second::-webkit-slider-thumb {
+		background: #f6f1e6;
+		box-shadow: 0 0 0 1.5px var(--ink);
+	}
+
+	.bar input.second::-moz-range-thumb {
+		background: #f6f1e6;
+		box-shadow: 0 0 0 1.5px var(--ink);
+	}
+
+	/* With two inputs stacked, the upper one would take every press on the bar,
+	   including presses meant for the lower one's thumb. Letting only the thumbs
+	   be hit fixes that at the cost of click-the-track-to-jump, which is the
+	   cheaper of the two to lose. */
+	.rgb-cube[data-line='true'] .bar input {
+		pointer-events: none;
+	}
+
+	.rgb-cube[data-line='true'] .bar input::-webkit-slider-thumb {
+		pointer-events: auto;
+	}
+
+	.rgb-cube[data-line='true'] .bar input::-moz-range-thumb {
+		pointer-events: auto;
 	}
 
 	.bar input:focus-visible::-webkit-slider-runnable-track {
@@ -266,24 +368,36 @@ const { idleResume = 3, spin = true, lock = null, tour = null } = Astro.props;
 		pointer-events: none;
 	}
 
-	.swatch path {
-		fill: var(--swatch-color, #808080);
-	}
-
 	/* Bottom-left, so it is always over the beige rather than over the disc,
 	   whose colour is anything at all. */
 	/* Bottom-right, which the S always fills, so this always sits on the colour
 	   itself. Its ink flips between black and white for whichever gives more
 	   contrast against that colour — see the render loop. */
-	.rgb-string {
+	.readout-text {
 		position: absolute;
 		z-index: 1;
 		right: 0.75rem;
 		bottom: 0.4rem;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		gap: 0.05rem;
+		pointer-events: none;
+	}
+
+	.rgb-string {
 		font-size: 1.125rem;
 		font-variant-numeric: tabular-nums;
 		color: var(--readout-ink, #000);
-		pointer-events: none;
+	}
+
+	/* Which reading belongs to which end, marked the way the dots are. */
+	.rgb-cube[data-line='true'] .rgb-string::before {
+		content: '\25CF\00A0';
+	}
+
+	.rgb-cube[data-line='true'] .rgb-string.second::before {
+		content: '\25CB\00A0';
 	}
 
 	/* ==== container queries ==============================================
@@ -522,32 +636,69 @@ const { idleResume = 3, spin = true, lock = null, tour = null } = Astro.props;
 		}
 	}
 
-	/* Six vertices per edge: two triangles for a screen-space quad. aEnd picks
-	   which endpoint, aSide which flank. */
-	const EDGE_VERTS = new Float32Array(EDGES.length * 6 * 8);
-	{
-		const corner = (i: number) => [CORNERS[i * 3], CORNERS[i * 3 + 1], CORNERS[i * 3 + 2]];
-		const pattern = [
-			[0, -1], [1, -1], [1, 1],
-			[0, -1], [1, 1], [0, 1],
-		];
-		let o = 0;
-		for (const e of EDGES) {
-			const A = corner(e.a);
-			const B = corner(e.b);
-			for (const [end, side] of pattern) {
-				EDGE_VERTS.set(A, o);
-				EDGE_VERTS.set(B, o + 3);
-				EDGE_VERTS[o + 6] = end;
-				EDGE_VERTS[o + 7] = side;
-				o += 8;
-			}
+	/* Six vertices per line: two triangles for a screen-space quad. aEnd picks
+	   which endpoint, aSide which flank. Eight floats a vertex, so one line is
+	   48 of them. */
+	const LINE_STRIDE = 48;
+	const LINE_PATTERN = [
+		[0, -1], [1, -1], [1, 1],
+		[0, -1], [1, 1], [0, 1],
+	];
+
+	/** Write one line's six vertices into `out`, starting at line `i`. */
+	function writeLine(out: Float32Array, i: number, a: number[], b: number[]) {
+		let o = i * LINE_STRIDE;
+		for (const [end, side] of LINE_PATTERN) {
+			out[o] = a[0]; out[o + 1] = a[1]; out[o + 2] = a[2];
+			out[o + 3] = b[0]; out[o + 4] = b[1]; out[o + 5] = b[2];
+			out[o + 6] = end; out[o + 7] = side;
+			o += 8;
 		}
 	}
+
+	const EDGE_VERTS = new Float32Array(EDGES.length * LINE_STRIDE);
+	{
+		const corner = (i: number) => [CORNERS[i * 3], CORNERS[i * 3 + 1], CORNERS[i * 3 + 2]];
+		EDGES.forEach((e, i) => writeLine(EDGE_VERTS, i, corner(e.a), corner(e.b)));
+	}
+
+	/* How solid the white lines painted over the solid are — the far edges, and
+	   the guides on the faces the chord leaves through. */
+	const WIRE_ALPHA = 0.35;
+
+	/* Three guides a dot, and there can be two dots. */
+	const GUIDES = 6;
 
 	// Distance from the eye to the cube's centre, in cube-side units. Drives the
 	// projection and the ray that measures how much material hides the dot.
 	const FOCAL = 3.4;
+
+	/* Where the infinite line through two colours enters and leaves the cube.
+	   The picture's claim is that a line through the cube is a gradient, and
+	   that does not stop being true past the two colours someone happened to
+	   pick — so the line drawn is the whole chord, with the dots marking two
+	   points on it. Both ends sit inside the box, so the returned span always
+	   contains them. Null when the two coincide and there is no line to speak
+	   of. */
+	function chord(a: number[], b: number[]) {
+		const d = [b[0] - a[0], b[1] - a[1], b[2] - a[2]];
+		if (Math.hypot(d[0], d[1], d[2]) < 1e-6) return null;
+		let s0 = -Infinity;
+		let s1 = Infinity;
+		for (let i = 0; i < 3; i++) {
+			// Parallel to this pair of faces: it never crosses them.
+			if (Math.abs(d[i]) < 1e-9) continue;
+			const ta = (0 - a[i]) / d[i];
+			const tb = (1 - a[i]) / d[i];
+			s0 = Math.max(s0, Math.min(ta, tb));
+			s1 = Math.min(s1, Math.max(ta, tb));
+		}
+		if (!(s1 > s0)) return null;
+		return [
+			[a[0] + d[0] * s0, a[1] + d[1] * s0, a[2] + d[2] * s0],
+			[a[0] + d[0] * s1, a[1] + d[1] * s1, a[2] + d[2] * s1],
+		];
+	}
 
 	/* --- shaders ------------------------------------------------------------
 	   One projection, shared. The eye sits at (0, 0, FOCAL) looking down -z;
@@ -619,9 +770,9 @@ const { idleResume = 3, spin = true, lock = null, tour = null } = Astro.props;
 
 	const EDGE_FS = `
 		precision highp float;
-		uniform float uAlpha;
+		uniform vec4 uColor;
 		void main() {
-			gl_FragColor = vec4(0.0, 0.0, 0.0, uAlpha);
+			gl_FragColor = vec4(uColor.rgb * uColor.a, uColor.a);
 		}
 	`;
 
@@ -643,13 +794,73 @@ const { idleResume = 3, spin = true, lock = null, tour = null } = Astro.props;
 		}
 	`;
 
+	/* One disc for both ends. The first is solid black; the second is a light
+	   disc inside a dark rim of uRim pixels. Shape rather than hue, because
+	   colouring the markers in a picture about which colour is where would
+	   invite exactly the wrong reading. */
 	const DOT_FS = `
 		precision highp float;
 		uniform float uCore;
+		uniform float uRim;
+		uniform vec3 uFill;
 		uniform float uAlpha;
 		varying vec2 vOffset;
 		void main() {
-			float a = uAlpha * (1.0 - smoothstep(uCore - 0.75, uCore + 0.75, length(vOffset)));
+			float d = length(vOffset);
+			float outer = 1.0 - smoothstep(uCore - 0.75, uCore + 0.75, d);
+			float inner = 1.0 - smoothstep(uCore - uRim - 0.75, uCore - uRim + 0.75, d);
+			float a = uAlpha * outer;
+			gl_FragColor = vec4(mix(vec3(0.0), uFill, inner) * a, a);
+		}
+	`;
+
+	/* The line between the two ends. Same screen-space expansion as the cube's
+	   edges, but its transparency is worked out per fragment rather than once
+	   for the whole primitive: how deep the line sits changes along its length,
+	   so a single alpha would be wrong nearly everywhere. */
+	const LINK_VS = `
+		attribute float aEnd;
+		attribute float aSide;
+		uniform vec3 uA;
+		uniform vec3 uB;
+		uniform vec2 uHalf;
+		uniform float uWidth;
+		varying vec3 vModel;
+		${PROJ}
+		void main() {
+			vModel = mix(uA, uB, aEnd);
+			vec4 c0 = proj(uA);
+			vec4 c1 = proj(uB);
+			vec2 s0 = c0.xy / c0.w * uHalf;
+			vec2 s1 = c1.xy / c1.w * uHalf;
+			vec2 d = s1 - s0;
+			float len = length(d);
+			vec2 dir = len > 1e-5 ? d / len : vec2(1.0, 0.0);
+			vec2 nrm = vec2(-dir.y, dir.x);
+			vec4 c = mix(c0, c1, aEnd);
+			vec2 s = mix(s0, s1, aEnd) + nrm * aSide * uWidth * 0.5;
+			gl_Position = vec4(s / uHalf * c.w, c.z, c.w);
+		}
+	`;
+
+	/* The same slab test and the same falloff the dots use, so where the line
+	   meets a dot the two agree exactly. */
+	const LINK_FS = `
+		precision highp float;
+		uniform vec3 uCam;
+		varying vec3 vModel;
+		float enter(float o, float d) {
+			if (abs(d) < 1e-6) return 0.0;
+			return min((0.0 - o) / d, (1.0 - o) / d);
+		}
+		void main() {
+			vec3 d = vModel - uCam;
+			float tEnter = max(
+				0.0,
+				max(enter(uCam.x, d.x), max(enter(uCam.y, d.y), enter(uCam.z, d.z)))
+			);
+			float thickness = max(0.0, 1.0 - tEnter) * length(d);
+			float a = max(0.16, exp(-1.7 * thickness));
 			gl_FragColor = vec4(0.0, 0.0, 0.0, a);
 		}
 	`;
@@ -682,8 +893,14 @@ const { idleResume = 3, spin = true, lock = null, tour = null } = Astro.props;
 		root.dataset.ready = 'true';
 
 		const canvas = root.querySelector<HTMLCanvasElement>('[data-canvas]')!;
-		const inputs = Array.from(root.querySelectorAll<HTMLInputElement>('input[type="range"]'));
-		const rgbOut = root.querySelector<HTMLElement>('[data-rgb]')!;
+		/* [channel][end] — a channel's two inputs in DOM order, solid then hollow. */
+		const inputs = Array.from(root.querySelectorAll<HTMLElement>('.bar')).map((bar) =>
+			Array.from(bar.querySelectorAll<HTMLInputElement>('input')),
+		);
+		const rgbOut = [
+			root.querySelector<HTMLElement>('[data-rgb]')!,
+			root.querySelector<HTMLElement>('[data-rgb-b]')!,
+		];
 
 		/* Multisampling handles the silhouette; the gradients inside need no help,
 		   since every fragment is computed rather than resampled from a texture.
@@ -715,6 +932,7 @@ const { idleResume = 3, spin = true, lock = null, tour = null } = Astro.props;
 		const progFace = program(gl, FACE_VS, FACE_FS);
 		const progEdge = program(gl, EDGE_VS, EDGE_FS);
 		const progDot = program(gl, DOT_VS, DOT_FS);
+		const progLink = program(gl, LINK_VS, LINK_FS);
 
 		const bufCorners = gl.createBuffer();
 		gl.bindBuffer(gl.ARRAY_BUFFER, bufCorners);
@@ -736,6 +954,21 @@ const { idleResume = 3, spin = true, lock = null, tour = null } = Astro.props;
 			gl.STATIC_DRAW,
 		);
 
+		// Rewritten every frame: the guides move with the colours.
+		const guideData = new Float32Array(GUIDES * LINE_STRIDE);
+		const bufGuides = gl.createBuffer();
+		gl.bindBuffer(gl.ARRAY_BUFFER, bufGuides);
+		gl.bufferData(gl.ARRAY_BUFFER, guideData.byteLength, gl.DYNAMIC_DRAW);
+
+		// Two triangles: a quad the line is stretched across in screen space.
+		const bufLink = gl.createBuffer();
+		gl.bindBuffer(gl.ARRAY_BUFFER, bufLink);
+		gl.bufferData(
+			gl.ARRAY_BUFFER,
+			new Float32Array([0, -1, 1, -1, 1, 1, 0, -1, 1, 1, 0, 1]),
+			gl.STATIC_DRAW,
+		);
+
 		const uni = (p: WebGLProgram, n: string) => gl.getUniformLocation(p, n);
 		const U = {
 			face: { rot: uni(progFace, 'uRot'), scale: uni(progFace, 'uScale') },
@@ -744,7 +977,7 @@ const { idleResume = 3, spin = true, lock = null, tour = null } = Astro.props;
 				scale: uni(progEdge, 'uScale'),
 				half: uni(progEdge, 'uHalf'),
 				width: uni(progEdge, 'uWidth'),
-				alpha: uni(progEdge, 'uAlpha'),
+				color: uni(progEdge, 'uColor'),
 			},
 			dot: {
 				rot: uni(progDot, 'uRot'),
@@ -754,6 +987,17 @@ const { idleResume = 3, spin = true, lock = null, tour = null } = Astro.props;
 				core: uni(progDot, 'uCore'),
 				alpha: uni(progDot, 'uAlpha'),
 				pos: uni(progDot, 'uDot'),
+				rim: uni(progDot, 'uRim'),
+				fill: uni(progDot, 'uFill'),
+			},
+			link: {
+				rot: uni(progLink, 'uRot'),
+				scale: uni(progLink, 'uScale'),
+				half: uni(progLink, 'uHalf'),
+				width: uni(progLink, 'uWidth'),
+				a: uni(progLink, 'uA'),
+				b: uni(progLink, 'uB'),
+				cam: uni(progLink, 'uCam'),
 			},
 		};
 
@@ -764,6 +1008,8 @@ const { idleResume = 3, spin = true, lock = null, tour = null } = Astro.props;
 			end: gl.getAttribLocation(progEdge, 'aEnd'),
 			side: gl.getAttribLocation(progEdge, 'aSide'),
 			corner: gl.getAttribLocation(progDot, 'aCorner'),
+			linkEnd: gl.getAttribLocation(progLink, 'aEnd'),
+			linkSide: gl.getAttribLocation(progLink, 'aSide'),
 		};
 
 		/* Attribute arrays are global state, not per-program, so anything left
@@ -788,18 +1034,18 @@ const { idleResume = 3, spin = true, lock = null, tour = null } = Astro.props;
 			return 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b);
 		};
 
-		let idleMs = (Number(root.dataset.idleResume) || 3) * 1000;
+		let idleMs = (Number(root.dataset.idleResume) || 5) * 1000;
 		let spin = root.dataset.spin !== 'false';
 		let lock: number[] | null = root.dataset.lock
 			? root.dataset.lock.split(',').map(Number)
 			: null;
 		let tour: number | null = root.dataset.tour ? Number(root.dataset.tour) : null;
-		let wasPinned = lock !== null || tour !== null;
+		let line = root.dataset.line === 'true';
 		/* How this was authored. A card's parameter set is complete rather than a
 		   patch — the deck has already merged it onto the sets before it — so a
 		   card that says nothing about a parameter is saying it should be back to
 		   this, not that it should be left wherever the last card put it. */
-		const AUTHORED = { idleMs, spin, lock, tour };
+		const AUTHORED = { idleMs, spin, lock, tour, line };
 		const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 		/* The pane, or the phase of it, that this belongs to when it is inside a
@@ -826,16 +1072,29 @@ const { idleResume = 3, spin = true, lock = null, tour = null } = Astro.props;
 		let dragging = false;
 		let pointerId: number | null = null;
 
-		/* ---- the dot -------------------------------------------------------
-		   Incommensurate frequencies, so the curve never quite repeats. */
+		/* ---- the dots -------------------------------------------------------
+		   Incommensurate frequencies, so a curve never quite repeats. Both ends
+		   ride the same curve at different phases, so they stay well apart
+		   without ever moving in step. Everything about an end is per-end, so
+		   grabbing one bar's thumb leaves the other end alone. */
 		const FREQ = [0.031, 0.044, 0.027];
-		const PHASE = [0, 1.7, 3.1];
+		const PHASES = [
+			[0, 1.7, 3.1],
+			[2.4, 5.0, 0.9],
+		];
+
+		const makeEnd = (phase: number[]) => ({
+			phase,
+			rgb: [0.5, 0.5, 0.5],
+			manual: [0.5, 0.5, 0.5],
+			manualUntil: 0,
+			resumeFrom: null as number[] | null,
+			resumeAt: 0,
+			wasPinned: false,
+		});
+
+		const ends = PHASES.map(makeEnd);
 		let t = 0;
-		let manualUntil = 0;
-		let manual = [0.5, 0.5, 0.5];
-		let resumeFrom: number[] | null = null;
-		let resumeAt = 0;
-		let rgb = [0.5, 0.5, 0.5];
 		let lastCss = '';
 
 		/* The corner tour. Corner i is just its own index in binary — bit 0 is
@@ -855,36 +1114,108 @@ const { idleResume = 3, spin = true, lock = null, tour = null } = Astro.props;
 			return [tourIdx & 1, (tourIdx >> 1) & 1, (tourIdx >> 2) & 1];
 		};
 
-		const lissajous = (time: number) => [
-			0.5 + 0.5 * Math.sin(time * FREQ[0] * Math.PI * 2 + PHASE[0]),
-			0.5 + 0.5 * Math.sin(time * FREQ[1] * Math.PI * 2 + PHASE[1]),
-			0.5 + 0.5 * Math.sin(time * FREQ[2] * Math.PI * 2 + PHASE[2]),
+		const lissajous = (time: number, phase: number[]) => [
+			0.5 + 0.5 * Math.sin(time * FREQ[0] * Math.PI * 2 + phase[0]),
+			0.5 + 0.5 * Math.sin(time * FREQ[1] * Math.PI * 2 + phase[1]),
+			0.5 + 0.5 * Math.sin(time * FREQ[2] * Math.PI * 2 + phase[2]),
 		];
+
+		/* One end's colour for this frame. What the reader is doing with the bars
+		   wins, then whatever the card pinned it to, then the curve. Coming off a
+		   grab or a pin eases rather than snapping. */
+		function stepEnd(
+			end: (typeof ends)[number],
+			resting: number[] | null,
+			now: number,
+			dt: number,
+		) {
+			if (now < end.manualUntil) {
+				end.rgb = end.manual;
+				end.resumeFrom = null;
+				return;
+			}
+			if (resting) {
+				// Ease toward the colour rather than jumping to it, so the dot is
+				// seen travelling; exponential, so a target that moves out from
+				// under it — every couple of seconds, on a tour — needs no
+				// special case.
+				end.manualUntil = 0;
+				end.resumeFrom = null;
+				end.wasPinned = true;
+				const k = 1 - Math.exp(-4 * dt);
+				end.rgb = [
+					end.rgb[0] + (resting[0] - end.rgb[0]) * k,
+					end.rgb[1] + (resting[1] - end.rgb[1]) * k,
+					end.rgb[2] + (resting[2] - end.rgb[2]) * k,
+				];
+				return;
+			}
+			const target = lissajous(t, end.phase);
+			if (end.manualUntil || end.wasPinned) {
+				end.resumeFrom = end.rgb.slice();
+				end.resumeAt = now;
+				end.manualUntil = 0;
+				end.wasPinned = false;
+			}
+			if (end.resumeFrom) {
+				const k = Math.min(1, (now - end.resumeAt) / 800);
+				const e = k * k * (3 - 2 * k);
+				end.rgb = [
+					end.resumeFrom[0] + (target[0] - end.resumeFrom[0]) * e,
+					end.resumeFrom[1] + (target[1] - end.resumeFrom[1]) * e,
+					end.resumeFrom[2] + (target[2] - end.resumeFrom[2]) * e,
+				];
+				if (k >= 1) end.resumeFrom = null;
+			} else {
+				end.rgb = target;
+			}
+		}
 
 		/* ---- input ---------------------------------------------------------- */
 
-		inputs.forEach((input, i) => {
-			input.addEventListener('input', () => {
-				const at = performance.now();
-				// Seed from the dot only when *entering* manual control. Re-seeding on
-				// every event would lose any change made earlier in the same frame,
-				// since `rgb` has not caught up yet.
-				if (at >= manualUntil) manual = rgb.slice();
-				manual[i] = Number(input.value) / 255;
-				manualUntil = at + idleMs;
-				resumeFrom = null;
-			});
-		});
+		/* Hold every end where it is. Seeding from the dot only when *entering*
+		   manual control matters: re-seeding on every event would lose a change
+		   made earlier in the same frame, since rgb has not caught up yet. */
+		const freeze = (at: number) => {
+			for (const end of ends) {
+				if (at >= end.manualUntil) end.manual = end.rgb.slice();
+				end.manualUntil = at + idleMs;
+				end.resumeFrom = null;
+			}
+		};
+
+		inputs.forEach((pair, channel) =>
+			pair.forEach((input, e) => {
+				// Taking hold of a thumb is enough to stop things, before any value
+				// has changed — and with a keyboard the input event is the only
+				// signal there is, so both lead to the same place.
+				input.addEventListener('pointerdown', () => freeze(performance.now()));
+				input.addEventListener('input', () => {
+					const at = performance.now();
+					freeze(at);
+					ends[e].manual[channel] = Number(input.value) / 255;
+				});
+			}),
+		);
 
 		host?.addEventListener('viz:props', (e) => {
 			const p = (e as CustomEvent).detail ?? {};
 			spin = 'spin' in p ? p.spin !== false : AUTHORED.spin;
 			idleMs =
-				'idleResume' in p ? (Number(p.idleResume) || 3) * 1000 : AUTHORED.idleMs;
+				'idleResume' in p ? (Number(p.idleResume) || 5) * 1000 : AUTHORED.idleMs;
 			if (!('lock' in p)) lock = AUTHORED.lock;
 			else lock = Array.isArray(p.lock) ? p.lock.map(Number) : null;
 			if (!('tour' in p)) tour = AUTHORED.tour;
 			else tour = p.tour == null ? null : Number(p.tour);
+			const wantLine = 'line' in p ? p.line === true : AUTHORED.line;
+			if (wantLine !== line) {
+				line = wantLine;
+				root.dataset.line = String(line);
+				// Hidden rather than merely invisible, so the second end's thumbs
+				// leave the tab order and the accessibility tree with it.
+				for (const pair of inputs) pair[1].hidden = !line;
+				rgbOut[1].hidden = !line;
+			}
 		});
 		// Coming back on stage after a long absence, the elapsed time is not a
 		// step the animation should try to take.
@@ -999,10 +1330,10 @@ const { idleResume = 3, spin = true, lock = null, tour = null } = Astro.props;
 				),
 			);
 
-			// --- the dot
+			// --- the dots
 			if (!reduceMotion) t += dt;
-			/* Where the dot wants to be when nobody is touching the bars. A tour
-			   only picks the target; the easing below is the one a lock uses, so
+			/* Where the first end rests when nobody is touching the bars. A tour
+			   only chooses the target; the easing is the one a lock uses, so
 			   arriving somewhere looks the same however it was chosen. */
 			if (tour) {
 				if (!tourTarget || now >= tourAt) {
@@ -1013,67 +1344,56 @@ const { idleResume = 3, spin = true, lock = null, tour = null } = Astro.props;
 				tourTarget = null;
 				tourIdx = -1;
 			}
-			const resting = tourTarget ?? lock;
+			stepEnd(ends[0], tourTarget ?? lock, now, dt);
+			// The second end only ever traces; a card pins the first one.
+			if (line) stepEnd(ends[1], null, now, dt);
 
-			if (now < manualUntil) {
-				rgb = manual;
-				resumeFrom = null;
-			} else if (resting) {
-				// Ease toward the colour rather than jumping to it, so the dot is
-				// seen travelling; exponential, so a target that moves out from
-				// under it — every couple of seconds, on a tour — needs no
-				// special case.
-				manualUntil = 0;
-				resumeFrom = null;
-				wasPinned = true;
-				const k = 1 - Math.exp(-4 * dt);
-				rgb = [
-					rgb[0] + (resting[0] - rgb[0]) * k,
-					rgb[1] + (resting[1] - rgb[1]) * k,
-					rgb[2] + (resting[2] - rgb[2]) * k,
-				];
-			} else {
-				const target = lissajous(t);
-				if (manualUntil || wasPinned) {
-					// Ease back out of manual control, or out of a lock just lifted,
-					// rather than snapping onto the curve.
-					resumeFrom = rgb.slice();
-					resumeAt = now;
-					manualUntil = 0;
-					wasPinned = false;
-				}
-				if (resumeFrom) {
-					const k = Math.min(1, (now - resumeAt) / 800);
-					const e = k * k * (3 - 2 * k);
-					rgb = [
-						resumeFrom[0] + (target[0] - resumeFrom[0]) * e,
-						resumeFrom[1] + (target[1] - resumeFrom[1]) * e,
-						resumeFrom[2] + (target[2] - resumeFrom[2]) * e,
-					];
-					if (k >= 1) resumeFrom = null;
-				} else {
-					rgb = target;
+			// --- readouts, only touched when they actually change
+			const byte = (v: number) => Math.round(Math.min(1, Math.max(0, v)) * 255);
+			const A8 = ends[0].rgb.map(byte);
+			// With one end the gradient's two stops hold the same colour, so the
+			// swatch is flat without the fill needing a second code path.
+			const B8 = line ? ends[1].rgb.map(byte) : A8;
+			const css = `${A8}|${B8}`;
+			if (css !== lastCss) {
+				lastCss = css;
+				root.style.setProperty('--swatch-a', `rgb(${A8[0]} ${A8[1]} ${A8[2]})`);
+				root.style.setProperty('--swatch-b', `rgb(${B8[0]} ${B8[1]} ${B8[2]})`);
+				rgbOut[0].textContent = `rgb(${A8.join(', ')})`;
+				rgbOut[1].textContent = `rgb(${B8.join(', ')})`;
+				/* The readings sit in the bottom-right corner, which projects onto
+				   the middle of a ramp running bottom-left to top-right — so it is
+				   the halfway colour they have to hold up against, not either end.
+				   Black and white contrast equally at luminance 0.179, which is
+				   where the ink flips. */
+				root.style.setProperty(
+					'--readout-ink',
+					luminance((A8[0] + B8[0]) / 2, (A8[1] + B8[1]) / 2, (A8[2] + B8[2]) / 2) >
+						0.179
+						? '#000'
+						: '#fff',
+				);
+				for (let c = 0; c < 3; c++) {
+					const pair = inputs[c];
+					if (document.activeElement !== pair[0]) pair[0].value = String(A8[c]);
+					if (document.activeElement !== pair[1]) pair[1].value = String(B8[c]);
 				}
 			}
 
-			// --- readouts, only touched when they actually change
-			const r8 = Math.round(Math.min(1, Math.max(0, rgb[0])) * 255);
-			const g8 = Math.round(Math.min(1, Math.max(0, rgb[1])) * 255);
-			const b8 = Math.round(Math.min(1, Math.max(0, rgb[2])) * 255);
-			const css = `rgb(${r8} ${g8} ${b8})`;
-			if (css !== lastCss) {
-				lastCss = css;
-				root.style.setProperty('--swatch-color', css);
-				rgbOut.textContent = `rgb(${r8}, ${g8}, ${b8})`;
-				// Black and white contrast equally against luminance 0.179, so that
-				// is the crossover that keeps the label as legible as it can be.
-				root.style.setProperty(
-					'--readout-ink',
-					luminance(r8, g8, b8) > 0.179 ? '#000' : '#fff',
-				);
-				const bytes = [r8, g8, b8];
-				for (let i = 0; i < 3; i++) {
-					if (document.activeElement !== inputs[i]) inputs[i].value = String(bytes[i]);
+			/* --- three guides through each dot, one along each axis and each
+			   spanning the cube. Together they say where the dot sits on all three
+			   channels at once, which is the reading a single point floating in a
+			   solid cannot give you on its own. */
+			const span = line ? chord(ends[0].rgb, ends[1].rgb) : null;
+			let nGuides = 0;
+			for (let e = 0; e < (line ? 2 : 1); e++) {
+				const P = ends[e].rgb;
+				for (let w = 0; w < 3; w++) {
+					const a = P.slice();
+					const b = P.slice();
+					a[w] = 0;
+					b[w] = 1;
+					writeLine(guideData, nGuides++, a, b);
 				}
 			}
 
@@ -1094,18 +1414,20 @@ const { idleResume = 3, spin = true, lock = null, tour = null } = Astro.props;
 			   space, where the cube is the unit box and the dot is simply its own
 			   rgb. The camera is the view-space eye rotated back. */
 			const camM = [0.5 + m[2] * FOCAL, 0.5 + m[5] * FOCAL, 0.5 + m[8] * FOCAL];
-			const dm = [rgb[0] - camM[0], rgb[1] - camM[1], rgb[2] - camM[2]];
-			let tEnter = 0;
-			for (let a = 0; a < 3; a++) {
-				if (Math.abs(dm[a]) < 1e-9) continue;
-				const ta = (0 - camM[a]) / dm[a];
-				const tb = (1 - camM[a]) / dm[a];
-				tEnter = Math.max(tEnter, Math.min(ta, tb));
-			}
-			// t = 1 is the dot, so the remaining fraction is the material in front.
-			const thickness = Math.max(0, 1 - tEnter) * Math.hypot(dm[0], dm[1], dm[2]);
-			// Beer-Lambert-ish, with a floor so a deep dot stays findable.
-			const dotAlpha = Math.max(0.16, Math.exp(-1.7 * thickness));
+			const dotAlpha = (c: number[]) => {
+				const dm = [c[0] - camM[0], c[1] - camM[1], c[2] - camM[2]];
+				let tEnter = 0;
+				for (let a = 0; a < 3; a++) {
+					if (Math.abs(dm[a]) < 1e-9) continue;
+					const ta = (0 - camM[a]) / dm[a];
+					const tb = (1 - camM[a]) / dm[a];
+					tEnter = Math.max(tEnter, Math.min(ta, tb));
+				}
+				// t = 1 is the dot, so the remaining fraction is material in front.
+				const thickness = Math.max(0, 1 - tEnter) * Math.hypot(dm[0], dm[1], dm[2]);
+				// Beer-Lambert-ish, with a floor so a deep dot stays findable.
+				return Math.max(0.16, Math.exp(-1.7 * thickness));
+			};
 
 			// --- draw
 			const sx = (FOCAL * scale) / (w / 2);
@@ -1138,33 +1460,81 @@ const { idleResume = 3, spin = true, lock = null, tour = null } = Astro.props;
 			gl.uniform2f(U.edge.scale, sx, sy);
 			gl.uniform2f(U.edge.half, halfX, halfY);
 			gl.uniform1f(U.edge.width, dpr);
-			gl.uniform1f(U.edge.alpha, 0.22);
 			useAttribs([A.p0, A.p1, A.end, A.side]);
 			gl.bindBuffer(gl.ARRAY_BUFFER, bufEdges);
 			gl.vertexAttribPointer(A.p0, 3, gl.FLOAT, false, 32, 0);
 			gl.vertexAttribPointer(A.p1, 3, gl.FLOAT, false, 32, 12);
 			gl.vertexAttribPointer(A.end, 1, gl.FLOAT, false, 32, 24);
 			gl.vertexAttribPointer(A.side, 1, gl.FLOAT, false, 32, 28);
+
+			const seen = (e: number) =>
+				frontFacing[EDGES[e].f0] || frontFacing[EDGES[e].f1];
+
+			// The nine edges you could actually see, inked dark.
+			gl.uniform4f(U.edge.color, 0, 0, 0, 0.22);
 			for (let e = 0; e < EDGES.length; e++) {
-				if (!frontFacing[EDGES[e].f0] && !frontFacing[EDGES[e].f1]) continue;
-				gl.drawArrays(gl.TRIANGLES, e * 6, 6);
+				if (seen(e)) gl.drawArrays(gl.TRIANGLES, e * 6, 6);
 			}
 
-			// --- the dot, always on top. Its opacity stands in for how much of the
-			// (opaque) cube is in front of it.
+			/* And the three you could not, drawn over the solid in white. Nothing
+			   is actually transparent here — the faces are opaque and this is
+			   painted straight over them — but it reads as the far corner showing
+			   through, which is the same fiction the dots use. */
+			gl.uniform4f(U.edge.color, 1, 1, 1, WIRE_ALPHA);
+			for (let e = 0; e < EDGES.length; e++) {
+				if (!seen(e)) gl.drawArrays(gl.TRIANGLES, e * 6, 6);
+			}
+
+			// Same program and the same white, just a buffer that changes each frame.
+			if (nGuides) {
+				gl.bindBuffer(gl.ARRAY_BUFFER, bufGuides);
+				gl.bufferSubData(gl.ARRAY_BUFFER, 0, guideData.subarray(0, nGuides * 8 * 6));
+				gl.vertexAttribPointer(A.p0, 3, gl.FLOAT, false, 32, 0);
+				gl.vertexAttribPointer(A.p1, 3, gl.FLOAT, false, 32, 12);
+				gl.vertexAttribPointer(A.end, 1, gl.FLOAT, false, 32, 24);
+				gl.vertexAttribPointer(A.side, 1, gl.FLOAT, false, 32, 28);
+				gl.drawArrays(gl.TRIANGLES, 0, nGuides * 6);
+			}
+
 			const core = Math.max(4, scale * 0.038) * dpr;
+
+			// --- the line through the ends, under the dots that mark them
+			if (span) {
+				gl.useProgram(progLink);
+				gl.uniformMatrix3fv(U.link.rot, false, m);
+				gl.uniform2f(U.link.scale, sx, sy);
+				gl.uniform2f(U.link.half, halfX, halfY);
+				gl.uniform1f(U.link.width, Math.max(1.5, scale * 0.014) * dpr);
+				gl.uniform3f(U.link.a, span[0][0], span[0][1], span[0][2]);
+				gl.uniform3f(U.link.b, span[1][0], span[1][1], span[1][2]);
+				gl.uniform3f(U.link.cam, camM[0], camM[1], camM[2]);
+				useAttribs([A.linkEnd, A.linkSide]);
+				gl.bindBuffer(gl.ARRAY_BUFFER, bufLink);
+				gl.vertexAttribPointer(A.linkEnd, 1, gl.FLOAT, false, 8, 0);
+				gl.vertexAttribPointer(A.linkSide, 1, gl.FLOAT, false, 8, 4);
+				gl.drawArrays(gl.TRIANGLES, 0, 6);
+			}
+
+			// --- the dots, always on top. Opacity stands in for how much of the
+			// (opaque) cube is in front of each.
 			gl.useProgram(progDot);
 			gl.uniformMatrix3fv(U.dot.rot, false, m);
 			gl.uniform2f(U.dot.scale, sx, sy);
 			gl.uniform2f(U.dot.half, halfX, halfY);
-			gl.uniform3f(U.dot.pos, rgb[0], rgb[1], rgb[2]);
 			gl.uniform1f(U.dot.radius, core + 1.0); // room for the soft edge
 			gl.uniform1f(U.dot.core, core);
-			gl.uniform1f(U.dot.alpha, dotAlpha);
 			useAttribs([A.corner]);
 			gl.bindBuffer(gl.ARRAY_BUFFER, bufQuad);
 			gl.vertexAttribPointer(A.corner, 2, gl.FLOAT, false, 8, 0);
-			gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+			for (let e = line ? 1 : 0; e >= 0; e--) {
+				const c = ends[e].rgb;
+				gl.uniform3f(U.dot.pos, c[0], c[1], c[2]);
+				gl.uniform1f(U.dot.alpha, dotAlpha(c));
+				gl.uniform1f(U.dot.rim, e === 0 ? 0 : Math.max(1.5, core * 0.36));
+				if (e === 0) gl.uniform3f(U.dot.fill, 0, 0, 0);
+				else gl.uniform3f(U.dot.fill, 0.965, 0.945, 0.902);
+				gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+			}
 		}
 
 		requestAnimationFrame(frame);
