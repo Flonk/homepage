@@ -144,3 +144,108 @@ export function coneResponse(nm: number): [number, number, number] {
 	}
 	return out;
 }
+
+/* ---- a different eye ------------------------------------------------------
+   The L cone replaced by the S curve reflected about M's peak, so that its
+   overlap with M is the mirror image of S's overlap with M. It lands at 645nm
+   against the real 570nm, which is the "move L further into the long
+   wavelengths" that card five is arguing for, done in the least arbitrary way
+   available: not a curve invented to taste, but the one the eye already has,
+   turned around. */
+const M_PEAK_NM = (() => {
+	let best = 0;
+	let at = 0;
+	for (let nm = CONE_FIRST_NM; nm <= CONE_LAST_NM; nm += 0.25) {
+		const v = coneResponse(nm)[1];
+		if (v > best) {
+			best = v;
+			at = nm;
+		}
+	}
+	return at;
+})();
+export const MIRROR_ABOUT = 2 * M_PEAK_NM;
+
+export type Eye = 'human' | 'mirrored';
+
+/** What each cone of a given eye makes of light of this wavelength. */
+export function eyeResponse(nm: number, eye: Eye = 'human'): [number, number, number] {
+	const h = coneResponse(nm);
+	if (eye === 'human') return h;
+	return [coneResponse(MIRROR_ABOUT - nm)[2], h[1], h[2]];
+}
+
+/* ---- how much colour an eye has ------------------------------------------
+   Only the ratios between the cones carry colour; the overall size is
+   brightness. So walk along the band adding up how far that ratio moves, and
+   what you have is how much hue the band holds for that eye — how much there
+   is to tell apart.
+
+   Weighted by how much signal there is at all. Where every cone is nearly
+   silent the ratios between them swing about wildly and mean nothing, and an
+   unweighted walk spends most of its length out in that noise. */
+const HUE_LO = 400;
+const HUE_HI = 700;
+const HUE_STEP = 0.5;
+
+const hueWalk = (eye: Eye) => {
+	const arc: number[] = [0];
+	let total = 0;
+	const at = (nm: number) => {
+		const v = eyeResponse(nm, eye);
+		const sum = v[0] + v[1] + v[2] || 1e-9;
+		return [v[0] / sum, v[1] / sum, v[2] / sum, sum];
+	};
+	for (let nm = HUE_LO; nm < HUE_HI; nm += HUE_STEP) {
+		const a = at(nm);
+		const b = at(nm + HUE_STEP);
+		const weight = Math.min(1, Math.min(a[3], b[3]) / 0.05);
+		total += weight * Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
+		arc.push(total);
+	}
+	return { arc, total };
+};
+
+const HUMAN_HUE = hueWalk('human');
+const MIRRORED_HUE = hueWalk('mirrored');
+
+/** How many times our own range of hues fits into this eye's. */
+export const MIRRORED_LAPS = MIRRORED_HUE.total / HUMAN_HUE.total;
+
+const arcAt = (arc: number[], nm: number) =>
+	arc[Math.min(arc.length - 1, Math.max(0, Math.round((nm - HUE_LO) / HUE_STEP)))];
+
+/** Which wavelength is this far along our own range of hues. */
+const humanHueAt = (fraction: number) => {
+	const want = fraction * HUMAN_HUE.total;
+	let lo = 0;
+	let hi = HUMAN_HUE.arc.length - 1;
+	while (lo < hi) {
+		const mid = (lo + hi) >> 1;
+		if (HUMAN_HUE.arc[mid] < want) lo = mid + 1;
+		else hi = mid;
+	}
+	return HUE_LO + lo * HUE_STEP;
+};
+
+/**
+ * A colour to stand in for what the mirrored eye sees at this wavelength.
+ *
+ * It cannot be the real thing. That eye's cones send combinations no light can
+ * make ours send — M lit with L nearly dark, which for us only ever happens
+ * with S lit too — so there is nothing on a screen, and nothing in a human
+ * head, that is what they see. Clipping those colours into our gamut collapses
+ * exactly the differences worth showing, and washing them in flattens
+ * everything to pastel; both were tried.
+ *
+ * So this is a tally rather than a likeness. At the wavelength where their eye
+ * is a third of the way through everything it can tell apart, we show the
+ * colour a third of the way through everything we can — and when they run past
+ * the end of ours, the rainbow starts over. `lap` counts how many times, so
+ * the drawing can say so rather than quietly pretending the colours repeat.
+ */
+export function mirroredStandIn(nm: number): { nm: number; lap: number } {
+	const along = arcAt(MIRRORED_HUE.arc, nm) / HUMAN_HUE.total;
+	const lap = Math.floor(along);
+	return { lap, nm: humanHueAt(along - lap) };
+}

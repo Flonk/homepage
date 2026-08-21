@@ -33,7 +33,7 @@ interface Props {
 	 * still had colours the missing cone was needed to tell apart would be
 	 * showing something the graph beneath it says cannot be seen.
 	 */
-	vision?: 'normal' | 'deuteranopia' | 'protanopia';
+	vision?: 'normal' | 'deuteranopia' | 'protanopia' | 'mirrored';
 }
 
 const {
@@ -297,7 +297,14 @@ const {
 
 <script>
 	import { wavelengthRgb, type Vision } from '../lib/spectrum';
-	import { CONE_FIRST_NM, CONE_LAST_NM, coneResponse } from '../lib/cones';
+	import {
+		CONE_FIRST_NM,
+		CONE_LAST_NM,
+		MIRRORED_LAPS,
+		coneResponse,
+		eyeResponse,
+		mirroredStandIn,
+	} from '../lib/cones';
 
 	/* The plot runs the length of the measured range. Not the visible band:
 	   where the curves give out is itself the answer to where the visible band
@@ -329,14 +336,17 @@ const {
 	const RANGE_STEPS = 1000;
 
 	/** Which cone each kind of dichromacy is short of. */
-	const MISSING: Record<Vision, string | null> = {
+	const MISSING: Record<string, string | null> = {
 		normal: null,
 		deuteranopia: 'm',
 		protanopia: 'l',
+		mirrored: null,
 	};
 
-	const readVision = (v: unknown): Vision =>
-		v === 'deuteranopia' || v === 'protanopia' ? v : 'normal';
+	/** A hypothetical eye, rather than one missing a cone: L moved, not lost. */
+	type Eyes = Vision | 'mirrored';
+	const readVision = (v: unknown): Eyes =>
+		v === 'deuteranopia' || v === 'protanopia' || v === 'mirrored' ? v : 'normal';
 
 	function initCones(root: HTMLElement) {
 		if (root.dataset.ready === 'true') return;
@@ -393,8 +403,8 @@ const {
 		   simply presenting a different picture. `shown` is held after a return
 		   to normal vision, because it is still the far end of the mix on the
 		   way back. */
-		let vision: Vision = AUTHORED_VISION;
-		let shown: Exclude<Vision, 'normal'> =
+		let vision: Eyes = AUTHORED_VISION;
+		let shown: Exclude<Eyes, 'normal'> =
 			AUTHORED_VISION === 'normal' ? 'deuteranopia' : AUTHORED_VISION;
 		let mix = AUTHORED_VISION === 'normal' ? 0 : 1;
 
@@ -408,10 +418,18 @@ const {
 		   vision or the width does. */
 		let stripKey = '';
 		let strip: string[] = [];
+		/* What the eye on show makes of this wavelength. For a missing cone that
+		   is a colour; for the mirrored eye it is a stand-in, and the lap it came
+		   from is what the hatching below announces. */
+		const eyeRgb = (at: number) =>
+			shown === 'mirrored'
+				? wavelengthRgb(mirroredStandIn(at).nm)
+				: wavelengthRgb(at, shown);
+
 		const colourAt = (at: number): string => {
 			const a = wavelengthRgb(at);
 			if (mix <= 0) return `rgb(${a[0]} ${a[1]} ${a[2]})`;
-			const b = wavelengthRgb(at, shown);
+			const b = eyeRgb(at);
 			if (mix >= 1) return `rgb(${b[0]} ${b[1]} ${b[2]})`;
 			return `rgb(${Math.round(a[0] + (b[0] - a[0]) * mix)} ${Math.round(
 				a[1] + (b[1] - a[1]) * mix,
@@ -491,8 +509,17 @@ const {
 			dimC = cs.getPropertyValue('--ink-dim').trim() || dimC;
 		};
 
+		/* The response the graph is drawing: the mirrored eye differs from ours
+		   only in L, and that curve slides from one to the other with the mix. */
+		const responseAt = (at: number): [number, number, number] => {
+			const h = coneResponse(at);
+			if (shown !== 'mirrored' || mix <= 0) return h;
+			const m = eyeResponse(at, 'mirrored');
+			return [h[0] + (m[0] - h[0]) * mix, h[1], h[2]];
+		};
+
 		const tally = () => {
-			const r = coneResponse(nm);
+			const r = responseAt(nm);
 			const gone = MISSING[vision];
 			for (const c of CONES) {
 				bars[c.key].style.width = `${(r[c.at] * 100).toFixed(1)}%`;
@@ -545,6 +572,35 @@ const {
 				ctx.fillStyle = strip[x];
 				ctx.fillRect(plot.x + x, stripY, 1.5, STRIP_H);
 			}
+
+			/* Where the rainbow has started over, hatch it. These colours are a
+			   second helping of ours standing in for ones of theirs we have run
+			   out of, and the strip should say so rather than let the repeat pass
+			   for a coincidence. */
+			if (shown === 'mirrored' && mix > 0.5) {
+				let from = -1;
+				for (let x = 0; x <= strip.length; x++) {
+					const on = x < strip.length && mirroredStandIn(nmOf(plot.x + x)).lap > 0;
+					if (on && from < 0) from = x;
+					if (!on && from >= 0) {
+						ctx.save();
+						ctx.beginPath();
+						ctx.rect(plot.x + from, stripY, x - from, STRIP_H);
+						ctx.clip();
+						ctx.globalAlpha = 0.32 * Math.min(1, (mix - 0.5) * 2);
+						ctx.strokeStyle = '#000';
+						ctx.lineWidth = 2;
+						for (let d = -STRIP_H; d < x - from; d += 7) {
+							ctx.beginPath();
+							ctx.moveTo(plot.x + from + d, stripY + STRIP_H);
+							ctx.lineTo(plot.x + from + d + STRIP_H, stripY);
+							ctx.stroke();
+						}
+						ctx.restore();
+						from = -1;
+					}
+				}
+			}
 			ctx.textAlign = 'center';
 			ctx.fillStyle = dimC;
 			for (let v = 400; v <= HI_NM; v += 50) {
@@ -559,7 +615,7 @@ const {
 				if (a <= 0.002) continue;
 				ctx.beginPath();
 				for (let x = 0; x <= plot.w; x++) {
-					const v = coneResponse(nmOf(plot.x + x))[cone.at];
+					const v = responseAt(nmOf(plot.x + x))[cone.at];
 					const px = plot.x + x;
 					const py = yOf(v);
 					if (x === 0) ctx.moveTo(px, py);
@@ -578,7 +634,7 @@ const {
 
 				ctx.beginPath();
 				for (let x = 0; x <= plot.w; x++) {
-					const v = coneResponse(nmOf(plot.x + x))[cone.at];
+					const v = responseAt(nmOf(plot.x + x))[cone.at];
 					const px = plot.x + x;
 					const py = yOf(v);
 					if (x === 0) ctx.moveTo(px, py);
@@ -595,7 +651,7 @@ const {
 
 			/* ---- the mark ---------------------------------------------------
 			   One wavelength, and what the three of them make of it. */
-			const r = coneResponse(nm);
+			const r = responseAt(nm);
 			const mx = xOf(nm);
 			ctx.save();
 			ctx.strokeStyle = `color-mix(in srgb, ${inkC} 55%, transparent)`;

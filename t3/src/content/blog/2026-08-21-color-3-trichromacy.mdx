@@ -74,9 +74,19 @@ import VisionSplit from "../../components/VisionSplit.astro";
 <DeckCard vizProps={{ phase: "cones", vision: "normal" }}>
   ## Less overlap would be better
 
-  There are people without M cones, which leads to a form of red-green colour blindness called *deuteranopia*. As you see, the lack of M makes our rainbow collapse into a very limited range of colours!
+  You can also imagine how in normal vision, if the M and L cones were even closer together, the signals would become more and more similar and we would approach a deuteranopia situation.
 
-  Many colors become completely indistinguishable, and we can see why: The L cone response is roughly symmetric, and the S cone is far away and doesn't overlap past 550nm, meaning the brain has no way to tell between the symmetric L responses.
+  Even in normal vision, we have a bit of a color blindness situation on the red end of the spectrum, where the reds all look very similar across a 100 or so nanometers.
 
-  The M cone is necessary to give the brain a second signal to compare against.
+  While the overlap is useful, it would be better to have *just enough* overlap to distinguish colors, and move the L cones further into the longer wavelengths to give us more range.
+</DeckCard>
+{/* The same graph, with L replaced by S turned around about M's peak — the
+    "move L further out" of the card before, done with a curve the eye already
+    has rather than one invented to taste. The rainbow underneath is a tally,
+    not a likeness; see mirroredStandIn in lib/cones.ts for why it cannot be
+    one, and what the hatching means. */}
+<DeckCard vizProps={{ phase: "cones", vision: "mirrored" }}>
+  ## What if L were further out?
+
+  Bla di bla
 </DeckCard>
