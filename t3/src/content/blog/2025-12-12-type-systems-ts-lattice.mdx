@@ -7,7 +7,6 @@ pubDate: "December 12 2025"
 
 import Question from "../../components/Question.astro";
 import SeriesNav from "../../components/SeriesNav.astro";
-import ZoomableImage from "../../components/ZoomableImage.tsx";
 
 <SeriesNav
   seriesName="type systems"
@@ -20,12 +19,7 @@ On the thirteenth day of christmas, my true love gave to me... a typescript type
 
 Here is a non-exhaustive diagram of types that exist in typescript, and their subtypes.
 
-<ZoomableImage
-  client:load
-  src="/assets/2025-12-type-systems/ts-lattice.png"
-  alt="TypeScript type system lattice diagram"
-  initialZoom={2}
-/>
+![TypeScript type system lattice diagram](/assets/2025-12-type-systems/ts-lattice.png)
 
 Arrows represent a subtype relationship -- so for example, `1` is a subtype of `number`, and `number`
 is a subtype of `unknown`. Teal squares represent literal types -- as many of you will know, `0` is not

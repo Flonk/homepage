@@ -23,10 +23,11 @@ if (multiline && lang) {
 <div class="qa-wrapper">
   <div class="question">
     <div class="question-header">
-      <strong>Question {n}:</strong>
-      <button class="spoiler-button" onclick="
+      <strong class="question-label">Question {n}</strong>
+      <button class="spoiler-button" aria-expanded="false" onclick="
         const content = this.closest('.qa-wrapper').querySelector('.spoiler-content');
         const isRevealed = content.classList.toggle('revealed');
+        this.setAttribute('aria-expanded', String(isRevealed));
         this.textContent = isRevealed ? 'Hide solution' : 'Show solution';
       ">
         Show solution
@@ -47,98 +48,113 @@ if (multiline && lang) {
 
 <style>
   .qa-wrapper {
-    /* Vertical only — a horizontal margin would inset the box relative to the
-       surrounding prose column and read as accidentally centred. */
-    margin: 1.5em 0;
-    border: 1px solid #444;
+    /* One padding value for both halves, so the question and the revealed
+       solution share a left edge. */
+    --qa-pad: 1rem;
+
+    /* Vertical margin only — a horizontal one would inset the box relative to
+       the surrounding prose column and read as accidentally centred. */
+    margin: 1.75em 0;
+    border: 1px solid var(--nord2);
+    border-left: 3px solid var(--accent);
     border-radius: 6px;
     overflow: hidden;
+    background-color: rgba(46, 52, 64, 0.35);
   }
 
   @media (max-width: 768px) {
     .qa-wrapper {
-      margin: 1em 0;
+      --qa-pad: 0.85rem;
+      margin: 1.25em 0;
       border-radius: 0;
-      border-left: none;
       border-right: none;
     }
   }
 
   .question {
-    padding: 0.75em 1em;
-    background-color: rgba(0, 0, 0, 0.2);
+    padding: var(--qa-pad);
   }
 
   .question-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 0.5em;
+    gap: 1rem;
+    margin-bottom: 0.7rem;
   }
 
-  .question-text {
-    margin-bottom: 0;
-  }
-
-  @media (min-width: 769px) {
-    .question-header {
-      margin-bottom: 0.5em;
-    }
-    
-    .question-text {
-      margin-bottom: 0.5em;
-    }
-    
-    .question-actions {
-      display: flex;
-      justify-content: flex-start;
-    }
+  /* Chrome, not prose — stays monospace like the rest of the site's furniture. */
+  .question-label {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.95em;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--nord8);
   }
 
   .spoiler-button {
-    background-color: #333;
-    color: #fff;
-    border: 1px solid #555;
-    padding: 0.3em 0.8em;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.85em;
-    transition: background-color 0.2s ease;
-    white-space: nowrap;
-  }
-
-  .question-code {
-    margin: 0;
-    overflow-x: auto;
-  }
-
-  .question-code :global(pre) {
-    margin: 0;
-    padding: 0.5rem;
-    background-color: rgba(255, 255, 255, 0.05) !important;
-    border-radius: 4px;
-    overflow-x: auto;
     font-family: var(--font-mono, monospace);
-    font-size: 0.95em;
+    font-size: 0.8em;
+    color: var(--nord4);
+    background-color: transparent;
+    border: 1px solid var(--nord2);
+    border-radius: 4px;
+    padding: 0.35em 0.9em;
+    cursor: pointer;
+    white-space: nowrap;
+    transition:
+      color 0.15s ease,
+      border-color 0.15s ease;
   }
 
-  .spoiler-button:hover {
-    background-color: #555;
+  .spoiler-button:hover,
+  .spoiler-button:focus-visible {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .question-text {
+    margin: 0;
   }
 
   .spoiler-content {
     display: none;
-    padding: 1rem 0.5rem;
-    border-top: 1px solid #444;
-    background-color: rgba(0, 0, 0, 0.4);
-  }
-
-  .spoiler-content :global(pre) {
-    padding: 0.5rem;
-    background-color: rgba(255, 255, 255, 0.05) !important;
+    padding: var(--qa-pad);
+    border-top: 1px solid var(--nord2);
+    background-color: rgba(0, 0, 0, 0.25);
   }
 
   .spoiler-content.revealed {
     display: block;
+  }
+
+  /* Nested prose brings its own margins, which would otherwise stack on top of
+     the container padding and make the box look lopsided. */
+  .spoiler-content > :global(:first-child) {
+    margin-top: 0;
+  }
+
+  .spoiler-content > :global(:last-child) {
+    margin-bottom: 0;
+  }
+
+  .question-code {
+    margin: 0;
+  }
+
+  .question-code :global(pre),
+  .spoiler-content :global(pre) {
+    margin: 0.9rem 0;
+    padding: 0.7rem 0.85rem;
+    background-color: rgba(0, 0, 0, 0.35) !important;
+    border: 1px solid var(--nord1);
+    border-radius: 4px;
+    overflow-x: auto;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.85em;
+  }
+
+  .question-code :global(pre) {
+    margin: 0;
   }
 </style>

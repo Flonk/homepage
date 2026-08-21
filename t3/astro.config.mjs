@@ -5,6 +5,7 @@ import sitemap from "@astrojs/sitemap";
 import { defineConfig } from "astro/config";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
+import rehypeNowrapInlineCode from "./src/plugins/rehype-nowrap-inline-code.mjs";
 
 import react from "@astrojs/react";
 
@@ -20,7 +21,7 @@ export default defineConfig({
     // MDX inherits this, so it no longer needs its own rehypePlugins.
     processor: unified({
       remarkPlugins: [remarkMath],
-      rehypePlugins: [rehypeKatex],
+      rehypePlugins: [rehypeKatex, rehypeNowrapInlineCode],
     }),
   },
   integrations: [mdx(), sitemap(), react()],

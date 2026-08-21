@@ -438,6 +438,11 @@ em {
    stay within that box's overflow:hidden border. Markdown wraps a bare image in
    a paragraph, hence the :has() selectors.
 
+   Astro islands are deliberately absent from this list. Astro gives them
+   `display: contents`, and overriding that makes the framework component
+   inside measure the wrong container and blow out the page width. Islands
+   size themselves; leave them alone.
+
    `width: max-content` shrinks each asset to its own content, so narrow ones
    don't stretch. Centring uses margin-left:50% + translateX(-50%) rather than
    auto margins, which collapse to 0 once an element is wider than its
@@ -447,11 +452,16 @@ em {
   .prose > figure,
   .prose > table,
   .prose > p:has(> img),
-  .prose > p:has(> video),
-  .prose > p:has(> astro-island),
-  .prose > astro-island {
+  .prose > p:has(> video) {
     display: block;
+    /* border-box so the floor and cap below describe the visible box. `pre`
+       carries 1.5em of padding, which would otherwise hang outside the text
+       column and break the shared left edge. */
+    box-sizing: border-box;
     width: max-content;
+    /* Never narrower than the text column — a short snippet shrinking to its
+       own content leaves the column looking ragged. */
+    min-width: 100%;
     max-width: min(55.5rem, calc(100vw - 4rem));
     margin-left: 50%;
     transform: translateX(-50%);
