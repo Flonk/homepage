@@ -73,9 +73,13 @@ const bar = Array.from({ length: STOPS + 1 }, (_, i) => {
 	</div>
 
 	{/* The mixture itself: one spike per light, standing on the spectrum it is
-	    drawn from. */}
+	    drawn from and under the three curves that are doing the looking. The
+	    curves are why the disc can hold still: it is their three readings the
+	    spikes are being shuffled around beneath. */}
 	<div class="meta-plot">
-		<div class="meta-spikes" data-spikes></div>
+		<div class="meta-spikes" data-spikes>
+			<canvas data-graph></canvas>
+		</div>
 		<div class="meta-bar"></div>
 	</div>
 
@@ -202,7 +206,19 @@ const bar = Array.from({ length: STOPS + 1 }, (_, i) => {
 
 	.meta-spikes {
 		position: relative;
-		height: clamp(3rem, 20cqh, 8rem);
+		height: clamp(3.5rem, 26cqh, 10rem);
+		/* Standing on the rainbow rather than set into it. */
+		margin-bottom: 5px;
+	}
+
+	/* The curves behind the spikes: the same box and the same axis, so a spike
+	   is read against the curve it stands under. */
+	.meta-spikes canvas {
+		position: absolute;
+		inset: 0;
+		display: block;
+		width: 100%;
+		height: 100%;
 	}
 
 	/* One spike per light. Absolute, so a weight is a height and nothing has to
@@ -210,6 +226,7 @@ const bar = Array.from({ length: STOPS + 1 }, (_, i) => {
 	.meta-spikes :global(i) {
 		position: absolute;
 		bottom: 0;
+		z-index: 1;
 		width: 0.7rem;
 		margin-left: -0.35rem;
 		border-radius: 2px 2px 0 0;
@@ -243,6 +260,7 @@ const bar = Array.from({ length: STOPS + 1 }, (_, i) => {
 </style>
 
 <script>
+	import { coneResponse } from '../lib/cones';
 	import { lightColumns, mixCones, mixRgb, type Light } from '../lib/spectrum';
 
 	/* ---- the line of mixtures that all look alike ------------------------
@@ -303,6 +321,8 @@ const bar = Array.from({ length: STOPS + 1 }, (_, i) => {
 
 		const outEl = root.querySelector<HTMLElement>('[data-out]')!;
 		const spikesEl = root.querySelector<HTMLElement>('[data-spikes]')!;
+		const canvas = root.querySelector<HTMLCanvasElement>('[data-graph]')!;
+		const ctx = canvas.getContext('2d')!;
 		const knob = root.querySelector<HTMLInputElement>('[data-knob]')!;
 		const bars = Object.fromEntries(
 			(['s', 'm', 'l'] as const).map((k) => [k, root.querySelector<HTMLElement>(`[data-bar='${k}']`)!]),
@@ -354,6 +374,78 @@ const bar = Array.from({ length: STOPS + 1 }, (_, i) => {
 			const [r, g, b] = mixRgb([{ nm: v, weight: 1 }]);
 			return `rgb(${r} ${g} ${b})`;
 		}
+
+		/* ---- the backdrop ---------------------------------------------------
+		   The same three curves as post 3, on the same axis as the spikes and
+		   in the same box, so a spike's height can be read against the cone it
+		   is standing under. Quieter than the spikes throughout: this is what
+		   the light is being measured by, not the thing being changed. */
+		const CONES = [
+			{ key: 'l', at: 0 },
+			{ key: 'm', at: 1 },
+			{ key: 's', at: 2 },
+		] as const;
+		const coneCss: Record<string, string> = { l: '#ff6b6b', m: '#64d98a', s: '#6fa8ff' };
+
+		let plotW = 0;
+		let plotH = 0;
+		let dpr = 1;
+
+		const resize = () => {
+			dpr = Math.min(window.devicePixelRatio || 1, 2);
+			const r = canvas.getBoundingClientRect();
+			plotW = r.width;
+			plotH = r.height;
+			canvas.width = Math.max(1, Math.round(plotW * dpr));
+			canvas.height = Math.max(1, Math.round(plotH * dpr));
+			const cs = getComputedStyle(root);
+			for (const cone of CONES) {
+				const v = cs.getPropertyValue(`--${cone.key}`).trim();
+				if (v) coneCss[cone.key] = v;
+			}
+		};
+
+		const drawCurves = () => {
+			ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+			ctx.clearRect(0, 0, plotW, plotH);
+			for (const cone of CONES) {
+				// Sampled per pixel, so the shape is the data's rather than a
+				// polyline's idea of it.
+				const trace = () => {
+					ctx.beginPath();
+					for (let x = 0; x <= plotW; x++) {
+						const v = coneResponse(from + ((to - from) * x) / plotW)[cone.at];
+						const y = plotH * (1 - v);
+						if (x === 0) ctx.moveTo(x, y);
+						else ctx.lineTo(x, y);
+					}
+				};
+				// A wash underneath, so three overlapping curves still read as
+				// three rather than as a tangle of lines.
+				trace();
+				ctx.lineTo(plotW, plotH);
+				ctx.lineTo(0, plotH);
+				ctx.closePath();
+				ctx.globalAlpha = 0.09;
+				ctx.fillStyle = coneCss[cone.key];
+				ctx.fill();
+
+				trace();
+				ctx.globalAlpha = 0.45;
+				ctx.strokeStyle = coneCss[cone.key];
+				ctx.lineWidth = 1.75;
+				ctx.lineJoin = 'round';
+				ctx.stroke();
+				ctx.globalAlpha = 1;
+			}
+		};
+
+		/* Redrawn on the spot rather than on the next frame: a pane the browser
+		   has stopped animating still has to show the curves. */
+		new ResizeObserver(() => {
+			resize();
+			drawCurves();
+		}).observe(canvas);
 
 		const render = () => {
 			const t = lo + ((hi - lo) * Number(knob.value)) / 1000;
