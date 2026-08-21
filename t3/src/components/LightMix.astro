@@ -368,15 +368,20 @@ const bar = Array.from({ length: STOPS + 1 }, (_, i) => {
 			const [r, g, b] = mixRgb(lights);
 			outEl.style.background = `rgb(${r} ${g} ${b})`;
 
-			/* Drawn against the strongest of the three, so what is shown is the
-			   pattern between them, which is the part that carries the colour.
-			   Their sizes together are brightness, and the disc is already
-			   saying that. */
+			/* Each cone's own reading, as a fraction of its own peak — the scale
+			   part three's graph is drawn on, so a bar here means what a bar
+			   there means. Not scaled against the largest of the three, which is
+			   what this did at first: that turns three readings into two ratios
+			   and a 1.00, and invites the number to be read as a share of
+			   something it is not.
+
+			   A mixture can push a cone past its own peak, which a single light
+			   cannot; the bar stops at full and the number carries on. */
 			const cones = mixCones(lights);
-			const top = Math.max(cones[0], cones[1], cones[2], 1e-6);
 			for (const c of CONES) {
-				bars[c.key].style.width = `${((cones[c.at] / top) * 100).toFixed(1)}%`;
-				vals[c.key].textContent = (cones[c.at] / top).toFixed(2);
+				const v = cones[c.at];
+				bars[c.key].style.width = `${(Math.min(1, v) * 100).toFixed(1)}%`;
+				vals[c.key].textContent = v.toFixed(2);
 			}
 		};
 
