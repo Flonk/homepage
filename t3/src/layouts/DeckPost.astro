@@ -204,6 +204,16 @@ const { title, description, pubDate, series, ground, prevPart, nextPart } = Astr
 				display: grid;
 				grid-template-areas: 'viz' 'text';
 				grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+				/* The cards waiting off to either side are invisible, not out of
+				   the layout, so the 2.5rem they are translated by is real
+				   overflow. Desktop never shows it — body's overflow:hidden is
+				   propagated to the viewport, which clips it away — but a phone
+				   reads a page wider than its viewport as one to shrink to fit,
+				   and the whole deck zoomed out and could be panned around.
+				   Clipped here, where the cards actually slide. `clip` rather
+				   than `hidden`: this is not a scroll port and must not become
+				   one, or a stray swipe could scroll the deck sideways. */
+				overflow: clip;
 			}
 
 			/* Named areas so DeckCard's halves can be placed independently. */
