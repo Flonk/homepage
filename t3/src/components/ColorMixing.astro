@@ -56,7 +56,6 @@ const MODES = {
 		   discs can be laid on and still mean what they say. */
 		surface: 0,
 		blend: 'screen',
-		caption: 'Light on a black screen — every lamp only adds',
 	},
 	subtractive: {
 		/* Cyan, magenta, yellow: each one is white minus a single primary, which
@@ -69,11 +68,10 @@ const MODES = {
 		mix: Math.min,
 		surface: 1,
 		blend: 'multiply',
-		caption: 'Ink on white paper — every layer only takes away',
 	},
 } as const;
 
-const { discs, mix, surface, blend, caption } = MODES[mode];
+const { discs, mix, surface, blend } = MODES[mode];
 
 /* ---- geometry -------------------------------------------------------------
    Three discs of radius R with their centres D from the middle, at -90°, 30°
@@ -162,7 +160,7 @@ const label =
 	`${spoken('012')}.`;
 ---
 
-<figure class="mixing">
+<div class="mixing">
 	<svg
 		class="plate"
 		viewBox={`${VIEW.x} ${VIEW.y} ${VIEW.w} ${VIEW.h}`}
@@ -204,8 +202,7 @@ const label =
 			{regions.map((r) => <text x={r.x} y={r.y} fill={r.ink}>{r.name}</text>)}
 		</g>
 	</svg>
-	<figcaption>{caption}</figcaption>
-</figure>
+</div>
 
 <style>
 	.mixing {
@@ -215,10 +212,8 @@ const label =
 		min-height: 0;
 		margin: 0;
 		display: flex;
-		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		gap: 0.55rem;
 		font-family: var(--font-mono);
 	}
 
@@ -257,15 +252,5 @@ const label =
 		letter-spacing: 0.05em;
 		text-anchor: middle;
 		dominant-baseline: central;
-	}
-
-	/* The deck's ink rather than the page's: this line sits on whichever ground
-	   the post picked, and body colour is set for the other one. */
-	.mixing figcaption {
-		flex: none;
-		font-size: 0.62rem;
-		letter-spacing: 0.04em;
-		color: var(--deck-ink-dim, #7a7264);
-		text-align: center;
 	}
 </style>
