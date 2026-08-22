@@ -29,16 +29,23 @@ import VizPhase from "../../components/VizPhase.astro";
       litter is already noise, so every channel looked equally bad and none of
       them looked wronged.
 
-      balloon-q10.jpg is a 450x300 crop of the envelope from "Hot Air Balloon"
-      by Kupono Kuwamura (Unsplash, via Wikimedia Commons, CC0 — public domain,
-      no attribution required), re-encoded at JPEG quality 10 with 4:2:0 chroma.
-      Quality 10 was picked by measuring: it is the mildest setting at which
-      blue's error is unmistakable while red and green still hold their edges.
-      Blue's RMSE against the uncompressed crop runs about 1.6x green's at every
-      quality — see ChannelSplit for why that is arithmetic rather than luck. */}
+      Both files are the same 450x300 crop of the envelope from "Hot Air
+      Balloon" by Kupono Kuwamura (Unsplash, via Wikimedia Commons, CC0 —
+      public domain, no attribution required), so they line up pixel for pixel
+      and the fade between them shows only what the codec did.
+
+        balloon-original.webp  lossless, 163 KB — the crop as it arrived
+        balloon-q10.jpg        JPEG quality 10, 4:2:0 chroma, 4.5 KB
+
+      Quality 10 was picked by measuring, not by taste: it is the mildest
+      setting at which blue's error is unmistakable while red and green still
+      hold their edges. Blue's RMSE against the lossless crop runs about 1.6x
+      green's at every quality — see ChannelSplit for why that is arithmetic
+      rather than luck. */}
   <VizPhase name="channels">
     <ChannelSplit
       src="/assets/2026-08-21-color-3-tristimulus/balloon-q10.jpg"
+      reference="/assets/2026-08-21-color-3-tristimulus/balloon-original.webp"
       alt="A close crop of a hot air balloon's envelope, a checkerboard of saturated yellow, red, green and dark teal panels."
     />
   </VizPhase>
@@ -71,8 +78,6 @@ import VizPhase from "../../components/VizPhase.astro";
   ## Cones aren't equidistributed
 
   The retina has 60% L, 30% M, and 10% S cones on average, though the L to M ratio can vary wildly, from 1:1 up to 16:1. 
-
-  Mollon (1989) suggests that M and L peaking where they do is a result of the evolutionary pressure to detect fruit against foliage, and the S cone's peak is a result of the need to detect water.
   
   Interestingly, the central 100µm of retina, part of our sharpest vision, has no S cones at all, leading to a blind spot for blue there.
 </DeckCard>
@@ -82,9 +87,9 @@ import VizPhase from "../../components/VizPhase.astro";
 
   The relative lack of S cones makes for less "resolution" in perceiving blue light.
 
-  Since we have few S cones, cameras will typically record less information about the blue channel in images, as it makes little difference to how we perceive the final image.
-  
-  *JPEG*, a lossy image compression format, also takes advantage of this fact, and will throw away more information from the blue channel than red or green when compressing an image.
+  The lossy image format *JPEG* takes advantage of this fact by compressing the blue channel harder than others, as it makes no difference to our perception of the final image. In the extremely compressed image above, the blue channel is 1.6x more damaged than the green. 
+
+  Similarly, cameras often have a lower resolution sensor for blue than for red or green.
 </DeckCard>
 
 <DeckCard vizProps={{ phase: "cones", vision: "normal" }}>

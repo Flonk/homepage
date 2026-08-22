@@ -1,7 +1,7 @@
 ---
 /**
- * A JPEG's three colour channels side by side, so you can see which of the
- * three the codec spent the least on.
+ * A JPEG that comes apart into its three colour channels and puts itself back
+ * together, so you can see which of the three the codec spent the least on.
  *
  * Blue always loses, and not by accident. JPEG does not store red, green and
  * blue; it stores brightness at full resolution and two colour-difference
@@ -23,21 +23,54 @@
  * is merely dim in any warm-lit scene, and a reader learns about the lighting
  * rather than the file. Turn it off with `equalise={false}` and see.
  *
- * The panels are grey rather than tinted, and named instead. Painting each one
- * in its own channel's colour is prettier and says which is which without a
- * word, but it wrecks the comparison the card is making: pure blue carries
- * about a fourteenth of white's luminance against green's seven tenths, so the
- * blue panel comes out dim whatever is in it, and a reader cannot tell how much
- * of what they are seeing is lost detail and how much is just a dark colour.
- * Grey puts all three on the same footing; a label in the corner does the
- * identifying.
+ * ---- the cycle ------------------------------------------------------------
+ *
+ * Three things want the same room and a deck card has only one pane of it, so
+ * they take turns in the same space, in the order that tells the story:
+ *
+ *   1. the crop before compression
+ *   2. the compressed file, fading in over it — the damage arrives in place,
+ *      against the thing it was done to, rather than beside it
+ *   3. that file coming apart into its three channels, which is where you find
+ *      out the damage was not shared out evenly
+ *
+ * Nothing is scaled and nothing is re-cropped between the three. Every frame
+ * is the same window on the same pixels, which is the only reason taking turns
+ * is honest here rather than a slideshow of three different pictures.
+ *
+ * `reference` is optional. Without it the cycle is two stages and the card is
+ * only about the channels; with it the card is also about what compression
+ * did, which is a stronger thing to be about.
+ *
+ * The channels are grey rather than tinted. Painting each one in its own
+ * colour is prettier and identifies them without a word, but it wrecks the
+ * comparison: pure blue carries about a fourteenth of white's luminance
+ * against green's seven tenths, so the blue panel comes out dim whatever is in
+ * it, and a reader cannot tell how much of that is lost detail and how much is
+ * just a dark colour. Grey puts all three on the same footing; a label in the
+ * corner does the identifying.
+ *
+ * The cycle is driven from the script rather than by a CSS animation with a
+ * negative delay, for one reason: it has to restart when the *card* arrives,
+ * not when the page loads. A reader who reaches this card a minute in would
+ * otherwise walk in on the middle of a loop, and the first split — the one
+ * that shows what the picture is doing — would already have happened without
+ * them.
  *
  * Nothing is precomputed. The channels are pulled out of the same JPEG the
  * reader downloaded, in the browser, which is the only version of this that
  * cannot be accused of having been arranged.
  */
 interface Props {
+	/** The file under examination — the one taken apart into channels. */
 	src: string;
+	/**
+	 * The same crop, same size, before whatever was done to `src`. Shown first,
+	 * with `src` fading in over it. Must line up pixel for pixel or the fade
+	 * becomes a dissolve between two pictures and proves nothing. Omit it to
+	 * drop that stage entirely.
+	 */
+	reference?: string;
 	/** Describes the photograph, for the reader who cannot see any of it. */
 	alt: string;
 	/**
@@ -57,14 +90,31 @@ interface Props {
 	density?: number | null;
 	/** Stretch each channel to full range before showing it. See above. */
 	equalise?: boolean;
+	/**
+	 * Seconds each stage holds: reference, compressed, split apart. The first
+	 * two are short because they are setup — a reader who arrives on a still
+	 * picture has no way of knowing it is about to do anything, so the first
+	 * move has to come before they have decided it will not. The third is long
+	 * because it is the one worth reading.
+	 */
+	hold?: [number, number, number];
 }
 
-const { src, alt, focus = [0.5, 0.5], density = null, equalise = true } = Astro.props;
+const {
+	src,
+	reference,
+	alt,
+	focus = [0.5, 0.5],
+	density = null,
+	equalise = true,
+	hold = [2, 2, 10],
+} = Astro.props;
 
-const PANELS = [
-	{ channel: 0, tag: 'Red' },
-	{ channel: 1, tag: 'Green' },
-	{ channel: 2, tag: 'Blue' },
+/* Order is the layout order, which is also the order they slide out into. */
+const CHANNELS = [
+	{ channel: 0, slot: 'first', tag: 'Red' },
+	{ channel: 1, slot: 'mid', tag: 'Green' },
+	{ channel: 2, slot: 'last', tag: 'Blue' },
 ];
 ---
 
@@ -72,21 +122,38 @@ const PANELS = [
 	class="channels"
 	data-channels
 	data-src={src}
+	data-reference={reference}
 	data-focus={focus.join(',')}
 	data-density={density ?? undefined}
 	data-equalise={String(equalise)}
+	data-hold={hold.join(',')}
+	data-stage={reference ? 'reference' : 'whole'}
 >
 	<div
 		class="grid"
 		role="img"
-		aria-label={`${alt} Shown three times in grey, as its red, green and blue channels separately, each stretched to the same contrast.`}
+		aria-label={`${alt} ${reference ? 'Shown first before compression, then compressed, then coming' : 'Comes'} apart into its red, green and blue channels, shown in grey side by side and each stretched to the same contrast.`}
 	>
-		{PANELS.map((p) => (
-			<div class="panel">
-				<canvas data-panel data-channel={p.channel}></canvas>
-				<span class="tag">{p.tag}</span>
+		{
+			CHANNELS.map((c) => (
+				<div class="panel" data-slot={c.slot}>
+					<canvas data-panel data-channel={c.channel}></canvas>
+					<span class="tag">{c.tag}</span>
+				</div>
+			))
+		}
+		{/* Both composites sit in the middle slot over the three channels, the
+		    subject above the reference, so the compressed file arrives on top of
+		    the thing it was made from rather than next to it. Their canvases are
+		    opaque; there is nothing to see through, only opacity to cross. */}
+		{reference && (
+			<div class="panel composite reference" data-slot="mid">
+				<canvas data-panel data-source="reference"></canvas>
 			</div>
-		))}
+		)}
+		<div class="panel composite subject" data-slot="mid">
+			<canvas data-panel data-source="subject" data-metric></canvas>
+		</div>
 	</div>
 </figure>
 
@@ -108,15 +175,21 @@ const PANELS = [
 	   so a browser without container queries gets the layout that survives a
 	   narrow pane rather than the one that needs a wide one.
 
+	   Every cell is placed by hand rather than left to auto-placement, because
+	   the original shares the middle one and auto-placement would push the
+	   middle channel out of it instead of letting them overlap.
+
 	   The panels take whatever cell they are given; nothing here has a fixed
 	   aspect. A panel is a window onto the photograph, and the window is cut to
 	   fit the opening rather than the other way round. */
 	.grid {
+		--gap: 0.4rem;
+
 		flex: 1;
 		min-width: 0;
 		min-height: 0;
 		display: grid;
-		gap: 0.4rem;
+		gap: var(--gap);
 		grid-template-columns: 1fr;
 		grid-template-rows: repeat(3, 1fr);
 		/* The pane has no bottom padding of its own — a viz is allowed to run off
@@ -124,10 +197,42 @@ const PANELS = [
 		margin-bottom: 1rem;
 	}
 
+	/* Where each panel goes, and — for the two outer ones — how far it has to
+	   travel to sit under the middle. A percentage resolves against the panel's
+	   own size, so the offset stays right at every pane size without anything
+	   measuring anything. */
+	[data-slot='first'] {
+		grid-area: 1 / 1;
+		--join: translateY(calc(100% + var(--gap)));
+	}
+
+	[data-slot='mid'] {
+		grid-area: 2 / 1;
+	}
+
+	[data-slot='last'] {
+		grid-area: 3 / 1;
+		--join: translateY(calc(-100% - var(--gap)));
+	}
+
 	@container viz (orientation: landscape) {
 		.grid {
 			grid-template-columns: repeat(3, 1fr);
 			grid-template-rows: 1fr;
+		}
+
+		[data-slot='first'] {
+			grid-area: 1 / 1;
+			--join: translateX(calc(100% + var(--gap)));
+		}
+
+		[data-slot='mid'] {
+			grid-area: 1 / 2;
+		}
+
+		[data-slot='last'] {
+			grid-area: 1 / 3;
+			--join: translateX(calc(-100% - var(--gap)));
 		}
 	}
 
@@ -139,6 +244,39 @@ const PANELS = [
 		overflow: hidden;
 		/* Something to look at while the JPEG is still on its way. */
 		background: rgb(255 255 255 / 0.05);
+		/* Joined is the resting state: stacked in the middle, under whichever
+		   composite is showing. The middle panel never moves, hence the
+		   fallback. */
+		transform: var(--join, none);
+		transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	.channels[data-stage='split'] .panel {
+		transform: none;
+	}
+
+	/* Both over the three channels, the subject over the reference, and both
+	   gone once the channels have somewhere to be. */
+	.composite {
+		opacity: 0;
+		transition: opacity 0.45s ease;
+	}
+
+	.reference {
+		z-index: 1;
+	}
+
+	.subject {
+		z-index: 2;
+	}
+
+	/* The reference stays lit underneath while the subject fades in over it, so
+	   the crossing is one picture becoming another rather than a dissolve
+	   through the channels behind them both. */
+	.channels[data-stage='reference'] .reference,
+	.channels[data-stage='whole'] .reference,
+	.channels[data-stage='whole'] .subject {
+		opacity: 1;
 	}
 
 	.panel canvas {
@@ -150,31 +288,51 @@ const PANELS = [
 
 	/* Set into the picture rather than under it: the panels are packed edge to
 	   edge, and a row of captions between them would cost more height than the
-	   gap does. */
+	   gap does.
+
+	   Opaque black rather than a tinted veil. What is behind these is a channel
+	   stretched to full range, so somewhere in every panel there is white, and
+	   a translucent plate over that leaves the label to be read off whatever
+	   grey happens to be underneath it. */
 	.tag {
 		position: absolute;
-		left: 0.35rem;
-		bottom: 0.35rem;
-		font-size: 0.58rem;
+		left: 0.4rem;
+		bottom: 0.4rem;
+		font-size: 0.8rem;
 		letter-spacing: 0.08em;
 		text-transform: uppercase;
 		line-height: 1;
-		padding: 0.3em 0.5em;
+		padding: 0.35em 0.55em;
 		border-radius: 3px;
-		color: #f2f4f7;
-		background: rgb(0 0 0 / 0.55);
-		backdrop-filter: blur(2px);
+		color: #fff;
+		background: #000;
 	}
 
 	@container viz (max-width: 26rem) {
 		.tag {
-			font-size: 0.5rem;
+			font-size: 0.7rem;
+		}
+	}
+
+	/* Held apart rather than held together: of the two states this is the one
+	   carrying the information, and a reader who has asked for less movement
+	   should not have to wait through a cycle to be shown it. */
+	@media (prefers-reduced-motion: reduce) {
+		.panel,
+		.composite {
+			transition: none;
 		}
 	}
 </style>
 
 <script>
-	type Panel = { canvas: HTMLCanvasElement; ctx: CanvasRenderingContext2D; channel: number };
+	type Panel = {
+		canvas: HTMLCanvasElement;
+		ctx: CanvasRenderingContext2D;
+		/** A channel of the subject, or a whole picture drawn straight through. */
+		channel: number | null;
+		source: 'subject' | 'reference';
+	};
 
 	/* Where the stretch clips. Half a percent at each end, so one blown
 	   highlight or one dead pixel cannot decide the whole picture's contrast —
@@ -189,9 +347,14 @@ const PANELS = [
 			(canvas) => ({
 				canvas,
 				ctx: canvas.getContext('2d')!,
-				channel: Number(canvas.dataset.channel),
+				channel: canvas.dataset.channel === undefined ? null : Number(canvas.dataset.channel),
+				source: canvas.dataset.source === 'reference' ? 'reference' : 'subject',
 			}),
 		);
+		/* Every panel is the same size, but the outer two spend half their life
+		   translated, and a transformed box is the wrong thing to measure. The
+		   original never moves. */
+		const metric = root.querySelector<HTMLCanvasElement>('[data-metric]')!;
 
 		const host =
 			root.closest<HTMLElement>('[data-viz-phase]') ?? root.closest<HTMLElement>('[data-viz-stage]');
@@ -214,12 +377,17 @@ const PANELS = [
 		const work = document.createElement('canvas');
 		const workCtx = work.getContext('2d', { willReadFrequently: true })!;
 
-		const img = new Image();
-		let loaded = false;
+		/* Keyed by the `source` a panel names, so a panel asks for its picture
+		   rather than knowing which variable holds it. */
+		const sources: Record<'subject' | 'reference', HTMLImageElement | null> = {
+			subject: new Image(),
+			reference: root.dataset.reference ? new Image() : null,
+		};
 
 		function draw() {
-			if (!loaded) return;
-			const rect = panels[0].canvas.getBoundingClientRect();
+			const img = sources.subject!;
+			if (!img.naturalWidth) return;
+			const rect = metric.getBoundingClientRect();
 			if (!rect.width || !rect.height) return;
 
 			const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -249,13 +417,27 @@ const PANELS = [
 
 			work.width = w;
 			work.height = h;
-			workCtx.drawImage(img, sx, sy, sw, sh, 0, 0, w, h);
-			const src = workCtx.getImageData(0, 0, w, h);
 
-			for (const p of panels) {
-				p.canvas.width = w;
-				p.canvas.height = h;
-				p.ctx.putImageData(greyscale(src, p.channel, w, h), 0, 0);
+			/* One pass per source: crop it once, then hand the pixels to every
+			   panel that asked for it. The window is computed from the subject
+			   and reused verbatim, which is what keeps the two composites in
+			   register — they are the same crop of the same scene, and the whole
+			   point of the fade is that only the pixels differ. */
+			for (const which of ['subject', 'reference'] as const) {
+				const from = sources[which];
+				const want = panels.filter((p) => p.source === which);
+				if (!from?.naturalWidth || !want.length) continue;
+				workCtx.drawImage(from, sx, sy, sw, sh, 0, 0, w, h);
+				const pixels = workCtx.getImageData(0, 0, w, h);
+				for (const p of want) {
+					p.canvas.width = w;
+					p.canvas.height = h;
+					p.ctx.putImageData(
+						p.channel === null ? pixels : greyscale(pixels, p.channel, w, h),
+						0,
+						0,
+					);
+				}
 			}
 		}
 
@@ -303,21 +485,73 @@ const PANELS = [
 			return out;
 		}
 
-		img.onload = () => {
-			loaded = true;
-			draw();
-		};
-		img.src = root.dataset.src!;
+		/* ---- the cycle -------------------------------------------------------
+		   Before, after, taken apart, round again. Restarted whenever the card
+		   comes back, so the sequence always begins where the reader does
+		   rather than wherever a loop started at page load happens to be. */
+		const holds = String(root.dataset.hold ?? '')
+			.split(',')
+			.map(Number);
+		const STAGES = (
+			[
+				['reference', holds[0]],
+				['whole', holds[1]],
+				['split', holds[2]],
+			] as const
+		)
+			// No reference image, no stage for it.
+			.filter(([stage]) => stage !== 'reference' || sources.reference)
+			.map(([stage, secs]) => ({ stage, ms: (Number.isFinite(secs) ? secs : 3) * 1000 }));
 
-		new ResizeObserver(() => draw()).observe(panels[0].canvas);
+		const still = matchMedia('(prefers-reduced-motion: reduce)');
+		let timer: ReturnType<typeof setTimeout> | null = null;
 
-		host?.addEventListener('viz:props', (e) => {
-			const p = (e as CustomEvent).detail ?? {};
-			if ('focus' in p) focus = readFocus(Array.isArray(p.focus) ? p.focus.join(',') : p.focus);
-			if ('density' in p) density = p.density === null ? Infinity : Number(p.density) || density;
-			if ('equalise' in p) equalise = Boolean(p.equalise);
-			draw();
+		function stop() {
+			if (timer !== null) clearTimeout(timer);
+			timer = null;
+		}
+
+		function start() {
+			stop();
+			/* Held apart rather than cycling: of the stages this is the one
+			   carrying the argument, and a reader who has asked for less movement
+			   should be shown it rather than made to wait for it. */
+			if (still.matches) {
+				root.dataset.stage = 'split';
+				return;
+			}
+			let i = 0;
+			const step = () => {
+				root.dataset.stage = STAGES[i].stage;
+				timer = setTimeout(step, STAGES[i].ms);
+				i = (i + 1) % STAGES.length;
+			};
+			step();
+		}
+
+		let pending = 0;
+		for (const which of ['subject', 'reference'] as const) {
+			const img = sources[which];
+			if (!img) continue;
+			pending++;
+			img.onload = () => {
+				draw();
+				// The reference is much the larger file; do not make the subject
+				// wait behind it, but redraw once it lands.
+				if (--pending === 0) draw();
+			};
+			img.src = which === 'subject' ? root.dataset.src! : root.dataset.reference!;
+		}
+
+		new ResizeObserver(() => draw()).observe(metric);
+
+		host?.addEventListener('viz:enter', start);
+		host?.addEventListener('viz:exit', stop);
+		still.addEventListener('change', () => {
+			if (firstSplit !== null || cycle !== null || still.matches) start();
 		});
+		// Outside a deck, or already the card on screen: nothing will announce it.
+		if (!host || host.dataset.vizActive !== 'false') start();
 	}
 
 	document.querySelectorAll<HTMLElement>('[data-channels]').forEach(initSplit);
