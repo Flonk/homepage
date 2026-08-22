@@ -6,13 +6,27 @@ description: ""
 pubDate: "August 21 2026"
 ---
 
+import ColorMixing from "../../components/ColorMixing.astro";
 import DeckCard from "../../components/DeckCard.astro";
 import DeckViz from "../../components/DeckViz.astro";
-import VizImage from "../../components/VizImage.astro";
 import RgbCube from "../../components/RgbCube.astro";
+import VizImage from "../../components/VizImage.astro";
+import VizPhase from "../../components/VizPhase.astro";
 
+{/* The cube is the deck's home phase — cards that name no phase get it, which
+    is most of them. The two mixing diagrams are the same three discs under the
+    two rules; see ColorMixing for why they come out exact negatives of each
+    other, which is what the cross-fade between them is showing. */}
 <DeckViz>
-  <RgbCube />
+  <VizPhase name="cube">
+    <RgbCube />
+  </VizPhase>
+  <VizPhase name="additive">
+    <ColorMixing mode="additive" />
+  </VizPhase>
+  <VizPhase name="subtractive">
+    <ColorMixing mode="subtractive" />
+  </VizPhase>
   <VizImage
     name="subpixels"
     src="/assets/2026-08-21-color-1-rgb-cube/subpixels.png"
@@ -55,29 +69,27 @@ import RgbCube from "../../components/RgbCube.astro";
   The primary colours are the red, green and blue we picked out earlier, the secondary colors you get by mixing two primaries together, and black and white are the extremes of all three colors being off or on.
 </DeckCard>
 
-<DeckCard vizProps={{ tour: null, line: true, guides: true }}>
-  ## A line segment through the cube is a gradient
+<DeckCard vizProps={{ phase: "additive" }}>
+  ## RGB is additive
 
-  A gradient is what we get when we smoothly transition from one colour to another. Typically, this is achieved via *linear interpolation*.
+  Your computer screen emits light, and mixing different colours of light will make for a brighter colour overall.
 
-  Say your two colors have red channels `10` and `70`, and you want to *linearly interpolate* between 10 and 70 via a "knob" that goes from 0 to 1. Then the formula goes:
+  Mixing all the colors will give you white. Mixing no colors at all will give you black -- no light is coming from the screen at all.
 
-  ```typescript
-  red = knob * 70 + (1 - knob) * 10
-  ```
-
-  Basically: Take `knob` percent from the second colour, and the rest from the first colour. Do the same for green and blue, and you have a gradient.
+  This is called an *additive color model*.
 </DeckCard>
 
-<DeckCard vizProps={{ tour: null, line: true, guides: true }}>
-  ## A line segment through the cube is a gradient
+<DeckCard vizProps={{ phase: "subtractive" }}>
+  ## CMYK is subtractive
 
-  We can interpret this geometrically, too: A gradient is just a line segment through the RGB cube, where the two endpoints are the two colours we want to transition between. Each point along the line segment corresponds to a colour in the gradient.
+  Putting ink on paper works the other way: The paper is white with no color on it at all, and the more ink you add, the darker the color gets.
 
-  The linear interpolation formula from before is just a way to find the coordinates of a point along that line segment.
+  Mixing all the colors will give you black.
+
+  Note how the primary colors of RGB are the secondary colors of CMYK, and vice versa! The two color models are like opposites of each other.
 </DeckCard>
 
-<DeckCard vizProps={{ overlay: "subpixels" }}>
+<DeckCard vizProps={{ phase: "cube", tour: null, guides: false, overlay: "subpixels" }}>
   ## Screens actually work like this
 
   Your screen is made up of a grid of pixels, and each pixel is made up of three or more *subpixels*, consisting of LEDs that emit red, green and blue light. They are small enough and far enough away that your eye blends them together, and you see a single colour.

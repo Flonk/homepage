@@ -1,0 +1,271 @@
+---
+/**
+ * The two ways colour mixes, drawn as the same three overlapping discs twice.
+ *
+ * Both pictures have exactly one moving part: the rule for what happens where
+ * two discs overlap. Light *adds* — a second lamp can only ever make a patch
+ * brighter — so the rule is channel-wise max, and the surface you start from
+ * has to be the darkest thing there is, black. Ink *subtracts* — a second
+ * filter can only ever take more away — so the rule is channel-wise min, and
+ * you start from white paper. In both cases the backdrop is the identity of
+ * the rule: the surface that leaves whatever is laid on it alone.
+ *
+ * That is the whole component. Everything drawn below — the seven regions,
+ * their colours, their names, whether a name is set in black or white — is
+ * derived from three disc colours and one of those two rules, so the labels
+ * cannot drift out of step with what the browser actually paints.
+ *
+ * The painting is left to `mix-blend-mode` rather than seven hand-cut region
+ * paths. Normally that would be a worry, since a browser is free to blend in a
+ * colour space of its choosing and the result would depend on which one — but
+ * every channel here is exactly 0 or 1, and both `screen` and `multiply` map
+ * {0,1}² to {0,1} identically under any encoding. The blend is exact, not
+ * approximately right.
+ *
+ * The two modes come out exact complements of each other, region for region
+ * and backdrop included: subtractive is the photographic negative of additive.
+ * That is not a coincidence to be arranged, it falls out of De Morgan — min is
+ * max with both ends turned over — and it is worth knowing before you place
+ * the two on consecutive cards, because the deck cross-fades between phases
+ * and the discs sit in the same places in both.
+ */
+
+type Rgb = [number, number, number];
+
+interface Props {
+	/**
+	 * Which direction the mixing runs. Light on a black screen, or ink on white
+	 * paper — see above for why the surface is not a free choice.
+	 */
+	mode?: 'additive' | 'subtractive';
+}
+
+const { mode = 'additive' } = Astro.props;
+
+const MODES = {
+	additive: {
+		/* Red, green, blue: the three lamps behind every pixel of the screen you
+		   are reading this on. */
+		discs: [
+			[1, 0, 0],
+			[0, 1, 0],
+			[0, 0, 1],
+		] as Rgb[],
+		mix: Math.max,
+		/* The identity of `mix`, which is what makes it the only surface these
+		   discs can be laid on and still mean what they say. */
+		surface: 0,
+		blend: 'screen',
+		caption: 'Light on a black screen — every lamp only adds',
+	},
+	subtractive: {
+		/* Cyan, magenta, yellow: each one is white minus a single primary, which
+		   is exactly what a filter that removes one primary looks like. */
+		discs: [
+			[0, 1, 1],
+			[1, 0, 1],
+			[1, 1, 0],
+		] as Rgb[],
+		mix: Math.min,
+		surface: 1,
+		blend: 'multiply',
+		caption: 'Ink on white paper — every layer only takes away',
+	},
+} as const;
+
+const { discs, mix, surface, blend, caption } = MODES[mode];
+
+/* ---- geometry -------------------------------------------------------------
+   Three discs of radius R with their centres D from the middle, at -90°, 30°
+   and 150°. D is a shade under two thirds of the radius because that is where
+   all seven regions come out fat enough to hold a word; push the discs apart
+   and the middle closes up, pull them together and the crescents do. */
+const R = 100;
+const D = 62;
+const CENTRES: [number, number][] = [
+	[0, -D],
+	[(D * Math.sqrt(3)) / 2, D / 2],
+	[(-D * Math.sqrt(3)) / 2, D / 2],
+];
+
+/* Where each region's name sits: its centroid, measured off a fine sampling of
+   the arrangement above rather than guessed. A crescent is concave and its
+   centroid is not obliged to land inside it, but at this spacing every one of
+   them does, with room to spare. */
+const ANCHORS: Record<string, [number, number]> = {
+	'0': [0, -105.7],
+	'1': [91.6, 52.9],
+	'2': [-91.6, 52.9],
+	'01': [56.9, -32.8],
+	'02': [-56.9, -32.8],
+	'12': [0, 65.7],
+	'012': [0, 0],
+};
+
+/* The drawing is 307 across and 293 tall. The white sheet clears it by a
+   thumb's width, and the dark plate clears the sheet by the same again. */
+const VIEW = { x: -190, y: -198, w: 380, h: 365 };
+const SHEET = { x: -170, y: -178, w: 340, h: 325 };
+
+/* ---- what each region is --------------------------------------------------
+   A region is a set of discs, and its colour is those discs combined under the
+   mode's rule, starting from the surface. Because the rule is the same one the
+   browser is about to apply, this is a prediction that cannot be wrong. */
+const combine = (subset: string): Rgb =>
+	[...subset].reduce<Rgb>(
+		(acc, i) => acc.map((v, ch) => mix(v, discs[Number(i)][ch])) as Rgb,
+		[surface, surface, surface],
+	);
+
+/* Eight corners, eight names — the same eight the cube's corners have, which
+   is the point card three was making. Every region here lands on one of them:
+   a rule that maps {0,1} to {0,1} cannot produce anything else. */
+const CORNERS: Record<string, string> = {
+	'0,0,0': 'BLACK',
+	'1,0,0': 'RED',
+	'0,1,0': 'GREEN',
+	'0,0,1': 'BLUE',
+	'1,1,0': 'YELLOW',
+	'0,1,1': 'CYAN',
+	'1,0,1': 'MAGENTA',
+	'1,1,1': 'WHITE',
+};
+
+const hex = (c: Rgb) => '#' + c.map((v) => (v ? 'ff' : '00')).join('');
+
+/* Black or white, whichever the region can actually carry. Pure green and pure
+   yellow are far too bright for white text and pure blue is far too dark for
+   black, so this cannot be one choice for the whole picture. WCAG contrast,
+   which is exact here rather than a rule of thumb: the channels are 0 or 1, so
+   there is no rounding anywhere in it. */
+const luminance = ([r, g, b]: Rgb) => 0.2126 * r + 0.7152 * g + 0.0722 * b;
+const contrast = (a: number, b: number) =>
+	(Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
+const ink = (c: Rgb) => {
+	const l = luminance(c);
+	return contrast(l, 1) > contrast(l, 0) ? '#ffffff' : '#000000';
+};
+
+const regions = Object.entries(ANCHORS).map(([subset, [x, y]]) => {
+	const colour = combine(subset);
+	return { subset, x, y, name: CORNERS[colour.join(',')], ink: ink(colour) };
+});
+
+/* Named in the order they are read out, so the sentence a screen reader gets
+   is the sentence the picture makes. */
+const spoken = (subset: string) =>
+	regions.find((r) => r.subset === subset)!.name.toLowerCase();
+const label =
+	`Three overlapping discs of ${spoken('0')}, ${spoken('1')} and ${spoken('2')} ` +
+	`on a ${surface ? 'white' : 'black'} ground. Where two overlap the colour is ` +
+	`${spoken('01')}, ${spoken('02')} or ${spoken('12')}; where all three overlap it is ` +
+	`${spoken('012')}.`;
+---
+
+<figure class="mixing">
+	<svg
+		class="plate"
+		viewBox={`${VIEW.x} ${VIEW.y} ${VIEW.w} ${VIEW.h}`}
+		role="img"
+		aria-label={label}
+	>
+		{/* The dark table both surfaces lie on, so the black screen has something
+		    to be a rectangle against. */}
+		<rect
+			class="table"
+			x={VIEW.x + 1}
+			y={VIEW.y + 1}
+			width={VIEW.w - 2}
+			height={VIEW.h - 2}
+			rx="14"
+		/>
+		{/* Isolated, so the blending stops at the sheet's edge and does not go
+		    looking for the table, the deck's ground, or the page. */}
+		<g class="stage">
+			<rect
+				class="sheet"
+				x={SHEET.x}
+				y={SHEET.y}
+				width={SHEET.w}
+				height={SHEET.h}
+				rx="8"
+				fill={hex([surface, surface, surface] as Rgb)}
+			/>
+			{
+				CENTRES.map(([cx, cy], i) => (
+					<circle cx={cx} cy={cy} r={R} fill={hex(discs[i])} style={`mix-blend-mode: ${blend}`} />
+				))
+			}
+		</g>
+		{/* Above the isolated group rather than inside it: a label blended into
+		    the disc under it would stop being legible, which is the one thing it
+		    is for. */}
+		<g class="names" aria-hidden="true">
+			{regions.map((r) => <text x={r.x} y={r.y} fill={r.ink}>{r.name}</text>)}
+		</g>
+	</svg>
+	<figcaption>{caption}</figcaption>
+</figure>
+
+<style>
+	.mixing {
+		width: 100%;
+		height: 100%;
+		min-width: 0;
+		min-height: 0;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 0.55rem;
+		font-family: var(--font-mono);
+	}
+
+	/* Aspect-locked and fitted to whichever of the pane's two dimensions runs
+	   out first. Everything inside, the lettering included, is in viewBox units,
+	   so the whole picture scales as one thing and there is no size at which the
+	   names come loose from the regions they name. */
+	.plate {
+		min-height: 0;
+		max-width: 100%;
+		max-height: 100%;
+		width: auto;
+		height: 100%;
+	}
+
+	.table {
+		fill: var(--viz-dark, #14161a);
+		/* The black screen is very nearly the table's own colour. Without this it
+		   would have no edge at all, and the additive card would look like three
+		   lamps floating in the dark rather than three lamps on a screen. */
+		stroke: rgb(255 255 255 / 0.09);
+		stroke-width: 1;
+	}
+
+	.stage {
+		isolation: isolate;
+	}
+
+	.sheet {
+		stroke: rgb(255 255 255 / 0.14);
+		stroke-width: 1;
+	}
+
+	.names text {
+		font-size: 13px;
+		letter-spacing: 0.05em;
+		text-anchor: middle;
+		dominant-baseline: central;
+	}
+
+	/* The deck's ink rather than the page's: this line sits on whichever ground
+	   the post picked, and body colour is set for the other one. */
+	.mixing figcaption {
+		flex: none;
+		font-size: 0.62rem;
+		letter-spacing: 0.04em;
+		color: var(--deck-ink-dim, #7a7264);
+		text-align: center;
+	}
+</style>
