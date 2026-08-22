@@ -11,7 +11,6 @@ import ChannelSplit from "../../components/ChannelSplit.astro";
 import ConeResponse from "../../components/ConeResponse.astro";
 import DeckCard from "../../components/DeckCard.astro";
 import DeckViz from "../../components/DeckViz.astro";
-import VisionSplit from "../../components/VisionSplit.astro";
 import VizPhase from "../../components/VizPhase.astro";
 
 {/* The measured cone fundamentals, with the mark walking the band and the
@@ -47,13 +46,6 @@ import VizPhase from "../../components/VizPhase.astro";
       src="/assets/2026-08-21-color-3-tristimulus/balloon-q10.jpg"
       reference="/assets/2026-08-21-color-3-tristimulus/balloon-original.webp"
       alt="A close crop of a hot air balloon's envelope, a checkerboard of saturated yellow, red, green and dark teal panels."
-    />
-  </VizPhase>
-  <VizPhase name="photo">
-    <VisionSplit
-      src="/assets/2026-08-21-color-3-tristimulus/forest.jpg"
-      alt="A path through an autumn forest, deep in red and orange fallen leaves, with yellow and green still in the canopy."
-      credit="Photo: Michal Bednarek / Dreamstime"
     />
   </VizPhase>
 </DeckViz>
@@ -92,69 +84,3 @@ import VizPhase from "../../components/VizPhase.astro";
   Similarly, cameras often have a lower resolution sensor for blue than for red or green.
 </DeckCard>
 
-<DeckCard vizProps={{ phase: "cones", vision: "normal" }}>
-  ## Why do we need 3?
-
-  Notice how the M and L cones are relatively close together, and the S cone is far away? This is because M and L cones are actually genetic mutations of a common ancestor cone that drifted apart over time!
-
-  It may seem like the M cone is also redundant because S and L already cover the entire visible spectrum. So, let's look at what happens if when we take the M cone away, and you'll see that the M/L split turns out to be very useful.
-</DeckCard>
-
-{/* The M cone goes, and the rainbow goes with it: what is drawn is what is
-    left to see. See lib/spectrum.ts for the model, and note that the two
-    rainbows differ only by the missing cone — same matching functions, same
-    matrices, same clipping. */}
-<DeckCard vizProps={{ vision: "deuteranopia" }}>
-  ## Overlap is good
-
-  There are people without M cones, with a form of red-green colour blindness called *deuteranopia*. As you see, the lack of M makes our rainbow collapse into a very limited range of colours!
-
-  Many colors become completely indistinguishable, and we can see why: The L cone response is roughly symmetric, and the S cone is far away and doesn't overlap past 550nm, meaning the brain has no way to tell between the symmetric L responses.
-
-  The M cone is necessary to give the brain a second signal to compare against.
-</DeckCard>
-
-<DeckCard vizProps={{ phase: "photo" }}>
-  ## Overlap is good
-
-  There are people without M cones, which leads to a form of red-green colour blindness called *deuteranopia*. As you see, the lack of M makes our rainbow collapse into a very limited range of colours!
-
-  Many colors become completely indistinguishable, and we can see why: The L cone response is roughly symmetric, and the S cone is far away and doesn't overlap past 550nm, meaning the brain has no way to tell between the symmetric L responses.
-
-  The M cone is necessary to give the brain a second signal to compare against.
-</DeckCard>
-
-<DeckCard vizProps={{ phase: "cones", vision: "normal" }}>
-  ## Less overlap would be better
-
-  You can also imagine how in normal vision, if the M and L cones were even closer together, we would be approaching a deuteranopia situation, because the 2 signals would be too similar to distinguish.
-
-  And even in normal vision, we have a bit of a color blindness situation going on on the red end of the spectrum, where the reds all look very similar across a 100 or so nanometers, because the M and L signals are so similar.
-
-  So while the overlap is useful, it would be better to have *just enough* overlap to distinguish colors, and move the L cones further into the longer wavelengths to give us more range.
-</DeckCard>
-{/* The same graph, with L replaced by S turned around about M's peak — the
-    "move L further out" of the card before, done with a curve the eye already
-    has rather than one invented to taste. The rainbow underneath is a tally,
-    not a likeness; see mirroredStandIn in lib/cones.ts for why it cannot be
-    one, and what the hatching means. */}
-<DeckCard vizProps={{ phase: "cones", vision: "mirrored" }}>
-  ## What if L were further out?
-
-  Here we've moved the L cone to be a mirror image of the S cone about the M cone's peak. This still gives us overlap in all the places we need, but now we get extra color resolution in the red end of the spectrum, and about a 50% wider range of colors overall.
-
-  There really isn't a way to visualize this, because we do not see as many colors as this hypothetical eye would, and I can hardly ask you to "imagine new kinds of red", much like a deuteranope cannot imagine a distinct red and green.
-
-  As a result I've marked the "extra colors" in the rainbow with a hatching pattern and reused part of the red and cyan spectrum. These colors are not red or cyan however, they are colors that are imperceptible to us.
-</DeckCard>
-
-
-<DeckCard vizProps={{ phase: "cones", vision: "normal" }}>
-  ## But that's not us
-
-  Using the three cones we have, we can see about a million different colors, and using technology, we've found ways to trick our eyes into seeing them all using just red, green, and blue LEDs. 
-
-  This works by stimulating each of the three cones in a way that is indistinguishable from the way they would be stimulated by a real photon of that color. This is called *metamerism*, and it is the reason why we can see all the colors on our screens, even though they don't use real photons of those colors.
-
-  Stay tuned for the next posts, where we will explore how this works in more detail, and how we can use it to create all the colors we see on our screens.
-</DeckCard>

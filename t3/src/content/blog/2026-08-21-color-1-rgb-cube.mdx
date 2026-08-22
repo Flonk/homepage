@@ -82,15 +82,15 @@ import VizPhase from "../../components/VizPhase.astro";
 <DeckCard vizProps={{ phase: "subtractive" }}>
   ## CMYK is subtractive
 
-  Putting ink on paper works the other way: The paper is white with no color on it at all, and the more ink you add, the darker the color gets.
-
-  Mixing all the colors will give you black.
+  Putting ink on paper works the other way: The paper is white with no color on it at all, and the more ink you add, the darker the color gets. For print, the most common color model is *CMYK*, which stands for cyan, magenta, yellow and key (black).
 
   Note how the primary colors of RGB are the secondary colors of CMYK, and vice versa! The two color models are like opposites of each other.
+
+  CMYK uses a dedicated black colour, because mixing cyan, magenta and yellow inks together will not look as dark as a true black, and it would also be more expensive to print.
 </DeckCard>
 
 <DeckCard vizProps={{ phase: "cube", tour: null, guides: false, overlay: "subpixels" }}>
-  ## Screens actually work like this
+  ## Screens use RGB quite literally
 
   Your screen is made up of a grid of pixels, and each pixel is made up of three or more *subpixels*, consisting of LEDs that emit red, green and blue light. They are small enough and far enough away that your eye blends them together, and you see a single colour.
   
@@ -98,9 +98,9 @@ import VizPhase from "../../components/VizPhase.astro";
 </DeckCard>
 
 <DeckCard vizProps={{ overlay: "lake" }}>
-  ## The real world does not
+  ## The real world does not work that way
 
-  When you look into the sun (please don't) or even manmade light, you will never see subpixels like this. The sun emits *spectral light* -- it's the real thing that screens can only ever approximate. 
-
-  Light is photons, and photons have a wavelength, and the wavelength determines the colour -- the fact that just three wavelengths of light (red, green, blue) can be mixed to approximate all the other colours we see is a fascinating quirk of our eyes, which, along with the physics of light, we will explore in the next few posts!
+  When you look into the sun (please don't) or even manmade light, you will never see subpixels like this.
+  
+  The sun emits *spectral light* -- it's the real thing that screens only ever approximate. Light has infinitely many more colors than just red, green and blue!
 </DeckCard>
