@@ -7,11 +7,12 @@ description: ""
 pubDate: "August 21 2026"
 ---
 
+import ChannelSplit from "../../components/ChannelSplit.astro";
+import ConeResponse from "../../components/ConeResponse.astro";
 import DeckCard from "../../components/DeckCard.astro";
 import DeckViz from "../../components/DeckViz.astro";
-import ConeResponse from "../../components/ConeResponse.astro";
-import VizPhase from "../../components/VizPhase.astro";
 import VisionSplit from "../../components/VisionSplit.astro";
+import VizPhase from "../../components/VizPhase.astro";
 
 {/* The measured cone fundamentals, with the mark walking the band and the
     reader free to take it. Cards drive whatever is in here with vizProps; see
@@ -19,6 +20,18 @@ import VisionSplit from "../../components/VisionSplit.astro";
 <DeckViz>
   <VizPhase name="cones">
     <ConeResponse sweep={[400, 700]} drag />
+  </VizPhase>
+  {/* The same photograph the deuteranopia card uses further down, taken apart
+      instead of filtered. A detail rather than the whole frame, and the three
+      greys stretched to the same contrast — see ChannelSplit for why neither
+      of those is optional if the card is to show what it claims. */}
+  <VizPhase name="channels">
+    <ChannelSplit
+      src="/assets/2026-08-21-color-3-tristimulus/forest.jpg"
+      alt="A path through an autumn forest, deep in red and orange fallen leaves."
+      focus={[0.5, 0.6]}
+      density={0.6}
+    />
   </VizPhase>
   <VizPhase name="photo">
     <VisionSplit
@@ -35,8 +48,32 @@ import VisionSplit from "../../components/VisionSplit.astro";
   Inside our eyes are three different kinds of light-sensitive cells called *cones*, which are each tuned to a different range of frequencies. We call them S, M, and L for short, medium, and long wavelength cones, though they are sometimes also called blue, green, and red cones.
 
   Above, you are looking at the *normalized cone response diagram* from Stockman & Sharpe (2000), which shows how sensitive each cone is to different frequencies of light. 
+</DeckCard>
 
-  Basically, when your eyes recieve a say 580nm photon, your brain will get a strong L signal, a medium M signal and no S signal. The brain then goes, hey I know this, this is yellow!
+<DeckCard vizProps={{ phase: "cones", marks: [580], probe: false, vision: "normal" }}>
+  ## Cones work together to produce colour
+
+  What you know as "colour" is the brain's interpretation of the three signals it receives from the three cone types.
+
+  Basically, when your eyes recieve a say 580nm photon, your brain will get a strong L signal, a medium M signal and no S signal. The brain then goes, hey I know this, this is orange! 
+</DeckCard>
+
+<DeckCard vizProps={{ phase: "cones", vision: "normal" }}>
+  ## Cones aren't equidistributed
+
+  The retina has 60% L, 30% M, and 10% S cones on average, though the L to M ratio can vary wildly, from 1:1 up to 16:1. 
+  
+  The relative lack of S cones makes for less "resolution" in perceiving blue light. Interestingly, the central 100µm of retina, part of our sharpest vision, has no S cones at all, leading to a blind spot for blue there.
+</DeckCard>
+
+<DeckCard vizProps={{ phase: "channels" }}>
+  ## Everything downstream knows this
+
+  Here is a photograph pulled apart into the three channels your screen will put back together, each stretched to the same contrast so you are comparing detail and not brightness.
+
+  Red and green resolve individual leaves. Blue is a blotchy mush at the same magnification — and that is not the forest's fault, it is the pipeline's. A camera sensor gives blue a quarter of its photosites, and JPEG stores colour at half the resolution it stores brightness, where blue counts for barely a tenth.
+
+  Both get away with it for the same reason: with one cone in ten looking, and none of them where you are looking hardest, you were never going to catch them at it.
 </DeckCard>
 
 <DeckCard vizProps={{ phase: "cones", vision: "normal" }}>

@@ -1,0 +1,319 @@
+---
+/**
+ * A photograph and its three colour channels, side by side, so you can see
+ * which of the three the pipeline spent the least on.
+ *
+ * Two decisions here are doing all the work, and both are worth understanding
+ * before changing them.
+ *
+ * The first is that the channels are shown at *matched contrast*: each one is
+ * stretched so its darkest pixel is black and its brightest is white. Shown
+ * raw, the blue channel of almost any daylight photograph is simply dark —
+ * there is not much blue light in leaves and bark — and a reader looking at
+ * three grey pictures learns only that the scene was warm, which is a fact
+ * about the forest and not about the file. Stretched, brightness stops being
+ * the difference and what is left is detail: red and green resolve individual
+ * leaves, and blue is a blotchy mush at the same scale. Turn it off with
+ * `equalise={false}` and see for yourself; the demonstration goes with it.
+ *
+ * The second is that this is a *detail*, not the whole frame. Fitting 800
+ * pixels of photograph into a 230-pixel panel resamples away exactly the
+ * artefacts the card is about. So a window is cropped out at close to 1:1 and
+ * the rest of the picture is not shown at all — the card above it carries the
+ * full frame.
+ *
+ * Nothing is precomputed. The channels are pulled out of the same JPEG the
+ * reader downloaded, in the browser, which is the only version of this that
+ * cannot be accused of having been arranged.
+ */
+interface Props {
+	src: string;
+	/** Describes the photograph, for the reader who cannot see any of it. */
+	alt: string;
+	/**
+	 * The shape of one panel, width over height. Free to choose: every panel is
+	 * a crop, so this need not be the photograph's own aspect.
+	 */
+	ratio?: number;
+	/**
+	 * Where in the picture the window sits, as a fraction of width and height.
+	 * Aim it at somewhere with fine detail *and* colour — flat sky proves
+	 * nothing, and neither does anything grey.
+	 */
+	focus?: [number, number];
+	/**
+	 * Source pixels per CSS pixel. At 1 the window shows the file's own pixels
+	 * at their own size; below 1 it magnifies them. Above about 1.5 the
+	 * resampling starts hiding what this is here to show.
+	 */
+	density?: number;
+	/** Stretch each channel to full range before showing it. See above. */
+	equalise?: boolean;
+}
+
+const {
+	src,
+	alt,
+	ratio = 1.5,
+	focus = [0.5, 0.62],
+	density = 1,
+	equalise = true,
+} = Astro.props;
+
+/* Order matters: the colour original comes first so the three greys are read
+   as decompositions of the thing beside them. `null` is that original. */
+const PANELS: { channel: number | null; tag: string }[] = [
+	{ channel: null, tag: 'Original' },
+	{ channel: 0, tag: 'Red' },
+	{ channel: 1, tag: 'Green' },
+	{ channel: 2, tag: 'Blue' },
+];
+---
+
+<figure
+	class="channels"
+	data-channels
+	data-src={src}
+	data-focus={focus.join(',')}
+	data-density={density}
+	data-equalise={String(equalise)}
+	style={`--ratio: ${ratio}`}
+>
+	<div
+		class="grid"
+		role="img"
+		aria-label={`${alt} Shown four times: in colour, and as its red, green and blue channels separately, each stretched to the same contrast.`}
+	>
+		{
+			PANELS.map((p) => (
+				<div class="panel">
+					<canvas data-panel data-channel={p.channel ?? undefined}></canvas>
+					<span class="tag">{p.tag}</span>
+				</div>
+			))
+		}
+	</div>
+</figure>
+
+<style>
+	.channels {
+		width: 100%;
+		height: 100%;
+		min-width: 0;
+		min-height: 0;
+		margin: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-family: var(--font-mono);
+	}
+
+	/* Two by two at every size. Four across would be a filmstrip on a desktop
+	   and unreadable on a phone, and the comparison that matters — one channel
+	   against another — is as easy to make round a corner as along a line.
+
+	   The width is capped so the two rows fit the pane's height: a row is a
+	   panel tall, a panel is its width over the ratio, and `cqh` is the one
+	   thing on the page that knows how much height there is. The pane has no
+	   bottom padding of its own — a viz is allowed to run off the end of it —
+	   so the air under the last row has to be taken out here. */
+	.grid {
+		--gap: 0.4rem;
+		--floor: 1.25rem;
+
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: var(--gap);
+		width: min(
+			100%,
+			calc(var(--ratio) * (100cqh - var(--gap) - var(--floor)) + var(--gap))
+		);
+	}
+
+	.panel {
+		position: relative;
+		aspect-ratio: var(--ratio);
+		min-width: 0;
+		border-radius: 3px;
+		overflow: hidden;
+		/* Something to look at while the JPEG is still on its way, and the edge
+		   of each window once it has arrived. */
+		background: rgb(255 255 255 / 0.05);
+	}
+
+	.panel canvas {
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	/* Set into the picture rather than under it: at this size a row of captions
+	   underneath would be taller than the gap between the rows. */
+	.tag {
+		position: absolute;
+		left: 0.35rem;
+		bottom: 0.35rem;
+		font-size: 0.58rem;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		line-height: 1;
+		padding: 0.3em 0.5em;
+		border-radius: 3px;
+		color: #f2f4f7;
+		background: rgb(0 0 0 / 0.55);
+		backdrop-filter: blur(2px);
+	}
+
+	@container viz (max-width: 26rem) {
+		.tag {
+			font-size: 0.5rem;
+		}
+	}
+</style>
+
+<script>
+	type Panel = { canvas: HTMLCanvasElement; ctx: CanvasRenderingContext2D; channel: number | null };
+
+	/* Where the stretch clips. Half a percent at each end, so one blown
+	   highlight or one dead pixel cannot decide the whole picture's contrast —
+	   which for a noisy channel is exactly what would happen. */
+	const CLIP = 0.005;
+
+	function initSplit(root: HTMLElement) {
+		if (root.dataset.ready === 'true') return;
+		root.dataset.ready = 'true';
+
+		const panels: Panel[] = [...root.querySelectorAll<HTMLCanvasElement>('[data-panel]')].map(
+			(canvas) => ({
+				canvas,
+				ctx: canvas.getContext('2d')!,
+				channel: canvas.dataset.channel === undefined ? null : Number(canvas.dataset.channel),
+			}),
+		);
+
+		const host =
+			root.closest<HTMLElement>('[data-viz-phase]') ?? root.closest<HTMLElement>('[data-viz-stage]');
+
+		const readFocus = (v: unknown): [number, number] => {
+			const parts = String(v ?? '')
+				.split(',')
+				.map(Number);
+			return parts.length === 2 && parts.every(Number.isFinite)
+				? [parts[0], parts[1]]
+				: [0.5, 0.5];
+		};
+
+		let focus = readFocus(root.dataset.focus);
+		let density = Number(root.dataset.density) || 1;
+		let equalise = root.dataset.equalise !== 'false';
+
+		/* The crop is taken and the channels split on this, at the panel's own
+		   pixel size, so nothing is resampled twice on the way to the screen. */
+		const work = document.createElement('canvas');
+		const workCtx = work.getContext('2d', { willReadFrequently: true })!;
+
+		const img = new Image();
+		let loaded = false;
+
+		function draw() {
+			if (!loaded) return;
+			const rect = panels[0].canvas.getBoundingClientRect();
+			if (!rect.width || !rect.height) return;
+
+			const dpr = Math.min(window.devicePixelRatio || 1, 2);
+			const w = Math.max(1, Math.round(rect.width * dpr));
+			const h = Math.max(1, Math.round(rect.height * dpr));
+
+			/* The window into the file. Its size in source pixels comes from the
+			   panel's size in CSS pixels, so a bigger pane shows more picture
+			   rather than the same picture larger — magnifying a JPEG's own
+			   artefacts past 1:1 would be inventing detail about them. */
+			let sw = Math.min(img.naturalWidth, Math.round(rect.width * density));
+			let sh = Math.min(img.naturalHeight, Math.round(sw / (rect.width / rect.height)));
+			sw = Math.round(sh * (rect.width / rect.height));
+			const sx = Math.round(
+				Math.min(Math.max(focus[0] * img.naturalWidth - sw / 2, 0), img.naturalWidth - sw),
+			);
+			const sy = Math.round(
+				Math.min(Math.max(focus[1] * img.naturalHeight - sh / 2, 0), img.naturalHeight - sh),
+			);
+
+			work.width = w;
+			work.height = h;
+			workCtx.drawImage(img, sx, sy, sw, sh, 0, 0, w, h);
+			const src = workCtx.getImageData(0, 0, w, h);
+
+			for (const p of panels) {
+				p.canvas.width = w;
+				p.canvas.height = h;
+				if (p.channel === null) {
+					p.ctx.putImageData(src, 0, 0);
+					continue;
+				}
+				p.ctx.putImageData(greyscale(src, p.channel, w, h), 0, 0);
+			}
+		}
+
+		/* One channel, painted as grey. The stretch is a straight line through
+		   two percentiles rather than through the extremes; see CLIP. */
+		function greyscale(src: ImageData, channel: number, w: number, h: number) {
+			const out = new ImageData(w, h);
+			const n = w * h;
+
+			let lo = 0;
+			let hi = 255;
+			if (equalise) {
+				const hist = new Uint32Array(256);
+				for (let i = 0; i < n; i++) hist[src.data[i * 4 + channel]]++;
+				const cut = Math.floor(n * CLIP);
+				let acc = 0;
+				for (let v = 0; v < 256; v++) {
+					acc += hist[v];
+					if (acc > cut) {
+						lo = v;
+						break;
+					}
+				}
+				acc = 0;
+				for (let v = 255; v >= 0; v--) {
+					acc += hist[v];
+					if (acc > cut) {
+						hi = v;
+						break;
+					}
+				}
+			}
+			// A channel that is all one value has nothing to stretch.
+			const span = hi > lo ? 255 / (hi - lo) : 0;
+
+			for (let i = 0; i < n; i++) {
+				const v = span
+					? Math.max(0, Math.min(255, (src.data[i * 4 + channel] - lo) * span))
+					: src.data[i * 4 + channel];
+				out.data[i * 4] = v;
+				out.data[i * 4 + 1] = v;
+				out.data[i * 4 + 2] = v;
+				out.data[i * 4 + 3] = 255;
+			}
+			return out;
+		}
+
+		img.onload = () => {
+			loaded = true;
+			draw();
+		};
+		img.src = root.dataset.src!;
+
+		new ResizeObserver(() => draw()).observe(panels[0].canvas);
+
+		host?.addEventListener('viz:props', (e) => {
+			const p = (e as CustomEvent).detail ?? {};
+			if ('focus' in p) focus = readFocus(Array.isArray(p.focus) ? p.focus.join(',') : p.focus);
+			if ('density' in p) density = Number(p.density) || density;
+			if ('equalise' in p) equalise = Boolean(p.equalise);
+			draw();
+		});
+	}
+
+	document.querySelectorAll<HTMLElement>('[data-channels]').forEach(initSplit);
+</script>
