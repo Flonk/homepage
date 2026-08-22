@@ -23,10 +23,14 @@
  * is merely dim in any warm-lit scene, and a reader learns about the lighting
  * rather than the file. Turn it off with `equalise={false}` and see.
  *
- * Each panel is painted in its own channel's colour, which is what tells the
- * reader which is which now that nothing is labelled. Blue reads dimmest of
- * the three even after the stretch, because pure blue simply is: about a
- * fourteenth of white's luminance, against green's seven tenths.
+ * The panels are grey rather than tinted, and named instead. Painting each one
+ * in its own channel's colour is prettier and says which is which without a
+ * word, but it wrecks the comparison the card is making: pure blue carries
+ * about a fourteenth of white's luminance against green's seven tenths, so the
+ * blue panel comes out dim whatever is in it, and a reader cannot tell how much
+ * of what they are seeing is lost detail and how much is just a dark colour.
+ * Grey puts all three on the same footing; a label in the corner does the
+ * identifying.
  *
  * Nothing is precomputed. The channels are pulled out of the same JPEG the
  * reader downloaded, in the browser, which is the only version of this that
@@ -56,6 +60,12 @@ interface Props {
 }
 
 const { src, alt, focus = [0.5, 0.5], density = null, equalise = true } = Astro.props;
+
+const PANELS = [
+	{ channel: 0, tag: 'Red' },
+	{ channel: 1, tag: 'Green' },
+	{ channel: 2, tag: 'Blue' },
+];
 ---
 
 <figure
@@ -69,11 +79,12 @@ const { src, alt, focus = [0.5, 0.5], density = null, equalise = true } = Astro.
 	<div
 		class="grid"
 		role="img"
-		aria-label={`${alt} Shown three times, as its red, green and blue channels separately, each stretched to the same contrast.`}
+		aria-label={`${alt} Shown three times in grey, as its red, green and blue channels separately, each stretched to the same contrast.`}
 	>
-		{[0, 1, 2].map((channel) => (
+		{PANELS.map((p) => (
 			<div class="panel">
-				<canvas data-panel data-channel={channel}></canvas>
+				<canvas data-panel data-channel={p.channel}></canvas>
+				<span class="tag">{p.tag}</span>
 			</div>
 		))}
 	</div>
@@ -88,6 +99,7 @@ const { src, alt, focus = [0.5, 0.5], density = null, equalise = true } = Astro.
 		margin: 0;
 		display: flex;
 		flex-direction: column;
+		font-family: var(--font-mono);
 	}
 
 	/* Three rows when the pane is taller than it is wide, three columns when it
@@ -134,6 +146,30 @@ const { src, alt, focus = [0.5, 0.5], density = null, equalise = true } = Astro.
 		inset: 0;
 		width: 100%;
 		height: 100%;
+	}
+
+	/* Set into the picture rather than under it: the panels are packed edge to
+	   edge, and a row of captions between them would cost more height than the
+	   gap does. */
+	.tag {
+		position: absolute;
+		left: 0.35rem;
+		bottom: 0.35rem;
+		font-size: 0.58rem;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		line-height: 1;
+		padding: 0.3em 0.5em;
+		border-radius: 3px;
+		color: #f2f4f7;
+		background: rgb(0 0 0 / 0.55);
+		backdrop-filter: blur(2px);
+	}
+
+	@container viz (max-width: 26rem) {
+		.tag {
+			font-size: 0.5rem;
+		}
 	}
 </style>
 
@@ -219,14 +255,14 @@ const { src, alt, focus = [0.5, 0.5], density = null, equalise = true } = Astro.
 			for (const p of panels) {
 				p.canvas.width = w;
 				p.canvas.height = h;
-				p.ctx.putImageData(isolate(src, p.channel, w, h), 0, 0);
+				p.ctx.putImageData(greyscale(src, p.channel, w, h), 0, 0);
 			}
 		}
 
-		/* One channel, left in its own colour and the other two thrown away. The
-		   stretch is a straight line through two percentiles rather than through
-		   the extremes; see CLIP. */
-		function isolate(src: ImageData, channel: number, w: number, h: number) {
+		/* One channel, painted as grey so the three are comparable. The stretch
+		   is a straight line through two percentiles rather than through the
+		   extremes; see CLIP. */
+		function greyscale(src: ImageData, channel: number, w: number, h: number) {
 			const out = new ImageData(w, h);
 			const n = w * h;
 
@@ -258,9 +294,10 @@ const { src, alt, focus = [0.5, 0.5], density = null, equalise = true } = Astro.
 
 			for (let i = 0; i < n; i++) {
 				const raw = src.data[i * 4 + channel];
-				out.data[i * 4 + channel] = span
-					? Math.max(0, Math.min(255, (raw - lo) * span))
-					: raw;
+				const v = span ? Math.max(0, Math.min(255, (raw - lo) * span)) : raw;
+				out.data[i * 4] = v;
+				out.data[i * 4 + 1] = v;
+				out.data[i * 4 + 2] = v;
 				out.data[i * 4 + 3] = 255;
 			}
 			return out;
