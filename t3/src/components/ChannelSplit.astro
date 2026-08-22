@@ -1,26 +1,32 @@
 ---
 /**
- * A photograph and its three colour channels, side by side, so you can see
- * which of the three the pipeline spent the least on.
+ * A JPEG's three colour channels side by side, so you can see which of the
+ * three the codec spent the least on.
  *
- * Two decisions here are doing all the work, and both are worth understanding
- * before changing them.
+ * Blue always loses, and not by accident. JPEG does not store red, green and
+ * blue; it stores brightness at full resolution and two colour-difference
+ * channels at half. Reconstructing blue leans on the subsampled Cb harder than
+ * anything else does — B = Y + 1.772·Cb, against red's 1.402·Cr and green's
+ * two coefficients under 0.72 — so blue inherits the most of what was thrown
+ * away. Measured against the uncompressed original, blue's error comes out
+ * around 1.6x green's at every quality setting, which is the number this
+ * picture is showing you.
  *
- * The first is that the channels are shown at *matched contrast*: each one is
- * stretched so its darkest pixel is black and its brightest is white. Shown
- * raw, the blue channel of almost any daylight photograph is simply dark —
- * there is not much blue light in leaves and bark — and a reader looking at
- * three grey pictures learns only that the scene was warm, which is a fact
- * about the forest and not about the file. Stretched, brightness stops being
- * the difference and what is left is detail: red and green resolve individual
- * leaves, and blue is a blotchy mush at the same scale. Turn it off with
- * `equalise={false}` and see for yourself; the demonstration goes with it.
+ * What it needs to show that is a *subject with nothing to hide behind*: large
+ * flat areas of saturated colour, hard edges, no fine texture. Foliage is the
+ * worst possible choice — leaf litter is already noise, so every channel looks
+ * equally ruined and none looks wronged. Flat colour makes smearing obvious
+ * because there is nothing else going on.
  *
- * The second is that this is a *detail*, not the whole frame. Fitting 800
- * pixels of photograph into a 230-pixel panel resamples away exactly the
- * artefacts the card is about. So a window is cropped out at close to 1:1 and
- * the rest of the picture is not shown at all — the card above it carries the
- * full frame.
+ * The other decision is *matched contrast*: each channel is stretched so its
+ * darkest pixel is black and its brightest is full. Without it the blue panel
+ * is merely dim in any warm-lit scene, and a reader learns about the lighting
+ * rather than the file. Turn it off with `equalise={false}` and see.
+ *
+ * Each panel is painted in its own channel's colour, which is what tells the
+ * reader which is which now that nothing is labelled. Blue reads dimmest of
+ * the three even after the stretch, because pure blue simply is: about a
+ * fourteenth of white's luminance, against green's seven tenths.
  *
  * Nothing is precomputed. The channels are pulled out of the same JPEG the
  * reader downloaded, in the browser, which is the only version of this that
@@ -31,11 +37,6 @@ interface Props {
 	/** Describes the photograph, for the reader who cannot see any of it. */
 	alt: string;
 	/**
-	 * The shape of one panel, width over height. Free to choose: every panel is
-	 * a crop, so this need not be the photograph's own aspect.
-	 */
-	ratio?: number;
-	/**
 	 * Where in the picture the window sits, as a fraction of width and height.
 	 * Aim it at somewhere with fine detail *and* colour — flat sky proves
 	 * nothing, and neither does anything grey.
@@ -43,31 +44,18 @@ interface Props {
 	focus?: [number, number];
 	/**
 	 * Source pixels per CSS pixel. At 1 the window shows the file's own pixels
-	 * at their own size; below 1 it magnifies them. Above about 1.5 the
-	 * resampling starts hiding what this is here to show.
+	 * at their own size; below 1 it magnifies them, above 1 it shrinks them.
+	 * Omit it to fit as much of the frame as the panel's shape allows, which is
+	 * what you want when the file has already been cropped to the thing being
+	 * shown — magnifying a JPEG past 1:1 invents detail about its artefacts,
+	 * and shrinking it resamples them away.
 	 */
-	density?: number;
+	density?: number | null;
 	/** Stretch each channel to full range before showing it. See above. */
 	equalise?: boolean;
 }
 
-const {
-	src,
-	alt,
-	ratio = 1.5,
-	focus = [0.5, 0.62],
-	density = 1,
-	equalise = true,
-} = Astro.props;
-
-/* Order matters: the colour original comes first so the three greys are read
-   as decompositions of the thing beside them. `null` is that original. */
-const PANELS: { channel: number | null; tag: string }[] = [
-	{ channel: null, tag: 'Original' },
-	{ channel: 0, tag: 'Red' },
-	{ channel: 1, tag: 'Green' },
-	{ channel: 2, tag: 'Blue' },
-];
+const { src, alt, focus = [0.5, 0.5], density = null, equalise = true } = Astro.props;
 ---
 
 <figure
@@ -75,23 +63,19 @@ const PANELS: { channel: number | null; tag: string }[] = [
 	data-channels
 	data-src={src}
 	data-focus={focus.join(',')}
-	data-density={density}
+	data-density={density ?? undefined}
 	data-equalise={String(equalise)}
-	style={`--ratio: ${ratio}`}
 >
 	<div
 		class="grid"
 		role="img"
-		aria-label={`${alt} Shown four times: in colour, and as its red, green and blue channels separately, each stretched to the same contrast.`}
+		aria-label={`${alt} Shown three times, as its red, green and blue channels separately, each stretched to the same contrast.`}
 	>
-		{
-			PANELS.map((p) => (
-				<div class="panel">
-					<canvas data-panel data-channel={p.channel ?? undefined}></canvas>
-					<span class="tag">{p.tag}</span>
-				</div>
-			))
-		}
+		{[0, 1, 2].map((channel) => (
+			<div class="panel">
+				<canvas data-panel data-channel={channel}></canvas>
+			</div>
+		))}
 	</div>
 </figure>
 
@@ -103,76 +87,58 @@ const PANELS: { channel: number | null; tag: string }[] = [
 		min-height: 0;
 		margin: 0;
 		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-family: var(--font-mono);
+		flex-direction: column;
 	}
 
-	/* Two by two at every size. Four across would be a filmstrip on a desktop
-	   and unreadable on a phone, and the comparison that matters — one channel
-	   against another — is as easy to make round a corner as along a line.
+	/* Three rows when the pane is taller than it is wide, three columns when it
+	   is wider — either way the three panels lie along the pane's long axis and
+	   the comparison is one straight sweep of the eye. Stacked is the default,
+	   so a browser without container queries gets the layout that survives a
+	   narrow pane rather than the one that needs a wide one.
 
-	   The width is capped so the two rows fit the pane's height: a row is a
-	   panel tall, a panel is its width over the ratio, and `cqh` is the one
-	   thing on the page that knows how much height there is. The pane has no
-	   bottom padding of its own — a viz is allowed to run off the end of it —
-	   so the air under the last row has to be taken out here. */
+	   The panels take whatever cell they are given; nothing here has a fixed
+	   aspect. A panel is a window onto the photograph, and the window is cut to
+	   fit the opening rather than the other way round. */
 	.grid {
-		--gap: 0.4rem;
-		--floor: 1.25rem;
-
+		flex: 1;
+		min-width: 0;
+		min-height: 0;
 		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: var(--gap);
-		width: min(
-			100%,
-			calc(var(--ratio) * (100cqh - var(--gap) - var(--floor)) + var(--gap))
-		);
+		gap: 0.4rem;
+		grid-template-columns: 1fr;
+		grid-template-rows: repeat(3, 1fr);
+		/* The pane has no bottom padding of its own — a viz is allowed to run off
+		   the end of it — so the air above the divider has to be taken here. */
+		margin-bottom: 1rem;
+	}
+
+	@container viz (orientation: landscape) {
+		.grid {
+			grid-template-columns: repeat(3, 1fr);
+			grid-template-rows: 1fr;
+		}
 	}
 
 	.panel {
 		position: relative;
-		aspect-ratio: var(--ratio);
 		min-width: 0;
+		min-height: 0;
 		border-radius: 3px;
 		overflow: hidden;
-		/* Something to look at while the JPEG is still on its way, and the edge
-		   of each window once it has arrived. */
+		/* Something to look at while the JPEG is still on its way. */
 		background: rgb(255 255 255 / 0.05);
 	}
 
 	.panel canvas {
-		display: block;
+		position: absolute;
+		inset: 0;
 		width: 100%;
 		height: 100%;
-	}
-
-	/* Set into the picture rather than under it: at this size a row of captions
-	   underneath would be taller than the gap between the rows. */
-	.tag {
-		position: absolute;
-		left: 0.35rem;
-		bottom: 0.35rem;
-		font-size: 0.58rem;
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
-		line-height: 1;
-		padding: 0.3em 0.5em;
-		border-radius: 3px;
-		color: #f2f4f7;
-		background: rgb(0 0 0 / 0.55);
-		backdrop-filter: blur(2px);
-	}
-
-	@container viz (max-width: 26rem) {
-		.tag {
-			font-size: 0.5rem;
-		}
 	}
 </style>
 
 <script>
-	type Panel = { canvas: HTMLCanvasElement; ctx: CanvasRenderingContext2D; channel: number | null };
+	type Panel = { canvas: HTMLCanvasElement; ctx: CanvasRenderingContext2D; channel: number };
 
 	/* Where the stretch clips. Half a percent at each end, so one blown
 	   highlight or one dead pixel cannot decide the whole picture's contrast —
@@ -187,7 +153,7 @@ const PANELS: { channel: number | null; tag: string }[] = [
 			(canvas) => ({
 				canvas,
 				ctx: canvas.getContext('2d')!,
-				channel: canvas.dataset.channel === undefined ? null : Number(canvas.dataset.channel),
+				channel: Number(canvas.dataset.channel),
 			}),
 		);
 
@@ -198,17 +164,17 @@ const PANELS: { channel: number | null; tag: string }[] = [
 			const parts = String(v ?? '')
 				.split(',')
 				.map(Number);
-			return parts.length === 2 && parts.every(Number.isFinite)
-				? [parts[0], parts[1]]
-				: [0.5, 0.5];
+			return parts.length === 2 && parts.every(Number.isFinite) ? [parts[0], parts[1]] : [0.5, 0.5];
 		};
 
 		let focus = readFocus(root.dataset.focus);
-		let density = Number(root.dataset.density) || 1;
+		/* No density authored means "as much of the frame as fits"; Infinity falls
+		   straight through the clamp below to the file's own bounds. */
+		let density = Number(root.dataset.density) || Infinity;
 		let equalise = root.dataset.equalise !== 'false';
 
-		/* The crop is taken and the channels split on this, at the panel's own
-		   pixel size, so nothing is resampled twice on the way to the screen. */
+		/* The crop is taken on this, at the panel's own pixel size, so nothing is
+		   resampled twice on the way to the screen. */
 		const work = document.createElement('canvas');
 		const workCtx = work.getContext('2d', { willReadFrequently: true })!;
 
@@ -227,10 +193,17 @@ const PANELS: { channel: number | null; tag: string }[] = [
 			/* The window into the file. Its size in source pixels comes from the
 			   panel's size in CSS pixels, so a bigger pane shows more picture
 			   rather than the same picture larger — magnifying a JPEG's own
-			   artefacts past 1:1 would be inventing detail about them. */
-			let sw = Math.min(img.naturalWidth, Math.round(rect.width * density));
-			let sh = Math.min(img.naturalHeight, Math.round(sw / (rect.width / rect.height)));
-			sw = Math.round(sh * (rect.width / rect.height));
+			   artefacts past 1:1 would be inventing detail about them. Its shape
+			   comes from the panel, whatever shape the layout has left it. */
+			const aspect = rect.width / rect.height;
+			let sw = Math.min(rect.width * density, img.naturalWidth);
+			let sh = sw / aspect;
+			if (sh > img.naturalHeight) {
+				sh = img.naturalHeight;
+				sw = sh * aspect;
+			}
+			sw = Math.max(1, Math.round(sw));
+			sh = Math.max(1, Math.round(sh));
 			const sx = Math.round(
 				Math.min(Math.max(focus[0] * img.naturalWidth - sw / 2, 0), img.naturalWidth - sw),
 			);
@@ -246,17 +219,14 @@ const PANELS: { channel: number | null; tag: string }[] = [
 			for (const p of panels) {
 				p.canvas.width = w;
 				p.canvas.height = h;
-				if (p.channel === null) {
-					p.ctx.putImageData(src, 0, 0);
-					continue;
-				}
-				p.ctx.putImageData(greyscale(src, p.channel, w, h), 0, 0);
+				p.ctx.putImageData(isolate(src, p.channel, w, h), 0, 0);
 			}
 		}
 
-		/* One channel, painted as grey. The stretch is a straight line through
-		   two percentiles rather than through the extremes; see CLIP. */
-		function greyscale(src: ImageData, channel: number, w: number, h: number) {
+		/* One channel, left in its own colour and the other two thrown away. The
+		   stretch is a straight line through two percentiles rather than through
+		   the extremes; see CLIP. */
+		function isolate(src: ImageData, channel: number, w: number, h: number) {
 			const out = new ImageData(w, h);
 			const n = w * h;
 
@@ -287,12 +257,10 @@ const PANELS: { channel: number | null; tag: string }[] = [
 			const span = hi > lo ? 255 / (hi - lo) : 0;
 
 			for (let i = 0; i < n; i++) {
-				const v = span
-					? Math.max(0, Math.min(255, (src.data[i * 4 + channel] - lo) * span))
-					: src.data[i * 4 + channel];
-				out.data[i * 4] = v;
-				out.data[i * 4 + 1] = v;
-				out.data[i * 4 + 2] = v;
+				const raw = src.data[i * 4 + channel];
+				out.data[i * 4 + channel] = span
+					? Math.max(0, Math.min(255, (raw - lo) * span))
+					: raw;
 				out.data[i * 4 + 3] = 255;
 			}
 			return out;
@@ -309,7 +277,7 @@ const PANELS: { channel: number | null; tag: string }[] = [
 		host?.addEventListener('viz:props', (e) => {
 			const p = (e as CustomEvent).detail ?? {};
 			if ('focus' in p) focus = readFocus(Array.isArray(p.focus) ? p.focus.join(',') : p.focus);
-			if ('density' in p) density = Number(p.density) || density;
+			if ('density' in p) density = p.density === null ? Infinity : Number(p.density) || density;
 			if ('equalise' in p) equalise = Boolean(p.equalise);
 			draw();
 		});

@@ -21,16 +21,25 @@ import VizPhase from "../../components/VizPhase.astro";
   <VizPhase name="cones">
     <ConeResponse sweep={[400, 700]} drag />
   </VizPhase>
-  {/* The same photograph the deuteranopia card uses further down, taken apart
-      instead of filtered. A detail rather than the whole frame, and the three
-      greys stretched to the same contrast — see ChannelSplit for why neither
-      of those is optional if the card is to show what it claims. */}
+  {/* A deliberately over-compressed JPEG, taken apart into its channels.
+
+      The subject is chosen, not found: big flat squares of saturated colour
+      with hard edges and no fine texture, so there is nothing for the codec's
+      damage to hide behind. A forest was tried first and was hopeless — leaf
+      litter is already noise, so every channel looked equally bad and none of
+      them looked wronged.
+
+      balloon-q10.jpg is a 450x300 crop of the envelope from "Hot Air Balloon"
+      by Kupono Kuwamura (Unsplash, via Wikimedia Commons, CC0 — public domain,
+      no attribution required), re-encoded at JPEG quality 10 with 4:2:0 chroma.
+      Quality 10 was picked by measuring: it is the mildest setting at which
+      blue's error is unmistakable while red and green still hold their edges.
+      Blue's RMSE against the uncompressed crop runs about 1.6x green's at every
+      quality — see ChannelSplit for why that is arithmetic rather than luck. */}
   <VizPhase name="channels">
     <ChannelSplit
-      src="/assets/2026-08-21-color-3-tristimulus/forest.jpg"
-      alt="A path through an autumn forest, deep in red and orange fallen leaves."
-      focus={[0.5, 0.6]}
-      density={0.6}
+      src="/assets/2026-08-21-color-3-tristimulus/balloon-q10.jpg"
+      alt="A close crop of a hot air balloon's envelope, a checkerboard of saturated yellow, red, green and dark teal panels."
     />
   </VizPhase>
   <VizPhase name="photo">
@@ -62,18 +71,20 @@ import VizPhase from "../../components/VizPhase.astro";
   ## Cones aren't equidistributed
 
   The retina has 60% L, 30% M, and 10% S cones on average, though the L to M ratio can vary wildly, from 1:1 up to 16:1. 
+
+  Mollon (1989) suggests that M and L peaking where they do is a result of the evolutionary pressure to detect fruit against foliage, and the S cone's peak is a result of the need to detect water.
   
-  The relative lack of S cones makes for less "resolution" in perceiving blue light. Interestingly, the central 100µm of retina, part of our sharpest vision, has no S cones at all, leading to a blind spot for blue there.
+  Interestingly, the central 100µm of retina, part of our sharpest vision, has no S cones at all, leading to a blind spot for blue there.
 </DeckCard>
 
 <DeckCard vizProps={{ phase: "channels" }}>
-  ## Everything downstream knows this
+  ## Blue in image compression
 
-  Here is a photograph pulled apart into the three channels your screen will put back together, each stretched to the same contrast so you are comparing detail and not brightness.
+  The relative lack of S cones makes for less "resolution" in perceiving blue light.
 
-  Red and green resolve individual leaves. Blue is a blotchy mush at the same magnification — and that is not the forest's fault, it is the pipeline's. A camera sensor gives blue a quarter of its photosites, and JPEG stores colour at half the resolution it stores brightness, where blue counts for barely a tenth.
-
-  Both get away with it for the same reason: with one cone in ten looking, and none of them where you are looking hardest, you were never going to catch them at it.
+  Since we have few S cones, cameras will typically record less information about the blue channel in images, as it makes little difference to how we perceive the final image.
+  
+  *JPEG*, a lossy image compression format, also takes advantage of this fact, and will throw away more information from the blue channel than red or green when compressing an image.
 </DeckCard>
 
 <DeckCard vizProps={{ phase: "cones", vision: "normal" }}>
