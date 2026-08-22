@@ -685,34 +685,27 @@ const markList = marks
 		   vision or the width does. */
 		let stripKey = '';
 		let strip: string[] = [];
-		/* Faked, and only for the mirrored strip: a wind-down over the last
-		   stretch of the band so it does not run to the edge as bright as the
-		   middle. The stand-in colours out there are borrowed from the green and
-		   cyan end, which are bright where the reds they are standing for are
-		   dark, and the strip ends up glaring exactly where it should be giving
-		   out. This is a drawing convenience for one card and nothing is being
-		   claimed by it — the honest version, matching the brightness of the
-		   wavelength each colour stands for, was tried and looked worse. */
-		const FALLOFF_FROM = 670;
-		const FALLOFF_TO = 740;
-		const falloff = (at: number) => {
-			if (at <= FALLOFF_FROM) return 1;
-			const t = Math.min(1, (at - FALLOFF_FROM) / (FALLOFF_TO - FALLOFF_FROM));
-			return 1 - 0.88 * t * t * (3 - 2 * t);
-		};
-
 		/* What the eye on show makes of this wavelength. For a missing cone that
-		   is a colour; for the mirrored eye it is a stand-in, and the lap it came
-		   from is what the hatching below announces. */
+		   is a colour; for the mirrored eye it is a stand-in, up to the point
+		   where there is nothing left to stand in with. */
 		const eyeRgb = (at: number): [number, number, number] => {
 			/* Nothing to remap: a pair of filtered eyes does not lose colours the
 			   way a missing cone does, and what its fourth reading would add is
 			   not something a strip of ours can show. */
 			if (shown === 'filtered') return wavelengthRgb(at);
 			if (shown !== 'mirrored') return wavelengthRgb(at, shown);
-			const k = falloff(at);
-			const rgb = wavelengthRgb(mirroredStandIn(at).nm);
-			return [Math.round(rgb[0] * k), Math.round(rgb[1] * k), Math.round(rgb[2] * k)];
+			const { lap, nm: standIn } = mirroredStandIn(at);
+			/* Past the end of our own range of hues — from about 599nm on, which
+			   is most of the red half of the band. The rainbow used to turn round
+			   here and spend our colours a second time, dimmed, with hatching over
+			   it to admit the borrowing. Black instead. These are the colours the
+			   card is about precisely because we have none: a second helping of
+			   red still shows the reader *a* colour, and the one thing that is
+			   certainly true of these is that they do not look like anything we
+			   have. Nothing is the only honest likeness, and the hatching over the
+			   top is what says the band has not simply ended. */
+			if (lap > 0) return [0, 0, 0];
+			return wavelengthRgb(standIn);
 		};
 
 		/* What each eye is actually being handed. On every other card there is one
@@ -933,10 +926,11 @@ const markList = marks
 				ctx.fillRect(plot.x + x, stripY, 1.5, STRIP_H);
 			}
 
-			/* Where the rainbow has started over, hatch it. These colours are a
-			   second helping of ours standing in for ones of theirs we have run
-			   out of, and the strip should say so rather than let the repeat pass
-			   for a coincidence. */
+			/* Where the band has run past everything we can see, hatch the black.
+			   Left plain it would read as the rainbow simply stopping, which is
+			   the opposite of what is out there: not no colour, but colours with
+			   nothing of ours to show them with. White, because it is drawn on
+			   black now rather than over a second helping of our own reds. */
 			if (shown === 'mirrored' && mix > 0.5) {
 				let from = -1;
 				for (let x = 0; x <= strip.length; x++) {
@@ -947,8 +941,8 @@ const markList = marks
 						ctx.beginPath();
 						ctx.rect(plot.x + from, stripY, x - from, STRIP_H);
 						ctx.clip();
-						ctx.globalAlpha = 0.35 * Math.min(1, (mix - 0.5) * 2);
-						ctx.strokeStyle = '#000';
+						ctx.globalAlpha = 0.7 * Math.min(1, (mix - 0.5) * 2);
+						ctx.strokeStyle = '#fff';
 						ctx.lineWidth = 1.5;
 						/* Both diagonals in one path and one stroke: stroked
 						   separately, the alpha would double wherever they cross and
