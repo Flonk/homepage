@@ -1133,7 +1133,7 @@ const HSL = [
 		   other set is only told the answer: a saturation the reader has set is
 		   the fact, and the three RGB numbers follow from it rather than the
 		   other way round. */
-		function held() {
+		function readerColour() {
 			if (!wasHeld) {
 				frozen = rgb.slice();
 				wasHeld = true;
@@ -1392,7 +1392,7 @@ const HSL = [
 			/* How far each phase has got, for everything that has to follow them:
 			   which lines belong to the shape on screen, and how far back the eye
 			   has to stand to keep it in frame. */
-			const held = Math.min(1, morph);
+			const flattened = Math.min(1, morph);
 			const opened = Math.max(0, morph - 1);
 			/* The bars change hands as the cone opens into the cylinder — the
 			   moment the picture stops being about the cube. */
@@ -1425,7 +1425,7 @@ const HSL = [
 			// --- the colour on show
 			if (!reduceMotion) t += dt;
 			if (ctx.held) {
-				rgb = held();
+				rgb = readerColour();
 				resumeFrom = null;
 			} else {
 				const target = wander(t);
@@ -1557,7 +1557,7 @@ const HSL = [
 			   surface alone, every fragment belongs to exactly one pass. */
 			gl.depthMask(false);
 			for (const [set, alpha] of [
-				[DIAGONALS, 1 - held],
+				[DIAGONALS, 1 - flattened],
 				[EQUATOR, 1 - opened],
 				[RIMS, opened],
 			] as const) {
