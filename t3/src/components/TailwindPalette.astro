@@ -1,80 +1,146 @@
 ---
 /**
- * Every colour Tailwind ships, as it ships it.
+ * Tailwind's palette, and the same palette generated instead of chosen.
  *
- * Twenty-six families of eleven, and since version 4 all 286 of them are
- * written in the stylesheet as `oklch()` — which is the whole reason the grid
- * belongs in this post. It is not a palette converted into the space to make
- * a point; it is a palette that arrives in it, on a very large number of
- * sites, chosen by people who had to ship something rather than illustrate
- * something.
+ * Since version 4 every colour Tailwind ships is written in the stylesheet as
+ * an `oklch()` triple, which is worth showing on its own — this is not a
+ * palette converted into the space to illustrate something, it is one that
+ * arrives in it on a very large number of sites. But written in OKLCH is not
+ * the same as generated in OKLCH, and this palette plainly was not. The steps
+ * were picked by eye, family by family, and a row of 500s runs from L 80% at
+ * the yellow to L 62% at the blue.
  *
- * The swatches are painted with the `oklch()` values themselves rather than
- * with sRGB worked out here, which is the one place this series does not do
- * its own colour maths. That is deliberate: several of these — the 400s and
- * 500s especially — ask for more chroma than sRGB holds, and what a reader
- * should see is what their own screen does with them. On a wide-gamut display
- * those swatches are more saturated than they can be on a narrow one, and
- * that difference is a fact about the palette worth meeting.
+ * So the switch rebuilds them. Each family keeps the hue and the asked-for
+ * chroma of its own 500 and takes its lightness from one ladder shared by all
+ * of them — the average of what Tailwind uses at each step, so the two states
+ * are the same overall brightness and only their evenness differs. What gives
+ * way at the ends is chroma, fitted per step to what sRGB actually holds; see
+ * fitChroma in lib/oklch.
  *
- * Read down a column and you have one family from near-white to near-black.
- * Read across a row and you have the same step in every family — which is
- * not the same lightness, and visibly so. See lib/tailwind for the numbers.
+ * The Tailwind swatches are painted with their own `oklch()` values rather
+ * than with sRGB worked out here, which is the one place this series does not
+ * do its own colour maths. Several of the 400s and 500s ask for more chroma
+ * than sRGB holds, and what a reader should meet is what their own screen
+ * does with them.
  */
-import { TAILWIND, STEPS, oklch, type Family } from '../lib/tailwind';
+import { fitChroma } from '../lib/oklch';
+import { TAILWIND, STEPS, oklch, type Family, type Shade } from '../lib/tailwind';
 
 interface Props {
 	/**
-	 * Which families to show, by name, in this order. All of them by default —
-	 * the point of the grid is how many there are.
+	 * Which families to show, by name, in this order. All of them by default,
+	 * though a card wanting a point rather than a wall should pick a few.
 	 */
 	families?: string[];
-	/** Name each column under it. Off below a certain width; see the styles. */
+	/** Name each row beside it. */
 	labels?: boolean;
+	/** Offer the switch. */
+	toggle?: boolean;
+	/** Which side to start on. */
+	mode?: 'tailwind' | 'uniform';
 	/**
-	 * Each swatch as the grey of its own luminance instead of its colour. The
-	 * rows are steps, so a row that is not one flat grey is a step that is not
-	 * one lightness.
+	 * Each swatch as the grey of its own lightness. The rows are families, so
+	 * a column that is not one flat grey is a step that is not one lightness —
+	 * which is the whole difference between the two sides of the switch.
 	 */
 	grey?: boolean;
-	/** Seconds between one column arriving and the next. */
+	/** Seconds between one row arriving and the next. */
 	stagger?: number;
 }
 
-const { families, labels = false, grey = false, stagger = 0.03 } = Astro.props;
+const {
+	families,
+	labels = false,
+	toggle = true,
+	mode = 'tailwind',
+	grey = false,
+	stagger = 0.03,
+} = Astro.props;
 
 const shown: Family[] = families
-	? families.map((n) => TAILWIND.find((f) => f.name === n)).filter(Boolean as unknown as (f: Family | undefined) => f is Family)
+	? (families
+			.map((n) => TAILWIND.find((f) => f.name === n))
+			.filter(Boolean) as Family[])
 	: TAILWIND;
 
-/* Every label is as wide as the longest one, so the swatches all begin at the
-   same place. Left to their own widths they would each take what they needed
-   and the rows would end up eleven different sizes. */
+/* One ladder for everybody: what Tailwind uses at this step, averaged over the
+   families on show. Averaged rather than invented so that the two sides of the
+   switch sit at the same overall brightness — what changes between them is
+   whether a step means one lightness, not how light the palette is. */
+const ladder = STEPS.map((_, i) => shown.reduce((sum, f) => sum + f.shades[i].l, 0) / shown.length);
+
+/* A family's own hue and its own ambition for chroma, taken from its 500 —
+   the step that is the family, the one a class name means when it does not
+   say otherwise. */
+const uniform = (family: Family, i: number): Shade => {
+	const base = family.shades[STEPS.indexOf(500)];
+	const l = ladder[i];
+	return { step: STEPS[i], l, c: fitChroma(l, base.c, base.h), h: base.h };
+};
+
+/* Every label as wide as the longest, so the swatches all begin in the same
+   place. Left to their own widths, each row would give up a different amount
+   to its name and no two rows would line up. */
 const label = Math.max(...shown.map((f) => f.name.length));
 ---
 
 <figure
 	class="palette"
 	data-tailwind-palette
+	data-mode={mode}
 	data-grey={String(grey)}
-	data-labels={String(labels)}
 	style={`--stagger: ${stagger}s; --steps: ${STEPS.length}; --families: ${shown.length}; --label: ${label}ch`}
 >
-	<div class="grid" role="img" aria-label={`Tailwind's default palette: ${shown.length} families of ${STEPS.length} shades, every one of them an OKLCH colour`}>
+	<div
+		class="grid"
+		role="img"
+		aria-label={`${shown.length} families of ${STEPS.length} shades, every one of them an OKLCH colour`}
+	>
 		{
 			shown.map((family, i) => (
 				<div class="family" style={`--i: ${i}`}>
 					{labels && <span class="name">{family.name}</span>}
-					{family.shades.map((s) => (
-						<span
-							class="swatch"
-							style={`--fill: ${oklch(s)}; --grey: oklch(${(s.l * 100).toFixed(1)}% 0 0)`}
-						/>
-					))}
+					{family.shades.map((s, step) => {
+						const u = uniform(family, step);
+						return (
+							<span
+								class="swatch"
+								style={[
+									`--fill: ${oklch(s)}`,
+									`--flat: ${oklch(u)}`,
+									`--grey: oklch(${(s.l * 100).toFixed(1)}% 0 0)`,
+									`--flat-grey: oklch(${(u.l * 100).toFixed(1)}% 0 0)`,
+								].join('; ')}
+							/>
+						);
+					})}
 				</div>
 			))
 		}
 	</div>
+
+	{
+		toggle && (
+			<div class="controls">
+				<button
+					class="toggle"
+					type="button"
+					role="switch"
+					aria-checked={mode === 'uniform' ? 'true' : 'false'}
+					aria-label="Rebuild from lightness alone"
+					data-swap
+				>
+					<span class="knob" aria-hidden="true" />
+					<span class="side" data-side="tailwind" aria-hidden="true">
+						TAILWIND
+					</span>
+					<span class="side" data-side="uniform" aria-hidden="true">
+						UNIFORM
+					</span>
+				</button>
+			</div>
+		)
+	}
 </figure>
 
 <style>
@@ -86,33 +152,33 @@ const label = Math.max(...shown.map((f) => f.name.length));
 		margin: 0;
 		display: flex;
 		flex-direction: column;
+		align-items: center;
 		justify-content: center;
+		gap: 0.7rem;
 		font-family: var(--font-mono);
 		color: var(--deck-ink-dim, #8891a0);
 	}
 
-	/* One row per family, one column per step, and the rows keep coming — the
-	   number of families is the thing the grid is saying, so it is not
-	   something the layout should have an opinion about. */
-	/* As tall as it is wide, per swatch. The rows share whatever height the
-	   grid has and the columns whatever width, so a card showing half the
-	   families over the same width gets swatches twice as wide as they are
-	   high. The cap is the label column plus one row height per step, which is
-	   what square means here; the pane's own cap still applies over it. */	.grid {
+	/* One row per family, one column per step, and the rows keep coming — how
+	   many families there are is the grid's business, not the layout's.
+
+	   As tall as it is wide, per swatch: the rows share whatever height there
+	   is and the columns whatever width, so a card showing eight families over
+	   a whole pane gets swatches three times as wide as they are high. The cap
+	   is the label column plus one row-height per step, which is what square
+	   means here. Width, cap and centring all three — auto margins on a flex
+	   item's cross axis switch its stretch off, which leaves the grid
+	   shrink-wrapped around its labels. */
+	.grid {
 		flex: 1;
+		align-self: stretch;
 		display: flex;
 		flex-direction: column;
 		gap: 0.2rem;
 		min-block-size: 0;
-		/* Width, then the cap, then the centring — in that order and all three.
-		   Auto margins on the cross axis switch a flex item's stretch off, so a
-		   cap and `margin: auto` on their own leave the grid shrink-wrapped
-		   around its contents, which for columns of swatches is the width of
-		   the labels. */
 		inline-size: 100%;
-		max-inline-size: calc(var(--label) + var(--steps) / var(--families) * 84cqh);
-		/* Room under the columns for the names, when they are on. */
-		margin: 0 auto 1em;
+		max-inline-size: calc(var(--label) + var(--steps) / var(--families) * 76cqh);
+		margin-inline: auto;
 	}
 
 	.family {
@@ -143,15 +209,23 @@ const label = Math.max(...shown.map((f) => f.name.length));
 		min-block-size: 0;
 		border-radius: 2px;
 		background: var(--fill);
-		transition: background-color 0.45s ease;
+		/* Slow enough to read as one palette becoming another rather than as a
+		   cut between two pictures. */
+		transition: background-color 0.5s ease;
+	}
+
+	.palette[data-mode='uniform'] .swatch {
+		background: var(--flat);
 	}
 
 	.palette[data-grey='true'] .swatch {
 		background: var(--grey);
 	}
 
-	/* All of them the width of the longest, so every row's swatches start at
-	   the same place and none of them is squeezed to pay for a long name. */
+	.palette[data-grey='true'][data-mode='uniform'] .swatch {
+		background: var(--flat-grey);
+	}
+
 	.name {
 		flex: none;
 		/* The longest name plus a little: `ch` counts characters and the tracking
@@ -165,8 +239,62 @@ const label = Math.max(...shown.map((f) => f.name.length));
 		letter-spacing: 0.02em;
 	}
 
-	.palette[data-labels='false'] .name {
-		display: none;
+	.controls {
+		flex: none;
+		margin-block-end: 1em;
+	}
+
+	/* The same smoked glass the other pictures put their controls on. */
+	.toggle {
+		position: relative;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		align-items: center;
+		padding: 0.2rem;
+		border: 0;
+		border-radius: 999px;
+		background: var(--pill, rgb(12 14 17 / 0.62));
+		box-shadow:
+			inset 0 0 0 1px rgb(255 255 255 / 0.12),
+			0 4px 16px rgb(0 0 0 / 0.15);
+		backdrop-filter: blur(6px);
+		font: inherit;
+		font-size: 0.7rem;
+		letter-spacing: 0.1em;
+		color: inherit;
+		cursor: pointer;
+	}
+
+	.knob {
+		position: absolute;
+		z-index: 0;
+		inset: 0.2rem auto 0.2rem 0.2rem;
+		width: calc(50% - 0.2rem);
+		border-radius: 999px;
+		background: rgb(255 255 255 / 0.16);
+		box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.18);
+		transition: transform 0.35s cubic-bezier(0.35, 0.1, 0.2, 1);
+	}
+
+	.palette[data-mode='uniform'] .knob {
+		transform: translateX(100%);
+	}
+
+	.side {
+		position: relative;
+		z-index: 1;
+		padding: 0.3rem 0.7rem;
+		transition: color 0.35s ease;
+	}
+
+	.palette[data-mode='tailwind'] .side[data-side='tailwind'],
+	.palette[data-mode='uniform'] .side[data-side='uniform'] {
+		color: var(--deck-ink, #e6e9ef);
+	}
+
+	.toggle:focus-visible {
+		outline: 2px solid var(--accent, #f7a800);
+		outline-offset: 3px;
 	}
 
 	@container viz (max-width: 34rem) {
@@ -178,10 +306,16 @@ const label = Math.max(...shown.map((f) => f.name.length));
 		.name {
 			font-size: 0.6rem;
 		}
+
+		.toggle {
+			font-size: 0.62rem;
+		}
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		.family {
+		.family,
+		.swatch,
+		.knob {
 			transition: none;
 		}
 	}
@@ -194,13 +328,23 @@ const label = Math.max(...shown.map((f) => f.name.length));
 
 		const host =
 			root.closest<HTMLElement>('[data-viz-phase]') ?? root.closest<HTMLElement>('[data-viz-stage]');
+		const swap = root.querySelector<HTMLButtonElement>('[data-swap]');
 		const still = matchMedia('(prefers-reduced-motion: reduce)');
 		const AUTHORED = {
+			mode: root.dataset.mode ?? 'tailwind',
 			grey: root.dataset.grey === 'true',
-			labels: root.dataset.labels === 'true',
 		};
 
-		/* From nothing, again. Two frames rather than one: the columns have to be
+		const setMode = (to: string) => {
+			root.dataset.mode = to;
+			swap?.setAttribute('aria-checked', String(to === 'uniform'));
+		};
+
+		swap?.addEventListener('click', () =>
+			setMode(root.dataset.mode === 'uniform' ? 'tailwind' : 'uniform'),
+		);
+
+		/* From nothing, again. Two frames rather than one: the rows have to be
 		   painted in their starting state before the class that moves them off it
 		   lands, or the browser sees one style and there is no transition to run
 		   — which is exactly what a reader coming back to the card would get. */
@@ -219,16 +363,15 @@ const label = Math.max(...shown.map((f) => f.name.length));
 			});
 		}
 
-		/* Staged from here as well as from viz:enter. A phase is rendered
-		   inactive and only told otherwise by the deck's own script, so a reader
-		   arriving on this card directly — a reload, a link with a number on the
-		   end — may have this script run first, see an inactive phase, and wait
-		   for an arrival that already happened. The deck hands over parameters
-		   in either case, and that is the event that always comes. */
+		/* Staged from here as well as from viz:enter. A phase is rendered inactive
+		   and only told otherwise by the deck's own script, so a reader arriving on
+		   this card directly — a reload, a link with a number on the end — may have
+		   this script run first, see an inactive phase, and wait for an arrival
+		   that already happened. Parameters arrive either way. */
 		host?.addEventListener('viz:props', (e) => {
 			const p = ((e as CustomEvent).detail ?? {}) as Record<string, unknown>;
+			setMode(typeof p.mode === 'string' ? p.mode : AUTHORED.mode);
 			root.dataset.grey = String('grey' in p ? Boolean(p.grey) : AUTHORED.grey);
-			root.dataset.labels = String('labels' in p ? Boolean(p.labels) : AUTHORED.labels);
 			replay();
 		});
 
