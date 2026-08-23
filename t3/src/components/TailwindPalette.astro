@@ -41,11 +41,16 @@ interface Props {
 	stagger?: number;
 }
 
-const { families, labels = false, grey = false, stagger = 0.02 } = Astro.props;
+const { families, labels = false, grey = false, stagger = 0.03 } = Astro.props;
 
 const shown: Family[] = families
 	? families.map((n) => TAILWIND.find((f) => f.name === n)).filter(Boolean as unknown as (f: Family | undefined) => f is Family)
 	: TAILWIND;
+
+/* Every label is as wide as the longest one, so the swatches all begin at the
+   same place. Left to their own widths they would each take what they needed
+   and the rows would end up eleven different sizes. */
+const label = Math.max(...shown.map((f) => f.name.length));
 ---
 
 <figure
@@ -53,26 +58,19 @@ const shown: Family[] = families
 	data-tailwind-palette
 	data-grey={String(grey)}
 	data-labels={String(labels)}
-	style={`--stagger: ${stagger}s; --columns: ${shown.length}; --rows: ${STEPS.length}`}
+	style={`--stagger: ${stagger}s; --steps: ${STEPS.length}; --families: ${shown.length}; --label: ${label}ch`}
 >
 	<div class="grid" role="img" aria-label={`Tailwind's default palette: ${shown.length} families of ${STEPS.length} shades, every one of them an OKLCH colour`}>
-		{/* One column per family. The row count is written out per column rather
-		    than kept in a custom property: `repeat()` takes a literal integer, and
-		    a `var()` in that slot makes the whole declaration invalid — which
-		    leaves the rows sized to their contents, and a swatch has none. */}
 		{
 			shown.map((family, i) => (
-				<div
-					class="family"
-					style={`--i: ${i}; grid-template-rows: repeat(${family.shades.length}, minmax(0, 1fr)) auto`}
-				>
+				<div class="family" style={`--i: ${i}`}>
+					{labels && <span class="name">{family.name}</span>}
 					{family.shades.map((s) => (
 						<span
 							class="swatch"
 							style={`--fill: ${oklch(s)}; --grey: oklch(${(s.l * 100).toFixed(1)}% 0 0)`}
 						/>
 					))}
-					{labels && <span class="name">{family.name}</span>}
 				</div>
 			))
 		}
@@ -93,18 +91,17 @@ const shown: Family[] = families
 		color: var(--deck-ink-dim, #8891a0);
 	}
 
-	/* One column per family, one row per step, and the columns keep coming —
-	   the number of families is the thing the grid is saying, so it is not
+	/* One row per family, one column per step, and the rows keep coming — the
+	   number of families is the thing the grid is saying, so it is not
 	   something the layout should have an opinion about. */
-	/* As wide as it is tall, per swatch. The columns share whatever width the
-	   grid has, so a card showing a slice of the palette would otherwise get
-	   the same width spread over half the families and swatches twice as wide
-	   as they are high. The cap is the row height times the number of columns,
-	   which is what square means here, and the pane's cap still applies over
-	   it for the sets large enough to reach it. */
-	.grid {
+	/* As tall as it is wide, per swatch. The rows share whatever height the
+	   grid has and the columns whatever width, so a card showing half the
+	   families over the same width gets swatches twice as wide as they are
+	   high. The cap is the label column plus one row height per step, which is
+	   what square means here; the pane's own cap still applies over it. */	.grid {
 		flex: 1;
 		display: flex;
+		flex-direction: column;
 		gap: 0.2rem;
 		min-block-size: 0;
 		/* Width, then the cap, then the centring — in that order and all three.
@@ -113,21 +110,22 @@ const shown: Family[] = families
 		   around its contents, which for columns of swatches is the width of
 		   the labels. */
 		inline-size: 100%;
-		max-inline-size: calc(var(--columns) / var(--rows) * 80cqh);
+		max-inline-size: calc(var(--label) + var(--steps) / var(--families) * 84cqh);
 		/* Room under the columns for the names, when they are on. */
 		margin: 0 auto 1em;
 	}
 
 	.family {
 		flex: 1 1 0;
-		min-inline-size: 0;
-		display: grid;
+		min-block-size: 0;
+		display: flex;
+		align-items: stretch;
 		gap: 0.2rem;
-		/* Where each column comes in from, and how long it waits its turn. The
+		/* Where each row comes in from, and how long it waits its turn. The
 		   delay is the resting state's, so the palette builds on the way in and
 		   leaves all at once rather than unbuilding itself backwards. */
 		opacity: 0;
-		transform: translateY(0.5rem);
+		transform: translateX(-0.5rem);
 		transition:
 			opacity 0.35s ease,
 			transform 0.35s ease;
@@ -140,6 +138,7 @@ const shown: Family[] = families
 	}
 
 	.swatch {
+		flex: 1 1 0;
 		min-inline-size: 0;
 		min-block-size: 0;
 		border-radius: 2px;
@@ -151,34 +150,33 @@ const shown: Family[] = families
 		background: var(--grey);
 	}
 
+	/* All of them the width of the longest, so every row's swatches start at
+	   the same place and none of them is squeezed to pay for a long name. */
 	.name {
-		align-self: end;
-		font-size: 0.55rem;
-		line-height: 1.6;
+		flex: none;
+		/* The longest name plus a little: `ch` counts characters and the tracking
+		   between them is extra, so an exact fit wraps the longest one. */
+		inline-size: calc(var(--label) + 0.6em);
+		white-space: nowrap;
+		align-self: center;
+		text-align: end;
+		font-size: 0.7rem;
+		line-height: 1;
 		letter-spacing: 0.02em;
-		writing-mode: vertical-rl;
-		text-orientation: mixed;
-		justify-self: center;
 	}
 
 	.palette[data-labels='false'] .name {
 		display: none;
 	}
 
-	/* Twenty-six names in a pane this wide is a row of tally marks. */
-	@container viz (max-width: 40rem) {
-		.palette .name {
-			display: none;
-		}
-	}
-
-	@container viz (max-width: 30rem) {
-		.grid {
-			gap: 0.12rem;
-		}
-
+	@container viz (max-width: 34rem) {
+		.grid,
 		.family {
 			gap: 0.12rem;
+		}
+
+		.name {
+			font-size: 0.6rem;
 		}
 	}
 
