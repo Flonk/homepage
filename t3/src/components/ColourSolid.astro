@@ -154,7 +154,6 @@ const HSL = [
 					aria-label={`Colour ${set + 1}`}
 					data-plate={`set-${set}`}
 				>
-					<div class="disc" data-disc={set} aria-hidden="true" />
 					<div class="bars">
 						{HSL.map((ch, c) => (
 							<div class="bar" style={ch.edge && `--track-edge: ${ch.edge}`}>
@@ -175,6 +174,7 @@ const HSL = [
 							</div>
 						))}
 					</div>
+					<div class="disc" data-disc={set} aria-hidden="true" />
 				</div>
 		))}
 		</div>
@@ -552,10 +552,15 @@ const HSL = [
 		   worked out, and a browser asked how wide the panel wants to be has to
 		   answer without one — so it left the disc out of the sum, the panel
 		   came out disc-wide, and the bars were clipped off the end of it. */
-		block-size: 30cqh;
+		block-size: 26cqh;
 		max-block-size: 100%;
 		aspect-ratio: 1;
 		box-sizing: border-box;
+		/* Level with the bars beside it rather than with the panel. A bar is its
+		   track and then its letter, so the tracks' middle sits half a letter
+		   above the panel's middle; this margin is that letter, and centring a
+		   box with it puts the swatch back on the tracks' line. */
+		margin-block-end: calc(0.4rem + 0.75rem);
 		border: 0.2rem solid var(--edge, transparent);
 		border-radius: 50%;
 		background: var(--fill, #808080);
