@@ -53,7 +53,7 @@ const shown: Family[] = families
 	data-tailwind-palette
 	data-grey={String(grey)}
 	data-labels={String(labels)}
-	style={`--stagger: ${stagger}s`}
+	style={`--stagger: ${stagger}s; --columns: ${shown.length}; --rows: ${STEPS.length}`}
 >
 	<div class="grid" role="img" aria-label={`Tailwind's default palette: ${shown.length} families of ${STEPS.length} shades, every one of them an OKLCH colour`}>
 		{/* One column per family. The row count is written out per column rather
@@ -96,13 +96,26 @@ const shown: Family[] = families
 	/* One column per family, one row per step, and the columns keep coming —
 	   the number of families is the thing the grid is saying, so it is not
 	   something the layout should have an opinion about. */
+	/* As wide as it is tall, per swatch. The columns share whatever width the
+	   grid has, so a card showing a slice of the palette would otherwise get
+	   the same width spread over half the families and swatches twice as wide
+	   as they are high. The cap is the row height times the number of columns,
+	   which is what square means here, and the pane's cap still applies over
+	   it for the sets large enough to reach it. */
 	.grid {
 		flex: 1;
 		display: flex;
 		gap: 0.2rem;
 		min-block-size: 0;
+		/* Width, then the cap, then the centring — in that order and all three.
+		   Auto margins on the cross axis switch a flex item's stretch off, so a
+		   cap and `margin: auto` on their own leave the grid shrink-wrapped
+		   around its contents, which for columns of swatches is the width of
+		   the labels. */
+		inline-size: 100%;
+		max-inline-size: calc(var(--columns) / var(--rows) * 80cqh);
 		/* Room under the columns for the names, when they are on. */
-		margin: 0 0 1em;
+		margin: 0 auto 1em;
 	}
 
 	.family {
