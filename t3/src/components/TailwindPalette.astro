@@ -1,6 +1,6 @@
 ---
 /**
- * Tailwind's palette, and the same palette generated instead of chosen.
+ * Tailwind's palette, and the same palette built rather than chosen.
  *
  * Since version 4 every colour Tailwind ships is written in the stylesheet as
  * an `oklch()` triple, which is worth showing on its own — this is not a
@@ -10,22 +10,36 @@
  * were picked by eye, family by family, and a row of 500s runs from L 80% at
  * the yellow to L 62% at the blue.
  *
- * So the switch rebuilds them, and rebuilds them the way the pitch says you
- * can: fix the hue, and move the lightness slider. Every family gets the hue
- * of its own 500 and nothing else of its own — the lightness of each step and
- * the chroma of each step are two ladders every family shares, so each row is
- * the same ramp turned to a different hue.
+ * So the switch rebuilds them, the way the pitch says you can: fix the hue,
+ * and move the lightness slider. Every family gets the hue of its own 500 and
+ * nothing else of its own — the lightness of each step and the chroma asked
+ * for at each step are two ladders every family shares, so each row is the
+ * same ramp turned to a different hue.
  *
- * The chroma ladder cannot simply be one number, and finding out why is worth
- * the card. Ask every step for a fixed chroma and the ends cannot supply it:
- * at L 98 there is almost no chroma to be had at any hue. So each rung is the
- * most chroma *every* hue on show can reach at that lightness — which is the
- * blue at the light end and the teal at the dark end, and is why the built
- * palette is quieter than the picked one. That is the honest price of making
- * eight hues agree inside sRGB, and the reason the next cards are about
- * gamut. Earlier versions asked each family for its own chroma and got rows
- * that still disagreed, or asked for the 500's at every step and got a row of
- * 200s with the lime and the teal blazing and the rest nearly grey.
+ * The switch says HANDMADE rather than UNIFORM because uniform overclaims:
+ * the lightness is exactly uniform, and the chroma cannot be. What a hue can
+ * hold at a given lightness is a fact about sRGB, not a setting, so the rows
+ * still differ in colourfulness — by no more than Tailwind's own rows do, but
+ * they differ.
+ *
+ * The chroma ladder is one *ask* rather than one value: every family asks for
+ * the same chroma at a given step — the most any of them spends there — and
+ * takes what sRGB has if that is less. Asking for the most rather than the
+ * average matters, because a shared lightness costs chroma: a hue is at its
+ * most colourful at its own lightness, and holding all eight to one ladder
+ * moves each of them off it. Asking high buys that back. The built palette
+ * comes out at about nine tenths of the picked one's chroma, with no more
+ * variation between rows than Tailwind has itself — while its lightness
+ * variation, which runs to seventeen points at the 500s, goes to nothing.
+ *
+ * The ask has to taper with the ladder, which is the part that took three
+ * goes. A flat ask, or the family's own 500 at every step, is a huge demand
+ * up at L 92 where almost nothing is available — so each swatch got handed
+ * its own hue's boundary instead, and those boundaries are 0.22 for lime and
+ * 0.04 for blue. That is a row of 200s with the lime and the teal blazing and
+ * the rest nearly grey. Holding every family down to what the *tightest* hue
+ * can reach fixes the disagreement, but pays for it everywhere, and the point
+ * of the card is that generating a palette costs you nothing.
  *
  * The Tailwind swatches are painted with their own `oklch()` values rather
  * than with sRGB worked out here, which is the one place this series does not
@@ -47,7 +61,7 @@ interface Props {
 	/** Offer the switch. */
 	toggle?: boolean;
 	/** Which side to start on. */
-	mode?: 'tailwind' | 'uniform';
+	mode?: 'tailwind' | 'handmade';
 	/**
 	 * Each swatch as the grey of its own lightness. The rows are families, so
 	 * a column that is not one flat grey is a step that is not one lightness —
@@ -80,26 +94,21 @@ const shown: Family[] = families
    the palette is. */
 const ladder = STEPS.map((_, i) => shown.reduce((sum, f) => sum + f.shades[i].l, 0) / shown.length);
 
-/* And one chroma ladder: at each rung, as much chroma as the least
-   accommodating hue on show can hold at that lightness. Anything more and the
-   families stop agreeing — sRGB has a great deal more lime at L 92 than it
-   has blue, so a shared number would leave some rows blazing and others
-   nearly grey. The ask starts from what Tailwind spends on average, which the
-   gamut then trims. */
-const asked = STEPS.map((_, i) => shown.reduce((sum, f) => sum + f.shades[i].c, 0) / shown.length);
-const chroma = STEPS.map((_, i) =>
-	Math.min(...shown.map((f) => fitChroma(ladder[i], asked[i], f.shades[STEPS.indexOf(500)].h))),
-);
+/* And one chroma ask per step: the most any family on show spends there.
+   Every family asks for it and gets it, unless its own hue cannot hold that
+   much at that lightness, in which case it gets what there is. It has to
+   taper with the ladder — a flat ask up at L 92, where almost nothing is
+   available, hands each swatch its own hue's boundary instead, and those run
+   from 0.22 at the lime to 0.04 at the blue. */
+const asked = STEPS.map((_, i) => Math.max(...shown.map((f) => f.shades[i].c)));
 
-/* One hue per family, and the two shared ladders. Nothing here is the step's
-   own any more, which is the point: every row is the same ramp, and the only
-   thing that tells them apart is the number you fixed. */
-const uniform = (family: Family, i: number): Shade => ({
-	step: STEPS[i],
-	l: ladder[i],
-	c: chroma[i],
-	h: family.shades[STEPS.indexOf(500)].h,
-});
+/* One hue per family, and the shared ladders. Nothing here is the step's own
+   any more, which is the point: every row is the same ramp, and the only
+   thing that tells them apart is the number that was fixed. */
+const handmade = (family: Family, i: number): Shade => {
+	const h = family.shades[STEPS.indexOf(500)].h;
+	return { step: STEPS[i], l: ladder[i], c: fitChroma(ladder[i], asked[i], h), h };
+};
 
 /* Every label as wide as the longest, so the swatches all begin in the same
    place. Left to their own widths, each row would give up a different amount
@@ -124,7 +133,7 @@ const label = Math.max(...shown.map((f) => f.name.length));
 				<div class="family" style={`--i: ${i}`}>
 					{labels && <span class="name">{family.name}</span>}
 					{family.shades.map((s, step) => {
-						const u = uniform(family, step);
+						const u = handmade(family, step);
 						return (
 							<span
 								class="swatch"
@@ -149,16 +158,16 @@ const label = Math.max(...shown.map((f) => f.name.length));
 					class="toggle"
 					type="button"
 					role="switch"
-					aria-checked={mode === 'uniform' ? 'true' : 'false'}
-					aria-label="Rebuild from lightness alone"
+					aria-checked={mode === 'handmade' ? 'true' : 'false'}
+					aria-label="Show the hand-built palette instead"
 					data-swap
 				>
 					<span class="knob" aria-hidden="true" />
 					<span class="side" data-side="tailwind" aria-hidden="true">
 						TAILWIND
 					</span>
-					<span class="side" data-side="uniform" aria-hidden="true">
-						UNIFORM
+					<span class="side" data-side="handmade" aria-hidden="true">
+						HANDMADE
 					</span>
 				</button>
 			</div>
@@ -242,7 +251,7 @@ const label = Math.max(...shown.map((f) => f.name.length));
 		transition: background-color 0.5s ease;
 	}
 
-	.palette[data-mode='uniform'] .swatch {
+	.palette[data-mode='handmade'] .swatch {
 		background: var(--flat);
 	}
 
@@ -250,7 +259,7 @@ const label = Math.max(...shown.map((f) => f.name.length));
 		background: var(--grey);
 	}
 
-	.palette[data-grey='true'][data-mode='uniform'] .swatch {
+	.palette[data-grey='true'][data-mode='handmade'] .swatch {
 		background: var(--flat-grey);
 	}
 
@@ -305,7 +314,7 @@ const label = Math.max(...shown.map((f) => f.name.length));
 		transition: transform 0.35s cubic-bezier(0.35, 0.1, 0.2, 1);
 	}
 
-	.palette[data-mode='uniform'] .knob {
+	.palette[data-mode='handmade'] .knob {
 		transform: translateX(100%);
 	}
 
@@ -317,7 +326,7 @@ const label = Math.max(...shown.map((f) => f.name.length));
 	}
 
 	.palette[data-mode='tailwind'] .side[data-side='tailwind'],
-	.palette[data-mode='uniform'] .side[data-side='uniform'] {
+	.palette[data-mode='handmade'] .side[data-side='handmade'] {
 		color: var(--deck-ink, #e6e9ef);
 	}
 
@@ -361,11 +370,11 @@ const label = Math.max(...shown.map((f) => f.name.length));
 
 		const setMode = (to: string) => {
 			root.dataset.mode = to;
-			swap?.setAttribute('aria-checked', String(to === 'uniform'));
+			swap?.setAttribute('aria-checked', String(to === 'handmade'));
 		};
 
 		swap?.addEventListener('click', () =>
-			setMode(root.dataset.mode === 'uniform' ? 'tailwind' : 'uniform'),
+			setMode(root.dataset.mode === 'handmade' ? 'tailwind' : 'handmade'),
 		);
 
 		/* From nothing, again. Two frames rather than one: the rows have to be
