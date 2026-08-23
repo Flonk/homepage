@@ -7,9 +7,9 @@ description: ""
 pubDate: "August 21 2026"
 ---
 
+import ConeResponse from "../../components/ConeResponse.astro";
 import DeckCard from "../../components/DeckCard.astro";
 import DeckViz from "../../components/DeckViz.astro";
-import ConeResponse from "../../components/ConeResponse.astro";
 import VizPhase from "../../components/VizPhase.astro";
 import VizStill from "../../components/VizStill.astro";
 
@@ -35,35 +35,38 @@ import VizStill from "../../components/VizStill.astro";
 <DeckCard>
   ## The real world isn't single wavelength
 
-  The sun, being a massive ball of plasma, among basically any other white light source, will be emitting photons across the entire visible spectrum -- whatever reaches our eye at any given moment will rarely be a single wavelength of photons, meaning we really need to look at the *combined* effect of multiple wavelengths hitting our cones.
+  A single photon having a color is nice and all, but in bright daylight, around 4.000.000.000.000.000 photons of varying wavelengths will hit your retina every second -- so we really need to look at the *combined* effect of multiple wavelengths hitting our cones to understand color in full.
 
-  This will create situations in which cones are stimulated in ways that single wavelength light cannot, leading to us seeing *non-spectral* colors.
+  In particular, two photons can stimulate cones in ways that a single photon cannot, leading to us seeing *non-spectral* colors.
 </DeckCard>
 
 {/* Part three's curves, to look at combined stimulation on. */}
 <DeckCard vizProps={{ phase: "cones", marks: [650, 420], probe: false }}>
   ## Is pink a real color?
 
-  Look at the intersection of the S and L cones above. You will see that
-  there is no single wavelength of color that will stimulate the S and L cones without also stimulating the M cone, because of lots of overlap.
+  Above, look at the area where the S and L cones intersect. You'll see that there are no wavelengths that will stimulate S and L without also stimulating the M cone.
 
-  But we can easily make it happen by shooting *two* photons into your eye at the same time, one on the blue end of the spectrum and one on the red end.
+  A deep blue and a deep red photon hitting your eye at the same time will, however. When your brain gets the signal, it is left with no choice: Something that is S+L is usually cyan, but cyan would also stimulate M. This does not stimulate M, so it must be some distinct color then, and I guess that'll be pink!
+</DeckCard>
 
-  Your brain will get the signal, and it is left with no choice: It can't really render cyan, because the M cone is not stimulated. It must be a distinct color, and I guess that'll be pink!
+<DeckCard vizProps={{ phase: "cones", marks: [650, 420], probe: false }}>
+  ## Is pink a real color?
 
-  Is pink a real color? Well. I guess I see pink flowers and pink sunsets and pink flamingos and pink cotton candy, so it must be, right? Even though it's a concept that's made up by our brains, it is a real color in the sense that it is a distinct perceptual experience that we can have.
+  Is pink a real color? Well, what is reality really. I hope by now you've seen that color is purely a fabrication of the brain -- a messy way to reconstruct the EM spectrum from three overlapping detectors.
+
+  Pink is a distinct perceptual experience that we can have, and in that sense it is real -- at least, no more or less real than blue.
 </DeckCard>
 
 <DeckCard vizProps={{ phase: "cones", marks: [], probe: true }}>
   ## Is olo a real color?
 
-  Stimulating *just* the S cone is easy, right? Just pick a wavelength in the short end of the spectrum -- you will see a deep purple. Similarly, stimulating *just* the L cone can be achieved by picking a wavelength in long wavelength end of the spectrum, yielding a deep red.
+  You can stimulate just the S cone via purple. You can stimulate just the L cone via red. But how do you stimulate just the M cone? It overlaps with the other cones everywhere, so it's not something that is solvable by just shooting more frequencies of light at your eye.
 
-  But stimulating *just* the M cone is not possible without some heavy trickery, because it overlaps with the other cones everywhere.
+  Researchers at Berkeley came up with a way to do so in 2025 however: They mapped out people's retinas to identify each S, M, and L cone inside, and then shot lasers at just the M cones. 
 
-  Well, researchers at Berkeley have come up with trickery to do so in  2025: They mapped out people's retinas to identify each S, M, and L cone inside, and then shot lasers at just the M cones. The new color was dubbed "olo", which I hear comes from "010".
+  The 5 test subjects described the experience as seeing a cyan that is more intense than any cyan they have ever seen before. The new color was dubbed "olo", which I hear comes from "010".
 
-  Is it real? Well, it is a distinct perceptual experience that humans can have. The 5 people who have seen it have described it as a cyan that is more intense than any cyan they have ever seen before. There probably aren't many olo-colored things in real life, but all I can say is that I'm jealous that I haven't gotten to experience it yet!
+  Is it real? Well, it is a distinct perceptual experience that we can have, and in that sense it is real -- at least, no more or less real than pink.
 </DeckCard>
 {/* The same graph again, with four lights on it as bars rather than one
     wavelength as a mark, and the handle walking the line of mixtures that all

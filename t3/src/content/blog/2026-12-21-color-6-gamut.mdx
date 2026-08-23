@@ -4,12 +4,12 @@ series: "Colour"
 format: "deck"
 ground: "dark"
 description: ""
-pubDate: "August 21 2026"
+pubDate: "December 20 2026"
 ---
 
+import ChromaticityChart from "../../components/ChromaticityChart.astro";
 import DeckCard from "../../components/DeckCard.astro";
 import DeckViz from "../../components/DeckViz.astro";
-import ChromaticityChart from "../../components/ChromaticityChart.astro";
 
 {/* One chart for the whole post. Every card drives it with vizProps: which
     triangles are on it, and whether it is painting every colour or only the
@@ -21,7 +21,7 @@ import ChromaticityChart from "../../components/ChromaticityChart.astro";
 <DeckCard vizProps={{ gamuts: [], fill: "all", wavelengths: true }}>
   ## Every colour, laid out flat
 
-  The CIE chromaticity chart shows all colors available to the human eye, laid out flat. The curve shows all spectral colors, and the bottom dotted line shows our non-spectral purples. 
+  The CIE chromaticity chart shows all colors available to the human eye, laid out flat. The curve shows all spectral colors, and the bottom dotted line shows our non-spectral pinks and purples. 
 
   It has to be said though that you are only looking at a *representation* of the chart, because your montior likely cannot display all the colors your eye can see.
 </DeckCard>
@@ -31,7 +31,7 @@ import ChromaticityChart from "../../components/ChromaticityChart.astro";
 <DeckCard vizProps={{ gamuts: ["srgb"], fill: "srgb", white: true }}>
   ## Monitors show a subset of all colours
 
-  Given that monitors use three LEDs to produce color, they can only show a triangle's worth of colors on the chromaticity chart, and never the whole horseshoe.
+  Given that monitors use only three base colors, they can only show a triangle's worth of colors on the chromaticity chart, and never the whole horseshoe.
   
   sRGB is probably the most common color space for monitors, and it has been for a long time (1996). It has actually been so prevalent that it has become a problem: Modern monitors can often show colors outside of the sRGB triangle, but everyone on the web assumes sRGB, leading to you seeing over-saturated colors on better monitors, essentially punishing you for having a better monitor than the person who made the content.
 </DeckCard>

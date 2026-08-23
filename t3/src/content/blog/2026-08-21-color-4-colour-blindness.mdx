@@ -46,13 +46,13 @@ import VizPhase from "../../components/VizPhase.astro";
 
   People without M cones exist; they have a form of colour blindness called *deuteranopia*.
 
-  The lack of M collapses the rainbow quite a bit. Many colors become completely indistinguishable, and we can see why: The L cone response is roughly symmetric, and the S cone is far away and doesn't overlap past 550nm, meaning the brain has no way to tell between the symmetric L responses.
+  The lack of M collapses the rainbow quite a bit. Many colors become completely indistinguishable. Look for example at 600nm onwards -- only the L cone is active in varying amount, which won't be enough to produce distinct color perceptions. Higher intensity light would also stimulate the L cones more, so the brain has no way to tell the difference between a dim 600nm light and a bright 700nm light.
 
   The M cone is necessary to give the brain a second signal to compare against.
 </DeckCard>
 
 <DeckCard vizProps={{ phase: "photo" }}>
-  ## Maybe Mollard is right
+  ## Maybe Mollon is right
 
   The forest above loses quite a bit of detail when no M cone is present.
 </DeckCard>
@@ -87,11 +87,13 @@ import VizPhase from "../../components/VizPhase.astro";
 
 
 <DeckCard vizProps={{ phase: "cones", vision: "normal" }}>
-  ## But that's not us
+  ## Our eyes are still pretty good
 
-  Using the three cones we have, we can see about a million different colors, and using technology, we've found ways to trick our eyes into seeing them all using just red, green, and blue LEDs. 
+  Even with our imperfect cone setup, humans can distinguish around a million different colors.
 
-  This works by stimulating each of the three cones in a way that is indistinguishable from the way they would be stimulated by a real photon of that color. This is called *metamerism*, and it is the reason why we can see all the colors on our screens, even though they don't use real photons of those colors.
+  The fact that the EM spectrum is a one dimensional line, and our eyes detect across three dimensions (S, M and L), means that we can see a lot more colors than there are wavelengths of light.
 
-  Stay tuned for the next posts, where we will explore how this works in more detail, and how we can use it to create all the colors we see on our screens.
+  Seems counterintuitive, but it is true!
+
+
 </DeckCard>
