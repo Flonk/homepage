@@ -443,10 +443,11 @@ const {
 
 		.bar {
 			width: 100%;
-			/* Lying down: the track takes its axis from the writing mode, so this
-			   one line turns the upright bars horizontal, minimum at the left. */
-			writing-mode: horizontal-tb;
-			direction: ltr;
+			/* Lying down. The track takes its axis from these two properties, so
+			   the bars turn horizontal with the minimum at the left — see VizTrack
+			   for why it is a property rather than an inherited writing mode. */
+			--track-flow: horizontal-tb;
+			--track-dir: ltr;
 		}
 
 		.stage {

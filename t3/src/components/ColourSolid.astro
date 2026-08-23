@@ -719,6 +719,8 @@ const HSL = [
 		margin: 0;
 		font-size: 1.125rem;
 		font-variant-numeric: tabular-nums;
+		/* Three numbers on one line or the reading is two readings. */
+		white-space: nowrap;
 		color: var(--readout-ink, #000);
 		pointer-events: none;
 	}
@@ -834,7 +836,7 @@ const HSL = [
 		}
 
 		.readout {
-			font-size: 0.8rem;
+			font-size: 0.7rem;
 		}
 
 		.toggle {
@@ -889,11 +891,18 @@ const HSL = [
 		}
 	}
 
-	/* A pane genuinely taller than it is wide, which the deck's own layout
-	   makes rare. Everything stacks and the bars lie down; the slots close
-	   downward, so the air between them is the column's gap rather than the
-	   inline margins, which would only push a full-width plate off the side. */
-	@container viz (max-aspect-ratio: 1 / 1) {
+	/* A pane genuinely taller than it is wide *and* with width to spare, which
+	   the deck's own layout makes rare. Everything stacks and the bars lie
+	   down; the slots close downward, so the air between them is the column's
+	   gap rather than the inline margins, which would only push a full-width
+	   plate off the side.
+
+	   The width floor matters: a narrow pane is usually taller than it is wide
+	   as well, and both sets of rules would then be in play — one asking for a
+	   column of full-width plates and the other for a band of upright bars over
+	   the solid. The band is the better answer whenever width is what is
+	   short, so this one stands aside for it. */
+	@container viz (min-width: 34rem) and (max-aspect-ratio: 1 / 1) {
 		.rig {
 			flex-direction: column;
 			gap: 0.4rem;
@@ -945,13 +954,14 @@ const HSL = [
 			gap: 0.3rem;
 		}
 
-		/* Lying down: the track takes its axis from the writing mode, so this
-		   one line turns the upright bars horizontal, minimum at the left. */
+		/* Lying down. The track takes its axis from these two properties, so
+		   the bars turn horizontal with the minimum at the left — see VizTrack
+		   for why it is a property rather than an inherited writing mode. */
 		.bar {
 			flex-direction: row;
 			gap: 0.5rem;
-			writing-mode: horizontal-tb;
-			direction: ltr;
+			--track-flow: horizontal-tb;
+			--track-dir: ltr;
 		}
 
 		.bar-name {

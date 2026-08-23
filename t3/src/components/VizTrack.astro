@@ -219,11 +219,21 @@ const ends = Array.from({ length: thumbs }, (_, i) => i);
 
 	   Which matters because orientation is not always the author's to decide:
 	   the cube's channel bars stand up in a wide pane and lie down in a tall
-	   one, and that is a container query — something a prop cannot express. A
-	   host that needs it flips `writing-mode` on the element it wraps the track
-	   in, and the track inherits it, because nothing below assumes an axis. */
+	   one, and that is a container query — something a prop cannot express.
+
+	   So the axis is a pair of custom properties rather than an inherited
+	   writing mode. Inheriting looks like it should work and does not: this
+	   element sets its own `writing-mode` when it is upright, and a rule here
+	   beats anything a parent passes down, so a host laying its bars flat in a
+	   narrow pane was quietly ignored. Properties inherit through the
+	   declaration instead, so a host sets `--track-flow: horizontal-tb` (and
+	   `--track-dir: ltr`) on whatever it wraps the track in, and the bar lies
+	   down. The script asks the computed style which way it ended up rather
+	   than trusting the prop it was built with. */
 	.track {
 		position: relative;
+		writing-mode: var(--track-flow, horizontal-tb);
+		direction: var(--track-dir, ltr);
 		inline-size: 100%;
 		--depth: var(--track-size, var(--bar-size));
 		--reach: var(--track-thumb-reach, var(--thumb-reach, calc(var(--depth) + 6px)));
@@ -234,8 +244,8 @@ const ends = Array.from({ length: thumbs }, (_, i) => i);
 	}
 
 	.upright {
-		writing-mode: vertical-lr;
-		direction: rtl;
+		--track-flow: vertical-lr;
+		--track-dir: rtl;
 	}
 
 	/* What is behind the bar: a backdrop if the card gave one, otherwise the
@@ -521,10 +531,15 @@ const ends = Array.from({ length: thumbs }, (_, i) => i);
 
 		/* Which end a press was meant for: the nearer of the two, by value. With
 		   one thumb there is nothing to choose. */
+		/* Which way the bar runs for the gesture in hand. A CSS question, not a
+		   prop one — a host may stand its bars up in a wide pane and lay them
+		   down in a narrow one — so it is read from the computed style, once per
+		   grab rather than once per move. */
+		let standing = root.dataset.upright === 'true';
+
 		const fractionAt = (e: PointerEvent) => {
 			const r = root.getBoundingClientRect();
-			const upright = root.dataset.upright === 'true';
-			const raw = upright ? (r.bottom - e.clientY) / r.height : (e.clientX - r.left) / r.width;
+			const raw = standing ? (r.bottom - e.clientY) / r.height : (e.clientX - r.left) / r.width;
 			return Math.min(1, Math.max(0, raw));
 		};
 
@@ -556,6 +571,7 @@ const ends = Array.from({ length: thumbs }, (_, i) => i);
 
 		root.addEventListener('pointerdown', (e) => {
 			if (root.dataset.drag === 'false' || e.button !== 0) return;
+			standing = getComputedStyle(root).writingMode.startsWith('vertical');
 			const frac = fractionAt(e);
 			dragging = nearest(frac);
 			root.setPointerCapture(e.pointerId);
