@@ -1,0 +1,594 @@
+---
+/**
+ * The bar with a thumb on it — every one of them in the series.
+ *
+ * There were four: the knob under a mixture, the three channel sliders beside
+ * the cube, the mark along the spectrum, and the invisible one under the cone
+ * curves. They agreed on nothing — different thumbs, different tracks, one of
+ * them upright, two of them animated on their own clocks — and the differences
+ * were accidents of the order they were written in rather than decisions.
+ *
+ * What actually varies between them is three things, so those are the props:
+ *
+ *   - what is *behind* the bar. A plain fill up to the thumb, for a bar
+ *     reporting how far along something is; or a `backdrop` — a channel ramp
+ *     from black to red, the visible spectrum — for a bar whose length means
+ *     something in its own right.
+ *   - how many thumbs. One, or two for a pair of ends with the span between
+ *     them: solid and hollow, so which is which needs no legend.
+ *   - whether it walks by itself. `sweep` hands it the pacing every animation
+ *     in the series keeps to — steady across the middle, easing off and
+ *     resting a couple of seconds at each end before coming back (lib/shuttle).
+ *     It stops the moment a reader touches it and picks up again a few seconds
+ *     after they let go, from wherever they left it.
+ *
+ * The control is a real <input type="range"> per thumb, laid over the bar and
+ * invisible; what you see is drawn by this component. That is the arrangement
+ * that gets every browser to agree on where a thumb sits — vendor thumb
+ * pseudo-elements are inset by half their width at the ends, and no two engines
+ * inset them the same way — while keyboard, screen reader and touch all keep
+ * working, because they are talking to a range input.
+ *
+ * Hosts do not reach inside. They read `track:input` — which fires for a
+ * reader's drag and for the sweep alike, so nothing has to care which moved it
+ * — and they push values back with the small API hung on the element:
+ *
+ *   const track = el.track;
+ *   track.set(0, 128);          // move a thumb without firing track:input
+ *   track.backdrop('linear-gradient(…)');
+ *   track.stop(); track.start(); // the sweep, if there is one
+ */
+export type Mark = {
+	/** Where it stands, in the bar's own units. */
+	at: number;
+	/** What it is filled with. The bar's ink if left out. */
+	colour?: string;
+	/** The reader's own mark, drawn a little larger with a second outline. */
+	strong?: boolean;
+};
+
+interface Props {
+	/** Standing up rather than lying down, with the maximum at the top. */
+	upright?: boolean;
+	/**
+	 * A CSS background painted the length of the bar — a channel ramp, the
+	 * spectrum. Leave it out for a plain bar, which then fills up to its thumb
+	 * instead: with a backdrop there is already something to look at, and a fill
+	 * over it would only hide half of it.
+	 */
+	backdrop?: string;
+	/** Paint up to the thumb. On by default when there is no backdrop. */
+	fill?: boolean;
+	/**
+	 * One thumb, or two for a pair of ends — or none, for a bar that is only a
+	 * bar: an axis with something painted along it, whose marks belong to the
+	 * picture it sits in rather than to the control.
+	 */
+	thumbs?: 0 | 1 | 2;
+	/** Where each thumb starts. */
+	values?: number[];
+	/**
+	 * Marks along the bar that are the picture's rather than the reader's: a
+	 * light the card is talking about, a wavelength it keeps pointing at. They
+	 * carry their own colour, because on a bar that is a spectrum the useful
+	 * thing to say about a mark is what colour the light there is; nothing
+	 * takes hold of them. A host that moves them every frame sets them through
+	 * `marks()` on the element rather than re-rendering.
+	 */
+	marks?: Mark[];
+	min?: number;
+	max?: number;
+	step?: number;
+	/** One per thumb, for the reader who is listening rather than looking. */
+	labels?: string[];
+	/** Hide the second thumb and its control, for a card showing one end. */
+	single?: boolean;
+	/**
+	 * What moves the first thumb when nobody is holding it. `shuttle` walks it
+	 * end to end at the pacing in lib/shuttle; `none` leaves it where it is put,
+	 * for a bar whose value is somebody else's to say — though that somebody can
+	 * still register a motion of its own on the same context, and then a grab on
+	 * this bar holds that too. See lib/animate.
+	 */
+	motion?: 'shuttle' | 'none';
+	/** How long one round trip of that walk takes, not counting the rests. */
+	sweepSeconds?: number;
+	/** How long it rests at each end. */
+	hold?: number;
+	/** Let the reader take a thumb. */
+	drag?: boolean;
+	/** Seconds a reader's pick is held before the sweep takes over again. */
+	idleResume?: number;
+	/**
+	 * How thick the bar is, as a CSS length. The spectrum's is the default; a
+	 * bar carrying a ramp worth looking at — the cube's channels — wants more.
+	 * A host that has to change it per pane size sets `--track-size` instead,
+	 * which a container query can reach and an inline style cannot.
+	 */
+	size?: string;
+	/** How big the thumb is along the bar, as a CSS length. */
+	thumbSize?: string;
+	/**
+	 * How far the thumb reaches across the bar. Wider than the bar by default,
+	 * so a thin bar has something to grab; a thick one — a channel slider — sets
+	 * it under the bar's own thickness so the thumb sits inside it instead.
+	 */
+	thumbReach?: string;
+}
+
+const {
+	upright = false,
+	backdrop,
+	fill = !backdrop,
+	thumbs = 1,
+	values = [],
+	marks = [],
+	min = 0,
+	max = 1,
+	step = 0.001,
+	labels = [],
+	single = false,
+	motion = 'none',
+	sweepSeconds = 9,
+	hold = 2,
+	drag = true,
+	idleResume = 6,
+	size = '0.85rem',
+	thumbSize = '2px',
+	thumbReach,
+	class: className,
+	...rest
+} = Astro.props;
+
+const at = (i: number) => values[i] ?? (i === 0 ? min : max);
+const ends = Array.from({ length: thumbs }, (_, i) => i);
+---
+
+<div
+	class:list={['track', upright && 'upright', fill && 'filled', className]}
+	{...rest}
+	data-viz-track
+	data-no-swipe
+	data-upright={upright ? 'true' : 'false'}
+	data-min={min}
+	data-max={max}
+	data-motion={motion}
+	data-sweep-seconds={sweepSeconds}
+	data-hold={hold}
+	data-drag={drag ? 'true' : 'false'}
+	data-idle-resume={idleResume}
+	style={[
+		`--bar-size: ${size}`,
+		`--thumb-size: ${thumbSize}`,
+		thumbReach && `--thumb-reach: ${thumbReach}`,
+		backdrop && `--backdrop: ${backdrop}`,
+		...ends.map((i) => `--at-${i}: ${(at(i) - min) / (max - min || 1)}`),
+	]
+		.filter(Boolean)
+		.join('; ')}
+>
+	<div class="bed" data-bed>
+		{fill && <div class="fill" data-fill></div>}
+	</div>
+	{
+		ends.map((i) => (
+			<span class:list={['thumb', i === 1 && 'second']} data-thumb={i} hidden={i === 1 && single}>
+				{/* Somewhere for a host to hang an affordance of its own — the
+				    spectrum's little triangle — on a thumb it does not otherwise
+				    have to reimplement. */}
+				<slot name={`thumb-${i}`} />
+			</span>
+		))
+	}
+	<div class="marks" data-marks>
+		{marks.map((m) => (
+			<span
+				class:list={['mark', m.strong && 'strong']}
+				style={`--at: ${(m.at - min) / (max - min || 1)}${m.colour ? `; --mark-ink: ${m.colour}` : ''}`}
+			/>
+		))}
+	</div>
+	{
+		/* Stacked over the bar, one per thumb, each transparent: the drawing above
+		   is the control's appearance and these are the control. `data-no-swipe`
+		   because a drag along a deck is the deck's page turn unless something
+		   claims it, and here the bar is claiming it. */
+		ends.map((i) => (
+			<input
+				class="grip viz-range is-silent"
+				data-no-swipe
+				data-input={i}
+				type="range"
+				min={min}
+				max={max}
+				step={step}
+				value={at(i)}
+				disabled={!drag}
+				hidden={i === 1 && single}
+				aria-label={labels[i] ?? (thumbs === 1 ? 'Value' : i === 0 ? 'First end' : 'Second end')}
+			/>
+		))
+	}
+</div>
+
+<style>
+	/* Everything here is written in logical properties, and the axis is decided
+	   by one thing: the writing mode. A bar lying down is the default; `upright`
+	   sets `writing-mode: vertical-lr` with `direction: rtl`, which stands the
+	   inline axis up and puts its start at the bottom, so a value grows upward.
+
+	   Which matters because orientation is not always the author's to decide:
+	   the cube's channel bars stand up in a wide pane and lie down in a tall
+	   one, and that is a container query — something a prop cannot express. A
+	   host that needs it flips `writing-mode` on the element it wraps the track
+	   in, and the track inherits it, because nothing below assumes an axis. */
+	.track {
+		position: relative;
+		inline-size: 100%;
+		--depth: var(--track-size, var(--bar-size));
+		--reach: var(--track-thumb-reach, var(--thumb-reach, calc(var(--depth) + 6px)));
+		--size: var(--track-thumb-size, var(--thumb-size));
+		block-size: var(--depth);
+		--thumb-across: var(--reach);
+		--ink: var(--track-ink, currentColor);
+	}
+
+	.upright {
+		writing-mode: vertical-lr;
+		direction: rtl;
+	}
+
+	/* What is behind the bar: a backdrop if the card gave one, otherwise the
+	   bed's own quiet grey with the fill running over it. */
+	.bed {
+		position: absolute;
+		inset: 0;
+		border-radius: var(--track-radius, 2px);
+		/* Two layers and a transparent border: the bar itself clipped to the
+		   padding box, and `--track-edge` showing through the border box around
+		   it. A real border would do for a flat colour, but not for one that has
+		   to follow the ramp behind it — CSS borders take a colour and nothing
+		   else — and this is the way to paint an edge that changes along its own
+		   length. Nothing is drawn unless a host asks for it.
+
+		   Inside the box rather than around it, so a bar's painted size is the
+		   size it was given and two of them line up. */
+		background:
+			var(--track-backdrop, var(--backdrop, var(--track-rest, rgb(255 255 255 / 0.16))))
+				padding-box,
+			var(--track-edge, transparent) border-box;
+		box-sizing: border-box;
+		border: var(--track-border, 0 solid transparent);
+		overflow: hidden;
+	}
+
+	.fill {
+		position: absolute;
+		inset-block: 0;
+		inset-inline-start: 0;
+		inline-size: calc(var(--at-0) * 100%);
+		background: var(--ink);
+	}
+
+	/* Placed by hand rather than left to the browser: a native thumb is inset by
+	   half its own width at each end, differently in every engine, and a mark
+	   that has to line up with something drawn underneath cannot afford that.
+
+	   Centred on its value rather than travelling between insets. Shortening the
+	   travel by one thumb keeps the whole thumb inside the bar, but it moves
+	   every position but the middle: the centre lands at `at * (W - s) + s/2`,
+	   which is off by half a thumb at one end and half a thumb the other way at
+	   the other. On a two-pixel mark that is the one pixel you can see it by, and
+	   against a guide line drawn on a canvas it is the one pixel that shows. */
+	.thumb {
+		position: absolute;
+		inset-block-start: 50%;
+		margin-block-start: calc(var(--thumb-across) / -2);
+		inset-inline-start: calc(var(--at) * 100%);
+		margin-inline-start: calc(var(--size) / -2);
+		inline-size: var(--size);
+		block-size: var(--thumb-across);
+		background: var(--mark, var(--track-ink, #fff));
+		/* Its own outline and its own light, because what it has to be read
+		   against is whatever the backdrop happens to be under it — a rainbow, a
+		   channel ramp — and contrast cannot be assumed anywhere along it. */
+		box-shadow:
+			0 0 0 1px var(--track-ring, rgb(0 0 0 / 0.75)),
+			var(--track-glow, 0 0 7px 1px rgb(255 255 255 / 0.45));
+		pointer-events: none;
+	}
+
+	/* The second end, when there is one: the same mark in the other ink, so a
+	   pair reads as a pair without a legend. */
+	.thumb.second {
+		--mark: var(--track-ink-second, #1d1f21);
+		/* Its own outline as well as its own fill: a host that inverts the first
+		   thumb — dark inside, light around it — would otherwise be outlining
+		   this one in the colour it is filled with. */
+		--track-ring: var(--track-ring-second, rgb(0 0 0 / 0.75));
+		--track-glow: 0 0 7px 1px rgb(0 0 0 / 0.35);
+	}
+
+	.thumb[data-thumb='0'] {
+		--at: var(--at-0);
+	}
+
+	.thumb[data-thumb='1'] {
+		--at: var(--at-1);
+	}
+
+	.thumb[hidden] {
+		display: none;
+	}
+
+	/* The picture's own marks: swatches standing on the bar rather than handles
+	   on it. Each carries the colour of whatever it is marking, which on a bar
+	   that is a spectrum is the useful thing to say about a position.
+
+	   :global, because a host with a mark that moves builds these in a script,
+	   and a scoped rule reaches nothing a script has made. */
+	.marks {
+		position: absolute;
+		inset: 0;
+		--mark-size: var(--track-mark-size, 6px);
+		--mark-across: calc(var(--depth) + 4px);
+		pointer-events: none;
+	}
+
+	.marks :global(.mark) {
+		position: absolute;
+		inset-block-start: 50%;
+		margin-block-start: calc(var(--mark-across) / -2);
+		inset-inline-start: calc(var(--at) * 100%);
+		margin-inline-start: calc(var(--mark-size) / -2);
+		inline-size: var(--mark-size);
+		block-size: var(--mark-across);
+		background: var(--mark-ink, var(--track-ink, #fff));
+		box-shadow: 0 0 0 1px rgb(0 0 0 / 0.65);
+	}
+
+	/* The reader's own, told apart from the card's by size and a second line. */
+	.marks :global(.mark.strong) {
+		--mark-size: var(--track-mark-strong, 10px);
+		--mark-across: calc(var(--depth) + 8px);
+		box-shadow:
+			0 0 0 1px rgb(0 0 0 / 0.65),
+			0 0 0 2px var(--track-ring-strong, rgb(255 255 255 / 0.7));
+	}
+
+	/* The controls, stacked over everything. The reset and the vendor
+	   pseudo-elements are .viz-range in global.css; `is-silent` is the variant
+	   that draws nothing, because what it would draw is above. A range input
+	   takes its axis from the writing mode too, so the flip above carries. */
+	/* Reachable by keyboard and by anything reading the page, but not by the
+	   pointer: with two thumbs the second input is stacked over the first and
+	   would take every press on the bar, including the ones meant for the thumb
+	   underneath it. The pointer is handled on the track instead, which is the
+	   only thing that can see both thumbs and say which one was meant. */
+	.grip {
+		pointer-events: none;
+		position: absolute;
+		/* Reachable past the bar's own thickness: a 6px bar is not a touch
+		   target, and the thumb standing over it is what a finger aims at. */
+		inset-block: calc((var(--depth) - var(--thumb-across)) / 2);
+		inset-inline: 0;
+		inline-size: 100%;
+		block-size: var(--thumb-across);
+		cursor: grab;
+	}
+
+	.grip:active {
+		cursor: grabbing;
+	}
+
+	/* Standing up, the hairline thumb has to lie across the bar rather than
+	   along it. Left as it is, the thumb is as long as the track, there is
+	   nowhere for it to travel, and every press on the bar reads as the
+	   minimum — which looks exactly like a bar that cannot be dragged. */
+	.upright .grip {
+		--range-thumb-w: 100%;
+		--range-thumb-h: 1px;
+	}
+
+	.grip[hidden] {
+		display: none;
+	}
+</style>
+
+<script>
+	import { contextFor, type Motion } from '../lib/animate';
+	import { shuttleAt, shuttleEntry } from '../lib/shuttle';
+
+	type TrackApi = {
+		/** Move a thumb. Silent: hosts that push a value do not want it back. */
+		set(index: number, value: number): void;
+		/** What a thumb reads now. */
+		get(index: number): number;
+		/**
+		 * Move, add or drop the picture's marks. Elements are reused where the
+		 * count is unchanged, because a host with a moving mark calls this every
+		 * frame, and rebuilding the DOM at 60Hz would be the expensive part.
+		 */
+		marks(list: Mark[]): void;
+		/** Repaint the bar's backdrop — a ramp that depends on the card, say. */
+		backdrop(css: string): void;
+		/** And its edge, for a backdrop that changes and has to keep its rule. */
+		edge(css: string): void;
+		/** The walk, for a host that knows the bar is off screen. */
+		start(): void;
+		stop(): void;
+		/** Put the walk back on, or take it off — a card may want it held still. */
+		motion(on: boolean): void;
+		/** Show or hide a thumb, for a card that is not about that end. */
+		showThumb(index: number, on: boolean): void;
+		/**
+		 * The real control behind a thumb. For the few things only the input can
+		 * carry — whether it is disabled, what it reads out to a screen reader.
+		 */
+		grip(index: number): HTMLInputElement;
+	};
+
+	function initTrack(root: HTMLElement) {
+		if (root.dataset.ready === 'true') return;
+		root.dataset.ready = 'true';
+
+		const bed = root.querySelector<HTMLElement>('[data-bed]')!;
+		const marksEl = root.querySelector<HTMLElement>('[data-marks]')!;
+		const grips = [...root.querySelectorAll<HTMLInputElement>('[data-input]')];
+		const min = Number(root.dataset.min);
+		const max = Number(root.dataset.max);
+		const span = max - min || 1;
+		const seconds = Number(root.dataset.sweepSeconds) || 9;
+		const hold = Number(root.dataset.hold ?? 2);
+		// Read per grab rather than once: a card may hand the bar a new one.
+		const idleSeconds = () => Number(root.dataset.idleResume) || 6;
+
+		const place = (i: number, value: number) => {
+			root.style.setProperty(`--at-${i}`, String((value - min) / span));
+			if (document.activeElement !== grips[i]) grips[i].value = String(value);
+		};
+
+		const api: TrackApi = {
+			set: (i, value) => place(i, Math.min(max, Math.max(min, value))),
+			get: (i) => Number(grips[i]?.value ?? min),
+			marks: (list) => {
+				while (marksEl.children.length > list.length) marksEl.lastElementChild!.remove();
+				while (marksEl.children.length < list.length) marksEl.append(document.createElement('span'));
+				list.forEach((m, i) => {
+					const el = marksEl.children[i] as HTMLElement;
+					el.className = m.strong ? 'mark strong' : 'mark';
+					el.style.setProperty('--at', String((m.at - min) / span));
+					if (m.colour) el.style.setProperty('--mark-ink', m.colour);
+					else el.style.removeProperty('--mark-ink');
+				});
+			},
+			backdrop: (css) => bed.style.setProperty('--backdrop', css),
+			edge: (css) => bed.style.setProperty('--track-edge', css),
+			start: () => start(),
+			stop: () => stop(),
+			grip: (i) => grips[i],
+			showThumb: (index, on) => {
+				for (const el of root.querySelectorAll<HTMLElement>(
+					`[data-thumb='${index}'], [data-input='${index}']`,
+				)) {
+					el.hidden = !on;
+				}
+			},
+			motion: (on) => (on ? start() : stop()),
+		};
+		(root as HTMLElement & { track: TrackApi }).track = api;
+
+		/* One event for both movers. A host that wants to know what the bar says
+		   should not have to care whether a reader dragged it or the sweep walked
+		   it there. */
+		const announce = (i: number, value: number, fromReader: boolean) => {
+			root.dispatchEvent(
+				new CustomEvent('track:input', {
+					detail: { index: i, value, values: grips.map((g) => Number(g.value)), fromReader },
+					bubbles: true,
+				}),
+			);
+		};
+
+		/* ---- the walk --------------------------------------------------------
+		   Not a loop of its own: the bar joins the animation context it is in and
+		   the context runs the frames — which is what lets a grab on one bar stop
+		   the two beside it, and what lets a host walking a path of its own be
+		   stopped by the same grab. See lib/animate. */
+		const ctx = contextFor(root);
+		const walking = root.dataset.motion === 'shuttle';
+		let leave: (() => void) | null = null;
+
+		const walk: Motion = {
+			at: (t) => min + span * shuttleAt(t, { seconds, hold }),
+			entry: (value) => shuttleEntry((value - min) / span, { seconds }),
+			apply: (value) => {
+				place(0, value);
+				announce(0, value, false);
+			},
+		};
+
+		function start() {
+			if (!walking || leave) return;
+			ctx.note(walk, api.get(0));
+			leave = ctx.add(walk);
+		}
+
+		function stop() {
+			leave?.();
+			leave = null;
+		}
+
+		/* Which end a press was meant for: the nearer of the two, by value. With
+		   one thumb there is nothing to choose. */
+		const fractionAt = (e: PointerEvent) => {
+			const r = root.getBoundingClientRect();
+			const upright = root.dataset.upright === 'true';
+			const raw = upright ? (r.bottom - e.clientY) / r.height : (e.clientX - r.left) / r.width;
+			return Math.min(1, Math.max(0, raw));
+		};
+
+		const nearest = (frac: number) => {
+			let best = 0;
+			let gap = Infinity;
+			grips.forEach((g, i) => {
+				if (g.hidden) return;
+				const d = Math.abs((Number(g.value) - min) / span - frac);
+				if (d < gap) {
+					gap = d;
+					best = i;
+				}
+			});
+			return best;
+		};
+
+		let dragging: number | null = null;
+
+		const put = (i: number, frac: number) => {
+			const step = Number(grips[i].step) || 0;
+			let value = min + frac * span;
+			if (step) value = Math.round(value / step) * step;
+			place(i, Math.min(max, Math.max(min, value)));
+			announce(i, api.get(i), true);
+			if (i === 0) ctx.note(walk, api.get(0));
+			ctx.hold(idleSeconds());
+		};
+
+		root.addEventListener('pointerdown', (e) => {
+			if (root.dataset.drag === 'false' || e.button !== 0) return;
+			const frac = fractionAt(e);
+			dragging = nearest(frac);
+			root.setPointerCapture(e.pointerId);
+			put(dragging, frac);
+			e.preventDefault();
+		});
+
+		root.addEventListener('pointermove', (e) => {
+			if (dragging === null) return;
+			put(dragging, fractionAt(e));
+		});
+
+		const drop = () => (dragging = null);
+		root.addEventListener('pointerup', drop);
+		root.addEventListener('pointercancel', drop);
+
+		for (const grip of grips) {
+			grip.addEventListener('input', () => {
+				const i = Number(grip.dataset.input);
+				const value = Number(grip.value);
+				place(i, value);
+				announce(i, value, true);
+				/* Everything sharing this bar's clock stops, not only this bar: a
+				   reader setting one of three channels is setting one colour. */
+				if (i === 0) ctx.note(walk, value);
+				ctx.hold(idleSeconds());
+			});
+			// Taking hold is enough; a value need not have changed yet.
+			grip.addEventListener('pointerdown', () => ctx.hold(idleSeconds()));
+		}
+
+		start();
+	}
+
+	document.querySelectorAll<HTMLElement>('[data-viz-track]').forEach(initTrack);
+</script>

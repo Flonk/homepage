@@ -12,6 +12,7 @@
  */
 
 import { coneResponse } from './cones';
+import { rgbCss } from './rgb';
 
 /** The speed of light, in nanometres a second. */
 export const C_NM_PER_S = 2.99792458e17;
@@ -320,8 +321,7 @@ export function dichromatMatrix(vision: Exclude<Vision, 'normal'>): number[] {
 
 /** The same, ready to hand to a canvas or a gradient stop. */
 export function wavelengthCss(nm: number, vision: Vision = 'normal'): string {
-	const [r, g, b] = wavelengthRgb(nm, vision);
-	return `rgb(${r} ${g} ${b})`;
+	return rgbCss(wavelengthRgb(nm, vision));
 }
 
 /**

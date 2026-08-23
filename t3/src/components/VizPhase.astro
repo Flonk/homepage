@@ -41,11 +41,16 @@ const { name } = Astro.props;
 		pointer-events: auto;
 	}
 
+	/* DeckViz's cap, applied here rather than to the phase itself: the phase is
+	   a wrapper, and a visualization that needs the whole pane lifts the cap by
+	   declaring `--viz-max` on itself — which it can only do to a rule that
+	   lands on it. Centring is the flex box above. */
 	.viz-phase > :global(*) {
 		width: 100%;
 		height: 100%;
 		min-width: 0;
 		min-height: 0;
+		max-width: var(--viz-max);
 	}
 
 	@media (prefers-reduced-motion: reduce) {

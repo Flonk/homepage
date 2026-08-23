@@ -55,9 +55,17 @@ interface Props {
 	spin?: boolean;
 	/** Which solid to start on. */
 	space?: 'rgb' | 'hsl';
+	/**
+	 * Offer the switch, and turn it back and forth by itself. Off for a card
+	 * that has finished making the comparison and is now talking about one of
+	 * the two solids: the shape stops changing under the reader, and there is
+	 * no control inviting them to change it back.
+	 */
+	toggle?: boolean;
 }
 
-const { idleResume = 5, spin = true, space = 'rgb' } = Astro.props;
+const { idleResume = 5, spin = true, space = 'rgb', toggle = true } = Astro.props;
+
 
 const RGB = [
 	{ name: 'Red', ramp: '#f16d6d' },
@@ -104,10 +112,12 @@ const HSL = [
 	data-idle-resume={idleResume}
 	data-spin={String(spin)}
 	data-space={space}
+	data-toggle-shown={String(toggle)}
 >
 	{/* One context for all six bars: they are one colour between them, so a
 	    grab on any of them stops the dot for everybody. See lib/animate. */}
 	<div class="rig" data-anim-context>
+		<div class="slot" data-slot="rgb">
 		<div class="plate rgb" role="group" aria-label="Red, green and blue" data-plate="rgb">
 			{
 				RGB.map((ch) => (
@@ -133,6 +143,7 @@ const HSL = [
 				))
 			}
 		</div>
+		</div>
 
 		<div class="middle">
 			<div class="stage">
@@ -143,22 +154,26 @@ const HSL = [
 			    with both names showing: what it is set to has to be readable at a
 			    glance beside a shape that is halfway between the two. */}
 			<div class="controls">
-				<button
-					class="toggle"
-					type="button"
-					role="switch"
-					aria-checked={space === 'hsl' ? 'true' : 'false'}
-					aria-label="Colour space"
-					data-toggle
-				>
-					<span class="knob" aria-hidden="true"></span>
-					<span class="side" data-side="rgb" aria-hidden="true">RGB</span>
-					<span class="side" data-side="hsl" aria-hidden="true">HSL</span>
-				</button>
 				<p class="readout" data-readout>rgb(128 128 128)</p>
+				<div class="switch">
+					<button
+						class="toggle"
+						type="button"
+						role="switch"
+						aria-checked={space === 'hsl' ? 'true' : 'false'}
+						aria-label="Colour space"
+						data-toggle
+						inert={!toggle}
+					>
+						<span class="knob" aria-hidden="true"></span>
+						<span class="side" data-side="rgb" aria-hidden="true">RGB</span>
+						<span class="side" data-side="hsl" aria-hidden="true">HSL</span>
+					</button>
+				</div>
 			</div>
 		</div>
 
+		<div class="slot" data-slot="hsl">
 		<div class="plate hsl" role="group" aria-label="Hue, saturation and lightness" data-plate="hsl">
 			{
 				HSL.map((ch) => (
@@ -181,7 +196,22 @@ const HSL = [
 				))
 			}
 		</div>
+		</div>
 	</div>
+
+	{/* The colour on show, as a field rather than a chip: an S that bisects the
+	    pane diagonally and fills the lower-right side. The viewBox is a flat
+	    0-100 square stretched to the pane, so the coordinates are percentages
+	    and anything past the edges simply runs off frame.
+
+	    It halves the pane at any size: the chord runs corner to corner, and the
+	    two control points sit symmetrically about the centre, so the lobe the S
+	    adds on one side is exactly the lobe it takes from the other. Keep that
+	    symmetry when reshaping and the halving survives. */}
+	<svg class="swoosh" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+		<path d="M -10 112 C 48 88, 52 12, 110 -12 L 112 112 Z" fill="var(--swatch, #808080)"
+		></path>
+	</svg>
 </div>
 
 <style>
@@ -202,19 +232,53 @@ const HSL = [
 		color: var(--deck-ink-dim, #8891a0);
 	}
 
+	/* Over the swoosh, both of them. */
 	.rig {
+		position: relative;
+		z-index: 1;
+	}
+
+	/* Covers the whole pane, bleeding past the pane's own padding so the S meets
+	   its edges; the viz half clips it. Sized explicitly rather than by the
+	   insets: an svg carrying a viewBox is a replaced element, so an auto width
+	   would give it the viewBox's 1:1 ratio and render it square. */
+	.swoosh {
+		position: absolute;
+		z-index: 0;
+		top: -1rem;
+		right: -1rem;
+		bottom: 0;
+		left: -1rem;
+		width: calc(100% + 2rem);
+		height: calc(100% + 1rem);
+		pointer-events: none;
+	}
+
+	/* The air between a plate and the solid is carried by the plate rather than
+	   by the row, because a gap belongs to a row whatever is in it: with the
+	   left plate closed to nothing there would still be a gap holding its
+	   place, and the whole composition would sit off-centre by it. As a margin
+	   on the slot it closes when the slot does. */
+	.rig {
+		--rig-gap: clamp(0.5rem, 2.5%, 2rem);
 		flex: 1;
 		min-width: 0;
 		min-height: 0;
 		display: flex;
 		align-items: stretch;
 		justify-content: center;
-		gap: clamp(0.5rem, 2.5%, 2rem);
 	}
 
 	/* Both plates hold their space whether or not they are the live one: a set
 	   of bars that folded away would move the shape sideways every time the
 	   switch was thrown, and the shape is what a reader is watching. */
+	/* Three bars on a plate of their own. Loose on the ground they would read as
+	   part of the picture; on a panel they read as the thing you are allowed to
+	   touch — and the marks, white and lit for the spectrum's sake, have
+	   something to be white against. A wash of white over whatever is behind it
+	   rather than a colour of its own, with the ground blurred underneath: the
+	   swoosh runs under the right-hand plate, and the panel wants to read as
+	   glass over the colour rather than as a lid on it. */
 	.plate {
 		flex: none;
 		display: flex;
@@ -224,20 +288,97 @@ const HSL = [
 		margin: 1em 0;
 		padding: 1em;
 		border-radius: 0.5rem;
-		background: var(--plate, rgb(255 255 255 / 0.06));
-		box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.08);
+		transition:
+			opacity 0.45s ease,
+			padding 0.45s ease;
+		background: var(--plate, var(--viz-glass, rgb(255 255 255 / 0.06)));
+		/* The lit rim, and a soft shadow under the pane so the glass sits above
+		   the colour rather than in it. */
+		box-shadow:
+			inset 0 0 0 1px var(--viz-glass-rim, rgb(255 255 255 / 0.08)),
+			0 4px 16px rgb(0 0 0 / 0.15);
+		backdrop-filter: blur(6px);
+	}
+
+	/* The set that is not being used is left legible but plainly out of play —
+	   dimmed and desaturated rather than hidden, so a reader can see that the
+	   same colour has a reading in both spaces. The plate itself keeps its
+	   ground; it is the bars that go quiet, not the panel they are on. */
+	.plate .bar {
 		transition:
 			opacity 0.45s ease,
 			filter 0.45s ease;
 	}
 
-	/* The set that is not being used is left legible but plainly out of play —
-	   dimmed and desaturated rather than hidden, so a reader can see that the
-	   same colour has a reading in both spaces. */
-	.solid[data-space='hsl'] .plate.rgb,
-	.solid[data-space='rgb'] .plate.hsl {
-		opacity: 0.28;
-		filter: saturate(0.35);
+	.solid[data-space='hsl'] .plate.rgb .bar,
+	.solid[data-space='rgb'] .plate.hsl .bar {
+		opacity: 0.3;
+		filter: saturate(0.4);
+	}
+
+	/* With the switch gone the card is about one space and not the pair of
+	   them, so the other set of bars goes rather than sitting there greyed —
+	   there is nothing left to compare it to, and nothing a reader could do
+	   about it.
+
+	   It closes rather than disappearing, because a card change is a move
+	   between two arrangements and not a cut between two pictures. A flex item
+	   cannot be transitioned from its own width to nothing — `auto` is not a
+	   length, so there is no pair of values to interpolate — so each plate sits
+	   in a one-cell grid and it is the cell that closes, from 1fr to 0fr. The
+	   solid slides across to the middle as it goes, because the layout is doing
+	   the animating rather than something drawn on top of it. */
+	.slot {
+		display: grid;
+		grid-template-columns: 1fr;
+		min-width: 0;
+		min-height: 0;
+		transition:
+			grid-template-columns 0.45s ease,
+			margin 0.45s ease;
+	}
+
+	.slot[data-slot='rgb'] {
+		margin-inline-end: var(--rig-gap);
+	}
+
+	.slot[data-slot='hsl'] {
+		margin-inline-start: var(--rig-gap);
+	}
+
+	.slot > .plate {
+		min-width: 0;
+		overflow: hidden;
+	}
+
+	.solid[data-toggle-shown='false'][data-space='hsl'] .slot[data-slot='rgb'],
+	.solid[data-toggle-shown='false'][data-space='rgb'] .slot[data-slot='hsl'] {
+		grid-template-columns: 0fr;
+		margin-inline: 0;
+	}
+
+	/* Padding is not compressible, so a cell of no width still holds a plate
+	   two ems wide until this goes with it. */
+	.solid[data-toggle-shown='false'][data-space='hsl'] .plate.rgb,
+	.solid[data-toggle-shown='false'][data-space='rgb'] .plate.hsl {
+		opacity: 0;
+		padding-inline: 0;
+	}
+
+	/* The switch closes the same way, on the other axis. */
+	.switch {
+		display: grid;
+		grid-template-rows: 1fr;
+		transition: grid-template-rows 0.45s ease;
+	}
+
+	.solid[data-toggle-shown='false'] .switch {
+		grid-template-rows: 0fr;
+	}
+
+	.solid[data-toggle-shown='false'] .toggle {
+		opacity: 0;
+		padding-block: 0;
 	}
 
 	.bar {
@@ -251,11 +392,15 @@ const HSL = [
 		--track-radius: 4px;
 	}
 
+	/* Black. The letters sit at the foot of the plate, which is the part of it
+	   the swoosh runs under — so what they are read against is the colour on
+	   show rather than the glass, and the glass is pale. */
 	.bar-name {
 		flex: none;
 		font-size: 0.75rem;
 		line-height: 1;
 		letter-spacing: 0.08em;
+		color: #000;
 	}
 
 	.middle {
@@ -289,7 +434,9 @@ const HSL = [
 		height: 100%;
 		cursor: grab;
 		touch-action: none;
-		filter: drop-shadow(0 var(--shadow-y, 6px) var(--shadow-blur, 18px) rgb(0 0 0 / 0.5));
+		filter: drop-shadow(
+			0 var(--shadow-y, 6px) var(--shadow-blur, 18px) var(--viz-shadow, rgb(0 0 0 / 0.55))
+		);
 	}
 
 	.stage canvas:active {
@@ -307,6 +454,10 @@ const HSL = [
 	/* Two names and a knob that slides between them. The knob is the moving
 	   part rather than the labels, so the switch reads the same way a physical
 	   one does — the thing that travels is the thing you threw. */
+	/* The same glass the bars are on, but smoked rather than clear. It stands
+	   under the solid, in the middle of the pane, which is where the swoosh is
+	   at its brightest — and a white wash there leaves two pale words on a pale
+	   ground. Dark, it is legible over anything the dot can be. */
 	.toggle {
 		position: relative;
 		display: grid;
@@ -316,8 +467,16 @@ const HSL = [
 		padding: 0.2rem;
 		border: 0;
 		border-radius: 999px;
-		background: var(--plate, rgb(255 255 255 / 0.06));
-		box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.12);
+		background: var(--pill, rgb(12 14 17 / 0.62));
+		box-shadow:
+			inset 0 0 0 1px rgb(255 255 255 / 0.12),
+			0 4px 16px rgb(0 0 0 / 0.15);
+		backdrop-filter: blur(6px);
+		min-block-size: 0;
+		overflow: hidden;
+		transition:
+			opacity 0.45s ease,
+			padding 0.45s ease;
 		font: inherit;
 		font-size: 0.75rem;
 		letter-spacing: 0.1em;
@@ -357,17 +516,29 @@ const HSL = [
 		outline-offset: 3px;
 	}
 
+	/* Over the switch, under the solid, in the middle of the pane — which the S
+	   fills, so the reading sits on the colour it is a reading of. Its ink flips
+	   between black and white for whichever gives more contrast against that
+	   colour; see the render loop. */
 	.readout {
 		margin: 0;
-		font-size: 0.8rem;
+		font-size: 1.125rem;
 		font-variant-numeric: tabular-nums;
+		color: var(--readout-ink, #000);
+		pointer-events: none;
+	}
+
+	@container viz (max-width: 30rem) {
+		.readout {
+			font-size: 0.85rem;
+		}
 	}
 
 	/* ==== container queries ============================================== */
 
 	@container viz (max-width: 46rem) {
 		.rig {
-			gap: 0.5rem;
+			--rig-gap: 0.5rem;
 		}
 		.plate {
 			gap: 0.4rem;
@@ -381,6 +552,29 @@ const HSL = [
 		.rig {
 			flex-direction: column;
 			gap: 0.4rem;
+		}
+
+		/* Stacked, the slots close downward instead, and the air between them is
+		   the row's own gap again — inline margins would only push a full-width
+		   plate off the side. */
+		.slot {
+			grid-template-columns: none;
+			grid-template-rows: 1fr;
+			transition:
+				grid-template-rows 0.45s ease,
+				margin 0.45s ease;
+			width: 100%;
+			margin-inline: 0;
+		}
+
+		.slot[data-slot='rgb'],
+		.slot[data-slot='hsl'] {
+			margin-inline: 0;
+		}
+
+		.solid[data-toggle-shown='false'][data-space='hsl'] .slot[data-slot='rgb'],
+		.solid[data-toggle-shown='false'][data-space='rgb'] .slot[data-slot='hsl'] {
+			grid-template-rows: 0fr;
 		}
 
 		.plate {
@@ -474,6 +668,15 @@ const HSL = [
 			2 * (x * y - z * w), 1 - 2 * (x * x + z * z), 2 * (y * z + x * w),
 			2 * (x * z + y * w), 2 * (y * z - x * w), 1 - 2 * (x * x + y * y),
 		];
+	};
+
+	/** sRGB relative luminance, for choosing readable ink over a colour. */
+	const luminance = (r: number, g: number, b: number) => {
+		const lin = (c: number) => {
+			const v = c / 255;
+			return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+		};
+		return 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b);
 	};
 
 	/* --- colour ------------------------------------------------------------
@@ -836,7 +1039,13 @@ const HSL = [
 		const tellBars = () =>
 			[...rgbBars, ...hslBars].forEach((b) => (b.dataset.idleResume = String(idleSeconds)));
 		let spin = root.dataset.spin !== 'false';
-		const AUTHORED = { idleSeconds, spin, space: root.dataset.space ?? 'rgb' };
+		let turning = root.dataset.toggleShown !== 'false';
+		const AUTHORED = {
+			idleSeconds,
+			spin,
+			space: root.dataset.space ?? 'rgb',
+			turning,
+		};
 		tellBars();
 
 		/* ---- the morph ------------------------------------------------------
@@ -856,9 +1065,30 @@ const HSL = [
 			if (reduceMotion) stage = want;
 		};
 
-		toggle.addEventListener('click', () =>
-			setSpace(root.dataset.space === 'hsl' ? 'rgb' : 'hsl'),
-		);
+		/* ---- the switch throws itself, while there is a switch --------------
+		   The card is making one point and it is a point you have to watch
+		   happen, so nobody has to find the control to see it: a short pause on
+		   arrival to let the cube be a cube, then over, and back and forth from
+		   there. Counted in the frame loop rather than on a timer, so it stops
+		   dead while the phase is off stage and starts again where it left off
+		   — a deck three cards away should not be quietly flipping.
+
+		   A reader who throws it themselves is not overruled a moment later:
+		   their click restarts the clock, so the next automatic turn is a full
+		   interval away. Left alone entirely under reduced motion, where a
+		   picture that rearranges itself unasked is the thing being avoided. */
+		const FIRST = 2;
+		const EVERY = 15;
+		let sinceFlip = 0;
+		let firstFlip = true;
+
+		const flip = () => setSpace(want === PHASES ? 'rgb' : 'hsl');
+
+		toggle.addEventListener('click', () => {
+			sinceFlip = 0;
+			firstFlip = false;
+			flip();
+		});
 
 		/* ---- orientation ----------------------------------------------------
 		   Three rotations, innermost first: the tip, which stands the solid's
@@ -945,9 +1175,26 @@ const HSL = [
 			spin = 'spin' in p ? p.spin !== false : AUTHORED.spin;
 			idleSeconds = 'idleResume' in p ? Number(p.idleResume) || 5 : AUTHORED.idleSeconds;
 			tellBars();
+			turning = 'toggle' in p ? p.toggle !== false : AUTHORED.turning;
+			toggle.inert = !turning;
+			root.dataset.toggleShown = String(turning);
 			setSpace(('space' in p ? p.space : AUTHORED.space) === 'hsl' ? 'hsl' : 'rgb');
+			/* Every card gets the same lead-in: whatever the last one was in the
+			   middle of, this one starts by letting the reader see where it is. */
+			sinceFlip = 0;
+			firstFlip = true;
 		});
-		host?.addEventListener('viz:enter', () => (last = 0));
+		/* Arriving, the card starts on the cube whatever state it was left in:
+		   the sequence is meant to be seen from the beginning, and the reset
+		   happens under the phase's own fade. */
+		host?.addEventListener('viz:enter', () => {
+			last = 0;
+			sinceFlip = 0;
+			firstFlip = true;
+			want = AUTHORED.space === 'hsl' ? PHASES : 0;
+			stage = want;
+			toggle.setAttribute('aria-checked', String(want === PHASES));
+		});
 
 		canvas.addEventListener('pointerdown', (e) => {
 			dragging = true;
@@ -1083,7 +1330,18 @@ const HSL = [
 			canvas.style.setProperty('--shadow-blur', `${(size * 0.34).toFixed(2)}px`);
 			canvas.style.setProperty('--shadow-y', `${(size * 0.09).toFixed(2)}px`);
 		};
-		new ResizeObserver(resize).observe(canvas);
+		/* Noted here, done in the frame — never both in the observer.
+
+		   Setting canvas.width clears the drawing buffer, and a resize
+		   observation is delivered after the frame's animation callbacks and
+		   before paint: resize in here and the buffer this frame paints is the
+		   empty one, with the drawing that filled it thrown away a moment
+		   earlier. Still for a still layout, but the plates beside this one
+		   close over half a second, and for that half second the canvas is
+		   resized every frame — which is to say cleared every frame, and the
+		   solid simply is not there. */
+		let stale = true;
+		new ResizeObserver(() => (stale = true)).observe(canvas);
 		resize();
 
 		canvas.addEventListener('webglcontextlost', (e) => {
@@ -1103,12 +1361,24 @@ const HSL = [
 		function frame(now: number) {
 			requestAnimationFrame(frame);
 			if (gate && gate.dataset.vizActive === 'false') return;
+			if (stale) {
+				stale = false;
+				resize();
+			}
 			if (!w || !h || root.dataset.ready !== 'true') return;
 
 			const dt = last ? Math.min(0.05, (now - last) / 1000) : 0.016;
 			last = now;
 
 			// --- the morph, and what the page is calling the current space
+			if (!reduceMotion && turning) {
+				sinceFlip += dt;
+				if (sinceFlip >= (firstFlip ? FIRST : EVERY)) {
+					sinceFlip = 0;
+					firstFlip = false;
+					flip();
+				}
+			}
 			if (stage !== want) {
 				const step = dt / SECONDS;
 				stage = want > stage ? Math.min(want, stage + step) : Math.max(want, stage - step);
@@ -1187,6 +1457,13 @@ const HSL = [
 			if (said !== lastSaid) {
 				lastSaid = said;
 				readout.textContent = space === 'hsl' ? `hsl(${H} ${S}% ${L}%)` : rgbCss(A8);
+				root.style.setProperty('--swatch', rgbCss(A8));
+				/* Black and white contrast equally at luminance 0.179, which is
+				   where the reading's ink flips over. */
+				root.style.setProperty(
+					'--readout-ink',
+					luminance(A8[0], A8[1], A8[2]) > 0.179 ? '#000' : '#fff',
+				);
 				for (let c = 0; c < 3; c++) rgbBars[c].track.set(0, A8[c]);
 				hslBars[0].track.set(0, H);
 				hslBars[1].track.set(0, S);

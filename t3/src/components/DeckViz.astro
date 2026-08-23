@@ -29,6 +29,11 @@
  * A picture that belongs over the viz rather than instead of it is a third
  * thing again — see <VizImage>, switched with the reserved `overlay`.
  *
+ * Whatever is on stage is capped at `--viz-max` and centred, so no picture
+ * runs the whole width of a large screen. A visualization that genuinely needs
+ * more room raises the property on itself rather than setting its own width;
+ * that way the cap stays one number in one place. See the style below.
+ *
  * A visualization is handed its parameters as the `detail` of a `viz:props`
  * event, and hears `viz:enter` / `viz:exit` as its phase comes and goes. All
  * three fire on the enclosing <VizPhase>, or on this element when there are
@@ -45,6 +50,17 @@
 		grid-area: viz;
 		min-width: 0;
 		min-height: 0;
+		/* How wide any one visualization may get, however much monitor there is.
+		   The pane is a wide, shallow band, and a picture stretched the whole way
+		   across a large screen stops being one thing to look at: the eye has to
+		   travel to take it in, and every square viz — the cube, the wheel — is
+		   left as an island in the middle of it anyway, because a square in a
+		   shallow band is capped by the band's height whatever the width.
+
+		   Set here rather than in each visualization so they all agree without
+		   having to know about each other, and as a custom property so one that
+		   genuinely needs more room can raise it on itself. */
+		--viz-max: 42rem;
 		/* A size container, so a visualization can lay itself out from the shape
 		   of its own pane rather than the viewport. `size` rather than
 		   `inline-size` because whether the pane is portrait or landscape is
@@ -64,5 +80,24 @@
 		grid-area: pane;
 		min-width: 0;
 		min-height: 0;
+	}
+
+	/* The cap, and the column it leaves centred in the pane. `width: 100%` with
+	   auto margins rather than `justify-self: center`, which would shrink-wrap
+	   the child instead of capping it — and a box sized to its contents, whose
+	   contents are sized to it, has nothing to resolve against.
+
+	   It lands on the visualization itself, never on a wrapper: a phase is
+	   skipped here and caps its own child instead (see VizPhase), so that the
+	   one box carrying the cap is the one that can lift it, by declaring
+	   `--viz-max` on itself. A cap on the wrapper would be out of that reach.
+
+	   Overlays are left out on purpose: <VizImage> shrink-wraps its picture and
+	   centres itself, because the frame it draws has to be the picture's own
+	   edge. It is already capped against the pane in `cq` units. */
+	.deck-viz > :global(*:not([data-viz-overlay]):not([data-viz-phase])) {
+		width: 100%;
+		max-width: var(--viz-max);
+		margin-inline: auto;
 	}
 </style>

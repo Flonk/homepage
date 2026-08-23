@@ -1,0 +1,102 @@
+---
+/**
+ * Two colours and everything the straight line between them passes through.
+ *
+ * Interpolated in OKLCH, which is a choice about the middle rather than about
+ * the ends. The ends are given; what is genuinely undetermined is the route
+ * between them, and every colour space answers differently. Walk sRGB's three
+ * channels independently — the arithmetic the next card writes out — and a
+ * warm-to-cool run sags through a grey-brown trough halfway, because that is
+ * where the straight line through the cube happens to pass. OKLCH keeps the
+ * lightness moving evenly and takes the hue the short way round the wheel, so
+ * orange reaches blue through red and purple with nothing dead in between.
+ *
+ * `space` is the whole knob. `in oklab` is the same idea without the hue arc,
+ * for a run that should not swing through a third colour; `in srgb` is the sag
+ * itself, for a card making a point of it.
+ *
+ * The sRGB gradient is declared first and overwritten, rather than left out: a
+ * browser that does not know the interpolation syntax drops the whole
+ * declaration, and a band whose subject is colour cannot fall back to nothing.
+ *
+ * Ends are the only real parameters. A gradient with a stop in the middle is a
+ * different kind of object — two gradients wearing a coat — and nothing in this
+ * series wants one yet.
+ */
+interface Props {
+	/** The colour the band starts at, as any CSS colour. */
+	from?: string;
+	/** The colour it ends at. */
+	to?: string;
+	/**
+	 * Which way it runs, as a CSS gradient direction. Across is the default:
+	 * the pane is a wide, shallow band and so is the picture in it.
+	 */
+	direction?: string;
+	/**
+	 * Which space the run between the ends is interpolated in, as the CSS
+	 * gradient interpolation syntax: "in oklch", "in oklab", "in srgb", and
+	 * with a hue arc if it wants one — "in oklch longer hue".
+	 */
+	space?: string;
+	/** Describes the band for a reader who cannot see it. */
+	label?: string;
+}
+
+const {
+	from = '#ff8a1e',
+	to = '#1e5cff',
+	direction = 'to right',
+	space = 'in oklch',
+	label,
+} = Astro.props;
+---
+
+<figure
+	class="band"
+	data-gradient-band
+	style={`--from: ${from}; --to: ${to}; --direction: ${direction}; --space: ${space}`}
+>
+	<div
+		class="fill"
+		role="img"
+		aria-label={label ?? `A gradient running from ${from} to ${to}.`}
+	>
+	</div>
+</figure>
+
+<style>
+	/* The dark surround the additive and subtractive plates of part one sit in,
+	   and for the same reason: a coloured field on the beige ground has no edge
+	   of its own, and its ends bleed into whatever they happen to be next to —
+	   which for a picture whose whole subject is what one colour does on its way
+	   to another is the one thing it cannot afford. The border is a rem so it
+	   stays the same weight of frame whatever shape the pane is.
+
+	   Radii in the same proportion as those plates: a rounder outside than
+	   inside, so the frame reads as a thing the band is set into rather than a
+	   line drawn around it. */
+	.band {
+		box-sizing: border-box;
+		width: 100%;
+		height: 100%;
+		min-width: 0;
+		min-height: 0;
+		/* The pane has no bottom padding of its own; the air below is taken
+		   here, the same measure the ramp in part seven takes. */
+		margin: 0 0 1em;
+		border: 1em solid var(--viz-dark, #14161a);
+		border-radius: 0.75rem;
+		background: var(--viz-dark, #14161a);
+	}
+
+	.fill {
+		width: 100%;
+		height: 100%;
+		border-radius: 0.25rem;
+		/* The plain one first, for a browser that cannot parse the one below and
+		   would otherwise be left with no band at all. */
+		background: linear-gradient(var(--direction), var(--from), var(--to));
+		background: linear-gradient(var(--direction) var(--space), var(--from), var(--to));
+	}
+</style>

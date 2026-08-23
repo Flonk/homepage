@@ -74,6 +74,7 @@ interface Props {
 }
 
 import { FILTER_SHORT_NM, FILTER_LONG_NM } from '../lib/cones';
+import VizTrack from './VizTrack.astro';
 
 const {
 	wavelength = 550,
@@ -109,6 +110,21 @@ const markList = marks
 	data-probe={probe ? 'true' : 'false'}
 >
 	<canvas data-canvas></canvas>
+
+	{/* The wavelength axis: the rainbow strip the mark stands on. A VizTrack
+	    like every other bar in the series, so it carries the same rule around it
+	    — see --track-edge — but with no thumbs of its own. The marks on it are
+	    the picture's: swatches of the light at each wavelength, drawn with the
+	    curves on the canvas above, which is where they have to be to line up
+	    with the dots they answer to. Behind the canvas for that reason, and the
+	    canvas passes the pointer through to the range that runs the whole
+	    plot. */}
+	<VizTrack class="strip" thumbs={1} fill={false} drag={false} labels={['Wavelength']} />
+
+	{/* The line of look-alike mixtures, when a card is walking one. Filled up to
+	    where the walk has reached, because what it is reporting is how far along
+	    that line we are — see VizTrack. */}
+	<VizTrack class="walk" thumbs={1} drag={false} labels={['Mixture']} hidden />
 
 	{/* The light on the left, and on the right the only three numbers that
 	    survive it reaching the eye. Short wavelengths first, so the order
@@ -153,7 +169,7 @@ const markList = marks
 	{/* The deck reads a horizontal drag as a swipe to the next card, which is
 	    the gesture this wants for itself. */}
 	<input
-		class="pick"
+		class="pick viz-range is-silent"
 		data-no-swipe
 		data-pick
 		type="range"
@@ -186,6 +202,37 @@ const markList = marks
 		display: block;
 		width: 100%;
 		height: 100%;
+		position: relative;
+		z-index: 1;
+		/* Everything here is worked through the range below; letting the canvas
+		   take presses would only mean taking them away from it. */
+		pointer-events: none;
+	}
+
+	.walk {
+		position: absolute;
+		left: var(--plot-left, 0px);
+		top: var(--walk-top, 0px);
+		width: var(--plot-w, 100%);
+		--track-size: 4px;
+		--track-radius: 2px;
+		--track-ink: var(--accent);
+		--track-rest: color-mix(in srgb, var(--ink) 16%, transparent);
+	}
+
+	.walk[hidden] {
+		display: none;
+	}
+
+	/* Laid out from the plot's own geometry, which only the script knows. */
+	.strip {
+		position: absolute;
+		left: var(--plot-left, 0px);
+		top: var(--strip-top, 0px);
+		width: var(--plot-w, 100%);
+		--track-size: var(--strip-h, 20px);
+		--track-border: 1px solid transparent;
+		--track-radius: 2px;
 	}
 
 	/* The top half of the pane. The graph has the bottom half, and the two do
@@ -238,10 +285,19 @@ const markList = marks
 
 	/* The light itself. A ring, because towards the ends of the band the colour
 	   goes very dark and a disc with no edge would simply vanish. */
+	/* The rule is the disc's own colour lifted a fifth of the way to white, the
+	   same edge the bars carry — see lighten in lib/oklch. A real border rather
+	   than the bars' two-layer trick, because what it has to hold here is one
+	   flat colour, and a border can hold that; the fake one exists only because
+	   a border cannot hold a gradient. Inside the box, so a swatch is the size
+	   it was given whether or not the light it is showing has an edge worth
+	   drawing. */
 	.swatch-disc {
+		box-sizing: border-box;
 		width: clamp(3rem, 26cqh, 7.5rem);
 		aspect-ratio: 1;
 		border-radius: 50%;
+		border: 1px solid var(--edge, transparent);
 		background: #000;
 		box-shadow:
 			0 0 0 1px color-mix(in srgb, var(--ink) 22%, transparent),
@@ -380,18 +436,14 @@ const markList = marks
 	/* Laid over the plot, so the mark can be taken anywhere along it. Its own
 	   thumb is a transparent hairline; what the reader sees is drawn on the
 	   canvas. */
+	/* The mark on the graph is the control; this is the range under it that
+	   makes it workable. See .viz-range.is-silent in global.css. */
 	.pick {
 		display: none;
 		position: absolute;
 		inset: 0 auto 0 var(--plot-left, 0px);
 		width: var(--plot-w, 100%);
-		margin: 0;
-		padding: 0;
-		appearance: none;
-		-webkit-appearance: none;
-		background: transparent;
 		cursor: grab;
-		touch-action: none;
 	}
 
 	.cones[data-drag='true'] .pick {
@@ -402,35 +454,11 @@ const markList = marks
 		cursor: grabbing;
 	}
 
+	/* Set into the plot rather than drawn around it, so the ring does not land
+	   on the pane's own edge. */
 	.pick:focus-visible {
-		outline: 2px solid var(--accent);
 		outline-offset: -4px;
 		border-radius: 4px;
-	}
-
-	/* Vendor pseudo-elements go in rules of their own: one browser not knowing
-	   a selector throws out the whole rule. */
-	.pick::-webkit-slider-thumb {
-		-webkit-appearance: none;
-		width: 1px;
-		height: 100%;
-		background: transparent;
-		border: 0;
-	}
-
-	.pick::-moz-range-thumb {
-		width: 1px;
-		height: 100%;
-		background: transparent;
-		border: 0;
-	}
-
-	.pick::-webkit-slider-runnable-track {
-		background: transparent;
-	}
-
-	.pick::-moz-range-track {
-		background: transparent;
 	}
 
 	@container viz (max-width: 30rem) {
@@ -443,6 +471,9 @@ const markList = marks
 
 <script>
 	import { dimRgb, metamerLine, mixCones, mixRgb, wavelengthRgb, type Vision } from '../lib/spectrum';
+	import { shuttleAt, shuttleEntry } from '../lib/shuttle';
+	import { lightenRgb } from '../lib/oklch';
+	import { rgbCss, type Rgb } from '../lib/rgb';
 	import {
 		CONE_FIRST_NM,
 		CONE_LAST_NM,
@@ -524,7 +555,25 @@ const markList = marks
 		const canvas = root.querySelector<HTMLCanvasElement>('[data-canvas]')!;
 		const ctx = canvas.getContext('2d')!;
 		const pickEl = root.querySelector<HTMLInputElement>('[data-pick]')!;
+		type TrackEl = HTMLElement & {
+			track: {
+				backdrop(css: string): void;
+				edge(css: string): void;
+				marks(list: { at: number; colour?: string }[]): void;
+				set(index: number, value: number): void;
+				showThumb(index: number, on: boolean): void;
+			};
+		};
+		const stripEl = root.querySelector<TrackEl>('.strip')!;
+		const walkEl = root.querySelector<TrackEl>('.walk')!;
 		const swatchEl = root.querySelector<HTMLElement>('[data-swatch]')!;
+		/* A disc and its rule together: the rule is the colour it is showing,
+		   lifted, and nothing else should be setting one without the other. */
+		const paintDisc = (el: HTMLElement, css: string) => {
+			el.style.background = css;
+			const rgb = css.match(/\d+/g)?.map(Number);
+			el.style.setProperty('--edge', rgb?.length === 3 ? rgbCss(lightenRgb(rgb as Rgb, 0.2)) : 'transparent');
+		};
 		const farSwatchEl = root.querySelector<HTMLElement>('[data-swatch-far]')!;
 		const bars = Object.fromEntries(
 			CONES.map((c) => [c.key, root.querySelector<HTMLElement>(`[data-bar='${c.key}']`)!]),
@@ -615,18 +664,19 @@ const markList = marks
 
 		/* Left to itself the handle goes back and forth along the line, because
 		   the whole claim of the card is that the mixture can change and the
-		   colour cannot, and a still picture makes only half of it. Sinusoidal
-		   rather than linear: the ends of the line are where a light has just
-		   gone out or is about to, which is the part worth dwelling on, and a
-		   constant rate arrives at the turn and reverses with a jolt. */
+		   colour cannot, and a still picture makes only half of it. It walks to
+		   the same pacing as everything else in the series — steady across the
+		   middle, easing off at the ends and resting there a moment — which
+		   suits this line especially: its ends are where one of the lights has
+		   just gone out or is about to, and that is the part worth dwelling on.
+		   See lib/shuttle.ts. */
 		const WALK_SECS = 12;
 		let walkT = 0;
-		const walkAt = (t: number) => (1 - Math.cos((2 * Math.PI * t) / WALK_SECS)) / 2;
+		const walkAt = (t: number) => shuttleAt(t, { seconds: WALK_SECS });
 		/* Where in the cycle to start so that it carries on upward from wherever
 		   the reader let go, rather than jumping back to where it would have got
 		   to on its own. */
-		const walkEntry = (at: number) =>
-			(WALK_SECS * Math.acos(1 - 2 * Math.min(1, Math.max(0, at)))) / (2 * Math.PI);
+		const walkEntry = (at: number) => shuttleEntry(at, { seconds: WALK_SECS });
 
 		const setWalk = (t: number) => {
 			walk = Math.min(1, Math.max(0, t));
@@ -722,33 +772,26 @@ const markList = marks
 			const t = filterPair(at);
 			const near = dimRgb(base, 1 + (t.short - 1) * mix);
 			const far = dimRgb(base, t.long * mix);
-			return [`rgb(${near[0]} ${near[1]} ${near[2]})`, `rgb(${far[0]} ${far[1]} ${far[2]})`];
+			return [rgbCss(near), rgbCss(far)];
 		};
 
 		const colourAt = (at: number): string => {
 			const a = wavelengthRgb(at);
-			if (mix <= 0) return `rgb(${a[0]} ${a[1]} ${a[2]})`;
+			if (mix <= 0) return rgbCss(a);
 			const b = eyeRgb(at);
-			if (mix >= 1) return `rgb(${b[0]} ${b[1]} ${b[2]})`;
-			return `rgb(${Math.round(a[0] + (b[0] - a[0]) * mix)} ${Math.round(
-				a[1] + (b[1] - a[1]) * mix,
-			)} ${Math.round(a[2] + (b[2] - a[2]) * mix)})`;
+			if (mix >= 1) return rgbCss(b);
+			return rgbCss(a.map((v, i) => v + (b[i] - v) * mix) as Rgb);
 		};
 
 		/* Linear in wavelength, because that is the axis these curves are always
 		   drawn against and the one their shapes are read from. */
-		const sweepAt = (t: number, [lo, hi]: [number, number]) => {
-			const lap = (t / SWEEP_SECS) % 1;
-			const ping = lap <= 0.5 ? 2 * lap : 2 - 2 * lap;
-			return lo + (hi - lo) * ping;
-		};
+		const sweepAt = (t: number, [lo, hi]: [number, number]) =>
+			lo + (hi - lo) * shuttleAt(t, { seconds: SWEEP_SECS });
 
 		/* Where to start the clock so the walk is passing through `at` on its way
 		   up, so it carries on from wherever the mark already is. */
-		const sweepEntry = (at: number, [lo, hi]: [number, number]) => {
-			const ping = Math.min(1, Math.max(0, (at - lo) / (hi - lo)));
-			return (ping * SWEEP_SECS) / 2;
-		};
+		const sweepEntry = (at: number, [lo, hi]: [number, number]) =>
+			shuttleEntry((at - lo) / (hi - lo), { seconds: SWEEP_SECS });
 
 		const setSweep = (next: [number, number] | null) => {
 			const same =
@@ -792,6 +835,12 @@ const markList = marks
 			   the finger, by more and more as the pane gets wider. */
 			root.style.setProperty('--plot-left', `${plot.x}px`);
 			root.style.setProperty('--plot-w', `${plot.w}px`);
+			root.style.setProperty('--strip-top', `${plot.y + plot.h + STRIP_GAP}px`);
+			root.style.setProperty('--strip-h', `${STRIP_H}px`);
+			root.style.setProperty(
+				'--walk-top',
+				`${plot.y + plot.h + STRIP_GAP + STRIP_H + SLIDER_ROOM - 8}px`,
+			);
 		};
 		/* Redrawn on the spot, not on the next frame. The curves are the same
 		   whether anything is moving or not, and a pane that is holding still —
@@ -855,7 +904,7 @@ const markList = marks
 				}
 				if (lights.length) {
 					const [mr, mg, mb] = mixRgb(lights);
-					swatchEl.style.background = `rgb(${mr} ${mg} ${mb})`;
+					paintDisc(swatchEl, rgbCss(mr, mg, mb));
 				}
 				return sum;
 			}
@@ -866,8 +915,8 @@ const markList = marks
 				vals[c.key].textContent = r[c.at].toFixed(2);
 			}
 			const [nearC, farC] = eyeSwatches(nm);
-			swatchEl.style.background = nearC;
-			farSwatchEl.style.background = farC;
+			paintDisc(swatchEl, nearC);
+			paintDisc(farSwatchEl, farC);
 			if (canDrag) {
 				pickEl.setAttribute(
 					'aria-valuetext',
@@ -914,16 +963,32 @@ const markList = marks
 			   what. It runs out at both ends on its own, which is the same fact
 			   the curves are showing. */
 			const stripY = plot.y + plot.h + STRIP_GAP;
+			/* What stands on the axis: the card's wavelengths and, if there is
+			   one, the reader's. Gathered here and handed to the bar at the end of
+			   the frame — they are the bar's marks, not the canvas's, and the bar
+			   is what knows how to draw one. See VizTrack's `marks`. */
+			const onStrip: { at: number; colour?: string; strong?: boolean }[] = [];
 			const key = `${Math.round(plot.w)}|${shown}|${Math.round(mix * 255)}`;
 			if (key !== stripKey) {
 				stripKey = key;
+				/* Still one colour per pixel, because the hatching below reads it
+				   back; the bar itself is painted from a sampling of them, which is
+				   all a gradient needs — the rainbow has no edges in it except at
+				   the band's own ends, and those are stops of their own. */
 				strip = Array.from({ length: Math.round(plot.w) }, (_, x) =>
 					colourAt(nmOf(plot.x + x)),
 				);
-			}
-			for (let x = 0; x < strip.length; x++) {
-				ctx.fillStyle = strip[x];
-				ctx.fillRect(plot.x + x, stripY, 1.5, STRIP_H);
+				const STOPS = 64;
+				const sampled = Array.from({ length: STOPS + 1 }, (_, i) => {
+					const x = Math.min(strip.length - 1, Math.round((i / STOPS) * (strip.length - 1)));
+					return { rgb: strip[x].match(/\d+/g)!.map(Number) as Rgb, at: (i / STOPS) * 100 };
+				});
+				const ramp = (lift: number) =>
+					`linear-gradient(to right, ${sampled
+						.map((p) => `${rgbCss(lift ? lightenRgb(p.rgb, lift) : p.rgb)} ${p.at}%`)
+						.join(', ')})`;
+				stripEl.track.backdrop(ramp(0));
+				stripEl.track.edge(ramp(0.2));
 			}
 
 			/* Where the band has run past everything we can see, hatch the black.
@@ -1027,11 +1092,22 @@ const markList = marks
 				if (weight !== null && weight !== undefined) {
 					const bh = Math.max(0, (weight / ceiling) * plot.h);
 					if (bh > 0.5) {
-						ctx.fillStyle = colourAt(at);
-						ctx.fillRect(fx - 5, yOf(0) - bh, 10, bh);
+						/* The same rule the bars and the swatch carry: the light's own
+						   colour lifted a fifth of the way to white, which stays that
+						   light's colour where a black outline would only say "edge".
+						   Rounded by a hair, so a bar reads as an object standing on
+						   the axis rather than as a column of the graph. */
+						const fill = colourAt(at);
+						const lifted = fill.match(/\d+/g)?.map(Number);
+						ctx.save();
+						ctx.beginPath();
+						ctx.roundRect(fx - 5, yOf(0) - bh, 10, bh, Math.min(3, bh / 2));
+						ctx.fillStyle = fill;
+						ctx.fill();
 						ctx.lineWidth = 1;
-						ctx.strokeStyle = 'rgba(0,0,0,0.5)';
-						ctx.strokeRect(fx - 5.5, yOf(0) - bh - 0.5, 11, bh + 1);
+						ctx.strokeStyle = lifted?.length === 3 ? rgbCss(lightenRgb(lifted as Rgb, 0.2)) : fill;
+						ctx.stroke();
+						ctx.restore();
 					}
 					continue;
 				}
@@ -1045,11 +1121,7 @@ const markList = marks
 				ctx.stroke();
 				ctx.restore();
 
-				ctx.fillStyle = colourAt(at);
-				ctx.fillRect(fx - 3, stripY - 2, 6, STRIP_H + 4);
-				ctx.lineWidth = 1;
-				ctx.strokeStyle = 'rgba(0,0,0,0.65)';
-				ctx.strokeRect(fx - 3.5, stripY - 2.5, 7, STRIP_H + 5);
+				onStrip.push({ at: (fx - plot.x) / plot.w, colour: colourAt(at) });
 
 				for (const cone of CONES) {
 					const a = alpha[cone.key];
@@ -1073,30 +1145,19 @@ const markList = marks
 
 			/* ---- the walk ---------------------------------------------------
 			   Where along the line of look-alike mixtures the reader has got to.
-			   Drawn rather than left to the range input, like every other handle
-			   here, so it sits on the same axis as the bars it is moving. */
-			if (walkable()) {
-				const sy = stripY + STRIP_H + SLIDER_ROOM - 6;
-				const kx = plot.x + plot.w * walk;
-				ctx.save();
-				ctx.lineCap = 'round';
-				ctx.lineWidth = 4;
-				ctx.strokeStyle = `color-mix(in srgb, ${inkC} 16%, transparent)`;
-				ctx.beginPath();
-				ctx.moveTo(plot.x + 2, sy);
-				ctx.lineTo(plot.x + plot.w - 2, sy);
-				ctx.stroke();
-				ctx.strokeStyle = accentC;
-				ctx.beginPath();
-				ctx.moveTo(plot.x + 2, sy);
-				ctx.lineTo(Math.max(plot.x + 2, kx), sy);
-				ctx.stroke();
-				ctx.beginPath();
-				ctx.arc(kx, sy, 6, 0, Math.PI * 2);
-				ctx.fillStyle = accentC;
-				ctx.fill();
-				ctx.restore();
-			}
+			   The bar itself is a VizTrack under the axis, like every other bar in
+			   the series; all that is left here is telling it where the walk has
+			   reached. Its handle is the plot-wide range, as the wavelength mark's
+			   is — the whole graph is the thing you drag. */
+			walkEl.hidden = !walkable();
+			if (walkable()) walkEl.track.set(0, walk);
+
+			/* Handed over here rather than at the end of the frame: the card's
+			   marks belong to the bar whether or not there is a reader's mark to
+			   draw after them, and the draw below returns early when there is
+			   not. */
+			stripEl.track.marks(onStrip);
+			stripEl.track.showThumb(0, probe);
 
 			/* ---- the mark ---------------------------------------------------
 			   One wavelength, and what the three of them make of it. Absent on a
@@ -1119,13 +1180,7 @@ const markList = marks
 			/* A swatch of the light itself where the mark meets its own axis. Wide
 			   enough that the colour is the thing you see: at six pixels with a
 			   pale outline either side there was more outline than light. */
-			ctx.fillStyle = colourAt(nm);
-			ctx.fillRect(mx - 5, stripY - 3, 10, STRIP_H + 6);
-			ctx.lineWidth = 1;
-			ctx.strokeStyle = 'rgba(0,0,0,0.65)';
-			ctx.strokeRect(mx - 5.5, stripY - 3.5, 11, STRIP_H + 7);
-			ctx.strokeStyle = `color-mix(in srgb, ${inkC} 70%, transparent)`;
-			ctx.strokeRect(mx - 6.5, stripY - 4.5, 13, STRIP_H + 9);
+			stripEl.track.set(0, (mx - plot.x) / plot.w);
 
 			for (const cone of CONES) {
 				const a = alpha[cone.key];
@@ -1141,6 +1196,7 @@ const markList = marks
 				ctx.stroke();
 				ctx.restore();
 			}
+
 		};
 
 		/* ---- the reader's hand --------------------------------------------- */

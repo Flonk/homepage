@@ -91,6 +91,8 @@ interface Props {
 	idleResume?: number;
 }
 
+import VizTrack from './VizTrack.astro';
+
 const {
 	frequency = 545,
 	spectral = false,
@@ -120,30 +122,25 @@ const {
 		{/* The visible band is too narrow to letter, which is the point of it, so
 		    its name is called out above the bar on a leader instead. */}
 		<div class="spectrum-callout"><span data-spectrum-callout>Visible</span></div>
-		<div class="spectrum-bar" data-spectrum-track>
-			<div class="spectrum-mark" data-spectrum-mark>
-				<span class="spectrum-knob"></span>
-			</div>
-			{/* A real range, so the axis can be worked from the keyboard and reads
-			    as the control it is. Its own thumb is a hairline and invisible —
-			    the mark is the thumb — which also means a press anywhere along
-			    the bar takes the wave straight there. */}
-			{/* The deck reads a horizontal drag as a swipe to the next card, which
-			    is exactly the gesture this wants for itself. Opting out here
-			    rather than on the whole viz, so the empty parts of the pane can
-			    still be swiped. */}
-			<input
-				class="spectrum-range"
-				data-no-swipe
-				type="range"
-				min="0"
-				max="1000"
-				step="1"
-				value="500"
-				aria-label="Frequency"
-				data-spectrum-range
-			/>
-		</div>
+		{/* The same bar as everywhere else in the series, with the spectrum itself
+		    as its backdrop — see VizTrack. Its thumb is a hairline standing proud
+		    of the bar at both ends, because over a rainbow anything thicker reads
+		    as one more stripe of it rather than as a mark against a scale. The
+		    little triangle is this card's own, hung on the thumb through the slot
+		    VizTrack leaves for it. */}
+		{/* No fill: the bar already has the spectrum on it, and the mark says
+		    where on it we are. The backdrop arrives at runtime, since it depends
+		    on how far the axis has closed in. */}
+		<VizTrack
+			class="spectrum-bar"
+			fill={false}
+			min={0}
+			max={1000}
+			step={1}
+			values={[500]}
+			labels={['Frequency']}
+			drag={drag}
+		/>
 		<div class="spectrum-bands" data-spectrum-bands></div>
 		{/* What the rainbow runs into once the axis has closed in on it and the
 		    band names have gone. Anchored to the ends rather than to a
@@ -184,6 +181,13 @@ const {
 	/* Laid over the canvas along the top. The wave keeps to the middle half of
 	   the pane, so the two do not meet. */
 	.spectrum {
+		/* Two things about the bar. What is behind it is painted at runtime, so
+		   it starts with nothing rather than with the grey a bar with no backdrop
+		   would show; and it carries a rule, which is a transparent border with
+		   the lifted ramp showing through it — see paintSpectrum and VizTrack. */
+		--track-rest: transparent;
+		--track-border: 1px solid transparent;
+
 		position: absolute;
 		top: 0.7rem;
 		left: 1rem;
@@ -251,30 +255,6 @@ const {
 		opacity: 0.55;
 	}
 
-	.spectrum-bar {
-		position: relative;
-		height: 0.85rem;
-		border-radius: 2px;
-		/* Filled in from the band table; see the script. */
-		background: transparent;
-	}
-
-	/* Rides over the rainbow as well as over the dim bands, so it carries its
-	   own dark outline rather than relying on contrast with what is behind. */
-	.spectrum-mark {
-		position: absolute;
-		/* Standing proud of the bar at both ends, so that it reads as a mark
-		   against the scale rather than as one more stripe of the rainbow. */
-		top: -3px;
-		bottom: -3px;
-		width: 2px;
-		margin-left: -1px;
-		background: #fff;
-		box-shadow:
-			0 0 0 1px rgba(0, 0, 0, 0.75),
-			0 0 7px 1px rgba(255, 255, 255, 0.45);
-	}
-
 	/* The affordance, and the only part of the control that is drawn: shown
 	   only where a card has asked for one. */
 	.spectrum-knob {
@@ -293,70 +273,6 @@ const {
 
 	.spectrum[data-drag='true'] .spectrum-knob {
 		display: block;
-	}
-
-	/* Laid over the bar with a little margin above and below, so it is worth
-	   aiming at on a touchscreen. Everything it would draw for itself is off:
-	   what the reader sees is the mark and the knob. */
-	.spectrum-range {
-		display: none;
-		position: absolute;
-		left: 0;
-		right: 0;
-		top: -8px;
-		bottom: -8px;
-		width: 100%;
-		margin: 0;
-		padding: 0;
-		appearance: none;
-		-webkit-appearance: none;
-		background: transparent;
-		cursor: grab;
-		/* And the browser's own panning is a second claim on the same gesture. */
-		touch-action: none;
-	}
-
-	.spectrum[data-drag='true'] .spectrum-range {
-		display: block;
-		pointer-events: auto;
-	}
-
-	.spectrum-range:active {
-		cursor: grabbing;
-	}
-
-	.spectrum-range:focus-visible {
-		outline: 2px solid var(--accent);
-		outline-offset: 4px;
-		border-radius: 3px;
-	}
-
-	/* A hairline rather than nothing at all: a range insets its thumb by half
-	   its width at both ends, and this keeps that under a pixel so the mark
-	   stays under the finger the whole way across. Vendor pseudo-elements have
-	   to be in rules of their own — one browser not knowing a selector throws
-	   out the whole rule. */
-	.spectrum-range::-webkit-slider-thumb {
-		-webkit-appearance: none;
-		width: 1px;
-		height: 100%;
-		background: transparent;
-		border: 0;
-	}
-
-	.spectrum-range::-moz-range-thumb {
-		width: 1px;
-		height: 100%;
-		background: transparent;
-		border: 0;
-	}
-
-	.spectrum-range::-webkit-slider-runnable-track {
-		background: transparent;
-	}
-
-	.spectrum-range::-moz-range-track {
-		background: transparent;
 	}
 
 	.spectrum-bands {
@@ -436,6 +352,9 @@ const {
 
 <script>
 	import { C_NM_PER_S, wavelengthRgb } from '../lib/spectrum';
+	import { shuttleAt, shuttleEntry } from '../lib/shuttle';
+	import { lightenRgb } from '../lib/oklch';
+	import { parseHex, rgbCss, type Rgb } from '../lib/rgb';
 
 	/* ---- the two scales -------------------------------------------------
 	   Space: how many screen pixels stand for a nanometre. Time: how much
@@ -565,12 +484,18 @@ const {
 
 		const canvas = root.querySelector<HTMLCanvasElement>('[data-canvas]')!;
 		const spectrumEl = root.querySelector<HTMLElement>('[data-spectrum]')!;
-		const trackEl = root.querySelector<HTMLElement>('[data-spectrum-track]')!;
-		const markEl = root.querySelector<HTMLElement>('[data-spectrum-mark]')!;
+		type TrackEl = HTMLElement & {
+			track: {
+				set(i: number, v: number): void;
+				backdrop(css: string): void;
+				grip(i: number): HTMLInputElement;
+			};
+		};
+		const barEl = root.querySelector<TrackEl>('[data-viz-track]')!;
 		const bandsEl = root.querySelector<HTMLElement>('[data-spectrum-bands]')!;
 		const calloutEl = root.querySelector<HTMLElement>('[data-spectrum-callout]')!;
 		const edgesEl = root.querySelector<HTMLElement>('[data-spectrum-edges]')!;
-		const rangeEl = root.querySelector<HTMLInputElement>('[data-spectrum-range]')!;
+		const rangeEl = barEl.track.grip(0);
 		const ctx = canvas.getContext('2d')!;
 		const outLight = root.querySelector<HTMLElement>('[data-light]')!;
 		const outSlow = root.querySelector<HTMLElement>('[data-slowdown]')!;
@@ -594,7 +519,12 @@ const {
 		   show every one of its pixels. Rebuilding costs a string and a style
 		   write, and stays sharp at any magnification. */
 		const paintSpectrum = (win: [number, number], zoom: number) => {
-			const stops: string[] = [];
+			/* Kept as numbers rather than as strings, because the bar is painted
+			   twice from them: once as itself, and once lifted a fifth of the way
+			   to white for the rule around it — the same edge the cube's channel
+			   bars carry, which cannot be a border because it has to follow what
+			   it is edging. See lighten in lib/oklch and --track-edge. */
+			const stops: { rgb: Rgb; at: number }[] = [];
 			const pct = (hz: number) => spectrumPos(hz, win) * 100;
 			// Stops far outside the bar are pulled in: a gradient reaches its edge
 			// colour outwards anyway, and at full zoom the far bands would
@@ -608,7 +538,8 @@ const {
 				if (band.tint) {
 					// Hard stops at both edges, so the bands read as bands.
 					if (z > -40 && a < 140) {
-						stops.push(`${band.tint} ${clamp(a)}%`, `${band.tint} ${clamp(z)}%`);
+						const tint = parseHex(band.tint)!;
+						stops.push({ rgb: tint, at: clamp(a) }, { rgb: tint, at: clamp(z) });
 					}
 					bandLabels[labelAt++].el.style.left = `${(a + z) / 2}%`;
 				} else {
@@ -625,15 +556,21 @@ const {
 						const [nr, ng, nb] = t < 0.5 ? BELOW_RED : ABOVE_VIOLET;
 						const k = rainbowInk(t);
 						const mix = (edge: number, lit: number) => Math.round(edge + (lit - edge) * k);
-						stops.push(
-							`rgb(${mix(nr, r)} ${mix(ng, g)} ${mix(nb, b)}) ${a + (z - a) * t}%`
-						);
+						stops.push({
+							rgb: [mix(nr, r), mix(ng, g), mix(nb, b)],
+							at: a + (z - a) * t,
+						});
 					}
 					calloutEl.style.left = `${(a + z) / 2}%`;
 				}
 				from = band.to;
 			}
-			trackEl.style.background = `linear-gradient(to right, ${stops.join(', ')})`;
+			const ramp = (lift: number) =>
+				`linear-gradient(to right, ${stops
+					.map((s) => `${rgbCss(lift ? lightenRgb(s.rgb, lift) : s.rgb)} ${s.at}%`)
+					.join(', ')})`;
+			barEl.track.backdrop(ramp(0));
+			barEl.track.edge(ramp(0.2));
 			/* The lettering goes early in the zoom and comes back late. Once the
 			   axis is a rainbow filling the bar there is nothing left for a name
 			   to distinguish, and the names that would still be true are sliding
@@ -701,7 +638,7 @@ const {
 		};
 		const placeMark = () => {
 			const p = Math.min(1, Math.max(0, spectrumPos(freqThz * 1e12, win)));
-			markEl.style.left = `${(p * 100).toFixed(3)}%`;
+			barEl.track.set(0, p * RANGE_STEPS);
 		};
 		const showLight = () => {
 			const nm = C_NM_PER_S / (freqThz * 1e12);
@@ -731,19 +668,14 @@ const {
 		let sweeping: [number, number] | null = null;
 		let sweepT = 0;
 
-		const sweepAt = (t: number, [lo, hi]: [number, number]) => {
-			const lap = (t / SWEEP_SECS) % 1;
-			const ping = lap <= 0.5 ? 2 * lap : 2 - 2 * lap;
-			return lo * Math.pow(hi / lo, ping);
-		};
+		const sweepAt = (t: number, [lo, hi]: [number, number]) =>
+			lo * Math.pow(hi / lo, shuttleAt(t, { seconds: SWEEP_SECS }));
 
 		/* Where to start that clock so the sweep is passing through `f` on its
 		   way up: the wave then carries on from whatever it was already doing
 		   instead of snapping to the bottom of the range. */
-		const sweepEntry = (f: number, [lo, hi]: [number, number]) => {
-			const ping = Math.min(1, Math.max(0, Math.log(f / lo) / Math.log(hi / lo)));
-			return (ping * SWEEP_SECS) / 2;
-		};
+		const sweepEntry = (f: number, [lo, hi]: [number, number]) =>
+			shuttleEntry(Math.log(f / lo) / Math.log(hi / lo), { seconds: SWEEP_SECS });
 
 		/* The axis is logarithmic, so the control is too: the same distance
 		   dragged is the same ratio in frequency wherever it is dragged, and the
@@ -890,7 +822,7 @@ const {
 
 			const nm = C_NM_PER_S / (freqThz * 1e12);
 			const [r, g, b] = wavelengthRgb(nm);
-			const colour = spectral ? `rgb(${r} ${g} ${b})` : '#ffffff';
+			const colour = spectral ? rgbCss(r, g, b) : '#ffffff';
 
 			if (!reduceMotion) {
 				// Both follow from the scales: the wave streams past at a slowed,
@@ -981,10 +913,6 @@ const {
 				repaint();
 			}
 			placeMark();
-			if (canDrag && !manual) {
-				const v = String(rangeFromFreq(freqThz));
-				if (rangeEl.value !== v) rangeEl.value = v;
-			}
 		}
 
 		requestAnimationFrame(frame);

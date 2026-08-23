@@ -1,0 +1,68 @@
+---
+title: "Colour #6: Gradients"
+series: "Colour"
+format: "deck"
+description: ""
+pubDate: "August 21 2026"
+---
+
+import DeckCard from "../../components/DeckCard.astro";
+import DeckViz from "../../components/DeckViz.astro";
+import GradientBand from "../../components/GradientBand.astro";
+import MixKnob from "../../components/MixKnob.astro";
+import RgbCube from "../../components/RgbCube.astro";
+import VizPhase from "../../components/VizPhase.astro";
+
+{/* The thing itself first, then the machinery. The band is a plain sRGB
+    gradient, which is the arithmetic card two writes out; the cube is part
+    one's, opened at the setting that post spent seven cards building up to --
+    two dots, the line between them, and a swatch that is the gradient along
+    it. The first phase listed is the one a deck opens on. */}
+<DeckViz>
+  <VizPhase name="band">
+    {/* sRGB, not the component's own default of OKLCH: this band is the thing
+        the next card writes the arithmetic for, so it has to be the run that
+        arithmetic produces -- grey-brown trough in the middle and all. */}
+    <GradientBand
+      from="#ff8a1e"
+      to="#1e5cff"
+      space="in srgb"
+      label="A gradient running from orange to blue."
+    />
+  </VizPhase>
+  {/* The band's own two ends, with one mixture of them pulled out and held
+      still. Same colours throughout the post, so the three phases are three
+      views of one gradient rather than three pictures. */}
+  <VizPhase name="mix">
+    <MixKnob from="#ff8a1e" to="#1e5cff" />
+  </VizPhase>
+  <VizPhase name="cube">
+    <RgbCube line guides />
+  </VizPhase>
+</DeckViz>
+
+<DeckCard>
+  ## Two colours, and everything in between
+
+  Smoothly transitioning from one colour to another is called a *gradient*. You will find them everywhere on the web.
+</DeckCard>
+
+<DeckCard vizProps={{ phase: "mix" }}>
+  ## Gradients are linear interpolation
+
+  We can achieve gradients in RGB via *linear interpolation*. Say your two colors have red channels `10` and `70`, and you want to interpolate between them via a "knob" that goes from 0 to 1. Then the formula goes:
+
+  ```typescript
+  red = knob * 70 + (1 - knob) * 10
+  ```
+
+  Basically: Take `knob` percent from the second colour, and the rest from the first. Do the same for green and blue, and you have a gradient.
+</DeckCard>
+
+<DeckCard vizProps={{ phase: "cube" }}>
+  ## Gradients are line segments
+
+  Geometrically speaking, a gradient is just a line segment through the RGB cube (or other color spaces), where the two endpoints are the two colours we want to transition between. Each point along the line segment corresponds to a colour in the gradient.
+
+  The linear interpolation formula from before is just a way to find the coordinates of a point along that line segment.
+</DeckCard>

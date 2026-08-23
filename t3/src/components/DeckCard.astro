@@ -58,6 +58,10 @@ const { vizProps } = Astro.props;
 		align-items: flex-start;
 		overflow-y: auto;
 		overscroll-behavior: contain;
+		/* The card scrolls vertically; the horizontal axis belongs to the deck's
+		   swipe. Left to itself the browser arbitrates the whole gesture and
+		   cancels the pointer part-way through a sideways drag. */
+		touch-action: pan-y pinch-zoom;
 		/* Bottom spacing lives on the content below, not here: a scroll
 		   container's end padding is left out of its scrollable area once the
 		   overflow comes from a stretched flex item, so scrolling to the bottom

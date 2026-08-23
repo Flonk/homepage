@@ -1,0 +1,318 @@
+---
+/**
+ * Two colours, a knob, and what the knob makes of them.
+ *
+ *   [from]   [        mix        ]   [to]
+ *            ────────●────────────
+ *
+ * The card beside this one writes a line of arithmetic; this is that line with
+ * the numbers moving. The ends are fixed and the middle is whatever the knob
+ * says: at 0 it is the left swatch exactly, at 1 the right one, and in between
+ * it is each channel walked independently from one to the other — the same
+ * mixture the gradient on the card before it is made of, held still long
+ * enough to look at.
+ *
+ * Which is the whole reason the middle swatch is the big one. A gradient shows
+ * you every mixture at once and none of them long enough to inspect; this
+ * shows you exactly one, and hands you the knob that chose it. The two ends
+ * stay on screen beside it so the mixture is always read against what it was
+ * made from.
+ *
+ * The knob walks by itself and stops when taken hold of, resuming a few
+ * seconds after it is let go — the same bargain the cube and the cone curves
+ * make. A reader who does nothing is still shown the whole range; a reader who
+ * wants a particular mixture can go and get it.
+ *
+ * Mixed in sRGB, deliberately: the point of the card is the naive formula, and
+ * the trough it goes through in the middle of a warm-to-cool pair is the thing
+ * the rest of the series has to answer for. See GradientBand's `space` for the
+ * same choice made about the band.
+ */
+import { rgbCss, type Rgb } from '../lib/rgb';
+import VizTrack from './VizTrack.astro';
+
+interface Props {
+	/** The colour at knob 0, as any CSS colour. */
+	from?: string;
+	/** The colour at knob 1. */
+	to?: string;
+	/** Where the knob rests, 0 to 1. Also where a walk is picked up from. */
+	knob?: number;
+	/** Walk the knob back and forth instead of holding it still. */
+	sweep?: boolean;
+	/** How long one round trip of that walk takes, in seconds. */
+	sweepSeconds?: number;
+	/** Let the reader take the knob. */
+	drag?: boolean;
+	/** Seconds a reader's pick is held before the walk takes over again. */
+	idleResume?: number;
+}
+
+const {
+	from = '#ff8a1e',
+	to = '#1e5cff',
+	knob = 0.5,
+	sweep = true,
+	sweepSeconds = 9,
+	drag = true,
+	idleResume = 6,
+} = Astro.props;
+
+/* The ends label themselves with the three numbers they are, which is the
+   whole subject of the card next door. Only hex is read here — enough for how
+   these are authored, and anything else is left to the script, which asks the
+   browser what the colour is rather than guessing. */
+const asRgb = (css: string) => {
+	const hex = /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.exec(css.trim())?.[1];
+	if (!hex) return '';
+	const full = hex.length === 3 ? [...hex].map((c) => c + c).join('') : hex;
+	return rgbCss([0, 2, 4].map((i) => parseInt(full.slice(i, i + 2), 16)) as Rgb);
+};
+---
+
+<figure
+	class="mix"
+	data-mix-knob
+	data-from={from}
+	data-to={to}
+	data-knob={knob}
+	data-sweep={sweep ? 'true' : 'false'}
+	data-sweep-seconds={sweepSeconds}
+	data-drag={drag ? 'true' : 'false'}
+	data-idle-resume={idleResume}
+	style={`--from: ${from}; --to: ${to}`}
+>
+	{/* The dark surround the band next door sits in, and the plates in part one
+	    before that: three colours on the beige ground would have no edges of
+	    their own, and the middle one is a mixture that has to be read against
+	    the two beside it rather than against whatever the pane is. */}
+	<div class="plate">
+		<div class="swatches">
+			<div class="end from"><span class="tag" data-tag>{asRgb(from)}</span></div>
+			<div class="mixed" data-mixed>
+				<span class="readout" data-readout></span>
+			</div>
+			<div class="end to"><span class="tag" data-tag>{asRgb(to)}</span></div>
+		</div>
+		{/* The bar every other viz in the series uses; see VizTrack. It walks the
+		    knob end to end by itself, stops when a reader takes it, and reports
+		    both the same way. */}
+		<VizTrack
+			data-knob
+			motion={sweep ? 'shuttle' : 'none'}
+			sweepSeconds={sweepSeconds}
+			drag={drag}
+			idleResume={idleResume}
+			values={[knob]}
+			labels={['How much of the second colour is in the mixture']}
+		/>
+	</div>
+</figure>
+
+<style>
+	.mix {
+		box-sizing: border-box;
+		width: 100%;
+		height: 100%;
+		min-width: 0;
+		min-height: 0;
+		/* The pane has no bottom padding of its own; the air below is taken here,
+		   the same measure the band and the ramp take. */
+		margin: 0 0 1em;
+		font-family: var(--font-mono);
+	}
+
+	.plate {
+		box-sizing: border-box;
+		width: 100%;
+		height: 100%;
+		min-width: 0;
+		min-height: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.9rem;
+		padding: 1em;
+		border-radius: 0.75rem;
+		background: var(--viz-dark, #14161a);
+		--ink: #e6e9ef;
+		--ink-dim: #8891a0;
+		color: var(--ink);
+	}
+
+	/* The mixture gets the room, because it is the one being asked about. The
+	   ends are references and only have to be identifiable. */
+	.swatches {
+		flex: 1;
+		min-width: 0;
+		min-height: 0;
+		display: grid;
+		grid-template-columns: 1fr 2.4fr 1fr;
+		gap: 0.5rem;
+	}
+
+	.end,
+	.mixed {
+		position: relative;
+		min-width: 0;
+		min-height: 0;
+		border-radius: 0.25rem;
+	}
+
+	.from {
+		background: var(--from);
+	}
+
+	.to {
+		background: var(--to);
+	}
+
+	.mixed {
+		background: var(--mixed, var(--from));
+	}
+
+	/* Set into the swatch rather than under it: the pane is shallow and a row of
+	   captions would cost more height than the picture can spare. */
+	.tag,
+	.readout {
+		position: absolute;
+		left: 0.45rem;
+		bottom: 0.4rem;
+		font-size: 0.7rem;
+		letter-spacing: 0.04em;
+		line-height: 1;
+		/* Black or white, whichever the swatch underneath can carry — set by the
+		   script, which is the only thing that knows what the mixture came out
+		   as. */
+		color: var(--label-ink, #000);
+	}
+
+	.readout {
+		font-size: 0.8rem;
+	}
+
+	@container viz (max-width: 30rem) {
+		.tag {
+			font-size: 0.6rem;
+		}
+
+		.readout {
+			font-size: 0.7rem;
+		}
+	}
+
+</style>
+
+<script>
+	import { rgbCss, type Rgb } from '../lib/rgb';
+
+	type TrackEl = HTMLElement & {
+		track: { set(i: number, v: number): void; sweep(on: boolean): void };
+	};
+
+	function initMix(root: HTMLElement) {
+		if (root.dataset.ready === 'true') return;
+		root.dataset.ready = 'true';
+
+		const mixed = root.querySelector<HTMLElement>('[data-mixed]')!;
+		const readout = root.querySelector<HTMLElement>('[data-readout]')!;
+		const bar = root.querySelector<TrackEl>('[data-viz-track]')!;
+		const host =
+			root.closest<HTMLElement>('[data-viz-phase]') ?? root.closest<HTMLElement>('[data-viz-stage]');
+
+		/* Colours come in as whatever CSS accepts, and have to come out as three
+		   numbers to do arithmetic on. Rather than parse them, hand each to the
+		   browser and read back what it made of it. */
+		const probe = document.createElement('span');
+		probe.style.display = 'none';
+		root.append(probe);
+		const readColour = (value: string): Rgb => {
+			probe.style.color = '';
+			probe.style.color = value;
+			const [r, g, b] = getComputedStyle(probe)
+				.color.match(/[\d.]+/g)!
+				.map(Number);
+			return [r, g, b];
+		};
+
+		const AUTHORED = {
+			from: root.dataset.from!,
+			to: root.dataset.to!,
+			knob: Number(root.dataset.knob),
+			sweep: root.dataset.sweep !== 'false',
+		};
+		let state = { ...AUTHORED };
+		let ends: [Rgb, Rgb] = [readColour(state.from), readColour(state.to)];
+		let t = state.knob;
+
+		/* Relative luminance, to decide whether a label on a swatch should be
+		   black or white. The mixture is whatever the knob made it, so this
+		   cannot be settled in the stylesheet. */
+		const carriesDarkInk = ([r, g, b]: Rgb) => {
+			const lin = [r, g, b].map((v) => {
+				const c = v / 255;
+				return c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+			});
+			return 0.2126 * lin[0] + 0.7152 * lin[1] + 0.0722 * lin[2] > 0.2;
+		};
+
+		/* The card's formula, per channel: knob of the second colour, the rest of
+		   the first. Rounded on the way out because a screen has no half-steps,
+		   and the readout should say what was actually drawn. */
+		function paint() {
+			const [a, b] = ends;
+			const rgb = a.map((v, i) => Math.round(v + (b[i] - v) * t)) as Rgb;
+			mixed.style.setProperty('--mixed', rgbCss(rgb));
+			mixed.style.setProperty('--label-ink', carriesDarkInk(rgb) ? '#000' : '#fff');
+			readout.textContent = `knob ${t.toFixed(2)} · ${rgbCss(rgb)}`;
+		}
+
+		/* What each end is, and what colour of ink it can carry, are both fixed
+		   by the end colours rather than by the knob, so they are settled
+		   whenever those change rather than every frame. */
+		function paintEnds() {
+			const cells = root.querySelectorAll<HTMLElement>('.end');
+			const tags = root.querySelectorAll<HTMLElement>('[data-tag]');
+			ends.forEach((rgb, i) => {
+				cells[i]?.style.setProperty('--label-ink', carriesDarkInk(rgb) ? '#000' : '#fff');
+				if (tags[i]) tags[i].textContent = rgbCss(rgb);
+			});
+		}
+
+		/* The bar moves for two reasons — its own walk, and a reader dragging it
+		   — and this hears about both the same way. */
+		bar.addEventListener('track:input', (e) => {
+			t = (e as CustomEvent).detail.value;
+			paint();
+		});
+
+		host?.addEventListener('viz:props', (e) => {
+			const p = ((e as CustomEvent).detail ?? {}) as Record<string, unknown>;
+			state = {
+				from: typeof p.from === 'string' ? p.from : AUTHORED.from,
+				to: typeof p.to === 'string' ? p.to : AUTHORED.to,
+				knob: Number.isFinite(Number(p.knob)) ? Number(p.knob) : AUTHORED.knob,
+				sweep: 'sweep' in p ? Boolean(p.sweep) : AUTHORED.sweep,
+			};
+			root.style.setProperty('--from', state.from);
+			root.style.setProperty('--to', state.to);
+			ends = [readColour(state.from), readColour(state.to)];
+			paintEnds();
+			bar.track.motion(state.sweep);
+			// A card that names a knob means it; one that does not leaves the bar
+			// wherever its walk had got to.
+			if ('knob' in p || !state.sweep) {
+				t = state.knob;
+				bar.track.set(0, t);
+			}
+			paint();
+		});
+
+		host?.addEventListener('viz:enter', () => bar.track.motion(state.sweep));
+		host?.addEventListener('viz:exit', () => bar.track.motion(false));
+
+		paintEnds();
+		paint();
+	}
+
+	document.querySelectorAll<HTMLElement>('[data-mix-knob]').forEach(initMix);
+</script>

@@ -524,6 +524,115 @@ em {
 }
 
 /* ==========================================================================
+   Visualization controls
+   --------------------------------------------------------------------------
+   Every draggable thing in the Colour series is a real <input type="range">,
+   so that keyboards, screen readers and touch all work without any of it being
+   reimplemented on pointer events. What each viz then wants it to *look* like
+   differs — a bar filled to the knob, a channel slider with a gradient in its
+   track, or nothing at all — but the anatomy never does, and four components
+   had grown four copies of the same reset and the same pair of vendor
+   pseudo-element rules.
+
+   So the anatomy lives here and the appearance is a handful of custom
+   properties the component sets on itself. Unscoped on purpose: Astro's scoped
+   styles cannot reach a class shared by four components, and vendor
+   pseudo-elements cannot be written generically any other way.
+
+   Every pseudo-element gets a rule of its own, always: a browser that does not
+   recognise one selector throws out the whole rule it appears in, so grouping
+   -webkit- and -moz- together silently loses both.
+   ========================================================================== */
+
+.viz-range {
+  /* The track, and how much of it reads as filled. A gradient with a hard stop
+     rather than a second element: the fill has to be the track. */
+  --range-track: 0.4rem;
+  --range-fill: transparent;
+  --range-rest: rgb(255 255 255 / 0.16);
+  --range-at: 0; /* 0 to 1, set by the component's script */
+  --range-radius: 0.2rem;
+  /* The thumb. */
+  --range-thumb-w: 0.55rem;
+  --range-thumb-h: 1.1rem;
+  --range-thumb-ink: currentColor;
+  --range-thumb-radius: 2px;
+  --range-thumb-ring: 0 0;
+  /* Centred on the track by default. A control whose thumb spans the whole
+     bar rather than sitting inside it sets this to zero. */
+  --range-thumb-offset: calc((var(--range-track) - var(--range-thumb-h)) / 2);
+
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  /* A horizontal drag is the deck's swipe gesture; on a control it belongs to
+     the control, which also needs `data-no-swipe` on the element itself. */
+  touch-action: none;
+}
+
+.viz-range::-webkit-slider-runnable-track {
+  height: var(--range-track);
+  border-radius: var(--range-radius);
+  background: linear-gradient(
+    to right,
+    var(--range-fill) 0 calc(var(--range-at) * 100%),
+    var(--range-rest) calc(var(--range-at) * 100%) 100%
+  );
+}
+
+.viz-range::-moz-range-track {
+  height: var(--range-track);
+  border-radius: var(--range-radius);
+  background: linear-gradient(
+    to right,
+    var(--range-fill) 0 calc(var(--range-at) * 100%),
+    var(--range-rest) calc(var(--range-at) * 100%) 100%
+  );
+}
+
+.viz-range::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: var(--range-thumb-w);
+  height: var(--range-thumb-h);
+  margin-top: var(--range-thumb-offset);
+  border: 0;
+  border-radius: var(--range-thumb-radius);
+  background: var(--range-thumb-ink);
+  box-shadow: var(--range-thumb-ring);
+}
+
+.viz-range::-moz-range-thumb {
+  width: var(--range-thumb-w);
+  height: var(--range-thumb-h);
+  border: 0;
+  border-radius: var(--range-thumb-radius);
+  background: var(--range-thumb-ink);
+  box-shadow: var(--range-thumb-ring);
+}
+
+.viz-range:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 3px;
+}
+
+/* The other kind: the control is drawn elsewhere — on a canvas, or as a mark
+   that follows the value — and the input is here only so the thing can be
+   worked by keyboard and finger. A hairline thumb rather than none at all,
+   because a range insets its thumb by half its width at either end, and at one
+   pixel that inset stays under the mark the whole way across. */
+.viz-range.is-silent {
+  --range-fill: transparent;
+  --range-rest: transparent;
+  --range-thumb-w: 1px;
+  --range-thumb-h: 100%;
+  --range-thumb-ink: transparent;
+}
+
+/* ==========================================================================
    View transitions
    --------------------------------------------------------------------------
    A plain cross-fade between pages. Native cross-document transitions, so no

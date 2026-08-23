@@ -57,6 +57,9 @@ interface Props {
 /* The two ends are told apart by shape rather than by hue: solid for the first,
    hollow for the second. Colouring them would be a lie in a picture whose whole
    subject is which colour is where. */
+import { lighten } from '../lib/oklch';
+import VizTrack from './VizTrack.astro';
+
 const CHANNELS = [
 	{ name: 'Red', ramp: '#f16d6d', a: 128, b: 40 },
 	{ name: 'Green', ramp: '#7bd88f', a: 128, b: 200 },
@@ -91,25 +94,48 @@ const {
 	data-line={String(line)}
 	data-guides={String(guides)}
 >
-	<div class="bars" role="group" aria-label="Colour channels">
+	{/* One animation context for the three of them: they are one colour between
+	    them, so taking hold of any one bar has to stop the other two as well.
+	    See lib/animate. */}
+	<div class="bars" role="group" aria-label="Colour channels" data-anim-context>
 		{
-			/* Two real range inputs per channel, stacked in one grid cell. The
-			   second draws no track of its own, so the pair reads as one bar with
-			   two thumbs on it — and each end stays keyboard-reachable, which a
-			   pair of hand-rolled handles would not be. */
+			/* One bar per channel, each with two thumbs on it: the two ends of the
+			   gradient, solid and hollow. The bar itself is VizTrack, which every
+			   other control in the series is too; what makes these ones channel
+			   sliders rather than progress bars is the backdrop — black to the
+			   channel's own colour — and that they stand up. */
 			CHANNELS.map((ch) => (
-				<label class="bar" style={`--channel: ${ch.ramp}`}>
-					<input type="range" min="0" max="255" value={ch.a} aria-label={ch.name} />
-					<input
-						class="second"
-						type="range"
-						min="0"
-						max="255"
-						value={ch.b}
-						aria-label={`${ch.name}, second colour`}
-						hidden={!line}
+				<div
+					class="bar"
+					style={[
+						`--channel: ${ch.ramp}`,
+						/* The bar's own ramp, lifted a fifth of the way to white: an edge
+						   that is the channel's colour everywhere along it rather than one
+						   flat line laid over a gradient. See lighten in lib/oklch. */
+						`--track-edge: linear-gradient(to top, ${lighten('#000000', 0.2)}, ${lighten(ch.ramp, 0.2)})`,
+						/* And the mark's outline is that same lifted colour: white round a
+						   black mark is a harder line than anything else on the bar, and
+						   the channel's own bright is the one already in play. */
+						`--track-ring: ${lighten(ch.ramp, 0.2)}`,
+					].join('; ')}
+				>
+					<VizTrack
+						upright
+						{/* Twice the spectrum's bar: what is behind this one is a ramp
+						    the reader is meant to read a position off, not a scale
+						    that only has to be recognised. */}
+						size="1.7rem"
+						backdrop={`linear-gradient(to top, #000, ${ch.ramp})`}
+						thumbs={2}
+						single={!line}
+						values={[ch.a, ch.b]}
+						min={0}
+						max={255}
+						step={1}
+						labels={[ch.name, `${ch.name}, second colour`]}
 					/>
-				</label>
+					<span class="bar-name" aria-hidden="true">{ch.name[0]}</span>
+				</div>
 			))
 		}
 	</div>
@@ -154,8 +180,8 @@ const {
 			></path>
 		</svg>
 		<div class="readout-text">
-			<span class="rgb-string" data-rgb>rgb(128, 128, 128)</span>
-			<span class="rgb-string second" data-rgb-b hidden>rgb(128, 128, 128)</span>
+			<span class="rgb-string" data-rgb>rgb(128 128 128)</span>
+			<span class="rgb-string second" data-rgb-b hidden={!line}>rgb(128 128 128)</span>
 		</div>
 	</div>
 </div>
@@ -173,6 +199,15 @@ const {
 		--bar-gap: clamp(0.75rem, 2vw, 1.75rem); /* bars to cube */
 		--cube-scale: 0.55; /* cube size, as a fraction of the pane's short side */
 
+		/* Out from under DeckViz's cap on how wide a visualization may get. This
+		   one is already capped where it counts — the cube is sized from the
+		   pane's short side and the bars are fixed — and what the extra width
+		   carries is the swatch, which is a ground for the picture rather than
+		   part of it and is meant to run off the end of the pane. Cap the whole
+		   composition and that ground acquires an edge in the middle of the
+		   pane, which is worse than either extreme. */
+		--viz-max: none;
+
 		position: relative;
 		display: flex;
 		align-items: stretch;
@@ -184,135 +219,70 @@ const {
 		min-height: 0;
 		box-sizing: border-box;
 		font-family: var(--font-mono);
-		/* The viz sits on a light ground (see --deck-ground), so its chrome is
-		   inked dark rather than light. */
-		--ink: #35302a;
-		--ink-dim: #7a7264;
+		/* Whichever way round the deck's ground is: the post picks the pair and
+		   the picture reads them (see --deck-ink in DeckPost). */
+		--ink: var(--deck-ink, #35302a);
+		--ink-dim: var(--deck-ink-dim, #7a7264);
 		--line: #b3a993;
 		color: var(--ink);
 	}
 
 	/* --- channel bars --- */
 
+	/* The controls, on a plate of their own. Three bars loose on the ground read
+	   as part of the picture; on a panel they read as the thing you are allowed
+	   to touch — and the marks, which are white and lit for the spectrum's sake,
+	   have something to be white against.
+
+	   Glass rather than a colour: the swatch behind runs under this plate, and
+	   what should happen there is that the colour goes soft and carries on, not
+	   that a lid is put on it. */
 	.bars {
 		position: relative;
 		z-index: 1;
 		flex: none;
 		display: flex;
-		gap: 0.6rem;
+		gap: 0.9rem;
 		align-items: stretch;
-		padding: 0.25rem 0;
+		box-sizing: border-box;
+		margin: 1em 0;
+		padding: 1em;
+		border-radius: 0.5rem;
+		background: var(--viz-glass, rgb(255 255 255 / 0.06));
+		box-shadow:
+			inset 0 0 0 1px var(--viz-glass-rim, rgb(255 255 255 / 0.08)),
+			0 4px 16px rgb(0 0 0 / 0.15);
+		backdrop-filter: blur(6px);
+		color: #e6e9ef;
 	}
 
-	/* Only the track lives here now — the readout at the corner says what the
-	   numbers are, so the labels under each bar were repeating it. Dropping
-	   them hands their space back to the track. */
-	/* One cell, so a channel's two inputs stack exactly and read as one bar. */
+	/* The bar's cell: the track, and the channel's letter under it. What the
+	   track looks like is set here as inherited properties rather than reached
+	   for with a selector — see VizTrack. */
 	.bar {
-		display: grid;
-		grid-template: 'track' minmax(0, 1fr) / minmax(0, 1fr);
 		min-width: 0;
 		min-height: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.45rem;
+		--track-border: 1px solid transparent;
+		--track-radius: 4px;
+		/* The two marks answer the two dots in the cube beside them, and are
+		   inked the same way round: the first solid and dark, the second hollow —
+		   pale, with the dark line round it. Each carries the other's colour as
+		   its outline, so both stay legible against a ramp that runs from black
+		   to a bright channel. */
+		--track-ink: #000;
+		--track-ink-second: #f6f1e6;
 	}
 
-	.bar input {
-		grid-area: track;
-	}
-
-	/* Real range inputs, so keyboard and touch work. writing-mode makes them
-	   vertical and direction:rtl puts the maximum at the top. The track is wider
-	   than the thumb, so the thumb sits inside the bar rather than straddling it. */
-	.bar input {
-		writing-mode: vertical-lr;
-		direction: rtl;
-		appearance: none;
-		-webkit-appearance: none;
-		width: 2rem;
-		height: 100%;
-		min-height: 0;
-		margin: 0;
-		padding: 0;
-		background: transparent;
-		cursor: ns-resize;
-		touch-action: none;
-	}
-
-	.bar input::-webkit-slider-runnable-track {
-		width: 2rem;
-		height: 100%;
-		border-radius: 4px;
-		border: 1px solid var(--line);
-		background: linear-gradient(to top, #000, var(--channel));
-	}
-
-	.bar input::-moz-range-track {
-		width: 2rem;
-		height: 100%;
-		border-radius: 4px;
-		border: 1px solid var(--line);
-		background: linear-gradient(to top, #000, var(--channel));
-	}
-
-	.bar input::-webkit-slider-thumb {
-		appearance: none;
-		-webkit-appearance: none;
-		/* Spans the bar rather than sitting inside it. */
-		width: 2rem;
-		height: 0.5rem;
-		margin-left: 0;
-		border-radius: 2px;
-		background: var(--ink);
-		box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.55);
-	}
-
-	.bar input::-moz-range-thumb {
-		width: 2rem;
-		height: 0.5rem;
-		border: none;
-		border-radius: 2px;
-		background: var(--ink);
-		box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.55);
-	}
-
-	.bar input.second::-webkit-slider-runnable-track {
-		background: transparent;
-		border-color: transparent;
-	}
-
-	.bar input.second::-moz-range-track {
-		background: transparent;
-		border-color: transparent;
-	}
-
-	/* Hollow, to the first thumb's solid — the same pairing the two dots use. */
-	.bar input.second::-webkit-slider-thumb {
-		background: #f6f1e6;
-		box-shadow: 0 0 0 1.5px var(--ink);
-	}
-
-	.bar input.second::-moz-range-thumb {
-		background: #f6f1e6;
-		box-shadow: 0 0 0 1.5px var(--ink);
-	}
-
-	/* With two inputs stacked, the upper one would take every press on the bar,
-	   including presses meant for the lower one's thumb. Letting only the thumbs
-	   be hit fixes that at the cost of click-the-track-to-jump, which is the
-	   cheaper of the two to lose. */
-	.rgb-cube[data-line='true'] .bar input {
-		pointer-events: none;
-	}
-
-	.rgb-cube[data-line='true'] .bar input::-webkit-slider-thumb {
-		pointer-events: auto;
-	}
-
-	.rgb-cube[data-line='true'] .bar input::-moz-range-thumb {
-		pointer-events: auto;
-	}
-
-	.bar input:focus-visible::-webkit-slider-runnable-track {
-		border-color: var(--accent);
+	.bar-name {
+		flex: none;
+		font-size: 0.8rem;
+		line-height: 1;
+		letter-spacing: 0.08em;
+		color: #8891a0;
 	}
 
 	/* --- cube --- */
@@ -342,7 +312,8 @@ const {
 		cursor: grab;
 		touch-action: none;
 		filter: drop-shadow(
-			0 var(--shadow-y, 6px) var(--shadow-blur, 18px) rgba(40, 30, 14, 0.55)
+			0 var(--shadow-y, 6px) var(--shadow-blur, 18px)
+				var(--viz-shadow, rgba(40, 30, 14, 0.55))
 		);
 	}
 
@@ -423,21 +394,6 @@ const {
 		.bars {
 			gap: 0.4rem;
 		}
-		.bar input {
-			width: 1.25rem;
-		}
-		.bar input::-webkit-slider-runnable-track {
-			width: 1.25rem;
-		}
-		.bar input::-webkit-slider-thumb {
-			width: 1.25rem;
-		}
-		.bar input::-moz-range-track {
-			width: 1.25rem;
-		}
-		.bar input::-moz-range-thumb {
-			width: 1.25rem;
-		}
 	}
 
 	@container viz (max-width: 30rem) {
@@ -487,42 +443,10 @@ const {
 
 		.bar {
 			width: 100%;
-		}
-
-		.bar input {
+			/* Lying down: the track takes its axis from the writing mode, so this
+			   one line turns the upright bars horizontal, minimum at the left. */
 			writing-mode: horizontal-tb;
 			direction: ltr;
-			width: 100%;
-			height: 1.1rem;
-			cursor: ew-resize;
-		}
-
-		/* Lying down, the ramp runs to the right: minimum at the left, where a
-		   left-to-right slider starts. The thumb mirrors the upright case — it
-		   spans the bar's thickness and is narrow along its length. */
-		.bar input::-webkit-slider-runnable-track {
-			width: 100%;
-			height: 1.1rem;
-			background: linear-gradient(to right, #000, var(--channel));
-		}
-
-		.bar input::-moz-range-track {
-			width: 100%;
-			height: 1.1rem;
-			background: linear-gradient(to right, #000, var(--channel));
-		}
-
-		.bar input::-webkit-slider-thumb {
-			width: 0.55rem;
-			height: 1.1rem;
-			margin-left: 0;
-			margin-top: 0;
-		}
-
-		.bar input::-moz-range-thumb {
-			width: 0.55rem;
-			height: 1.1rem;
-			margin-left: 0;
 		}
 
 		.stage {
@@ -534,6 +458,8 @@ const {
 </style>
 
 <script>
+	import { contextFor } from '../lib/animate';
+	import { rgbCss, type Rgb } from '../lib/rgb';
 	type Quat = [number, number, number, number]; // x, y, z, w
 
 	const IDENTITY: Quat = [0, 0, 0, 1];
@@ -904,10 +830,16 @@ const {
 		root.dataset.ready = 'true';
 
 		const canvas = root.querySelector<HTMLCanvasElement>('[data-canvas]')!;
-		/* [channel][end] — a channel's two inputs in DOM order, solid then hollow. */
-		const inputs = Array.from(root.querySelectorAll<HTMLElement>('.bar')).map((bar) =>
-			Array.from(bar.querySelectorAll<HTMLInputElement>('input')),
-		);
+		/* One bar per channel, each carrying both ends. See VizTrack for what a
+		   host is allowed to say to one. */
+		type TrackEl = HTMLElement & {
+			track: { set(i: number, v: number): void; showThumb(i: number, on: boolean): void };
+		};
+		const bars = Array.from(root.querySelectorAll<TrackEl>('[data-viz-track]'));
+		/* The one the bars are in, so "a reader is busy" is a single fact rather
+		   than a timer in here and another in each bar. VizTrack calls hold() on
+		   any grab; this only has to ask whether it is holding. */
+		const ctx = contextFor(root.querySelector('[data-anim-context]') ?? root);
 		const rgbOut = [
 			root.querySelector<HTMLElement>('[data-rgb]')!,
 			root.querySelector<HTMLElement>('[data-rgb-b]')!,
@@ -1045,7 +977,11 @@ const {
 			return 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b);
 		};
 
-		let idleMs = (Number(root.dataset.idleResume) || 5) * 1000;
+		/* How long a reader's turn is held for. Kept as seconds and handed to the
+		   bars, which are what actually count it out — see VizTrack and
+		   lib/animate. */
+		let idleSeconds = Number(root.dataset.idleResume) || 5;
+		const tellBars = () => bars.forEach((b) => (b.dataset.idleResume = String(idleSeconds)));
 		let spin = root.dataset.spin !== 'false';
 		let lock: number[] | null = root.dataset.lock
 			? root.dataset.lock.split(',').map(Number)
@@ -1057,7 +993,7 @@ const {
 		   patch — the deck has already merged it onto the sets before it — so a
 		   card that says nothing about a parameter is saying it should be back to
 		   this, not that it should be left wherever the last card put it. */
-		const AUTHORED = { idleMs, spin, lock, tour, line, guides };
+		const AUTHORED = { idleSeconds, spin, lock, tour, line, guides };
 		const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 		/* The pane, or the phase of it, that this belongs to when it is inside a
@@ -1098,8 +1034,14 @@ const {
 		const makeEnd = (phase: number[]) => ({
 			phase,
 			rgb: [0.5, 0.5, 0.5],
-			manual: [0.5, 0.5, 0.5],
-			manualUntil: 0,
+			/* Where this end was when the hold began, and the channels a reader
+			   has moved since. Two things rather than one, because they arrive in
+			   an order nothing controls: the bar holds the context on pointerdown
+			   and the value lands before the next frame, so a snapshot taken in
+			   that frame would wipe what the reader had already said. */
+			frozen: [0.5, 0.5, 0.5],
+			override: [null, null, null] as (number | null)[],
+			wasHeld: false,
 			resumeFrom: null as number[] | null,
 			resumeAt: 0,
 			wasPinned: false,
@@ -1141,8 +1083,11 @@ const {
 			now: number,
 			dt: number,
 		) {
-			if (now < end.manualUntil) {
-				end.rgb = end.manual;
+			if (ctx.held) {
+				// The frame is the one place that can see the hold begin.
+				if (!end.wasHeld) end.frozen = end.rgb.slice();
+				end.wasHeld = true;
+				end.rgb = [0, 1, 2].map((c) => end.override[c] ?? end.frozen[c]);
 				end.resumeFrom = null;
 				return;
 			}
@@ -1151,7 +1096,6 @@ const {
 				// seen travelling; exponential, so a target that moves out from
 				// under it — every couple of seconds, on a tour — needs no
 				// special case.
-				end.manualUntil = 0;
 				end.resumeFrom = null;
 				end.wasPinned = true;
 				const k = 1 - Math.exp(-4 * dt);
@@ -1163,11 +1107,12 @@ const {
 				return;
 			}
 			const target = lissajous(t, end.phase);
-			if (end.manualUntil || end.wasPinned) {
+			if (end.wasHeld || end.wasPinned) {
 				end.resumeFrom = end.rgb.slice();
 				end.resumeAt = now;
-				end.manualUntil = 0;
+				end.wasHeld = false;
 				end.wasPinned = false;
+				end.override = [null, null, null];
 			}
 			if (end.resumeFrom) {
 				const k = Math.min(1, (now - end.resumeAt) / 800);
@@ -1185,36 +1130,33 @@ const {
 
 		/* ---- input ---------------------------------------------------------- */
 
-		/* Hold every end where it is. Seeding from the dot only when *entering*
-		   manual control matters: re-seeding on every event would lose a change
-		   made earlier in the same frame, since rgb has not caught up yet. */
-		const freeze = (at: number) => {
-			for (const end of ends) {
-				if (at >= end.manualUntil) end.manual = end.rgb.slice();
-				end.manualUntil = at + idleMs;
-				end.resumeFrom = null;
-			}
+		/* The holding itself is the bars' — they call hold() on the context all
+		   three of them share, and the frame above reads it. What is left for
+		   this is the easing: a resume that was already part-way through when a
+		   reader took hold again should be dropped rather than finished. */
+		const freeze = () => {
+			for (const end of ends) end.resumeFrom = null;
 		};
 
-		inputs.forEach((pair, channel) =>
-			pair.forEach((input, e) => {
-				// Taking hold of a thumb is enough to stop things, before any value
-				// has changed — and with a keyboard the input event is the only
-				// signal there is, so both lead to the same place.
-				input.addEventListener('pointerdown', () => freeze(performance.now()));
-				input.addEventListener('input', () => {
-					const at = performance.now();
-					freeze(at);
-					ends[e].manual[channel] = Number(input.value) / 255;
-				});
-			}),
-		);
+		tellBars();
+		bars.forEach((bar, channel) => {
+			// Taking hold of a thumb is enough to stop things, before any value has
+			// changed — and with a keyboard there is no grab to hear about, so the
+			// value itself has to lead to the same place.
+			bar.addEventListener('pointerdown', () => freeze());
+			bar.addEventListener('track:input', (e) => {
+				const { index, value, fromReader } = (e as CustomEvent).detail;
+				if (!fromReader) return;
+				freeze();
+				ends[index].override[channel] = value / 255;
+			});
+		});
 
 		host?.addEventListener('viz:props', (e) => {
 			const p = (e as CustomEvent).detail ?? {};
 			spin = 'spin' in p ? p.spin !== false : AUTHORED.spin;
-			idleMs =
-				'idleResume' in p ? (Number(p.idleResume) || 5) * 1000 : AUTHORED.idleMs;
+			idleSeconds = 'idleResume' in p ? Number(p.idleResume) || 5 : AUTHORED.idleSeconds;
+			tellBars();
 			if (!('lock' in p)) lock = AUTHORED.lock;
 			else lock = Array.isArray(p.lock) ? p.lock.map(Number) : null;
 			if (!('tour' in p)) tour = AUTHORED.tour;
@@ -1226,7 +1168,7 @@ const {
 				root.dataset.line = String(line);
 				// Hidden rather than merely invisible, so the second end's thumbs
 				// leave the tab order and the accessibility tree with it.
-				for (const pair of inputs) pair[1].hidden = !line;
+				for (const bar of bars) bar.track.showThumb(1, line);
 				rgbOut[1].hidden = !line;
 			}
 		});
@@ -1370,10 +1312,10 @@ const {
 			const css = `${A8}|${B8}`;
 			if (css !== lastCss) {
 				lastCss = css;
-				root.style.setProperty('--swatch-a', `rgb(${A8[0]} ${A8[1]} ${A8[2]})`);
-				root.style.setProperty('--swatch-b', `rgb(${B8[0]} ${B8[1]} ${B8[2]})`);
-				rgbOut[0].textContent = `rgb(${A8.join(', ')})`;
-				rgbOut[1].textContent = `rgb(${B8.join(', ')})`;
+				root.style.setProperty('--swatch-a', rgbCss(A8 as Rgb));
+				root.style.setProperty('--swatch-b', rgbCss(B8 as Rgb));
+				rgbOut[0].textContent = rgbCss(A8 as Rgb);
+				rgbOut[1].textContent = rgbCss(B8 as Rgb);
 				/* The readings sit in the bottom-right corner, which projects onto
 				   the middle of a ramp running bottom-left to top-right — so it is
 				   the halfway colour they have to hold up against, not either end.
@@ -1387,9 +1329,8 @@ const {
 						: '#fff',
 				);
 				for (let c = 0; c < 3; c++) {
-					const pair = inputs[c];
-					if (document.activeElement !== pair[0]) pair[0].value = String(A8[c]);
-					if (document.activeElement !== pair[1]) pair[1].value = String(B8[c]);
+					bars[c].track.set(0, A8[c]);
+					bars[c].track.set(1, B8[c]);
 				}
 			}
 

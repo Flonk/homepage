@@ -7,11 +7,11 @@ description: ""
 pubDate: "August 21 2026"
 ---
 
+import ColourSolid from "../../components/ColourSolid.astro";
 import DeckCard from "../../components/DeckCard.astro";
 import DeckViz from "../../components/DeckViz.astro";
 import LightnessRamp from "../../components/LightnessRamp.astro";
 import VizPhase from "../../components/VizPhase.astro";
-import ColourSolid from "../../components/ColourSolid.astro";
 
 {/* One ramp for the whole post; every card drives it with vizProps -- which
     hue, how many swatches, where the two ends sit. Cyan to start with, because
@@ -45,11 +45,26 @@ import ColourSolid from "../../components/ColourSolid.astro";
 </DeckCard>
 
 <DeckCard vizProps={{ phase: "solid", match: false, space: "rgb" }}>
-  ## The same colours, stood up
+  ## HSL
 
-  So where does HSL think that shade is? Tip the cube onto its black corner and the white one is directly above it: that line is HSL's lightness, and every colour in the solid is somewhere around it.
+  If we tip the RGB cube on its side such that the black corner is on the bottom and the white corner is on the top, colors will be roughly sorted by "lightness".
 
-  Throw the switch. The cube first flattens into a double cone -- the shape HSL's numbers really describe -- and then the cone is pushed out into a cylinder, which is the shape the sliders behave as if it were. Watch the last step closely: it is where the honesty goes.
+  If we then morph the cube into a cylinder with some clever maths, we can define a color space called *HSL*, which mirrors more closely how we tend to think about colour. We get three new numbers to index into the space:
+  - *Hue*: Around the cylinder, from red to green to blue and back to red.
+  - *Saturation*: From the center of the cylinder to the edge, from grey to fully saturated.
+  - *Lightness*: Top to bottom, from white to black.
+
+
+</DeckCard>
+
+<DeckCard vizProps={{ phase: "solid", match: false, space: "hsl", toggle: false }}>
+  ## HSL is not perfect
+
+  HSL and it's brother HSV are both attempts to make a color space that is more intuitive than RGB, and they have been around since the 1970s. They are widely used in design software, and are the basis for many color pickers on the web, so it's fair to say that they have been successful in that regard.
+
+  A big plus of HSL is that it is easy to transform back to RGB, and RGB is the ground truth for what your screen will actually display.
+
+  However, HSL's lightness slider is decieveing.
 </DeckCard>
 
 <DeckCard vizProps={{ phase: "ramp", match: false }}>
