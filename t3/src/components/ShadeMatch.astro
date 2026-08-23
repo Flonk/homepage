@@ -72,10 +72,10 @@ const CHANNELS = [
 			CHANNELS.map((ch, i) => (
 				<div
 					class="bar"
-					style={[
-						`--track-edge: linear-gradient(to top, ${lighten('#000000', 0.2)}, ${lighten(ch.ramp, 0.2)})`,
-						`--track-ring: ${lighten(ch.ramp, 0.2)}`,
-					].join('; ')}
+					{/* The bar's own ramp lifted a fifth of the way to white, so the
+					    edge is the channel's colour everywhere along it rather than
+					    one flat line laid over a gradient. See lighten in lib/oklch. */}
+					style={`--track-edge: linear-gradient(to top, ${lighten('#000000', 0.2)}, ${lighten(ch.ramp, 0.2)})`}
 				>
 					<VizTrack
 						upright
@@ -178,7 +178,10 @@ const CHANNELS = [
 		gap: 0.45rem;
 		--track-border: 1px solid transparent;
 		--track-radius: 4px;
-		--track-ink: #000;
+		/* The thumb is left alone. The cube's channel bars ink theirs dark
+		   because they carry two of them and the pair has to be told apart;
+		   one thumb is one thumb, and the white one with the dark ring round it
+		   is what a thumb looks like everywhere else in the series. */
 	}
 
 	.bar-name {
