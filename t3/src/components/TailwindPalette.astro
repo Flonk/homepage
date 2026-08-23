@@ -1,0 +1,236 @@
+---
+/**
+ * Every colour Tailwind ships, as it ships it.
+ *
+ * Twenty-six families of eleven, and since version 4 all 286 of them are
+ * written in the stylesheet as `oklch()` — which is the whole reason the grid
+ * belongs in this post. It is not a palette converted into the space to make
+ * a point; it is a palette that arrives in it, on a very large number of
+ * sites, chosen by people who had to ship something rather than illustrate
+ * something.
+ *
+ * The swatches are painted with the `oklch()` values themselves rather than
+ * with sRGB worked out here, which is the one place this series does not do
+ * its own colour maths. That is deliberate: several of these — the 400s and
+ * 500s especially — ask for more chroma than sRGB holds, and what a reader
+ * should see is what their own screen does with them. On a wide-gamut display
+ * those swatches are more saturated than they can be on a narrow one, and
+ * that difference is a fact about the palette worth meeting.
+ *
+ * Read down a column and you have one family from near-white to near-black.
+ * Read across a row and you have the same step in every family — which is
+ * not the same lightness, and visibly so. See lib/tailwind for the numbers.
+ */
+import { TAILWIND, STEPS, oklch, type Family } from '../lib/tailwind';
+
+interface Props {
+	/**
+	 * Which families to show, by name, in this order. All of them by default —
+	 * the point of the grid is how many there are.
+	 */
+	families?: string[];
+	/** Name each column under it. Off below a certain width; see the styles. */
+	labels?: boolean;
+	/**
+	 * Each swatch as the grey of its own luminance instead of its colour. The
+	 * rows are steps, so a row that is not one flat grey is a step that is not
+	 * one lightness.
+	 */
+	grey?: boolean;
+	/** Seconds between one column arriving and the next. */
+	stagger?: number;
+}
+
+const { families, labels = false, grey = false, stagger = 0.02 } = Astro.props;
+
+const shown: Family[] = families
+	? families.map((n) => TAILWIND.find((f) => f.name === n)).filter(Boolean as unknown as (f: Family | undefined) => f is Family)
+	: TAILWIND;
+---
+
+<figure
+	class="palette"
+	data-tailwind-palette
+	data-grey={String(grey)}
+	data-labels={String(labels)}
+	style={`--stagger: ${stagger}s`}
+>
+	<div class="grid" role="img" aria-label={`Tailwind's default palette: ${shown.length} families of ${STEPS.length} shades, every one of them an OKLCH colour`}>
+		{/* One column per family. The row count is written out per column rather
+		    than kept in a custom property: `repeat()` takes a literal integer, and
+		    a `var()` in that slot makes the whole declaration invalid — which
+		    leaves the rows sized to their contents, and a swatch has none. */}
+		{
+			shown.map((family, i) => (
+				<div
+					class="family"
+					style={`--i: ${i}; grid-template-rows: repeat(${family.shades.length}, minmax(0, 1fr)) auto`}
+				>
+					{family.shades.map((s) => (
+						<span
+							class="swatch"
+							style={`--fill: ${oklch(s)}; --grey: oklch(${(s.l * 100).toFixed(1)}% 0 0)`}
+						/>
+					))}
+					{labels && <span class="name">{family.name}</span>}
+				</div>
+			))
+		}
+	</div>
+</figure>
+
+<style>
+	.palette {
+		width: 100%;
+		height: 100%;
+		min-width: 0;
+		min-height: 0;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		font-family: var(--font-mono);
+		color: var(--deck-ink-dim, #8891a0);
+	}
+
+	/* One column per family, one row per step, and the columns keep coming —
+	   the number of families is the thing the grid is saying, so it is not
+	   something the layout should have an opinion about. */
+	.grid {
+		flex: 1;
+		display: flex;
+		gap: 0.2rem;
+		min-block-size: 0;
+		/* Room under the columns for the names, when they are on. */
+		margin: 0 0 1em;
+	}
+
+	.family {
+		flex: 1 1 0;
+		min-inline-size: 0;
+		display: grid;
+		gap: 0.2rem;
+		/* Where each column comes in from, and how long it waits its turn. The
+		   delay is the resting state's, so the palette builds on the way in and
+		   leaves all at once rather than unbuilding itself backwards. */
+		opacity: 0;
+		transform: translateY(0.5rem);
+		transition:
+			opacity 0.35s ease,
+			transform 0.35s ease;
+	}
+
+	.palette[data-shown='true'] .family {
+		opacity: 1;
+		transform: none;
+		transition-delay: calc(var(--i) * var(--stagger));
+	}
+
+	.swatch {
+		min-inline-size: 0;
+		min-block-size: 0;
+		border-radius: 2px;
+		background: var(--fill);
+		transition: background-color 0.45s ease;
+	}
+
+	.palette[data-grey='true'] .swatch {
+		background: var(--grey);
+	}
+
+	.name {
+		align-self: end;
+		font-size: 0.55rem;
+		line-height: 1.6;
+		letter-spacing: 0.02em;
+		writing-mode: vertical-rl;
+		text-orientation: mixed;
+		justify-self: center;
+	}
+
+	.palette[data-labels='false'] .name {
+		display: none;
+	}
+
+	/* Twenty-six names in a pane this wide is a row of tally marks. */
+	@container viz (max-width: 40rem) {
+		.palette .name {
+			display: none;
+		}
+	}
+
+	@container viz (max-width: 30rem) {
+		.grid {
+			gap: 0.12rem;
+		}
+
+		.family {
+			gap: 0.12rem;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.family {
+			transition: none;
+		}
+	}
+</style>
+
+<script>
+	function initPalette(root: HTMLElement) {
+		if (root.dataset.ready === 'true') return;
+		root.dataset.ready = 'true';
+
+		const host =
+			root.closest<HTMLElement>('[data-viz-phase]') ?? root.closest<HTMLElement>('[data-viz-stage]');
+		const still = matchMedia('(prefers-reduced-motion: reduce)');
+		const AUTHORED = {
+			grey: root.dataset.grey === 'true',
+			labels: root.dataset.labels === 'true',
+		};
+
+		/* From nothing, again. Two frames rather than one: the columns have to be
+		   painted in their starting state before the class that moves them off it
+		   lands, or the browser sees one style and there is no transition to run
+		   — which is exactly what a reader coming back to the card would get. */
+		let queued = 0;
+		function replay() {
+			cancelAnimationFrame(queued);
+			if (still.matches) {
+				root.dataset.shown = 'true';
+				return;
+			}
+			root.dataset.shown = 'false';
+			queued = requestAnimationFrame(() => {
+				queued = requestAnimationFrame(() => {
+					root.dataset.shown = 'true';
+				});
+			});
+		}
+
+		/* Staged from here as well as from viz:enter. A phase is rendered
+		   inactive and only told otherwise by the deck's own script, so a reader
+		   arriving on this card directly — a reload, a link with a number on the
+		   end — may have this script run first, see an inactive phase, and wait
+		   for an arrival that already happened. The deck hands over parameters
+		   in either case, and that is the event that always comes. */
+		host?.addEventListener('viz:props', (e) => {
+			const p = ((e as CustomEvent).detail ?? {}) as Record<string, unknown>;
+			root.dataset.grey = String('grey' in p ? Boolean(p.grey) : AUTHORED.grey);
+			root.dataset.labels = String('labels' in p ? Boolean(p.labels) : AUTHORED.labels);
+			replay();
+		});
+
+		host?.addEventListener('viz:enter', replay);
+		host?.addEventListener('viz:exit', () => {
+			cancelAnimationFrame(queued);
+			root.dataset.shown = 'false';
+		});
+		still.addEventListener('change', replay);
+
+		// Outside a deck, or already the card on screen: nothing will announce it.
+		if (!host || host.dataset.vizActive !== 'false') replay();
+	}
+
+	document.querySelectorAll<HTMLElement>('[data-tailwind-palette]').forEach(initPalette);
+</script>
