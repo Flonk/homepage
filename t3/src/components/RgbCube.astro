@@ -109,14 +109,14 @@ const {
 					class="bar"
 					style={[
 						`--channel: ${ch.ramp}`,
-						/* The bar's own ramp, lifted a fifth of the way to white: an edge
-						   that is the channel's colour everywhere along it rather than one
-						   flat line laid over a gradient. See lighten in lib/oklch. */
-						`--track-edge: linear-gradient(to top, ${lighten('#000000', 0.2)}, ${lighten(ch.ramp, 0.2)})`,
-						/* And the mark's outline is that same lifted colour: white round a
-						   black mark is a harder line than anything else on the bar, and
-						   the channel's own bright is the one already in play. */
-						`--track-ring: ${lighten(ch.ramp, 0.2)}`,
+						/* The channel's own colour lifted a fifth of the way to white. It
+						   edges the bar — an edge that is the channel everywhere along it
+						   rather than one flat line laid over a gradient — and, on the
+						   cards that carry two thumbs, outlines the marks as well. Set
+						   here and used below, because whether the marks want it is a
+						   question about the card rather than about the channel. */
+						`--channel-lit: ${lighten(ch.ramp, 0.2)}`,
+						`--track-edge: linear-gradient(to top, ${lighten('#000000', 0.2)}, var(--channel-lit))`,
 					].join('; ')}
 				>
 					<VizTrack
@@ -268,13 +268,22 @@ const {
 		gap: 0.45rem;
 		--track-border: 1px solid transparent;
 		--track-radius: 4px;
-		/* The two marks answer the two dots in the cube beside them, and are
-		   inked the same way round: the first solid and dark, the second hollow —
-		   pale, with the dark line round it. Each carries the other's colour as
-		   its outline, so both stay legible against a ramp that runs from black
-		   to a bright channel. */
+		/* One thumb is left alone: the pale one with the dark line round it is
+		   what a thumb looks like everywhere else in the series, and a card
+		   showing a single colour has nothing to tell it apart from. */
+	}
+
+	/* Two of them, and now they do. The marks answer the two dots in the cube
+	   beside them and are inked the same way round: the first solid and dark,
+	   the second hollow — pale, with the dark line round it. Each carries the
+	   other's colour as its outline, so both stay legible against a ramp that
+	   runs from black to a bright channel, and the dark one is ringed in the
+	   channel's own bright rather than in white, which would be the hardest
+	   line on the bar. */
+	.rgb-cube[data-line='true'] .bar {
 		--track-ink: #000;
 		--track-ink-second: #f6f1e6;
+		--track-ring: var(--channel-lit);
 	}
 
 	.bar-name {
