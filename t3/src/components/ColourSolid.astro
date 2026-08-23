@@ -446,8 +446,12 @@ const HSL = [
 		margin-inline-start: var(--rig-gap);
 	}
 
+	/* Both the thing in the cell and the panels inside it: a cell told it may
+	   be zero wide still cannot squeeze an item whose own minimum is its
+	   content, and the comparison card puts a wrapper between the two. */
+	.slot > *,
 	.slot .plate {
-		min-width: 0;
+		min-inline-size: 0;
 		overflow: hidden;
 	}
 
@@ -743,25 +747,82 @@ const HSL = [
 		}
 	}
 
-	/* A phone. Two things have to give, and neither of them is the solid: the
-	   bars get thinner — through --track-size, which a container query can
-	   reach and an inline prop cannot — and the solid stops claiming a square.
+	/* A phone. Side by side, the controls and the solid are each too narrow to
+	   be worth having, so the pane stops being a row and becomes two: every
+	   control in one short band across the top, and the solid underneath with
+	   the whole width to itself.
 
-	   That square is what keeps the plates hugging the solid on a wide screen,
-	   where the pane has width to spare and the shape would otherwise be
-	   marooned in the middle of it. On a narrow one there is no width to spare,
-	   and a square sized from the pane's height is wider than everything left
-	   over, so the plates were being pushed off both edges. Here the plates
-	   take what they need and the solid takes the rest; it sizes itself from
-	   the smaller side of whatever it is given. */
+	   A grid rather than a wrapped row, because what the second line needs is
+	   all the height that is left, and wrapping only ever splits the spare
+	   space evenly between its lines. `display: contents` on the middle column
+	   drops its two children into this grid, so the switch can sit between the
+	   two sets of bars while the stage goes underneath them both.
+
+	   The bars need a height in this arrangement. Standing up, a track takes
+	   its length from whatever contains it, and a row of the grid sized to its
+	   contents contains nothing of any height at all. */
 	@container viz (max-width: 34rem) {
 		.rig {
-			--rig-gap: 0.4rem;
+			display: grid;
+			grid-template-columns: auto auto auto;
+			grid-template-rows: auto minmax(0, 1fr);
+			justify-content: center;
+			align-items: center;
+			gap: 0.45rem;
+		}
+
+		.middle {
+			display: contents;
+		}
+
+		.slot[data-slot='pair'],
+		.slot[data-slot='rgb'] {
+			grid-area: 1 / 1;
+		}
+
+		.controls {
+			grid-area: 1 / 2;
+		}
+
+		.slot[data-slot='hsl'] {
+			grid-area: 1 / 3;
+		}
+
+		.stage {
+			grid-area: 2 / 1 / 3 / 4;
+			inline-size: 100%;
+			min-inline-size: 0;
+			aspect-ratio: auto;
+		}
+
+		.slot {
+			margin-inline: 0;
 		}
 
 		.plate {
+			margin: 0;
 			padding: 0.5rem;
 			gap: 0.3rem;
+		}
+
+		.plate.rgb,
+		.plate.hsl {
+			block-size: min(7rem, 26cqh);
+		}
+
+		.sets {
+			margin: 0;
+			gap: 0.4rem;
+			block-size: min(12rem, 46cqh);
+		}
+
+		.plate.set {
+			padding: 0.4rem;
+			gap: 0.5em;
+		}
+
+		.disc {
+			block-size: 16cqh;
 		}
 
 		.bar {
@@ -772,21 +833,8 @@ const HSL = [
 			font-size: 0.65rem;
 		}
 
-		.plate.set {
-			gap: 0.5em;
-		}
-
-		.middle {
-			flex: 1 1 0;
-			min-inline-size: 0;
-		}
-
-		.stage {
-			aspect-ratio: auto;
-		}
-
 		.readout {
-			font-size: 0.85rem;
+			font-size: 0.8rem;
 		}
 
 		.toggle {
@@ -794,9 +842,10 @@ const HSL = [
 		}
 
 		.side {
-			padding-inline: 0.6rem;
+			padding-inline: 0.55rem;
 		}
 	}
+
 
 	/* A band with almost no height in it — a phone held sideways, where the
 	   deck gives the picture a couple of hundred pixels and the text the rest.
