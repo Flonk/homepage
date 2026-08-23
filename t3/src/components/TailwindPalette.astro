@@ -60,6 +60,13 @@ interface Props {
 	labels?: boolean;
 	/** Offer the switch. */
 	toggle?: boolean;
+	/**
+	 * Seconds between the switch throwing itself. The card is making one point
+	 * and it is a point you have to watch happen, so nobody should have to find
+	 * the control to see it — the same reason the solids in part seven turn
+	 * themselves over. Zero to leave it still.
+	 */
+	every?: number;
 	/** Which side to start on. */
 	mode?: 'tailwind' | 'handmade';
 	/**
@@ -76,6 +83,7 @@ const {
 	families,
 	labels = false,
 	toggle = true,
+	every = 4,
 	mode = 'tailwind',
 	grey = false,
 	stagger = 0.03,
@@ -120,6 +128,7 @@ const label = Math.max(...shown.map((f) => f.name.length));
 	class="palette"
 	data-tailwind-palette
 	data-mode={mode}
+	data-every={every}
 	data-grey={String(grey)}
 	style={`--stagger: ${stagger}s; --steps: ${STEPS.length}; --families: ${shown.length}; --label: ${label}ch`}
 >
@@ -366,6 +375,7 @@ const label = Math.max(...shown.map((f) => f.name.length));
 		const AUTHORED = {
 			mode: root.dataset.mode ?? 'tailwind',
 			grey: root.dataset.grey === 'true',
+			every: Number(root.dataset.every) || 0,
 		};
 
 		const setMode = (to: string) => {
@@ -373,9 +383,29 @@ const label = Math.max(...shown.map((f) => f.name.length));
 			swap?.setAttribute('aria-checked', String(to === 'handmade'));
 		};
 
-		swap?.addEventListener('click', () =>
-			setMode(root.dataset.mode === 'handmade' ? 'tailwind' : 'handmade'),
-		);
+		const flip = () => setMode(root.dataset.mode === 'handmade' ? 'tailwind' : 'handmade');
+
+		/* The switch throws itself, and stops dead while the card is off stage:
+		   a deck three slides away should not be quietly ticking. A reader who
+		   throws it themselves is not overruled a moment later — their click
+		   restarts the clock, so the next turn is a full interval away. */
+		let every = AUTHORED.every;
+		let timer = 0;
+
+		function stopTurning() {
+			clearInterval(timer);
+			timer = 0;
+		}
+
+		function startTurning() {
+			stopTurning();
+			if (every > 0 && !still.matches) timer = setInterval(flip, every * 1000);
+		}
+
+		swap?.addEventListener('click', () => {
+			flip();
+			startTurning();
+		});
 
 		/* From nothing, again. Two frames rather than one: the rows have to be
 		   painted in their starting state before the class that moves them off it
@@ -405,18 +435,30 @@ const label = Math.max(...shown.map((f) => f.name.length));
 			const p = ((e as CustomEvent).detail ?? {}) as Record<string, unknown>;
 			setMode(typeof p.mode === 'string' ? p.mode : AUTHORED.mode);
 			root.dataset.grey = String('grey' in p ? Boolean(p.grey) : AUTHORED.grey);
+			every = 'every' in p ? Number(p.every) || 0 : AUTHORED.every;
 			replay();
+			startTurning();
 		});
 
-		host?.addEventListener('viz:enter', replay);
+		host?.addEventListener('viz:enter', () => {
+			replay();
+			startTurning();
+		});
 		host?.addEventListener('viz:exit', () => {
 			cancelAnimationFrame(queued);
+			stopTurning();
 			root.dataset.shown = 'false';
 		});
-		still.addEventListener('change', replay);
+		still.addEventListener('change', () => {
+			replay();
+			startTurning();
+		});
 
 		// Outside a deck, or already the card on screen: nothing will announce it.
-		if (!host || host.dataset.vizActive !== 'false') replay();
+		if (!host || host.dataset.vizActive !== 'false') {
+			replay();
+			startTurning();
+		}
 	}
 
 	document.querySelectorAll<HTMLElement>('[data-tailwind-palette]').forEach(initPalette);
