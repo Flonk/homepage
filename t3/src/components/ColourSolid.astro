@@ -141,18 +141,21 @@ const HSL = [
 	{/* One context for all six bars: they are one colour between them, so a
 	    grab on any of them stops the dot for everybody. See lib/animate. */}
 	<div class="rig" data-anim-context>
-		{/* Two sets of the same three bars, one above the other, each half the
-		    height of the plate — so the pair reads as two readings of one thing
-		    rather than as six controls. */}
+		{/* One panel per colour: the swatch it comes to, and the three numbers
+		    that got it there. Two of them side by side is the comparison — the
+		    same three sliders, the same L, and two things that are not the same
+		    brightness at all. */}
 		<div class="slot" data-slot="pair" data-open={String(compare)}>
-			<div
-				class="plate pair"
-				role="group"
-				aria-label="Two hues at one lightness"
-				data-plate="pair"
-			>
-				{[0, 1].map((set) => (
-					<div class="set">
+		<div class="sets">
+		{[0, 1].map((set) => (
+				<div
+					class="plate set"
+					role="group"
+					aria-label={`Colour ${set + 1}`}
+					data-plate={`set-${set}`}
+				>
+					<div class="disc" data-disc={set} aria-hidden="true" />
+					<div class="bars">
 						{HSL.map((ch, c) => (
 							<div class="bar" style={ch.edge && `--track-edge: ${ch.edge}`}>
 								<VizTrack
@@ -172,8 +175,9 @@ const HSL = [
 							</div>
 						))}
 					</div>
-				))}
-			</div>
+				</div>
+		))}
+		</div>
 		</div>
 
 		<div class="slot" data-slot="rgb" data-open={String(!compare)}>
@@ -204,42 +208,6 @@ const HSL = [
 		</div>
 		</div>
 
-		{/* The two colours at size, and the switch that takes the colour away.
-		    Which is the whole argument: with the hue gone, what is left is how
-		    bright each one actually is, and they are not the same.
-
-		    Ahead of the solid in the markup rather than after it, because on
-		    this card the swatches belong between the sliders that set them and
-		    the solid they are two points in — and an order that is the DOM's
-		    needs no `order` to undo, which is a jump rather than a move. */}
-		<div class="slot" data-slot="swatches" data-open={String(compare)}>
-			<div class="plate swatches" data-plate="swatches">
-				<div class="discs">
-					{[0, 1].map((i) => (
-						<div class="disc" data-disc={i} aria-hidden="true" />
-					))}
-				</div>
-				<div class="switch">
-					<button
-						class="toggle"
-						type="button"
-						role="switch"
-						aria-checked="false"
-						aria-label="Drop the colour"
-						data-grey
-					>
-						<span class="knob" aria-hidden="true" />
-						<span class="side" data-side="colour" aria-hidden="true">
-							COLOUR
-						</span>
-						<span class="side" data-side="grey" aria-hidden="true">
-							GREY
-						</span>
-					</button>
-				</div>
-			</div>
-		</div>
-
 		<div class="middle">
 			<div class="stage">
 				<canvas data-canvas></canvas>
@@ -250,7 +218,7 @@ const HSL = [
 			    glance beside a shape that is halfway between the two. */}
 			<div class="controls">
 				<p class="readout" data-readout>rgb(128 128 128)</p>
-				<div class="switch">
+				<div class="switch space">
 					<button
 						class="toggle"
 						type="button"
@@ -263,6 +231,23 @@ const HSL = [
 						<span class="knob" aria-hidden="true"></span>
 						<span class="side" data-side="rgb" aria-hidden="true">RGB</span>
 						<span class="side" data-side="hsl" aria-hidden="true">HSL</span>
+					</button>
+				</div>
+				{/* Under the solid, because what it takes the colour out of is the
+				    solid as much as the two swatches. */}
+				<div class="switch grey">
+					<button
+						class="toggle"
+						type="button"
+						role="switch"
+						aria-checked="false"
+						aria-label="Drop the colour"
+						data-grey
+						inert={!compare}
+					>
+						<span class="knob" aria-hidden="true"></span>
+						<span class="side" data-side="colour" aria-hidden="true">COLOUR</span>
+						<span class="side" data-side="grey" aria-hidden="true">GREY</span>
 					</button>
 				</div>
 			</div>
@@ -423,9 +408,16 @@ const HSL = [
 	   in a one-cell grid and it is the cell that closes, from 1fr to 0fr. The
 	   solid slides across to the middle as it goes, because the layout is doing
 	   the animating rather than something drawn on top of it. */
+	/* minmax(0, …) rather than a bare fr, on both states. A bare `1fr` is
+	   `minmax(auto, 1fr)`, and that auto minimum is the item's min-content
+	   width — which for a panel with a width of its own is that width. So the
+	   swatch panel's cell never closed: it sat there at its full size on every
+	   card, holding a hundred-odd pixels between the channel bars and the
+	   solid, which is what "the sliders are strangely far from the action"
+	   was. Only the panels without a width of their own were collapsing. */
 	.slot {
 		display: grid;
-		grid-template-columns: 1fr;
+		grid-template-columns: minmax(0, 1fr);
 		min-width: 0;
 		min-height: 0;
 		transition:
@@ -434,8 +426,7 @@ const HSL = [
 	}
 
 	.slot[data-slot='pair'],
-	.slot[data-slot='rgb'],
-	.slot[data-slot='swatches'] {
+	.slot[data-slot='rgb'] {
 		margin-inline-end: var(--rig-gap);
 	}
 
@@ -443,7 +434,7 @@ const HSL = [
 		margin-inline-start: var(--rig-gap);
 	}
 
-	.slot > .plate {
+	.slot .plate {
 		min-width: 0;
 		overflow: hidden;
 	}
@@ -454,13 +445,13 @@ const HSL = [
 	   card at all. Working it out in selectors meant one rule per combination,
 	   and a combination missed is a plate that never leaves. */
 	.slot[data-open='false'] {
-		grid-template-columns: 0fr;
+		grid-template-columns: minmax(0, 0fr);
 		margin-inline: 0;
 	}
 
 	/* Padding is not compressible, so a cell of no width still holds a plate
 	   two ems wide until this goes with it. */
-	.slot[data-open='false'] > .plate {
+	.slot[data-open='false'] .plate {
 		opacity: 0;
 		padding-inline: 0;
 	}
@@ -472,13 +463,18 @@ const HSL = [
 		transition: grid-template-rows 0.45s ease;
 	}
 
-	.solid[data-toggle-shown='false'] .middle .switch,
-	.solid[data-compare='true'] .middle .switch {
+	/* One of the two is showing at a time: the space switch on the cards that
+	   are about the pair of solids, the colour switch on the one that is about
+	   a pair of colours. */
+	.solid[data-toggle-shown='false'] .switch.space,
+	.solid[data-compare='true'] .switch.space,
+	.solid:not([data-compare='true']) .switch.grey {
 		grid-template-rows: 0fr;
 	}
 
-	.solid[data-toggle-shown='false'] .middle .toggle,
-	.solid[data-compare='true'] .middle .toggle {
+	.solid[data-toggle-shown='false'] .switch.space > .toggle,
+	.solid[data-compare='true'] .switch.space > .toggle,
+	.solid:not([data-compare='true']) .switch.grey > .toggle {
 		opacity: 0;
 		padding-block: 0;
 	}
@@ -505,55 +501,59 @@ const HSL = [
 		--track-radius: 4px;
 	}
 
-	/* Black. The letters sit at the foot of the plate, which is the part of it
-	   the swoosh runs under — so what they are read against is the colour on
-	   show rather than the glass, and the glass is pale. */
-	/* Two sets stacked, each taking half the plate: the bars come out half
-	   height, which is the point — they are two readings of the same three
-	   numbers, not one long scale. */
-	.plate.pair {
-		flex-direction: column;
-		gap: 0.9rem;
-	}
-
-	.set {
-		flex: 1;
-		min-height: 0;
+	/* A colour and the three numbers that make it, on one panel: the swatch at
+	   the top where the eye lands, the bars under it. As wide as three bars
+	   need and no wider — the two panels are there to be read against each
+	   other, and width between them is width between the two colours. */
+	/* The two panels, one above the other, sharing the height between them.
+	   Side by side they read as a sequence — first this colour, then that one;
+	   stacked they read as a pair, which is what they are. */
+	.sets {
 		display: flex;
-		gap: 0.6rem;
-		align-items: stretch;
-	}
-
-	/* Given a width, because the discs take theirs from it. Two circles side by
-	   side are as wide as they are tall, and left to grow from their own height
-	   in a shallow pane they run straight out of the panel. */
-	/* One disc wide, because they stand one above the other: a pair stacked is
-	   a pair compared, and side by side the eye reads them as a sequence. */
-	.plate.swatches {
 		flex-direction: column;
-		align-items: stretch;
-		justify-content: center;
-		gap: 0.8rem;
-		inline-size: clamp(5.5rem, 15cqw, 10rem);
+		min-block-size: 0;
+		gap: 0.6rem;
+		margin: 1em 0;
 	}
 
-	.discs {
+	.plate.set {
 		flex: 1;
 		min-block-size: 0;
-		display: flex;
-		flex-direction: column;
 		align-items: center;
+		gap: 0.7rem;
+		margin: 0;
+		padding: 0.8em;
+	}
+
+	/* Sized by what is in it, not by what is left over. The panel has no width
+	   of its own any more — it is the disc plus these — so a flex basis of zero
+	   here asks for a share of free space in a box that has none, and three
+	   bars come out no bars wide. */
+	.plate.set .bars {
+		flex: 0 0 auto;
+		align-self: stretch;
+		display: flex;
+		gap: 0.5rem;
+		align-items: stretch;
 		justify-content: center;
-		gap: 0.6rem;
 	}
 
 	/* The lifted-luminance ring the rest of the series edges things with: the
 	   swatch's own colour taken a fifth of the way to white, so the edge is
-	   the colour rather than a line drawn round it. */
+	   the colour rather than a line drawn round it.
+
+	   Sized on one axis and one only: given a height by the column it sits in,
+	   the aspect ratio can no longer have the width, and a definite height with
+	   a capped width is an oval. Given the width, the ratio takes the height. */
 	.disc {
-		flex: 1 1 0;
-		min-block-size: 0;
-		max-inline-size: 100%;
+		flex: 0 0 auto;
+		/* Sized against the pane rather than against the panel it is in. A
+		   percentage here is a percentage of a height that is still being
+		   worked out, and a browser asked how wide the panel wants to be has to
+		   answer without one — so it left the disc out of the sum, the panel
+		   came out disc-wide, and the bars were clipped off the end of it. */
+		block-size: 30cqh;
+		max-block-size: 100%;
 		aspect-ratio: 1;
 		box-sizing: border-box;
 		border: 0.2rem solid var(--edge, transparent);
@@ -667,20 +667,9 @@ const HSL = [
 		transition: transform 0.35s cubic-bezier(0.35, 0.1, 0.2, 1);
 	}
 
-	.solid[data-space='hsl'] .middle .knob,
-	.solid[data-grey='true'] .swatches .knob {
+	.solid[data-space='hsl'] .switch.space .knob,
+	.solid[data-grey='true'] .switch.grey .knob {
 		transform: translateX(100%);
-	}
-
-	/* Full width of its panel, and small enough that two words fit across it. */
-	.swatches .toggle {
-		inline-size: 100%;
-		font-size: 0.65rem;
-		letter-spacing: 0.06em;
-	}
-
-	.swatches .side {
-		padding-inline: 0.3rem;
 	}
 
 	.side {
@@ -745,7 +734,7 @@ const HSL = [
 		   plate off the side. */
 		.slot {
 			grid-template-columns: none;
-			grid-template-rows: 1fr;
+			grid-template-rows: minmax(0, 1fr);
 			transition:
 				grid-template-rows 0.45s ease,
 				margin 0.45s ease;
@@ -758,9 +747,8 @@ const HSL = [
 			margin-inline: 0;
 		}
 
-		.solid[data-toggle-shown='false'][data-space='hsl'] .slot[data-slot='rgb'],
-		.solid[data-toggle-shown='false'][data-space='rgb'] .slot[data-slot='hsl'] {
-			grid-template-rows: 0fr;
+		.slot[data-open='false'] {
+			grid-template-rows: minmax(0, 0fr);
 		}
 
 		.plate {
@@ -1094,9 +1082,24 @@ const HSL = [
 	const SOLID_FS = `
 		precision highp float;
 		varying vec3 vColor;
+		uniform float uGrey;
+		/* The same grey the swatches use, and it has to be the same or the card
+		   is comparing two different claims: undo the transfer curve, take the
+		   luminance the eye actually reports, put the curve back. Averaging the
+		   three channels instead — which is what everyone reaches for — would
+		   make yellow and blue far closer than they are, and closer is exactly
+		   the thing being argued against. */
+		vec3 toLinear(vec3 c) {
+			return mix(c / 12.92, pow((c + 0.055) / 1.055, vec3(2.4)), step(vec3(0.04045), c));
+		}
+		float toSrgb(float v) {
+			return v <= 0.0031308 ? 12.92 * v : 1.055 * pow(v, 1.0 / 2.4) - 0.055;
+		}
 		void main() {
+			float y = dot(toLinear(vColor), vec3(0.2126, 0.7152, 0.0722));
+			vec3 shown = mix(vColor, vec3(toSrgb(y)), uGrey);
 			float n = fract(sin(dot(gl_FragCoord.xy, vec2(12.9898, 78.233))) * 43758.5453);
-			gl_FragColor = vec4(vColor + (n - 0.5) / 255.0, 1.0);
+			gl_FragColor = vec4(shown + (n - 0.5) / 255.0, 1.0);
 		}
 	`;
 
@@ -1228,10 +1231,11 @@ const HSL = [
 		let idleSeconds = Number(root.dataset.idleResume) || 5;
 		const tellBars = () =>
 			[...rgbBars, ...hslBars].forEach((b) => (b.dataset.idleResume = String(idleSeconds)));
+		// Six, in document order: set one's H, S, L, then set two's.
 		const pairBars = Array.from(
-			root.querySelectorAll<TrackEl>("[data-plate='pair'] [data-viz-track]"),
+			root.querySelectorAll<TrackEl>("[data-plate^='set-'] [data-viz-track]"),
 		);
-		const discs = Array.from(root.querySelectorAll<HTMLElement>('[data-plate=swatches] [data-disc]'));
+		const discs = Array.from(root.querySelectorAll<HTMLElement>('[data-disc]'));
 		const greyBtn = root.querySelector<HTMLButtonElement>('[data-grey]')!;
 		const slots = Array.from(root.querySelectorAll<HTMLElement>('[data-slot]'));
 		const slotFor = (name: string) => slots.find((el) => el.dataset.slot === name)!;
@@ -1308,6 +1312,10 @@ const HSL = [
 		const GREY_EVERY = 3;
 		let grey = false;
 		let sinceGrey = 0;
+		/* What the shader is actually showing, which follows `grey` rather than
+		   equalling it: the swatches cross-fade in CSS and the solid has to
+		   arrive with them, or the card reads as two separate events. */
+		let greyMix = 0;
 
 		const setGrey = (on: boolean) => {
 			grey = on;
@@ -1426,6 +1434,7 @@ const HSL = [
 			// The comparison is a fact about one solid; there is nothing to switch.
 			if (comparing) turning = false;
 			toggle.inert = !turning;
+			greyBtn.inert = !comparing;
 			root.dataset.toggleShown = String(turning);
 			const hues = Array.isArray(p.hues) ? (p.hues as unknown[]).map(Number) : AUTHORED.hues;
 			if (comparing) {
@@ -1530,6 +1539,7 @@ const HSL = [
 				rot: uni(progSolid, 'uRot'),
 				scale: uni(progSolid, 'uScale'),
 				morph: uni(progSolid, 'uMorph'),
+				grey: uni(progSolid, 'uGrey'),
 			},
 			wire: {
 				rot: uni(progWire, 'uRot'),
@@ -1614,6 +1624,29 @@ const HSL = [
 			initSolid(root);
 		});
 
+		/* What the saturation and lightness bars are showing, for a given
+		   colour: each is a scale of the *other two* numbers, so both are
+		   repainted whenever any of the three moves. A saturation ramp that is
+		   not this hue at this lightness is a ramp of some other colour.
+
+		   Each comes with its edge, which is the same stops lifted a fifth of
+		   the way to white — the fake border every bar in the series wears. It
+		   is here rather than at the two call sites because it was at one of
+		   them and not the other, which is exactly the bug that produces. */
+		const chip = (h: number, sat: number, light: number) =>
+			hslToRgb(h / 360, sat / 100, light / 100).map((v) => v * 255) as Rgb;
+		const ramp = (stops: Rgb[]) =>
+			`linear-gradient(to top, ${stops.map((c) => rgbCss(c)).join(', ')})`;
+
+		function paintScales(bars: TrackEl[], H: number, S: number, L: number) {
+			const sat = [chip(H, 0, L), chip(H, 100, L)];
+			const lit = [chip(H, S, 0), chip(H, S, 50), chip(H, S, 100)];
+			bars[1]?.track.backdrop(ramp(sat));
+			bars[1]?.track.edge(ramp(sat.map((c) => lightenRgb(c, 0.2))));
+			bars[2]?.track.backdrop(ramp(lit));
+			bars[2]?.track.edge(ramp(lit.map((c) => lightenRgb(c, 0.2))));
+		}
+
 		/* The swatches, their lifted rings, and each set's own two backdrops.
 		   The grey is the colour's relative luminance put back through the sRGB
 		   curve — which is to say, the grey that is genuinely as bright as the
@@ -1632,19 +1665,11 @@ const HSL = [
 				discs[i].style.setProperty('--fill', rgbCss(fill));
 				discs[i].style.setProperty('--edge', rgbCss(lightenRgb(fill, 0.2)));
 
-				/* Each bar shows its own scale through the other two numbers, so
-				   moving one repaints the two beside it: a saturation ramp is a
-				   ramp of this hue at this lightness or it is telling you about
-				   some other colour. */
-				const H = Math.round(c.hsl[0] * 360) % 360;
-				const S = Math.round(c.hsl[1] * 100);
-				const L = Math.round(c.hsl[2] * 100);
-				const bars = pairBars.slice(i * 3, i * 3 + 3);
-				bars[1]?.track.backdrop(
-					`linear-gradient(to top, hsl(${H} 0% ${L}%), hsl(${H} 100% ${L}%))`,
-				);
-				bars[2]?.track.backdrop(
-					`linear-gradient(to top, hsl(${H} ${S}% 0%), hsl(${H} ${S}% 50%), hsl(${H} ${S}% 100%))`,
+				paintScales(
+					pairBars.slice(i * 3, i * 3 + 3),
+					Math.round(c.hsl[0] * 360) % 360,
+					Math.round(c.hsl[1] * 100),
+					Math.round(c.hsl[2] * 100),
 				);
 			});
 		}
@@ -1702,7 +1727,6 @@ const HSL = [
 			   close a slot on. */
 			const open: Record<string, boolean> = {
 				pair: comparing,
-				swatches: comparing,
 				rgb: !comparing && (turning || space === 'rgb'),
 				hsl: !comparing && (turning || space === 'hsl'),
 			};
@@ -1736,6 +1760,8 @@ const HSL = [
 
 			// --- the colour on show
 			if (!reduceMotion) t += dt;
+			// Roughly the swatches' own 0.45s, and framerate-independent.
+			greyMix += ((grey ? 1 : 0) - greyMix) * (1 - Math.exp(-dt / 0.16));
 			if (comparing && !reduceMotion) {
 				sinceGrey += dt;
 				if (sinceGrey >= GREY_EVERY) {
@@ -1807,18 +1833,7 @@ const HSL = [
 			const painted = `${H} ${S} ${L}`;
 			if (!comparing && painted !== lastPainted) {
 				lastPainted = painted;
-				const at = (hue: number, sat: number, light: number) =>
-					hslToRgb(hue / 360, sat / 100, light / 100).map((v) => v * 255) as Rgb;
-				const ramp = (stops: Rgb[]) =>
-					`linear-gradient(to top, ${stops.map((c) => rgbCss(c)).join(', ')})`;
-				// The bar, and the same colours lifted a fifth toward white for
-				// its edge — the fake border the rest of the series uses.
-				const sat = [at(H, 0, L), at(H, 100, L)];
-				const light = [at(H, S, 0), at(H, S, 50), at(H, S, 100)];
-				hslBars[1].track.backdrop(ramp(sat));
-				hslBars[1].track.edge(ramp(sat.map((c) => lightenRgb(c, 0.2))));
-				hslBars[2].track.backdrop(ramp(light));
-				hslBars[2].track.edge(ramp(light.map((c) => lightenRgb(c, 0.2))));
+				paintScales(hslBars, H, S, L);
 			}
 
 			/* --- draw. Standing the solid on its black corner makes it taller
@@ -1850,6 +1865,7 @@ const HSL = [
 			gl.uniformMatrix3fv(U.solid.rot, false, m);
 			gl.uniform2f(U.solid.scale, sx, sy);
 			gl.uniform1f(U.solid.morph, morph);
+			gl.uniform1f(U.solid.grey, greyMix);
 			useAttribs([A.pos, A.hsl]);
 			gl.bindBuffer(gl.ARRAY_BUFFER, bufSolid);
 			gl.vertexAttribPointer(A.pos, 3, gl.FLOAT, false, 24, 0);
