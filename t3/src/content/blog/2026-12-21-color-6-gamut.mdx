@@ -21,9 +21,9 @@ import DeckViz from "../../components/DeckViz.astro";
 <DeckCard vizProps={{ gamuts: [], fill: "all", wavelengths: true }}>
   ## Every colour, laid out flat
 
-  The CIE chromaticity chart shows all colors available to the human eye, laid out flat. The curve shows all spectral colors, and the bottom dotted line shows our non-spectral pinks and purples. 
+  The CIE chromaticity chart shows all colours available to the human eye, laid out flat. The curve shows all spectral colours, and the bottom dotted line shows our non-spectral pinks and purples. 
 
-  It has to be said though that you are only looking at a *representation* of the chart, because your monitor likely cannot display all the colors your eye can see.
+  It has to be said though that you are only looking at a *representation* of the chart, because your monitor likely cannot display all the colours your eye can see.
 </DeckCard>
 
 {/* The honest one. Everything the page cannot reach goes grey, and what is
@@ -31,17 +31,17 @@ import DeckViz from "../../components/DeckViz.astro";
 <DeckCard vizProps={{ gamuts: ["srgb"], fill: "srgb", white: true }}>
   ## Monitors show a subset of all colours
 
-  Given that monitors use only three base colors, they can only show a triangle's worth of colors on the chromaticity chart, and never the whole horseshoe.
+  Given that monitors use only three base colours, they can only show a triangle's worth of colours on the chromaticity chart, and never the whole horseshoe.
   
-  sRGB is probably the most common color space for monitors, and it has been for a long time (1996). It has actually been so prevalent that it has become a problem: Modern monitors can often show colors outside of the sRGB triangle, but everyone on the web assumes sRGB, leading to you seeing over-saturated colors on better monitors, essentially punishing you for having a better monitor than the person who made the content.
+  sRGB is probably the most common colour space for monitors, and it has been for a long time (1996). It has actually been so prevalent that it has become a problem: Modern monitors can often show colours outside of the sRGB triangle, but everyone on the web assumes sRGB, leading to you seeing over-saturated colours on better monitors, essentially punishing you for having a better monitor than the person who made the content.
 </DeckCard>
 
 <DeckCard vizProps={{ gamuts: ["srgb", "p3", "rec2020"], fill: "all" }}>
   ## P3 and Rec.2020 gamuts
 
-  The color space problem is slowly being solved, with P3 monitors becoming more common, and Rec.2020 monitors starting to appear.
+  The colour space problem is slowly being solved, with P3 monitors becoming more common, and Rec.2020 monitors starting to appear.
 
-  CSS got support for color spaces beyond sRGB via the `color()` function around 2023:
+  CSS got support for colour spaces beyond sRGB via the `color()` function around 2023:
 
   ```css
   .p3 {
@@ -61,9 +61,9 @@ import DeckViz from "../../components/DeckViz.astro";
 <DeckCard vizProps={{ gamuts: ["srgb"], fill: "all", cmyk: true, white: false }}>
   ## The CMYK gamut
 
-  Print uses a subtractive color model, meaning that mixing all the colors together produces black, and mixing none of them produces white. This is the opposite of monitors, which use an additive color model, where mixing all the colors together produces white, and mixing none of them produces black.
+  Print uses a subtractive colour model, meaning that mixing all the colours together produces black, and mixing none of them produces white. This is the opposite of monitors, which use an additive colour model, where mixing all the colours together produces white, and mixing none of them produces black.
 
-  CMYK also works with different primary colors than monitors -- cyan, magenta and yellow -- which means that the colors it can produce are different from the triangle of colors a monitor can produce. The result is that CMYK can produce some colors that monitors cannot, and vice versa.
+  CMYK also works with different primary colours than monitors -- cyan, magenta and yellow -- which means that the colours it can produce are different from the triangle of colours a monitor can produce. The result is that CMYK can produce some colours that monitors cannot, and vice versa.
 
   Since mixing pigment is quite a bit different than mixing light, printing a photo on paper will never look quite the same as displaying it on a monitor. But nobody is printing photos anymore, right?
 </DeckCard>

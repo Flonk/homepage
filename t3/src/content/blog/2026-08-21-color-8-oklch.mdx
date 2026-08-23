@@ -44,9 +44,9 @@ import VizPhase from "../../components/VizPhase.astro";
 </DeckViz>
 
 <DeckCard vizProps={{ phase: "solid" }}>
-  ## OKLCH is a perceptually uniform color space
+  ## OKLCH is a perceptually uniform colour space
 
-  To address this issue once and for all, a color space called *OKLCH* was developed in 2017, which is based on a perceptually uniform color space called *OKLab*. It is now widely supported in browsers, and the most important color space for web designers to know about.
+  To address this issue once and for all, a colour space called *OKLCH* was developed in 2017, which is based on a perceptually uniform colour space called *OKLab*. It is now widely supported in browsers, and the most important colour space for web designers to know about.
 
   It gives us the nice part of HSL -- a slider for hue, one for chroma (saturation), and one for luminance (lightness) -- but the numbers are fitted to what people report seeing, so equal steps in the space are also *equal-looking* steps.
 
@@ -57,13 +57,13 @@ import VizPhase from "../../components/VizPhase.astro";
 <DeckCard vizProps={{ phase: "circle" }}>
   ## Working with OKLCH is straightforward
 
-  With OKLCH, generating colors of equal brightness becomes the easy default, instead of requiring a lot of trial and error, or maths.
+  With OKLCH, generating colours of equal brightness becomes the easy default, instead of requiring a lot of trial and error, or maths.
 </DeckCard>
 
 <DeckCard vizProps={{ phase: "palette" }}>
   ## We don't need complicated frameworks to use it
 
-  Everybody's favourite CSS framework, Tailwind, has been lauded for its great color palette -- Adam Wathan and Steve Schoger have meticulously hand-picked a set of colors that looks as perceptually uniform as possible.
+  Everybody's favourite CSS framework, Tailwind, has been lauded for its great colour palette -- Adam Wathan and Steve Schoger have meticulously hand-picked a set of colours that looks as perceptually uniform as possible.
 
   Many great-looking websites have been built with it, and I'm a big fan myself; but using OKLCH, we can generate a palette that is just as good, with a lot less work.
 
@@ -73,9 +73,9 @@ import VizPhase from "../../components/VizPhase.astro";
 <DeckCard vizProps={{ phase: "gradients" }}>
   ## Gradients look better in OKLCH
 
-  Remember how gradients are just straight lines through a color space? We can not only do this in RGB, but also in OKLCH.
+  Remember how gradients are just straight lines through a colour space? We can not only do this in RGB, but also in OKLCH.
 
-  Gradients in OKLCH will usually look visually better and more colorful than the same gradient in RGB, and browsers support it out of the box, so there is no reason not to use it!
+  Gradients in OKLCH will usually look visually better and more colourful than the same gradient in RGB, and browsers support it out of the box, so there is no reason not to use it!
 
   ```css
   background: linear-gradient(
@@ -89,10 +89,10 @@ import VizPhase from "../../components/VizPhase.astro";
 <DeckCard vizProps={{ phase: "solid" }}>
   ## OKLCH is not a cube
 
-  The trade-off to using, say, HSL is that our color space is no longer a nice geometric shape.
+  The trade-off to using, say, HSL is that our colour space is no longer a nice geometric shape.
   
   In practice this means that the highest you can set the chroma slider to depends on the hue and lightness you have chosen.
 
-  Picking chroma values outside the safe range represents colors that your screen can't display, so your browser will clip them to the nearest color that does.
+  Picking chroma values outside the safe range represents colours that your screen can't display, so your browser will clip them to the nearest colour that does.
 </DeckCard>
 

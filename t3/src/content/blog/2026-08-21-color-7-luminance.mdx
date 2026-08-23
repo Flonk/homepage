@@ -29,9 +29,9 @@ import VizPhase from "../../components/VizPhase.astro";
 <DeckCard>
   ## Design systems need variety
 
-  A common task in web design is generating brighter and darker shades of a color, for example to render a button in a hover state, or bright text on a dark background.
+  A common task in web design is generating brighter and darker shades of a colour, for example to render a button in a hover state, or bright text on a dark background.
 
-  We achieve this by moving the color closer to white or black in some form or another; but it turns out it's not easy to do this in RGB, and really hard to do it well.
+  We achieve this by moving the colour closer to white or black in some form or another; but it turns out it's not easy to do this in RGB, and really hard to do it well.
   
    
 </DeckCard>
@@ -39,17 +39,17 @@ import VizPhase from "../../components/VizPhase.astro";
 <DeckCard vizProps={{ match: true }}>
   ## Try it in RGB
 
-  Even if I tell you which color the darker shade is, the process of getting there is not straightforward.
+  Even if I tell you which colour the darker shade is, the process of getting there is not straightforward.
 
-  It sure would be nice to have a single "luminance" slider that takes a color and makes it lighter or darker.
+  It sure would be nice to have a single "luminance" slider that takes a colour and makes it lighter or darker.
 </DeckCard>
 
 <DeckCard vizProps={{ phase: "solid", match: false, space: "rgb" }}>
   ## HSL
 
-  If we tip the RGB cube on its side such that the black corner is on the bottom and the white corner is on the top, colors will be roughly sorted by "lightness".
+  If we tip the RGB cube on its side such that the black corner is on the bottom and the white corner is on the top, colours will be roughly sorted by "lightness".
 
-  If we then morph the cube into a cylinder with some clever maths, we can define a color space called *HSL*, which mirrors more closely how we tend to think about colour. We get three new numbers to index into the space:
+  If we then morph the cube into a cylinder with some clever maths, we can define a colour space called *HSL*, which mirrors more closely how we tend to think about colour. We get three new numbers to index into the space:
   - *Hue*: Around the cylinder, from red to green to blue and back to red.
   - *Saturation*: From the center of the cylinder to the edge, from grey to fully saturated.
   - *Lightness*: Top to bottom, from white to black.
@@ -60,7 +60,7 @@ import VizPhase from "../../components/VizPhase.astro";
 <DeckCard vizProps={{ phase: "solid", match: false, space: "hsl", toggle: false }}>
   ## HSL is not perfect
 
-  HSL and its brother HSV have been around since the 1970s, and are both attempts to make a color space that is more intuitive than RGB. They are widely used in design software, and are the basis for many color pickers on the web, so it's fair to say that they have been successful in that regard.
+  HSL and its brother HSV have been around since the 1970s, and are both attempts to make a colour space that is more intuitive than RGB. They are widely used in design software, and are the basis for many colour pickers on the web, so it's fair to say that they have been successful in that regard.
 
   A big plus of HSL is that it is easy to transform back to RGB, and RGB is the ground truth for what your screen will actually display.
 
@@ -70,7 +70,7 @@ import VizPhase from "../../components/VizPhase.astro";
 <DeckCard vizProps={{ compare: true, hues: [240, 180] }}>
   ## Same lightness, nothing like
 
-  In particular, we'd assume that two colors with the same lightness would appear equally bright on your screen, but this is clearly not the case in HSL!
+  In particular, we'd assume that two colours with the same lightness would appear equally bright on your screen, but this is clearly not the case in HSL!
 
-  This is bad, because brightness often signifies importance in a design, and with no good way to make colors appear equally bright, we are left with a design that may end up inconsistent and confusing. And without having detailed knowledge of color science, it is hard to know how to fix it.
+  This is bad, because brightness often signifies importance in a design, and with no good way to make colours appear equally bright, we are left with a design that may end up inconsistent and confusing. And without having detailed knowledge of colour science, it is hard to know how to fix it.
 </DeckCard>

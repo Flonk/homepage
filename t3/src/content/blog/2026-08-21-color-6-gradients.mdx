@@ -50,7 +50,7 @@ import VizPhase from "../../components/VizPhase.astro";
 <DeckCard vizProps={{ phase: "mix" }}>
   ## Gradients are linear interpolation
 
-  We can achieve gradients in RGB via *linear interpolation*. Say your two colors have red channels `10` and `70`, and you want to interpolate between them via a "knob" that goes from 0 to 1. Then the formula goes:
+  We can achieve gradients in RGB via *linear interpolation*. Say your two colours have red channels `10` and `70`, and you want to interpolate between them via a "knob" that goes from 0 to 1. Then the formula goes:
 
   ```typescript
   red = knob * 70 + (1 - knob) * 10
@@ -62,7 +62,7 @@ import VizPhase from "../../components/VizPhase.astro";
 <DeckCard vizProps={{ phase: "cube" }}>
   ## Gradients are line segments
 
-  Geometrically speaking, a gradient is just a line segment through the RGB cube (or other color spaces), where the two endpoints are the two colours we want to transition between. Each point along the line segment corresponds to a colour in the gradient.
+  Geometrically speaking, a gradient is just a line segment through the RGB cube (or other colour spaces), where the two endpoints are the two colours we want to transition between. Each point along the line segment corresponds to a colour in the gradient.
 
   The linear interpolation formula from before is just a way to find the coordinates of a point along that line segment.
 </DeckCard>
