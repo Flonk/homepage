@@ -88,6 +88,9 @@ const {
    watch what happens to the pair of greys. */
 const START = [100, 50];
 
+// Gradient ids are document-global, so two of these on a page would share one.
+const gradId = `solid-${Math.random().toString(36).slice(2, 9)}`;
+
 
 const RGB = [
 	{ name: 'Red', ramp: '#f16d6d' },
@@ -242,7 +245,7 @@ const HSL = [
 						role="switch"
 						aria-checked="false"
 						aria-label="Drop the colour"
-						data-grey
+						data-grey-toggle
 						inert={!compare}
 					>
 						<span class="knob" aria-hidden="true"></span>
@@ -289,8 +292,17 @@ const HSL = [
 	    adds on one side is exactly the lobe it takes from the other. Keep that
 	    symmetry when reshaping and the halving survives. */}
 	<svg class="swoosh" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-		<path d="M -10 112 C 48 88, 52 12, 110 -12 L 112 112 Z" fill="var(--swatch, #808080)"
-		></path>
+		<defs>
+			{/* Bottom-left to top-right: the diagonal the S itself runs along, and
+			    the one whose two ends both land on filled area. With one colour
+			    both stops hold it and the field is flat, so the single-colour
+			    cards need no second code path. */}
+			<linearGradient id={gradId} x1="0" y1="1" x2="1" y2="0">
+				<stop offset="0" stop-color="var(--swatch-a, #808080)" />
+				<stop offset="1" stop-color="var(--swatch-b, var(--swatch-a, #808080))" />
+			</linearGradient>
+		</defs>
+		<path d="M -10 112 C 48 88, 52 12, 110 -12 L 112 112 Z" fill={`url(#${gradId})`}></path>
 	</svg>
 </div>
 
@@ -479,10 +491,9 @@ const HSL = [
 		padding-block: 0;
 	}
 
-	/* Two colours, no one colour: the reading under the solid and the field
-	   behind it both have to say which, and neither can. */
-	.solid[data-compare='true'] .readout,
-	.solid[data-compare='true'] .swoosh {
+	/* Two colours and no one colour, so the reading has nothing it could say.
+	   The field behind does: it runs from one to the other. */
+	.solid[data-compare='true'] .readout {
 		opacity: 0;
 	}
 
@@ -520,7 +531,7 @@ const HSL = [
 		flex: 1;
 		min-block-size: 0;
 		align-items: center;
-		gap: 0.7rem;
+		gap: 1em;
 		margin: 0;
 		padding: 0.8em;
 	}
@@ -552,7 +563,7 @@ const HSL = [
 		   worked out, and a browser asked how wide the panel wants to be has to
 		   answer without one — so it left the disc out of the sum, the panel
 		   came out disc-wide, and the bars were clipped off the end of it. */
-		block-size: 26cqh;
+		block-size: 22cqh;
 		max-block-size: 100%;
 		aspect-ratio: 1;
 		box-sizing: border-box;
@@ -1241,7 +1252,9 @@ const HSL = [
 			root.querySelectorAll<TrackEl>("[data-plate^='set-'] [data-viz-track]"),
 		);
 		const discs = Array.from(root.querySelectorAll<HTMLElement>('[data-disc]'));
-		const greyBtn = root.querySelector<HTMLButtonElement>('[data-grey]')!;
+		// Not [data-grey] — that is the root's own state, and the root is not a
+		// descendant of itself only by luck of how querySelector works.
+		const greyBtn = root.querySelector<HTMLButtonElement>('[data-grey-toggle]')!;
 		const slots = Array.from(root.querySelectorAll<HTMLElement>('[data-slot]'));
 		const slotFor = (name: string) => slots.find((el) => el.dataset.slot === name)!;
 
@@ -1669,6 +1682,10 @@ const HSL = [
 				const fill = grey ? ([y, y, y] as Rgb) : shown;
 				discs[i].style.setProperty('--fill', rgbCss(fill));
 				discs[i].style.setProperty('--edge', rgbCss(lightenRgb(fill, 0.2)));
+				/* And the field behind everything runs between the two, greyed
+				   with them — so the card's point is made once more at the size
+				   of the whole pane. */
+				root.style.setProperty(i === 0 ? '--swatch-a' : '--swatch-b', rgbCss(fill));
 
 				paintScales(
 					pairBars.slice(i * 3, i * 3 + 3),
@@ -1818,7 +1835,8 @@ const HSL = [
 			if (!comparing && said !== lastSaid) {
 				lastSaid = said;
 				readout.textContent = space === 'hsl' ? `hsl(${H} ${S}% ${L}%)` : rgbCss(A8);
-				root.style.setProperty('--swatch', rgbCss(A8));
+				root.style.setProperty('--swatch-a', rgbCss(A8));
+				root.style.setProperty('--swatch-b', rgbCss(A8));
 				/* Black and white contrast equally at luminance 0.179, which is
 				   where the reading's ink flips over. */
 				root.style.setProperty(
