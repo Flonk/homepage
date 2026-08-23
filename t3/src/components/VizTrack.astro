@@ -234,6 +234,15 @@ const ends = Array.from({ length: thumbs }, (_, i) => i);
 		position: relative;
 		writing-mode: var(--track-flow, horizontal-tb);
 		direction: var(--track-dir, ltr);
+		/* The gesture belongs to the bar. Without this a touch drag is the
+		   browser's to interpret, and it interprets: a card scrolls with
+		   `touch-action: pan-y`, so a few pixels down an upright bar and the
+		   page decides the finger meant scrolling, takes the pointer away and
+		   sends pointercancel. Which reads as a slider that works for a moment
+		   and then stops — and worst on the standing bars, whose whole travel is
+		   the axis being claimed. The native input carries the same declaration
+		   for the same reason; see .viz-range in global.css. */
+		touch-action: none;
 		inline-size: 100%;
 		--depth: var(--track-size, var(--bar-size));
 		--reach: var(--track-thumb-reach, var(--thumb-reach, calc(var(--depth) + 6px)));
