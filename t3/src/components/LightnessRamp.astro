@@ -402,9 +402,11 @@ const inkFor = (l: number) => oklchCss(l > 0.55 ? 0.18 : 0.97, 0.03, hue);
 			first = false;
 		});
 
-		/* Rebuilt on the way in as well as on the way back, so the ramp is always
-		   laid out in front of the reader rather than found already there. */
-		host?.addEventListener('viz:enter', () => mode(state.match, false));
+		/* Nothing on the way in. A phase change always carries a fresh set of
+		   parameters — the phase's own name is part of them — so the props
+		   handler above runs a moment later and stages the ramp from what the
+		   arriving card asked for, rather than this staging it from what the
+		   card before last happened to leave behind. */
 		host?.addEventListener('viz:exit', () => {
 			cancelAnimationFrame(queued);
 			matchEl?.shadeMatch?.exit(false);

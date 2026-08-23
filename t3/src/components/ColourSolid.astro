@@ -1,0 +1,1328 @@
+---
+/**
+ * The RGB cube and the HSL cylinder, and the fact that they are the same
+ * colours.
+ *
+ * Every point on the cube's surface has HSL saturation exactly 1 — a colour on
+ * the surface has either a channel at 0 or one at 1, and either way the
+ * formula lands on 1 — so the cube's skin and the HSL solid's skin hold the
+ * same set of colours. What differs is where they are put. The six pure hues
+ * sit at L = 0.5 in HSL, on one flat circle; on the cube they are six corners
+ * of a *skew* hexagon, three of them a good deal nearer the black corner than
+ * the other three. Yellow is not as far from black as blue is, and no amount
+ * of arithmetic in HSL will admit it.
+ *
+ * So the morph is the argument. Tip the cube onto its black corner and the
+ * white corner is straight up: that axis is already HSL's L. Flatten the skew
+ * hexagon into a circle and the solid becomes the double cone, which is the
+ * shape HSL's numbers actually describe if you plot saturation as a radius.
+ * Then push the cones' slanted walls out to a straight cylinder, which is the
+ * shape the sliders pretend it is: full saturation available at every
+ * lightness, including at the two ends where there is nothing but black and
+ * white to be had. The last step is the lie, and watching it happen is the
+ * point of the card.
+ *
+ * Three phases, two seconds each, reversible. The geometry is one mesh with
+ * two positions per vertex — where it is on the cube, and its (h, s, l) — and
+ * the shader places it: the cube position as authored, the cone and the
+ * cylinder computed from the angle and the height. Nothing is re-uploaded, so
+ * the morph costs a uniform.
+ *
+ * Rendered in raw WebGL for the same reason RgbCube is: a colour here is a
+ * position, and every engine worth the name has a tone-mapping stage that
+ * would quietly rewrite it on the way to the screen.
+ */
+import { lighten, lightenRgb } from '../lib/oklch';
+import { rgbCss, type Rgb } from '../lib/rgb';
+import VizTrack from './VizTrack.astro';
+
+/* HSL to sRGB, for the two places that need the numbers rather than a string:
+   the hue bar's lifted edge here, and the same trick per frame in the script.
+   The formula is CSS's own. */
+const hslRgb = (h: number, s: number, l: number): Rgb => {
+	const f = (n: number) => {
+		const k = (n + h / 30) % 12;
+		const a = (s / 100) * Math.min(l / 100, 1 - l / 100);
+		return Math.round(255 * (l / 100 - a * Math.max(-1, Math.min(k - 3, 9 - k, 1))));
+	};
+	return [f(0), f(8), f(4)];
+};
+
+interface Props {
+	/** Seconds of no input before the dot resumes tracing. */
+	idleResume?: number;
+	/** Ambient rotation. */
+	spin?: boolean;
+	/** Which solid to start on. */
+	space?: 'rgb' | 'hsl';
+}
+
+const { idleResume = 5, spin = true, space = 'rgb' } = Astro.props;
+
+const RGB = [
+	{ name: 'Red', ramp: '#f16d6d' },
+	{ name: 'Green', ramp: '#7bd88f' },
+	{ name: 'Blue', ramp: '#6d9bf1' },
+];
+
+/* The hue bar carries the whole wheel; the other two are repainted from the
+   colour the dot is on, because a saturation scale means nothing without the
+   hue it is a saturation of. See paintHsl in the script. */
+const HUES = [0, 60, 120, 180, 240, 300, 360];
+const HUE_RAMP = `linear-gradient(to top, ${HUES.map((d) => `hsl(${d} 100% 50%)`).join(', ')})`;
+/* And the same wheel lifted a fifth of the way to white, for the edge: the
+   bar's own colour all along its length rather than one flat line laid over
+   it. See lighten in lib/oklch, and the cube's channel bars for the pattern. */
+const HUE_EDGE = `linear-gradient(to top, ${HUES.map((d) =>
+	rgbCss(lightenRgb(hslRgb(d, 100, 50), 0.2)),
+).join(', ')})`;
+
+const HSL = [
+	{ name: 'Hue', letter: 'H', max: 360, backdrop: HUE_RAMP, edge: HUE_EDGE },
+	{
+		name: 'Saturation',
+		letter: 'S',
+		max: 100,
+		backdrop: 'linear-gradient(to top, #808080, #f00)',
+		// Repainted from the colour on show, edge and all: see the render loop.
+		edge: null,
+	},
+	{
+		name: 'Lightness',
+		letter: 'L',
+		max: 100,
+		backdrop: 'linear-gradient(to top, #000, #f00, #fff)',
+		edge: null,
+	},
+];
+---
+
+<div
+	class="solid"
+	data-colour-solid
+	data-no-swipe
+	data-idle-resume={idleResume}
+	data-spin={String(spin)}
+	data-space={space}
+>
+	{/* One context for all six bars: they are one colour between them, so a
+	    grab on any of them stops the dot for everybody. See lib/animate. */}
+	<div class="rig" data-anim-context>
+		<div class="plate rgb" role="group" aria-label="Red, green and blue" data-plate="rgb">
+			{
+				RGB.map((ch) => (
+					<div
+						class="bar"
+						style={`--track-edge: linear-gradient(to top, ${lighten('#000000', 0.2)}, ${lighten(ch.ramp, 0.2)})`}
+					>
+						<VizTrack
+							upright
+							size="1.5rem"
+							backdrop={`linear-gradient(to top, #000, ${ch.ramp})`}
+							thumbs={1}
+							values={[128]}
+							min={0}
+							max={255}
+							step={1}
+							labels={[ch.name]}
+						/>
+						<span class="bar-name" aria-hidden="true">
+							{ch.name[0]}
+						</span>
+					</div>
+				))
+			}
+		</div>
+
+		<div class="middle">
+			<div class="stage">
+				<canvas data-canvas></canvas>
+			</div>
+
+			{/* The switch, and the only control that is not a slider. role=switch
+			    with both names showing: what it is set to has to be readable at a
+			    glance beside a shape that is halfway between the two. */}
+			<div class="controls">
+				<button
+					class="toggle"
+					type="button"
+					role="switch"
+					aria-checked={space === 'hsl' ? 'true' : 'false'}
+					aria-label="Colour space"
+					data-toggle
+				>
+					<span class="knob" aria-hidden="true"></span>
+					<span class="side" data-side="rgb" aria-hidden="true">RGB</span>
+					<span class="side" data-side="hsl" aria-hidden="true">HSL</span>
+				</button>
+				<p class="readout" data-readout>rgb(128 128 128)</p>
+			</div>
+		</div>
+
+		<div class="plate hsl" role="group" aria-label="Hue, saturation and lightness" data-plate="hsl">
+			{
+				HSL.map((ch) => (
+					<div class="bar" style={ch.edge && `--track-edge: ${ch.edge}`}>
+						<VizTrack
+							upright
+							size="1.5rem"
+							backdrop={ch.backdrop}
+							thumbs={1}
+							values={[0]}
+							min={0}
+							max={ch.max}
+							step={1}
+							labels={[ch.name]}
+						/>
+						<span class="bar-name" aria-hidden="true">
+							{ch.letter}
+						</span>
+					</div>
+				))
+			}
+		</div>
+	</div>
+</div>
+
+<style>
+	.solid {
+		/* The two plates are fixed-width and the stage takes the rest, so the
+		   shape stays in the middle whichever set of bars is lit. */
+		--viz-max: none;
+		position: relative;
+		display: flex;
+		align-items: stretch;
+		justify-content: center;
+		width: 100%;
+		height: 100%;
+		min-width: 0;
+		min-height: 0;
+		box-sizing: border-box;
+		font-family: var(--font-mono);
+		color: var(--deck-ink-dim, #8891a0);
+	}
+
+	.rig {
+		flex: 1;
+		min-width: 0;
+		min-height: 0;
+		display: flex;
+		align-items: stretch;
+		justify-content: center;
+		gap: clamp(0.5rem, 2.5%, 2rem);
+	}
+
+	/* Both plates hold their space whether or not they are the live one: a set
+	   of bars that folded away would move the shape sideways every time the
+	   switch was thrown, and the shape is what a reader is watching. */
+	.plate {
+		flex: none;
+		display: flex;
+		gap: 0.75rem;
+		align-items: stretch;
+		box-sizing: border-box;
+		margin: 1em 0;
+		padding: 1em;
+		border-radius: 0.5rem;
+		background: var(--plate, rgb(255 255 255 / 0.06));
+		box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.08);
+		transition:
+			opacity 0.45s ease,
+			filter 0.45s ease;
+	}
+
+	/* The set that is not being used is left legible but plainly out of play —
+	   dimmed and desaturated rather than hidden, so a reader can see that the
+	   same colour has a reading in both spaces. */
+	.solid[data-space='hsl'] .plate.rgb,
+	.solid[data-space='rgb'] .plate.hsl {
+		opacity: 0.28;
+		filter: saturate(0.35);
+	}
+
+	.bar {
+		min-width: 0;
+		min-height: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.4rem;
+		--track-border: 1px solid transparent;
+		--track-radius: 4px;
+	}
+
+	.bar-name {
+		flex: none;
+		font-size: 0.75rem;
+		line-height: 1;
+		letter-spacing: 0.08em;
+	}
+
+	.middle {
+		flex: 0 1 auto;
+		min-width: 0;
+		min-height: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		padding-block: 0.5rem;
+	}
+
+	/* Square, so the middle column is only as wide as the solid can actually
+	   be — its size comes from the pane's short side, which is the height. Left
+	   to fill the row it would swallow every spare pixel and centre a small
+	   shape in the middle of it, pushing the two plates out to the edges. */
+	.stage {
+		flex: 1;
+		aspect-ratio: 1;
+		min-width: 0;
+		min-height: 0;
+		display: flex;
+	}
+
+	/* The contact shadow is a drop-shadow over the canvas' own alpha, so it is
+	   the silhouette's shadow whatever shape the silhouette currently is. */
+	.stage canvas {
+		width: 100%;
+		height: 100%;
+		cursor: grab;
+		touch-action: none;
+		filter: drop-shadow(0 var(--shadow-y, 6px) var(--shadow-blur, 18px) rgb(0 0 0 / 0.5));
+	}
+
+	.stage canvas:active {
+		cursor: grabbing;
+	}
+
+	.controls {
+		flex: none;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.35rem;
+	}
+
+	/* Two names and a knob that slides between them. The knob is the moving
+	   part rather than the labels, so the switch reads the same way a physical
+	   one does — the thing that travels is the thing you threw. */
+	.toggle {
+		position: relative;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		align-items: center;
+		gap: 0;
+		padding: 0.2rem;
+		border: 0;
+		border-radius: 999px;
+		background: var(--plate, rgb(255 255 255 / 0.06));
+		box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.12);
+		font: inherit;
+		font-size: 0.75rem;
+		letter-spacing: 0.1em;
+		color: inherit;
+		cursor: pointer;
+	}
+
+	.knob {
+		position: absolute;
+		z-index: 0;
+		inset: 0.2rem auto 0.2rem 0.2rem;
+		width: calc(50% - 0.2rem);
+		border-radius: 999px;
+		background: rgb(255 255 255 / 0.16);
+		box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.18);
+		transition: transform 0.35s cubic-bezier(0.35, 0.1, 0.2, 1);
+	}
+
+	.solid[data-space='hsl'] .knob {
+		transform: translateX(100%);
+	}
+
+	.side {
+		position: relative;
+		z-index: 1;
+		padding: 0.3rem 0.85rem;
+		transition: color 0.35s ease;
+	}
+
+	.solid[data-space='rgb'] .side[data-side='rgb'],
+	.solid[data-space='hsl'] .side[data-side='hsl'] {
+		color: var(--deck-ink, #e6e9ef);
+	}
+
+	.toggle:focus-visible {
+		outline: 2px solid var(--accent, #f7a800);
+		outline-offset: 3px;
+	}
+
+	.readout {
+		margin: 0;
+		font-size: 0.8rem;
+		font-variant-numeric: tabular-nums;
+	}
+
+	/* ==== container queries ============================================== */
+
+	@container viz (max-width: 46rem) {
+		.rig {
+			gap: 0.5rem;
+		}
+		.plate {
+			gap: 0.4rem;
+			padding: 0.6rem;
+		}
+	}
+
+	/* Portrait pane: stack, and lay the bars down. A pair of upright plates
+	   either side would leave the shape nothing to be big in. */
+	@container viz (max-aspect-ratio: 1 / 1) {
+		.rig {
+			flex-direction: column;
+			gap: 0.4rem;
+		}
+
+		.plate {
+			flex: none;
+			flex-direction: column;
+			gap: 0.3rem;
+			margin: 0;
+			width: 100%;
+		}
+
+		/* Lying down: the track takes its axis from the writing mode, so this
+		   one line turns the upright bars horizontal, minimum at the left. */
+		.bar {
+			flex-direction: row;
+			gap: 0.5rem;
+			writing-mode: horizontal-tb;
+			direction: ltr;
+		}
+
+		.bar-name {
+			order: -1;
+			width: 1ch;
+		}
+
+		.middle {
+			flex: 1;
+			min-height: 0;
+		}
+	}
+</style>
+
+<script>
+	import { contextFor } from '../lib/animate';
+	import { lightenRgb } from '../lib/oklch';
+	import { rgbCss, type Rgb } from '../lib/rgb';
+
+	type Quat = [number, number, number, number];
+
+	const IDENTITY: Quat = [0, 0, 0, 1];
+
+	const qMul = (a: Quat, b: Quat): Quat => [
+		a[3] * b[0] + a[0] * b[3] + a[1] * b[2] - a[2] * b[1],
+		a[3] * b[1] - a[0] * b[2] + a[1] * b[3] + a[2] * b[0],
+		a[3] * b[2] + a[0] * b[1] - a[1] * b[0] + a[2] * b[3],
+		a[3] * b[3] - a[0] * b[0] - a[1] * b[1] - a[2] * b[2],
+	];
+
+	const qNorm = (q: Quat): Quat => {
+		const l = Math.hypot(q[0], q[1], q[2], q[3]) || 1;
+		return [q[0] / l, q[1] / l, q[2] / l, q[3] / l];
+	};
+
+	const qAxisAngle = (x: number, y: number, z: number, a: number): Quat => {
+		const l = Math.hypot(x, y, z);
+		if (!l || !a) return IDENTITY;
+		const s = Math.sin(a / 2) / l;
+		return [x * s, y * s, z * s, Math.cos(a / 2)];
+	};
+
+	const qSlerp = (q: Quat, target: Quat, t: number): Quat => {
+		let dot = q[0] * target[0] + q[1] * target[1] + q[2] * target[2] + q[3] * target[3];
+		let to = target;
+		if (dot < 0) {
+			to = [-target[0], -target[1], -target[2], -target[3]];
+			dot = -dot;
+		}
+		if (dot > 0.9995) {
+			return qNorm([
+				q[0] + (to[0] - q[0]) * t,
+				q[1] + (to[1] - q[1]) * t,
+				q[2] + (to[2] - q[2]) * t,
+				q[3] + (to[3] - q[3]) * t,
+			]);
+		}
+		const theta = Math.acos(dot);
+		const s = Math.sin(theta);
+		const wa = Math.sin((1 - t) * theta) / s;
+		const wb = Math.sin(t * theta) / s;
+		return qNorm([
+			q[0] * wa + to[0] * wb,
+			q[1] * wa + to[1] * wb,
+			q[2] * wa + to[2] * wb,
+			q[3] * wa + to[3] * wb,
+		]);
+	};
+
+	const qMatrix = (q: Quat) => {
+		const [x, y, z, w] = q;
+		return [
+			1 - 2 * (y * y + z * z), 2 * (x * y + z * w), 2 * (x * z - y * w),
+			2 * (x * y - z * w), 1 - 2 * (x * x + z * z), 2 * (y * z + x * w),
+			2 * (x * z + y * w), 2 * (y * z - x * w), 1 - 2 * (x * x + y * y),
+		];
+	};
+
+	/* --- colour ------------------------------------------------------------
+	   HSL both ways, in the sRGB sense CSS means. Hue is kept as a turn rather
+	   than degrees, because everything downstream wants an angle. */
+
+	function hslToRgb(h: number, s: number, l: number): [number, number, number] {
+		const f = (n: number) => {
+			const k = (n + h * 12) % 12;
+			const a = s * Math.min(l, 1 - l);
+			return l - a * Math.max(-1, Math.min(k - 3, 9 - k, 1));
+		};
+		return [f(0), f(8), f(4)];
+	}
+
+	function rgbToHsl(r: number, g: number, b: number): [number, number, number] {
+		const max = Math.max(r, g, b);
+		const min = Math.min(r, g, b);
+		const l = (max + min) / 2;
+		const d = max - min;
+		if (d < 1e-9) return [0, 0, l];
+		const s = d / (1 - Math.abs(2 * l - 1));
+		let h: number;
+		if (max === r) h = ((g - b) / d) % 6;
+		else if (max === g) h = (b - r) / d + 2;
+		else h = (r - g) / d + 4;
+		h /= 6;
+		return [h - Math.floor(h), s, l];
+	}
+
+	/* --- the frame the HSL solids are built in ------------------------------
+	   Their axis is the cube's own black-to-white diagonal, and their equator
+	   passes through the six pure hues where they already are, so the morph
+	   moves each vertex as little as it can. The cube is [0,1]^3 and the eye is
+	   set up around its centre, so everything is written about that centre.
+
+	   E1 points at red's position on the equator, E2 is a quarter turn on in
+	   the direction hue counts — so red, yellow, green come round in order. */
+	const S3 = Math.sqrt(3);
+	const UP = [1 / S3, 1 / S3, 1 / S3];
+	const E1 = [2 / Math.sqrt(6), -1 / Math.sqrt(6), -1 / Math.sqrt(6)];
+	const E2 = [0, 1 / Math.SQRT2, -1 / Math.SQRT2];
+	/** The pure hues' distance from the axis: that is the equator's radius. */
+	const RADIUS = Math.sqrt(2 / 3);
+	/** Black corner to white corner. */
+	const HEIGHT = S3;
+
+	/** Standing the diagonal up: black at the bottom, white straight above it. */
+	const TIP: Quat = qAxisAngle(-1, 0, 1, Math.acos(1 / S3));
+
+	/* --- mesh ---------------------------------------------------------------
+	   A grid in (hue, lightness) at full saturation. That grid is the cube's
+	   whole surface — every point of it has saturation 1 — and it is the cone's
+	   and the cylinder's whole wall as well, so one set of vertices is all
+	   three shapes.
+
+	   The divisions are chosen so no quad ever straddles a fold: six hues, so
+	   the cube's six vertical edges fall on grid lines, and an even number of
+	   lightness steps, so the equator does too. Inside a fold the surface is
+	   planar and colour is affine in position, which is what the GPU's
+	   interpolation reconstructs exactly — the cube comes out as exact as the
+	   twelve-triangle one in RgbCube. */
+	const HN = 96; // multiple of 6
+	const LN = 24; // even
+	const FLOATS = 6; // cube position, then h s l
+
+	const solid: number[] = [];
+	const solidIdx: number[] = [];
+
+	const vertex = (h: number, s: number, l: number) => {
+		const [r, g, b] = hslToRgb(h, s, l);
+		solid.push(r, g, b, h, s, l);
+		return solid.length / FLOATS - 1;
+	};
+
+	/* The wall. */
+	for (let li = 0; li <= LN; li++) {
+		for (let hi = 0; hi <= HN; hi++) vertex(hi / HN, 1, li / LN);
+	}
+	for (let li = 0; li < LN; li++) {
+		for (let hi = 0; hi < HN; hi++) {
+			const a = li * (HN + 1) + hi;
+			const b = a + 1;
+			const c = a + HN + 1;
+			const d = c + 1;
+			solidIdx.push(a, c, d, a, d, b);
+		}
+	}
+
+	/* The two caps: rings from the axis out to the rim, at l = 0 and l = 1.
+	   Both are a single colour — black and white — so they are invisible as
+	   colour and only ever seen as shape: nothing at all on the cube, where
+	   they are the two corners, a point on the cone, and a disc once the
+	   cylinder has opened them out. */
+	for (const l of [0, 1]) {
+		const inner = solid.length / FLOATS;
+		for (let hi = 0; hi <= HN; hi++) vertex(hi / HN, 0, l);
+		const outer = solid.length / FLOATS;
+		for (let hi = 0; hi <= HN; hi++) vertex(hi / HN, 1, l);
+		for (let hi = 0; hi < HN; hi++) {
+			solidIdx.push(inner + hi, outer + hi, outer + hi + 1);
+			solidIdx.push(inner + hi, outer + hi + 1, inner + hi + 1);
+		}
+	}
+
+	const SOLID_VERTS = new Float32Array(solid);
+	const SOLID_INDEX = new Uint16Array(solidIdx);
+
+	/* --- the wireframe ------------------------------------------------------
+	   The cube's twelve edges, said in (hue, lightness): three from black up to
+	   a primary, three from a secondary up to white, and six round the
+	   equator — which on the cube is the skew hexagon and in HSL is a flat
+	   circle. Subdivided, because a straight line between two points on the
+	   cube has to arrive as an arc on the cylinder. */
+	const LINE_PATTERN = [
+		[0, -1], [1, -1], [1, 1],
+		[0, -1], [1, 1], [0, 1],
+	];
+	const EDGE_FLOATS = 14;
+
+	const wire: number[] = [];
+	/* Cut at exactly the mesh's own divisions. A line lying on a curved
+	   surface is a chord between its endpoints, and a chord across a wider
+	   span than the facet under it sinks below that facet in the middle — which
+	   the depth test then hides, and the wireframe comes out dashed. Sharing
+	   the divisions makes every segment lie in the facet it is drawn on. */
+	const strut = (h0: number, l0: number, h1: number, l1: number, seg: number) => {
+		for (let i = 0; i < seg; i++) {
+			const at = (k: number) => {
+				const f = k / seg;
+				const h = h0 + (h1 - h0) * f;
+				const l = l0 + (l1 - l0) * f;
+				return [...hslToRgb(h, 1, l), h, 1, l];
+			};
+			const a = at(i);
+			const b = at(i + 1);
+			for (const [end, side] of LINE_PATTERN) wire.push(...a, ...b, end, side);
+		}
+	};
+
+	/* Three sets, drawn separately because they do not all belong to all three
+	   shapes. The lines that say what a cube is are not the lines that say what
+	   a cylinder is, and a wireframe carried across unchanged would be claiming
+	   the cylinder has six slanted edges — which is exactly the thing HSL is
+	   being accused of pretending. So each set fades in over the shape it
+	   describes and out of the one it does not. */
+	const segments = () => wire.length / EDGE_FLOATS / 6;
+	const group = (build: () => void) => {
+		const start = segments();
+		build();
+		return { start, count: segments() - start };
+	};
+
+	/* The cube's six slanted edges — three up from black to a primary, three on
+	   up from a secondary to white. They are the zigzag, and the zigzag is what
+	   the cone flattens away. */
+	const DIAGONALS = group(() => {
+		for (let k = 0; k < 6; k++) {
+			const h = k / 6;
+			if (k % 2 === 0) strut(h, 0, h, 0.5, LN / 2);
+			else strut(h, 0.5, h, 1, LN / 2);
+		}
+	});
+
+	/* The six edges round the middle: a skew hexagon on the cube and a flat
+	   circle on the cone, which is the same six lines and the whole argument. */
+	const EQUATOR = group(() => {
+		for (let k = 0; k < 6; k++) strut(k / 6, 0.5, (k + 1) / 6, 0.5, HN / 6);
+	});
+
+	/* The cylinder's two rims. On the cube and the cone these are the black and
+	   white corners — a circle of no radius at all — so there is nothing to see
+	   until the cones open out and put a lid on each end. */
+	const RIMS = group(() => {
+		for (const l of [0, 1]) {
+			for (let k = 0; k < 6; k++) strut(k / 6, l, (k + 1) / 6, l, HN / 6);
+		}
+	});
+
+	const WIRE_VERTS = new Float32Array(wire);
+
+	const FOCAL = 3.4;
+
+	/* --- shaders ------------------------------------------------------------
+	   One place where a vertex is put. `shape` takes the cube position and the
+	   (h, s, l) and returns where that vertex is at the current point of the
+	   morph: 0 is the cube, 1 the double cone, 2 the cylinder. */
+	const PLACE = `
+		uniform mat3 uRot;
+		uniform vec2 uScale;
+		uniform float uMorph;
+		const vec3 UP = vec3(${UP.map((v) => v.toFixed(8)).join(', ')});
+		const vec3 E1 = vec3(${E1.map((v) => v.toFixed(8)).join(', ')});
+		const vec3 E2 = vec3(${E2.map((v) => v.toFixed(8)).join(', ')});
+		vec3 shape(vec3 cube, vec3 hsl) {
+			float a = hsl.x * 6.28318531;
+			vec3 radial = E1 * cos(a) + E2 * sin(a);
+			vec3 axis = vec3(0.5) + UP * ((hsl.z - 0.5) * ${HEIGHT.toFixed(8)});
+			// The cone gives up radius toward both ends; the cylinder does not,
+			// which is exactly the claim HSL's saturation slider makes.
+			vec3 cone = axis + radial * (hsl.y * (1.0 - abs(2.0 * hsl.z - 1.0)) * ${RADIUS.toFixed(8)});
+			vec3 tube = axis + radial * (hsl.y * ${RADIUS.toFixed(8)});
+			return uMorph <= 1.0 ? mix(cube, cone, uMorph) : mix(cone, tube, uMorph - 1.0);
+		}
+		vec4 proj(vec3 p) {
+			vec3 v = uRot * (p - 0.5);
+			return vec4(v.x * uScale.x, v.y * uScale.y, -v.z, ${FOCAL.toFixed(4)} - v.z);
+		}
+	`;
+
+	const SOLID_VS = `
+		attribute vec3 aPos;
+		attribute vec3 aHsl;
+		varying vec3 vColor;
+		${PLACE}
+		void main() {
+			vColor = aPos;
+			gl_Position = proj(shape(aPos, aHsl));
+		}
+	`;
+
+	/* A sub-LSB dither, so a ramp this wide does not band on an eight-bit
+	   frame buffer: each pixel is scattered across the two nearest values and
+	   the local average lands on the colour that was computed. */
+	const SOLID_FS = `
+		precision highp float;
+		varying vec3 vColor;
+		void main() {
+			float n = fract(sin(dot(gl_FragCoord.xy, vec2(12.9898, 78.233))) * 43758.5453);
+			gl_FragColor = vec4(vColor + (n - 0.5) / 255.0, 1.0);
+		}
+	`;
+
+	/* Lines are expanded to screen-space quads rather than drawn with gl.LINES,
+	   whose width is capped at one device pixel nearly everywhere. */
+	const WIRE_VS = `
+		attribute vec3 aP0;
+		attribute vec3 aH0;
+		attribute vec3 aP1;
+		attribute vec3 aH1;
+		attribute float aEnd;
+		attribute float aSide;
+		uniform vec2 uHalf;
+		uniform float uWidth;
+		${PLACE}
+		/* A hair further out from the middle than the surface it is drawn on.
+		   A line and the face under it are the same depth to within a rounding
+		   error, and the depth test then keeps whichever won that round — facet
+		   by facet, which is what turns a wireframe into a dashed one. All three
+		   of these shapes are convex, so outward is reliably nearer. */
+		vec3 lift(vec3 p) {
+			return vec3(0.5) + (p - vec3(0.5)) * 1.006;
+		}
+		void main() {
+			vec4 c0 = proj(lift(shape(aP0, aH0)));
+			vec4 c1 = proj(lift(shape(aP1, aH1)));
+			vec2 s0 = c0.xy / c0.w * uHalf;
+			vec2 s1 = c1.xy / c1.w * uHalf;
+			vec2 d = s1 - s0;
+			float len = length(d);
+			vec2 dir = len > 1e-5 ? d / len : vec2(1.0, 0.0);
+			vec2 nrm = vec2(-dir.y, dir.x);
+			vec4 c = mix(c0, c1, aEnd);
+			vec2 s = mix(s0, s1, aEnd)
+				+ (nrm * aSide + dir * (aEnd * 2.0 - 1.0)) * uWidth * 0.5;
+			gl_Position = vec4(s / uHalf * c.w, c.z, c.w);
+		}
+	`;
+
+	const WIRE_FS = `
+		precision highp float;
+		uniform vec4 uColor;
+		void main() {
+			gl_FragColor = vec4(uColor.rgb * uColor.a, uColor.a);
+		}
+	`;
+
+	/* A screen-facing quad around the dot's projected centre; the fragment
+	   shader carves the disc out of it, so it stays round whatever the solid is
+	   doing. */
+	const DOT_VS = `
+		attribute vec2 aCorner;
+		uniform vec3 uDot;
+		uniform vec3 uDotHsl;
+		uniform vec2 uHalf;
+		uniform float uRadius;
+		varying vec2 vOffset;
+		${PLACE}
+		void main() {
+			vec4 c = proj(shape(uDot, uDotHsl));
+			vOffset = aCorner * uRadius;
+			vec2 s = c.xy / c.w * uHalf + vOffset;
+			gl_Position = vec4(s / uHalf * c.w, c.z, c.w);
+		}
+	`;
+
+	const DOT_FS = `
+		precision highp float;
+		uniform float uCore;
+		uniform float uAlpha;
+		varying vec2 vOffset;
+		void main() {
+			float a = uAlpha * (1.0 - smoothstep(uCore - 0.75, uCore + 0.75, length(vOffset)));
+			gl_FragColor = vec4(0.0, 0.0, 0.0, a);
+		}
+	`;
+
+	type GL = WebGLRenderingContext | WebGL2RenderingContext;
+
+	function compile(gl: GL, type: number, src: string) {
+		const sh = gl.createShader(type)!;
+		gl.shaderSource(sh, src);
+		gl.compileShader(sh);
+		if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) {
+			throw new Error(gl.getShaderInfoLog(sh) || 'shader failed to compile');
+		}
+		return sh;
+	}
+
+	function program(gl: GL, vs: string, fs: string) {
+		const p = gl.createProgram()!;
+		gl.attachShader(p, compile(gl, gl.VERTEX_SHADER, vs));
+		gl.attachShader(p, compile(gl, gl.FRAGMENT_SHADER, fs));
+		gl.linkProgram(p);
+		if (!gl.getProgramParameter(p, gl.LINK_STATUS)) {
+			throw new Error(gl.getProgramInfoLog(p) || 'program failed to link');
+		}
+		return p;
+	}
+
+	function initSolid(root: HTMLElement) {
+		if (root.dataset.ready === 'true') return;
+		root.dataset.ready = 'true';
+
+		const canvas = root.querySelector<HTMLCanvasElement>('[data-canvas]')!;
+		const toggle = root.querySelector<HTMLButtonElement>('[data-toggle]')!;
+		const readout = root.querySelector<HTMLElement>('[data-readout]')!;
+		type TrackEl = HTMLElement & {
+			track: {
+				set(i: number, v: number): void;
+				backdrop(css: string): void;
+				edge(css: string): void;
+			};
+		};
+		const pick = (which: string) =>
+			Array.from(
+				root.querySelectorAll<TrackEl>(`[data-plate='${which}'] [data-viz-track]`),
+			);
+		const rgbBars = pick('rgb');
+		const hslBars = pick('hsl');
+		const ctx = contextFor(root.querySelector('[data-anim-context]') ?? root);
+
+		const host =
+			root.closest<HTMLElement>('[data-viz-phase]') ??
+			root.closest<HTMLElement>('[data-viz-stage]');
+		const gate = root.closest<HTMLElement>('[data-viz-phase]');
+		const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+		let idleSeconds = Number(root.dataset.idleResume) || 5;
+		const tellBars = () =>
+			[...rgbBars, ...hslBars].forEach((b) => (b.dataset.idleResume = String(idleSeconds)));
+		let spin = root.dataset.spin !== 'false';
+		const AUTHORED = { idleSeconds, spin, space: root.dataset.space ?? 'rgb' };
+		tellBars();
+
+		/* ---- the morph ------------------------------------------------------
+		   One number from 0 to 3: the tip, then the cone, then the cylinder, two
+		   seconds each. It walks toward whichever end the switch is set to, so
+		   throwing the switch halfway through simply turns it round — there is
+		   no state to unwind and nothing to cancel. */
+		const PHASES = 3;
+		const SECONDS = 2;
+		let stage = AUTHORED.space === 'hsl' ? PHASES : 0;
+		let want = stage;
+		const ease = (t: number) => t * t * (3 - 2 * t);
+
+		const setSpace = (to: 'rgb' | 'hsl') => {
+			want = to === 'hsl' ? PHASES : 0;
+			toggle.setAttribute('aria-checked', String(to === 'hsl'));
+			if (reduceMotion) stage = want;
+		};
+
+		toggle.addEventListener('click', () =>
+			setSpace(root.dataset.space === 'hsl' ? 'rgb' : 'hsl'),
+		);
+
+		/* ---- orientation ----------------------------------------------------
+		   Three rotations, innermost first: the tip, which stands the solid's
+		   black-to-white diagonal up; the ambient turn about that same upright
+		   axis; and a fixed tilt toward the viewer so we are looking slightly
+		   down on it.
+
+		   The order is what makes the tip mean anything. Spin about the object's
+		   own axis and a cylinder turns on the spot; spin about some axis of the
+		   camera's and it wobbles, and the cube's diagonal — which the whole
+		   card is about — never actually points up the screen. In cube mode the
+		   same three give the plain turning cube, because before the tip the
+		   solid's up axis is simply the green one. */
+		const AMBIENT_RATE = 0.055;
+		const TILT: Quat = qAxisAngle(1, 0, 0, 0.42);
+		// Not square-on to start with: a face-on cube reads as a flat square.
+		let ambient = -0.62;
+		let offset: Quat = IDENTITY;
+		let velX = 0;
+		let velY = 0;
+		let dragging = false;
+		let pointerId: number | null = null;
+
+		/* ---- the dot --------------------------------------------------------
+		   The same incommensurate wander RgbCube's takes, so the colour on show
+		   is never quite a colour it has shown before. */
+		const FREQ = [0.031, 0.044, 0.027];
+		const PHASE = [0, 1.7, 3.1];
+		let t = 0;
+		let rgb = [0.5, 0.5, 0.5];
+		let frozen = rgb.slice();
+		let overrideRgb: (number | null)[] = [null, null, null];
+		let overrideHsl: (number | null)[] = [null, null, null];
+		let wasHeld = false;
+		let resumeFrom: number[] | null = null;
+		let resumeAt = 0;
+
+		const wander = (time: number) =>
+			FREQ.map((f, i) => 0.5 + 0.5 * Math.sin(time * f * Math.PI * 2 + PHASE[i]));
+
+		/* A reader's turn. Whichever set of bars they took hold of wins, and the
+		   other set is only told the answer: a saturation the reader has set is
+		   the fact, and the three RGB numbers follow from it rather than the
+		   other way round. */
+		function held() {
+			if (!wasHeld) {
+				frozen = rgb.slice();
+				wasHeld = true;
+			}
+			if (overrideHsl.some((v) => v !== null)) {
+				const base = rgbToHsl(frozen[0], frozen[1], frozen[2]);
+				const hsl = base.map((v, i) => overrideHsl[i] ?? v);
+				return hslToRgb(hsl[0], hsl[1], hsl[2]);
+			}
+			return [0, 1, 2].map((c) => overrideRgb[c] ?? frozen[c]);
+		}
+
+		const freeze = () => (resumeFrom = null);
+
+		rgbBars.forEach((bar, channel) => {
+			bar.addEventListener('pointerdown', freeze);
+			bar.addEventListener('track:input', (e) => {
+				const { value, fromReader } = (e as CustomEvent).detail;
+				if (!fromReader) return;
+				freeze();
+				overrideHsl = [null, null, null];
+				overrideRgb[channel] = value / 255;
+			});
+		});
+
+		hslBars.forEach((bar, channel) => {
+			bar.addEventListener('pointerdown', freeze);
+			bar.addEventListener('track:input', (e) => {
+				const { value, fromReader } = (e as CustomEvent).detail;
+				if (!fromReader) return;
+				freeze();
+				overrideRgb = [null, null, null];
+				overrideHsl[channel] = channel === 0 ? value / 360 : value / 100;
+			});
+		});
+
+		host?.addEventListener('viz:props', (e) => {
+			const p = (e as CustomEvent).detail ?? {};
+			spin = 'spin' in p ? p.spin !== false : AUTHORED.spin;
+			idleSeconds = 'idleResume' in p ? Number(p.idleResume) || 5 : AUTHORED.idleSeconds;
+			tellBars();
+			setSpace(('space' in p ? p.space : AUTHORED.space) === 'hsl' ? 'hsl' : 'rgb');
+		});
+		host?.addEventListener('viz:enter', () => (last = 0));
+
+		canvas.addEventListener('pointerdown', (e) => {
+			dragging = true;
+			pointerId = e.pointerId;
+			canvas.setPointerCapture(e.pointerId);
+			velX = 0;
+			velY = 0;
+			e.preventDefault();
+		});
+
+		canvas.addEventListener('pointermove', (e) => {
+			if (!dragging || e.pointerId !== pointerId) return;
+			const k = 0.01;
+			const dx = e.movementX * k;
+			const dy = e.movementY * k;
+			offset = qNorm(qMul(qMul(qAxisAngle(0, 1, 0, dx), qAxisAngle(1, 0, 0, dy)), offset));
+			velY = dx * 60;
+			velX = dy * 60;
+		});
+
+		const endDrag = (e: PointerEvent) => {
+			if (e.pointerId !== pointerId) return;
+			dragging = false;
+			pointerId = null;
+		};
+		canvas.addEventListener('pointerup', endDrag);
+		canvas.addEventListener('pointercancel', endDrag);
+
+		/* ---- gl ------------------------------------------------------------- */
+		const OPTS: WebGLContextAttributes = {
+			alpha: true,
+			antialias: true,
+			depth: true,
+			premultipliedAlpha: true,
+			powerPreference: 'low-power',
+		};
+		const gl = (canvas.getContext('webgl2', OPTS) ||
+			canvas.getContext('webgl', OPTS)) as GL | null;
+		if (!gl) {
+			canvas.style.display = 'none';
+			return;
+		}
+		if ('drawingBufferColorSpace' in gl) gl.drawingBufferColorSpace = 'srgb';
+
+		const progSolid = program(gl, SOLID_VS, SOLID_FS);
+		const progWire = program(gl, WIRE_VS, WIRE_FS);
+		const progDot = program(gl, DOT_VS, DOT_FS);
+
+		const bufSolid = gl.createBuffer();
+		gl.bindBuffer(gl.ARRAY_BUFFER, bufSolid);
+		gl.bufferData(gl.ARRAY_BUFFER, SOLID_VERTS, gl.STATIC_DRAW);
+
+		const bufIndex = gl.createBuffer();
+		gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, bufIndex);
+		gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, SOLID_INDEX, gl.STATIC_DRAW);
+
+		const bufWire = gl.createBuffer();
+		gl.bindBuffer(gl.ARRAY_BUFFER, bufWire);
+		gl.bufferData(gl.ARRAY_BUFFER, WIRE_VERTS, gl.STATIC_DRAW);
+
+		const bufQuad = gl.createBuffer();
+		gl.bindBuffer(gl.ARRAY_BUFFER, bufQuad);
+		gl.bufferData(
+			gl.ARRAY_BUFFER,
+			new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]),
+			gl.STATIC_DRAW,
+		);
+
+		const uni = (p: WebGLProgram, n: string) => gl.getUniformLocation(p, n);
+		const U = {
+			solid: {
+				rot: uni(progSolid, 'uRot'),
+				scale: uni(progSolid, 'uScale'),
+				morph: uni(progSolid, 'uMorph'),
+			},
+			wire: {
+				rot: uni(progWire, 'uRot'),
+				scale: uni(progWire, 'uScale'),
+				morph: uni(progWire, 'uMorph'),
+				half: uni(progWire, 'uHalf'),
+				width: uni(progWire, 'uWidth'),
+				color: uni(progWire, 'uColor'),
+			},
+			dot: {
+				rot: uni(progDot, 'uRot'),
+				scale: uni(progDot, 'uScale'),
+				morph: uni(progDot, 'uMorph'),
+				half: uni(progDot, 'uHalf'),
+				radius: uni(progDot, 'uRadius'),
+				core: uni(progDot, 'uCore'),
+				alpha: uni(progDot, 'uAlpha'),
+				pos: uni(progDot, 'uDot'),
+				hsl: uni(progDot, 'uDotHsl'),
+			},
+		};
+
+		const A = {
+			pos: gl.getAttribLocation(progSolid, 'aPos'),
+			hsl: gl.getAttribLocation(progSolid, 'aHsl'),
+			p0: gl.getAttribLocation(progWire, 'aP0'),
+			h0: gl.getAttribLocation(progWire, 'aH0'),
+			p1: gl.getAttribLocation(progWire, 'aP1'),
+			h1: gl.getAttribLocation(progWire, 'aH1'),
+			end: gl.getAttribLocation(progWire, 'aEnd'),
+			side: gl.getAttribLocation(progWire, 'aSide'),
+			corner: gl.getAttribLocation(progDot, 'aCorner'),
+		};
+
+		/* Attribute arrays are global state rather than per-program, so anything
+		   the last draw left enabled would still be read by the next one. */
+		const useAttribs = (locs: number[]) => {
+			for (let i = 0; i < 8; i++) gl.disableVertexAttribArray(i);
+			for (const l of locs) if (l >= 0) gl.enableVertexAttribArray(l);
+		};
+
+		gl.clearColor(0, 0, 0, 0);
+		gl.frontFace(gl.CCW);
+		gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+
+		/* ---- sizing ---------------------------------------------------------- */
+		let w = 0;
+		let h = 0;
+		let dpr = 1;
+		const resize = () => {
+			dpr = Math.min(window.devicePixelRatio || 1, 2);
+			const r = canvas.getBoundingClientRect();
+			w = r.width;
+			h = r.height;
+			canvas.width = Math.max(1, Math.round(w * dpr));
+			canvas.height = Math.max(1, Math.round(h * dpr));
+			gl.viewport(0, 0, canvas.width, canvas.height);
+			const size = Math.min(w, h) * 0.52;
+			canvas.style.setProperty('--shadow-blur', `${(size * 0.34).toFixed(2)}px`);
+			canvas.style.setProperty('--shadow-y', `${(size * 0.09).toFixed(2)}px`);
+		};
+		new ResizeObserver(resize).observe(canvas);
+		resize();
+
+		canvas.addEventListener('webglcontextlost', (e) => {
+			e.preventDefault();
+			root.dataset.ready = 'lost';
+		});
+		canvas.addEventListener('webglcontextrestored', () => {
+			delete root.dataset.ready;
+			initSolid(root);
+		});
+
+		/* ---- render ---------------------------------------------------------- */
+		let last = 0;
+		let lastSaid = '';
+		let lastPainted = '';
+
+		function frame(now: number) {
+			requestAnimationFrame(frame);
+			if (gate && gate.dataset.vizActive === 'false') return;
+			if (!w || !h || root.dataset.ready !== 'true') return;
+
+			const dt = last ? Math.min(0.05, (now - last) / 1000) : 0.016;
+			last = now;
+
+			// --- the morph, and what the page is calling the current space
+			if (stage !== want) {
+				const step = dt / SECONDS;
+				stage = want > stage ? Math.min(want, stage + step) : Math.max(want, stage - step);
+			}
+			/* Each phase eases in and out on its own, so the three of them read as
+			   three moves rather than one long slide. */
+			const seg = Math.min(PHASES - 1, Math.floor(stage));
+			const eased = seg + ease(stage - seg);
+			const tip = Math.min(1, eased);
+			const morph = Math.max(0, eased - 1);
+			/* How far each phase has got, for everything that has to follow them:
+			   which lines belong to the shape on screen, and how far back the eye
+			   has to stand to keep it in frame. */
+			const held = Math.min(1, morph);
+			const opened = Math.max(0, morph - 1);
+			/* The bars change hands as the cone opens into the cylinder — the
+			   moment the picture stops being about the cube. */
+			const space = stage > 1.5 ? 'hsl' : 'rgb';
+			if (root.dataset.space !== space) root.dataset.space = space;
+
+			// --- orientation
+			if (!reduceMotion && spin) ambient += AMBIENT_RATE * dt;
+			if (!dragging) {
+				const decay = Math.exp(-1.8 * dt);
+				velX *= decay;
+				velY *= decay;
+				if (Math.abs(velX) > 1e-4 || Math.abs(velY) > 1e-4) {
+					offset = qNorm(
+						qMul(
+							qMul(qAxisAngle(0, 1, 0, velY * dt), qAxisAngle(1, 0, 0, velX * dt)),
+							offset,
+						),
+					);
+				}
+				offset = qSlerp(offset, IDENTITY, 1 - Math.exp(-1.1 * dt));
+			}
+			const m = qMatrix(
+				qMul(
+					qMul(qMul(offset, TILT), qAxisAngle(0, 1, 0, ambient)),
+					qSlerp(IDENTITY, TIP, tip),
+				),
+			);
+
+			// --- the colour on show
+			if (!reduceMotion) t += dt;
+			if (ctx.held) {
+				rgb = held();
+				resumeFrom = null;
+			} else {
+				const target = wander(t);
+				if (wasHeld) {
+					resumeFrom = rgb.slice();
+					resumeAt = now;
+					wasHeld = false;
+					overrideRgb = [null, null, null];
+					overrideHsl = [null, null, null];
+				}
+				if (resumeFrom) {
+					const k = Math.min(1, (now - resumeAt) / 800);
+					const e = ease(k);
+					rgb = resumeFrom.map((v, i) => v + (target[i] - v) * e);
+					if (k >= 1) resumeFrom = null;
+				} else {
+					rgb = target;
+				}
+			}
+			rgb = rgb.map((v) => Math.min(1, Math.max(0, v)));
+			const hsl = rgbToHsl(rgb[0], rgb[1], rgb[2]);
+
+			// --- readouts, touched only when they actually change
+			const A8 = rgb.map((v) => Math.round(v * 255)) as Rgb;
+			const H = Math.round(hsl[0] * 360) % 360;
+			const S = Math.round(hsl[1] * 100);
+			const L = Math.round(hsl[2] * 100);
+			const said = `${space}|${A8}|${H} ${S} ${L}`;
+			if (said !== lastSaid) {
+				lastSaid = said;
+				readout.textContent = space === 'hsl' ? `hsl(${H} ${S}% ${L}%)` : rgbCss(A8);
+				for (let c = 0; c < 3; c++) rgbBars[c].track.set(0, A8[c]);
+				hslBars[0].track.set(0, H);
+				hslBars[1].track.set(0, S);
+				hslBars[2].track.set(0, L);
+			}
+			/* The saturation and lightness bars are repainted from the colour the
+			   dot is on: a saturation scale is a scale of *this* hue, and a
+			   grey-to-grey bar would say nothing at all. Kept apart from the
+			   readout above because a gradient is an expensive thing to restate,
+			   and these two only move when the whole degree does. */
+			const painted = `${H} ${S} ${L}`;
+			if (painted !== lastPainted) {
+				lastPainted = painted;
+				const at = (hue: number, sat: number, light: number) =>
+					hslToRgb(hue / 360, sat / 100, light / 100).map((v) => v * 255) as Rgb;
+				const ramp = (stops: Rgb[]) =>
+					`linear-gradient(to top, ${stops.map((c) => rgbCss(c)).join(', ')})`;
+				// The bar, and the same colours lifted a fifth toward white for
+				// its edge — the fake border the rest of the series uses.
+				const sat = [at(H, 0, L), at(H, 100, L)];
+				const light = [at(H, S, 0), at(H, S, 50), at(H, S, 100)];
+				hslBars[1].track.backdrop(ramp(sat));
+				hslBars[1].track.edge(ramp(sat.map((c) => lightenRgb(c, 0.2))));
+				hslBars[2].track.backdrop(ramp(light));
+				hslBars[2].track.edge(ramp(light.map((c) => lightenRgb(c, 0.2))));
+			}
+
+			/* --- draw. Standing the solid on its black corner makes it taller
+			   than it was lying flat — a cube is √3 across its diagonal and √2
+			   across a face — so the eye pulls back by that ratio as it tips, and
+			   the picture keeps the frame it had rather than growing out of it. */
+			const size = (Math.min(w, h) * 0.52) / (1 + 0.225 * tip) * (1 - 0.3 * opened);
+			const sx = (FOCAL * size) / (w / 2);
+			const sy = (FOCAL * size) / (h / 2);
+			const halfX = canvas.width / 2;
+			const halfY = canvas.height / 2;
+
+			gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+
+			/* Opaque, and not always convex on the way between two shapes, so the
+			   depth buffer does the sorting rather than a face-facing test. The
+			   offset pushes the solid a hair back so the wireframe drawn on the
+			   surface is not left fighting it. */
+			gl.enable(gl.DEPTH_TEST);
+			gl.depthFunc(gl.LESS);
+			gl.disable(gl.CULL_FACE);
+			gl.disable(gl.BLEND);
+			/* Enough of a push that a line lying exactly on the surface wins
+			   cleanly. At one unit the two were within a rounding error of each
+			   other and the wireframe came out dashed. */
+			gl.enable(gl.POLYGON_OFFSET_FILL);
+			gl.polygonOffset(2, 4);
+			gl.useProgram(progSolid);
+			gl.uniformMatrix3fv(U.solid.rot, false, m);
+			gl.uniform2f(U.solid.scale, sx, sy);
+			gl.uniform1f(U.solid.morph, morph);
+			useAttribs([A.pos, A.hsl]);
+			gl.bindBuffer(gl.ARRAY_BUFFER, bufSolid);
+			gl.vertexAttribPointer(A.pos, 3, gl.FLOAT, false, 24, 0);
+			gl.vertexAttribPointer(A.hsl, 3, gl.FLOAT, false, 24, 12);
+			gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, bufIndex);
+			gl.drawElements(gl.TRIANGLES, SOLID_INDEX.length, gl.UNSIGNED_SHORT, 0);
+			gl.disable(gl.POLYGON_OFFSET_FILL);
+
+			/* The wireframe, twice: the part in front of the solid inked dark, and
+			   the part behind it painted over in white. Nothing is transparent —
+			   the surface is opaque and this is drawn straight on top — but it
+			   reads as the far side showing through, which is the fiction that
+			   makes a solid legible as a shape. */
+			gl.enable(gl.BLEND);
+			gl.useProgram(progWire);
+			gl.uniformMatrix3fv(U.wire.rot, false, m);
+			gl.uniform2f(U.wire.scale, sx, sy);
+			gl.uniform1f(U.wire.morph, morph);
+			gl.uniform2f(U.wire.half, halfX, halfY);
+			gl.uniform1f(U.wire.width, dpr);
+			useAttribs([A.p0, A.h0, A.p1, A.h1, A.end, A.side]);
+			gl.bindBuffer(gl.ARRAY_BUFFER, bufWire);
+			const stride = EDGE_FLOATS * 4;
+			gl.vertexAttribPointer(A.p0, 3, gl.FLOAT, false, stride, 0);
+			gl.vertexAttribPointer(A.h0, 3, gl.FLOAT, false, stride, 12);
+			gl.vertexAttribPointer(A.p1, 3, gl.FLOAT, false, stride, 24);
+			gl.vertexAttribPointer(A.h1, 3, gl.FLOAT, false, stride, 36);
+			gl.vertexAttribPointer(A.end, 1, gl.FLOAT, false, stride, 48);
+			gl.vertexAttribPointer(A.side, 1, gl.FLOAT, false, stride, 52);
+
+			/* Neither pass writes depth. Both draw the same lines, and the first
+			   of them would otherwise leave its own depth behind for the second
+			   to be tested against — a comparison between a line and itself,
+			   which comes out differently pixel by pixel. Tested against the
+			   surface alone, every fragment belongs to exactly one pass. */
+			gl.depthMask(false);
+			for (const [set, alpha] of [
+				[DIAGONALS, 1 - held],
+				[EQUATOR, 1 - opened],
+				[RIMS, opened],
+			] as const) {
+				if (alpha <= 0.004) continue;
+				gl.depthFunc(gl.GREATER);
+				gl.uniform4f(U.wire.color, 1, 1, 1, 0.32 * alpha);
+				gl.drawArrays(gl.TRIANGLES, set.start * 6, set.count * 6);
+				gl.depthFunc(gl.LEQUAL);
+				gl.uniform4f(U.wire.color, 0, 0, 0, 0.22 * alpha);
+				gl.drawArrays(gl.TRIANGLES, set.start * 6, set.count * 6);
+			}
+
+			/* The dot, the same way: solid where it is in front of the surface and
+			   faint where the solid is over it. Depth rather than a thickness
+			   calculation, because "how much material is in front of this" has no
+			   one formula across three shapes — and the reading, which is that a
+			   colour deep inside is a colour you cannot see the outside of, is the
+			   same either way. */
+			const core = Math.max(4, size * 0.04) * dpr;
+			gl.useProgram(progDot);
+			gl.uniformMatrix3fv(U.dot.rot, false, m);
+			gl.uniform2f(U.dot.scale, sx, sy);
+			gl.uniform1f(U.dot.morph, morph);
+			gl.uniform2f(U.dot.half, halfX, halfY);
+			gl.uniform1f(U.dot.radius, core + 1);
+			gl.uniform1f(U.dot.core, core);
+			gl.uniform3f(U.dot.pos, rgb[0], rgb[1], rgb[2]);
+			gl.uniform3f(U.dot.hsl, hsl[0], hsl[1], hsl[2]);
+			useAttribs([A.corner]);
+			gl.bindBuffer(gl.ARRAY_BUFFER, bufQuad);
+			gl.vertexAttribPointer(A.corner, 2, gl.FLOAT, false, 8, 0);
+			gl.depthFunc(gl.GREATER);
+			gl.uniform1f(U.dot.alpha, 0.2);
+			gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+			gl.depthFunc(gl.LEQUAL);
+			gl.uniform1f(U.dot.alpha, 1);
+			gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+			gl.depthMask(true);
+		}
+
+		requestAnimationFrame(frame);
+	}
+
+	document.querySelectorAll<HTMLElement>('[data-colour-solid]').forEach(initSolid);
+</script>
