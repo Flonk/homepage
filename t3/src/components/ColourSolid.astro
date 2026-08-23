@@ -62,9 +62,32 @@ interface Props {
 	 * no control inviting them to change it back.
 	 */
 	toggle?: boolean;
+	/**
+	 * The two-hue comparison: the sliders become two sets with saturation and
+	 * lightness pinned, the solid grows a second dot, and a panel of swatches
+	 * appears that can drop the colour out from under both of them. For the
+	 * card whose point is that HSL's L is not a brightness.
+	 */
+	compare?: boolean;
+	/** Where the two start, in degrees. Blue and yellow: the worst pair. */
+	hues?: [number, number];
 }
 
-const { idleResume = 5, spin = true, space = 'rgb', toggle = true } = Astro.props;
+const {
+	idleResume = 5,
+	spin = true,
+	space = 'rgb',
+	toggle = true,
+	compare = false,
+	hues = [240, 60] as [number, number],
+} = Astro.props;
+
+/* Saturation and lightness are the same on both sides and stay that way —
+   that is the premise of the card, not a setting — so only the hue bar takes
+   a reader's hand. The other two still show where they stand, as a mark
+   rather than a thumb: a thumb is a handle, and a handle that cannot be moved
+   is a broken control. A mark is the picture saying where something is. */
+const PINNED = [100, 50];
 
 
 const RGB = [
@@ -113,11 +136,50 @@ const HSL = [
 	data-spin={String(spin)}
 	data-space={space}
 	data-toggle-shown={String(toggle)}
+	data-compare={String(compare)}
+	data-grey="false"
 >
 	{/* One context for all six bars: they are one colour between them, so a
 	    grab on any of them stops the dot for everybody. See lib/animate. */}
 	<div class="rig" data-anim-context>
-		<div class="slot" data-slot="rgb">
+		{/* Two sets of the same three bars, one above the other, each half the
+		    height of the plate — so the pair reads as two readings of one thing
+		    rather than as six controls. */}
+		<div class="slot" data-slot="pair" data-open={String(compare)}>
+			<div
+				class="plate pair"
+				role="group"
+				aria-label="Two hues at one lightness"
+				data-plate="pair"
+			>
+				{[0, 1].map((set) => (
+					<div class="set">
+						{HSL.map((ch, c) => (
+							<div class:list={['bar', c > 0 && 'pinned']} style={ch.edge && `--track-edge: ${ch.edge}`}>
+								<VizTrack
+									upright
+									size="1.1rem"
+									backdrop={ch.backdrop}
+									thumbs={c === 0 ? 1 : 0}
+									values={c === 0 ? [hues[set]] : []}
+									marks={c === 0 ? [] : [{ at: PINNED[c - 1] }]}
+									min={0}
+									max={ch.max}
+									step={1}
+									drag={c === 0}
+									labels={[`${ch.name}, colour ${set + 1}`]}
+								/>
+								<span class="bar-name" aria-hidden="true">
+									{ch.letter}
+								</span>
+							</div>
+						))}
+					</div>
+				))}
+			</div>
+		</div>
+
+		<div class="slot" data-slot="rgb" data-open={String(!compare)}>
 		<div class="plate rgb" role="group" aria-label="Red, green and blue" data-plate="rgb">
 			{
 				RGB.map((ch) => (
@@ -173,7 +235,7 @@ const HSL = [
 			</div>
 		</div>
 
-		<div class="slot" data-slot="hsl">
+		<div class="slot" data-slot="hsl" data-open={String(!compare)}>
 		<div class="plate hsl" role="group" aria-label="Hue, saturation and lightness" data-plate="hsl">
 			{
 				HSL.map((ch) => (
@@ -196,6 +258,37 @@ const HSL = [
 				))
 			}
 		</div>
+		</div>
+
+		{/* The two colours at size, and the switch that takes the colour away.
+		    Which is the whole argument: with the hue gone, what is left is how
+		    bright each one actually is, and they are not the same. */}
+		<div class="slot" data-slot="swatches" data-open={String(compare)}>
+			<div class="plate swatches" data-plate="swatches">
+				<div class="discs">
+					{[0, 1].map((i) => (
+						<div class="disc" data-disc={i} aria-hidden="true" />
+					))}
+				</div>
+				<div class="switch">
+					<button
+						class="toggle"
+						type="button"
+						role="switch"
+						aria-checked="false"
+						aria-label="Drop the colour"
+						data-grey
+					>
+						<span class="knob" aria-hidden="true" />
+						<span class="side" data-side="colour" aria-hidden="true">
+							COLOUR
+						</span>
+						<span class="side" data-side="grey" aria-hidden="true">
+							GREY
+						</span>
+					</button>
+				</div>
+			</div>
 		</div>
 	</div>
 
@@ -351,16 +444,19 @@ const HSL = [
 		overflow: hidden;
 	}
 
-	.solid[data-toggle-shown='false'][data-space='hsl'] .slot[data-slot='rgb'],
-	.solid[data-toggle-shown='false'][data-space='rgb'] .slot[data-slot='hsl'] {
+	/* Open or shut is one attribute, written by the script — which is the only
+	   thing that knows the whole answer: whether the card offers the switch,
+	   which space the morph has reached, and whether this is the comparison
+	   card at all. Working it out in selectors meant one rule per combination,
+	   and a combination missed is a plate that never leaves. */
+	.slot[data-open='false'] {
 		grid-template-columns: 0fr;
 		margin-inline: 0;
 	}
 
 	/* Padding is not compressible, so a cell of no width still holds a plate
 	   two ems wide until this goes with it. */
-	.solid[data-toggle-shown='false'][data-space='hsl'] .plate.rgb,
-	.solid[data-toggle-shown='false'][data-space='rgb'] .plate.hsl {
+	.slot[data-open='false'] > .plate {
 		opacity: 0;
 		padding-inline: 0;
 	}
@@ -372,13 +468,26 @@ const HSL = [
 		transition: grid-template-rows 0.45s ease;
 	}
 
-	.solid[data-toggle-shown='false'] .switch {
+	.solid[data-toggle-shown='false'] .middle .switch,
+	.solid[data-compare='true'] .middle .switch {
 		grid-template-rows: 0fr;
 	}
 
-	.solid[data-toggle-shown='false'] .toggle {
+	.solid[data-toggle-shown='false'] .middle .toggle,
+	.solid[data-compare='true'] .middle .toggle {
 		opacity: 0;
 		padding-block: 0;
+	}
+
+	/* Two colours, no one colour: the reading under the solid and the field
+	   behind it both have to say which, and neither can. */
+	.solid[data-compare='true'] .readout,
+	.solid[data-compare='true'] .swoosh {
+		opacity: 0;
+	}
+
+	.swoosh {
+		transition: opacity 0.45s ease;
 	}
 
 	.bar {
@@ -395,6 +504,66 @@ const HSL = [
 	/* Black. The letters sit at the foot of the plate, which is the part of it
 	   the swoosh runs under — so what they are read against is the colour on
 	   show rather than the glass, and the glass is pale. */
+	/* Two sets stacked, each taking half the plate: the bars come out half
+	   height, which is the point — they are two readings of the same three
+	   numbers, not one long scale. */
+	.plate.pair {
+		flex-direction: column;
+		gap: 0.9rem;
+	}
+
+	.set {
+		flex: 1;
+		min-height: 0;
+		display: flex;
+		gap: 0.6rem;
+		align-items: stretch;
+	}
+
+	/* Pinned: no handle, and quiet enough that the eye goes to the hue bar. */
+	.bar.pinned {
+		opacity: 0.6;
+	}
+
+	/* Given a width, because the discs take theirs from it. Two circles side by
+	   side are as wide as they are tall, and left to grow from their own height
+	   in a shallow pane they run straight out of the panel. */
+	.plate.swatches {
+		flex-direction: column;
+		align-items: stretch;
+		justify-content: center;
+		gap: 0.9rem;
+		inline-size: clamp(8rem, 24cqw, 15rem);
+	}
+
+	.discs {
+		flex: 1;
+		min-block-size: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.6rem;
+	}
+
+	/* The lifted-luminance ring the rest of the series edges things with: the
+	   swatch's own colour taken a fifth of the way to white, so the edge is
+	   the colour rather than a line drawn round it. */
+	.disc {
+		flex: 1 1 0;
+		min-inline-size: 0;
+		aspect-ratio: 1;
+		box-sizing: border-box;
+		border: 0.2rem solid var(--edge, transparent);
+		border-radius: 50%;
+		background: var(--fill, #808080);
+		/* Slow enough to read as one colour becoming another rather than as a
+		   cut, which would let a reader believe two different swatches were
+		   being shown. */
+		transition:
+			background-color 0.45s ease,
+			border-color 0.45s ease;
+	}
+
 	.bar-name {
 		flex: none;
 		font-size: 0.75rem;
@@ -495,7 +664,8 @@ const HSL = [
 		transition: transform 0.35s cubic-bezier(0.35, 0.1, 0.2, 1);
 	}
 
-	.solid[data-space='hsl'] .knob {
+	.solid[data-space='hsl'] .middle .knob,
+	.solid[data-grey='true'] .swatches .knob {
 		transform: translateX(100%);
 	}
 
@@ -507,7 +677,9 @@ const HSL = [
 	}
 
 	.solid[data-space='rgb'] .side[data-side='rgb'],
-	.solid[data-space='hsl'] .side[data-side='hsl'] {
+	.solid[data-space='hsl'] .side[data-side='hsl'],
+	.solid[data-grey='false'] .side[data-side='colour'],
+	.solid[data-grey='true'] .side[data-side='grey'] {
 		color: var(--deck-ink, #e6e9ef);
 	}
 
@@ -669,6 +841,10 @@ const HSL = [
 			2 * (x * z + y * w), 2 * (y * z - x * w), 1 - 2 * (x * x + y * y),
 		];
 	};
+
+	/** Linear light back to an sRGB code value: the transfer curve, forwards. */
+	const encode = (v: number) =>
+		v <= 0.0031308 ? 12.92 * v : 1.055 * Math.pow(Math.max(0, v), 1 / 2.4) - 0.055;
 
 	/** sRGB relative luminance, for choosing readable ink over a colour. */
 	const luminance = (r: number, g: number, b: number) => {
@@ -1038,13 +1214,28 @@ const HSL = [
 		let idleSeconds = Number(root.dataset.idleResume) || 5;
 		const tellBars = () =>
 			[...rgbBars, ...hslBars].forEach((b) => (b.dataset.idleResume = String(idleSeconds)));
+		const pairBars = Array.from(
+			root.querySelectorAll<TrackEl>("[data-plate='pair'] [data-viz-track]"),
+		);
+		const discs = Array.from(root.querySelectorAll<HTMLElement>('[data-plate=swatches] [data-disc]'));
+		const greyBtn = root.querySelector<HTMLButtonElement>('[data-grey]')!;
+		const slots = Array.from(root.querySelectorAll<HTMLElement>('[data-slot]'));
+		const slotFor = (name: string) => slots.find((el) => el.dataset.slot === name)!;
+
 		let spin = root.dataset.spin !== 'false';
 		let turning = root.dataset.toggleShown !== 'false';
+		let comparing = root.dataset.compare === 'true';
+		/* The two hues, in degrees. Read back off the bars every frame rather
+		   than remembered here, so a keyboard, a drag and a card's parameters
+		   all arrive by the same door. */
+		const hueOf = (set: number) => pairBars[set * 3]?.track.get(0) ?? 0;
 		const AUTHORED = {
 			idleSeconds,
 			spin,
 			space: root.dataset.space ?? 'rgb',
 			turning,
+			comparing,
+			hues: [hueOf(0), hueOf(1)],
 		};
 		tellBars();
 
@@ -1088,6 +1279,26 @@ const HSL = [
 			sinceFlip = 0;
 			firstFlip = false;
 			flip();
+		});
+
+		/* ---- the colour, taken away and given back -------------------------
+		   Three seconds each way, on the frame loop like the other switch, so it
+		   holds still while the card is off stage. The point of the card is a
+		   comparison a reader cannot make while the hue is there to distract
+		   them, and the way to make it is to keep removing it. */
+		const GREY_EVERY = 3;
+		let grey = false;
+		let sinceGrey = 0;
+
+		const setGrey = (on: boolean) => {
+			grey = on;
+			root.dataset.grey = String(on);
+			greyBtn.setAttribute('aria-checked', String(on));
+		};
+
+		greyBtn.addEventListener('click', () => {
+			sinceGrey = 0;
+			setGrey(!grey);
 		});
 
 		/* ---- orientation ----------------------------------------------------
@@ -1170,15 +1381,29 @@ const HSL = [
 			});
 		});
 
+		for (const bar of pairBars) bar.addEventListener('pointerdown', freeze);
+
 		host?.addEventListener('viz:props', (e) => {
 			const p = (e as CustomEvent).detail ?? {};
 			spin = 'spin' in p ? p.spin !== false : AUTHORED.spin;
 			idleSeconds = 'idleResume' in p ? Number(p.idleResume) || 5 : AUTHORED.idleSeconds;
 			tellBars();
 			turning = 'toggle' in p ? p.toggle !== false : AUTHORED.turning;
+			comparing = 'compare' in p ? p.compare === true : AUTHORED.comparing;
+			root.dataset.compare = String(comparing);
+			// The comparison is a fact about one solid; there is nothing to switch.
+			if (comparing) turning = false;
 			toggle.inert = !turning;
 			root.dataset.toggleShown = String(turning);
-			setSpace(('space' in p ? p.space : AUTHORED.space) === 'hsl' ? 'hsl' : 'rgb');
+			const hues = Array.isArray(p.hues) ? (p.hues as unknown[]).map(Number) : AUTHORED.hues;
+			if (comparing) {
+				hues.forEach((h, i) => pairBars[i * 3]?.track.set(0, h));
+				setGrey(false);
+				sinceGrey = 0;
+			}
+			setSpace(
+				(comparing ? 'hsl' : 'space' in p ? p.space : AUTHORED.space) === 'hsl' ? 'hsl' : 'rgb',
+			);
 			/* Every card gets the same lead-in: whatever the last one was in the
 			   middle of, this one starts by letting the reader see where it is. */
 			sinceFlip = 0;
@@ -1353,6 +1578,35 @@ const HSL = [
 			initSolid(root);
 		});
 
+		/* The swatches, their lifted rings, and each set's own two backdrops.
+		   The grey is the colour's relative luminance put back through the sRGB
+		   curve — which is to say, the grey that is genuinely as bright as the
+		   colour was, rather than the average of three channels that everybody's
+		   first guess reaches for. */
+		let lastPair = '';
+
+		function paintPair(colours: { rgb: number[]; hsl: number[] }[]) {
+			const key = `${colours.map((c) => c.hsl[0].toFixed(4)).join()}|${grey}`;
+			if (key === lastPair) return;
+			lastPair = key;
+			colours.forEach((c, i) => {
+				const shown = c.rgb.map((v) => Math.round(v * 255)) as Rgb;
+				const y = Math.round(255 * encode(luminance(shown[0], shown[1], shown[2])));
+				const fill = grey ? ([y, y, y] as Rgb) : shown;
+				discs[i].style.setProperty('--fill', rgbCss(fill));
+				discs[i].style.setProperty('--edge', rgbCss(lightenRgb(fill, 0.2)));
+
+				const H = Math.round(c.hsl[0] * 360) % 360;
+				const bars = pairBars.slice(i * 3, i * 3 + 3);
+				bars[1]?.track.backdrop(
+					`linear-gradient(to top, hsl(${H} 0% 50%), hsl(${H} 100% 50%))`,
+				);
+				bars[2]?.track.backdrop(
+					`linear-gradient(to top, hsl(${H} 100% 0%), hsl(${H} 100% 50%), hsl(${H} 100% 100%))`,
+				);
+			});
+		}
+
 		/* ---- render ---------------------------------------------------------- */
 		let last = 0;
 		let lastSaid = '';
@@ -1399,6 +1653,23 @@ const HSL = [
 			const space = stage > 1.5 ? 'hsl' : 'rgb';
 			if (root.dataset.space !== space) root.dataset.space = space;
 
+			/* Which plates are in play. Everything that decides it is known here
+			   and nowhere else — whether the card offers the switch, how far the
+			   morph has got, whether this is the comparison at all — so it is
+			   settled here and written out as one attribute a stylesheet can
+			   close a slot on. */
+			const open: Record<string, boolean> = {
+				pair: comparing,
+				swatches: comparing,
+				rgb: !comparing && (turning || space === 'rgb'),
+				hsl: !comparing && (turning || space === 'hsl'),
+			};
+			for (const name in open) {
+				const slot = slotFor(name);
+				const on = String(open[name]);
+				if (slot.dataset.open !== on) slot.dataset.open = on;
+			}
+
 			// --- orientation
 			if (!reduceMotion && spin) ambient += AMBIENT_RATE * dt;
 			if (!dragging) {
@@ -1424,6 +1695,13 @@ const HSL = [
 
 			// --- the colour on show
 			if (!reduceMotion) t += dt;
+			if (comparing && !reduceMotion) {
+				sinceGrey += dt;
+				if (sinceGrey >= GREY_EVERY) {
+					sinceGrey = 0;
+					setGrey(!grey);
+				}
+			}
 			if (ctx.held) {
 				rgb = readerColour();
 				resumeFrom = null;
@@ -1448,13 +1726,24 @@ const HSL = [
 			rgb = rgb.map((v) => Math.min(1, Math.max(0, v)));
 			const hsl = rgbToHsl(rgb[0], rgb[1], rgb[2]);
 
+			/* The comparison card's two colours are simply what its two hue bars
+			   say, at the saturation and lightness the card has pinned. Nothing
+			   wanders, so there is nothing for a reader's turn to interrupt. */
+			const pair = comparing
+				? [0, 1].map((i) => {
+						const h = hueOf(i) / 360;
+						return { rgb: hslToRgb(h, 1, 0.5), hsl: [h, 1, 0.5] };
+					})
+				: null;
+			if (pair) paintPair(pair);
+
 			// --- readouts, touched only when they actually change
 			const A8 = rgb.map((v) => Math.round(v * 255)) as Rgb;
 			const H = Math.round(hsl[0] * 360) % 360;
 			const S = Math.round(hsl[1] * 100);
 			const L = Math.round(hsl[2] * 100);
 			const said = `${space}|${A8}|${H} ${S} ${L}`;
-			if (said !== lastSaid) {
+			if (!comparing && said !== lastSaid) {
 				lastSaid = said;
 				readout.textContent = space === 'hsl' ? `hsl(${H} ${S}% ${L}%)` : rgbCss(A8);
 				root.style.setProperty('--swatch', rgbCss(A8));
@@ -1475,7 +1764,7 @@ const HSL = [
 			   readout above because a gradient is an expensive thing to restate,
 			   and these two only move when the whole degree does. */
 			const painted = `${H} ${S} ${L}`;
-			if (painted !== lastPainted) {
+			if (!comparing && painted !== lastPainted) {
 				lastPainted = painted;
 				const at = (hue: number, sat: number, light: number) =>
 					hslToRgb(hue / 360, sat / 100, light / 100).map((v) => v * 255) as Rgb;
@@ -1584,17 +1873,19 @@ const HSL = [
 			gl.uniform2f(U.dot.half, halfX, halfY);
 			gl.uniform1f(U.dot.radius, core + 1);
 			gl.uniform1f(U.dot.core, core);
-			gl.uniform3f(U.dot.pos, rgb[0], rgb[1], rgb[2]);
-			gl.uniform3f(U.dot.hsl, hsl[0], hsl[1], hsl[2]);
 			useAttribs([A.corner]);
 			gl.bindBuffer(gl.ARRAY_BUFFER, bufQuad);
 			gl.vertexAttribPointer(A.corner, 2, gl.FLOAT, false, 8, 0);
-			gl.depthFunc(gl.GREATER);
-			gl.uniform1f(U.dot.alpha, 0.2);
-			gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-			gl.depthFunc(gl.LEQUAL);
-			gl.uniform1f(U.dot.alpha, 1);
-			gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+			for (const dot of pair ?? [{ rgb, hsl }]) {
+				gl.uniform3f(U.dot.pos, dot.rgb[0], dot.rgb[1], dot.rgb[2]);
+				gl.uniform3f(U.dot.hsl, dot.hsl[0], dot.hsl[1], dot.hsl[2]);
+				gl.depthFunc(gl.GREATER);
+				gl.uniform1f(U.dot.alpha, 0.2);
+				gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+				gl.depthFunc(gl.LEQUAL);
+				gl.uniform1f(U.dot.alpha, 1);
+				gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+			}
 			gl.depthMask(true);
 		}
 
