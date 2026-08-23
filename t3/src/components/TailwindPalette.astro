@@ -10,12 +10,22 @@
  * were picked by eye, family by family, and a row of 500s runs from L 80% at
  * the yellow to L 62% at the blue.
  *
- * So the switch rebuilds them. Each family keeps the hue and the asked-for
- * chroma of its own 500 and takes its lightness from one ladder shared by all
- * of them — the average of what Tailwind uses at each step, so the two states
- * are the same overall brightness and only their evenness differs. What gives
- * way at the ends is chroma, fitted per step to what sRGB actually holds; see
- * fitChroma in lib/oklch.
+ * So the switch rebuilds them, and rebuilds them the way the pitch says you
+ * can: fix the hue, and move the lightness slider. Every family gets the hue
+ * of its own 500 and nothing else of its own — the lightness of each step and
+ * the chroma of each step are two ladders every family shares, so each row is
+ * the same ramp turned to a different hue.
+ *
+ * The chroma ladder cannot simply be one number, and finding out why is worth
+ * the card. Ask every step for a fixed chroma and the ends cannot supply it:
+ * at L 98 there is almost no chroma to be had at any hue. So each rung is the
+ * most chroma *every* hue on show can reach at that lightness — which is the
+ * blue at the light end and the teal at the dark end, and is why the built
+ * palette is quieter than the picked one. That is the honest price of making
+ * eight hues agree inside sRGB, and the reason the next cards are about
+ * gamut. Earlier versions asked each family for its own chroma and got rows
+ * that still disagreed, or asked for the 500's at every step and got a row of
+ * 200s with the lime and the teal blazing and the rest nearly grey.
  *
  * The Tailwind swatches are painted with their own `oklch()` values rather
  * than with sRGB worked out here, which is the one place this series does not
@@ -63,20 +73,33 @@ const shown: Family[] = families
 			.filter(Boolean) as Family[])
 	: TAILWIND;
 
-/* One ladder for everybody: what Tailwind uses at this step, averaged over the
-   families on show. Averaged rather than invented so that the two sides of the
-   switch sit at the same overall brightness — what changes between them is
-   whether a step means one lightness, not how light the palette is. */
+/* One lightness ladder for everybody: what Tailwind uses at this step,
+   averaged over the families on show. Averaged rather than invented so that
+   the two sides of the switch sit at the same overall brightness — what
+   changes between them is whether a step means one lightness, not how light
+   the palette is. */
 const ladder = STEPS.map((_, i) => shown.reduce((sum, f) => sum + f.shades[i].l, 0) / shown.length);
 
-/* A family's own hue and its own ambition for chroma, taken from its 500 —
-   the step that is the family, the one a class name means when it does not
-   say otherwise. */
-const uniform = (family: Family, i: number): Shade => {
-	const base = family.shades[STEPS.indexOf(500)];
-	const l = ladder[i];
-	return { step: STEPS[i], l, c: fitChroma(l, base.c, base.h), h: base.h };
-};
+/* And one chroma ladder: at each rung, as much chroma as the least
+   accommodating hue on show can hold at that lightness. Anything more and the
+   families stop agreeing — sRGB has a great deal more lime at L 92 than it
+   has blue, so a shared number would leave some rows blazing and others
+   nearly grey. The ask starts from what Tailwind spends on average, which the
+   gamut then trims. */
+const asked = STEPS.map((_, i) => shown.reduce((sum, f) => sum + f.shades[i].c, 0) / shown.length);
+const chroma = STEPS.map((_, i) =>
+	Math.min(...shown.map((f) => fitChroma(ladder[i], asked[i], f.shades[STEPS.indexOf(500)].h))),
+);
+
+/* One hue per family, and the two shared ladders. Nothing here is the step's
+   own any more, which is the point: every row is the same ramp, and the only
+   thing that tells them apart is the number you fixed. */
+const uniform = (family: Family, i: number): Shade => ({
+	step: STEPS[i],
+	l: ladder[i],
+	c: chroma[i],
+	h: family.shades[STEPS.indexOf(500)].h,
+});
 
 /* Every label as wide as the longest, so the swatches all begin in the same
    place. Left to their own widths, each row would give up a different amount
@@ -174,7 +197,12 @@ const label = Math.max(...shown.map((f) => f.name.length));
 		align-self: stretch;
 		display: flex;
 		flex-direction: column;
-		gap: 0.2rem;
+		/* A pixel, not a fraction of one. At 0.2rem the gap was 3.2 device
+		   pixels against swatches whose own widths land wherever the division
+		   leaves them, so the lines between them rendered a pixel wider in some
+		   places than others — which reads as uneven spacing rather than as a
+		   grid. */
+		gap: 1px;
 		min-block-size: 0;
 		inline-size: 100%;
 		max-inline-size: calc(var(--label) + var(--steps) / var(--families) * 76cqh);
@@ -186,7 +214,7 @@ const label = Math.max(...shown.map((f) => f.name.length));
 		min-block-size: 0;
 		display: flex;
 		align-items: stretch;
-		gap: 0.2rem;
+		gap: 1px;
 		/* Where each row comes in from, and how long it waits its turn. The
 		   delay is the resting state's, so the palette builds on the way in and
 		   leaves all at once rather than unbuilding itself backwards. */
@@ -207,7 +235,7 @@ const label = Math.max(...shown.map((f) => f.name.length));
 		flex: 1 1 0;
 		min-inline-size: 0;
 		min-block-size: 0;
-		border-radius: 2px;
+		border-radius: 1px;
 		background: var(--fill);
 		/* Slow enough to read as one palette becoming another rather than as a
 		   cut between two pictures. */
@@ -231,6 +259,7 @@ const label = Math.max(...shown.map((f) => f.name.length));
 		/* The longest name plus a little: `ch` counts characters and the tracking
 		   between them is extra, so an exact fit wraps the longest one. */
 		inline-size: calc(var(--label) + 0.6em);
+		padding-inline-end: 0.5em;
 		white-space: nowrap;
 		align-self: center;
 		text-align: end;
@@ -298,11 +327,6 @@ const label = Math.max(...shown.map((f) => f.name.length));
 	}
 
 	@container viz (max-width: 34rem) {
-		.grid,
-		.family {
-			gap: 0.12rem;
-		}
-
 		.name {
 			font-size: 0.6rem;
 		}
