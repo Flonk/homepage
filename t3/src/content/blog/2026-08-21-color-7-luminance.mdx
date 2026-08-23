@@ -70,9 +70,7 @@ import VizPhase from "../../components/VizPhase.astro";
 <DeckCard vizProps={{ compare: true, hues: [240, 60] }}>
   ## Same lightness, nothing like
 
-  Both of these are set to L = 50% at full saturation. In HSL that is the same lightness -- they sit on the same ring, halfway up the cylinder, and the only thing that differs is where round it they are.
-
-  Every three seconds the colour is taken away and what is left is how bright each one actually is. The yellow is roughly ten times the blue. Drag either hue and watch the pair of greys pull apart and come back together: the number never moves, and the brightness never stops moving.
+  In particular, we'd assume that two colors with the same lightness would appear equally bright on your screen, but this is clearly not the case in HSL!
 </DeckCard>
 
 <DeckCard vizProps={{ phase: "ramp", match: false, compare: false }}>

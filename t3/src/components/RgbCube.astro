@@ -1014,6 +1014,12 @@ const {
 		// Start on a three-quarter view; face-on it just reads as a flat square.
 		const BASE: Quat = qNorm(qMul(qAxisAngle(1, 0, 0, 0.46), qAxisAngle(0, 1, 0, -0.62)));
 		let ambient = 0;
+		/* Where a reader has put it, and it stays there. This used to ease back
+		   to nothing a moment after a drag, so every turn a reader gave the cube
+		   was taken away from them again — spin it to see the far side and it
+		   creeps back to the front. The throw still coasts to a stop, because
+		   that is the velocity below and velocity decays; the orientation it
+		   leaves behind does not. */
 		let offset: Quat = IDENTITY;
 		let velX = 0; // rad/s, from throwing the cube
 		let velY = 0;
@@ -1273,7 +1279,6 @@ const {
 						),
 					);
 				}
-				offset = qSlerp(offset, IDENTITY, 1 - Math.exp(-1.1 * dt));
 			}
 			const m = qMatrix(
 				qMul(

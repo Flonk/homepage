@@ -82,12 +82,11 @@ const {
 	hues = [240, 60] as [number, number],
 } = Astro.props;
 
-/* Saturation and lightness are the same on both sides and stay that way —
-   that is the premise of the card, not a setting — so only the hue bar takes
-   a reader's hand. The other two still show where they stand, as a mark
-   rather than a thumb: a thumb is a handle, and a handle that cannot be moved
-   is a broken control. A mark is the picture saying where something is. */
-const PINNED = [100, 50];
+/* Where the two start: full saturation, half lightness — the same for both,
+   which is the claim the card is testing. All three bars move, on both sides,
+   because the interesting thing a reader can do here is break the premise and
+   watch what happens to the pair of greys. */
+const START = [100, 50];
 
 
 const RGB = [
@@ -155,18 +154,16 @@ const HSL = [
 				{[0, 1].map((set) => (
 					<div class="set">
 						{HSL.map((ch, c) => (
-							<div class:list={['bar', c > 0 && 'pinned']} style={ch.edge && `--track-edge: ${ch.edge}`}>
+							<div class="bar" style={ch.edge && `--track-edge: ${ch.edge}`}>
 								<VizTrack
 									upright
 									size="1.1rem"
 									backdrop={ch.backdrop}
-									thumbs={c === 0 ? 1 : 0}
-									values={c === 0 ? [hues[set]] : []}
-									marks={c === 0 ? [] : [{ at: PINNED[c - 1] }]}
+									thumbs={1}
+									values={[c === 0 ? hues[set] : START[c - 1]]}
 									min={0}
 									max={ch.max}
 									step={1}
-									drag={c === 0}
 									labels={[`${ch.name}, colour ${set + 1}`]}
 								/>
 								<span class="bar-name" aria-hidden="true">
@@ -205,6 +202,42 @@ const HSL = [
 				))
 			}
 		</div>
+		</div>
+
+		{/* The two colours at size, and the switch that takes the colour away.
+		    Which is the whole argument: with the hue gone, what is left is how
+		    bright each one actually is, and they are not the same.
+
+		    Ahead of the solid in the markup rather than after it, because on
+		    this card the swatches belong between the sliders that set them and
+		    the solid they are two points in — and an order that is the DOM's
+		    needs no `order` to undo, which is a jump rather than a move. */}
+		<div class="slot" data-slot="swatches" data-open={String(compare)}>
+			<div class="plate swatches" data-plate="swatches">
+				<div class="discs">
+					{[0, 1].map((i) => (
+						<div class="disc" data-disc={i} aria-hidden="true" />
+					))}
+				</div>
+				<div class="switch">
+					<button
+						class="toggle"
+						type="button"
+						role="switch"
+						aria-checked="false"
+						aria-label="Drop the colour"
+						data-grey
+					>
+						<span class="knob" aria-hidden="true" />
+						<span class="side" data-side="colour" aria-hidden="true">
+							COLOUR
+						</span>
+						<span class="side" data-side="grey" aria-hidden="true">
+							GREY
+						</span>
+					</button>
+				</div>
+			</div>
 		</div>
 
 		<div class="middle">
@@ -258,37 +291,6 @@ const HSL = [
 				))
 			}
 		</div>
-		</div>
-
-		{/* The two colours at size, and the switch that takes the colour away.
-		    Which is the whole argument: with the hue gone, what is left is how
-		    bright each one actually is, and they are not the same. */}
-		<div class="slot" data-slot="swatches" data-open={String(compare)}>
-			<div class="plate swatches" data-plate="swatches">
-				<div class="discs">
-					{[0, 1].map((i) => (
-						<div class="disc" data-disc={i} aria-hidden="true" />
-					))}
-				</div>
-				<div class="switch">
-					<button
-						class="toggle"
-						type="button"
-						role="switch"
-						aria-checked="false"
-						aria-label="Drop the colour"
-						data-grey
-					>
-						<span class="knob" aria-hidden="true" />
-						<span class="side" data-side="colour" aria-hidden="true">
-							COLOUR
-						</span>
-						<span class="side" data-side="grey" aria-hidden="true">
-							GREY
-						</span>
-					</button>
-				</div>
-			</div>
 		</div>
 	</div>
 
@@ -431,7 +433,9 @@ const HSL = [
 			margin 0.45s ease;
 	}
 
-	.slot[data-slot='rgb'] {
+	.slot[data-slot='pair'],
+	.slot[data-slot='rgb'],
+	.slot[data-slot='swatches'] {
 		margin-inline-end: var(--rig-gap);
 	}
 
@@ -520,26 +524,24 @@ const HSL = [
 		align-items: stretch;
 	}
 
-	/* Pinned: no handle, and quiet enough that the eye goes to the hue bar. */
-	.bar.pinned {
-		opacity: 0.6;
-	}
-
 	/* Given a width, because the discs take theirs from it. Two circles side by
 	   side are as wide as they are tall, and left to grow from their own height
 	   in a shallow pane they run straight out of the panel. */
+	/* One disc wide, because they stand one above the other: a pair stacked is
+	   a pair compared, and side by side the eye reads them as a sequence. */
 	.plate.swatches {
 		flex-direction: column;
 		align-items: stretch;
 		justify-content: center;
-		gap: 0.9rem;
-		inline-size: clamp(8rem, 24cqw, 15rem);
+		gap: 0.8rem;
+		inline-size: clamp(5.5rem, 15cqw, 10rem);
 	}
 
 	.discs {
 		flex: 1;
 		min-block-size: 0;
 		display: flex;
+		flex-direction: column;
 		align-items: center;
 		justify-content: center;
 		gap: 0.6rem;
@@ -550,7 +552,8 @@ const HSL = [
 	   the colour rather than a line drawn round it. */
 	.disc {
 		flex: 1 1 0;
-		min-inline-size: 0;
+		min-block-size: 0;
+		max-inline-size: 100%;
 		aspect-ratio: 1;
 		box-sizing: border-box;
 		border: 0.2rem solid var(--edge, transparent);
@@ -667,6 +670,17 @@ const HSL = [
 	.solid[data-space='hsl'] .middle .knob,
 	.solid[data-grey='true'] .swatches .knob {
 		transform: translateX(100%);
+	}
+
+	/* Full width of its panel, and small enough that two words fit across it. */
+	.swatches .toggle {
+		inline-size: 100%;
+		font-size: 0.65rem;
+		letter-spacing: 0.06em;
+	}
+
+	.swatches .side {
+		padding-inline: 0.3rem;
 	}
 
 	.side {
@@ -1225,17 +1239,22 @@ const HSL = [
 		let spin = root.dataset.spin !== 'false';
 		let turning = root.dataset.toggleShown !== 'false';
 		let comparing = root.dataset.compare === 'true';
-		/* The two hues, in degrees. Read back off the bars every frame rather
-		   than remembered here, so a keyboard, a drag and a card's parameters
-		   all arrive by the same door. */
-		const hueOf = (set: number) => pairBars[set * 3]?.track.get(0) ?? 0;
+		/* One set's colour, as h/s/l from 0 to 1. Read back off the bars every
+		   frame rather than remembered here, so a drag, a keypress and a card's
+		   parameters all arrive by the same door and none of them can disagree
+		   with what is on screen. */
+		const hslOf = (set: number): number[] => [
+			(pairBars[set * 3]?.track.get(0) ?? 0) / 360,
+			(pairBars[set * 3 + 1]?.track.get(0) ?? 100) / 100,
+			(pairBars[set * 3 + 2]?.track.get(0) ?? 50) / 100,
+		];
 		const AUTHORED = {
 			idleSeconds,
 			spin,
 			space: root.dataset.space ?? 'rgb',
 			turning,
 			comparing,
-			hues: [hueOf(0), hueOf(1)],
+			hues: [hslOf(0)[0] * 360, hslOf(1)[0] * 360],
 		};
 		tellBars();
 
@@ -1317,6 +1336,13 @@ const HSL = [
 		const TILT: Quat = qAxisAngle(1, 0, 0, 0.42);
 		// Not square-on to start with: a face-on cube reads as a flat square.
 		let ambient = -0.62;
+		/* Where a reader has put it, and it stays there. The offset used to ease
+		   back to nothing a moment after a drag, which meant every turn a reader
+		   gave the solid was taken away from them again — they would spin it to
+		   see the far side and watch it creep back to the front. It keeps the
+		   orientation instead, and the ambient turn carries on from there. A
+		   throw still coasts to a stop: that is the velocity below, which decays;
+		   the position it leaves behind does not. */
 		let offset: Quat = IDENTITY;
 		let velX = 0;
 		let velY = 0;
@@ -1383,6 +1409,12 @@ const HSL = [
 
 		for (const bar of pairBars) bar.addEventListener('pointerdown', freeze);
 
+		/* The deck hands over the first card's parameters as it starts. That is
+		   not a change from anything — it is what the page was asked for — so the
+		   solid is simply already that shape. Reloading on the cylinder should
+		   not play the reader a transformation they have not asked to see. */
+		let firstProps = true;
+
 		host?.addEventListener('viz:props', (e) => {
 			const p = (e as CustomEvent).detail ?? {};
 			spin = 'spin' in p ? p.spin !== false : AUTHORED.spin;
@@ -1404,6 +1436,10 @@ const HSL = [
 			setSpace(
 				(comparing ? 'hsl' : 'space' in p ? p.space : AUTHORED.space) === 'hsl' ? 'hsl' : 'rgb',
 			);
+			if (firstProps) {
+				firstProps = false;
+				stage = want;
+			}
 			/* Every card gets the same lead-in: whatever the last one was in the
 			   middle of, this one starts by letting the reader see where it is. */
 			sinceFlip = 0;
@@ -1586,7 +1622,7 @@ const HSL = [
 		let lastPair = '';
 
 		function paintPair(colours: { rgb: number[]; hsl: number[] }[]) {
-			const key = `${colours.map((c) => c.hsl[0].toFixed(4)).join()}|${grey}`;
+			const key = `${colours.map((c) => c.hsl.map((v) => v.toFixed(4)).join()).join('|')}|${grey}`;
 			if (key === lastPair) return;
 			lastPair = key;
 			colours.forEach((c, i) => {
@@ -1596,13 +1632,19 @@ const HSL = [
 				discs[i].style.setProperty('--fill', rgbCss(fill));
 				discs[i].style.setProperty('--edge', rgbCss(lightenRgb(fill, 0.2)));
 
+				/* Each bar shows its own scale through the other two numbers, so
+				   moving one repaints the two beside it: a saturation ramp is a
+				   ramp of this hue at this lightness or it is telling you about
+				   some other colour. */
 				const H = Math.round(c.hsl[0] * 360) % 360;
+				const S = Math.round(c.hsl[1] * 100);
+				const L = Math.round(c.hsl[2] * 100);
 				const bars = pairBars.slice(i * 3, i * 3 + 3);
 				bars[1]?.track.backdrop(
-					`linear-gradient(to top, hsl(${H} 0% 50%), hsl(${H} 100% 50%))`,
+					`linear-gradient(to top, hsl(${H} 0% ${L}%), hsl(${H} 100% ${L}%))`,
 				);
 				bars[2]?.track.backdrop(
-					`linear-gradient(to top, hsl(${H} 100% 0%), hsl(${H} 100% 50%), hsl(${H} 100% 100%))`,
+					`linear-gradient(to top, hsl(${H} ${S}% 0%), hsl(${H} ${S}% 50%), hsl(${H} ${S}% 100%))`,
 				);
 			});
 		}
@@ -1684,7 +1726,6 @@ const HSL = [
 						),
 					);
 				}
-				offset = qSlerp(offset, IDENTITY, 1 - Math.exp(-1.1 * dt));
 			}
 			const m = qMatrix(
 				qMul(
@@ -1731,8 +1772,8 @@ const HSL = [
 			   wanders, so there is nothing for a reader's turn to interrupt. */
 			const pair = comparing
 				? [0, 1].map((i) => {
-						const h = hueOf(i) / 360;
-						return { rgb: hslToRgb(h, 1, 0.5), hsl: [h, 1, 0.5] };
+						const c = hslOf(i);
+						return { rgb: hslToRgb(c[0], c[1], c[2]), hsl: c };
 					})
 				: null;
 			if (pair) paintPair(pair);
