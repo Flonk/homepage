@@ -1,0 +1,361 @@
+---
+/**
+ * The OKLCH wheel, at one lightness: hue around it, chroma out from the middle.
+ *
+ * Two of OKLCH's three numbers are polar, and this is the picture that says
+ * why. Hue is an angle, so it wraps — there is no first or last colour, and
+ * red's neighbours on both sides are the ones you would name. Chroma is a
+ * distance, so grey is not a colour off to one side of the set: it is the
+ * middle, and every hue leaves from it. Lightness is the axis you cannot see
+ * here, because it is the one running through the page — this is one slice of
+ * the solid, and part seven's ramp is a line drawn along that axis.
+ *
+ * The switch takes the colour out, the way part seven's does under the two
+ * swatches, and for the same reason: a claim about lightness is only worth
+ * anything if you can check it with the colour gone. What is left should be a
+ * flat disc. It is very nearly one — the ring's luminance runs 1.14 to 1 from
+ * its darkest hue to its brightest, against 12.85 to 1 for the same ring in
+ * HSL — and the sliver that is left over is honest rather than sloppy: OKLab's
+ * L is fitted to lightness as people report it, and reported lightness is not
+ * quite luminance. Blue is the famous case, seen as lighter than the light
+ * coming off it.
+ *
+ * Both discs are built here as gradients, so the grey one is a real conversion
+ * rather than `filter: grayscale()` — which weights the channels as they are
+ * written down rather than as light, and would hand back a disc with a bright
+ * band across the yellows that the colour underneath does not have.
+ *
+ * Stops are computed here rather than left as `oklch()` for the browser to
+ * resolve, so what is painted is the same fitted sRGB the rest of the series
+ * draws with (see lib/oklch.ts). At the default lightness every hue holds the
+ * default chroma outright, so the ring is genuinely one chroma the whole way
+ * round rather than a gamut boundary in disguise — that is the gamut post's
+ * picture, not this one.
+ */
+import { decode, encode } from '../lib/gamut';
+import { oklchCss, oklchRgb } from '../lib/oklch';
+import { rgbCss, rgbaCss, type Rgb } from '../lib/rgb';
+
+interface Props {
+	/** OKLCH L, 0 to 1. 0.72 is bright enough for every hue to be itself. */
+	lightness?: number;
+	/**
+	 * Chroma at the rim. 0.12 is what sRGB holds at every hue at L 0.72 — ask
+	 * for more and the ring bulges towards the hues that have it.
+	 */
+	chroma?: number;
+	/** Stops around the circle. 24 is a stop every 15°, past seeing the seams. */
+	steps?: number;
+	/** Offer the switch. Off for a card that only wants the wheel. */
+	toggle?: boolean;
+	/** Seconds a reader's own press is left alone before the flipping resumes. */
+	idleResume?: number;
+}
+
+const {
+	lightness = 0.72,
+	chroma = 0.12,
+	steps = 24,
+	toggle = true,
+	idleResume = 6,
+} = Astro.props;
+
+/**
+ * The same colour with the colour taken out: undo the transfer curve, take the
+ * luminance the eye reports, put the curve back.
+ *
+ * The same three coefficients part seven's shader uses, and it has to be the
+ * same or the two cards are checking different claims. Averaging the channels
+ * instead — which is the reflex — would put yellow and blue far closer
+ * together than they are.
+ */
+const flatten = (rgb: Rgb) => {
+	const y = 0.2126 * decode(rgb[0] / 255) + 0.7152 * decode(rgb[1] / 255) + 0.0722 * decode(rgb[2] / 255);
+	const v = Math.round(255 * encode(y));
+	return rgbCss([v, v, v]);
+};
+
+// Closed on purpose: the last stop repeats the first at 360°, so the seam at
+// due-right is a hue meeting itself rather than a join.
+const ring = (l: number, paint: (rgb: Rgb) => string) =>
+	Array.from({ length: steps + 1 }, (_, i) => {
+		const deg = (360 * i) / steps;
+		return `${paint(oklchRgb(l, chroma, deg))} ${deg}deg`;
+	}).join(', ');
+
+/**
+ * The edge is the wheel again, a fifth of the way to white — the same lift the
+ * bars take (see `lighten` in lib/oklch, and --track-edge in VizTrack), so the
+ * rim is the wheel's own colour all the way round rather than one flat line
+ * laid over it. A circle has no side that a single colour would suit anyway:
+ * every degree of it is a different hue.
+ */
+const LIFT = 0.2;
+const lit = lightness + LIFT * (1 - lightness);
+
+const stops = ring(lightness, rgbCss);
+const flatStops = ring(lightness, flatten);
+const edgeStops = ring(lit, rgbCss);
+const flatEdgeStops = ring(lit, flatten);
+
+const grey = oklchCss(lightness, 0, 0);
+// The same grey with the alpha taken off, so the fade goes to nothing rather
+// than through black on its way there.
+const greyClear = rgbaCss(oklchRgb(lightness, 0, 0), 0);
+const face = (wheel: string, edge: string) =>
+	[
+		`--wheel: conic-gradient(from 0deg, ${wheel})`,
+		`--edge: conic-gradient(from 0deg, ${edge})`,
+		`--grey: ${grey}`,
+		`--grey-clear: ${greyClear}`,
+	].join('; ');
+---
+
+{/* Its own animation context: the flipping is a motion in it, so a reader's
+    press stops it the same way a hand on a slider stops the bar beside it, and
+    anything else this viz grows later joins the same clock. See lib/animate. */}
+<div
+	class="hue-circle"
+	data-hue-circle
+	data-anim-context
+	data-grey="false"
+	data-idle-resume={idleResume}
+>
+	<div
+		class="stack"
+		role="img"
+		aria-label="A colour wheel: hue running all the way around it, and colourfulness rising from grey at the centre to full at the rim, all at one lightness."
+	>
+		<div class="disc" style={face(stops, edgeStops)}></div>
+		{/* Over the top rather than swapped with it: two discs cross-fading are
+		    two half-transparent discs in the middle of the fade, and what shows
+		    through is neither of them. */}
+		<div class="disc flat" aria-hidden="true" style={face(flatStops, flatEdgeStops)}></div>
+	</div>
+	{
+		toggle && (
+			<div class="switch">
+				<button
+					class="toggle"
+					type="button"
+					role="switch"
+					aria-checked="false"
+					aria-label="Drop the colour"
+					data-grey-toggle
+				>
+					<span class="knob" aria-hidden="true" />
+					<span class="side" data-side="colour" aria-hidden="true">
+						COLOUR
+					</span>
+					<span class="side" data-side="grey" aria-hidden="true">
+						GREY
+					</span>
+				</button>
+			</div>
+		)
+	}
+</div>
+
+<style>
+	/* The pane stretches its child both ways, so the square is the inner box and
+	   this one only stacks and centres. */
+	.hue-circle {
+		width: 100%;
+		height: 100%;
+		min-width: 0;
+		min-height: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 0.85rem;
+		/* The deck's pane has no bottom padding of its own — a visualization may
+		   run to the edge and be clipped by it — so a control that has to be
+		   reachable brings its own. */
+		padding-bottom: 1em;
+		font-family: var(--font-mono);
+		color: var(--deck-ink-dim, #7a7264);
+	}
+
+	.stack {
+		position: relative;
+		flex: none;
+		/* One side, then a square from it: the pane is a wide, shallow band, so
+		   the side is normally its height — but a narrow pane takes over before
+		   the circle can run off the edges. `cqh` is the deck's viz pane, which
+		   declares itself a size container; what is subtracted is the switch and
+		   the padding under it. */
+		width: min(100%, calc(100cqh - 4.5rem));
+		aspect-ratio: 1;
+	}
+
+	.disc {
+		position: absolute;
+		inset: 0;
+		border-radius: 50%;
+		/* The wheel clipped to the padding box and the lifted one showing through
+		   the border box around it — the same two layers and the same transparent
+		   border VizTrack's bars use, because a border property takes a colour
+		   and nothing else, and this edge has to follow the hue underneath it all
+		   the way round.
+
+		   The radial pass over the conic one is the chroma axis: grey in the
+		   middle, out of the way by the rim. Alpha written out rather than left
+		   as `transparent`, which carries a colour as well as an alpha. */
+		/* Two pixels rather than the bars' one. Their edges are straight and land
+		   on the pixel grid; this one is a circle, and a single antialiased pixel
+		   of it is mostly the ground behind. */
+		border: 2px solid transparent;
+		background:
+			radial-gradient(circle closest-side, var(--grey) 0%, var(--grey-clear) 100%) padding-box,
+			var(--wheel) padding-box,
+			var(--edge) border-box;
+	}
+
+	.disc.flat {
+		opacity: 0;
+		transition: opacity 0.45s ease;
+	}
+
+	.hue-circle[data-grey='true'] .disc.flat {
+		opacity: 1;
+	}
+
+	/* ---- the switch, which is part seven's ---------------------------------- */
+
+	.switch {
+		flex: none;
+	}
+
+	.toggle {
+		position: relative;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		align-items: center;
+		padding: 0.2rem;
+		border: 0;
+		border-radius: 999px;
+		background: var(--pill, rgb(12 14 17 / 0.62));
+		box-shadow:
+			inset 0 0 0 1px rgb(255 255 255 / 0.12),
+			0 4px 16px rgb(0 0 0 / 0.15);
+		backdrop-filter: blur(6px);
+		overflow: hidden;
+		font: inherit;
+		font-size: 0.75rem;
+		letter-spacing: 0.1em;
+		color: inherit;
+		cursor: pointer;
+	}
+
+	.knob {
+		position: absolute;
+		z-index: 0;
+		inset: 0.2rem auto 0.2rem 0.2rem;
+		width: calc(50% - 0.2rem);
+		border-radius: 999px;
+		background: rgb(255 255 255 / 0.16);
+		box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.18);
+		transition: transform 0.35s cubic-bezier(0.35, 0.1, 0.2, 1);
+	}
+
+	.hue-circle[data-grey='true'] .knob {
+		transform: translateX(100%);
+	}
+
+	.side {
+		position: relative;
+		z-index: 1;
+		padding: 0.3rem 0.85rem;
+		transition: color 0.35s ease;
+	}
+
+	.hue-circle[data-grey='false'] .side[data-side='colour'],
+	.hue-circle[data-grey='true'] .side[data-side='grey'] {
+		color: var(--deck-ink, #e6e9ef);
+	}
+
+	.toggle:focus-visible {
+		outline: 2px solid var(--deck-ink, #e6e9ef);
+		outline-offset: 2px;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.disc.flat,
+		.knob,
+		.side {
+			transition-duration: 0.01ms;
+		}
+	}
+</style>
+
+<script>
+	import { contextFor, type Motion } from '../lib/animate';
+
+	/** How long each side of the switch is held before it flips. */
+	const EVERY = 3;
+
+	/* One hoisted script for every wheel on the page: two of them would
+	   otherwise share the first one's button. */
+	for (const root of document.querySelectorAll<HTMLElement>('[data-hue-circle]')) {
+		const button = root.querySelector<HTMLButtonElement>('[data-grey-toggle]');
+		if (!button) continue;
+
+		const setGrey = (on: boolean) => {
+			// Called every frame by the motion below, so it has to be cheap when
+			// nothing has changed: writing a dataset property invalidates style
+			// whether or not the value differs.
+			if ((root.dataset.grey === 'true') === on) return;
+			root.dataset.grey = String(on);
+			button.setAttribute('aria-checked', String(on));
+		};
+
+		/* A square wave: three seconds of colour, three of grey. The card is
+		   making a claim about lightness that only the grey disc can settle, and
+		   a reader who never presses anything should still get to see it settled
+		   — so the switch presses itself, and the cross-fade in the CSS is what
+		   makes the two readings comparable rather than two separate pictures. */
+		const flip: Motion = {
+			at: (t) => (Math.floor(t / EVERY) % 2 === 0 ? 0 : 1),
+			apply: (v) => setGrey(v >= 0.5),
+			/* Back on at the start of whichever side the reader last chose, so
+			   they get a full turn of it. Resuming mid-side would flip the switch
+			   under them a moment after they let go, which reads as the press not
+			   having taken. */
+			entry: (v) => (v >= 0.5 ? EVERY : 0),
+		};
+
+		const ctx = contextFor(root);
+		ctx.add(flip);
+
+		button.addEventListener('click', () => {
+			const on = root.dataset.grey !== 'true';
+			setGrey(on);
+			// What the reader just did, then hands off: the motion picks up from
+			// their choice rather than from where its own clock had got to.
+			ctx.note(flip, on ? 1 : 0);
+			ctx.hold(Number(root.dataset.idleResume) || 6);
+		});
+
+		/* A deck builds every phase up front and leaves the ones it is not
+		   showing in the page, so a wheel off stage would otherwise flip away to
+		   itself. Nothing runs until it is on.
+
+		   Watched as an attribute rather than listened for as viz:enter, because
+		   a deck arriving on a deep link sets the starting phase up directly and
+		   only fires the events on later changes — and whether that happens
+		   before or after this script is a question about bundle order, which is
+		   not a thing to hang a running visualization on. The attribute is true
+		   whichever way round they run. */
+		const phase = root.closest('[data-viz-phase]');
+		if (phase) {
+			const sync = () =>
+				phase.getAttribute('data-viz-active') === 'true' ? ctx.start() : ctx.stop();
+			new MutationObserver(sync).observe(phase, {
+				attributes: true,
+				attributeFilter: ['data-viz-active'],
+			});
+			sync();
+		}
+	}
+</script>

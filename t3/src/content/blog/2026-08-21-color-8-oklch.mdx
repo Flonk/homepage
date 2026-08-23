@@ -1,0 +1,98 @@
+---
+title: "Colour #8: OKLCH"
+series: "Colour"
+format: "deck"
+ground: "dark"
+description: ""
+pubDate: "August 21 2026"
+---
+
+import DeckCard from "../../components/DeckCard.astro";
+import DeckViz from "../../components/DeckViz.astro";
+import GamutSolid from "../../components/GamutSolid.astro";
+import GradientStack from "../../components/GradientStack.astro";
+import HueCircle from "../../components/HueCircle.astro";
+import TailwindPalette from "../../components/TailwindPalette.astro";
+import VizPhase from "../../components/VizPhase.astro";
+
+{/* The solid is the deck's home phase, the way the cube is post one's: cards
+    that name no phase get it. The circle is one horizontal slice through it,
+    which is why the two middle cards borrow it and the card after them stacks
+    the slices back up. The last card hands the same solid a wider set of
+    primaries -- same viz, new parameters, no second WebGL context. */}
+<DeckViz>
+  <VizPhase name="solid">
+    <GamutSolid />
+  </VizPhase>
+  <VizPhase name="circle">
+    <HueCircle />
+  </VizPhase>
+  {/* Yellow round to blue: the stretch where Tailwind's own lightnesses are
+      furthest apart, and few enough families to take a column in at a glance. */}
+  {/* The same two ends by two routes, stacked so the difference is one look
+      rather than a memory test: the one the card complains about, then the one
+      it recommends. */}
+  <VizPhase name="gradients">
+    <GradientStack from="#a3e635" to="#164e63" />
+  </VizPhase>
+  <VizPhase name="palette">
+    <TailwindPalette
+      labels
+      families={["yellow", "lime", "green", "emerald", "teal", "cyan", "sky", "blue"]}
+    />
+  </VizPhase>
+</DeckViz>
+
+<DeckCard vizProps={{ phase: "solid" }}>
+  ## OKLCH is a perceptually uniform color space
+
+  To address this issue once and for all, a color space called *OKLCH* was developed in 2017, which is based on a perceptually uniform color space called *OKLab*. It is now widely supported in browsers, and the most important color space for web designers to know about.
+
+  It gives us the nice part of HSL -- a slider for hue, one for chroma (saturation), and one for luminance (lightness) -- but the numbers are fitted to what people report seeing, so equal steps in the space are also *equal-looking* steps.
+
+  The only way to go up or down in brightness is to move the luminance slider.
+</DeckCard>
+
+
+<DeckCard vizProps={{ phase: "circle" }}>
+  ## Working with OKLCH is straightforward
+
+  With OKLCH, generating colors of equal brightness becomes the easy default, instead of requiring a lot of trial and error, or maths.
+</DeckCard>
+
+<DeckCard vizProps={{ phase: "palette" }}>
+  ## We don't need complicated frameworks to use it
+
+  Everybody's favourite CSS framework, Tailwind, has been lauded for its great color palette -- Adam Wathan and Steve Schoger have meticulously hand-picked a set of colors that looks as perceptually uniform as possible.
+
+  Many great-looking websites have been built with it, and I'm a big fan myself; but using OKLCH, we can generate a palette that is just as good, with a lot less work.
+
+  Tailwind has moved to OKLCH in version 4, though their palette remains hand-picked rather than generated.
+</DeckCard>
+
+<DeckCard vizProps={{ phase: "gradients" }}>
+  ## Gradients look better in OKLCH
+
+  Remember how gradients are just straight lines through a color space? We can not only do this in RGB, but also in OKLCH.
+
+  Gradients in OKLCH will usually look visually better and more colorful than the same gradient in RGB, and browsers support it out of the box, so there is no reason not to use it!
+
+  ```css
+  background: linear-gradient(
+    oklch(0.8 0.1 0),
+    oklch(0.8 0.1 120)
+  );
+  ```
+</DeckCard>
+
+
+<DeckCard vizProps={{ phase: "solid" }}>
+  ## OKLCH is not a cube
+
+  The trade-off to using, say, HSL is that our color space is no longer a nice geometric shape.
+  
+  In practice this means that the highest you can set the chroma slider to depends on the hue and lightness you have chosen.
+
+  Picking chroma values outside the safe range represents colors that your screen can't display, so your browser will clip them to the nearest color that does.
+</DeckCard>
+

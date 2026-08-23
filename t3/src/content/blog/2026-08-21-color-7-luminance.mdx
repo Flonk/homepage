@@ -31,7 +31,7 @@ import VizPhase from "../../components/VizPhase.astro";
 
   A common task in web design is generating brighter and darker shades of a color, for example to render a button in a hover state, or bright text on a dark background.
 
-  We achieve this by moving the color closer to white or black in some form or another; but it turns it's not easy to do this in RGB, and really hard to do it well.
+  We achieve this by moving the color closer to white or black in some form or another; but it turns out it's not easy to do this in RGB, and really hard to do it well.
   
    
 </DeckCard>
@@ -60,39 +60,17 @@ import VizPhase from "../../components/VizPhase.astro";
 <DeckCard vizProps={{ phase: "solid", match: false, space: "hsl", toggle: false }}>
   ## HSL is not perfect
 
-  HSL and it's brother HSV have been around since the 1970s, and are both attempts to make a color space that is more intuitive than RGB. They are widely used in design software, and are the basis for many color pickers on the web, so it's fair to say that they have been successful in that regard.
+  HSL and its brother HSV have been around since the 1970s, and are both attempts to make a color space that is more intuitive than RGB. They are widely used in design software, and are the basis for many color pickers on the web, so it's fair to say that they have been successful in that regard.
 
   A big plus of HSL is that it is easy to transform back to RGB, and RGB is the ground truth for what your screen will actually display.
 
-  However, HSL's lightness slider is decieveing.
+  However, HSL's lightness slider is deceiving.
 </DeckCard>
 
-<DeckCard vizProps={{ compare: true, hues: [240, 60] }}>
+<DeckCard vizProps={{ compare: true, hues: [240, 180] }}>
   ## Same lightness, nothing like
 
   In particular, we'd assume that two colors with the same lightness would appear equally bright on your screen, but this is clearly not the case in HSL!
-</DeckCard>
 
-<DeckCard vizProps={{ phase: "ramp", match: false, compare: false }}>
-  ## Equal steps that look equal
-
-  Behind those ten swatches is one number counting evenly down -- OKLCH lightness, 96 to 16, in equal steps. The important part is that they *look* evenly spaced too: no two neighbours are further apart than any other two.
-
-  That is what OKLCH is for. Its L axis is fitted to how much difference the eye reports, so equal steps are equal-looking steps, and moving along it leaves the hue exactly where it was. HSL will also hand you a lightness slider, but that number is a fact about the RGB cube rather than about you -- step it and the ramp bends, blues drifting purple as they darken.
-</DeckCard>
-
-<DeckCard vizProps={{ range: [0.99, 0.05] }}>
-  ## What gives way at the ends
-
-  Push the ends further apart and the ramp runs out of colour before it runs out of lightness. The top swatch is nearly white and the bottom nearly black, and neither is very cyan any more.
-
-  That is not the ramp being sloppy. A screen simply holds less saturated cyan at 99% lightness than it does at 70%, so each swatch keeps the lightness it was asked for and gives up chroma instead -- which is the honest way round, and the reason to fit the chroma yourself rather than let something else decide what to sacrifice.
-</DeckCard>
-
-<DeckCard vizProps={{ hue: 30, range: [0.96, 0.16] }}>
-  ## The same ladder, any colour
-
-  Here is the identical set of ten lightnesses at hue 30 instead of 195. Orange, and the same ramp.
-
-  This is what makes lightness the axis worth building a palette on: the scales line up across colours. Your cyan-600 and your orange-600 are the same lightness, so anything that works on one works on the other -- the text stays readable, the borders stay visible, and swapping an accent colour stops being a re-design.
+  This is bad, because brightness often signifies importance in a design, and with no good way to make colors appear equally bright, we are left with a design that may end up inconsistent and confusing. And without having detailed knowledge of color science, it is hard to know how to fix it.
 </DeckCard>

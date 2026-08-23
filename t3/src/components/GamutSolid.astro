@@ -1,0 +1,1498 @@
+---
+/**
+ * What a screen's colours look like once the eye, rather than the wiring, is
+ * allowed to place them: the RGB cube of a given set of primaries, plotted in
+ * OKLab, with three bars for driving a colour around inside it.
+ *
+ * The shape is a surprise the first time. Not a cube, not the neat cylinder
+ * HSL draws, but a lopsided gem — a sharp spike at black, a blunt top at
+ * white, six corners where the primaries and secondaries are, and twelve
+ * visibly curved edges between them. Every constant-hue slice through it is a
+ * triangle with its third corner at that hue's most colourful colour, and
+ * those corners are all over the place: blue's sits low and far out, yellow's
+ * clings just under white. That unevenness is the thing to see. It is why a
+ * palette cannot simply ask for "the same chroma at every hue", and it is what
+ * gamut mapping spends its life negotiating with.
+ *
+ * The bars are the same rig the cube has in part one, saying the same thing
+ * about a different set of three numbers: a colour is a position, and here are
+ * the three coordinates that put it there. Two differences fall out of the
+ * space rather than the design. The chroma bar has a mark on it — the most
+ * this lightness and hue can hold — and the mark moves as the other two bars
+ * do, because the boundary is not a constant. And past that mark the dot
+ * leaves the solid and floats outside it, which is the honest picture of what
+ * asking for a colour your screen does not have actually means.
+ *
+ * Meshed from the cube's own surface rather than from the boundary of the
+ * OKLCH numbers, which is exact and costs no searching: every point of the
+ * cube's skin has HSL saturation 1, so a grid in (hue, lightness) at full
+ * saturation *is* the skin, and its image in OKLab is the solid's. The six
+ * corner hues land on grid lines — the divisions are a multiple of six — so
+ * the corners stay corners and the edges stay creases. Cube edges bow by as
+ * much as a tenth of their length on the way into OKLab, which is why this is
+ * a grid at all rather than the twelve triangles a cube deserves.
+ *
+ * Several spaces at once share a canvas, a rotation and a scale: three
+ * contexts turning on three clocks would be three shapes a reader has to
+ * compare from memory, and the whole point of putting them side by side is
+ * that the extra volume is not spread evenly. P3 barely widens blue and adds a
+ * third to green; Rec.2020 doubles cyan. One scale, one turn, and that reads
+ * off the screen without a caption saying it. The dot is drawn in all of them
+ * at once, at the same three numbers, so a colour can be inside one solid and
+ * outside the one beside it.
+ *
+ * On colour, as opposed to shape: the shapes are exact for all three, but a
+ * screen shows what it holds. The canvas asks for a Display P3 buffer where
+ * the browser and the monitor both offer one, and every colour is converted
+ * into whatever the buffer turned out to be and clipped there. So the far
+ * shell of the wide solids is flatter than life — Rec.2020's greens
+ * especially — and that is left visible rather than hidden by rescaling,
+ * because "your screen does not have this colour" is the honest reading and
+ * also the point.
+ *
+ * Raw WebGL, as with RgbCube and ColourSolid: a colour here is a position, and
+ * an engine's tone mapping would quietly rewrite it on the way to the screen.
+ */
+import { SPACE_LABEL, maxChroma, oklchCss, type Space } from '../lib/gamut';
+import VizTrack from './VizTrack.astro';
+
+interface Props {
+	/** Which solids, left to right. One is a portrait; three are an argument. */
+	spaces?: Space[];
+	/** Ambient turn. Off still leaves it draggable. */
+	spin?: boolean;
+	/** Name each solid under it. */
+	labels?: boolean;
+	/**
+	 * The three bars, the swatch behind them and the reading in the corner. Off
+	 * for a card that is talking about the shape rather than about a colour in
+	 * it — a row of three gamuts, say, where a single dot has three different
+	 * answers and none of them is the point.
+	 */
+	controls?: boolean;
+	/** Where the dot starts, as L, C, H. */
+	start?: [number, number, number];
+	/**
+	 * How much of the pane one solid fills. Under 1 leaves air around it, which
+	 * a row of three wants and a single one does not.
+	 */
+	zoom?: number;
+}
+
+const {
+	spaces = ['srgb'],
+	spin = true,
+	labels = true,
+	controls = true,
+	start = [0.72, 0.12, 195] as [number, number, number],
+	zoom = 1,
+} = Astro.props;
+
+const [L0, C0, H0] = start;
+
+/**
+ * How far an edge is lifted off the ramp it edges. A fifth of the way to
+ * white, which is what every other bar in the series uses — see `lighten` in
+ * lib/oklch, and the same fifth on the cube's channels and part seven's.
+ */
+const LIFT = 0.2;
+
+/**
+ * One stop of a bar's ramp, with the chroma fitted to what the screen has at
+ * that lightness — so what is painted is what is available.
+ *
+ * Lifting is done here in OKLCH rather than by `lighten`, which has to go
+ * back through sRGB to find the lightness it is raising. Lightness is already
+ * one of the three numbers in hand, so the lift is one line of arithmetic on
+ * it, and the hue and chroma are untouched by construction rather than by
+ * round trip.
+ */
+const stopCss = (L: number, C: number, h: number, lift = 0) => {
+	const l = L + lift * (1 - L);
+	return oklchCss('srgb', 'srgb', l, Math.min(C, maxChroma('srgb', l, h)), h);
+};
+
+/* The bars' opening ramps, and the edges that go round them. Both are redrawn
+   by the script whenever anything moves — a lightness ramp is only true for
+   the hue it was drawn at — but rendered here as well so the bars arrive with
+   the right thing on them rather than grey.
+
+   The edge is the bar's own ramp lifted, so it is the bar's colour everywhere
+   along its length rather than one flat line laid over a gradient. It is not a
+   real border: CSS borders take a colour and nothing else. See --track-edge in
+   VizTrack for how the two layers are painted.
+
+   The chroma bar past the boundary is the one place a ramp is not true, and it
+   is deliberate: it goes flat there, which is the bar saying it has run out
+   before the mark gets a chance to. */
+const ramp = (stops: number, at: (t: number) => [number, number, number], lift = 0) =>
+	Array.from({ length: stops + 1 }, (_, i) => {
+		const [L, C, h] = at(i / stops);
+		return stopCss(L, C, h, lift);
+	}).join(', ');
+
+const SHAPES: {
+	name: string;
+	label: string;
+	value: number;
+	min: number;
+	max: number;
+	step: number;
+	at: (t: number) => [number, number, number];
+	stops: number;
+}[] = [
+	{ name: 'L', label: 'Lightness', value: L0, min: 0, max: 1, step: 0.001, stops: 12, at: (t) => [t, C0, H0] },
+	{ name: 'C', label: 'Chroma', value: C0, min: 0, max: 0.4, step: 0.001, stops: 12, at: (t) => [L0, t * 0.4, H0] },
+	{ name: 'H', label: 'Hue', value: H0, min: 0, max: 360, step: 1, stops: 24, at: (t) => [L0, C0, t * 360] },
+];
+
+const BARS = SHAPES.map((bar) => ({
+	...bar,
+	backdrop: `linear-gradient(to top, ${ramp(bar.stops, bar.at)})`,
+	edge: `linear-gradient(to top, ${ramp(bar.stops, bar.at, LIFT)})`,
+}));
+
+/* One id per instance, because two of these on a page would otherwise share a
+   gradient and the second would take the first's colour. */
+const gradId = `gamut-swatch-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<div
+	class="gamut-solid"
+	data-gamut-solid
+	data-no-swipe
+	data-spaces={spaces.join(',')}
+	data-spin={String(spin)}
+	data-zoom={String(zoom)}
+	data-controls={String(controls)}
+	data-multi={String(spaces.length > 1)}
+	data-start={start.join(',')}
+	style={`--columns: ${spaces.length}`}
+>
+	{
+		/* One animation context for the three of them: they are one colour
+		   between them, so taking hold of any one bar stops the other two and
+		   the wander that was moving all three. See lib/animate. */
+		controls && (
+			<div class="bars" role="group" aria-label="OKLCH channels" data-anim-context>
+				<div class="bar-row">
+					{BARS.map((bar) => (
+						<div class="bar" data-bar={bar.name} style={`--track-edge: ${bar.edge}`}>
+							<VizTrack
+								upright
+								size="1.7rem"
+								backdrop={bar.backdrop}
+								thumbs={1}
+								values={[bar.value]}
+								min={bar.min}
+								max={bar.max}
+								step={bar.step}
+								labels={[bar.label]}
+							/>
+							<span class="bar-name" aria-hidden="true">
+								{bar.name}
+							</span>
+						</div>
+					))}
+				</div>
+				{/* The mark on the chroma bar is the only thing in the picture that
+				    needs saying in words: a tick on a slider is otherwise just a
+				    tick, and this one is the edge of what the screen has. */}
+				<p class="legend">
+					<span class="legend-mark" data-legend-mark aria-hidden="true" />
+					max safe chroma
+				</p>
+			</div>
+		)
+	}
+
+	<div class="stage">
+		<canvas data-canvas></canvas>
+		{
+			/* Always in the DOM, shown only when there is more than one solid to
+			   name: a lone sRGB gem needs no caption, and a card can switch to three
+			   at any time — a shelf that had to be created then would arrive a frame
+			   late and empty. */
+			labels && (
+				<div class="labels" aria-hidden="true">
+					{spaces.map((s) => (
+						<span>{SPACE_LABEL[s]}</span>
+					))}
+				</div>
+			)
+		}
+	</div>
+
+
+	{
+		/* The colour on show, as a ground rather than a chip: the same S that
+		   bisects part one's pane, filling the lower-right half. See RgbCube,
+		   where the shape and the reasoning behind it are set out. */
+		controls && (
+			<div class="readout">
+				<svg
+					class="swatch"
+					data-swatch
+					viewBox="0 0 100 100"
+					preserveAspectRatio="none"
+					aria-hidden="true"
+				>
+					<defs>
+						<linearGradient id={gradId} x1="0" y1="1" x2="1" y2="0">
+							<stop offset="0" stop-color="var(--swatch-a, #808080)" />
+							<stop offset="1" stop-color="var(--swatch-b, var(--swatch-a, #808080))" />
+						</linearGradient>
+					</defs>
+					<path d="M -10 112 C 48 88, 52 12, 110 -12 L 112 112 Z" fill={`url(#${gradId})`} />
+				</svg>
+				<div class="readout-text">
+					<span class="oklch-string" data-oklch>
+						oklch({L0.toFixed(2)} {C0.toFixed(2)} {H0.toFixed(0)})
+					</span>
+					<span class="outside" data-outside hidden>
+						outside sRGB
+					</span>
+				</div>
+			</div>
+		)
+	}
+
+	<p class="sr-only">
+		{spaces.map((s) => SPACE_LABEL[s]).join(', ')} plotted in OKLCH: the colours each set of
+		primaries can mix, arranged with lightness up the middle, hue around it and colourfulness
+		out from the axis. Each is a lopsided solid, pointed at black and blunt at white.
+	</p>
+</div>
+
+<style>
+	.gamut-solid {
+		/* ---- composition knobs ------------------------------------------
+		   Where things sit, all in one place. The swatch's shape lives in its
+		   SVG path above, not here. */
+		--pad-left: clamp(1rem, 10vw, 9rem);
+		--pad-right: clamp(1rem, 8vw, 7rem);
+		--bar-gap: clamp(0.75rem, 2vw, 1.75rem);
+
+		/* Out from under DeckViz's cap, as part one's cube is: the composition
+		   is already capped where it counts — the solid is sized from the pane's
+		   short side — and what the extra width carries is the swatch, which is
+		   a ground and is meant to run off the end of the pane rather than
+		   acquire an edge in the middle of it. */
+		--viz-max: none;
+
+		position: relative;
+		display: flex;
+		align-items: stretch;
+		justify-content: center;
+		gap: var(--bar-gap);
+		padding: 0 var(--pad-right) 0 var(--pad-left);
+		width: 100%;
+		height: 100%;
+		min-width: 0;
+		min-height: 0;
+		box-sizing: border-box;
+		font-family: var(--font-mono);
+		--ink: var(--deck-ink, #35302a);
+		--ink-dim: var(--deck-ink-dim, #7a7264);
+		color: var(--ink);
+	}
+
+	/* A row of gamuts has no bars and no swatch, so it wants the whole pane
+	   rather than part one's margins. */
+	.gamut-solid[data-controls='false'] {
+		--pad-left: 1rem;
+		--pad-right: 1rem;
+	}
+
+	/* --- the bars --- */
+
+	/* On a plate of their own, for the reason part one's are: three bars loose
+	   on the ground read as part of the picture; on a panel they read as the
+	   thing you are allowed to touch. Glass, so the swatch behind carries on
+	   under them rather than having a lid put on it. */
+	.bars {
+		position: relative;
+		z-index: 1;
+		flex: none;
+		display: flex;
+		flex-direction: column;
+		gap: 0.6rem;
+		align-items: stretch;
+		box-sizing: border-box;
+		margin: 1em 0;
+		padding: 1em;
+		border-radius: 0.5rem;
+		background: var(--viz-glass, rgb(255 255 255 / 0.06));
+		box-shadow:
+			inset 0 0 0 1px var(--viz-glass-rim, rgb(255 255 255 / 0.08)),
+			0 4px 16px rgb(0 0 0 / 0.15);
+		backdrop-filter: blur(6px);
+		color: #e6e9ef;
+	}
+
+	/* The three bars, side by side; the legend sits under them. */
+	.bar-row {
+		flex: 1;
+		min-height: 0;
+		display: flex;
+		gap: 0.9rem;
+		align-items: stretch;
+	}
+
+	.bar {
+		min-width: 0;
+		min-height: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.45rem;
+		--track-border: 1px solid transparent;
+		--track-radius: 4px;
+		/* Thinner than the default six: this mark is a limit line rather than a
+		   position worth reading off, and a limit reads better as a hairline
+		   than as a block. Its colour is set per-mark by the script — the
+		   boundary colour itself, lifted — so it is the colour it is marking
+		   rather than a tick that could be marking anything. */
+		--track-mark-size: 3px;
+		/* The thumb is left alone, as part seven's are: one thumb is one thumb,
+		   and the white one with the dark ring round it is what a thumb looks
+		   like everywhere else in the series. The cube inks its dark because it
+		   carries two per bar and the pair has to be told apart. */
+	}
+
+	.bar-name {
+		flex: none;
+		font-size: 0.8rem;
+		line-height: 1;
+		letter-spacing: 0.08em;
+		color: #8891a0;
+	}
+
+	/* Wraps rather than widening the plate: the words are twice the width of
+	   three bars, and a plate sized to its caption would push the solid over. */
+	/* A pill with a ground of its own rather than words on the plate. The plate
+	   is glass and the swatch behind it is any colour the reader has driven it
+	   to, so a caption relying on what is underneath is readable about half the
+	   time — and a legend nobody can read at the moment they need it is worse
+	   than no legend. Dark and nearly opaque, so it holds whatever passes
+	   under it.
+
+	   Sized to its words and centred under the bars, wrapping to two lines
+	   before it will widen the plate: the bars set how wide this thing is, and
+	   a caption is not a reason to push the solid across the pane. */
+	.legend {
+		flex: none;
+		align-self: center;
+		max-inline-size: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 0.25rem 0.35rem;
+		margin: 0;
+		padding: 0.3rem 0.5rem;
+		border-radius: 0.6rem;
+		background: rgb(10 9 8 / 0.82);
+		box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.1);
+		font-size: 0.54rem;
+		line-height: 1.2;
+		letter-spacing: 0.04em;
+		text-align: center;
+		text-transform: uppercase;
+		color: #eceff4;
+	}
+
+	/* The same hairline the bar carries, in the same colour, so the two are
+	   plainly the same thing said twice. */
+	.legend-mark {
+		flex: none;
+		inline-size: 3px;
+		block-size: 0.75rem;
+		border-radius: 1px;
+		background: var(--legend-ink, #f6f1e6);
+		box-shadow: 0 0 0 1px rgb(0 0 0 / 0.65);
+	}
+
+	/* --- the stage --- */
+
+	/* As wide as the solids can actually be and no wider, so the bars stay
+	   beside them as the pane widens rather than being pushed away by a stage
+	   that swallowed the spare width. */
+	.stage {
+		position: relative;
+		z-index: 1;
+		flex: 0 0 auto;
+		aspect-ratio: var(--columns);
+		min-width: 0;
+		min-height: 0;
+		display: flex;
+	}
+
+	.stage canvas {
+		width: 100%;
+		height: 100%;
+		padding: 0;
+		border: 0;
+		cursor: grab;
+		touch-action: none;
+		/* The canvas is transparent outside the solid, so a drop-shadow over its
+		   own alpha is the silhouette's shadow. Lengths set from the on-screen
+		   size by the script. */
+		filter: drop-shadow(
+			0 var(--shadow-y, 6px) var(--shadow-blur, 18px)
+				var(--viz-shadow, rgba(40, 30, 14, 0.55))
+		);
+	}
+
+	.stage canvas:active {
+		cursor: grabbing;
+	}
+
+	/* Inside the stage, so a name sits under the solid it names rather than
+	   under whatever happens to be that far across the whole composition. */
+	.labels {
+		position: absolute;
+		inset: auto 0 0 0;
+		z-index: 1;
+		display: grid;
+		grid-template-columns: repeat(var(--columns), 1fr);
+		font-size: 0.62rem;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		/* The same ink the reading uses, because these sit at the bottom of the
+		   pane where the swatch is, and the swatch is any colour at all. */
+		color: var(--readout-ink, var(--ink-dim));
+		opacity: 0.75;
+		pointer-events: none;
+	}
+
+	.labels span {
+		text-align: center;
+	}
+
+	.gamut-solid[data-multi='false'] .labels {
+		display: none;
+	}
+
+	/* --- the swatch --- */
+
+	.readout {
+		display: contents;
+	}
+
+	.swatch {
+		position: absolute;
+		z-index: 0;
+		top: -1rem;
+		right: -1rem;
+		bottom: 0;
+		left: -1rem;
+		width: calc(100% + 2rem);
+		height: calc(100% + 1rem);
+		pointer-events: none;
+	}
+
+	/* Bottom-right, which the S always fills, so the reading always sits on the
+	   colour itself. Its ink flips for whichever side gives more contrast — see
+	   the render loop. */
+	.readout-text {
+		position: absolute;
+		z-index: 1;
+		right: 0.75rem;
+		bottom: 0.4rem;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		gap: 0.1rem;
+		pointer-events: none;
+	}
+
+	.oklch-string {
+		font-size: 1.125rem;
+		font-variant-numeric: tabular-nums;
+		color: var(--readout-ink, #000);
+	}
+
+	.outside {
+		font-size: 0.62rem;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--readout-ink, #000);
+		opacity: 0.7;
+	}
+
+	.sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		margin: -1px;
+		padding: 0;
+		overflow: hidden;
+		clip-path: inset(50%);
+		white-space: nowrap;
+	}
+
+	/* ==== container queries =============================================
+	   Against the viz pane, not the viewport, so the composition lays itself
+	   out from the room it actually has. */
+
+	@container viz (max-width: 46rem) {
+		.gamut-solid {
+			--pad-left: 1rem;
+			--pad-right: 1rem;
+			--bar-gap: 0.9rem;
+		}
+		.bars {
+			gap: 0.4rem;
+			padding: 0.7em;
+		}
+	}
+
+	/* Tighter still. The bars get thinner rather than going away — a phone is
+	   where a reader is most likely to want to push a slider around, and the
+	   thickness is VizTrack's own property so a container query can reach it
+	   where an inline style could not. */
+	@container viz (max-width: 30rem) {
+		.gamut-solid {
+			--pad-left: 0.6rem;
+			--pad-right: 0.6rem;
+			--bar-gap: 0.6rem;
+		}
+		.bars {
+			gap: 0.3rem;
+			padding: 0.55em;
+		}
+		.bar {
+			--track-size: 1rem;
+		}
+		/* The solid gives up width here rather than the plate running off the
+		   edge of the pane. Its square is a floor on how wide it wants to be,
+		   and a floor plus a plate is wider than a phone: something has to
+		   yield, and a smaller solid is better than controls and a caption half
+		   of which is past the edge. The canvas fits itself to whichever of its
+		   two sides is shorter, so shrinking it is only ever a smaller picture. */
+		.stage {
+			flex: 0 1 auto;
+			min-width: 0;
+		}
+		/* Capped to about the width of the three thin bars, so the caption wraps
+		   rather than setting how wide the plate is. */
+		.legend {
+			max-inline-size: 4.8rem;
+			padding: 0.25rem 0.35rem;
+			font-size: 0.5rem;
+			letter-spacing: 0.02em;
+		}
+		.oklch-string {
+			font-size: 0.85rem;
+		}
+	}
+</style>
+
+<script>
+	import { contextFor } from '../lib/animate';
+	import {
+		SPACE_LABEL,
+		decode,
+		linearToOklab,
+		maxChroma,
+		oklchCss,
+		toDisplay,
+		type Space,
+	} from '../lib/gamut';
+
+	type GL = WebGLRenderingContext | WebGL2RenderingContext;
+	type Quat = [number, number, number, number];
+	type TrackEl = HTMLElement & {
+		track: {
+			set(i: number, v: number): void;
+			backdrop(css: string): void;
+			edge(css: string): void;
+			marks(m: { at: number; colour?: string; strong?: boolean }[]): void;
+		};
+	};
+
+	const IDENTITY: Quat = [0, 0, 0, 1];
+
+	const qMul = (a: Quat, b: Quat): Quat => [
+		a[3] * b[0] + a[0] * b[3] + a[1] * b[2] - a[2] * b[1],
+		a[3] * b[1] - a[0] * b[2] + a[1] * b[3] + a[2] * b[0],
+		a[3] * b[2] + a[0] * b[1] - a[1] * b[0] + a[2] * b[3],
+		a[3] * b[3] - a[0] * b[0] - a[1] * b[1] - a[2] * b[2],
+	];
+
+	const qNorm = (q: Quat): Quat => {
+		const l = Math.hypot(q[0], q[1], q[2], q[3]) || 1;
+		return [q[0] / l, q[1] / l, q[2] / l, q[3] / l];
+	};
+
+	const qAxisAngle = (x: number, y: number, z: number, a: number): Quat => {
+		const l = Math.hypot(x, y, z);
+		if (!l || !a) return IDENTITY;
+		const s = Math.sin(a / 2) / l;
+		return [x * s, y * s, z * s, Math.cos(a / 2)];
+	};
+
+	/** Column-major, which is what WebGL wants for a mat3. */
+	const qMatrix = (q: Quat) => {
+		const [x, y, z, w] = q;
+		return new Float32Array([
+			1 - 2 * (y * y + z * z), 2 * (x * y + z * w), 2 * (x * z - y * w),
+			2 * (x * y - z * w), 1 - 2 * (x * x + z * z), 2 * (y * z + x * w),
+			2 * (x * z + y * w), 2 * (y * z - x * w), 1 - 2 * (x * x + y * y),
+		]);
+	};
+
+	/* CSS's own formula. What comes back is channel values in the space's own
+	   encoding — which is all the mesh needs, since it only uses them to walk
+	   the cube's surface, and the surface is the same set of colours whichever
+	   curve the walk is spaced by. */
+	const hslToRgb = (h: number, s: number, l: number) => {
+		const f = (n: number) => {
+			const k = (n + h * 12) % 12;
+			const a = s * Math.min(l, 1 - l);
+			return l - a * Math.max(-1, Math.min(k - 3, 9 - k, 1));
+		};
+		return [f(0), f(8), f(4)];
+	};
+
+	/* Divisions of the cube's skin. Hue is a multiple of six so the six corner
+	   hues fall on grid lines; lightness is even so the equator of corners does
+	   too. Past this the facets are smaller than the curvature they are
+	   approximating — a cube edge bows about a tenth of its length in OKLab,
+	   and a fortieth of that is a fifth of a thousandth. */
+	const HN = 120;
+	const LN = 40;
+
+	/** Where a colour sits: OKLab stood up, lightness along the screen's y. */
+	const place = (L: number, C: number, h: number): [number, number, number] => {
+		const rad = (h * Math.PI) / 180;
+		return [C * Math.cos(rad), L - 0.5, C * Math.sin(rad)];
+	};
+
+	/**
+	 * The solid, as vertices and triangles.
+	 *
+	 * One unit of chroma is one unit of lightness, deliberately: OKLab is built
+	 * so distance in it is difference to the eye, and stretching the chroma axis
+	 * to fill the frame would throw away the one property that makes it worth
+	 * plotting in.
+	 */
+	function mesh(space: Space, display: Space) {
+		const verts = new Float32Array((HN + 1) * (LN + 1) * 6);
+		let v = 0;
+		for (let li = 0; li <= LN; li++) {
+			for (let hi = 0; hi <= HN; hi++) {
+				const lin = hslToRgb(hi / HN, 1, li / LN).map(decode);
+				const [L, a, b] = linearToOklab(space, lin);
+				const [r, g, bl] = toDisplay(space, display, lin);
+				verts[v++] = a;
+				verts[v++] = L - 0.5;
+				verts[v++] = b;
+				verts[v++] = r;
+				verts[v++] = g;
+				verts[v++] = bl;
+			}
+		}
+
+		const index = new Uint16Array(HN * LN * 6);
+		let i = 0;
+		for (let li = 0; li < LN; li++) {
+			for (let hi = 0; hi < HN; hi++) {
+				const a = li * (HN + 1) + hi;
+				const b = a + 1;
+				const c = a + HN + 1;
+				const d = c + 1;
+				index[i++] = a; index[i++] = c; index[i++] = d;
+				index[i++] = a; index[i++] = d; index[i++] = b;
+			}
+		}
+		return { verts, index };
+	}
+
+	/** The twelve edges as quads: six vertices a segment, two positions each. */
+	function wire(space: Space) {
+		const out: number[] = [];
+		const at = (hDeg: number, l: number) => {
+			const lin = hslToRgb(hDeg / 360, 1, l).map(decode);
+			const [L, a, b] = linearToOklab(space, lin);
+			return [a, L - 0.5, b];
+		};
+		for (const [h0, l0, h1, l1] of EDGES) {
+			for (let i = 0; i < EDGE_STEPS; i++) {
+				const f0 = i / EDGE_STEPS;
+				const f1 = (i + 1) / EDGE_STEPS;
+				const p0 = at(h0 + (h1 - h0) * f0, l0 + (l1 - l0) * f0);
+				const p1 = at(h0 + (h1 - h0) * f1, l0 + (l1 - l0) * f1);
+				for (const [end, side] of LINE_PATTERN) out.push(...p0, ...p1, end, side);
+			}
+		}
+		return new Float32Array(out);
+	}
+
+	const VS = `
+		attribute vec3 aPos;
+		attribute vec3 aColor;
+		uniform mat3 uRot;
+		uniform vec2 uScale;
+		varying vec3 vColor;
+		void main() {
+			vColor = aColor;
+			vec3 v = uRot * aPos;
+			/* Orthographic on purpose: three solids are being compared by size,
+			   and perspective would hand the nearest one a few free percent. */
+			gl_Position = vec4(v.x * uScale.x, v.y * uScale.y, -v.z * 0.8, 1.0);
+		}
+	`;
+
+	const FS = `
+		precision mediump float;
+		varying vec3 vColor;
+		void main() { gl_FragColor = vec4(vColor, 1.0); }
+	`;
+
+	/* The dot is a screen-space disc at a projected point: a quad, expanded by
+	   pixels rather than by world units, so it is the same size whichever way
+	   the solid has been turned. */
+	const DOT_VS = `
+		attribute vec2 aCorner;
+		uniform mat3 uRot;
+		uniform vec2 uScale;
+		uniform vec3 uDot;
+		uniform vec2 uHalf;
+		uniform float uRadius;
+		varying vec2 vOffset;
+		void main() {
+			vec3 v = uRot * uDot;
+			vec2 s = vec2(v.x * uScale.x, v.y * uScale.y) * uHalf + aCorner * uRadius;
+			// Pixels, so the fragment shader can size the core and rim in them.
+			vOffset = aCorner * uRadius;
+			gl_Position = vec4(s / uHalf, -v.z * 0.8, 1.0);
+		}
+	`;
+
+	/* The same disc part one draws, down to the numbers: a core in pixels, a rim
+	   inside it, and a fill. Black and solid — the colour is on the swatch and
+	   in the reading, and a dot that carried it too would be a third voice
+	   saying the same thing, one that goes invisible whenever it lands on its
+	   own colour. A rim turns it into the series' hollow dot, which is what a
+	   colour outside the gamut gets: pale, with the dark line round it. */
+	const DOT_FS = `
+		precision highp float;
+		varying vec2 vOffset;
+		uniform float uCore;
+		uniform float uRim;
+		uniform vec3 uFill;
+		uniform float uAlpha;
+		void main() {
+			float d = length(vOffset);
+			float outer = 1.0 - smoothstep(uCore - 0.75, uCore + 0.75, d);
+			float inner = 1.0 - smoothstep(uCore - uRim - 0.75, uCore - uRim + 0.75, d);
+			// uAlpha is how much solid stands in front of it — see dotAlpha.
+			float a = uAlpha * outer;
+			gl_FragColor = vec4(mix(vec3(0.0), uFill, inner) * a, a);
+		}
+	`;
+
+	/* The twelve edges of the cube, said in the same (hue, lightness) the mesh
+	   is built from: three up from black to a primary, three on from a
+	   secondary to white, and the six of the equator between them — which on
+	   the cube is a skew hexagon and here is the ridge through the six cusps,
+	   the most colourful colours the screen has.
+
+	   Subdivided, because every one of them arrives in OKLab as a curve: a
+	   cube edge bows about a tenth of its own length on the way in, and a
+	   straight chord across that would cut visibly inside the surface it is
+	   supposed to be drawn on. */
+	const EDGES: [number, number, number, number][] = [
+		[0, 0, 0, 0.5], [120, 0, 120, 0.5], [240, 0, 240, 0.5],
+		[60, 0.5, 60, 1], [180, 0.5, 180, 1], [300, 0.5, 300, 1],
+		[0, 0.5, 60, 0.5], [60, 0.5, 120, 0.5], [120, 0.5, 180, 0.5],
+		[180, 0.5, 240, 0.5], [240, 0.5, 300, 0.5], [300, 0.5, 360, 0.5],
+	];
+	/** Segments per edge, and the six vertices that make each one a quad. */
+	const EDGE_STEPS = 16;
+	const LINE_PATTERN: [number, number][] = [
+		[0, -1], [1, -1], [1, 1],
+		[0, -1], [1, 1], [0, 1],
+	];
+
+	/* A line with a width in pixels rather than in the world: expanded across
+	   its own screen-space direction, because WebGL's own line width is 1 on
+	   every browser that matters and has been for years. */
+	const EDGE_VS = `
+		attribute vec3 aP0;
+		attribute vec3 aP1;
+		attribute float aEnd;
+		attribute float aSide;
+		uniform mat3 uRot;
+		uniform vec2 uScale;
+		uniform vec2 uHalf;
+		uniform float uWidth;
+		void main() {
+			vec3 v0 = uRot * aP0;
+			vec3 v1 = uRot * aP1;
+			vec2 s0 = vec2(v0.x * uScale.x, v0.y * uScale.y) * uHalf;
+			vec2 s1 = vec2(v1.x * uScale.x, v1.y * uScale.y) * uHalf;
+			vec2 along = s1 - s0;
+			// A segment can come out zero-length end-on; any direction will do.
+			vec2 dir = length(along) > 1e-4 ? normalize(along) : vec2(1.0, 0.0);
+			vec2 s = mix(s0, s1, aEnd) + vec2(-dir.y, dir.x) * (aSide * uWidth * 0.5);
+			/* Pulled a hair toward the eye. Every one of these lines lies exactly
+			   on the surface it is drawn over, and coincident depths decide which
+			   wins by rounding — which speckles a line along its length. A
+			   thousandth of the depth range is far less than the thickness of the
+			   solid and far more than the rounding. */
+			float z = mix(-v0.z, -v1.z, aEnd) * 0.8 - 0.004;
+			gl_Position = vec4(s / uHalf, z, 1.0);
+		}
+	`;
+
+	const EDGE_FS = `
+		precision highp float;
+		uniform vec4 uColor;
+		void main() { gl_FragColor = vec4(uColor.rgb * uColor.a, uColor.a); }
+	`;
+
+	/* Black where an edge is in front of the solid, white where it is behind it
+	   and being seen through — part one's convention, and the thing that makes a
+	   wireframe read as a solid rather than as a cage. */
+	const WIRE_SEEN: [number, number, number, number] = [0, 0, 0, 0.22];
+	const WIRE_HIDDEN: [number, number, number, number] = [1, 1, 1, 0.35];
+
+	function compile(gl: GL, type: number, src: string) {
+		const sh = gl.createShader(type)!;
+		gl.shaderSource(sh, src);
+		gl.compileShader(sh);
+		if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) {
+			throw new Error(gl.getShaderInfoLog(sh) || 'shader failed to compile');
+		}
+		return sh;
+	}
+
+	function program(gl: GL, vs: string, fs: string) {
+		const p = gl.createProgram()!;
+		gl.attachShader(p, compile(gl, gl.VERTEX_SHADER, vs));
+		gl.attachShader(p, compile(gl, gl.FRAGMENT_SHADER, fs));
+		gl.linkProgram(p);
+		if (!gl.getProgramParameter(p, gl.LINK_STATUS)) {
+			throw new Error(gl.getProgramInfoLog(p) || 'program failed to link');
+		}
+		return p;
+	}
+
+	/* The world radius every solid is fitted against. A constant rather than
+	   something measured off the meshes on show, so that two of these anywhere
+	   on the page are drawn to the same scale and can be compared — an
+	   auto-fitted sRGB solid would sit there looking exactly as big as a
+	   Rec.2020 one.
+
+	   Wide enough for the widest, and no wider: the furthest any vertex gets
+	   from the centre is Rec.2020's green primary at 0.573, against sRGB's
+	   0.513 — which is its white point, since the lightness axis is longer than
+	   any chroma a screen has. Fitting a sphere rather than the silhouette
+	   means a reader can drag the thing to any angle without it ever meeting an
+	   edge. */
+	const EXTENT = 0.59;
+	/** Where the turn starts, and how fast it goes on turning. */
+	const TILT: Quat = qAxisAngle(1, 0, 0, 0.36);
+	const AMBIENT_RATE = 0.3;
+
+	function init(root: HTMLElement) {
+		if (root.dataset.ready === 'true') return;
+		root.dataset.ready = 'true';
+
+		const canvas = root.querySelector<HTMLCanvasElement>('[data-canvas]')!;
+		let spaces = (root.dataset.spaces || 'srgb').split(',') as Space[];
+		let spin = root.dataset.spin !== 'false';
+		const zoom = Number(root.dataset.zoom || 1);
+		const controls = root.dataset.controls !== 'false';
+
+		/* What the post asked for, kept so a card that says nothing about a
+		   parameter can be given it back. A deck rebuilds the whole set of
+		   parameters from card one every time it moves, so "absent" means "as
+		   authored" rather than "as the last card left it" — without this,
+		   stepping back from the card that shows three solids would leave three
+		   solids on the cards before it. */
+		const AUTHORED = { spaces: [...spaces], spin };
+
+		const gl = (canvas.getContext('webgl2', {
+			alpha: true,
+			antialias: true,
+			depth: true,
+			premultipliedAlpha: true,
+			powerPreference: 'low-power',
+		}) || canvas.getContext('webgl')) as GL | null;
+		if (!gl) {
+			canvas.style.display = 'none';
+			return;
+		}
+
+		/* Ask for the wider buffer only when there is a screen to see it on.
+		   Requesting P3 on an sRGB monitor is not wrong — the compositor maps it
+		   back — but it costs precision for nothing, and this way `display` is a
+		   true statement about what the reader is looking at. */
+		let display: Space = 'srgb';
+		if ('drawingBufferColorSpace' in gl && matchMedia('(color-gamut: p3)').matches) {
+			try {
+				(gl as WebGL2RenderingContext).drawingBufferColorSpace = 'display-p3';
+				if ((gl as WebGL2RenderingContext).drawingBufferColorSpace === 'display-p3') {
+					display = 'p3';
+				}
+			} catch {
+				/* An engine that knows the property but not the value. Keep sRGB. */
+			}
+		}
+		root.dataset.display = display;
+
+		const prog = program(gl, VS, FS);
+		const aPos = gl.getAttribLocation(prog, 'aPos');
+		const aColor = gl.getAttribLocation(prog, 'aColor');
+		const uRot = gl.getUniformLocation(prog, 'uRot');
+		const uScale = gl.getUniformLocation(prog, 'uScale');
+
+		const progEdge = program(gl, EDGE_VS, EDGE_FS);
+		const edgeA = {
+			p0: gl.getAttribLocation(progEdge, 'aP0'),
+			p1: gl.getAttribLocation(progEdge, 'aP1'),
+			end: gl.getAttribLocation(progEdge, 'aEnd'),
+			side: gl.getAttribLocation(progEdge, 'aSide'),
+		};
+		const edgeU = {
+			rot: gl.getUniformLocation(progEdge, 'uRot'),
+			scale: gl.getUniformLocation(progEdge, 'uScale'),
+			half: gl.getUniformLocation(progEdge, 'uHalf'),
+			width: gl.getUniformLocation(progEdge, 'uWidth'),
+			colour: gl.getUniformLocation(progEdge, 'uColor'),
+		};
+
+		const progDot = program(gl, DOT_VS, DOT_FS);
+		const dotU = {
+			rot: gl.getUniformLocation(progDot, 'uRot'),
+			scale: gl.getUniformLocation(progDot, 'uScale'),
+			dot: gl.getUniformLocation(progDot, 'uDot'),
+			half: gl.getUniformLocation(progDot, 'uHalf'),
+			radius: gl.getUniformLocation(progDot, 'uRadius'),
+			core: gl.getUniformLocation(progDot, 'uCore'),
+			rim: gl.getUniformLocation(progDot, 'uRim'),
+			fill: gl.getUniformLocation(progDot, 'uFill'),
+			alpha: gl.getUniformLocation(progDot, 'uAlpha'),
+		};
+		const aCorner = gl.getAttribLocation(progDot, 'aCorner');
+		const bufQuad = gl.createBuffer();
+		gl.bindBuffer(gl.ARRAY_BUFFER, bufQuad);
+		gl.bufferData(
+			gl.ARRAY_BUFFER,
+			new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]),
+			gl.STATIC_DRAW,
+		);
+
+		/* One pair of buffers per solid, uploaded when the set of spaces changes
+		   and not again: the mesh is static once built, and re-sending a few
+		   thousand vertices every frame is the kind of cost that never shows up
+		   in a profile as anything but a warm laptop. */
+		type Piece = {
+			space: Space;
+			verts: WebGLBuffer;
+			index: WebGLBuffer;
+			count: number;
+			wire: WebGLBuffer;
+			wireCount: number;
+		};
+		let drawn: Piece[] = [];
+
+		const build = () => {
+			for (const piece of drawn) {
+				gl.deleteBuffer(piece.verts);
+				gl.deleteBuffer(piece.index);
+				gl.deleteBuffer(piece.wire);
+			}
+			drawn = spaces.map((s) => {
+				const { verts, index } = mesh(s, display);
+				const vb = gl.createBuffer()!;
+				gl.bindBuffer(gl.ARRAY_BUFFER, vb);
+				gl.bufferData(gl.ARRAY_BUFFER, verts, gl.STATIC_DRAW);
+				const ib = gl.createBuffer()!;
+				gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, ib);
+				gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, index, gl.STATIC_DRAW);
+				const wireVerts = wire(s);
+				const wb = gl.createBuffer()!;
+				gl.bindBuffer(gl.ARRAY_BUFFER, wb);
+				gl.bufferData(gl.ARRAY_BUFFER, wireVerts, gl.STATIC_DRAW);
+				return {
+					space: s,
+					verts: vb,
+					index: ib,
+					count: index.length,
+					wire: wb,
+					wireCount: wireVerts.length / 8,
+				};
+			});
+		};
+		build();
+
+		gl.enable(gl.DEPTH_TEST);
+		gl.clearColor(0, 0, 0, 0);
+
+		/* ---- the colour ------------------------------------------------------
+		   Three numbers, wherever they came from: the bars, or the wander that
+		   moves them when nobody is holding one. */
+		const [sL, sC, sH] = (root.dataset.start || '0.72,0.12,195').split(',').map(Number);
+		let L = sL;
+		let C = sC;
+		let H = sH;
+
+		const bars = Array.from(root.querySelectorAll<TrackEl>('.bar [data-viz-track]'));
+		const readout = root.querySelector<HTMLElement>('[data-oklch]');
+		const outside = root.querySelector<HTMLElement>('[data-outside]');
+		const legendMark = root.querySelector<HTMLElement>('[data-legend-mark]');
+		const ctx = contextFor(root.querySelector('[data-anim-context]') ?? root);
+
+		/** The most chroma sRGB holds where the other two bars are standing. */
+		let ceiling = maxChroma('srgb', L, H);
+
+		/** Is this world point inside that space's solid? */
+		const inside = (space: Space, x: number, y: number, z: number) => {
+			const l = y + 0.5;
+			if (l <= 0 || l >= 1) return false;
+			let h = (Math.atan2(z, x) * 180) / Math.PI;
+			if (h < 0) h += 360;
+			return Math.hypot(x, z) <= maxChroma(space, l, h);
+		};
+
+		/**
+		 * How much solid stands between the dot and the eye, and so how faint to
+		 * draw it.
+		 *
+		 * The cube in part one can do this in closed form — a ray against a box
+		 * is two comparisons per axis — but this boundary has no such form, so
+		 * the ray is walked instead: out from the dot toward the camera until it
+		 * leaves the solid, then halved a few times to find where it left. A
+		 * dozen fitted chromas once a frame, which is nothing next to the
+		 * quarter of a million the mesh cost to build.
+		 *
+		 * Beer-Lambert on the thickness, with a floor under it: a dot in the
+		 * middle of the solid has to stay findable, or the reader is left
+		 * dragging bars with nothing on screen answering them.
+		 */
+		const dotAlpha = (space: Space, p: number[], dir: number[]) => {
+			if (!inside(space, p[0], p[1], p[2])) return 1;
+			const STEP = 0.06;
+			let t = 0;
+			// Out through the surface, coarsely.
+			while (t < 1.4 && inside(space, p[0] + dir[0] * t, p[1] + dir[1] * t, p[2] + dir[2] * t)) {
+				t += STEP;
+			}
+			// And back onto it.
+			let lo = Math.max(0, t - STEP);
+			let hi = t;
+			for (let i = 0; i < 5; i++) {
+				const mid = (lo + hi) / 2;
+				if (inside(space, p[0] + dir[0] * mid, p[1] + dir[1] * mid, p[2] + dir[2] * mid)) lo = mid;
+				else hi = mid;
+			}
+			return Math.max(0.16, Math.exp(-3 * lo));
+		};
+
+		/** A fifth of the way to white: the series' edge, and this one's mark. */
+		const LIFT = 0.2;
+
+		const stopCss = (l: number, c: number, h: number, lift = 0) => {
+			const lifted = l + lift * (1 - l);
+			return oklchCss('srgb', display, lifted, Math.min(c, maxChroma('srgb', lifted, h)), h);
+		};
+
+		const ramp = (stops: number, at: (t: number) => [number, number, number], lift = 0) =>
+			Array.from({ length: stops + 1 }, (_, i) => {
+				const [l, c, h] = at(i / stops);
+				return stopCss(l, c, h, lift);
+			}).join(', ');
+
+		/**
+		 * The most colourful colour a hue has: its cusp, where the two straight
+		 * edges of the constant-hue triangle meet.
+		 *
+		 * A coarse walk up the lightness axis and then a couple of halvings
+		 * around the best of them. Twenty-odd fitted chromas rather than the
+		 * hundreds an exact search would take, and the answer only has to be
+		 * good enough to paint a three-pixel mark with — the cusp is a blunt
+		 * corner in colour terms, and a hundredth of lightness either side of it
+		 * is the same colour to look at.
+		 */
+		let inkHue = NaN;
+		let inkCss = '';
+		const cuspInk = (h: number) => {
+			// Held between frames: the search is two dozen fitted chromas, the
+			// hue moves a fraction of a degree per frame, and the answer is a
+			// colour nobody could tell apart half a degree either side.
+			if (Math.abs(h - inkHue) < 0.5) return inkCss;
+			inkHue = h;
+			let bestL = 0.5;
+			let bestC = -1;
+			for (let l = 0.05; l < 1; l += 0.05) {
+				const c = maxChroma('srgb', l, h);
+				if (c > bestC) {
+					bestC = c;
+					bestL = l;
+				}
+			}
+			for (let step = 0.025; step > 0.004; step /= 2) {
+				for (const dl of [-step, step]) {
+					const l = bestL + dl;
+					const c = maxChroma('srgb', l, h);
+					if (c > bestC) {
+						bestC = c;
+						bestL = l;
+					}
+				}
+			}
+			inkCss = oklchCss('srgb', display, bestL, bestC, h);
+			return inkCss;
+		};
+
+		/* What the colour is, said in the three places that say it every frame:
+		   the swatch behind everything, the reading in the corner, and the mark
+		   on the chroma bar where the screen runs out. */
+		const paint = () => {
+			ceiling = maxChroma('srgb', L, H);
+			if (!controls) return;
+			const colour = oklchCss('srgb', display, L, Math.min(C, ceiling), H);
+			root.style.setProperty('--swatch-a', colour);
+			/* Ink for whichever side of the swatch gives more contrast. OKLab's
+			   own lightness decides it, which is the whole reason this series is
+			   in this space: 0.6 is the middle of the eye's scale, not of the
+			   numbers. */
+			root.style.setProperty('--readout-ink', L > 0.6 ? '#12100c' : '#f6f1e6');
+			if (readout) {
+				readout.textContent = `oklch(${L.toFixed(2)} ${C.toFixed(2)} ${H.toFixed(0)})`;
+			}
+			if (outside) outside.hidden = C <= ceiling + 1e-4;
+			/* The boundary, on the bar that runs into it. It moves as the other
+			   two bars do, which is the point: there is no one number that is
+			   "full chroma".
+
+			   It is inked with the most colour this hue has anywhere — its cusp,
+			   which is a fact about chroma and so the right thing for a chroma
+			   limit to be painted in. The obvious alternative, the boundary
+			   colour itself, is exactly the colour of the ramp beneath the mark
+			   and disappears into it; lifting that off the ramp only gets a pale
+			   tick on a pale ramp. The cusp is the loud version of the same hue
+			   and lands away from wherever the lightness bar happens to be
+			   standing. Not `strong` — that size belongs to a mark the reader
+			   put there, and this one is the screen's. */
+			const edgeInk = cuspInk(H);
+			bars[1]?.track.marks([{ at: ceiling, colour: edgeInk }]);
+			if (legendMark) legendMark.style.setProperty('--legend-ink', edgeInk);
+		};
+
+		/* The ramps behind the bars, which are only true for where the other two
+		   bars are standing: a lightness ramp at one hue is a different ramp at
+		   another. Repainted on its own clock rather than with the colour — each
+		   one is fifty fitted chromas and a new CSS gradient on a glass panel,
+		   and the wander moves slowly enough that eight times a second is a
+		   smooth ramp and sixty is the same ramp with a warm fan. */
+		let sinceRamp = Infinity;
+		const SHAPES: { stops: number; at: () => (t: number) => [number, number, number] }[] = [
+			{ stops: 12, at: () => (t) => [t, C, H] },
+			{ stops: 12, at: () => (t) => [L, t * 0.4, H] },
+			{ stops: 24, at: () => (t) => [L, C, t * 360] },
+		];
+		const paintRamps = () => {
+			if (!controls) return;
+			sinceRamp = 0;
+			SHAPES.forEach((shape, i) => {
+				const at = shape.at();
+				bars[i]?.track.backdrop(`linear-gradient(to top, ${ramp(shape.stops, at)})`);
+				// And the edge round it, the same ramp lifted — see --track-edge.
+				bars[i]?.track.edge(`linear-gradient(to top, ${ramp(shape.stops, at, LIFT)})`);
+			});
+		};
+		paint();
+
+		/* The bars are the fact; the wander only moves them. Reading values back
+		   off the event rather than keeping a second copy means a reader's drag
+		   and the wander's step go through the same path. */
+		root.addEventListener('track:input', (e) => {
+			const detail = (e as CustomEvent).detail;
+			const bar = (e.target as HTMLElement).closest('.bar')?.dataset.bar;
+			if (bar === 'L') L = detail.value;
+			else if (bar === 'C') C = detail.value;
+			else if (bar === 'H') H = detail.value;
+			paint();
+			// A reader's own move gets the ramps immediately: they are looking at
+			// the bar they are holding, which is the one that just went stale.
+			paintRamps();
+		});
+
+		/* An incommensurate wander, as the cube's is, so the colour on show is
+		   never quite one it has shown before. Chroma is kept a fraction of what
+		   is available rather than a number of its own: a fixed chroma would
+		   spend half the tour outside the solid, and the dot floating in space
+		   is a thing to be shown on purpose, not the resting state. */
+		const wander = (t: number) => {
+			const l = 0.35 + 0.45 * (0.5 + 0.5 * Math.sin(t * 0.19 + 0.4));
+			const h = (t * 11 + 195) % 360;
+			const c = maxChroma('srgb', l, h) * (0.45 + 0.4 * (0.5 + 0.5 * Math.sin(t * 0.29 + 2.1)));
+			return [l, c, h] as [number, number, number];
+		};
+
+		/* ---- sizing ---------------------------------------------------------
+		   Noted in the observer, done in the frame: setting canvas.width clears
+		   the buffer, and an observation lands after the frame's callbacks and
+		   before paint, so resizing in there paints the cleared one. */
+		let w = 0;
+		let h = 0;
+		let dpr = 1;
+		const resize = () => {
+			dpr = Math.min(window.devicePixelRatio || 1, 2);
+			const r = canvas.getBoundingClientRect();
+			w = Math.max(1, r.width);
+			h = Math.max(1, r.height);
+			canvas.width = Math.round(w * dpr);
+			canvas.height = Math.round(h * dpr);
+			const size = Math.min(w / Math.max(1, spaces.length), h) * 0.5;
+			canvas.style.setProperty('--shadow-blur', `${(size * 0.34).toFixed(2)}px`);
+			canvas.style.setProperty('--shadow-y', `${(size * 0.09).toFixed(2)}px`);
+		};
+		let stale = true;
+		new ResizeObserver(() => (stale = true)).observe(canvas);
+		resize();
+
+		/* ---- the turn -------------------------------------------------------
+		   A drag adds to a standing offset and leaves a little velocity behind,
+		   so letting go coasts rather than stopping dead. */
+		const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+		let offset: Quat = IDENTITY;
+		let ambient = 0;
+		let velX = 0;
+		let velY = 0;
+		let dragging = false;
+		let pointerId = -1;
+		let last = [0, 0];
+
+		canvas.addEventListener('pointerdown', (e) => {
+			dragging = true;
+			pointerId = e.pointerId;
+			last = [e.clientX, e.clientY];
+			canvas.setPointerCapture(pointerId);
+		});
+		canvas.addEventListener('pointermove', (e) => {
+			if (!dragging || e.pointerId !== pointerId) return;
+			const dx = ((e.clientX - last[0]) / Math.max(1, h)) * 3;
+			const dy = ((e.clientY - last[1]) / Math.max(1, h)) * 3;
+			last = [e.clientX, e.clientY];
+			offset = qNorm(qMul(qMul(qAxisAngle(0, 1, 0, dx), qAxisAngle(1, 0, 0, dy)), offset));
+			velY = dx * 6;
+			velX = dy * 6;
+		});
+		const release = (e: PointerEvent) => {
+			if (e.pointerId !== pointerId) return;
+			dragging = false;
+			pointerId = -1;
+		};
+		canvas.addEventListener('pointerup', release);
+		canvas.addEventListener('pointercancel', release);
+
+		/* ---- the loop -------------------------------------------------------
+		   Only while the thing is on screen: a deck renders every phase up front,
+		   and a solid nobody is looking at should not be spending a frame. */
+		let running = false;
+		let prev = 0;
+		let clock = 0;
+		const frame = (now: number) => {
+			if (!running) return;
+			const dt = prev ? Math.min(0.05, (now - prev) / 1000) : 0;
+			prev = now;
+
+			if (stale) {
+				stale = false;
+				resize();
+			}
+
+			// --- the colour, when nobody is holding a bar
+			if (controls && !ctx.held && !reduceMotion) {
+				clock += dt;
+				const [l, c, hue] = wander(clock);
+				L = l;
+				C = c;
+				H = hue;
+				bars[0]?.track.set(0, L);
+				bars[1]?.track.set(0, C);
+				bars[2]?.track.set(0, H);
+				paint();
+			}
+			sinceRamp += dt;
+			if (controls && sinceRamp > 0.125) paintRamps();
+
+			// --- orientation
+			if (!reduceMotion && spin && !dragging) ambient += AMBIENT_RATE * dt;
+			if (!dragging) {
+				const decay = Math.exp(-1.8 * dt);
+				velX *= decay;
+				velY *= decay;
+				if (Math.abs(velX) > 1e-4 || Math.abs(velY) > 1e-4) {
+					offset = qNorm(
+						qMul(qMul(qAxisAngle(0, 1, 0, velY * dt), qAxisAngle(1, 0, 0, velX * dt)), offset),
+					);
+				}
+			}
+			const m = qMatrix(qMul(qMul(offset, TILT), qAxisAngle(0, 1, 0, ambient)));
+
+			gl.viewport(0, 0, canvas.width, canvas.height);
+			gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+
+			/* One viewport per solid, all fitted the same way: the scale comes
+			   from the width of a single cell, not from the canvas, so three
+			   solids are the same size as one and can be compared by eye. */
+			const cellW = canvas.width / drawn.length;
+			const fit = Math.min(cellW, canvas.height);
+			const sx = (fit / cellW) * (zoom / EXTENT);
+			const sy = (fit / canvas.height) * (zoom / EXTENT);
+
+			const dot = place(L, C, H);
+			/* Which way the eye lies, in the solid's own coordinates. The
+			   projection is orthographic, so it is one direction for every point:
+			   the model-space vector whose view z is 1, which is the third row of
+			   the rotation — and the matrix being column-major, that is every
+			   third element from the second. */
+			const toEye = [m[2], m[5], m[8]];
+			/* The same size part one's is, off the same short side. */
+			const core = Math.max(4, Math.min(cellW, canvas.height) * 0.5 * 0.038);
+
+			for (let i = 0; i < drawn.length; i++) {
+				gl.viewport(Math.round(i * cellW), 0, Math.round(cellW), canvas.height);
+
+				gl.enable(gl.DEPTH_TEST);
+				gl.disable(gl.BLEND);
+				gl.useProgram(prog);
+				gl.uniformMatrix3fv(uRot, false, m);
+				gl.uniform2f(uScale, sx, sy);
+				gl.bindBuffer(gl.ARRAY_BUFFER, drawn[i].verts);
+				gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, drawn[i].index);
+				gl.enableVertexAttribArray(aPos);
+				gl.vertexAttribPointer(aPos, 3, gl.FLOAT, false, 24, 0);
+				gl.enableVertexAttribArray(aColor);
+				gl.vertexAttribPointer(aColor, 3, gl.FLOAT, false, 24, 12);
+				gl.drawElements(gl.TRIANGLES, drawn[i].count, gl.UNSIGNED_SHORT, 0);
+
+				/* The twelve edges, twice: black where they are in front of the
+				   solid, white where they are behind it.
+
+				   Part one can sort that per edge, because a cube has six faces
+				   and an edge is seen exactly when one of its two is turned toward
+				   you. This shape has no faces to ask, so the depth buffer is
+				   asked instead — the same question, one fragment at a time. The
+				   hidden pass keeps the depth test but inverts it, so it draws
+				   only where something is already in front; nothing is written
+				   back, or the lines would start occluding each other. */
+				gl.enable(gl.BLEND);
+				gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+				gl.useProgram(progEdge);
+				gl.uniformMatrix3fv(edgeU.rot, false, m);
+				gl.uniform2f(edgeU.scale, sx, sy);
+				gl.uniform2f(edgeU.half, cellW / 2, canvas.height / 2);
+				gl.uniform1f(edgeU.width, Math.max(1, dpr));
+				gl.bindBuffer(gl.ARRAY_BUFFER, drawn[i].wire);
+				gl.enableVertexAttribArray(edgeA.p0);
+				gl.vertexAttribPointer(edgeA.p0, 3, gl.FLOAT, false, 32, 0);
+				gl.enableVertexAttribArray(edgeA.p1);
+				gl.vertexAttribPointer(edgeA.p1, 3, gl.FLOAT, false, 32, 12);
+				gl.enableVertexAttribArray(edgeA.end);
+				gl.vertexAttribPointer(edgeA.end, 1, gl.FLOAT, false, 32, 24);
+				gl.enableVertexAttribArray(edgeA.side);
+				gl.vertexAttribPointer(edgeA.side, 1, gl.FLOAT, false, 32, 28);
+
+				gl.depthMask(false);
+				gl.depthFunc(gl.GREATER);
+				gl.uniform4f(edgeU.colour, ...WIRE_HIDDEN);
+				gl.drawArrays(gl.TRIANGLES, 0, drawn[i].wireCount);
+				gl.depthFunc(gl.LESS);
+				gl.uniform4f(edgeU.colour, ...WIRE_SEEN);
+				gl.drawArrays(gl.TRIANGLES, 0, drawn[i].wireCount);
+				gl.depthMask(true);
+				gl.disableVertexAttribArray(edgeA.p0);
+				gl.disableVertexAttribArray(edgeA.p1);
+				gl.disableVertexAttribArray(edgeA.end);
+				gl.disableVertexAttribArray(edgeA.side);
+
+				if (!controls) continue;
+				/* The dot last and over the top of everything. Depth-tested it
+				   would be right most of the time and invisible the rest, since a
+				   colour is usually somewhere in the middle of the solid rather
+				   than on its skin — and a marker you cannot find is worse than one
+				   that admits it is floating in front. */
+				gl.disable(gl.DEPTH_TEST);
+				gl.enable(gl.BLEND);
+				gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+				gl.useProgram(progDot);
+				gl.uniformMatrix3fv(dotU.rot, false, m);
+				gl.uniform2f(dotU.scale, sx, sy);
+				gl.uniform3f(dotU.dot, dot[0], dot[1], dot[2]);
+				gl.uniform2f(dotU.half, cellW / 2, canvas.height / 2);
+				gl.uniform1f(dotU.radius, core + 1); // room for the soft edge
+				gl.uniform1f(dotU.core, core);
+				/* Solid black inside the gamut; the series' hollow dot — pale,
+				   with the dark line round it — for a colour the screen does not
+				   have. */
+				const away = C > ceiling + 1e-4;
+				gl.uniform1f(dotU.rim, away ? Math.max(1.5, core * 0.36) : 0);
+				if (away) gl.uniform3f(dotU.fill, 0.965, 0.945, 0.902);
+				else gl.uniform3f(dotU.fill, 0, 0, 0);
+				/* Per solid, not once for all of them: the same colour can be
+				   buried deep in Rec.2020 and sitting just under sRGB's skin, and
+				   the two dots saying so is the comparison working. */
+				gl.uniform1f(dotU.alpha, dotAlpha(drawn[i].space, dot, toEye));
+				gl.bindBuffer(gl.ARRAY_BUFFER, bufQuad);
+				gl.enableVertexAttribArray(aCorner);
+				gl.vertexAttribPointer(aCorner, 2, gl.FLOAT, false, 0, 0);
+				gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+			}
+
+			requestAnimationFrame(frame);
+		};
+
+		const start = () => {
+			if (running) return;
+			running = true;
+			prev = 0;
+			requestAnimationFrame(frame);
+		};
+		const stop = () => {
+			running = false;
+		};
+
+		new IntersectionObserver((entries) => {
+			for (const entry of entries) (entry.isIntersecting ? start : stop)();
+		}).observe(canvas);
+
+		canvas.addEventListener('webglcontextlost', (e) => {
+			e.preventDefault();
+			stop();
+		});
+
+		/* A card can hand over a different set of solids, or stop the turn. The
+		   meshes are rebuilt rather than morphed: they are a few thousand
+		   vertices of arithmetic, which is cheaper than the machinery for
+		   holding two of them at once. */
+		const host = root.closest('[data-viz-phase]') ?? root;
+		host.addEventListener('viz:props', (e) => {
+			const props = (e as CustomEvent).detail ?? {};
+			spin = 'spin' in props ? props.spin !== false : AUTHORED.spin;
+			const want = Array.isArray(props.spaces) ? (props.spaces as Space[]) : AUTHORED.spaces;
+			// Rebuilt only when the set actually changes: every card sends its
+			// whole set of parameters, and most of them are asking for the solid
+			// that is already standing there.
+			if (want.join(',') !== spaces.join(',')) {
+				spaces = [...want];
+				root.style.setProperty('--columns', String(spaces.length));
+				root.dataset.multi = String(spaces.length > 1);
+				const shelf = root.querySelector('.labels');
+				if (shelf) shelf.innerHTML = spaces.map((s) => `<span>${SPACE_LABEL[s]}</span>`).join('');
+				build();
+				stale = true;
+			}
+		});
+	}
+
+	for (const root of document.querySelectorAll<HTMLElement>('[data-gamut-solid]')) init(root);
+</script>

@@ -1,5 +1,5 @@
 ---
-title: "Colour #8s: Gamut"
+title: "Colour #9: Gamut"
 series: "Colour"
 format: "deck"
 ground: "dark"
@@ -23,7 +23,7 @@ import DeckViz from "../../components/DeckViz.astro";
 
   The CIE chromaticity chart shows all colors available to the human eye, laid out flat. The curve shows all spectral colors, and the bottom dotted line shows our non-spectral pinks and purples. 
 
-  It has to be said though that you are only looking at a *representation* of the chart, because your montior likely cannot display all the colors your eye can see.
+  It has to be said though that you are only looking at a *representation* of the chart, because your monitor likely cannot display all the colors your eye can see.
 </DeckCard>
 
 {/* The honest one. Everything the page cannot reach goes grey, and what is
@@ -41,7 +41,7 @@ import DeckViz from "../../components/DeckViz.astro";
 
   The color space problem is slowly being solved, with P3 monitors becoming more common, and Rec.2020 monitors starting to appear.
 
-  CSS has gotten support for color spaces beyond sRGB via the `color()` function in around 2023:
+  CSS got support for color spaces beyond sRGB via the `color()` function around 2023:
 
   ```css
   .p3 {
@@ -63,7 +63,7 @@ import DeckViz from "../../components/DeckViz.astro";
 
   Print uses a subtractive color model, meaning that mixing all the colors together produces black, and mixing none of them produces white. This is the opposite of monitors, which use an additive color model, where mixing all the colors together produces white, and mixing none of them produces black.
 
-  CMYK also works with different primary colors than monitors -- cyan, magenta and yellow -- which means that the colors it can produce is different from the triangle of colors a monitor can produce. The result is that CMYK can produce some colors that monitors cannot, and vice versa.
+  CMYK also works with different primary colors than monitors -- cyan, magenta and yellow -- which means that the colors it can produce are different from the triangle of colors a monitor can produce. The result is that CMYK can produce some colors that monitors cannot, and vice versa.
 
   Since mixing pigment is quite a bit different than mixing light, printing a photo on paper will never look quite the same as displaying it on a monitor. But nobody is printing photos anymore, right?
 </DeckCard>
