@@ -9,9 +9,10 @@
  * slides is not a comparison, it is a memory test.
  *
  * Each band is a <GradientBand>, so the framing, the fallback for a browser
- * that cannot parse the interpolation syntax, and the ends all behave the same
- * way as everywhere else in the series. What this adds is the stack and the
- * names — a band that does not say which space it is is half a picture.
+ * that cannot parse the interpolation syntax, the ends and the name set into
+ * the corner all behave the same way as everywhere else in the series. What
+ * this adds is only the stack, and which name goes on which band — a band
+ * that does not say which space it is is half a picture.
  */
 import GradientBand from './GradientBand.astro';
 
@@ -42,15 +43,13 @@ const {
 	{
 		spaces.map(({ space, name }) => (
 			<div class="row">
-				<span class="name">{name}</span>
-				<div class="band">
-					<GradientBand
-						from={from}
-						to={to}
-						space={space}
-						label={`A gradient from ${from} to ${to}, interpolated in ${name}.`}
-					/>
-				</div>
+				<GradientBand
+					from={from}
+					to={to}
+					space={space}
+					tag={name}
+					label={`A gradient from ${from} to ${to}, interpolated in ${name}.`}
+				/>
 			</div>
 		))
 	}
@@ -72,27 +71,5 @@ const {
 		flex: 1;
 		min-block-size: 0;
 		display: flex;
-		flex-direction: column;
-	}
-
-	/* Above its band rather than beside it: the bands run the width of the pane
-	   and a name in the margin would cost them the width it took. */
-	.name {
-		flex: none;
-		font-size: 0.75rem;
-		line-height: 1;
-		letter-spacing: 0.08em;
-		padding-block-end: 0.4rem;
-	}
-
-	.band {
-		flex: 1;
-		min-block-size: 0;
-	}
-
-	@container viz (max-width: 34rem) {
-		.name {
-			font-size: 0.65rem;
-		}
 	}
 </style>
