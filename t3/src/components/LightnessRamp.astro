@@ -1,0 +1,422 @@
+---
+/**
+ * One colour at several lightnesses, laid out as swatches — the thing everyone
+ * actually wants when they say they want "a colour" for an interface.
+ *
+ * Nobody ships one cyan. They ship a cyan for the button, a lighter one for
+ * the hover, a darker one for the text on top of it and three more for the
+ * states nobody thinks about until they are in the design review. What makes
+ * that a set rather than seven unrelated colours is that only the lightness is
+ * moving, and OKLCH is the space in which that sentence is true: step L there
+ * and the hue stays put, and equal steps look equal. Do the same in HSL and
+ * the ramp bends — the "same" blue goes purple as it darkens — because HSL's
+ * lightness is a fact about the RGB cube rather than about the eye.
+ *
+ * The ends of the ramp give way on chroma rather than on lightness. A screen
+ * simply has less saturated cyan available at 96% lightness than at 70%, so
+ * the fitted chroma there is a fraction of what was asked for — see fitChroma
+ * in lib/oklch.ts. That is the honest failure: the swatch is exactly the
+ * lightness it says it is, and what it gives up is colourfulness.
+ *
+ * The swatches build one after another rather than appearing at once, for the
+ * same reason the cards slide: a reader should see the ramp being laid out
+ * from light to dark, which is the order it is meant to be read in, and not a
+ * finished grid that they now have to work out the direction of. It replays
+ * whenever the card arrives, so nobody meets it half-built.
+ */
+import { shades, oklchCss } from '../lib/oklch';
+import ShadeMatch from './ShadeMatch.astro';
+
+interface Props {
+	/** Hue, in degrees. 195 is cyan; 30 orange; 264 blue. */
+	hue?: number;
+	/**
+	 * How colourful to ask for. Fitted per swatch to what sRGB has at that
+	 * lightness, so this is a ceiling rather than a promise — the middle of a
+	 * ramp will hold it and the ends will not.
+	 */
+	chroma?: number;
+	/** How many swatches. Ten, because ten is what a palette scale usually is. */
+	steps?: number;
+	/**
+	 * The lightnesses at the two ends, as OKLCH L from 0 to 1. Brightest first:
+	 * the ramp reads the way a palette is written down, 50 through 900.
+	 */
+	range?: [number, number];
+	/**
+	 * Print each swatch's lightness on it. Off by default: the ramp is about a
+	 * shape the eye can see without being told, and ten numbers across it
+	 * invite reading rather than looking.
+	 */
+	labels?: boolean;
+	/** Named under the ramp — for the numbers, when they are switched on. */
+	caption?: string | null;
+	/** Seconds between one swatch arriving and the next. */
+	stagger?: number;
+	/**
+	 * Hand the ramp over to the reader: two of its swatches become circles and
+	 * three RGB sliders appear, one shade to be matched to the other. The other
+	 * swatches fade out — see ShadeMatch, which owns everything that happens
+	 * after that.
+	 */
+	match?: boolean;
+	/**
+	 * Which two swatches do that, by index. The second one and the third from
+	 * the end by default: far enough apart to be plainly different shades, and
+	 * neither of them at an end where the ramp has run out of chroma and the
+	 * job is partly a grey.
+	 */
+	pick?: [number, number];
+}
+
+const {
+	hue = 195,
+	chroma = 0.13,
+	steps = 10,
+	range = [0.96, 0.16],
+	labels = false,
+	caption = null,
+	stagger = 0.055,
+	match = false,
+	pick,
+} = Astro.props;
+
+/* Rendered here as well as in the script: a card that never touches the ramp's
+   parameters should not have to wait for JavaScript to see it, and the script
+   only rebuilds when a card asks for something different. */
+const swatches = shades(steps, { from: range[0], to: range[1], chroma, hue });
+const clampIndex = (i: number) => Math.max(0, Math.min(steps - 1, Math.round(i)));
+const picked = (pick ?? [1, steps - 3]).map(clampIndex) as [number, number];
+/* Ink for the label: the same hue, taken to whichever end of the ramp the
+   swatch is not at. A palette that labels itself in its own colour. */
+const inkFor = (l: number) => oklchCss(l > 0.55 ? 0.18 : 0.97, 0.03, hue);
+---
+
+<figure
+	class="ramp"
+	data-ramp
+	data-hue={hue}
+	data-chroma={chroma}
+	data-steps={steps}
+	data-from={range[0]}
+	data-to={range[1]}
+	data-labels={labels ? 'true' : 'false'}
+	data-stagger={stagger}
+	data-match={match ? 'true' : 'false'}
+	data-pick={picked.join(',')}
+	data-mode={match ? 'match' : 'ramp'}
+	data-shown="false"
+>
+	<ol class="swatches" data-swatches style={`--stagger: ${stagger}s`}>
+		{
+			swatches.map((s, i) => (
+				<li
+					class="swatch"
+					style={`--i: ${i}; --fill: ${s.css}; --ink: ${inkFor(s.l)}`}
+					aria-label={`Lightness ${Math.round(s.l * 100)} percent`}
+				>
+					{labels && <span class="label">{Math.round(s.l * 100)}</span>}
+				</li>
+			))
+		}
+	</ol>
+	{caption && <figcaption data-caption>{caption}</figcaption>}
+	{/* Laid over the ramp rather than shown instead of it: the two swatches it
+	    takes over have to start life exactly where they already are. */}
+	<ShadeMatch home={swatches[picked[0]].rgb} target={swatches[picked[1]].rgb} />
+</figure>
+
+<style>
+	.ramp {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		min-width: 0;
+		min-height: 0;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		font-family: var(--font-mono);
+		color: var(--deck-ink-dim, #7a7264);
+	}
+
+	/* Stacked bars in a portrait pane, columns in a landscape one — either way
+	   the ramp runs along the pane's long axis, so the ten swatches get as much
+	   room to differ in as there is. Stacked is the default, so a browser
+	   without container queries gets the layout that survives a narrow pane.
+
+	   The pane has no bottom padding of its own; the air below the ramp is
+	   taken here. */
+	.swatches {
+		flex: 1;
+		min-width: 0;
+		min-height: 0;
+		display: grid;
+		grid-auto-flow: row;
+		grid-auto-rows: 1fr;
+		gap: 0.3rem;
+		margin: 0 0 1em;
+		padding: 0;
+		list-style: none;
+		transition: opacity 0.3s ease;
+	}
+
+	/* Handed over. The two swatches ShadeMatch has taken are covered by its own
+	   discs at the moment this lands, so what fades is the other eight. */
+	.ramp[data-mode='match'] .swatches {
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	@container viz (orientation: landscape) {
+		.swatches {
+			grid-auto-flow: column;
+			grid-auto-columns: 1fr;
+			grid-auto-rows: 1fr;
+		}
+	}
+
+	.swatches :global(.swatch) {
+		min-width: 0;
+		min-height: 0;
+		border-radius: 4px;
+		background: var(--fill);
+		display: flex;
+		align-items: flex-end;
+		justify-content: flex-end;
+		padding: 0.35rem 0.45rem;
+		/* Where each swatch comes in from, and how long it waits its turn. The
+		   delay is the resting state's, so the ramp builds on the way in and —
+		   with the delay dropped below — leaves all at once rather than
+		   unbuilding itself backwards. */
+		opacity: 0;
+		transform: translateY(0.6rem);
+		transition:
+			opacity 0.4s ease,
+			transform 0.4s ease;
+	}
+
+	.ramp[data-shown='true'] .swatches :global(.swatch) {
+		opacity: 1;
+		transform: none;
+		transition-delay: calc(var(--i) * var(--stagger));
+	}
+
+	.swatches :global(.label) {
+		font-size: 0.75rem;
+		line-height: 1;
+		letter-spacing: 0.04em;
+		color: var(--ink);
+	}
+
+	figcaption {
+		flex: none;
+		font-size: 0.75rem;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		text-align: center;
+		margin-bottom: 1rem;
+	}
+
+	@container viz (max-width: 26rem) {
+		.swatches :global(.label) {
+			font-size: 0.65rem;
+		}
+	}
+
+	/* The built ramp is the whole content; a reader who has asked for less
+	   movement should be handed it rather than shown it being assembled. */
+	@media (prefers-reduced-motion: reduce) {
+		.swatches :global(.swatch) {
+			transition: none;
+		}
+	}
+</style>
+
+<script>
+	import { shades, oklchCss } from '../lib/oklch';
+	import type { Rgb } from '../lib/rgb';
+
+	type Box = { x: number; y: number; w: number; h: number };
+	/** What ShadeMatch hangs on its own element. See ShadeMatch.astro. */
+	type MatchApi = {
+		attach(source: () => { rects: [Box, Box]; home: Rgb; target: Rgb }): void;
+		enter(animate: boolean): void;
+		exit(animate: boolean): void;
+	};
+
+	function initRamp(root: HTMLElement) {
+		if (root.dataset.ready === 'true') return;
+		root.dataset.ready = 'true';
+
+		const list = root.querySelector<HTMLOListElement>('[data-swatches]')!;
+		const caption = root.querySelector<HTMLElement>('[data-caption]');
+		const matchEl = root.querySelector<HTMLElement & { shadeMatch?: MatchApi }>(
+			'[data-shade-match]',
+		);
+		const host =
+			root.closest<HTMLElement>('[data-viz-phase]') ?? root.closest<HTMLElement>('[data-viz-stage]');
+
+		/* What the post asked for. A card that leaves a parameter out gets these
+		   back rather than whatever the card before it happened to set, which is
+		   the same rule every other viz in the series follows. */
+		const AUTHORED = {
+			hue: Number(root.dataset.hue),
+			chroma: Number(root.dataset.chroma),
+			steps: Number(root.dataset.steps),
+			from: Number(root.dataset.from),
+			to: Number(root.dataset.to),
+			labels: root.dataset.labels !== 'false',
+			caption: caption?.textContent ?? null,
+			match: root.dataset.match === 'true',
+			pick: (root.dataset.pick ?? '1,7').split(',').map(Number) as [number, number],
+		};
+		let state = { ...AUTHORED };
+
+		const still = matchMedia('(prefers-reduced-motion: reduce)');
+
+		let ramp = shades(state.steps, {
+			from: state.from,
+			to: state.to,
+			chroma: state.chroma,
+			hue: state.hue,
+		});
+
+		function build() {
+			ramp = shades(state.steps, {
+				from: state.from,
+				to: state.to,
+				chroma: state.chroma,
+				hue: state.hue,
+			});
+			list.replaceChildren(
+				...ramp.map((s, i) => {
+					const li = document.createElement('li');
+					li.className = 'swatch';
+					li.style.setProperty('--i', String(i));
+					li.style.setProperty('--fill', s.css);
+					li.style.setProperty('--ink', oklchCss(s.l > 0.55 ? 0.18 : 0.97, 0.03, state.hue));
+					li.setAttribute('aria-label', `Lightness ${Math.round(s.l * 100)} percent`);
+					if (state.labels) {
+						const label = document.createElement('span');
+						label.className = 'label';
+						label.textContent = String(Math.round(s.l * 100));
+						li.append(label);
+					}
+					return li;
+				}),
+			);
+			if (caption) {
+				caption.textContent = state.caption ?? '';
+				caption.hidden = !state.caption;
+			}
+		}
+
+		/* Where the two swatches the match takes over are, and what they hold.
+		   Measured on demand rather than remembered: the pane resizes, the cards
+		   change the ramp, and the answer is only ever wanted at the moment one
+		   of the discs is about to travel. */
+		const at = (i: number) => Math.max(0, Math.min(ramp.length - 1, Math.round(i)));
+
+		function source() {
+			const here = (matchEl ?? root).getBoundingClientRect();
+			const box = (i: number): Box => {
+				const r = (list.children[at(i)] as HTMLElement).getBoundingClientRect();
+				return { x: r.left - here.left, y: r.top - here.top, w: r.width, h: r.height };
+			};
+			const [a, b] = state.pick;
+			return {
+				rects: [box(a), box(b)] as [Box, Box],
+				home: ramp[at(a)].rgb,
+				target: ramp[at(b)].rgb,
+			};
+		}
+
+		matchEl?.shadeMatch?.attach(source);
+
+		/* Into the exercise and back out of it. The journey is worth watching
+		   only when there was a ramp on screen a moment ago to have come from:
+		   a reader landing on the card directly gets the two circles as the
+		   state of the card rather than as something that just happened. */
+		function mode(wasMatch: boolean, animate: boolean) {
+			root.dataset.mode = state.match ? 'match' : 'ramp';
+			if (state.match) {
+				root.dataset.shown = 'true';
+				matchEl?.shadeMatch?.enter(animate && !wasMatch);
+			} else if (wasMatch) {
+				root.dataset.shown = 'true';
+				matchEl?.shadeMatch?.exit(animate);
+			} else {
+				replay();
+			}
+		}
+
+		/* From nothing, again. Two frames rather than one: the swatches have to
+		   be painted in their starting state before the class that moves them off
+		   it lands, or the browser sees one style and there is no transition to
+		   run — which is exactly what a reader coming back to the card would
+		   get. */
+		let queued = 0;
+		function replay() {
+			cancelAnimationFrame(queued);
+			if (still.matches) {
+				root.dataset.shown = 'true';
+				return;
+			}
+			root.dataset.shown = 'false';
+			queued = requestAnimationFrame(() => {
+				queued = requestAnimationFrame(() => {
+					root.dataset.shown = 'true';
+				});
+			});
+		}
+
+		/* The deck hands over the first card's parameters as soon as it starts,
+		   which is not a change from anything and so is not something to watch
+		   happen. */
+		let first = true;
+
+		host?.addEventListener('viz:props', (e) => {
+			const p = ((e as CustomEvent).detail ?? {}) as Record<string, unknown>;
+			const num = (key: keyof typeof AUTHORED, given: unknown) =>
+				Number.isFinite(Number(given)) ? Number(given) : (AUTHORED[key] as number);
+			const range = Array.isArray(p.range) ? (p.range as unknown[]) : null;
+			const pick = Array.isArray(p.pick) ? (p.pick as unknown[]) : null;
+			const wasMatch = state.match;
+			state = {
+				hue: num('hue', p.hue),
+				chroma: num('chroma', p.chroma),
+				steps: Math.max(1, Math.round(num('steps', p.steps))),
+				from: num('from', range ? range[0] : undefined),
+				to: num('to', range ? range[1] : undefined),
+				labels: 'labels' in p ? Boolean(p.labels) : AUTHORED.labels,
+				caption: 'caption' in p ? (p.caption as string | null) : AUTHORED.caption,
+				match: 'match' in p ? Boolean(p.match) : AUTHORED.match,
+				pick: pick
+					? ([Number(pick[0]), Number(pick[1])] as [number, number])
+					: AUTHORED.pick,
+			};
+			build();
+			mode(wasMatch, !first && !still.matches);
+			first = false;
+		});
+
+		/* Rebuilt on the way in as well as on the way back, so the ramp is always
+		   laid out in front of the reader rather than found already there. */
+		host?.addEventListener('viz:enter', () => mode(state.match, false));
+		host?.addEventListener('viz:exit', () => {
+			cancelAnimationFrame(queued);
+			matchEl?.shadeMatch?.exit(false);
+			root.dataset.shown = 'false';
+		});
+		still.addEventListener('change', () => {
+			if (!state.match) replay();
+		});
+
+		// Outside a deck, or already the card on screen: nothing will announce it.
+		if (!host || host.dataset.vizActive !== 'false') mode(state.match, false);
+	}
+
+	document.querySelectorAll<HTMLElement>('[data-ramp]').forEach(initRamp);
+</script>

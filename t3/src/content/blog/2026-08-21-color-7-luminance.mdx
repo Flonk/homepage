@@ -1,0 +1,62 @@
+---
+title: "Colour #7: Luminance"
+series: "Colour"
+format: "deck"
+ground: "dark"
+description: ""
+pubDate: "August 21 2026"
+---
+
+import DeckCard from "../../components/DeckCard.astro";
+import DeckViz from "../../components/DeckViz.astro";
+import LightnessRamp from "../../components/LightnessRamp.astro";
+
+{/* One ramp for the whole post; every card drives it with vizProps -- which
+    hue, how many swatches, where the two ends sit. Cyan to start with, because
+    part five left off on olo and this is the same corner of the spectrum seen
+    from the practical end. See LightnessRamp for the whole contract. */}
+<DeckViz>
+  <LightnessRamp hue={195} chroma={0.13} steps={10} range={[0.96, 0.16]} />
+</DeckViz>
+
+<DeckCard>
+  ## Design systems need variety
+
+  A common task in web design is generating brighter and darker shades of a color, for example to render a button in a hover state, or bright text on a dark background.
+
+  We achieve this by moving the color closer to white or black in some form or another; but it turns it's not easy to do this in RGB, and really hard to do it well.
+  
+   
+</DeckCard>
+
+<DeckCard vizProps={{ match: true }}>
+  ## Try it in RGB
+
+  Here are two of those swatches on their own. They are the same colour at two lightnesses -- nothing else about them differs.
+
+  The three sliders are the only way across: red, green and blue, which is how a screen is actually addressed. Match the left circle to the right one by eye. Take your time; it gives up and goes back to where it started if you leave it alone for ten seconds.
+</DeckCard>
+
+<DeckCard vizProps={{ match: false }}>
+  ## Equal steps that look equal
+
+  Behind those ten swatches is one number counting evenly down -- OKLCH lightness, 96 to 16, in equal steps. The important part is that they *look* evenly spaced too: no two neighbours are further apart than any other two.
+
+  That is what OKLCH is for. Its L axis is fitted to how much difference the eye reports, so equal steps are equal-looking steps, and moving along it leaves the hue exactly where it was. HSL will also hand you a lightness slider, but that number is a fact about the RGB cube rather than about you -- step it and the ramp bends, blues drifting purple as they darken.
+</DeckCard>
+
+<DeckCard vizProps={{ range: [0.99, 0.05] }}>
+  ## What gives way at the ends
+
+  Push the ends further apart and the ramp runs out of colour before it runs out of lightness. The top swatch is nearly white and the bottom nearly black, and neither is very cyan any more.
+
+  That is not the ramp being sloppy. A screen simply holds less saturated cyan at 99% lightness than it does at 70%, so each swatch keeps the lightness it was asked for and gives up chroma instead -- which is the honest way round, and the reason to fit the chroma yourself rather than let something else decide what to sacrifice.
+</DeckCard>
+
+<DeckCard vizProps={{ hue: 30, range: [0.96, 0.16] }}>
+  ## The same ladder, any colour
+
+  Here is the identical set of ten lightnesses at hue 30 instead of 195. Orange, and the same ramp.
+
+  This is what makes lightness the axis worth building a palette on: the scales line up across colours. Your cyan-600 and your orange-600 are the same lightness, so anything that works on one works on the other -- the text stays readable, the borders stay visible, and swapping an accent colour stops being a re-design.
+</DeckCard>

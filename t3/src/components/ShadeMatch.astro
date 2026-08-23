@@ -1,0 +1,456 @@
+---
+/**
+ * Two circles and three RGB sliders: match the left one to the right one.
+ *
+ * The lightness post claims that making a lighter or darker version of a
+ * colour is hard to do in RGB. This is that claim handed to the reader
+ * instead of asserted at them. The right-hand disc is a shade of the same hue
+ * the left one started as; the only way across is three channel sliders, and
+ * the thing everyone tries first — drag all three down together — arrives
+ * somewhere greyer and slightly the wrong hue, because sRGB's axes are three
+ * primaries rather than lightness, saturation and hue.
+ *
+ * It is deliberately not scored. A meter reading "94% close" turns an
+ * experiment into a game, and the point is the feeling of hunting for a shade
+ * you can see perfectly well and cannot name in these three numbers. What it
+ * does do is give up: after ten seconds of nobody touching anything it eases
+ * back to the shade it started at, so a reader who has wandered off leaves the
+ * card in the state the next one expects, and one who is still looking has
+ * their own attempt in front of them for as long as they keep moving.
+ *
+ * It draws none of its own layout from the ramp it replaces — the host says
+ * where the two swatches are and what colours they hold, this places the
+ * discs there and then walks them to the circles. See `attach` at the bottom
+ * for the whole contract, and LightnessRamp for the one caller.
+ */
+import { lighten } from '../lib/oklch';
+import { rgbCss, type Rgb } from '../lib/rgb';
+import VizTrack from './VizTrack.astro';
+
+interface Props {
+	/** What the left disc starts as, and what it returns to. */
+	home?: Rgb;
+	/** What the right disc holds. */
+	target?: Rgb;
+	/** Seconds of nobody touching a slider before the left disc goes home. */
+	idleReturn?: number;
+}
+
+const { home = [180, 230, 240] as Rgb, target = [20, 90, 100] as Rgb, idleReturn = 10 } =
+	Astro.props;
+
+/* The same three bars as the cube's, and for the same reason: a channel
+   slider in this series looks like this. Black to a pastel of the channel,
+   because a bar that ran to full red would be a brighter thing than the two
+   beside it and would read as the important one. */
+const CHANNELS = [
+	{ name: 'Red', ramp: '#f16d6d' },
+	{ name: 'Green', ramp: '#7bd88f' },
+	{ name: 'Blue', ramp: '#6d9bf1' },
+];
+---
+
+<div class="shade-match" data-shade-match data-on="false" data-idle-return={idleReturn}>
+	{/* The room the two circles are given. Empty: the discs are placed over it
+	    in pixels rather than laid out in it, because the same two elements have
+	    to start life on top of two swatches in a grid that knows nothing about
+	    this. The padding at the end is where the tags go. */}
+	<div class="pair"><div class="room" data-pair></div></div>
+
+	{/* One context for the three of them — they are one colour between them.
+	    Nothing animates here, but a bar registers its own hold on the context
+	    when it is grabbed, and the return home is cancelled the same way. */}
+	<div
+		class="controls"
+		role="group"
+		aria-label="Red, green and blue"
+		data-anim-context
+		data-controls
+		inert
+	>
+		{
+			CHANNELS.map((ch, i) => (
+				<div
+					class="bar"
+					style={[
+						`--track-edge: linear-gradient(to top, ${lighten('#000000', 0.2)}, ${lighten(ch.ramp, 0.2)})`,
+						`--track-ring: ${lighten(ch.ramp, 0.2)}`,
+					].join('; ')}
+				>
+					<VizTrack
+						upright
+						size="1.7rem"
+						backdrop={`linear-gradient(to top, #000, ${ch.ramp})`}
+						thumbs={1}
+						values={[home[i]]}
+						min={0}
+						max={255}
+						step={1}
+						labels={[ch.name]}
+					/>
+					<span class="bar-name" aria-hidden="true">
+						{ch.name[0]}
+					</span>
+				</div>
+			))
+		}
+	</div>
+
+	{/* Over everything and never faded with the rest: these are the elements
+	    that travel, and a fade during the journey would read as two circles
+	    appearing rather than as two swatches becoming them. */}
+	<div class="discs" aria-hidden="true">
+		<div class="disc" data-disc="0" style={`--fill: ${rgbCss(home)}`}>
+			<span class="tag" data-tag>{rgbCss(home)}</span>
+		</div>
+		<div class="disc" data-disc="1" style={`--fill: ${rgbCss(target)}`}>
+			<span class="tag">target</span>
+		</div>
+	</div>
+</div>
+
+<style>
+	/* Laid over whatever it is replacing rather than in flow beside it: the
+	   host keeps its own picture where it is, and this is measured against the
+	   same box so the two agree about where a swatch was. */
+	.shade-match {
+		position: absolute;
+		inset: 0;
+		display: flex;
+		align-items: stretch;
+		gap: clamp(0.75rem, 3%, 2rem);
+		min-width: 0;
+		min-height: 0;
+		font-family: var(--font-mono);
+		color: var(--deck-ink-dim, #8891a0);
+		/* Off, the whole thing is scenery: the ramp underneath is what the
+		   reader is looking at, and the controls are inert besides. */
+		pointer-events: none;
+	}
+
+	.pair {
+		flex: 1;
+		min-width: 0;
+		min-height: 0;
+		display: flex;
+		flex-direction: column;
+		/* Room under the circles for the two tags. */
+		padding-block-end: 1.9rem;
+	}
+
+	.room {
+		flex: 1;
+		min-height: 0;
+	}
+
+	/* The controls, on a plate of their own — the same arrangement as the
+	   cube's channel bars. Lifted off the ground rather than painted a colour,
+	   so the panel reads as raised on either of the deck's two grounds. */
+	.controls {
+		flex: none;
+		display: flex;
+		gap: 0.9rem;
+		align-items: stretch;
+		box-sizing: border-box;
+		margin: 1em 0;
+		padding: 1em;
+		border-radius: 0.5rem;
+		background: var(--plate, rgb(255 255 255 / 0.06));
+		box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.08);
+		opacity: 0;
+		transition: opacity 0.3s ease;
+	}
+
+	.shade-match[data-on='true'] .controls {
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	/* What the track looks like, set as inherited properties rather than
+	   reached for with a selector — see VizTrack. One thumb here, so only the
+	   first ink is spoken for. */
+	.bar {
+		min-width: 0;
+		min-height: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.45rem;
+		--track-border: 1px solid transparent;
+		--track-radius: 4px;
+		--track-ink: #000;
+	}
+
+	.bar-name {
+		flex: none;
+		font-size: 0.8rem;
+		line-height: 1;
+		letter-spacing: 0.08em;
+	}
+
+	.discs {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+	}
+
+	/* Placed in pixels by the script, in both states: it is the same element
+	   over a swatch and over a circle, and the journey between the two is this
+	   transition. Everything that differs is transitioned, radius included —
+	   which is what turns a rounded rectangle into a disc rather than swapping
+	   one for the other. */
+	.discs :global(.disc) {
+		position: absolute;
+		box-sizing: border-box;
+		border-radius: 4px;
+		/* Not transitioned, unlike everything else here: the left disc is the
+		   readout for three sliders, and a colour half a second behind the
+		   thumb would read as the control being broken. */
+		background: var(--fill);
+		opacity: 0;
+		transition:
+			left 0.55s ease,
+			top 0.55s ease,
+			width 0.55s ease,
+			height 0.55s ease,
+			border-radius 0.55s ease,
+			opacity 0.25s ease;
+	}
+
+	/* Put somewhere without travelling: the first placement, and every resize
+	   after it. */
+	.discs :global(.disc.snap) {
+		transition: none;
+	}
+
+	/* On the way out the discs go back where the swatches are and only then
+	   stop being there, so the ramp fading in underneath is what is left. */
+	.discs :global(.disc.leaving) {
+		opacity: 0;
+		transition:
+			left 0.55s ease,
+			top 0.55s ease,
+			width 0.55s ease,
+			height 0.55s ease,
+			border-radius 0.55s ease,
+			opacity 0.2s ease 0.45s;
+	}
+
+	.discs :global(.tag) {
+		position: absolute;
+		inset-block-start: 100%;
+		inset-inline-start: 50%;
+		transform: translate(-50%, 0.55rem);
+		font-size: 0.75rem;
+		line-height: 1;
+		letter-spacing: 0.04em;
+		white-space: nowrap;
+		opacity: 0;
+		transition: opacity 0.3s ease;
+	}
+
+	.shade-match[data-on='true'] .discs :global(.tag) {
+		opacity: 1;
+	}
+
+	@container viz (max-width: 30rem) {
+		.discs :global(.tag) {
+			font-size: 0.65rem;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.discs :global(.disc),
+		.discs :global(.tag),
+		.controls {
+			transition-duration: 0.01ms;
+		}
+	}
+</style>
+
+<script>
+	import { rgbCss, type Rgb } from '../lib/rgb';
+
+	type Box = { x: number; y: number; w: number; h: number };
+	/** Where the two swatches are, and what the two discs hold. */
+	type Source = () => { rects: [Box, Box]; home: Rgb; target: Rgb };
+
+	type MatchApi = {
+		/** Where to come from and go back to. Asked again on every entry. */
+		attach(source: Source): void;
+		/** Take over: place the discs on the swatches, then walk them across. */
+		enter(animate: boolean): void;
+		/** Hand back: walk them home again and stop being there. */
+		exit(animate: boolean): void;
+	};
+
+	/* One journey out, at the pace everything in the series eases at: quick in
+	   the middle, gentle at both ends. Not lib/shuttle's, which is for a walk
+	   that turns round and comes back; this one only ever goes home. */
+	const smooth = (t: number) => t * t * (3 - 2 * t);
+
+	function initMatch(root: HTMLElement) {
+		if (root.dataset.ready === 'true') return;
+		root.dataset.ready = 'true';
+
+		const pair = root.querySelector<HTMLElement>('[data-pair]')!;
+		const controls = root.querySelector<HTMLElement>('[data-controls]')!;
+		const tag = root.querySelector<HTMLElement>('[data-tag]')!;
+		const discs = [...root.querySelectorAll<HTMLElement>('[data-disc]')];
+		const tracks = [...controls.querySelectorAll<HTMLElement>('[data-viz-track]')] as (HTMLElement & {
+			track: { set(i: number, v: number): void; get(i: number): number };
+		})[];
+		const idleReturn = Number(root.dataset.idleReturn) || 10;
+
+		let source: Source | null = null;
+		let on = false;
+		let home: Rgb = [0, 0, 0];
+		let idle: ReturnType<typeof setTimeout> | null = null;
+		let going = 0;
+
+		/* Where the two circles belong: as big as the room allows, side by side
+		   about its centre. Worked out here rather than laid out in CSS because
+		   the discs are positioned absolutely in both states — one box that is
+		   sometimes a swatch in a grid and sometimes a circle in the middle of
+		   the pane cannot be two layouts at once. */
+		function slots(): [Box, Box] {
+			const room = pair.getBoundingClientRect();
+			const here = root.getBoundingClientRect();
+			const gap = Math.max(12, room.width * 0.06);
+			const d = Math.max(24, Math.min(room.height, (room.width - gap) / 2, 260));
+			const cx = room.left - here.left + room.width / 2;
+			const cy = room.top - here.top + room.height / 2;
+			return [
+				{ x: cx - gap / 2 - d, y: cy - d / 2, w: d, h: d },
+				{ x: cx + gap / 2, y: cy - d / 2, w: d, h: d },
+			];
+		}
+
+		function place(i: number, box: Box, radius: string, snap: boolean) {
+			const el = discs[i];
+			el.classList.toggle('snap', snap);
+			el.style.left = `${box.x}px`;
+			el.style.top = `${box.y}px`;
+			el.style.width = `${box.w}px`;
+			el.style.height = `${box.h}px`;
+			el.style.borderRadius = radius;
+			if (snap) {
+				// Read something laid out, so the snap is a state and not a frame.
+				void el.offsetWidth;
+				el.classList.remove('snap');
+			}
+		}
+
+		/** What the sliders say. */
+		const reading = (): Rgb => [0, 1, 2].map((i) => tracks[i].track.get(0)) as Rgb;
+
+		function paint(rgb: Rgb) {
+			discs[0].style.setProperty('--fill', rgbCss(rgb));
+			tag.textContent = rgbCss(rgb);
+		}
+
+		function show(rgb: Rgb) {
+			rgb.forEach((v, i) => tracks[i].track.set(0, v));
+			paint(rgb);
+		}
+
+		function stopReturn() {
+			cancelAnimationFrame(going);
+			going = 0;
+			if (idle !== null) clearTimeout(idle);
+			idle = null;
+		}
+
+		/** Back to the shade it started as, once nobody has touched it in a while. */
+		function goHome() {
+			const from = reading();
+			const start = performance.now();
+			const step = (now: number) => {
+				const t = Math.min(1, (now - start) / 700);
+				const k = smooth(t);
+				show(from.map((v, i) => Math.round(v + (home[i] - v) * k)) as Rgb);
+				if (t < 1) going = requestAnimationFrame(step);
+				else going = 0;
+			};
+			going = requestAnimationFrame(step);
+		}
+
+		function touched() {
+			stopReturn();
+			paint(reading());
+			idle = setTimeout(goHome, idleReturn * 1000);
+		}
+
+		/* Both a drag and a keypress arrive as this, and the sweep never does —
+		   these bars have no motion of their own. */
+		root.addEventListener('track:input', touched);
+
+		const api: MatchApi = {
+			attach: (fn) => (source = fn),
+			enter: (animate) => {
+				const from = source?.();
+				if (!from) return;
+				stopReturn();
+				home = from.home;
+				discs[1].style.setProperty('--fill', rgbCss(from.target));
+				show(home);
+
+				const to = slots();
+				discs.forEach((el, i) => {
+					el.classList.remove('leaving');
+					el.style.opacity = '1';
+					place(i, animate ? from.rects[i] : to[i], animate ? '4px' : '50%', true);
+				});
+				root.dataset.on = 'true';
+				on = true;
+				controls.removeAttribute('inert');
+				/* Two frames: the swatch-shaped state has to be painted before the
+				   circle-shaped one lands, or the browser sees one style and there
+				   is nothing to transition between. */
+				if (animate) {
+					requestAnimationFrame(() =>
+						requestAnimationFrame(() => {
+							if (!on) return;
+							const now = slots();
+							discs.forEach((_, i) => place(i, now[i], '50%', false));
+						}),
+					);
+				}
+			},
+			exit: (animate) => {
+				if (!on) return;
+				on = false;
+				stopReturn();
+				root.dataset.on = 'false';
+				controls.setAttribute('inert', '');
+				const back = source?.();
+				if (back) {
+					discs[0].style.setProperty('--fill', rgbCss(back.home));
+					discs[1].style.setProperty('--fill', rgbCss(back.target));
+				}
+				discs.forEach((el, i) => {
+					if (animate && back) {
+						el.classList.add('leaving');
+						place(i, back.rects[i], '4px', false);
+					}
+					/* Inline, because inline is what put it up: a class cannot take
+					   an opacity back off an element that has one in its style
+					   attribute. The fade's delay lives in .leaving. */
+					el.style.opacity = '0';
+				});
+			},
+		};
+		(root as HTMLElement & { shadeMatch: MatchApi }).shadeMatch = api;
+
+		/* The circles are sized from the pane, so a pane that changes size moves
+		   them — without a journey, because nothing has happened that a reader
+		   should watch. */
+		new ResizeObserver(() => {
+			if (!on) return;
+			const now = slots();
+			discs.forEach((_, i) => place(i, now[i], '50%', true));
+		}).observe(root);
+	}
+
+	document.querySelectorAll<HTMLElement>('[data-shade-match]').forEach(initMatch);
+</script>
