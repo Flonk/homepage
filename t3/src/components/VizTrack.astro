@@ -270,10 +270,19 @@ const ends = Array.from({ length: thumbs }, (_, i) => i);
 		   else — and this is the way to paint an edge that changes along its own
 		   length. Nothing is drawn unless a host asks for it.
 
+		   `--track-rest` is a colour, and it is wrapped in a gradient to be
+		   used: only the last layer of the shorthand may carry a background
+		   colour, so a colour in this one — the first of two — threw the whole
+		   declaration out and the bar painted nothing at all. As a flat gradient
+		   it is an image, which any layer will take.
+
 		   Inside the box rather than around it, so a bar's painted size is the
 		   size it was given and two of them line up. */
 		background:
-			var(--track-backdrop, var(--backdrop, var(--track-rest, rgb(255 255 255 / 0.16))))
+			var(
+					--track-backdrop,
+					var(--backdrop, linear-gradient(var(--track-rest, rgb(255 255 255 / 0.16)) 0 0))
+				)
 				padding-box,
 			var(--track-edge, transparent) border-box;
 		box-sizing: border-box;
