@@ -1,0 +1,72 @@
+---
+/* Every corner the site rounds, counted where it is written, so this is also
+   the check that the scale holds: anything that turns up here and is not one
+   of the tokens is a corner somebody typed instead of choosing.
+
+   The workbench's own components are left out. A workbench is not the site,
+   and its corners should not be counted as if they were. */
+const sheets = import.meta.glob('../../{components,layouts,pages,styles}/**/*.{astro,css}', {
+	query: '?raw',
+	import: 'default',
+	eager: true,
+}) as Record<string, string>;
+
+const STEPS = ['small', 'medium', 'large', 'pill'];
+const counts = new Map(STEPS.map((n) => [n, 0]));
+for (const [file, text] of Object.entries(sheets)) {
+	if (file.includes('/ds/')) continue;
+	for (const [, name] of text.matchAll(/border-radius:\s*var\(--radius-([a-z]+)\)/g)) {
+		if (counts.has(name)) counts.set(name, counts.get(name)! + 1);
+	}
+}
+// In scale order, not by how popular each turned out to be.
+const RADII = STEPS.map((n) => [`--radius-${n}`, counts.get(n)!] as const);
+---
+
+<ul class="radii">
+	{
+		RADII.map(([name, count]) => (
+			<li>
+				<span class="corner" style={`border-radius: var(${name})`} />
+				<span class="name">{name}</span>
+				<span class="value">
+					{count} {count === 1 ? 'use' : 'uses'}
+				</span>
+			</li>
+		))
+	}
+</ul>
+
+<style>
+	/* At the size the corners are written for: small enough that 2px and 4px
+	   are still telling apart. */
+	.radii {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr));
+		gap: 1rem;
+		margin: 1.25rem 0 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.corner {
+		display: block;
+		block-size: 2.2rem;
+		background: var(--nord0);
+		border: 1px solid var(--edge-panel);
+		margin-bottom: 0.4rem;
+	}
+
+	.name {
+		display: block;
+		font-family: var(--font-mono);
+		font-size: 0.85em;
+	}
+
+	.value {
+		display: block;
+		font-family: var(--font-mono);
+		font-size: 0.68em;
+		color: var(--text-quiet);
+	}
+</style>

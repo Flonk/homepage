@@ -19,6 +19,9 @@ const blog = defineCollection({
 		// shares it — is painted on. A post about light wants the dark one; a
 		// post about ink or screens wants the light one.
 		ground: z.enum(['light', 'dark']).default('light'),
+		// Kept off the index, out of the feed and out of the sitemap, and given a
+		// noindex. For a post that is working material rather than writing.
+		hidden: z.boolean().default(false),
 		// Transform string to Date object
 		pubDate: z.coerce.date(),
 		updatedDate: z.coerce.date().optional(),

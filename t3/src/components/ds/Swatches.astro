@@ -1,0 +1,94 @@
+---
+// Every colour the stylesheet declares, read out of it at build time. Derive,
+// never transcribe: if a swatch here is wrong, global.css is wrong.
+import { converter } from 'culori';
+import { lighten } from '../../lib/oklch';
+import { LIFT } from './palette';
+// The stylesheet as text, inlined by the bundler. Reading it off disk instead
+// would be reading it from wherever the build happens to have put itself,
+// which is not where the source is.
+import css from '../../styles/global.css?raw';
+
+const root = css.slice(css.indexOf(':root'), css.indexOf('\n}', css.indexOf(':root')));
+const tokens = [...root.matchAll(/--([a-z0-9-]+):\s*(#[0-9a-fA-F]{3,8})\s*;/g)]
+	.map(([, name, hex]) => ({ name, hex }))
+	// The edges are derived from the palette rather than part of it, and the hex
+	// in the stylesheet is only what they fall back to where relative colour
+	// syntax is missing — listing it here would be the page telling a colour it
+	// does not paint.
+	.filter((t) => !t.name.startsWith('edge'));
+
+const toOklch = converter('oklch');
+const swatch = (t: { name: string; hex: string }) => {
+	const o = toOklch(t.hex)!;
+	return {
+		name: t.name,
+		hex: t.hex,
+		// The value as it would be written, not as a table of parts. A neutral has
+		// no hue to report, and culori says so with undefined; 0 is the convention
+		// for writing one down.
+		oklch: `oklch(${(o.l * 100).toFixed(2)}% ${o.c.toFixed(3)} ${(o.h ?? 0).toFixed(2)})`,
+		// Which way the words have to go to be read on it.
+		ink: o.l > 0.6 ? '#14161a' : '#eceff4',
+		edge: lighten(t.hex, LIFT),
+	};
+};
+
+// The two that are the site: what it is made of, and what it points with.
+const SITE = ['nordbg', 'accent'].map((n) => swatch(tokens.find((t) => t.name === n)!));
+// Everything else, in the order the stylesheet declares it.
+const REST = tokens.filter((t) => !['nordbg', 'accent'].includes(t.name)).map(swatch);
+---
+
+{
+	[SITE, REST].map((list) => (
+		<ul class="swatches">
+			{list.map((c) => (
+				<li style={`background: ${c.hex}; color: ${c.ink}; border-color: ${c.edge}`}>
+					<span class="name">--{c.name}</span>
+					<span class="value">{c.oklch}</span>
+				</li>
+			))}
+		</ul>
+	))
+}
+
+<style>
+	.swatches + .swatches {
+		margin-top: 2rem;
+	}
+
+	/* Wide enough that the oklch string never has to break. */
+	.swatches {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+		gap: 1rem;
+		margin: 1.25rem 0 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	/* One rectangle of the colour with its own name on it, which is also the
+	   only honest test of a colour: whether anything can be read on it. */
+	.swatches li {
+		padding: 2.6rem 0.7rem 0.6rem;
+		/* An FLB is one pixel, here and everywhere. */
+		border: 1px solid;
+		border-radius: var(--radius-small);
+	}
+
+	.name {
+		display: block;
+		font-family: var(--font-mono);
+		font-size: 0.85em;
+	}
+
+	/* Same ink as the name. Fading it left the dark swatches with a grey second
+	   line, which is a third colour nobody asked for. */
+	.value {
+		display: block;
+		font-family: var(--font-mono);
+		font-size: 0.68em;
+		white-space: nowrap;
+	}
+</style>

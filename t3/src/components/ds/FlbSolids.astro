@@ -1,0 +1,30 @@
+---
+// Three flat colours, each bordered in itself lifted. One colour in, one
+// colour out, so these are real borders.
+import { lighten } from '../../lib/oklch';
+import { LIFT } from './palette';
+
+const SOLIDS = ['#2e3440', '#ffa200', '#14161a'].map((hex) => ({
+	hex,
+	edge: lighten(hex, LIFT),
+}));
+---
+
+<div class="row">
+	{SOLIDS.map((c) => <div class="solid" style={`background: ${c.hex}; border-color: ${c.edge}`} />)}
+</div>
+
+<style>
+	.row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+	}
+
+	.solid {
+		flex: 1 1 8rem;
+		block-size: 4.5rem;
+		border-radius: var(--radius-large);
+		border: 1px solid;
+	}
+</style>

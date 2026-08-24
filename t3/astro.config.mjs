@@ -26,9 +26,8 @@ export default defineConfig({
   },
   integrations: [
     mdx(),
-    // The workbench at /designsystem is for whoever is building the site. It
-    // carries a noindex of its own; this keeps it from being announced in the
-    // first place.
+    // Hidden posts carry a noindex of their own; this keeps them from being
+    // announced in the first place. See `hidden` in content.config.ts.
     sitemap({ filter: (page) => !page.includes("/designsystem") }),
     react(),
   ],

@@ -1,0 +1,18 @@
+---
+// A ramp, and an edge that is a different colour at every point along it.
+import VizTrack from '../VizTrack.astro';
+import { HUE_EDGE, HUE_RAMP } from './palette';
+---
+
+<div class="bar" style={`--track-edge: ${HUE_EDGE}`}>
+	<VizTrack thumbs={0} fill={false} size="2.5rem" backdrop={HUE_RAMP} />
+</div>
+
+<style>
+	/* The edge is a custom property the bar reads off whatever it is inside,
+	   and the ring it shows through has to be asked for: a bar with no border
+	   has nowhere to put one. */
+	.bar {
+		--track-border: 1px solid transparent;
+	}
+</style>

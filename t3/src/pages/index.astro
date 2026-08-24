@@ -8,6 +8,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 import { SERIES_BLURBS, sortSeries } from '../series';
 
 const posts = (await getCollection('blog'))
+	.filter((post) => !post.data.hidden)
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 type Post = (typeof posts)[number];

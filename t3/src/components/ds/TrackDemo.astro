@@ -1,0 +1,21 @@
+---
+import VizTrack from '../VizTrack.astro';
+import { BED_EDGE, HUE_EDGE, HUE_RAMP, REST_ON_DARK } from './palette';
+---
+
+<div class="stack" style={`--track-rest: ${REST_ON_DARK}; --track-edge: ${BED_EDGE}`}>
+	<VizTrack thumbs={1} labels={['Value']} />
+	<div style={`--track-edge: ${HUE_EDGE}`}>
+		<VizTrack thumbs={1} backdrop={HUE_RAMP} size="2rem" labels={['Hue']} />
+	</div>
+	<VizTrack thumbs={2} labels={['Low', 'High']} />
+</div>
+
+<style>
+	.stack {
+		display: grid;
+		gap: 1.5rem;
+		/* Every bar here wears an edge, so every bar here needs a ring for it. */
+		--track-border: 1px solid transparent;
+	}
+</style>

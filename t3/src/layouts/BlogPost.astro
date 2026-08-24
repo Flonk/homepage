@@ -6,12 +6,13 @@ import Header from '../components/Header.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, hidden } = Astro.props;
 ---
 
 <html lang="en">
 	<head>
 		<BaseHead title={title} description={description} />
+		{hidden && <meta name="robots" content="noindex, nofollow" />}
 		<link href="
 https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css
 " rel="stylesheet">
