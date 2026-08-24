@@ -30,42 +30,23 @@ const toOklch = converter('oklch');
 const swatch = (t: { name: string; hex: string }) => {
 	const o = toOklch(t.hex)!;
 	return {
-		...t,
-		l: o.l,
-		c: o.c,
-		h: o.h ?? 0,
+		name: t.name,
+		hex: t.hex,
+		// The value as it would be written, not as a table of parts. A neutral
+		// has no hue to report, and culori says so with undefined; 0 is the
+		// convention for writing one down.
+		oklch: `oklch(${(o.l * 100).toFixed(2)}% ${o.c.toFixed(3)} ${(o.h ?? 0).toFixed(2)})`,
 		// Which way the label has to go to be read on it.
 		ink: o.l > 0.6 ? '#14161a' : '#eceff4',
 	};
 };
 
-const has = (...names: string[]) =>
-	names.flatMap((n) => tokens.filter((t) => t.name === n)).map(swatch);
-const range = (prefix: string, from: number, to: number) =>
-	has(...Array.from({ length: to - from + 1 }, (_, i) => `${prefix}${from + i}`));
+const by = (name: string) => tokens.find((t) => t.name === name)!;
 
-const GROUPS = [
-	{
-		name: 'Ground',
-		note: 'What the page is made of. The body is --nordbg; everything that sits on it is one of the greys above it.',
-		swatches: has('nordbg').concat(range('nord', 0, 3)),
-	},
-	{
-		name: 'Ink',
-		note: 'Body copy is --nord5. --nord4 is the quieter voice — blurbs, notes, anything the eye is allowed to skip.',
-		swatches: range('nord', 4, 6),
-	},
-	{
-		name: 'Signal',
-		note: '--accent is the site: the header block, the page border, a series rule, a hover. The nord hues below it belong to visualizations, one meaning each, and are not decoration to reach for.',
-		swatches: has('accent').concat(range('nord', 7, 15)),
-	},
-	{
-		name: 'Viz grounds',
-		note: "A deck post's visualization half is painted one of these two, chosen in its frontmatter. A component drawn for one reads wrong on the other, which is why specimens below say which they want.",
-		swatches: has('viz-beige', 'viz-dark'),
-	},
-];
+// The two that are the site: what it is made of, and what it points with.
+const SITE = ['nordbg', 'accent'].map((n) => swatch(by(n)));
+// Everything else, in the order the stylesheet declares it.
+const REST = tokens.filter((t) => !['nordbg', 'accent'].includes(t.name)).map(swatch);
 
 // The measures that are decided once and then meant everywhere.
 const MEASURES = [
@@ -124,6 +105,10 @@ border: 2px solid transparent;         /* reserves the ring, paints nothing */`;
 
 			/* Swatches ------------------------------------------------------ */
 
+			.swatches + .swatches {
+				margin-top: 2rem;
+			}
+
 			.swatches {
 				display: grid;
 				grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
@@ -147,19 +132,12 @@ border: 2px solid transparent;         /* reserves the ring, paints nothing */`;
 				font-size: 0.85em;
 			}
 
-			.numbers {
+			.value {
 				display: block;
 				padding: 0.45rem 0.7rem 0.55rem;
 				font-size: 0.72em;
-				line-height: 1.5;
 				color: var(--nord4);
 				background: var(--nord0);
-			}
-
-			.numbers b {
-				display: block;
-				font-weight: 400;
-				opacity: 0.65;
 			}
 
 			/* Measures ------------------------------------------------------ */
@@ -248,48 +226,31 @@ border: 2px solid transparent;         /* reserves the ring, paints nothing */`;
 		<main>
 			<section class="ds">
 				<h1>Design system</h1>
-				<p>
-					Everything here is read out of the source at build time. The swatches are
-					the custom properties in <code>global.css</code>; the numbers beside them
-					are computed from those values, and the components are the real ones.
-					Nothing on this page is a copy of the site, so nothing on it can go stale
-					while the site moves.
-				</p>
-
 				<h2>Colour</h2>
-				<p>
-					Hex is what the stylesheet says. OKLCh is what it means — and it is the
-					lightness column that matters most here, because it is the one that
-					decides whether two things read as a pair or as a step.
-				</p>
-
-				{
-					GROUPS.map((group) => (
-						<>
-							<h3>{group.name}</h3>
-							<p>{group.note}</p>
-							<ul class="swatches">
-								{group.swatches.map((s) => (
-									<li>
-										<span
-											class="chip"
-											style={`background: ${s.hex}; color: ${s.ink}`}
-										>
-											--{s.name}
-										</span>
-										<span class="numbers">
-											{s.hex}
-											<b>
-												L {s.l.toFixed(3)} · C {s.c.toFixed(3)} · H{' '}
-												{s.h.toFixed(1)}
-											</b>
-										</span>
-									</li>
-								))}
-							</ul>
-						</>
-					))
-				}
+				<ul class="swatches">
+					{
+						SITE.map((c) => (
+							<li>
+								<span class="chip" style={`background: ${c.hex}; color: ${c.ink}`}>
+									--{c.name}
+								</span>
+								<span class="value">{c.oklch}</span>
+							</li>
+						))
+					}
+				</ul>
+				<ul class="swatches">
+					{
+						REST.map((c) => (
+							<li>
+								<span class="chip" style={`background: ${c.hex}; color: ${c.ink}`}>
+									--{c.name}
+								</span>
+								<span class="value">{c.oklch}</span>
+							</li>
+						))
+					}
+				</ul>
 
 				<h2>Measures</h2>
 				<p>Decided once, and then meant everywhere.</p>
