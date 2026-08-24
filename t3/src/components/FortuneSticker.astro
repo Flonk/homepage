@@ -9,6 +9,7 @@ import '@fontsource/lobster/400.css';
 
 // A 22-point starburst, the shape every discount sticker has ever been. Cut as
 // a clip-path so the sunburst stripes underneath it get the jagged edge too.
+// Cut round; the CSS squashes it to the sticker's proportions afterwards.
 const POINTS = 22;
 const starburst = Array.from({ length: POINTS * 2 }, (_, i) => {
 	const r = i % 2 ? 37 : 50;
@@ -24,21 +25,39 @@ const starburst = Array.from({ length: POINTS * 2 }, (_, i) => {
 	aria-label="A sticker. Click it for another one."
 >
 	<span class="rays" aria-hidden="true"></span>
-	<span class="ring" aria-hidden="true"></span>
 	<span class="line" data-fortune-line></span>
 </button>
 
 <style define:vars={{ starburst }}>
 	.sticker {
-		--sticker-size: 13.5rem;
+		/* Wider than it is tall. The words are a line of prose, not a monogram,
+		   and a circle spends its height on the two or three characters that
+		   reach the top and bottom of it. Worst on a phone, where the sticker is
+		   as wide as the column and every row it wastes is a row to scroll past. */
+		--sticker-w: 15rem;
+		--squash: 0.74;
+		/* The blue across the wheel from blog orange — oklch(78.74% 0.1715
+		   69.12) — at the same lightness, so there is no brightness edge where
+		   the stripes meet, only a hue one. That is the whole trick: equal L and
+		   opposite hue is what makes them shimmer against each other, and it is
+		   also what lets one outline colour carry the words over both.
+
+		   It costs chroma. sRGB has no blue anywhere near that light with the
+		   orange's 0.1715 in it; 0.113 is the entire gamut at this L and hue,
+		   so the blue gives up saturation to keep the match. */
+		--sticker-blue: oklch(78.74% 0.113 249.12);
 
 		position: absolute;
-		top: -1.5rem;
-		right: -7.5rem;
+		top: -1rem;
+		right: -7rem;
 		z-index: 3;
 
-		width: var(--sticker-size);
-		height: var(--sticker-size);
+		width: var(--sticker-w);
+		/* Derived, not calculated from the width: the width is a min() with a
+		   percentage in it on a phone, and a percentage inside a height resolves
+		   against a parent height that is not there — the whole calc drops to
+		   auto and the sticker comes back square. */
+		aspect-ratio: 1 / var(--squash);
 		padding: 0;
 		border: none;
 		background: none;
@@ -46,8 +65,12 @@ const starburst = Array.from({ length: POINTS * 2 }, (_, i) => {
 
 		display: grid;
 		place-items: center;
-		/* Everything stacks in the one cell: rays, ring, words. */
+		/* Rays and words stack in the one cell. The row is pinned to the box
+		   rather than left on auto, or the rays — which are deliberately taller
+		   than the sticker before they are squashed — would size it themselves
+		   and push everything below them down the page. */
 		grid-template-areas: 'stack';
+		grid-template-rows: 100%;
 
 		transform: rotate(-11deg);
 		animation: sticker-wobble 3.4s ease-in-out infinite;
@@ -70,47 +93,46 @@ const starburst = Array.from({ length: POINTS * 2 }, (_, i) => {
 		outline-offset: 6px;
 	}
 
-	/* The starburst itself: hot pink behind, stripes of orange and yellow
-	   fanning out of the middle, the whole thing cut to points. */
+	/* The starburst, and there is nothing under the words but this: stripes of
+	   blog orange and the blue opposite it, cut to points, turning slowly.
+
+	   It is cut as a circle the full width of the sticker — overflowing the
+	   short box on purpose — and squashed back into it from outside the
+	   rotation, so the silhouette holds still while the spikes turn through it.
+	   Squashing the shape instead would have the outline breathe as it went. */
 	.rays {
-		width: 100%;
-		height: 100%;
-		clip-path: polygon(var(--starburst));
 		z-index: 0;
+		width: 100%;
+		aspect-ratio: 1;
+		clip-path: polygon(var(--starburst));
 		background: repeating-conic-gradient(
 			from 0deg,
-			#ff2e88 0deg 9deg,
-			#ff6a00 9deg 18deg
+			var(--accent) 0deg 9deg,
+			var(--sticker-blue) 9deg 18deg
 		);
+		transform: scaleY(var(--squash));
 		animation: sticker-spin 24s linear infinite;
-	}
-
-	/* A dashed disc over the middle, so the words sit on something flat. */
-	.ring {
-		z-index: 1;
-		width: 68%;
-		height: 68%;
-		border-radius: 50%;
-		background: #ffe600;
-		border: 3px dashed #1d1f21;
-		box-shadow: 0 0 0 6px #00e5ff;
 	}
 
 	.line {
 		z-index: 2;
-		/* Narrow enough that a full line still clears the disc where the
-		   circle has begun to close in on it, a couple of lines off centre. */
-		width: 56%;
+		/* Narrow enough to stay inside the valleys between the spikes, a couple
+		   of lines above and below the middle where the shape closes in. */
+		width: 68%;
 		font-family: 'Lobster', var(--font-mono);
-		font-size: 1rem;
-		line-height: 1.12;
+		font-size: 1.25rem;
+		line-height: 1.14;
 		font-weight: 400;
-		color: #1d1f21;
 		text-align: center;
 		text-wrap: balance;
-		/* Lobster's thin joins vanish against the yellow at this size. */
-		text-shadow: 0 1px 0 rgba(255, 255, 255, 0.85);
 		hyphens: none;
+		/* Outlined, because what is behind the words is orange under some of
+		   them and blue under the rest, and no single fill reads over both.
+		   Stroke first, so the outline sits behind the letter and not halfway
+		   across it. */
+		color: var(--nord6);
+		-webkit-text-stroke: 4px var(--nordbg);
+		paint-order: stroke fill;
 	}
 
 	/* Each new fortune lands like it was stamped there. */
@@ -129,8 +151,11 @@ const starburst = Array.from({ length: POINTS * 2 }, (_, i) => {
 	}
 
 	@keyframes sticker-spin {
+		from {
+			transform: scaleY(var(--squash)) rotate(0deg);
+		}
 		to {
-			transform: rotate(360deg);
+			transform: scaleY(var(--squash)) rotate(360deg);
 		}
 	}
 
@@ -152,26 +177,27 @@ const starburst = Array.from({ length: POINTS * 2 }, (_, i) => {
 	   comes in off the edge and shrinks rather than hanging off the viewport. */
 	@media (max-width: 1080px) {
 		.sticker {
-			--sticker-size: 11.5rem;
-			top: -3rem;
+			--sticker-w: 13rem;
+			top: -2.5rem;
 			/* Inside the wrapper here: hanging off would take the rotated
 			   corners past the viewport on the narrow end of this range. */
 			right: 0.5rem;
 		}
 		.line {
-			font-size: 0.88rem;
+			font-size: 1.1rem;
 		}
 	}
 
 	@media (max-width: 768px) {
 		.sticker {
-			--sticker-size: 12rem;
+			/* In the flow and centred here, so it can take the column's width. */
+			--sticker-w: min(16rem, 100%);
 			position: static;
 			display: grid;
 			margin: 0.5rem auto 2rem;
 		}
 		.line {
-			font-size: 0.9rem;
+			font-size: 1.2rem;
 		}
 	}
 
