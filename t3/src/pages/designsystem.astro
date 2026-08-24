@@ -7,10 +7,9 @@
 // out of global.css at build time and every number beside it is computed from
 // that value, so the page cannot drift from the site the way a hand-kept
 // swatch sheet does. If a colour here is wrong, global.css is wrong.
-import { converter } from 'culori';
+import { converter, formatHex } from 'culori';
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
-import PhotonWave from '../components/PhotonWave.astro';
 import VizTrack from '../components/VizTrack.astro';
 import Specimen from '../components/ds/Specimen.astro';
 import { lighten } from '../lib/oklch';
@@ -106,6 +105,15 @@ const SOLIDS = [
 
 const REAL_CSS = `background: var(--nord0);
 border: 1px solid <that colour, lifted>;`;
+
+// A hue wheel laid out flat, and the same wheel lifted for the ring around
+// it — built here the way the cube's channel bars and the solid's hue bar
+// build theirs, out of `lighten`.
+const toRgb = converter('rgb');
+const HUES = Array.from({ length: 25 }, (_, i) => i * 15);
+const hueHex = (d: number) => formatHex(toRgb({ mode: 'hsl', h: d, s: 1, l: 0.5 })!);
+const HUE_RAMP = `linear-gradient(to right, ${HUES.map(hueHex).join(', ')})`;
+const HUE_EDGE = `linear-gradient(to right, ${HUES.map((d) => lighten(hueHex(d), LIFT)).join(', ')})`;
 
 const FAKE_CSS = `background:
   <the ramp> padding-box,        /* stops at the inner edge */
@@ -216,6 +224,14 @@ border: 1px solid transparent;   /* reserves the ring, paints nothing */`;
 
 			/* The FLB ------------------------------------------------------- */
 
+			/* The edge is a custom property the bar reads off whatever it is
+			   inside, and the ring it shows through has to be asked for: a bar
+			   with no border has nowhere to put one. */
+			.flb-bar {
+				--track-border: 1px solid transparent;
+				--track-radius: var(--radius-large);
+			}
+
 			.flb-row {
 				display: flex;
 				flex-wrap: wrap;
@@ -296,11 +312,17 @@ border: 1px solid transparent;   /* reserves the ring, paints nothing */`;
 					}
 				</ul>
 
+				<h2>OKLCH</h2>
+
+				<div>Use OKLCH for everything.</div>
+
 				<h2>FLB</h2>
+
+				<div>Any border on an object should be an <em>FLB</em> (fake luminosity border).</div>
 
 				<Specimen
 					name="On a flat colour"
-					note="One colour in, one colour out, so it is a border."
+					note="If the element is a flat color, its border can be a real CSS border; same color but 20% lighter."
 					code={REAL_CSS}
 				>
 					<div class="flb-row">
@@ -317,11 +339,13 @@ border: 1px solid transparent;   /* reserves the ring, paints nothing */`;
 
 				<Specimen
 					name="On a ramp"
-					note="A border takes one colour and this edge is a different one at every point along the bar, so it is a second background layer instead."
+					note="If the content is a gradient or some other sort of non-solid colour, the border must be emulated to show a fake 1px ring of the same colour, 20% lighter, around the element."
 					code={FAKE_CSS}
 					ground="dark"
 				>
-					<PhotonWave />
+					<div class="flb-bar" style={`--track-edge: ${HUE_EDGE}`}>
+						<VizTrack thumbs={0} fill={false} size="2.5rem" backdrop={HUE_RAMP} />
+					</div>
 				</Specimen>
 
 				<h2>Components</h2>
