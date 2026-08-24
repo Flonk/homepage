@@ -1,0 +1,367 @@
+---
+// A garish sticker slapped onto the front page, reading a different cheesy
+// thing every few seconds. Nothing here informs anybody of anything; it is
+// there because a blog called T3 INTERBLAG REAL-ESTATE ought to have one.
+//
+// The face is Lobster, self-hosted the same way the prose serif is (see
+// BaseHead), so the sticker looks the same whether or not Google is reachable.
+import '@fontsource/lobster/400.css';
+
+// A 22-point starburst, the shape every discount sticker has ever been. Cut as
+// a clip-path so the sunburst stripes underneath it get the jagged edge too.
+const POINTS = 22;
+const starburst = Array.from({ length: POINTS * 2 }, (_, i) => {
+	const r = i % 2 ? 37 : 50;
+	const a = (Math.PI * i) / POINTS - Math.PI / 2;
+	return `${(50 + r * Math.cos(a)).toFixed(2)}% ${(50 + r * Math.sin(a)).toFixed(2)}%`;
+}).join(', ');
+---
+
+<button
+	class="sticker"
+	type="button"
+	data-fortune-sticker
+	aria-label="A sticker. Click it for another one."
+>
+	<span class="rays" aria-hidden="true"></span>
+	<span class="ring" aria-hidden="true"></span>
+	<span class="line" data-fortune-line></span>
+</button>
+
+<style define:vars={{ starburst }}>
+	.sticker {
+		--sticker-size: 13.5rem;
+
+		position: absolute;
+		top: -1.5rem;
+		right: -7.5rem;
+		z-index: 3;
+
+		width: var(--sticker-size);
+		height: var(--sticker-size);
+		padding: 0;
+		border: none;
+		background: none;
+		cursor: pointer;
+
+		display: grid;
+		place-items: center;
+		/* Everything stacks in the one cell: rays, ring, words. */
+		grid-template-areas: 'stack';
+
+		transform: rotate(-11deg);
+		animation: sticker-wobble 3.4s ease-in-out infinite;
+		filter: drop-shadow(0 6px 0 rgba(0, 0, 0, 0.45));
+	}
+
+	/* All three share the one cell. The rays animate, which makes them a
+	   stacking context and would otherwise paint them over their own siblings,
+	   so the order is spelled out. Grid items take z-index unpositioned. */
+	.sticker > * {
+		grid-area: stack;
+	}
+
+	.sticker:hover {
+		animation-play-state: paused;
+	}
+
+	.sticker:focus-visible {
+		outline: 3px dashed var(--nord6);
+		outline-offset: 6px;
+	}
+
+	/* The starburst itself: hot pink behind, stripes of orange and yellow
+	   fanning out of the middle, the whole thing cut to points. */
+	.rays {
+		width: 100%;
+		height: 100%;
+		clip-path: polygon(var(--starburst));
+		z-index: 0;
+		background: repeating-conic-gradient(
+			from 0deg,
+			#ff2e88 0deg 9deg,
+			#ff6a00 9deg 18deg
+		);
+		animation: sticker-spin 24s linear infinite;
+	}
+
+	/* A dashed disc over the middle, so the words sit on something flat. */
+	.ring {
+		z-index: 1;
+		width: 68%;
+		height: 68%;
+		border-radius: 50%;
+		background: #ffe600;
+		border: 3px dashed #1d1f21;
+		box-shadow: 0 0 0 6px #00e5ff;
+	}
+
+	.line {
+		z-index: 2;
+		/* Narrow enough that a full line still clears the disc where the
+		   circle has begun to close in on it, a couple of lines off centre. */
+		width: 56%;
+		font-family: 'Lobster', var(--font-mono);
+		font-size: 1rem;
+		line-height: 1.12;
+		font-weight: 400;
+		color: #1d1f21;
+		text-align: center;
+		text-wrap: balance;
+		/* Lobster's thin joins vanish against the yellow at this size. */
+		text-shadow: 0 1px 0 rgba(255, 255, 255, 0.85);
+		hyphens: none;
+	}
+
+	/* Each new fortune lands like it was stamped there. */
+	.sticker[data-stamping] .line {
+		animation: sticker-stamp 0.34s cubic-bezier(0.2, 1.5, 0.4, 1);
+	}
+
+	@keyframes sticker-wobble {
+		0%,
+		100% {
+			transform: rotate(-11deg) scale(1);
+		}
+		50% {
+			transform: rotate(-6deg) scale(1.04);
+		}
+	}
+
+	@keyframes sticker-spin {
+		to {
+			transform: rotate(360deg);
+		}
+	}
+
+	@keyframes sticker-stamp {
+		from {
+			transform: scale(1.9);
+			opacity: 0;
+		}
+		60% {
+			transform: scale(0.94);
+			opacity: 1;
+		}
+		to {
+			transform: scale(1);
+		}
+	}
+
+	/* Below the point where main stops having margins to spare, the sticker
+	   comes in off the edge and shrinks rather than hanging off the viewport. */
+	@media (max-width: 1080px) {
+		.sticker {
+			--sticker-size: 11.5rem;
+			top: -3rem;
+			/* Inside the wrapper here: hanging off would take the rotated
+			   corners past the viewport on the narrow end of this range. */
+			right: 0.5rem;
+		}
+		.line {
+			font-size: 0.88rem;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.sticker {
+			--sticker-size: 12rem;
+			position: static;
+			display: grid;
+			margin: 0.5rem auto 2rem;
+		}
+		.line {
+			font-size: 0.9rem;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.sticker,
+		.rays,
+		.sticker[data-stamping] .line {
+			animation: none;
+		}
+	}
+</style>
+
+<script>
+	// Cheesy things a sticker can say. Two of them are load-bearing: the orange
+	// one is true, and the ä one is a promise the keydown handler below keeps.
+	const FORTUNES = [
+		'This blog was orange before it was cool',
+		"Press 'ä' to 'ä'",
+		'100% hand-typed characters',
+		'Now with colours you can see!',
+		'As seen on at least one screen',
+		'No cookies. Not even the good ones.',
+		'Prime interblag real-estate!',
+		'Ask your doctor about OKLCH',
+		'Zero (0) newsletters, forever',
+		'Works on my machine',
+		'Batteries not included',
+		'Still under construction',
+		'Warning: contains monospace',
+		'Free with every visit!',
+		'Best viewed in a browser',
+		'Some assembly required',
+	];
+
+	// What it says the moment the promise is kept.
+	const PAYOFF = 'ÄÄÄÄÄÄÄ!!!';
+
+	const sticker = document.querySelector<HTMLElement>('[data-fortune-sticker]');
+	const line = document.querySelector<HTMLElement>('[data-fortune-line]');
+	if (sticker && line) {
+		let shown = -1;
+
+		function say(text: string) {
+			line!.textContent = text;
+			// Restarting a CSS animation needs the attribute to actually leave and
+			// come back with a reflow in between.
+			sticker!.removeAttribute('data-stamping');
+			void sticker!.offsetWidth;
+			sticker!.setAttribute('data-stamping', '');
+		}
+
+		// Never the same one twice running — a sticker that appears not to have
+		// changed reads as broken rather than as coincidence.
+		function next() {
+			let i = shown;
+			while (i === shown) i = Math.floor(Math.random() * FORTUNES.length);
+			shown = i;
+			say(FORTUNES[i]);
+		}
+
+		next();
+
+		// It turns itself over. Waiting to be clicked would mean most readers
+		// only ever see the one fortune they happened to load.
+		let timer = window.setInterval(next, 6500);
+		const restart = () => {
+			clearInterval(timer);
+			timer = window.setInterval(next, 6500);
+		};
+
+		sticker.addEventListener('click', () => {
+			next();
+			restart();
+		});
+
+		// --- the ä ---
+
+		const GARISH = [
+			'#ff2e88',
+			'#ffa200',
+			'#ffe600',
+			'#00e5ff',
+			'#7cff00',
+			'#ff5e00',
+			'#ff00ff',
+			'#ffffff',
+		];
+
+		let storming = false;
+
+		function storm() {
+			if (storming) return;
+			storming = true;
+
+			const layer = document.createElement('div');
+			layer.className = 'ae-storm';
+			document.body.appendChild(layer);
+
+			// They come out of the sticker, which is the thing that made the
+			// promise, and carry on well past the far edge.
+			const box = sticker!.getBoundingClientRect();
+			const originX = box.left + box.width / 2;
+			const originY = box.top + box.height / 2;
+			const reach =
+				Math.hypot(window.innerWidth, window.innerHeight) * 1.15;
+
+			const running: Animation[] = [];
+			for (let i = 0; i < 220; i++) {
+				const glyph = document.createElement('span');
+				glyph.textContent = 'ä';
+				glyph.style.left = `${originX}px`;
+				glyph.style.top = `${originY}px`;
+				glyph.style.color = GARISH[i % GARISH.length];
+				glyph.style.fontSize = `${1 + Math.random() * 6}rem`;
+				layer.appendChild(glyph);
+
+				const angle = Math.random() * Math.PI * 2;
+				const distance = reach * (0.35 + Math.random() * 0.75);
+				const spin = (Math.random() - 0.5) * 1440;
+				const flight = 900 + Math.random() * 1500;
+
+				// Two animations, because they want different clocks: the flight
+				// is fast off the mark and coasting by the end, while the fade has
+				// to stay out of the way until the last third — one eased curve
+				// over both would have them washed out crossing mid-screen.
+				running.push(
+					glyph.animate(
+						[
+							{ transform: 'translate(-50%, -50%) scale(0.2) rotate(0deg)' },
+							{
+								transform: `translate(calc(-50% + ${Math.cos(angle) * distance}px), calc(-50% + ${Math.sin(angle) * distance}px)) scale(1) rotate(${spin}deg)`,
+							},
+						],
+						{
+							duration: flight,
+							easing: 'cubic-bezier(0.12, 0.7, 0.3, 1)',
+							fill: 'forwards',
+						},
+					),
+				);
+				glyph.animate([{ opacity: 1 }, { opacity: 0 }], {
+					duration: flight * 0.35,
+					delay: flight * 0.65,
+					fill: 'forwards',
+				});
+			}
+
+			say(PAYOFF);
+			restart();
+
+			Promise.allSettled(running.map((a) => a.finished)).then(() => {
+				layer.remove();
+				storming = false;
+			});
+		}
+
+		addEventListener('keydown', (event) => {
+			if (event.key !== 'ä' && event.key !== 'Ä') return;
+			if (event.repeat || event.metaKey || event.ctrlKey || event.altKey) return;
+
+			// Somebody typing ä into a field means the letter, not the fireworks.
+			const target = event.target;
+			if (
+				target instanceof HTMLElement &&
+				(target.isContentEditable ||
+					target.closest('input, textarea, select'))
+			) {
+				return;
+			}
+
+			storm();
+		});
+	}
+</script>
+
+<style is:global>
+	/* The storm layer lives on <body>, above everything, catching nothing. */
+	.ae-storm {
+		position: fixed;
+		inset: 0;
+		z-index: 999;
+		pointer-events: none;
+		overflow: hidden;
+	}
+
+	.ae-storm span {
+		position: absolute;
+		font-family: 'Lobster', var(--font-mono);
+		line-height: 1;
+		will-change: transform, opacity;
+		text-shadow: 0 2px 0 rgba(0, 0, 0, 0.35);
+	}
+</style>

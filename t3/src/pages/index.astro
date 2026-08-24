@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import FormattedDate from '../components/FormattedDate.astro';
+import FortuneSticker from '../components/FortuneSticker.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 import { SERIES_BLURBS, sortSeries } from '../series';
@@ -50,7 +51,8 @@ const stripSeriesPrefix = (title: string, series: string) => {
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 		<style>
 			.index-wrapper {
-				/* desktop can stay as-is */
+				/* The sticker hangs off the top-right corner of this. */
+				position: relative;
 			}
 
 			ul {
@@ -190,6 +192,7 @@ const stripSeriesPrefix = (title: string, series: string) => {
 		<Header />
 		<main>
 			<section class="index-wrapper">
+				<FortuneSticker />
 				<h2>Blog</h2>
 				<ul>
 					{
