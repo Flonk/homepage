@@ -1,0 +1,410 @@
+---
+// The workbench. Not linked from anywhere and kept out of the sitemap (see
+// astro.config) — it is for whoever is building the site, not for whoever is
+// reading it.
+//
+// The rule for this page: derive, never transcribe. Every token below is read
+// out of global.css at build time and every number beside it is computed from
+// that value, so the page cannot drift from the site the way a hand-kept
+// swatch sheet does. If a colour here is wrong, global.css is wrong.
+import { converter } from 'culori';
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import VizTrack from '../components/VizTrack.astro';
+import Specimen from '../components/ds/Specimen.astro';
+import { lighten } from '../lib/oklch';
+// The stylesheet as text, inlined by the bundler at build time. Reading it off
+// disk instead would be reading it from wherever the build happens to have put
+// itself, which is not where the source is.
+import css from '../styles/global.css?raw';
+
+// Only the hex-valued custom properties in the first :root block. Anything
+// that is a stack, a length or a shadow is not a swatch and belongs in the
+// measures table further down.
+const root = css.slice(css.indexOf(':root'), css.indexOf('\n}', css.indexOf(':root')));
+const tokens = [...root.matchAll(/--([a-z0-9-]+):\s*(#[0-9a-fA-F]{3,8})\s*;/g)].map(
+	([, name, hex]) => ({ name, hex }),
+);
+
+const toOklch = converter('oklch');
+const swatch = (t: { name: string; hex: string }) => {
+	const o = toOklch(t.hex)!;
+	return {
+		...t,
+		l: o.l,
+		c: o.c,
+		h: o.h ?? 0,
+		// Which way the label has to go to be read on it.
+		ink: o.l > 0.6 ? '#14161a' : '#eceff4',
+	};
+};
+
+const has = (...names: string[]) =>
+	names.flatMap((n) => tokens.filter((t) => t.name === n)).map(swatch);
+const range = (prefix: string, from: number, to: number) =>
+	has(...Array.from({ length: to - from + 1 }, (_, i) => `${prefix}${from + i}`));
+
+const GROUPS = [
+	{
+		name: 'Ground',
+		note: 'What the page is made of. The body is --nordbg; everything that sits on it is one of the greys above it.',
+		swatches: has('nordbg').concat(range('nord', 0, 3)),
+	},
+	{
+		name: 'Ink',
+		note: 'Body copy is --nord5. --nord4 is the quieter voice — blurbs, notes, anything the eye is allowed to skip.',
+		swatches: range('nord', 4, 6),
+	},
+	{
+		name: 'Signal',
+		note: '--accent is the site: the header block, the page border, a series rule, a hover. The nord hues below it belong to visualizations, one meaning each, and are not decoration to reach for.',
+		swatches: has('accent').concat(range('nord', 7, 15)),
+	},
+	{
+		name: 'Viz grounds',
+		note: "A deck post's visualization half is painted one of these two, chosen in its frontmatter. A component drawn for one reads wrong on the other, which is why specimens below say which they want.",
+		swatches: has('viz-beige', 'viz-dark'),
+	},
+];
+
+// The measures that are decided once and then meant everywhere.
+const MEASURES = [
+	['--header-height', '5rem', "The orange block, and a deck post's T3 mark. One number so the two line up."],
+	['--page-border', '2px', 'The accent frame. Full-viewport layouts subtract it from 100dvh.'],
+	['main max-width', '720px', 'The column. Set in global.css, not a token.'],
+	['radius', '4px / 8px / 12px', 'Inline code / pre and images / index thumbnails.'],
+	['body', '14px / 1.7', '15px under 720px. Prose bodies switch to the serif; everything else stays mono.'],
+];
+
+// --- the lifted edge, both ways of getting one ---------------------------
+
+const CHANNELS = [
+	{ name: 'R', pure: '#ff0000' },
+	{ name: 'G', pure: '#00ff00' },
+	{ name: 'B', pure: '#0000ff' },
+];
+const LIFT = 0.2;
+
+// What the site does: a fraction of the lightness a colour has left, added in
+// OKLCh, hue and chroma untouched. See lighten in lib/oklch.
+const lifted = (hex: string) => lighten(hex, LIFT);
+
+// What it looks like done the obvious way instead: the same fraction of the
+// way to white on each sRGB channel. Here only for the comparison below.
+const scaled = (hex: string) => {
+	const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16));
+	const up = (v: number) => Math.round(v + LIFT * (255 - v));
+	return `rgb(${up(r)} ${up(g)} ${up(b)})`;
+};
+
+const bar = (pure: string, edge: (hex: string) => string) => ({
+	backdrop: `linear-gradient(to top, #000000, ${pure})`,
+	edge: `linear-gradient(to top, ${edge('#000000')}, ${edge(pure)})`,
+});
+
+const EDGE_CSS = `background:
+  var(--track-backdrop) padding-box,   /* stops at the inner edge */
+  var(--track-edge) border-box;        /* only the ring is left for it */
+box-sizing: border-box;
+border: 2px solid transparent;         /* reserves the ring, paints nothing */`;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title="Design system — T3" description="The site's tokens and components, on one page." />
+		<meta name="robots" content="noindex, nofollow" />
+		<style>
+			.ds h2 + p,
+			.ds > p {
+				max-width: 62ch;
+				color: var(--nord4);
+				opacity: 0.75;
+			}
+
+			/* Swatches ------------------------------------------------------ */
+
+			.swatches {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+				gap: 0.75rem;
+				margin: 1.25rem 0 0;
+				padding: 0;
+				list-style: none;
+			}
+
+			.swatches li {
+				border-radius: 6px;
+				overflow: hidden;
+				border: 1px solid var(--nord2);
+			}
+
+			/* The name sits on the colour, so the swatch is also the proof that
+			   something can be read on it. */
+			.chip {
+				display: block;
+				padding: 1.4rem 0.7rem 0.5rem;
+				font-size: 0.85em;
+			}
+
+			.numbers {
+				display: block;
+				padding: 0.45rem 0.7rem 0.55rem;
+				font-size: 0.72em;
+				line-height: 1.5;
+				color: var(--nord4);
+				background: var(--nord0);
+			}
+
+			.numbers b {
+				display: block;
+				font-weight: 400;
+				opacity: 0.65;
+			}
+
+			/* Measures ------------------------------------------------------ */
+
+			table.measures {
+				border-collapse: collapse;
+				margin-top: 1.25rem;
+				font-size: 0.9em;
+			}
+
+			table.measures th,
+			table.measures td {
+				text-align: left;
+				vertical-align: top;
+				padding: 0.4rem 1rem 0.4rem 0;
+				border-bottom: 1px solid var(--nord1);
+			}
+
+			table.measures th {
+				color: var(--nord8);
+				font-weight: 400;
+				white-space: nowrap;
+			}
+
+			table.measures td:last-child {
+				color: var(--nord4);
+				opacity: 0.75;
+			}
+
+			/* The edge demo ------------------------------------------------- */
+
+			.edges {
+				display: flex;
+				gap: 2.5rem;
+			}
+
+			.edges figure {
+				margin: 0;
+			}
+
+			.edges figcaption {
+				margin-bottom: 0.75rem;
+				font-size: 0.8em;
+				color: var(--nord4);
+			}
+
+			.rail {
+				display: flex;
+				gap: 0.9rem;
+			}
+
+			/* The two-layer trick itself, with nothing else on it: a transparent
+			   border for the ring to live in, the ramp clipped inside it, the
+			   lifted ramp showing through around it. Same as .bed in VizTrack. */
+			.demo-bar {
+				inline-size: 2.6rem;
+				block-size: 9rem;
+				border-radius: 3px;
+				box-sizing: border-box;
+				/* Thicker than a real bar wears it. The edge is the subject here
+				   and two pixels of it is not enough to compare. */
+				border: 5px solid transparent;
+				background:
+					var(--demo-backdrop) padding-box,
+					var(--demo-edge) border-box;
+			}
+
+			/* Specimens that show several of one thing want them apart; the stage
+			   itself stays out of it. */
+			.stack {
+				display: grid;
+				gap: 1.5rem;
+			}
+
+			.type-sample p {
+				max-width: 62ch;
+			}
+
+			.type-sample .prose {
+				font-family: var(--font-prose);
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="ds">
+				<h1>Design system</h1>
+				<p>
+					Everything here is read out of the source at build time. The swatches are
+					the custom properties in <code>global.css</code>; the numbers beside them
+					are computed from those values, and the components are the real ones.
+					Nothing on this page is a copy of the site, so nothing on it can go stale
+					while the site moves.
+				</p>
+
+				<h2>Colour</h2>
+				<p>
+					Hex is what the stylesheet says. OKLCh is what it means — and it is the
+					lightness column that matters most here, because it is the one that
+					decides whether two things read as a pair or as a step.
+				</p>
+
+				{
+					GROUPS.map((group) => (
+						<>
+							<h3>{group.name}</h3>
+							<p>{group.note}</p>
+							<ul class="swatches">
+								{group.swatches.map((s) => (
+									<li>
+										<span
+											class="chip"
+											style={`background: ${s.hex}; color: ${s.ink}`}
+										>
+											--{s.name}
+										</span>
+										<span class="numbers">
+											{s.hex}
+											<b>
+												L {s.l.toFixed(3)} · C {s.c.toFixed(3)} · H{' '}
+												{s.h.toFixed(1)}
+											</b>
+										</span>
+									</li>
+								))}
+							</ul>
+						</>
+					))
+				}
+
+				<h2>Measures</h2>
+				<p>Decided once, and then meant everywhere.</p>
+				<table class="measures">
+					<tbody>
+						{
+							MEASURES.map(([name, value, note]) => (
+								<tr>
+									<th>{name}</th>
+									<td>{value}</td>
+									<td>{note}</td>
+								</tr>
+							))
+						}
+					</tbody>
+				</table>
+
+				<h2>Patterns</h2>
+
+				<Specimen
+					name="The lifted edge"
+					note="Bars in this series are edged in their own colour taken a fifth of the way to white, so the edge is the bar rather than a line drawn round it. Two things make it work, and they are independent: where the edge is painted, and how its colour is arrived at."
+					code={EDGE_CSS}
+					ground="dark"
+				>
+					<div class="edges">
+						<figure>
+							<figcaption>
+								Lifted in OKLCh — <code>lighten(hex, 0.2)</code>
+							</figcaption>
+							<div class="rail">
+								{
+									CHANNELS.map((ch) => {
+										const b = bar(ch.pure, lifted);
+										return (
+											<div
+												class="demo-bar"
+												style={`--demo-backdrop: ${b.backdrop}; --demo-edge: ${b.edge}`}
+											/>
+										);
+									})
+								}
+							</div>
+						</figure>
+						<figure>
+							<figcaption>The same fraction, on sRGB channels</figcaption>
+							<div class="rail">
+								{
+									CHANNELS.map((ch) => {
+										const b = bar(ch.pure, scaled);
+										return (
+											<div
+												class="demo-bar"
+												style={`--demo-backdrop: ${b.backdrop}; --demo-edge: ${b.edge}`}
+											/>
+										);
+									})
+								}
+							</div>
+						</figure>
+					</div>
+				</Specimen>
+
+				<p>
+					The right-hand set is the reason for the left. Scaling sRGB channels
+					brightens and desaturates at once, by a different amount for every hue,
+					and three edges that were meant to be three channels come back looking
+					like three unrelated colours. Adding a fraction of the lightness a colour
+					has <em>left</em> — <code>l + by * (1 - l)</code>, hue and chroma
+					untouched — keeps green green, and still gives black an edge, because
+					black has all of its lightness ahead of it.
+				</p>
+
+				<h2>Components</h2>
+
+				<Specimen
+					name="VizTrack"
+					note="The bar everything in the colour series is built on: an axis with something painted along it, one or two thumbs, and a walk that runs on its own until a reader takes hold of it. With a backdrop it shows the ramp; without one it fills up to the thumb."
+					code={`<VizTrack thumbs={1} labels={['Value']} />
+<VizTrack thumbs={1} backdrop={ramp} size="2rem" labels={['Hue']} />
+<VizTrack thumbs={2} labels={['Low', 'High']} />`}
+					ground="dark"
+				>
+					<div class="stack">
+						<VizTrack thumbs={1} labels={['Value']} />
+						<VizTrack
+							thumbs={1}
+							backdrop={`linear-gradient(to right, ${Array.from({ length: 13 }, (_, i) => `hsl(${i * 30} 100% 50%)`).join(', ')})`}
+							size="2rem"
+							labels={['Hue']}
+						/>
+						<VizTrack thumbs={2} labels={['Low', 'High']} />
+					</div>
+				</Specimen>
+
+				<h2>Type</h2>
+				<Specimen
+					name="The two voices"
+					note="Monospace is the site talking: nav, headings, the post index, code. Long-form prose bodies are the only thing that switches, to the serif, and they say so by carrying .prose."
+				>
+					<div class="type-sample">
+						<h4>A heading, which wears its own hashes</h4>
+						<p>
+							Default voice. Body copy at 14px on 1.7, in <code>--font-mono</code>,
+							the colour of <code>--nord5</code>.
+						</p>
+						<p class="prose">
+							And the prose voice, <code>--font-prose</code>, which is Source Serif
+							4 and self-hosted. This is what a post body is set in and the only
+							place the serif appears.
+						</p>
+						<blockquote>A quote takes the accent down its left edge.</blockquote>
+					</div>
+				</Specimen>
+			</section>
+		</main>
+	</body>
+</html>

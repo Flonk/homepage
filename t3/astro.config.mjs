@@ -24,5 +24,12 @@ export default defineConfig({
       rehypePlugins: [rehypeKatex, rehypeNowrapInlineCode],
     }),
   },
-  integrations: [mdx(), sitemap(), react()],
+  integrations: [
+    mdx(),
+    // The workbench at /designsystem is for whoever is building the site. It
+    // carries a noindex of its own; this keeps it from being announced in the
+    // first place.
+    sitemap({ filter: (page) => !page.includes("/designsystem") }),
+    react(),
+  ],
 });

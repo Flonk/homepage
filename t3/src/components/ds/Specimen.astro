@@ -1,0 +1,75 @@
+---
+// One entry in the library: what it is called, what it is for, the thing
+// itself running, and the line that puts it on a page. Adding a component to
+// /designsystem should be this and nothing else.
+interface Props {
+	name: string;
+	/** What it is for, and what a caller has to decide. One or two sentences. */
+	note?: string;
+	/** The call that produces what is on the stage. */
+	code?: string;
+	/**
+	 * What the stage is painted. Viz components are drawn for one of the two
+	 * grounds in global.css and read wrong on the other, so a specimen says
+	 * which it is asking for rather than inheriting the page's.
+	 */
+	ground?: 'page' | 'dark' | 'beige';
+}
+
+const { name, note, code, ground = 'page' } = Astro.props;
+---
+
+<section class="specimen">
+	<h3>{name}</h3>
+	{note && <p class="note">{note}</p>}
+	<div class="stage" data-ground={ground}>
+		<slot />
+	</div>
+	{
+		// On one line: every space between these tags is a space in the block.
+		code && <pre class="call"><code>{code}</code></pre>
+	}
+</section>
+
+<style>
+	.specimen {
+		margin: 0 0 3.5rem;
+	}
+
+	.note {
+		max-width: 62ch;
+		margin: 0 0 1rem;
+		color: var(--nord4);
+		opacity: 0.7;
+	}
+
+	/* Room round the thing, and a ground that says which of the two it was
+	   drawn for. Nothing else: a stage that styles what is on it is a stage
+	   that lies about what the component does on a real page. */
+	.stage {
+		padding: 1.5rem;
+		border: 1px solid var(--nord2);
+		border-radius: 8px;
+		overflow-x: auto;
+	}
+
+	.stage[data-ground='dark'] {
+		background: var(--viz-dark);
+	}
+
+	.stage[data-ground='beige'] {
+		background: var(--viz-beige);
+		color: #14161a;
+	}
+
+	.call {
+		margin: 0.75rem 0 0;
+		padding: 1rem 1.25rem;
+		border: 1px solid var(--nord2);
+		border-radius: 8px;
+		font-size: 0.85em;
+		color: var(--nord4);
+		white-space: pre;
+		overflow-x: auto;
+	}
+</style>
