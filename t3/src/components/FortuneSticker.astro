@@ -65,10 +65,9 @@ const starburst = Array.from({ length: POINTS * 2 }, (_, i) => {
 
 		display: grid;
 		place-items: center;
-		/* Rays and words stack in the one cell. The row is pinned to the box
-		   rather than left on auto, or the rays — which are deliberately taller
-		   than the sticker before they are squashed — would size it themselves
-		   and push everything below them down the page. */
+		/* Rays and words stack in the one cell, which is the box itself — the
+		   row is pinned rather than left on auto so the two of them have a
+		   definite height to fill and centre against. */
 		grid-template-areas: 'stack';
 		grid-template-rows: 100%;
 
@@ -101,8 +100,6 @@ const starburst = Array.from({ length: POINTS * 2 }, (_, i) => {
 	   with them. */
 	.burst {
 		z-index: 0;
-		display: grid;
-		place-items: center;
 		width: 100%;
 		height: 100%;
 		/* A hard one right under the edge, for the lift, and a big soft one
@@ -115,20 +112,28 @@ const starburst = Array.from({ length: POINTS * 2 }, (_, i) => {
 	/* The starburst, and there is nothing under the words but this: stripes of
 	   blog orange and the blue opposite it, cut to points, turning slowly.
 
-	   It is cut as a circle the full width of the sticker — overflowing the
-	   short box on purpose — and squashed back into it from outside the
-	   rotation, so the silhouette holds still while the spikes turn through it.
-	   Squashing the shape instead would have the outline breathe as it went. */
+	   It is cut straight into the box, which makes it an ellipse of a star,
+	   and then spun in circle space: undo the squash, turn, put it back. The
+	   silhouette is the same ellipse at every angle, so it holds still while
+	   the spikes turn through it — turning the shape itself would have the
+	   outline breathe as it went round.
+
+	   Doing it this way also keeps the element exactly the size of the sticker.
+	   Cutting it square and letting it hang out of the short box relied on the
+	   overflow being centred, and it is not: it is aligned to the top, which
+	   put the whole star half its overhang below the words. */
 	.rays {
+		/* A span, and no longer a grid item to be blockified by the layout it
+		   sits in, so it has to say so itself or width and height do nothing. */
+		display: block;
 		width: 100%;
-		aspect-ratio: 1;
+		height: 100%;
 		clip-path: polygon(var(--starburst));
 		background: repeating-conic-gradient(
 			from 0deg,
 			var(--accent) 0deg 9deg,
 			var(--sticker-blue) 9deg 18deg
 		);
-		transform: scaleY(var(--squash));
 		/* Both at once on the one element. They would overwrite each other on
 		   `transform`, so the wobble is written in the standalone `rotate` and
 		   `scale`, which the browser applies outside it — the squashed star
@@ -157,6 +162,13 @@ const starburst = Array.from({ length: POINTS * 2 }, (_, i) => {
 		color: var(--nord6);
 		-webkit-text-stroke: 4px var(--nordbg);
 		paint-order: stroke fill;
+		/* Its own shadow, thrown onto the star the way the star throws one onto
+		   the page: hard underneath for the lift, big and soft under that.
+		   text-shadow paints behind both the fill and the stroke, so what falls
+		   is the outlined letter and not the letter inside it. */
+		text-shadow:
+			0 6px 0 rgba(0, 0, 0, 0.3),
+			0 14px 16px rgba(0, 0, 0, 0.65);
 	}
 
 	/* Each new fortune lands like it was stamped there. */
@@ -176,12 +188,16 @@ const starburst = Array.from({ length: POINTS * 2 }, (_, i) => {
 		}
 	}
 
+	/* Read right to left: unsquash the ellipse into a circle, turn it, squash
+	   it back. */
 	@keyframes sticker-spin {
 		from {
-			transform: scaleY(var(--squash)) rotate(0deg);
+			transform: scaleY(var(--squash)) rotate(0deg)
+				scaleY(calc(1 / var(--squash)));
 		}
 		to {
-			transform: scaleY(var(--squash)) rotate(360deg);
+			transform: scaleY(var(--squash)) rotate(360deg)
+				scaleY(calc(1 / var(--squash)));
 		}
 	}
 
