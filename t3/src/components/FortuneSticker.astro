@@ -238,29 +238,12 @@ const starburst = Array.from({ length: POINTS * 2 }, (_, i) => {
 </style>
 
 <script>
-	// Cheesy things a sticker can say. Two of them are load-bearing: the orange
-	// one is true, and the ä one is a promise the keydown handler below keeps.
+	// What the sticker can say. Both are load-bearing: the first is true, and
+	// the second is a promise the keydown handler below keeps.
 	const FORTUNES = [
 		'This blog was orange before it was cool',
-		"Press 'ä' to 'ä'",
-		'100% hand-typed characters',
-		'Now with colours you can see!',
-		'As seen on at least one screen',
-		'No cookies. Not even the good ones.',
-		'Prime interblag real-estate!',
-		'Ask your doctor about OKLCH',
-		'Zero (0) newsletters, forever',
-		'Works on my machine',
-		'Batteries not included',
-		'Still under construction',
-		'Warning: contains monospace',
-		'Free with every visit!',
-		'Best viewed in a browser',
-		'Some assembly required',
+		"Press 'ä' to ä",
 	];
-
-	// What it says the moment the promise is kept.
-	const PAYOFF = 'ÄÄÄÄÄÄÄ!!!';
 
 	const sticker = document.querySelector<HTMLElement>('[data-fortune-sticker]');
 	const line = document.querySelector<HTMLElement>('[data-fortune-line]');
@@ -277,7 +260,8 @@ const starburst = Array.from({ length: POINTS * 2 }, (_, i) => {
 		}
 
 		// Never the same one twice running — a sticker that appears not to have
-		// changed reads as broken rather than as coincidence.
+		// changed reads as broken rather than as coincidence. With two of them
+		// that makes it a straight alternation, which is the whole of the point.
 		function next() {
 			let i = shown;
 			while (i === shown) i = Math.floor(Math.random() * FORTUNES.length);
@@ -371,9 +355,6 @@ const starburst = Array.from({ length: POINTS * 2 }, (_, i) => {
 					fill: 'forwards',
 				});
 			}
-
-			say(PAYOFF);
-			restart();
 
 			Promise.allSettled(running.map((a) => a.finished)).then(() => {
 				layer.remove();
