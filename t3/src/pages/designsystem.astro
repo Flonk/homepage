@@ -7,9 +7,10 @@
 // out of global.css at build time and every number beside it is computed from
 // that value, so the page cannot drift from the site the way a hand-kept
 // swatch sheet does. If a colour here is wrong, global.css is wrong.
-import { converter, formatHex } from 'culori';
+import { converter } from 'culori';
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
+import PhotonWave from '../components/PhotonWave.astro';
 import VizTrack from '../components/VizTrack.astro';
 import Specimen from '../components/ds/Specimen.astro';
 import { lighten } from '../lib/oklch';
@@ -105,14 +106,6 @@ const SOLIDS = [
 
 const REAL_CSS = `background: var(--nord0);
 border: 1px solid <that colour, lifted>;`;
-
-// A ramp's edge is a different colour at every point along it, and a border
-// takes one colour, so it cannot be a border at all.
-const toHex = converter('rgb');
-const HUES = Array.from({ length: 25 }, (_, i) => i * 15);
-const hueHex = (d: number) => formatHex(toHex({ mode: 'hsl', h: d, s: 1, l: 0.5 })!);
-const RAINBOW = `linear-gradient(to right, ${HUES.map(hueHex).join(', ')})`;
-const RAINBOW_EDGE = `linear-gradient(to right, ${HUES.map((d) => lighten(hueHex(d), LIFT)).join(', ')})`;
 
 const FAKE_CSS = `background:
   <the ramp> padding-box,        /* stops at the inner edge */
@@ -236,26 +229,6 @@ border: 1px solid transparent;   /* reserves the ring, paints nothing */`;
 				border: 1px solid;
 			}
 
-			.ramp {
-				block-size: 3rem;
-				border-radius: var(--radius-large);
-				box-sizing: border-box;
-				border: var(--ring, 1px) solid transparent;
-				background:
-					var(--ramp) padding-box,
-					var(--ramp-edge) border-box;
-			}
-
-			.ramp + .ramp {
-				margin-top: 1.25rem;
-			}
-
-			.flb-note {
-				margin: 0 0 0.75rem;
-				font-size: 0.8em;
-				color: var(--text-quiet);
-			}
-
 			.type-sample p {
 				max-width: 62ch;
 			}
@@ -327,7 +300,7 @@ border: 1px solid transparent;   /* reserves the ring, paints nothing */`;
 
 				<Specimen
 					name="On a flat colour"
-					note="Anything the site draws a line around is edged in its own colour taken a fifth of the way to white — added in OKLCh, so the hue and what chroma the screen still has at that lightness both survive. One colour in, one colour out, so this one is a border and there is nothing to it. Black moves furthest, having all of its lightness ahead of it, which is what gives the darkest boxes an edge at all."
+					note="One colour in, one colour out, so it is a border."
 					code={REAL_CSS}
 				>
 					<div class="flb-row">
@@ -344,23 +317,11 @@ border: 1px solid transparent;   /* reserves the ring, paints nothing */`;
 
 				<Specimen
 					name="On a ramp"
-					note="A border takes a colour, and a ramp is a different colour at every point along it — so the edge cannot be a border. It is a second background layer instead: the ramp clipped to the padding box, the lifted ramp showing through the border box around it, and a transparent border to leave a ring for it to show through. This is the fake one, and it is why it exists."
+					note="A border takes one colour and this edge is a different one at every point along the bar, so it is a second background layer instead."
 					code={FAKE_CSS}
 					ground="dark"
 				>
-					<p class="flb-note">One pixel, which is what it wears everywhere.</p>
-					<div
-						class="ramp"
-						style={`--ramp: ${RAINBOW}; --ramp-edge: ${RAINBOW_EDGE}`}
-					/>
-					<p class="flb-note">
-						And at six, which is the only way to see that the ring is following
-						the ramp rather than lying over it.
-					</p>
-					<div
-						class="ramp"
-						style={`--ramp: ${RAINBOW}; --ramp-edge: ${RAINBOW_EDGE}; --ring: 6px`}
-					/>
+					<PhotonWave />
 				</Specimen>
 
 				<h2>Components</h2>
