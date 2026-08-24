@@ -7,19 +7,14 @@ hidden: true
 
 import FlbBar from "../../components/ds/FlbBar.astro";
 import FlbSolids from "../../components/ds/FlbSolids.astro";
-import Measures from "../../components/ds/Measures.astro";
 import RadiusScale from "../../components/ds/RadiusScale.astro";
-import Specimen from "../../components/ds/Specimen.astro";
 import Swatches from "../../components/ds/Swatches.astro";
 import TrackDemo from "../../components/ds/TrackDemo.astro";
 import TypeSample from "../../components/ds/TypeSample.astro";
 
-{/* Hidden: it is kept off the index, out of the feed and out of the sitemap,
-    and it carries a noindex. It is for whoever is building the site rather
-    than for whoever is reading it — which is also why it is a post and not a
-    page. Everything the site knows about setting words is already in the post
-    layout, and a workbench that is not set the way the work is is a workbench
-    that lies about it. */}
+{/* Hidden: kept off the index, out of the feed and out of the sitemap, and it
+    carries a noindex. For whoever is building the site rather than for whoever
+    is reading it — which is also why it is a post and not a page. */}
 
 Everything here is read out of the source at build time: the swatches are the
 custom properties in `global.css`, each value computed from the hex the
@@ -30,13 +25,7 @@ copy of the site, so nothing here can go stale while the site moves.
 
 <Swatches />
 
-## Measures
-
-Decided once, and then meant everywhere.
-
-<Measures />
-
-### Radius
+## Radius
 
 <RadiusScale />
 
@@ -48,50 +37,61 @@ Use OKLCH for everything.
 
 Any border on an object should be an *FLB* (fake luminosity border).
 
-<Specimen
-  name="On a flat colour"
-  note="If the element is a flat color, its border can be a real CSS border; same color but 20% lighter."
-  code={`background: var(--nord0);
-border: 1px solid <that colour, lifted>;`}
->
-  <FlbSolids />
-</Specimen>
+### On a flat colour
 
-<Specimen
-  name="On a ramp"
-  note="If the content is a gradient or some other sort of non-solid colour, the border must be emulated to show a fake 1px ring of the same colour, 20% lighter, around the element."
-  code={`background:
+If the element is a flat color, its border can be a real CSS border; same color
+but 20% lighter.
+
+<FlbSolids />
+
+```css
+background: var(--nord0);
+border: 1px solid <that colour, lifted>;
+```
+
+### On a ramp
+
+If the content is a gradient or some other sort of non-solid colour, the border
+must be emulated to show a fake 1px ring of the same colour, 20% lighter,
+around the element.
+
+<FlbBar />
+
+```css
+background:
   <the ramp> padding-box,        /* stops at the inner edge */
   <the ramp, lifted> border-box; /* only the ring is left for it */
 box-sizing: border-box;
-border: 1px solid transparent;   /* reserves the ring, paints nothing */`}
-  ground="dark"
->
-  <FlbBar />
-</Specimen>
+border: 1px solid transparent;   /* reserves the ring, paints nothing */
+```
 
 ## Components
 
-<Specimen
-  name="VizTrack"
-  note="The bar everything in the colour series is built on: an axis with something painted along it, one or two thumbs, and a walk that runs on its own until a reader takes hold of it. With a backdrop it shows the ramp; without one it fills up to the thumb."
-  code={`<VizTrack thumbs={1} labels={['Value']} />
+### VizTrack
+
+The bar everything in the colour series is built on: an axis with something
+painted along it, one or two thumbs, and a walk that runs on its own until a
+reader takes hold of it. With a backdrop it shows the ramp; without one it
+fills up to the thumb.
+
+<TrackDemo />
+
+```jsx
+<VizTrack thumbs={1} labels={['Value']} />
 <VizTrack thumbs={1} backdrop={ramp} size="2rem" labels={['Hue']} />
 <VizTrack thumbs={2} labels={['Low', 'High']} />
+```
 
-/* the edge is the host's to set, and needs a ring to show through */
+The edge is the host's to set, and needs a ring to show through.
+
+```css
 --track-border: 1px solid transparent;
---track-edge: <the bed's colour, lifted>;`}
-  ground="dark"
->
-  <TrackDemo />
-</Specimen>
+--track-edge: <the bed's colour, lifted>;
+```
 
 ## Type
 
-<Specimen
-  name="The two voices"
-  note="Monospace is the site talking about itself: nav, headings, the post index, code. Long-form prose bodies are the only thing that switches, to the serif."
->
-  <TypeSample />
-</Specimen>
+Monospace is the site talking about itself: nav, headings, the post index,
+code. Long-form prose bodies are the only thing that switches, to the serif.
+
+<TypeSample />

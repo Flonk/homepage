@@ -1,9 +1,9 @@
 ---
 import VizTrack from '../VizTrack.astro';
-import { BED_EDGE, HUE_EDGE, HUE_RAMP, REST_ON_DARK } from './palette';
+import { BED_EDGE, HUE_EDGE, HUE_RAMP, REST_ON_PAGE } from './palette';
 ---
 
-<div class="stack" style={`--track-rest: ${REST_ON_DARK}; --track-edge: ${BED_EDGE}`}>
+<div class="stack" style={`--track-rest: ${REST_ON_PAGE}; --track-edge: ${BED_EDGE}`}>
 	<VizTrack thumbs={1} labels={['Value']} />
 	<div style={`--track-edge: ${HUE_EDGE}`}>
 		<VizTrack thumbs={1} backdrop={HUE_RAMP} size="2rem" labels={['Hue']} />

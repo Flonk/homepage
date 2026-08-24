@@ -20,19 +20,19 @@ export const HUE_EDGE = `linear-gradient(to right, ${HUES.map((d) => lighten(hue
 
 /**
  * A bar with no backdrop shows its rest colour, which is white at 16%. Over the
- * dark stage that composites to this, and the bar is handed it flat: a
- * see-through bed lets the ring show through the whole of itself rather than
- * only around the edge, because the layer over it hides nothing.
+ * page it composites to this, and the bar is handed it flat: a see-through bed
+ * lets the ring show through the whole of itself rather than only around the
+ * edge, because the layer over it hides nothing.
  */
-const VIZ_DARK = '#14161a';
-export const REST_ON_DARK = formatHex({
+const PAGE = '#1d1f21';
+export const REST_ON_PAGE = formatHex({
 	mode: 'rgb',
 	...(([r, g, b]) => ({ r, g, b }))(
-		[1, 3, 5].map((i) => 0.16 + 0.84 * (parseInt(VIZ_DARK.slice(i, i + 2), 16) / 255)) as [
+		[1, 3, 5].map((i) => 0.16 + 0.84 * (parseInt(PAGE.slice(i, i + 2), 16) / 255)) as [
 			number,
 			number,
 			number,
 		],
 	),
 });
-export const BED_EDGE = lighten(REST_ON_DARK, LIFT);
+export const BED_EDGE = lighten(REST_ON_PAGE, LIFT);
