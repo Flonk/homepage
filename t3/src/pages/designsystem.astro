@@ -7,7 +7,7 @@
 // out of global.css at build time and every number beside it is computed from
 // that value, so the page cannot drift from the site the way a hand-kept
 // swatch sheet does. If a colour here is wrong, global.css is wrong.
-import { converter } from 'culori';
+import { converter, formatHex } from 'culori';
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import VizTrack from '../components/VizTrack.astro';
@@ -91,37 +91,35 @@ const MEASURES = [
 	['body', '14px / 1.7', '15px under 720px. Prose bodies switch to the serif; everything else stays mono.'],
 ];
 
-// --- the lifted edge, both ways of getting one ---------------------------
+// --- the FLB ------------------------------------------------------------
 
-const CHANNELS = [
-	{ name: 'R', pure: '#ff0000' },
-	{ name: 'G', pure: '#00ff00' },
-	{ name: 'B', pure: '#0000ff' },
-];
 const LIFT = 0.2;
 
-// What the site does: a fraction of the lightness a colour has left, added in
-// OKLCh, hue and chroma untouched. See lighten in lib/oklch.
-const lifted = (hex: string) => lighten(hex, LIFT);
+// A flat colour's edge is one colour, so it is a border and there is nothing
+// clever about it.
+const SOLIDS = [
+	{ name: '--nord0', hex: '#2e3440' },
+	{ name: '--accent', hex: '#ffa200' },
+	{ name: '--viz-dark', hex: '#14161a' },
+].map((c) => ({ ...c, edge: lighten(c.hex, LIFT) }));
 
-// What it looks like done the obvious way instead: the same fraction of the
-// way to white on each sRGB channel. Here only for the comparison below.
-const scaled = (hex: string) => {
-	const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16));
-	const up = (v: number) => Math.round(v + LIFT * (255 - v));
-	return `rgb(${up(r)} ${up(g)} ${up(b)})`;
-};
+const REAL_CSS = `background: var(--nord0);
+border: 1px solid <that colour, lifted>;`;
 
-const bar = (pure: string, edge: (hex: string) => string) => ({
-	backdrop: `linear-gradient(to top, #000000, ${pure})`,
-	edge: `linear-gradient(to top, ${edge('#000000')}, ${edge(pure)})`,
-});
+// A ramp's edge is a different colour at every point along it, and a border
+// takes one colour, so it cannot be a border at all.
+const toHex = converter('rgb');
+const HUES = Array.from({ length: 25 }, (_, i) => i * 15);
+const hueHex = (d: number) => formatHex(toHex({ mode: 'hsl', h: d, s: 1, l: 0.5 })!);
+const RAINBOW = `linear-gradient(to right, ${HUES.map(hueHex).join(', ')})`;
+const RAINBOW_EDGE = `linear-gradient(to right, ${HUES.map((d) => lighten(hueHex(d), LIFT)).join(', ')})`;
 
-const EDGE_CSS = `background:
-  var(--track-backdrop) padding-box,   /* stops at the inner edge */
-  var(--track-edge) border-box;        /* only the ring is left for it */
+const FAKE_CSS = `background:
+  <the ramp> padding-box,        /* stops at the inner edge */
+  <the ramp, lifted> border-box; /* only the ring is left for it */
 box-sizing: border-box;
-border: 2px solid transparent;         /* reserves the ring, paints nothing */`;
+border: 1px solid transparent;   /* reserves the ring, paints nothing */`;
+
 ---
 
 <!doctype html>
@@ -223,49 +221,39 @@ border: 2px solid transparent;         /* reserves the ring, paints nothing */`;
 				margin-bottom: 0.4rem;
 			}
 
-			/* The edge demo ------------------------------------------------- */
+			/* The FLB ------------------------------------------------------- */
 
-			.edges {
+			.flb-row {
 				display: flex;
-				gap: 2.5rem;
+				flex-wrap: wrap;
+				gap: 1rem;
 			}
 
-			.edges figure {
-				margin: 0;
+			.solid {
+				flex: 1 1 8rem;
+				block-size: 4.5rem;
+				border-radius: var(--radius-large);
+				border: 1px solid;
 			}
 
-			.edges figcaption {
-				margin-bottom: 0.75rem;
+			.ramp {
+				block-size: 3rem;
+				border-radius: var(--radius-large);
+				box-sizing: border-box;
+				border: var(--ring, 1px) solid transparent;
+				background:
+					var(--ramp) padding-box,
+					var(--ramp-edge) border-box;
+			}
+
+			.ramp + .ramp {
+				margin-top: 1.25rem;
+			}
+
+			.flb-note {
+				margin: 0 0 0.75rem;
 				font-size: 0.8em;
 				color: var(--text-quiet);
-			}
-
-			.rail {
-				display: flex;
-				gap: 0.9rem;
-			}
-
-			/* The two-layer trick itself, with nothing else on it: a transparent
-			   border for the ring to live in, the ramp clipped inside it, the
-			   lifted ramp showing through around it. Same as .bed in VizTrack. */
-			.demo-bar {
-				inline-size: 2.6rem;
-				block-size: 9rem;
-				border-radius: 3px;
-				box-sizing: border-box;
-				/* Thicker than a real bar wears it. The edge is the subject here
-				   and two pixels of it is not enough to compare. */
-				border: 5px solid transparent;
-				background:
-					var(--demo-backdrop) padding-box,
-					var(--demo-edge) border-box;
-			}
-
-			/* Specimens that show several of one thing want them apart; the stage
-			   itself stays out of it. */
-			.stack {
-				display: grid;
-				gap: 1.5rem;
 			}
 
 			.type-sample p {
@@ -335,61 +323,45 @@ border: 2px solid transparent;         /* reserves the ring, paints nothing */`;
 					}
 				</ul>
 
-				<h2>Patterns</h2>
+				<h2>FLB</h2>
 
 				<Specimen
-					name="The lifted edge"
-					note="Bars in this series are edged in their own colour taken a fifth of the way to white, so the edge is the bar rather than a line drawn round it. Two things make it work, and they are independent: where the edge is painted, and how its colour is arrived at."
-					code={EDGE_CSS}
-					ground="dark"
+					name="On a flat colour"
+					note="Anything the site draws a line around is edged in its own colour taken a fifth of the way to white — added in OKLCh, so the hue and what chroma the screen still has at that lightness both survive. One colour in, one colour out, so this one is a border and there is nothing to it. Black moves furthest, having all of its lightness ahead of it, which is what gives the darkest boxes an edge at all."
+					code={REAL_CSS}
 				>
-					<div class="edges">
-						<figure>
-							<figcaption>
-								Lifted in OKLCh — <code>lighten(hex, 0.2)</code>
-							</figcaption>
-							<div class="rail">
-								{
-									CHANNELS.map((ch) => {
-										const b = bar(ch.pure, lifted);
-										return (
-											<div
-												class="demo-bar"
-												style={`--demo-backdrop: ${b.backdrop}; --demo-edge: ${b.edge}`}
-											/>
-										);
-									})
-								}
-							</div>
-						</figure>
-						<figure>
-							<figcaption>The same fraction, on sRGB channels</figcaption>
-							<div class="rail">
-								{
-									CHANNELS.map((ch) => {
-										const b = bar(ch.pure, scaled);
-										return (
-											<div
-												class="demo-bar"
-												style={`--demo-backdrop: ${b.backdrop}; --demo-edge: ${b.edge}`}
-											/>
-										);
-									})
-								}
-							</div>
-						</figure>
+					<div class="flb-row">
+						{
+							SOLIDS.map((c) => (
+								<div
+									class="solid"
+									style={`background: ${c.hex}; border-color: ${c.edge}`}
+								/>
+							))
+						}
 					</div>
 				</Specimen>
 
-				<p>
-					The right-hand set is the reason for the left. Scaling sRGB channels
-					brightens and desaturates at once, by a different amount for every hue,
-					and three edges that were meant to be three channels come back looking
-					like three unrelated colours. Adding a fraction of the lightness a colour
-					has <em>left</em> — <code>l + by * (1 - l)</code>, hue and chroma
-					untouched — keeps green green, and still gives black an edge, because
-					black has all of its lightness ahead of it.
-				</p>
+				<Specimen
+					name="On a ramp"
+					note="A border takes a colour, and a ramp is a different colour at every point along it — so the edge cannot be a border. It is a second background layer instead: the ramp clipped to the padding box, the lifted ramp showing through the border box around it, and a transparent border to leave a ring for it to show through. This is the fake one, and it is why it exists."
+					code={FAKE_CSS}
+					ground="dark"
+				>
+					<p class="flb-note">One pixel, which is what it wears everywhere.</p>
+					<div
+						class="ramp"
+						style={`--ramp: ${RAINBOW}; --ramp-edge: ${RAINBOW_EDGE}`}
+					/>
+					<p class="flb-note">
+						And at six, which is the only way to see that the ring is following
+						the ramp rather than lying over it.
+					</p>
+					<div
+						class="ramp"
+						style={`--ramp: ${RAINBOW}; --ramp-edge: ${RAINBOW_EDGE}; --ring: 6px`}
+					/>
+				</Specimen>
 
 				<h2>Components</h2>
 
