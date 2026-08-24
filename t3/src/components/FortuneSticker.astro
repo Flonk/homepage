@@ -162,13 +162,14 @@ const starburst = Array.from({ length: POINTS * 2 }, (_, i) => {
 		color: var(--nord6);
 		-webkit-text-stroke: 4px var(--nordbg);
 		paint-order: stroke fill;
-		/* Its own shadow, thrown onto the star the way the star throws one onto
-		   the page: hard underneath for the lift, big and soft under that.
-		   text-shadow paints behind both the fill and the stroke, so what falls
-		   is the outlined letter and not the letter inside it. */
+		/* No offset — a blur sitting right behind the letters, darkening the
+		   stripe they happen to be crossing so the light of them carries. Two
+		   of them: a tight one to hold the edge and a wide one to sink the
+		   background away from it. text-shadow paints behind the stroke as well
+		   as the fill, so what is blurred is the outlined letter. */
 		text-shadow:
-			0 6px 0 rgba(0, 0, 0, 0.3),
-			0 14px 16px rgba(0, 0, 0, 0.65);
+			0 0 6px rgba(0, 0, 0, 0.85),
+			0 0 18px rgba(0, 0, 0, 0.7);
 	}
 
 	/* Each new fortune lands like it was stamped there. */
