@@ -34,18 +34,17 @@ const starburst = Array.from({ length: POINTS * 2 }, (_, i) => {
 		   and a circle spends its height on the two or three characters that
 		   reach the top and bottom of it. Worst on a phone, where the sticker is
 		   as wide as the column and every row it wastes is a row to scroll past. */
-		--sticker-w: 15rem;
+		--sticker-w: 19rem;
 		--squash: 0.6;
-		/* The blue across the wheel from blog orange — oklch(78.74% 0.1715
-		   69.12) — at the same lightness, so there is no brightness edge where
-		   the stripes meet, only a hue one. That is the whole trick: equal L and
-		   opposite hue is what makes them shimmer against each other, and it is
-		   also what lets one outline colour carry the words over both.
-
-		   It costs chroma. sRGB has no blue anywhere near that light with the
-		   orange's 0.1715 in it; 0.113 is the entire gamut at this L and hue,
-		   so the blue gives up saturation to keep the match. */
-		--sticker-blue: oklch(78.74% 0.113 249.12);
+		/* Red and yellow, and unlike the orange and blue they replace these two
+		   cannot be held at one lightness. sRGB's red runs out of chroma as it
+		   gets lighter and its yellow runs out as it gets darker, and the two
+		   limits only meet at L 0.737 — where the pair is a salmon and an olive
+		   and neither is the colour that was asked for. So this one is built on
+		   the lightness difference rather than in spite of it: each is taken at
+		   the L where it has nearly all the chroma sRGB will give it. */
+		--sticker-red: oklch(62.8% 0.24 29.2);
+		--sticker-yellow: oklch(90% 0.185 101);
 
 		position: absolute;
 		top: -1rem;
@@ -71,9 +70,10 @@ const starburst = Array.from({ length: POINTS * 2 }, (_, i) => {
 		grid-template-areas: 'stack';
 		grid-template-rows: 100%;
 
-		/* Slapped on crooked, and it stays crooked. The wobble is the rays'
-		   alone now — words that move are words you read twice. */
-		transform: rotate(-11deg);
+		/* Slapped on crooked, leaning into the page rather than off the edge of
+		   it, and it stays there. Nothing about the sticker moves but the turn
+		   of the rays behind the words. */
+		transform: rotate(11deg);
 	}
 
 	/* All three share the one cell. The rays animate, which makes them a
@@ -110,7 +110,7 @@ const starburst = Array.from({ length: POINTS * 2 }, (_, i) => {
 	}
 
 	/* The starburst, and there is nothing under the words but this: stripes of
-	   blog orange and the blue opposite it, cut to points, turning slowly.
+	   red and yellow, cut to points, turning slowly.
 
 	   It is cut straight into the box, which makes it an ellipse of a star,
 	   and then spun in circle space: undo the squash, turn, put it back. The
@@ -131,16 +131,10 @@ const starburst = Array.from({ length: POINTS * 2 }, (_, i) => {
 		clip-path: polygon(var(--starburst));
 		background: repeating-conic-gradient(
 			from 0deg,
-			var(--accent) 0deg 9deg,
-			var(--sticker-blue) 9deg 18deg
+			var(--sticker-red) 0deg 9deg,
+			var(--sticker-yellow) 9deg 18deg
 		);
-		/* Both at once on the one element. They would overwrite each other on
-		   `transform`, so the wobble is written in the standalone `rotate` and
-		   `scale`, which the browser applies outside it — the squashed star
-		   tilts and swells as a unit, and the spin goes on underneath. */
-		animation:
-			sticker-spin 24s linear infinite,
-			sticker-wobble 3.4s ease-in-out infinite;
+		animation: sticker-spin 24s linear infinite;
 	}
 
 	.line {
@@ -152,7 +146,7 @@ const starburst = Array.from({ length: POINTS * 2 }, (_, i) => {
 		   was when the sticker was round. */
 		width: 70%;
 		font-family: 'Lobster', var(--font-mono);
-		font-size: 1.625rem;
+		font-size: 2.05rem;
 		line-height: 1.14;
 		font-weight: 400;
 		text-align: center;
@@ -163,7 +157,7 @@ const starburst = Array.from({ length: POINTS * 2 }, (_, i) => {
 		   Stroke first, so the outline sits behind the letter and not halfway
 		   across it. */
 		color: var(--nord6);
-		-webkit-text-stroke: 5px var(--nordbg);
+		-webkit-text-stroke: 6px var(--nordbg);
 		paint-order: stroke fill;
 		/* No offset — a blur sitting right behind the letters, darkening the
 		   stripe they happen to be crossing so the light of them carries. Two
@@ -171,25 +165,13 @@ const starburst = Array.from({ length: POINTS * 2 }, (_, i) => {
 		   background away from it. text-shadow paints behind the stroke as well
 		   as the fill, so what is blurred is the outlined letter. */
 		text-shadow:
-			0 0 7px rgba(0, 0, 0, 0.85),
-			0 0 20px rgba(0, 0, 0, 0.7);
+			0 0 9px rgba(0, 0, 0, 0.85),
+			0 0 24px rgba(0, 0, 0, 0.7);
 	}
 
 	/* Each new fortune lands like it was stamped there. */
 	.sticker[data-stamping] .line {
 		animation: sticker-stamp 0.34s cubic-bezier(0.2, 1.5, 0.4, 1);
-	}
-
-	@keyframes sticker-wobble {
-		0%,
-		100% {
-			rotate: 0deg;
-			scale: 1;
-		}
-		50% {
-			rotate: 5deg;
-			scale: 1.04;
-		}
 	}
 
 	/* Read right to left: unsquash the ellipse into a circle, turn it, squash
@@ -223,27 +205,27 @@ const starburst = Array.from({ length: POINTS * 2 }, (_, i) => {
 	   comes in off the edge and shrinks rather than hanging off the viewport. */
 	@media (max-width: 1080px) {
 		.sticker {
-			--sticker-w: 13rem;
+			--sticker-w: 16rem;
 			top: -2.5rem;
 			/* Inside the wrapper here: hanging off would take the rotated
 			   corners past the viewport on the narrow end of this range. */
 			right: 0.5rem;
 		}
 		.line {
-			font-size: 1.4rem;
+			font-size: 1.73rem;
 		}
 	}
 
 	@media (max-width: 768px) {
 		.sticker {
 			/* In the flow and centred here, so it can take the column's width. */
-			--sticker-w: min(16rem, 100%);
+			--sticker-w: min(19rem, 100%);
 			position: static;
 			display: grid;
 			margin: 0.5rem auto 2rem;
 		}
 		.line {
-			font-size: 1.7rem;
+			font-size: 1.95rem;
 		}
 	}
 
