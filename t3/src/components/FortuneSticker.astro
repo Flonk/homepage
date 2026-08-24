@@ -24,7 +24,7 @@ const starburst = Array.from({ length: POINTS * 2 }, (_, i) => {
 	data-fortune-sticker
 	aria-label="A sticker. Click it for another one."
 >
-	<span class="rays" aria-hidden="true"></span>
+	<span class="burst" aria-hidden="true"><span class="rays"></span></span>
 	<span class="line" data-fortune-line></span>
 </button>
 
@@ -72,9 +72,9 @@ const starburst = Array.from({ length: POINTS * 2 }, (_, i) => {
 		grid-template-areas: 'stack';
 		grid-template-rows: 100%;
 
+		/* Slapped on crooked, and it stays crooked. The wobble is the rays'
+		   alone now — words that move are words you read twice. */
 		transform: rotate(-11deg);
-		animation: sticker-wobble 3.4s ease-in-out infinite;
-		filter: drop-shadow(0 6px 0 rgba(0, 0, 0, 0.45));
 	}
 
 	/* All three share the one cell. The rays animate, which makes them a
@@ -84,13 +84,32 @@ const starburst = Array.from({ length: POINTS * 2 }, (_, i) => {
 		grid-area: stack;
 	}
 
-	.sticker:hover {
+	.sticker:hover .rays {
 		animation-play-state: paused;
 	}
 
 	.sticker:focus-visible {
 		outline: 3px dashed var(--nord6);
 		outline-offset: 6px;
+	}
+
+	/* The shadow hangs off this rather than off the sticker, so the words —
+	   which are outlined already — are not given a second dark copy of
+	   themselves thrown down the page. And it hangs off the still wrapper
+	   rather than the rays, so it follows the turning silhouette while the
+	   offset itself stays where it was put; on the rays it would swing round
+	   with them. */
+	.burst {
+		z-index: 0;
+		display: grid;
+		place-items: center;
+		width: 100%;
+		height: 100%;
+		/* A hard one right under the edge, for the lift, and a big soft one
+		   under that. The page is already nearly black, so the soft one has to
+		   be near-opaque before it darkens anything at all. */
+		filter: drop-shadow(0 14px 0 rgba(0, 0, 0, 0.4))
+			drop-shadow(0 32px 28px rgba(0, 0, 0, 0.85));
 	}
 
 	/* The starburst, and there is nothing under the words but this: stripes of
@@ -101,7 +120,6 @@ const starburst = Array.from({ length: POINTS * 2 }, (_, i) => {
 	   rotation, so the silhouette holds still while the spikes turn through it.
 	   Squashing the shape instead would have the outline breathe as it went. */
 	.rays {
-		z-index: 0;
 		width: 100%;
 		aspect-ratio: 1;
 		clip-path: polygon(var(--starburst));
@@ -111,7 +129,13 @@ const starburst = Array.from({ length: POINTS * 2 }, (_, i) => {
 			var(--sticker-blue) 9deg 18deg
 		);
 		transform: scaleY(var(--squash));
-		animation: sticker-spin 24s linear infinite;
+		/* Both at once on the one element. They would overwrite each other on
+		   `transform`, so the wobble is written in the standalone `rotate` and
+		   `scale`, which the browser applies outside it — the squashed star
+		   tilts and swells as a unit, and the spin goes on underneath. */
+		animation:
+			sticker-spin 24s linear infinite,
+			sticker-wobble 3.4s ease-in-out infinite;
 	}
 
 	.line {
@@ -143,10 +167,12 @@ const starburst = Array.from({ length: POINTS * 2 }, (_, i) => {
 	@keyframes sticker-wobble {
 		0%,
 		100% {
-			transform: rotate(-11deg) scale(1);
+			rotate: 0deg;
+			scale: 1;
 		}
 		50% {
-			transform: rotate(-6deg) scale(1.04);
+			rotate: 5deg;
+			scale: 1.04;
 		}
 	}
 
@@ -202,7 +228,6 @@ const starburst = Array.from({ length: POINTS * 2 }, (_, i) => {
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		.sticker,
 		.rays,
 		.sticker[data-stamping] .line {
 			animation: none;
