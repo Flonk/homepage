@@ -23,16 +23,17 @@
      the specimen stages in components/ds.
 
      One pixel. An edge is meant to be found rather than looked at. */
-  /* Four roundings and a pill. There were fourteen: 1, 2, 3 and 0.2rem
-     all meaning "just off square", 6px and 0.5rem and 0.6rem all meaning
-     "a card", and so on — nobody chose those, they were each typed once
-     next to something that already looked right. Anything that wants a
-     corner takes one of these; 50% stays a literal, because a circle is a
-     shape and not a step. */
+  /* Three roundings and a pill, one for each thing a corner is on: a mark
+     inside a picture, a control, a container. There were fourteen — 1, 2, 3
+     and 0.2rem all meaning "just off square", 6px and 0.5rem and 0.6rem all
+     meaning "a card" — and nobody chose any of them; each was typed once,
+     next to something that already looked right.
+
+     Anything that wants a corner takes one of these. 50% stays a literal,
+     because a circle is a shape and not a step, and 0 stays 0. */
   --radius-tight: 2px;
   --radius-small: 4px;
-  --radius: 8px;
-  --radius-large: 12px;
+  --radius-large: 8px;
   --radius-pill: 999px;
 
   --lift: 0.2;
@@ -266,7 +267,7 @@ table {
 img {
   max-width: 100%;
   height: auto;
-  border-radius: var(--radius);
+  border-radius: var(--radius-large);
   padding: 1em;
   border: 1px solid var(--edge);
   box-sizing: border-box;
@@ -280,7 +281,7 @@ code {
 }
 pre {
   padding: 1.5em;
-  border-radius: var(--radius);
+  border-radius: var(--radius-large);
   overflow-wrap: break-word;
   white-space: pre-wrap;
 }
