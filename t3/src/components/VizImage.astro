@@ -62,7 +62,7 @@ const { name, src, alt, credit, pixelated = false } = Astro.props;
 		/* A frame, not a hairline. This sits over a viz that is still moving and
 		   has to read as a separate object rather than a patch of it. */
 		border: var(--frame-w) solid var(--frame-ink, #fff);
-		border-radius: 0.5rem;
+		border-radius: var(--radius);
 		/* Two layers rather than one: a tight one to sit the frame down on the
 		   viz, and a wide one to lift it off. It is the only thing telling the
 		   reader this is laid over the picture and not part of it. */

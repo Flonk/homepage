@@ -321,7 +321,7 @@ const gradId = `gamut-swatch-${Math.random().toString(36).slice(2, 9)}`;
 		box-sizing: border-box;
 		margin: 1em 0;
 		padding: 1em;
-		border-radius: 0.5rem;
+		border-radius: var(--radius);
 		background: var(--viz-glass, rgb(255 255 255 / 0.06));
 		box-shadow:
 			inset 0 0 0 1px var(--viz-glass-rim, rgb(255 255 255 / 0.08)),
@@ -391,7 +391,7 @@ const gradId = `gamut-swatch-${Math.random().toString(36).slice(2, 9)}`;
 		gap: 0.25rem 0.35rem;
 		margin: 0;
 		padding: 0.3rem 0.5rem;
-		border-radius: 0.6rem;
+		border-radius: var(--radius);
 		background: rgb(10 9 8 / 0.82);
 		box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.1);
 		font-size: 0.54rem;
@@ -408,7 +408,7 @@ const gradId = `gamut-swatch-${Math.random().toString(36).slice(2, 9)}`;
 		flex: none;
 		inline-size: 3px;
 		block-size: 0.75rem;
-		border-radius: 1px;
+		border-radius: var(--radius-tight);
 		background: var(--legend-ink, #f6f1e6);
 		box-shadow: 0 0 0 1px rgb(0 0 0 / 0.65);
 	}

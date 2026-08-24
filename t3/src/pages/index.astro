@@ -83,7 +83,7 @@ const stripSeriesPrefix = (title: string, series: string) => {
 			}
 			ul li img {
 				margin-bottom: 0.5rem;
-				border-radius: 12px;
+				border-radius: var(--radius-large);
 			}
 			ul li a > * { display: inline; }
 			.title {
@@ -115,7 +115,7 @@ const stripSeriesPrefix = (title: string, series: string) => {
 			.series > details {
 				border: 1px solid var(--edge-panel);
 				border-left: 3px solid var(--accent);
-				border-radius: 6px;
+				border-radius: var(--radius);
 				background: color-mix(in srgb, var(--nord0) 35%, transparent);
 				padding: 0.9rem 1.15rem;
 			}

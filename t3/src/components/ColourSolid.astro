@@ -385,7 +385,7 @@ const HSL = [
 		box-sizing: border-box;
 		margin: 1em 0;
 		padding: 1em;
-		border-radius: 0.5rem;
+		border-radius: var(--radius);
 		transition:
 			opacity 0.45s ease,
 			padding 0.45s ease;
@@ -664,7 +664,7 @@ const HSL = [
 		gap: 0;
 		padding: 0.2rem;
 		border: 0;
-		border-radius: 999px;
+		border-radius: var(--radius-pill);
 		background: var(--pill, rgb(12 14 17 / 0.62));
 		box-shadow:
 			inset 0 0 0 1px rgb(255 255 255 / 0.12),
@@ -687,7 +687,7 @@ const HSL = [
 		z-index: 0;
 		inset: 0.2rem auto 0.2rem 0.2rem;
 		width: calc(50% - 0.2rem);
-		border-radius: 999px;
+		border-radius: var(--radius-pill);
 		background: rgb(255 255 255 / 0.16);
 		box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.18);
 		transition: transform 0.35s cubic-bezier(0.35, 0.1, 0.2, 1);

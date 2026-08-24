@@ -262,7 +262,7 @@ const ends = Array.from({ length: thumbs }, (_, i) => i);
 	.bed {
 		position: absolute;
 		inset: 0;
-		border-radius: var(--track-radius, 2px);
+		border-radius: var(--track-radius, var(--radius-tight));
 		/* Two layers and a transparent border: the bar itself clipped to the
 		   padding box, and `--track-edge` showing through the border box around
 		   it. A real border would do for a flat colour, but not for one that has

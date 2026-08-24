@@ -57,12 +57,36 @@ const SITE = ['nordbg', 'accent'].map((n) => swatch(by(n)));
 // Everything else, in the order the stylesheet declares it.
 const REST = tokens.filter((t) => !['nordbg', 'accent'].includes(t.name)).map(swatch);
 
+/* Every corner the site rounds, counted where it is written. The row that
+   used to be here said "4px / 8px / 12px", which was three of the fourteen
+   values then in use — a hand-kept list, and out of date the day after it was
+   written. This one is read from the source with the rest of the page, so it
+   is also the check that the scale holds: anything here that is not one of
+   the tokens is a corner somebody typed instead of choosing.
+
+   Its own styles and the specimen frame are left out. A workbench is not the
+   site, and its corners should not be counted as if they were. */
+const sheets = import.meta.glob('../{components,layouts,pages,styles}/**/*.{astro,css}', {
+	query: '?raw',
+	import: 'default',
+	eager: true,
+}) as Record<string, string>;
+
+const radii = new Map<string, number>();
+for (const [file, text] of Object.entries(sheets)) {
+	if (file.includes('designsystem') || file.includes('/ds/')) continue;
+	for (const [, value] of text.matchAll(/border-radius:\s*([^;\n]+)/g)) {
+		const v = value.trim();
+		radii.set(v, (radii.get(v) ?? 0) + 1);
+	}
+}
+const RADII = [...radii].sort((a, b) => b[1] - a[1]);
+
 // The measures that are decided once and then meant everywhere.
 const MEASURES = [
 	['--header-height', '5rem', "The orange block, and a deck post's T3 mark. One number so the two line up."],
 	['--page-border', '2px', 'The accent frame. Full-viewport layouts subtract it from 100dvh.'],
 	['main max-width', '720px', 'The column. Set in global.css, not a token.'],
-	['radius', '4px / 8px / 12px', 'Inline code / pre and images / index thumbnails.'],
 	['body', '14px / 1.7', '15px under 720px. Prose bodies switch to the serif; everything else stays mono.'],
 ];
 
@@ -134,9 +158,9 @@ border: 2px solid transparent;         /* reserves the ring, paints nothing */`;
 				padding: 2.6rem 0.7rem 0.6rem;
 				/* The bars' radius, so a rectangle on this page is cornered the
 				   same as a rectangle anywhere else on the site. */
-				border-radius: 2px;
 				/* An FLB is one pixel, here and everywhere. */
 				border: 1px solid;
+				border-radius: var(--radius-tight);
 			}
 
 			.name {
@@ -177,6 +201,25 @@ border: 2px solid transparent;         /* reserves the ring, paints nothing */`;
 			table.measures td:last-child {
 				color: var(--text-quiet);
 				opacity: 0.75;
+			}
+
+			/* Every rounding in the site, at the size it is written for: small
+			   enough that 2px and 4px are still telling apart. */
+			.radii {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr));
+				gap: 1rem;
+				margin: 1.25rem 0 0;
+				padding: 0;
+				list-style: none;
+			}
+
+			.corner {
+				display: block;
+				block-size: 2.2rem;
+				background: var(--nord0);
+				border: 1px solid var(--edge-panel);
+				margin-bottom: 0.4rem;
 			}
 
 			/* The edge demo ------------------------------------------------- */
@@ -275,6 +318,21 @@ border: 2px solid transparent;         /* reserves the ring, paints nothing */`;
 						}
 					</tbody>
 				</table>
+
+				<h3>Radius</h3>
+				<ul class="radii">
+					{
+						RADII.map(([value, count]) => (
+							<li>
+								<span class="corner" style={`border-radius: ${value}`} />
+								<span class="name">{value}</span>
+								<span class="value">
+									{count} {count === 1 ? 'use' : 'uses'}
+								</span>
+							</li>
+						))
+					}
+				</ul>
 
 				<h2>Patterns</h2>
 

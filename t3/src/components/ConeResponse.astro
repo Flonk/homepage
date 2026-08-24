@@ -341,7 +341,7 @@ const markList = marks
 		display: block;
 		width: clamp(4rem, 14cqw, 9rem);
 		height: 0.45rem;
-		border-radius: 2px;
+		border-radius: var(--radius-tight);
 		background: color-mix(in srgb, var(--ink) 14%, transparent);
 		overflow: hidden;
 	}
@@ -350,7 +350,7 @@ const markList = marks
 		display: block;
 		height: 100%;
 		width: 0;
-		border-radius: 2px;
+		border-radius: var(--radius-tight);
 	}
 
 	/* The letter takes the cone's colour as ink; the bar takes it as fill.
@@ -458,7 +458,7 @@ const markList = marks
 	   on the pane's own edge. */
 	.pick:focus-visible {
 		outline-offset: -4px;
-		border-radius: 4px;
+		border-radius: var(--radius-small);
 	}
 
 	@container viz (max-width: 30rem) {

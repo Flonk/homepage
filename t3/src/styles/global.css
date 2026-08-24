@@ -23,6 +23,18 @@
      the specimen stages in components/ds.
 
      One pixel. An edge is meant to be found rather than looked at. */
+  /* Four roundings and a pill. There were fourteen: 1, 2, 3 and 0.2rem
+     all meaning "just off square", 6px and 0.5rem and 0.6rem all meaning
+     "a card", and so on — nobody chose those, they were each typed once
+     next to something that already looked right. Anything that wants a
+     corner takes one of these; 50% stays a literal, because a circle is a
+     shape and not a step. */
+  --radius-tight: 2px;
+  --radius-small: 4px;
+  --radius: 8px;
+  --radius-large: 12px;
+  --radius-pill: 999px;
+
   --lift: 0.2;
 
   /* Three voices, not three greys. --nord4, 5 and 6 were 0.899, 0.933 and
@@ -254,7 +266,7 @@ table {
 img {
   max-width: 100%;
   height: auto;
-  border-radius: 8px;
+  border-radius: var(--radius);
   padding: 1em;
   border: 1px solid var(--edge);
   box-sizing: border-box;
@@ -262,13 +274,13 @@ img {
 code {
   padding: 3px 6px;
   border: 1px solid var(--edge);
-  border-radius: 4px;
+  border-radius: var(--radius-small);
   white-space: nowrap;
   overflow-wrap: break-word;
 }
 pre {
   padding: 1.5em;
-  border-radius: 8px;
+  border-radius: var(--radius);
   overflow-wrap: break-word;
   white-space: pre-wrap;
 }
@@ -574,12 +586,12 @@ em {
   --range-fill: transparent;
   --range-rest: rgb(255 255 255 / 0.16);
   --range-at: 0; /* 0 to 1, set by the component's script */
-  --range-radius: 0.2rem;
+  --range-radius: var(--radius-tight);
   /* The thumb. */
   --range-thumb-w: 0.55rem;
   --range-thumb-h: 1.1rem;
   --range-thumb-ink: currentColor;
-  --range-thumb-radius: 2px;
+  --range-thumb-radius: var(--radius-tight);
   --range-thumb-ring: 0 0;
   /* Centred on the track by default. A control whose thumb spans the whole
      bar rather than sitting inside it sets this to zero. */
@@ -639,7 +651,7 @@ em {
 .viz-range:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 4px;
-  border-radius: 3px;
+  border-radius: var(--radius-tight);
 }
 
 /* The other kind: the control is drawn elsewhere — on a canvas, or as a mark
