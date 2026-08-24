@@ -10,7 +10,6 @@ import FlbSolids from "../../components/ds/FlbSolids.astro";
 import RadiusScale from "../../components/ds/RadiusScale.astro";
 import Swatches from "../../components/ds/Swatches.astro";
 import TrackDemo from "../../components/ds/TrackDemo.astro";
-import TypeSample from "../../components/ds/TypeSample.astro";
 
 {/* Hidden: kept off the index, out of the feed and out of the sitemap, and it
     carries a noindex. For whoever is building the site rather than for whoever
@@ -35,21 +34,9 @@ Use OKLCH for everything.
 
 ## FLB
 
-Any border on an object should be an *FLB* (fake luminosity border).
-
-### On a flat colour
-
-If the element is a flat color, its border can be a real CSS border; same color
-but 20% lighter.
+Any border on an object should be an *FLB* (fake luminosity border). If the element is a flat color, its border can be a real CSS border; same color but 20% lighter.
 
 <FlbSolids />
-
-```css
-background: var(--nord0);
-border: 1px solid <that colour, lifted>;
-```
-
-### On a ramp
 
 If the content is a gradient or some other sort of non-solid colour, the border
 must be emulated to show a fake 1px ring of the same colour, 20% lighter,
@@ -57,41 +44,8 @@ around the element.
 
 <FlbBar />
 
-```css
-background:
-  <the ramp> padding-box,        /* stops at the inner edge */
-  <the ramp, lifted> border-box; /* only the ring is left for it */
-box-sizing: border-box;
-border: 1px solid transparent;   /* reserves the ring, paints nothing */
-```
-
 ## Components
 
 ### VizTrack
 
-The bar everything in the colour series is built on: an axis with something
-painted along it, one or two thumbs, and a walk that runs on its own until a
-reader takes hold of it. With a backdrop it shows the ramp; without one it
-fills up to the thumb.
-
 <TrackDemo />
-
-```jsx
-<VizTrack thumbs={1} labels={['Value']} />
-<VizTrack thumbs={1} backdrop={ramp} size="2rem" labels={['Hue']} />
-<VizTrack thumbs={2} labels={['Low', 'High']} />
-```
-
-The edge is the host's to set, and needs a ring to show through.
-
-```css
---track-border: 1px solid transparent;
---track-edge: <the bed's colour, lifted>;
-```
-
-## Type
-
-Monospace is the site talking about itself: nav, headings, the post index,
-code. Long-form prose bodies are the only thing that switches, to the serif.
-
-<TypeSample />
