@@ -110,10 +110,28 @@ border: 1px solid <that colour, lifted>;`;
 // it — built here the way the cube's channel bars and the solid's hue bar
 // build theirs, out of `lighten`.
 const toRgb = converter('rgb');
+const VIZ_DARK = '#14161a';
 const HUES = Array.from({ length: 25 }, (_, i) => i * 15);
 const hueHex = (d: number) => formatHex(toRgb({ mode: 'hsl', h: d, s: 1, l: 0.5 })!);
 const HUE_RAMP = `linear-gradient(to right, ${HUES.map(hueHex).join(', ')})`;
 const HUE_EDGE = `linear-gradient(to right, ${HUES.map((d) => lighten(hueHex(d), LIFT)).join(', ')})`;
+
+// A bar with no backdrop shows its rest colour, which is white at 16%. Over
+// the dark stage that composites to this, and the bar is handed it flat: a
+// see-through bed lets the ring show through the whole of itself rather than
+// only around the edge, because the layer over it hides nothing. Opaque, the
+// edge is an edge again — and it can be lifted off the colour the bed actually
+// ends up being rather than off one of its halves.
+const REST_ON_DARK = formatHex({
+	mode: 'rgb',
+	...(([r, g, b]) => ({ r, g, b }))(
+		[1, 3, 5].map((i) => {
+			const v = parseInt(VIZ_DARK.slice(i, i + 2), 16) / 255;
+			return 0.16 + 0.84 * v;
+		}) as [number, number, number],
+	),
+});
+const BED_EDGE = lighten(REST_ON_DARK, LIFT);
 
 const FAKE_CSS = `background:
   <the ramp> padding-box,        /* stops at the inner edge */
@@ -229,7 +247,6 @@ border: 1px solid transparent;   /* reserves the ring, paints nothing */`;
 			   with no border has nowhere to put one. */
 			.flb-bar {
 				--track-border: 1px solid transparent;
-				--track-radius: var(--radius-large);
 			}
 
 			.flb-row {
@@ -343,7 +360,7 @@ border: 1px solid transparent;   /* reserves the ring, paints nothing */`;
 					code={FAKE_CSS}
 					ground="dark"
 				>
-					<div class="flb-bar" style={`--track-edge: ${HUE_EDGE}`}>
+					<div class="flb-bar" style={`--track-edge: ${HUE_EDGE}; --track-radius: var(--radius-large)`}>
 						<VizTrack thumbs={0} fill={false} size="2.5rem" backdrop={HUE_RAMP} />
 					</div>
 				</Specimen>
@@ -355,17 +372,21 @@ border: 1px solid transparent;   /* reserves the ring, paints nothing */`;
 					note="The bar everything in the colour series is built on: an axis with something painted along it, one or two thumbs, and a walk that runs on its own until a reader takes hold of it. With a backdrop it shows the ramp; without one it fills up to the thumb."
 					code={`<VizTrack thumbs={1} labels={['Value']} />
 <VizTrack thumbs={1} backdrop={ramp} size="2rem" labels={['Hue']} />
-<VizTrack thumbs={2} labels={['Low', 'High']} />`}
+<VizTrack thumbs={2} labels={['Low', 'High']} />
+
+/* the edge is the host's to set, and needs a ring to show through */
+--track-border: 1px solid transparent;
+--track-edge: <the bed's colour, lifted>;`}
 					ground="dark"
 				>
-					<div class="stack">
+					<div
+						class="stack flb-bar"
+						style={`--track-rest: ${REST_ON_DARK}; --track-edge: ${BED_EDGE}`}
+					>
 						<VizTrack thumbs={1} labels={['Value']} />
-						<VizTrack
-							thumbs={1}
-							backdrop={`linear-gradient(to right, ${Array.from({ length: 13 }, (_, i) => `hsl(${i * 30} 100% 50%)`).join(', ')})`}
-							size="2rem"
-							labels={['Hue']}
-						/>
+						<div style={`--track-edge: ${HUE_EDGE}`}>
+							<VizTrack thumbs={1} backdrop={HUE_RAMP} size="2rem" labels={['Hue']} />
+						</div>
 						<VizTrack thumbs={2} labels={['Low', 'High']} />
 					</div>
 				</Specimen>
