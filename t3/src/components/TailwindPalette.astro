@@ -47,6 +47,7 @@
  * than sRGB holds, and what a reader should meet is what their own screen
  * does with them.
  */
+import Pill from './Pill.astro';
 import { fitChroma } from '../lib/oklch';
 import { TAILWIND, STEPS, oklch, type Family, type Shade } from '../lib/tailwind';
 
@@ -163,22 +164,13 @@ const label = Math.max(...shown.map((f) => f.name.length));
 	{
 		toggle && (
 			<div class="controls">
-				<button
-					class="toggle"
-					type="button"
-					role="switch"
-					aria-checked={mode === 'handmade' ? 'true' : 'false'}
-					aria-label="Show the hand-built palette instead"
+				<Pill
+						class="toggle"
+					sides={['TAILWIND', 'HANDMADE']}
+					on={mode === 'handmade'}
+					label="Show the hand-built palette instead"
 					data-swap
-				>
-					<span class="knob" aria-hidden="true" />
-					<span class="side" data-side="tailwind" aria-hidden="true">
-						TAILWIND
-					</span>
-					<span class="side" data-side="handmade" aria-hidden="true">
-						HANDMADE
-					</span>
-				</button>
+				/>
 			</div>
 		)
 	}
@@ -292,58 +284,6 @@ const label = Math.max(...shown.map((f) => f.name.length));
 	}
 
 	/* The same smoked glass the other pictures put their controls on. */
-	.toggle {
-		position: relative;
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		align-items: center;
-		padding: 0.2rem;
-		border: 0;
-		border-radius: var(--radius-pill);
-		background: var(--pill, rgb(12 14 17 / 0.62));
-		box-shadow:
-			inset 0 0 0 1px rgb(255 255 255 / 0.12),
-			0 4px 16px rgb(0 0 0 / 0.15);
-		backdrop-filter: blur(6px);
-		font: inherit;
-		font-size: 0.7rem;
-		letter-spacing: 0.1em;
-		color: inherit;
-		cursor: pointer;
-	}
-
-	.knob {
-		position: absolute;
-		z-index: 0;
-		inset: 0.2rem auto 0.2rem 0.2rem;
-		width: calc(50% - 0.2rem);
-		border-radius: var(--radius-pill);
-		background: rgb(255 255 255 / 0.16);
-		box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.18);
-		transition: transform 0.35s cubic-bezier(0.35, 0.1, 0.2, 1);
-	}
-
-	.palette[data-mode='handmade'] .knob {
-		transform: translateX(100%);
-	}
-
-	.side {
-		position: relative;
-		z-index: 1;
-		padding: 0.3rem 0.7rem;
-		transition: color 0.35s ease;
-	}
-
-	.palette[data-mode='tailwind'] .side[data-side='tailwind'],
-	.palette[data-mode='handmade'] .side[data-side='handmade'] {
-		color: var(--deck-ink, #e6e9ef);
-	}
-
-	.toggle:focus-visible {
-		outline: 2px solid var(--accent, #f7a800);
-		outline-offset: 3px;
-	}
-
 	@container viz (max-width: 34rem) {
 		.name {
 			font-size: 0.6rem;
@@ -356,8 +296,7 @@ const label = Math.max(...shown.map((f) => f.name.length));
 
 	@media (prefers-reduced-motion: reduce) {
 		.family,
-		.swatch,
-		.knob {
+		.swatch {
 			transition: none;
 		}
 	}

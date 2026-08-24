@@ -1,0 +1,26 @@
+---
+// The glass wants something behind it to be glass over, so it gets the same
+// hue ramp the FLB specimen uses.
+import { HUE_RAMP } from './palette';
+---
+
+<div class="ground" style={`background: ${HUE_RAMP}`}>
+	<div class="glass card">Readout</div>
+</div>
+
+<style>
+	.ground {
+		display: grid;
+		place-items: center;
+		padding: 2rem;
+		border-radius: var(--radius-large);
+	}
+
+	.card {
+		padding: 1em 1.5em;
+		font-family: var(--font-mono);
+		font-size: 0.85em;
+		letter-spacing: 0.08em;
+		color: #fff;
+	}
+</style>

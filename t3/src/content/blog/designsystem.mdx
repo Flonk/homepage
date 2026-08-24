@@ -7,18 +7,16 @@ hidden: true
 
 import FlbBar from "../../components/ds/FlbBar.astro";
 import FlbSolids from "../../components/ds/FlbSolids.astro";
+import GlassDemo from "../../components/ds/GlassDemo.astro";
+import PillDemo from "../../components/ds/PillDemo.astro";
 import RadiusScale from "../../components/ds/RadiusScale.astro";
 import Swatches from "../../components/ds/Swatches.astro";
 import TrackDemo from "../../components/ds/TrackDemo.astro";
 
-{/* Hidden: kept off the index, out of the feed and out of the sitemap, and it
-    carries a noindex. For whoever is building the site rather than for whoever
-    is reading it — which is also why it is a post and not a page. */}
-
-Everything here is read out of the source at build time: the swatches are the
-custom properties in `global.css`, each value computed from the hex the
-stylesheet declares, and the components are the real ones. Nothing here is a
-copy of the site, so nothing here can go stale while the site moves.
+## Rules
+- Use OKLCH for everything.
+- Any border on an object should be an *FLB* (fake luminosity border).
+- Do not clutter this page with text; AI agents will read the code anyway.
 
 ## Colour
 
@@ -27,10 +25,6 @@ copy of the site, so nothing here can go stale while the site moves.
 ## Radius
 
 <RadiusScale />
-
-## OKLCH
-
-Use OKLCH for everything.
 
 ## FLB
 
@@ -49,3 +43,11 @@ around the element.
 ### VizTrack
 
 <TrackDemo />
+
+### Pill
+
+<PillDemo />
+
+### Glass
+
+<GlassDemo />

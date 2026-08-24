@@ -32,6 +32,7 @@
  * position, and every engine worth the name has a tone-mapping stage that
  * would quietly rewrite it on the way to the screen.
  */
+import Pill from './Pill.astro';
 import { lighten, lightenRgb } from '../lib/oklch';
 import { rgbCss, type Rgb } from '../lib/rgb';
 import VizTrack from './VizTrack.astro';
@@ -222,36 +223,25 @@ const HSL = [
 			<div class="controls">
 				<p class="readout" data-readout>rgb(128 128 128)</p>
 				<div class="switch space">
-					<button
+					<Pill
 						class="toggle"
-						type="button"
-						role="switch"
-						aria-checked={space === 'hsl' ? 'true' : 'false'}
-						aria-label="Colour space"
+						sides={['RGB', 'HSL']}
+						on={space === 'hsl'}
+						label="Colour space"
 						data-toggle
 						inert={!toggle}
-					>
-						<span class="knob" aria-hidden="true"></span>
-						<span class="side" data-side="rgb" aria-hidden="true">RGB</span>
-						<span class="side" data-side="hsl" aria-hidden="true">HSL</span>
-					</button>
+					/>
 				</div>
 				{/* Under the solid, because what it takes the colour out of is the
 				    solid as much as the two swatches. */}
 				<div class="switch grey">
-					<button
+					<Pill
 						class="toggle"
-						type="button"
-						role="switch"
-						aria-checked="false"
-						aria-label="Drop the colour"
+						sides={['COLOUR', 'GREY']}
+						label="Drop the colour"
 						data-grey-toggle
 						inert={!compare}
-					>
-						<span class="knob" aria-hidden="true"></span>
-						<span class="side" data-side="colour" aria-hidden="true">COLOUR</span>
-						<span class="side" data-side="grey" aria-hidden="true">GREY</span>
-					</button>
+					/>
 				</div>
 			</div>
 		</div>
@@ -656,67 +646,6 @@ const HSL = [
 	   under the solid, in the middle of the pane, which is where the swoosh is
 	   at its brightest — and a white wash there leaves two pale words on a pale
 	   ground. Dark, it is legible over anything the dot can be. */
-	.toggle {
-		position: relative;
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		align-items: center;
-		gap: 0;
-		padding: 0.2rem;
-		border: 0;
-		border-radius: var(--radius-pill);
-		background: var(--pill, rgb(12 14 17 / 0.62));
-		box-shadow:
-			inset 0 0 0 1px rgb(255 255 255 / 0.12),
-			0 4px 16px rgb(0 0 0 / 0.15);
-		backdrop-filter: blur(6px);
-		min-block-size: 0;
-		overflow: hidden;
-		transition:
-			opacity 0.45s ease,
-			padding 0.45s ease;
-		font: inherit;
-		font-size: 0.75rem;
-		letter-spacing: 0.1em;
-		color: inherit;
-		cursor: pointer;
-	}
-
-	.knob {
-		position: absolute;
-		z-index: 0;
-		inset: 0.2rem auto 0.2rem 0.2rem;
-		width: calc(50% - 0.2rem);
-		border-radius: var(--radius-pill);
-		background: rgb(255 255 255 / 0.16);
-		box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.18);
-		transition: transform 0.35s cubic-bezier(0.35, 0.1, 0.2, 1);
-	}
-
-	.solid[data-space='hsl'] .switch.space .knob,
-	.solid[data-grey='true'] .switch.grey .knob {
-		transform: translateX(100%);
-	}
-
-	.side {
-		position: relative;
-		z-index: 1;
-		padding: 0.3rem 0.85rem;
-		transition: color 0.35s ease;
-	}
-
-	.solid[data-space='rgb'] .side[data-side='rgb'],
-	.solid[data-space='hsl'] .side[data-side='hsl'],
-	.solid[data-grey='false'] .side[data-side='colour'],
-	.solid[data-grey='true'] .side[data-side='grey'] {
-		color: var(--deck-ink, #e6e9ef);
-	}
-
-	.toggle:focus-visible {
-		outline: 2px solid var(--accent, #f7a800);
-		outline-offset: 3px;
-	}
-
 	/* Over the switch, under the solid, in the middle of the pane — which the S
 	   fills, so the reading sits on the colour it is a reading of. Its ink flips
 	   between black and white for whichever gives more contrast against that
@@ -873,12 +802,10 @@ const HSL = [
 			color: var(--deck-ink, #e6e9ef);
 		}
 
-		.toggle {
-			font-size: 0.7rem;
-		}
-
-		.side {
-			padding-inline: 0.55rem;
+		/* Pill takes both of these as custom properties; see components/Pill. */
+		.switch {
+			--pill-size: 0.7rem;
+			--pill-pad: 0.55rem;
 		}
 
 		/* Room to be big in, now that the stage has the width and most of the

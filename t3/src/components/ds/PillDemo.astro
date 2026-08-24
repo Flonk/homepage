@@ -1,0 +1,27 @@
+---
+import Pill from '../Pill.astro';
+---
+
+<div class="row" data-pill-demo>
+	<Pill sides={['TAILWIND', 'HANDMADE']} label="Show the hand-built palette instead" />
+	<Pill sides={['COLOUR', 'GREY']} on label="Drop the colour" />
+</div>
+
+<script>
+	// A switch that nobody has wired to anything still has to throw, or the
+	// specimen is a picture of a switch.
+	for (const pill of document.querySelectorAll<HTMLElement>('[data-pill-demo] .pill')) {
+		pill.addEventListener('click', () => {
+			pill.setAttribute('aria-checked', pill.getAttribute('aria-checked') === 'true' ? 'false' : 'true');
+		});
+	}
+</script>
+
+<style>
+	.row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		align-items: center;
+	}
+</style>

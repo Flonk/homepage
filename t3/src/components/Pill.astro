@@ -1,0 +1,99 @@
+---
+/**
+ * The two-sided switch the vizzes carry: a pill with a knob that slides under
+ * whichever side is on, on a pane of the same glass everything else in a
+ * visualization sits on.
+ *
+ * Which side is on comes off `aria-checked`, which every host was already
+ * keeping in sync for the screen reader — so the state has one home rather
+ * than one here and one in whatever attribute the host happened to name.
+ * `false` is the first side, `true` is the second.
+ */
+interface Props {
+	/** The two labels, left then right. */
+	sides: [string, string];
+	/** Which one is on to begin with. */
+	on?: boolean;
+	/** What the switch does, for a reader who cannot see which side is lit. */
+	label: string;
+	class?: string;
+}
+
+const { sides, on = false, label, class: className, ...rest } = Astro.props;
+---
+
+<button
+	class:list={['pill', className]}
+	type="button"
+	role="switch"
+	aria-checked={on ? 'true' : 'false'}
+	aria-label={label}
+	{...rest}
+>
+	<span class="knob" aria-hidden="true"></span>
+	{sides.map((side, i) => <span class="side" data-at={i} aria-hidden="true">{side}</span>)}
+</button>
+
+<style>
+	.pill {
+		position: relative;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		align-items: center;
+		padding: 0.2rem;
+		border: 0;
+		border-radius: var(--radius-pill);
+		background: var(--pill, rgb(12 14 17 / 0.62));
+		box-shadow:
+			inset 0 0 0 1px rgb(255 255 255 / 0.12),
+			0 4px 16px rgb(0 0 0 / 0.15);
+		backdrop-filter: blur(6px);
+		font: inherit;
+		font-size: var(--pill-size, 0.75rem);
+		letter-spacing: 0.1em;
+		color: inherit;
+		cursor: pointer;
+	}
+
+	.knob {
+		position: absolute;
+		z-index: 0;
+		inset: 0.2rem auto 0.2rem 0.2rem;
+		width: calc(50% - 0.2rem);
+		border-radius: var(--radius-pill);
+		background: rgb(255 255 255 / 0.16);
+		box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.18);
+		transition: transform 0.35s cubic-bezier(0.35, 0.1, 0.2, 1);
+	}
+
+	.pill[aria-checked='true'] .knob {
+		transform: translateX(100%);
+	}
+
+	.side {
+		position: relative;
+		z-index: 1;
+		padding: 0.3rem var(--pill-pad, 0.85rem);
+		transition: color 0.35s ease;
+	}
+
+	/* Only the side that is on is lit; the other stays the colour it inherits.
+	   Numbered rather than counted: :nth-of-type counts spans, and the knob is
+	   a span and comes first, so counting puts every side one place out. */
+	.pill[aria-checked='false'] .side[data-at='0'],
+	.pill[aria-checked='true'] .side[data-at='1'] {
+		color: var(--deck-ink, #e6e9ef);
+	}
+
+	.pill:focus-visible {
+		outline: 2px solid var(--accent, #f7a800);
+		outline-offset: 3px;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.knob,
+		.side {
+			transition: none;
+		}
+	}
+</style>

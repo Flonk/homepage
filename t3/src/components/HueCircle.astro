@@ -32,6 +32,7 @@
  * round rather than a gamut boundary in disguise — that is the gamut post's
  * picture, not this one.
  */
+import Pill from './Pill.astro';
 import { decode, encode } from '../lib/gamut';
 import { oklchCss, oklchRgb } from '../lib/oklch';
 import { rgbCss, rgbaCss, type Rgb } from '../lib/rgb';
@@ -135,22 +136,7 @@ const face = (wheel: string, edge: string) =>
 	{
 		toggle && (
 			<div class="switch">
-				<button
-					class="toggle"
-					type="button"
-					role="switch"
-					aria-checked="false"
-					aria-label="Drop the colour"
-					data-grey-toggle
-				>
-					<span class="knob" aria-hidden="true" />
-					<span class="side" data-side="colour" aria-hidden="true">
-						COLOUR
-					</span>
-					<span class="side" data-side="grey" aria-hidden="true">
-						GREY
-					</span>
-				</button>
+				<Pill sides={['COLOUR', 'GREY']} label="Drop the colour" data-grey-toggle />
 			</div>
 		)
 	}
@@ -227,63 +213,8 @@ const face = (wheel: string, edge: string) =>
 		flex: none;
 	}
 
-	.toggle {
-		position: relative;
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		align-items: center;
-		padding: 0.2rem;
-		border: 0;
-		border-radius: var(--radius-pill);
-		background: var(--pill, rgb(12 14 17 / 0.62));
-		box-shadow:
-			inset 0 0 0 1px rgb(255 255 255 / 0.12),
-			0 4px 16px rgb(0 0 0 / 0.15);
-		backdrop-filter: blur(6px);
-		overflow: hidden;
-		font: inherit;
-		font-size: 0.75rem;
-		letter-spacing: 0.1em;
-		color: inherit;
-		cursor: pointer;
-	}
-
-	.knob {
-		position: absolute;
-		z-index: 0;
-		inset: 0.2rem auto 0.2rem 0.2rem;
-		width: calc(50% - 0.2rem);
-		border-radius: var(--radius-pill);
-		background: rgb(255 255 255 / 0.16);
-		box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.18);
-		transition: transform 0.35s cubic-bezier(0.35, 0.1, 0.2, 1);
-	}
-
-	.hue-circle[data-grey='true'] .knob {
-		transform: translateX(100%);
-	}
-
-	.side {
-		position: relative;
-		z-index: 1;
-		padding: 0.3rem 0.85rem;
-		transition: color 0.35s ease;
-	}
-
-	.hue-circle[data-grey='false'] .side[data-side='colour'],
-	.hue-circle[data-grey='true'] .side[data-side='grey'] {
-		color: var(--deck-ink, #e6e9ef);
-	}
-
-	.toggle:focus-visible {
-		outline: 2px solid var(--deck-ink, #e6e9ef);
-		outline-offset: 2px;
-	}
-
 	@media (prefers-reduced-motion: reduce) {
-		.disc.flat,
-		.knob,
-		.side {
+		.disc.flat {
 			transition-duration: 0.01ms;
 		}
 	}
