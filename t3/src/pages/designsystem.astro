@@ -36,7 +36,7 @@ const swatch = (t: { name: string; hex: string }) => {
 		// has no hue to report, and culori says so with undefined; 0 is the
 		// convention for writing one down.
 		oklch: `oklch(${(o.l * 100).toFixed(2)}% ${o.c.toFixed(3)} ${(o.h ?? 0).toFixed(2)})`,
-		// Which way the label has to go to be read on it.
+		// Which way the words have to go to be read on it.
 		ink: o.l > 0.6 ? '#14161a' : '#eceff4',
 	};
 };
@@ -109,35 +109,34 @@ border: 2px solid transparent;         /* reserves the ring, paints nothing */`;
 				margin-top: 2rem;
 			}
 
+			/* Wide enough that the oklch string never has to break. */
 			.swatches {
 				display: grid;
-				grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
-				gap: 0.75rem;
+				grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+				gap: 1rem;
 				margin: 1.25rem 0 0;
 				padding: 0;
 				list-style: none;
 			}
 
+			/* One rectangle of the colour with its own name on it, which is also
+			   the only honest test of a colour: whether anything can be read on it. */
 			.swatches li {
-				border-radius: 6px;
-				overflow: hidden;
+				padding: 2.6rem 0.7rem 0.6rem;
+				border-radius: 4px;
 				border: 1px solid var(--nord2);
 			}
 
-			/* The name sits on the colour, so the swatch is also the proof that
-			   something can be read on it. */
-			.chip {
+			.name {
 				display: block;
-				padding: 1.4rem 0.7rem 0.5rem;
 				font-size: 0.85em;
 			}
 
 			.value {
 				display: block;
-				padding: 0.45rem 0.7rem 0.55rem;
-				font-size: 0.72em;
-				color: var(--nord4);
-				background: var(--nord0);
+				font-size: 0.68em;
+				white-space: nowrap;
+				opacity: 0.75;
 			}
 
 			/* Measures ------------------------------------------------------ */
@@ -230,10 +229,8 @@ border: 2px solid transparent;         /* reserves the ring, paints nothing */`;
 				<ul class="swatches">
 					{
 						SITE.map((c) => (
-							<li>
-								<span class="chip" style={`background: ${c.hex}; color: ${c.ink}`}>
-									--{c.name}
-								</span>
+							<li style={`background: ${c.hex}; color: ${c.ink}`}>
+								<span class="name">--{c.name}</span>
 								<span class="value">{c.oklch}</span>
 							</li>
 						))
@@ -242,10 +239,8 @@ border: 2px solid transparent;         /* reserves the ring, paints nothing */`;
 				<ul class="swatches">
 					{
 						REST.map((c) => (
-							<li>
-								<span class="chip" style={`background: ${c.hex}; color: ${c.ink}`}>
-									--{c.name}
-								</span>
+							<li style={`background: ${c.hex}; color: ${c.ink}`}>
+								<span class="name">--{c.name}</span>
 								<span class="value">{c.oklch}</span>
 							</li>
 						))
