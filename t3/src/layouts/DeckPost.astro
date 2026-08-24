@@ -234,7 +234,7 @@ const { title, description, pubDate, series, ground, prevPart, nextPart } = Astr
 				content: '';
 				grid-area: text;
 				z-index: 1;
-				border-top: 1px solid var(--nord1);
+				border-top: 1px solid var(--edge);
 				align-self: start;
 				width: 100%;
 			}
@@ -246,8 +246,8 @@ const { title, description, pubDate, series, ground, prevPart, nextPart } = Astr
 				justify-content: center;
 				gap: 1rem;
 				padding: 0.6rem 1rem;
-				border-top: 1px solid var(--nord1);
-				background-color: rgba(46, 52, 64, 0.35);
+				border-top: 1px solid var(--edge-panel);
+				background-color: color-mix(in srgb, var(--nord0) 35%, transparent);
 			}
 
 			.deck-arrow {
@@ -256,7 +256,7 @@ const { title, description, pubDate, series, ground, prevPart, nextPart } = Astr
 				line-height: 1;
 				color: var(--nord4);
 				background: transparent;
-				border: 1px solid var(--nord2);
+				border: 1px solid var(--edge);
 				border-radius: 4px;
 				padding: 0.3em 0.75em;
 				cursor: pointer;

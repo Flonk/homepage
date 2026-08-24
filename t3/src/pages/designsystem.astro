@@ -22,9 +22,13 @@ import css from '../styles/global.css?raw';
 // that is a stack, a length or a shadow is not a swatch and belongs in the
 // measures table further down.
 const root = css.slice(css.indexOf(':root'), css.indexOf('\n}', css.indexOf(':root')));
-const tokens = [...root.matchAll(/--([a-z0-9-]+):\s*(#[0-9a-fA-F]{3,8})\s*;/g)].map(
-	([, name, hex]) => ({ name, hex }),
-);
+const tokens = [...root.matchAll(/--([a-z0-9-]+):\s*(#[0-9a-fA-F]{3,8})\s*;/g)]
+	.map(([, name, hex]) => ({ name, hex }))
+	// The edges are derived from the palette rather than part of it, and the hex
+	// in the stylesheet is only what they fall back to where relative colour
+	// syntax is missing — listing it here would be the page telling a colour it
+	// does not paint. They are in Patterns instead.
+	.filter((t) => !t.name.startsWith('edge'));
 
 const toOklch = converter('oklch');
 const swatch = (t: { name: string; hex: string }) => {
@@ -131,7 +135,8 @@ border: 2px solid transparent;         /* reserves the ring, paints nothing */`;
 				/* The bars' radius, so a rectangle on this page is cornered the
 				   same as a rectangle anywhere else on the site. */
 				border-radius: 2px;
-				border: 2px solid;
+				/* An FLB is one pixel, here and everywhere. */
+				border: 1px solid;
 			}
 
 			.name {
@@ -160,7 +165,7 @@ border: 2px solid transparent;         /* reserves the ring, paints nothing */`;
 				text-align: left;
 				vertical-align: top;
 				padding: 0.4rem 1rem 0.4rem 0;
-				border-bottom: 1px solid var(--nord1);
+				border-bottom: 1px solid var(--edge);
 			}
 
 			table.measures th {

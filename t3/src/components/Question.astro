@@ -55,11 +55,11 @@ if (multiline && lang) {
     /* Vertical margin only — a horizontal one would inset the box relative to
        the surrounding prose column and read as accidentally centred. */
     margin: 1.75em 0;
-    border: 1px solid var(--nord2);
+    border: 1px solid var(--edge-panel);
     border-left: 3px solid var(--accent);
     border-radius: 6px;
     overflow: hidden;
-    background-color: rgba(46, 52, 64, 0.35);
+    background-color: color-mix(in srgb, var(--nord0) 35%, transparent);
   }
 
   @media (max-width: 768px) {
@@ -97,7 +97,7 @@ if (multiline && lang) {
     font-size: 0.8em;
     color: var(--nord4);
     background-color: transparent;
-    border: 1px solid var(--nord2);
+    border: 1px solid var(--edge);
     border-radius: 4px;
     padding: 0.35em 0.9em;
     cursor: pointer;
@@ -120,7 +120,7 @@ if (multiline && lang) {
   .spoiler-content {
     display: none;
     padding: var(--qa-pad);
-    border-top: 1px solid var(--nord2);
+    border-top: 1px solid var(--edge);
     background-color: rgba(0, 0, 0, 0.25);
   }
 
@@ -147,7 +147,7 @@ if (multiline && lang) {
     margin: 0.9rem 0;
     padding: 0.7rem 0.85rem;
     background-color: rgba(0, 0, 0, 0.35) !important;
-    border: 1px solid var(--nord1);
+    border: 1px solid var(--edge);
     border-radius: 4px;
     overflow-x: auto;
     font-family: var(--font-mono, monospace);

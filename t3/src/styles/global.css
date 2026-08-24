@@ -10,6 +10,25 @@
 
   --accent: #ffa200;
 
+  /* The fake luminosity border, as a colour rather than as a gradient: what
+     the thing is sitting on, taken a fifth of the way to white. Same formula
+     as `lighten` in lib/oklch — a fraction of the lightness that is left,
+     with the hue and chroma held — but said in CSS, so a border can have one
+     without anything computing it first. Bars need the two-layer version
+     because their edge has to follow a ramp; a border on a flat ground does
+     not, and this is what it gets instead.
+
+     `--edge` is the page. `--edge-panel` is the raised grey a card is. An
+     element on some other ground redeclares `--edge` from that ground; see
+     the specimen stages in components/ds.
+
+     One pixel. An edge is meant to be found rather than looked at. */
+  --lift: 0.2;
+  /* Where relative colour syntax is not understood there is no lifting
+     anything, so the edge falls back to the flat grey it used to be. */
+  --edge: #434c5e;
+  --edge-panel: #4c566a;
+
   /* Monospace is the site's voice: nav, headings, code, the post index.
      Long-form prose bodies use the serif stack instead — see .prose below. */
   --font-mono: ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas,
@@ -20,21 +39,12 @@
 
   --nordbg: #1d1f21;
   --nord0: #2e3440;
-  --nord1: #3b4252;
-  --nord2: #434c5e;
   --nord3: #4c566a;
   --nord4: #d8dee9;
   --nord5: #e5e9f0;
   --nord6: #eceff4;
-  --nord7: #8fbcbb;
   --nord8: #88c0d0;
-  --nord9: #81a1c1;
-  --nord10: #5e81ac;
-  --nord11: #bf616a;
-  --nord12: #d08770;
   --nord13: #ebcb8b;
-  --nord14: #a3be8c;
-  --nord15: #b48ead;
 
   /* Grounds for a deck card's visualization half, when it opts into one.
      Which of the two a post uses is its `ground` frontmatter; see DeckPost. */
@@ -51,6 +61,13 @@
   border: solid var(--page-border) var(--accent);
   min-height: 100vh;
   box-sizing: border-box;
+}
+
+@supports (color: oklch(from white l c h)) {
+  :root {
+    --edge: oklch(from var(--nordbg) calc(l + var(--lift) * (1 - l)) c h);
+    --edge-panel: oklch(from var(--nord0) calc(l + var(--lift) * (1 - l)) c h);
+  }
 }
 
 body {
@@ -229,12 +246,12 @@ img {
   height: auto;
   border-radius: 8px;
   padding: 1em;
-  border: 1px solid var(--nord2);
+  border: 1px solid var(--edge);
   box-sizing: border-box;
 }
 code {
   padding: 3px 6px;
-  border: 1px solid var(--nord2);
+  border: 1px solid var(--edge);
   border-radius: 4px;
   white-space: nowrap;
   overflow-wrap: break-word;
@@ -270,7 +287,7 @@ hr {
 hr {
   margin: 2em 0;
   border: none;
-  border-top: 1px solid var(--nord2);
+  border-top: 1px solid var(--edge);
 }
 
 strong,

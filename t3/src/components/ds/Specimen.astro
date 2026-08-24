@@ -48,24 +48,28 @@ const { name, note, code, ground = 'page' } = Astro.props;
 	   that lies about what the component does on a real page. */
 	.stage {
 		padding: 1.5rem;
-		border: 1px solid var(--nord2);
+		border: 1px solid var(--edge);
 		border-radius: 8px;
 		overflow-x: auto;
 	}
 
+	/* A stage on a ground of its own lifts its edge off that ground rather
+	   than off the page, which is the whole point of the thing. */
 	.stage[data-ground='dark'] {
 		background: var(--viz-dark);
+		--edge: oklch(from var(--viz-dark) calc(l + var(--lift) * (1 - l)) c h);
 	}
 
 	.stage[data-ground='beige'] {
 		background: var(--viz-beige);
 		color: #14161a;
+		--edge: oklch(from var(--viz-beige) calc(l + var(--lift) * (1 - l)) c h);
 	}
 
 	.call {
 		margin: 0.75rem 0 0;
 		padding: 1rem 1.25rem;
-		border: 1px solid var(--nord2);
+		border: 1px solid var(--edge);
 		border-radius: 8px;
 		font-size: 0.85em;
 		color: var(--nord4);
