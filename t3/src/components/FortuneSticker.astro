@@ -35,7 +35,7 @@ const starburst = Array.from({ length: POINTS * 2 }, (_, i) => {
 		   reach the top and bottom of it. Worst on a phone, where the sticker is
 		   as wide as the column and every row it wastes is a row to scroll past. */
 		--sticker-w: 15rem;
-		--squash: 0.74;
+		--squash: 0.6;
 		/* The blue across the wheel from blog orange — oklch(78.74% 0.1715
 		   69.12) — at the same lightness, so there is no brightness edge where
 		   the stripes meet, only a hue one. That is the whole trick: equal L and
@@ -145,11 +145,14 @@ const starburst = Array.from({ length: POINTS * 2 }, (_, i) => {
 
 	.line {
 		z-index: 2;
-		/* Narrow enough to stay inside the valleys between the spikes, a couple
-		   of lines above and below the middle where the shape closes in. */
-		width: 68%;
+		/* Kept narrow on purpose. A wider box does not buy bigger type, it
+		   costs it: the short fortunes stop wrapping and run out sideways into
+		   the tips instead, and they are what sets the limit. At 70% everything
+		   breaks over two or three lines and the type can be half again what it
+		   was when the sticker was round. */
+		width: 70%;
 		font-family: 'Lobster', var(--font-mono);
-		font-size: 1.25rem;
+		font-size: 1.625rem;
 		line-height: 1.14;
 		font-weight: 400;
 		text-align: center;
@@ -160,7 +163,7 @@ const starburst = Array.from({ length: POINTS * 2 }, (_, i) => {
 		   Stroke first, so the outline sits behind the letter and not halfway
 		   across it. */
 		color: var(--nord6);
-		-webkit-text-stroke: 4px var(--nordbg);
+		-webkit-text-stroke: 5px var(--nordbg);
 		paint-order: stroke fill;
 		/* No offset — a blur sitting right behind the letters, darkening the
 		   stripe they happen to be crossing so the light of them carries. Two
@@ -168,8 +171,8 @@ const starburst = Array.from({ length: POINTS * 2 }, (_, i) => {
 		   background away from it. text-shadow paints behind the stroke as well
 		   as the fill, so what is blurred is the outlined letter. */
 		text-shadow:
-			0 0 6px rgba(0, 0, 0, 0.85),
-			0 0 18px rgba(0, 0, 0, 0.7);
+			0 0 7px rgba(0, 0, 0, 0.85),
+			0 0 20px rgba(0, 0, 0, 0.7);
 	}
 
 	/* Each new fortune lands like it was stamped there. */
@@ -227,7 +230,7 @@ const starburst = Array.from({ length: POINTS * 2 }, (_, i) => {
 			right: 0.5rem;
 		}
 		.line {
-			font-size: 1.1rem;
+			font-size: 1.4rem;
 		}
 	}
 
@@ -240,7 +243,7 @@ const starburst = Array.from({ length: POINTS * 2 }, (_, i) => {
 			margin: 0.5rem auto 2rem;
 		}
 		.line {
-			font-size: 1.2rem;
+			font-size: 1.7rem;
 		}
 	}
 
