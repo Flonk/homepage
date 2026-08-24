@@ -146,7 +146,7 @@ const starburst = Array.from({ length: POINTS * 2 }, (_, i) => {
 		   was when the sticker was round. */
 		width: 70%;
 		font-family: 'Lobster', var(--font-mono);
-		font-size: 2.05rem;
+		font-size: 1.65rem;
 		line-height: 1.14;
 		font-weight: 400;
 		text-align: center;
@@ -157,7 +157,7 @@ const starburst = Array.from({ length: POINTS * 2 }, (_, i) => {
 		   Stroke first, so the outline sits behind the letter and not halfway
 		   across it. */
 		color: var(--nord6);
-		-webkit-text-stroke: 6px var(--nordbg);
+		-webkit-text-stroke: 5px var(--nordbg);
 		paint-order: stroke fill;
 		/* No offset — a blur sitting right behind the letters, darkening the
 		   stripe they happen to be crossing so the light of them carries. Two
@@ -165,8 +165,8 @@ const starburst = Array.from({ length: POINTS * 2 }, (_, i) => {
 		   background away from it. text-shadow paints behind the stroke as well
 		   as the fill, so what is blurred is the outlined letter. */
 		text-shadow:
-			0 0 9px rgba(0, 0, 0, 0.85),
-			0 0 24px rgba(0, 0, 0, 0.7);
+			0 0 7px rgba(0, 0, 0, 0.85),
+			0 0 20px rgba(0, 0, 0, 0.7);
 	}
 
 	/* Each new fortune lands like it was stamped there. */
@@ -212,7 +212,7 @@ const starburst = Array.from({ length: POINTS * 2 }, (_, i) => {
 			right: 0.5rem;
 		}
 		.line {
-			font-size: 1.73rem;
+			font-size: 1.4rem;
 		}
 	}
 
@@ -225,7 +225,7 @@ const starburst = Array.from({ length: POINTS * 2 }, (_, i) => {
 			margin: 0.5rem auto 2rem;
 		}
 		.line {
-			font-size: 1.95rem;
+			font-size: 1.6rem;
 		}
 	}
 
