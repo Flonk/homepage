@@ -38,6 +38,11 @@ const swatch = (t: { name: string; hex: string }) => {
 		oklch: `oklch(${(o.l * 100).toFixed(2)}% ${o.c.toFixed(3)} ${(o.h ?? 0).toFixed(2)})`,
 		// Which way the words have to go to be read on it.
 		ink: o.l > 0.6 ? '#14161a' : '#eceff4',
+		// The same edge the bars wear: the swatch's own colour a fifth of the
+		// way to white. A real border, because a flat colour has nothing for an
+		// edge to follow — the two-layer version is for a ramp, and it is in
+		// the pattern below.
+		edge: lighten(t.hex, 0.2),
 	};
 };
 
@@ -123,8 +128,10 @@ border: 2px solid transparent;         /* reserves the ring, paints nothing */`;
 			   the only honest test of a colour: whether anything can be read on it. */
 			.swatches li {
 				padding: 2.6rem 0.7rem 0.6rem;
-				border-radius: 4px;
-				border: 1px solid var(--nord2);
+				/* The bars' radius, so a rectangle on this page is cornered the
+				   same as a rectangle anywhere else on the site. */
+				border-radius: 2px;
+				border: 2px solid;
 			}
 
 			.name {
@@ -132,11 +139,12 @@ border: 2px solid transparent;         /* reserves the ring, paints nothing */`;
 				font-size: 0.85em;
 			}
 
+			/* Same ink as the name. Fading it left the dark swatches with a grey
+			   second line, which is a third colour nobody asked for. */
 			.value {
 				display: block;
 				font-size: 0.68em;
 				white-space: nowrap;
-				opacity: 0.75;
 			}
 
 			/* Measures ------------------------------------------------------ */
@@ -229,7 +237,7 @@ border: 2px solid transparent;         /* reserves the ring, paints nothing */`;
 				<ul class="swatches">
 					{
 						SITE.map((c) => (
-							<li style={`background: ${c.hex}; color: ${c.ink}`}>
+							<li style={`background: ${c.hex}; color: ${c.ink}; border-color: ${c.edge}`}>
 								<span class="name">--{c.name}</span>
 								<span class="value">{c.oklch}</span>
 							</li>
@@ -239,7 +247,7 @@ border: 2px solid transparent;         /* reserves the ring, paints nothing */`;
 				<ul class="swatches">
 					{
 						REST.map((c) => (
-							<li style={`background: ${c.hex}; color: ${c.ink}`}>
+							<li style={`background: ${c.hex}; color: ${c.ink}; border-color: ${c.edge}`}>
 								<span class="name">--{c.name}</span>
 								<span class="value">{c.oklch}</span>
 							</li>
