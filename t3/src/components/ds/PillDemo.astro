@@ -4,15 +4,20 @@ import Pill from '../Pill.astro';
 
 <div class="row" data-pill-demo>
 	<Pill sides={['TAILWIND', 'HANDMADE']} label="Show the hand-built palette instead" />
-	<Pill sides={['COLOUR', 'GREY']} on label="Drop the colour" />
+	<Pill sides={['RGB', 'HSL', 'OKLCH']} at={2} label="Colour space" />
+	<Pill sides={['COLOUR', 'GREY']} at={1} label="Drop the colour" />
 </div>
 
 <script>
 	// A switch that nobody has wired to anything still has to throw, or the
-	// specimen is a picture of a switch.
+	// specimen is a picture of a switch. A press takes the next side and the
+	// last one wraps, which is what a host with more than two of them does.
 	for (const pill of document.querySelectorAll<HTMLElement>('[data-pill-demo] .pill')) {
+		const sides = pill.querySelectorAll('.side').length;
 		pill.addEventListener('click', () => {
-			pill.setAttribute('aria-checked', pill.getAttribute('aria-checked') === 'true' ? 'false' : 'true');
+			const at = (Number(pill.dataset.at ?? 0) + 1) % sides;
+			pill.dataset.at = String(at);
+			if (sides === 2) pill.setAttribute('aria-checked', String(at === 1));
 		});
 	}
 </script>

@@ -167,7 +167,7 @@ const label = Math.max(...shown.map((f) => f.name.length));
 				<Pill
 						class="toggle"
 					sides={['TAILWIND', 'HANDMADE']}
-					on={mode === 'handmade'}
+					at={mode === 'handmade' ? 1 : 0}
 					label="Show the hand-built palette instead"
 					data-swap
 				/>
@@ -320,6 +320,7 @@ const label = Math.max(...shown.map((f) => f.name.length));
 		const setMode = (to: string) => {
 			root.dataset.mode = to;
 			swap?.setAttribute('aria-checked', String(to === 'handmade'));
+			if (swap) swap.dataset.at = to === 'handmade' ? '1' : '0';
 		};
 
 		const flip = () => setMode(root.dataset.mode === 'handmade' ? 'tailwind' : 'handmade');

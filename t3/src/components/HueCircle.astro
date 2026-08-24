@@ -239,6 +239,7 @@ const face = (wheel: string, edge: string) =>
 			if ((root.dataset.grey === 'true') === on) return;
 			root.dataset.grey = String(on);
 			button.setAttribute('aria-checked', String(on));
+			button.dataset.at = on ? '1' : '0';
 		};
 
 		/* A square wave: three seconds of colour, three of grey. The card is

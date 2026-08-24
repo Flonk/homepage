@@ -226,7 +226,7 @@ const HSL = [
 					<Pill
 						class="toggle"
 						sides={['RGB', 'HSL']}
-						on={space === 'hsl'}
+						at={space === 'hsl' ? 1 : 0}
 						label="Colour space"
 						data-toggle
 						inert={!toggle}
@@ -1441,6 +1441,7 @@ const HSL = [
 		const setSpace = (to: 'rgb' | 'hsl') => {
 			want = to === 'hsl' ? PHASES : 0;
 			toggle.setAttribute('aria-checked', String(to === 'hsl'));
+			toggle.dataset.at = to === 'hsl' ? '1' : '0';
 			if (reduceMotion) stage = want;
 		};
 
@@ -1486,6 +1487,7 @@ const HSL = [
 			grey = on;
 			root.dataset.grey = String(on);
 			greyBtn.setAttribute('aria-checked', String(on));
+			greyBtn.dataset.at = on ? '1' : '0';
 		};
 
 		greyBtn.addEventListener('click', () => {

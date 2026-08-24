@@ -1,32 +1,35 @@
 ---
 /**
- * The two-sided switch the vizzes carry: a pill with a knob that slides under
- * whichever side is on, on a pane of the same glass everything else in a
- * visualization sits on.
+ * The switch the vizzes carry: a pill with a knob that slides under whichever
+ * side is on, on a pane of the same glass everything else in a visualization
+ * sits on. Two sides or more — a press takes the next one, and the last wraps.
  *
- * Which side is on comes off `aria-checked`, which every host was already
- * keeping in sync for the screen reader — so the state has one home rather
- * than one here and one in whatever attribute the host happened to name.
- * `false` is the first side, `true` is the second.
+ * Which side is on is `data-at`, an index, and a host that moves it moves that.
+ * Two sides also get `role="switch"` and `aria-checked`, because that is what a
+ * two-state control is to a screen reader; more than two is a button that
+ * says what it is on, since a switch is not a thing with three positions.
  */
 interface Props {
-	/** The two labels, left then right. */
-	sides: [string, string];
-	/** Which one is on to begin with. */
-	on?: boolean;
+	/** The labels, in the order they sit. Two or more. */
+	sides: string[];
+	/** Which one is on to begin with, as an index. */
+	at?: number;
 	/** What the switch does, for a reader who cannot see which side is lit. */
 	label: string;
 	class?: string;
 }
 
-const { sides, on = false, label, class: className, ...rest } = Astro.props;
+const { sides, at = 0, label, class: className, ...rest } = Astro.props;
+const two = sides.length === 2;
 ---
 
 <button
 	class:list={['pill', className]}
 	type="button"
-	role="switch"
-	aria-checked={on ? 'true' : 'false'}
+	role={two ? 'switch' : undefined}
+	aria-checked={two ? (at === 1 ? 'true' : 'false') : undefined}
+	data-at={at}
+	style={`--pill-sides: ${sides.length}`}
 	aria-label={label}
 	{...rest}
 >
@@ -38,7 +41,7 @@ const { sides, on = false, label, class: className, ...rest } = Astro.props;
 	.pill {
 		position: relative;
 		display: grid;
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: repeat(var(--pill-sides, 2), 1fr);
 		align-items: center;
 		padding: 0.2rem;
 		border: 0;
@@ -48,7 +51,7 @@ const { sides, on = false, label, class: className, ...rest } = Astro.props;
 			inset 0 0 0 1px rgb(255 255 255 / 0.12),
 			0 4px 16px rgb(0 0 0 / 0.15);
 		backdrop-filter: blur(6px);
-		font: inherit;
+		font-family: var(--font-mono);
 		font-size: var(--pill-size, 0.75rem);
 		letter-spacing: 0.1em;
 		color: inherit;
@@ -59,15 +62,33 @@ const { sides, on = false, label, class: className, ...rest } = Astro.props;
 		position: absolute;
 		z-index: 0;
 		inset: 0.2rem auto 0.2rem 0.2rem;
-		width: calc(50% - 0.2rem);
+		width: calc((100% - 0.4rem) / var(--pill-sides, 2));
 		border-radius: var(--radius-pill);
 		background: rgb(255 255 255 / 0.16);
 		box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.18);
 		transition: transform 0.35s cubic-bezier(0.35, 0.1, 0.2, 1);
 	}
 
-	.pill[aria-checked='true'] .knob {
+	/* Written out rather than worked out: a translate cannot read an attribute,
+	   and six is more sides than a pill this size has room for anyway. */
+	.pill[data-at='1'] .knob {
 		transform: translateX(100%);
+	}
+
+	.pill[data-at='2'] .knob {
+		transform: translateX(200%);
+	}
+
+	.pill[data-at='3'] .knob {
+		transform: translateX(300%);
+	}
+
+	.pill[data-at='4'] .knob {
+		transform: translateX(400%);
+	}
+
+	.pill[data-at='5'] .knob {
+		transform: translateX(500%);
 	}
 
 	.side {
@@ -77,11 +98,15 @@ const { sides, on = false, label, class: className, ...rest } = Astro.props;
 		transition: color 0.35s ease;
 	}
 
-	/* Only the side that is on is lit; the other stays the colour it inherits.
+	/* Only the side that is on is lit; the rest stay the colour they inherit.
 	   Numbered rather than counted: :nth-of-type counts spans, and the knob is
 	   a span and comes first, so counting puts every side one place out. */
-	.pill[aria-checked='false'] .side[data-at='0'],
-	.pill[aria-checked='true'] .side[data-at='1'] {
+	.pill[data-at='0'] .side[data-at='0'],
+	.pill[data-at='1'] .side[data-at='1'],
+	.pill[data-at='2'] .side[data-at='2'],
+	.pill[data-at='3'] .side[data-at='3'],
+	.pill[data-at='4'] .side[data-at='4'],
+	.pill[data-at='5'] .side[data-at='5'] {
 		color: var(--deck-ink, #e6e9ef);
 	}
 
