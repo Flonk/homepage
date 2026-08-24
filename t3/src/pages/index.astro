@@ -88,7 +88,7 @@ const stripSeriesPrefix = (title: string, series: string) => {
 			ul li a > * { display: inline; }
 			.title {
 				margin: 0;
-				color: var(--nord4);
+				color: var(--text-quiet);
 			}
 
 			a:hover .title {
@@ -99,7 +99,7 @@ const stripSeriesPrefix = (title: string, series: string) => {
 				/* 1ch stands in for the whitespace text node astro's compiler strips
 				   under compressHTML: 'jsx'; .date and .title are both inline. */
 				margin: 0 1ch 0 0;
-				color: var(--nord3);
+				color: var(--text-faint);
 			}
 
 			ul a:hover img {
@@ -157,11 +157,11 @@ const stripSeriesPrefix = (title: string, series: string) => {
 			}
 
 			summary:hover .series-name {
-				color: var(--nord6);
+				color: var(--text);
 			}
 
 			.series-count {
-				color: var(--nord3);
+				color: var(--text-faint);
 				font-size: 0.8rem;
 			}
 
@@ -170,7 +170,7 @@ const stripSeriesPrefix = (title: string, series: string) => {
 				max-width: 62ch;
 				font-size: 0.9rem;
 				line-height: 1.65;
-				color: var(--nord4);
+				color: var(--text-quiet);
 				opacity: 0.6;
 			}
 

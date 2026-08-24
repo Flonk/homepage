@@ -24,6 +24,20 @@
 
      One pixel. An edge is meant to be found rather than looked at. */
   --lift: 0.2;
+
+  /* Three voices, not three greys. --nord4, 5 and 6 were 0.899, 0.933 and
+     0.951 in lightness: the whole hierarchy spanned less than a twentieth of
+     the scale, and the step from body to emphasis was 0.018, which is not a
+     step, it is a rounding. What was actually carrying emphasis was the
+     weight and the letter-spacing that came with it.
+
+     So there is one ink, and the quieter ones are it sunk towards the ground
+     — the same move as the edge, in the other direction, and ground-relative
+     so it stays right if the ground moves. Quiet is a tenth of the scale
+     below the body, which is a step you can see. */
+  --text: #e5e9f0;
+  --text-quiet: color-mix(in oklab, var(--text) 85%, var(--nordbg));
+  --text-faint: color-mix(in oklab, var(--text) 42%, var(--nordbg));
   /* Where relative colour syntax is not understood there is no lifting
      anything, so the edge falls back to the flat grey it used to be. */
   --edge: #434c5e;
@@ -39,10 +53,6 @@
 
   --nordbg: #1d1f21;
   --nord0: #2e3440;
-  --nord3: #4c566a;
-  --nord4: #d8dee9;
-  --nord5: #e5e9f0;
-  --nord6: #eceff4;
   --nord8: #88c0d0;
   --nord13: #ebcb8b;
 
@@ -81,7 +91,7 @@ body {
   word-wrap: break-word;
   overflow-wrap: break-word;
 
-  color: var(--nord5);
+  color: var(--text);
   font-size: 14px;
   line-height: 1.7;
 
@@ -271,10 +281,6 @@ blockquote {
   margin: 0px;
   color: #ffffffbb;
 }
-hr {
-  border: none;
-  border-top: 1px solid rgb(var(--nord4));
-}
 @media (max-width: 720px) {
   body {
     font-size: 15px;
@@ -333,7 +339,7 @@ em {
   font-family: var(--font-prose);
   font-size: 18px;
   line-height: 1.7;
-  color: var(--nord5);
+  color: var(--text);
   max-width: 37rem;
   margin-inline: auto;
 }
@@ -372,7 +378,7 @@ em {
 .prose h3::before,
 .prose h4::before,
 .prose h5::before {
-  color: var(--nord3);
+  color: var(--text-faint);
 }
 
 /* Space above a heading, proportional to its rank. */
@@ -518,7 +524,7 @@ em {
   font-family: var(--font-prose);
   font-weight: 700;
   letter-spacing: -0.005em;
-  color: var(--nord6);
+  color: var(--text);
 }
 
 /* No "##" / "###" decorations. */
