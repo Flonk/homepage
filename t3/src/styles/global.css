@@ -31,8 +31,8 @@
 
      Anything that wants a corner takes one of these. 50% stays a literal,
      because a circle is a shape and not a step, and 0 stays 0. */
-  --radius-tight: 2px;
-  --radius-small: 4px;
+  --radius-small: 2px;
+  --radius-medium: 4px;
   --radius-large: 8px;
   --radius-pill: 999px;
 
@@ -275,7 +275,7 @@ img {
 code {
   padding: 3px 6px;
   border: 1px solid var(--edge);
-  border-radius: var(--radius-small);
+  border-radius: var(--radius-medium);
   white-space: nowrap;
   overflow-wrap: break-word;
 }
@@ -587,12 +587,12 @@ em {
   --range-fill: transparent;
   --range-rest: rgb(255 255 255 / 0.16);
   --range-at: 0; /* 0 to 1, set by the component's script */
-  --range-radius: var(--radius-tight);
+  --range-radius: var(--radius-small);
   /* The thumb. */
   --range-thumb-w: 0.55rem;
   --range-thumb-h: 1.1rem;
   --range-thumb-ink: currentColor;
-  --range-thumb-radius: var(--radius-tight);
+  --range-thumb-radius: var(--radius-small);
   --range-thumb-ring: 0 0;
   /* Centred on the track by default. A control whose thumb spans the whole
      bar rather than sitting inside it sets this to zero. */
@@ -652,7 +652,7 @@ em {
 .viz-range:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 4px;
-  border-radius: var(--radius-tight);
+  border-radius: var(--radius-small);
 }
 
 /* The other kind: the control is drawn elsewhere — on a canvas, or as a mark

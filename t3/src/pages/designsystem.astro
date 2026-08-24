@@ -72,15 +72,16 @@ const sheets = import.meta.glob('../{components,layouts,pages,styles}/**/*.{astr
 	eager: true,
 }) as Record<string, string>;
 
-const radii = new Map<string, number>();
+const STEPS = ['small', 'medium', 'large', 'pill'];
+const counts = new Map(STEPS.map((n) => [n, 0]));
 for (const [file, text] of Object.entries(sheets)) {
 	if (file.includes('designsystem') || file.includes('/ds/')) continue;
-	for (const [, value] of text.matchAll(/border-radius:\s*([^;\n]+)/g)) {
-		const v = value.trim();
-		radii.set(v, (radii.get(v) ?? 0) + 1);
+	for (const [, name] of text.matchAll(/border-radius:\s*var\(--radius-([a-z]+)\)/g)) {
+		if (counts.has(name)) counts.set(name, counts.get(name)! + 1);
 	}
 }
-const RADII = [...radii].sort((a, b) => b[1] - a[1]);
+// In scale order, not by how popular each turned out to be.
+const RADII = STEPS.map((n) => [`--radius-${n}`, counts.get(n)!] as const);
 
 // The measures that are decided once and then meant everywhere.
 const MEASURES = [
@@ -160,7 +161,7 @@ border: 2px solid transparent;         /* reserves the ring, paints nothing */`;
 				   same as a rectangle anywhere else on the site. */
 				/* An FLB is one pixel, here and everywhere. */
 				border: 1px solid;
-				border-radius: var(--radius-tight);
+				border-radius: var(--radius-small);
 			}
 
 			.name {
@@ -324,7 +325,7 @@ border: 2px solid transparent;         /* reserves the ring, paints nothing */`;
 					{
 						RADII.map(([value, count]) => (
 							<li>
-								<span class="corner" style={`border-radius: ${value}`} />
+								<span class="corner" style={`border-radius: var(${value})`} />
 								<span class="name">{value}</span>
 								<span class="value">
 									{count} {count === 1 ? 'use' : 'uses'}
