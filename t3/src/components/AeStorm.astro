@@ -1,0 +1,130 @@
+---
+// Press ä. Nothing on the page says so, and nothing on it points here.
+//
+// The face is Lobster, and the @font-face this pulls in is the only place it
+// is used — nothing renders in it until a storm exists, so the woff2 is never
+// fetched on a visit where nobody presses anything. Latin alone: ä is in it,
+// and the other four subsets are five more files for glyphs never asked for.
+import '@fontsource/lobster/latin-400.css';
+---
+
+<script>
+	const COUNT = 220;
+
+	// Nothing here matches the site. That is the point of it.
+	const GARISH = [
+		'#ff2e88',
+		'#ffa200',
+		'#ffe600',
+		'#00e5ff',
+		'#7cff00',
+		'#ff5e00',
+		'#ff00ff',
+		'#ffffff',
+	];
+
+	let storming = false;
+
+	async function storm() {
+		if (storming) return;
+		storming = true;
+
+		// The face is used nowhere else, so this keypress is what fetches it.
+		// Racing the load keeps a slow network from swallowing the whole joke —
+		// late is worse than a first ä in the fallback face.
+		await Promise.race([
+			document.fonts.load('400 100px Lobster').catch(() => {}),
+			new Promise((resolve) => setTimeout(resolve, 500)),
+		]);
+
+		const layer = document.createElement('div');
+		layer.className = 'ae-storm';
+		document.body.appendChild(layer);
+
+		// Out of the middle of whatever the reader is looking at, and far enough
+		// that every one of them leaves by an edge rather than stopping short.
+		const originX = innerWidth / 2;
+		const originY = innerHeight / 2;
+		const reach = Math.hypot(innerWidth, innerHeight) * 1.15;
+
+		const running: Animation[] = [];
+		for (let i = 0; i < COUNT; i++) {
+			const glyph = document.createElement('span');
+			glyph.textContent = 'ä';
+			glyph.style.left = `${originX}px`;
+			glyph.style.top = `${originY}px`;
+			glyph.style.color = GARISH[i % GARISH.length];
+			glyph.style.fontSize = `${1 + Math.random() * 6}rem`;
+			layer.appendChild(glyph);
+
+			const angle = Math.random() * Math.PI * 2;
+			const distance = reach * (0.35 + Math.random() * 0.75);
+			const spin = (Math.random() - 0.5) * 1440;
+			const flight = 900 + Math.random() * 1500;
+
+			// Two animations, because they want different clocks: the flight is
+			// fast off the mark and coasting by the end, while the fade has to stay
+			// out of the way until the last third — one eased curve over both would
+			// have them washed out crossing mid-screen.
+			running.push(
+				glyph.animate(
+					[
+						{ transform: 'translate(-50%, -50%) scale(0.2) rotate(0deg)' },
+						{
+							transform: `translate(calc(-50% + ${Math.cos(angle) * distance}px), calc(-50% + ${Math.sin(angle) * distance}px)) scale(1) rotate(${spin}deg)`,
+						},
+					],
+					{
+						duration: flight,
+						easing: 'cubic-bezier(0.12, 0.7, 0.3, 1)',
+						fill: 'forwards',
+					},
+				),
+			);
+			glyph.animate([{ opacity: 1 }, { opacity: 0 }], {
+				duration: flight * 0.35,
+				delay: flight * 0.65,
+				fill: 'forwards',
+			});
+		}
+
+		await Promise.allSettled(running.map((a) => a.finished));
+		layer.remove();
+		storming = false;
+	}
+
+	addEventListener('keydown', (event) => {
+		if (event.key !== 'ä' && event.key !== 'Ä') return;
+		if (event.repeat || event.metaKey || event.ctrlKey || event.altKey) return;
+
+		// Somebody typing ä into a field means the letter, not the fireworks.
+		const target = event.target;
+		if (
+			target instanceof HTMLElement &&
+			(target.isContentEditable || target.closest('input, textarea, select'))
+		) {
+			return;
+		}
+
+		storm();
+	});
+</script>
+
+<style is:global>
+	/* The storm layer lives on <body>, above everything, catching nothing. */
+	.ae-storm {
+		position: fixed;
+		inset: 0;
+		z-index: 999;
+		pointer-events: none;
+		overflow: hidden;
+	}
+
+	.ae-storm span {
+		position: absolute;
+		font-family: 'Lobster', var(--font-mono);
+		line-height: 1;
+		will-change: transform, opacity;
+		text-shadow: 0 2px 0 rgba(0, 0, 0, 0.35);
+	}
+</style>
