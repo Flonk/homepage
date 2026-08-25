@@ -358,10 +358,10 @@ const ends = Array.from({ length: thumbs }, (_, i) => i);
 	.marks {
 		position: absolute;
 		inset: 0;
-		/* A hairline, two pixels proud at each end: flush with the bar it has
-		   only the ramp to be read against, and a line the width of the bar and
-		   no more is a hard thing to find. */
-		--mark-size: var(--track-mark-size, 1px);
+		/* Two pixels, and two proud at each end: flush with the bar it has only
+		   the ramp to be read against, and a line the width of the bar and no
+		   more is a hard thing to find. */
+		--mark-size: var(--track-mark-size, 2px);
 		--mark-across: var(--track-mark-across, calc(var(--depth) + 4px));
 		pointer-events: none;
 	}
