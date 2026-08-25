@@ -1,0 +1,160 @@
+---
+/**
+ * The three bars a colour is picked with, in whichever model is being talked
+ * about. Every visualization in the series that lets a reader move a colour
+ * had grown its own copy of these: the same column of upright bars with a
+ * letter under each, the same ramps, the same lifted edge round them.
+ *
+ * What is painted along a bar is the model's business and lives in
+ * lib/channels, because it is wanted twice — here at build time, so the bars
+ * arrive with the right thing on them rather than grey, and again on every
+ * move, since a lightness ramp is only true for the hue it was drawn at.
+ *
+ * Two thumbs rather than one when a second colour is given, which is what a
+ * gradient needs: the same three channels, read at both ends.
+ */
+import { CHANNELS, ramps, type Model, type Triple } from '../lib/channels';
+import VizTrack from './VizTrack.astro';
+
+interface Props {
+	model: Model;
+	/** The colour the bars are showing, in the model's own units. */
+	value: Triple;
+	/** A second colour. Giving one is what asks for the two-thumb variant. */
+	value2?: Triple;
+	/** How thick a bar is. */
+	size?: string;
+	/** What the group is, for a reader who is listening. */
+	label?: string;
+	/** Bars share one clock, so a hand on any of them holds the rest. */
+	shared?: boolean;
+	class?: string;
+}
+
+const {
+	model,
+	value,
+	value2,
+	size = '1.7rem',
+	label = `${model.toUpperCase()} channels`,
+	shared = true,
+	class: className,
+	...rest
+} = Astro.props;
+
+const channels = CHANNELS[model];
+const paint = ramps(model, value);
+---
+
+<div
+	class:list={['sliders', className]}
+	role="group"
+	aria-label={label}
+	data-color-sliders
+	data-model={model}
+	{...(shared ? { 'data-anim-context': true } : {})}
+	{...rest}
+>
+	{
+		channels.map((channel, i) => (
+			<div class="bar" data-channel={channel.letter} style={`--track-edge: ${paint[i].edge}`}>
+				<VizTrack
+					upright
+					size={size}
+					backdrop={paint[i].backdrop}
+					thumbs={value2 ? 2 : 1}
+					values={value2 ? [value[i], value2[i]] : [value[i]]}
+					min={channel.min}
+					max={channel.max}
+					step={channel.step}
+					labels={
+						value2
+							? [channel.name, `${channel.name}, second colour`]
+							: [channel.name]
+					}
+				/>
+				<span class="bar-name" aria-hidden="true">
+					{channel.letter}
+				</span>
+			</div>
+		))
+	}
+</div>
+
+<script>
+	import { ramps, type Model, type Triple } from '../lib/channels';
+
+	type TrackEl = HTMLElement & {
+		track: { backdrop(css: string): void; edge(css: string): void; get(i: number): number };
+	};
+
+	export type SlidersApi = {
+		/** Repaint every bar for a colour. What the live models need on each move. */
+		repaint(value: Triple): void;
+		/** What the thumbs are reading now. */
+		read(thumb?: number): Triple;
+	};
+
+	for (const el of document.querySelectorAll<HTMLElement & { sliders?: SlidersApi }>(
+		'[data-color-sliders]',
+	)) {
+		const model = el.dataset.model as Model;
+		const bars = [...el.querySelectorAll<TrackEl>('[data-viz-track]')];
+
+		el.sliders = {
+			repaint(value) {
+				ramps(model, value).forEach((paint, i) => {
+					bars[i]?.track.backdrop(paint.backdrop);
+					bars[i]?.track.edge(paint.edge);
+				});
+			},
+			read(thumb = 0) {
+				return bars.map((b) => b.track.get(thumb)) as Triple;
+			},
+		};
+
+		/* A move on any bar is a move of the colour, so the ramps on the other
+		   two are stale the moment it happens — which is the whole reason the
+		   ramps are a function of the colour rather than a constant. */
+		el.addEventListener('track:input', (event) => {
+			const detail = (event as CustomEvent).detail;
+			el.sliders!.repaint(el.sliders!.read(detail.index ?? 0));
+			el.dispatchEvent(
+				new CustomEvent('sliders:input', {
+					detail: { model, thumb: detail.index ?? 0, value: el.sliders!.read(detail.index ?? 0) },
+					bubbles: true,
+				}),
+			);
+		});
+	}
+</script>
+
+<style>
+	.sliders {
+		display: flex;
+		gap: 0.9rem;
+		align-items: stretch;
+		min-block-size: 0;
+	}
+
+	/* One channel: the bar, and its letter under it. */
+	.bar {
+		min-inline-size: 0;
+		min-block-size: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.45rem;
+		--track-border: 1px solid transparent;
+		--track-radius: var(--radius-medium);
+	}
+
+	.bar-name {
+		flex: none;
+		font-family: var(--font-mono);
+		font-size: 0.8rem;
+		line-height: 1;
+		letter-spacing: 0.08em;
+		color: var(--bar-name, #8891a0);
+	}
+</style>

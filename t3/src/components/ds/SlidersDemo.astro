@@ -1,0 +1,42 @@
+---
+import ColorSliders from '../ColorSliders.astro';
+---
+
+<div class="row">
+	<div class="one">
+		<p class="tag">rgb · two thumbs</p>
+		<ColorSliders model="rgb" value={[128, 128, 128]} value2={[40, 200, 90]} />
+	</div>
+	<div class="one">
+		<p class="tag">hsl</p>
+		<ColorSliders model="hsl" value={[210, 80, 50]} />
+	</div>
+	<div class="one">
+		<p class="tag">oklch</p>
+		<ColorSliders model="oklch" value={[0.7, 0.12, 250]} />
+	</div>
+</div>
+
+<style>
+	.row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 2rem;
+	}
+
+	.one {
+		display: grid;
+		gap: 0.75rem;
+		/* The bars are upright and have nothing to take a height from. */
+		block-size: 11rem;
+		grid-template-rows: auto 1fr;
+	}
+
+	.tag {
+		margin: 0;
+		font-family: var(--font-mono);
+		font-size: 0.7rem;
+		letter-spacing: 0.08em;
+		color: var(--text-quiet);
+	}
+</style>
