@@ -23,9 +23,8 @@
  * discs there and then walks them to the circles. See `attach` at the bottom
  * for the whole contract, and LightnessRamp for the one caller.
  */
-import { lighten } from '../lib/oklch';
 import { rgbCss, type Rgb } from '../lib/rgb';
-import VizTrack from './VizTrack.astro';
+import ColorSliders from './ColorSliders.astro';
 
 interface Props {
 	/** What the left disc starts as, and what it returns to. */
@@ -43,11 +42,6 @@ const { home = [180, 230, 240] as Rgb, target = [20, 90, 100] as Rgb, idleReturn
    slider in this series looks like this. Black to a pastel of the channel,
    because a bar that ran to full red would be a brighter thing than the two
    beside it and would read as the important one. */
-const CHANNELS = [
-	{ name: 'Red', ramp: '#f16d6d' },
-	{ name: 'Green', ramp: '#7bd88f' },
-	{ name: 'Blue', ramp: '#6d9bf1' },
-];
 ---
 
 <div class="shade-match" data-shade-match data-on="false" data-idle-return={idleReturn}>
@@ -60,41 +54,14 @@ const CHANNELS = [
 	{/* One context for the three of them — they are one colour between them.
 	    Nothing animates here, but a bar registers its own hold on the context
 	    when it is grabbed, and the return home is cancelled the same way. */}
-	<div
+	<ColorSliders
 		class="controls"
-		role="group"
-		aria-label="Red, green and blue"
-		data-anim-context
+		model="rgb"
+		value={home}
+		label="Red, green and blue"
 		data-controls
 		inert
-	>
-		{
-			CHANNELS.map((ch, i) => (
-				<div
-					class="bar"
-					{/* The bar's own ramp lifted a fifth of the way to white, so the
-					    edge is the channel's colour everywhere along it rather than
-					    one flat line laid over a gradient. See lighten in lib/oklch. */}
-					style={`--track-edge: linear-gradient(to top, ${lighten('#000000', 0.2)}, ${lighten(ch.ramp, 0.2)})`}
-				>
-					<VizTrack
-						upright
-						size="1.7rem"
-						backdrop={`linear-gradient(to top, #000, ${ch.ramp})`}
-						thumbs={1}
-						values={[home[i]]}
-						min={0}
-						max={255}
-						step={1}
-						labels={[ch.name]}
-					/>
-					<span class="bar-name" aria-hidden="true">
-						{ch.name[0]}
-					</span>
-				</div>
-			))
-		}
-	</div>
+	/>
 
 	{/* Over everything and never faded with the rest: these are the elements
 	    that travel, and a fade during the journey would read as two circles
@@ -169,27 +136,6 @@ const CHANNELS = [
 	/* What the track looks like, set as inherited properties rather than
 	   reached for with a selector — see VizTrack. One thumb here, so only the
 	   first ink is spoken for. */
-	.bar {
-		min-width: 0;
-		min-height: 0;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 0.45rem;
-		--track-border: 1px solid transparent;
-		--track-radius: 4px;
-		/* The thumb is left alone. The cube's channel bars ink theirs dark
-		   because they carry two of them and the pair has to be told apart;
-		   one thumb is one thumb, and the white one with the dark ring round it
-		   is what a thumb looks like everywhere else in the series. */
-	}
-
-	.bar-name {
-		flex: none;
-		font-size: 0.8rem;
-		line-height: 1;
-		letter-spacing: 0.08em;
-	}
 
 	.discs {
 		position: absolute;
