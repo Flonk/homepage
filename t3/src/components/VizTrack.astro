@@ -432,21 +432,18 @@ const ends = Array.from({ length: thumbs }, (_, i) => i);
 	}
 
 	/* A colour rather than a position: the dark thumb's shape and size, filled
-	   with what the bar is at that point and edged in that lifted. No ring of
-	   its own — a ring is a second colour, and the FLB is already the edge of
-	   this one. */
+	   with what the bar is at that point.
+
+	   Ringed in black, not in its own colour lifted. An FLB is an edge for a
+	   thing you already know the extent of; two pixels of colour on a ramp of
+	   the same colours is not that, and a lifted edge on it is a third shade
+	   of the same hue where a line was wanted. Black is the only ink on these
+	   bars that is never also the ramp. */
 	.marks :global(.mark[data-mark-theme='swatch']) {
 		--mark-size: var(--size);
 		--mark-across: var(--reach);
 		border-radius: var(--track-radius, var(--radius-small));
-		box-shadow: 0 0 0 1px rgb(0 0 0 / 0.65);
-	}
-
-	@supports (color: oklch(from white l c h)) {
-		.marks :global(.mark[data-mark-theme='swatch']) {
-			box-shadow: 0 0 0 1px
-				oklch(from var(--mark-ink, #000) calc(l + var(--lift, 0.2) * (1 - l)) c h);
-		}
+		box-shadow: 0 0 0 1px var(--track-ring, rgb(0 0 0 / 0.75));
 	}
 
 	/* The reader's own, told apart from the card's by size and a second line. */
