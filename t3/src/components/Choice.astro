@@ -1,0 +1,144 @@
+---
+/**
+ * The pill, stood up: the same glass and the same knob, but the options are
+ * rows and a press goes straight to the one pressed rather than to the next
+ * one along. Which is what a pill stops being able to do once there are more
+ * options than a reader can be asked to cycle through.
+ *
+ * Where the knob is lives in `--at`, an index, rather than in an attribute —
+ * a transform cannot read an attribute, and enumerating a rule per row would
+ * put a ceiling on how many rows there can be.
+ */
+interface Props {
+	/** The options, in the order they sit. */
+	options: string[];
+	/** Which one is chosen to begin with, as an index. */
+	at?: number;
+	/** What is being chosen, for a reader who cannot see which row is lit. */
+	label: string;
+	class?: string;
+}
+
+const { options, at = 0, label, class: className, ...rest } = Astro.props;
+---
+
+<div
+	class:list={['choice', className]}
+	role="radiogroup"
+	aria-label={label}
+	style={`--at: ${at}; --choice-rows: ${options.length}`}
+	data-choice
+	{...rest}
+>
+	<span class="knob" aria-hidden="true"></span>
+	{
+		options.map((option, i) => (
+			<button
+				class="row"
+				type="button"
+				role="radio"
+				aria-checked={i === at ? 'true' : 'false'}
+				tabindex={i === at ? 0 : -1}
+				data-at={i}
+			>
+				{option}
+			</button>
+		))
+	}
+</div>
+
+<script>
+	for (const group of document.querySelectorAll<HTMLElement>('[data-choice]')) {
+		const rows = [...group.querySelectorAll<HTMLButtonElement>('.row')];
+
+		const choose = (i: number, focus = false) => {
+			const at = Math.max(0, Math.min(rows.length - 1, i));
+			group.style.setProperty('--at', String(at));
+			rows.forEach((row, j) => {
+				row.setAttribute('aria-checked', String(j === at));
+				// One stop for the whole group, which is what a radiogroup is:
+				// tab reaches the chosen row, and the arrows do the rest.
+				row.tabIndex = j === at ? 0 : -1;
+			});
+			if (focus) rows[at].focus();
+			group.dispatchEvent(
+				new CustomEvent('choice:input', {
+					detail: { index: at, value: rows[at].textContent?.trim() },
+					bubbles: true,
+				}),
+			);
+		};
+
+		rows.forEach((row, i) => row.addEventListener('click', () => choose(i)));
+
+		group.addEventListener('keydown', (event) => {
+			const step = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[event.key];
+			if (!step) return;
+			event.preventDefault();
+			const now = rows.findIndex((r) => r.getAttribute('aria-checked') === 'true');
+			// Wraps, because a list of options has no ends worth stopping at.
+			choose((now + step + rows.length) % rows.length, true);
+		});
+	}
+</script>
+
+<style>
+	.choice {
+		position: relative;
+		display: grid;
+		padding: 0.2rem;
+		border-radius: var(--radius-large);
+		background: var(--pill, rgb(12 14 17 / 0.62));
+		box-shadow:
+			inset 0 0 0 1px rgb(255 255 255 / 0.12),
+			0 4px 16px rgb(0 0 0 / 0.15);
+		backdrop-filter: blur(6px);
+		font-family: var(--font-mono);
+		font-size: var(--pill-size, 0.75rem);
+		letter-spacing: 0.1em;
+		color: inherit;
+	}
+
+	.knob {
+		position: absolute;
+		z-index: 0;
+		inset: 0.2rem 0.2rem auto 0.2rem;
+		block-size: calc((100% - 0.4rem) / var(--choice-rows, 2));
+		border-radius: calc(var(--radius-large) - 0.2rem);
+		background: rgb(255 255 255 / 0.16);
+		box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.18);
+		transform: translateY(calc(var(--at, 0) * 100%));
+		transition: transform 0.35s cubic-bezier(0.35, 0.1, 0.2, 1);
+	}
+
+	.row {
+		position: relative;
+		z-index: 1;
+		appearance: none;
+		border: 0;
+		background: none;
+		font: inherit;
+		color: inherit;
+		text-align: left;
+		padding: 0.45rem var(--pill-pad, 0.85rem);
+		cursor: pointer;
+		transition: color 0.35s ease;
+	}
+
+	.row[aria-checked='true'] {
+		color: var(--deck-ink, #e6e9ef);
+	}
+
+	.row:focus-visible {
+		outline: 2px solid var(--accent, #f7a800);
+		outline-offset: -2px;
+		border-radius: calc(var(--radius-large) - 0.2rem);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.knob,
+		.row {
+			transition: none;
+		}
+	}
+</style>
