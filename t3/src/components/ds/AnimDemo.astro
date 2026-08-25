@@ -65,15 +65,23 @@ const BARS = ['One', 'Two', 'Three'];
 		/* And the pill throws itself, on the same clock the bars are on — so a
 		   hand on a bar stops the pacing changing underneath it, which is the
 		   one thing that would make the two shapes impossible to tell apart. */
+		let mineUntil = 0;
 		ctx.add({
 			at: (t) => Math.floor(t / SHOW) % 2,
-			apply: (v) => show(v === 1),
+			apply: (v) => {
+				if (performance.now() < mineUntil) return;
+				show(v === 1);
+			},
 		});
 
 		pace.addEventListener('click', () => {
 			show(!sine);
-			// Long enough to watch the shape somebody just asked for.
-			ctx.hold(SHOW * 2);
+			/* Only the throwing stops, not the walking. `ctx.hold` would have been
+			   the obvious thing here and it is the wrong one: a hold is the whole
+			   context, so pressing the pill froze the three bars it is there to
+			   pace. A press means "leave this one alone for a bit", which is
+			   about this motion and no other. */
+			mineUntil = performance.now() + SHOW * 2 * 1000;
 		});
 	}
 </script>
