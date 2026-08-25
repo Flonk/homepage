@@ -1,0 +1,72 @@
+---
+import VizTrack from '../VizTrack.astro';
+import { BED_EDGE, REST_ON_PAGE } from './palette';
+
+const BARS = [
+	{ label: 'One', at: 0 },
+	{ label: 'Two', at: 0.35 },
+	{ label: 'Three', at: 0.7 },
+];
+---
+
+<div class="pair" style={`--track-rest: ${REST_ON_PAGE}; --track-edge: ${BED_EDGE}`}>
+	<section>
+		<p class="tag">data-anim-context</p>
+		<div class="group" data-anim-context>
+			{
+				BARS.map((b) => (
+					<VizTrack
+						thumbs={1}
+						motion="shuttle"
+						sweepSeconds={7}
+						hold={1}
+						idleResume={4}
+						values={[b.at]}
+						labels={[b.label]}
+					/>
+				))
+			}
+		</div>
+	</section>
+
+	<section>
+		<p class="tag">none</p>
+		<div class="group">
+			{
+				BARS.map((b) => (
+					<VizTrack
+						thumbs={1}
+						motion="shuttle"
+						sweepSeconds={7}
+						hold={1}
+						idleResume={4}
+						values={[b.at]}
+						labels={[b.label]}
+					/>
+				))
+			}
+		</div>
+	</section>
+</div>
+
+<style>
+	.pair {
+		display: grid;
+		gap: 2rem;
+	}
+
+	.tag {
+		margin: 0 0 0.75rem;
+		font-family: var(--font-mono);
+		font-size: 0.7rem;
+		letter-spacing: 0.08em;
+		color: var(--text-quiet);
+	}
+
+	.group {
+		display: grid;
+		gap: 1.25rem;
+		/* Every bar here wears an edge, so every bar here needs a ring for it. */
+		--track-border: 1px solid transparent;
+	}
+</style>
