@@ -57,13 +57,15 @@ interface Props {
 /* The two ends are told apart by shape rather than by hue: solid for the first,
    hollow for the second. Colouring them would be a lie in a picture whose whole
    subject is which colour is where. */
-import { lighten } from '../lib/oklch';
-import VizTrack from './VizTrack.astro';
+import ColorSliders from './ColorSliders.astro';
 
+/* Only the starting values now: what a channel bar looks like is
+   ColorSliders' business. In a deck these are also the parameters a card can
+   set, which is why they are named rather than written inline. */
 const CHANNELS = [
-	{ name: 'Red', ramp: '#f16d6d', a: 128, b: 40 },
-	{ name: 'Green', ramp: '#7bd88f', a: 128, b: 200 },
-	{ name: 'Blue', ramp: '#6d9bf1', a: 128, b: 90 },
+	{ a: 128, b: 40 },
+	{ a: 128, b: 200 },
+	{ a: 128, b: 90 },
 ];
 
 // Gradient ids are document-global, so more than one cube on a page would
@@ -97,49 +99,14 @@ const {
 	{/* One animation context for the three of them: they are one colour between
 	    them, so taking hold of any one bar has to stop the other two as well.
 	    See lib/animate. */}
-	<div class="bars" role="group" aria-label="Colour channels" data-anim-context>
-		{
-			/* One bar per channel, each with two thumbs on it: the two ends of the
-			   gradient, solid and hollow. The bar itself is VizTrack, which every
-			   other control in the series is too; what makes these ones channel
-			   sliders rather than progress bars is the backdrop — black to the
-			   channel's own colour — and that they stand up. */
-			CHANNELS.map((ch) => (
-				<div
-					class="bar"
-					style={[
-						`--channel: ${ch.ramp}`,
-						/* The channel's own colour lifted a fifth of the way to white. It
-						   edges the bar — an edge that is the channel everywhere along it
-						   rather than one flat line laid over a gradient — and, on the
-						   cards that carry two thumbs, outlines the marks as well. Set
-						   here and used below, because whether the marks want it is a
-						   question about the card rather than about the channel. */
-						`--channel-lit: ${lighten(ch.ramp, 0.2)}`,
-						`--track-edge: linear-gradient(to top, ${lighten('#000000', 0.2)}, var(--channel-lit))`,
-					].join('; ')}
-				>
-					<VizTrack
-						upright
-						{/* Twice the spectrum's bar: what is behind this one is a ramp
-						    the reader is meant to read a position off, not a scale
-						    that only has to be recognised. */}
-						size="1.7rem"
-						backdrop={`linear-gradient(to top, #000, ${ch.ramp})`}
-						thumbs={2}
-						thumbTheme={['dark', 'default']}
-						single={!line}
-						values={[ch.a, ch.b]}
-						min={0}
-						max={255}
-						step={1}
-						labels={[ch.name, `${ch.name}, second colour`]}
-					/>
-					<span class="bar-name" aria-hidden="true">{ch.name[0]}</span>
-				</div>
-			))
-		}
-	</div>
+	<ColorSliders
+		class="bars"
+		model="rgb"
+		value={CHANNELS.map((ch) => ch.a) as [number, number, number]}
+		value2={CHANNELS.map((ch) => ch.b) as [number, number, number]}
+		single={!line}
+		label="Colour channels"
+	/>
 
 	<div class="stage">
 		<canvas data-canvas></canvas>
@@ -260,19 +227,6 @@ const {
 	/* The bar's cell: the track, and the channel's letter under it. What the
 	   track looks like is set here as inherited properties rather than reached
 	   for with a selector — see VizTrack. */
-	.bar {
-		min-width: 0;
-		min-height: 0;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 0.45rem;
-		--track-border: 1px solid transparent;
-		--track-radius: 4px;
-		/* One thumb is left alone: the pale one with the dark line round it is
-		   what a thumb looks like everywhere else in the series, and a card
-		   showing a single colour has nothing to tell it apart from. */
-	}
 
 	/* Two of them, and now they do. The marks answer the two dots in the cube
 	   beside them and are inked the same way round: the first solid and dark,
@@ -281,18 +235,13 @@ const {
 	   runs from black to a bright channel, and the dark one is ringed in the
 	   channel's own bright rather than in white, which would be the hardest
 	   line on the bar. */
-	.rgb-cube[data-line='true'] .bar {
+	/* The cube's own two inks, and only on the cards that carry two thumbs:
+	   one thumb is the usual white one. The lifted ring the dark one wears is
+	   the component's — the channel at its loudest, which is the same
+	   --channel-lit this used to hand it by name. */
+	.rgb-cube[data-line='true'] .bars {
 		--track-ink: #f6f1e6;
 		--track-ink-dark: #000;
-		--track-flb: var(--channel-lit);
-	}
-
-	.bar-name {
-		flex: none;
-		font-size: 0.8rem;
-		line-height: 1;
-		letter-spacing: 0.08em;
-		color: #8891a0;
 	}
 
 	/* --- cube --- */

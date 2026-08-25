@@ -30,6 +30,12 @@ interface Props {
 	value: Triple;
 	/** A second colour. Giving one is what asks for the two-thumb variant. */
 	value2?: Triple;
+	/**
+	 * Put the second thumb away without taking it out of the markup, for a host
+	 * that shows one colour on some cards and two on others. The bars keep both
+	 * and the first goes back to being the usual thumb — see thumbTheme.
+	 */
+	single?: boolean;
 	/** How thick a bar is. */
 	size?: string;
 	/** What the group is, for a reader who is listening. */
@@ -45,6 +51,7 @@ const {
 	model,
 	value,
 	value2,
+	single = false,
 	size = '1.7rem',
 	gamut = 'srgb',
 	label = `${model.toUpperCase()} channels`,
@@ -95,6 +102,7 @@ const limit =
 					backdrop={paint[i].backdrop}
 					thumbs={value2 ? 2 : 1}
 					thumbTheme={value2 ? ['dark', 'default'] : 'default'}
+					single={single}
 					values={value2 ? [value[i], value2[i]] : [value[i]]}
 					min={channel.min}
 					max={channel.max}
