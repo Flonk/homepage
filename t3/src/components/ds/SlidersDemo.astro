@@ -12,8 +12,12 @@ import ColorSliders from '../ColorSliders.astro';
 		<ColorSliders model="hsl" value={[210, 80, 50]} />
 	</div>
 	<div class="one">
-		<p class="tag">oklch</p>
+		<p class="tag">oklch · srgb</p>
 		<ColorSliders model="oklch" value={[0.7, 0.12, 250]} />
+	</div>
+	<div class="one">
+		<p class="tag">oklch · rec2020</p>
+		<ColorSliders model="oklch" value={[0.7, 0.12, 250]} gamut="rec2020" />
 	</div>
 </div>
 

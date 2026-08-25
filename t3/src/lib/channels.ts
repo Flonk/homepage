@@ -11,8 +11,11 @@
  * build time so the bars arrive with the right thing on them, and again on
  * every move.
  */
-import { lighten, lightenRgb, oklchCss } from './oklch';
+import { maxChroma, oklchCss as spaceCss, type Space } from './gamut';
+import { lighten, lightenRgb } from './oklch';
 import { rgbCss, type Rgb } from './rgb';
+
+export type { Space };
 
 export type Model = 'rgb' | 'hsl' | 'oklch';
 /** A colour in whatever units its model counts in. */
@@ -74,8 +77,13 @@ const pair = (stops: number, at: (t: number, lift: number) => string) => ({
 	edge: gradient(stops, (t) => at(t, LIFT)),
 });
 
-const oklchStop = (l: number, c: number, h: number, lift: number) =>
-	oklchCss(l + lift * (1 - l), c, h);
+/* Clamped to the gamut being talked about, which is what makes the chroma
+   bar go flat past its own limit rather than carrying on into colours the
+   screen does not have. The flat part is the bar saying it has run out. */
+const oklchStop = (space: Space, l: number, c: number, h: number, lift: number) => {
+	const lit = l + lift * (1 - l);
+	return spaceCss(space, 'srgb', lit, Math.min(c, maxChroma(space, lit, h)), h);
+};
 
 const hslStop = (h: number, s: number, l: number, lift: number) =>
 	rgbCss(lift ? lightenRgb(hslRgb(h, s, l), lift) : hslRgb(h, s, l));
@@ -85,7 +93,11 @@ const hslStop = (h: number, s: number, l: number, lift: number) =>
  * answer differently every time the colour moves; `rgb` answers the same thing
  * always, and is only a function for the sake of one signature.
  */
-export function ramps(model: Model, [a, b, c]: Triple): { backdrop: string; edge: string }[] {
+export function ramps(
+	model: Model,
+	[a, b, c]: Triple,
+	space: Space = 'srgb',
+): { backdrop: string; edge: string }[] {
 	if (model === 'rgb') {
 		return RGB_TINT.map((tint) => ({
 			backdrop: `linear-gradient(to top, #000000, ${tint})`,
@@ -105,8 +117,21 @@ export function ramps(model: Model, [a, b, c]: Triple): { backdrop: string; edge
 
 	const [L, C, H] = [a, b, c];
 	return [
-		pair(12, (t, lift) => oklchStop(t, C, H, lift)),
-		pair(12, (t, lift) => oklchStop(L, t * 0.4, H, lift)),
-		pair(24, (t, lift) => oklchStop(L, C, t * 360, lift)),
+		pair(12, (t, lift) => oklchStop(space, t, C, H, lift)),
+		pair(12, (t, lift) => oklchStop(space, L, t * 0.4, H, lift)),
+		pair(24, (t, lift) => oklchStop(space, L, C, t * 360, lift)),
 	];
+}
+
+/**
+ * Where the chroma bar runs out, for the colour it is currently showing.
+ *
+ * Worth a mark of its own because it is the one limit on these bars that
+ * moves: a bar's ends are the model's and stand still, but how much chroma a
+ * screen has left at a given lightness and hue is a different number at every
+ * point on the other two bars — and past it the bar is flat, which tells a
+ * reader there is nothing there but not where the nothing began.
+ */
+export function chromaLimit([L, , H]: Triple, space: Space = 'srgb'): number {
+	return maxChroma(space, L, H);
 }

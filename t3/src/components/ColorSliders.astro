@@ -13,7 +13,7 @@
  * Two thumbs rather than one when a second colour is given, which is what a
  * gradient needs: the same three channels, read at both ends.
  */
-import { CHANNELS, ramps, type Model, type Triple } from '../lib/channels';
+import { CHANNELS, chromaLimit, ramps, type Model, type Space, type Triple } from '../lib/channels';
 import VizTrack from './VizTrack.astro';
 
 interface Props {
@@ -26,6 +26,8 @@ interface Props {
 	size?: string;
 	/** What the group is, for a reader who is listening. */
 	label?: string;
+	/** Which screen's colours the bars are talking about. OKLCH only. */
+	gamut?: Space;
 	/** Bars share one clock, so a hand on any of them holds the rest. */
 	shared?: boolean;
 	class?: string;
@@ -36,6 +38,7 @@ const {
 	value,
 	value2,
 	size = '1.7rem',
+	gamut = 'srgb',
 	label = `${model.toUpperCase()} channels`,
 	shared = true,
 	class: className,
@@ -43,7 +46,10 @@ const {
 } = Astro.props;
 
 const channels = CHANNELS[model];
-const paint = ramps(model, value);
+const paint = ramps(model, value, gamut);
+// The chroma bar carries one mark: where the gamut runs out at this lightness
+// and hue. Nothing else here has a limit that moves.
+const limit = model === 'oklch' ? chromaLimit(value, gamut) : null;
 ---
 
 <div
@@ -52,6 +58,7 @@ const paint = ramps(model, value);
 	aria-label={label}
 	data-color-sliders
 	data-model={model}
+	data-gamut={gamut}
 	{...(shared ? { 'data-anim-context': true } : {})}
 	{...rest}
 >
@@ -67,6 +74,7 @@ const paint = ramps(model, value);
 					min={channel.min}
 					max={channel.max}
 					step={channel.step}
+					marks={limit !== null && channel.letter === 'C' ? [{ at: limit }] : undefined}
 					labels={
 						value2
 							? [channel.name, `${channel.name}, second colour`]
@@ -82,10 +90,15 @@ const paint = ramps(model, value);
 </div>
 
 <script>
-	import { ramps, type Model, type Triple } from '../lib/channels';
+	import { chromaLimit, ramps, type Model, type Space, type Triple } from '../lib/channels';
 
 	type TrackEl = HTMLElement & {
-		track: { backdrop(css: string): void; edge(css: string): void; get(i: number): number };
+		track: {
+			backdrop(css: string): void;
+			edge(css: string): void;
+			get(i: number): number;
+			marks(list: { at: number; colour?: string; strong?: boolean }[]): void;
+		};
 	};
 
 	export type SlidersApi = {
@@ -99,14 +112,17 @@ const paint = ramps(model, value);
 		'[data-color-sliders]',
 	)) {
 		const model = el.dataset.model as Model;
+		const gamut = (el.dataset.gamut ?? 'srgb') as Space;
 		const bars = [...el.querySelectorAll<TrackEl>('[data-viz-track]')];
 
 		el.sliders = {
 			repaint(value) {
-				ramps(model, value).forEach((paint, i) => {
+				ramps(model, value, gamut).forEach((paint, i) => {
 					bars[i]?.track.backdrop(paint.backdrop);
 					bars[i]?.track.edge(paint.edge);
 				});
+				// The limit moves with lightness and hue, so it is redrawn with them.
+				if (model === 'oklch') bars[1]?.track.marks([{ at: chromaLimit(value, gamut) }]);
 			},
 			read(thumb = 0) {
 				return bars.map((b) => b.track.get(thumb)) as Triple;
