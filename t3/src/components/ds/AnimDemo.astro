@@ -9,6 +9,7 @@ const BARS = ['One', 'Two', 'Three'];
 <section
 	class="glass group"
 	data-anim-context
+	data-anim-demo
 	style={`--track-rest: ${REST_ON_PAGE}; --track-edge: ${BED_EDGE}`}
 >
 	<div class="head">
@@ -31,7 +32,9 @@ const BARS = ['One', 'Two', 'Three'];
 	/** How long each pacing is shown before the pill throws itself. */
 	const SHOW = 6;
 
-	const group = document.querySelector<HTMLElement>('[data-anim-context]');
+	/* Its own hook, not the shared attribute: anything on the page can mark an
+	   animation context, and by now something earlier does. */
+	const group = document.querySelector<HTMLElement>('[data-anim-demo]');
 	const pace = group?.querySelector<HTMLElement>('[data-pace]');
 	if (group && pace) {
 		const ctx = contextFor(group);
