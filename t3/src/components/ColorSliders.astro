@@ -16,7 +16,7 @@
 import {
 	CHANNELS,
 	chromaLimit,
-	cuspCss,
+	markInk,
 	ramps,
 	type Model,
 	type Space,
@@ -61,9 +61,7 @@ const paint = ramps(model, value, gamut);
    Not `strong` — that size belongs to a mark the reader put there, and this
    one is the screen's. */
 const limit =
-	model === 'oklch'
-		? { at: chromaLimit(value, gamut), colour: cuspCss(value[2], gamut) }
-		: null;
+	model === 'oklch' ? { at: chromaLimit(value, gamut), colour: markInk(value) } : null;
 ---
 
 <div
@@ -104,7 +102,7 @@ const limit =
 </div>
 
 <script>
-	import { chromaLimit, cuspCss, ramps, type Model, type Space, type Triple } from '../lib/channels';
+	import { chromaLimit, markInk, ramps, type Model, type Space, type Triple } from '../lib/channels';
 
 	type TrackEl = HTMLElement & {
 		track: {
@@ -137,9 +135,7 @@ const limit =
 				});
 				// The limit moves with lightness and hue, so it is redrawn with them.
 				if (model === 'oklch') {
-					bars[1]?.track.marks([
-						{ at: chromaLimit(value, gamut), colour: cuspCss(value[2], gamut) },
-					]);
+					bars[1]?.track.marks([{ at: chromaLimit(value, gamut), colour: markInk(value) }]);
 				}
 			},
 			read(thumb = 0) {
