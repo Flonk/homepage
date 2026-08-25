@@ -145,12 +145,16 @@ const limit =
 		'[data-color-sliders]',
 	)) {
 		const model = el.dataset.model as Model;
-		const gamut = (el.dataset.gamut ?? 'srgb') as Space;
+		/* Read when it is used rather than kept: a host that lets a reader
+		   change gamut writes it back to the attribute, and the bars have to be
+		   repainted for the one that is being asked about now. */
+		const gamutNow = () => (el.dataset.gamut ?? 'srgb') as Space;
 		const bars = [...el.querySelectorAll<TrackEl>('[data-viz-track]')];
 		const two = bars[0]?.querySelectorAll('.thumb').length === 2;
 
 		el.sliders = {
 			repaint(value) {
+				const gamut = gamutNow();
 				ramps(model, value, gamut).forEach((paint, i) => {
 					bars[i]?.track.backdrop(paint.backdrop);
 					bars[i]?.track.edge(paint.edge);

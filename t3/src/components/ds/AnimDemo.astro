@@ -1,108 +1,141 @@
 ---
+import Choice from '../Choice.astro';
+import ColorSliders from '../ColorSliders.astro';
 import Pill from '../Pill.astro';
-import VizTrack from '../VizTrack.astro';
-import { BED_EDGE, REST_ON_PAGE } from './palette';
 
-const BARS = ['One', 'Two', 'Three'];
+/** Where the colour starts, in OKLCH. */
+const START: [number, number, number] = [0.7, 0.16, 250];
+const GAMUTS = ['sRGB', 'Display P3', 'Rec. 2020'];
 ---
 
-<section
-	class="glass group"
-	data-anim-context
-	data-anim-demo
-	style={`--track-rest: ${REST_ON_PAGE}; --track-edge: ${BED_EDGE}`}
->
+<section class="glass panel" data-anim-context data-anim-demo>
 	<div class="head">
 		<p class="tag">data-anim-context</p>
 		<Pill sides={['SHUTTLE', 'SINE', 'CHASE']} label="Pacing" data-pace />
 	</div>
-	{BARS.map((label) => <VizTrack thumbs={1} labels={[label]} />)}
+
+	<div class="row">
+		<Choice class="gamut" options={GAMUTS} label="Gamut" data-gamut />
+		<ColorSliders model="oklch" value={START} size="2rem" shared={false} data-sliders />
+		<span class="swatch" data-swatch></span>
+	</div>
 </section>
 
 <script>
 	import { contextFor, type Motion } from '../../lib/animate';
+	import { swatchCss, type Space, type Triple } from '../../lib/channels';
 	import { chaseAt } from '../../lib/easing';
 	import { shuttleAt, sineAt } from '../../lib/shuttle';
 
-	type TrackEl = HTMLElement & { track: { set(i: number, v: number): void } };
+	type SlidersEl = HTMLElement & { sliders: { repaint(v: Triple): void } };
 
 	const SECONDS = 7;
 	const HOLD = 1;
-	// Same round trip either way, so the pill changes the shape and nothing else.
 	const CYCLE = SECONDS + 2 * HOLD;
-	/** How long each pacing is shown before the pill throws itself. */
+	/** How long a pacing, and how long a gamut, before each throws itself. */
 	const SHOW = 6;
-	/* Where a chase is sent. Corners of the range and a couple of places in
-	   between, so what it does between two targets is visible however far
-	   apart they are. */
 	const STOPS = [1, 0, 0.65, 0.2];
+	const SPACES: Space[] = ['srgb', 'p3', 'rec2020'];
 
-	/* Its own hook, not the shared attribute: anything on the page can mark an
-	   animation context, and by now something earlier does. */
-	const group = document.querySelector<HTMLElement>('[data-anim-demo]');
-	const pace = group?.querySelector<HTMLElement>('[data-pace]');
-	if (group && pace) {
-		const ctx = contextFor(group);
+	/* What each channel walks between, which is not the whole of what it can
+	   hold. Lightness taken to either end puts the swatch at black or white for
+	   a second or two, and takes the other two bars with it — every ramp here
+	   is drawn for the lightness the colour is at. A band that stays a colour
+	   is the one worth watching. */
+	const WALK: [number, number][] = [
+		[0.35, 0.9],
+		[0, 0.3],
+		[0, 360],
+	];
+
+	const panel = document.querySelector<HTMLElement>('[data-anim-demo]');
+	const pace = panel?.querySelector<HTMLElement>('[data-pace]');
+	const gamut = panel?.querySelector<HTMLElement>('[data-gamut]');
+	const sliders = panel?.querySelector<SlidersEl>('[data-sliders]');
+	const swatch = panel?.querySelector<HTMLElement>('[data-swatch]');
+
+	if (panel && pace && gamut && sliders && swatch) {
+		const ctx = contextFor(panel);
+		const bars = [...sliders.querySelectorAll<HTMLElement & { track: { set(i: number, v: number): void } }>(
+			'[data-viz-track]',
+		)];
+		const rows = [...gamut.querySelectorAll<HTMLButtonElement>('.row')];
+
 		let pacing = 0;
-
-		const show = (at: number) => {
-			if (pacing === at) return;
-			pacing = at;
-			pace.dataset.at = String(at);
-		};
-
-		/* The bars are `motion="none"`, so the walk is this file's rather than
-		   each bar's — which is the other half of what a context is for: a host
-		   with a path of its own joins the same clock, and a reader taking hold
-		   of any bar holds the path too. */
-		group.querySelectorAll<TrackEl>('[data-viz-track]').forEach((el, i) => {
-			// A third of a cycle between them, so the group reads as one thing
-			// moving rather than as three copies of one bar.
-			const phase = i * (CYCLE / 3);
-			const walk: Motion = {
-				at: (t) => {
-					const u = t + phase;
-					if (pacing === 1) return sineAt(u, { seconds: SECONDS, hold: HOLD });
-					if (pacing === 2) return chaseAt(u, STOPS, CYCLE / STOPS.length);
-					return shuttleAt(u, { seconds: SECONDS, hold: HOLD });
-				},
-				apply: (v) => el.track.set(0, v),
-			};
-			ctx.add(walk);
-		});
-
-		/* And the pill throws itself, on the same clock the bars are on — so a
-		   hand on a bar stops the pacing changing underneath it, which is the
-		   one thing that would make the two shapes impossible to tell apart. */
 		let mineUntil = 0;
-		const SIDES = 3;
+		const mine = () => performance.now() < mineUntil;
+		const claim = () => (mineUntil = performance.now() + SHOW * 2 * 1000);
+
+		/* One motion for the three channels, because they are one colour between
+		   them: three would be three clocks agreeing by luck, and the point of a
+		   context is that they cannot disagree. */
+		const walk: Motion = {
+			at: (t) => t,
+			apply: (t) => {
+				const value = WALK.map((_, i) => {
+					// A third of a cycle apart, so the three read as one colour
+					// moving rather than as three bars doing the same thing.
+					const u = t + (i * CYCLE) / 3;
+					const at =
+						pacing === 1
+							? sineAt(u, { seconds: SECONDS, hold: HOLD })
+							: pacing === 2
+								? chaseAt(u, STOPS, CYCLE / STOPS.length)
+								: shuttleAt(u, { seconds: SECONDS, hold: HOLD });
+					const [lo, hi] = WALK[i];
+					return lo + at * (hi - lo);
+				}) as Triple;
+
+				value.forEach((v, i) => bars[i]?.track.set(0, v));
+				sliders.sliders.repaint(value);
+				const { fill, edge } = swatchCss(value, (sliders.dataset.gamut ?? 'srgb') as Space);
+				swatch.style.background = fill;
+				swatch.style.borderColor = edge;
+			},
+		};
+		ctx.add(walk);
+
+		/* The pill and the menu throw themselves, on the same clock the colour
+		   runs on — so a hand anywhere holds all three, and nothing changes
+		   underneath somebody who is looking at it. */
 		ctx.add({
-			at: (t) => Math.floor(t / SHOW) % SIDES,
+			at: (t) => Math.floor(t / SHOW) % 3,
 			apply: (v) => {
-				if (performance.now() < mineUntil) return;
-				show(v);
+				if (mine() || pacing === v) return;
+				pacing = v;
+				pace.dataset.at = String(v);
 			},
 		});
 
-		pace.addEventListener('click', () => {
-			show((pacing + 1) % SIDES);
-			/* Only the throwing stops, not the walking. `ctx.hold` would have been
-			   the obvious thing here and it is the wrong one: a hold is the whole
-			   context, so pressing the pill froze the three bars it is there to
-			   pace. A press means "leave this one alone for a bit", which is
-			   about this motion and no other. */
-			mineUntil = performance.now() + SHOW * 2 * 1000;
+		ctx.add({
+			at: (t) => Math.floor(t / SHOW + 0.5) % SPACES.length,
+			apply: (v) => {
+				if (mine() || rows[v]?.getAttribute('aria-checked') === 'true') return;
+				// Through the menu's own press, so it moves its knob and tells
+				// anyone listening the same way a reader's press would.
+				rows[v]?.click();
+			},
 		});
+
+		gamut.addEventListener('choice:input', (event) => {
+			const { index } = (event as CustomEvent).detail;
+			sliders.dataset.gamut = SPACES[index];
+		});
+
+		pace.addEventListener('click', () => {
+			pacing = (pacing + 1) % 3;
+			pace.dataset.at = String(pacing);
+			claim();
+		});
+		gamut.addEventListener('click', claim);
 	}
 </script>
 
 <style>
-	.group {
+	.panel {
 		display: grid;
-		gap: 1.25rem;
+		gap: 1.5rem;
 		padding: 1.25rem;
-		/* Every bar here wears an edge, so every bar here needs a ring for it. */
-		--track-border: 1px solid transparent;
 	}
 
 	.head {
@@ -119,5 +152,27 @@ const BARS = ['One', 'Two', 'Three'];
 		font-size: 0.7rem;
 		letter-spacing: 0.08em;
 		color: var(--text-quiet);
+	}
+
+	/* The menu, the bars and the colour they are picking, left to right. */
+	.row {
+		display: flex;
+		align-items: stretch;
+		gap: 1.5rem;
+		block-size: 11rem;
+	}
+
+	/* Its own height, not the row's: a menu is as tall as its options, and
+	   stretching it only spreads them out. */
+	.gamut {
+		align-self: start;
+	}
+
+	/* One colour, edged in itself lifted — the same pair the bars are painted
+	   from, which is what makes it the reading rather than a decoration. */
+	.swatch {
+		flex: 1 1 6rem;
+		border-radius: var(--radius-large);
+		border: 1px solid;
 	}
 </style>

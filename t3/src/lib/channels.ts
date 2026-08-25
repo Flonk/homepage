@@ -143,6 +143,18 @@ export function chromaLimit([L, , H]: Triple, space: Space = 'srgb'): number {
 }
 
 /**
+ * A colour and the edge that goes round it: the colour itself, and the same
+ * lifted. What a swatch of one colour is made of, and the same pair the bars
+ * are painted from.
+ */
+export function swatchCss([L, C, H]: Triple, space: Space = 'srgb') {
+	return {
+		fill: oklchStop(space, L, C, H, 0),
+		edge: oklchStop(space, L, C, H, LIFT),
+	};
+}
+
+/**
  * Black or white, whichever can be seen on the ramp the mark is standing on.
  *
  * Chroma does not move lightness in OKLCH, so every colour along the chroma
