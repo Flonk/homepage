@@ -967,7 +967,12 @@ const markList = marks
 			   one, the reader's. Gathered here and handed to the bar at the end of
 			   the frame — they are the bar's marks, not the canvas's, and the bar
 			   is what knows how to draw one. See VizTrack's `marks`. */
-			const onStrip: { at: number; colour?: string; strong?: boolean }[] = [];
+			const onStrip: {
+				at: number;
+				colour?: string;
+				strong?: boolean;
+				theme?: 'default' | 'swatch';
+			}[] = [];
 			const key = `${Math.round(plot.w)}|${shown}|${Math.round(mix * 255)}`;
 			if (key !== stripKey) {
 				stripKey = key;
@@ -1121,7 +1126,15 @@ const markList = marks
 				ctx.stroke();
 				ctx.restore();
 
-				onStrip.push({ at: (fx - plot.x) / plot.w, colour: colourAt(at) });
+				/* A swatch rather than a line: what stands on this axis is a light,
+				   and the useful thing to say about one is its colour. A line
+				   across the rainbow would be saying "here" about a bar that is
+				   already nothing but colour. See VizTrack's mark themes. */
+				onStrip.push({
+					at: (fx - plot.x) / plot.w,
+					colour: colourAt(at),
+					theme: 'swatch',
+				});
 
 				for (const cone of CONES) {
 					const a = alpha[cone.key];
