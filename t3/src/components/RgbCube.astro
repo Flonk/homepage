@@ -419,6 +419,7 @@ const {
 
 <script>
 	import { contextFor } from '../lib/animate';
+	import { approach } from '../lib/easing';
 	import { rgbCss, type Rgb } from '../lib/rgb';
 	type Quat = [number, number, number, number]; // x, y, z, w
 
@@ -1058,18 +1059,13 @@ const {
 				return;
 			}
 			if (resting) {
-				// Ease toward the colour rather than jumping to it, so the dot is
-				// seen travelling; exponential, so a target that moves out from
-				// under it — every couple of seconds, on a tour — needs no
-				// special case.
+				// Chased rather than jumped to, so the dot is seen travelling, and
+				// chased rather than tweened so the corner tour can move the target
+				// out from under it without any of this needing to know. See
+				// approach in lib/easing.
 				end.resumeFrom = null;
 				end.wasPinned = true;
-				const k = 1 - Math.exp(-4 * dt);
-				end.rgb = [
-					end.rgb[0] + (resting[0] - end.rgb[0]) * k,
-					end.rgb[1] + (resting[1] - end.rgb[1]) * k,
-					end.rgb[2] + (resting[2] - end.rgb[2]) * k,
-				];
+				end.rgb = [0, 1, 2].map((c) => approach(end.rgb[c], resting[c], dt));
 				return;
 			}
 			const target = lissajous(t, end.phase);

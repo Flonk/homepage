@@ -86,3 +86,16 @@ export function shuttleEntry(at: number, { seconds, edge = EDGE }: Shuttle): num
 	const leg = Math.max(0.001, seconds / 2);
 	return unease(Math.min(1, Math.max(0, at)), edge) * leg;
 }
+
+/**
+ * The sinusoid the trapezoid above exists to argue against, on the same clock
+ * so the two can be swapped and compared.
+ *
+ * It takes `hold` only to match the round trip: a sine has no pause at the
+ * ends — that is the whole of what is wrong with it — but a shape that also
+ * took less time would be telling you two things at once.
+ */
+export function sineAt(t: number, { seconds, hold = HOLD }: Shuttle): number {
+	const cycle = seconds + 2 * hold;
+	return 0.5 - 0.5 * Math.cos((2 * Math.PI * t) / cycle);
+}

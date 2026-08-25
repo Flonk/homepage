@@ -14,14 +14,15 @@ const BARS = ['One', 'Two', 'Three'];
 >
 	<div class="head">
 		<p class="tag">data-anim-context</p>
-		<Pill sides={['SHUTTLE', 'SINE']} label="Pacing" data-pace />
+		<Pill sides={['SHUTTLE', 'SINE', 'CHASE']} label="Pacing" data-pace />
 	</div>
 	{BARS.map((label) => <VizTrack thumbs={1} labels={[label]} />)}
 </section>
 
 <script>
 	import { contextFor, type Motion } from '../../lib/animate';
-	import { shuttleAt } from '../../lib/shuttle';
+	import { chaseAt } from '../../lib/easing';
+	import { shuttleAt, sineAt } from '../../lib/shuttle';
 
 	type TrackEl = HTMLElement & { track: { set(i: number, v: number): void } };
 
@@ -31,6 +32,10 @@ const BARS = ['One', 'Two', 'Three'];
 	const CYCLE = SECONDS + 2 * HOLD;
 	/** How long each pacing is shown before the pill throws itself. */
 	const SHOW = 6;
+	/* Where a chase is sent. Corners of the range and a couple of places in
+	   between, so what it does between two targets is visible however far
+	   apart they are. */
+	const STOPS = [1, 0, 0.65, 0.2];
 
 	/* Its own hook, not the shared attribute: anything on the page can mark an
 	   animation context, and by now something earlier does. */
@@ -38,13 +43,12 @@ const BARS = ['One', 'Two', 'Three'];
 	const pace = group?.querySelector<HTMLElement>('[data-pace]');
 	if (group && pace) {
 		const ctx = contextFor(group);
-		let sine = false;
+		let pacing = 0;
 
-		const show = (toSine: boolean) => {
-			if (sine === toSine) return;
-			sine = toSine;
-			pace.dataset.at = toSine ? '1' : '0';
-			pace.setAttribute('aria-checked', String(toSine));
+		const show = (at: number) => {
+			if (pacing === at) return;
+			pacing = at;
+			pace.dataset.at = String(at);
 		};
 
 		/* The bars are `motion="none"`, so the walk is this file's rather than
@@ -56,10 +60,12 @@ const BARS = ['One', 'Two', 'Three'];
 			// moving rather than as three copies of one bar.
 			const phase = i * (CYCLE / 3);
 			const walk: Motion = {
-				at: (t) =>
-					sine
-						? 0.5 - 0.5 * Math.cos((2 * Math.PI * (t + phase)) / CYCLE)
-						: shuttleAt(t + phase, { seconds: SECONDS, hold: HOLD }),
+				at: (t) => {
+					const u = t + phase;
+					if (pacing === 1) return sineAt(u, { seconds: SECONDS, hold: HOLD });
+					if (pacing === 2) return chaseAt(u, STOPS, CYCLE / STOPS.length);
+					return shuttleAt(u, { seconds: SECONDS, hold: HOLD });
+				},
 				apply: (v) => el.track.set(0, v),
 			};
 			ctx.add(walk);
@@ -69,16 +75,17 @@ const BARS = ['One', 'Two', 'Three'];
 		   hand on a bar stops the pacing changing underneath it, which is the
 		   one thing that would make the two shapes impossible to tell apart. */
 		let mineUntil = 0;
+		const SIDES = 3;
 		ctx.add({
-			at: (t) => Math.floor(t / SHOW) % 2,
+			at: (t) => Math.floor(t / SHOW) % SIDES,
 			apply: (v) => {
 				if (performance.now() < mineUntil) return;
-				show(v === 1);
+				show(v);
 			},
 		});
 
 		pace.addEventListener('click', () => {
-			show(!sine);
+			show((pacing + 1) % SIDES);
 			/* Only the throwing stops, not the walking. `ctx.hold` would have been
 			   the obvious thing here and it is the wrong one: a hold is the whole
 			   context, so pressing the pill froze the three bars it is there to
