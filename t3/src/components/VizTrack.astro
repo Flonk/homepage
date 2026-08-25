@@ -40,11 +40,26 @@
  */
 export type ThumbTheme = 'default' | 'dark';
 
+export type MarkTheme = 'default' | 'swatch';
+
 export type Mark = {
 	/** Where it stands, in the bar's own units. */
 	at: number;
 	/** What it is filled with. The bar's ink if left out. */
 	colour?: string;
+	/**
+	 * How it is drawn.
+	 *
+	 * `default` is a black line across the bar: a reading rather than a thing,
+	 * for the marks that say where something falls — a boundary, a wavelength
+	 * a card keeps pointing at.
+	 *
+	 * `swatch` is the dark thumb's shape, filled with what the bar is at that
+	 * point and edged in that lifted. It is for a mark that is a colour rather
+	 * than a position, and it wants `colour` given: a bar knows what it is
+	 * painted, but not in any form something else can read back off it.
+	 */
+	theme?: MarkTheme;
 	/** The reader's own mark, drawn a little larger with a second outline. */
 	strong?: boolean;
 };
@@ -208,6 +223,7 @@ const ends = Array.from({ length: thumbs }, (_, i) => i);
 		{marks.map((m) => (
 			<span
 				class:list={['mark', m.strong && 'strong']}
+				data-mark-theme={m.theme ?? 'default'}
 				style={`--at: ${(m.at - min) / (max - min || 1)}${m.colour ? `; --mark-ink: ${m.colour}` : ''}`}
 			/>
 		))}
@@ -399,11 +415,8 @@ const ends = Array.from({ length: thumbs }, (_, i) => i);
 	.marks {
 		position: absolute;
 		inset: 0;
-		/* Two pixels, and two proud at each end: flush with the bar it has only
-		   the ramp to be read against, and a line the width of the bar and no
-		   more is a hard thing to find. */
 		--mark-size: var(--track-mark-size, 2px);
-		--mark-across: var(--track-mark-across, calc(var(--depth) + 4px));
+		--mark-across: var(--track-mark-across, var(--depth));
 		pointer-events: none;
 	}
 
@@ -415,10 +428,25 @@ const ends = Array.from({ length: thumbs }, (_, i) => i);
 		margin-inline-start: calc(var(--mark-size) / -2);
 		inline-size: var(--mark-size);
 		block-size: var(--mark-across);
-		/* No ring. A ring is a second colour, and a hairline that has one is
-		   three pixels of three colours: what a mark needs is to be told apart
-		   from the ramp under it, which is a job for the line itself. */
-		background: var(--mark-ink, var(--track-ink, #fff));
+		background: var(--mark-ink, #000);
+	}
+
+	/* A colour rather than a position: the dark thumb's shape and size, filled
+	   with what the bar is at that point and edged in that lifted. No ring of
+	   its own — a ring is a second colour, and the FLB is already the edge of
+	   this one. */
+	.marks :global(.mark[data-mark-theme='swatch']) {
+		--mark-size: var(--size);
+		--mark-across: var(--reach);
+		border-radius: var(--track-radius, var(--radius-small));
+		box-shadow: 0 0 0 1px rgb(0 0 0 / 0.65);
+	}
+
+	@supports (color: oklch(from white l c h)) {
+		.marks :global(.mark[data-mark-theme='swatch']) {
+			box-shadow: 0 0 0 1px
+				oklch(from var(--mark-ink, #000) calc(l + var(--lift, 0.2) * (1 - l)) c h);
+		}
 	}
 
 	/* The reader's own, told apart from the card's by size and a second line. */
@@ -531,6 +559,7 @@ const ends = Array.from({ length: thumbs }, (_, i) => i);
 				list.forEach((m, i) => {
 					const el = marksEl.children[i] as HTMLElement;
 					el.className = m.strong ? 'mark strong' : 'mark';
+					el.dataset.markTheme = m.theme ?? 'default';
 					el.style.setProperty('--at', String((m.at - min) / span));
 					if (m.colour) el.style.setProperty('--mark-ink', m.colour);
 					else el.style.removeProperty('--mark-ink');
