@@ -2,16 +2,4 @@
 import Choice from '../Choice.astro';
 ---
 
-<div class="row">
-	<Choice options={['sRGB', 'Display P3', 'Rec. 2020', 'ProPhoto']} at={1} label="Gamut" />
-	<Choice options={['Normal', 'Deuteranopia', 'Protanopia']} label="Vision" />
-</div>
-
-<style>
-	.row {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 1rem;
-		align-items: start;
-	}
-</style>
+<Choice options={['sRGB', 'Display P3', 'Rec. 2020', 'ProPhoto']} at={1} label="Gamut" />

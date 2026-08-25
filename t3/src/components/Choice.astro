@@ -86,6 +86,10 @@ const { options, at = 0, label, class: className, ...rest } = Astro.props;
 	.choice {
 		position: relative;
 		display: grid;
+		/* As wide as its longest option. A grid left to itself takes the whole
+		   column, and a menu that is as wide as the text it sits beside reads as
+		   a table of contents rather than as a control. */
+		inline-size: fit-content;
 		padding: 0.2rem;
 		border-radius: var(--radius-large);
 		background: var(--pill, rgb(12 14 17 / 0.62));
