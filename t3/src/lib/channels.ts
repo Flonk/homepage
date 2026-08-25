@@ -71,10 +71,15 @@ export const CHANNELS: Record<Model, Channel[]> = {
 const gradient = (stops: number, at: (t: number) => string) =>
 	`linear-gradient(to top, ${Array.from({ length: stops + 1 }, (_, i) => at(i / stops)).join(', ')})`;
 
-/** The same walk, lifted, which is the edge that goes round it. */
+/**
+ * The same walk, lifted, which is the edge that goes round it — and the top of
+ * that walk on its own, which is the channel at its loudest and is what a
+ * thumb on this bar is ringed in.
+ */
 const pair = (stops: number, at: (t: number, lift: number) => string) => ({
 	backdrop: gradient(stops, (t) => at(t, 0)),
 	edge: gradient(stops, (t) => at(t, LIFT)),
+	lit: at(1, LIFT),
 });
 
 /* Clamped to the gamut being talked about, which is what makes the chroma
@@ -97,11 +102,12 @@ export function ramps(
 	model: Model,
 	[a, b, c]: Triple,
 	space: Space = 'srgb',
-): { backdrop: string; edge: string }[] {
+): { backdrop: string; edge: string; lit: string }[] {
 	if (model === 'rgb') {
 		return RGB_TINT.map((tint) => ({
 			backdrop: `linear-gradient(to top, #000000, ${tint})`,
 			edge: `linear-gradient(to top, ${lighten('#000000', LIFT)}, ${lighten(tint, LIFT)})`,
+			lit: lighten(tint, LIFT),
 		}));
 	}
 

@@ -76,7 +76,19 @@ const limit =
 >
 	{
 		channels.map((channel, i) => (
-			<div class="bar" data-channel={channel.letter} style={`--track-edge: ${paint[i].edge}`}>
+			<div
+				class="bar"
+				data-channel={channel.letter}
+				style={[
+					`--track-edge: ${paint[i].edge}`,
+					/* With two thumbs the pair has to be told apart, so the first one
+					   is ringed in the channel at its loudest rather than in the black
+					   every single thumb wears — an FLB, the same as the bar's own. */
+					value2 && `--track-ring: ${paint[i].lit}`,
+				]
+					.filter(Boolean)
+					.join('; ')}
+			>
 				<VizTrack
 					upright
 					size={size}
@@ -126,12 +138,16 @@ const limit =
 		const model = el.dataset.model as Model;
 		const gamut = (el.dataset.gamut ?? 'srgb') as Space;
 		const bars = [...el.querySelectorAll<TrackEl>('[data-viz-track]')];
+		const two = bars[0]?.querySelectorAll('.thumb').length === 2;
 
 		el.sliders = {
 			repaint(value) {
 				ramps(model, value, gamut).forEach((paint, i) => {
 					bars[i]?.track.backdrop(paint.backdrop);
 					bars[i]?.track.edge(paint.edge);
+					// The ring is the channel lifted, and the channel moves with the
+					// colour on every model but rgb.
+					if (two) bars[i]?.parentElement?.style.setProperty('--track-ring', paint.lit);
 				});
 				// The limit moves with lightness and hue, so it is redrawn with them.
 				if (model === 'oklch') {
