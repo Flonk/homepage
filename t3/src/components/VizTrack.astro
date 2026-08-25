@@ -350,6 +350,11 @@ const ends = Array.from({ length: thumbs }, (_, i) => i);
 	   against a guide line drawn on a canvas it is the one pixel that shows. */
 	.thumb {
 		position: absolute;
+		/* Over the marks. They are drawn after it in the markup, and a mark is
+		   the card telling a reader where something is while the thumb is where
+		   the reader is — so when the two land on the same spot it is the mark
+		   that should go behind. */
+		z-index: 2;
 		inset-block-start: 50%;
 		margin-block-start: calc(var(--thumb-across) / -2);
 		inset-inline-start: calc(var(--at) * 100%);
@@ -415,6 +420,7 @@ const ends = Array.from({ length: thumbs }, (_, i) => i);
 	.marks {
 		position: absolute;
 		inset: 0;
+		z-index: 1;
 		--mark-size: var(--track-mark-size, 2px);
 		--mark-across: var(--track-mark-across, var(--depth));
 		pointer-events: none;
