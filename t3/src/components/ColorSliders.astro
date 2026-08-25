@@ -13,7 +13,15 @@
  * Two thumbs rather than one when a second colour is given, which is what a
  * gradient needs: the same three channels, read at both ends.
  */
-import { CHANNELS, chromaLimit, ramps, type Model, type Space, type Triple } from '../lib/channels';
+import {
+	CHANNELS,
+	chromaLimit,
+	cuspCss,
+	ramps,
+	type Model,
+	type Space,
+	type Triple,
+} from '../lib/channels';
 import VizTrack from './VizTrack.astro';
 
 interface Props {
@@ -47,9 +55,15 @@ const {
 
 const channels = CHANNELS[model];
 const paint = ramps(model, value, gamut);
-// The chroma bar carries one mark: where the gamut runs out at this lightness
-// and hue. Nothing else here has a limit that moves.
-const limit = model === 'oklch' ? chromaLimit(value, gamut) : null;
+/* The chroma bar carries one mark: where the gamut runs out at this lightness
+   and hue. Nothing else here has a limit that moves.
+
+   Not `strong` — that size belongs to a mark the reader put there, and this
+   one is the screen's. */
+const limit =
+	model === 'oklch'
+		? { at: chromaLimit(value, gamut), colour: cuspCss(value[2], gamut) }
+		: null;
 ---
 
 <div
@@ -74,7 +88,7 @@ const limit = model === 'oklch' ? chromaLimit(value, gamut) : null;
 					min={channel.min}
 					max={channel.max}
 					step={channel.step}
-					marks={limit !== null && channel.letter === 'C' ? [{ at: limit }] : undefined}
+					marks={limit && channel.letter === 'C' ? [limit] : undefined}
 					labels={
 						value2
 							? [channel.name, `${channel.name}, second colour`]
@@ -90,7 +104,7 @@ const limit = model === 'oklch' ? chromaLimit(value, gamut) : null;
 </div>
 
 <script>
-	import { chromaLimit, ramps, type Model, type Space, type Triple } from '../lib/channels';
+	import { chromaLimit, cuspCss, ramps, type Model, type Space, type Triple } from '../lib/channels';
 
 	type TrackEl = HTMLElement & {
 		track: {
@@ -122,7 +136,11 @@ const limit = model === 'oklch' ? chromaLimit(value, gamut) : null;
 					bars[i]?.track.edge(paint.edge);
 				});
 				// The limit moves with lightness and hue, so it is redrawn with them.
-				if (model === 'oklch') bars[1]?.track.marks([{ at: chromaLimit(value, gamut) }]);
+				if (model === 'oklch') {
+					bars[1]?.track.marks([
+						{ at: chromaLimit(value, gamut), colour: cuspCss(value[2], gamut) },
+					]);
+				}
 			},
 			read(thumb = 0) {
 				return bars.map((b) => b.track.get(thumb)) as Triple;

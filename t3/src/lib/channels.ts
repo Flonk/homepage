@@ -135,3 +135,41 @@ export function ramps(
 export function chromaLimit([L, , H]: Triple, space: Space = 'srgb'): number {
 	return maxChroma(space, L, H);
 }
+
+/**
+ * The most colourful colour a hue has: its cusp, where the two straight edges
+ * of the constant-hue triangle meet.
+ *
+ * This is what the chroma limit is painted in. The obvious alternative — the
+ * boundary colour itself — is exactly the colour of the ramp beneath the mark
+ * and disappears into it, and lifting that off the ramp only gets a pale tick
+ * on a pale ramp. The cusp is the loud version of the same hue, and it lands
+ * away from wherever the lightness bar happens to be standing.
+ *
+ * A coarse walk up the lightness axis and then a couple of halvings around the
+ * best of them: two dozen fitted chromas rather than the hundreds an exact
+ * search would take. The cusp is a blunt corner in colour terms and a
+ * hundredth of lightness either side of it is the same colour to look at,
+ * which is as good as a three-pixel mark can show.
+ */
+export function cuspCss(h: number, space: Space = 'srgb'): string {
+	let bestL = 0.5;
+	let bestC = -1;
+	for (let l = 0.05; l < 1; l += 0.05) {
+		const c = maxChroma(space, l, h);
+		if (c > bestC) {
+			bestC = c;
+			bestL = l;
+		}
+	}
+	for (let step = 0.025; step > 0.004; step /= 2) {
+		for (const dl of [-step, step]) {
+			const c = maxChroma(space, bestL + dl, h);
+			if (c > bestC) {
+				bestC = c;
+				bestL += dl;
+			}
+		}
+	}
+	return spaceCss(space, 'srgb', bestL, bestC, h);
+}
