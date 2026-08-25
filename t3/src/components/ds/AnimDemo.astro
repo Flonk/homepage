@@ -1,72 +1,95 @@
 ---
+import Pill from '../Pill.astro';
 import VizTrack from '../VizTrack.astro';
 import { BED_EDGE, REST_ON_PAGE } from './palette';
 
-const BARS = [
-	{ label: 'One', at: 0 },
-	{ label: 'Two', at: 0.35 },
-	{ label: 'Three', at: 0.7 },
-];
+const BARS = ['One', 'Two', 'Three'];
 ---
 
-<div class="pair" style={`--track-rest: ${REST_ON_PAGE}; --track-edge: ${BED_EDGE}`}>
-	<section>
-		<p class="tag">data-anim-context</p>
-		<div class="group" data-anim-context>
-			{
-				BARS.map((b) => (
-					<VizTrack
-						thumbs={1}
-						motion="shuttle"
-						sweepSeconds={7}
-						hold={1}
-						idleResume={4}
-						values={[b.at]}
-						labels={[b.label]}
-					/>
-				))
-			}
-		</div>
-	</section>
+<div class="anim" style={`--track-rest: ${REST_ON_PAGE}; --track-edge: ${BED_EDGE}`}>
+	<Pill sides={['SHUTTLE', 'SINE']} label="Pacing" data-pace />
 
-	<section>
-		<p class="tag">none</p>
-		<div class="group">
-			{
-				BARS.map((b) => (
-					<VizTrack
-						thumbs={1}
-						motion="shuttle"
-						sweepSeconds={7}
-						hold={1}
-						idleResume={4}
-						values={[b.at]}
-						labels={[b.label]}
-					/>
-				))
-			}
-		</div>
-	</section>
+	<div class="pair">
+		<section class="glass group" data-anim-context>
+			<p class="tag">data-anim-context</p>
+			{BARS.map((label) => <VizTrack thumbs={1} labels={[label]} />)}
+		</section>
+
+		<section class="glass group">
+			<p class="tag">none</p>
+			{BARS.map((label) => <VizTrack thumbs={1} labels={[label]} />)}
+		</section>
+	</div>
 </div>
 
+<script>
+	import { contextFor, type Motion } from '../../lib/animate';
+	import { shuttleAt } from '../../lib/shuttle';
+
+	type TrackEl = HTMLElement & { track: { set(i: number, v: number): void } };
+
+	const SECONDS = 7;
+	const HOLD = 1;
+	// Same round trip either way, so the pill changes the shape and nothing else.
+	const CYCLE = SECONDS + 2 * HOLD;
+
+	const root = document.querySelector<HTMLElement>('.anim');
+	if (root) {
+		let sine = false;
+
+		/* The bars are `motion="none"`, so the walk is this file's rather than
+		   each bar's — which is the other half of what a context is for: a host
+		   with a path of its own joins the same clock, and a reader taking hold
+		   of any bar holds the path too. */
+		root.querySelectorAll<TrackEl>('[data-viz-track]').forEach((el, i) => {
+			// A third of a cycle between them, so the group reads as one thing
+			// moving rather than as three copies of one bar.
+			const phase = (i % 3) * (CYCLE / 3);
+			const motion: Motion = {
+				at: (t) =>
+					sine
+						? 0.5 - 0.5 * Math.cos((2 * Math.PI * (t + phase)) / CYCLE)
+						: shuttleAt(t + phase, { seconds: SECONDS, hold: HOLD }),
+				apply: (v) => el.track.set(0, v),
+			};
+			contextFor(el).add(motion);
+		});
+
+		const pace = root.querySelector<HTMLElement>('[data-pace]');
+		pace?.addEventListener('click', () => {
+			sine = !sine;
+			pace.dataset.at = sine ? '1' : '0';
+			pace.setAttribute('aria-checked', String(sine));
+		});
+	}
+</script>
+
 <style>
-	.pair {
+	.anim {
 		display: grid;
-		gap: 2rem;
+		gap: 1.5rem;
+		justify-items: start;
 	}
 
-	.tag {
-		margin: 0 0 0.75rem;
-		font-family: var(--font-mono);
-		font-size: 0.7rem;
-		letter-spacing: 0.08em;
-		color: var(--text-quiet);
+	.pair {
+		display: grid;
+		gap: 1.25rem;
+		width: 100%;
 	}
 
 	.group {
 		display: grid;
 		gap: 1.25rem;
+		padding: 1.25rem;
 		/* Every bar here wears an edge, so every bar here needs a ring for it. */
 		--track-border: 1px solid transparent;
+	}
+
+	.tag {
+		margin: 0;
+		font-family: var(--font-mono);
+		font-size: 0.7rem;
+		letter-spacing: 0.08em;
+		color: var(--text-quiet);
 	}
 </style>
