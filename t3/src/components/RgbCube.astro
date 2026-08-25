@@ -127,6 +127,7 @@ const {
 						size="1.7rem"
 						backdrop={`linear-gradient(to top, #000, ${ch.ramp})`}
 						thumbs={2}
+						thumbTheme={['dark', 'default']}
 						single={!line}
 						values={[ch.a, ch.b]}
 						min={0}
@@ -281,9 +282,9 @@ const {
 	   channel's own bright rather than in white, which would be the hardest
 	   line on the bar. */
 	.rgb-cube[data-line='true'] .bar {
-		--track-ink: #000;
-		--track-ink-second: #f6f1e6;
-		--track-ring: var(--channel-lit);
+		--track-ink: #f6f1e6;
+		--track-ink-dark: #000;
+		--track-flb: var(--channel-lit);
 	}
 
 	.bar-name {

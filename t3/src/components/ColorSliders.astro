@@ -81,10 +81,10 @@ const limit =
 				data-channel={channel.letter}
 				style={[
 					`--track-edge: ${paint[i].edge}`,
-					/* With two thumbs the pair has to be told apart, so the first one
-					   is ringed in the channel at its loudest rather than in the black
-					   every single thumb wears — an FLB, the same as the bar's own. */
-					value2 && `--track-ring: ${paint[i].lit}`,
+					/* With two thumbs the first is the dark one and wears an FLB in
+					   the channel at its loudest; the white thumb is the second. See
+					   thumbTheme in VizTrack. */
+					value2 && `--track-flb: ${paint[i].lit}`,
 				]
 					.filter(Boolean)
 					.join('; ')}
@@ -94,6 +94,7 @@ const limit =
 					size={size}
 					backdrop={paint[i].backdrop}
 					thumbs={value2 ? 2 : 1}
+					thumbTheme={value2 ? ['dark', 'default'] : 'default'}
 					values={value2 ? [value[i], value2[i]] : [value[i]]}
 					min={channel.min}
 					max={channel.max}
@@ -147,7 +148,7 @@ const limit =
 					bars[i]?.track.edge(paint.edge);
 					// The ring is the channel lifted, and the channel moves with the
 					// colour on every model but rgb.
-					if (two) bars[i]?.parentElement?.style.setProperty('--track-ring', paint.lit);
+					if (two) bars[i]?.parentElement?.style.setProperty('--track-flb', paint.lit);
 				});
 				// The limit moves with lightness and hue, so it is redrawn with them.
 				if (model === 'oklch') {

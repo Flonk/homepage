@@ -38,6 +38,8 @@
  *   track.backdrop('linear-gradient(…)');
  *   track.stop(); track.start(); // the sweep, if there is one
  */
+export type ThumbTheme = 'default' | 'dark';
+
 export type Mark = {
 	/** Where it stands, in the bar's own units. */
 	at: number;
@@ -81,6 +83,20 @@ interface Props {
 	step?: number;
 	/** One per thumb, for the reader who is listening rather than looking. */
 	labels?: string[];
+	/**
+	 * How each thumb is inked. One for all of them, or one each.
+	 *
+	 * `default` is white with a dark ring and a light glow, which is what a
+	 * thumb looks like everywhere a bar has only one. `dark` is the inverse —
+	 * dark inside, ringed in the bar's own colour lifted — and it is what the
+	 * first of a pair wears: two white thumbs on one bar cannot be told apart,
+	 * and the white one is the second, because a pair reads as a mark and its
+	 * echo rather than the other way round.
+	 *
+	 * The lifted ring is `--track-flb`, which the host sets: only the host
+	 * knows what colour the bar is at that point.
+	 */
+	thumbTheme?: ThumbTheme | ThumbTheme[];
 	/** Hide the second thumb and its control, for a card showing one end. */
 	single?: boolean;
 	/**
@@ -127,6 +143,7 @@ const {
 	max = 1,
 	step = 0.001,
 	labels = [],
+	thumbTheme = 'default',
 	single = false,
 	motion = 'none',
 	sweepSeconds = 9,
@@ -141,6 +158,8 @@ const {
 } = Astro.props;
 
 const at = (i: number) => values[i] ?? (i === 0 ? min : max);
+const themeFor = (i: number): ThumbTheme =>
+	Array.isArray(thumbTheme) ? (thumbTheme[i] ?? 'default') : thumbTheme;
 const ends = Array.from({ length: thumbs }, (_, i) => i);
 ---
 
@@ -172,7 +191,12 @@ const ends = Array.from({ length: thumbs }, (_, i) => i);
 	</div>
 	{
 		ends.map((i) => (
-			<span class:list={['thumb', i === 1 && 'second']} data-thumb={i} hidden={i === 1 && single}>
+			<span
+				class:list={['thumb', i === 1 && 'second']}
+				data-thumb={i}
+				data-thumb-theme={themeFor(i)}
+				hidden={i === 1 && single}
+			>
 				{/* Somewhere for a host to hang an affordance of its own — the
 				    spectrum's little triangle — on a thumb it does not otherwise
 				    have to reimplement. */}
@@ -316,25 +340,42 @@ const ends = Array.from({ length: thumbs }, (_, i) => i);
 		margin-inline-start: calc(var(--size) / -2);
 		inline-size: var(--size);
 		block-size: var(--thumb-across);
-		background: var(--mark, var(--track-ink, #fff));
+		background: var(--mark);
 		/* Its own outline and its own light, because what it has to be read
 		   against is whatever the backdrop happens to be under it — a rainbow, a
 		   channel ramp — and contrast cannot be assumed anywhere along it. */
 		box-shadow:
-			0 0 0 1px var(--track-ring, rgb(0 0 0 / 0.75)),
-			var(--track-glow, 0 0 7px 1px rgb(255 255 255 / 0.45));
+			0 0 0 1px var(--ring),
+			var(--glow);
 		pointer-events: none;
 	}
 
-	/* The second end, when there is one: the same mark in the other ink, so a
-	   pair reads as a pair without a legend. */
-	.thumb.second {
-		--mark: var(--track-ink-second, #1d1f21);
-		/* Its own outline as well as its own fill: a host that inverts the first
-		   thumb — dark inside, light around it — would otherwise be outlining
-		   this one in the colour it is filled with. */
-		--track-ring: var(--track-ring-second, rgb(0 0 0 / 0.75));
-		--track-glow: 0 0 7px 1px rgb(0 0 0 / 0.35);
+	/* White, ringed dark, with a light around it. What a thumb is when a bar
+	   has only one of them. */
+	.thumb[data-thumb-theme='default'] {
+		--mark: var(--track-ink, #fff);
+		--ring: var(--track-ring, rgb(0 0 0 / 0.75));
+		--glow: var(--track-glow, 0 0 7px 1px rgb(255 255 255 / 0.45));
+	}
+
+	/* The inverse, for the first of a pair: dark inside, and ringed in the
+	   bar's own colour lifted rather than in white, which would be the hardest
+	   line on the bar. The host sets --track-flb, because only the host knows
+	   what colour the bar is where the thumb is standing. */
+	.thumb[data-thumb-theme='dark'] {
+		--mark: var(--track-ink-dark, #14161a);
+		--ring: var(--track-flb, var(--track-ring, rgb(255 255 255 / 0.55)));
+		--glow: var(--track-glow-dark, 0 0 7px 1px rgb(0 0 0 / 0.35));
+	}
+
+	/* A pair with one of them put away is not a pair. The one left standing is
+	   the only mark on the bar, so it goes back to being the usual thumb —
+	   which covers both `single` and a host calling `showThumb` later, since
+	   both of them come down to the same attribute. */
+	.track:has(.thumb[data-thumb='1'][hidden]) .thumb[data-thumb-theme='dark'] {
+		--mark: var(--track-ink, #fff);
+		--ring: var(--track-ring, rgb(0 0 0 / 0.75));
+		--glow: var(--track-glow, 0 0 7px 1px rgb(255 255 255 / 0.45));
 	}
 
 	.thumb[data-thumb='0'] {
