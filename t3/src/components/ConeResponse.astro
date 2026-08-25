@@ -351,6 +351,21 @@ const markList = marks
 		height: 100%;
 		width: 0;
 		border-radius: var(--radius-small);
+		/* An FLB, the same as every other edge here: the bar's own colour a
+		   fifth of the way to white. It reads on the end of the fill, which is
+		   the part a reader is looking at, and it is what tells a short bar
+		   from an empty track. Inside the box, so a bar's length is its
+		   reading and not its reading plus two pixels. */
+		box-sizing: border-box;
+		border: 1px solid transparent;
+	}
+
+	@supports (color: oklch(from white l c h)) {
+		.tally-bar i {
+			border-color: oklch(
+				from var(--cone-ink) calc(l + var(--lift, 0.2) * (1 - l)) c h
+			);
+		}
 	}
 
 	/* The letter takes the cone's colour as ink; the bar takes it as fill.
@@ -374,18 +389,22 @@ const markList = marks
 
 	.tally-row[data-cone='l'] .tally-bar i {
 		background: var(--l);
+		--cone-ink: var(--l);
 	}
 
 	.tally-row[data-cone='m'] .tally-bar i {
 		background: var(--m);
+		--cone-ink: var(--m);
 	}
 
 	.tally-row[data-cone='s'] .tally-bar i {
 		background: var(--s);
+		--cone-ink: var(--s);
 	}
 
 	.tally-row[data-cone='l2'] .tally-bar i {
 		background: var(--l2);
+		--cone-ink: var(--l2);
 	}
 
 	/* Faded rather than removed. The bars that remain do not move, so the two
