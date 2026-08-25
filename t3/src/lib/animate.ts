@@ -93,7 +93,22 @@ export function makeContext(): Context {
 		last = 0;
 	};
 
+	/* The next frame, unless something says otherwise.
+
+	   `frame` is the only record of whether one is pending, so it has to be
+	   true exactly when one is — which is why `step` clears it on the way in,
+	   before anything it applies could pause the context. Rescheduling blindly
+	   at the end instead meant a `hold` taken during a frame cancelled a
+	   handle that had already fired and then had `step` schedule a fresh one
+	   underneath it: a loop nothing held the handle to, running for the life of
+	   the page, and another one every time it happened. */
+	const arm = () => {
+		if (frame || stopped || held || still.matches || !motions.size) return;
+		frame = requestAnimationFrame(step);
+	};
+
 	const step = (now: number) => {
+		frame = 0;
 		clock += last ? (now - last) / 1000 : 0;
 		last = now;
 		for (const m of motions) {
@@ -101,13 +116,13 @@ export function makeContext(): Context {
 			showing.set(m, value);
 			m.apply(value);
 		}
-		frame = requestAnimationFrame(step);
+		arm();
 	};
 
 	const run = () => {
-		if (frame || stopped || held || still.matches || !motions.size) return;
-		last = 0;
-		frame = requestAnimationFrame(step);
+		// Nothing pending means this is a fresh start, so forget the gap.
+		if (!frame) last = 0;
+		arm();
 	};
 
 	/* Where a motion would have to start to be showing what it is showing. */
