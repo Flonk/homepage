@@ -1,0 +1,23 @@
+---
+import "@fontsource/lobster/latin-400.css";
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Happy Birthday Matthias!</title>
+    <style is:global>
+      html, body { margin: 0; height: 100%; background: #000; }
+      body { display: flex; align-items: center; justify-content: center; }
+      .photo { position: relative; width: min(100vw, 75vh); }
+      .photo img { display: block; width: 100%; }
+      h1 { position: absolute; left: 0; right: 0; bottom: 5%; margin: 0; padding: 0 16px; text-align: center;
+           font-family: Lobster, cursive; font-weight: 400; font-size: clamp(2.6rem, 12vw, 5.5rem); line-height: 1.05;
+           color: #fff; text-shadow: 0 2px 0 #c2185b, 0 4px 18px rgba(0, 0, 0, .7); }
+    </style>
+  </head>
+  <body>
+    <div class="photo"><img src="/qr/matthias-30.jpg" alt="" /><h1>Happy Birthday<br />Matthias!</h1></div>
+  </body>
+</html>
