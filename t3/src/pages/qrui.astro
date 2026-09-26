@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>qr</title>
+    <style is:global>
+      html, body { margin: 0; height: 100%; font-family: system-ui, sans-serif; background: #fff; color: #111; }
+      #gate { height: 100%; display: flex; align-items: center; justify-content: center; }
+      #gate input { font-size: 1.1rem; padding: 10px 12px; width: min(260px, 80vw); border: 1px solid #bbb; border-radius: 6px; }
+      #gate input.wrong { border-color: #d00; }
+      #panel { display: none; height: 100%; flex-direction: column; }
+      #panel.open { display: flex; }
+      #bar { height: 20vh; min-height: 90px; box-sizing: border-box; padding: 12px 16px; display: flex; flex-direction: column;
+             justify-content: center; gap: 10px; border-bottom: 1px solid #ddd; }
+      #bar select, #bar button { font-size: 1.05rem; padding: 10px 12px; border-radius: 6px; border: 1px solid #bbb; background: #fff; }
+      #bar button { background: #111; color: #fff; border-color: #111; }
+      #bar button:disabled { opacity: .5; }
+      #said { font-size: .85rem; color: #666; min-height: 1em; }
+      #preview { flex: 1; width: 100%; border: 0; }
+    </style>
+  </head>
+  <body>
+    <form id="gate">
+      <input id="word" type="password" placeholder="password" autocomplete="current-password" autofocus />
+    </form>
+    <div id="panel">
+      <div id="bar">
+        <select id="theme">
+          <option value="works">it works</option>
+          <option value="martina">martina rulez</option>
+        </select>
+        <button id="apply" type="button">apply</button>
+        <div id="said"></div>
+      </div>
+      <iframe id="preview" title="preview"></iframe>
+    </div>
+    <script is:inline>
+      const api = "/api/qr-theme";
+      const $ = (id) => document.getElementById(id);
+      let word = sessionStorage.getItem("qrui") || "";
+
+      const ask = (body) =>
+        fetch(api, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) });
+
+      const show = () => ($("preview").src = `/qr/${$("theme").value}/`);
+
+      async function open() {
+        $("gate").style.display = "none";
+        $("panel").classList.add("open");
+        const now = await fetch(api).then((r) => r.json()).catch(() => null);
+        if (now?.theme) $("theme").value = now.theme;
+        $("said").textContent = now?.theme ? `live: ${$("theme").selectedOptions[0].text}` : "";
+        show();
+      }
+
+      async function unlock(tried) {
+        const r = await ask({ password: tried }).catch(() => null);
+        if (!r?.ok) return false;
+        word = tried;
+        sessionStorage.setItem("qrui", word);
+        await open();
+        return true;
+      }
+
+      $("gate").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const ok = await unlock($("word").value);
+        if (!ok) {
+          $("word").classList.add("wrong");
+          $("word").select();
+        }
+      });
+      $("word").addEventListener("input", () => $("word").classList.remove("wrong"));
+
+      $("theme").addEventListener("change", show);
+
+      $("apply").addEventListener("click", async () => {
+        $("apply").disabled = true;
+        $("said").textContent = "applying…";
+        const r = await ask({ password: word, theme: $("theme").value }).catch(() => null);
+        $("apply").disabled = false;
+        $("said").textContent = r?.ok ? `live: ${$("theme").selectedOptions[0].text}` : "failed";
+      });
+
+      if (word) unlock(word);
+    </script>
+  </body>
+</html>

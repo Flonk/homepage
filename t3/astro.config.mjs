@@ -28,7 +28,7 @@ export default defineConfig({
     mdx(),
     // Hidden posts carry a noindex of their own; this keeps them from being
     // announced in the first place. See `hidden` in content.config.ts.
-    sitemap({ filter: (page) => !page.includes("/designsystem") }),
+    sitemap({ filter: (page) => !page.includes("/designsystem") && !page.includes("/qr") }),
     react(),
   ],
 });
