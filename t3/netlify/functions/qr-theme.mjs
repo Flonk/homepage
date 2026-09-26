@@ -1,6 +1,6 @@
 import { getStore } from "@netlify/blobs";
 
-const THEMES = ["works", "martina", "matthias-30"];
+const THEMES = ["works", "martina", "rickroll"];
 const HASH = "9d560b0133d32146d9dabf7ab7e7680fc28e8a5122161912dffc44bc0e600b24";
 
 const hashed = async (text) =>
