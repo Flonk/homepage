@@ -8,9 +8,18 @@
  * is the mechanism designed for this, so swap the spaces for U+00A0 and let
  * `overflow-wrap: break-word` still rescue a snippet too long for any line.
  *
+ * Only short snippets: one too long to sit comfortably on a line would be
+ * shoved onto its own line and then split mid-word anyway, so it keeps its
+ * real spaces and wraps like prose.
+ *
  * Only inline code: `pre > code` keeps real spaces so code blocks stay
  * copy-pasteable.
  */
+const MAX_UNBROKEN = 24;
+
+const textOf = (node) =>
+	node.type === 'text' ? node.value : (node.children ?? []).map(textOf).join('');
+
 const NBSP = ' ';
 
 const replaceSpacesInText = (node) => {
@@ -24,7 +33,7 @@ const walk = (node, parent) => {
 	if (node.type === 'element' && node.tagName === 'code') {
 		const insidePre = parent?.type === 'element' && parent.tagName === 'pre';
 		if (!insidePre) {
-			replaceSpacesInText(node);
+			if (textOf(node).length <= MAX_UNBROKEN) replaceSpacesInText(node);
 			return; // don't descend again
 		}
 		return; // code block — leave its whitespace alone

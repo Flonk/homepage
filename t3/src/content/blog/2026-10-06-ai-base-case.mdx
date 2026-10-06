@@ -6,38 +6,34 @@ pubDate: "October 6 2026"
 
 Pardon the terrible analogy, but here is how I envision every modern software being built.
 
-Say you are sad, because you don't have \$tool to auomate \$task. You have an 
-idea of how to build \$tool, but at the moment no such tool is being had, so you
+Say you are sad, because you don't have **\$tool** to auomate **\$task**. You have an 
+idea of how to build **\$tool**, but at the moment no such tool is being had, so you
 set out to build it.
 
 Without any tool, you can go tell Claude 17 xhigh pro max to just do the task,
 and it will get there, of course with the usual slowness and non-determinism. So
-you prototype \$tool (with Claude of course), and it will work on some inputs, but
+you prototype **\$tool** (with Claude of course), and it will work on some inputs, but
 not on all inputs, and some edge cases will break it.
 
 But hey, this is a "working prototype" that will be shipped to production next week.
-You have recursed zero times.
+You have taken the problem domain and wrote a solver for 90% of it (this is the first recursion).
 
-At that moment, you, being a meat proxy for the AI, will see exceptions flying
-around once real world data comes in, and then you tell Claude to fix the issues. 
+As you go live, you, the meat proxy, will see exceptions flying around as real world
+data comes in, and then you tell Claude to fix the issues.
 
-Then you ship to production again -- you have recursed once.
+I mean what is software really? There is always a problem domain, and like in chess,
+we can enumerate the entire space of problems, at least in theory, and create a decision
+tree that given any problem instance, provides the correct solution.
 
-Recursed, not iterated!
-
-Because what is software really? If you try hard enough, you can model every 
-piece of software as a function taking one parameter: the problem instance. And
-the software is truly "done" when the entire problem domain has been correctly handled.
-
-Now, every problem domain is mostly trivially solveable, with only a small fraction
-of cases requiring deep thought and careful handling -- you know the saying from the 80s:
+And in every piece of software, the majority of the problem domain is trivially solveable,
+with only a small fraction requiring complex handling. You know the saying from the 80s:
 "The first 90% of the code needs 90% of the time, and the remaining 10% of the code needs the other 90% of the time."
 
 Am I right, fellow sprinters?
 
 Now, if every software is basically `if trivial return result; else claude()`, then
 what happens is that claude is kind of recursively building out the program's decision tree
-as the errors come in. And as more and more edge cases move from unsolved to trivial,
+as the unhandled cases come in. And as more and more edge cases move from unsolved to trivial,
 it is like you are zooming into the decision tree in this fractal fashion until either
 the problem domain is solved, your software is deprecated, or you get acquired by Meta.
 
@@ -55,10 +51,3 @@ There is some weird gradient from idea to code that AI bridges the gap between
 that I can't quite put into words. Going from Opus to Sonnet to Haiku to Code yields
 better and cheaper results at each step, at the cost of human effort -- so maybe software
 is fundamentally about managing this gradient?
-
-Though I suppose that this is probably what the business people knew all along.
-The algorithm used to be, `if trivial return result; else schedule a call with sales`,
-and then the meat AIs went ahead and solved that part of the problem domain to
-acquire new customers.
-
-Now it's just us developers having to deal with the same things.

@@ -457,8 +457,11 @@ em {
 .prose :not(pre) > code {
   font-family: var(--font-mono);
   font-size: 0.85em;
-  white-space: pre-wrap;
+  white-space: normal;
   overflow-wrap: break-word;
+  /* A span that wraps gets a closed box on each line, not one box sliced open. */
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
 .prose a {
