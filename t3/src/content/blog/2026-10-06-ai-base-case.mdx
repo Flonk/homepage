@@ -16,26 +16,31 @@ you prototype **\$tool** (with Claude of course), and it will work on some input
 not on all inputs, and some edge cases will break it.
 
 But hey, this is a "working prototype" that will be shipped to production next week.
-You have taken the problem domain and wrote a solver for 90% of it (this is the first recursion).
+As you go live, exceptions will be flying around as real data comes in, and then you
+meat proxy Claude to fix the issues. And you solve more and more edge cases over time
+until the software is "stable".
 
-As you go live, you, the meat proxy, will see exceptions flying around as real world
-data comes in, and then you tell Claude to fix the issues.
+People usually call this "iterating" but maybe recursion is a more accurate metaphor.
 
-I mean what is software really? There is always a problem domain, and like in chess,
-we can enumerate the entire space of problems, at least in theory, and create a decision
-tree that given any problem instance, provides the correct solution.
+I mean. What is software really? Any software is just a function over a set of
+problems, and like in chess, we can enumerate the entire space of problems, at least
+in theory, and create a decision tree that always yields the correct solution for
+any given problem.
 
-And in every piece of software, the majority of the problem domain is trivially solveable,
-with only a small fraction requiring complex handling. You know the saying from the 80s:
+The job of a programmer is precisely to build that decision tree.
+
+And every real-world problem is mostly trivially solveable, which is why Claude can
+cook up a prototype in 20 minutes. But you know the saying from the 80s:
 "The first 90% of the code needs 90% of the time, and the remaining 10% of the code needs the other 90% of the time."
 
 Am I right, fellow sprinters?
 
-Now, if every software is basically `if trivial return result; else claude()`, then
+Now, if every program nowadays is `if trivial return result; else claude()`, then
 what happens is that claude is kind of recursively building out the program's decision tree
 as the unhandled cases come in. And as more and more edge cases move from unsolved to trivial,
-it is like you are zooming into the decision tree in this fractal fashion until either
-the problem domain is solved, your software is deprecated, or you get acquired by Meta.
+it is like you are zooming into the decision tree to solve subproblems in more and more detail
+in this fractal fashion until either the problem domain is solved, your software is deprecated,
+or you get acquired by Meta.
 
 In essence, every software is claude until you look at it. Maybe we should 
 call software "Schrödinger's claude" actually.
@@ -49,5 +54,5 @@ program requires code.
 
 There is some weird gradient from idea to code that AI bridges the gap between
 that I can't quite put into words. Going from Opus to Sonnet to Haiku to Code yields
-better and cheaper results at each step, at the cost of human effort -- so maybe software
-is fundamentally about managing this gradient?
+better and faster and cheaper results at each step, at the cost of human effort -- so
+maybe software is fundamentally about managing this gradient?
