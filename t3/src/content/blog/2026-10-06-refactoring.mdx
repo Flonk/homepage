@@ -30,15 +30,15 @@ piece of software as a function taking one parameter: the problem instance. And
 the software is truly "done" when the entire problem domain has been correctly handled.
 
 Now, every problem domain is mostly trivially solveable, with only a small fraction
-of cases requiring deep thought and careful handling. You know the saying from the 80s:
+of cases requiring deep thought and careful handling -- you know the saying from the 80s:
 "The first 90% of the code needs 90% of the time, and the remaining 10% of the code needs the other 90% of the time."
 
 Am I right, fellow sprinters?
 
 Now, if every software is basically `if trivial return result; else claude()`, then
-what happens is that claude is kind of recursively building out the decision tree
+what happens is that claude is kind of recursively building out the program's decision tree
 as the errors come in. And as more and more edge cases move from unsolved to trivial,
-it is like you are zooming into the decision tree in this fractal fasion until either
+it is like you are zooming into the decision tree in this fractal fashion until either
 the problem domain is solved, your software is deprecated, or you get acquired by Meta.
 
 In essence, every software is claude until you look at it. Maybe we should 
@@ -55,3 +55,10 @@ There is some weird gradient from idea to code that AI bridges the gap between
 that I can't quite put into words. Going from Opus to Sonnet to Haiku to Code yields
 better and cheaper results at each step, at the cost of human effort -- so maybe software
 is fundamentally about managing this gradient?
+
+Though I suppose that this is probably what the business people knew all along.
+The algorithm used to be, `if trivial return result; else schedule a call with sales`,
+and then the meat AIs went ahead and solved that part of the problem domain to
+acquire new customers.
+
+Now it's just us developers having to deal with the same things.
