@@ -1,0 +1,57 @@
+---
+title: "Software is recursive and AI is the base case"
+description: ""
+pubDate: "October 10 2026"
+---
+
+Pardon the terrible analogy, but here is how I envision every modern software being built.
+
+Say you are sad, because you don't have $tool to auomate $task. You have an 
+idea of how to build $tool, but at the moment no such tool is being had, so you
+set out to build it.
+
+Without any tool, you can go tell Claude 17 xhigh pro max to just do the task,
+and it will get there, of course with the usual slowness and non-determinism. So
+you prototype $tool (with Claude of course), and it will work on some inputs, but
+not on all inputs, and some edge cases will break it.
+
+But hey, this is a "working prototype" that will be shipped to production next week.
+You have recursed zero times.
+
+At the moment, you, being a meat proxy for the AI, will see exceptions flying
+around once real world data comes in, and then you tell Claude to fix the issues. 
+
+Then you ship to production again -- you have recursed once.
+
+Recursed, not iterated!
+
+Because what is software really? If you try hard enough, you can model every 
+piece of software as a function taking one parameter: the problem instance. And
+the software is truly "done" when the entire problem domain has been correctly handled.
+
+Now, every problem domain is mostly trivially solveable, with only a small fraction
+of cases requiring deep thought and careful handling. You know the saying from the 80s:
+"The first 90% of the code needs 90% of the time, and the remaining 10% of the code needs the other 90% of the time."
+
+Am I right, fellow sprinters?
+
+Now, if every software is basically `if trivial return result; else claude()`, then
+what happens is that claude is kind of recursively building out the decision tree
+as the errors come in. And as more and more edge cases move from unsolved to trivial,
+it is like you are zooming into the decision tree in this fractal fasion until either
+the problem domain is solved, your software is deprecated, or you get acquired by Meta.
+
+In essence, every software is claude until you look at it. Maybe we should 
+call software "Schrödinger's claude" actually.
+
+---
+
+I've been noticing this in my own projects in another way. Claude Opus can do stuff
+if I just ask him to, Sonnet needs a CLI I built for it, and Haiku needs a CLI and
+heavy guardrails and clever incentivizing to do the same thing. And of course, a
+program requires code.
+
+There is some weird gradient from idea to code that AI bridges the gap between
+that I can't quite put into words. Going from Opus to Sonnet to Haiku to Code yields
+better and cheaper results at each step, at the cost of human effort -- so maybe software
+is fundamentally about managing this gradient?
