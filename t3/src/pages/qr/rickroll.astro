@@ -4,12 +4,25 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>The tattoo works!</title>
-    <script is:inline>
-      if (window.top === window.self) location.replace("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-    </script>
-    <noscript><meta http-equiv="refresh" content="0; url=https://www.youtube.com/watch?v=dQw4w9WgXcQ" /></noscript>
+    <style is:global>
+      html, body { margin: 0; height: 100%; background: #000; overflow: hidden; }
+      video { position: fixed; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    </style>
   </head>
-  <body style="font-family: system-ui, sans-serif; text-align: center; padding-top: 40vh;">
-    redirects to youtube.com/watch?v=dQw4w9WgXcQ
+  <body>
+    <video id="v" src="/qr/rickroll.mp4" poster="/qr/rickroll.jpg" autoplay playsinline loop preload="auto"></video>
+    <script is:inline>
+      const v = document.getElementById("v");
+      const loud = () => {
+        v.muted = false;
+        v.play().catch(() => {});
+      };
+      v.play().catch(() => {
+        v.muted = true;
+        v.play().catch(() => {});
+        for (const e of ["pointerdown", "touchstart", "keydown", "scroll"])
+          addEventListener(e, loud, { once: true, passive: true });
+      });
+    </script>
   </body>
 </html>

@@ -12,11 +12,17 @@
       #gate input.wrong { border-color: #d00; }
       #panel { display: none; height: 100%; flex-direction: column; }
       #panel.open { display: flex; }
-      #bar { height: 20vh; min-height: 90px; box-sizing: border-box; padding: 12px 16px; display: flex; flex-direction: column;
+      #bar { box-sizing: border-box; padding: 12px 16px; display: flex; flex-direction: column;
              justify-content: center; gap: 10px; border-bottom: 1px solid #ddd; }
-      #bar select, #bar button { font-size: 1.05rem; padding: 10px 12px; border-radius: 6px; border: 1px solid #bbb; background: #fff; }
+      .row { display: flex; gap: 8px; }
+      .row > * { flex: 1; min-width: 0; }
+      #bar select, #bar button, #bar input { font-size: 1.05rem; padding: 10px 12px; border-radius: 6px; border: 1px solid #bbb;
+                                             background: #fff; box-sizing: border-box; }
       #bar button { background: #111; color: #fff; border-color: #111; }
+      .row > button { flex: 0 0 auto; }
+      #bar button.quiet { background: #fff; color: #111; border-color: #bbb; }
       #bar button:disabled { opacity: .5; }
+      #remove[hidden] { display: none; }
       #said { font-size: .85rem; color: #666; min-height: 1em; }
       #preview { flex: 1; width: 100%; border: 0; }
     </style>
@@ -27,12 +33,24 @@
     </form>
     <div id="panel">
       <div id="bar">
-        <select id="theme">
-          <option value="works">it works</option>
-          <option value="martina">martina rulez</option>
-          <option value="rickroll">rickroll</option>
-        </select>
+        <div class="row">
+          <select id="theme">
+            <optgroup label="pages">
+              <option value="t3">t3 home</option>
+              <option value="works">it works</option>
+              <option value="martina">martina rulez</option>
+              <option value="rickroll">rickroll</option>
+            </optgroup>
+            <optgroup id="links" label="links"></optgroup>
+          </select>
+          <button id="remove" class="quiet" type="button" hidden>remove</button>
+        </div>
         <button id="apply" type="button">apply</button>
+        <form id="add" class="row">
+          <input id="name" placeholder="name" />
+          <input id="url" type="url" placeholder="https://…" />
+          <button type="submit">add link</button>
+        </form>
         <div id="said"></div>
       </div>
       <iframe id="preview" title="preview"></iframe>
@@ -41,18 +59,41 @@
       const api = "/api/qr-theme";
       const $ = (id) => document.getElementById(id);
       let word = sessionStorage.getItem("qrui") || "";
+      let links = [];
 
       const ask = (body) =>
         fetch(api, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) });
 
-      const show = () => ($("preview").src = `/qr/${$("theme").value}/`);
+      const linkOf = (value) => links.find((l) => `link:${l.id}` === value);
+
+      const label = () => $("theme").selectedOptions[0]?.text ?? "";
+
+      const show = () => {
+        const link = linkOf($("theme").value);
+        $("remove").hidden = !link;
+        $("preview").src = link ? link.url : `/qr/${$("theme").value}/`;
+      };
+
+      const fill = (list, pick) => {
+        links = list || [];
+        $("links").replaceChildren(
+          ...links.map((l) => {
+            const o = document.createElement("option");
+            o.value = `link:${l.id}`;
+            o.textContent = l.name;
+            return o;
+          }),
+        );
+        if (pick) $("theme").value = pick;
+        if (!$("theme").value) $("theme").value = "t3";
+      };
 
       async function open() {
         $("gate").style.display = "none";
         $("panel").classList.add("open");
         const now = await fetch(api).then((r) => r.json()).catch(() => null);
-        if (now?.theme) $("theme").value = now.theme;
-        $("said").textContent = now?.theme ? `live: ${$("theme").selectedOptions[0].text}` : "";
+        fill(now?.links, now?.theme);
+        $("said").textContent = now?.theme ? `live: ${label()}` : "";
         show();
       }
 
@@ -82,7 +123,35 @@
         $("said").textContent = "applying…";
         const r = await ask({ password: word, theme: $("theme").value }).catch(() => null);
         $("apply").disabled = false;
-        $("said").textContent = r?.ok ? `live: ${$("theme").selectedOptions[0].text}` : "failed";
+        $("said").textContent = r?.ok ? `live: ${label()}` : "failed";
+      });
+
+      $("add").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const r = await ask({ password: word, add: { name: $("name").value, url: $("url").value } }).catch(() => null);
+        const out = await r?.json().catch(() => null);
+        if (!r?.ok) {
+          $("said").textContent = out?.error || "failed";
+          return;
+        }
+        fill(out.links, `link:${out.links.at(-1).id}`);
+        $("name").value = $("url").value = "";
+        $("said").textContent = `added ${label()}, not live yet`;
+        show();
+      });
+
+      $("remove").addEventListener("click", async () => {
+        const link = linkOf($("theme").value);
+        if (!link || !confirm(`remove ${link.name}?`)) return;
+        const r = await ask({ password: word, remove: link.id }).catch(() => null);
+        const out = await r?.json().catch(() => null);
+        if (!r?.ok) {
+          $("said").textContent = out?.error || "failed";
+          return;
+        }
+        fill(out.links, out.theme);
+        $("said").textContent = `removed ${link.name}, live: ${label()}`;
+        show();
       });
 
       if (word) unlock(word);
