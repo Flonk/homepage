@@ -13,15 +13,16 @@
     <video id="v" src="/qr/rickroll.mp4" poster="/qr/rickroll.jpg" autoplay playsinline loop preload="auto"></video>
     <script is:inline>
       const v = document.getElementById("v");
+      const gestures = ["pointerup", "touchend", "click", "keydown"];
       const loud = () => {
         v.muted = false;
         v.play().catch(() => {});
+        for (const e of gestures) removeEventListener(e, loud);
       };
       v.play().catch(() => {
         v.muted = true;
         v.play().catch(() => {});
-        for (const e of ["pointerdown", "touchstart", "keydown", "scroll"])
-          addEventListener(e, loud, { once: true, passive: true });
+        for (const e of gestures) addEventListener(e, loud, { passive: true });
       });
     </script>
   </body>
