@@ -13,10 +13,12 @@ type Props = CollectionEntry<'blog'>['data'] & {
 	home?: boolean;
 };
 
-const { id, home = false, title, description, pubDate, updatedDate, hidden } = Astro.props;
+const { id, home = false, title, description, pubDate, updatedDate, hidden, accent } = Astro.props;
+// A post's own accent goes on <html>, and everything warm is worked out from
+// it; the home page keeps the site's, whichever post it shows.
 ---
 
-<html lang="en">
+<html lang="en" style={accent && !home ? `--accent: ${accent}` : undefined}>
 	<head>
 		<BaseHead
 			title={home ? SITE_TITLE : title}
@@ -87,6 +89,5 @@ const { id, home = false, title, description, pubDate, updatedDate, hidden } = A
 				</article>
 			</main>
 		</SplitPane>
-		<slot name="extra" />
 	</body>
 </html>

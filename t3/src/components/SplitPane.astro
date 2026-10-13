@@ -29,15 +29,31 @@ const { mode, current } = Astro.props;
 
 <div class:list={['split', `is-${mode}`]}>
 	<aside class="split-list" transition:persist="tree">
-		<PostIndex current={current} />
+		<div class="pane-dots" aria-hidden="true"></div>
+		<div class="pane-scroll">
+			<PostIndex current={current} />
+		</div>
 	</aside>
 	<div class="split-divider" title="drag to resize" aria-hidden="true"></div>
 	<div class="split-main">
-		<slot />
+		<div class="pane-dots" aria-hidden="true"></div>
+		<div class="pane-scroll">
+			<slot />
+		</div>
 	</div>
 </div>
 
 <style>
+	/* The page's own ground, below the header: the body has none, so that
+	   the chrome and its grain show through it (see Header). Positioned, so it
+	   paints over that grain, and taking all the height under the header. On
+	   a wide screen the gutter takes its place. */
+	.split {
+		position: relative;
+		flex: 1 0 auto;
+		background: url('/assets/grain.png') 0 0 / 128px 128px fixed, var(--bg);
+	}
+
 	/* Narrow: one thing at a time. */
 	.split-divider,
 	.split-list {
@@ -53,6 +69,15 @@ const { mode, current } = Astro.props;
 	.is-home .split-main {
 		display: none;
 	}
+	/* The pane's dots are a wide-screen thing; on a narrow one the post is the
+	   page, and the scrolling wrapper is no box at all. */
+	.pane-dots {
+		display: none;
+	}
+	.pane-scroll {
+		display: contents;
+	}
+
 	/* A deck takes all the height there is, down a column. */
 	.is-deck,
 	.is-deck .split-main {
@@ -72,10 +97,41 @@ const { mode, current } = Astro.props;
 	   the divider was left (30% for the tree until it is moved), each
 	   scrolling on its own under the header. */
 	@media (min-width: 1100px) {
+		/* The content's corners are rounded a little under concentric with the
+		   cards in it, set by eye: the full radius and gap reads as rounder than
+		   the cards, an outer corner with that much room round it. The chrome
+		   behind the page shows in the corners, so it seems to curve in round
+		   the content, and its ring (see :root::after) follows. Set on the root,
+		   which the ring is drawn from. */
+		:global(:root:has(.split)) {
+			/* In px rather than a bare 0, which would make every calc() it is added
+			   to a length in invalid: the divider's place among them. */
+			--split-pad: 0px;
+			--split-gap: 0px;
+			/* The most the tree takes, however wide the window or the split the
+			   reader dragged it to: past this it is only emptier. The drag stops
+			   here too (MOST_REM in the script below). */
+			--split-max: 30rem;
+			--content-radius: 13px;
+		}
+		/* Two panes side by side, run right up to the chrome (--split-pad, which
+		   is nothing for now) and to each other (--split-gap, nothing too): the
+		   tree lies over the post and casts a soft shadow onto it (below).
+
+		   The post has its own grain on its own pane rather than the page's,
+		   still while the post scrolls over it, as the tree's is. */
 		.split,
 		.is-deck {
 			display: grid;
-			grid-template-columns: var(--split, 30%) minmax(0, 1fr);
+			grid-template-columns: min(var(--split, 30%), var(--split-max, 30rem)) minmax(0, 1fr);
+			column-gap: var(--split-gap);
+			background: var(--bg);
+			border-radius: var(--content-radius);
+			/* The panes run right up to the chrome, so their outer corners are cut
+			   to the content's own curve rather than their own. */
+			overflow: hidden;
+			box-sizing: border-box;
+			padding: var(--split-pad);
 			position: relative;
 			flex: none;
 			height: calc(100dvh - var(--header-height) - 2 * var(--page-border));
@@ -86,9 +142,14 @@ const { mode, current } = Astro.props;
 			max-width: none;
 			margin: 0;
 			padding: 0;
-			overflow-y: auto;
-			border-right: 1px solid var(--edge);
+			/* A frame that holds still, as the post's pane is: its dots (below)
+			   stay where they are and the tree scrolls over them inside it. */
+			position: relative;
+			overflow: hidden;
 			view-transition-name: tree;
+			/* Over the post, its shadow falling on it, rather than a line between. */
+			z-index: 2;
+			box-shadow: 6px 0 18px -6px rgb(0 0 0 / 0.7);
 		}
 		/* Beside a post the tree is set back, in the --side tokens. It is drawn
 		   in the page's own, so it is enough to give those the --side values
@@ -111,7 +172,11 @@ const { mode, current } = Astro.props;
 			--text-quiet: var(--side-quiet);
 			--text-faint: var(--side-faint);
 			--gold: var(--side-gold);
-			background: var(--bg);
+			/* Its type a size down from the post's, thirteen sixteenths. */
+			--tree-text: 0.8125;
+			/* The post's grain at three fifths of its strength, quieter here as
+			   the tree is, and still while the tree scrolls over it. */
+			background: url('/assets/grain-side.png') 0 0 / 128px 128px, var(--bg);
 		}
 		.split-list :global(li[aria-current] > .row) {
 			--panel: var(--page-panel);
@@ -121,17 +186,66 @@ const { mode, current } = Astro.props;
 			--text-faint: var(--page-faint);
 			--gold: var(--page-gold);
 		}
+		/* The post's pane: a frame that holds still, with the page's grain and
+		   dots on it (below), and the post scrolling over both inside it. */
 		.split-main,
 		.is-home .split-main {
 			display: block;
 			min-width: 0;
-			overflow-y: auto;
+			position: relative;
+			overflow: hidden;
+			background: url('/assets/grain.png') 0 0 / 128px 128px, var(--bg);
 			/* What is open measures itself against this pane, not the window:
 			   the prose breakout, and anything sized in cqw. */
 			container-type: inline-size;
 		}
+		/* The chrome's dots, faint and still, on both panes: the same grid at the
+		   same 17°, but laid on plainly rather than blended, which on a ground
+		   this dark would leave nothing to see. A layer of its own, because a
+		   background cannot be turned, cut oversize so that turned it still
+		   fills the pane. */
+		.pane-dots {
+			display: block;
+			position: absolute;
+			inset: 0;
+			overflow: hidden;
+			pointer-events: none;
+		}
+		.pane-dots::before {
+			content: '';
+			position: absolute;
+			inset: calc(-60% - 120px) -25%;
+			transform: rotate(17deg);
+			background: radial-gradient(circle, rgb(255 255 255 / 0.07) 0.4px, transparent 0.7px) 0 0 /
+				2.5px 2.5px;
+		}
+		.pane-scroll {
+			display: block;
+			height: 100%;
+			overflow-y: auto;
+			/* Holds what is placed absolutely inside it, such as the copy of each
+			   formula KaTeX keeps for screen readers, which would otherwise be
+			   placed against the split and hang out below the window. Over the
+			   dots, which come before it. */
+			position: relative;
+		}
+		/* The tree's scrollbar on its left, out by the frame and away from the
+		   post: a scroller laid out right to left puts its bar there, and the
+		   tree inside it is set back to left to right. */
+		.split-list .pane-scroll {
+			direction: rtl;
+		}
+		.split-list .pane-scroll > :global(*) {
+			direction: ltr;
+		}
 		.is-deck .split-main {
 			display: flex;
+		}
+		.is-deck .split-main .pane-scroll {
+			flex: 1;
+			min-width: 0;
+			display: flex;
+			flex-direction: column;
 			overflow: hidden;
 		}
 		/* tesbota's divider: nothing to see until the pointer finds it. */
@@ -140,12 +254,13 @@ const { mode, current } = Astro.props;
 			position: absolute;
 			top: 0;
 			bottom: 0;
-			left: var(--split, 30%);
+			left: calc(var(--split-pad) + var(--split-gap) / 2 + min(var(--split, 30%), var(--split-max, 30rem)));
 			width: 0.6rem;
 			transform: translateX(-50%);
 			cursor: col-resize;
 			touch-action: none;
-			z-index: 1;
+			/* Over the tree, which lies over the post. */
+			z-index: 3;
 		}
 		.split-divider:hover,
 		.is-dragging .split-divider {
@@ -164,6 +279,10 @@ const { mode, current } = Astro.props;
 	// Drag the divider to move the split, between a fifth and four fifths of
 	// the page; double-click it to put it back at 30%. Where it is left is
 	// kept for the next page.
+	// The same as --split-max, in rem.
+	const MOST_REM = 30;
+	const rootFont = () => parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+
 	const place = (at: number, keep: boolean) => {
 		document.documentElement.style.setProperty('--split', `${at}%`);
 		if (!keep) return;
@@ -195,7 +314,8 @@ const { mode, current } = Astro.props;
 				parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--split')) || 30;
 			split.classList.add('is-dragging');
 			const move = (ev: PointerEvent) => {
-				last = Math.min(80, Math.max(20, ((ev.clientX - rect.left) / rect.width) * 100));
+				const most = Math.min(80, ((MOST_REM * rootFont()) / rect.width) * 100);
+				last = Math.min(most, Math.max(20, ((ev.clientX - rect.left) / rect.width) * 100));
 				place(last, false);
 			};
 			const up = () => {

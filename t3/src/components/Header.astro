@@ -4,8 +4,12 @@
 const NAME = 'T3 BLOG';
 ---
 
+<div class="grain" aria-hidden="true" transition:persist="chrome-grain">
+	<span class="dots"></span>
+	<span class="wave"></span>
+	<span class="noise"></span>
+</div>
 <header transition:persist="site-header">
-	<span class="noise" aria-hidden="true"></span>
 	<nav>
 		<h1><a href="/">{NAME}</a></h1>
 		<div class="social-links">
@@ -40,9 +44,9 @@ const NAME = 'T3 BLOG';
 		margin: calc(-1 * var(--page-border)) calc(-1 * var(--page-border)) 0;
 		padding: var(--page-border) calc(1em + var(--page-border)) 0;
 		color: #000;
-		/* The chrome, as the frame round the page is: see --chrome in global.css. */
-		background: var(--chrome);
-		background-attachment: fixed;
+		/* Clear: the chrome is painted behind the whole page (see --chrome in
+		   global.css) and its grain over that (see .grain), so the bar is the
+		   chrome showing through. */
 		/* Same height as a deck post's T3 square. */
 		height: calc(var(--header-height) + var(--page-border));
 		display: flex;
@@ -50,31 +54,50 @@ const NAME = 'T3 BLOG';
 		box-sizing: border-box;
 		position: relative;
 		overflow: hidden;
-		/* A shade of the chrome's own deep orange gathered along the foot of the
-		   bar, so it reads as a slab standing over the page rather than a band
-		   printed on it. Under the dots and the grain, which go on over it. */
-		box-shadow: inset 0 -3px 3px -1px rgb(90 30 0 / 0.28);
+	}
+	/* The chrome's grain: the dots, their wave and the noise, over the chrome
+	   wherever it shows, the bar and the frame and the corners curving round
+	   the page. One layer across the whole window behind everything else,
+	   which the header and the page then cover where they are.
+
+	   Two things decide how it is built. Its layers blend with the chrome
+	   under them, and a blend only reaches as far as the nearest stacking
+	   context: so the layer is placed absolutely, which makes none, and never
+	   fixed, which would make one and leave the dots blending with nothing.
+	   And it is out of the flow, so it paints after the page's own ground;
+	   everything meant to be over it is positioned and comes after it, the
+	   header and the panes both.
+
+	   Out over the frame by its width, from the body it is placed in. On a
+	   narrow screen only as far down as the header, and so moving with it. */
+	.grain {
+		position: absolute;
+		inset: calc(-1 * var(--page-border));
+		overflow: hidden;
+		pointer-events: none;
+	}
+	@media (max-width: 1099px) {
+		.grain {
+			bottom: auto;
+			height: calc(var(--header-height) + var(--page-border));
+		}
 	}
 	/* A fine grain of dots over the chrome, blended into it rather than laid on
 	   top: each dot takes its colour from what is under it, so the glow going
 	   round lights them up as it passes and the deep orange all but hides them.
 	   The grid is set at 17° off square, which a background cannot be on its
-	   own, so the layer is cut oversize, turned, and clipped by the header. */
-	header::before,
-	header::after {
+	   own, so the layer is cut oversize and turned: by enough that, turned,
+	   it still covers a window of any usual shape. */
+	.dots,
+	.wave {
 		--grid: 2.5px;
-		content: '';
 		position: absolute;
-		inset: -800% -10%;
+		inset: calc(-60% - 120px) -25%;
 		transform: rotate(17deg);
 		mix-blend-mode: overlay;
-		pointer-events: none;
-		animation: grain-drift 1.6s linear infinite;
-		/* Parallax: see the script below. On top of the drift, which is the
-		   transform; this is the separate translate, so the two add up. */
-		translate: 0 calc(-1px * var(--dots-shift, 0));
+		animation: grain-drift 1.6s steps(16) infinite;
 	}
-	header::before {
+	.dots {
 		background: radial-gradient(circle, rgb(255 255 255 / 0.55) 0.4px, transparent 0.7px) 0 0 /
 			var(--grid) var(--grid);
 	}
@@ -82,15 +105,18 @@ const NAME = 'T3 BLOG';
 	   through a soft band that sweeps across once in a while, so the grain
 	   rises as it passes and settles behind it. Drifting with the grid it sits
 	   on, so each swollen dot is one of the dots below. */
-	header::after {
+	.wave {
 		background: radial-gradient(circle, rgb(255 255 255 / 0.9) 0.65px, transparent 1px) 0 0 /
 			var(--grid) var(--grid);
 		mask: linear-gradient(90deg, transparent, #000 45% 55%, transparent) no-repeat -70% 0 / 35% 100%;
 		animation:
-			grain-drift 1.6s linear infinite,
+			grain-drift 1.6s steps(16) infinite,
 			grain-wave 60s ease-in-out 6s infinite backwards;
 	}
-	/* One grid step along the grid's own axis, so the loop has no seam. */
+	/* One grid step along the grid's own axis, so the loop has no seam: in
+	   sixteen steps of a sixth of a pixel, ten a second, too fine to see go
+	   and a sixth of the frames a smooth slide would cost. The noise below is
+	   stepped the same. */
 	@keyframes grain-drift {
 		to {
 			transform: rotate(17deg) translateX(var(--grid));
@@ -107,17 +133,21 @@ const NAME = 'T3 BLOG';
 			mask-position: 170% 0;
 		}
 	}
+	/* Held still while nobody is there: see the script below. */
+	:global(.is-idle) :is(.dots, .wave, .noise) {
+		animation-play-state: paused;
+	}
 	@media (prefers-reduced-motion: reduce) {
-		header::before,
-		header::after,
+		.dots,
+		.wave,
 		.noise {
 			animation: none;
 		}
-		header::after {
+		.wave {
 			display: none;
 		}
 	}
-	/* Grain over the whole bar: a tile of grey noise, every pixel its own,
+	/* Grain over the chrome: a tile of grey noise, every pixel its own,
 	   blended in so softly that it is felt more than seen. Over the dots and
 	   under the name. It creeps the other way from the dots, up and to the
 	   left, though not straight back along their line: two tiles across for
@@ -131,9 +161,7 @@ const NAME = 'T3 BLOG';
 		background: url('/assets/noise.png') 0 0 / var(--tile) var(--tile);
 		mix-blend-mode: soft-light;
 		opacity: 0.4;
-		pointer-events: none;
-		animation: noise-creep 240s linear infinite;
-		translate: 0 calc(-1px * var(--noise-shift, 0));
+		animation: noise-creep 240s steps(2400) infinite;
 	}
 	@keyframes noise-creep {
 		to {
@@ -145,8 +173,9 @@ const NAME = 'T3 BLOG';
 	}
 	h1 {
 		margin: 0;
-		/* What 1em came to before the body went to tesbota's smaller size. */
-		font-size: 14px;
+		/* What 1em came to before the body went to tesbota's smaller size, in
+		   rem so that it follows the reader's own text size as the rest does. */
+		font-size: 0.875rem;
 	}
 	/* On a wide screen the name stands in the middle of the page, whatever is
 	   at either end of the bar. */
@@ -164,8 +193,8 @@ const NAME = 'T3 BLOG';
 		display: inline-block;
 		/* A wide target round a short name: padded out over the bar and pulled
 		   back by as much, so the name stays put and the space round it clicks. */
-		padding: 1.5rem 12.8rem;
-		margin: -1.5rem -12.8rem;
+		padding: 1rem 12.8rem;
+		margin: -1rem -12.8rem;
 	}
 	nav {
 		width: 100%;
@@ -250,44 +279,47 @@ const NAME = 'T3 BLOG';
 		frame ||= requestAnimationFrame(write);
 	});
 
-	/* Parallax: going down a page, the dots and the grain slide up after it,
-	   the grain slower than the dots, as if each were further back than the
-	   last. Read off whichever is scrolling, the window or the post's pane,
-	   and never the tree. The grain comes round to where it started every
-	   tile, so it can go on for ever; the dots stop at what their oversized
-	   layer still covers, which is more than any post asks of it. */
-	const DOTS_RATE = 0.05;
-	const NOISE_RATE = 0.025;
-	const NOISE_TILE = 128;
-	const DOTS_MOST = 500;
-
-	let scrolled = 0;
-	let shifting = 0;
-
-	const shift = () => {
-		shifting = 0;
-		const header = document.querySelector<HTMLElement>('header');
-		if (!header) return;
-		header.style.setProperty('--dots-shift', String(Math.min(scrolled * DOTS_RATE, DOTS_MOST)));
-		header.style.setProperty('--noise-shift', String((scrolled * NOISE_RATE) % NOISE_TILE));
+	/* Idle: half a minute with nothing from the reader, not a move, a key, a
+	   wheel or a scroll, and the chrome holds still, the turn and the grain
+	   both, until the next sign of them. It costs nothing while it waits, and
+	   a laptop left on the page is not kept awake by a gradient. */
+	const IDLE_AFTER = 30_000;
+	let idle = 0;
+	let lastSeen = 0;
+	const rest = () => document.documentElement.classList.add('is-idle');
+	const seen = () => {
+		const now = performance.now();
+		if (now - lastSeen < 500 && idle) return;
+		lastSeen = now;
+		document.documentElement.classList.remove('is-idle');
+		clearTimeout(idle);
+		idle = setTimeout(rest, IDLE_AFTER);
 	};
+	for (const type of ['pointermove', 'pointerdown', 'keydown', 'wheel', 'touchstart']) {
+		addEventListener(type, seen, { passive: true });
+	}
+	document.addEventListener('scroll', seen, { capture: true, passive: true });
+	// A page swapped in starts awake: the swap takes the root's class with it.
+	document.addEventListener('astro:page-load', seen);
 
-	document.addEventListener(
-		'scroll',
-		(e) => {
-			if (still.matches) return;
-			const from = e.target;
-			if (from === document) scrolled = scrollY;
-			else if (from instanceof Element && from.matches('.split-main')) scrolled = from.scrollTop;
-			else return;
-			shifting ||= requestAnimationFrame(shift);
-		},
-		{ capture: true, passive: true },
-	);
-
-	// A page comes in at its top.
-	document.addEventListener('astro:page-load', () => {
-		scrolled = 0;
-		shift();
+	/* The grain is kept from one page to the next, which the router does by
+	   taking it out of the old page and putting it into the new one; and an
+	   element put back in starts its animations over. The noise would jump
+	   back to where it began on every click, seen as a drift through the
+	   cross-fade. So where each of its animations has got to is noted just
+	   before the swap and put back just after, by animation and by layer. */
+	const grainAnimations = () =>
+		document.querySelector('.grain')?.getAnimations({ subtree: true }) ?? [];
+	const keyOf = (animation: Animation) =>
+		`${(animation as CSSAnimation).animationName} ${(animation.effect as KeyframeEffect | null)?.target?.className}`;
+	let heldAt = new Map<string, CSSNumberish | null>();
+	document.addEventListener('astro:before-swap', () => {
+		heldAt = new Map(grainAnimations().map((animation) => [keyOf(animation), animation.currentTime]));
+	});
+	document.addEventListener('astro:after-swap', () => {
+		for (const animation of grainAnimations()) {
+			const at = heldAt.get(keyOf(animation));
+			if (at != null) animation.currentTime = at;
+		}
 	});
 </script>

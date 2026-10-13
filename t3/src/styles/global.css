@@ -8,6 +8,9 @@
   --box-shadow: 0 2px 6px rgba(var(--gray), 25%),
     0 8px 24px rgba(var(--gray), 33%), 0 16px 32px rgba(var(--gray), 33%);
 
+  /* The one colour everything warm on the site is worked out from (see the
+     @supports block below). A post can set its own with `accent` in its
+     frontmatter, which the layouts put on <html>. */
   --accent: #ffa200;
 
   /* The fake luminosity border, as a colour rather than as a gradient: what
@@ -37,6 +40,11 @@
   --radius-pill: 999px;
 
   --lift: 0.2;
+  /* The FLB as a colour to lay over things rather than a colour of its own:
+     white at a fifth, which over any ground, flat or a picture, shows that
+     ground a fifth of the way to white. For an edge on something that is not
+     one colour, where a lifted colour cannot be worked out ahead of time. */
+  --flb: rgb(255 255 255 / 0.2);
 
   /* Three voices, not three greys. --nord4, 5 and 6 were 0.899, 0.933 and
      0.951 in lightness: the whole hierarchy spanned less than a twentieth of
@@ -76,7 +84,7 @@
      label (a date, a count, the site name) is the same mono smaller still, in
      capitals and tracked wide. */
   --type-body: 0.82rem;
-  --type-label: 10px;
+  --type-label: 0.625rem;
   --track-body: 0.02em;
   --track-label: 0.12em;
   --track-brand: 0.26em;
@@ -90,6 +98,8 @@
   --line: #2c281e;
   --place: #7d93a6;
   --gold: #c8a24a;
+  /* The accent dark enough to read on a light ground (a light deck's). */
+  --accent-on-light: #a86a00;
 
   /* The same, set back, for the post tree beside a post: a ground a shade
      lighter than the page and words a shade darker, so there is less
@@ -110,7 +120,7 @@
 
   /* Shared by the site header and a deck post's T3 mark, so the orange block is
      the same size whichever layout you are in. */
-  --header-height: 5rem;
+  --header-height: 3.5rem;
 
   /* The chrome: the frame round the whole page and the header across its top,
      one surface between them. Any CSS image, so it can be a gradient; set
@@ -146,7 +156,13 @@
      under the header, for the ring to go round; a page with no header says 0. */
   --page-border: 4px;
   --chrome-top: var(--header-height);
+  /* How round the page's corners are where the chrome meets it: square,
+     unless a layout rounds them (see SplitPane). */
+  --content-radius: 0px;
   padding: var(--page-border);
+  /* A rem is 16px here whatever the browser's default text size is set to,
+     so the site is laid out the same everywhere; zooming still scales it. */
+  font-size: 16px;
   /* Fixed set for every layer, not only the last, so they all line up. */
   background: var(--chrome);
   background-attachment: fixed;
@@ -156,6 +172,24 @@
 
 @supports (color: oklch(from white l c h)) {
   :root {
+    /* Every warm colour on the site, worked out from the accent, so that a
+       post can set its own and all the rest follow it (see `accent` in
+       content.config.ts). Each is the step the default orange takes to the
+       colour written out above, which is what stays where this is not
+       understood. */
+    --chrome-deep: oklch(from var(--accent) calc(l - 0.087) calc(c + 0.009) calc(h - 24));
+    --chrome-light: oklch(from var(--accent) calc(l + 0.073) calc(c - 0.022) calc(h + 19));
+    --gold: oklch(from var(--accent) calc(l - 0.058) calc(c - 0.056) calc(h + 17));
+    --side-gold: oklch(from var(--accent) calc(l - 0.184) calc(c - 0.084) calc(h + 16));
+    --accent-on-light: oklch(from var(--accent) calc(l - 0.21) calc(c - 0.046) h);
+    --chrome:
+      radial-gradient(
+        42vmax 28vmax at var(--chrome-glow-at),
+        oklch(from var(--chrome-light) l c h / calc(1 - 0.6 * var(--glow-pull))),
+        oklch(from var(--chrome-light) l c h / 0) 70%
+      ),
+      linear-gradient(var(--chrome-turn), var(--chrome-deep), var(--accent), var(--chrome-deep));
+
     --edge: oklch(from var(--bg) calc(l + var(--lift) * (1 - l)) c h);
     --edge-panel: oklch(from var(--panel) calc(l + var(--lift) * (1 - l)) c h);
     --side-edge: oklch(from var(--side-bg) calc(l + var(--lift) * (1 - l)) c h);
@@ -218,6 +252,12 @@
     --pointer-y 0.15s ease-out;
 }
 
+/* Held still while nobody is there (see Header.astro): a page nobody is
+   looking at has no need to keep turning, and the machine under it can rest. */
+:root.is-idle {
+  animation-play-state: paused;
+}
+
 @keyframes chrome-turn {
   from {
     --chrome-turn: 110deg;
@@ -238,7 +278,10 @@ body {
   margin: 0;
   padding: 0;
   text-align: left;
-  background: var(--bg);
+  /* No ground of its own: the chrome is painted behind everything and its
+     grain over that, and the page's ground is on the content, below the
+     header (see SplitPane), so the chrome shows wherever the content is not. */
+  background: none;
 
   word-wrap: break-word;
   overflow-wrap: break-word;
@@ -253,12 +296,26 @@ body {
   max-width: 100vw;
   box-sizing: border-box;
 }
-
-/* The page is a ground of its own now that the chrome is behind it, so it
-   reaches the foot of the window however little is on it. */
+/* The page reaches the foot of the window however little is on it. */
 body {
   position: relative;
   min-height: calc(100dvh - 2 * var(--page-border));
+
+  /* The chrome turns ten times a second, and the properties it turns are
+     set on the root, from where every element on the page would inherit
+     them and have its style worked out again on every step. Nothing in the
+     page reads them: the chrome is the root's background and its ring is
+     the root's (below). So the page is given values of its own that never
+     change, and the steps go no further than here. */
+  --chrome-turn: 0deg;
+  --glow-pull: 0;
+  --pointer-x: 50%;
+  --pointer-y: 20%;
+  --chrome-orbit-x: initial;
+  --chrome-orbit-y: initial;
+  --chrome-glow-at: initial;
+  --chrome: initial;
+  --chrome-edge: initial;
 }
 
 /* The chrome's FLB: a 1px ring of --chrome-edge just outside the page, below
@@ -266,13 +323,23 @@ body {
    ring rather than a border, because a border takes a colour and not an
    image: the edge is painted over the whole box and masked away everywhere
    but its border. Fixed like the chrome, so a gradient's edge lines up with
-   the gradient it edges. Over the page, and never in the way of it. */
-body::after {
+   the gradient it edges. Over the page, and never in the way of it.
+
+   Drawn from the root, where the chrome turns, rather than the body, which
+   keeps the turning out (see body): in by the frame on every side, and
+   down by the header as well at the top. */
+:root {
+  position: relative;
+}
+:root::after {
   content: '';
   position: absolute;
-  inset: calc(var(--chrome-top) - 1px) -1px -1px;
+  inset: calc(var(--page-border) + var(--chrome-top) - 1px) calc(var(--page-border) - 1px)
+    calc(var(--page-border) - 1px);
   z-index: 10;
   border: 1px solid transparent;
+  /* Round when the page is, a pixel more so as to sit just outside it. */
+  border-radius: calc(var(--content-radius) + 1px);
   background: var(--chrome-edge);
   background-attachment: fixed;
   background-clip: border-box;
@@ -456,7 +523,7 @@ blockquote {
 }
 @media (max-width: 720px) {
   body {
-    font-size: 15px;
+    font-size: 0.9375rem;
   }
   main {
     padding: 0.5em 0;
@@ -523,7 +590,7 @@ em {
    can stick out past the text, and centred because `main` is wider. */
 .prose {
   font-family: var(--font-prose);
-  font-size: 18px;
+  font-size: 1.125rem;
   line-height: 1.7;
   color: var(--text);
   letter-spacing: normal;
@@ -653,7 +720,7 @@ em {
   }
 
   .prose {
-    font-size: 16px;
+    font-size: 1rem;
   }
 }
 

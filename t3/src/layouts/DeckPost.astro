@@ -12,10 +12,11 @@ type Props = CollectionEntry<'blog'>['data'] & {
 	nextPart?: SeriesLink;
 };
 
-const { id, title, description, pubDate, series, ground, prevPart, nextPart } = Astro.props;
+const { id, title, description, pubDate, series, ground, accent, prevPart, nextPart } = Astro.props;
+// A post's own accent goes on <html>, and everything warm is worked out from it.
 ---
 
-<html lang="en">
+<html lang="en" style={accent ? `--accent: ${accent}` : undefined}>
 	<head>
 		<BaseHead title={title} description={description} />
 		<link
@@ -47,6 +48,7 @@ const { id, title, description, pubDate, series, ground, prevPart, nextPart } = 
 				</div>
 	
 				<!-- Every card renders into these two areas; only the active one shows. -->
+
 				<div class="deck" data-deck>
 					<div class="deck-ground" aria-hidden="true"></div>
 					<slot />
@@ -94,7 +96,7 @@ const { id, title, description, pubDate, series, ground, prevPart, nextPart } = 
 				--deck-ground: var(--viz-beige);
 				--deck-ink: #35302a;
 				--deck-ink-dim: #7a7264;
-				--deck-eyebrow: #a86a00;
+				--deck-eyebrow: var(--accent-on-light);
 				/* The surface a visualization puts its controls on: a pane of
 				   glass over whatever is behind it, which may be the ground and
 				   may be a field of colour the picture itself has painted. What
@@ -144,13 +146,14 @@ const { id, title, description, pubDate, series, ground, prevPart, nextPart } = 
 			}
 
 			/* No header on a narrow screen, so the page starts at the top of the
-			   frame and the chrome's ring goes round it from there. */
-			.deck-page {
+			   frame and the chrome's ring goes round it from there. Said on the
+			   root, which the ring is drawn from. */
+			:global(:root:has(.deck-page)) {
 				--chrome-top: 0px;
 			}
 
 			@media (min-width: 1100px) {
-				.deck-page {
+				:global(:root:has(.deck-page)) {
 					--chrome-top: var(--header-height);
 				}
 				.deck-site-header {

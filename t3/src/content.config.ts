@@ -19,6 +19,10 @@ const blog = defineCollection({
 		// shares it — is painted on. A post about light wants the dark one; a
 		// post about ink or screens wants the light one.
 		ground: z.enum(['light', 'dark']).default('light'),
+		// The post's own accent, any CSS colour: the chrome, the highlights and
+		// the gold are all worked out from it (see --accent in global.css), so
+		// one colour retints the whole page while the post is open.
+		accent: z.string().optional(),
 		// Kept off the index, out of the feed and out of the sitemap, and given a
 		// noindex. For a post that is working material rather than writing.
 		hidden: z.boolean().default(false),

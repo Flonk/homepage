@@ -9,8 +9,6 @@ import '@fontsource/lobster/latin-400.css';
 ---
 
 <script>
-	import { eachPage } from '../lib/page';
-
 	const COUNT = 220;
 
 	// Nothing here matches the site. That is the point of it.
@@ -26,6 +24,11 @@ import '@fontsource/lobster/latin-400.css';
 	];
 
 	let storming = false;
+
+	/* Where the pointer last was, for the storm to come out of: unknown until
+	   it has moved, as on a touch screen, and the middle until then. */
+	let pointer: { x: number; y: number } | null = null;
+	addEventListener('pointermove', (e) => (pointer = { x: e.clientX, y: e.clientY }), { passive: true });
 
 	async function storm() {
 		if (storming) return;
@@ -43,11 +46,12 @@ import '@fontsource/lobster/latin-400.css';
 		layer.className = 'ae-storm';
 		document.body.appendChild(layer);
 
-		// Out of the middle of whatever the reader is looking at, and far enough
-		// that every one of them leaves by an edge rather than stopping short.
-		const originX = innerWidth / 2;
-		const originY = innerHeight / 2;
-		const reach = Math.hypot(innerWidth, innerHeight) * 1.15;
+		// Out of the pointer, or the middle of the window without one, and out
+		// across about half of it: far enough to fill the screen around the
+		// pointer, near enough that most fade out before they reach an edge.
+		const originX = pointer?.x ?? innerWidth / 2;
+		const originY = pointer?.y ?? innerHeight / 2;
+		const reach = Math.hypot(innerWidth, innerHeight) * 0.575;
 
 		const running: Animation[] = [];
 		for (let i = 0; i < COUNT; i++) {
@@ -95,22 +99,23 @@ import '@fontsource/lobster/latin-400.css';
 		storming = false;
 	}
 
-	eachPage((signal) => {
-		addEventListener('keydown', (event) => {
-			if (event.key !== 'ä' && event.key !== 'Ä') return;
-			if (event.repeat || event.metaKey || event.ctrlKey || event.altKey) return;
+	/* Every page, from the one landed on for the rest of the visit: listened
+	   for once, on the window, which the client router keeps from page to
+	   page, so it never needs setting up again. */
+	addEventListener('keydown', (event) => {
+		if (event.key !== 'ä' && event.key !== 'Ä') return;
+		if (event.repeat || event.metaKey || event.ctrlKey || event.altKey) return;
 
-			// Somebody typing ä into a field means the letter, not the fireworks.
-			const target = event.target;
-			if (
-				target instanceof HTMLElement &&
-				(target.isContentEditable || target.closest('input, textarea, select'))
-			) {
-				return;
-			}
+		// Somebody typing ä into a field means the letter, not the fireworks.
+		const target = event.target;
+		if (
+			target instanceof HTMLElement &&
+			(target.isContentEditable || target.closest('input, textarea, select'))
+		) {
+			return;
+		}
 
-			storm();
-		}, { signal });
+		storm();
 	});
 </script>
 

@@ -1,6 +1,5 @@
 ---
 import { getCollection, render } from 'astro:content';
-import AeStorm from '../components/AeStorm.astro';
 import BlogPost from '../layouts/BlogPost.astro';
 
 // Beside the list on a wide screen: the newest prose post that is out by the
@@ -18,5 +17,4 @@ const { Content } = await render(latest);
 
 <BlogPost {...latest.data} id={latest.id} home>
 	<Content />
-	<AeStorm slot="extra" />
 </BlogPost>

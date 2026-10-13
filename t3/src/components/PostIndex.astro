@@ -162,6 +162,11 @@ const covers = Object.fromEntries(
 
 <style>
 	.tree {
+		/* Every size of type in the tree is times --tree-text, which is 1 unless
+		   it is set from outside: smaller where the tree sits beside a post (see
+		   SplitPane). The spacing and the pictures stay as they are. Not set
+		   here, which would shut out the value from outside. */
+
 		/* How far in a row's words start, and where its icon sits: the guide
 		   down an open folder runs through the icon column's middle. */
 		--row-x: 1.25rem;
@@ -176,24 +181,39 @@ const covers = Object.fromEntries(
 	}
 
 	.tree > .nodes {
-		padding: 0.5rem 0 3rem;
+		padding: 0 0 3rem;
+	}
+
+	/* A groove above each entry, so the entries are told apart without any room
+	   between them: a dark line where the cut is and, just under it, a faint
+	   light one where its far edge catches the light, the FLB idea turned down
+	   to a whisper. Every entry, a series' parts included, but the first, which
+	   has the top of the pane above it. */
+	.nodes > li {
+		border-top: 1px solid rgb(0 0 0 / 0.35);
+		box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.06);
+	}
+	.tree > .nodes > li:first-child {
+		border-top: 0;
+		box-shadow: none;
 	}
 
 	.label {
-		color: var(--text-faint);
-		font-size: var(--type-label);
+		/* A touch larger and lighter than the faint ink would make it, so a date
+		   still reads at the tree's smaller size. */
+		color: color-mix(in oklab, var(--text-faint), white 5%);
+		font-size: calc(var(--type-label) * var(--tree-text, 1) + 1px);
 		letter-spacing: var(--track-label);
 		text-transform: uppercase;
 	}
 
-	/* One row per node, edge to edge like an editor's, with a clear top and
-	   bottom edge so a selected row's FLB does not move anything. */
+	/* One row per node, edge to edge and one straight after another, like an
+	   editor's. */
 	.row {
 		display: flex;
 		align-items: center;
 		gap: 0.85rem;
 		padding: 0.65rem var(--row-x);
-		border-block: 1px solid transparent;
 		text-decoration: none;
 		color: inherit;
 		cursor: pointer;
@@ -212,18 +232,17 @@ const covers = Object.fromEntries(
 
 	.name {
 		font-family: var(--font-sans);
-		font-size: 1.25rem;
+		font-size: calc(1.25rem * var(--tree-text, 1));
 		line-height: 1.3;
 		letter-spacing: normal;
 		color: var(--text);
 		text-wrap: balance;
 	}
 
-	/* The open file: a flat panel, so its FLB is a real border, and the
-	   accent down its far edge, against the post it opened. */
+	/* The open file: a flat panel, and the accent down its far edge, against
+	   the post it opened. */
 	li[aria-current] > .row {
 		background: var(--panel);
-		border-color: var(--edge-panel);
 		box-shadow: inset -2px 0 0 var(--accent);
 	}
 
@@ -239,17 +258,15 @@ const covers = Object.fromEntries(
 	   side, then its name in gold with how many parts it has, and what it is
 	   about. Every card is the height of the square, picture or not, so a
 	   blurb is cut off with an ellipsis rather than making its card taller.
-	   Without a picture the card's margin and padding add up to a row's, so
-	   the name starts where a file's icon does. */
+	   Without a picture the card is padded as a row is, so the name starts
+	   where a file's icon does. */
 	.series {
-		--card-x: 0.5rem;
-		--card-pad: calc(var(--row-x) - var(--card-x));
+		--card-pad: var(--row-x);
 		/* The card's height, and how far the picture runs across it: wider than
 		   a square, with the words starting a way into where it fades out. */
 		--cover: 8rem;
 		--cover-w: 12rem;
 		--cover-under: 2.25rem;
-		padding: 0.5rem 0;
 	}
 
 	.folder {
@@ -262,17 +279,14 @@ const covers = Object.fromEntries(
 		display: none;
 	}
 
-	/* A flat panel, so its FLB is a real border. */
+	/* A card: the full width of the tree, edge to edge with the rows round it,
+	   on the tree's own ground with no panel or border of its own. */
 	.card {
 		position: relative;
 		display: block;
 		box-sizing: border-box;
 		height: var(--cover);
-		margin: 0 var(--card-x);
 		overflow: hidden;
-		background: var(--panel);
-		border: 1px solid var(--edge-panel);
-		border-radius: var(--radius-large);
 	}
 
 	/* The page's own img rule frames a picture in a post; here the card is the
@@ -305,7 +319,8 @@ const covers = Object.fromEntries(
 	}
 
 	/* A line of TeX in place of a picture: KaTeX's own faces, set large in the
-	   card's ink on the part of the box that has not faded yet. */
+	   card's ink on a shade of the tree's own ground, darkened rather than
+	   painted over, and otherwise a cover like any other. */
 	.cover.is-tex {
 		display: flex;
 		align-items: center;
@@ -316,11 +331,10 @@ const covers = Object.fromEntries(
 		white-space: nowrap;
 		letter-spacing: normal;
 		color: var(--text);
-		/* Type needs less of a fade than a picture does to sit into the card. */
-		mask-image: linear-gradient(to right, #000 62%, transparent 82%);
+		background: rgb(0 0 0 / 0.5);
 	}
 
-	.folder:hover .cover:not(.is-ink, .is-tex) {
+	.folder:hover .cover:not(.is-ink) {
 		filter: brightness(1.1);
 	}
 
@@ -331,15 +345,15 @@ const covers = Object.fromEntries(
 		justify-content: center;
 		gap: 0.25rem;
 		height: 100%;
-		padding: 0.75rem calc(var(--card-pad) - 1px);
+		padding: 0.75rem var(--card-pad);
 	}
 
 	.cover + .card-body {
 		position: relative;
 		margin-left: calc(var(--cover-w) - var(--cover-under));
-		/* Over the faded end of the picture, a halo of the card's own ground
+		/* Over the faded end of the picture, a halo of the tree's own ground
 		   keeps the words clear of whatever is behind them. */
-		text-shadow: 0 0 0.5rem var(--panel), 0 0 0.2rem var(--panel);
+		text-shadow: 0 0 0.5rem var(--bg), 0 0 0.2rem var(--bg);
 		padding-left: 0.4rem;
 	}
 
@@ -366,10 +380,10 @@ const covers = Object.fromEntries(
 		display: flex;
 		gap: 0.5rem;
 		font-family: var(--font-mono);
-		font-size: var(--type-label);
+		font-size: calc(var(--type-label) * var(--tree-text, 1) + 1px);
 		letter-spacing: var(--track-label);
 		text-transform: uppercase;
-		color: var(--text-faint);
+		color: color-mix(in oklab, var(--text-faint), white 5%);
 	}
 
 	/* Still being written: a word in the accent, after a dot from the count. */
@@ -395,7 +409,7 @@ const covers = Object.fromEntries(
 		overflow: hidden;
 		max-width: 52ch;
 		font-family: var(--font-sans);
-		font-size: 1rem;
+		font-size: calc(1rem * var(--tree-text, 1));
 		line-height: 1.45;
 		letter-spacing: normal;
 		color: var(--text);
@@ -415,11 +429,10 @@ const covers = Object.fromEntries(
 		color: var(--text);
 	}
 
-	/* Inside a folder: one guide down from under the card's edge, and its
-	   parts hung off it a step in, a size down from the top level. */
+	/* Inside a folder: its parts hung a step in, straight under the card,
+	   a size down from the top level. */
 	.folder-body {
-		margin: 0.4rem 0 0 var(--indent);
-		border-left: 1px solid var(--edge);
+		margin-left: var(--indent);
 	}
 
 	/* A folder unfolds and folds rather than jumping: its contents ease
@@ -452,7 +465,7 @@ const covers = Object.fromEntries(
 	}
 
 	.folder-body .name {
-		font-size: 1.1rem;
+		font-size: calc(1.1rem * var(--tree-text, 1));
 	}
 
 	@media (max-width: 1099px) {
