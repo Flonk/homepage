@@ -149,7 +149,12 @@ const { mode, current } = Astro.props;
 			view-transition-name: tree;
 			/* Over the post, its shadow falling on it, rather than a line between. */
 			z-index: 2;
-			box-shadow: 6px 0 18px -6px rgb(0 0 0 / 0.7);
+			box-shadow:
+				1px 0 0 rgb(255 255 255 / 0.06),
+				6px 0 18px -6px rgb(0 0 0 / 0.7);
+			/* And a groove down where it meets the post: the dark line its border,
+			   the light one just past it, over the post (the first shadow). */
+			border-right: 1px solid rgb(0 0 0 / 0.35);
 		}
 		/* Beside a post the tree is set back, in the --side tokens. It is drawn
 		   in the page's own, so it is enough to give those the --side values

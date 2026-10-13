@@ -386,7 +386,7 @@ main {
   .prose h6,
   .prose pre,
   .prose blockquote,
-  .prose .title .date {
+  :is(.prose .title, .prose.title) .date {
     padding-left: 2rem;
     padding-right: 2rem;
   }
@@ -396,7 +396,7 @@ main {
     padding-left: 3rem;
   }
 
-  .prose .title .date {
+  :is(.prose .title, .prose.title) .date {
     margin-bottom: 2rem;
   }
 }
@@ -698,7 +698,7 @@ em {
 }
 
 /* The post's own dateline belongs to the site chrome, not the prose. */
-.prose .title .date {
+:is(.prose .title, .prose.title) .date {
   font-family: var(--font-mono);
   font-size: var(--type-label);
   letter-spacing: var(--track-label);
