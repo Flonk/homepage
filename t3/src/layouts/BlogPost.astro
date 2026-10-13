@@ -8,14 +8,12 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
 type Props = CollectionEntry<'blog'>['data'] & {
 	id: string;
-	// Where the post lives in the repo, for the tab over it.
-	file?: string;
 	// The home page: the list is the page, and the post beside it is only
 	// there on a screen wide enough to have a beside.
 	home?: boolean;
 };
 
-const { id, file, home = false, title, description, pubDate, updatedDate, hidden } = Astro.props;
+const { id, home = false, title, description, pubDate, updatedDate, hidden } = Astro.props;
 ---
 
 <html lang="en">
@@ -49,10 +47,6 @@ const { id, file, home = false, title, description, pubDate, updatedDate, hidden
 				font-style: italic;
 			}
 
-			.tab-bar {
-				display: none;
-			}
-
 			@media (min-width: 1100px) {
 				/* The pane does the scrolling and the measuring; the post just
 				   fills it. */
@@ -60,28 +54,6 @@ const { id, file, home = false, title, description, pubDate, updatedDate, hidden
 					max-width: none;
 					margin: 0;
 					padding: 0;
-				}
-				/* The open file's tab, the same height as the tree's bar so the two
-				   panes are ruled at one line. */
-				.tab-bar {
-					position: sticky;
-					top: 0;
-					z-index: 1;
-					display: flex;
-					height: 2.6rem;
-					background: var(--bg);
-					border-bottom: 1px solid var(--edge);
-				}
-				.tab {
-					display: flex;
-					align-items: center;
-					padding: 0 1.25rem;
-					background: var(--panel);
-					border-right: 1px solid var(--edge-panel);
-					box-shadow: inset 0 2px 0 var(--accent);
-					color: var(--text);
-					font-size: var(--type-label);
-					letter-spacing: var(--track-label);
 				}
 				.post-main article {
 					padding: 3em 2.5em;
@@ -94,9 +66,6 @@ const { id, file, home = false, title, description, pubDate, updatedDate, hidden
 		<Header />
 		<SplitPane mode={home ? 'home' : 'post'} current={home ? undefined : id}>
 			<main class="post-main">
-				<div class="tab-bar">
-					<span class="tab">{file?.split("/").pop() ?? id}</span>
-				</div>
 				<article>
 					<div class="prose">
 						<div class="title">

@@ -40,6 +40,6 @@ const { Content } = await render(post);
 const Layout = post.data.format === 'deck' ? DeckPost : BlogPost;
 ---
 
-<Layout {...post.data} id={post.id} file={post.filePath} prevPart={prevPart} nextPart={nextPart}>
+<Layout {...post.data} id={post.id} prevPart={prevPart} nextPart={nextPart}>
 	<Content />
 </Layout>

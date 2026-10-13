@@ -21,6 +21,11 @@ import ext400 from '@fontsource/source-serif-4/files/source-serif-4-latin-ext-40
 import ext400i from '@fontsource/source-serif-4/files/source-serif-4-latin-ext-400-italic.woff2?url';
 import ext700 from '@fontsource/source-serif-4/files/source-serif-4-latin-ext-700-normal.woff2?url';
 import ext700i from '@fontsource/source-serif-4/files/source-serif-4-latin-ext-700-italic.woff2?url';
+// The post tree's sans, Source Serif's companion, loaded the same way.
+import sans400 from '@fontsource/source-sans-3/files/source-sans-3-latin-400-normal.woff2?url';
+import sans700 from '@fontsource/source-sans-3/files/source-sans-3-latin-700-normal.woff2?url';
+import sansExt400 from '@fontsource/source-sans-3/files/source-sans-3-latin-ext-400-normal.woff2?url';
+import sansExt700 from '@fontsource/source-sans-3/files/source-sans-3-latin-ext-700-normal.woff2?url';
 import '../styles/global.css';
 
 interface Props {
@@ -35,20 +40,26 @@ const { title, description } = Astro.props;
 
 const LATIN = 'U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD';
 const LATIN_EXT = 'U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF';
+const SERIF = 'Source Serif 4';
+const SANS = 'Source Sans 3';
 const faces = [
-	{ src: latin400, weight: 400, style: 'normal', range: LATIN, preload: true },
-	{ src: latin400i, weight: 400, style: 'italic', range: LATIN, preload: true },
-	{ src: latin700, weight: 700, style: 'normal', range: LATIN, preload: true },
-	{ src: latin700i, weight: 700, style: 'italic', range: LATIN, preload: true },
-	{ src: ext400, weight: 400, style: 'normal', range: LATIN_EXT, preload: false },
-	{ src: ext400i, weight: 400, style: 'italic', range: LATIN_EXT, preload: false },
-	{ src: ext700, weight: 700, style: 'normal', range: LATIN_EXT, preload: false },
-	{ src: ext700i, weight: 700, style: 'italic', range: LATIN_EXT, preload: false },
+	{ family: SERIF, src: latin400, weight: 400, style: 'normal', range: LATIN, preload: true },
+	{ family: SERIF, src: latin400i, weight: 400, style: 'italic', range: LATIN, preload: true },
+	{ family: SERIF, src: latin700, weight: 700, style: 'normal', range: LATIN, preload: true },
+	{ family: SERIF, src: latin700i, weight: 700, style: 'italic', range: LATIN, preload: true },
+	{ family: SERIF, src: ext400, weight: 400, style: 'normal', range: LATIN_EXT, preload: false },
+	{ family: SERIF, src: ext400i, weight: 400, style: 'italic', range: LATIN_EXT, preload: false },
+	{ family: SERIF, src: ext700, weight: 700, style: 'normal', range: LATIN_EXT, preload: false },
+	{ family: SERIF, src: ext700i, weight: 700, style: 'italic', range: LATIN_EXT, preload: false },
+	{ family: SANS, src: sans400, weight: 400, style: 'normal', range: LATIN, preload: true },
+	{ family: SANS, src: sans700, weight: 700, style: 'normal', range: LATIN, preload: true },
+	{ family: SANS, src: sansExt400, weight: 400, style: 'normal', range: LATIN_EXT, preload: false },
+	{ family: SANS, src: sansExt700, weight: 700, style: 'normal', range: LATIN_EXT, preload: false },
 ];
 const fontFaces = faces
 	.map(
 		(face) =>
-			`@font-face { font-family: 'Source Serif 4'; font-style: ${face.style}; font-weight: ${face.weight}; font-display: optional; src: url(${face.src}) format('woff2'); unicode-range: ${face.range}; }`,
+			`@font-face { font-family: '${face.family}'; font-style: ${face.style}; font-weight: ${face.weight}; font-display: optional; src: url(${face.src}) format('woff2'); unicode-range: ${face.range}; }`,
 	)
 	.join('\n');
 ---

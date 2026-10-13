@@ -69,13 +69,13 @@ const { mode, current } = Astro.props;
 	}
 
 	/* Wide: the tree on the left, the open thing on the right, split where
-	   the divider was left (a third for the tree until it is moved), each
+	   the divider was left (30% for the tree until it is moved), each
 	   scrolling on its own under the header. */
 	@media (min-width: 1100px) {
 		.split,
 		.is-deck {
 			display: grid;
-			grid-template-columns: var(--split, 34%) minmax(0, 1fr);
+			grid-template-columns: var(--split, 30%) minmax(0, 1fr);
 			position: relative;
 			flex: none;
 			height: calc(100dvh - var(--header-height) - 2 * var(--page-border));
@@ -89,6 +89,37 @@ const { mode, current } = Astro.props;
 			overflow-y: auto;
 			border-right: 1px solid var(--edge);
 			view-transition-name: tree;
+		}
+		/* Beside a post the tree is set back, in the --side tokens. It is drawn
+		   in the page's own, so it is enough to give those the --side values
+		   here, keeping the page's one level up for the open post's row: the
+		   one thing in the tree that should stand out does, at full strength. */
+		.split {
+			--page-panel: var(--panel);
+			--page-edge-panel: var(--edge-panel);
+			--page-text: var(--text);
+			--page-quiet: var(--text-quiet);
+			--page-faint: var(--text-faint);
+			--page-gold: var(--gold);
+		}
+		.split-list {
+			--bg: var(--side-bg);
+			--panel: var(--side-panel);
+			--edge: var(--side-edge);
+			--edge-panel: var(--side-edge-panel);
+			--text: var(--side-text);
+			--text-quiet: var(--side-quiet);
+			--text-faint: var(--side-faint);
+			--gold: var(--side-gold);
+			background: var(--bg);
+		}
+		.split-list :global(li[aria-current] > .row) {
+			--panel: var(--page-panel);
+			--edge-panel: var(--page-edge-panel);
+			--text: var(--page-text);
+			--text-quiet: var(--page-quiet);
+			--text-faint: var(--page-faint);
+			--gold: var(--page-gold);
 		}
 		.split-main,
 		.is-home .split-main {
@@ -109,7 +140,7 @@ const { mode, current } = Astro.props;
 			position: absolute;
 			top: 0;
 			bottom: 0;
-			left: var(--split, 34%);
+			left: var(--split, 30%);
 			width: 0.6rem;
 			transform: translateX(-50%);
 			cursor: col-resize;
@@ -131,7 +162,7 @@ const { mode, current } = Astro.props;
 	import { eachPage } from '../lib/page';
 
 	// Drag the divider to move the split, between a fifth and four fifths of
-	// the page; double-click it to put it back at a third. Where it is left is
+	// the page; double-click it to put it back at 30%. Where it is left is
 	// kept for the next page.
 	const place = (at: number, keep: boolean) => {
 		document.documentElement.style.setProperty('--split', `${at}%`);
@@ -161,7 +192,7 @@ const { mode, current } = Astro.props;
 			divider.setPointerCapture(e.pointerId);
 			const rect = split.getBoundingClientRect();
 			let last =
-				parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--split')) || 34;
+				parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--split')) || 30;
 			split.classList.add('is-dragging');
 			const move = (ev: PointerEvent) => {
 				last = Math.min(80, Math.max(20, ((ev.clientX - rect.left) / rect.width) * 100));
@@ -177,6 +208,6 @@ const { mode, current } = Astro.props;
 			window.addEventListener('pointerup', up, { signal });
 		});
 
-		divider.addEventListener('dblclick', () => place(34, true));
+		divider.addEventListener('dblclick', () => place(30, true));
 	});
 </script>

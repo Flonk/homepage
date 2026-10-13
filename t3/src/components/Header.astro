@@ -1,17 +1,29 @@
 ---
-import { SITE_TITLE } from '../consts';
+// The site's own name, short, for the header. The page title and the feed
+// still use SITE_TITLE.
+const NAME = 'T3 BLOG';
 ---
 
 <header transition:persist="site-header">
+	<span class="noise" aria-hidden="true"></span>
 	<nav>
-		<h1><a href="/">{SITE_TITLE}</a></h1>
+		<h1><a href="/">{NAME}</a></h1>
 		<div class="social-links">
 			<a href="https://github.com/flonk" target="_blank">
 				<span class="sr-only">Go to Flonk's GitHub repo</span>
-				<svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32"
+				<svg viewBox="0 0 16 16" aria-hidden="true" width="22" height="22"
 					><path
 						fill="currentColor"
 						d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+					></path></svg
+				>
+			</a>
+			<a href="https://www.linkedin.com/in/florian-schindler-0b0093278/" target="_blank">
+				<span class="sr-only">Go to Florian's LinkedIn profile</span>
+				<svg viewBox="0 0 24 24" aria-hidden="true" width="20" height="20"
+					><path
+						fill="currentColor"
+						d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
 					></path></svg
 				>
 			</a>
@@ -21,20 +33,121 @@ import { SITE_TITLE } from '../consts';
 <style>
 	header {
 		view-transition-name: site-header;
-		margin: 0;
-		padding: 0 1em;
+		/* Out over the frame at the top and both sides, so the dots run to the
+		   edge of the window and the frame only goes round the page below. As
+		   much taller as it is raised, and padded down by the same, so the page
+		   under it and everything in it stays where it was. */
+		margin: calc(-1 * var(--page-border)) calc(-1 * var(--page-border)) 0;
+		padding: var(--page-border) calc(1em + var(--page-border)) 0;
 		color: #000;
-		background-color: var(--accent);
+		/* The chrome, as the frame round the page is: see --chrome in global.css. */
+		background: var(--chrome);
+		background-attachment: fixed;
 		/* Same height as a deck post's T3 square. */
-		height: var(--header-height);
+		height: calc(var(--header-height) + var(--page-border));
 		display: flex;
 		align-items: center;
 		box-sizing: border-box;
+		position: relative;
+		overflow: hidden;
+	}
+	/* A fine grain of dots over the chrome, blended into it rather than laid on
+	   top: each dot takes its colour from what is under it, so the glow going
+	   round lights them up as it passes and the deep orange all but hides them.
+	   The grid is set at 17° off square, which a background cannot be on its
+	   own, so the layer is cut oversize, turned, and clipped by the header. */
+	header::before,
+	header::after {
+		--grid: 2.5px;
+		content: '';
+		position: absolute;
+		inset: -800% -10%;
+		transform: rotate(17deg);
+		mix-blend-mode: overlay;
+		pointer-events: none;
+		animation: grain-drift 1.6s linear infinite;
+	}
+	header::before {
+		background: radial-gradient(circle, rgb(255 255 255 / 0.55) 0.4px, transparent 0.7px) 0 0 /
+			var(--grid) var(--grid);
+	}
+	/* The wave: the same grid with every dot swollen and brighter, seen only
+	   through a soft band that sweeps across once in a while, so the grain
+	   rises as it passes and settles behind it. Drifting with the grid it sits
+	   on, so each swollen dot is one of the dots below. */
+	header::after {
+		background: radial-gradient(circle, rgb(255 255 255 / 0.9) 0.65px, transparent 1px) 0 0 /
+			var(--grid) var(--grid);
+		mask: linear-gradient(90deg, transparent, #000 45% 55%, transparent) no-repeat -70% 0 / 35% 100%;
+		animation:
+			grain-drift 1.6s linear infinite,
+			grain-wave 60s ease-in-out 6s infinite backwards;
+	}
+	/* One grid step along the grid's own axis, so the loop has no seam. */
+	@keyframes grain-drift {
+		to {
+			transform: rotate(17deg) translateX(var(--grid));
+		}
+	}
+	/* Across in eight seconds, then quiet for the rest of the minute: the first
+	   one six seconds after the page loads, and one a minute after that. */
+	@keyframes grain-wave {
+		0% {
+			mask-position: -70% 0;
+		}
+		13%,
+		100% {
+			mask-position: 170% 0;
+		}
+	}
+	@media (prefers-reduced-motion: reduce) {
+		header::before,
+		header::after,
+		.noise {
+			animation: none;
+		}
+		header::after {
+			display: none;
+		}
+	}
+	/* Grain over the whole bar: a tile of grey noise, every pixel its own,
+	   blended in so softly that it is felt more than seen. Over the dots and
+	   under the name. It creeps the other way from the dots, up and to the
+	   left, though not straight back along their line: two tiles across for
+	   one up, which brings the tile round onto itself so the loop has no seam.
+	   Cut that much oversize to the right and below, so that moving it never
+	   uncovers an edge, and moved as a whole, which costs no repaint. */
+	.noise {
+		--tile: 128px;
+		position: absolute;
+		inset: 0 calc(-2 * var(--tile)) calc(-1 * var(--tile)) 0;
+		background: url('/assets/noise.png') 0 0 / var(--tile) var(--tile);
+		mix-blend-mode: soft-light;
+		opacity: 0.4;
+		pointer-events: none;
+		animation: noise-creep 240s linear infinite;
+	}
+	@keyframes noise-creep {
+		to {
+			transform: translate(calc(-2 * var(--tile)), calc(-1 * var(--tile)));
+		}
+	}
+	nav {
+		position: relative;
 	}
 	h1 {
 		margin: 0;
 		/* What 1em came to before the body went to tesbota's smaller size. */
 		font-size: 14px;
+	}
+	/* On a wide screen the name stands in the middle of the page, whatever is
+	   at either end of the bar. */
+	@media (min-width: 1100px) {
+		h1 {
+			position: absolute;
+			left: 50%;
+			transform: translateX(-50%);
+		}
 	}
 
 	h1 a,
@@ -55,6 +168,23 @@ import { SITE_TITLE } from '../consts';
 	}
 	nav a.active {
 		text-decoration: none;
+	}
+	.social-links {
+		margin-left: auto;
+		align-items: center;
+	}
+	/* Quiet until reached for: a touch faded, then whole and a little larger
+	   under the pointer or the keyboard. */
+	.social-links a {
+		opacity: 0.8;
+		transition:
+			opacity 0.15s ease,
+			transform 0.15s ease;
+	}
+	.social-links a:hover,
+	.social-links a:focus-visible {
+		opacity: 1;
+		transform: scale(1.15);
 	}
 	.social-links,
 	.social-links a {

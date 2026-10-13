@@ -54,6 +54,10 @@ const stripSeriesPrefix = (title: string, series: string) => {
 	return title.slice(series.length).replace(/^[\s:–—-]+/, '') || title;
 };
 
+// Font Awesome Free 7.3.1, "file" (regular): https://fontawesome.com, CC BY 4.0.
+const FILE =
+	'M176 48L64 48c-8.8 0-16 7.2-16 16l0 384c0 8.8 7.2 16 16 16l256 0c8.8 0 16-7.2 16-16l0-240-88 0c-39.8 0-72-32.2-72-72l0-88zM316.1 160L224 67.9 224 136c0 13.3 10.7 24 24 24l68.1 0zM0 64C0 28.7 28.7 0 64 0L197.5 0c17 0 33.3 6.7 45.3 18.7L365.3 141.3c12 12 18.7 28.3 18.7 45.3L384 448c0 35.3-28.7 64-64 64L64 512c-35.3 0-64-28.7-64-64L0 64z';
+
 const holds = (list: Post[]) => list.some((post) => post.id === current);
 
 // A TeX cover is set once, here at build time, so the page carries KaTeX's
@@ -69,9 +73,6 @@ const covers = Object.fromEntries(
 ---
 
 <nav class="tree" aria-label="Posts">
-	<div class="tree-head">
-		<span class="label">Blog</span>
-	</div>
 	<ul class="nodes">
 		{
 			entries.map((entry) =>
@@ -80,7 +81,10 @@ const covers = Object.fromEntries(
 						<details open={holds(entry.posts)}>
 							<summary class="folder">
 								<span class="card">
-									{SERIES_WIP.has(entry.name) && <span class="wip">WIP</span>}
+									<span class="meta">
+										<span data-series-count>{entry.posts.length} parts</span>
+										{SERIES_WIP.has(entry.name) && <span class="wip">WIP</span>}
+									</span>
 									{covers[entry.name] &&
 										('html' in covers[entry.name] ? (
 											<span
@@ -100,12 +104,7 @@ const covers = Object.fromEntries(
 											/>
 										))}
 									<span class="card-body">
-										<span class="name">
-											{entry.name}
-											<span class="count">
-												· <span data-series-count>{entry.posts.length} parts</span>
-											</span>
-										</span>
+										<span class="name">{entry.name}</span>
 										{SERIES_BLURBS[entry.name] && (
 											<span class="blurb">{SERIES_BLURBS[entry.name]}</span>
 										)}
@@ -120,8 +119,8 @@ const covers = Object.fromEntries(
 											aria-current={post.id === current ? 'page' : undefined}
 										>
 											<a class="row file" href={`/blog/${post.id}/`}>
-												<svg class="icon" viewBox="0 0 16 16" aria-hidden="true">
-													<path d="M4 2h5l3 3v9H4zM9 2v3h3" />
+												<svg class="icon" viewBox="0 0 384 512" aria-hidden="true">
+													<path d={FILE} />
 												</svg>
 												<span class="node">
 													<span class="label">
@@ -144,8 +143,8 @@ const covers = Object.fromEntries(
 						aria-current={entry.post.id === current ? 'page' : undefined}
 					>
 						<a class="row file" href={`/blog/${entry.post.id}/`}>
-							<svg class="icon" viewBox="0 0 16 16" aria-hidden="true">
-								<path d="M4 2h5l3 3v9H4zM9 2v3h3" />
+							<svg class="icon" viewBox="0 0 384 512" aria-hidden="true">
+								<path d={FILE} />
 							</svg>
 							<span class="node">
 								<span class="label">
@@ -166,22 +165,8 @@ const covers = Object.fromEntries(
 		/* How far in a row's words start, and where its icon sits: the guide
 		   down an open folder runs through the icon column's middle. */
 		--row-x: 1.25rem;
-		--icon: 0.9rem;
+		--icon: 1.05rem;
 		--indent: calc(var(--row-x) + var(--icon) / 2);
-	}
-
-	/* The pane's own bar, the way an editor heads its explorer. Stays put
-	   while the tree scrolls under it. */
-	.tree-head {
-		position: sticky;
-		top: 0;
-		z-index: 1;
-		display: flex;
-		align-items: center;
-		height: 2.6rem;
-		padding: 0 var(--row-x);
-		background: var(--bg);
-		border-bottom: 1px solid var(--edge);
 	}
 
 	.nodes {
@@ -206,7 +191,7 @@ const covers = Object.fromEntries(
 	.row {
 		display: flex;
 		align-items: center;
-		gap: 0.6rem;
+		gap: 0.85rem;
 		padding: 0.65rem var(--row-x);
 		border-block: 1px solid transparent;
 		text-decoration: none;
@@ -226,7 +211,7 @@ const covers = Object.fromEntries(
 	}
 
 	.name {
-		font-family: var(--font-prose);
+		font-family: var(--font-sans);
 		font-size: 1.25rem;
 		line-height: 1.3;
 		letter-spacing: normal;
@@ -235,15 +220,15 @@ const covers = Object.fromEntries(
 	}
 
 	/* The open file: a flat panel, so its FLB is a real border, and the
-	   accent down its leading edge. */
+	   accent down its far edge, against the post it opened. */
 	li[aria-current] > .row {
 		background: var(--panel);
 		border-color: var(--edge-panel);
-		box-shadow: inset 2px 0 0 var(--accent);
+		box-shadow: inset -2px 0 0 var(--accent);
 	}
 
 	li[aria-current] > .row .icon {
-		stroke: var(--accent);
+		color: var(--accent);
 	}
 
 	li[aria-current] > .row .label {
@@ -371,29 +356,30 @@ const covers = Object.fromEntries(
 		color: var(--gold);
 	}
 
-	/* Inline at the end of the name, so it follows the last word wherever the
-	   name wraps. */
-	.count {
-		margin-left: 0.4rem;
-		font-family: var(--font-mono);
-		font-weight: 400;
-		color: var(--text-faint);
-		font-size: var(--type-label);
-		letter-spacing: var(--track-label);
-		text-transform: uppercase;
-	}
-
-	/* Still being written: a word in the accent, pinned to the card's top right
-	   corner. */
-	.wip {
+	/* How many parts, and whether more are coming, in the card's top right
+	   corner, out of the way of the name. */
+	.meta {
 		position: absolute;
 		top: 0.5rem;
 		right: 0.75rem;
 		z-index: 1;
+		display: flex;
+		gap: 0.5rem;
 		font-family: var(--font-mono);
 		font-size: var(--type-label);
 		letter-spacing: var(--track-label);
+		text-transform: uppercase;
+		color: var(--text-faint);
+	}
+
+	/* Still being written: a word in the accent, after a dot from the count. */
+	.wip {
 		color: var(--accent);
+	}
+	.wip::before {
+		content: '·';
+		margin-right: 0.5rem;
+		color: var(--text-faint);
 	}
 
 	.folder:hover .name {
@@ -408,7 +394,11 @@ const covers = Object.fromEntries(
 		line-clamp: 3;
 		overflow: hidden;
 		max-width: 52ch;
-		color: var(--text-quiet);
+		font-family: var(--font-sans);
+		font-size: 1rem;
+		line-height: 1.45;
+		letter-spacing: normal;
+		color: var(--text);
 	}
 
 	/* A file's page, the same box at every level so every name in a level
@@ -417,15 +407,12 @@ const covers = Object.fromEntries(
 		flex: 0 0 var(--icon);
 		width: var(--icon);
 		height: var(--icon);
-		fill: none;
-		stroke: var(--text-faint);
-		stroke-width: 1.5;
-		stroke-linecap: round;
-		stroke-linejoin: round;
+		fill: currentColor;
+		color: var(--text-faint);
 	}
 
 	.row:hover .icon {
-		stroke: var(--text);
+		color: var(--text);
 	}
 
 	/* Inside a folder: one guide down from under the card's edge, and its

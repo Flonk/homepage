@@ -16,7 +16,7 @@ const [latest] = (await getCollection('blog'))
 const { Content } = await render(latest);
 ---
 
-<BlogPost {...latest.data} id={latest.id} file={latest.filePath} home>
+<BlogPost {...latest.data} id={latest.id} home>
 	<Content />
 	<AeStorm slot="extra" />
 </BlogPost>
