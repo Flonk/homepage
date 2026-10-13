@@ -160,6 +160,9 @@ import T3Mark from './T3Mark.astro';
 		position: absolute;
 		inset: 0 calc(-2 * var(--tile)) calc(-1 * var(--tile)) 0;
 		background: url('/assets/noise.png') 0 0 / var(--tile) var(--tile);
+		/* Sharp at any density: one noise pixel a block of screen ones on a
+		   dense screen, not smoothed into a blur. */
+		image-rendering: pixelated;
 		mix-blend-mode: soft-light;
 		opacity: 0.4;
 		animation: noise-creep 240s steps(2400) infinite;
@@ -178,6 +181,10 @@ import T3Mark from './T3Mark.astro';
 		/* What 1em came to before the body went to tesbota's smaller size, in
 		   rem so that it follows the reader's own text size as the rest does. */
 		font-size: 0.875rem;
+	}
+	/* Fading with the page, for a change of shape (see the script below). */
+	header[data-fading] {
+		view-transition-name: none;
 	}
 	/* The mark stands in the middle of the bar, whatever is at either end of
 	   it; on a narrow screen with a page's title beside it, it keeps to the
@@ -398,11 +405,35 @@ import T3Mark from './T3Mark.astro';
 
 	// The open page's title and what it belongs to into the header, or nothing
 	// where it has none.
-	document.addEventListener('astro:page-load', () => {
+	const fillSlots = () => {
 		const slot = document.querySelector('[data-page-title-slot]');
 		if (slot) slot.textContent = document.querySelector('[data-page-title]')?.textContent?.trim() ?? '';
 		const meta = document.querySelector('[data-page-meta-slot]');
 		const parts = document.querySelector('[data-page-meta]')?.children ?? [];
 		if (meta) meta.textContent = [...parts].map((part) => part.textContent?.trim()).filter(Boolean).join(' · ');
+	};
+	// As soon as the page is in, so the header changes with the page rather
+	// than after it; and on the page landed on.
+	document.addEventListener('astro:after-swap', fillSlots);
+	document.addEventListener('astro:page-load', fillSlots);
+
+	/* The header is kept out of the page's cross-fade and simply changes with
+	   it (see View transitions in global.css), which is right while it keeps
+	   its shape. Between a page with a title and one without, though, the mark
+	   moves and the title goes at once, ahead of the page still fading under
+	   it, and the bar jumps. So for that change it is let go with the rest of
+	   the page, the old header fading into the new, and named again after. */
+	const header = document.querySelector<HTMLElement>('header');
+	const hasTitle = (doc: Document) => !!doc.querySelector('[data-page-title]')?.textContent?.trim();
+	// Once the next page is loaded and before the picture of this one is taken.
+	document.addEventListener('astro:before-preparation', (e) => {
+		const load = e.loader;
+		e.loader = async () => {
+			await load();
+			header?.toggleAttribute('data-fading', hasTitle(document) !== hasTitle(e.newDocument));
+		};
+	});
+	document.addEventListener('astro:before-swap', (e) => {
+		e.viewTransition.finished.finally(() => header?.removeAttribute('data-fading'));
 	});
 </script>

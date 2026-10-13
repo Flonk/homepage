@@ -14,13 +14,25 @@
  * signal it is handed aborts as that page is swapped out: pass it to every
  * listener added outside the component's own elements, and stop anything
  * still running when it fires.
+ *
+ * Set up as soon as the page is in, on `astro:after-swap`, which comes before
+ * the transition takes its picture of the new page: a deck set up any later
+ * is caught with no card chosen and nothing drawn, and the reader sees it
+ * fall into place after the fade. `astro:page-load` still covers the page
+ * landed on, and a script that only arrives with the page swapped in, too
+ * late for its swap; whichever comes first for a page is the one that runs.
  */
 export function eachPage(setup: (signal: AbortSignal) => void): void {
-	document.addEventListener('astro:page-load', () => {
-		const page = new AbortController();
-		document.addEventListener('astro:before-swap', () => page.abort(), { once: true });
-		setup(page.signal);
-	});
+	let page: Element | null = null;
+	const run = () => {
+		if (page === document.body) return;
+		page = document.body;
+		const leaving = new AbortController();
+		document.addEventListener('astro:before-swap', () => leaving.abort(), { once: true });
+		setup(leaving.signal);
+	};
+	document.addEventListener('astro:after-swap', run);
+	document.addEventListener('astro:page-load', run);
 }
 
 /**

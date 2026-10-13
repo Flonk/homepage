@@ -253,6 +253,9 @@
 }
 
 :root {
+  /* The page is one screen tall and never itself scrolls, so it never
+     bounces past its end either and shows the chrome under it as it would. */
+  overscroll-behavior: none;
   animation: chrome-turn 78s steps(780) infinite;
   transition:
     --glow-pull 1.6s ease,

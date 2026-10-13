@@ -447,6 +447,11 @@ const covers = Object.fromEntries(
 		background:
 			url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Cdefs%3E%3Cpattern id='d' width='2.5' height='2.5' patternUnits='userSpaceOnUse' patternTransform='rotate(17)'%3E%3Ccircle cx='1.25' cy='1.25' r='0.55' fill='%23fff' fill-opacity='0.08'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23d)'/%3E%3C/svg%3E"),
 			url('/assets/grain.png') 0 0 / 128px 128px;
+		image-rendering: pixelated;
+	}
+	/* The card's grain sharp, its picture not (see .rail-card). */
+	.rail-card > * {
+		image-rendering: auto;
 	}
 	.rail-cover {
 		position: relative;
@@ -838,11 +843,13 @@ const covers = Object.fromEntries(
 	/* Every page, the one landed on included: the open file is whatever the
 	   address says, which covers the back button as well as a click. Then it is
 	   brought into sight once a folder folding shut above it has stopped. */
-	document.addEventListener('astro:page-load', () => {
+	const follow = () => {
 		const li = here();
 		select(li);
 		setTimeout(() => li?.scrollIntoView({ block: 'nearest', inline: 'nearest' }), 300);
-	});
+	};
+	document.addEventListener('astro:after-swap', follow);
+	document.addEventListener('astro:page-load', follow);
 
 	const plain = (e: MouseEvent) =>
 		e.button === 0 && !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey;

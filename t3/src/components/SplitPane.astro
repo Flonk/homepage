@@ -44,6 +44,16 @@ const { mode, current } = Astro.props;
 </div>
 
 <style>
+	/* The grain on the panes and the page is drawn sharp at any density
+	   (image-rendering on each, below), and that would pass down to every
+	   picture in a post: so it stops at their children. First, so that a
+	   pane's own setting, which is one of these children, wins over it. */
+	.split > :global(*),
+	.split-list > :global(*),
+	.split-main > :global(*) {
+		image-rendering: auto;
+	}
+
 	/* The page's own ground, below the header: the body has none, so that
 	   the chrome and its grain show through it (see Header). Positioned, so it
 	   paints over that grain, and taking all the height under the header. On
@@ -52,6 +62,7 @@ const { mode, current } = Astro.props;
 		position: relative;
 		flex: 1 0 auto;
 		background: url('/assets/grain.png') 0 0 / 128px 128px fixed, var(--bg);
+		image-rendering: pixelated;
 	}
 
 	/* Narrow: one thing at a time. */
@@ -97,6 +108,9 @@ const { mode, current } = Astro.props;
 			flex: 1 1 auto;
 			min-height: 0;
 			overflow-y: auto;
+			/* Its scrolling its own: run to the end, it does not hand the swipe on
+			   to the page, which would only bounce and show the chrome under it. */
+			overscroll-behavior: contain;
 			/* Holds what is placed absolutely inside it, as on a wide screen. */
 			position: relative;
 		}
@@ -213,6 +227,7 @@ const { mode, current } = Astro.props;
 			/* The post's grain at three fifths of its strength, quieter here as
 			   the tree is, and still while the tree scrolls over it. */
 			background: url('/assets/grain-side.png') 0 0 / 128px 128px, var(--bg);
+			image-rendering: pixelated;
 		}
 		.split-list :global(li[aria-current] > .row) {
 			--panel: var(--page-panel);
@@ -231,6 +246,7 @@ const { mode, current } = Astro.props;
 			position: relative;
 			overflow: hidden;
 			background: url('/assets/grain.png') 0 0 / 128px 128px, var(--bg);
+			image-rendering: pixelated;
 			/* What is open measures itself against this pane, not the window:
 			   the prose breakout, and anything sized in cqw. */
 			container-type: inline-size;
@@ -259,6 +275,7 @@ const { mode, current } = Astro.props;
 			display: block;
 			height: 100%;
 			overflow-y: auto;
+			overscroll-behavior: contain;
 			/* Holds what is placed absolutely inside it, such as the copy of each
 			   formula KaTeX keeps for screen readers, which would otherwise be
 			   placed against the split and hang out below the window. Over the
