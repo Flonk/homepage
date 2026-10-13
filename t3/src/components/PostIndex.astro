@@ -7,6 +7,7 @@
 // file and its folder open around it.
 import { getCollection } from 'astro:content';
 import FormattedDate from './FormattedDate.astro';
+import T3Mark from './T3Mark.astro';
 import katex from 'katex';
 import { SERIES_BLURBS, SERIES_COVERS, SERIES_WIP, type SeriesCover, sortSeries } from '../series';
 
@@ -58,6 +59,18 @@ const stripSeriesPrefix = (title: string, series: string) => {
 const FILE =
 	'M176 48L64 48c-8.8 0-16 7.2-16 16l0 384c0 8.8 7.2 16 16 16l256 0c8.8 0 16-7.2 16-16l0-240-88 0c-39.8 0-72-32.2-72-72l0-88zM316.1 160L224 67.9 224 136c0 13.3 10.7 24 24 24l68.1 0zM0 64C0 28.7 28.7 0 64 0L197.5 0c17 0 33.3 6.7 45.3 18.7L365.3 141.3c12 12 18.7 28.3 18.7 45.3L384 448c0 35.3-28.7 64-64 64L64 512c-35.3 0-64-28.7-64-64L0 64z';
 
+// The home page on a narrow screen lays the same posts out another way (see
+// SplitPane): the newest standalone post, then every series in a row to
+// swipe through, then all the other posts.
+const NEWEST = 1;
+const standalone = entries.flatMap((entry) => (entry.kind === 'post' ? [entry.post] : []));
+const allSeries = entries.flatMap((entry) => (entry.kind === 'series' ? [entry] : []));
+// The greeting's picture, a path under public/, or null for a mark in its
+// place until there is one.
+const PORTRAIT: string | null = null;
+// Where the greeting's link goes: the Colour series, from its first part.
+const colourStart = allSeries.find((entry) => entry.name === 'Colour')?.posts[0].id;
+
 const holds = (list: Post[]) => list.some((post) => post.id === current);
 
 // A TeX cover is set once, here at build time, so the page carries KaTeX's
@@ -75,8 +88,9 @@ const covers = Object.fromEntries(
 <nav class="tree" aria-label="Posts">
 	<ul class="nodes">
 		{
-			entries.map((entry) =>
-				entry.kind === 'series' ? (
+			entries.map((entry, i) => (
+				<Fragment>
+				{entry.kind === 'series' ? (
 					<li class="series" data-series={entry.name}>
 						<details open={holds(entry.posts)}>
 							<summary class="folder">
@@ -154,10 +168,93 @@ const covers = Object.fromEntries(
 							</span>
 						</a>
 					</li>
-				),
-			)
+				)}
+				</Fragment>
+			))
 		}
 	</ul>
+	<div class="home-sections">
+		<div class="hello">
+			{PORTRAIT ? (
+				<img class="portrait" src={PORTRAIT} alt="Flo" />
+			) : (
+				<T3Mark class="portrait" />
+			)}
+			<p>
+				Hi, I'm Flo, Vienna-based Software Developer. Check out my series on{' '}
+				{colourStart ? <a href={`/blog/${colourStart}/`}>Colour</a> : 'Colour'}, it's really good!
+			</p>
+		</div>
+		{
+			[
+				{ posts: standalone.slice(0, NEWEST), newest: true },
+				{ series: allSeries },
+				{ posts: standalone.slice(NEWEST) },
+			].map((section) => (
+				<section class:list={{ "is-rail": !section.posts }}>
+					{section.posts ? (
+						<ul class="nodes">
+							{section.posts.map((post) => (
+								<li data-pubdate={post.data.pubDate.valueOf()}>
+									<a class="row file" href={`/blog/${post.id}/`}>
+										<svg class="icon" viewBox="0 0 384 512" aria-hidden="true">
+											<path d={FILE} />
+										</svg>
+										<span class="node">
+											<span class="label">
+												{section.newest && <Fragment><span class="newest">Newest post</span> · </Fragment>}
+												<FormattedDate date={post.data.pubDate} />
+											</span>
+											<span class="name">{post.data.title}</span>
+										</span>
+									</a>
+								</li>
+							))}
+						</ul>
+					) : (
+						<ul class="rail">
+							{allSeries.map((entry) => (
+								<li>
+									<a class="rail-card" href={`/blog/${entry.posts[0].id}/`}>
+										<span class="rail-cover">
+											{covers[entry.name] &&
+												('html' in covers[entry.name] ? (
+													<span
+														class="rail-tex"
+														style={{ 'font-size': covers[entry.name].size }}
+														set:html={covers[entry.name].html}
+													/>
+												) : (
+													<img
+														class:list={['rail-img', { 'is-ink': covers[entry.name].ink }]}
+														src={covers[entry.name].src}
+														style={{
+															'object-position': covers[entry.name].position,
+															background: covers[entry.name].backdrop,
+														}}
+														alt=""
+													/>
+												))}
+										</span>
+										<span class="rail-body">
+											<span class="label">
+												{entry.posts.length} parts
+												{SERIES_WIP.has(entry.name) && <span class="wip">WIP</span>}
+											</span>
+											<span class="name">{entry.name}</span>
+											{SERIES_BLURBS[entry.name] && (
+												<span class="blurb">{SERIES_BLURBS[entry.name]}</span>
+											)}
+										</span>
+									</a>
+								</li>
+							))}
+						</ul>
+					)}
+				</section>
+			))
+		}
+	</div>
 </nav>
 
 <style>
@@ -196,6 +293,198 @@ const covers = Object.fromEntries(
 	.tree > .nodes > li:first-child {
 		border-top: 0;
 		box-shadow: none;
+	}
+
+	/* The narrow home page's own layout of the list (see SplitPane), hidden
+	   everywhere else: three runs, which say what they are without a heading. */
+	.home-sections {
+		display: none;
+		padding: 1.25rem 1.25rem 3rem;
+	}
+	/* A word of welcome above it all, in the post's own serif, cut off from
+	   the rest by the list's groove right across the screen: out to the top
+	   and the edges, its words kept where they were. */
+	.hello {
+		margin: -1.25rem -1.25rem 1.5rem;
+		padding: 3rem 2rem;
+		font-family: var(--font-prose);
+		font-size: 1.15rem;
+		line-height: 1.5;
+		text-align: left;
+		letter-spacing: normal;
+		color: var(--text);
+		text-wrap: pretty;
+		border-bottom: 1px solid rgb(0 0 0 / 0.35);
+		/* A well sunk in the page: its floor darker than the ground round it,
+		   a shadow falling into it from the top edge, and the groove below. */
+		background: rgb(0 0 0 / 0.55);
+		box-shadow:
+			inset 0 10px 14px -8px rgb(0 0 0 / 0.75),
+			0 1px 0 rgb(255 255 255 / 0.06);
+		/* As a post's masthead is: lifted by a soft shadow, over the chrome's
+		   dots in the accent fading down from the top (::before). */
+		text-shadow: 0 3px 10px rgb(0 0 0 / 0.6);
+		position: relative;
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		isolation: isolate;
+	}
+	.hello p {
+		margin: 0;
+	}
+	/* Who is speaking: a round picture, ringed in the accent. Until there is a
+	   picture, the site's mark in its place (see T3Mark). */
+	.hello :global(.portrait) {
+		flex: none;
+		width: 3.5rem;
+		aspect-ratio: 1;
+		max-width: none;
+		padding: 0;
+		object-fit: cover;
+		border: 0;
+		border-radius: 50%;
+		box-shadow: 0 0 0 2px var(--accent);
+	}
+	/* The mark is the accent already, and wants no ring of it. */
+	.hello :global(svg.portrait) {
+		box-shadow: none;
+	}
+	.hello a {
+		color: var(--accent);
+		text-underline-offset: 0.18em;
+		text-decoration-thickness: 1px;
+	}
+	.hello a:hover {
+		color: var(--chrome-light);
+	}
+	.hello::before {
+		content: '';
+		position: absolute;
+		inset: 0 0 auto;
+		height: 9rem;
+		z-index: -1;
+		pointer-events: none;
+		background: color-mix(in oklab, var(--accent) 55%, transparent);
+		-webkit-mask:
+			url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Cdefs%3E%3Cpattern id='d' width='2.5' height='2.5' patternUnits='userSpaceOnUse' patternTransform='rotate(17)'%3E%3Ccircle cx='1.25' cy='1.25' r='0.55' fill='%23000'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23d)'/%3E%3C/svg%3E"),
+			linear-gradient(#000, transparent 70%);
+		-webkit-mask-composite: source-in;
+		mask:
+			url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Cdefs%3E%3Cpattern id='d' width='2.5' height='2.5' patternUnits='userSpaceOnUse' patternTransform='rotate(17)'%3E%3Ccircle cx='1.25' cy='1.25' r='0.55' fill='%23000'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23d)'/%3E%3C/svg%3E"),
+			linear-gradient(#000, transparent 70%);
+		mask-composite: intersect;
+	}
+	/* The posts stand on the page itself, told apart by the list's groove and
+	   nothing more; the newest one says so in the accent before its date. */
+	.newest {
+		color: var(--accent);
+	}
+	/* The series are the one thing raised off the page: a shelf the full width
+	   of the screen, a flat panel edged above and below in its FLB, with a
+	   shadow under it. */
+	.home-sections > section.is-rail {
+		margin-inline: -1.25rem;
+		background: var(--panel);
+		border-block: 1px solid var(--edge-panel);
+		box-shadow: 0 6px 16px -4px rgb(0 0 0 / 0.6);
+	}
+	.home-sections > section + section {
+		margin-top: 1.5rem;
+	}
+	.home-sections .nodes > li:first-child {
+		border-top: 0;
+		box-shadow: none;
+	}
+
+	/* The series, a row of cards to swipe through, each snapping into place:
+	   its picture across the top, then what it is, and the card opens its
+	   first part. Each card is most of the width, so the next one shows at
+	   the edge and says the row goes on. */
+	.rail {
+		display: flex;
+		gap: 0;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		overflow-x: auto;
+		scroll-snap-type: x mandatory;
+		scrollbar-width: none;
+	}
+	.rail::-webkit-scrollbar {
+		display: none;
+	}
+	.rail > li {
+		/* Most of a phone's width, and no wider than that anywhere else. */
+		flex: 0 0 min(75%, 20rem);
+		scroll-snap-align: start;
+	}
+	/* Side by side and touching, told apart by the list's groove turned on
+	   its side: the dark line, then the light one. */
+	.rail > li + li {
+		border-left: 1px solid rgb(0 0 0 / 0.35);
+		box-shadow: inset 1px 0 0 rgb(255 255 255 / 0.06);
+	}
+	/* A card: its picture across the top, then what it is, on the section's
+	   own ground. */
+	.rail-card {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		overflow: hidden;
+		text-decoration: none;
+		color: inherit;
+		/* The page's grain and the chrome's dots, faint, under what it says. */
+		background:
+			url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Cdefs%3E%3Cpattern id='d' width='2.5' height='2.5' patternUnits='userSpaceOnUse' patternTransform='rotate(17)'%3E%3Ccircle cx='1.25' cy='1.25' r='0.55' fill='%23fff' fill-opacity='0.08'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23d)'/%3E%3C/svg%3E"),
+			url('/assets/grain.png') 0 0 / 128px 128px;
+	}
+	.rail-cover {
+		position: relative;
+		display: block;
+		aspect-ratio: 16 / 9;
+		overflow: hidden;
+		background: rgb(0 0 0 / 0.5);
+	}
+	.rail-img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		max-width: none;
+		object-fit: cover;
+		padding: 0;
+		border: 0;
+		border-radius: 0;
+	}
+	.rail-img.is-ink {
+		object-fit: contain;
+		padding: 0.6rem;
+		filter: invert(1);
+		mix-blend-mode: lighten;
+	}
+	.rail-tex {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+		font-size: 3.4rem;
+		line-height: 1;
+		white-space: nowrap;
+		letter-spacing: normal;
+		color: var(--text);
+	}
+	.rail-body {
+		display: flex;
+		flex-direction: column;
+		gap: 0.3rem;
+		padding: 0.75rem 0.9rem 0.9rem;
+	}
+	.rail-body .name {
+		font-weight: 700;
+		color: var(--gold);
+	}
+	.rail-body .wip {
+		margin-left: 0.5rem;
 	}
 
 	.label {
@@ -470,7 +759,11 @@ const covers = Object.fromEntries(
 
 	@media (max-width: 1099px) {
 		.tree {
-			--row-x: 0.5rem;
+			--row-x: 1rem;
+		}
+		/* Where the list is the page, it is words and no pictograms. */
+		.icon {
+			display: none;
 		}
 	}
 </style>
@@ -528,7 +821,7 @@ const covers = Object.fromEntries(
 
 	const here = () => {
 		const path = location.pathname.replace(/\/?$/, '/');
-		const link = tree()?.querySelector(`a.row[href="${CSS.escape(path)}"]`);
+		const link = tree()?.querySelector(`:scope > .nodes a.row[href="${CSS.escape(path)}"]`);
 		return link?.parentElement ?? null;
 	};
 

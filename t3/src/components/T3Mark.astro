@@ -1,0 +1,51 @@
+---
+// The site's mark, T3 on a disc: the accent with the letters in black, or,
+// `inverted`, a black disc with the letters cut out of it, so that whatever
+// is behind shows through them.
+//
+// Drawn inline rather than as an image so that the letters are set in the
+// site's own face. Each cut-out has a mask of its own, since two on a page
+// would otherwise share the first's.
+interface Props {
+	inverted?: boolean;
+	class?: string;
+}
+
+const { inverted = false, class: className } = Astro.props;
+const id = `t3-${Math.random().toString(36).slice(2, 9)}`;
+// Its colour and face on the elements themselves rather than in a stylesheet,
+// so that nothing a page does to its stylesheets can take them away, nor
+// anything it puts on its own words (a shadow) be taken up by these.
+const FACE = 'font-family: var(--font-mono); font-size: 15px; font-weight: 700; text-shadow: none';
+---
+
+<svg class:list={['t3-mark', className]} viewBox="0 0 40 40" aria-hidden="true">
+	{
+		inverted ? (
+			<Fragment>
+				<defs>
+					<mask id={id}>
+						<rect width="40" height="40" fill="white" />
+						<text x="20" y="21" text-anchor="middle" dominant-baseline="middle" fill="black" style={FACE}>
+							T3
+						</text>
+					</mask>
+				</defs>
+				<circle cx="20" cy="20" r="20" fill="#000" mask={`url(#${id})`} />
+			</Fragment>
+		) : (
+			<Fragment>
+				<circle cx="20" cy="20" r="20" style="fill: var(--accent)" />
+				<text x="20" y="21" text-anchor="middle" dominant-baseline="middle" fill="#000" style={FACE}>
+					T3
+				</text>
+			</Fragment>
+		)
+	}
+</svg>
+
+<style>
+	.t3-mark {
+		display: block;
+	}
+</style>

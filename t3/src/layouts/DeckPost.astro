@@ -26,11 +26,9 @@ const { id, title, description, pubDate, series, ground, accent, prevPart, nextP
 	</head>
 
 	<body class:list={['deck-page', ground === 'dark' && 'deck-dark']}>
-		{/* On a narrow screen there is no site header here: the deck is a
-		    full-screen reading surface, and the only chrome is the accent frame
-		    :root draws and the home mark below. On a wide one it opens in the
-		    editor like any other post, beside the tree and under the header,
-		    which takes over from the home mark. */}
+		{/* Under the site's header like any other post, beside the tree on a
+		    wide screen; on a narrow one the deck's title goes up into the
+		    header in place of its own masthead. */}
 		<div class="deck-site-header">
 			<Header />
 		</div>
@@ -43,7 +41,7 @@ const { id, title, description, pubDate, series, ground, accent, prevPart, nextP
 							{series && <span class="deck-series">{series}</span>}
 							<span class="deck-date"><FormattedDate date={pubDate} /></span>
 						</div>
-						<h1 class="deck-title">{title}</h1>
+						<h1 class="deck-title" data-page-title>{title}</h1>
 					</div>
 				</div>
 	
@@ -141,26 +139,18 @@ const { id, title, description, pubDate, series, ground, accent, prevPart, nextP
 				container-type: inline-size;
 			}
 
+			/* The site's header over every deck now, phone or not, with the deck's
+			   title in it on a narrow screen (see Header, data-page-title): there
+			   the deck's own masthead goes, and on a wide one its home mark does. */
 			.deck-site-header {
+				display: block;
+				flex: none;
+			}
+			.deck-head .deck-home {
 				display: none;
 			}
-
-			/* No header on a narrow screen, so the page starts at the top of the
-			   frame and the chrome's ring goes round it from there. Said on the
-			   root, which the ring is drawn from. */
-			:global(:root:has(.deck-page)) {
-				--chrome-top: 0px;
-			}
-
-			@media (min-width: 1100px) {
-				:global(:root:has(.deck-page)) {
-					--chrome-top: var(--header-height);
-				}
-				.deck-site-header {
-					display: block;
-					flex: none;
-				}
-				.deck-head .deck-home {
+			@media (max-width: 1099px) {
+				.deck-main .deck-head {
 					display: none;
 				}
 			}

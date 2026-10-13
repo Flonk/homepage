@@ -1,7 +1,5 @@
 ---
-// The site's own name, short, for the header. The page title and the feed
-// still use SITE_TITLE.
-const NAME = 'T3 BLOG';
+import T3Mark from './T3Mark.astro';
 ---
 
 <div class="grain" aria-hidden="true" transition:persist="chrome-grain">
@@ -11,7 +9,13 @@ const NAME = 'T3 BLOG';
 </div>
 <header transition:persist="site-header">
 	<nav>
-		<h1><a href="/">{NAME}</a></h1>
+		<h1>
+			<a href="/"><span class="sr-only">T3 Blog</span><T3Mark inverted class="name-mark" /></a>
+		</h1>
+		{/* What is open, where the page says (data-page-title): filled in by the
+		    script below on every page, because this header is kept from one page
+		    to the next and so cannot be written with any one page's title. */}
+		<span class="page-title" data-page-title-slot></span>
 		<div class="social-links">
 			<a href="https://github.com/flonk" target="_blank">
 				<span class="sr-only">Go to Flonk's GitHub repo</span>
@@ -177,16 +181,49 @@ const NAME = 'T3 BLOG';
 		   rem so that it follows the reader's own text size as the rest does. */
 		font-size: 0.875rem;
 	}
-	/* On a wide screen the name stands in the middle of the page, whatever is
-	   at either end of the bar. */
-	@media (min-width: 1100px) {
-		h1 {
-			position: absolute;
-			left: 50%;
-			transform: translateX(-50%);
-		}
+	/* The mark stands in the middle of the bar, whatever is at either end of
+	   it; on a narrow screen with a page's title beside it, it keeps to the
+	   left instead (below). */
+	h1 {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
 	}
 
+	/* The site's mark for its name, a round button home: T3 cut out of a black
+	   disc with the chrome showing through the letters (see T3Mark). */
+	nav :global(.name-mark) {
+		width: 2.1rem;
+	}
+
+	/* The open page's title, beside the mark: only on a narrow screen, where
+	   there is no masthead to carry it, and only when the page has one. */
+	.page-title {
+		display: none;
+	}
+	@media (max-width: 1099px) {
+		.page-title:not(:empty) {
+			display: block;
+			flex: 1;
+			min-width: 0;
+			margin: 0 1rem;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			font-size: 0.875rem;
+			font-weight: 700;
+		}
+		/* With a title beside it, the button's own size and no wider, so as not
+		   to reach over the title. */
+		nav:has(.page-title:not(:empty)) h1 {
+			position: static;
+			transform: none;
+		}
+		nav:has(.page-title:not(:empty)) h1 a {
+			margin: 0;
+			padding: 0;
+		}
+	}
 	nav h1 a,
 	nav h1 a.active {
 		text-decoration: none;
@@ -321,5 +358,11 @@ const NAME = 'T3 BLOG';
 			const at = heldAt.get(keyOf(animation));
 			if (at != null) animation.currentTime = at;
 		}
+	});
+
+	// The open page's title into the header, or nothing where it has none.
+	document.addEventListener('astro:page-load', () => {
+		const slot = document.querySelector('[data-page-title-slot]');
+		if (slot) slot.textContent = document.querySelector('[data-page-title]')?.textContent?.trim() ?? '';
 	});
 </script>

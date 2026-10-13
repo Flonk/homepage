@@ -334,8 +334,9 @@ body {
 :root::after {
   content: '';
   position: absolute;
-  inset: calc(var(--page-border) + var(--chrome-top) - 1px) calc(var(--page-border) - 1px)
-    calc(var(--page-border) - 1px);
+  /* Never out past the page, where there is no frame for it to sit in. */
+  inset: calc(var(--page-border) + var(--chrome-top) - 1px) max(calc(var(--page-border) - 1px), 0px)
+    max(calc(var(--page-border) - 1px), 0px);
   z-index: 10;
   border: 1px solid transparent;
   /* Round when the page is, a pixel more so as to sit just outside it. */
@@ -375,29 +376,27 @@ main {
     padding: 0.5em 0;
   }
 
-  .prose p,
-  .prose ul,
-  .prose ol,
-  .prose h1,
-  .prose h2,
-  .prose h3,
-  .prose h4,
-  .prose h5,
-  .prose h6,
-  .prose pre,
-  .prose blockquote,
-  :is(.prose .title, .prose.title) .date {
-    padding-left: 2rem;
-    padding-right: 2rem;
+  /* The reading column inset from the edges of the screen as a whole, so
+     that everything in it, a picture or a sum as much as a paragraph, lines
+     up with everything else. */
+  .prose:not(.deck-prose) {
+    padding-inline: 1rem;
   }
 
-  .prose ul,
-  .prose ol {
-    padding-left: 3rem;
-  }
-
-  :is(.prose .title, .prose.title) .date {
-    margin-bottom: 2rem;
+  /* A deck card's own words, inset one by one as they were. */
+  .deck-prose p,
+  .deck-prose ul,
+  .deck-prose ol,
+  .deck-prose h1,
+  .deck-prose h2,
+  .deck-prose h3,
+  .deck-prose h4,
+  .deck-prose h5,
+  .deck-prose h6,
+  .deck-prose pre,
+  .deck-prose blockquote {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
 
@@ -524,9 +523,6 @@ blockquote {
 @media (max-width: 720px) {
   body {
     font-size: 0.9375rem;
-  }
-  main {
-    padding: 0.5em 0;
   }
 }
 
@@ -711,16 +707,15 @@ em {
   margin: 1.6em 0;
 }
 
-/* Restore the mobile edge gutters: the rules above are later in source order
-   and would otherwise win inside the max-width:720px block. */
+/* After the rules above, which would otherwise win on a phone: the post's
+   type a size down, and a deck card's lists indented as they were. */
 @media (max-width: 720px) {
-  .prose ul,
-  .prose ol {
-    padding-left: 3rem;
-  }
-
   .prose {
     font-size: 1rem;
+  }
+  .deck-prose ul,
+  .deck-prose ol {
+    padding-left: 2rem;
   }
 }
 
