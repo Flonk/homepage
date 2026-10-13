@@ -121,11 +121,19 @@
      that goes slowly round the page: see --chrome-turn below. */
   --chrome-deep: oklch(0.7 0.18 45);
   --chrome-light: oklch(0.86 0.15 88);
-  --chrome-glow-at: calc(50% + cos(var(--chrome-turn)) * 40%) calc(20% + sin(var(--chrome-turn)) * 30%);
+  /* Where the glow is: on its orbit, or pulled over to the pointer
+     while the pointer is over the header (see Header.astro). */
+  --chrome-orbit-x: calc(50% + cos(var(--chrome-turn)) * 40%);
+  --chrome-orbit-y: calc(20% + sin(var(--chrome-turn)) * 30%);
+  --chrome-glow-at:
+    calc(var(--chrome-orbit-x) * (1 - var(--glow-pull)) + var(--pointer-x) * var(--glow-pull))
+    calc(var(--chrome-orbit-y) * (1 - var(--glow-pull)) + var(--pointer-y) * var(--glow-pull));
   --chrome:
     radial-gradient(
-      60vmax 40vmax at var(--chrome-glow-at),
-      var(--chrome-light),
+      42vmax 28vmax at var(--chrome-glow-at),
+      /* Dimmed to under half as it goes over to the pointer, so following the
+         pointer is something felt rather than shown. */
+      oklch(0.86 0.15 88 / calc(1 - 0.6 * var(--glow-pull))),
       oklch(0.86 0.15 88 / 0) 70%
     ),
     linear-gradient(var(--chrome-turn), var(--chrome-deep), var(--accent), var(--chrome-deep));
@@ -154,8 +162,8 @@
     --side-edge-panel: oklch(from var(--side-panel) calc(l + var(--lift) * (1 - l)) c h);
     --chrome-edge:
       radial-gradient(
-        60vmax 40vmax at var(--chrome-glow-at),
-        oklch(from var(--chrome-light) calc(l + var(--lift) * (1 - l)) c h),
+        42vmax 28vmax at var(--chrome-glow-at),
+        oklch(from var(--chrome-light) calc(l + var(--lift) * (1 - l)) c h / calc(1 - 0.6 * var(--glow-pull))),
         oklch(from var(--chrome-light) calc(l + var(--lift) * (1 - l)) c h / 0) 70%
       ),
       linear-gradient(
@@ -180,8 +188,34 @@
   initial-value: 110deg;
 }
 
+/* The glow's pull toward the pointer, and where the pointer is, as shares of
+   the window. Registered for the same reason as the turn, so that a change
+   eases rather than jumps: the glow leans over to the pointer in its own
+   time and drifts back when it goes. */
+@property --glow-pull {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+
+@property --pointer-x {
+  syntax: '<percentage>';
+  inherits: true;
+  initial-value: 50%;
+}
+
+@property --pointer-y {
+  syntax: '<percentage>';
+  inherits: true;
+  initial-value: 20%;
+}
+
 :root {
   animation: chrome-turn 78s steps(780) infinite;
+  transition:
+    --glow-pull 1.6s ease,
+    --pointer-x 0.15s ease-out,
+    --pointer-y 0.15s ease-out;
 }
 
 @keyframes chrome-turn {

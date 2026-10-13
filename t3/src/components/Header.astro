@@ -50,6 +50,10 @@ const NAME = 'T3 BLOG';
 		box-sizing: border-box;
 		position: relative;
 		overflow: hidden;
+		/* A shade of the chrome's own deep orange gathered along the foot of the
+		   bar, so it reads as a slab standing over the page rather than a band
+		   printed on it. Under the dots and the grain, which go on over it. */
+		box-shadow: inset 0 -3px 3px -1px rgb(90 30 0 / 0.28);
 	}
 	/* A fine grain of dots over the chrome, blended into it rather than laid on
 	   top: each dot takes its colour from what is under it, so the glow going
@@ -66,6 +70,9 @@ const NAME = 'T3 BLOG';
 		mix-blend-mode: overlay;
 		pointer-events: none;
 		animation: grain-drift 1.6s linear infinite;
+		/* Parallax: see the script below. On top of the drift, which is the
+		   transform; this is the separate translate, so the two add up. */
+		translate: 0 calc(-1px * var(--dots-shift, 0));
 	}
 	header::before {
 		background: radial-gradient(circle, rgb(255 255 255 / 0.55) 0.4px, transparent 0.7px) 0 0 /
@@ -126,6 +133,7 @@ const NAME = 'T3 BLOG';
 		opacity: 0.4;
 		pointer-events: none;
 		animation: noise-creep 240s linear infinite;
+		translate: 0 calc(-1px * var(--noise-shift, 0));
 	}
 	@keyframes noise-creep {
 		to {
@@ -150,9 +158,14 @@ const NAME = 'T3 BLOG';
 		}
 	}
 
-	h1 a,
-	h1 a.active {
+	nav h1 a,
+	nav h1 a.active {
 		text-decoration: none;
+		display: inline-block;
+		/* A wide target round a short name: padded out over the bar and pulled
+		   back by as much, so the name stays put and the space round it clicks. */
+		padding: 1.5rem 12.8rem;
+		margin: -1.5rem -12.8rem;
 	}
 	nav {
 		width: 100%;
@@ -173,14 +186,19 @@ const NAME = 'T3 BLOG';
 		margin-left: auto;
 		align-items: center;
 	}
-	/* Quiet until reached for: a touch faded, then whole and a little larger
-	   under the pointer or the keyboard. */
+	/* The name and the links grow a little under the pointer or the keyboard;
+	   the links are a touch faded until then, the name never is. */
+	h1 a,
 	.social-links a {
-		opacity: 0.8;
 		transition:
 			opacity 0.15s ease,
 			transform 0.15s ease;
 	}
+	.social-links a {
+		opacity: 0.8;
+	}
+	h1 a:hover,
+	h1 a:focus-visible,
 	.social-links a:hover,
 	.social-links a:focus-visible {
 		opacity: 1;
@@ -191,3 +209,85 @@ const NAME = 'T3 BLOG';
 		display: flex;
 	}
 </style>
+
+<script>
+	/* The chrome's glow goes to the pointer while it is over the header,
+	   and drifts back to its round when it leaves: this only says where the
+	   pointer is and how hard to pull, and global.css eases the rest (see
+	   --glow-pull). A mouse only, and not where motion is asked to be kept
+	   down. Listened for on the document, because the header is kept from one
+	   page to the next but a full load brings a new one. */
+	const style = document.documentElement.style;
+	const still = matchMedia('(prefers-reduced-motion: reduce)');
+	const PULL = 1;
+
+	let frame = 0;
+	let over = false;
+	let x = 50;
+	let y = 20;
+
+	const write = () => {
+		frame = 0;
+		style.setProperty('--glow-pull', String(over ? PULL : 0));
+		if (over) {
+			style.setProperty('--pointer-x', `${x}%`);
+			style.setProperty('--pointer-y', `${y}%`);
+		}
+	};
+
+	document.addEventListener('pointermove', (e) => {
+		if (e.pointerType !== 'mouse' || still.matches) return;
+		const now = e.target instanceof Element && !!e.target.closest('header');
+		if (!now && !over) return;
+		over = now;
+		x = (e.clientX / innerWidth) * 100;
+		y = (e.clientY / innerHeight) * 100;
+		frame ||= requestAnimationFrame(write);
+	});
+
+	document.documentElement.addEventListener('pointerleave', () => {
+		over = false;
+		frame ||= requestAnimationFrame(write);
+	});
+
+	/* Parallax: going down a page, the dots and the grain slide up after it,
+	   the grain slower than the dots, as if each were further back than the
+	   last. Read off whichever is scrolling, the window or the post's pane,
+	   and never the tree. The grain comes round to where it started every
+	   tile, so it can go on for ever; the dots stop at what their oversized
+	   layer still covers, which is more than any post asks of it. */
+	const DOTS_RATE = 0.05;
+	const NOISE_RATE = 0.025;
+	const NOISE_TILE = 128;
+	const DOTS_MOST = 500;
+
+	let scrolled = 0;
+	let shifting = 0;
+
+	const shift = () => {
+		shifting = 0;
+		const header = document.querySelector<HTMLElement>('header');
+		if (!header) return;
+		header.style.setProperty('--dots-shift', String(Math.min(scrolled * DOTS_RATE, DOTS_MOST)));
+		header.style.setProperty('--noise-shift', String((scrolled * NOISE_RATE) % NOISE_TILE));
+	};
+
+	document.addEventListener(
+		'scroll',
+		(e) => {
+			if (still.matches) return;
+			const from = e.target;
+			if (from === document) scrolled = scrollY;
+			else if (from instanceof Element && from.matches('.split-main')) scrolled = from.scrollTop;
+			else return;
+			shifting ||= requestAnimationFrame(shift);
+		},
+		{ capture: true, passive: true },
+	);
+
+	// A page comes in at its top.
+	document.addEventListener('astro:page-load', () => {
+		scrolled = 0;
+		shift();
+	});
+</script>
