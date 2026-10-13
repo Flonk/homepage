@@ -111,7 +111,7 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 				--viz-shadow: rgba(40, 30, 14, 0.55);
 				/* Minus the accent frame :root draws around the page, which sits
 				   outside body's box and would otherwise overflow the viewport. */
-				height: calc(100dvh - 2 * var(--page-border));
+				height: calc(100dvh - var(--page-border) - var(--frame-bottom));
 				overflow: hidden;
 			}
 

@@ -81,11 +81,27 @@ const { mode, current } = Astro.props;
 			--content-radius: 13px;
 		}
 		.split {
-			border-radius: var(--content-radius);
+			border-radius: var(--content-radius) var(--content-radius) 0 0;
 			/* Exactly the screen under the header, so the chrome is always all
-			   there, with the page scrolling inside it rather than the window. */
-			height: calc(100dvh - var(--header-height) - 2 * var(--page-border));
+			   there, with the page scrolling inside it rather than the window: in
+			   the pane that is showing, not this box, which only clips, so that the
+			   scrollbar is clipped to the rounded corners with everything else (a
+			   box's own scrollbar is drawn over its corners). */
+			height: calc(100dvh - var(--header-height) - var(--page-border) - var(--frame-bottom));
+			display: flex;
+			flex-direction: column;
+			overflow: hidden;
+		}
+		.split-list,
+		.split-main {
+			flex: 1 1 auto;
+			min-height: 0;
 			overflow-y: auto;
+			/* Holds what is placed absolutely inside it, as on a wide screen. */
+			position: relative;
+		}
+		.is-deck .split-main {
+			overflow: hidden;
 		}
 	}
 	.is-home .split-main {
@@ -150,7 +166,7 @@ const { mode, current } = Astro.props;
 			padding: var(--split-pad);
 			position: relative;
 			flex: none;
-			height: calc(100dvh - var(--header-height) - 2 * var(--page-border));
+			height: calc(100dvh - var(--header-height) - var(--page-border) - var(--frame-bottom));
 		}
 		.split-list,
 		.is-home .split-list {

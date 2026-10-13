@@ -74,19 +74,14 @@ import T3Mark from './T3Mark.astro';
 	   everything meant to be over it is positioned and comes after it, the
 	   header and the panes both.
 
-	   Out over the frame by its width, from the body it is placed in. On a
-	   narrow screen only as far down as the header, and so moving with it. */
+	   Out over the frame by its width, from the body it is placed in: the
+	   whole window, on a phone as anywhere, every page being one screen tall
+	   with its content scrolling inside it. */
 	.grain {
 		position: absolute;
-		inset: calc(-1 * var(--page-border));
+		inset: calc(-1 * var(--page-border)) calc(-1 * var(--page-border)) calc(-1 * var(--frame-bottom));
 		overflow: hidden;
 		pointer-events: none;
-	}
-	@media (max-width: 1099px) {
-		.grain {
-			bottom: auto;
-			height: calc(var(--header-height) + var(--page-border));
-		}
 	}
 	/* A fine grain of dots over the chrome, blended into it rather than laid on
 	   top: each dot takes its colour from what is under it, so the glow going
@@ -222,15 +217,17 @@ import T3Mark from './T3Mark.astro';
 			font-size: 0.875rem;
 			font-weight: 700;
 		}
-		/* With a title beside it, the button's own size and no wider, so as not
-		   to reach over the title. */
+		/* With a title beside it, on the left rather than in the middle, and its
+		   room to press kept short of the title. */
 		nav:has(.page-title:not(:empty)) h1 {
 			position: static;
 			transform: none;
 		}
 		nav:has(.page-title:not(:empty)) h1 a {
-			margin: 0;
-			padding: 0;
+			/* Room to press round the disc, out to the edge of the bar and short of
+			   the title, which keeps a rem clear of the disc. */
+			margin: -0.75rem;
+			padding: 0.75rem;
 		}
 	}
 	@media (min-width: 1100px) {

@@ -381,13 +381,22 @@ const covers = Object.fromEntries(
 		color: var(--gold);
 	}
 	/* The series are the one thing raised off the page: a shelf the full width
-	   of the screen, a flat panel edged above and below in its FLB, with a
-	   shadow under it. */
+	   of the screen, with a shadow under it, edged above and below in its FLB:
+	   white at a fifth laid over whatever is at the edge, its grain or one of
+	   its pictures, drawn over the shelf (::after) rather than round it. */
 	.home-sections > section.is-rail {
+		position: relative;
 		margin-inline: -1.25rem;
 		background: var(--panel);
-		border-block: 1px solid var(--edge-panel);
 		box-shadow: 0 6px 16px -4px rgb(0 0 0 / 0.6);
+	}
+	.home-sections > section.is-rail::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+		border-block: 1px solid var(--flb);
+		pointer-events: none;
 	}
 	.home-sections > section + section {
 		margin-top: 1.5rem;
