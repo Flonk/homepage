@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "textures": "node scripts/chrome-textures.mjs"
   },
   "dependencies": {
     "@astrojs/markdown-remark": "^7.2.4",
