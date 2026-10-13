@@ -25,6 +25,7 @@ const GAMUTS = ['sRGB', 'Display P3', 'Rec. 2020'];
 	import { contextFor, type Motion } from '../../lib/animate';
 	import { swatchCss, type Space, type Triple } from '../../lib/channels';
 	import { chaseAt } from '../../lib/easing';
+	import { eachPage } from '../../lib/page';
 	import { shuttleAt, sineAt } from '../../lib/shuttle';
 
 	type SlidersEl = HTMLElement & { sliders: { repaint(v: Triple): void } };
@@ -48,13 +49,16 @@ const GAMUTS = ['sRGB', 'Display P3', 'Rec. 2020'];
 		[0, 360],
 	];
 
-	const panel = document.querySelector<HTMLElement>('[data-anim-demo]');
-	const pace = panel?.querySelector<HTMLElement>('[data-pace]');
-	const gamut = panel?.querySelector<HTMLElement>('[data-gamut]');
-	const sliders = panel?.querySelector<SlidersEl>('[data-sliders]');
-	const swatch = panel?.querySelector<HTMLElement>('[data-swatch]');
+	// Once for every page it is on: see lib/page.ts.
+	eachPage((signal) => {
+		const panel = document.querySelector<HTMLElement>('[data-anim-demo]');
+		const pace = panel?.querySelector<HTMLElement>('[data-pace]');
+		const gamut = panel?.querySelector<HTMLElement>('[data-gamut]');
+		const sliders = panel?.querySelector<SlidersEl>('[data-sliders]');
+		const swatch = panel?.querySelector<HTMLElement>('[data-swatch]');
 
-	if (panel && pace && gamut && sliders && swatch) {
+		if (!panel || !pace || !gamut || !sliders || !swatch) return;
+
 		const ctx = contextFor(panel);
 		const bars = [...sliders.querySelectorAll<HTMLElement & { track: { set(i: number, v: number): void } }>(
 			'[data-viz-track]',
@@ -93,29 +97,35 @@ const GAMUTS = ['sRGB', 'Display P3', 'Rec. 2020'];
 				swatch.style.borderColor = edge;
 			},
 		};
-		ctx.add(walk);
+		const leave = [ctx.add(walk)];
 
 		/* The pill and the menu throw themselves, on the same clock the colour
 		   runs on — so a hand anywhere holds all three, and nothing changes
 		   underneath somebody who is looking at it. */
-		ctx.add({
-			at: (t) => Math.floor(t / SHOW) % 3,
-			apply: (v) => {
-				if (mine() || pacing === v) return;
-				pacing = v;
-				pace.dataset.at = String(v);
-			},
-		});
+		leave.push(
+			ctx.add({
+				at: (t) => Math.floor(t / SHOW) % 3,
+				apply: (v) => {
+					if (mine() || pacing === v) return;
+					pacing = v;
+					pace.dataset.at = String(v);
+				},
+			}),
+		);
 
-		ctx.add({
-			at: (t) => Math.floor(t / SHOW + 0.5) % SPACES.length,
-			apply: (v) => {
-				if (mine() || rows[v]?.getAttribute('aria-checked') === 'true') return;
-				// Through the menu's own press, so it moves its knob and tells
-				// anyone listening the same way a reader's press would.
-				rows[v]?.click();
-			},
-		});
+		leave.push(
+			ctx.add({
+				at: (t) => Math.floor(t / SHOW + 0.5) % SPACES.length,
+				apply: (v) => {
+					if (mine() || rows[v]?.getAttribute('aria-checked') === 'true') return;
+					// Through the menu's own press, so it moves its knob and tells
+					// anyone listening the same way a reader's press would.
+					rows[v]?.click();
+				},
+			}),
+		);
+		// The clock is the panel's, and goes on after the page unless told.
+		signal.addEventListener('abort', () => leave.forEach((drop) => drop()), { once: true });
 
 		gamut.addEventListener('choice:input', (event) => {
 			const { index } = (event as CustomEvent).detail;
@@ -128,7 +138,7 @@ const GAMUTS = ['sRGB', 'Display P3', 'Rec. 2020'];
 			claim();
 		});
 		gamut.addEventListener('click', claim);
-	}
+	});
 </script>
 
 <style>

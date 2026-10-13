@@ -55,13 +55,19 @@ const { mode, current } = Astro.props;
 	}
 
 	/* The page's own ground, below the header: the body has none, so that
-	   the chrome and its grain show through it (see Header). Positioned, so it
+	   the chrome and its grain show through it (see global.css). Positioned, so it
 	   paints over that grain, and taking all the height under the header. On
-	   a wide screen the gutter takes its place. */
+	   a wide screen the gutter takes its place.
+
+	   Its grain is laid on the box, never fixed to the window. The box never
+	   moves, its panes scrolling inside it, so fixed would look no different;
+	   but a phone draws a fixed background as a layer of its own, and through
+	   a page change that layer was seen bare for a frame or two, the whole
+	   page gone to grey static. */
 	.split {
 		position: relative;
 		flex: 1 0 auto;
-		background: url('/assets/grain.png') 0 0 / 128px 128px fixed, var(--bg);
+		background: url('/assets/grain.png') 0 0 / 128px 128px, var(--bg);
 		image-rendering: pixelated;
 	}
 
@@ -85,19 +91,17 @@ const { mode, current } = Astro.props;
 			display: none;
 		}
 		/* The page under the header a sheet with its corners rounded, as the
-		   content is on a wide screen, the chrome showing in the corners and its
-		   ring (:root::after) following. Set on the root, which the ring is
-		   drawn from. */
+		   content is on a wide screen: rounded by the chrome laid over them
+		   (:root::before), and its ring (:root::after) following. Set on the
+		   root, which both are drawn from. */
 		:global(:root:has(.split)) {
 			--content-radius: 13px;
 		}
 		.split {
-			border-radius: var(--content-radius) var(--content-radius) 0 0;
 			/* Exactly the screen under the header, so the chrome is always all
 			   there, with the page scrolling inside it rather than the window: in
-			   the pane that is showing, not this box, which only clips, so that the
-			   scrollbar is clipped to the rounded corners with everything else (a
-			   box's own scrollbar is drawn over its corners). */
+			   the pane that is showing, not this box, which only clips. The
+			   scrollbar runs up under the chrome's corner with everything else. */
 			height: calc(100dvh - var(--header-height) - var(--page-border) - var(--frame-bottom));
 			display: flex;
 			flex-direction: column;
@@ -146,9 +150,9 @@ const { mode, current } = Astro.props;
 		/* The content's corners are rounded a little under concentric with the
 		   cards in it, set by eye: the full radius and gap reads as rounder than
 		   the cards, an outer corner with that much room round it. The chrome
-		   behind the page shows in the corners, so it seems to curve in round
-		   the content, and its ring (see :root::after) follows. Set on the root,
-		   which the ring is drawn from. */
+		   is laid over the page's corners (:root::before), so it seems to curve
+		   in round the content, and its ring (see :root::after) follows. Set on
+		   the root, which both are drawn from. */
 		:global(:root:has(.split)) {
 			/* In px rather than a bare 0, which would make every calc() it is added
 			   to a length in invalid: the divider's place among them. */
@@ -172,9 +176,8 @@ const { mode, current } = Astro.props;
 			grid-template-columns: min(var(--split, 30%), var(--split-max, 30rem)) minmax(0, 1fr);
 			column-gap: var(--split-gap);
 			background: var(--bg);
-			border-radius: var(--content-radius);
-			/* The panes run right up to the chrome, so their outer corners are cut
-			   to the content's own curve rather than their own. */
+			/* Square, the chrome rounding it (see above); the panes run right up
+			   to it, under the chrome's corners. */
 			overflow: hidden;
 			box-sizing: border-box;
 			padding: var(--split-pad);

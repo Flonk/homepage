@@ -169,9 +169,14 @@
   /* A rem is 16px here whatever the browser's default text size is set to,
      so the site is laid out the same everywhere; zooming still scales it. */
   font-size: 16px;
-  /* Fixed set for every layer, not only the last, so they all line up. */
-  background: var(--chrome);
+  /* The chrome, and its grain over it (see Grain, below). Fixed set for
+     every layer, not only the last, so they all line up. */
+  background:
+    url('/assets/chrome-noise.png') var(--noise-x) var(--noise-y) / 128px 128px,
+    url('/assets/chrome-dots.png') var(--dots-x) var(--dots-y) / 26px 26px,
+    var(--chrome);
   background-attachment: fixed;
+  background-blend-mode: soft-light, overlay, normal, normal;
   min-height: 100vh;
   box-sizing: border-box;
 }
@@ -256,7 +261,12 @@
   /* The page is one screen tall and never itself scrolls, so it never
      bounces past its end either and shows the chrome under it as it would. */
   overscroll-behavior: none;
-  animation: chrome-turn 78s steps(780) infinite;
+  /* All three stepped ten times a second, from the same moment, so they step
+     together and the chrome is painted again ten times a second, not thirty. */
+  animation:
+    chrome-turn 78s steps(780) infinite,
+    grain-drift 1.6s steps(16) infinite,
+    grain-creep 240s steps(2400) infinite;
   transition:
     --glow-pull 1.6s ease,
     --pointer-x 0.15s ease-out,
@@ -275,6 +285,60 @@
   }
   to {
     --chrome-turn: 470deg;
+  }
+}
+
+/* Grain: a fine grid of dots over the chrome, and over that a noise felt more
+   than seen, both blended into it rather than laid on top, so each dot takes
+   its colour from what is under it and the glow going round lights them up as
+   it passes. Two tiles in the chrome's own background (see :root), drawn four
+   times over so they are sharp on any screen.
+
+   They were layers once, the dots turned 17° on a sheet cut three times the
+   size of the window so that, turned, it still covered it. On a phone those
+   sheets took the best part of a hundred megabytes to draw, and through a
+   page change the phone would run short and leave bands of the page out for
+   a frame. As background they cost nothing to keep. The turn is in the tile:
+   16.7°, three in ten, which is the nearest to 17 that repeats in a tile of
+   any size, here 26px with 109 dots in it.
+
+   The dots creep along their own grid by one dot in 1.6 seconds, and the
+   noise the other way, up and to the left, two tiles across for one up in
+   four minutes; both too fine to see go. Registered so they can be animated,
+   and kept to the root, where nothing reads them. */
+@property --dots-x {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 0px;
+}
+@property --dots-y {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 0px;
+}
+@property --noise-x {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 0px;
+}
+@property --noise-y {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 0px;
+}
+
+/* One step of the grid, (10, 3) at its pitch of 26/√109. */
+@keyframes grain-drift {
+  to {
+    --dots-x: 2.3853px;
+    --dots-y: 0.7156px;
+  }
+}
+
+@keyframes grain-creep {
+  to {
+    --noise-x: -256px;
+    --noise-y: -128px;
   }
 }
 
@@ -362,6 +426,40 @@ body {
   pointer-events: none;
 }
 
+/* The page's rounded corners, which are the chrome's: the page itself is
+   square, and the chrome is laid over its corners outside the curve, from
+   the root like the ring and fixed like it, so the two meet without a seam.
+
+   The page was rounded once, as a box with its corners cut, and a phone
+   (Chrome on a Pixel, through a page change) would sometimes leave a rounded
+   box with a picture in its ground out of the frame altogether: the chrome
+   showed across the whole screen for a few frames. A square page never was;
+   so it is square, and only looks otherwise.
+
+   One quarter of a circle cut out of a square of chrome at each corner, the
+   foot's two only where the page has a frame along the foot. */
+:root::before {
+  --r: var(--content-radius);
+  --foot: var(--content-radius);
+  content: '';
+  position: absolute;
+  inset: calc(var(--page-border) + var(--chrome-top)) var(--page-border) var(--frame-bottom);
+  /* Under the ring, which follows the curve just outside it. */
+  z-index: 10;
+  background: var(--chrome);
+  background-attachment: fixed;
+  mask:
+    radial-gradient(circle at 100% 100%, transparent calc(var(--r) - 0.5px), #000 calc(var(--r) + 0.5px)) 0 0 /
+      var(--r) var(--r) no-repeat,
+    radial-gradient(circle at 0 100%, transparent calc(var(--r) - 0.5px), #000 calc(var(--r) + 0.5px)) 100% 0 /
+      var(--r) var(--r) no-repeat,
+    radial-gradient(circle at 100% 0, transparent calc(var(--foot) - 0.5px), #000 calc(var(--foot) + 0.5px)) 0 100% /
+      var(--foot) var(--foot) no-repeat,
+    radial-gradient(circle at 0 0, transparent calc(var(--foot) - 0.5px), #000 calc(var(--foot) + 0.5px)) 100% 100% /
+      var(--foot) var(--foot) no-repeat;
+  pointer-events: none;
+}
+
 /* On a narrow screen the page runs off the foot of the window, square there,
    with no frame or ring along the bottom: a phone's own rounded corners do
    that part of the framing, and two lots of rounding one inside the other
@@ -369,6 +467,9 @@ body {
 @media (max-width: 1099px) {
   :root {
     --frame-bottom: 0px;
+  }
+  :root::before {
+    --foot: 0px;
   }
   :root::after {
     border-bottom: 0;

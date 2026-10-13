@@ -2,11 +2,6 @@
 import T3Mark from './T3Mark.astro';
 ---
 
-<div class="grain" aria-hidden="true" transition:persist="chrome-grain">
-	<span class="dots"></span>
-	<span class="wave"></span>
-	<span class="noise"></span>
-</div>
 <header transition:persist="site-header">
 	<nav>
 		<h1>
@@ -43,7 +38,7 @@ import T3Mark from './T3Mark.astro';
 <style>
 	header {
 		view-transition-name: site-header;
-		/* Out over the frame at the top and both sides, so the dots run to the
+		/* Out over the frame at the top and both sides, so the bar runs to the
 		   edge of the window and the frame only goes round the page below. As
 		   much taller as it is raised, and padded down by the same, so the page
 		   under it and everything in it stays where it was. */
@@ -51,8 +46,8 @@ import T3Mark from './T3Mark.astro';
 		padding: var(--page-border) calc(1em + var(--page-border)) 0;
 		color: #000;
 		/* Clear: the chrome is painted behind the whole page (see --chrome in
-		   global.css) and its grain over that (see .grain), so the bar is the
-		   chrome showing through. */
+		   global.css, its grain and all), so the bar is the chrome showing
+		   through. */
 		/* Same height as a deck post's T3 square. */
 		height: calc(var(--header-height) + var(--page-border));
 		display: flex;
@@ -60,117 +55,6 @@ import T3Mark from './T3Mark.astro';
 		box-sizing: border-box;
 		position: relative;
 		overflow: hidden;
-	}
-	/* The chrome's grain: the dots, their wave and the noise, over the chrome
-	   wherever it shows, the bar and the frame and the corners curving round
-	   the page. One layer across the whole window behind everything else,
-	   which the header and the page then cover where they are.
-
-	   Two things decide how it is built. Its layers blend with the chrome
-	   under them, and a blend only reaches as far as the nearest stacking
-	   context: so the layer is placed absolutely, which makes none, and never
-	   fixed, which would make one and leave the dots blending with nothing.
-	   And it is out of the flow, so it paints after the page's own ground;
-	   everything meant to be over it is positioned and comes after it, the
-	   header and the panes both.
-
-	   Out over the frame by its width, from the body it is placed in: the
-	   whole window, on a phone as anywhere, every page being one screen tall
-	   with its content scrolling inside it. */
-	.grain {
-		position: absolute;
-		inset: calc(-1 * var(--page-border)) calc(-1 * var(--page-border)) calc(-1 * var(--frame-bottom));
-		overflow: hidden;
-		pointer-events: none;
-	}
-	/* A fine grain of dots over the chrome, blended into it rather than laid on
-	   top: each dot takes its colour from what is under it, so the glow going
-	   round lights them up as it passes and the deep orange all but hides them.
-	   The grid is set at 17° off square, which a background cannot be on its
-	   own, so the layer is cut oversize and turned: by enough that, turned,
-	   it still covers a window of any usual shape. */
-	.dots,
-	.wave {
-		--grid: 2.5px;
-		position: absolute;
-		inset: calc(-60% - 120px) -25%;
-		transform: rotate(17deg);
-		mix-blend-mode: overlay;
-		animation: grain-drift 1.6s steps(16) infinite;
-	}
-	.dots {
-		background: radial-gradient(circle, rgb(255 255 255 / 0.55) 0.4px, transparent 0.7px) 0 0 /
-			var(--grid) var(--grid);
-	}
-	/* The wave: the same grid with every dot swollen and brighter, seen only
-	   through a soft band that sweeps across once in a while, so the grain
-	   rises as it passes and settles behind it. Drifting with the grid it sits
-	   on, so each swollen dot is one of the dots below. */
-	.wave {
-		background: radial-gradient(circle, rgb(255 255 255 / 0.9) 0.65px, transparent 1px) 0 0 /
-			var(--grid) var(--grid);
-		mask: linear-gradient(90deg, transparent, #000 45% 55%, transparent) no-repeat -70% 0 / 35% 100%;
-		animation:
-			grain-drift 1.6s steps(16) infinite,
-			grain-wave 60s ease-in-out 6s infinite backwards;
-	}
-	/* One grid step along the grid's own axis, so the loop has no seam: in
-	   sixteen steps of a sixth of a pixel, ten a second, too fine to see go
-	   and a sixth of the frames a smooth slide would cost. The noise below is
-	   stepped the same. */
-	@keyframes grain-drift {
-		to {
-			transform: rotate(17deg) translateX(var(--grid));
-		}
-	}
-	/* Across in eight seconds, then quiet for the rest of the minute: the first
-	   one six seconds after the page loads, and one a minute after that. */
-	@keyframes grain-wave {
-		0% {
-			mask-position: -70% 0;
-		}
-		13%,
-		100% {
-			mask-position: 170% 0;
-		}
-	}
-	/* Held still while nobody is there: see the script below. */
-	:global(.is-idle) :is(.dots, .wave, .noise) {
-		animation-play-state: paused;
-	}
-	@media (prefers-reduced-motion: reduce) {
-		.dots,
-		.wave,
-		.noise {
-			animation: none;
-		}
-		.wave {
-			display: none;
-		}
-	}
-	/* Grain over the chrome: a tile of grey noise, every pixel its own,
-	   blended in so softly that it is felt more than seen. Over the dots and
-	   under the name. It creeps the other way from the dots, up and to the
-	   left, though not straight back along their line: two tiles across for
-	   one up, which brings the tile round onto itself so the loop has no seam.
-	   Cut that much oversize to the right and below, so that moving it never
-	   uncovers an edge, and moved as a whole, which costs no repaint. */
-	.noise {
-		--tile: 128px;
-		position: absolute;
-		inset: 0 calc(-2 * var(--tile)) calc(-1 * var(--tile)) 0;
-		background: url('/assets/noise.png') 0 0 / var(--tile) var(--tile);
-		/* Sharp at any density: one noise pixel a block of screen ones on a
-		   dense screen, not smoothed into a blur. */
-		image-rendering: pixelated;
-		mix-blend-mode: soft-light;
-		opacity: 0.4;
-		animation: noise-creep 240s steps(2400) infinite;
-	}
-	@keyframes noise-creep {
-		to {
-			transform: translate(calc(-2 * var(--tile)), calc(-1 * var(--tile)));
-		}
 	}
 	nav {
 		position: relative;
@@ -387,35 +271,6 @@ import T3Mark from './T3Mark.astro';
 	document.addEventListener('scroll', seen, { capture: true, passive: true });
 	// A page swapped in starts awake: the swap takes the root's class with it.
 	document.addEventListener('astro:page-load', seen);
-
-	/* The grain is kept from one page to the next, which the router does by
-	   taking it out of the old page and putting it into the new one; and an
-	   element put back in starts its animations over. The noise would jump
-	   back to where it began on every click, seen as a drift through the
-	   cross-fade. So where each of its animations has got to is noted just
-	   before the swap and put back just after, by animation and by layer.
-
-	   Only where it is needed. A browser that can move an element without
-	   taking it out (moveBefore, which the router uses where there is one)
-	   keeps its animations going as they were, and there asking after them
-	   would only make it work out the new page's style and layout early, in
-	   the middle of the swap, for nothing. */
-	if (!('moveBefore' in Element.prototype)) {
-		const grainAnimations = () =>
-			document.querySelector('.grain')?.getAnimations({ subtree: true }) ?? [];
-		const keyOf = (animation: Animation) =>
-			`${(animation as CSSAnimation).animationName} ${(animation.effect as KeyframeEffect | null)?.target?.className}`;
-		let heldAt = new Map<string, CSSNumberish | null>();
-		document.addEventListener('astro:before-swap', () => {
-			heldAt = new Map(grainAnimations().map((animation) => [keyOf(animation), animation.currentTime]));
-		});
-		document.addEventListener('astro:after-swap', () => {
-			for (const animation of grainAnimations()) {
-				const at = heldAt.get(keyOf(animation));
-				if (at != null) animation.currentTime = at;
-			}
-		});
-	}
 
 	// The open page's title and what it belongs to into the header, or nothing
 	// where it has none.
