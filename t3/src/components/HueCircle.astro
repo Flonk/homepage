@@ -222,72 +222,78 @@ const face = (wheel: string, edge: string) =>
 
 <script>
 	import { contextFor, type Motion } from '../lib/animate';
+	import { eachPage } from '../lib/page';
 
 	/** How long each side of the switch is held before it flips. */
 	const EVERY = 3;
 
-	/* One hoisted script for every wheel on the page: two of them would
-	   otherwise share the first one's button. */
-	for (const root of document.querySelectorAll<HTMLElement>('[data-hue-circle]')) {
-		const button = root.querySelector<HTMLButtonElement>('[data-grey-toggle]');
-		if (!button) continue;
+	eachPage((signal) => {
+		/* One hoisted script for every wheel on the page: two of them would
+		   otherwise share the first one's button. */
+		for (const root of document.querySelectorAll<HTMLElement>('[data-hue-circle]')) {
+			const button = root.querySelector<HTMLButtonElement>('[data-grey-toggle]');
+			if (!button) continue;
 
-		const setGrey = (on: boolean) => {
-			// Called every frame by the motion below, so it has to be cheap when
-			// nothing has changed: writing a dataset property invalidates style
-			// whether or not the value differs.
-			if ((root.dataset.grey === 'true') === on) return;
-			root.dataset.grey = String(on);
-			button.setAttribute('aria-checked', String(on));
-			button.dataset.at = on ? '1' : '0';
-		};
+			const setGrey = (on: boolean) => {
+				// Called every frame by the motion below, so it has to be cheap when
+				// nothing has changed: writing a dataset property invalidates style
+				// whether or not the value differs.
+				if ((root.dataset.grey === 'true') === on) return;
+				root.dataset.grey = String(on);
+				button.setAttribute('aria-checked', String(on));
+				button.dataset.at = on ? '1' : '0';
+			};
 
-		/* A square wave: three seconds of colour, three of grey. The card is
-		   making a claim about lightness that only the grey disc can settle, and
-		   a reader who never presses anything should still get to see it settled
-		   — so the switch presses itself, and the cross-fade in the CSS is what
-		   makes the two readings comparable rather than two separate pictures. */
-		const flip: Motion = {
-			at: (t) => (Math.floor(t / EVERY) % 2 === 0 ? 0 : 1),
-			apply: (v) => setGrey(v >= 0.5),
-			/* Back on at the start of whichever side the reader last chose, so
-			   they get a full turn of it. Resuming mid-side would flip the switch
-			   under them a moment after they let go, which reads as the press not
-			   having taken. */
-			entry: (v) => (v >= 0.5 ? EVERY : 0),
-		};
+			/* A square wave: three seconds of colour, three of grey. The card is
+			   making a claim about lightness that only the grey disc can settle, and
+			   a reader who never presses anything should still get to see it settled
+			   — so the switch presses itself, and the cross-fade in the CSS is what
+			   makes the two readings comparable rather than two separate pictures. */
+			const flip: Motion = {
+				at: (t) => (Math.floor(t / EVERY) % 2 === 0 ? 0 : 1),
+				apply: (v) => setGrey(v >= 0.5),
+				/* Back on at the start of whichever side the reader last chose, so
+				   they get a full turn of it. Resuming mid-side would flip the switch
+				   under them a moment after they let go, which reads as the press not
+				   having taken. */
+				entry: (v) => (v >= 0.5 ? EVERY : 0),
+			};
 
-		const ctx = contextFor(root);
-		ctx.add(flip);
+			const ctx = contextFor(root);
+			const leave = ctx.add(flip);
+			signal.addEventListener('abort', leave, { once: true });
 
-		button.addEventListener('click', () => {
-			const on = root.dataset.grey !== 'true';
-			setGrey(on);
-			// What the reader just did, then hands off: the motion picks up from
-			// their choice rather than from where its own clock had got to.
-			ctx.note(flip, on ? 1 : 0);
-			ctx.hold(Number(root.dataset.idleResume) || 6);
-		});
-
-		/* A deck builds every phase up front and leaves the ones it is not
-		   showing in the page, so a wheel off stage would otherwise flip away to
-		   itself. Nothing runs until it is on.
-
-		   Watched as an attribute rather than listened for as viz:enter, because
-		   a deck arriving on a deep link sets the starting phase up directly and
-		   only fires the events on later changes — and whether that happens
-		   before or after this script is a question about bundle order, which is
-		   not a thing to hang a running visualization on. The attribute is true
-		   whichever way round they run. */
-		const phase = root.closest('[data-viz-phase]');
-		if (phase) {
-			const sync = () =>
-				phase.getAttribute('data-viz-active') === 'true' ? ctx.start() : ctx.stop();
-			new MutationObserver(sync).observe(phase, {
-				attributes: true,
-				attributeFilter: ['data-viz-active'],
+			button.addEventListener('click', () => {
+				const on = root.dataset.grey !== 'true';
+				setGrey(on);
+				// What the reader just did, then hands off: the motion picks up from
+				// their choice rather than from where its own clock had got to.
+				ctx.note(flip, on ? 1 : 0);
+				ctx.hold(Number(root.dataset.idleResume) || 6);
 			});
-			sync();
+
+			/* A deck builds every phase up front and leaves the ones it is not
+			   showing in the page, so a wheel off stage would otherwise flip away to
+			   itself. Nothing runs until it is on.
+
+			   Watched as an attribute rather than listened for as viz:enter, because
+			   a deck arriving on a deep link sets the starting phase up directly and
+			   only fires the events on later changes — and whether that happens
+			   before or after this script is a question about bundle order, which is
+			   not a thing to hang a running visualization on. The attribute is true
+			   whichever way round they run. */
+			const phase = root.closest('[data-viz-phase]');
+			if (phase) {
+				const sync = () =>
+					phase.getAttribute('data-viz-active') === 'true' ? ctx.start() : ctx.stop();
+				const watch = new MutationObserver(sync);
+				watch.observe(phase, {
+					attributes: true,
+					attributeFilter: ['data-viz-active'],
+				});
+				signal.addEventListener('abort', () => watch.disconnect(), { once: true });
+				sync();
+			}
 		}
-	}
+	});
 </script>

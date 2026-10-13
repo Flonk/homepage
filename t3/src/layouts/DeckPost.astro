@@ -2,14 +2,18 @@
 import type { CollectionEntry } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import FormattedDate from '../components/FormattedDate.astro';
+import Header from '../components/Header.astro';
+import SplitPane from '../components/SplitPane.astro';
 
 type SeriesLink = { href: string; part: number; title: string };
 type Props = CollectionEntry<'blog'>['data'] & {
+	id?: string;
+	file?: string;
 	prevPart?: SeriesLink;
 	nextPart?: SeriesLink;
 };
 
-const { title, description, pubDate, series, ground, prevPart, nextPart } = Astro.props;
+const { id, title, description, pubDate, series, ground, prevPart, nextPart } = Astro.props;
 ---
 
 <html lang="en">
@@ -22,57 +26,65 @@ const { title, description, pubDate, series, ground, prevPart, nextPart } = Astr
 	</head>
 
 	<body class:list={['deck-page', ground === 'dark' && 'deck-dark']}>
-		{/* No site header here — the deck is a full-screen reading surface, so the
-		    only chrome is the accent frame :root draws and the home mark below. */}
-		<main class="deck-main">
-			<div class="deck-head">
-				<a class="deck-home" href="/" aria-label="Back to the home page">T3</a>
-				<div class="deck-headings">
-					<div class="deck-meta">
-						{series && <span class="deck-series">{series}</span>}
-						<span class="deck-date"><FormattedDate date={pubDate} /></span>
+		{/* On a narrow screen there is no site header here: the deck is a
+		    full-screen reading surface, and the only chrome is the accent frame
+		    :root draws and the home mark below. On a wide one it opens in the
+		    editor like any other post, beside the tree and under the header,
+		    which takes over from the home mark. */}
+		<div class="deck-site-header">
+			<Header />
+		</div>
+		<SplitPane mode="deck" current={id}>
+			<main class="deck-main">
+				<div class="deck-head">
+					<a class="deck-home" href="/" aria-label="Back to the home page">T3</a>
+					<div class="deck-headings">
+						<div class="deck-meta">
+							{series && <span class="deck-series">{series}</span>}
+							<span class="deck-date"><FormattedDate date={pubDate} /></span>
+						</div>
+						<h1 class="deck-title">{title}</h1>
 					</div>
-					<h1 class="deck-title">{title}</h1>
 				</div>
-			</div>
-
-			<!-- Every card renders into these two areas; only the active one shows. -->
-			<div class="deck" data-deck>
-				<div class="deck-ground" aria-hidden="true"></div>
-				<slot />
-			</div>
-
-			<nav class="deck-nav" aria-label="Card navigation">
-				{/* At the ends of the deck the arrows have nowhere left to go, which
-				    is exactly where the rest of the series is. Real links rather
-				    than buttons that navigate, so they open in a new tab, show their
-				    target on hover, and are read as links. */}
-				{prevPart && (
-					<a class="deck-arrow deck-jump" data-deck-jump-prev href={prevPart.href} hidden>
-						&#8249; Part {prevPart.part}
-					</a>
-				)}
-				<button type="button" class="deck-arrow" data-deck-prev aria-label="Previous card">
-					&#8249;
-				</button>
-				{/* A dot per card stops scaling somewhere around a dozen; the count
-				    reads the same at five cards or fifty. */}
-				<span class="deck-counter" data-deck-counter aria-live="polite"></span>
-				<button type="button" class="deck-arrow" data-deck-next aria-label="Next card">
-					&#8250;
-				</button>
-				{nextPart && (
-					<a
-						class="deck-arrow deck-jump deck-jump-on"
-						data-deck-jump-next
-						href={nextPart.href}
-						hidden
-					>
-						Go to part {nextPart.part} &#8250;
-					</a>
-				)}
-			</nav>
-		</main>
+	
+				<!-- Every card renders into these two areas; only the active one shows. -->
+				<div class="deck" data-deck>
+					<div class="deck-ground" aria-hidden="true"></div>
+					<slot />
+				</div>
+	
+				<nav class="deck-nav" aria-label="Card navigation">
+					{/* At the ends of the deck the arrows have nowhere left to go, which
+					    is exactly where the rest of the series is. Real links rather
+					    than buttons that navigate, so they open in a new tab, show their
+					    target on hover, and are read as links. */}
+					{prevPart && (
+						<a class="deck-arrow deck-jump" data-deck-jump-prev href={prevPart.href} hidden>
+							&#8249; Part {prevPart.part}
+						</a>
+					)}
+					<button type="button" class="deck-arrow" data-deck-prev aria-label="Previous card">
+						&#8249;
+					</button>
+					{/* A dot per card stops scaling somewhere around a dozen; the count
+					    reads the same at five cards or fifty. */}
+					<span class="deck-counter" data-deck-counter aria-live="polite"></span>
+					<button type="button" class="deck-arrow" data-deck-next aria-label="Next card">
+						&#8250;
+					</button>
+					{nextPart && (
+						<a
+							class="deck-arrow deck-jump deck-jump-on"
+							data-deck-jump-next
+							href={nextPart.href}
+							hidden
+						>
+							Go to part {nextPart.part} &#8250;
+						</a>
+					)}
+				</nav>
+			</main>
+		</SplitPane>
 
 		<style>
 			/* The deck fills the viewport exactly. A definite `height` rather than
@@ -123,6 +135,23 @@ const { title, description, pubDate, series, ground, prevPart, nextPart } = Astr
 				width: 100%;
 				margin: 0;
 				padding: 0;
+				/* A visualization sized in cqw measures the deck, which is the whole
+				   window on a phone and the right pane beside the tree. */
+				container-type: inline-size;
+			}
+
+			.deck-site-header {
+				display: none;
+			}
+
+			@media (min-width: 1100px) {
+				.deck-site-header {
+					display: block;
+					flex: none;
+				}
+				.deck-head .deck-home {
+					display: none;
+				}
 			}
 
 			/* No padding of its own — the home mark butts against the page edge and
@@ -155,7 +184,7 @@ const { title, description, pubDate, series, ground, prevPart, nextPart } = Astr
 				place-items: center;
 				border-radius: 0;
 				background-color: var(--accent);
-				color: var(--nordbg);
+				color: var(--bg);
 				font-family: var(--font-mono);
 				font-size: 1rem;
 				font-weight: 700;
@@ -169,7 +198,7 @@ const { title, description, pubDate, series, ground, prevPart, nextPart } = Astr
 
 			.deck-home:hover,
 			.deck-home:focus-visible {
-				color: var(--nordbg);
+				color: var(--bg);
 				filter: brightness(1.15);
 			}
 
@@ -247,7 +276,7 @@ const { title, description, pubDate, series, ground, prevPart, nextPart } = Astr
 				gap: 1rem;
 				padding: 0.6rem 1rem;
 				border-top: 1px solid var(--edge-panel);
-				background-color: color-mix(in srgb, var(--nord0) 35%, transparent);
+				background-color: color-mix(in srgb, var(--panel) 35%, transparent);
 			}
 
 			.deck-arrow {
@@ -289,13 +318,13 @@ const { title, description, pubDate, series, ground, prevPart, nextPart } = Astr
 			.deck-jump-on {
 				background-color: var(--accent);
 				border-color: var(--accent);
-				color: var(--nordbg);
+				color: var(--bg);
 				font-weight: 700;
 			}
 
 			.deck-jump-on:hover,
 			.deck-jump-on:focus-visible {
-				color: var(--nordbg);
+				color: var(--bg);
 				filter: brightness(1.15);
 			}
 
@@ -327,259 +356,267 @@ const { title, description, pubDate, series, ground, prevPart, nextPart } = Astr
 		</style>
 
 		<script>
+			import { eachPage } from '../lib/page';
+
 			type CardEl = HTMLElement;
 
-			const deck = document.querySelector<HTMLElement>('[data-deck]');
-			const cards = deck
-				? Array.from(deck.querySelectorAll<CardEl>('[data-card]'))
-				: [];
+			// Once for every page with a deck, which under the client router is not the
+			// same as once: see lib/page.ts.
+			eachPage((signal) => {
 
-			if (deck && cards.length) {
-				const prevBtn = document.querySelector<HTMLButtonElement>('[data-deck-prev]');
-				const nextBtn = document.querySelector<HTMLButtonElement>('[data-deck-next]');
-				const jumpPrev = document.querySelector<HTMLElement>('[data-deck-jump-prev]');
-				const jumpNext = document.querySelector<HTMLElement>('[data-deck-jump-next]');
-				const counter = document.querySelector<HTMLElement>('[data-deck-counter]');
-
-				let index = 0;
-
-				/* ---- deep links ---------------------------------------------------
-				   The card number lives in the fragment, so any card can be linked
-				   to directly. replaceState rather than pushState: a deck can run to
-				   twenty cards, and making Back walk out of it one card at a time
-				   would trap the reader inside the post. */
-				const clamp = (n: number) => Math.max(0, Math.min(cards.length - 1, n));
-
-				const fromHash = () => {
-					const n = Number(location.hash.slice(1));
-					return Number.isInteger(n) && n > 0 ? clamp(n - 1) : null;
-				};
-
-				function syncHash() {
-					// Card one is the post itself, and keeps the bare URL.
-					const base = location.pathname + location.search;
-					history.replaceState(null, '', index === 0 ? base : `${base}#${index + 1}`);
-				}
-
-				const linked = fromHash();
-				if (linked !== null) index = linked;
-
-				/* ---- the visualization ------------------------------------------
-				   A card contributes parameters, not a viz of its own. Anything it
-				   does not mention it inherits from the card before it, which makes
-				   "leave it exactly as it is" the default and the cheapest thing
-				   that can happen on a card change. Resolving the chain once, going
-				   forward, means a card looks the same whichever direction you
-				   arrive from. */
-				const stage = deck.querySelector<HTMLElement>('[data-viz-stage]');
-				const phases = stage
-					? Array.from(stage.querySelectorAll<HTMLElement>('[data-viz-phase]'))
-					: [];
-				/* Overlays differ from phases in that they do not replace the viz,
-				   they sit over it — so any number can be declared but only the one
-				   a card names is shown, and whatever is underneath keeps running. */
-				const overlays = stage
-					? Array.from(stage.querySelectorAll<HTMLElement>('[data-viz-overlay]'))
+				const deck = document.querySelector<HTMLElement>('[data-deck]');
+				const cards = deck
+					? Array.from(deck.querySelectorAll<CardEl>('[data-card]'))
 					: [];
 
-				const vizPlan = (() => {
-					// Seeded with the deck's starting phase, so the set is never
-					// missing one. Complete sets are what make going backwards work:
-					// card four still has to know it wants the cube, even though it
-					// was card five that switched away to something else.
-					let acc: Record<string, unknown> = phases.length
-						? { phase: phases[0].dataset.vizPhase }
-						: {};
-					return cards.map((card) => {
-						// Merged onto what came before, not substituted for it, so a
-						// card can change one parameter without restating the rest.
-						if (card.dataset.vizProps) {
-							acc = { ...acc, ...JSON.parse(card.dataset.vizProps) };
+				if (deck && cards.length) {
+					const prevBtn = document.querySelector<HTMLButtonElement>('[data-deck-prev]');
+					const nextBtn = document.querySelector<HTMLButtonElement>('[data-deck-next]');
+					const jumpPrev = document.querySelector<HTMLElement>('[data-deck-jump-prev]');
+					const jumpNext = document.querySelector<HTMLElement>('[data-deck-jump-next]');
+					const counter = document.querySelector<HTMLElement>('[data-deck-counter]');
+
+					let index = 0;
+
+					/* ---- deep links ---------------------------------------------------
+					   The card number lives in the fragment, so any card can be linked
+					   to directly. replaceState rather than pushState: a deck can run to
+					   twenty cards, and making Back walk out of it one card at a time
+					   would trap the reader inside the post. */
+					const clamp = (n: number) => Math.max(0, Math.min(cards.length - 1, n));
+
+					const fromHash = () => {
+						const n = Number(location.hash.slice(1));
+						return Number.isInteger(n) && n > 0 ? clamp(n - 1) : null;
+					};
+
+					function syncHash() {
+						// Card one is the post itself, and keeps the bare URL.
+						const base = location.pathname + location.search;
+						// The router keeps its own record in the entry's state, so that stays.
+						history.replaceState(history.state, '', index === 0 ? base : `${base}#${index + 1}`);
+					}
+
+					const linked = fromHash();
+					if (linked !== null) index = linked;
+
+					/* ---- the visualization ------------------------------------------
+					   A card contributes parameters, not a viz of its own. Anything it
+					   does not mention it inherits from the card before it, which makes
+					   "leave it exactly as it is" the default and the cheapest thing
+					   that can happen on a card change. Resolving the chain once, going
+					   forward, means a card looks the same whichever direction you
+					   arrive from. */
+					const stage = deck.querySelector<HTMLElement>('[data-viz-stage]');
+					const phases = stage
+						? Array.from(stage.querySelectorAll<HTMLElement>('[data-viz-phase]'))
+						: [];
+					/* Overlays differ from phases in that they do not replace the viz,
+					   they sit over it — so any number can be declared but only the one
+					   a card names is shown, and whatever is underneath keeps running. */
+					const overlays = stage
+						? Array.from(stage.querySelectorAll<HTMLElement>('[data-viz-overlay]'))
+						: [];
+
+					const vizPlan = (() => {
+						// Seeded with the deck's starting phase, so the set is never
+						// missing one. Complete sets are what make going backwards work:
+						// card four still has to know it wants the cube, even though it
+						// was card five that switched away to something else.
+						let acc: Record<string, unknown> = phases.length
+							? { phase: phases[0].dataset.vizPhase }
+							: {};
+						return cards.map((card) => {
+							// Merged onto what came before, not substituted for it, so a
+							// card can change one parameter without restating the rest.
+							if (card.dataset.vizProps) {
+								acc = { ...acc, ...JSON.parse(card.dataset.vizProps) };
+							}
+							return JSON.stringify(acc);
+						});
+					})();
+
+					let phaseName: string | null = null;
+					let applied: string | null = null;
+
+					/* Straight to the phase the starting card asks for — which is not
+					   necessarily the first one, if the reader arrived on a deep link. */
+					if (phases.length) {
+						phaseName = JSON.parse(vizPlan[index]).phase ?? null;
+						for (const el of phases) {
+							const on = el.dataset.vizPhase === phaseName;
+							el.dataset.vizActive = String(on);
+							el.inert = !on;
 						}
-						return JSON.stringify(acc);
-					});
-				})();
-
-				let phaseName: string | null = null;
-				let applied: string | null = null;
-
-				/* Straight to the phase the starting card asks for — which is not
-				   necessarily the first one, if the reader arrived on a deep link. */
-				if (phases.length) {
-					phaseName = JSON.parse(vizPlan[index]).phase ?? null;
-					for (const el of phases) {
-						const on = el.dataset.vizPhase === phaseName;
-						el.dataset.vizActive = String(on);
-						el.inert = !on;
 					}
-				}
 
-				function showPhase(name: string) {
-					if (name === phaseName) return;
-					phaseName = name;
-					for (const el of phases) {
-						const on = el.dataset.vizPhase === name;
-						const was = el.dataset.vizActive === 'true';
-						el.dataset.vizActive = String(on);
-						el.inert = !on;
-						if (was !== on) {
-							el.dispatchEvent(new CustomEvent(on ? 'viz:enter' : 'viz:exit'));
+					function showPhase(name: string) {
+						if (name === phaseName) return;
+						phaseName = name;
+						for (const el of phases) {
+							const on = el.dataset.vizPhase === name;
+							const was = el.dataset.vizActive === 'true';
+							el.dataset.vizActive = String(on);
+							el.inert = !on;
+							if (was !== on) {
+								el.dispatchEvent(new CustomEvent(on ? 'viz:enter' : 'viz:exit'));
+							}
 						}
 					}
-				}
 
-				function renderViz() {
-					const props = vizPlan[index];
-					// Byte-identical to the card before: do not touch the viz at all.
-					if (props === applied) return;
-					applied = props;
-					// `phase` and `overlay` are the deck's; every other key belongs
-					// to the viz.
-					const { phase, overlay, ...rest } = JSON.parse(props) as Record<
-						string,
-						unknown
-					>;
-					if (phases.length && typeof phase === 'string') showPhase(phase);
-					for (const el of overlays) {
-						const on = el.dataset.vizOverlay === overlay;
-						el.dataset.vizActive = String(on);
-						el.inert = !on;
+					function renderViz() {
+						const props = vizPlan[index];
+						// Byte-identical to the card before: do not touch the viz at all.
+						if (props === applied) return;
+						applied = props;
+						// `phase` and `overlay` are the deck's; every other key belongs
+						// to the viz.
+						const { phase, overlay, ...rest } = JSON.parse(props) as Record<
+							string,
+							unknown
+						>;
+						if (phases.length && typeof phase === 'string') showPhase(phase);
+						for (const el of overlays) {
+							const on = el.dataset.vizOverlay === overlay;
+							el.dataset.vizActive = String(on);
+							el.inert = !on;
+						}
+						const host = phases.length
+							? phases.find((el) => el.dataset.vizPhase === phaseName)
+							: stage;
+						host?.dispatchEvent(new CustomEvent('viz:props', { detail: rest }));
 					}
-					const host = phases.length
-						? phases.find((el) => el.dataset.vizPhase === phaseName)
-						: stage;
-					host?.dispatchEvent(new CustomEvent('viz:props', { detail: rest }));
-				}
 
-				function render() {
-					cards.forEach((card, i) => {
-						const state = i === index ? 'active' : i < index ? 'before' : 'after';
-						card.dataset.state = state;
-						// Keep off-screen cards out of the tab order and the a11y tree.
-						const text = card.querySelector<HTMLElement>('.card-text');
-						if (text) text.inert = i !== index;
+					function render() {
+						cards.forEach((card, i) => {
+							const state = i === index ? 'active' : i < index ? 'before' : 'after';
+							card.dataset.state = state;
+							// Keep off-screen cards out of the tab order and the a11y tree.
+							const text = card.querySelector<HTMLElement>('.card-text');
+							if (text) text.inert = i !== index;
+						});
+						renderViz();
+						if (counter) counter.textContent = `${index + 1} / ${cards.length}`;
+						/* At an end, hand over to the neighbouring part if there is one;
+						   otherwise the arrow just greys out as before. */
+						const atStart = index === 0;
+						const atEnd = index === cards.length - 1;
+						if (jumpPrev) jumpPrev.hidden = !atStart;
+						if (jumpNext) jumpNext.hidden = !atEnd;
+						if (prevBtn) {
+							prevBtn.hidden = atStart && !!jumpPrev;
+							prevBtn.disabled = atStart;
+						}
+						if (nextBtn) {
+							nextBtn.hidden = atEnd && !!jumpNext;
+							nextBtn.disabled = atEnd;
+						}
+					}
+
+					function go(next: number) {
+						const clamped = clamp(next);
+						if (clamped === index) return;
+						index = clamped;
+						render();
+						syncHash();
+					}
+
+					// Someone editing the fragment, or following a link to another card
+					// of the post they are already reading.
+					window.addEventListener('hashchange', () => {
+						const n = fromHash();
+						if (n === null) return;
+						go(n);
+						syncHash(); // a number past the end becomes the card it landed on
+					}, { signal });
+
+					prevBtn?.addEventListener('click', () => go(index - 1));
+					nextBtn?.addEventListener('click', () => go(index + 1));
+
+					document.addEventListener('keydown', (e) => {
+						if (e.metaKey || e.ctrlKey || e.altKey) return;
+						const target = e.target as HTMLElement | null;
+						if (target && /^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName)) return;
+						if (e.key === 'ArrowRight') { go(index + 1); }
+						else if (e.key === 'ArrowLeft') { go(index - 1); }
+						else if (e.key === 'Home') { go(0); }
+						else if (e.key === 'End') { go(cards.length - 1); }
+						else return;
+						e.preventDefault();
+					}, { signal });
+
+					/* Swipe. A pointer gesture only becomes a swipe once it is clearly
+					   horizontal, so vertical scrolling inside a card and ordinary text
+					   selection both still work. */
+					let startX = 0;
+					let startY = 0;
+					/* The last position a move actually reported. `pointercancel` — which
+					   a touch gesture may well end with — carries no useful coordinates,
+					   so reading the direction off the end event turned every swipe into
+					   a forward one. */
+					let lastX = 0;
+					let pointerId: number | null = null;
+					let swiping = false;
+
+					deck.addEventListener('pointerdown', (e) => {
+						if (e.button !== 0) return;
+						// A viz that handles its own drags (the RGB cube, sliders) opts out,
+						// otherwise rotating it sideways would also flip the card.
+						if ((e.target as HTMLElement)?.closest?.('[data-no-swipe]')) return;
+						startX = e.clientX;
+						startY = e.clientY;
+						lastX = e.clientX;
+						pointerId = e.pointerId;
+						swiping = false;
 					});
-					renderViz();
-					if (counter) counter.textContent = `${index + 1} / ${cards.length}`;
-					/* At an end, hand over to the neighbouring part if there is one;
-					   otherwise the arrow just greys out as before. */
-					const atStart = index === 0;
-					const atEnd = index === cards.length - 1;
-					if (jumpPrev) jumpPrev.hidden = !atStart;
-					if (jumpNext) jumpNext.hidden = !atEnd;
-					if (prevBtn) {
-						prevBtn.hidden = atStart && !!jumpPrev;
-						prevBtn.disabled = atStart;
-					}
-					if (nextBtn) {
-						nextBtn.hidden = atEnd && !!jumpNext;
-						nextBtn.disabled = atEnd;
-					}
-				}
 
-				function go(next: number) {
-					const clamped = clamp(next);
-					if (clamped === index) return;
-					index = clamped;
+					deck.addEventListener('pointermove', (e) => {
+						if (pointerId !== e.pointerId) return;
+						const dx = e.clientX - startX;
+						const dy = e.clientY - startY;
+						lastX = e.clientX;
+						if (!swiping) {
+							if (Math.abs(dx) < 12 || Math.abs(dx) <= Math.abs(dy)) return;
+							swiping = true;
+							deck.setPointerCapture(e.pointerId);
+						}
+						const active = cards[index]?.querySelector<HTMLElement>('.card-text');
+						if (!active) return;
+						// Resist dragging past the ends.
+						const atEdge =
+							(dx > 0 && index === 0) || (dx < 0 && index === cards.length - 1);
+						active.style.transition = 'none';
+						active.style.transform = `translateX(${dx * (atEdge ? 0.25 : 1)}px)`;
+					});
+
+					function endSwipe(e: PointerEvent) {
+						if (pointerId !== e.pointerId) return;
+						const active = cards[index]?.querySelector<HTMLElement>('.card-text');
+						if (active) {
+							active.style.transition = '';
+							active.style.transform = '';
+						}
+						if (swiping) {
+							const dx = lastX - startX;
+							const threshold = Math.min(120, deck!.clientWidth * 0.15);
+							if (dx <= -threshold) go(index + 1);
+							else if (dx >= threshold) go(index - 1);
+						}
+						pointerId = null;
+						swiping = false;
+					}
+
+					deck.addEventListener('pointerup', endSwipe);
+					deck.addEventListener('pointercancel', endSwipe);
+
 					render();
-					syncHash();
+					/* Rewrite a card number past the end to the card actually shown. A
+					   fragment that is not a card number is left alone rather than
+					   claimed — it may well be a heading anchor, and the deck only owns
+					   the ones it recognises. */
+					if (fromHash() !== null) syncHash();
 				}
-
-				// Someone editing the fragment, or following a link to another card
-				// of the post they are already reading.
-				window.addEventListener('hashchange', () => {
-					const n = fromHash();
-					if (n === null) return;
-					go(n);
-					syncHash(); // a number past the end becomes the card it landed on
-				});
-
-				prevBtn?.addEventListener('click', () => go(index - 1));
-				nextBtn?.addEventListener('click', () => go(index + 1));
-
-				document.addEventListener('keydown', (e) => {
-					if (e.metaKey || e.ctrlKey || e.altKey) return;
-					const target = e.target as HTMLElement | null;
-					if (target && /^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName)) return;
-					if (e.key === 'ArrowRight') { go(index + 1); }
-					else if (e.key === 'ArrowLeft') { go(index - 1); }
-					else if (e.key === 'Home') { go(0); }
-					else if (e.key === 'End') { go(cards.length - 1); }
-					else return;
-					e.preventDefault();
-				});
-
-				/* Swipe. A pointer gesture only becomes a swipe once it is clearly
-				   horizontal, so vertical scrolling inside a card and ordinary text
-				   selection both still work. */
-				let startX = 0;
-				let startY = 0;
-				/* The last position a move actually reported. `pointercancel` — which
-				   a touch gesture may well end with — carries no useful coordinates,
-				   so reading the direction off the end event turned every swipe into
-				   a forward one. */
-				let lastX = 0;
-				let pointerId: number | null = null;
-				let swiping = false;
-
-				deck.addEventListener('pointerdown', (e) => {
-					if (e.button !== 0) return;
-					// A viz that handles its own drags (the RGB cube, sliders) opts out,
-					// otherwise rotating it sideways would also flip the card.
-					if ((e.target as HTMLElement)?.closest?.('[data-no-swipe]')) return;
-					startX = e.clientX;
-					startY = e.clientY;
-					lastX = e.clientX;
-					pointerId = e.pointerId;
-					swiping = false;
-				});
-
-				deck.addEventListener('pointermove', (e) => {
-					if (pointerId !== e.pointerId) return;
-					const dx = e.clientX - startX;
-					const dy = e.clientY - startY;
-					lastX = e.clientX;
-					if (!swiping) {
-						if (Math.abs(dx) < 12 || Math.abs(dx) <= Math.abs(dy)) return;
-						swiping = true;
-						deck.setPointerCapture(e.pointerId);
-					}
-					const active = cards[index]?.querySelector<HTMLElement>('.card-text');
-					if (!active) return;
-					// Resist dragging past the ends.
-					const atEdge =
-						(dx > 0 && index === 0) || (dx < 0 && index === cards.length - 1);
-					active.style.transition = 'none';
-					active.style.transform = `translateX(${dx * (atEdge ? 0.25 : 1)}px)`;
-				});
-
-				function endSwipe(e: PointerEvent) {
-					if (pointerId !== e.pointerId) return;
-					const active = cards[index]?.querySelector<HTMLElement>('.card-text');
-					if (active) {
-						active.style.transition = '';
-						active.style.transform = '';
-					}
-					if (swiping) {
-						const dx = lastX - startX;
-						const threshold = Math.min(120, deck!.clientWidth * 0.15);
-						if (dx <= -threshold) go(index + 1);
-						else if (dx >= threshold) go(index - 1);
-					}
-					pointerId = null;
-					swiping = false;
-				}
-
-				deck.addEventListener('pointerup', endSwipe);
-				deck.addEventListener('pointercancel', endSwipe);
-
-				render();
-				/* Rewrite a card number past the end to the card actually shown. A
-				   fragment that is not a card number is left alone rather than
-				   claimed — it may well be a heading anchor, and the deck only owns
-				   the ones it recognises. */
-				if (fromHash() !== null) syncHash();
-			}
+			});
 		</script>
 	</body>
 </html>

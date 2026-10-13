@@ -2,13 +2,25 @@
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
 import type { ImageMetadata } from 'astro';
+import { ClientRouter } from 'astro:transitions';
 import { SITE_TITLE } from '../consts';
 // Self-hosted prose face (see --font-prose). Bundled by Vite, so no CDN
 // request and no dependency on whatever font the OS happens to default to.
-import '@fontsource/source-serif-4/400.css';
-import '@fontsource/source-serif-4/400-italic.css';
-import '@fontsource/source-serif-4/700.css';
-import '@fontsource/source-serif-4/700-italic.css';
+//
+// Declared here rather than through fontsource's own stylesheets, which say
+// `font-display: swap`: every page is a fresh load, and swap drew each one in
+// a fallback serif first and then redrew it in this, so the type flickered on
+// every click. The latin files are preloaded instead, so the face is there by
+// the time anything is laid out, and `optional` means that if it ever is not,
+// the page keeps the fallback rather than changing under the reader.
+import latin400 from '@fontsource/source-serif-4/files/source-serif-4-latin-400-normal.woff2?url';
+import latin400i from '@fontsource/source-serif-4/files/source-serif-4-latin-400-italic.woff2?url';
+import latin700 from '@fontsource/source-serif-4/files/source-serif-4-latin-700-normal.woff2?url';
+import latin700i from '@fontsource/source-serif-4/files/source-serif-4-latin-700-italic.woff2?url';
+import ext400 from '@fontsource/source-serif-4/files/source-serif-4-latin-ext-400-normal.woff2?url';
+import ext400i from '@fontsource/source-serif-4/files/source-serif-4-latin-ext-400-italic.woff2?url';
+import ext700 from '@fontsource/source-serif-4/files/source-serif-4-latin-ext-700-normal.woff2?url';
+import ext700i from '@fontsource/source-serif-4/files/source-serif-4-latin-ext-700-italic.woff2?url';
 import '../styles/global.css';
 
 interface Props {
@@ -20,11 +32,41 @@ interface Props {
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const { title, description } = Astro.props;
+
+const LATIN = 'U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD';
+const LATIN_EXT = 'U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF';
+const faces = [
+	{ src: latin400, weight: 400, style: 'normal', range: LATIN, preload: true },
+	{ src: latin400i, weight: 400, style: 'italic', range: LATIN, preload: true },
+	{ src: latin700, weight: 700, style: 'normal', range: LATIN, preload: true },
+	{ src: latin700i, weight: 700, style: 'italic', range: LATIN, preload: true },
+	{ src: ext400, weight: 400, style: 'normal', range: LATIN_EXT, preload: false },
+	{ src: ext400i, weight: 400, style: 'italic', range: LATIN_EXT, preload: false },
+	{ src: ext700, weight: 700, style: 'normal', range: LATIN_EXT, preload: false },
+	{ src: ext700i, weight: 700, style: 'italic', range: LATIN_EXT, preload: false },
+];
+const fontFaces = faces
+	.map(
+		(face) =>
+			`@font-face { font-family: 'Source Serif 4'; font-style: ${face.style}; font-weight: ${face.weight}; font-display: optional; src: url(${face.src}) format('woff2'); unicode-range: ${face.range}; }`,
+	)
+	.join('\n');
 ---
 
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
+{
+	faces
+		.filter((face) => face.preload)
+		.map((face) => <link rel="preload" href={face.src} as="font" type="font/woff2" crossorigin />)
+}
+<style is:inline set:html={fontFaces} />
+
+<!-- Pages are swapped in place rather than loaded, so the post tree and the
+     header stay put between them. Every scripted component sets up through
+     lib/page.ts because of it. -->
+<ClientRouter />
 <link rel="icon" href="/favicon-32x32.png" />
 <link rel="sitemap" href="/sitemap-index.xml" />
 <link

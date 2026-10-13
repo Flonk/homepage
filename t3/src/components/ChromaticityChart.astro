@@ -143,6 +143,7 @@ const {
 		spectralXy,
 		type GamutName,
 	} from '../lib/spectrum';
+	import { eachPage } from '../lib/page';
 
 	/* Room for the horseshoe and no more. It reaches x = 0.735 at the red end
 	   and y = 0.834 at the top of the green, so this is those plus a margin. */
@@ -164,7 +165,7 @@ const {
 		return raw.filter((g): g is GamutName => g === 'srgb' || g === 'p3' || g === 'rec2020');
 	};
 
-	function initChart(root: HTMLElement) {
+	function initChart(root: HTMLElement, signal: AbortSignal) {
 		if (root.dataset.ready === 'true') return;
 		root.dataset.ready = 'true';
 
@@ -490,11 +491,13 @@ const {
 		/* Redrawn on the spot rather than on the next frame: nothing here moves on
 		   its own, and a pane the browser has stopped animating still has to show
 		   what the card asked for. */
-		new ResizeObserver(() => {
+		const sizing = new ResizeObserver(() => {
 			resize();
 			readInk();
 			draw();
-		}).observe(canvas);
+		});
+		sizing.observe(canvas);
+		signal.addEventListener('abort', () => sizing.disconnect(), { once: true });
 
 		host?.addEventListener('viz:props', (e) => {
 			const p = (e as CustomEvent).detail ?? {};
@@ -513,5 +516,9 @@ const {
 		draw();
 	}
 
-	document.querySelectorAll<HTMLElement>('[data-chart]').forEach(initChart);
+	eachPage((signal) => {
+		document
+			.querySelectorAll<HTMLElement>('[data-chart]')
+			.forEach((root) => initChart(root, signal));
+	});
 </script>

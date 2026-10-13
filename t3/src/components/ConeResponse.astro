@@ -493,6 +493,7 @@ const markList = marks
 	import { shuttleAt, shuttleEntry } from '../lib/shuttle';
 	import { lightenRgb } from '../lib/oklch';
 	import { rgbCss, type Rgb } from '../lib/rgb';
+	import { eachPage } from '../lib/page';
 	import {
 		CONE_FIRST_NM,
 		CONE_LAST_NM,
@@ -567,7 +568,7 @@ const markList = marks
 	const present = (key: string, eye: Eyes) =>
 		key === 'l2' ? eye === 'filtered' : MISSING[eye] !== key;
 
-	function initCones(root: HTMLElement) {
+	function initCones(root: HTMLElement, signal: AbortSignal) {
 		if (root.dataset.ready === 'true') return;
 		root.dataset.ready = 'true';
 
@@ -864,12 +865,14 @@ const markList = marks
 		/* Redrawn on the spot, not on the next frame. The curves are the same
 		   whether anything is moving or not, and a pane that is holding still —
 		   or one the browser has stopped animating — still has to show them. */
-		new ResizeObserver(() => {
+		const sizes = new ResizeObserver(() => {
 			resize();
 			readInk();
 			tally();
 			draw();
-		}).observe(canvas);
+		});
+		sizes.observe(canvas);
+		signal.addEventListener('abort', () => sizes.disconnect(), { once: true });
 		resize();
 
 		/* Read once and kept. These come from the deck's ground, which a post
@@ -1290,6 +1293,8 @@ const markList = marks
 		});
 
 		function frame(now: number) {
+			// The page has gone, and the graph with it.
+			if (signal.aborted) return;
 			requestAnimationFrame(frame);
 			if (gate && gate.dataset.vizActive === 'false') return;
 			if (!w || !h) return;
@@ -1341,5 +1346,9 @@ const markList = marks
 		requestAnimationFrame(frame);
 	}
 
-	document.querySelectorAll<HTMLElement>('[data-cones]').forEach(initCones);
+	eachPage((signal) => {
+		document
+			.querySelectorAll<HTMLElement>('[data-cones]')
+			.forEach((root) => initCones(root, signal));
+	});
 </script>

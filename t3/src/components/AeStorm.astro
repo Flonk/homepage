@@ -9,6 +9,8 @@ import '@fontsource/lobster/latin-400.css';
 ---
 
 <script>
+	import { eachPage } from '../lib/page';
+
 	const COUNT = 220;
 
 	// Nothing here matches the site. That is the point of it.
@@ -93,20 +95,22 @@ import '@fontsource/lobster/latin-400.css';
 		storming = false;
 	}
 
-	addEventListener('keydown', (event) => {
-		if (event.key !== 'ä' && event.key !== 'Ä') return;
-		if (event.repeat || event.metaKey || event.ctrlKey || event.altKey) return;
+	eachPage((signal) => {
+		addEventListener('keydown', (event) => {
+			if (event.key !== 'ä' && event.key !== 'Ä') return;
+			if (event.repeat || event.metaKey || event.ctrlKey || event.altKey) return;
 
-		// Somebody typing ä into a field means the letter, not the fireworks.
-		const target = event.target;
-		if (
-			target instanceof HTMLElement &&
-			(target.isContentEditable || target.closest('input, textarea, select'))
-		) {
-			return;
-		}
+			// Somebody typing ä into a field means the letter, not the fireworks.
+			const target = event.target;
+			if (
+				target instanceof HTMLElement &&
+				(target.isContentEditable || target.closest('input, textarea, select'))
+			) {
+				return;
+			}
 
-		storm();
+			storm();
+		}, { signal });
 	});
 </script>
 

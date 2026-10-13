@@ -162,9 +162,9 @@ const {
 
 		   The swatch's shape lives in its SVG path above, not here. */
 
-		--pad-left: clamp(1rem, 10vw, 9rem); /* space before the bars */
-		--pad-right: clamp(1rem, 8vw, 7rem); /* space after the cube */
-		--bar-gap: clamp(0.75rem, 2vw, 1.75rem); /* bars to cube */
+		--pad-left: clamp(1rem, 10cqw, 9rem); /* space before the bars */
+		--pad-right: clamp(1rem, 8cqw, 7rem); /* space after the cube */
+		--bar-gap: clamp(0.75rem, 2cqw, 1.75rem); /* bars to cube */
 		--cube-scale: 0.55; /* cube size, as a fraction of the pane's short side */
 
 		/* Out from under DeckViz's cap on how wide a visualization may get. This
@@ -421,6 +421,7 @@ const {
 	import { contextFor } from '../lib/animate';
 	import { approach } from '../lib/easing';
 	import { rgbCss, type Rgb } from '../lib/rgb';
+	import { eachPage, releaseOnLeave } from '../lib/page';
 	type Quat = [number, number, number, number]; // x, y, z, w
 
 	const IDENTITY: Quat = [0, 0, 0, 1];
@@ -786,7 +787,7 @@ const {
 		return p;
 	}
 
-	function initCube(root: HTMLElement) {
+	function initCube(root: HTMLElement, signal: AbortSignal) {
 		if (root.dataset.ready === 'true') return;
 		root.dataset.ready = 'true';
 
@@ -825,6 +826,7 @@ const {
 			canvas.style.display = 'none';
 			return;
 		}
+		releaseOnLeave(gl, signal);
 
 		/* The channel values are sRGB code values and are written to the frame
 		   buffer as-is: no lighting, no tone mapping, no transfer-function
@@ -1191,7 +1193,9 @@ const {
 			canvas.style.setProperty('--shadow-blur', `${(scale * 0.34).toFixed(2)}px`);
 			canvas.style.setProperty('--shadow-y', `${(scale * 0.09).toFixed(2)}px`);
 		};
-		new ResizeObserver(resize).observe(canvas);
+		const sizer = new ResizeObserver(resize);
+		sizer.observe(canvas);
+		signal.addEventListener('abort', () => sizer.disconnect(), { once: true });
 		resize();
 
 		/* A lost context leaves a blank canvas for good unless everything above is
@@ -1202,7 +1206,7 @@ const {
 		});
 		canvas.addEventListener('webglcontextrestored', () => {
 			delete root.dataset.ready;
-			initCube(root);
+			initCube(root, signal);
 		});
 
 		/* ---- render loop ------------------------------------------------------ */
@@ -1211,6 +1215,8 @@ const {
 		const frontFacing = [false, false, false, false, false, false];
 
 		function frame(now: number) {
+			// The page has gone, and the loop goes with it.
+			if (signal.aborted) return;
 			requestAnimationFrame(frame);
 
 			// An unshown phase is still in the DOM; don't burn frames on it. With
@@ -1456,5 +1462,9 @@ const {
 		requestAnimationFrame(frame);
 	}
 
-	document.querySelectorAll<HTMLElement>('[data-rgb-cube]').forEach(initCube);
+	eachPage((signal) => {
+		document
+			.querySelectorAll<HTMLElement>('[data-rgb-cube]')
+			.forEach((root) => initCube(root, signal));
+	});
 </script>

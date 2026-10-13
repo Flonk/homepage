@@ -46,28 +46,47 @@
 
      So there is one ink, and the quieter ones are it sunk towards the ground
      — the same move as the edge, in the other direction, and ground-relative
-     so it stays right if the ground moves. Quiet is a tenth of the scale
-     below the body, which is a step you can see. */
-  --text: #e5e9f0;
-  --text-quiet: color-mix(in oklab, var(--text) 85%, var(--nordbg));
-  --text-faint: color-mix(in oklab, var(--text) 42%, var(--nordbg));
+     so it stays right if the ground moves.
+
+     The three are tesbota's: a parchment ink on a warm near-black, then its
+     dim and its faint. Same idea, set by hand there rather than mixed. */
+  --text: #ddd6c4;
+  --text-quiet: #8a8271;
+  --text-faint: #6a6357;
   /* Where relative colour syntax is not understood there is no lifting
-     anything, so the edge falls back to the flat grey it used to be. */
-  --edge: #434c5e;
-  --edge-panel: #4c566a;
+     anything, so the edge falls back to the same lift worked out ahead of
+     time. */
+  --edge: #373633;
+  --edge-panel: #3e3c35;
 
   /* Monospace is the site's voice: nav, headings, code, the post index.
      Long-form prose bodies use the serif stack instead — see .prose below. */
   --font-mono: ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas,
     "DejaVu Sans Mono", "Liberation Mono", monospace;
-  /* Self-hosted and bundled (see BaseHead), so the trailing generic is only
-     ever reached if the woff2 fails to load — no system UI face by design. */
-  --font-prose: "Source Serif 4", serif;
+  /* tesbota's book serif: Iowan or Palatino where the OS has one. Source
+     Serif 4 is self-hosted and bundled (see BaseHead) for everywhere else, so
+     the trailing generic is only reached if the woff2 fails to load. */
+  --font-prose: "Iowan Old Style", "Palatino Linotype", Palatino,
+    "Source Serif 4", serif;
 
-  --nordbg: #1d1f21;
-  --nord0: #2e3440;
-  --nord8: #88c0d0;
-  --nord13: #ebcb8b;
+  /* tesbota's type roles. Chrome is mono, set small and opened up a touch; a
+     label (a date, a count, the site name) is the same mono smaller still, in
+     capitals and tracked wide. */
+  --type-body: 0.82rem;
+  --type-label: 10px;
+  --track-body: 0.02em;
+  --track-label: 0.12em;
+  --track-brand: 0.26em;
+
+  /* tesbota's ground, the raised panel a card is, and the two inks that
+     point: --place for a link, --gold for emphasis. */
+  --bg: #0f0e0c;
+  --panel: #17150f;
+  /* tesbota's hairline, for what should be there without being seen: a
+     scrollbar thumb at rest. */
+  --line: #2c281e;
+  --place: #7d93a6;
+  --gold: #c8a24a;
 
   /* Grounds for a deck card's visualization half, when it opts into one.
      Which of the two a post uses is its `ground` frontmatter; see DeckPost. */
@@ -88,8 +107,8 @@
 
 @supports (color: oklch(from white l c h)) {
   :root {
-    --edge: oklch(from var(--nordbg) calc(l + var(--lift) * (1 - l)) c h);
-    --edge-panel: oklch(from var(--nord0) calc(l + var(--lift) * (1 - l)) c h);
+    --edge: oklch(from var(--bg) calc(l + var(--lift) * (1 - l)) c h);
+    --edge-panel: oklch(from var(--panel) calc(l + var(--lift) * (1 - l)) c h);
   }
 }
 
@@ -98,17 +117,15 @@ body {
   margin: 0;
   padding: 0;
   text-align: left;
-  background: var(--nordbg);
-  background-size: 100% 600px;
+  background: var(--bg);
 
   word-wrap: break-word;
   overflow-wrap: break-word;
 
   color: var(--text);
-  font-size: 14px;
+  font-size: var(--type-body);
+  letter-spacing: var(--track-body);
   line-height: 1.7;
-
-  --sb-size: 12px;
 
   display: flex;
   flex-direction: column;
@@ -116,25 +133,18 @@ body {
   box-sizing: border-box;
 }
 
-body::-webkit-scrollbar {
-  width: var(--sb-size);
-  height: var(--sb-size);
+/* tesbota's scrollbars: thin, a hairline thumb on no track that brightens
+   while the pointer is over whatever scrolls. */
+:root { color-scheme: dark; }
+* { scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
+*:hover { scrollbar-color: var(--text-faint) transparent; }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track, ::-webkit-scrollbar-corner { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--line); border-radius: 4px;
+  border: 2px solid transparent; background-clip: padding-box;
 }
-
-body::-webkit-scrollbar-track {
-  background: var(--nordbg);
-}
-
-body::-webkit-scrollbar-thumb {
-  background: var(--accent);
-  border-left: 2px solid var(--nordbg);
-}
-
-@supports not selector(::-webkit-scrollbar) {
-  body {
-    scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
-  }
-}
+::-webkit-scrollbar-thumb:hover { background-color: var(--text-faint); }
 
 main {
   max-width: calc(min(100%, 720px));
@@ -235,7 +245,7 @@ b {
   font-weight: 700;
 }
 a {
-  color: var(--nord13);
+  color: var(--place);
 }
 a:hover {
   color: var(--accent);
@@ -292,7 +302,7 @@ blockquote {
   border-left: 4px solid var(--accent);
   padding: 0 0 0 20px;
   margin: 0px;
-  color: #ffffffbb;
+  color: var(--text-quiet);
 }
 @media (max-width: 720px) {
   body {
@@ -324,7 +334,7 @@ hr {
 
 strong,
 em {
-  color: var(--nord8);
+  color: var(--gold);
 }
 
 .sr-only {
@@ -366,6 +376,7 @@ em {
   font-size: 18px;
   line-height: 1.7;
   color: var(--text);
+  letter-spacing: normal;
   max-width: 37rem;
   margin-inline: auto;
 }
@@ -472,7 +483,10 @@ em {
 /* The post's own dateline belongs to the site chrome, not the prose. */
 .prose .title .date {
   font-family: var(--font-mono);
-  font-size: 14px;
+  font-size: var(--type-label);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--text-quiet);
 }
 
 .prose img,
@@ -496,7 +510,7 @@ em {
 /* Assets — code blocks, images, tables, embeds.
    On wide screens these break out of the reading column, up to 1.5x its width,
    so wide content fits instead of being squeezed into the prose measure. They
-   stay centred on the page rather than flush left with the text.
+   stay centred on the pane rather than flush left with the text.
 
    Only direct children of .prose: an asset nested inside a Question box has to
    stay within that box's overflow:hidden border. Markdown wraps a bare image in
@@ -510,7 +524,10 @@ em {
    `width: max-content` shrinks each asset to its own content, so narrow ones
    don't stretch. Centring uses margin-left:50% + translateX(-50%) rather than
    auto margins, which collapse to 0 once an element is wider than its
-   containing block. The 4rem keeps a gutter at the viewport edge. */
+   containing block. Measured in cqw, against the pane the post sits in
+   (.split-post is its container), so a post beside the list stays inside
+   its half. Outside a container cqw is the viewport, so anything else
+   that takes these rules should become one too. */
 @media (min-width: 1100px) {
   /* .deck-prose is a card's own column, not the page column — the breakout
      below is measured against the viewport and would escape the card. */
@@ -528,7 +545,7 @@ em {
     /* Never narrower than the text column — a short snippet shrinking to its
        own content leaves the column looking ragged. */
     min-width: 100%;
-    max-width: min(55.5rem, calc(100vw - 4rem));
+    max-width: min(55.5rem, 100cqw);
     margin-left: 50%;
     transform: translateX(-50%);
   }
@@ -687,13 +704,18 @@ em {
 /* ==========================================================================
    View transitions
    --------------------------------------------------------------------------
-   A plain cross-fade between pages. Native cross-document transitions, so no
-   client router is involved: nothing about the site's script lifecycle changes
-   and browsers without support just navigate as before.
+   A plain cross-fade between pages. Astro's client router swaps one page
+   into the next inside the document and runs the transition itself (see
+   BaseHead and lib/page.ts); the rule below covers the few pages that leave
+   it out and so still navigate the ordinary way.
 
-   Deliberately no per-element view-transition-name — pairing the header bar
-   with the deck's T3 square morphed one into the other, which was far more
-   motion than a page change warrants.
+   The header and, on a wide screen, the post tree are the editor around
+   whatever is open, and are kept from one page to the next rather than drawn
+   again; cross-fading them with the rest made the whole screen flicker. So
+   they are named, and their groups swap at once instead of fading. Only
+   where both pages have them: the deck's T3 square is not the header, and
+   pairing the two once morphed one into the other, which was far more motion
+   than a page change warrants.
    ========================================================================== */
 
 @view-transition {
@@ -703,6 +725,20 @@ em {
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation-duration: 260ms;
+}
+
+::view-transition-group(site-header),
+::view-transition-new(site-header),
+::view-transition-group(tree),
+::view-transition-new(tree) {
+  animation: none;
+}
+
+/* The tree has no ground of its own, so an old one would show through the
+   new wherever the new is clear. Nothing is gained by keeping either. */
+::view-transition-old(site-header),
+::view-transition-old(tree) {
+  display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {

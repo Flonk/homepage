@@ -945,6 +945,7 @@ const HSL = [
 
 <script>
 	import { contextFor } from '../lib/animate';
+	import { eachPage, releaseOnLeave } from '../lib/page';
 	import { lightenRgb } from '../lib/oklch';
 	import { rgbCss, type Rgb } from '../lib/rgb';
 
@@ -1363,7 +1364,7 @@ const HSL = [
 		return p;
 	}
 
-	function initSolid(root: HTMLElement) {
+	function initSolid(root: HTMLElement, signal: AbortSignal) {
 		if (root.dataset.ready === 'true') return;
 		root.dataset.ready = 'true';
 
@@ -1674,6 +1675,7 @@ const HSL = [
 			canvas.style.display = 'none';
 			return;
 		}
+		releaseOnLeave(gl, signal);
 		if ('drawingBufferColorSpace' in gl) gl.drawingBufferColorSpace = 'srgb';
 
 		const progSolid = program(gl, SOLID_VS, SOLID_FS);
@@ -1781,7 +1783,9 @@ const HSL = [
 		   resized every frame — which is to say cleared every frame, and the
 		   solid simply is not there. */
 		let stale = true;
-		new ResizeObserver(() => (stale = true)).observe(canvas);
+		const sizes = new ResizeObserver(() => (stale = true));
+		sizes.observe(canvas);
+		signal.addEventListener('abort', () => sizes.disconnect(), { once: true });
 		resize();
 
 		canvas.addEventListener('webglcontextlost', (e) => {
@@ -1790,7 +1794,7 @@ const HSL = [
 		});
 		canvas.addEventListener('webglcontextrestored', () => {
 			delete root.dataset.ready;
-			initSolid(root);
+			initSolid(root, signal);
 		});
 
 		/* What the saturation and lightness bars are showing, for a given
@@ -1853,6 +1857,8 @@ const HSL = [
 		let lastPainted = '';
 
 		function frame(now: number) {
+			// The page has gone, and the solid with it.
+			if (signal.aborted) return;
 			requestAnimationFrame(frame);
 			if (gate && gate.dataset.vizActive === 'false') return;
 			if (stale) {
@@ -2123,5 +2129,9 @@ const HSL = [
 		requestAnimationFrame(frame);
 	}
 
-	document.querySelectorAll<HTMLElement>('[data-colour-solid]').forEach(initSolid);
+	eachPage((signal) => {
+		document
+			.querySelectorAll<HTMLElement>('[data-colour-solid]')
+			.forEach((root) => initSolid(root, signal));
+	});
 </script>

@@ -35,9 +35,9 @@ const swatch = (t: { name: string; hex: string }) => {
 };
 
 // The two that are the site: what it is made of, and what it points with.
-const SITE = ['nordbg', 'accent'].map((n) => swatch(tokens.find((t) => t.name === n)!));
+const SITE = ['bg', 'accent'].map((n) => swatch(tokens.find((t) => t.name === n)!));
 // Everything else, in the order the stylesheet declares it.
-const REST = tokens.filter((t) => !['nordbg', 'accent'].includes(t.name)).map(swatch);
+const REST = tokens.filter((t) => !['bg', 'accent'].includes(t.name)).map(swatch);
 ---
 
 {

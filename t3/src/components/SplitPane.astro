@@ -1,0 +1,182 @@
+---
+// The editor's split every page is laid out in on a wide screen: the post tree
+// on the left, whatever is open on the right, with tesbota's divider between
+// them to drag. On a narrow screen there is room for one of the two, and
+// `mode` says which:
+//
+//   post  the post; the tree is left out
+//   home  the tree, which is what the home page is for
+//   deck  the deck, which fills the whole of what it is given
+import PostIndex from './PostIndex.astro';
+
+interface Props {
+	mode: 'post' | 'home' | 'deck';
+	current?: string;
+}
+
+const { mode, current } = Astro.props;
+---
+
+<script is:inline>
+	// The split is set before anything below paints, so a page never opens at
+	// the default and then jumps to where the reader left it.
+	try {
+		const split = Number(localStorage.getItem('split'));
+		if (split >= 20 && split <= 80)
+			document.documentElement.style.setProperty('--split', `${split}%`);
+	} catch {}
+</script>
+
+<div class:list={['split', `is-${mode}`]}>
+	<aside class="split-list" transition:persist="tree">
+		<PostIndex current={current} />
+	</aside>
+	<div class="split-divider" title="drag to resize" aria-hidden="true"></div>
+	<div class="split-main">
+		<slot />
+	</div>
+</div>
+
+<style>
+	/* Narrow: one thing at a time. */
+	.split-divider,
+	.split-list {
+		display: none;
+	}
+	.is-home .split-list {
+		display: block;
+		max-width: calc(min(100%, 720px));
+		margin: auto;
+		padding: 4em 2em;
+		box-sizing: border-box;
+	}
+	.is-home .split-main {
+		display: none;
+	}
+	/* A deck takes all the height there is, down a column. */
+	.is-deck,
+	.is-deck .split-main {
+		flex: 1;
+		min-height: 0;
+		display: flex;
+		flex-direction: column;
+	}
+
+	@media (max-width: 720px) {
+		.is-home .split-list {
+			padding: 0.5em 0;
+		}
+	}
+
+	/* Wide: the tree on the left, the open thing on the right, split where
+	   the divider was left (a third for the tree until it is moved), each
+	   scrolling on its own under the header. */
+	@media (min-width: 1100px) {
+		.split,
+		.is-deck {
+			display: grid;
+			grid-template-columns: var(--split, 34%) minmax(0, 1fr);
+			position: relative;
+			flex: none;
+			height: calc(100dvh - var(--header-height) - 2 * var(--page-border));
+		}
+		.split-list,
+		.is-home .split-list {
+			display: block;
+			max-width: none;
+			margin: 0;
+			padding: 0;
+			overflow-y: auto;
+			border-right: 1px solid var(--edge);
+			view-transition-name: tree;
+		}
+		.split-main,
+		.is-home .split-main {
+			display: block;
+			min-width: 0;
+			overflow-y: auto;
+			/* What is open measures itself against this pane, not the window:
+			   the prose breakout, and anything sized in cqw. */
+			container-type: inline-size;
+		}
+		.is-deck .split-main {
+			display: flex;
+			overflow: hidden;
+		}
+		/* tesbota's divider: nothing to see until the pointer finds it. */
+		.split-divider {
+			display: block;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: var(--split, 34%);
+			width: 0.6rem;
+			transform: translateX(-50%);
+			cursor: col-resize;
+			touch-action: none;
+			z-index: 1;
+		}
+		.split-divider:hover,
+		.is-dragging .split-divider {
+			background: linear-gradient(to right, transparent 45%, var(--gold) 45% 55%, transparent 55%);
+		}
+		.is-dragging {
+			cursor: col-resize;
+			user-select: none;
+		}
+	}
+</style>
+
+<script>
+	import { eachPage } from '../lib/page';
+
+	// Drag the divider to move the split, between a fifth and four fifths of
+	// the page; double-click it to put it back at a third. Where it is left is
+	// kept for the next page.
+	const place = (at: number, keep: boolean) => {
+		document.documentElement.style.setProperty('--split', `${at}%`);
+		if (!keep) return;
+		try {
+			localStorage.setItem('split', String(at));
+		} catch {}
+	};
+
+	// A swap takes the attributes of <html> from the page coming in, and with
+	// them the split set on it, so it is set again before that page paints.
+	document.addEventListener('astro:after-swap', () => {
+		try {
+			const split = Number(localStorage.getItem('split'));
+			if (split >= 20 && split <= 80) place(split, false);
+		} catch {}
+	});
+
+	eachPage((signal) => {
+		const split = document.querySelector<HTMLElement>('.split');
+		const divider = document.querySelector<HTMLElement>('.split-divider');
+		if (!split || !divider) return;
+
+		divider.addEventListener('pointerdown', (e) => {
+			e.preventDefault();
+			// Held, so a canvas or an embed under the pointer cannot take the drag.
+			divider.setPointerCapture(e.pointerId);
+			const rect = split.getBoundingClientRect();
+			let last =
+				parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--split')) || 34;
+			split.classList.add('is-dragging');
+			const move = (ev: PointerEvent) => {
+				last = Math.min(80, Math.max(20, ((ev.clientX - rect.left) / rect.width) * 100));
+				place(last, false);
+			};
+			const up = () => {
+				window.removeEventListener('pointermove', move);
+				window.removeEventListener('pointerup', up);
+				split.classList.remove('is-dragging');
+				place(last, true);
+			};
+			window.addEventListener('pointermove', move, { signal });
+			window.addEventListener('pointerup', up, { signal });
+		});
+
+		divider.addEventListener('dblclick', () => place(34, true));
+	});
+</script>

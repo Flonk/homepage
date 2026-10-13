@@ -219,6 +219,7 @@ const { home = [180, 230, 240] as Rgb, target = [20, 90, 100] as Rgb, idleReturn
 
 <script>
 	import { rgbCss, type Rgb } from '../lib/rgb';
+	import { eachPage } from '../lib/page';
 
 	type Box = { x: number; y: number; w: number; h: number };
 	/** Where the two swatches are, and what the two discs hold. */
@@ -238,7 +239,7 @@ const { home = [180, 230, 240] as Rgb, target = [20, 90, 100] as Rgb, idleReturn
 	   that turns round and comes back; this one only ever goes home. */
 	const smooth = (t: number) => t * t * (3 - 2 * t);
 
-	function initMatch(root: HTMLElement) {
+	function initMatch(root: HTMLElement, signal: AbortSignal) {
 		if (root.dataset.ready === 'true') return;
 		root.dataset.ready = 'true';
 
@@ -394,12 +395,27 @@ const { home = [180, 230, 240] as Rgb, target = [20, 90, 100] as Rgb, idleReturn
 		/* The circles are sized from the pane, so a pane that changes size moves
 		   them — without a journey, because nothing has happened that a reader
 		   should watch. */
-		new ResizeObserver(() => {
+		const sizing = new ResizeObserver(() => {
 			if (!on) return;
 			const now = slots();
 			discs.forEach((_, i) => place(i, now[i], '50%', true));
-		}).observe(root);
+		});
+		sizing.observe(root);
+
+		// The walk home and the wait for it go with the page.
+		signal.addEventListener(
+			'abort',
+			() => {
+				sizing.disconnect();
+				stopReturn();
+			},
+			{ once: true },
+		);
 	}
 
-	document.querySelectorAll<HTMLElement>('[data-shade-match]').forEach(initMatch);
+	eachPage((signal) => {
+		document
+			.querySelectorAll<HTMLElement>('[data-shade-match]')
+			.forEach((root) => initMatch(root, signal));
+	});
 </script>

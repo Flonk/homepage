@@ -3,24 +3,41 @@ import type { CollectionEntry } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
+import SplitPane from '../components/SplitPane.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
-type Props = CollectionEntry<'blog'>['data'];
+type Props = CollectionEntry<'blog'>['data'] & {
+	id: string;
+	// Where the post lives in the repo, for the tab over it.
+	file?: string;
+	// The home page: the list is the page, and the post beside it is only
+	// there on a screen wide enough to have a beside.
+	home?: boolean;
+};
 
-const { title, description, pubDate, updatedDate, heroImage, hidden } = Astro.props;
+const { id, file, home = false, title, description, pubDate, updatedDate, hidden } = Astro.props;
 ---
 
 <html lang="en">
 	<head>
-		<BaseHead title={title} description={description} />
+		<BaseHead
+			title={home ? SITE_TITLE : title}
+			description={home ? SITE_DESCRIPTION : description}
+		/>
 		{hidden && <meta name="robots" content="noindex, nofollow" />}
-		<link href="
-https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css
-" rel="stylesheet">
+		<link
+			href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css"
+			rel="stylesheet"
+		/>
 		<style>
 			.title {
 				margin-bottom: 1em;
 				padding: 1em 0;
 				line-height: 1;
+			}
+			.title a {
+				color: inherit;
+				text-decoration: none;
 			}
 			.title h1 {
 				margin: 0 0 0.5em 0;
@@ -31,31 +48,76 @@ https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css
 			.last-updated-on {
 				font-style: italic;
 			}
+
+			.tab-bar {
+				display: none;
+			}
+
+			@media (min-width: 1100px) {
+				/* The pane does the scrolling and the measuring; the post just
+				   fills it. */
+				.post-main {
+					max-width: none;
+					margin: 0;
+					padding: 0;
+				}
+				/* The open file's tab, the same height as the tree's bar so the two
+				   panes are ruled at one line. */
+				.tab-bar {
+					position: sticky;
+					top: 0;
+					z-index: 1;
+					display: flex;
+					height: 2.6rem;
+					background: var(--bg);
+					border-bottom: 1px solid var(--edge);
+				}
+				.tab {
+					display: flex;
+					align-items: center;
+					padding: 0 1.25rem;
+					background: var(--panel);
+					border-right: 1px solid var(--edge-panel);
+					box-shadow: inset 0 2px 0 var(--accent);
+					color: var(--text);
+					font-size: var(--type-label);
+					letter-spacing: var(--track-label);
+				}
+				.post-main article {
+					padding: 3em 2.5em;
+				}
+			}
 		</style>
 	</head>
 
 	<body>
 		<Header />
-		<main>
-			<article>
-				<div class="prose">
-					<div class="title">
-						<div class="date">
-							<FormattedDate date={pubDate} />
-							{
-								updatedDate && (
-									<div class="last-updated-on">
-										Last updated on <FormattedDate date={updatedDate} />
-									</div>
-								)
-							}
-						</div>
-						<h1>{title}</h1>
-						<hr />
-					</div>
-					<slot />
+		<SplitPane mode={home ? 'home' : 'post'} current={home ? undefined : id}>
+			<main class="post-main">
+				<div class="tab-bar">
+					<span class="tab">{file?.split("/").pop() ?? id}</span>
 				</div>
-			</article>
-		</main>
+				<article>
+					<div class="prose">
+						<div class="title">
+							<div class="date">
+								<FormattedDate date={pubDate} />
+								{
+									updatedDate && (
+										<div class="last-updated-on">
+											Last updated on <FormattedDate date={updatedDate} />
+										</div>
+									)
+								}
+							</div>
+							{home ? <a href={`/blog/${id}/`}><h1>{title}</h1></a> : <h1>{title}</h1>}
+							<hr />
+						</div>
+						<slot />
+					</div>
+				</article>
+			</main>
+		</SplitPane>
+		<slot name="extra" />
 	</body>
 </html>

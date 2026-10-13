@@ -55,7 +55,9 @@ const {
 )}
 
 <script>
-	(function () {
+	import { eachPage } from '../lib/page';
+
+	eachPage(() => {
 		document.querySelectorAll('[data-series-link]').forEach((el) => {
 			const span = el as HTMLSpanElement;
 			const part = span.getAttribute('data-series-part') || '';
@@ -93,5 +95,5 @@ const {
 			a.textContent = text;
 			span.replaceWith(a);
 		});
-	})();
+	});
 </script>

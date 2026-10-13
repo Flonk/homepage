@@ -303,7 +303,9 @@ const label = Math.max(...shown.map((f) => f.name.length));
 </style>
 
 <script>
-	function initPalette(root: HTMLElement) {
+	import { eachPage } from '../lib/page';
+
+	function initPalette(root: HTMLElement, signal: AbortSignal) {
 		if (root.dataset.ready === 'true') return;
 		root.dataset.ready = 'true';
 
@@ -389,10 +391,22 @@ const label = Math.max(...shown.map((f) => f.name.length));
 			stopTurning();
 			root.dataset.shown = 'false';
 		});
-		still.addEventListener('change', () => {
-			replay();
-			startTurning();
-		});
+		still.addEventListener(
+			'change',
+			() => {
+				replay();
+				startTurning();
+			},
+			{ signal },
+		);
+		signal.addEventListener(
+			'abort',
+			() => {
+				cancelAnimationFrame(queued);
+				stopTurning();
+			},
+			{ once: true },
+		);
 
 		// Outside a deck, or already the card on screen: nothing will announce it.
 		if (!host || host.dataset.vizActive !== 'false') {
@@ -401,5 +415,9 @@ const label = Math.max(...shown.map((f) => f.name.length));
 		}
 	}
 
-	document.querySelectorAll<HTMLElement>('[data-tailwind-palette]').forEach(initPalette);
+	eachPage((signal) => {
+		document
+			.querySelectorAll<HTMLElement>('[data-tailwind-palette]')
+			.forEach((root) => initPalette(root, signal));
+	});
 </script>

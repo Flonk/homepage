@@ -237,6 +237,7 @@ const inkFor = (l: number) => oklchCss(l > 0.55 ? 0.18 : 0.97, 0.03, hue);
 <script>
 	import { shades, oklchCss } from '../lib/oklch';
 	import type { Rgb } from '../lib/rgb';
+	import { eachPage } from '../lib/page';
 
 	type Box = { x: number; y: number; w: number; h: number };
 	/** What ShadeMatch hangs on its own element. See ShadeMatch.astro. */
@@ -246,7 +247,7 @@ const inkFor = (l: number) => oklchCss(l > 0.55 ? 0.18 : 0.97, 0.03, hue);
 		exit(animate: boolean): void;
 	};
 
-	function initRamp(root: HTMLElement) {
+	function initRamp(root: HTMLElement, signal: AbortSignal) {
 		if (root.dataset.ready === 'true') return;
 		root.dataset.ready = 'true';
 
@@ -412,13 +413,22 @@ const inkFor = (l: number) => oklchCss(l > 0.55 ? 0.18 : 0.97, 0.03, hue);
 			matchEl?.shadeMatch?.exit(false);
 			root.dataset.shown = 'false';
 		});
-		still.addEventListener('change', () => {
-			if (!state.match) replay();
-		});
+		still.addEventListener(
+			'change',
+			() => {
+				if (!state.match) replay();
+			},
+			{ signal },
+		);
+		signal.addEventListener('abort', () => cancelAnimationFrame(queued), { once: true });
 
 		// Outside a deck, or already the card on screen: nothing will announce it.
 		if (!host || host.dataset.vizActive !== 'false') mode(state.match, false);
 	}
 
-	document.querySelectorAll<HTMLElement>('[data-ramp]').forEach(initRamp);
+	eachPage((signal) => {
+		document
+			.querySelectorAll<HTMLElement>('[data-ramp]')
+			.forEach((root) => initRamp(root, signal));
+	});
 </script>

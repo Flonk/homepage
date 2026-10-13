@@ -204,6 +204,7 @@ const asRgb = (css: string) => {
 
 <script>
 	import { rgbCss, type Rgb } from '../lib/rgb';
+	import { eachPage } from '../lib/page';
 
 	type TrackEl = HTMLElement & {
 		track: { set(i: number, v: number): void; sweep(on: boolean): void };
@@ -314,5 +315,7 @@ const asRgb = (css: string) => {
 		paint();
 	}
 
-	document.querySelectorAll<HTMLElement>('[data-mix-knob]').forEach(initMix);
+	eachPage(() => {
+		document.querySelectorAll<HTMLElement>('[data-mix-knob]').forEach(initMix);
+	});
 </script>

@@ -503,6 +503,7 @@ const ends = Array.from({ length: thumbs }, (_, i) => i);
 <script>
 	import { contextFor, type Motion } from '../lib/animate';
 	import { shuttleAt, shuttleEntry } from '../lib/shuttle';
+	import { eachPage } from '../lib/page';
 
 	type TrackApi = {
 		/** Move a thumb. Silent: hosts that push a value do not want it back. */
@@ -533,7 +534,7 @@ const ends = Array.from({ length: thumbs }, (_, i) => i);
 		grip(index: number): HTMLInputElement;
 	};
 
-	function initTrack(root: HTMLElement) {
+	function initTrack(root: HTMLElement, signal: AbortSignal) {
 		if (root.dataset.ready === 'true') return;
 		root.dataset.ready = 'true';
 
@@ -699,8 +700,15 @@ const ends = Array.from({ length: thumbs }, (_, i) => i);
 			grip.addEventListener('pointerdown', () => ctx.hold(idleSeconds()));
 		}
 
+		// Out of the shared clock when the page goes, so it has nothing left to run.
+		signal.addEventListener('abort', stop, { once: true });
+
 		start();
 	}
 
-	document.querySelectorAll<HTMLElement>('[data-viz-track]').forEach(initTrack);
+	eachPage((signal) => {
+		document
+			.querySelectorAll<HTMLElement>('[data-viz-track]')
+			.forEach((root) => initTrack(root, signal));
+	});
 </script>

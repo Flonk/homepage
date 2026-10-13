@@ -326,6 +326,8 @@ const CHANNELS = [
 </style>
 
 <script>
+	import { eachPage } from '../lib/page';
+
 	type Panel = {
 		canvas: HTMLCanvasElement;
 		ctx: CanvasRenderingContext2D;
@@ -339,7 +341,7 @@ const CHANNELS = [
 	   which for a noisy channel is exactly what would happen. */
 	const CLIP = 0.005;
 
-	function initSplit(root: HTMLElement) {
+	function initSplit(root: HTMLElement, signal: AbortSignal) {
 		if (root.dataset.ready === 'true') return;
 		root.dataset.ready = 'true';
 
@@ -543,16 +545,33 @@ const CHANNELS = [
 			img.src = which === 'subject' ? root.dataset.src! : root.dataset.reference!;
 		}
 
-		new ResizeObserver(() => draw()).observe(metric);
+		const sizing = new ResizeObserver(() => draw());
+		sizing.observe(metric);
+		signal.addEventListener(
+			'abort',
+			() => {
+				sizing.disconnect();
+				stop();
+			},
+			{ once: true },
+		);
 
 		host?.addEventListener('viz:enter', start);
 		host?.addEventListener('viz:exit', stop);
-		still.addEventListener('change', () => {
-			if (firstSplit !== null || cycle !== null || still.matches) start();
-		});
+		still.addEventListener(
+			'change',
+			() => {
+				if (firstSplit !== null || cycle !== null || still.matches) start();
+			},
+			{ signal },
+		);
 		// Outside a deck, or already the card on screen: nothing will announce it.
 		if (!host || host.dataset.vizActive !== 'false') start();
 	}
 
-	document.querySelectorAll<HTMLElement>('[data-channels]').forEach(initSplit);
+	eachPage((signal) => {
+		document
+			.querySelectorAll<HTMLElement>('[data-channels]')
+			.forEach((root) => initSplit(root, signal));
+	});
 </script>

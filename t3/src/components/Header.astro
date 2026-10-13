@@ -2,7 +2,7 @@
 import { SITE_TITLE } from '../consts';
 ---
 
-<header>
+<header transition:persist="site-header">
 	<nav>
 		<h1><a href="/">{SITE_TITLE}</a></h1>
 		<div class="social-links">
@@ -20,6 +20,7 @@ import { SITE_TITLE } from '../consts';
 </header>
 <style>
 	header {
+		view-transition-name: site-header;
 		margin: 0;
 		padding: 0 1em;
 		color: #000;
@@ -32,7 +33,8 @@ import { SITE_TITLE } from '../consts';
 	}
 	h1 {
 		margin: 0;
-		font-size: 1em;
+		/* What 1em came to before the body went to tesbota's smaller size. */
+		font-size: 14px;
 	}
 
 	h1 a,

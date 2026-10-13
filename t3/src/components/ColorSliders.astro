@@ -123,6 +123,7 @@ const limit =
 </div>
 
 <script>
+	import { eachPage } from '../lib/page';
 	import { chromaLimit, markInk, ramps, type Model, type Space, type Triple } from '../lib/channels';
 
 	type TrackEl = HTMLElement & {
@@ -141,51 +142,53 @@ const limit =
 		read(thumb?: number): Triple;
 	};
 
-	for (const el of document.querySelectorAll<HTMLElement & { sliders?: SlidersApi }>(
-		'[data-color-sliders]',
-	)) {
-		const model = el.dataset.model as Model;
-		/* Read when it is used rather than kept: a host that lets a reader
-		   change gamut writes it back to the attribute, and the bars have to be
-		   repainted for the one that is being asked about now. */
-		const gamutNow = () => (el.dataset.gamut ?? 'srgb') as Space;
-		const bars = [...el.querySelectorAll<TrackEl>('[data-viz-track]')];
-		const two = bars[0]?.querySelectorAll('.thumb').length === 2;
+	eachPage(() => {
+		for (const el of document.querySelectorAll<HTMLElement & { sliders?: SlidersApi }>(
+			'[data-color-sliders]',
+		)) {
+			const model = el.dataset.model as Model;
+			/* Read when it is used rather than kept: a host that lets a reader
+			   change gamut writes it back to the attribute, and the bars have to be
+			   repainted for the one that is being asked about now. */
+			const gamutNow = () => (el.dataset.gamut ?? 'srgb') as Space;
+			const bars = [...el.querySelectorAll<TrackEl>('[data-viz-track]')];
+			const two = bars[0]?.querySelectorAll('.thumb').length === 2;
 
-		el.sliders = {
-			repaint(value) {
-				const gamut = gamutNow();
-				ramps(model, value, gamut).forEach((paint, i) => {
-					bars[i]?.track.backdrop(paint.backdrop);
-					bars[i]?.track.edge(paint.edge);
-					// The ring is the channel lifted, and the channel moves with the
-					// colour on every model but rgb.
-					if (two) bars[i]?.parentElement?.style.setProperty('--track-flb', paint.lit);
-				});
-				// The limit moves with lightness and hue, so it is redrawn with them.
-				if (model === 'oklch') {
-					bars[1]?.track.marks([{ at: chromaLimit(value, gamut), colour: markInk(value) }]);
-				}
-			},
-			read(thumb = 0) {
-				return bars.map((b) => b.track.get(thumb)) as Triple;
-			},
-		};
+			el.sliders = {
+				repaint(value) {
+					const gamut = gamutNow();
+					ramps(model, value, gamut).forEach((paint, i) => {
+						bars[i]?.track.backdrop(paint.backdrop);
+						bars[i]?.track.edge(paint.edge);
+						// The ring is the channel lifted, and the channel moves with the
+						// colour on every model but rgb.
+						if (two) bars[i]?.parentElement?.style.setProperty('--track-flb', paint.lit);
+					});
+					// The limit moves with lightness and hue, so it is redrawn with them.
+					if (model === 'oklch') {
+						bars[1]?.track.marks([{ at: chromaLimit(value, gamut), colour: markInk(value) }]);
+					}
+				},
+				read(thumb = 0) {
+					return bars.map((b) => b.track.get(thumb)) as Triple;
+				},
+			};
 
-		/* A move on any bar is a move of the colour, so the ramps on the other
-		   two are stale the moment it happens — which is the whole reason the
-		   ramps are a function of the colour rather than a constant. */
-		el.addEventListener('track:input', (event) => {
-			const detail = (event as CustomEvent).detail;
-			el.sliders!.repaint(el.sliders!.read(detail.index ?? 0));
-			el.dispatchEvent(
-				new CustomEvent('sliders:input', {
-					detail: { model, thumb: detail.index ?? 0, value: el.sliders!.read(detail.index ?? 0) },
-					bubbles: true,
-				}),
-			);
-		});
-	}
+			/* A move on any bar is a move of the colour, so the ramps on the other
+			   two are stale the moment it happens — which is the whole reason the
+			   ramps are a function of the colour rather than a constant. */
+			el.addEventListener('track:input', (event) => {
+				const detail = (event as CustomEvent).detail;
+				el.sliders!.repaint(el.sliders!.read(detail.index ?? 0));
+				el.dispatchEvent(
+					new CustomEvent('sliders:input', {
+						detail: { model, thumb: detail.index ?? 0, value: el.sliders!.read(detail.index ?? 0) },
+						bubbles: true,
+					}),
+				);
+			});
+		}
+	});
 </script>
 
 <style>

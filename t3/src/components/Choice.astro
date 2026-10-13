@@ -48,38 +48,42 @@ const { options, at = 0, label, class: className, ...rest } = Astro.props;
 </div>
 
 <script>
-	for (const group of document.querySelectorAll<HTMLElement>('[data-choice]')) {
-		const rows = [...group.querySelectorAll<HTMLButtonElement>('.row')];
+	import { eachPage } from '../lib/page';
 
-		const choose = (i: number, focus = false) => {
-			const at = Math.max(0, Math.min(rows.length - 1, i));
-			group.style.setProperty('--at', String(at));
-			rows.forEach((row, j) => {
-				row.setAttribute('aria-checked', String(j === at));
-				// One stop for the whole group, which is what a radiogroup is:
-				// tab reaches the chosen row, and the arrows do the rest.
-				row.tabIndex = j === at ? 0 : -1;
+	eachPage(() => {
+		for (const group of document.querySelectorAll<HTMLElement>('[data-choice]')) {
+			const rows = [...group.querySelectorAll<HTMLButtonElement>('.row')];
+
+			const choose = (i: number, focus = false) => {
+				const at = Math.max(0, Math.min(rows.length - 1, i));
+				group.style.setProperty('--at', String(at));
+				rows.forEach((row, j) => {
+					row.setAttribute('aria-checked', String(j === at));
+					// One stop for the whole group, which is what a radiogroup is:
+					// tab reaches the chosen row, and the arrows do the rest.
+					row.tabIndex = j === at ? 0 : -1;
+				});
+				if (focus) rows[at].focus();
+				group.dispatchEvent(
+					new CustomEvent('choice:input', {
+						detail: { index: at, value: rows[at].textContent?.trim() },
+						bubbles: true,
+					}),
+				);
+			};
+
+			rows.forEach((row, i) => row.addEventListener('click', () => choose(i)));
+
+			group.addEventListener('keydown', (event) => {
+				const step = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[event.key];
+				if (!step) return;
+				event.preventDefault();
+				const now = rows.findIndex((r) => r.getAttribute('aria-checked') === 'true');
+				// Wraps, because a list of options has no ends worth stopping at.
+				choose((now + step + rows.length) % rows.length, true);
 			});
-			if (focus) rows[at].focus();
-			group.dispatchEvent(
-				new CustomEvent('choice:input', {
-					detail: { index: at, value: rows[at].textContent?.trim() },
-					bubbles: true,
-				}),
-			);
-		};
-
-		rows.forEach((row, i) => row.addEventListener('click', () => choose(i)));
-
-		group.addEventListener('keydown', (event) => {
-			const step = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[event.key];
-			if (!step) return;
-			event.preventDefault();
-			const now = rows.findIndex((r) => r.getAttribute('aria-checked') === 'true');
-			// Wraps, because a list of options has no ends worth stopping at.
-			choose((now + step + rows.length) % rows.length, true);
-		});
-	}
+		}
+	});
 </script>
 
 <style>

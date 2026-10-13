@@ -269,9 +269,9 @@ const gradId = `gamut-swatch-${Math.random().toString(36).slice(2, 9)}`;
 		/* ---- composition knobs ------------------------------------------
 		   Where things sit, all in one place. The swatch's shape lives in its
 		   SVG path above, not here. */
-		--pad-left: clamp(1rem, 10vw, 9rem);
-		--pad-right: clamp(1rem, 8vw, 7rem);
-		--bar-gap: clamp(0.75rem, 2vw, 1.75rem);
+		--pad-left: clamp(1rem, 10cqw, 9rem);
+		--pad-right: clamp(1rem, 8cqw, 7rem);
+		--bar-gap: clamp(0.75rem, 2cqw, 1.75rem);
 
 		/* Out from under DeckViz's cap, as part one's cube is: the composition
 		   is already capped where it counts — the solid is sized from the pane's
@@ -591,6 +591,7 @@ const gradId = `gamut-swatch-${Math.random().toString(36).slice(2, 9)}`;
 
 <script>
 	import { contextFor } from '../lib/animate';
+	import { eachPage, releaseOnLeave } from '../lib/page';
 	import {
 		SPACE_LABEL,
 		decode,
@@ -898,7 +899,7 @@ const gradId = `gamut-swatch-${Math.random().toString(36).slice(2, 9)}`;
 	const TILT: Quat = qAxisAngle(1, 0, 0, 0.36);
 	const AMBIENT_RATE = 0.3;
 
-	function init(root: HTMLElement) {
+	function init(root: HTMLElement, signal: AbortSignal) {
 		if (root.dataset.ready === 'true') return;
 		root.dataset.ready = 'true';
 
@@ -927,6 +928,7 @@ const gradId = `gamut-swatch-${Math.random().toString(36).slice(2, 9)}`;
 			canvas.style.display = 'none';
 			return;
 		}
+		releaseOnLeave(gl, signal);
 
 		/* Ask for the wider buffer only when there is a screen to see it on.
 		   Requesting P3 on an sRGB monitor is not wrong — the compositor maps it
@@ -1255,7 +1257,8 @@ const gradId = `gamut-swatch-${Math.random().toString(36).slice(2, 9)}`;
 			canvas.style.setProperty('--shadow-y', `${(size * 0.09).toFixed(2)}px`);
 		};
 		let stale = true;
-		new ResizeObserver(() => (stale = true)).observe(canvas);
+		const sizer = new ResizeObserver(() => (stale = true));
+		sizer.observe(canvas);
 		resize();
 
 		/* ---- the turn -------------------------------------------------------
@@ -1461,9 +1464,21 @@ const gradId = `gamut-swatch-${Math.random().toString(36).slice(2, 9)}`;
 			running = false;
 		};
 
-		new IntersectionObserver((entries) => {
+		const watch = new IntersectionObserver((entries) => {
 			for (const entry of entries) (entry.isIntersecting ? start : stop)();
-		}).observe(canvas);
+		});
+		watch.observe(canvas);
+
+		// Off the page, so nothing can see it back on screen to start it again.
+		signal.addEventListener(
+			'abort',
+			() => {
+				stop();
+				watch.disconnect();
+				sizer.disconnect();
+			},
+			{ once: true },
+		);
 
 		canvas.addEventListener('webglcontextlost', (e) => {
 			e.preventDefault();
@@ -1494,5 +1509,7 @@ const gradId = `gamut-swatch-${Math.random().toString(36).slice(2, 9)}`;
 		});
 	}
 
-	for (const root of document.querySelectorAll<HTMLElement>('[data-gamut-solid]')) init(root);
+	eachPage((signal) => {
+		for (const root of document.querySelectorAll<HTMLElement>('[data-gamut-solid]')) init(root, signal);
+	});
 </script>

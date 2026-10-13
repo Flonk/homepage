@@ -355,6 +355,7 @@ const {
 	import { shuttleAt, shuttleEntry } from '../lib/shuttle';
 	import { lightenRgb } from '../lib/oklch';
 	import { parseHex, rgbCss, type Rgb } from '../lib/rgb';
+	import { eachPage } from '../lib/page';
 
 	/* ---- the two scales -------------------------------------------------
 	   Space: how many screen pixels stand for a nanometre. Time: how much
@@ -478,7 +479,7 @@ const {
 		return [Math.min(a, b), Math.max(a, b)];
 	}
 
-	function initPhoton(root: HTMLElement) {
+	function initPhoton(root: HTMLElement, signal: AbortSignal) {
 		if (root.dataset.ready === 'true') return;
 		root.dataset.ready = 'true';
 
@@ -784,7 +785,9 @@ const {
 			// dot's first pass then just runs along what is already there.
 			writeSpan(dist - trace.length, dist);
 		};
-		new ResizeObserver(resize).observe(canvas);
+		const sizing = new ResizeObserver(resize);
+		sizing.observe(canvas);
+		signal.addEventListener('abort', () => sizing.disconnect(), { once: true });
 		resize();
 
 		let last = 0;
@@ -793,6 +796,8 @@ const {
 		});
 
 		function frame(now: number) {
+			// The page it was drawing for has gone, and the loop goes with it.
+			if (signal.aborted) return;
 			requestAnimationFrame(frame);
 			if (gate && gate.dataset.vizActive === 'false') return;
 			if (!w || !h) return;
@@ -918,5 +923,9 @@ const {
 		requestAnimationFrame(frame);
 	}
 
-	document.querySelectorAll<HTMLElement>('[data-photon]').forEach(initPhoton);
+	eachPage((signal) => {
+		document
+			.querySelectorAll<HTMLElement>('[data-photon]')
+			.forEach((root) => initPhoton(root, signal));
+	});
 </script>
