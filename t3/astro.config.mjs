@@ -7,8 +7,6 @@ import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
 import rehypeNowrapInlineCode from "./src/plugins/rehype-nowrap-inline-code.mjs";
 
-import react from "@astrojs/react";
-
 // https://astro.build/config
 export default defineConfig({
   site: "https://example.com",
@@ -29,6 +27,5 @@ export default defineConfig({
     // Hidden posts carry a noindex of their own; this keeps them from being
     // announced in the first place. See `hidden` in content.config.ts.
     sitemap({ filter: (page) => !page.includes("/designsystem") && !page.includes("/qr") }),
-    react(),
   ],
 });

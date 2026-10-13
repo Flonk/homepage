@@ -327,7 +327,7 @@ const { mode, current } = Astro.props;
 </style>
 
 <script>
-	import { eachPage } from '../lib/page';
+	import { eachPage, keepOnRoot } from '../lib/page';
 
 	// Drag the divider to move the split, between a fifth and four fifths of
 	// the page; double-click it to put it back at 30%. Where it is left is
@@ -344,14 +344,8 @@ const { mode, current } = Astro.props;
 		} catch {}
 	};
 
-	// A swap takes the attributes of <html> from the page coming in, and with
-	// them the split set on it, so it is set again before that page paints.
-	document.addEventListener('astro:after-swap', () => {
-		try {
-			const split = Number(localStorage.getItem('split'));
-			if (split >= 20 && split <= 80) place(split, false);
-		} catch {}
-	});
+	// Set on <html>, which a swap gives the next page's attributes.
+	keepOnRoot('--split');
 
 	eachPage((signal) => {
 		const split = document.querySelector<HTMLElement>('.split');

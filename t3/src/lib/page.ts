@@ -36,6 +36,32 @@ export function eachPage(setup: (signal: AbortSignal) => void): void {
 }
 
 /**
+ * Custom properties a script sets on `<html>`, kept from one page to the
+ * next. A swap gives `<html>` the attributes of the page coming in, its style
+ * among them, and with it would go whatever a script had put there: the
+ * split where the reader left it, the chrome's glow where the pointer had
+ * pulled it. Put back the moment the new page is in, before anything is
+ * worked out from them, so that one eased by a transition is not seen to
+ * set off back to where it starts and then return.
+ *
+ * Only the names given are kept; whatever the page coming in sets on
+ * `<html>` itself, such as its accent, is its own.
+ */
+export function keepOnRoot(...names: string[]): void {
+	document.addEventListener('astro:before-swap', (e) => {
+		const style = document.documentElement.style;
+		const kept = names
+			.map((name) => [name, style.getPropertyValue(name)] as const)
+			.filter(([, value]) => value);
+		const swap = e.swap;
+		e.swap = () => {
+			swap();
+			for (const [name, value] of kept) style.setProperty(name, value);
+		};
+	});
+}
+
+/**
  * Hands a WebGL context back when its page goes. A browser keeps only a
  * handful alive at once and drops the oldest past that, so a page that left
  * its contexts behind would, a few pages later, blank a picture on screen.

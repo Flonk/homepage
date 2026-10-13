@@ -320,6 +320,8 @@ import T3Mark from './T3Mark.astro';
 </style>
 
 <script>
+	import { keepOnRoot } from '../lib/page';
+
 	/* The chrome's glow goes to the pointer while it is over the header,
 	   and drifts back to its round when it leaves: this only says where the
 	   pointer is and how hard to pull, and global.css eases the rest (see
@@ -359,6 +361,10 @@ import T3Mark from './T3Mark.astro';
 		frame ||= requestAnimationFrame(write);
 	});
 
+	// Over a click in the header, the pointer is still there when the next page
+	// is in: the glow stays with it, rather than easing off and coming back.
+	keepOnRoot('--glow-pull', '--pointer-x', '--pointer-y');
+
 	/* Idle: half a minute with nothing from the reader, not a move, a key, a
 	   wheel or a scroll, and the chrome holds still, the turn and the grain
 	   both, until the next sign of them. It costs nothing while it waits, and
@@ -387,21 +393,29 @@ import T3Mark from './T3Mark.astro';
 	   element put back in starts its animations over. The noise would jump
 	   back to where it began on every click, seen as a drift through the
 	   cross-fade. So where each of its animations has got to is noted just
-	   before the swap and put back just after, by animation and by layer. */
-	const grainAnimations = () =>
-		document.querySelector('.grain')?.getAnimations({ subtree: true }) ?? [];
-	const keyOf = (animation: Animation) =>
-		`${(animation as CSSAnimation).animationName} ${(animation.effect as KeyframeEffect | null)?.target?.className}`;
-	let heldAt = new Map<string, CSSNumberish | null>();
-	document.addEventListener('astro:before-swap', () => {
-		heldAt = new Map(grainAnimations().map((animation) => [keyOf(animation), animation.currentTime]));
-	});
-	document.addEventListener('astro:after-swap', () => {
-		for (const animation of grainAnimations()) {
-			const at = heldAt.get(keyOf(animation));
-			if (at != null) animation.currentTime = at;
-		}
-	});
+	   before the swap and put back just after, by animation and by layer.
+
+	   Only where it is needed. A browser that can move an element without
+	   taking it out (moveBefore, which the router uses where there is one)
+	   keeps its animations going as they were, and there asking after them
+	   would only make it work out the new page's style and layout early, in
+	   the middle of the swap, for nothing. */
+	if (!('moveBefore' in Element.prototype)) {
+		const grainAnimations = () =>
+			document.querySelector('.grain')?.getAnimations({ subtree: true }) ?? [];
+		const keyOf = (animation: Animation) =>
+			`${(animation as CSSAnimation).animationName} ${(animation.effect as KeyframeEffect | null)?.target?.className}`;
+		let heldAt = new Map<string, CSSNumberish | null>();
+		document.addEventListener('astro:before-swap', () => {
+			heldAt = new Map(grainAnimations().map((animation) => [keyOf(animation), animation.currentTime]));
+		});
+		document.addEventListener('astro:after-swap', () => {
+			for (const animation of grainAnimations()) {
+				const at = heldAt.get(keyOf(animation));
+				if (at != null) animation.currentTime = at;
+			}
+		});
+	}
 
 	// The open page's title and what it belongs to into the header, or nothing
 	// where it has none.
