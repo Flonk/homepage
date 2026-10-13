@@ -1,7 +1,8 @@
 ---
 title: "Colour #1: The RGB Cube"
 series: "Colour"
-accent: "oklch(0.73 0.172 305)"
+accent: "oklch(0.5 0.172 305)"
+chromeShift: -24
 format: "deck"
 ground: "dark"
 description: ""
@@ -21,7 +22,7 @@ import VizPhase from "../../components/VizPhase.astro";
     other, which is what the cross-fade between them is showing. */}
 <DeckViz>
   <VizPhase name="cube">
-    <RgbCube />
+    <RgbCube start={[0.498, 0.378, 0.809]} />
   </VizPhase>
   <VizPhase name="additive">
     <ColorMixing mode="additive" />

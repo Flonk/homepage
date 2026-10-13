@@ -34,6 +34,12 @@ interface Props {
 	 */
 	lock?: [number, number, number] | null;
 	/**
+	 * Begin the dot at this colour, 0-1 per channel, and let it go from there:
+	 * the curve is started where it passes nearest, so the dot sets off along
+	 * it rather than jumping. Unlike `lock`, it holds nothing.
+	 */
+	start?: [number, number, number] | null;
+	/**
 	 * Visit the eight corners in random order instead of tracing the curve,
 	 * holding each for this many seconds. Takes precedence over `lock`.
 	 */
@@ -79,6 +85,7 @@ const {
 	idleResume = 5,
 	spin = true,
 	lock = null,
+	start = null,
 	tour = null,
 	line = false,
 	guides = false,
@@ -92,6 +99,7 @@ const {
 	data-idle-resume={idleResume}
 	data-spin={String(spin)}
 	data-lock={lock ? lock.join(',') : undefined}
+	data-start={start ? start.join(',') : undefined}
 	data-tour={tour ?? undefined}
 	data-line={String(line)}
 	data-guides={String(guides)}
@@ -1054,6 +1062,25 @@ const {
 			0.5 + 0.5 * Math.sin(time * FREQ[1] * Math.PI * 2 + phase[1]),
 			0.5 + 0.5 * Math.sin(time * FREQ[2] * Math.PI * 2 + phase[2]),
 		];
+
+		/* Begun at a given colour: the curve's clock is set to the moment it
+		   passes nearest that colour, and the dot starts at the colour itself and
+		   eases onto the curve there, so it is seen setting off from it. */
+		if (root.dataset.start) {
+			const want = root.dataset.start.split(',').map(Number);
+			let nearest = Infinity;
+			for (let at = 0; at < 2000; at += 0.05) {
+				const p = lissajous(at, ends[0].phase);
+				const d = (p[0] - want[0]) ** 2 + (p[1] - want[1]) ** 2 + (p[2] - want[2]) ** 2;
+				if (d < nearest) {
+					nearest = d;
+					t = at;
+				}
+			}
+			ends[0].rgb = want.slice();
+			ends[0].resumeFrom = want.slice();
+			ends[0].resumeAt = performance.now();
+		}
 
 		/* One end's colour for this frame. What the reader is doing with the bars
 		   wins, then whatever the card pinned it to, then the curve. Coming off a

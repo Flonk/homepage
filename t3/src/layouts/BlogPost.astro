@@ -13,12 +13,16 @@ type Props = CollectionEntry<'blog'>['data'] & {
 	home?: boolean;
 };
 
-const { id, home = false, title, description, pubDate, updatedDate, hidden, accent } = Astro.props;
-// A post's own accent goes on <html>, and everything warm is worked out from
-// it; the home page keeps the site's, whichever post it shows.
+const { id, home = false, title, description, pubDate, updatedDate, hidden, accent, chromeShift } =
+	Astro.props;
+// The post's colour on <html>, where the chrome is worked out from it; the
+// home page keeps the site's.
+const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-shift: ${chromeShift}`]
+	.filter(Boolean)
+	.join('; ');
 ---
 
-<html lang="en" style={accent && !home ? `--accent: ${accent}` : undefined}>
+<html lang="en" style={own && !home ? own : undefined}>
 	<head>
 		<BaseHead
 			title={home ? SITE_TITLE : title}

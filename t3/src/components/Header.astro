@@ -12,9 +12,11 @@ import T3Mark from './T3Mark.astro';
 		<h1>
 			<a href="/"><span class="sr-only">T3 Blog</span><T3Mark inverted class="name-mark" /></a>
 		</h1>
-		{/* What is open, where the page says (data-page-title): filled in by the
-		    script below on every page, because this header is kept from one page
-		    to the next and so cannot be written with any one page's title. */}
+		{/* What is open and what it belongs to, where the page says so
+		    (data-page-title, data-page-meta): filled in by the script below on
+		    every page, because this header is kept from one page to the next and
+		    so cannot be written with any one page's. */}
+		<span class="page-meta" data-page-meta-slot></span>
 		<span class="page-title" data-page-title-slot></span>
 		<div class="social-links">
 			<a href="https://github.com/flonk" target="_blank">
@@ -176,6 +178,7 @@ import T3Mark from './T3Mark.astro';
 		position: relative;
 	}
 	h1 {
+		display: flex;
 		margin: 0;
 		/* What 1em came to before the body went to tesbota's smaller size, in
 		   rem so that it follows the reader's own text size as the rest does. */
@@ -194,10 +197,16 @@ import T3Mark from './T3Mark.astro';
 	   disc with the chrome showing through the letters (see T3Mark). */
 	nav :global(.name-mark) {
 		width: 2.1rem;
+		/* A pixel above true centre, where it looks centred. */
+		translate: 0 -1px;
 	}
 
-	/* The open page's title, beside the mark: only on a narrow screen, where
-	   there is no masthead to carry it, and only when the page has one. */
+	/* The open page's title and what it belongs to, where the page has them:
+	   on a narrow screen the title beside the mark, on a wide one the two
+	   either side of it, the mark between them in the middle of the bar. */
+	.page-meta {
+		display: none;
+	}
 	.page-title {
 		display: none;
 	}
@@ -224,10 +233,40 @@ import T3Mark from './T3Mark.astro';
 			padding: 0;
 		}
 	}
+	@media (min-width: 1100px) {
+		.page-meta:not(:empty),
+		.page-title:not(:empty) {
+			--beside: calc(50% + 1.05rem + 1rem);
+			display: block;
+			position: absolute;
+			top: 50%;
+			translate: 0 -50%;
+			max-width: calc(100% - var(--beside) - 6rem);
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+		.page-meta:not(:empty) {
+			right: var(--beside);
+			text-align: right;
+			font-size: var(--type-label);
+			letter-spacing: var(--track-label);
+			text-transform: uppercase;
+			font-weight: 700;
+		}
+		.page-title:not(:empty) {
+			left: var(--beside);
+			font-size: 0.875rem;
+			font-weight: 700;
+		}
+	}
 	nav h1 a,
 	nav h1 a.active {
 		text-decoration: none;
-		display: inline-block;
+		/* A box round the mark and nothing else, so it centres on the bar as the
+		   title beside it does rather than sitting on a line of text. */
+		display: flex;
+		border-bottom: 0;
 		/* A wide target round a short name: padded out over the bar and pulled
 		   back by as much, so the name stays put and the space round it clicks. */
 		padding: 1rem 12.8rem;
@@ -360,9 +399,13 @@ import T3Mark from './T3Mark.astro';
 		}
 	});
 
-	// The open page's title into the header, or nothing where it has none.
+	// The open page's title and what it belongs to into the header, or nothing
+	// where it has none.
 	document.addEventListener('astro:page-load', () => {
 		const slot = document.querySelector('[data-page-title-slot]');
 		if (slot) slot.textContent = document.querySelector('[data-page-title]')?.textContent?.trim() ?? '';
+		const meta = document.querySelector('[data-page-meta-slot]');
+		const parts = document.querySelector('[data-page-meta]')?.children ?? [];
+		if (meta) meta.textContent = [...parts].map((part) => part.textContent?.trim()).filter(Boolean).join(' · ');
 	});
 </script>

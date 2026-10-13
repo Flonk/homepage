@@ -575,10 +575,11 @@ const gradId = `gamut-swatch-${Math.random().toString(36).slice(2, 9)}`;
 			flex: 0 1 auto;
 			min-width: 0;
 		}
-		/* Capped to about the width of the three thin bars, so the caption wraps
-		   rather than setting how wide the plate is. */
+		/* On one line, the plate a little wider for it than the three thin bars
+		   are: a caption broken over two reads as two things. */
 		.legend {
-			max-inline-size: 4.8rem;
+			max-inline-size: none;
+			white-space: nowrap;
 			padding: 0.25rem 0.35rem;
 			font-size: 0.5rem;
 			letter-spacing: 0.02em;

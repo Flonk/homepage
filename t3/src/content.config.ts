@@ -23,6 +23,9 @@ const blog = defineCollection({
 		// the gold are all worked out from it (see --accent in global.css), so
 		// one colour retints the whole page while the post is open.
 		accent: z.string().optional(),
+		// How far round the hue the chrome turns from the accent, in degrees (see
+		// --chrome-shift in global.css): 24 unless set, more for a louder sweep.
+		chromeShift: z.number().optional(),
 		// Kept off the index, out of the feed and out of the sitemap, and given a
 		// noindex. For a post that is working material rather than writing.
 		hidden: z.boolean().default(false),

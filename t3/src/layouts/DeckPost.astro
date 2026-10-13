@@ -12,11 +12,15 @@ type Props = CollectionEntry<'blog'>['data'] & {
 	nextPart?: SeriesLink;
 };
 
-const { id, title, description, pubDate, series, ground, accent, prevPart, nextPart } = Astro.props;
-// A post's own accent goes on <html>, and everything warm is worked out from it.
+const { id, title, description, pubDate, series, ground, accent, chromeShift, prevPart, nextPart } =
+	Astro.props;
+// The post's colour on <html>, where the chrome is worked out from it.
+const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-shift: ${chromeShift}`]
+	.filter(Boolean)
+	.join('; ');
 ---
 
-<html lang="en" style={accent ? `--accent: ${accent}` : undefined}>
+<html lang="en" style={own || undefined}>
 	<head>
 		<BaseHead title={title} description={description} />
 		<link
@@ -37,7 +41,7 @@ const { id, title, description, pubDate, series, ground, accent, prevPart, nextP
 				<div class="deck-head">
 					<a class="deck-home" href="/" aria-label="Back to the home page">T3</a>
 					<div class="deck-headings">
-						<div class="deck-meta">
+						<div class="deck-meta" data-page-meta>
 							{series && <span class="deck-series">{series}</span>}
 							<span class="deck-date"><FormattedDate date={pubDate} /></span>
 						</div>
@@ -139,20 +143,15 @@ const { id, title, description, pubDate, series, ground, accent, prevPart, nextP
 				container-type: inline-size;
 			}
 
-			/* The site's header over every deck now, phone or not, with the deck's
-			   title in it on a narrow screen (see Header, data-page-title): there
-			   the deck's own masthead goes, and on a wide one its home mark does. */
+			/* The site's header over every deck, with what the deck's own masthead
+			   said up in it instead (see Header, data-page-title and data-page-meta):
+			   the masthead stays in the page only to be read from, never shown. */
 			.deck-site-header {
 				display: block;
 				flex: none;
 			}
-			.deck-head .deck-home {
+			.deck-main .deck-head {
 				display: none;
-			}
-			@media (max-width: 1099px) {
-				.deck-main .deck-head {
-					display: none;
-				}
 			}
 
 			/* No padding of its own — the home mark butts against the page edge and

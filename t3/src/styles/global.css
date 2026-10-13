@@ -12,6 +12,10 @@
      @supports block below). A post can set its own with `accent` in its
      frontmatter, which the layouts put on <html>. */
   --accent: #f6722b;
+  /* How far round the hue the chrome turns from the accent to its middle
+     shade, in degrees; its glow goes not quite twice as far. A post can set
+     its own with `chromeShift`, as it can its accent. */
+  --chrome-shift: 24;
 
   /* The fake luminosity border, as a colour rather than as a gradient: what
      the thing is sitting on, taken a fifth of the way to white. Same formula
@@ -176,8 +180,8 @@
        the lighter shade in the middle of it and the glow over it are stepped
        up from it. The colours written out above are what stays where this is
        not understood. */
-    --chrome-mid: oklch(from var(--accent) calc(l + 0.087) calc(c - 0.009) calc(h + 24));
-    --chrome-light: oklch(from var(--accent) calc(l + 0.16) calc(c - 0.031) calc(h + 43));
+    --chrome-mid: oklch(from var(--accent) calc(l + 0.087) calc(c - 0.009) calc(h + var(--chrome-shift)));
+    --chrome-light: oklch(from var(--accent) calc(l + 0.16) calc(c - 0.031) calc(h + var(--chrome-shift) * 1.8));
     /* The chrome's middle shade at one lightness, whatever the accent's own, so
        that a name or a stressed word reads alike on every post; its colourfulness
        capped where a screen would run out of it at that lightness. */

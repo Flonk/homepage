@@ -686,7 +686,8 @@ const covers = Object.fromEntries(
 	}
 
 	.folder:hover .name {
-		color: var(--text);
+		/* The same gold, lit up, rather than another colour. */
+		color: color-mix(in oklab, var(--gold), white 35%);
 	}
 
 	/* As many lines as the card has room for under the name, then an ellipsis. */
