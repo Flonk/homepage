@@ -1,10 +1,10 @@
 ---
 title: "All abstractions are the same"
-description: ""
+description: "A microservice is just a class, a static class is just a folder: every abstraction is code, bundled into units, with a dependency graph between them."
 pubDate: "October 12 2026"
 ---
 
-Back when people were writing code, you'd occasionally hear me say things like, 
+Back when people were writing code, you'd occasionally hear me say things like,
 "static classes are just folders", or "a microservice is just a function", or
 "anything is a monolith if you zoom out enough", or insert any other two buzzwords
 you can think of.
@@ -34,8 +34,8 @@ we are going to have to rethink a lot of our assumptions about code organization
 
 What if hot-reload is preferable sometimes, because it allows you to move fast?
 
-And like, when I vibecode and notice the codebase is degrading and the same errors start
-popping up all over the place meaning a refactor is due. Then these days I'm just like,
+And like, when I vibecode and notice the codebase is degrading, and the same errors start
+popping up all over the place, meaning a refactor is due, then these days I'm just like,
 "I think this is what is happening and you should colocate these pieces of code to fix it",
 followed by "look, these 5 things are actually the same thing", and that usually solves the issue.
 Do I care whether the abstractions AI finds are functions, or classes, or folders? Not really.
@@ -44,7 +44,7 @@ They're all the same anyway.
 
 The important thing is that related code is now colocated.
 
-One of my first blog posts on this site was about how to structure any codebase,
+One of my first blog posts on this site was about [how to structure any codebase](/blog/2024-08-06-how-to-structure-any-codebase),
 and now that I don't even write the code that I'm structuring anymore, it starts
 to become more and more obvious: Every abstraction is the same.
 
@@ -57,9 +57,9 @@ And my job as a vibe coder is to:
 - Ensure related code is colocated
 - Ensure similar side effects are colocated
 - Ensure the dependency graph is acyclic and as tree-like as possible
-- Ensure the codebase is as declarative as possible (Anything is an interpreter if you squint hard enough)
+- Ensure the codebase is as declarative as possible ([Anything is an interpreter if you squint hard enough](/blog/2025-08-07-configuramming))
 
-And this is any software ever. All the rest.. the stuff that AI does now.. it's 
+And this is any software ever. All the rest… the stuff that AI does now… it's
 all just mechanical. Programming languages are all the same. Virtual classes and
 mixins and folders and modules, they're all the same. While and for and switch and
 if, they are all the same.
