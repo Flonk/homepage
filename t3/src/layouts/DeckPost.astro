@@ -94,7 +94,7 @@ const { id, title, description, pubDate, series, ground, accent, prevPart, nextP
 				--deck-ground: var(--viz-beige);
 				--deck-ink: #35302a;
 				--deck-ink-dim: #7a7264;
-				--deck-eyebrow: var(--accent-on-light);
+				--deck-eyebrow: var(--gold);
 				/* The surface a visualization puts its controls on: a pane of
 				   glass over whatever is behind it, which may be the ground and
 				   may be a field of colour the picture itself has painted. What
@@ -119,7 +119,7 @@ const { id, title, description, pubDate, series, ground, accent, prevPart, nextP
 				--deck-ground: var(--viz-dark);
 				--deck-ink: #e6e9ef;
 				--deck-ink-dim: #8891a0;
-				--deck-eyebrow: var(--accent);
+				--deck-eyebrow: var(--gold);
 				--viz-glass: rgb(255 255 255 / 0.06);
 				--viz-glass-rim: rgb(255 255 255 / 0.08);
 				--viz-shadow: rgb(0 0 0 / 0.55);
@@ -259,6 +259,28 @@ const { id, title, description, pubDate, series, ground, accent, prevPart, nextP
 				overflow: clip;
 			}
 
+			/* On a narrow screen half a phone is not enough for every picture: one
+			   with a band of sliders under it would be left a solid the size of a
+			   stamp. Such a visualization says so with `data-viz-tall`, and while it
+			   is the one on stage the picture takes three fifths and the text,
+			   which scrolls anyway, the rest. Moved rather than cut, at the pace
+			   the cards slide. A wide screen has the height already. */
+			@media (max-width: 1099px) {
+				.deck {
+					transition: grid-template-rows 0.35s ease;
+				}
+				.deck:has(.deck-viz > [data-viz-tall]),
+				.deck:has([data-viz-active='true'] [data-viz-tall]) {
+					grid-template-rows: minmax(0, 3fr) minmax(0, 2fr);
+				}
+			}
+
+			@media (max-width: 1099px) and (prefers-reduced-motion: reduce) {
+				.deck {
+					transition: none;
+				}
+			}
+
 			/* Named areas so DeckCard's halves can be placed independently. */
 			.deck::before {
 				content: '';
@@ -297,8 +319,8 @@ const { id, title, description, pubDate, series, ground, accent, prevPart, nextP
 
 			.deck-arrow:hover:not(:disabled),
 			.deck-arrow:focus-visible {
-				color: var(--accent);
-				border-color: var(--accent);
+				color: var(--gold);
+				border-color: var(--gold);
 			}
 
 			.deck-arrow:disabled {

@@ -134,6 +134,7 @@ const HSL = [
 <div
 	class="solid"
 	data-colour-solid
+	data-viz-tall
 	data-no-swipe
 	data-idle-resume={idleResume}
 	data-spin={String(spin)}
@@ -685,47 +686,74 @@ const HSL = [
 	}
 
 	/* A phone. Side by side, the controls and the solid are each too narrow to
-	   be worth having, so the pane stops being a row and becomes two: every
-	   control in one short band across the top, and the solid underneath with
-	   the whole width to itself.
+	   be worth having, so the pane stops being a row and becomes three: the
+	   reading and the switch in a line across the top, the solid under them
+	   with the whole width to itself, and the bars in a band along the bottom,
+	   which is where a thumb holding the phone already is.
 
-	   A grid rather than a wrapped row, because what the second line needs is
+	   The band used to go across the top, between the reading and the solid,
+	   and to fit there the bars were cut down to stubs a finger could not find.
+	   Here they are as thick as a fingertip and as tall as the band, and the
+	   deck gives the picture more of the screen to make the room — see
+	   data-viz-tall, and the rule that answers it in DeckPost.
+
+	   A grid rather than a wrapped row, because what the middle line needs is
 	   all the height that is left, and wrapping only ever splits the spare
 	   space evenly between its lines. `display: contents` on the middle column
-	   drops its two children into this grid, so the switch can sit between the
-	   two sets of bars while the stage goes underneath them both.
+	   drops its two children into this grid, so the switch and the stage can
+	   be placed on lines of their own.
 
 	   The bars need a height in this arrangement. Standing up, a track takes
 	   its length from whatever contains it, and a row of the grid sized to its
 	   contents contains nothing of any height at all. */
 	@container viz (max-width: 34rem) {
-		/* Five columns, three of them the band and one spare at each end. The
-		   band is centred by the two spares rather than by `justify-content`,
-		   which would centre the tracks themselves and leave the stage — which
-		   spans them — as narrow as the controls above it. */
+		/* Four columns: the two plates, and one spare at each end. The band is
+		   centred by the two spares rather than by `justify-content`, which
+		   would centre the tracks themselves and leave the stage — which spans
+		   them — as narrow as the plates under it. */
 		.rig {
+			--band: min(10rem, 40cqh);
 			display: grid;
-			grid-template-columns: minmax(0, 1fr) auto auto auto minmax(0, 1fr);
-			grid-template-rows: auto minmax(0, 1fr);
+			grid-template-columns: minmax(0, 1fr) auto auto minmax(0, 1fr);
+			grid-template-rows: auto minmax(0, 1fr) auto;
 			align-items: center;
 			gap: 0.45rem;
+			/* The pane has no bottom padding, and the band would otherwise sit
+			   on its edge. */
+			padding-block-end: 0.6rem;
 		}
 
 		.middle {
 			display: contents;
 		}
 
-		.slot[data-slot='pair'],
-		.slot[data-slot='rgb'] {
-			grid-area: 1 / 2;
+		.controls {
+			grid-area: 1 / 1 / 2 / 5;
+			flex-direction: row;
+			justify-content: center;
+			gap: 0.75rem;
 		}
 
-		.controls {
-			grid-area: 1 / 3;
+		/* In a line, a closed switch still holds its width, and a faded reading
+		   its own; either would push what is showing off centre. */
+		.solid[data-toggle-shown='false'] .switch.space,
+		.solid[data-compare='true'] .switch.space,
+		.solid:not([data-compare='true']) .switch.grey,
+		.solid[data-compare='true'] .readout {
+			display: none;
+		}
+
+		.slot[data-slot='rgb'] {
+			grid-area: 3 / 2;
 		}
 
 		.slot[data-slot='hsl'] {
-			grid-area: 1 / 4;
+			grid-area: 3 / 3;
+		}
+
+		/* Both columns, because it is both sets. */
+		.slot[data-slot='pair'] {
+			grid-area: 3 / 2 / 4 / 4;
 		}
 
 		/* A shut slot has no width here, but its contents still have a height,
@@ -742,13 +770,13 @@ const HSL = [
 		   the pane came from.
 
 		   Zero wide with a minimum of the full area, for the same reason on the
-		   other axis: an item spanning all three columns hands its intrinsic
+		   other axis: an item spanning all the columns hands its intrinsic
 		   width to the tracks it spans, and that intrinsic width is the canvas'
 		   300 again — which the two side columns then padded themselves out
 		   with. Zero contributes nothing; the minimum fills the area once the
 		   tracks are settled. */
 		.stage {
-			grid-area: 2 / 1 / 3 / 6;
+			grid-area: 2 / 1 / 3 / 5;
 			align-self: stretch;
 			inline-size: 0;
 			min-inline-size: 100%;
@@ -767,45 +795,63 @@ const HSL = [
 
 		.plate.rgb,
 		.plate.hsl {
-			block-size: min(7rem, 26cqh);
+			block-size: var(--band);
 		}
 
-		/* Two panels of bars is a taller band than three bars alone, and every
-		   pixel it takes is one the solid under it does not get. */
+		/* The two sets side by side rather than stacked: stacked, each would
+		   have half the band's height, and half of it is not a slider. */
 		.sets {
+			flex-direction: row;
 			margin: 0;
-			gap: 0.4rem;
-			block-size: min(9rem, 34cqh);
+			gap: 0.45rem;
+			block-size: var(--band);
 		}
 
+		/* The swatch over its own three bars, since beside them there is no
+		   width for it. */
 		.plate.set {
-			padding: 0.4rem;
-			gap: 0.5em;
+			flex-direction: column-reverse;
+			align-items: stretch;
+			padding: 0.5rem;
+			gap: 0.4rem;
 		}
 
+		.plate.set .bars {
+			flex: 1;
+			min-block-size: 0;
+			gap: 0.3rem;
+		}
+
+		/* Off the tracks' line, which it no longer sits beside. */
 		.disc {
-			block-size: 12cqh;
+			align-self: center;
+			block-size: 1.6rem;
+			margin-block-end: 0;
 		}
 
+		/* A fingertip wide. The track's grip reaches a few pixels past either
+		   side of it, which puts each one at about the size a finger can be
+		   counted on to hit. */
 		.bar {
-			--track-size: 0.85rem;
+			--track-size: 1.9rem;
 		}
 
 		.bar-name {
-			font-size: 0.65rem;
+			font-size: 0.75rem;
 		}
 
 		/* Up here it sits on the ground rather than on the colour, so it takes
 		   the deck's ink instead of flipping against a field it is not over. */
 		.readout {
-			font-size: 0.7rem;
+			font-size: 0.8rem;
 			color: var(--deck-ink, #e6e9ef);
 		}
 
-		/* Pill takes both of these as custom properties; see components/Pill. */
+		/* A switch is a thing to press, so it keeps a pressable size even here.
+		   Pill takes both of these as custom properties; see components/Pill. */
 		.switch {
-			--pill-size: 0.7rem;
-			--pill-pad: 0.55rem;
+			--pill-size: 0.85rem;
+			--pill-pad: 0.9rem;
 		}
 
 		/* Room to be big in, now that the stage has the width and most of the

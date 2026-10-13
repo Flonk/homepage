@@ -587,6 +587,14 @@ const gradId = `gamut-swatch-${Math.random().toString(36).slice(2, 9)}`;
 			font-size: 0.85rem;
 		}
 	}
+
+	/* The narrowest phones. The plate stands the full height of the pane on
+	   the left, and a reading at the size above ran in under it. */
+	@container viz (max-width: 20rem) {
+		.oklch-string {
+			font-size: 0.7rem;
+		}
+	}
 </style>
 
 <script>

@@ -208,6 +208,18 @@ const { home = [180, 230, 240] as Rgb, target = [20, 90, 100] as Rgb, idleReturn
 		}
 	}
 
+	/* The narrowest phones. The circles are sized from the room the plate
+	   leaves them, and at full width it left them so little that the left
+	   one's reading, which is far wider than its circle, ran off the pane.
+	   Thinner bars hand that room back. */
+	@container viz (max-width: 20rem) {
+		.controls {
+			gap: 0.35rem;
+			padding: 0.6em;
+			--track-size: 1.2rem;
+		}
+	}
+
 	@media (prefers-reduced-motion: reduce) {
 		.discs :global(.disc),
 		.discs :global(.tag),

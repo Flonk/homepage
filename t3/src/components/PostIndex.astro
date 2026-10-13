@@ -344,14 +344,14 @@ const covers = Object.fromEntries(
 		object-fit: cover;
 		border: 0;
 		border-radius: 50%;
-		box-shadow: 0 0 0 2px var(--accent);
+		box-shadow: 0 0 0 2px var(--gold);
 	}
 	/* The mark is the accent already, and wants no ring of it. */
 	.hello :global(svg.portrait) {
 		box-shadow: none;
 	}
 	.hello a {
-		color: var(--accent);
+		color: var(--gold);
 		text-underline-offset: 0.18em;
 		text-decoration-thickness: 1px;
 	}
@@ -378,7 +378,7 @@ const covers = Object.fromEntries(
 	/* The posts stand on the page itself, told apart by the list's groove and
 	   nothing more; the newest one says so in the accent before its date. */
 	.newest {
-		color: var(--accent);
+		color: var(--gold);
 	}
 	/* The series are the one thing raised off the page: a shelf the full width
 	   of the screen, a flat panel edged above and below in its FLB, with a
@@ -532,15 +532,15 @@ const covers = Object.fromEntries(
 	   the post it opened. */
 	li[aria-current] > .row {
 		background: var(--panel);
-		box-shadow: inset -2px 0 0 var(--accent);
+		box-shadow: inset -2px 0 0 var(--gold);
 	}
 
 	li[aria-current] > .row .icon {
-		color: var(--accent);
+		color: var(--gold);
 	}
 
 	li[aria-current] > .row .label {
-		color: var(--accent);
+		color: var(--gold);
 	}
 
 	/* A series is a card rather than a row: a square picture down its left
@@ -677,7 +677,7 @@ const covers = Object.fromEntries(
 
 	/* Still being written: a word in the accent, after a dot from the count. */
 	.wip {
-		color: var(--accent);
+		color: var(--gold);
 	}
 	.wip::before {
 		content: '·';
@@ -686,7 +686,7 @@ const covers = Object.fromEntries(
 	}
 
 	.folder:hover .name {
-		color: var(--accent);
+		color: var(--text);
 	}
 
 	/* As many lines as the card has room for under the name, then an ellipsis. */

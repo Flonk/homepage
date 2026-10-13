@@ -380,6 +380,18 @@ const {
 		.rgb-string {
 			font-size: 0.85rem;
 		}
+		/* A phone's pane is about as tall as it is wide, so a stage as wide as
+		   the pane is tall leaves no room for the bars beside it, and the two
+		   ran off either edge. The bars go thinner, and the stage gives up the
+		   rest; the cube is drawn from its short side either way. */
+		.bars {
+			gap: 0.3rem;
+			padding: 0.6em;
+			--track-size: 1.3rem;
+		}
+		.stage {
+			flex-shrink: 1;
+		}
 	}
 
 	/* Portrait pane: stack instead, and turn the bars on their side. A column

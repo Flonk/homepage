@@ -11,7 +11,7 @@
   /* The one colour everything warm on the site is worked out from (see the
      @supports block below). A post can set its own with `accent` in its
      frontmatter, which the layouts put on <html>. */
-  --accent: #ffa200;
+  --accent: #f6722b;
 
   /* The fake luminosity border, as a colour rather than as a gradient: what
      the thing is sitting on, taken a fifth of the way to white. Same formula
@@ -97,19 +97,16 @@
      scrollbar thumb at rest. */
   --line: #2c281e;
   --place: #7d93a6;
-  --gold: #c8a24a;
-  /* The accent dark enough to read on a light ground (a light deck's). */
-  --accent-on-light: #a86a00;
+  --gold: #f1a547;
 
   /* The same, set back, for the post tree beside a post: a ground a shade
      lighter than the page and words a shade darker, so there is less
      contrast in the tree than in the post and the eye goes to the post. */
   --side-bg: #1c1b19;
   --side-panel: #232220;
-  --side-text: #9d988b;
+  --side-text: #b0ab9d;
   --side-quiet: #6c6659;
   --side-faint: #59544a;
-  --side-gold: #997d3f;
   --side-edge: #43423f;
   --side-edge-panel: #494846;
 
@@ -127,9 +124,10 @@
      against the viewport rather than either box, so the two meet without a
      seam whatever it is. --chrome-edge is its FLB, the same image a fifth of
      the way to white, drawn as a 1px ring where the chrome meets the page.
-     Here it is deep orange to the accent, with a glow of light amber over it
-     that goes slowly round the page: see --chrome-turn below. */
-  --chrome-deep: oklch(0.7 0.18 45);
+     Here it runs from the accent, its deepest, up to a lighter shade of it,
+     with a glow of light amber over it that goes slowly round the page: see
+     --chrome-turn below. */
+  --chrome-mid: #ffa200;
   --chrome-light: oklch(0.86 0.15 88);
   /* Where the glow is: on its orbit, or pulled over to the pointer
      while the pointer is over the header (see Header.astro). */
@@ -146,7 +144,7 @@
       oklch(0.86 0.15 88 / calc(1 - 0.6 * var(--glow-pull))),
       oklch(0.86 0.15 88 / 0) 70%
     ),
-    linear-gradient(var(--chrome-turn), var(--chrome-deep), var(--accent), var(--chrome-deep));
+    linear-gradient(var(--chrome-turn), var(--accent), var(--chrome-mid), var(--accent));
   /* Where relative colour syntax is missing, the edge is the accent lifted,
      worked out ahead of time and flat. */
   --chrome-edge: linear-gradient(#ffb028, #ffb028);
@@ -174,21 +172,23 @@
   :root {
     /* Every warm colour on the site, worked out from the accent, so that a
        post can set its own and all the rest follow it (see `accent` in
-       content.config.ts). Each is the step the default orange takes to the
-       colour written out above, which is what stays where this is not
-       understood. */
-    --chrome-deep: oklch(from var(--accent) calc(l - 0.087) calc(c + 0.009) calc(h - 24));
-    --chrome-light: oklch(from var(--accent) calc(l + 0.073) calc(c - 0.022) calc(h + 19));
-    --gold: oklch(from var(--accent) calc(l - 0.058) calc(c - 0.056) calc(h + 17));
-    --side-gold: oklch(from var(--accent) calc(l - 0.184) calc(c - 0.084) calc(h + 16));
-    --accent-on-light: oklch(from var(--accent) calc(l - 0.21) calc(c - 0.046) h);
+       content.config.ts). The accent is the chrome at its deepest, as given;
+       the lighter shade in the middle of it and the glow over it are stepped
+       up from it. The colours written out above are what stays where this is
+       not understood. */
+    --chrome-mid: oklch(from var(--accent) calc(l + 0.087) calc(c - 0.009) calc(h + 24));
+    --chrome-light: oklch(from var(--accent) calc(l + 0.16) calc(c - 0.031) calc(h + 43));
+    /* The chrome's middle shade at one lightness, whatever the accent's own, so
+       that a name or a stressed word reads alike on every post; its colourfulness
+       capped where a screen would run out of it at that lightness. */
+    --gold: oklch(from var(--chrome-mid) 0.78 min(c, 0.14) h);
     --chrome:
       radial-gradient(
         42vmax 28vmax at var(--chrome-glow-at),
         oklch(from var(--chrome-light) l c h / calc(1 - 0.6 * var(--glow-pull))),
         oklch(from var(--chrome-light) l c h / 0) 70%
       ),
-      linear-gradient(var(--chrome-turn), var(--chrome-deep), var(--accent), var(--chrome-deep));
+      linear-gradient(var(--chrome-turn), var(--accent), var(--chrome-mid), var(--accent));
 
     --edge: oklch(from var(--bg) calc(l + var(--lift) * (1 - l)) c h);
     --edge-panel: oklch(from var(--panel) calc(l + var(--lift) * (1 - l)) c h);
@@ -202,9 +202,9 @@
       ),
       linear-gradient(
         var(--chrome-turn),
-        oklch(from var(--chrome-deep) calc(l + var(--lift) * (1 - l)) c h),
         oklch(from var(--accent) calc(l + var(--lift) * (1 - l)) c h),
-        oklch(from var(--chrome-deep) calc(l + var(--lift) * (1 - l)) c h)
+        oklch(from var(--chrome-mid) calc(l + var(--lift) * (1 - l)) c h),
+        oklch(from var(--accent) calc(l + var(--lift) * (1 - l)) c h)
       );
   }
 }
@@ -464,7 +464,7 @@ a {
   color: var(--place);
 }
 a:hover {
-  color: var(--accent);
+  color: var(--gold);
 }
 
 a.footnote,
@@ -515,7 +515,7 @@ pre > code {
   all: unset;
 }
 blockquote {
-  border-left: 4px solid var(--accent);
+  border-left: 4px solid var(--gold);
   padding: 0 0 0 20px;
   margin: 0px;
   color: var(--text-quiet);
@@ -895,7 +895,7 @@ em {
 }
 
 .viz-range:focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--gold);
   outline-offset: 4px;
   border-radius: var(--radius-small);
 }

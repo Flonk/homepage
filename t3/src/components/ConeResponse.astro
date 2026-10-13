@@ -318,7 +318,10 @@ const markList = marks
 		gap: 0.45rem;
 	}
 
+	/* The primed name is two characters in a column two wide, and tracking
+	   tips it over; it broke in two before the prime. */
 	.tally dt {
+		white-space: nowrap;
 		width: 1ch;
 		font-weight: 700;
 	}
@@ -444,7 +447,12 @@ const markList = marks
 		}
 	}
 
+	/* On one line whatever the font's tracking does to four characters: at
+	   phone sizes the reading broke after its second digit, and the doubled
+	   rows pushed the filtered eye's fourth one out of the top of the pane. */
 	.tally b {
+		flex: none;
+		white-space: nowrap;
 		width: 4ch;
 		font-weight: 400;
 		color: var(--ink-dim);
