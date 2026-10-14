@@ -7,7 +7,9 @@ const blog = defineCollection({
 	// Type-check frontmatter using a schema
 	schema: ({ image }) => z.object({
 		title: z.string(),
-		description: z.string(),
+		// Empty when a post leaves it out, as most do: required, a post without
+		// one failed the schema and was left out of the site without a word.
+		description: z.string().default(''),
 		// Posts sharing a `series` are grouped into one collapsible section on the index.
 		series: z.string().optional(),
 		// Which layout renders the post. "deck" is the split-screen format: a
