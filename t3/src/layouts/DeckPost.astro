@@ -98,7 +98,7 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 				--deck-ground: var(--ink-100);
 				--deck-ink: #35302a;
 				--deck-ink-dim: #7a7264;
-				--deck-eyebrow: var(--gold);
+				--deck-eyebrow: var(--ink-accent);
 				/* The surface a visualization puts its controls on: a pane of
 				   glass over whatever is behind it, which may be the ground and
 				   may be a field of colour the picture itself has painted. What
@@ -123,7 +123,7 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 				--deck-ground: var(--ground-200);
 				--deck-ink: #e6e9ef;
 				--deck-ink-dim: #8891a0;
-				--deck-eyebrow: var(--gold);
+				--deck-eyebrow: var(--ink-accent);
 				--viz-glass: rgb(255 255 255 / 0.06);
 				--viz-glass-rim: rgb(255 255 255 / 0.08);
 				--viz-shadow: rgb(0 0 0 / 0.55);
@@ -318,8 +318,8 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 
 			.deck-arrow:hover:not(:disabled),
 			.deck-arrow:focus-visible {
-				color: var(--gold);
-				border-color: var(--gold);
+				color: var(--ink-accent);
+				border-color: var(--ink-accent);
 			}
 
 			.deck-arrow:disabled {

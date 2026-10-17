@@ -344,19 +344,19 @@ const covers = Object.fromEntries(
 		object-fit: cover;
 		border: 0;
 		border-radius: 50%;
-		box-shadow: 0 0 0 2px var(--gold);
+		box-shadow: 0 0 0 2px var(--ink-accent);
 	}
 	/* The mark is the accent already, and wants no ring of it. */
 	.hello :global(svg.portrait) {
 		box-shadow: none;
 	}
 	.hello a {
-		color: var(--gold);
+		color: var(--ink-accent);
 		text-underline-offset: 0.18em;
 		text-decoration-thickness: 1px;
 	}
 	.hello a:hover {
-		color: var(--chrome-light);
+		color: var(--accent-300);
 	}
 	.hello::before {
 		content: '';
@@ -378,7 +378,7 @@ const covers = Object.fromEntries(
 	/* The posts stand on the page itself, told apart by the list's groove and
 	   nothing more; the newest one says so in the accent before its date. */
 	.newest {
-		color: var(--gold);
+		color: var(--ink-accent);
 	}
 	/* The series are the one thing raised off the page: a shelf the full width
 	   of the screen, with a shadow under it, edged above and below in its FLB:
@@ -495,7 +495,7 @@ const covers = Object.fromEntries(
 	}
 	.rail-body .name {
 		font-weight: 700;
-		color: var(--gold);
+		color: var(--ink-accent);
 	}
 	.rail-body .wip {
 		margin-left: 0.5rem;
@@ -546,19 +546,19 @@ const covers = Object.fromEntries(
 	   the post it opened. */
 	li[aria-current] > .row {
 		background: var(--index-panel, var(--ground-200));
-		box-shadow: inset -2px 0 0 var(--gold);
+		box-shadow: inset -2px 0 0 var(--ink-accent);
 	}
 
 	li[aria-current] > .row .icon {
-		color: var(--gold);
+		color: var(--ink-accent);
 	}
 
 	li[aria-current] > .row .label {
-		color: var(--gold);
+		color: var(--ink-accent);
 	}
 
 	/* A series is a card rather than a row: a square picture down its left
-	   side, then its name in gold with how many parts it has, and what it is
+	   side, then its name in --ink-accent with how many parts it has, and what it is
 	   about. Every card is the height of the square, picture or not, so a
 	   blurb is cut off with an ellipsis rather than making its card taller.
 	   Without a picture the card is padded as a row is, so the name starts
@@ -670,7 +670,7 @@ const covers = Object.fromEntries(
 		overflow: hidden;
 		min-width: 0;
 		font-weight: 700;
-		color: var(--gold);
+		color: var(--ink-accent);
 	}
 
 	/* How many parts, and whether more are coming, in the card's top right
@@ -691,7 +691,7 @@ const covers = Object.fromEntries(
 
 	/* Still being written: a word in the accent, after a dot from the count. */
 	.wip {
-		color: var(--gold);
+		color: var(--ink-accent);
 	}
 	.wip::before {
 		content: '·';
@@ -700,8 +700,8 @@ const covers = Object.fromEntries(
 	}
 
 	.folder:hover .name {
-		/* The same gold, lit up, rather than another colour. */
-		color: color-mix(in oklab, var(--gold), white 35%);
+		/* The same ink, lit up, rather than another colour. */
+		color: color-mix(in oklab, var(--ink-accent), white 35%);
 	}
 
 	/* As many lines as the card has room for under the name, then an ellipsis. */

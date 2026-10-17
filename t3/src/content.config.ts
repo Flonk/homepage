@@ -22,7 +22,7 @@ const blog = defineCollection({
 		// post about ink or screens wants the light one.
 		ground: z.enum(['light', 'dark']).default('light'),
 		// The post's own accent, any CSS colour: the chrome, the highlights and
-		// the gold are all worked out from it (see --accent in global.css), so
+		// --ink-accent are all worked out from it (see --accent in global.css), so
 		// one colour retints the whole page while the post is open.
 		accent: z.string().optional(),
 		// How far round the hue the chrome turns from the accent, in degrees (see

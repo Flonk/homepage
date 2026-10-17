@@ -19,7 +19,7 @@ const tokens = [...root.matchAll(/--([a-z0-9-]+):\s*(#[0-9a-fA-F]{3,8})\s*;/g)]
 	.filter((t) => !t.name.includes('edge'))
 	// The ink's rungs and the ground's are each one thing, a ladder, and
 	// Ladder shows each as one.
-	.filter((t) => !/^(ink|ground)-/.test(t.name));
+	.filter((t) => !/^(ink|ground)-\d00$/.test(t.name));
 
 const toOklch = converter('oklch');
 const swatch = (t: { name: string; hex: string }) => {
