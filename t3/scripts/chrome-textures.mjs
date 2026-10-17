@@ -28,7 +28,8 @@ const DOTS = 109;
    middle, fading to nothing at 0.7px. */
 const dotAlpha = (r) => (r <= 0.4 ? 0.55 : r >= 0.7 ? 0 : (0.55 * (0.7 - r)) / 0.3);
 
-function drawDots() {
+/* `strength` scales every dot: 1 for the chrome, less for the code tiles. */
+function drawDots(strength = 1) {
 	const size = TILE * S;
 	const points = [];
 	for (let i = 0; i < DOTS; i++) {
@@ -49,7 +50,7 @@ function drawDots() {
 			}
 			const at = (y * size + x) * 4;
 			pixels[at] = pixels[at + 1] = pixels[at + 2] = 255;
-			pixels[at + 3] = Math.round(dotAlpha(nearest) * 255);
+			pixels[at + 3] = Math.round(dotAlpha(nearest) * strength * 255);
 		}
 	}
 	return png(size, size, 6, pixels);
@@ -62,12 +63,12 @@ function drawDots() {
    every time, from a fixed seed. */
 const NOISE = 128;
 
-function drawNoise() {
+function drawNoise(opacity = 0.4) {
 	const random = mulberry32(0x7e3);
 	const values = Array.from({ length: NOISE * NOISE }, () => Math.floor(random() * 256));
 	const size = NOISE * S;
 	const pixels = Buffer.alloc(size * size * 2);
-	const alpha = Math.round(0.4 * 255);
+	const alpha = Math.round(opacity * 255);
 	for (let y = 0; y < size; y++) {
 		for (let x = 0; x < size; x++) {
 			const at = (y * size + x) * 2;
@@ -130,6 +131,12 @@ function crc32(bytes) {
 	return (c ^ 0xffffffff) >>> 0;
 }
 
+/* The same grain, set back, for code (see global.css). The chrome's tiles are
+   blended into a bright ground; over a near-black one a blend has next to
+   nothing to work with, so these are laid on plainly and carry their
+   strength in their alpha instead. */
 writeFileSync('public/assets/chrome-dots.png', drawDots());
 writeFileSync('public/assets/chrome-noise.png', drawNoise());
-console.log('wrote public/assets/chrome-dots.png and public/assets/chrome-noise.png');
+writeFileSync('public/assets/code-dots.png', drawDots(0.16));
+writeFileSync('public/assets/code-noise.png', drawNoise(0.06));
+console.log('wrote the chrome and code tiles to public/assets');
