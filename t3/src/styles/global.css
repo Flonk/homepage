@@ -60,11 +60,18 @@
      — the same move as the edge, in the other direction, and ground-relative
      so it stays right if the ground moves.
 
-     The three are tesbota's: a parchment ink on a warm near-black, then its
-     dim and its faint. Same idea, set by hand there rather than mixed. */
+     The ink is tesbota's, a parchment on a warm near-black. Its voices, and
+     the post tree's (below), are one ladder of six: each a step of
+     --ink-step darker than the one before, hue and chroma held, page and
+     tree in turn — text, side-text, quiet, side-quiet, faint, side-faint.
+     Set by hand, they had drifted into each other: the tree's quiet was
+     0.009 off the page's faint. On a ladder no two are nearer than a step.
+     Written out here for where relative colour syntax is missing; worked out
+     from --text in the @supports block below. */
+  --ink-step: 0.085;
   --text: #ddd6c4;
-  --text-quiet: #8a8271;
-  --text-faint: #6a6357;
+  --text-quiet: #a7a08f;
+  --text-faint: #746d5d;
   /* Where relative colour syntax is not understood there is no lifting
      anything, so the edge falls back to the same lift worked out ahead of
      time. */
@@ -100,6 +107,10 @@
   /* tesbota's hairline, for what should be there without being seen: a
      scrollbar thumb at rest. */
   --line: #2c281e;
+  /* What code sits on, inline and in blocks: the panel's warm grey, raised
+     far enough off the page to read as a ground of its own, and in place of
+     the cool blue-grey the highlighting theme brings. */
+  --code-bg: #282620;
   --place: #7d93a6;
   --gold: #f1a547;
 
@@ -108,9 +119,9 @@
      contrast in the tree than in the post and the eye goes to the post. */
   --side-bg: #1c1b19;
   --side-panel: #232220;
-  --side-text: #b0ab9d;
-  --side-quiet: #6c6659;
-  --side-faint: #59544a;
+  --side-text: #c2bba9;
+  --side-quiet: #8d8676;
+  --side-faint: #5b5546;
   --side-edge: #43423f;
   --side-edge-panel: #494846;
 
@@ -195,6 +206,12 @@
        that a name or a stressed word reads alike on every post; its colourfulness
        capped where a screen would run out of it at that lightness. */
     --gold: oklch(from var(--chrome-mid) 0.78 min(c, 0.14) h);
+    /* The ink ladder (see --text). */
+    --side-text: oklch(from var(--text) calc(l - var(--ink-step)) c h);
+    --text-quiet: oklch(from var(--text) calc(l - 2 * var(--ink-step)) c h);
+    --side-quiet: oklch(from var(--text) calc(l - 3 * var(--ink-step)) c h);
+    --text-faint: oklch(from var(--text) calc(l - 4 * var(--ink-step)) c h);
+    --side-faint: oklch(from var(--text) calc(l - 5 * var(--ink-step)) c h);
     --chrome:
       radial-gradient(
         42vmax 28vmax at var(--chrome-glow-at),
@@ -644,11 +661,13 @@ pre {
 code {
   padding: 3px 6px;
   border-radius: var(--radius-medium);
-  background-color: var(--panel);
+  background-color: var(--code-bg);
   white-space: nowrap;
   overflow-wrap: break-word;
 }
 pre {
+  /* Over the theme's, which it writes inline on the block. */
+  background-color: var(--code-bg) !important;
   padding: 1.5em;
   border-radius: var(--radius-large);
   overflow-wrap: break-word;
