@@ -184,7 +184,7 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 				place-items: center;
 				border-radius: 0;
 				background-color: var(--accent);
-				color: var(--bg);
+				color: var(--ground-100);
 				font-family: var(--font-mono);
 				font-size: 1rem;
 				font-weight: 700;
@@ -198,7 +198,7 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 
 			.deck-home:hover,
 			.deck-home:focus-visible {
-				color: var(--bg);
+				color: var(--ground-100);
 				filter: brightness(1.15);
 			}
 
@@ -285,7 +285,7 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 				content: '';
 				grid-area: text;
 				z-index: 1;
-				border-top: 1px solid var(--edge);
+				border-top: 1px solid var(--edge-100);
 				align-self: start;
 				width: 100%;
 			}
@@ -297,17 +297,17 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 				justify-content: center;
 				gap: 1rem;
 				padding: 0.6rem 1rem;
-				border-top: 1px solid var(--edge-panel);
-				background-color: color-mix(in srgb, var(--panel) 35%, transparent);
+				border-top: 1px solid var(--edge-200);
+				background-color: color-mix(in srgb, var(--ground-200) 35%, transparent);
 			}
 
 			.deck-arrow {
 				font-family: var(--font-mono);
 				font-size: 1.1rem;
 				line-height: 1;
-				color: var(--text-quiet);
+				color: var(--ink-300);
 				background: transparent;
-				border: 1px solid var(--edge);
+				border: 1px solid var(--edge-100);
 				border-radius: var(--radius-medium);
 				padding: 0.3em 0.75em;
 				cursor: pointer;
@@ -340,13 +340,13 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 			.deck-jump-on {
 				background-color: var(--accent);
 				border-color: var(--accent);
-				color: var(--bg);
+				color: var(--ground-100);
 				font-weight: 700;
 			}
 
 			.deck-jump-on:hover,
 			.deck-jump-on:focus-visible {
-				color: var(--bg);
+				color: var(--ground-100);
 				filter: brightness(1.15);
 			}
 
@@ -362,7 +362,7 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 			.deck-counter {
 				font-family: var(--font-mono);
 				font-size: 0.8rem;
-				color: var(--text-quiet);
+				color: var(--ink-300);
 				min-width: 7ch;
 				text-align: center;
 			}

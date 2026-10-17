@@ -24,7 +24,7 @@ export const HUE_EDGE = `linear-gradient(to right, ${HUES.map((d) => lighten(hue
  * lets the ring show through the whole of itself rather than only around the
  * edge, because the layer over it hides nothing.
  */
-const PAGE = '#0f0e0c';
+const PAGE = '#100e0a';
 export const REST_ON_PAGE = formatHex({
 	mode: 'rgb',
 	...(([r, g, b]) => ({ r, g, b }))(

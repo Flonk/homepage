@@ -52,8 +52,8 @@ const RADII = STEPS.map((n) => [`--radius-${n}`, counts.get(n)!] as const);
 	.corner {
 		display: block;
 		block-size: 2.2rem;
-		background: var(--panel);
-		border: 1px solid var(--edge-panel);
+		background: var(--ground-200);
+		border: 1px solid var(--edge-200);
 		margin-bottom: 0.4rem;
 	}
 
@@ -67,6 +67,6 @@ const RADII = STEPS.map((n) => [`--radius-${n}`, counts.get(n)!] as const);
 		display: block;
 		font-family: var(--font-mono);
 		font-size: 0.68em;
-		color: var(--text-quiet);
+		color: var(--ink-300);
 	}
 </style>

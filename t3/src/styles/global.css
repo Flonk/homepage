@@ -25,9 +25,8 @@
      because their edge has to follow a ramp; a border on a flat ground does
      not, and this is what it gets instead.
 
-     `--edge` is the page. `--edge-panel` is the raised grey a card is. An
-     element on some other ground redeclares `--edge` from that ground; see
-     the specimen stages in components/ds.
+     `--edge-N` is the edge of `--ground-N`, one for each rung of the
+     ground ladder (below).
 
      One pixel. An edge is meant to be found rather than looked at. */
   /* Three roundings and a pill, one for each thing a corner is on: a mark
@@ -60,10 +59,10 @@
      — the same move as the edge, in the other direction.
 
      The ink is tesbota's, a parchment on a warm near-black, and it is the
-     top of a ladder: --ink-100 to --ink-900, each a step of --ink-step
-     darker than the one above, hue and chroma held, until the last is
-     nearly the ground. The voices of the page and of the post tree (below)
-     are its first six rungs, page and tree in turn. Set by hand, they had
+     top of a ladder: --ink-100 to --ink-600, each a step of --ink-step
+     darker than the one above, hue and chroma held. The page speaks in the
+     odd rungs, 100, 300 and 500, and the post tree beside it, set back, in
+     the even ones between. Set by hand, they had
      drifted into each other: the tree's quiet was 0.009 off the page's
      faint. On a ladder no two are nearer than a step. Written out here for
      where relative colour syntax is missing; worked out from --ink-100 in
@@ -75,17 +74,6 @@
   --ink-400: #8d8676;
   --ink-500: #746d5d;
   --ink-600: #5b5546;
-  --ink-700: #443e30;
-  --ink-800: #2e291b;
-  --ink-900: #1a1507;
-  --text: var(--ink-100);
-  --text-quiet: var(--ink-300);
-  --text-faint: var(--ink-500);
-  /* Where relative colour syntax is not understood there is no lifting
-     anything, so the edge falls back to the same lift worked out ahead of
-     time. */
-  --edge: #373633;
-  --edge-panel: #3e3c35;
 
   /* Monospace is the site's voice: nav, headings, code, the post index.
      Long-form prose bodies use the serif stack instead — see .prose below. */
@@ -109,30 +97,32 @@
   --track-label: 0.12em;
   --track-brand: 0.26em;
 
-  /* tesbota's ground, the raised panel a card is, and the two inks that
-     point: --place for a link, --gold for emphasis. */
-  --bg: #0f0e0c;
-  --panel: #17150f;
-  /* tesbota's hairline, for what should be there without being seen: a
-     scrollbar thumb at rest. */
-  --line: #2c281e;
-  /* What code sits on, inline and in blocks: the panel's warm grey, raised
-     far enough off the page to read as a ground of its own, and in place of
-     the cool blue-grey the highlighting theme brings. */
-  --code-bg: #282620;
+  /* The grounds, a ladder the other way: --ground-100 is the page, tesbota's
+     warm near-black, and each rung above it a step of --ground-step lighter,
+     at one small chroma all the way up. Finer than the ink's steps, because
+     grounds sit side by side and a little is enough to tell them apart.
+     What they were before they were a ladder, and where they landed: the
+     page 100, a card 200, the post tree 300 and its cards 400, a hairline
+     and the ground under code 500. Written out for where relative colour
+     syntax is missing, with each one's edge; worked out from --ground-100 in
+     the @supports block below. */
+  --ground-step: 0.028;
+  --ground-100: #100e0a;
+  --ground-200: #161410;
+  --ground-300: #1c1a16;
+  --ground-400: #23211d;
+  --ground-500: #292823;
+  --ground-600: #302f2a;
+  --edge-100: #373531;
+  --edge-200: #3d3b37;
+  --edge-300: #43413d;
+  --edge-400: #494742;
+  --edge-500: #4f4d48;
+  --edge-600: #55534e;
+
+  /* The two inks that point: --place for a link, --gold for emphasis. */
   --place: #7d93a6;
   --gold: #f1a547;
-
-  /* The same, set back, for the post tree beside a post: a ground a shade
-     lighter than the page and words a shade darker, so there is less
-     contrast in the tree than in the post and the eye goes to the post. */
-  --side-bg: #1c1b19;
-  --side-panel: #232220;
-  --side-text: var(--ink-200);
-  --side-quiet: var(--ink-400);
-  --side-faint: var(--ink-600);
-  --side-edge: #43423f;
-  --side-edge-panel: #494846;
 
   /* Grounds for a deck card's visualization half, when it opts into one.
      Which of the two a post uses is its `ground` frontmatter; see DeckPost. */
@@ -221,9 +211,18 @@
     --ink-400: oklch(from var(--ink-100) calc(l - 3 * var(--ink-step)) c h);
     --ink-500: oklch(from var(--ink-100) calc(l - 4 * var(--ink-step)) c h);
     --ink-600: oklch(from var(--ink-100) calc(l - 5 * var(--ink-step)) c h);
-    --ink-700: oklch(from var(--ink-100) calc(l - 6 * var(--ink-step)) c h);
-    --ink-800: oklch(from var(--ink-100) calc(l - 7 * var(--ink-step)) c h);
-    --ink-900: oklch(from var(--ink-100) calc(l - 8 * var(--ink-step)) c h);
+    /* The ground ladder (see --ground-100), and each rung's edge. */
+    --ground-200: oklch(from var(--ground-100) calc(l + var(--ground-step)) c h);
+    --ground-300: oklch(from var(--ground-100) calc(l + 2 * var(--ground-step)) c h);
+    --ground-400: oklch(from var(--ground-100) calc(l + 3 * var(--ground-step)) c h);
+    --ground-500: oklch(from var(--ground-100) calc(l + 4 * var(--ground-step)) c h);
+    --ground-600: oklch(from var(--ground-100) calc(l + 5 * var(--ground-step)) c h);
+    --edge-100: oklch(from var(--ground-100) calc(l + var(--lift) * (1 - l)) c h);
+    --edge-200: oklch(from var(--ground-200) calc(l + var(--lift) * (1 - l)) c h);
+    --edge-300: oklch(from var(--ground-300) calc(l + var(--lift) * (1 - l)) c h);
+    --edge-400: oklch(from var(--ground-400) calc(l + var(--lift) * (1 - l)) c h);
+    --edge-500: oklch(from var(--ground-500) calc(l + var(--lift) * (1 - l)) c h);
+    --edge-600: oklch(from var(--ground-600) calc(l + var(--lift) * (1 - l)) c h);
     --chrome:
       radial-gradient(
         42vmax 28vmax at var(--chrome-glow-at),
@@ -232,10 +231,6 @@
       ),
       linear-gradient(var(--chrome-turn), var(--accent), var(--chrome-mid), var(--accent));
 
-    --edge: oklch(from var(--bg) calc(l + var(--lift) * (1 - l)) c h);
-    --edge-panel: oklch(from var(--panel) calc(l + var(--lift) * (1 - l)) c h);
-    --side-edge: oklch(from var(--side-bg) calc(l + var(--lift) * (1 - l)) c h);
-    --side-edge-panel: oklch(from var(--side-panel) calc(l + var(--lift) * (1 - l)) c h);
     --chrome-edge:
       radial-gradient(
         42vmax 28vmax at var(--chrome-glow-at),
@@ -390,7 +385,7 @@ body {
   word-wrap: break-word;
   overflow-wrap: break-word;
 
-  color: var(--text);
+  color: var(--ink-100);
   font-size: var(--type-body);
   letter-spacing: var(--track-body);
   line-height: 1.7;
@@ -510,15 +505,15 @@ body {
 /* tesbota's scrollbars: thin, a hairline thumb on no track that brightens
    while the pointer is over whatever scrolls. */
 :root { color-scheme: dark; }
-* { scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
-*:hover { scrollbar-color: var(--text-faint) transparent; }
+* { scrollbar-width: thin; scrollbar-color: var(--ground-500) transparent; }
+*:hover { scrollbar-color: var(--ink-500) transparent; }
 ::-webkit-scrollbar { width: 8px; height: 8px; }
 ::-webkit-scrollbar-track, ::-webkit-scrollbar-corner { background: transparent; }
 ::-webkit-scrollbar-thumb {
-  background: var(--line); border-radius: 4px;
+  background: var(--ground-500); border-radius: 4px;
   border: 2px solid transparent; background-clip: padding-box;
 }
-::-webkit-scrollbar-thumb:hover { background-color: var(--text-faint); }
+::-webkit-scrollbar-thumb:hover { background-color: var(--ink-500); }
 
 main {
   max-width: calc(min(100%, 720px));
@@ -651,7 +646,7 @@ img {
   height: auto;
   border-radius: var(--radius-large);
   padding: 1em;
-  border: 1px solid var(--edge);
+  border: 1px solid var(--edge-100);
   box-sizing: border-box;
 }
 /* Code, inline and in blocks, has the chrome's grain in it (see Grain,
@@ -673,13 +668,13 @@ pre {
 code {
   padding: 3px 6px;
   border-radius: var(--radius-medium);
-  background-color: var(--code-bg);
+  background-color: var(--ground-500);
   white-space: nowrap;
   overflow-wrap: break-word;
 }
 pre {
   /* Over the theme's, which it writes inline on the block. */
-  background-color: var(--code-bg) !important;
+  background-color: var(--ground-500) !important;
   padding: 1.5em;
   border-radius: var(--radius-large);
   overflow-wrap: break-word;
@@ -692,7 +687,7 @@ blockquote {
   border-left: 4px solid var(--gold);
   padding: 0 0 0 20px;
   margin: 0px;
-  color: var(--text-quiet);
+  color: var(--ink-300);
 }
 @media (max-width: 720px) {
   body {
@@ -716,7 +711,7 @@ blockquote {
 hr {
   margin: 2em 0;
   border: none;
-  border-top: 1px solid var(--edge);
+  border-top: 1px solid var(--edge-100);
 }
 
 strong,
@@ -762,7 +757,7 @@ em {
   font-family: var(--font-prose);
   font-size: 1.125rem;
   line-height: 1.7;
-  color: var(--text);
+  color: var(--ink-100);
   letter-spacing: normal;
   max-width: 37rem;
   margin-inline: auto;
@@ -802,7 +797,7 @@ em {
 .prose h3::before,
 .prose h4::before,
 .prose h5::before {
-  color: var(--text-faint);
+  color: var(--ink-500);
 }
 
 /* Space above a heading, proportional to its rank. */
@@ -873,7 +868,7 @@ em {
   font-size: var(--type-label);
   letter-spacing: var(--track-label);
   text-transform: uppercase;
-  color: var(--text-quiet);
+  color: var(--ink-300);
 }
 
 .prose img,
@@ -956,7 +951,7 @@ em {
   font-family: var(--font-prose);
   font-weight: 700;
   letter-spacing: -0.005em;
-  color: var(--text);
+  color: var(--ink-100);
 }
 
 /* No "##" / "###" decorations. */

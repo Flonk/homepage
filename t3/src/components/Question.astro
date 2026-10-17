@@ -55,11 +55,11 @@ if (multiline && lang) {
     /* Vertical margin only — a horizontal one would inset the box relative to
        the surrounding prose column and read as accidentally centred. */
     margin: 1.75em 0;
-    border: 1px solid var(--edge-panel);
+    border: 1px solid var(--edge-200);
     border-left: 3px solid var(--gold);
     border-radius: var(--radius-large);
     overflow: hidden;
-    background-color: color-mix(in srgb, var(--panel) 35%, transparent);
+    background-color: color-mix(in srgb, var(--ground-200) 35%, transparent);
   }
 
   @media (max-width: 768px) {
@@ -95,9 +95,9 @@ if (multiline && lang) {
   .spoiler-button {
     font-family: var(--font-mono, monospace);
     font-size: 0.8em;
-    color: var(--text-quiet);
+    color: var(--ink-300);
     background-color: transparent;
-    border: 1px solid var(--edge);
+    border: 1px solid var(--edge-100);
     border-radius: var(--radius-medium);
     padding: 0.35em 0.9em;
     cursor: pointer;
@@ -120,7 +120,7 @@ if (multiline && lang) {
   .spoiler-content {
     display: none;
     padding: var(--qa-pad);
-    border-top: 1px solid var(--edge);
+    border-top: 1px solid var(--edge-100);
     background-color: rgba(0, 0, 0, 0.25);
   }
 
@@ -147,7 +147,7 @@ if (multiline && lang) {
     margin: 0.9rem 0;
     padding: 0.7rem 0.85rem;
     background-color: rgba(0, 0, 0, 0.35) !important;
-    border: 1px solid var(--edge);
+    border: 1px solid var(--edge-100);
     border-radius: var(--radius-medium);
     overflow-x: auto;
     font-family: var(--font-mono, monospace);

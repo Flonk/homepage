@@ -67,7 +67,7 @@ const { mode, current } = Astro.props;
 	.split {
 		position: relative;
 		flex: 1 0 auto;
-		background: url('/assets/grain.png') 0 0 / 128px 128px, var(--bg);
+		background: url('/assets/grain.png') 0 0 / 128px 128px, var(--ground-100);
 		image-rendering: pixelated;
 	}
 
@@ -175,7 +175,7 @@ const { mode, current } = Astro.props;
 			display: grid;
 			grid-template-columns: min(var(--split, 30%), var(--split-max, 30rem)) minmax(0, 1fr);
 			column-gap: var(--split-gap);
-			background: var(--bg);
+			background: var(--ground-100);
 			/* Square, the chrome rounding it (see above); the panes run right up
 			   to it, under the chrome's corners. */
 			overflow: hidden;
@@ -205,40 +205,29 @@ const { mode, current } = Astro.props;
 			   the dark one just past it, over the post (the first shadow). */
 			border-right: 1px solid rgb(255 255 255 / 0.06);
 		}
-		/* Beside a post the tree is set back, in the --side tokens. It is drawn
-		   in the page's own, so it is enough to give those the --side values
-		   here, keeping the page's one level up for the open post's row: the
-		   one thing in the tree that should stand out does, at full strength. */
-		.split {
-			--page-panel: var(--panel);
-			--page-edge-panel: var(--edge-panel);
-			--page-text: var(--text);
-			--page-quiet: var(--text-quiet);
-			--page-faint: var(--text-faint);
-			--page-gold: var(--gold);
-		}
+		/* Beside a post the tree is set back, a rung down both ladders from the
+		   page: its ground and panel on --ground-300 and 400, its words on the
+		   inks in between the page's. The tree is a PostIndex, which takes its
+		   colours from --index-* where it is given them and from the page's
+		   rungs where it is not; the open post's row is given the page's back,
+		   so the one thing in the tree that should stand out does, at full
+		   strength. */
 		.split-list {
-			--bg: var(--side-bg);
-			--panel: var(--side-panel);
-			--edge: var(--side-edge);
-			--edge-panel: var(--side-edge-panel);
-			--text: var(--side-text);
-			--text-quiet: var(--side-quiet);
-			--text-faint: var(--side-faint);
+			--index-ground: var(--ground-300);
+			--index-panel: var(--ground-400);
+			--index-ink: var(--ink-200);
+			--index-faint: var(--ink-600);
 			/* Its type a size down from the post's, thirteen sixteenths. */
 			--tree-text: 0.8125;
 			/* The post's grain at three fifths of its strength, quieter here as
 			   the tree is, and still while the tree scrolls over it. */
-			background: url('/assets/grain-side.png') 0 0 / 128px 128px, var(--bg);
+			background: url('/assets/grain-side.png') 0 0 / 128px 128px, var(--ground-300);
 			image-rendering: pixelated;
 		}
 		.split-list :global(li[aria-current] > .row) {
-			--panel: var(--page-panel);
-			--edge-panel: var(--page-edge-panel);
-			--text: var(--page-text);
-			--text-quiet: var(--page-quiet);
-			--text-faint: var(--page-faint);
-			--gold: var(--page-gold);
+			--index-panel: var(--ground-200);
+			--index-ink: var(--ink-100);
+			--index-faint: var(--ink-500);
 		}
 		/* The post's pane: a frame that holds still, with the page's grain and
 		   dots on it (below), and the post scrolling over both inside it. */
@@ -248,7 +237,7 @@ const { mode, current } = Astro.props;
 			min-width: 0;
 			position: relative;
 			overflow: hidden;
-			background: url('/assets/grain.png') 0 0 / 128px 128px, var(--bg);
+			background: url('/assets/grain.png') 0 0 / 128px 128px, var(--ground-100);
 			image-rendering: pixelated;
 			/* What is open measures itself against this pane, not the window:
 			   the prose breakout, and anything sized in cqw. */

@@ -17,8 +17,9 @@ const tokens = [...root.matchAll(/--([a-z0-9-]+):\s*(#[0-9a-fA-F]{3,8})\s*;/g)]
 	// syntax is missing — listing it here would be the page telling a colour it
 	// does not paint.
 	.filter((t) => !t.name.includes('edge'))
-	// The ink's rungs are one thing, a ladder, and InkLadder shows them as one.
-	.filter((t) => !t.name.startsWith('ink-'));
+	// The ink's rungs and the ground's are each one thing, a ladder, and
+	// Ladder shows each as one.
+	.filter((t) => !/^(ink|ground)-/.test(t.name));
 
 const toOklch = converter('oklch');
 const swatch = (t: { name: string; hex: string }) => {
@@ -36,10 +37,10 @@ const swatch = (t: { name: string; hex: string }) => {
 	};
 };
 
-// The two that are the site: what it is made of, and what it points with.
-const SITE = ['bg', 'accent'].map((n) => swatch(tokens.find((t) => t.name === n)!));
+// What the site points with. What it is made of is the ground ladder.
+const SITE = ['accent'].map((n) => swatch(tokens.find((t) => t.name === n)!));
 // Everything else, in the order the stylesheet declares it.
-const REST = tokens.filter((t) => !['bg', 'accent'].includes(t.name)).map(swatch);
+const REST = tokens.filter((t) => !['accent'].includes(t.name)).map(swatch);
 ---
 
 {
