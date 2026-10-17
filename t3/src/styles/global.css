@@ -625,10 +625,21 @@ img {
   border: 1px solid var(--edge);
   box-sizing: border-box;
 }
+/* Inline code sits on a raised panel with the chrome's grain in it (see
+   Grain, below), set back: blended over a ground this dark, the dots and the
+   noise are a texture to find rather than a pattern to see. Its edge is the
+   FLB laid over rather than worked out, because what it edges is not one
+   colour; the background runs under the border, so the edge is the grain
+   itself a fifth of the way to white. */
 code {
   padding: 3px 6px;
-  border: 1px solid var(--edge);
+  border: 1px solid var(--flb);
   border-radius: var(--radius-medium);
+  background:
+    url('/assets/chrome-noise.png') 0 0 / 128px 128px,
+    url('/assets/chrome-dots.png') 0 0 / 26px 26px,
+    var(--panel);
+  background-blend-mode: soft-light, overlay, normal;
   white-space: nowrap;
   overflow-wrap: break-word;
 }
