@@ -57,21 +57,30 @@
      weight and the letter-spacing that came with it.
 
      So there is one ink, and the quieter ones are it sunk towards the ground
-     — the same move as the edge, in the other direction, and ground-relative
-     so it stays right if the ground moves.
+     — the same move as the edge, in the other direction.
 
-     The ink is tesbota's, a parchment on a warm near-black. Its voices, and
-     the post tree's (below), are one ladder of six: each a step of
-     --ink-step darker than the one before, hue and chroma held, page and
-     tree in turn — text, side-text, quiet, side-quiet, faint, side-faint.
-     Set by hand, they had drifted into each other: the tree's quiet was
-     0.009 off the page's faint. On a ladder no two are nearer than a step.
-     Written out here for where relative colour syntax is missing; worked out
-     from --text in the @supports block below. */
+     The ink is tesbota's, a parchment on a warm near-black, and it is the
+     top of a ladder: --ink-100 to --ink-900, each a step of --ink-step
+     darker than the one above, hue and chroma held, until the last is
+     nearly the ground. The voices of the page and of the post tree (below)
+     are its first six rungs, page and tree in turn. Set by hand, they had
+     drifted into each other: the tree's quiet was 0.009 off the page's
+     faint. On a ladder no two are nearer than a step. Written out here for
+     where relative colour syntax is missing; worked out from --ink-100 in
+     the @supports block below. */
   --ink-step: 0.085;
-  --text: #ddd6c4;
-  --text-quiet: #a7a08f;
-  --text-faint: #746d5d;
+  --ink-100: #ddd6c4;
+  --ink-200: #c2bba9;
+  --ink-300: #a7a08f;
+  --ink-400: #8d8676;
+  --ink-500: #746d5d;
+  --ink-600: #5b5546;
+  --ink-700: #443e30;
+  --ink-800: #2e291b;
+  --ink-900: #1a1507;
+  --text: var(--ink-100);
+  --text-quiet: var(--ink-300);
+  --text-faint: var(--ink-500);
   /* Where relative colour syntax is not understood there is no lifting
      anything, so the edge falls back to the same lift worked out ahead of
      time. */
@@ -119,9 +128,9 @@
      contrast in the tree than in the post and the eye goes to the post. */
   --side-bg: #1c1b19;
   --side-panel: #232220;
-  --side-text: #c2bba9;
-  --side-quiet: #8d8676;
-  --side-faint: #5b5546;
+  --side-text: var(--ink-200);
+  --side-quiet: var(--ink-400);
+  --side-faint: var(--ink-600);
   --side-edge: #43423f;
   --side-edge-panel: #494846;
 
@@ -206,12 +215,15 @@
        that a name or a stressed word reads alike on every post; its colourfulness
        capped where a screen would run out of it at that lightness. */
     --gold: oklch(from var(--chrome-mid) 0.78 min(c, 0.14) h);
-    /* The ink ladder (see --text). */
-    --side-text: oklch(from var(--text) calc(l - var(--ink-step)) c h);
-    --text-quiet: oklch(from var(--text) calc(l - 2 * var(--ink-step)) c h);
-    --side-quiet: oklch(from var(--text) calc(l - 3 * var(--ink-step)) c h);
-    --text-faint: oklch(from var(--text) calc(l - 4 * var(--ink-step)) c h);
-    --side-faint: oklch(from var(--text) calc(l - 5 * var(--ink-step)) c h);
+    /* The ink ladder (see --ink-100). */
+    --ink-200: oklch(from var(--ink-100) calc(l - var(--ink-step)) c h);
+    --ink-300: oklch(from var(--ink-100) calc(l - 2 * var(--ink-step)) c h);
+    --ink-400: oklch(from var(--ink-100) calc(l - 3 * var(--ink-step)) c h);
+    --ink-500: oklch(from var(--ink-100) calc(l - 4 * var(--ink-step)) c h);
+    --ink-600: oklch(from var(--ink-100) calc(l - 5 * var(--ink-step)) c h);
+    --ink-700: oklch(from var(--ink-100) calc(l - 6 * var(--ink-step)) c h);
+    --ink-800: oklch(from var(--ink-100) calc(l - 7 * var(--ink-step)) c h);
+    --ink-900: oklch(from var(--ink-100) calc(l - 8 * var(--ink-step)) c h);
     --chrome:
       radial-gradient(
         42vmax 28vmax at var(--chrome-glow-at),

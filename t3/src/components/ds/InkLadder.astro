@@ -1,0 +1,90 @@
+---
+// The ink ladder, --ink-100 to --ink-900, read out of the stylesheet the way
+// Swatches reads the rest of it, and laid side by side so it reads as what it
+// is: one colour going down in even steps. Under each rung, the voices that
+// stand on it.
+import { converter } from 'culori';
+import css from '../../styles/global.css?raw';
+
+const root = css.slice(css.indexOf(':root'), css.indexOf('\n}', css.indexOf(':root')));
+const toOklch = converter('oklch');
+
+const roles = new Map<string, string[]>();
+for (const [, role, rung] of root.matchAll(/--([a-z-]+):\s*var\(--ink-(\d00)\)\s*;/g)) {
+	roles.set(rung, [...(roles.get(rung) ?? []), role]);
+}
+
+const RUNGS = [...root.matchAll(/--ink-(\d00):\s*(#[0-9a-fA-F]{6})\s*;/g)].map(([, rung, hex]) => {
+	const l = toOklch(hex)!.l;
+	return { rung, hex, l: l.toFixed(3), ink: l > 0.6 ? '#14161a' : '#eceff4', roles: roles.get(rung) ?? [] };
+});
+---
+
+<ol class="ladder">
+	{
+		RUNGS.map((r) => (
+			<li>
+				<span class="rung" style={`background: ${r.hex}; color: ${r.ink}`}>
+					<span class="name">{r.rung}</span>
+					<span class="value">{r.l}</span>
+				</span>
+				{r.roles.map((role) => (
+					<span class="role">--{role}</span>
+				))}
+			</li>
+		))
+	}
+</ol>
+
+<style>
+	/* Nine rungs abreast, touching, so the steps read as a gradient and each
+	   one as even as the next. One FLB round the whole strip, not one each:
+	   it is one thing. */
+	.ladder {
+		display: grid;
+		grid-template-columns: repeat(9, 1fr);
+		margin: 1.25rem 0 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.rung {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		block-size: 4.5rem;
+		padding: 0.4rem;
+		font-family: var(--font-mono);
+		border-block: 1px solid var(--flb);
+	}
+
+	li:first-child .rung {
+		border-inline-start: 1px solid var(--flb);
+		border-start-start-radius: var(--radius-small);
+		border-end-start-radius: var(--radius-small);
+	}
+
+	li:last-child .rung {
+		border-inline-end: 1px solid var(--flb);
+		border-start-end-radius: var(--radius-small);
+		border-end-end-radius: var(--radius-small);
+	}
+
+	.name {
+		font-size: 0.85em;
+	}
+
+	.value {
+		font-size: 0.62em;
+	}
+
+	.role {
+		display: block;
+		margin-top: 0.35rem;
+		padding-inline: 0.2rem;
+		font-family: var(--font-mono);
+		font-size: 0.6em;
+		color: var(--text-quiet);
+		overflow-wrap: anywhere;
+	}
+</style>
