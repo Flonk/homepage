@@ -10,6 +10,11 @@ import rehypeNowrapInlineCode from "./src/plugins/rehype-nowrap-inline-code.mjs"
 // https://astro.build/config
 export default defineConfig({
   site: "https://example.com",
+  // Posts that moved: a re-dated post changes its slug, and the old link
+  // should still land on it.
+  redirects: {
+    "/blog/2026-04-16-parser-combinators": "/blog/2026-10-17-parser-combinators",
+  },
   markdown: {
     shikiConfig: {
       theme: "one-dark-pro",

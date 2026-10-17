@@ -281,11 +281,14 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 			}
 
 			/* Named areas so DeckCard's halves can be placed independently. */
+			/* The groove between the viz and the card, the tree's own (see
+			   --groove-cut): the cut, and its light edge just under it. */
 			.deck::before {
 				content: '';
 				grid-area: text;
 				z-index: 1;
-				border-top: 1px solid var(--edge-100);
+				border-top: 1px solid var(--groove-cut);
+				box-shadow: 0 1px 0 var(--groove-edge);
 				align-self: start;
 				width: 100%;
 			}
@@ -297,7 +300,9 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 				justify-content: center;
 				gap: 1rem;
 				padding: 0.6rem 1rem;
-				border-top: 1px solid var(--edge-200);
+				/* The same groove over the controls. */
+				border-top: 1px solid var(--groove-cut);
+				box-shadow: inset 0 1px 0 var(--groove-edge);
 				background-color: color-mix(in srgb, var(--ground-200) 35%, transparent);
 			}
 

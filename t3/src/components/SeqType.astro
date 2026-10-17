@@ -1,0 +1,140 @@
+---
+/**
+ * What a combinator makes of its parsers' types: the call on the left, the
+ * type of what it returns on the right, an arrow between.
+ *
+ *   pSeq(                     Parser<[
+ *     pHello,                   string,
+ *     pIgnoreWhitespace,   ⇒    null,
+ *     pInteger                  number
+ *   )                         ]>
+ *
+ * Each parser and its piece of the tuple are in the same colour, line for
+ * line, so the eye can see the tuple is just the parsers' Ts in order. Static,
+ * like the deck's first picture, which it is laid out after: the slide before
+ * already showed the parse running, and this one is about the shape.
+ */
+import { vizHue } from '../lib/vizHue';
+
+interface Props {
+	/** The combinator. */
+	name?: string;
+	/** The parsers it is given, each with its T. */
+	parts?: { p: string; t: string }[];
+	/**
+	 * A size down and closer set, for sharing the pane with other pictures in
+	 * a VizStack rather than having it to itself.
+	 */
+	compact?: boolean;
+}
+
+const {
+	name = 'pSeq',
+	parts = [
+		{ p: 'pHello', t: 'string' },
+		{ p: 'pIgnoreWhitespace', t: 'null' },
+		{ p: 'pInteger', t: 'number' },
+	],
+	compact = false,
+} = Astro.props;
+
+const last = parts.length - 1;
+---
+
+<figure class:list={['seq-type', compact && 'compact']}>
+	<div class="plate">
+		<code class="side">
+			{`${name}(`}
+			{parts.map((x, i) => (
+				<>
+					{'\n  '}<span style={`color: ${vizHue(i)}`}>{x.p}</span>{i < last && ','}
+				</>
+			))}
+			{'\n)'}
+		</code>
+		{/* Double: what is on the right is the type the left returns, not the
+		    value it is turned into, as slide one's single arrow means. */}
+		<span class="to" aria-hidden="true">⇒</span>
+		<code class="side">
+			<span class="dim">Parser&lt;[</span>
+			{parts.map((x, i) => (
+				<>
+					{'\n  '}<span style={`color: ${vizHue(i)}`}>{x.t}</span>{i < last && <span class="dim">,</span>}
+				</>
+			))}
+			{'\n'}<span class="dim">]&gt;</span>
+		</code>
+	</div>
+	<figcaption class="sr-only">
+		{name} given {parts.map((x) => x.p).join(', ')} is a Parser of the tuple
+		[{parts.map((x) => x.t).join(', ')}].
+	</figcaption>
+</figure>
+
+<style>
+	.seq-type {
+		box-sizing: border-box;
+		width: 100%;
+		height: 100%;
+		min-width: 0;
+		min-height: 0;
+		margin: 0 0 1em;
+		font-family: var(--font-code);
+		/* Sized from its own width, not the pane's: the pane runs past the cap. */
+		container: seq-type / inline-size;
+	}
+
+	.plate {
+		box-sizing: border-box;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 1.6em;
+		padding: 1em;
+		/* Straight on the deck's dark ground: no plate of its own. */
+		color: var(--deck-ink, #e6e9ef);
+		/* About 26em of row at full width: both sides, the arrow, the padding.
+		   Side by side even on a phone: stacked, the two are ten lines, more
+		   than a phone's shallow viz pane has room for, while side by side they
+		   still fit its width at a readable size. */
+		font-size: min(1.3rem, 100cqi / 26);
+	}
+
+	.compact .plate {
+		font-size: min(1rem, 100cqi / 26);
+	}
+
+	.compact .side {
+		line-height: 1.35;
+	}
+
+	.side {
+		padding: 0;
+		background: none;
+		border: 0;
+		font-size: inherit;
+		color: inherit;
+		/* Laid out on lines of their own, the way they would be written. */
+		white-space: pre;
+	}
+
+	.dim,
+	.to {
+		color: var(--deck-ink-dim, #8891a0);
+	}
+
+	.to {
+		font-size: 1.4em;
+	}
+
+	.sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip-path: inset(50%);
+		white-space: nowrap;
+	}
+</style>

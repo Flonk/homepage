@@ -1,0 +1,641 @@
+---
+/**
+ * A string, a row of parsers, and what they make of it.
+ *
+ *   pString("Hello") → pWhitespace → pDigits          the parsers
+ *   ███Hello███ ░420                                  the input, eaten
+ *   T  ["Hello", " ", "420"]     string  ""           the tuple so far
+ *
+ * The deck's whole subject is one type, `(input) => [T, string]`, and this is
+ * that type with the clock running: each parser takes its bite off the front
+ * of the tape, the bite turns into a token on the left of the tuple, and
+ * whatever is left over is the right of it and the next parser's input. The
+ * tint a bite is drawn in is its parser's, so after a run the tape is a map of
+ * who consumed what.
+ *
+ * The matching is real. Every step is a regex, run sticky at the cursor —
+ * which is `^` against the rest of the string, the trick pRegex plays — so a
+ * card cannot claim a parse the parser would not make, and a step that does
+ * not match fails the way the code on the card throws.
+ *
+ * Everything is set from the card, through `viz:props` (see DeckViz):
+ *
+ *   input   the string, or several, taken in turn on successive runs — so one
+ *           card can show the parse that works and then the one that throws
+ *   skip    a regex consumed silently first, drawn as already read, for a card
+ *           that picks up part-way through a larger input
+ *   steps   [{ p, re, map?, repeat? }] — p is the chip's label, re the regex;
+ *           map 'number' turns the match into one, named groups turn it into
+ *           an object; repeat applies it until it fails, like pRepeat
+ *   group   { name?, as?, keys? } — draws the steps as one combinator, `name`
+ *           around them (pSeq), and `as` with `keys` maps the tuple into a
+ *           named record the way pMap does on the card
+ *
+ * It runs by itself, a step at a time, holds on the result, then starts over;
+ * a click starts it over at once. The clock stops while its phase is off
+ * stage, and under reduced motion it shows the finished parse and stays put.
+ */
+interface Props {
+	/** Time per step, in milliseconds. */
+	stepMs?: number;
+	/** How long a finished run is held before the next, in milliseconds. */
+	holdMs?: number;
+}
+
+const { stepMs = 900, holdMs = 3200 } = Astro.props;
+---
+
+<figure class="tape" data-parser-tape data-step-ms={stepMs} data-hold-ms={holdMs}>
+	<div class="plate">
+		<div class="parsers" data-parsers></div>
+		<div class="input">
+			<div class="text" data-input></div>
+		</div>
+		<div class="tuple" data-tuple>
+			<div class="cell">
+				<span class="type">T</span>
+				<code data-value></code>
+			</div>
+			<div class="cell rest">
+				<span class="type">string</span>
+				<code data-rest></code>
+			</div>
+		</div>
+	</div>
+	<figcaption class="sr-only" data-caption></figcaption>
+</figure>
+
+<style>
+	.tape {
+		box-sizing: border-box;
+		width: 100%;
+		height: 100%;
+		min-width: 0;
+		min-height: 0;
+		/* The pane has no bottom padding of its own; the air below is taken here,
+		   the same measure the other deck plates take. */
+		margin: 0 0 1em;
+		font-family: var(--font-code);
+	}
+
+	.plate {
+		box-sizing: border-box;
+		width: 100%;
+		height: 100%;
+		min-width: 0;
+		min-height: 0;
+		display: flex;
+		flex-direction: column;
+		/* The parsers, the input and the tuple as one block, centred: whatever
+		   room is over goes above and below it, not between its parts. */
+		justify-content: center;
+		gap: 0.8rem;
+		padding: 1em;
+		/* Straight on the deck's dark ground, in its own inks: no plate of its own. */
+		--ink: var(--deck-ink, #e6e9ef);
+		--ink-dim: var(--deck-ink-dim, #8891a0);
+		--fail: oklch(0.68 0.2 25);
+		color: var(--ink);
+		cursor: pointer;
+	}
+
+	/* ---- the parsers ----------------------------------------------------- */
+
+	.parsers {
+		flex: none;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.3rem;
+		font-size: 0.72rem;
+		line-height: 1.2;
+	}
+
+	.parsers :global(.chip) {
+		padding: 0.2em 0.5em;
+		border: 1px solid color-mix(in oklab, var(--hue) 45%, transparent);
+		border-radius: var(--radius-medium);
+		color: color-mix(in oklab, var(--hue) 70%, var(--ink-dim));
+		white-space: nowrap;
+		transition:
+			background 0.2s ease,
+			color 0.2s ease,
+			border-color 0.2s ease;
+	}
+
+	.parsers :global(.chip[data-state='live']) {
+		background: color-mix(in oklab, var(--hue) 28%, transparent);
+		border-color: var(--hue);
+		color: var(--ink);
+	}
+
+	.parsers :global(.chip[data-state='done']) {
+		color: var(--hue);
+	}
+
+	.parsers :global(.chip[data-state='fail']) {
+		--hue: var(--fail);
+		background: color-mix(in oklab, var(--fail) 28%, transparent);
+		border-color: var(--fail);
+		color: var(--ink);
+	}
+
+	.parsers :global(.count) {
+		margin-left: 0.35em;
+		opacity: 0.8;
+	}
+
+	/* The combinator around the steps, as punctuation rather than a chip: it is
+	   not a parser that eats anything itself, it is the shape the others are
+	   put together in. */
+	.parsers :global(.paren) {
+		color: var(--ink-dim);
+		white-space: nowrap;
+	}
+
+	/* ---- the input ------------------------------------------------------- */
+
+	/* Sized by the longest line and the number of them, so a one-liner is big
+	   and the ping output still fits a phone's width and a desktop's shallow
+	   pane: --cols and --rows are set by the script, and a monospace character
+	   is a little over half its font size wide. */
+	/* Its own height, not the room that is over: the script sizes the type to
+	   fit that room (see fit), so the block can be centred as a whole. */
+	.input {
+		flex: none;
+		min-height: 0;
+		overflow: hidden;
+		container-type: inline-size;
+	}
+
+	/* A div rather than a pre: the site paints every pre as a code block,
+	   background !important and all, and this sits straight on the ground. */
+	.input .text {
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		background: none;
+		border: 0;
+		overflow: visible;
+		/* By width here; the script also caps it by the height there is. */
+		font-size: min(1.6rem, calc(100cqi / (var(--cols, 20) * 0.66)));
+		line-height: 1.45;
+		white-space: pre;
+		color: var(--ink);
+	}
+
+	.input :global(.eaten) {
+		background: color-mix(in oklab, var(--hue) 26%, transparent);
+		color: var(--hue);
+		border-radius: 2px;
+	}
+
+	/* The bite being taken right now is the brightest thing on the plate. */
+	.input :global(.eaten.now) {
+		background: color-mix(in oklab, var(--hue) 55%, transparent);
+		color: var(--ink);
+	}
+
+	.input :global(.read) {
+		color: var(--ink-dim);
+	}
+
+	/* Where the next parser will start: the front of the rest. */
+	.input :global(.caret) {
+		display: inline-block;
+		width: 0;
+		height: 1.2em;
+		vertical-align: -0.2em;
+		box-shadow: 0 0 0 1px var(--ink);
+		animation: blink 1s steps(1) infinite;
+	}
+
+	.input :global(.caret.fail) {
+		box-shadow: 0 0 0 1.5px var(--fail);
+		animation: none;
+	}
+
+	@keyframes blink {
+		50% {
+			opacity: 0;
+		}
+	}
+
+	/* ---- the tuple ------------------------------------------------------- */
+
+	/* Its own display would otherwise win over the attribute. */
+	.tuple[hidden] {
+		display: none;
+	}
+
+	.tuple {
+		flex: none;
+		display: grid;
+		grid-template-columns: minmax(0, 2.2fr) minmax(0, 1fr);
+		gap: 0.5rem;
+		font-size: 0.72rem;
+	}
+
+	.cell {
+		min-width: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		padding: 0.5em 0.6em;
+		border-radius: var(--radius-medium);
+		background: color-mix(in oklab, var(--ink) 6%, transparent);
+	}
+
+	.type {
+		font-size: 0.6rem;
+		letter-spacing: 0.06em;
+		color: var(--ink-dim);
+	}
+
+	.cell code {
+		padding: 0;
+		background: none;
+		border: 0;
+		font-size: inherit;
+		color: var(--ink);
+		white-space: pre-wrap;
+		overflow-wrap: anywhere;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 3;
+		line-clamp: 3;
+		overflow: hidden;
+	}
+
+	.tuple[data-failed='true'] .cell code {
+		color: var(--fail);
+	}
+
+	.sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip-path: inset(50%);
+		white-space: nowrap;
+	}
+
+	@container viz (max-width: 30rem) {
+		.parsers,
+		.tuple {
+			font-size: 0.62rem;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.input :global(.caret) {
+			animation: none;
+		}
+	}
+</style>
+
+<script>
+	import { eachPage } from '../lib/page';
+	import { vizHue } from '../lib/vizHue';
+
+	type Step = { p: string; re: string; map?: 'number' | 'null'; repeat?: boolean };
+	type Group = { name?: string; as?: string; keys?: Record<string, number> };
+	type Props = {
+		input?: string | string[];
+		skip?: string;
+		steps?: Step[];
+		group?: Group | null;
+		/** false to leave out the [T, string] boxes: just the parsers and the input. */
+		tuple?: boolean;
+	};
+
+	/* One moment of a run: how far the cursor is, who ate which stretch, and
+	   what the tuple holds. A run is worked out whole up front and then played,
+	   so the clock only ever chooses which frame to draw. */
+	type Bite = { from: number; to: number; step: number };
+	type Frame = {
+		live: number;
+		pos: number;
+		bites: Bite[];
+		values: unknown[];
+		counts: number[];
+		failed: boolean;
+		missed: boolean;
+		done: boolean;
+	};
+
+	/* A colour per parser, not per step: a parser used twice, like pWhitespace
+	   in a header, is the same colour both times. With up to three or four of
+	   them the viz palette's band holds them apart (see lib/vizHue); past that
+	   it cannot, and they go the whole way round the wheel instead, evenly,
+	   from --ink-viz, at its lightness and colourfulness. */
+	let hue = (i: number): string => vizHue(i);
+	function colourParsers(steps: Step[]) {
+		const names = [...new Set(steps.map((s) => s.p))];
+		const at = (i: number) => names.indexOf(steps[i]?.p ?? '');
+		hue =
+			names.length <= 3
+				? (i) => vizHue(at(i))
+				: (i) =>
+						`oklch(from var(--ink-viz) l c calc(h + ${((at(i) * 360) / names.length).toFixed(1)}))`;
+	}
+
+	const tokenOf = (m: RegExpExecArray, step: Step): unknown => {
+		if (m.groups) {
+			return Object.fromEntries(
+				Object.entries(m.groups).map(([k, v]) => [k, /^\d+(\.\d+)?$/.test(v) ? Number(v) : v]),
+			);
+		}
+		if (step.map === 'null') return null;
+		return step.map === 'number' ? Number(m[0]) : m[0];
+	};
+
+	/* What eat hands back when its parser does not match. Not null, which is a
+	   token a parser can make: pIgnoreWhitespace makes nothing else. */
+	const MISS = Symbol('miss');
+
+	function run(input: string, skip: string | undefined, steps: Step[]): Frame[] {
+		let pos = 0;
+		if (skip) {
+			const s = new RegExp(skip, 'y');
+			pos = s.exec(input)?.[0].length ?? 0;
+		}
+		const bites: Bite[] = [];
+		const values: unknown[] = [];
+		const counts = steps.map(() => 0);
+		const frames: Frame[] = [];
+		const snap = (live: number, extra: Partial<Frame> = {}) =>
+			frames.push({
+				live,
+				pos,
+				bites: [...bites],
+				values: values.map((v) => (Array.isArray(v) ? [...v] : v)),
+				counts: [...counts],
+				failed: false,
+				missed: false,
+				done: false,
+				...extra,
+			});
+
+		snap(-1);
+		for (let i = 0; i < steps.length; i++) {
+			const step = steps[i];
+			const re = new RegExp(step.re, 'y');
+			const eat = () => {
+				re.lastIndex = pos;
+				const m = re.exec(input);
+				// An empty match is not progress: pRepeat would loop for ever on it.
+				if (!m || (step.repeat && m[0].length === 0)) return MISS;
+				bites.push({ from: pos, to: pos + m[0].length, step: i });
+				pos += m[0].length;
+				counts[i]++;
+				return tokenOf(m, step);
+			};
+			if (step.repeat) {
+				const list: unknown[] = [];
+				values.push(list);
+				for (let t = eat(); t !== MISS; t = eat()) {
+					list.push(t);
+					snap(i);
+				}
+				// The failure pRepeat swallows: shown, briefly, then carried past.
+				snap(i, { missed: true });
+			} else {
+				const t = eat();
+				if (t === MISS) {
+					snap(i, { failed: true, done: true });
+					return frames;
+				}
+				values.push(t);
+				snap(i);
+			}
+		}
+		snap(-1, { done: true });
+		return frames;
+	}
+
+	/* Compact enough for a line or three, so a run of seven packets shows as
+	   one entry and a count rather than pushing everything else off the plate. */
+	function show(v: unknown, depth = 0): string {
+		if (typeof v === 'string') return JSON.stringify(v);
+		if (typeof v === 'number') return String(v);
+		if (Array.isArray(v)) {
+			if (v.length > 2 && typeof v[0] === 'object') {
+				return `[${show(v[0], depth + 1)}, … ×${v.length}]`;
+			}
+			return `[${v.map((x) => show(x, depth + 1)).join(', ')}]`;
+		}
+		if (v && typeof v === 'object') {
+			if (depth >= 2) return '{…}';
+			const body = Object.entries(v)
+				.map(([k, x]) => `${k}: ${show(x, depth + 1)}`)
+				.join(', ');
+			return `{${body}}`;
+		}
+		return String(v);
+	}
+
+	const esc = (s: string) =>
+		s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+	function initTape(root: HTMLElement, signal: AbortSignal) {
+		if (root.dataset.ready === 'true') return;
+		root.dataset.ready = 'true';
+
+		const plate = root.querySelector<HTMLElement>('.plate')!;
+		const parsersEl = root.querySelector<HTMLElement>('[data-parsers]')!;
+		const text = root.querySelector<HTMLElement>('[data-input]')!;
+		const tuple = root.querySelector<HTMLElement>('[data-tuple]')!;
+		const valueEl = root.querySelector<HTMLElement>('[data-value]')!;
+		const restEl = root.querySelector<HTMLElement>('[data-rest]')!;
+		const caption = root.querySelector<HTMLElement>('[data-caption]')!;
+		const host =
+			root.closest<HTMLElement>('[data-viz-phase]') ?? root.closest<HTMLElement>('[data-viz-stage]');
+		const stepMs = Number(root.dataset.stepMs);
+		const holdMs = Number(root.dataset.holdMs);
+		const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+		let props: Props = { input: '', steps: [] };
+		let inputs: string[] = [''];
+		let which = 0;
+		let frames: Frame[] = [];
+		let at = 0;
+		let timer: number | undefined;
+		let onStage = !host?.hasAttribute('data-viz-phase') || host.dataset.vizActive === 'true';
+
+		function chips() {
+			const steps = props.steps ?? [];
+			const g = props.group;
+			colourParsers(steps);
+			const items = steps
+				.map(
+					(s, i) =>
+						`<span class="chip" data-chip style="--hue: ${hue(i)}">${esc(s.p)}<span class="count" data-count></span></span>`,
+				)
+				.join('');
+			// Only the combinator round the parsers: a pMap into a record (`as`)
+			// is the card's code to show, and written out here it reads as noise.
+			const open = g?.name ? `${g.name}(` : '';
+			const close = g?.name ? ')' : '';
+			parsersEl.innerHTML =
+				(open ? `<span class="paren">${esc(open)}</span>` : '') +
+				items +
+				(close ? `<span class="paren">${esc(close)}</span>` : '');
+		}
+
+		function value(f: Frame): string {
+			const steps = props.steps ?? [];
+			const g = props.group;
+			if (f.failed) return 'Error';
+			if (f.values.length === 0) return steps.length > 1 || g ? '[]' : '—';
+			if (g?.as && g.keys && f.done) {
+				const rec = Object.fromEntries(Object.entries(g.keys).map(([k, i]) => [k, f.values[i]]));
+				return `${g.as} ${show(rec)}`;
+			}
+			if (steps.length === 1 && !g) return show(f.values[0]);
+			return show(f.values);
+		}
+
+		function draw() {
+			const f = frames[at];
+			if (!f) return;
+			const input = inputs[which % inputs.length];
+			const start = frames[0].pos;
+
+			// The tape: what was skipped, each bite in its parser's tint, the
+			// caret, and the rest as it stands.
+			let html = start > 0 ? `<span class="read">${esc(input.slice(0, start))}</span>` : '';
+			f.bites.forEach((b, i) => {
+				const now = i === f.bites.length - 1 && !f.done && !f.missed && f.live === b.step;
+				html += `<span class="eaten${now ? ' now' : ''}" style="--hue: ${hue(b.step)}">${esc(input.slice(b.from, b.to))}</span>`;
+			});
+			html += `<span class="caret${f.failed ? ' fail' : ''}"></span>`;
+			html += esc(input.slice(f.pos));
+			text.innerHTML = html;
+
+			parsersEl.querySelectorAll<HTMLElement>('[data-chip]').forEach((chip, i) => {
+				const state =
+					i === f.live
+						? f.failed || f.missed
+							? 'fail'
+							: 'live'
+						: f.counts[i] > 0
+							? 'done'
+							: 'idle';
+				chip.dataset.state = state;
+				const count = chip.querySelector<HTMLElement>('[data-count]')!;
+				count.textContent = props.steps?.[i]?.repeat ? `×${f.counts[i]}` : '';
+			});
+
+			tuple.dataset.failed = String(f.failed);
+			valueEl.textContent = value(f);
+			const rest = input.slice(f.pos);
+			restEl.textContent = f.failed
+				? 'thrown'
+				: JSON.stringify(rest.length > 26 ? rest.slice(0, 26) + '…' : rest);
+			caption.textContent = `Parsing ${JSON.stringify(input)}: ${valueEl.textContent}, rest ${restEl.textContent}`;
+		}
+
+		function load() {
+			const input = inputs[which % inputs.length];
+			const lines = input.split('\n');
+			const cols = Math.max(12, ...lines.map((l) => l.length + 1));
+			text.style.setProperty('--cols', String(cols));
+			text.style.setProperty('--rows', String(lines.length));
+			frames = run(input, props.skip, props.steps ?? []);
+			at = still ? frames.length - 1 : 0;
+			draw();
+			fit();
+		}
+
+		/* The input's type, as big as fits: its longest line across the width,
+		   all its lines down the height the parsers and the tuple leave over.
+		   Worked out here rather than in the stylesheet so that the input can be
+		   its own height, and the block it is part of centred as a whole. */
+		const inputBox = root.querySelector<HTMLElement>('.input')!;
+		function fit() {
+			const cols = Number(text.style.getPropertyValue('--cols')) || 20;
+			const rows = Number(text.style.getPropertyValue('--rows')) || 1;
+			const cs = getComputedStyle(plate);
+			const gap = parseFloat(cs.rowGap) || 0;
+			const others = [parsersEl, tuple].filter((el) => !el.hidden);
+			const room =
+				plate.clientHeight -
+				parseFloat(cs.paddingTop) -
+				parseFloat(cs.paddingBottom) -
+				others.reduce((sum, el) => sum + el.offsetHeight + gap, 0);
+			const size = Math.min(
+				25.6,
+				inputBox.clientWidth / (cols * 0.66),
+				Math.max(0, room) / (rows * 1.45),
+			);
+			text.style.fontSize = `${size.toFixed(2)}px`;
+		}
+		const resized = new ResizeObserver(() => fit());
+		resized.observe(plate);
+		signal.addEventListener('abort', () => resized.disconnect());
+
+		function stop() {
+			clearTimeout(timer);
+			timer = undefined;
+		}
+
+		/* One frame per tick, a longer hold on the last, then the next input. */
+		function tick() {
+			stop();
+			if (still || !onStage) return;
+			const last = at >= frames.length - 1;
+			timer = window.setTimeout(
+				() => {
+					if (last) {
+						which++;
+						load();
+					} else {
+						at++;
+						draw();
+					}
+					tick();
+				},
+				last ? holdMs : stepMs,
+			);
+		}
+
+		function restart() {
+			which = 0;
+			load();
+			tick();
+		}
+
+		host?.addEventListener('viz:props', (e) => {
+			// Props only ever go to the phase on stage — and the phase a deck opens
+			// on is put there without a `viz:enter`.
+			onStage = true;
+			const p = ((e as CustomEvent).detail ?? {}) as Props;
+			props = p;
+			tuple.hidden = p.tuple === false;
+			inputs = Array.isArray(p.input) ? p.input : [p.input ?? ''];
+			chips();
+			restart();
+		});
+		host?.addEventListener('viz:enter', () => {
+			onStage = true;
+			restart();
+		});
+		host?.addEventListener('viz:exit', () => {
+			onStage = false;
+			stop();
+		});
+		plate.addEventListener('click', restart);
+		// The page going is the phase going, as far as the clock is concerned.
+		signal.addEventListener('abort', stop);
+
+		chips();
+		load();
+	}
+
+	eachPage((signal) => {
+		document
+			.querySelectorAll<HTMLElement>('[data-parser-tape]')
+			.forEach((el) => initTape(el, signal));
+	});
+</script>

@@ -1,0 +1,127 @@
+---
+/**
+ * What parsing is, before any of how: a string on the left, a record on the
+ * right, an arrow between.
+ *
+ *   "Hello, world!"  →  { greeting: "Hello", who: "world" }
+ *
+ * Each field's value is picked out in the string in the same colour it has in
+ * the record, so the eye can see where every piece came from — and that the
+ * comma, the space and the "!" went nowhere. Static on purpose: it is the
+ * deck's opening picture, and the tape later on is where things move.
+ */
+import { vizHue } from '../lib/vizHue';
+
+interface Props {
+	/** The string being parsed. */
+	input: string;
+	/** What it parses into. Each value should occur in `input`. */
+	fields: Record<string, string>;
+}
+
+const { input, fields } = Astro.props;
+
+/* The same palette the tape gives its parsers; see lib/vizHue. */
+const hue = vizHue;
+
+/* The input cut into runs, each either plain or one field's value. */
+const entries = Object.entries(fields);
+const runs: { text: string; at?: number }[] = [];
+let pos = 0;
+for (const [i, [, v]] of entries.entries()) {
+	const found = input.indexOf(v, pos);
+	if (found < 0) continue;
+	if (found > pos) runs.push({ text: input.slice(pos, found) });
+	runs.push({ text: v, at: i });
+	pos = found + v.length;
+}
+if (pos < input.length) runs.push({ text: input.slice(pos) });
+---
+
+<figure class="arrow">
+	<div class="plate">
+		<code class="side">
+			"{runs.map((r) => (r.at === undefined ? r.text : <span style={`color: ${hue(r.at)}`}>{r.text}</span>))}"
+		</code>
+		<span class="to" aria-hidden="true">→</span>
+		<code class="side record">
+			{'{'}
+			{entries.map(([k, v], i) => (
+				<>
+					{`\n  ${k}: `}<span style={`color: ${hue(i)}`}>"{v}"</span>{i < entries.length - 1 && ','}
+				</>
+			))}
+			{'\n}'}
+		</code>
+	</div>
+	<figcaption class="sr-only">
+		The string {JSON.stringify(input)} parses into an object with
+		{entries.map(([k, v]) => ` ${k} ${JSON.stringify(v)}`).join(',')}.
+	</figcaption>
+</figure>
+
+<style>
+	.arrow {
+		box-sizing: border-box;
+		width: 100%;
+		height: 100%;
+		min-width: 0;
+		min-height: 0;
+		margin: 0 0 1em;
+		font-family: var(--font-code);
+		/* Sized from its own width, not the pane's: the pane runs past the cap. */
+		container: arrow / inline-size;
+	}
+
+	.plate {
+		box-sizing: border-box;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 1.2em;
+		padding: 1em;
+		/* Straight on the deck's dark ground: no plate of its own. */
+		color: var(--deck-ink, #e6e9ef);
+		/* About 28em of row at full width: both sides, the arrow, the padding. */
+		font-size: min(1.4rem, 100cqi / 28);
+	}
+
+	.side {
+		padding: 0;
+		background: none;
+		border: 0;
+		font-size: inherit;
+		color: inherit;
+		/* The record is laid out on lines of its own, the way it would be printed. */
+		white-space: pre;
+	}
+
+	.to {
+		color: var(--deck-ink-dim, #8891a0);
+		font-size: 1.4em;
+	}
+
+	/* A narrow panel, a phone's say: stacked, the arrow turned
+	   to point down, and sized by the record, the wider of the two. */
+	@container arrow (width < 32rem) {
+		.plate {
+			flex-direction: column;
+			font-size: min(1.4rem, 100cqi / 15);
+		}
+
+		.to {
+			rotate: 90deg;
+		}
+	}
+
+	.sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip-path: inset(50%);
+		white-space: nowrap;
+	}
+</style>

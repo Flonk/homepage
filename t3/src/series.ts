@@ -72,5 +72,17 @@ export const SERIES_COVERS: Record<string, SeriesCover> = {
 	Colour: { src: '/assets/series/colour.png', backdrop: RAINBOW },
 };
 
+/**
+ * Single posts shown as a card in the post tree, as a series is, rather than
+ * as a row: keyed by the post's slug, with a cover as a series has. The blurb
+ * is the post's own `description`, and the card's corner gives its date where
+ * a series gives its count of parts. Clicking it opens the post.
+ */
+export const POST_COVERS: Record<string, SeriesCover> = {
+	// A bare tree, all its branching on show: the shape a parser makes of a
+	// string. Andy Watkins on Unsplash, https://unsplash.com/photos/m43rwT9O_r4.
+	'2026-10-17-parser-combinators': { src: '/assets/series/parser-combinators.jpg', position: '50% 35%' },
+};
+
 /** Series still being written, marked as such on their card in the post tree. */
 export const SERIES_WIP = new Set(['Colour', 'Classes are Coalgebras']);

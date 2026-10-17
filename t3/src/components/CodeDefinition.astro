@@ -1,0 +1,204 @@
+---
+/**
+ * The code behind a name the prose has just used, folded away until asked
+ * for.
+ *
+ *   ▸ CODE DEFINITION · pInteger
+ *
+ * For a card that talks about a function before the reader needs to see it
+ * written out: the card makes its point without it, and the implementation is
+ * one click off for whoever wants it. Closed by default; `open` for a card
+ * whose code is the point.
+ *
+ *   <CodeDefinition name="pInteger">
+ *
+ *   ```typescript
+ *   const pInteger = …
+ *   ```
+ *
+ *   </CodeDefinition>
+ *
+ * The blank lines round the fence matter: without them MDX reads the block as
+ * inline text rather than as markdown.
+ */
+import { vizHue } from '../lib/vizHue';
+
+interface Props {
+	/** The name being defined, shown in the summary. */
+	name: string;
+	/**
+	 * Which colour of the viz palette the name is in (see lib/vizHue): the same
+	 * index the name has in the visualization beside it, so the two match. The
+	 * first, --ink-viz, unless given.
+	 */
+	hue?: number;
+	/**
+	 * Start open, for a card whose code is the point rather than an aside. The
+	 * reader can still fold it away.
+	 */
+	open?: boolean;
+}
+
+const { name, hue = 0, open = false } = Astro.props;
+---
+
+<details class="code-def" open={open} style={`--name-ink: ${vizHue(hue)}`}>
+	<summary>
+		<span class="chevron" aria-hidden="true">▸</span>
+		<span class="kind">Code definition</span>
+		<span class="dot" aria-hidden="true">·</span>
+		<code class="name">{name}</code>
+	</summary>
+	<div class="body">
+		<slot />
+	</div>
+</details>
+
+<style>
+	.code-def {
+		margin: 1.5em 0;
+		/* Lets the body ease to its own height rather than jump; a browser that
+		   cannot animate to `auto` opens and shuts at once. */
+		interpolate-size: allow-keywords;
+	}
+
+	/* A run of them, one per name, is one list rather than separate asides:
+	   no room between them, only round the run as a whole. */
+	.code-def:has(+ .code-def) {
+		margin-bottom: 0;
+	}
+
+	.code-def + .code-def {
+		margin-top: 0;
+	}
+
+	/* A block of its own, as wide as its words, so its height is its own small
+	   type's rather than a full line of prose round it: a run of these stacks
+	   close. */
+	summary {
+		display: flex;
+		width: fit-content;
+		/* The same width open or closed, the side borders there but unseen
+		   when closed, so opening it never moves the words sideways. Nothing
+		   above or below when closed, so a run of them stacks as close as it
+		   did before they could open into a header; that eases in on opening. */
+		box-sizing: border-box;
+		padding: 0 0.75em;
+		border: solid transparent;
+		border-width: 0 1px;
+		line-height: 1.5;
+		align-items: baseline;
+		gap: 0.5em;
+		list-style: none;
+		cursor: pointer;
+		font-family: var(--font-mono);
+		font-size: 0.72rem;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: color-mix(in oklab, currentColor 60%, transparent);
+		transition:
+			color 0.2s ease,
+			padding 0.25s ease;
+	}
+
+	summary::-webkit-details-marker {
+		display: none;
+	}
+
+	summary:hover,
+	.code-def[open] summary {
+		color: currentColor;
+	}
+
+	.chevron {
+		display: inline-block;
+		transition: rotate 0.2s ease;
+	}
+
+	.code-def[open] .chevron {
+		rotate: 90deg;
+	}
+
+	/* The name is code, so it keeps its own case and the accent's ink, but not
+	   the chip the prose gives inline code: it is part of a label here. */
+	.name {
+		padding: 0;
+		background: none;
+		border: 0;
+		font-size: inherit;
+		text-transform: none;
+		letter-spacing: 0;
+		color: var(--name-ink, var(--ink-viz, currentColor));
+	}
+
+	.code-def::details-content {
+		block-size: 0;
+		overflow: clip;
+		transition:
+			block-size 0.25s ease,
+			content-visibility 0.25s allow-discrete;
+	}
+
+	.code-def[open]::details-content {
+		block-size: auto;
+	}
+
+	.body {
+		padding-top: 0.75em;
+	}
+
+	/* Open, the label is the code block's own header: the same well, the same
+	   paint and edge (see pre in global.css), the full width of the code, and
+	   the groove between them is the code's own top edge, its cut with its
+	   light line just under. Closed, it is a small line of type again. */
+	.code-def[open] summary {
+		width: auto;
+		/* Room above and below as a header, eased to as the code opens. */
+		padding-block: 0.8em;
+		background-color: var(--ground-300);
+		background-image:
+			radial-gradient(circle, rgb(255 255 255 / 0.05) 0.4px, transparent 0.7px),
+			url('/assets/grain-side.png');
+		background-size: 2.5px 2.5px, 128px 128px;
+		image-rendering: pixelated;
+		border: 1px solid var(--groove-cut);
+		border-bottom: 0;
+		border-radius: var(--radius-medium) var(--radius-medium) 0 0;
+		box-shadow:
+			inset 1px 0 0 var(--groove-edge),
+			inset -1px 0 0 var(--groove-edge),
+			inset 0 1px 0 var(--groove-edge);
+	}
+
+	.code-def[open] .body {
+		padding-top: 0;
+	}
+
+	.code-def[open] .body > :global(pre:first-child) {
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+	}
+
+	/* Open in the middle of a run: room under the code before the next label,
+	   which would otherwise sit right on it. Inside the body, so it folds away
+	   with it. */
+	.code-def:has(+ .code-def) .body {
+		padding-bottom: 1.25em;
+	}
+
+	.body > :global(:first-child) {
+		margin-top: 0;
+	}
+
+	.body > :global(:last-child) {
+		margin-bottom: 0;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.chevron,
+		summary,
+		.code-def::details-content {
+			transition: none;
+		}
+	}
+</style>

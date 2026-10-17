@@ -1,0 +1,94 @@
+---
+/**
+ * Several pictures in one viz pane, one above the other: for a card that
+ * wants to show two things at once and the line of code that joins them.
+ *
+ *   <VizStack>
+ *     <SeqType />
+ *     <code>const pHello100 = pSeq(...)</code>
+ *     <ParserChain … />
+ *   </VizStack>
+ *
+ * A deck visualization normally fills the pane, height and all; stacked, each
+ * one is let down to its own content's height and its margin and padding are
+ * pulled in, so together they fit where one would. Each keeps sizing its type
+ * from its width, which is the stack's. A bare `code` in the stack is a line
+ * of code between pictures, set as code on the dark ground rather than as a
+ * chip.
+ *
+ * Anything with a script of its own still finds the phase it is in, so
+ * animations in a stack start and stop with it as they would alone.
+ */
+---
+
+<div class="stack">
+	<slot />
+</div>
+
+<style>
+	.stack {
+		box-sizing: border-box;
+		width: 100%;
+		height: 100%;
+		min-width: 0;
+		min-height: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		justify-content: center;
+		gap: 0.4rem;
+		padding-bottom: 1em;
+	}
+
+	/* Each picture at its own height, not the pane's, and close to the next. */
+	.stack > :global(figure) {
+		height: auto;
+		margin: 0;
+	}
+
+	/* Nothing in a stack is squeezed to make room: squeezed, a picture's lines
+	   spill over whatever comes after it. If a stack is too tall, the fix is
+	   a smaller picture (SeqType's `compact`, say), not an overlap. */
+	.stack > :global(*) {
+		flex-shrink: 0;
+	}
+
+	.stack > :global(figure .plate) {
+		height: auto;
+		padding-block: 0.3em;
+	}
+
+	/* An `hr` between two pictures: the site's groove, half the width, with
+	   room either side, for where the stack turns from one thing to the next. */
+	.stack > :global(hr) {
+		align-self: center;
+		width: 50%;
+		height: 0;
+		margin: 0.9rem 0;
+		border: 0;
+		border-top: 1px solid var(--groove-cut);
+		box-shadow: 0 1px 0 var(--groove-edge);
+	}
+
+	/* Lines of code in a row read as one block of code, so they sit as close
+	   as lines do; the picture after them is a step apart. */
+	.stack > :global(code + code) {
+		margin-top: -0.3rem;
+	}
+
+	.stack > :global(code + figure) {
+		margin-top: 0.6rem;
+	}
+
+	/* A line of code between the pictures. */
+	.stack > :global(code) {
+		align-self: center;
+		padding: 0;
+		background: none;
+		border: 0;
+		font-family: var(--font-code);
+		font-size: 0.95rem;
+		color: var(--deck-ink-dim, #8891a0);
+		white-space: nowrap;
+	}
+</style>

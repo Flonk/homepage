@@ -1,0 +1,606 @@
+---
+/**
+ * Parsers in sequence: each one's leftovers are the next one's input.
+ *
+ *            pHello  "Hello 100"   →  ["Hello", " 100"]
+ *                                                ↓
+ * pIgnoreWhitespace  " 100"        →  [null, "100"]
+ *                                           ↓
+ *          pInteger  "100"         →  [100, ""]
+ *
+ * One row per parser, each playing a shortened version of ParserType's cut:
+ * the line runs straight to where the parser cuts, the claimed piece lights
+ * up, the string comes apart and the piece becomes the token. Then the rest
+ * (the right half of that row's tuple) lifts off and flies down to the next
+ * row, where it lands as that parser's input, and the next cut begins. Once a
+ * rest has been handed on it dims in the row it came from, so the eye follows
+ * the one still in play.
+ *
+ * The cuts are worked out here, with the same sticky regexes the tape uses,
+ * so a row cannot claim a parse its parser would not make. Each parser gets
+ * its own colour from the viz palette; the rests stay plain ink, because they
+ * belong to no parser yet.
+ *
+ * Runs by itself in a loop, holds on the finished chain, and starts over. The
+ * clock stops while its phase is off stage, and under reduced motion every
+ * row is shown finished.
+ */
+import { vizHue } from '../lib/vizHue';
+
+type Step = {
+	/** The parser's name. */
+	p: string;
+	/** What it matches, as a regex run at the front of its input. */
+	re: string;
+	/**
+	 * What the token comes out as: a string keeps its quotes, a number loses
+	 * them, and null throws away what was matched and is `null` instead.
+	 */
+	kind?: 'string' | 'number' | 'null';
+	/**
+	 * What the token is shown as, when it is not the matched text itself: a
+	 * parser that builds something out of what it matched, like pHello100's
+	 * tuple. What was matched folds away and this takes its place, unquoted.
+	 */
+	shows?: string;
+	/**
+	 * What the token becomes after that, once the row is done: the parser's
+	 * value mapped into something else, the way pMap does, with `note` (say,
+	 * "pMap") shown over it as it changes. The rest stays as it was.
+	 */
+	then?: string;
+	note?: string;
+	/**
+	 * Which colour of the viz palette the row is in. Its place in the chain
+	 * unless given: a parser that comes round again, as under pRepeat, keeps
+	 * its colour by naming it.
+	 */
+	hue?: number;
+};
+
+interface Props {
+	input?: string;
+	steps?: Step[];
+	/** How long the finished chain is held before it starts over, in ms. */
+	holdMs?: number;
+}
+
+const {
+	input = 'Hello 100',
+	steps = [
+		{ p: 'pHello', re: 'Hello' },
+		{ p: 'pIgnoreWhitespace', re: '\\s+', kind: 'null' },
+		{ p: 'pInteger', re: '\\d+', kind: 'number' },
+	],
+	holdMs = 5000,
+} = Astro.props;
+
+/* Each row's input is the rest of the row before; its cut is where its own
+   regex stops matching. A step that does not match ends the chain there. */
+const rows: {
+	p: string;
+	kind: string;
+	shows?: string;
+	then?: string;
+	note?: string;
+	hue?: number;
+	head: string;
+	tail: string;
+}[] = [];
+let rest = input;
+for (const step of steps) {
+	const m = new RegExp(step.re, 'y').exec(rest);
+	if (!m) break;
+	const kind = step.kind ?? 'string';
+	// null is the one swap that needs no saying: it is always shown as null.
+	const shows = step.shows ?? (kind === 'null' ? 'null' : undefined);
+	rows.push({
+		p: step.p,
+		kind,
+		shows,
+		then: step.then,
+		hue: step.hue,
+		note: step.note,
+		head: m[0],
+		tail: rest.slice(m[0].length),
+	});
+	rest = rest.slice(m[0].length);
+}
+
+/* The length of the longest line of some text, in characters. */
+const longest = (s: string) => Math.max(...s.split('\n').map((l) => l.length));
+
+/* How wide the plate needs to be, in ems of its own type, for its widest row
+   finished: the name (0.85em type) and the tuple (1.4em type), a monospace
+   character being 0.6em, plus the gap between them and the padding. The type
+   is sized from this, so a chain of short rows is big and one long row still
+   fits a phone. */
+const tupleChars = (r: (typeof rows)[number]) =>
+	Math.max(
+		`[${r.shows ?? JSON.stringify(r.head)}, ${JSON.stringify(r.tail)}]`.length,
+		// A mapped value may run over several lines; its widest is what counts.
+		r.then ? longest(`[${r.then}, ${JSON.stringify(r.tail)}]`) : 0,
+	);
+const wide = Math.max(...rows.map((r) => r.p.length * 0.85 * 0.6 + tupleChars(r) * 1.4 * 0.6)) + 1.2 + 2;
+---
+
+<figure class="chain" data-parser-chain data-hold-ms={holdMs}>
+	<div class="plate" data-plate style={`--wide: ${wide.toFixed(1)}`}>
+		{
+			rows.map((r, i) => (
+				<div
+					class="row"
+					data-row
+					data-kind={r.kind}
+					data-swap={r.shows !== undefined ? 'true' : undefined}
+					data-then={r.then !== undefined ? 'true' : undefined}
+					data-mapped="false"
+					data-cut={r.head.length}
+					data-stage="idle"
+					style={`--hue: ${vizHue(r.hue ?? i)}; --x: 1`}
+				>
+					<code class="name">{r.p}</code>
+					{/* One line, no gaps: whitespace between the pieces would print. */}
+					<code class="strip" data-strip><span class="bit open">[</span><span class="bit q-head">"</span><span class="head"><span class="raw" style={`--raw-w: ${r.head.length}ch`}>{r.head}</span>{r.shows !== undefined && <span class="as" style={`--as-w: ${r.shows.length}ch`}>{r.shows}</span>}{r.then !== undefined && <span class="mapped" style={`--then-w: ${longest(r.then)}ch`}>{r.then}</span>}{r.note && <span class="note">{r.note}</span>}</span><span class="bit q-close">"</span><span class="bit comma">, </span><span class="rest" data-rest><span class="bit q-mid">"</span><span class="tail">{r.tail}</span><span class="bit q-end">"</span></span><span class="bit close">]</span><span class="cutter" aria-hidden="true" /></code>
+				</div>
+			))
+		}
+	</div>
+	<figcaption class="sr-only">
+		{JSON.stringify(input)} parsed by {rows.map((r) => r.p).join(', then ')}, each taking the rest
+		the one before left over:
+		{rows.map((r) => ` ${r.p} returns ${JSON.stringify(r.head)} and ${JSON.stringify(r.tail)}.`)}
+	</figcaption>
+</figure>
+
+<style>
+	.chain {
+		box-sizing: border-box;
+		width: 100%;
+		height: 100%;
+		min-width: 0;
+		min-height: 0;
+		margin: 0 0 1em;
+		font-family: var(--font-code);
+		/* Sized from its own width, not the pane's: the pane runs past the cap. */
+		container: chain / inline-size;
+	}
+
+	.plate {
+		position: relative;
+		box-sizing: border-box;
+		width: 100%;
+		height: 100%;
+		display: grid;
+		/* Names right-aligned against the strings they parse. */
+		grid-template-columns: auto auto;
+		align-content: center;
+		justify-content: center;
+		align-items: baseline;
+		gap: 1.6em 1.2em;
+		padding: 1em;
+		/* Straight on the deck's dark ground: no plate of its own. */
+		color: var(--deck-ink, #e6e9ef);
+		--dim: var(--deck-ink-dim, #8891a0);
+		/* --wide ems across: the widest finished row, worked out above. */
+		font-size: min(1.1rem, 100cqi / var(--wide, 27));
+	}
+
+	.row {
+		display: contents;
+	}
+
+	code {
+		padding: 0;
+		background: none;
+		border: 0;
+		font-size: inherit;
+		color: inherit;
+		white-space: nowrap;
+	}
+
+	.name {
+		justify-self: end;
+		font-size: 0.85em;
+		color: var(--dim);
+		transition: color 0.3s ease;
+	}
+
+	/* The parser at work, and the ones that have had their turn, in their
+	   own colour; the ones still waiting dim. */
+	.row:not([data-stage='idle']) .name {
+		color: var(--hue);
+	}
+
+	.strip {
+		position: relative;
+		justify-self: start;
+		font-size: 1.4em;
+		transition: opacity 0.3s ease;
+	}
+
+	/* A row waiting for its input has nothing to show yet. */
+	.row[data-stage='idle']:not(:first-child) .strip {
+		opacity: 0;
+	}
+
+	.head,
+	.tail {
+		/* The head holds a mapped token's note, set over it. */
+		position: relative;
+		display: inline-block;
+		/* A rest that starts with a space has to keep it. */
+		white-space: pre;
+		border-radius: var(--radius-small);
+		transition:
+			color 0.3s ease,
+			background 0.3s ease,
+			box-shadow 0.3s ease,
+			margin 0.3s ease;
+	}
+
+	.rest {
+		display: inline-block;
+		white-space: pre;
+		transition: color 0.4s ease;
+	}
+
+	/* The pieces that come and go, folded to nothing when not wanted. */
+	.bit {
+		display: inline-block;
+		overflow: hidden;
+		vertical-align: bottom;
+		white-space: pre;
+		max-width: 1ch;
+		opacity: 1;
+		transition:
+			max-width 0.35s ease,
+			opacity 0.3s ease;
+	}
+
+	.comma {
+		max-width: 2ch;
+	}
+
+	.open,
+	.close,
+	.q-close,
+	.comma,
+	.q-mid {
+		max-width: 0;
+		opacity: 0;
+	}
+
+	/* The line, in characters from the left edge of the string. */
+	.cutter {
+		position: absolute;
+		top: -0.2em;
+		bottom: -0.2em;
+		left: calc(var(--x) * 1ch);
+		width: 0;
+		box-shadow: 0 0 0 1px var(--deck-ink, #e6e9ef);
+		opacity: 0;
+		transition: opacity 0.3s ease;
+	}
+
+	/* aim: the line at the front, before it moves. seek: running to the cut. */
+	.row[data-stage='aim'] .cutter,
+	.row[data-stage='seek'] .cutter {
+		opacity: 1;
+	}
+
+	.row[data-stage='seek'] .cutter {
+		transition:
+			left 0.7s ease-in-out,
+			opacity 0.3s ease;
+	}
+
+	/* found: the line goes as the claim lights up. */
+	.row[data-stage='found'] .head,
+	.row[data-stage='cut'] .head {
+		color: var(--hue);
+		background: color-mix(in oklab, var(--hue) 22%, transparent);
+	}
+
+	/* cut: the string comes apart. */
+	.row[data-stage='cut'] .comma,
+	.row[data-stage='token'] .comma {
+		max-width: 2ch;
+	}
+
+	.row[data-stage='cut'] .q-mid,
+	.row[data-stage='token'] .q-mid {
+		max-width: 1ch;
+	}
+
+	/* token: brackets round the pair, the rest in quotes of its own, and the
+	   claimed piece a token in its parser's colour. */
+	.row[data-stage='token'] :is(.open, .close, .comma, .q-mid) {
+		max-width: 1ch;
+		opacity: 1;
+	}
+
+	.row[data-stage='token'] .comma {
+		max-width: 2ch;
+	}
+
+	.row[data-stage='token'] .head {
+		margin-inline: 0.15em;
+		color: var(--deck-ground, #14110d);
+		background: var(--hue);
+		box-shadow: 0 0 0 0.12em var(--hue);
+	}
+
+	/* A string token keeps its quotes, in its parser's colour; a number drops
+	   them. */
+	.row[data-kind='string']:not([data-swap='true'])[data-stage='token'] .q-close {
+		max-width: 1ch;
+		opacity: 1;
+	}
+
+	.row[data-kind='string']:not([data-swap='true'])[data-stage='token'] :is(.q-head, .q-close) {
+		color: var(--hue);
+	}
+
+	/* A swapped token: what was matched folds away and what the parser made of
+	   it takes its place. For null, the parser is seen to consume the input and
+	   keep nothing of it; for a tuple, to build something new out of it. */
+	.raw,
+	.as {
+		display: inline-block;
+		overflow: hidden;
+		vertical-align: bottom;
+		transition:
+			max-width 0.35s ease,
+			opacity 0.3s ease;
+	}
+
+	.raw {
+		max-width: var(--raw-w);
+	}
+
+	.as {
+		max-width: 0;
+		opacity: 0;
+	}
+
+	.row[data-swap='true'][data-stage='token'] .raw {
+		max-width: 0;
+		opacity: 0;
+	}
+
+	.row[data-swap='true'][data-stage='token'] .as {
+		max-width: var(--as-w);
+		opacity: 1;
+	}
+
+	.row:is([data-kind='number'], [data-swap='true'])[data-stage='token'] .q-head {
+		max-width: 0;
+		opacity: 0;
+	}
+
+	/* Mapped: the token, already made, becomes something else in its place,
+	   the way pMap turns a parser's value; the note says what did it. */
+	.mapped {
+		display: inline-block;
+		overflow: hidden;
+		vertical-align: bottom;
+		max-width: 0;
+		/* No height either until it shows: a value over several lines would
+		   otherwise stand the whole tuple up that tall while it is hidden. */
+		max-height: 0;
+		opacity: 0;
+		transition:
+			max-width 0.45s ease,
+			max-height 0.45s ease,
+			opacity 0.35s ease;
+	}
+
+	/* With the stage in it too, to outrank the swap's own rule above, which
+	   would otherwise keep the tuple showing beside what it was mapped to. */
+	.row[data-mapped='true'][data-stage='token'] :is(.raw, .as) {
+		max-width: 0;
+		opacity: 0;
+	}
+
+	/* A row that maps reads as one line, the name and the tuple's pieces all
+	   centred on it, and a value over several lines is centred on it too,
+	   rather than hanging from it or standing on it. Set before the map as
+	   well, so nothing moves when it comes. */
+	.row[data-then='true'] .strip > * {
+		vertical-align: middle;
+	}
+
+	.row[data-then='true'] :is(.name, .strip) {
+		align-self: center;
+	}
+
+	/* Mapped, the token is a record to read rather than a chip: a solid fill
+	   the size of a paragraph is a slab, so it goes back to the light tint it
+	   had when claimed, its words in the parser's colour, set close. */
+	.row[data-mapped='true'][data-stage='token'] .head {
+		margin-inline: 0.1em;
+		padding: 0.15em 0.35em;
+		line-height: 1.3;
+		color: var(--hue);
+		background: color-mix(in oklab, var(--hue) 14%, transparent);
+		box-shadow: none;
+	}
+
+	.row[data-mapped='true'] .mapped {
+		/* Headroom: the cap is only there to be animated from nothing, and the
+		   text runs a little wider than its count of characters (measured: 458px
+		   for 31ch of 449.6px), which a cap of exactly that would clip. */
+		max-width: calc(var(--then-w) + 2ch);
+		max-height: 10lh;
+		opacity: 1;
+	}
+
+	.note {
+		position: absolute;
+		bottom: calc(100% + 0.35em);
+		left: 50%;
+		translate: -50% 0;
+		font-size: 0.5em;
+		letter-spacing: 0.06em;
+		white-space: nowrap;
+		color: var(--hue);
+		opacity: 0;
+		transition: opacity 0.35s ease;
+	}
+
+	.row[data-mapped='true'] .note {
+		opacity: 1;
+	}
+
+	/* Handed on: the rest has gone to the next row, so here it dims. */
+	.row[data-handed='true'] .rest {
+		color: var(--dim);
+	}
+
+	/* The rest in flight between rows: a copy of it, laid over the plate. */
+	.plate :global(.flying) {
+		position: absolute;
+		margin: 0;
+		white-space: pre;
+		pointer-events: none;
+		transition: translate 0.6s cubic-bezier(0.5, 0, 0.3, 1);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.chain * {
+			transition-duration: 0.01ms !important;
+		}
+	}
+
+	.sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip-path: inset(50%);
+		white-space: nowrap;
+	}
+</style>
+
+<script>
+	import { eachPage } from '../lib/page';
+
+	function initChain(root: HTMLElement, signal: AbortSignal) {
+		if (root.dataset.ready === 'true') return;
+		root.dataset.ready = 'true';
+
+		const plate = root.querySelector<HTMLElement>('[data-plate]')!;
+		const rows = Array.from(root.querySelectorAll<HTMLElement>('[data-row]'));
+		const host = root.closest<HTMLElement>('[data-viz-phase]');
+		const holdMs = Number(root.dataset.holdMs);
+		const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+		let timers: number[] = [];
+		const later = (ms: number, then: () => void) => timers.push(window.setTimeout(then, ms));
+
+		function stop() {
+			timers.forEach(clearTimeout);
+			timers = [];
+			plate.querySelectorAll('.flying').forEach((el) => el.remove());
+		}
+
+		function reset() {
+			for (const row of rows) {
+				row.dataset.stage = 'idle';
+				row.dataset.handed = 'false';
+				row.dataset.mapped = 'false';
+				row.style.setProperty('--x', '1');
+			}
+		}
+
+		/* One row's shortened cut: aim, run to the cut, claim, split, token. */
+		function cut(row: HTMLElement, then: () => void) {
+			row.style.setProperty('--x', '1');
+			row.dataset.stage = 'aim';
+			// Settle the line at the front before it is told to move, or it
+			// would slide there from wherever it was.
+			void row.offsetWidth;
+			row.dataset.stage = 'seek';
+			row.style.setProperty('--x', String(1 + Number(row.dataset.cut)));
+			later(800, () => {
+				row.dataset.stage = 'found';
+				later(500, () => {
+					row.dataset.stage = 'cut';
+					later(450, () => {
+						row.dataset.stage = 'token';
+						// A mapped row holds on the token long enough to be read,
+						// and then maps it.
+						if (row.dataset.then === 'true')
+							later(1300, () => {
+								row.dataset.mapped = 'true';
+								later(900, then);
+							});
+						else later(500, then);
+					});
+				});
+			});
+		}
+
+		/* The rest lifts off one row and lands as the next row's input: a copy
+		   flown from where it is to where the next string sits, which is the
+		   same text at the same size, so the flight is a plain translate. */
+		function hand(from: HTMLElement, to: HTMLElement, then: () => void) {
+			const src = from.querySelector<HTMLElement>('[data-rest]')!;
+			const dst = to.querySelector<HTMLElement>('[data-strip]')!;
+			const p = plate.getBoundingClientRect();
+			const a = src.getBoundingClientRect();
+			const b = dst.getBoundingClientRect();
+			const fly = document.createElement('code');
+			fly.className = 'flying';
+			fly.textContent = src.textContent;
+			fly.style.font = getComputedStyle(src).font;
+			fly.style.left = `${a.left - p.left}px`;
+			fly.style.top = `${a.top - p.top}px`;
+			plate.append(fly);
+			from.dataset.handed = 'true';
+			void fly.offsetWidth;
+			fly.style.translate = `${b.left - a.left}px ${b.top - a.top}px`;
+			later(620, () => {
+				fly.remove();
+				to.dataset.stage = 'ready';
+				later(250, then);
+			});
+		}
+
+		function play() {
+			stop();
+			reset();
+			if (still) {
+				rows.forEach((row, i) => {
+					row.dataset.stage = 'token';
+					row.dataset.handed = String(i < rows.length - 1);
+					row.dataset.mapped = String(row.dataset.then === 'true');
+				});
+				return;
+			}
+			const step = (i: number) =>
+				cut(rows[i], () => {
+					if (i + 1 < rows.length) hand(rows[i], rows[i + 1], () => step(i + 1));
+					else later(holdMs, play);
+				});
+			later(400, () => step(0));
+		}
+
+		host?.addEventListener('viz:enter', play);
+		// The phase a deck opens on is put on stage without a `viz:enter`; the
+		// props that follow it are the sign that it is showing.
+		host?.addEventListener('viz:props', play);
+		host?.addEventListener('viz:exit', stop);
+		root.addEventListener('click', play);
+		signal.addEventListener('abort', stop);
+
+		if (still) play();
+	}
+
+	eachPage((signal) => {
+		document
+			.querySelectorAll<HTMLElement>('[data-parser-chain]')
+			.forEach((el) => initChain(el, signal));
+	});
+</script>

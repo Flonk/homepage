@@ -1,0 +1,456 @@
+---
+/**
+ * The type the whole deck is about, and one parse played out under it.
+ *
+ *   type Parser<T> = (input: string) => [T, string]
+ *
+ *          pInteger
+ *   "10 20 30"   →   "10│ 20 30"   →   [10, " 20 30"]
+ *        seek            cut              token
+ *
+ * A line carrying the parser's name sweeps once across the string and back,
+ * looking for where the parser will cut. It settles after the digits, which
+ * light up as claimed. Then the string comes apart there, and
+ * the piece that was cut off loses its quotes and turns into a number token:
+ * the `T`. What is left keeps its quotes: that is the `string`. The two halves
+ * of the result are coloured the same as the two halves of the tuple in the
+ * type above, so the eye can match them up.
+ *
+ * Runs by itself in a loop, the same as every other deck viz. The clock stops
+ * while its phase is off stage, and under reduced motion it shows the finished
+ * tuple and stays put.
+ */
+import { vizHue } from '../lib/vizHue';
+
+interface Props {
+	/** The parser's name, shown over what it claims. */
+	parser?: string;
+	/** The string being parsed. */
+	input?: string;
+	/** Where the parser cuts it: the length of the token off the front. */
+	cut?: number;
+}
+
+const { parser = 'pInteger', input = '10 20 30', cut = 2 } = Astro.props;
+
+const head = input.slice(0, cut);
+const tail = input.slice(cut);
+---
+
+<figure
+	class="type"
+	data-parser-type
+	data-cut={cut}
+	data-len={input.length}
+	data-stage="seek"
+	style={`--t: ${vizHue(0)}; --rest: ${vizHue(1)}; --x: 1`}
+>
+	<div class="plate">
+		<code class="line def">
+			<span class="kw">type</span> Parser&lt;<span class="t">T</span>&gt; =<span class="br"
+			></span> <span class="tail-def">(input: string) =&gt; [<span class="t">T</span>, <span
+				class="rest">string</span
+			>]</span>
+		</code>
+
+		{/* The string, in pieces that each grow or shrink as the stages go by.
+		    Everything that is not there at the start is width zero rather than
+		    absent, so the line can be measured in characters from the left. */}
+		<div class="stage">
+			<code class="strip">
+				<span class="bit open">[</span><span class="bit q-head">"</span><span class="head"
+					><span class="claim">{parser}</span><span class="as">number</span>{head}</span
+				><span class="bit gap">, <span class="q-mid">"</span></span><span class="tail"
+					><span class="as">string</span>{tail}</span
+				><span class="bit q-end">"</span><span class="bit close">]</span>
+				<span class="cutter" aria-hidden="true"><span class="label">{parser}</span></span>
+			</code>
+		</div>
+	</div>
+	<figcaption class="sr-only">
+		The type Parser of T is a function from an input string to a pair of a T and the rest
+		of the string. For example, {parser} cuts {JSON.stringify(input)} after
+		{JSON.stringify(head)}, and returns the number {head} and the rest of the string,
+		{JSON.stringify(tail)}.
+	</figcaption>
+</figure>
+
+<style>
+	.type {
+		box-sizing: border-box;
+		width: 100%;
+		height: 100%;
+		min-width: 0;
+		min-height: 0;
+		margin: 0 0 1em;
+		font-family: var(--font-code);
+		/* Sized from its own width, not the pane's: the pane runs past the cap. */
+		container: type / inline-size;
+	}
+
+	.plate {
+		box-sizing: border-box;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 2.6em;
+		padding: 1em;
+		/* Straight on the deck's dark ground: no plate of its own. */
+		color: var(--deck-ink, #e6e9ef);
+		--dim: var(--deck-ink-dim, #8891a0);
+		/* About 26em across: the type on one line at its smaller size, with the
+		   padding. */
+		font-size: min(1.3rem, 100cqi / 26);
+	}
+
+	.line,
+	.strip {
+		padding: 0;
+		background: none;
+		border: 0;
+		font-size: inherit;
+		color: inherit;
+		/* nowrap, not pre: the markup's own indentation is not part of the code. */
+		white-space: nowrap;
+	}
+
+	/* The type is the caption; the parse under it is the picture. */
+	.def {
+		font-size: 0.8em;
+	}
+
+	.kw {
+		color: var(--dim);
+	}
+
+	.t {
+		color: var(--t);
+	}
+
+	.rest {
+		color: var(--rest);
+	}
+
+	.br {
+		display: none;
+	}
+
+	/* ---- the parse --------------------------------------------------------- */
+
+	.stage {
+		/* Room above for the labels over the string, and below for the ones
+		   under it. */
+		padding: 1.8em 0 1.4em;
+	}
+
+	.strip {
+		position: relative;
+		display: inline-block;
+		font-size: 1.9em;
+	}
+
+	/* The pieces that come and go. Each has a natural width in characters,
+	   set below, and is folded to nothing when it is not wanted. */
+	.bit {
+		display: inline-block;
+		overflow: hidden;
+		vertical-align: bottom;
+		max-width: var(--w);
+		opacity: 1;
+		transition:
+			max-width 0.5s ease,
+			opacity 0.4s ease;
+	}
+
+	.open,
+	.close,
+	.q-head,
+	.q-end {
+		--w: 1ch;
+	}
+
+	.gap {
+		--w: 3ch;
+	}
+
+	/* Not there until the cut opens. */
+	.open,
+	.close,
+	.gap {
+		max-width: 0;
+		opacity: 0;
+	}
+
+	.head,
+	.tail {
+		position: relative;
+		display: inline-block;
+		/* The rest starts with a space, and an inline-block drops leading
+		   whitespace unless told to keep it. */
+		white-space: pre;
+		border-radius: var(--radius-medium);
+		transition:
+			color 0.4s ease,
+			background 0.4s ease,
+			box-shadow 0.4s ease,
+			margin 0.4s ease;
+	}
+
+	/* The labels over and under the halves: the parser's name over what it
+	   claims, and the type each half comes out as under it. */
+	.claim,
+	.as {
+		position: absolute;
+		left: 50%;
+		translate: -50% 0;
+		font-size: 0.36em;
+		letter-spacing: 0.06em;
+		white-space: nowrap;
+		opacity: 0;
+		transition: opacity 0.4s ease;
+	}
+
+	.claim {
+		bottom: calc(100% + 0.5em);
+		color: var(--t);
+	}
+
+	.as {
+		top: calc(100% + 0.6em);
+	}
+
+	.head .as {
+		color: var(--t);
+	}
+
+	.tail .as {
+		color: var(--rest);
+	}
+
+	/* The line: positioned in characters from the left edge of the string,
+	   which is the opening quote while the bracket before it is folded away. */
+	.cutter {
+		position: absolute;
+		top: -0.25em;
+		bottom: -0.25em;
+		left: calc(var(--x) * 1ch);
+		width: 0;
+		box-shadow: 0 0 0 1px var(--deck-ink, #e6e9ef);
+		transition: opacity 0.4s ease;
+	}
+
+	.label {
+		position: absolute;
+		bottom: calc(100% + 0.35em);
+		left: 50%;
+		translate: -50% 0;
+		font-size: 0.32em;
+		letter-spacing: 0.1em;
+		white-space: nowrap;
+		color: var(--dim);
+		transition: opacity 0.4s ease;
+	}
+
+	/* found: the line has settled, and the parser claims what is before it.
+	   The line goes in the same moment the claim lights up, and the parser's
+	   name passes from the line to what it claimed, to stay there. */
+	[data-stage='found'] .head,
+	[data-stage='cut'] .head {
+		color: var(--t);
+		background: color-mix(in oklab, var(--t) 18%, transparent);
+	}
+
+	[data-stage='found'] .cutter,
+	[data-stage='cut'] .cutter,
+	[data-stage='token'] .cutter {
+		opacity: 0;
+	}
+
+	[data-stage='found'] .claim,
+	[data-stage='cut'] .claim,
+	[data-stage='token'] .claim {
+		opacity: 1;
+	}
+
+	/* cut: the string comes apart where the line was. The gap opens as plain
+	   space first. */
+	[data-stage='cut'] .gap,
+	[data-stage='token'] .gap {
+		max-width: var(--w);
+	}
+
+	[data-stage='cut'] .gap {
+		color: transparent;
+	}
+
+	/* token: the cut piece drops its quotes and becomes a number; the rest
+	   keeps them and is the string; brackets close round the pair. */
+
+	[data-stage='token'] .q-head {
+		max-width: 0;
+		opacity: 0;
+	}
+
+	[data-stage='token'] .open,
+	[data-stage='token'] .close {
+		max-width: var(--w);
+		opacity: 1;
+	}
+
+	[data-stage='token'] .gap {
+		opacity: 1;
+		transition:
+			max-width 0.5s ease,
+			opacity 0.4s ease 0.2s;
+	}
+
+	[data-stage='token'] .head {
+		/* Clear of the bracket and the comma, which its pill would cover. */
+		margin-inline: 0.2em;
+		color: var(--deck-ground, #14110d);
+		background: var(--t);
+		box-shadow: 0 0 0 0.15em var(--t);
+	}
+
+	/* The rest and its quotes; the comma between the two halves stays plain. */
+	[data-stage='token'] .tail,
+	[data-stage='token'] .q-end,
+	[data-stage='token'] .q-mid {
+		color: var(--rest);
+	}
+
+	[data-stage='token'] .as {
+		opacity: 1;
+	}
+
+	/* A narrow panel: the type breaks after its `=`, so it can stay a readable
+	   size rather than shrinking to fit one line. */
+	@container type (width < 32rem) {
+		.plate {
+			font-size: min(1.3rem, 100cqi / 22);
+		}
+
+		.br {
+			display: block;
+			height: 0.4em;
+		}
+
+		/* Indented as the continuation it is. */
+		.tail-def {
+			padding-left: 2ch;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.bit,
+		.head,
+		.tail,
+		.claim,
+		.as,
+		.cutter,
+		.label {
+			transition-duration: 0.01ms !important;
+		}
+	}
+
+	.sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip-path: inset(50%);
+		white-space: nowrap;
+	}
+</style>
+
+<script>
+	import { eachPage } from '../lib/page';
+
+	/* The line's path while seeking, in characters from the left edge of the
+	   string (the opening quote is 0 to 1): once across, and then back
+	   to where the parser cuts. */
+	const ease = (t: number) => (t < 0.5 ? 2 * t * t : 1 - (-2 * t + 2) ** 2 / 2);
+
+	function initType(root: HTMLElement, signal: AbortSignal) {
+		if (root.dataset.ready === 'true') return;
+		root.dataset.ready = 'true';
+
+		const host = root.closest<HTMLElement>('[data-viz-phase]');
+		const cut = Number(root.dataset.cut);
+		const len = Number(root.dataset.len);
+		const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+		// Characters from the left: 1 is just inside the opening quote.
+		const at = (i: number) => 1 + i;
+		const path = [at(0), at(len), at(cut)];
+		const legMs = 1600;
+
+		let frame = 0;
+		let timer: number | undefined;
+
+		const setX = (x: number) => root.style.setProperty('--x', x.toFixed(3));
+		const stage = (s: string) => (root.dataset.stage = s);
+
+		function stop() {
+			cancelAnimationFrame(frame);
+			clearTimeout(timer);
+		}
+
+		function later(ms: number, then: () => void) {
+			timer = window.setTimeout(then, ms);
+		}
+
+		function play() {
+			stop();
+			if (still) {
+				setX(at(cut));
+				stage('token');
+				return;
+			}
+			stage('seek');
+			setX(path[0]);
+			const t0 = performance.now();
+			const total = legMs * (path.length - 1);
+			const step = (now: number) => {
+				const t = Math.min(now - t0, total);
+				const leg = Math.min(Math.floor(t / legMs), path.length - 2);
+				const u = ease((t - leg * legMs) / legMs);
+				setX(path[leg] + (path[leg + 1] - path[leg]) * u);
+				if (t < total) {
+					frame = requestAnimationFrame(step);
+					return;
+				}
+				// Settled: the parser claims, the string comes apart, the cut
+				// piece becomes a token, and after a while it all goes round again.
+				stage('found');
+				later(1100, () => {
+					stage('cut');
+					later(900, () => {
+						stage('token');
+						later(5000, play);
+					});
+				});
+			};
+			frame = requestAnimationFrame(step);
+		}
+
+		host?.addEventListener('viz:enter', play);
+		// The phase a deck opens on is put on stage without a `viz:enter`; the
+		// props that follow it are the sign that it is showing.
+		host?.addEventListener('viz:props', play);
+		host?.addEventListener('viz:exit', stop);
+		root.addEventListener('click', play);
+		signal.addEventListener('abort', stop);
+
+		if (still) play();
+	}
+
+	eachPage((signal) => {
+		document
+			.querySelectorAll<HTMLElement>('[data-parser-type]')
+			.forEach((el) => initType(el, signal));
+	});
+</script>

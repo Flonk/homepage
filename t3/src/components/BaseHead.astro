@@ -30,6 +30,18 @@ import sans400 from '@fontsource/source-sans-3/files/source-sans-3-latin-400-nor
 import sans700 from '@fontsource/source-sans-3/files/source-sans-3-latin-700-normal.woff2?url';
 import sansExt400 from '@fontsource/source-sans-3/files/source-sans-3-latin-ext-400-normal.woff2?url';
 import sansExt700 from '@fontsource/source-sans-3/files/source-sans-3-latin-ext-700-normal.woff2?url';
+// The code face, the third of the family, loaded the same way. Without it
+// code fell to whatever monospace the OS had: SF Mono on a Mac, Consolas on
+// Windows, and on Linux DejaVu Sans Mono, wide and heavy enough to look a size
+// up from the prose at the same x-height. Italic too, which the highlighting
+// theme uses; only the upright regular is preloaded, as the one every block
+// needs.
+import mono400 from '@fontsource/source-code-pro/files/source-code-pro-latin-400-normal.woff2?url';
+import mono400i from '@fontsource/source-code-pro/files/source-code-pro-latin-400-italic.woff2?url';
+import mono700 from '@fontsource/source-code-pro/files/source-code-pro-latin-700-normal.woff2?url';
+import monoExt400 from '@fontsource/source-code-pro/files/source-code-pro-latin-ext-400-normal.woff2?url';
+import monoExt400i from '@fontsource/source-code-pro/files/source-code-pro-latin-ext-400-italic.woff2?url';
+import monoExt700 from '@fontsource/source-code-pro/files/source-code-pro-latin-ext-700-normal.woff2?url';
 import '../styles/global.css';
 
 interface Props {
@@ -46,6 +58,7 @@ const LATIN = 'U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U
 const LATIN_EXT = 'U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF';
 const SERIF = 'Source Serif 4';
 const SANS = 'Source Sans 3';
+const MONO = 'Source Code Pro';
 const faces = [
 	{ family: SERIF, src: latin400, weight: 400, style: 'normal', range: LATIN, preload: true },
 	{ family: SERIF, src: latin400i, weight: 400, style: 'italic', range: LATIN, preload: true },
@@ -59,6 +72,12 @@ const faces = [
 	{ family: SANS, src: sans700, weight: 700, style: 'normal', range: LATIN, preload: true },
 	{ family: SANS, src: sansExt400, weight: 400, style: 'normal', range: LATIN_EXT, preload: false },
 	{ family: SANS, src: sansExt700, weight: 700, style: 'normal', range: LATIN_EXT, preload: false },
+	{ family: MONO, src: mono400, weight: 400, style: 'normal', range: LATIN, preload: true },
+	{ family: MONO, src: mono400i, weight: 400, style: 'italic', range: LATIN, preload: false },
+	{ family: MONO, src: mono700, weight: 700, style: 'normal', range: LATIN, preload: false },
+	{ family: MONO, src: monoExt400, weight: 400, style: 'normal', range: LATIN_EXT, preload: false },
+	{ family: MONO, src: monoExt400i, weight: 400, style: 'italic', range: LATIN_EXT, preload: false },
+	{ family: MONO, src: monoExt700, weight: 700, style: 'normal', range: LATIN_EXT, preload: false },
 ];
 const fontFaces = faces
 	.map(

@@ -1,0 +1,76 @@
+---
+// The page for a link that goes nowhere: nothing but the site's chrome, the
+// whole window of it, with the mark cut out of a black disc as the way home,
+// and the number and a line under it, in black as the header's type is.
+import BaseHead from '../components/BaseHead.astro';
+import T3Mark from '../components/T3Mark.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<html lang="en">
+	<head>
+		<BaseHead title={`Not found · ${SITE_TITLE}`} description="There is no page here." />
+		<meta name="robots" content="noindex" />
+		<style>
+			/* The chrome is the root's own background (see :root in global.css);
+			   with nothing over it, it is the page. */
+			.lost {
+				box-sizing: border-box;
+				min-height: calc(100dvh - var(--page-border) - var(--frame-bottom));
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				gap: 0.75rem;
+				padding: 2rem 1.5rem;
+				text-align: center;
+				color: #000;
+			}
+
+			.home {
+				display: block;
+				margin-bottom: 1.25rem;
+				border-radius: 50%;
+				transition: transform 0.15s ease;
+			}
+
+			.home:hover,
+			.home:focus-visible {
+				transform: scale(1.05);
+			}
+
+			.home :global(.t3-mark) {
+				display: block;
+				width: 9rem;
+				height: 9rem;
+			}
+
+			h1 {
+				margin: 0;
+				font-family: var(--font-mono);
+				font-size: 4.5rem;
+				font-weight: 700;
+				line-height: 1;
+				letter-spacing: 0.04em;
+				color: #000;
+			}
+
+			p {
+				margin: 0;
+				font-family: var(--font-mono);
+				font-size: 1rem;
+				color: #000;
+			}
+		</style>
+	</head>
+
+	<body>
+		<main class="lost">
+			<a class="home" href="/" aria-label="Back to the home page">
+				<T3Mark inverted />
+			</a>
+			<h1>404</h1>
+			<p>The page you requested does not exist.</p>
+		</main>
+	</body>
+</html>

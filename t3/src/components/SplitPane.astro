@@ -196,14 +196,20 @@ const { mode, current } = Astro.props;
 			position: relative;
 			overflow: hidden;
 			view-transition-name: tree;
+			/* Its own corners rounded as the page's are. The page's are drawn over
+			   it by the chrome (:root::before) and need nothing from it, but in a
+			   page change the tree is lifted out above everything as a picture of
+			   itself (see view transitions in global.css), over those corners;
+			   square, it showed its own corner and scrollbar there for a moment. */
+			border-radius: var(--content-radius) 0 0 var(--content-radius);
 			/* Over the post, its shadow falling on it, rather than a line between. */
 			z-index: 2;
 			box-shadow:
-				1px 0 0 rgb(0 0 0 / 0.35),
+				1px 0 0 var(--groove-cut),
 				6px 0 18px -6px rgb(0 0 0 / 0.7);
 			/* And a groove down where it meets the post: the light line its border,
 			   the dark one just past it, over the post (the first shadow). */
-			border-right: 1px solid rgb(255 255 255 / 0.06);
+			border-right: 1px solid var(--groove-edge);
 		}
 		/* Beside a post the tree is set back, a rung down both ladders from the
 		   page: its ground and panel on --ground-300 and 400, its words on the

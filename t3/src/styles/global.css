@@ -51,6 +51,13 @@
      ground a fifth of the way to white. For an edge on something that is not
      one colour, where a lifted colour cannot be worked out ahead of time. */
   --flb: rgb(255 255 255 / 0.2);
+  /* The groove: the FLB idea turned down to a whisper, for telling two
+     things apart where they touch. A dark line where the cut is and, just
+     beside it, a faint light one where its far edge catches the light. The
+     tree's entries, the tree against the post, the deck's dividers and the
+     code wells all use these two, so they are one groove wherever it is. */
+  --groove-cut: rgb(0 0 0 / 0.35);
+  --groove-edge: rgb(255 255 255 / 0.06);
 
   /* Three voices, not three greys. --nord4, 5 and 6 were 0.899, 0.933 and
      0.951 in lightness: the whole hierarchy spanned less than a twentieth of
@@ -82,6 +89,12 @@
      Long-form prose bodies use the serif stack instead — see .prose below. */
   --font-mono: ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas,
     "DejaVu Sans Mono", "Liberation Mono", monospace;
+  /* Code itself, inline and in blocks: Source Code Pro, the serif's and the
+     sans's own companion, self-hosted with them (see BaseHead). The voice
+     above is left to the OS; code sits in the prose, and an OS monospace
+     there could look a size up from it (DejaVu Sans Mono, wide and heavy, on
+     Linux), or a size down, depending on the reader's machine. */
+  --font-code: "Source Code Pro", var(--font-mono);
   /* tesbota's book serif: Iowan or Palatino where the OS has one. Source
      Serif 4 is self-hosted and bundled (see BaseHead) for everywhere else, so
      the trailing generic is only reached if the woff2 fails to load. */
@@ -128,6 +141,10 @@
      --ink-accent, the accent's own (see the @supports block), for emphasis. */
   --ink-link: #7d93a6;
   --ink-accent: #f1a547;
+  /* The ink of what is not the page: a visualization, a name from the code.
+     Across the wheel from --ink-accent (see the @supports block), so it never
+     reads as part of the chrome; this is the default accent's. */
+  --ink-viz: #9d8cf0;
 
   /* Shared by the site header and a deck post's T3 mark, so the orange block is
      the same size whichever layout you are in. */
@@ -205,6 +222,11 @@
        that a name or a stressed word reads alike on every post; its colourfulness
        capped where a screen would run out of it at that lightness. */
     --ink-accent: oklch(from var(--accent-200) 0.78 min(c, 0.14) h);
+    /* --ink-accent turned half the wheel round: the same weight as text,
+       never the page's hue. Kept colourful even on a greyish accent, since
+       its whole job is to stand apart. See lib/vizHue for the rest of its
+       scale. */
+    --ink-viz: oklch(from var(--ink-accent) l clamp(0.1, c, 0.14) calc(h + 180));
     /* The ink ladder (see --ink-100). */
     --ink-200: oklch(from var(--ink-100) calc(l - var(--ink-step)) c h);
     --ink-300: oklch(from var(--ink-100) calc(l - 2 * var(--ink-step)) c h);
@@ -659,6 +681,7 @@ img {
    itself a fifth of the way to white. */
 code,
 pre {
+  font-family: var(--font-code);
   border: 1px solid var(--flb);
   background-image:
     url('/assets/code-noise.png'),
@@ -673,10 +696,24 @@ code {
   overflow-wrap: break-word;
 }
 pre {
-  /* Over the theme's, which it writes inline on the block. */
-  background-color: var(--ground-500) !important;
+  /* The side panel's paint exactly (see .split-list in SplitPane): its
+     grain and its dots in place of code's own, over its ground, which goes
+     over the theme's, written inline on the block. The panel's dots are a
+     layer of their own, turned 17°; a background cannot turn, so here they
+     lie square, and square they cover a little more, so they are a little
+     fainter: measured, that comes to the same colour. */
+  background-image:
+    radial-gradient(circle, rgb(255 255 255 / 0.05) 0.4px, transparent 0.7px),
+    url('/assets/grain-side.png');
+  background-size: 2.5px 2.5px, 128px 128px;
+  image-rendering: pixelated;
+  background-color: var(--ground-300) !important;
+  /* A well, edged in the groove rather than the FLB: cut all round, with
+     its light edge just inside. */
+  border: 1px solid var(--groove-cut);
+  box-shadow: inset 0 0 0 1px var(--groove-edge);
   padding: 1.5em;
-  border-radius: var(--radius-large);
+  border-radius: var(--radius-medium);
   overflow-wrap: break-word;
   white-space: pre-wrap;
 }
@@ -836,7 +873,7 @@ em {
    the sans from .prose — anchor both back to monospace explicitly. */
 .prose pre,
 .prose pre > code {
-  font-family: var(--font-mono);
+  font-family: var(--font-code);
 }
 
 .prose pre {
@@ -848,7 +885,7 @@ em {
 /* Monospace runs optically larger than sans at the same size, so inline code
    is stepped down to sit on the same visual line as its surrounding text. */
 .prose :not(pre) > code {
-  font-family: var(--font-mono);
+  font-family: var(--font-code);
   font-size: 0.85em;
   white-space: normal;
   overflow-wrap: break-word;

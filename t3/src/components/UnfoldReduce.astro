@@ -1,0 +1,136 @@
+---
+/**
+ * Fold and unfold side by side in code, on the post's own data: one turns the
+ * list into the string, the other the string into the list.
+ *
+ *   FOLD
+ *   const result = list.reduce((acc, n) => acc + n)
+ *   ["Hello", " ", 100]  →  "Hello 100"
+ *
+ *              ──────────
+ *
+ *   UNFOLD
+ *   const result = pSeq(...)("Hello 100")
+ *   "Hello 100"  →  ["Hello", " ", 100]
+ *
+ * An aside rather than part of the thread, and painted to look it: the whole
+ * pane is the site's chrome (see ChromePane), and the code sits on a card of
+ * the deck's ground in the middle of it.
+ */
+import ChromePane from './ChromePane.astro';
+
+interface Props {
+	/** The list, as written in code. */
+	list?: string;
+	/** The string, as written in code. */
+	text?: string;
+}
+
+const { list = '["Hello", " ", 100]', text = '"Hello 100"' } = Astro.props;
+---
+
+<ChromePane radius="calc(var(--content-radius) - 3px)">
+<figure class="aside">
+	<div class="body">
+		<section>
+			<span class="label">Fold</span>
+			<code class="how">const result = list.reduce((acc, n) =&gt; acc + n)</code>
+			<code class="what">{list} <span class="to">→</span> {text}</code>
+		</section>
+		<hr />
+		<section>
+			<span class="label">Unfold</span>
+			{/* A string, so the three dots stay three dots. */}
+			<code class="how">{`const result = pSeq(...)(${text})`}</code>
+			<code class="what">{text} <span class="to">→</span> {list}</code>
+		</section>
+	</div>
+</figure>
+</ChromePane>
+
+<style>
+	.aside {
+		box-sizing: border-box;
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: var(--deck-ink, #e6e9ef);
+		--dim: var(--deck-ink-dim, #8891a0);
+		font-family: var(--font-code);
+		container: aside / inline-size;
+	}
+
+	/* The code on a card of the deck's own ground, edged in the groove, so it
+	   reads on the chrome. */
+	.body {
+		max-width: calc(100% - 2.5rem);
+		box-sizing: border-box;
+		border: 1px solid var(--groove-cut);
+		border-radius: var(--radius-medium);
+		box-shadow:
+			inset 0 0 0 1px var(--groove-edge),
+			0 6px 18px -6px rgb(0 0 0 / 0.5);
+		background: var(--deck-ground, #14110d);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.8em;
+		padding: 1.6em 2.2em;
+		/* About 29em across: the longest of the main lines, the card's padding
+		   and room round the card. */
+		font-size: min(1.25rem, 100cqi / 29);
+	}
+
+	section {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.2em;
+	}
+
+	/* The site's voice for the labels, not code's. */
+	.label {
+		font-family: var(--font-mono);
+		font-size: 0.5em;
+		font-weight: 700;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		/* The viz ink, both alike: headings in the picture, not the page's. */
+		color: var(--ink-viz, #9d8cf0);
+	}
+
+	code {
+		padding: 0;
+		background: none;
+		border: 0;
+		color: inherit;
+		white-space: pre;
+	}
+
+	.how {
+		font-size: 0.6em;
+		color: var(--dim);
+	}
+
+	.what {
+		font-size: 1em;
+	}
+
+	.to {
+		color: var(--dim);
+	}
+
+	/* The groove, half the width, between the two. */
+	hr {
+		align-self: stretch;
+		width: 50%;
+		margin: 0.5em auto;
+		height: 0;
+		border: 0;
+		border-top: 1px solid var(--groove-cut);
+		box-shadow: 0 1px 0 var(--groove-edge);
+	}
+</style>

@@ -1,0 +1,77 @@
+---
+/**
+ * The site's chrome as a deck's viz pane: for a picture that is an aside
+ * rather than part of the thread, and should look set apart from it.
+ *
+ *   <ChromePane>…</ChromePane>
+ *
+ * The page turned inside out. The page is a frame of chrome, --page-border
+ * wide, round dark content with --content-radius corners; this is a gutter of
+ * the dark ground, the same width, round a panel of chrome with the same
+ * corners. So it sits in the pane as the page sits in the window, and never
+ * runs into the frame round the page, which is chrome too.
+ *
+ * It fills the whole pane, not the capped column other pictures keep to: the
+ * cap is lifted and the pane's own padding taken back (see DeckViz). Whatever
+ * is put in it is centred, and is on the chrome, so it wants a card or dark
+ * type of its own to be read on.
+ *
+ * The chrome is its own copy, standing still: the page is cut off from the
+ * root's --chrome and the angle that turns it (see body in global.css), so
+ * that the turning restyles nothing but the root. Fixed to the window like
+ * the root's, so it reads as the same stuff; it only does not turn.
+ */
+interface Props {
+	/**
+	 * The chrome's corner radius, any CSS length. The page's own
+	 * (--content-radius) unless given.
+	 */
+	radius?: string;
+}
+
+const { radius } = Astro.props;
+---
+
+<div class="chrome-pane" style={radius ? `--pane-radius: ${radius}` : undefined}>
+	<div class="chrome">
+		<slot />
+	</div>
+</div>
+
+<style>
+	/* Doubled, to outrank the phase's own rule that sizes every picture to the
+	   capped column (see VizPhase). */
+	.chrome-pane.chrome-pane {
+		--viz-max: none;
+		box-sizing: border-box;
+		width: calc(100% + 2rem);
+		max-width: none;
+		height: calc(100% + 1rem);
+		min-width: 0;
+		min-height: 0;
+		/* The pane's padding (DeckViz: 1rem 1rem 0) taken back. */
+		margin: -1rem -1rem 0;
+		/* The gutter: the dark ground, as wide as the page's frame. */
+		padding: var(--page-border, 4px);
+	}
+
+	.chrome {
+		box-sizing: border-box;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+		border-radius: var(--pane-radius, var(--content-radius, 13px));
+		/* The chrome's FLB round its edge, as the page has one where the
+		   chrome meets it: white at a fifth over whatever is under it. */
+		box-shadow: inset 0 0 0 1px var(--flb);
+		background:
+			url('/assets/chrome-noise.png') var(--noise-x) var(--noise-y) / 128px 128px,
+			url('/assets/chrome-dots.png') var(--dots-x) var(--dots-y) / 26px 26px,
+			linear-gradient(110deg, var(--accent), var(--accent-200), var(--accent));
+		background-attachment: fixed;
+		background-blend-mode: soft-light, overlay, normal;
+	}
+</style>

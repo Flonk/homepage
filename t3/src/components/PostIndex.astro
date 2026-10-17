@@ -9,7 +9,14 @@ import { getCollection } from 'astro:content';
 import FormattedDate from './FormattedDate.astro';
 import T3Mark from './T3Mark.astro';
 import katex from 'katex';
-import { SERIES_BLURBS, SERIES_COVERS, SERIES_WIP, type SeriesCover, sortSeries } from '../series';
+import {
+	POST_COVERS,
+	SERIES_BLURBS,
+	SERIES_COVERS,
+	SERIES_WIP,
+	type SeriesCover,
+	sortSeries,
+} from '../series';
 
 interface Props {
 	current?: string;
@@ -24,7 +31,10 @@ const posts = (await getCollection('blog'))
 type Post = (typeof posts)[number];
 type Entry =
 	| { kind: 'post'; post: Post }
-	| { kind: 'series'; name: string; posts: Post[] };
+	| { kind: 'series'; name: string; posts: Post[] }
+	// A single post with a cover of its own: a card, as a series is (see
+	// POST_COVERS).
+	| { kind: 'card'; post: Post };
 
 // Collect every post of a series into one section, anchored where the series'
 // newest post would have been. A series of one stays a plain entry.
@@ -34,7 +44,7 @@ const seenSeries = new Set<string>();
 for (const post of posts) {
 	const series = post.data.series;
 	if (!series) {
-		entries.push({ kind: 'post', post });
+		entries.push(POST_COVERS[post.id] ? { kind: 'card', post } : { kind: 'post', post });
 		continue;
 	}
 	if (seenSeries.has(series)) continue;
@@ -75,14 +85,47 @@ const holds = (list: Post[]) => list.some((post) => post.id === current);
 
 // A TeX cover is set once, here at build time, so the page carries KaTeX's
 // markup and its stylesheet does the rest; no script runs for it.
-const covers = Object.fromEntries(
-	Object.entries(SERIES_COVERS).map(([name, cover]) => [
-		name,
-		'tex' in cover
-			? { html: katex.renderToString(cover.tex, { throwOnError: true }), size: cover.size }
-			: cover,
-	]),
-) as Record<string, { html: string; size?: string } | Exclude<SeriesCover, { tex: string }>>;
+type Cover = { html: string; size?: string } | Exclude<SeriesCover, { tex: string }>;
+const setCovers = (from: Record<string, SeriesCover>) =>
+	Object.fromEntries(
+		Object.entries(from).map(([key, cover]) => [
+			key,
+			'tex' in cover
+				? { html: katex.renderToString(cover.tex, { throwOnError: true }), size: cover.size }
+				: cover,
+		]),
+	) as Record<string, Cover>;
+const covers = setCovers(SERIES_COVERS);
+// A card post's cover, keyed by its slug (see POST_COVERS).
+const postCovers = setCovers(POST_COVERS);
+
+// The narrow home page's row of cards: every series, and every single post
+// that is a card, in the order the tree has them.
+const railCards = entries.flatMap((entry) =>
+	entry.kind === 'series'
+		? [
+				{
+					href: `/blog/${entry.posts[0].id}/`,
+					cover: covers[entry.name],
+					label: `${entry.posts.length} parts`,
+					wip: SERIES_WIP.has(entry.name),
+					name: entry.name,
+					blurb: SERIES_BLURBS[entry.name],
+				},
+			]
+		: entry.kind === 'card'
+			? [
+					{
+						href: `/blog/${entry.post.id}/`,
+						cover: postCovers[entry.post.id],
+						date: entry.post.data.pubDate,
+						wip: false,
+						name: entry.post.data.title,
+						blurb: entry.post.data.description,
+					},
+				]
+			: [],
+);
 ---
 
 <nav class="tree" aria-label="Posts">
@@ -151,6 +194,47 @@ const covers = Object.fromEntries(
 							</div>
 						</details>
 					</li>
+				) : entry.kind === 'card' ? (
+					// A single post as a series' card: the same card, but a link to
+					// the post rather than a folder, and its date in the corner where
+					// a series has its count of parts.
+					<li
+						class="series is-post"
+						data-pubdate={entry.post.data.pubDate.valueOf()}
+						aria-current={entry.post.id === current ? 'page' : undefined}
+					>
+						<a class="folder" href={`/blog/${entry.post.id}/`}>
+							<span class="card">
+								<span class="meta">
+									<FormattedDate date={entry.post.data.pubDate} />
+								</span>
+								{postCovers[entry.post.id] &&
+									('html' in postCovers[entry.post.id] ? (
+										<span
+											class="cover is-tex"
+											style={{ 'font-size': postCovers[entry.post.id].size }}
+											set:html={postCovers[entry.post.id].html}
+										/>
+									) : (
+										<img
+											class:list={['cover', { 'is-ink': postCovers[entry.post.id].ink }]}
+											src={postCovers[entry.post.id].src}
+											style={{
+												'object-position': postCovers[entry.post.id].position,
+												background: postCovers[entry.post.id].backdrop,
+											}}
+											alt=""
+										/>
+									))}
+								<span class="card-body">
+									<span class="name">{entry.post.data.title}</span>
+									{entry.post.data.description && (
+										<span class="blurb">{entry.post.data.description}</span>
+									)}
+								</span>
+							</span>
+						</a>
+					</li>
 				) : (
 					<li
 						data-pubdate={entry.post.data.pubDate.valueOf()}
@@ -188,7 +272,7 @@ const covers = Object.fromEntries(
 		{
 			[
 				{ posts: standalone.slice(0, NEWEST), newest: true },
-				{ series: allSeries },
+				{ cards: railCards },
 				{ posts: standalone.slice(NEWEST) },
 			].map((section) => (
 				<section class:list={{ "is-rail": !section.posts }}>
@@ -213,24 +297,24 @@ const covers = Object.fromEntries(
 						</ul>
 					) : (
 						<ul class="rail">
-							{allSeries.map((entry) => (
+							{railCards.map((card) => (
 								<li>
-									<a class="rail-card" href={`/blog/${entry.posts[0].id}/`}>
+									<a class="rail-card" href={card.href}>
 										<span class="rail-cover">
-											{covers[entry.name] &&
-												('html' in covers[entry.name] ? (
+											{card.cover &&
+												('html' in card.cover ? (
 													<span
 														class="rail-tex"
-														style={{ 'font-size': covers[entry.name].size }}
-														set:html={covers[entry.name].html}
+														style={{ 'font-size': card.cover.size }}
+														set:html={card.cover.html}
 													/>
 												) : (
 													<img
-														class:list={['rail-img', { 'is-ink': covers[entry.name].ink }]}
-														src={covers[entry.name].src}
+														class:list={['rail-img', { 'is-ink': card.cover.ink }]}
+														src={card.cover.src}
 														style={{
-															'object-position': covers[entry.name].position,
-															background: covers[entry.name].backdrop,
+															'object-position': card.cover.position,
+															background: card.cover.backdrop,
 														}}
 														alt=""
 													/>
@@ -238,13 +322,11 @@ const covers = Object.fromEntries(
 										</span>
 										<span class="rail-body">
 											<span class="label">
-												{entry.posts.length} parts
-												{SERIES_WIP.has(entry.name) && <span class="wip">WIP</span>}
+												{card.date ? <FormattedDate date={card.date} /> : card.label}
+												{card.wip && <span class="wip">WIP</span>}
 											</span>
-											<span class="name">{entry.name}</span>
-											{SERIES_BLURBS[entry.name] && (
-												<span class="blurb">{SERIES_BLURBS[entry.name]}</span>
-											)}
+											<span class="name">{card.name}</span>
+											{card.blurb && <span class="blurb">{card.blurb}</span>}
 										</span>
 									</a>
 								</li>
@@ -287,8 +369,8 @@ const covers = Object.fromEntries(
 	   to a whisper. Every entry, a series' parts included, but the first, which
 	   has the top of the pane above it. */
 	.nodes > li {
-		border-top: 1px solid rgb(0 0 0 / 0.35);
-		box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.06);
+		border-top: 1px solid var(--groove-cut);
+		box-shadow: inset 0 1px 0 var(--groove-edge);
 	}
 	.tree > .nodes > li:first-child {
 		border-top: 0;
@@ -314,13 +396,13 @@ const covers = Object.fromEntries(
 		letter-spacing: normal;
 		color: var(--index-ink, var(--ink-100));
 		text-wrap: pretty;
-		border-bottom: 1px solid rgb(0 0 0 / 0.35);
+		border-bottom: 1px solid var(--groove-cut);
 		/* A well sunk in the page: its floor darker than the ground round it,
 		   a shadow falling into it from the top edge, and the groove below. */
 		background: rgb(0 0 0 / 0.55);
 		box-shadow:
 			inset 0 10px 14px -8px rgb(0 0 0 / 0.75),
-			0 1px 0 rgb(255 255 255 / 0.06);
+			0 1px 0 var(--groove-edge);
 		/* As a post's masthead is: lifted by a soft shadow, over the chrome's
 		   dots in the accent fading down from the top (::before). */
 		text-shadow: 0 3px 10px rgb(0 0 0 / 0.6);
@@ -431,8 +513,8 @@ const covers = Object.fromEntries(
 	/* Side by side and touching, told apart by the list's groove turned on
 	   its side: the dark line, then the light one. */
 	.rail > li + li {
-		border-left: 1px solid rgb(0 0 0 / 0.35);
-		box-shadow: inset 1px 0 0 rgb(255 255 255 / 0.06);
+		border-left: 1px solid var(--groove-cut);
+		box-shadow: inset 1px 0 0 var(--groove-edge);
 	}
 	/* A card: its picture across the top, then what it is, on the section's
 	   own ground. */
@@ -578,6 +660,12 @@ const covers = Object.fromEntries(
 		cursor: pointer;
 	}
 
+	/* A card post's card is a link rather than a folder's summary. */
+	a.folder {
+		color: inherit;
+		text-decoration: none;
+	}
+
 	.folder::-webkit-details-marker {
 		display: none;
 	}
@@ -635,6 +723,18 @@ const covers = Object.fromEntries(
 		letter-spacing: normal;
 		color: var(--index-ink, var(--ink-100));
 		background: rgb(0 0 0 / 0.5);
+	}
+
+	/* The first entry's picture sits in the pane's corner, so it is set in from
+	   the pane's edge as the page is set in from the window: a gutter of the
+	   frame's width above and to the left, and the corner rounded to match the
+	   pane's, less the gutter (see ChromePane). It scrolls away with the card,
+	   so the tree's scrollbar only ever passes beside it. */
+	.tree > .nodes > li:first-child .cover {
+		top: var(--page-border, 4px);
+		left: var(--page-border, 4px);
+		height: calc(100% - var(--page-border, 4px));
+		border-top-left-radius: calc(var(--content-radius, 13px) - 3px);
 	}
 
 	.folder:hover .cover:not(.is-ink) {
