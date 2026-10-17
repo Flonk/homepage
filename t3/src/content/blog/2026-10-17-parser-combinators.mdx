@@ -169,7 +169,7 @@ export const USELESS = "---[^\\n]+---\\s*";
 <DeckCard vizProps={{ phase: "type" }}>
   ## The partial parser
 
-  The smallest unit of parsing is what we call a **partial parser**. It gets to decide where to cut the input string, and then it returns a tuple consisting of *whatever* and the rest of the string.
+  The smallest unit of parsing we'll be looking at is the **partial parser**. It gets to decide where to cut the input string, and then it returns a tuple consisting of *whatever* and the rest of the string.
 
   It can be any old function, as long as it returns such a tuple! It can even use regex inside.
 
