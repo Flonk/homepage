@@ -15,7 +15,7 @@ const FAMILIES = [
 	{ label: 'accent', match: /^accent(-\d00)?$/, apart: false, ladder: false },
 	{ label: 'ink', match: /^ink-\d00$/, apart: false, ladder: true },
 	{ label: 'pointing ink', match: /^ink-(?!step)[a-z]+$/, apart: true, ladder: false },
-	{ label: 'ground', match: /^ground-\d00$/, apart: true, ladder: true },
+	{ label: 'ground', match: /^ground-\d00$/, apart: false, ladder: true },
 ];
 
 // How often each is used, counted where it is written as RadiusScale counts
@@ -127,7 +127,7 @@ const rows = FAMILIES.map((f) => ({
 	}
 
 	/* Apart: each its own flat colour, so each its own real border, itself a
-	   fifth of the way to white. On a ground that is its --edge-N. */
+	   fifth of the way to white. */
 	.apart {
 		gap: 0.5rem;
 	}
