@@ -384,7 +384,7 @@ const ends = Array.from({ length: thumbs }, (_, i) => i);
 	   line on the bar. The host sets --track-flb, because only the host knows
 	   what colour the bar is where the thumb is standing. */
 	.thumb[data-thumb-theme='dark'] {
-		--mark: var(--track-ink-dark, #14161a);
+		--mark: var(--track-ink-dark, var(--ground-200));
 		--ring: var(--track-flb, var(--track-ring, rgb(255 255 255 / 0.55)));
 		--glow: var(--track-glow-dark, 0 0 7px 1px rgb(0 0 0 / 0.35));
 	}

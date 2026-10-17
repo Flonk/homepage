@@ -42,7 +42,7 @@ const RUNGS = [...root.matchAll(new RegExp(`--${name}-(\\d00):\\s*(#[0-9a-fA-F]{
 			rung,
 			hex,
 			l: l.toFixed(3),
-			ink: l > 0.6 ? '#14161a' : '#eceff4',
+			ink: l > 0.6 ? 'var(--ground-200)' : 'var(--ink-100)',
 			uses: `${count} ${count === 1 ? 'use' : 'uses'}`,
 		};
 	},

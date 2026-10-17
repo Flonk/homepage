@@ -32,7 +32,7 @@ const swatch = (t: { name: string; hex: string }) => {
 		// for writing one down.
 		oklch: `oklch(${(o.l * 100).toFixed(2)}% ${o.c.toFixed(3)} ${(o.h ?? 0).toFixed(2)})`,
 		// Which way the words have to go to be read on it.
-		ink: o.l > 0.6 ? '#14161a' : '#eceff4',
+		ink: o.l > 0.6 ? 'var(--ground-200)' : 'var(--ink-100)',
 		edge: lighten(t.hex, LIFT),
 	};
 };
