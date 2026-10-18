@@ -1,0 +1,38 @@
+---
+title: "Milk"
+description: ""
+pubDate: "October 18 2026"
+accent: "oklch(0.84 0.008 90)"
+chromeGrain: 2
+format: "deck"
+ground: "dark"
+---
+
+import DeckCard from "../../components/DeckCard.astro";
+import DeckViz from "../../components/DeckViz.astro";
+import MilkGraph from "../../components/MilkGraph.astro";
+import VizPhase from "../../components/VizPhase.astro";
+
+<DeckViz>
+  <VizPhase name="products">
+    <MilkGraph />
+  </VizPhase>
+</DeckViz>
+
+<DeckCard>
+  ## Milk
+
+  Intro goes here.
+</DeckCard>
+
+<DeckCard>
+  ## Second card
+
+  Text goes here.
+</DeckCard>
+
+<DeckCard>
+  ## Third card
+
+  Text goes here.
+</DeckCard>

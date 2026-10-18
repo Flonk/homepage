@@ -85,6 +85,11 @@ export const POST_COVERS: Record<string, SeriesCover> = {
 	// A bare tree, all its branching on show: the shape a parser makes of a
 	// string. Andy Watkins on Unsplash, https://unsplash.com/photos/m43rwT9O_r4.
 	'2026-10-17-parser-combinators': { src: '/assets/series/parser-combinators.jpg', position: '50% 35%' },
+	// Where it comes from: a Holstein in a field of dandelions, cut down to her
+	// front half so her head is short of where the tree's card fades the
+	// picture out. Keith Weller, USDA, public domain,
+	// https://commons.wikimedia.org/wiki/File:Cow_female_black_white.jpg.
+	'2026-10-18-milk': { src: '/assets/series/milk.jpg', position: '50% 40%' },
 };
 
 /** Series still being written, marked as such on their card in the post tree. */
