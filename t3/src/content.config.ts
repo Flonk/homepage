@@ -31,6 +31,9 @@ const blog = defineCollection({
 		// Kept off the index, out of the feed and out of the sitemap, and given a
 		// noindex. For a post that is working material rather than writing.
 		hidden: z.boolean().default(false),
+		// Where the post is being talked about, its Hacker News thread: a
+		// comment button at the right of the post's controls on a phone.
+		hn: z.string().url().optional(),
 		// Transform string to Date object
 		pubDate: z.coerce.date(),
 		updatedDate: z.coerce.date().optional(),

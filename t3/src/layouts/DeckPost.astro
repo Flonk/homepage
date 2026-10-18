@@ -3,6 +3,7 @@ import type { CollectionEntry } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
+import CommentButton from '../components/CommentButton.astro';
 import SeriesMenu from '../components/SeriesMenu.astro';
 import SplitPane from '../components/SplitPane.astro';
 import type { SeriesLink } from '../series';
@@ -20,6 +21,7 @@ const {
 	description,
 	pubDate,
 	series,
+	hn,
 	ground,
 	accent,
 	chromeShift,
@@ -103,6 +105,11 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 						>
 							Go to part {nextPart.part} &#8250;
 						</a>
+					)}
+					{hn && (
+						<div class="deck-comment">
+							<CommentButton href={hn} />
+						</div>
 					)}
 				</nav>
 			</main>
@@ -326,12 +333,20 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 				background-color: color-mix(in srgb, var(--ground-200) 35%, transparent);
 			}
 
-			.deck-series-menu {
+			.deck-series-menu,
+			.deck-comment {
 				position: absolute;
-				left: 1rem;
 				top: 50%;
 				translate: 0 -50%;
 			}
+			.deck-series-menu {
+				left: 1rem;
+			}
+			.deck-comment {
+				right: 1rem;
+			}
+			/* The tree beside a wide deck holds the rest of the series; the
+			   discussion has nowhere else to be, so its button stays. */
 			@media (min-width: 1100px) {
 				.deck-series-menu {
 					display: none;

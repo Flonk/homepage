@@ -1,44 +1,61 @@
 ---
-// A prose post's controls for its series, on a screen too narrow for the post
-// tree: the same bar a deck has under its cards, stuck to the foot of the
-// screen, with the series menu at its left and the neighbouring parts either
-// side of where this one is.
+// A prose post's controls, on a screen too narrow for the post tree: the
+// same bar a deck has under its cards, stuck to the foot of the screen. In a
+// series, the series menu at its left and the neighbouring parts either side
+// of where this one is; with a thread to discuss it in, the way there at its
+// right.
 import type { SeriesLink } from '../series';
+import CommentButton from './CommentButton.astro';
 import SeriesMenu from './SeriesMenu.astro';
 
 interface Props {
-	series: string;
+	series?: string;
 	parts: SeriesLink[];
 	current: string;
 	prevPart?: SeriesLink;
 	nextPart?: SeriesLink;
+	hn?: string;
 }
 
-const { series, parts, current, prevPart, nextPart } = Astro.props;
+const { series, parts, current, prevPart, nextPart, hn } = Astro.props;
 const here = parts.find((p) => p.href === current);
+const inSeries = !!series && parts.length > 1;
 ---
 
-<nav class="series-bar" aria-label="Series navigation">
-	<div class="series-bar-menu">
-		<SeriesMenu series={series} parts={parts} current={current} />
-	</div>
+<nav class="series-bar" aria-label="Post navigation">
 	{
-		prevPart ? (
-			<a class="series-bar-arrow" href={prevPart.href} aria-label={`Part ${prevPart.part}`}>
-				&#8249;
-			</a>
-		) : (
-			<span class="series-bar-arrow" aria-hidden="true" data-off>&#8249;</span>
+		inSeries && (
+			<Fragment>
+				<div class="series-bar-menu">
+					<SeriesMenu series={series} parts={parts} current={current} />
+				</div>
+				{prevPart ? (
+					<a class="series-bar-arrow" href={prevPart.href} aria-label={`Part ${prevPart.part}`}>
+						&#8249;
+					</a>
+				) : (
+					<span class="series-bar-arrow" aria-hidden="true" data-off>
+						&#8249;
+					</span>
+				)}
+				<span class="series-bar-here">{here ? `Part ${here.part}` : series}</span>
+				{nextPart ? (
+					<a class="series-bar-arrow" href={nextPart.href} aria-label={`Part ${nextPart.part}`}>
+						&#8250;
+					</a>
+				) : (
+					<span class="series-bar-arrow" aria-hidden="true" data-off>
+						&#8250;
+					</span>
+				)}
+			</Fragment>
 		)
 	}
-	<span class="series-bar-here">{here ? `Part ${here.part}` : series}</span>
 	{
-		nextPart ? (
-			<a class="series-bar-arrow" href={nextPart.href} aria-label={`Part ${nextPart.part}`}>
-				&#8250;
-			</a>
-		) : (
-			<span class="series-bar-arrow" aria-hidden="true" data-off>&#8250;</span>
+		hn && (
+			<div class:list={['series-bar-comment', !inSeries && 'is-alone']}>
+				<CommentButton href={hn} />
+			</div>
 		)
 	}
 </nav>
@@ -66,11 +83,24 @@ const here = parts.find((p) => p.href === current);
 		}
 	}
 
-	.series-bar-menu {
+	.series-bar-menu,
+	.series-bar-comment {
 		position: absolute;
-		left: 1rem;
 		top: 50%;
 		translate: 0 -50%;
+	}
+	.series-bar-menu {
+		left: 1rem;
+	}
+	.series-bar-comment {
+		right: 1rem;
+	}
+	/* With nothing in the middle to hold the bar open, the button does,
+	   at the right. */
+	.series-bar-comment.is-alone {
+		position: static;
+		translate: none;
+		margin-left: auto;
 	}
 
 	.series-bar-arrow {

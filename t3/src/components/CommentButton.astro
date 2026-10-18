@@ -1,0 +1,45 @@
+---
+// The way to the post's discussion, for the bottom right of its controls: a
+// speech bubble the size of the arrows beside it, out to the thread on
+// Hacker News given as `hn` in the post's frontmatter.
+interface Props {
+	href: string;
+}
+
+const { href } = Astro.props;
+---
+
+<a class="comment-btn" href={href} target="_blank" rel="noopener" aria-label="Discuss on Hacker News">
+	<svg viewBox="0 0 16 16" aria-hidden="true">
+		<path d="M2.5 3.5h11v7h-6l-3 2.5v-2.5h-2z" />
+	</svg>
+</a>
+
+<style>
+	/* The same box as the series menu's button (see SeriesMenu). */
+	.comment-btn {
+		display: flex;
+		font-size: 1.1rem;
+		line-height: 1;
+		padding: 0.3em 0.55em;
+		color: var(--ink-300);
+		border: 1px solid var(--edge-100);
+		border-radius: var(--radius-medium);
+		transition:
+			color 0.15s ease,
+			border-color 0.15s ease;
+	}
+	.comment-btn:hover,
+	.comment-btn:focus-visible {
+		color: var(--ink-accent);
+		border-color: var(--ink-accent);
+	}
+	.comment-btn svg {
+		width: 1em;
+		height: 1em;
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 1.4;
+		stroke-linejoin: round;
+	}
+</style>

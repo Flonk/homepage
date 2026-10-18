@@ -29,6 +29,7 @@ const {
 	accent,
 	chromeShift,
 	series,
+	hn,
 	prevPart,
 	nextPart,
 	seriesParts = [],
@@ -157,13 +158,14 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 						<slot />
 					</div>
 				</article>
-				{!home && series && seriesParts.length > 1 && (
+				{!home && ((series && seriesParts.length > 1) || hn) && (
 					<SeriesBar
 						series={series}
 						parts={seriesParts}
 						current={`/blog/${id}/`}
 						prevPart={prevPart}
 						nextPart={nextPart}
+						hn={hn}
 					/>
 				)}
 			</main>
