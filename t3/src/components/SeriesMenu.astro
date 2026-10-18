@@ -1,0 +1,256 @@
+---
+// The way into the rest of a series from inside one of its parts, on a screen
+// too narrow for the post tree: a button for the bottom left of a post's
+// controls, opening a sheet with every part in order and the way back out to
+// the list of posts. A popover, so the browser does the opening, the closing
+// on a tap outside or Escape, and the focus, with no script of ours.
+import type { SeriesLink } from '../series';
+import T3Mark from './T3Mark.astro';
+
+interface Props {
+	series: string;
+	parts: SeriesLink[];
+	current: string;
+}
+
+const { series, parts, current } = Astro.props;
+---
+
+<button
+	type="button"
+	class="series-menu-btn"
+	popovertarget="series-menu"
+	aria-label={`All parts of ${series}`}
+>
+	<svg viewBox="0 0 16 16" aria-hidden="true">
+		<path d="M2 4h12M2 8h12M2 12h12" />
+	</svg>
+</button>
+
+<div id="series-menu" class="series-menu" popover>
+	<div class="series-menu-head">
+		<a class="series-menu-home" href="/" aria-label="All posts">
+			<T3Mark inverted class="series-menu-mark" />
+		</a>
+		<p class="series-menu-name">{series}</p>
+	</div>
+	<ol>
+		{
+			parts.map((p) => (
+				<li data-pubdate={p.pubDate}>
+					<a href={p.href} aria-current={p.href === current ? 'page' : undefined}>
+						<span class="series-menu-part">{p.part}</span>
+						{p.title}
+					</a>
+				</li>
+			))
+		}
+	</ol>
+</div>
+
+<style>
+	/* The same box as the arrows beside it: their type size and padding, with
+	   the icon a square em in place of a glyph, its sides trimmed so the
+	   button comes out as wide as an arrow's. */
+	.series-menu-btn {
+		display: flex;
+		font-size: 1.1rem;
+		line-height: 1;
+		padding: 0.3em 0.55em;
+		color: var(--ink-300);
+		background: transparent;
+		border: 1px solid var(--edge-100);
+		border-radius: var(--radius-medium);
+		cursor: pointer;
+		transition:
+			color 0.15s ease,
+			border-color 0.15s ease;
+	}
+	.series-menu-btn:hover,
+	.series-menu-btn:focus-visible {
+		color: var(--ink-accent);
+		border-color: var(--ink-accent);
+	}
+	.series-menu-btn svg {
+		width: 1em;
+		height: 1em;
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 1.6;
+		stroke-linecap: round;
+	}
+
+	/* Up out of the bottom left, over the controls it was opened from. The
+	   top layer is placed against the window, so the frame's foot is
+	   allowed for by hand. */
+	.series-menu {
+		position: fixed;
+		inset: auto auto calc(var(--frame-bottom) + var(--page-border) + 3.75rem) 0.75rem;
+		margin: 0;
+		width: min(22rem, calc(100vw - 1.5rem));
+		max-height: 65dvh;
+		padding: 0;
+		overflow: hidden;
+		color: var(--ink-100);
+		/* The side panel's paint (see .split-list in SplitPane, and pre in
+		   global.css): its dots and its grain over its ground, raised off the
+		   page as the home page's series shelf is. */
+		background-color: var(--ground-300);
+		background-image:
+			radial-gradient(circle, rgb(255 255 255 / 0.05) 0.4px, transparent 0.7px),
+			url('/assets/grain-side.png');
+		background-size: 2.5px 2.5px, 128px 128px;
+		image-rendering: pixelated;
+		border: 0;
+		border-radius: var(--radius-medium);
+		box-shadow: 0 6px 16px -4px rgb(0 0 0 / 0.6), 0 18px 40px rgb(0 0 0 / 0.45);
+	}
+	/* Its FLB, laid over the edge rather than round it, as the series shelf's
+	   is: so it is the chrome lifted along the head and the panel lifted
+	   below, the one edge over both. */
+	.series-menu::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+		border: 1px solid var(--flb);
+		border-radius: inherit;
+		pointer-events: none;
+	}
+	/* Laid out once open: [popover] hides itself with display:none, which
+	   anything setting display here would overrule. */
+	.series-menu:popover-open {
+		display: flex;
+		flex-direction: column;
+	}
+	.series-menu > * {
+		image-rendering: auto;
+	}
+	.series-menu::backdrop {
+		background: rgb(0 0 0 / 0.4);
+	}
+
+	/* The head, as the site's header is on a narrow screen: the chrome, with
+	   the T3 disc home at the left and the series' name beside it in black.
+	   The chrome is painted here rather than shown through, since the panel
+	   is over the page: its gradient and grain from global.css, held still
+	   at the turn it starts on (the body keeps the turning to the root), and
+	   fixed to the window as the real one is, so the two would line up. */
+	.series-menu-head {
+		flex: none;
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		height: var(--header-height);
+		padding: 0 1rem;
+		color: #000;
+		background:
+			url('/assets/chrome-noise.png') 0 0 / 128px 128px,
+			url('/assets/chrome-dots.png') 0 0 / 26px 26px,
+			linear-gradient(110deg, var(--accent), var(--accent-200), var(--accent));
+		background-attachment: fixed;
+		background-blend-mode: soft-light, overlay, normal;
+		/* Where the chrome meets the panel, its FLB, as where it meets the page. */
+		border-bottom: 1px solid var(--flb);
+	}
+
+	/* The site header's round button home, with the same room round it to
+	   press. */
+	.series-menu-home {
+		display: flex;
+		margin: -0.75rem;
+		padding: 0.75rem;
+		transition: transform 0.15s ease;
+	}
+	.series-menu-home:hover,
+	.series-menu-home:focus-visible {
+		transform: scale(1.15);
+	}
+	.series-menu-head :global(.series-menu-mark) {
+		width: 2.1rem;
+		translate: 0 -1px;
+	}
+
+	.series-menu-name {
+		flex: 1;
+		min-width: 0;
+		margin: 0;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		font-family: var(--font-mono);
+		font-size: 0.875rem;
+		font-weight: 700;
+	}
+
+	/* A part's number in the dateline's voice: mono, small, tracked. */
+	.series-menu-part {
+		font-family: var(--font-mono);
+		font-size: calc(var(--type-label) + 1px);
+		letter-spacing: var(--track-label);
+	}
+
+	.series-menu ol {
+		flex: 1 1 auto;
+		min-height: 0;
+		overflow-y: auto;
+		overscroll-behavior: contain;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	.series-menu li[hidden] {
+		display: none;
+	}
+	/* One row per part, edge to edge, told apart by the tree's groove. */
+	.series-menu li + li {
+		border-top: 1px solid var(--groove-cut);
+		box-shadow: inset 0 1px 0 var(--groove-edge);
+	}
+	.series-menu li a {
+		display: flex;
+		gap: 0.85rem;
+		align-items: baseline;
+		padding: 0.65rem 1.1rem;
+		font-family: var(--font-sans);
+		font-size: 1.05rem;
+		line-height: 1.3;
+		color: var(--ink-100);
+		text-decoration: none;
+		text-wrap: balance;
+	}
+	.series-menu li a:hover,
+	.series-menu li a:focus-visible {
+		background: color-mix(in oklab, var(--ground-200) 70%, transparent);
+	}
+	/* The open part as the tree marks the open file: a flat panel, and the
+	   accent down its far edge. */
+	.series-menu li a[aria-current='page'] {
+		background: var(--ground-200);
+		box-shadow: inset -2px 0 0 var(--ink-accent);
+	}
+	.series-menu-part {
+		flex: none;
+		min-width: 2.5ch;
+		text-align: right;
+		color: color-mix(in oklab, var(--ink-500), white 5%);
+	}
+	.series-menu li a[aria-current='page'] .series-menu-part {
+		color: var(--ink-accent);
+	}
+</style>
+
+<script>
+	import { eachPage } from '../lib/page';
+
+	// A part dated after today is not out yet, as in the post tree.
+	eachPage(() => {
+		const now = new Date();
+		const today = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+		document.querySelectorAll<HTMLElement>('#series-menu li[data-pubdate]').forEach((li) => {
+			const d = new Date(Number(li.dataset.pubdate));
+			const day = new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime();
+			if (day > today) li.hidden = true;
+		});
+	});
+</script>

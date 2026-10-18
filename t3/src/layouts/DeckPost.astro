@@ -3,17 +3,30 @@ import type { CollectionEntry } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
+import SeriesMenu from '../components/SeriesMenu.astro';
 import SplitPane from '../components/SplitPane.astro';
+import type { SeriesLink } from '../series';
 
-type SeriesLink = { href: string; part: number; title: string };
 type Props = CollectionEntry<'blog'>['data'] & {
 	id?: string;
 	prevPart?: SeriesLink;
 	nextPart?: SeriesLink;
+	seriesParts?: SeriesLink[];
 };
 
-const { id, title, description, pubDate, series, ground, accent, chromeShift, prevPart, nextPart } =
-	Astro.props;
+const {
+	id,
+	title,
+	description,
+	pubDate,
+	series,
+	ground,
+	accent,
+	chromeShift,
+	prevPart,
+	nextPart,
+	seriesParts = [],
+} = Astro.props;
 // The post's colour on <html>, where the chrome is worked out from it.
 const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-shift: ${chromeShift}`]
 	.filter(Boolean)
@@ -57,6 +70,12 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 				</div>
 	
 				<nav class="deck-nav" aria-label="Card navigation">
+					{/* The rest of the series, where the tree is not beside the deck. */}
+					{series && seriesParts.length > 1 && (
+						<div class="deck-series-menu">
+							<SeriesMenu series={series} parts={seriesParts} current={`/blog/${id}/`} />
+						</div>
+					)}
 					{/* At the ends of the deck the arrows have nowhere left to go, which
 					    is exactly where the rest of the series is. Real links rather
 					    than buttons that navigate, so they open in a new tab, show their
@@ -294,6 +313,7 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 			}
 
 			.deck-nav {
+				position: relative;
 				flex: none;
 				display: flex;
 				align-items: center;
@@ -304,6 +324,18 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 				border-top: 1px solid var(--groove-cut);
 				box-shadow: inset 0 1px 0 var(--groove-edge);
 				background-color: color-mix(in srgb, var(--ground-200) 35%, transparent);
+			}
+
+			.deck-series-menu {
+				position: absolute;
+				left: 1rem;
+				top: 50%;
+				translate: 0 -50%;
+			}
+			@media (min-width: 1100px) {
+				.deck-series-menu {
+					display: none;
+				}
 			}
 
 			.deck-arrow {

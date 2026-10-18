@@ -3,18 +3,36 @@ import type { CollectionEntry } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
+import SeriesBar from '../components/SeriesBar.astro';
 import SplitPane from '../components/SplitPane.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import type { SeriesLink } from '../series';
 
 type Props = CollectionEntry<'blog'>['data'] & {
 	id: string;
 	// The home page: the list is the page, and the post beside it is only
 	// there on a screen wide enough to have a beside.
 	home?: boolean;
+	prevPart?: SeriesLink;
+	nextPart?: SeriesLink;
+	seriesParts?: SeriesLink[];
 };
 
-const { id, home = false, title, description, pubDate, updatedDate, hidden, accent, chromeShift } =
-	Astro.props;
+const {
+	id,
+	home = false,
+	title,
+	description,
+	pubDate,
+	updatedDate,
+	hidden,
+	accent,
+	chromeShift,
+	series,
+	prevPart,
+	nextPart,
+	seriesParts = [],
+} = Astro.props;
 // The post's colour on <html>, where the chrome is worked out from it; the
 // home page keeps the site's.
 const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-shift: ${chromeShift}`]
@@ -91,6 +109,14 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 				margin: 0;
 				padding: 0 0 3em;
 			}
+			/* With the series bar at its foot, the room is kept above the bar
+			   rather than under it, so it comes to rest on the screen's edge. */
+			.post-main:has(:global(.series-bar)) {
+				padding-bottom: 0;
+			}
+			.post-main:has(:global(.series-bar)) article {
+				padding-bottom: 3em;
+			}
 			@media (min-width: 1100px) {
 				/* The pane does the scrolling and the measuring; the post just
 				   fills it. */
@@ -131,6 +157,15 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 						<slot />
 					</div>
 				</article>
+				{!home && series && seriesParts.length > 1 && (
+					<SeriesBar
+						series={series}
+						parts={seriesParts}
+						current={`/blog/${id}/`}
+						prevPart={prevPart}
+						nextPart={nextPart}
+					/>
+				)}
 			</main>
 		</SplitPane>
 	</body>

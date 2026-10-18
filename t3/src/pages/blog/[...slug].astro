@@ -2,7 +2,7 @@
 import { type CollectionEntry, getCollection, render } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
 import DeckPost from '../../layouts/DeckPost.astro';
-import { sortSeries } from '../../series';
+import { type SeriesLink, sortSeries } from '../../series';
 
 export async function getStaticPaths() {
 	const posts = await getCollection('blog');
@@ -14,8 +14,10 @@ export async function getStaticPaths() {
 			? sortSeries(posts.filter((p) => p.data.series === post.data.series))
 			: [];
 		const at = run.findIndex((p) => p.id === post.id);
-		const link = (p: (typeof run)[number] | undefined, part: number) =>
-			p ? { href: `/blog/${p.id}/`, part, title: p.data.title } : undefined;
+		const link = (p: (typeof run)[number] | undefined, part: number): SeriesLink | undefined =>
+			p
+				? { href: `/blog/${p.id}/`, part, title: p.data.title, pubDate: p.data.pubDate.valueOf() }
+				: undefined;
 		return {
 			params: { slug: post.id },
 			props: {
@@ -23,23 +25,27 @@ export async function getStaticPaths() {
 				// Part numbers come from the running order, not from parsing titles.
 				prevPart: link(run[at - 1], at),
 				nextPart: link(run[at + 1], at + 2),
+				// Every part, for the series menu; a hidden one only on its own page.
+				seriesParts: run.flatMap((p, i) =>
+					!p.data.hidden || p.id === post.id ? [link(p, i + 1)!] : [],
+				),
 			},
 		};
 	});
 }
-export type SeriesLink = { href: string; part: number; title: string };
 type Props = CollectionEntry<'blog'> & {
 	prevPart?: SeriesLink;
 	nextPart?: SeriesLink;
+	seriesParts: SeriesLink[];
 };
 
-const { prevPart, nextPart, ...post } = Astro.props;
+const { prevPart, nextPart, seriesParts, ...post } = Astro.props;
 const { Content } = await render(post);
 
 // `format` in the frontmatter picks the layout; see content.config.ts.
 const Layout = post.data.format === 'deck' ? DeckPost : BlogPost;
 ---
 
-<Layout {...post.data} id={post.id} prevPart={prevPart} nextPart={nextPart}>
+<Layout {...post.data} id={post.id} prevPart={prevPart} nextPart={nextPart} seriesParts={seriesParts}>
 	<Content />
 </Layout>

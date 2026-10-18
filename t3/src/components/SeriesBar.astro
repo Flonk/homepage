@@ -1,0 +1,105 @@
+---
+// A prose post's controls for its series, on a screen too narrow for the post
+// tree: the same bar a deck has under its cards, stuck to the foot of the
+// screen, with the series menu at its left and the neighbouring parts either
+// side of where this one is.
+import type { SeriesLink } from '../series';
+import SeriesMenu from './SeriesMenu.astro';
+
+interface Props {
+	series: string;
+	parts: SeriesLink[];
+	current: string;
+	prevPart?: SeriesLink;
+	nextPart?: SeriesLink;
+}
+
+const { series, parts, current, prevPart, nextPart } = Astro.props;
+const here = parts.find((p) => p.href === current);
+---
+
+<nav class="series-bar" aria-label="Series navigation">
+	<div class="series-bar-menu">
+		<SeriesMenu series={series} parts={parts} current={current} />
+	</div>
+	{
+		prevPart ? (
+			<a class="series-bar-arrow" href={prevPart.href} aria-label={`Part ${prevPart.part}`}>
+				&#8249;
+			</a>
+		) : (
+			<span class="series-bar-arrow" aria-hidden="true" data-off>&#8249;</span>
+		)
+	}
+	<span class="series-bar-here">{here ? `Part ${here.part}` : series}</span>
+	{
+		nextPart ? (
+			<a class="series-bar-arrow" href={nextPart.href} aria-label={`Part ${nextPart.part}`}>
+				&#8250;
+			</a>
+		) : (
+			<span class="series-bar-arrow" aria-hidden="true" data-off>&#8250;</span>
+		)
+	}
+</nav>
+
+<style>
+	/* Stuck to the foot of the pane that scrolls; a wide screen has the tree
+	   beside the post instead. */
+	.series-bar {
+		position: sticky;
+		bottom: 0;
+		z-index: 2;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 1rem;
+		padding: 0.6rem 1rem;
+		border-top: 1px solid var(--groove-cut);
+		box-shadow: inset 0 1px 0 var(--groove-edge);
+		background-color: color-mix(in srgb, var(--ground-200) 85%, transparent);
+		backdrop-filter: blur(8px);
+	}
+	@media (min-width: 1100px) {
+		.series-bar {
+			display: none;
+		}
+	}
+
+	.series-bar-menu {
+		position: absolute;
+		left: 1rem;
+		top: 50%;
+		translate: 0 -50%;
+	}
+
+	.series-bar-arrow {
+		font-family: var(--font-mono);
+		font-size: 1.1rem;
+		line-height: 1;
+		color: var(--ink-300);
+		border: 1px solid var(--edge-100);
+		border-radius: var(--radius-medium);
+		padding: 0.3em 0.75em;
+		text-decoration: none;
+		transition:
+			color 0.15s ease,
+			border-color 0.15s ease;
+	}
+	a.series-bar-arrow:hover,
+	a.series-bar-arrow:focus-visible {
+		color: var(--ink-accent);
+		border-color: var(--ink-accent);
+	}
+	.series-bar-arrow[data-off] {
+		opacity: 0.3;
+	}
+
+	.series-bar-here {
+		font-family: var(--font-mono);
+		font-size: 0.8rem;
+		color: var(--ink-300);
+		min-width: 7ch;
+		text-align: center;
+	}
+</style>

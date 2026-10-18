@@ -18,6 +18,9 @@ export function sortSeries<T extends { id: string; data: { pubDate: Date } }>(
 	);
 }
 
+/** A part of a series as a post links to it: where it is and which part. */
+export type SeriesLink = { href: string; part: number; title: string; pubDate: number };
+
 /**
  * Blurbs for post series, keyed by the `series` value in a post's frontmatter.
  * A series without an entry here still groups, it just renders without a tagline.
