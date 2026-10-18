@@ -25,6 +25,7 @@ const {
 	ground,
 	accent,
 	chromeShift,
+	chromeGrain,
 	prevPart,
 	nextPart,
 	seriesParts = [],
@@ -35,7 +36,7 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 	.join('; ');
 ---
 
-<html lang="en" style={own || undefined}>
+<html lang="en" style={own || undefined} data-grain={chromeGrain}>
 	<head>
 		<BaseHead title={title} description={description} />
 		<link

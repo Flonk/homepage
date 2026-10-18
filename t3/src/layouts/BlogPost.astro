@@ -28,6 +28,7 @@ const {
 	hidden,
 	accent,
 	chromeShift,
+	chromeGrain,
 	series,
 	hn,
 	prevPart,
@@ -41,7 +42,7 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 	.join('; ');
 ---
 
-<html lang="en" style={own && !home ? own : undefined}>
+<html lang="en" style={own && !home ? own : undefined} data-grain={home ? undefined : chromeGrain}>
 	<head>
 		<BaseHead
 			title={home ? SITE_TITLE : title}

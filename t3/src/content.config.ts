@@ -28,6 +28,10 @@ const blog = defineCollection({
 		// How far round the hue the chrome turns from the accent, in degrees (see
 		// --chrome-shift in global.css): 24 unless set, more for a louder sweep.
 		chromeShift: z.number().optional(),
+		// How strong the noise in the chrome is, as how many times its tile is
+		// blended in (see Grain in global.css): 1 unless set, 0 for none. A pale
+		// accent wants more, since soft light barely shows on near white.
+		chromeGrain: z.number().int().min(0).max(3).optional(),
 		// Kept off the index, out of the feed and out of the sitemap, and given a
 		// noindex. For a post that is working material rather than writing.
 		hidden: z.boolean().default(false),

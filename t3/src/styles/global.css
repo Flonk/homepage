@@ -352,6 +352,36 @@
    noise the other way, up and to the left, two tiles across for one up in
    four minutes; both too fine to see go. Registered so they can be animated,
    and kept to the root, where nothing reads them. */
+/* A post can ask for more of the noise or none (`chromeGrain`): the same
+   tile blended in again over itself, which is as strong again. A layer's
+   strength cannot be set by itself, so it goes up in whole tiles. */
+:root[data-grain='0'] {
+  background:
+    url('/assets/chrome-dots.png') var(--dots-x) var(--dots-y) / 26px 26px,
+    var(--chrome);
+  background-attachment: fixed;
+  background-blend-mode: overlay, normal;
+}
+:root[data-grain='2'] {
+  background:
+    url('/assets/chrome-noise.png') var(--noise-x) var(--noise-y) / 128px 128px,
+    url('/assets/chrome-noise.png') var(--noise-x) var(--noise-y) / 128px 128px,
+    url('/assets/chrome-dots.png') var(--dots-x) var(--dots-y) / 26px 26px,
+    var(--chrome);
+  background-attachment: fixed;
+  background-blend-mode: soft-light, soft-light, overlay, normal;
+}
+:root[data-grain='3'] {
+  background:
+    url('/assets/chrome-noise.png') var(--noise-x) var(--noise-y) / 128px 128px,
+    url('/assets/chrome-noise.png') var(--noise-x) var(--noise-y) / 128px 128px,
+    url('/assets/chrome-noise.png') var(--noise-x) var(--noise-y) / 128px 128px,
+    url('/assets/chrome-dots.png') var(--dots-x) var(--dots-y) / 26px 26px,
+    var(--chrome);
+  background-attachment: fixed;
+  background-blend-mode: soft-light, soft-light, soft-light, overlay, normal;
+}
+
 @property --dots-x {
   syntax: '<length>';
   inherits: false;
