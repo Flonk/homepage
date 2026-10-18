@@ -1,43 +1,11 @@
 import { maxChroma } from './lib/gamut';
 
-/**
- * The running order of a series: oldest first, so it reads from part one
- * downwards, with the slug breaking ties.
- *
- * Sorted outright rather than by reversing a newest-first page order — parts
- * published the same day tie on date, and a reversal would then hand back
- * whatever order the collection happened to be in, which is backwards. Slugs
- * carry the part number, so they settle it.
- */
-export function sortSeries<T extends { id: string; data: { pubDate: Date } }>(
-	posts: T[],
-): T[] {
-	return [...posts].sort(
-		(a, b) =>
-			a.data.pubDate.valueOf() - b.data.pubDate.valueOf() || a.id.localeCompare(b.id),
-	);
-}
-
 /** A part of a series as a post links to it: where it is and which part. */
-export type SeriesLink = { href: string; part: number; title: string; pubDate: number };
+export type SeriesLink = { href: string; part: string; title: string; pubDate: number };
 
 /**
- * Blurbs for post series, keyed by the `series` value in a post's frontmatter.
- * A series without an entry here still groups, it just renders without a tagline.
- */
-export const SERIES_BLURBS: Record<string, string> = {
-	'Type Systems':
-		'In this series we work our way up from programming languages without types, to the most sophisticated type systems out there!',
-	'Free objects':
-		'Take an algebraic structure, add nothing beyond what its laws demand, and see which ' +
-		'data structure falls out the other end — multisets, lists, finger trees.',
-	Colour:
-		'Everything I know about colour.'
-};
-
-/**
- * The picture on a series' card in the post tree, keyed like the blurbs. A
- * series without one gets a card without a picture.
+ * The picture on a series' card in the post tree, from its series.json (see
+ * content.config.ts). A series without one gets a card without a picture.
  *
  * Either an image, or a line of TeX set by KaTeX in the card's ink, at
  * `size` if it is too wide for the default. For an
@@ -45,10 +13,11 @@ export const SERIES_BLURBS: Record<string, string> = {
  * and `ink` is for a drawing in black on white: it is turned over to light
  * lines on the card's own ground, so a diagram does not land on the page as a
  * white slab, and shown whole rather than cropped. `backdrop` is any CSS
- * background, drawn live behind an image with a transparent ground.
+ * background, drawn live behind an image with a transparent ground, or the
+ * name of one of BACKDROPS below.
  */
 export type SeriesCover =
-	| { src: string; position?: string; ink?: boolean; backdrop?: string }
+	| { src: string; position?: string; ink?: boolean; backdrop?: string; credit?: string }
 	| { tex: string; size?: string };
 
 /**
@@ -63,34 +32,9 @@ const RAINBOW = `linear-gradient(to right, ${Array.from({ length: 57 }, (_, i) =
 	return `oklch(0.7 ${(maxChroma('srgb', 0.7, h) * 0.98).toFixed(4)} ${h})`;
 }).join(', ')})`;
 
-export const SERIES_COVERS: Record<string, SeriesCover> = {
-	// System F's type abstraction, which is where the series is headed.
-	'Type Systems': { tex: '\\Lambda T.' },
-	// A coalgebra: a carrier and a way to take one step out of it.
-	'Classes are Coalgebras': { tex: 'a \\to F a', size: '1.8rem' },
-	'Free objects': { src: '/assets/2025-07-04-free-objects-3/kid_named_finger.jpg', position: '50% 30%' },
-	// Part #8's sRGB solid with its bright top in view, the rest run off the
-	// edges, rendered once onto a clear ground and kept as a picture rather than
-	// run live in the tree. The rainbow behind it is drawn live.
-	Colour: { src: '/assets/series/colour.png', backdrop: RAINBOW },
-};
-
 /**
- * Single posts shown as a card in the post tree, as a series is, rather than
- * as a row: keyed by the post's slug, with a cover as a series has. The blurb
- * is the post's own `description`, and the card's corner gives its date where
- * a series gives its count of parts. Clicking it opens the post.
+ * Backdrops worked out here rather than written into a series.json, which can
+ * only hold them as words. The Colour series' cover is part #8's sRGB solid
+ * on a clear ground, with this rainbow drawn live behind it.
  */
-export const POST_COVERS: Record<string, SeriesCover> = {
-	// A bare tree, all its branching on show: the shape a parser makes of a
-	// string. Andy Watkins on Unsplash, https://unsplash.com/photos/m43rwT9O_r4.
-	'2026-10-17-parser-combinators': { src: '/assets/series/parser-combinators.jpg', position: '50% 35%' },
-	// Where it comes from: a Holstein in a field of dandelions, cut down to her
-	// front half so her head is short of where the tree's card fades the
-	// picture out. Keith Weller, USDA, public domain,
-	// https://commons.wikimedia.org/wiki/File:Cow_female_black_white.jpg.
-	'2026-10-18-milk': { src: '/assets/series/milk.jpg', position: '50% 40%' },
-};
-
-/** Series still being written, marked as such on their card in the post tree. */
-export const SERIES_WIP = new Set(['Colour', 'Classes are Coalgebras']);
+export const BACKDROPS: Record<string, string> = { rainbow: RAINBOW };

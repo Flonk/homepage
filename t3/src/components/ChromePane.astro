@@ -27,13 +27,19 @@ interface Props {
 	 * (--content-radius) unless given.
 	 */
 	radius?: string;
+	/**
+	 * What the panel is: the chrome (the default), or the deck's own ground,
+	 * for a picture that is part of the thread but wants the same dark
+	 * rounded frame round it.
+	 */
+	fill?: 'chrome' | 'ground';
 }
 
-const { radius } = Astro.props;
+const { radius, fill = 'chrome' } = Astro.props;
 ---
 
 <div class="chrome-pane" style={radius ? `--pane-radius: ${radius}` : undefined}>
-	<div class="chrome">
+	<div class:list={['chrome', fill === 'ground' && 'is-ground']}>
 		<slot />
 	</div>
 </div>
@@ -51,8 +57,13 @@ const { radius } = Astro.props;
 		min-height: 0;
 		/* The pane's padding (DeckViz: 1rem 1rem 0) taken back. */
 		margin: -1rem -1rem 0;
-		/* The gutter: the dark ground, as wide as the page's frame. */
+		/* The gutter: the dark ground, as wide as the page's frame; dark
+		   whichever ground the deck is on. */
 		padding: var(--page-border, 4px);
+		background: var(--ground-200);
+		/* The panel's corners, a pixel tighter than the page's; kept here for
+		   what is drawn into them. */
+		--pane-corner: calc(var(--pane-radius, var(--content-radius, 13px)) - 1px);
 	}
 
 	.chrome {
@@ -63,7 +74,7 @@ const { radius } = Astro.props;
 		align-items: center;
 		justify-content: center;
 		overflow: hidden;
-		border-radius: var(--pane-radius, var(--content-radius, 13px));
+		border-radius: var(--pane-corner);
 		/* The chrome's FLB round its edge, as the page has one where the
 		   chrome meets it: white at a fifth over whatever is under it. */
 		box-shadow: inset 0 0 0 1px var(--flb);
@@ -73,5 +84,16 @@ const { radius } = Astro.props;
 			linear-gradient(110deg, var(--accent), var(--accent-200), var(--accent));
 		background-attachment: fixed;
 		background-blend-mode: soft-light, overlay, normal;
+	}
+	/* The deck's ground instead, and what is in it filling it. */
+	.chrome.is-ground {
+		background: var(--deck-ground);
+		align-items: stretch;
+		justify-content: stretch;
+	}
+	.chrome.is-ground > :global(*) {
+		flex: 1;
+		min-width: 0;
+		min-height: 0;
 	}
 </style>

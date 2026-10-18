@@ -1,0 +1,54 @@
+---
+/**
+ * A product named in a card's words, as a link into the milk graph beside
+ * it: pressed, the graph glides to it and tells of it, as finding it in the
+ * search does.
+ *
+ *   <MilkLink to="yoghurt">yogurt</MilkLink>
+ *
+ * `to` is a product's id in MilkGraph, or the name of one of the examples
+ * it draws.
+ */
+interface Props {
+	to: string;
+}
+
+const { to } = Astro.props;
+---
+
+<button type="button" class="milk-link" data-milk-to={to}><slot /></button>
+
+<style>
+	/* Read as a link in the prose, which it is, though it goes nowhere but the picture. */
+	.milk-link {
+		display: inline;
+		padding: 0;
+		font: inherit;
+		color: var(--ink-link);
+		background: none;
+		border: 0;
+		text-decoration: underline;
+		text-underline-offset: 0.18em;
+		text-decoration-thickness: 1px;
+		cursor: pointer;
+	}
+	.milk-link:hover {
+		color: var(--ink-accent);
+	}
+</style>
+
+<script>
+	import { eachPage } from '../lib/page';
+
+	// Said to the graph, which knows where everything is (see MilkGraph).
+	eachPage((signal) => {
+		document.addEventListener(
+			'click',
+			(e) => {
+				const link = (e.target as Element).closest<HTMLElement>('[data-milk-to]');
+				if (link) document.dispatchEvent(new CustomEvent('milk:go', { detail: link.dataset.milkTo }));
+			},
+			{ signal },
+		);
+	});
+</script>

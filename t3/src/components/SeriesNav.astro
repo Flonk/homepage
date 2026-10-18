@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { loadSite } from '../site';
 import SeriesNavClient from './SeriesNavClient.astro';
 
 interface Props {
@@ -12,32 +12,19 @@ interface Props {
 
 const { seriesName, currentPart, prevPart, nextPart, position = 'header' } = Astro.props;
 
-const allPosts = await getCollection('blog');
-
-// Find the previous and next posts by part number within the same series
-const titlePrefix = 'Type Systems #';
-const seriesPosts = allPosts.filter(
-  (p) => typeof p.data.title === 'string' && p.data.title.startsWith(titlePrefix),
+// The neighbouring parts by the number the series gives them (see `part` in
+// src/site.ts), "1.6" as much as "7".
+const series = (await loadSite()).series.find(
+  (s) => s.data.title.toLowerCase() === seriesName.toLowerCase(),
 );
+const byPart = (part?: string) => (part == null ? undefined : series?.chapters.find((c) => c.part === part));
+const prevPost = byPart(prevPart);
+const nextPost = byPart(nextPart);
 
-const getPartLabel = (title: string) => {
-  const match = title.match(/^Type Systems #(.*?):/);
-  return match ? match[1].trim() : null;
-};
-
-const prevPost =
-	prevPart != null
-		? seriesPosts.find((p) => getPartLabel(p.data.title as string) === prevPart)
-		: null;
-const nextPost =
-	nextPart != null
-		? seriesPosts.find((p) => getPartLabel(p.data.title as string) === nextPart)
-		: null;
-
-const prevHref = prevPost ? `/blog/${prevPost.id}/` : undefined;
-const prevDate = prevPost ? (prevPost.data.pubDate as Date).valueOf() : undefined;
-const nextHref = nextPost ? `/blog/${nextPost.id}/` : undefined;
-const nextDate = nextPost ? (nextPost.data.pubDate as Date).valueOf() : undefined;
+const prevHref = prevPost?.href;
+const prevDate = prevPost?.data.pubDate.valueOf();
+const nextHref = nextPost?.href;
+const nextDate = nextPost?.data.pubDate.valueOf();
 ---
 <SeriesNavClient
 	currentPart={currentPart}

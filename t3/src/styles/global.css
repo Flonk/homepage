@@ -51,6 +51,10 @@
      ground a fifth of the way to white. For an edge on something that is not
      one colour, where a lifted colour cannot be worked out ahead of time. */
   --flb: rgb(255 255 255 / 0.2);
+  /* The FLB at a twentieth rather than a fifth: for the edge of a panel
+     inside the page, which should be told apart from its ground without
+     being drawn round. */
+  --flb-subtle: rgb(255 255 255 / 0.05);
   /* The groove: the FLB idea turned down to a whisper, for telling two
      things apart where they touch. A dark line where the cut is and, just
      beside it, a faint light one where its far edge catches the light. The
@@ -829,6 +833,12 @@ em {
   max-width: 37rem;
   margin-inline: auto;
 }
+/* A deck card's words a tenth smaller than a post's, everything in them
+   with them (their headings are sized in em): a card shares the screen with
+   its picture. */
+.prose.deck-prose {
+  font-size: calc(1.125rem * 0.9);
+}
 
 .prose p {
   margin: 0 0 1.3em;
@@ -962,6 +972,9 @@ em {
 @media (max-width: 720px) {
   .prose {
     font-size: 1rem;
+  }
+  .prose.deck-prose {
+    font-size: 0.9rem;
   }
   .deck-prose ul,
   .deck-prose ol {

@@ -1,0 +1,74 @@
+---
+title: "Design system"
+description: "The site's tokens and patterns, on one page."
+pubDate: "August 25 2026"
+hidden: true
+---
+
+import AnimDemo from "../../components/ds/AnimDemo.astro";
+import ChoiceDemo from "../../components/ds/ChoiceDemo.astro";
+import FlbBar from "../../components/ds/FlbBar.astro";
+import FlbSolids from "../../components/ds/FlbSolids.astro";
+import GlassDemo from "../../components/ds/GlassDemo.astro";
+import PillDemo from "../../components/ds/PillDemo.astro";
+import RadiusScale from "../../components/ds/RadiusScale.astro";
+import Palette from "../../components/ds/Palette.astro";
+import SlidersDemo from "../../components/ds/SlidersDemo.astro";
+import TrackDemo from "../../components/ds/TrackDemo.astro";
+
+## Rules
+- Use OKLCH for everything.
+- Any border on an object should be an *FLB* (fake luminosity border).
+- Do not clutter this page with text; AI agents will read the code anyway.
+
+## Colour
+
+<Palette />
+
+## Radius
+
+<RadiusScale />
+
+## FLB
+
+Any border on an object should be an *FLB* (fake luminosity border). If the element is a flat color, its border can be a real CSS border; same color but 20% lighter.
+
+<FlbSolids />
+
+If the content is a gradient or some other sort of non-solid colour, the border
+must be emulated to show a fake 1px ring of the same colour, 20% lighter,
+around the element.
+
+<FlbBar />
+
+### Subtle FLB
+
+`--flb-subtle`: the same ring at 5% instead of 20%. For a panel inside the
+page, such as a framed deck viz, that should stand apart from its ground
+without being outlined.
+
+## Components
+
+### VizTrack
+
+<TrackDemo />
+
+### ColorSliders
+
+<SlidersDemo />
+
+### Pill
+
+<PillDemo />
+
+### Choice
+
+<ChoiceDemo />
+
+### Glass
+
+<GlassDemo />
+
+## Animation
+
+<AnimDemo />

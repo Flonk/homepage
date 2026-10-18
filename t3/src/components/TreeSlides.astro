@@ -1,0 +1,107 @@
+---
+// A deck's cards in the tree, hung under its post as the pages of it: each
+// one's number and title, and a link to it (the first is the post itself, the
+// rest #2, #3 and on, as the deck has them in its address). Shown only under
+// the open post, and the card on screen marked, by the tree's script and the
+// deck's (see PostIndex and DeckPost). Clicking the open post again folds
+// them away and back (data-folded on its row).
+interface Props {
+	href: string;
+	titles: string[];
+}
+
+const { href, titles } = Astro.props;
+---
+
+<ul class="slides" data-slides>
+	{
+		titles.map((title, i) => (
+			<li data-slide={i}>
+				<a class="slide" href={i === 0 ? href : `${href}#${i + 1}`}>
+					<span class="number">{i + 1}</span>
+					<span class="title">{title}</span>
+				</a>
+			</li>
+		))
+	}
+</ul>
+
+<style>
+	/* Only under the post that is open; every deck has its list in the tree,
+	   since the tree is kept from page to page and not drawn again. Folded
+	   and unfolded as a series' folder is, easing between nothing and its own
+	   height (the tree allows animating to auto, see PostIndex); hidden once
+	   shut, so its links are out of the tab order. */
+	.slides {
+		list-style: none;
+		/* Its guide a short way in, or straight down from the middle of its
+		   part's icon inside a series (--slides-at, see PostIndex). */
+		margin: 0.1rem 0 0.3rem var(--slides-at, 0.75rem);
+		padding: 0;
+		block-size: auto;
+		overflow: clip;
+		transition:
+			block-size 0.25s ease,
+			margin-block 0.25s ease,
+			visibility 0.25s allow-discrete;
+	}
+	:global(li:not([aria-current='page'])) > .slides,
+	:global(li[data-folded]) > .slides {
+		block-size: 0;
+		margin-block: 0;
+		visibility: hidden;
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.slides {
+			transition: none;
+		}
+	}
+
+	.slides {
+		/* The guide down the open post's pages, the tree's groove on its side. */
+		border-left: 1px solid var(--groove-cut);
+		box-shadow: inset 1px 0 0 var(--groove-edge);
+	}
+
+	.slide {
+		display: flex;
+		align-items: baseline;
+		gap: 0.6rem;
+		padding: 0.12rem var(--row-x, 1.25rem) 0.12rem 0.45rem;
+		text-decoration: none;
+		color: inherit;
+	}
+	.slide:hover {
+		background: color-mix(in oklab, var(--index-panel, var(--ground-200)) 70%, transparent);
+	}
+
+	.number {
+		flex: none;
+		min-width: 2ch;
+		text-align: right;
+		font-family: var(--font-mono);
+		font-size: calc(0.7rem * var(--tree-text, 1));
+		color: var(--index-faint, var(--ink-500));
+	}
+
+	.title {
+		min-width: 0;
+		font-family: var(--font-sans);
+		font-size: calc(0.95rem * var(--tree-text, 1));
+		line-height: 1.45;
+		color: var(--index-ink, var(--ink-100));
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	/* The card on screen, as the open file is marked: a flat panel, and the
+	   accent down its far edge. */
+	li[aria-current='step'] > .slide {
+		background: var(--index-panel, var(--ground-200));
+		box-shadow: inset -2px 0 0 var(--ink-accent);
+	}
+	li[aria-current='step'] .number {
+		color: var(--ink-accent);
+	}
+</style>

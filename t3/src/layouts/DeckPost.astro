@@ -8,21 +8,33 @@ import SeriesMenu from '../components/SeriesMenu.astro';
 import SplitPane from '../components/SplitPane.astro';
 import type { SeriesLink } from '../series';
 
-type Props = CollectionEntry<'blog'>['data'] & {
-	id?: string;
+type Props = CollectionEntry<'chapters'>['data'] & {
+	// Where the deck is (see src/site.ts).
+	href: string;
+	// The title where it stands alone, in the browser's tab: a numbered
+	// chapter's with its series and number ("Colour #1: The RGB Cube").
+	fullTitle?: string;
+	// For a numbered chapter, its series' name and which part it is, said once
+	// over the title, which is its own.
+	series?: string;
+	part?: string;
 	prevPart?: SeriesLink;
 	nextPart?: SeriesLink;
 	seriesParts?: SeriesLink[];
 };
 
 const {
-	id,
+	href,
+	fullTitle,
+	part,
 	title,
 	description,
 	pubDate,
 	series,
 	hn,
 	ground,
+	deckSplit = 50,
+	deckLayout = 'stacked',
 	accent,
 	chromeShift,
 	chromeGrain,
@@ -38,7 +50,7 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 
 <html lang="en" style={own || undefined} data-grain={chromeGrain}>
 	<head>
-		<BaseHead title={title} description={description} />
+		<BaseHead title={fullTitle ?? title} description={description} />
 		<link
 			href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css"
 			rel="stylesheet"
@@ -52,31 +64,48 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 		<div class="deck-site-header">
 			<Header />
 		</div>
-		<SplitPane mode="deck" current={id}>
+		<SplitPane mode="deck" current={href}>
 			<main class="deck-main">
 				<div class="deck-head">
 					<a class="deck-home" href="/" aria-label="Back to the home page">T3</a>
 					<div class="deck-headings">
 						<div class="deck-meta" data-page-meta>
-							{series && <span class="deck-series">{series}</span>}
+							{series && <span class="deck-series">{series}{part && ` #${part}`}</span>}
 							<span class="deck-date"><FormattedDate date={pubDate} /></span>
 						</div>
-						<h1 class="deck-title" data-page-title>{title}</h1>
+						<h1 class="deck-title" data-page-title>{title || fullTitle}</h1>
 					</div>
 				</div>
 	
 				<!-- Every card renders into these two areas; only the active one shows. -->
 
-				<div class="deck" data-deck>
+				<div
+					class:list={['deck', deckLayout === 'sidebar' && 'is-sidebar']}
+					data-deck
+					style={`--deck-split: ${deckSplit}%`}
+				>
 					<div class="deck-ground" aria-hidden="true"></div>
+					{deckLayout === 'sidebar' && <div class="deck-tools" data-deck-tools></div>}
 					<slot />
+					<div class="deck-divider" title="drag to resize" aria-hidden="true" data-no-swipe>
+						<svg class="deck-handle" viewBox="0 0 16 16"><path d="M4.5 6.5 8 3l3.5 3.5M4.5 9.5 8 13l3.5-3.5" /></svg>
+					</div>
 				</div>
+				<script is:inline>
+					// Where the reader left this deck's split, set before it paints, so
+					// it never opens at the post's own and then jumps.
+					try {
+						const deck = document.currentScript.previousElementSibling;
+						const split = Number(localStorage.getItem(`deck-split:${location.pathname}`));
+						if (split >= 20 && split <= 80) deck.style.setProperty('--deck-drag', `${split}%`);
+					} catch {}
+				</script>
 	
 				<nav class="deck-nav" aria-label="Card navigation">
 					{/* The rest of the series, where the tree is not beside the deck. */}
 					{series && seriesParts.length > 1 && (
 						<div class="deck-series-menu">
-							<SeriesMenu series={series} parts={seriesParts} current={`/blog/${id}/`} />
+							<SeriesMenu series={series} parts={seriesParts} current={href} />
 						</div>
 					)}
 					{/* At the ends of the deck the arrows have nowhere left to go, which
@@ -125,6 +154,14 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 				--deck-ground: var(--ink-100);
 				--deck-ink: #35302a;
 				--deck-ink-dim: #7a7264;
+				/* Where it can be, the light ground and its ink worked out from
+				   the post's accent, as the chrome round the page is: near white
+				   and near black in the post's own hue, kept close to grey so a
+				   picture on it is not tinted. The colours above are what stays
+				   where this is not understood. */
+				--deck-ground: oklch(from var(--accent) 0.94 min(c, 0.012) h);
+				--deck-ink: oklch(from var(--accent) 0.3 min(c, 0.02) h);
+				--deck-ink-dim: oklch(from var(--accent) 0.55 min(c, 0.02) h);
 				--deck-eyebrow: var(--ink-accent);
 				/* The surface a visualization puts its controls on: a pane of
 				   glass over whatever is behind it, which may be the ground and
@@ -272,7 +309,11 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 				min-height: 0;
 				display: grid;
 				grid-template-areas: 'viz' 'text';
-				grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+				/* The picture's share of the height, --deck-at: where the reader
+				   dragged the line (--deck-drag), or else the deck's own, which
+				   depends on the screen (below). */
+				grid-template-rows: minmax(0, var(--deck-at, 50%)) minmax(0, 1fr);
+				position: relative;
 				/* The cards waiting off to either side are invisible, not out of
 				   the layout, so the 2.5rem they are translated by is real
 				   overflow. Desktop never shows it — body's overflow:hidden is
@@ -290,20 +331,99 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 			   stamp. Such a visualization says so with `data-viz-tall`, and while it
 			   is the one on stage the picture takes three fifths and the text,
 			   which scrolls anyway, the rest. Moved rather than cut, at the pace
-			   the cards slide. A wide screen has the height already. */
+			   the cards slide. A wide screen has the height already. Where the
+			   reader has dragged the line, it stays where they put it. */
 			@media (max-width: 1099px) {
 				.deck {
+					--deck-at: var(--deck-drag, 50%);
 					transition: grid-template-rows 0.35s ease;
 				}
 				.deck:has(.deck-viz > [data-viz-tall]),
 				.deck:has([data-viz-active='true'] [data-viz-tall]) {
-					grid-template-rows: minmax(0, 3fr) minmax(0, 2fr);
+					--deck-at: var(--deck-drag, 60%);
+				}
+				.deck.is-dragging {
+					transition: none;
 				}
 			}
 
 			@media (max-width: 1099px) and (prefers-reduced-motion: reduce) {
 				.deck {
 					transition: none;
+				}
+			}
+
+			/* The line between the picture and the text is the reader's to move,
+			   as the tree's is (see SplitPane): dragged, the picture takes
+			   --deck-drag of the height, between a fifth and four fifths, and the
+			   text the rest. Double-click puts it back.
+
+			   On a phone a drag across the deck turns the card, so the line is
+			   taken only by a handle in its middle, drawn plainly so it can be
+			   found: a dark disc on the groove, ringed in the FLB, with a chevron
+			   each way on it, and room round it for a thumb. */
+			.deck-divider {
+				position: absolute;
+				top: var(--deck-at, 50%);
+				left: 50%;
+				width: 3rem;
+				height: 3rem;
+				display: grid;
+				place-items: center;
+				transform: translate(-50%, -50%);
+				touch-action: none;
+				/* Over both halves and the cards sliding through them. */
+				z-index: 3;
+			}
+			.deck-handle {
+				box-sizing: border-box;
+				width: 2rem;
+				height: 2rem;
+				padding: 0.4rem;
+				border-radius: 50%;
+				background: var(--ground-100);
+				border: 1px solid var(--flb);
+				box-shadow: 0 2px 8px rgb(0 0 0 / 0.4);
+				fill: none;
+				stroke: var(--ink-300);
+				stroke-width: 1.75;
+				stroke-linecap: round;
+				stroke-linejoin: round;
+			}
+			.deck.is-dragging .deck-handle {
+				stroke: var(--ink-accent);
+			}
+			/* On a wide screen, the post's own split (deckSplit, half unless set)
+			   where the reader has not dragged it, and the whole line to drag,
+			   nothing to see until the pointer finds it. */
+			@media (min-width: 1100px) {
+				.deck {
+					--deck-at: var(--deck-drag, var(--deck-split, 50%));
+				}
+				.deck-handle {
+					display: none;
+				}
+				.deck-divider {
+					left: 0;
+					right: 0;
+					width: auto;
+					display: block;
+					height: 0.6rem;
+					transform: translateY(-50%);
+					cursor: row-resize;
+				}
+				.deck-divider:hover,
+				.deck.is-dragging .deck-divider {
+					background: linear-gradient(
+						to bottom,
+						transparent 45%,
+						var(--ink-accent) 45% 55%,
+						transparent 55%
+					);
+				}
+				.deck.is-dragging {
+					cursor: row-resize;
+					user-select: none;
 				}
 			}
 
@@ -318,6 +438,78 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 				box-shadow: 0 1px 0 var(--groove-edge);
 				align-self: start;
 				width: 100%;
+			}
+
+			.deck-tools {
+				display: none;
+			}
+			/* The sidebar layout (deckLayout), on a wide screen: the text down a
+			   column on the left as wide as Milk's detail panel, the picture all
+			   the rest, and the groove between them running down. No line to drag:
+			   the column is the width it is. The card's controls go down into the
+			   foot of the column, so the picture runs to the bottom as well, and
+			   the card's words leave room for them at their end. */
+			@media (min-width: 1100px) {
+				.deck-main:has(> .deck.is-sidebar) {
+					position: relative;
+				}
+				.deck-main:has(> .deck.is-sidebar) > .deck-nav {
+					position: absolute;
+					left: 0;
+					bottom: 0;
+					width: 23rem;
+					box-sizing: border-box;
+					z-index: 2;
+				}
+				.deck.is-sidebar :global(.card-text-inner) {
+					padding-bottom: 5rem;
+				}
+				/* And the picture's own controls, a search say, up at the head of
+				   the column over the card's words, which start below them: what
+				   a visualization marks data-deck-tool is moved here (see the
+				   script), and back into the picture on a narrow screen. */
+				.deck-tools {
+					display: block;
+					grid-area: text;
+					align-self: start;
+					z-index: 2;
+					padding: 1rem 1.5rem 0;
+				}
+				.deck .deck-tools > :global([data-deck-tool]) {
+					position: relative;
+					inset: auto;
+					width: 100%;
+					/* Out of the picture, a tool is on the column's dark ground, not
+					   the picture's: the deck's inks are the column's here, and the
+					   search's field and list (MilkGraph's names for them) the
+					   tree's panels, edged in the subtle FLB. */
+					--deck-ink: var(--ink-100);
+					--deck-ink-dim: var(--ink-500);
+					--lit: var(--ink-100);
+					--field: var(--ground-300);
+					--field-rim: var(--flb-subtle);
+					--found: var(--ground-300);
+					--found-on: var(--ground-400);
+				}
+				.deck.is-sidebar:has(.deck-tools > *) :global(.card-text) {
+					padding-top: 4.25rem;
+				}
+				.deck.is-sidebar {
+					grid-template-areas: 'text viz';
+					grid-template-columns: 23rem minmax(0, 1fr);
+					grid-template-rows: minmax(0, 1fr);
+				}
+				.deck.is-sidebar::before {
+					border-top: 0;
+					border-right: 1px solid var(--groove-cut);
+					box-shadow: 1px 0 0 var(--groove-edge);
+					align-self: stretch;
+					justify-self: end;
+					width: 0;
+				}
+				.deck.is-sidebar .deck-divider {
+					display: none;
+				}
 			}
 
 			.deck-nav {
@@ -434,6 +626,85 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 			import { eachPage } from '../lib/page';
 
 			type CardEl = HTMLElement;
+
+			// Drag the line between the picture and the text to move it; double-
+			// click it to let go of it again, back to the deck's own. Kept per deck,
+			// on the deck itself, since each post has its own to go back to.
+			eachPage((signal) => {
+				const deck = document.querySelector<HTMLElement>('[data-deck]');
+				const divider = deck?.querySelector<HTMLElement>('.deck-divider');
+				if (!deck || !divider) return;
+				const key = `deck-split:${location.pathname}`;
+
+				const place = (at: number, keep: boolean) => {
+					deck.style.setProperty('--deck-drag', `${at}%`);
+					if (!keep) return;
+					try {
+						localStorage.setItem(key, String(at));
+					} catch {}
+				};
+				const release = () => {
+					deck.style.removeProperty('--deck-drag');
+					try {
+						localStorage.removeItem(key);
+					} catch {}
+				};
+
+				// A sidebar deck's tools: what the picture marks data-deck-tool goes up
+				// into the column on a wide screen, and back where it was when the
+				// screen narrows. Moved, not copied, so it keeps whatever the
+				// picture's own script has hung on it.
+				const tools = deck.querySelector<HTMLElement>('[data-deck-tools]');
+				if (tools) {
+					const wide = matchMedia('(min-width: 1100px)');
+					const homes = [...deck.querySelectorAll<HTMLElement>('[data-deck-tool]')].map((el) => ({
+						el,
+						parent: el.parentElement!,
+						next: el.nextSibling,
+					}));
+					const settle = () => {
+						for (const { el, parent, next } of homes)
+							if (wide.matches) tools.append(el);
+							else parent.insertBefore(el, next);
+					};
+					settle();
+					wide.addEventListener('change', settle, { signal });
+				}
+
+				// The inline script after the deck does this on the page landed on;
+				// a page swapped in has it done here, before it is shown.
+				try {
+					const kept = Number(localStorage.getItem(key));
+					if (kept >= 20 && kept <= 80) place(kept, false);
+				} catch {}
+
+				divider.addEventListener('pointerdown', (e) => {
+					e.preventDefault();
+					// Held, so a canvas under the pointer cannot take the drag.
+					divider.setPointerCapture(e.pointerId);
+					const rect = deck.getBoundingClientRect();
+					// Where it is now, whichever rule put it there.
+					const viz = deck.querySelector<HTMLElement>('.deck-viz');
+					let last = viz ? (viz.getBoundingClientRect().height / rect.height) * 100 : 50;
+					deck.classList.add('is-dragging');
+					const move = (ev: PointerEvent) => {
+						last = Math.min(80, Math.max(20, ((ev.clientY - rect.top) / rect.height) * 100));
+						place(last, false);
+					};
+					const up = () => {
+						window.removeEventListener('pointermove', move);
+						window.removeEventListener('pointerup', up);
+						window.removeEventListener('pointercancel', up);
+						deck.classList.remove('is-dragging');
+						place(last, true);
+					};
+					window.addEventListener('pointermove', move, { signal });
+					window.addEventListener('pointerup', up, { signal });
+					window.addEventListener('pointercancel', up, { signal });
+				});
+
+				divider.addEventListener('dblclick', release);
+			});
 
 			// Once for every page with a deck, which under the client router is not the
 			// same as once: see lib/page.ts.
@@ -572,6 +843,8 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 						});
 						renderViz();
 						if (counter) counter.textContent = `${index + 1} / ${cards.length}`;
+						// For the tree, which lists the cards under the post (see TreeSlides).
+						document.dispatchEvent(new CustomEvent('deck:card', { detail: { index } }));
 						/* At an end, hand over to the neighbouring part if there is one;
 						   otherwise the arrow just greys out as before. */
 						const atStart = index === 0;
@@ -603,6 +876,11 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 						if (n === null) return;
 						go(n);
 						syncHash(); // a number past the end becomes the card it landed on
+					}, { signal });
+
+					// A card chosen in the tree, of this deck.
+					document.addEventListener('deck:go', (e) => {
+						go((e as CustomEvent<{ index: number }>).detail.index);
 					}, { signal });
 
 					prevBtn?.addEventListener('click', () => go(index - 1));

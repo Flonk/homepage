@@ -1,0 +1,108 @@
+---
+title: "Pink, Olo and 4D colours"
+accent: "oklch(0.5 0.172 305)"
+chromeShift: -24
+format: "deck"
+ground: "dark"
+description: ""
+pubDate: "August 21 2026"
+---
+
+import ConeResponse from "../../../components/ConeResponse.astro";
+import DeckCard from "../../../components/DeckCard.astro";
+import DeckViz from "../../../components/DeckViz.astro";
+import VizPhase from "../../../components/VizPhase.astro";
+import VizStill from "../../../components/VizStill.astro";
+
+{/* The prism first, then part three's graph, carried over because this post
+    picks up exactly where that one left off: the curves are what say which
+    cone signals light can and cannot produce, and olo is one of the ones it
+    cannot. A viz of its own — the space of possible signals, with the
+    unreachable part marked — is the thing to build here when the prose knows
+    what it wants. The first phase listed is the one a deck opens on. */}
+<DeckViz>
+  <VizPhase name="prism">
+    <VizStill
+      src="/assets/2026-08-21-color-5-olo/prism.png"
+      alt="A beam of white light entering a glass prism and leaving it spread into a band of colour."
+      credit="George Hardie, 1973"
+    />
+  </VizPhase>
+  <VizPhase name="cones">
+    <ConeResponse sweep={[400, 700]} drag />
+  </VizPhase>
+</DeckViz>
+
+<DeckCard>
+  ## The real world isn't single wavelength
+
+  A single photon having a colour is nice and all, but in bright daylight, around 4,000,000,000,000,000 photons of varying wavelengths will hit your retina every second -- so we really need to look at the *combined* effect of multiple wavelengths hitting our cones to understand colour in full.
+
+  In particular, two photons can stimulate cones in ways that a single photon cannot, leading to us seeing *non-spectral* colours.
+</DeckCard>
+
+{/* Part three's curves, to look at combined stimulation on. */}
+<DeckCard vizProps={{ phase: "cones", marks: [650, 420], probe: false }}>
+  ## Is pink a real colour?
+
+  Above, look at the area where the S and L cones intersect. You'll see that there are no wavelengths that will stimulate S and L without also stimulating the M cone.
+
+  We can stimulate S and L without M with *two* photons however: a blue and a red one. When your brain gets the signal, it is left with no choice: Something that is S+L is usually cyan, but cyan would also stimulate M. This does not stimulate M, so it must be some distinct colour, and I guess that'll be pink!
+</DeckCard>
+
+<DeckCard vizProps={{ phase: "cones", marks: [650, 420], probe: false }}>
+  ## Is pink a real colour?
+
+  Is pink a real colour? Well, what is reality really. I hope by now you've seen that colour is purely a fabrication of the brain -- a messy way to reconstruct the EM spectrum from three overlapping detectors.
+
+  Pink is a distinct perceptual experience that we can have, and in that sense it is real -- at least, no more or less real than blue.
+</DeckCard>
+
+<DeckCard vizProps={{ phase: "cones", marks: [], probe: true }}>
+  ## Is olo a real colour?
+
+  You can stimulate just the S cone via purple, and you can stimulate just the L cone via red. But how do you stimulate just the M cone? It overlaps with the other cones everywhere, so stimulating just M is not something that is solvable by shooting more frequencies of light at your eye.
+
+  Researchers at Berkeley came up with a way to do so in 2025 however: They mapped out people's retinas to identify each S, M, and L cone inside, and then shot lasers at just the M cones. 
+
+  The five test subjects described the experience as seeing a cyan that is more intense than any cyan they have ever seen before. The new colour was dubbed "olo", which I hear comes from "010".
+
+  Is it real? Well, it is a distinct perceptual experience that we can have, and in that sense it is real -- at least, no more or less real than pink.
+</DeckCard>
+{/* The same graph again, with four lights on it as bars rather than one
+    wavelength as a mark, and the handle walking the line of mixtures that all
+    come to this colour instead of walking the band. The bars change places;
+    the disc and the three readings do not. The wavelengths are not free: see
+    metamerLine in lib/spectrum.ts for why these four. */}
+<DeckCard
+  vizProps={{
+    phase: "cones",
+    probe: false,
+    metamer: true,
+    marks: [
+      { nm: 460, weight: 0.53 },
+      { nm: 530, weight: 0.53 },
+      { nm: 580, weight: 0.53 },
+      { nm: 660, weight: 0.53 },
+    ],
+  }}
+>
+  ## Same colour, different light
+
+  There are infinitely many different combinations of light that can produce the same colour. Two sets of lights producing the same colour are called *metamers* of each other.
+
+  The fact that we perceive light via three different detectors means that by just picking three wavelengths of light, preferably spaced out across the visible spectrum, we can mix any colour that our eyes can see, even the non-spectral ones. This is what makes screens work! 
+</DeckCard>
+
+{/* The same graph once more, with L split in two by a pair of filters. The
+    rainbow deliberately does not change: what such a pair of eyes would see is
+    no more drawable than the mirrored eye of part three was, and here there is
+    not even a stand-in to offer. See lib/cones.ts for the filters, and for
+    what the arrangement does and does not amount to. */}
+<DeckCard vizProps={{ phase: "cones", vision: "filtered", marks: [], probe: true }}>
+  ## Dichoptic Tetrachromacy
+
+  A particularly enterprising nerd called [Ooquai](https://www.youtube.com/watch?v=NLC38iB7deE&t=2077s) has been building a pair of glasses with a filter on each eye. The left eye filters away all light > 610nm and the right eye filters away all light < 625nm, essentially giving him a fourth cone type that recognizes deep red light.
+
+  This gives him a fourth dimension of colour vision, and many amazing opportunities to see more impossible colours like pink by stimulating each of the four cones in ways that are impossible with just three. He calls this *dichoptic tetrachromacy*, and it is a fascinating way to explore the limits of human colour perception.
+</DeckCard>

@@ -1,0 +1,53 @@
+---
+title: "Introduction"
+description: ""
+pubDate: "October 18 2026"
+accent: "oklch(0.8 0.05 70)"
+chromeGrain: 2
+format: "deck"
+deckLayout: "sidebar"
+ground: "light"
+---
+
+import ChromePane from "../../../components/ChromePane.astro";
+import DeckCard from "../../../components/DeckCard.astro";
+import DeckViz from "../../../components/DeckViz.astro";
+import MilkGraph from "../../../components/MilkGraph.astro";
+import MilkLink from "../../../components/MilkLink.astro";
+import VizPhase from "../../../components/VizPhase.astro";
+
+<DeckViz>
+  <VizPhase name="products">
+    <ChromePane fill="ground">
+      <MilkGraph />
+    </ChromePane>
+  </VizPhase>
+</DeckViz>
+
+<DeckCard>
+  ## Milk
+
+  Milk! It's one of the most versatile animal products in the world, perhaps second only to meat.
+
+  Since milk is used by animals to nourish their young, it is packed with essential nutrients that are beneficial for human consumption as well; you could probably survive off milk alone for a significant period of time.
+
+  Now, keeping 270 million cows constantly pregnant so they give milk is at best ethically questionable, but let's not talk politics today.
+</DeckCard>
+
+<DeckCard>
+  ## Milk Products
+
+  The sheer amount of dairy products is staggering. Sure, you know <MilkLink to="yoghurt">yogurt</MilkLink>, <MilkLink to="rennetCurd">cheese</MilkLink>, and <MilkLink to="butter">butter</MilkLink>. If you're a gym bro with a protein shake habit, you might also be familiar with <MilkLink to="wpi">whey isolate</MilkLink> which is essentially cheese byproduct.
+
+  But did you know that milk makes it's way into pretty much every <MilkLink to="inhalers">Asthma inhaler</MilkLink> and onto <MilkLink to="beerLabelGlue">beer bottles</MilkLink>? Have you heard of <MilkLink to="bakedMilk">baked milk</MilkLink>? No? Didn't think so. In mongolia they even <MilkLink to="arkhi">distill milk into liquor</MilkLink>.
+</DeckCard>
+
+<DeckCard>
+  ## Disclaimer
+
+  I'm just a dude with a Claude subscription. While I've tried being thorough and provide sources wherever possible, please take everything in this series with a grain of salt and let me know if anything is way off.
+
+  Especially the more regional products often have no standardized recipes and can be made multiple ways.
+
+  Anyway, let's start at the beginning!
+</DeckCard>

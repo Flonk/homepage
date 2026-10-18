@@ -5,69 +5,87 @@
 // editor's. The home page is this on its own; a prose post on a wide screen
 // has it down the left beside the post, with `current` marked as the open
 // file and its folder open around it.
-import { getCollection } from 'astro:content';
 import FormattedDate from './FormattedDate.astro';
 import T3Mark from './T3Mark.astro';
+import TreeSlides from './TreeSlides.astro';
 import katex from 'katex';
-import {
-	POST_COVERS,
-	SERIES_BLURBS,
-	SERIES_COVERS,
-	SERIES_WIP,
-	type SeriesCover,
-	sortSeries,
-} from '../series';
+import { BACKDROPS, type SeriesCover } from '../series';
+import { loadSite, newestFirst, type Page, type Series } from '../site';
 
 interface Props {
+	// The open page's address.
 	current?: string;
 }
 
 const { current } = Astro.props;
 
-const posts = (await getCollection('blog'))
-	.filter((post) => !post.data.hidden)
-	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const site = await loadSite();
+const shown = (page: Page) => !page.data.hidden;
+const posts = site.posts.filter(shown).sort(newestFirst);
 
-type Post = (typeof posts)[number];
+type Post = Page;
 type Entry =
 	| { kind: 'post'; post: Post }
-	| { kind: 'series'; name: string; posts: Post[] }
-	// A single post with a cover of its own: a card, as a series is (see
-	// POST_COVERS).
-	| { kind: 'card'; post: Post };
+	| { kind: 'series'; name: string; series: Series; posts: Post[] }
+	// A series of one with a cover of its own, a single deck: a card, as a
+	// series is, but a link to its one chapter rather than a folder.
+	| { kind: 'card'; name: string; series: Series; post: Post };
 
-// Collect every post of a series into one section, anchored where the series'
-// newest post would have been. A series of one stays a plain entry.
-const entries: Entry[] = [];
-const seenSeries = new Set<string>();
+// Every post, and every series anchored where its newest chapter falls among
+// them. A series of one without a cover stays a plain entry.
+const dated = (entry: Entry) =>
+	entry.kind === 'series'
+		? Math.max(...entry.posts.map((p) => p.data.pubDate.valueOf()))
+		: entry.post.data.pubDate.valueOf();
+const entries: Entry[] = [
+	...posts.map((post): Entry => ({ kind: 'post', post })),
+	...site.series.flatMap((series): Entry[] => {
+		const chapters = series.chapters.filter(shown);
+		const name = series.data.title;
+		if (chapters.length > 1) return [{ kind: 'series', name, series, posts: chapters }];
+		if (chapters.length === 1)
+			return [
+				series.data.cover
+					? { kind: 'card', name, series, post: chapters[0] }
+					: { kind: 'post', post: chapters[0] },
+			];
+		return [];
+	}),
+].sort((x, y) => dated(y) - dated(x));
 
-for (const post of posts) {
-	const series = post.data.series;
-	if (!series) {
-		entries.push(POST_COVERS[post.id] ? { kind: 'card', post } : { kind: 'post', post });
-		continue;
-	}
-	if (seenSeries.has(series)) continue;
-	seenSeries.add(series);
-
-	// Oldest first inside a section, so a series reads from #1 downwards.
-	const members = sortSeries(posts.filter((p) => p.data.series === series));
-	entries.push(
-		members.length > 1
-			? { kind: 'series', name: series, posts: members }
-			: { kind: 'post', post },
-	);
-}
-
-// Inside a section the heading already says the series name, so drop it from the title.
-const stripSeriesPrefix = (title: string, series: string) => {
-	if (!title.startsWith(series)) return title;
-	return title.slice(series.length).replace(/^[\s:–—-]+/, '') || title;
+// A deck's cards, by the first heading in each, for the tree to list under
+// it (see TreeSlides); null for a post that is not a deck. The source is read
+// as it is written: a card is everything from one <DeckCard to its close.
+const slideTitles = (post: Post): string[] | null => {
+	const body = post.entry.body;
+	if (post.data.format !== 'deck' || !body) return null;
+	return body
+		.split(/<DeckCard\b/)
+		.slice(1)
+		.map((card, i) => {
+			const heading = card.split('</DeckCard>')[0].match(/^\s*#{1,6}\s+(.+)$/m)?.[1];
+			if (!heading) return `Card ${i + 1}`;
+			return heading
+				.replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
+				.replace(/[*_`]/g, '')
+				.trim();
+		});
 };
+
+// A row's date in the tree, as an editor gives a file's: short, and in the
+// same width every time, so the column of them lines up. The day as it was
+// written down, which is local midnight, not ISO's UTC, a day early here.
+const day = (date: Date) =>
+	[date.getFullYear(), date.getMonth() + 1, date.getDate()].map((n) => String(n).padStart(2, '0')).join('-');
 
 // Font Awesome Free 7.3.1, "file" (regular): https://fontawesome.com, CC BY 4.0.
 const FILE =
 	'M176 48L64 48c-8.8 0-16 7.2-16 16l0 384c0 8.8 7.2 16 16 16l256 0c8.8 0 16-7.2 16-16l0-240-88 0c-39.8 0-72-32.2-72-72l0-88zM316.1 160L224 67.9 224 136c0 13.3 10.7 24 24 24l68.1 0zM0 64C0 28.7 28.7 0 64 0L197.5 0c17 0 33.3 6.7 45.3 18.7L365.3 141.3c12 12 18.7 28.3 18.7 45.3L384 448c0 35.3-28.7 64-64 64L64 512c-35.3 0-64-28.7-64-64L0 64z';
+// Font Awesome Free 6, "bookmark" (regular): https://fontawesome.com, CC BY 4.0.
+// A chapter of a series, where a post is a file.
+const BOOKMARK =
+	'M0 48C0 21.5 21.5 0 48 0l0 48V441.4l130.1-92.9c8.3-6 19.6-6 27.9 0L336 441.4V48H48V0H336c26.5 0 48 21.5 48 48V488c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5 37.9 507.5c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488V48z';
+const iconOf = (page: Page) => (page.series ? BOOKMARK : FILE);
 
 // The home page on a narrow screen lays the same posts out another way (see
 // SplitPane): the newest standalone post, then every series in a row to
@@ -79,47 +97,46 @@ const allSeries = entries.flatMap((entry) => (entry.kind === 'series' ? [entry] 
 // place until there is one.
 const PORTRAIT: string | null = null;
 
-const holds = (list: Post[]) => list.some((post) => post.id === current);
+const holds = (list: Post[]) => list.some((post) => post.href === current);
 
 // A TeX cover is set once, here at build time, so the page carries KaTeX's
-// markup and its stylesheet does the rest; no script runs for it.
+// markup and its stylesheet does the rest; no script runs for it. Keyed, as
+// the blurbs are, by the series' name.
 type Cover = { html: string; size?: string } | Exclude<SeriesCover, { tex: string }>;
-const setCovers = (from: Record<string, SeriesCover>) =>
-	Object.fromEntries(
-		Object.entries(from).map(([key, cover]) => [
-			key,
-			'tex' in cover
-				? { html: katex.renderToString(cover.tex, { throwOnError: true }), size: cover.size }
-				: cover,
-		]),
-	) as Record<string, Cover>;
-const covers = setCovers(SERIES_COVERS);
-// A card post's cover, keyed by its slug (see POST_COVERS).
-const postCovers = setCovers(POST_COVERS);
+const setCover = (cover: SeriesCover): Cover =>
+	'tex' in cover
+		? { html: katex.renderToString(cover.tex, { throwOnError: true }), size: cover.size }
+		: { ...cover, backdrop: cover.backdrop && (BACKDROPS[cover.backdrop] ?? cover.backdrop) };
+const covers: Record<string, Cover> = Object.fromEntries(
+	site.series.flatMap((s) => (s.data.cover ? [[s.data.title, setCover(s.data.cover)]] : [])),
+);
+const blurbs: Record<string, string | undefined> = Object.fromEntries(
+	site.series.map((s) => [s.data.title, s.data.blurb]),
+);
 
-// The narrow home page's row of cards: every series, and every single post
+// The narrow home page's row of cards: every series, and every single deck
 // that is a card, in the order the tree has them.
 const railCards = entries.flatMap((entry) =>
 	entry.kind === 'series'
 		? [
 				{
-					href: `/blog/${entry.posts[0].id}/`,
+					href: entry.posts[0].href,
 					cover: covers[entry.name],
 					label: `${entry.posts.length} parts`,
-					wip: SERIES_WIP.has(entry.name),
+					wip: entry.series.data.wip,
 					name: entry.name,
-					blurb: SERIES_BLURBS[entry.name],
+					blurb: blurbs[entry.name],
 				},
 			]
 		: entry.kind === 'card'
 			? [
 					{
-						href: `/blog/${entry.post.id}/`,
-						cover: postCovers[entry.post.id],
+						href: entry.post.href,
+						cover: covers[entry.name],
 						date: entry.post.data.pubDate,
-						wip: false,
-						name: entry.post.data.title,
-						blurb: entry.post.data.description,
+						wip: entry.series.data.wip,
+						name: entry.name,
+						blurb: blurbs[entry.name] ?? entry.post.data.description,
 					},
 				]
 			: [],
@@ -138,7 +155,7 @@ const railCards = entries.flatMap((entry) =>
 								<span class="card">
 									<span class="meta">
 										<span data-series-count>{entry.posts.length} parts</span>
-										{SERIES_WIP.has(entry.name) && <span class="wip">WIP</span>}
+										{entry.series.data.wip && <span class="wip">WIP</span>}
 									</span>
 									{covers[entry.name] &&
 										('html' in covers[entry.name] ? (
@@ -160,8 +177,8 @@ const railCards = entries.flatMap((entry) =>
 										))}
 									<span class="card-body">
 										<span class="name">{entry.name}</span>
-										{SERIES_BLURBS[entry.name] && (
-											<span class="blurb">{SERIES_BLURBS[entry.name]}</span>
+										{blurbs[entry.name] && (
+											<span class="blurb">{blurbs[entry.name]}</span>
 										)}
 									</span>
 								</span>
@@ -171,21 +188,21 @@ const railCards = entries.flatMap((entry) =>
 									{entry.posts.map((post, i) => (
 										<li
 											data-pubdate={post.data.pubDate.valueOf()}
-											aria-current={post.id === current ? 'page' : undefined}
+											aria-current={post.href === current ? 'page' : undefined}
 										>
-											<a class="row file" href={`/blog/${post.id}/`}>
+											<a class="row file" href={post.href}>
 												<svg class="icon" viewBox="0 0 384 512" aria-hidden="true">
-													<path d={FILE} />
+													<path d={BOOKMARK} />
 												</svg>
-												<span class="node">
-													<span class="label">
-														Part {i + 1} · <FormattedDate date={post.data.pubDate} />
-													</span>
-													<span class="name">
-														{stripSeriesPrefix(post.data.title, entry.name)}
-													</span>
+												<span class="name">
+													{post.part && <span class="part">#{post.part}</span>}
+													{post.data.title}
 												</span>
+												<span class="when">{day(post.data.pubDate)}</span>
 											</a>
+											{slideTitles(post) && (
+												<TreeSlides href={post.href} titles={slideTitles(post)!} />
+											)}
 										</li>
 									))}
 								</ul>
@@ -199,56 +216,58 @@ const railCards = entries.flatMap((entry) =>
 					<li
 						class="series is-post"
 						data-pubdate={entry.post.data.pubDate.valueOf()}
-						aria-current={entry.post.id === current ? 'page' : undefined}
+						aria-current={entry.post.href === current ? 'page' : undefined}
 					>
-						<a class="folder" href={`/blog/${entry.post.id}/`}>
+						<a class="folder" href={entry.post.href}>
 							<span class="card">
 								<span class="meta">
 									<FormattedDate date={entry.post.data.pubDate} />
 								</span>
-								{postCovers[entry.post.id] &&
-									('html' in postCovers[entry.post.id] ? (
+								{covers[entry.name] &&
+									('html' in covers[entry.name] ? (
 										<span
 											class="cover is-tex"
-											style={{ 'font-size': postCovers[entry.post.id].size }}
-											set:html={postCovers[entry.post.id].html}
+											style={{ 'font-size': covers[entry.name].size }}
+											set:html={covers[entry.name].html}
 										/>
 									) : (
 										<img
-											class:list={['cover', { 'is-ink': postCovers[entry.post.id].ink }]}
-											src={postCovers[entry.post.id].src}
+											class:list={['cover', { 'is-ink': covers[entry.name].ink }]}
+											src={covers[entry.name].src}
 											style={{
-												'object-position': postCovers[entry.post.id].position,
-												background: postCovers[entry.post.id].backdrop,
+												'object-position': covers[entry.name].position,
+												background: covers[entry.name].backdrop,
 											}}
 											alt=""
 										/>
 									))}
 								<span class="card-body">
-									<span class="name">{entry.post.data.title}</span>
-									{entry.post.data.description && (
-										<span class="blurb">{entry.post.data.description}</span>
+									<span class="name">{entry.name}</span>
+									{(blurbs[entry.name] ?? entry.post.data.description) && (
+										<span class="blurb">{blurbs[entry.name] ?? entry.post.data.description}</span>
 									)}
 								</span>
 							</span>
 						</a>
+						{slideTitles(entry.post) && (
+							<TreeSlides href={entry.post.href} titles={slideTitles(entry.post)!} />
+						)}
 					</li>
 				) : (
 					<li
 						data-pubdate={entry.post.data.pubDate.valueOf()}
-						aria-current={entry.post.id === current ? 'page' : undefined}
+						aria-current={entry.post.href === current ? 'page' : undefined}
 					>
-						<a class="row file" href={`/blog/${entry.post.id}/`}>
+						<a class="row file" href={entry.post.href}>
 							<svg class="icon" viewBox="0 0 384 512" aria-hidden="true">
-								<path d={FILE} />
+								<path d={iconOf(entry.post)} />
 							</svg>
-							<span class="node">
-								<span class="label">
-									<FormattedDate date={entry.post.data.pubDate} />
-								</span>
-								<span class="name">{entry.post.data.title}</span>
-							</span>
+							<span class="name">{entry.post.fullTitle}</span>
+							<span class="when">{day(entry.post.data.pubDate)}</span>
 						</a>
+						{slideTitles(entry.post) && (
+							<TreeSlides href={entry.post.href} titles={slideTitles(entry.post)!} />
+						)}
 					</li>
 				)}
 				</Fragment>
@@ -264,7 +283,7 @@ const railCards = entries.flatMap((entry) =>
 			)}
 			<p>
 				Hi, I'm Flo, Vienna-based Software Developer. Check out my post on{' '}
-				<a href="/blog/2026-10-17-parser-combinators/">Parser Combinators</a>!
+				<a href="/blog/parser-combinators/">Parser Combinators</a>!
 			</p>
 		</div>
 		{
@@ -278,16 +297,16 @@ const railCards = entries.flatMap((entry) =>
 						<ul class="nodes">
 							{section.posts.map((post) => (
 								<li data-pubdate={post.data.pubDate.valueOf()}>
-									<a class="row file" href={`/blog/${post.id}/`}>
+									<a class="row file" href={post.href}>
 										<svg class="icon" viewBox="0 0 384 512" aria-hidden="true">
-											<path d={FILE} />
+											<path d={iconOf(post)} />
 										</svg>
 										<span class="node">
 											<span class="label">
 												{section.newest && <Fragment><span class="newest">Newest post</span> · </Fragment>}
 												<FormattedDate date={post.data.pubDate} />
 											</span>
-											<span class="name">{post.data.title}</span>
+											<span class="name">{post.fullTitle}</span>
 										</span>
 									</a>
 								</li>
@@ -867,6 +886,83 @@ const railCards = entries.flatMap((entry) =>
 		font-size: calc(1.1rem * var(--tree-text, 1));
 	}
 
+	/* The tree as an editor's: the cards keep their pictures, and everything
+	   under and between them is one line a row, packed close. A row is its icon, its name cut short
+	   where it runs out of room, and its date at the far end, faint. Parts and
+	   cards hang a step in off a guide, as a folder's files do. Only in the
+	   tree itself: the narrow home page's runs of posts keep their own rows. */
+	.tree > .nodes li:not(.series) {
+		border-top: 0;
+		box-shadow: none;
+	}
+	/* A post on its own at the top level is an entry as a card is, with the
+	   groove between it and the next; only the parts inside a folder run on
+	   without one. */
+	.tree > .nodes > li:not(.series) {
+		padding-block: 0.15rem;
+	}
+	.tree > .nodes > li > .row {
+		padding-left: 0.6rem;
+	}
+	.tree > .nodes > li:not(.series):not(:first-child) {
+		border-top: 1px solid var(--groove-cut);
+		box-shadow: inset 0 1px 0 var(--groove-edge);
+	}
+	.tree > .nodes .row {
+		gap: 0.5rem;
+		padding: 0.18rem var(--row-x);
+	}
+	.tree > .nodes .row .name {
+		flex: 1;
+		min-width: 0;
+		font-size: calc(1rem * var(--tree-text, 1));
+		line-height: 1.45;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		text-wrap: nowrap;
+	}
+	.tree > .nodes .icon {
+		flex-basis: 0.8rem;
+		width: 0.8rem;
+		height: 0.8rem;
+	}
+	/* A part's number before its title, in the dates' face. */
+	.part {
+		margin-right: 0.45em;
+		font-family: var(--font-mono);
+		font-size: 0.85em;
+		color: var(--index-faint, var(--ink-500));
+	}
+	li[aria-current] > .row .part {
+		color: var(--ink-accent);
+	}
+	.when {
+		flex: none;
+		font-family: var(--font-mono);
+		font-size: calc(0.75rem * var(--tree-text, 1));
+		color: var(--index-faint, var(--ink-500));
+		font-variant-numeric: tabular-nums;
+	}
+	li[aria-current] > .row .when {
+		color: var(--ink-accent);
+	}
+	.tree .folder-body {
+		/* The guide a short way in, so that its parts' icons line up with the
+		   icons of the posts between the cards. */
+		margin: 0 0 0.35rem calc(var(--row-x) - 0.5rem);
+		/* An open part's cards hang off the middle of its icon (TreeSlides). */
+		--slides-at: 0.9rem;
+		border-left: 1px solid var(--groove-cut);
+		box-shadow: inset 1px 0 0 var(--groove-edge);
+	}
+	.tree .folder-body .row {
+		padding-left: 0.5rem;
+	}
+	.tree .folder-body .name {
+		font-size: calc(1rem * var(--tree-text, 1));
+	}
+
 	@media (max-width: 1099px) {
 		.tree {
 			--row-x: 1rem;
@@ -920,20 +1016,37 @@ const railCards = entries.flatMap((entry) =>
 	const select = (li: Element | null) => {
 		const root = tree();
 		if (!root) return;
-		root.querySelectorAll('li[aria-current]').forEach((was) => {
+		root.querySelectorAll('li[aria-current="page"]').forEach((was) => {
 			if (was !== li) was.removeAttribute('aria-current');
 		});
 		li?.setAttribute('aria-current', 'page');
+		// A post folded shut opens again when the reader goes to another.
+		root.querySelectorAll('li[data-folded]').forEach((was) => {
+			if (was !== li) was.removeAttribute('data-folded');
+		});
 		root.querySelectorAll<HTMLDetailsElement>('li[data-series] > details').forEach((folder) => {
 			folder.open = !!li && folder.contains(li);
 		});
 	};
 
+	// A post's link is a row, or a card for a post that has a cover.
+	const POST_LINK = ':scope > .nodes :is(a.row, li.is-post > a.folder)';
 	const here = () => {
 		const path = location.pathname.replace(/\/?$/, '/');
-		const link = tree()?.querySelector(`:scope > .nodes a.row[href="${CSS.escape(path)}"]`);
+		const links = tree()?.querySelectorAll(POST_LINK) ?? [];
+		const link = Array.from(links).find((a) => a.getAttribute('href') === path);
 		return link?.parentElement ?? null;
 	};
+
+	/* A deck's card on screen, marked among its post's pages (see
+	   TreeSlides): the deck says which as it turns (deck:card). */
+	document.addEventListener('deck:card', (e) => {
+		const { index } = (e as CustomEvent<{ index: number }>).detail;
+		const root = tree();
+		if (!root) return;
+		root.querySelectorAll('li[aria-current="step"]').forEach((was) => was.removeAttribute('aria-current'));
+		here()?.querySelector(`[data-slides] > li[data-slide="${index}"]`)?.setAttribute('aria-current', 'step');
+	});
 
 	/* Every page, the one landed on included: the open file is whatever the
 	   address says, which covers the back button as well as a click. Then it is
@@ -950,12 +1063,40 @@ const railCards = entries.flatMap((entry) =>
 		e.button === 0 && !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey;
 	const beside = matchMedia('(min-width: 1100px)');
 
+	/* Caught on the way down, before the router's own listener (which comes
+	   first on the way up): a link the tree keeps from being followed has to
+	   be stopped before the router sees it, or the router follows it anyway,
+	   to the same page, and the tree is lifted out and put back mid-fold. */
 	document.addEventListener('click', (e) => {
 		if (!plain(e) || !(e.target instanceof Element) || !e.target.closest('nav.tree')) return;
 
+		/* One of a deck's cards: on the deck that is open, turned to there and
+		   then, with no page to load (the deck hears deck:go); on another, the
+		   deck opened at that card, its post marked open on the way. */
+		const slide = e.target.closest<HTMLAnchorElement>('[data-slides] a');
+		if (slide) {
+			const post = slide.closest('[data-slides]')!.parentElement;
+			if (post === here()) {
+				e.preventDefault();
+				const index = Number(slide.parentElement!.dataset.slide);
+				document.dispatchEvent(new CustomEvent('deck:go', { detail: { index } }));
+			} else {
+				select(post);
+			}
+			return;
+		}
+
+		/* The open post again: nowhere to go, so it folds its cards away, or
+		   unfolds them (see TreeSlides). */
+		const row = e.target.closest('a.row, li.is-post > a.folder');
+		if (row && row.parentElement === here()) {
+			e.preventDefault();
+			row.parentElement.toggleAttribute('data-folded');
+			return;
+		}
+
 		/* Optimistic: the tree moves to where the reader is going the moment
 		   they choose it, while the post is still on its way. */
-		const row = e.target.closest('a.row');
 		if (row) {
 			select(row.parentElement);
 			return;
@@ -973,5 +1114,5 @@ const railCards = entries.flatMap((entry) =>
 		e.preventDefault();
 		select(first.parentElement);
 		navigate(first.href);
-	});
+	}, true);
 </script>

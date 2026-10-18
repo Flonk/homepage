@@ -1,51 +1,82 @@
 ---
-import { type CollectionEntry, getCollection, render } from 'astro:content';
+import { render } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
 import DeckPost from '../../layouts/DeckPost.astro';
-import { type SeriesLink, sortSeries } from '../../series';
+import type { SeriesLink } from '../../series';
+import { loadSite, type Page } from '../../site';
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blog');
-	/* A post's neighbours in its own series, so a deck can offer the next part
+	const site = await loadSite();
+	const slug = (href: string) => href.replace(/^\/blog\/|\/$/g, '');
+	const link = (p: Page | undefined): SeriesLink | undefined =>
+		p && { href: p.href, part: p.part ?? '', title: p.data.title, pubDate: p.data.pubDate.valueOf() };
+
+	/* A chapter's neighbours in its series, so a deck can offer the next part
 	   when the reader reaches its last card. Worked out here because this is
-	   where the whole collection is in hand; the layout only ever sees one post. */
-	return posts.map((post) => {
-		const run = post.data.series
-			? sortSeries(posts.filter((p) => p.data.series === post.data.series))
-			: [];
-		const at = run.findIndex((p) => p.id === post.id);
-		const link = (p: (typeof run)[number] | undefined, part: number): SeriesLink | undefined =>
-			p
-				? { href: `/blog/${p.id}/`, part, title: p.data.title, pubDate: p.data.pubDate.valueOf() }
-				: undefined;
+	   where the whole site is in hand; the layout only ever sees one page. */
+	const pages = site.pages.map((page) => {
+		const run = page.series?.chapters ?? [];
+		const at = run.indexOf(page);
 		return {
-			params: { slug: post.id },
+			params: { slug: slug(page.href) },
 			props: {
-				...post,
-				// Part numbers come from the running order, not from parsing titles.
-				prevPart: link(run[at - 1], at),
-				nextPart: link(run[at + 1], at + 2),
+				page,
+				prevPart: link(run[at - 1]),
+				nextPart: link(run[at + 1]),
 				// Every part, for the series menu; a hidden one only on its own page.
-				seriesParts: run.flatMap((p, i) =>
-					!p.data.hidden || p.id === post.id ? [link(p, i + 1)!] : [],
-				),
+				seriesParts: run.flatMap((p) => (!p.data.hidden || p === page ? [link(p)!] : [])),
 			},
 		};
 	});
+	// A series with no index of its own opens at its first chapter.
+	const roots = site.series
+		.filter((s) => !s.hasIndex)
+		.map((s) => ({ params: { slug: s.slug }, props: { to: s.chapters[0].href } }));
+	return [...pages, ...roots];
 }
-type Props = CollectionEntry<'blog'> & {
+
+// A page, or where a series without an index sends its reader on to.
+type Props = {
+	page?: Page;
 	prevPart?: SeriesLink;
 	nextPart?: SeriesLink;
-	seriesParts: SeriesLink[];
+	seriesParts?: SeriesLink[];
+	to?: string;
 };
 
-const { prevPart, nextPart, seriesParts, ...post } = Astro.props;
-const { Content } = await render(post);
+const { page, prevPart, nextPart, seriesParts, to } = Astro.props;
+// Sent on at once, as Astro's own redirects are; Astro.redirect in a static
+// build would show its notice for two seconds first.
+const Content = page && (await render(page.entry)).Content;
 
 // `format` in the frontmatter picks the layout; see content.config.ts.
-const Layout = post.data.format === 'deck' ? DeckPost : BlogPost;
+const Layout = page?.data.format === 'deck' ? DeckPost : BlogPost;
 ---
 
-<Layout {...post.data} id={post.id} prevPart={prevPart} nextPart={nextPart} seriesParts={seriesParts}>
-	<Content />
-</Layout>
+{to ? (
+	<html lang="en">
+		<head>
+			<meta charset="utf-8" />
+			<title>Redirecting to {to}</title>
+			<meta http-equiv="refresh" content={`0;url=${to}`} />
+			<meta name="robots" content="noindex" />
+			<link rel="canonical" href={new URL(to, Astro.site)} />
+		</head>
+		<body><a href={to}>{to}</a></body>
+	</html>
+) : (
+	page && Content && (
+		<Layout
+			{...page.data}
+			href={page.href}
+			fullTitle={page.fullTitle}
+			series={page.part && page.series?.data.title}
+			part={page.part}
+			prevPart={prevPart}
+			nextPart={nextPart}
+			seriesParts={seriesParts}
+		>
+			<Content />
+		</Layout>
+	)
+)}

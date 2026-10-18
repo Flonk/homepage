@@ -1,4 +1,8 @@
 ---
+import ABOUT from './milk-about.json';
+import STEPS from './milk-steps.json';
+import REGIONS from './milk-regions.json';
+
 /**
  * What milk becomes: every product as a node and every making-of as an arrow,
  * milk itself large in the middle and what is made from it pulled out round
@@ -51,9 +55,9 @@ const NODES: Record<string, Product> = {
 	homogenised: { label: 'Homogenised milk', aka: ['Homogenisierte Milch'], from: 'raw', step: 'homogenise' },
 	pasteurised: { label: 'Pasteurised milk', aka: ['Pasteurisierte Milch'], from: 'homogenised', alsoFrom: ['skimRaw'], step: 'pasteurise' },
 	fresh: { label: 'Fresh whole milk', aka: ['Frischmilch', 'Frische Vollmilch'], from: 'pasteurised', step: 'chill and bottle' },
-	esl: { label: 'ESL milk', aka: ['Extended shelf life milk', 'Länger frische Milch'], from: 'homogenised', step: 'heat higher or microfilter' },
-	uht: { label: 'UHT milk', aka: ['Long-life milk', 'H-Milch', 'H-Vollmilch', 'Haltbarmilch'], from: 'homogenised', step: 'heat to 135–150 °C' },
-	sterilised: { label: 'Sterilised milk', aka: ['Sterilmilch'], from: 'homogenised', step: 'sterilise in the bottle' },
+	esl: { label: 'ESL milk', aka: ['Extended shelf life milk', 'Länger frische Milch'], from: 'homogenised', step: 'heat higher' },
+	uht: { label: 'UHT milk', aka: ['Long-life milk', 'H-Milch', 'H-Vollmilch', 'Haltbarmilch'], from: 'homogenised', step: 'ultra-heat' },
+	sterilised: { label: 'Sterilised milk', aka: ['Sterilmilch'], from: 'homogenised', step: 'sterilise in bottle' },
 	// Concentrated first and sterilised in its can after.
 	evaporated: { label: 'Evaporated milk', aka: ['Kondensmilch'], from: 'pasteurised', step: 'evaporate, sterilise in can' },
 	// The sugar goes in before the milk is boiled down, and keeps it.
@@ -68,11 +72,18 @@ const NODES: Record<string, Product> = {
 	bakedMilk: { label: 'Baked milk', aka: ['Toplyonoye moloko', 'Топлёное молоко'], from: 'pasteurised', step: 'hold hot for hours' },
 	skimRaw: { label: 'Skimmed raw milk', aka: ['Fettarme bis magere Rohmilch'], from: 'raw', step: 'skim', byproducts: { rawCream: 'cream taken off' } },
 	semi: { label: 'Semi-skimmed milk', aka: ['Low-fat milk', 'Fettarme Milch'], from: 'skimRaw', step: 'standardise the fat' },
-	semiUht: { label: 'Semi-skimmed\nUHT milk', aka: ['Fettarme H-Milch'], from: 'skimRaw', step: 'heat to 135–150 °C' },
-	semiEvaporated: { label: 'Semi-skimmed\nevaporated milk', aka: ['Teilentrahmte Kondensmilch'], from: 'semiUht', step: 'evaporate' },
+	semiUht: { label: 'Semi-skimmed\nUHT milk', aka: ['Fettarme H-Milch'], from: 'semi', step: 'heat to ≥135 °C' },
+	semiEvaporated: { label: 'Semi-skimmed\nevaporated milk', aka: ['Teilentrahmte Kondensmilch'], from: 'semi', step: 'evaporate, sterilise in can' },
 	skimmed: { label: 'Skimmed milk', aka: ['Skim milk', 'Magermilch'], from: 'skimRaw', step: 'pasteurise' },
 	skimmedEvaporated: { label: 'Evaporated\nskimmed milk', aka: ['Kondensmagermilch'], from: 'skimmed', step: 'evaporate' },
-	skimmedPowder: { label: 'Skimmed milk\npowder', aka: ['Nonfat dry milk', 'Magermilchpulver'], from: 'skimmed', step: 'spray-dry' },
+	// Its examples are where it goes, not kinds of it.
+	skimmedPowder: {
+		label: 'Skimmed milk\npowder',
+		aka: ['Nonfat dry milk', 'Magermilchpulver'],
+		examples: ['Milk chocolate', 'Infant formula', 'Food aid', 'Film-set cocaine'],
+		from: 'skimmed',
+		step: 'spray-dry',
+	},
 
 	// A second root beside milk: the first milkings after calving, a secretion
 	// of its own, which sets like egg when it is heated.
@@ -80,9 +91,9 @@ const NODES: Record<string, Product> = {
 	colostrumPudding: {
 		label: 'Colostrum pudding',
 		aka: ['Råmjölkspudding', 'Beestings pudding'],
-		examples: ['Kalvdans', 'Ábrystir', 'Junnu', 'Kharvas', 'Groosniuys'],
+		examples: ['Kalvdans', 'Ábrystir', 'Junnu', 'Kharvas'],
 		from: 'colostrum',
-		step: 'bake until set',
+		step: 'bake or steam until set',
 	},
 	colostrumPowder: { label: 'Colostrum powder', from: 'colostrum', step: 'skim, dry gently' },
 	travelan: { label: 'Hyperimmune\ncolostrum', aka: ['Travelan', 'Immune milk'], from: 'colostrumPowder', step: 'from immunised cows' },
@@ -99,15 +110,15 @@ const NODES: Record<string, Product> = {
 	cream: { label: 'Cream', aka: ['Sahne', 'Crème liquide'], from: 'rawCream', step: 'pasteurise' },
 	// Kaymak and malai also skim off heated whole milk as it cools.
 	clotted: { label: 'Clotted cream\n(kaymak)', aka: ['Kajmak', 'Öröm'], examples: ['Cornish clotted cream', 'Kaymak', 'Malai', 'Urum'], from: 'cream', alsoFrom: ['fresh'], step: 'heat slowly, skim the crust' },
-	rabri: { label: 'Rabri', aka: ['Rabdi', 'Layered milk skins'], from: 'clotted', step: 'layer the skins, reduce' },
+	rabri: { label: 'Rabri', aka: ['Rabdi', 'Layered milk skins'], from: 'fresh', step: 'reduce, layer the skins' },
 	coffeeCream: { label: 'Coffee cream', aka: ['Kaffeesahne'], from: 'rawCream', step: 'standardise, sterilise' },
 	whipping: { label: 'Whipping cream', aka: ['Schlagsahne', 'Schlagobers'], from: 'rawCream', step: 'standardise to 30 %+' },
 	double: { label: 'Double cream', aka: ['Crème double'], from: 'rawCream', step: 'standardise to 48 %' },
 	evaporatedCream: { label: 'Evaporated cream', aka: ['Kondenssahne'], from: 'rawCream', step: 'evaporate' },
-	souredCream: { label: 'Cultured cream', aka: ['Sauerrahm'], from: 'rawCream', step: 'add culture' },
-	sourCream: { label: 'Sour cream', aka: ['Saure Sahne'], from: 'souredCream', step: 'set at 10–20 % fat' },
-	smetana: { label: 'Smetana', aka: ['Schmand', 'Smetana', 'Smântână'], from: 'souredCream', step: 'set at 20–30 % fat' },
-	cremeFraiche: { label: 'Crème fraîche', aka: ['Crème épaisse'], from: 'souredCream', step: 'set at 30–40 % fat' },
+	souredCream: { label: 'Cultured cream', aka: ['Sauerrahm'], from: 'rawCream', step: 'ferment cream' },
+	sourCream: { label: 'Sour cream', aka: ['Saure Sahne'], from: 'souredCream', step: 'ferment cream' },
+	smetana: { label: 'Smetana', aka: ['Schmand', 'Smetana', 'Smântână'], from: 'souredCream', step: 'ferment cream' },
+	cremeFraiche: { label: 'Crème fraîche', aka: ['Crème épaisse'], from: 'souredCream', step: 'ferment rich cream' },
 	// Cream set by heat and acid, rather than made from crème fraîche.
 	mascarpone: { label: 'Mascarpone', from: 'cream', step: 'heat with acid' },
 	posset: { label: 'Posset', examples: ['Lemon posset', 'Syllabub'], from: 'cream', step: 'curdle with wine or citrus' },
@@ -117,17 +128,17 @@ const NODES: Record<string, Product> = {
 	kulfi: { label: 'Kulfi', from: 'fresh', step: 'reduce, freeze in moulds' },
 
 	butter: { label: 'Sweet cream butter', aka: ['Butter', 'Süßrahmbutter'], from: 'cream', step: 'churn', byproducts: { churn: 'liquid left in the churn' } },
-	culturedButter: { label: 'Cultured butter', aka: ['Sauerrahmbutter'], examples: ['Makhan', 'Kibe', 'Zebda'], from: 'souredCream', alsoFrom: ['soured'], step: 'churn', byproducts: { buttermilk: 'buttermilk left' } },
+	culturedButter: { label: 'Cultured butter', aka: ['Sauerrahmbutter'], examples: ['Makhan', 'Kibe', 'Zebda'], from: 'souredCream', alsoFrom: ['soured'], step: 'ripen, churn', byproducts: { buttermilk: 'buttermilk left' } },
 	mildButter: { label: 'Mildly soured butter', aka: ['Mildgesäuerte Butter'], from: 'butter', step: 'work in culture' },
 	// Desi ghee is boiled from butter churned from dahi.
-	butterfat: { label: 'Ghee', aka: ['Desi ghee', 'Butterschmalz'], from: 'butter', alsoFrom: ['culturedButter'], step: 'simmer until brown' },
-	clarified: { label: 'Clarified butter', aka: ['Geklärte Butter', 'Samneh'], from: 'butter', step: 'melt, lift off solids' },
+	butterfat: { label: 'Ghee', aka: ['Desi ghee'], from: 'butter', alsoFrom: ['culturedButter'], step: 'simmer until brown' },
+	clarified: { label: 'Clarified butter', aka: ['Butterschmalz', 'Geklärte Butter', 'Samneh'], from: 'butter', step: 'melt, lift off solids' },
 	amf: { label: 'Anhydrous milk fat', aka: ['AMF', 'Butter oil', 'Butterreinfett'], from: 'butter', alsoFrom: ['cream'], step: 'remove water and solids' },
 	smen: { label: 'Smen', aka: ['Aged butter', 'Semn'], from: 'clarified', step: 'salt, age in jars' },
 	bogButter: { label: 'Bog butter', aka: ['Im portaigh'], from: 'butter', step: 'bury in peat' },
 	nitirKibbeh: { label: 'Spiced butter\n(niter kibbeh)', aka: ['Niter kibbeh', 'Niter qibe', 'Tesmi'], from: 'clarified', step: 'simmer with spices' },
-	churn: { label: 'Churning liquid', aka: ['Milchflüssigkeit'], from: 'cream', step: 'left from churning' },
-	buttermilk: { label: 'Buttermilk', aka: ['Buttermilch'], from: 'churn', step: 'add culture' },
+	churn: { label: 'Churning liquid', aka: ['Sweet buttermilk', 'Süßrahmbuttermilch'], from: 'cream', step: 'left from churning' },
+	buttermilk: { label: 'Buttermilk', aka: ['Buttermilch'], from: 'churn', step: 'sour' },
 	// The buttermilk of butter churned from soured milk or yoghurt rather than
 	// cream, as across North Africa, the Middle East, Ethiopia and South Asia.
 	// What is left of butter churned from the whole soured milk.
@@ -146,53 +157,61 @@ const NODES: Record<string, Product> = {
 	soured: {
 		label: 'Soured milk',
 		aka: ['Sauermilch', 'Maas'],
-		examples: ['Dickmilch', 'Filmjölk', 'Prostokvasha', 'Clabber', 'Piimä', 'Laban rayeb', 'Raib', 'Ergo', 'Amasi'],
+		examples: ['Dickmilch', 'Filmjölk', 'Prostokvasha', 'Clabber', 'Piimä', 'Filbunke', 'Laban rayeb', 'Raib', 'Ergo', 'Amasi'],
 		from: 'pasteurised',
 		alsoFrom: ['raw'],
-		step: 'mesophilic culture',
+		step: 'ferment',
 	},
-	ropy: { label: 'Ropy milk', examples: ['Långfil', 'Viili', 'Tätmjölk', 'Filbunke'], from: 'pasteurised', step: 'ropy culture' },
-	ryazhenka: { label: 'Ryazhenka', aka: ['Baked fermented milk', 'Ряженка'], examples: ['Varenets'], from: 'bakedMilk', step: 'ferment' },
-	kefir: { label: 'Kefir', from: 'pasteurised', step: 'kefir grains' },
+	ropy: { label: 'Ropy milk', examples: ['Långfil', 'Viili', 'Tätmjölk'], from: 'pasteurised', step: 'ferment' },
+	ryazhenka: { label: 'Ryazhenka', aka: ['Baked fermented milk', 'Ряженка'], examples: ['Varenets'], from: 'bakedMilk', step: 'ferment baked milk' },
+	kefir: { label: 'Kefir', from: 'pasteurised', step: 'ferment with grains' },
 	mildYoghurt: {
 		label: 'Mild & probiotic\nyoghurt',
 		aka: ['Joghurt mild', 'Joghurt probiotisch'],
-		examples: ['Bioghurt', 'Acidophilus milk', 'Actimel', 'Yakult'],
+		examples: ['Bioghurt', 'Actimel'],
 		from: 'pasteurised',
-		step: 'probiotic cultures',
+		step: 'ferment with probiotics',
 	},
-	yoghurt: { label: 'Yoghurt', aka: ['Yogurt', 'Joghurt', 'Matzoon'], examples: ['Dahi', 'Tarag', 'Matsoni'], from: 'pasteurised', step: 'thermophilic culture' },
-	mishtiDoi: { label: 'Mishti doi', aka: ['Sweet yoghurt', 'Misti dahi'], from: 'fresh', step: 'caramelise, set in clay' },
-	creamYoghurt: { label: 'Cream yoghurt', aka: ['Sahnejoghurt'], from: 'yoghurt', step: 'enrich with cream' },
+	// Not yoghurt: one probiotic strain on its own, without the yoghurt cultures.
+	probioticDrink: {
+		label: 'Probiotic\nmilk drink',
+		aka: ['Fermented milk drink'],
+		examples: ['Yakult', 'Acidophilus milk'],
+		from: 'skimmed',
+		step: 'ferment',
+	},
+	yoghurt: { label: 'Yoghurt', aka: ['Yogurt', 'Joghurt', 'Matzoon'], examples: ['Dahi', 'Tarag', 'Matsoni'], from: 'pasteurised', step: 'ferment' },
+	mishtiDoi: { label: 'Mishti doi', aka: ['Sweet yoghurt', 'Misti dahi'], from: 'fresh', step: 'sweeten, ferment' },
+	creamYoghurt: { label: 'Cream yoghurt', aka: ['Sahnejoghurt'], from: 'yoghurt', step: 'ferment cream' },
 	greek: { label: 'Greek yoghurt', aka: ['Strained yoghurt', 'Griechischer Joghurt'], examples: ['Labneh', 'Chakka', 'Suzma'], from: 'yoghurt', step: 'strain', byproducts: { acidWhey: 'whey strained off' } },
-	skyr: { label: 'Skyr', from: 'skimRaw', step: 'culture, strain', byproducts: { acidWhey: 'whey strained off' } },
+	// A fresh sour milk cheese, though eaten as yoghurt is: the curd of skimmed milk, set with a little rennet besides, strained as quark is.
+	skyr: { label: 'Skyr', from: 'curd', alsoFrom: ['skimmed'], step: 'strain', byproducts: { acidWhey: 'whey strained off' } },
 	ayran: { label: 'Ayran', examples: ['Doogh', 'Tan', 'Mastaw', 'Salted lassi'], from: 'yoghurt', step: 'dilute, salt' },
 	driedYoghurt: {
 		label: 'Dried yoghurt\n(kashk, qurut)',
 		aka: ['Getrockneter Joghurt', 'Kurt', 'Aarul'],
-		examples: ['Kashk', 'Qurut', 'Chortan', 'Aaruul'],
+		examples: ['Kashk', 'Jameed', 'Qurut', 'Chortan', 'Aaruul'],
 		from: 'yoghurt',
 		alsoFrom: ['fermButtermilk'],
-		step: 'salt, dry',
+		step: 'churn, dry',
 	},
-	kishk: { label: 'Kishk', aka: ['Kishk shami', 'Keshk'], from: 'yoghurt', step: 'ferment with bulgur, dry' },
-	jameed: { label: 'Jameed', aka: ['Jameed balls', 'جميد'], from: 'fermButtermilk', step: 'strain, salt, sun-dry' },
-	qaraqurut: { label: 'Qaraqurut', from: 'acidWhey', step: 'boil down, dry' },
+	kishk: { label: 'Kishk', aka: ['Kishk shami', 'Keshk'], from: 'yoghurt', step: 'ferment, dry' },
+	qaraqurut: { label: 'Qaraqurut', from: 'acidWhey', step: 'boil, dry' },
 	dadiah: { label: 'Dadiah', aka: ['Dadih', 'Buffalo milk in bamboo'], from: 'raw', step: 'ferment in bamboo' },
-	mursik: { label: 'Mursik', aka: ['Kule naoto', 'Gourd-fermented milk'], from: 'raw', step: 'ferment in a charred gourd' },
+	mursik: { label: 'Mursik', aka: ['Kule naoto', 'Gourd-fermented milk'], from: 'raw', step: 'ferment in gourd' },
 	choormog: {
 		label: 'Fermented\ncamel milk',
 		aka: ['Khoormog', 'Chal'],
 		examples: ['Choormog', 'Shubat', 'Gariss', 'Suusac', 'Dhanaan'],
 		from: 'raw',
-		step: 'ferment',
+		step: 'ferment camel milk',
 	},
-	kumis: { label: 'Kumis / airag\n(mare\'s milk)', aka: ['Kumis', 'Koumiss', 'Kymyz', 'Airag', 'Kumys'], from: 'raw', step: 'ferment' },
+	kumis: { label: 'Kumis / airag\n(mare\'s milk)', aka: ['Kumis', 'Koumiss', 'Kymyz', 'Airag', 'Kumys'], from: 'raw', step: 'ferment mare\'s milk' },
 	arkhi: { label: 'Arkhi', aka: ['Milk vodka', 'Yark', 'Darasun', 'Araky'], examples: ['Shimiin arkhi', 'Araka', 'Tarasun', 'Araga'], from: 'yoghurt', alsoFrom: ['soured', 'kumis'], step: 'distil', byproducts: { stillCheese: 'left in the still' } },
 	arkhiGrades: {
 		label: 'Re-distilled arkhi\n(artz, khorz)',
-		aka: ['Arz', 'Arza', 'Khorn shu', 'Dan zarya'],
-		examples: ['Artz', 'Khorz', 'Šarz', 'Borz'],
+		aka: ['Arz', 'Arza'],
+		examples: ['Artz', 'Khorz'],
 		from: 'arkhi',
 		step: 'distil again',
 	},
@@ -200,52 +219,52 @@ const NODES: Record<string, Product> = {
 	stillCheese: { label: 'Still-residue\ncheese (shuurmg)', aka: ['Bozo', 'Khurskh', 'Shuurmg', 'Arsa', 'Aadmg'], from: 'arkhi', step: 'dry the still residue' },
 
 	// Set by acid: the milk soured until it curdles.
-	curd: { label: 'Acid curd', aka: ['Curd', 'Gallerte', 'Dickete'], from: 'soured', step: 'curdle', byproducts: { acidWhey: 'whey drains off' } },
+	curd: { label: 'Acid curd', aka: ['Curd', 'Gallerte', 'Dickete'], from: 'soured', step: 'ferment, drain', byproducts: { acidWhey: 'whey drains off' } },
 	quark: { label: 'Quark', aka: ['Topfen', 'Tvorog', 'Twaróg'], from: 'curd', step: 'drain', byproducts: { acidWhey: 'whey drains off' } },
 	sourMilkCheese: { label: 'Sour milk cheese', aka: ['Sauermilchkäse'], examples: ['Harzer', 'Olmützer Quargel', 'Tiroler Graukäse', 'Handkäse', 'Mainzer'], from: 'quark', step: 'ripen' },
 	cookedCheese: { label: 'Cooked cheese', aka: ['Kochkäse'], from: 'quark', step: 'cook' },
 	mish: { label: 'Mish', aka: ['Mish cheese'], from: 'sourMilkCheese', step: 'pickle for years' },
 	eezgii: { label: 'Eezgii', aka: ['Ээзгий', 'Browned curd'], from: 'curd', step: 'cook in its whey till brown' },
-	rushan: { label: 'Rushan', aka: ['Milk fan', '乳扇'], from: 'curd', step: 'stretch into sheets, dry' },
+	rushan: { label: 'Rushan', aka: ['Milk fan', '乳扇'], from: 'chhena', step: 'stretch into sheets, dry' },
 	// Set by heat and acid together, straight from hot milk.
 	chhena: { label: 'Chhena', aka: ['Chhana', 'Chena'], from: 'pasteurised', step: 'curdle hot with acid', byproducts: { acidWhey: 'whey drains off' } },
-	paneer: { label: 'Paneer', aka: ['Queso blanco'], from: 'chhena', step: 'press' },
+	paneer: { label: 'Paneer', aka: ['Queso blanco'], examples: ['Rubing'], from: 'chhena', step: 'press' },
 	chhenaSweets: { label: 'Chhena sweets', aka: ['Rosogolla'], examples: ['Rasgulla', 'Sandesh', 'Rasmalai'], from: 'chhena', step: 'knead, cook in syrup' },
 	// Set by an enzyme from a plant: a third way, after rennet and acid.
 	plantCheese: {
 		label: 'Plant-set cheese',
-		aka: ['Thistle-rennet cheese', '薑撞奶', '乳饼'],
-		examples: ['Wagashi', 'Dangke', 'Ginger milk curd', 'Rubing'],
+		aka: ['Thistle-rennet cheese', '薑撞奶'],
+		examples: ['Wagashi', 'Dangke', 'Ginger milk curd'],
 		from: 'raw',
 		step: 'set with a plant enzyme',
 	},
 
 	// Set by rennet: the enzyme from a calf's stomach, or a microbial one.
 	rennetCurd: { label: 'Rennet curd', aka: ['Bruch', 'Käsebruch'], from: 'raw', alsoFrom: ['pasteurised'], step: 'set with rennet', byproducts: { sweetWhey: 'whey drains off' } },
-	freshCheese: { label: 'Fresh cheese', aka: ['Frischkäse'], examples: ['Queso fresco', 'Panela', 'Crescenza', 'Robiola', 'Tomino'], from: 'rennetCurd', step: 'drain' },
-	soft: { label: 'Soft cheese', aka: ['Weichkäse', 'Rahmkäse'], examples: ['Bel Paese', 'Butterkäse', 'Saint-Paulin', 'Stracchino', 'Cuartirolo'], from: 'rennetCurd', step: 'drain, ripen briefly' },
-	semiHard: { label: 'Semi-hard cheese', aka: ['Schnittkäse', 'Halbfester Schnittkäse'], examples: ['Manchego', 'Tilsiter', 'Havarti', 'Monterey Jack', 'Morbier'], from: 'rennetCurd', step: 'press, ripen' },
-	hard: { label: 'Hard cheese', aka: ['Hartkäse', 'Extra-Hartkäse', 'Grana'], examples: ['Parmigiano Reggiano', 'Grana Padano', 'Pecorino Romano', 'Sbrinz', 'Mahón'], from: 'rennetCurd', step: 'cook, press, age' },
-	bloomy: { label: 'Bloomy-rind cheese', aka: ['Weißschimmelkäse'], examples: ['Brie de Meaux', 'Camembert de Normandie', 'Coulommiers', 'Chaource', 'Brillat-Savarin'], from: 'soft', step: 'grow a white rind' },
-	blue: { label: 'Blue cheese', aka: ['Blauschimmelkäse'], examples: ['Roquefort', 'Gorgonzola', 'Stilton', 'Danish Blue', 'Cabrales'], from: 'semiHard', step: 'pierce, grow blue mould' },
-	washed: { label: 'Washed-rind cheese', aka: ['Smear-ripened cheese', 'Rotschmierkäse'], examples: ['Époisses', 'Munster', 'Limburger', 'Taleggio', 'Herve'], from: 'semiHard', step: 'wash the rind in brine' },
-	alpine: { label: 'Alpine cheese', aka: ['Bergkäse'], examples: ['Emmentaler', 'Gruyère', 'Comté', 'Beaufort', 'Appenzeller'], from: 'hard', step: 'cook high, grow eyes' },
-	cheddared: { label: 'Cheddared cheese', examples: ['Cheddar', 'Red Leicester', 'Double Gloucester', 'Dunlop', 'Cheese curds'], from: 'hard', step: 'cheddar, mill' },
+	freshCheese: { label: 'Fresh cheese', aka: ['Frischkäse'], examples: ['Queso fresco', 'Panela', 'Stracchino', 'Robiola', 'Tomino'], from: 'rennetCurd', step: 'drain fresh' },
+	soft: { label: 'Soft cheese', aka: ['Weichkäse'], examples: ['Bel Paese', 'Cuartirolo'], from: 'rennetCurd', step: 'drain unpressed' },
+	semiHard: { label: 'Semi-hard cheese', aka: ['Schnittkäse'], examples: ['Manchego', 'Tilsiter', 'Appenzeller', 'Butterkäse', 'Morbier', 'Havarti', 'Saint-Paulin', 'Monterey Jack'], from: 'rennetCurd', step: 'press, brine' },
+	hard: { label: 'Hard cheese', aka: ['Hartkäse', 'Extra-Hartkäse', 'Grana'], examples: ['Parmigiano Reggiano', 'Grana Padano', 'Pecorino Romano', 'Sbrinz', 'Mahón', 'Kefalotyri', 'Double Gloucester'], from: 'rennetCurd', step: 'scald, press' },
+	bloomy: { label: 'Bloomy-rind cheese', aka: ['Weißschimmelkäse'], examples: ['Brie de Meaux', 'Camembert de Normandie', 'Coulommiers', 'Chaource', 'Brillat-Savarin'], from: 'soft', step: 'grow white mould' },
+	blue: { label: 'Blue cheese', aka: ['Blauschimmelkäse'], examples: ['Roquefort', 'Gorgonzola', 'Stilton', 'Danish Blue', 'Cabrales'], from: 'rennetCurd', step: 'pierce, grow blue' },
+	washed: { label: 'Washed-rind cheese', aka: ['Smear-ripened cheese', 'Rotschmierkäse'], examples: ['Époisses', 'Munster', 'Limburger', 'Taleggio', 'Herve'], from: 'soft', step: 'smear the rind' },
+	alpine: { label: 'Alpine cheese', aka: ['Bergkäse'], examples: ['Emmentaler', 'Gruyère', 'Comté', 'Beaufort'], from: 'hard', step: 'scald, ripen' },
+	cheddared: { label: 'Cheddared cheese', examples: ['Cheddar', 'Red Leicester', 'Dunlop', 'Cheese curds'], from: 'hard', step: 'cheddar' },
 	washedCurd: { label: 'Washed-curd cheese', examples: ['Gouda', 'Edam', 'Colby', 'Leyden', 'Maasdam'], from: 'semiHard', step: 'wash the curd' },
-	insect: { label: 'Insect-ripened\ncheese', examples: ['Casu marzu', 'Casgiu merzu', 'Marcetto', 'Mimolette', 'Milbenkäse'], from: 'semiHard', step: 'ripen with mites or flies' },
-	tulum: { label: 'Tulum', aka: ['Tulum peyniri', 'Skin-ripened cheese'], from: 'rennetCurd', step: 'ripen in a goatskin' },
-	processed: { label: 'Processed cheese', aka: ['Schmelzkäse'], examples: ['American cheese', 'Cancoillotte', 'Requeijão cremoso', 'Plavleny syrok', 'Velveeta'], from: 'semiHard', alsoFrom: ['hard'], step: 'melt with salts' },
-	grilling: { label: 'Grilling cheese', aka: ['Bread cheese', 'Juustoleipä', 'Uunijuusto'], examples: ['Halloumi', 'Leipäjuusto', 'Queso para freír', 'Kefalotyri', 'Provoleta'], from: 'rennetCurd', alsoFrom: ['colostrum'], step: 'scald, no starter' },
+	insect: { label: 'Insect- or mite-\nripened cheese', examples: ['Casu marzu', 'Casgiu merzu', 'Marcetto', 'Mimolette', 'Milbenkäse'], from: 'semiHard', step: 'add mites or larvae' },
+	tulum: { label: 'Tulum', aka: ['Tulum peyniri', 'Skin-ripened cheese'], from: 'rennetCurd', step: 'pack in skin' },
+	processed: { label: 'Processed cheese', aka: ['Schmelzkäse'], examples: ['American cheese', 'Cancoillotte', 'Requeijão cremoso', 'Plavleny syrok', 'Velveeta'], from: 'semiHard', alsoFrom: ['hard'], step: 'melt' },
+	grilling: { label: 'Grilling cheese', aka: ['Bread cheese', 'Juustoleipä'], examples: ['Halloumi', 'Leipäjuusto', 'Queso para freír'], from: 'rennetCurd', alsoFrom: ['colostrum'], step: 'cook in whey' },
 	pastaFilata: {
 		label: 'Pasta filata\n(mozzarella)',
 		aka: ['Stretched-curd cheese', 'Brühkäse', 'String cheese'],
-		examples: ['Mozzarella di bufala', 'Provolone', 'Caciocavallo', 'Kashkaval', 'Queso Oaxaca'],
+		examples: ['Mozzarella di bufala', 'Provolone', 'Provoleta', 'Caciocavallo', 'Kashkaval', 'Queso Oaxaca'],
 		from: 'rennetCurd',
-		step: 'stretch in hot water',
+		step: 'stretch',
 	},
-	stracciatella: { label: 'Stracciatella\n(burrata)', aka: ['Burrata', 'Stracciatella di bufala'], from: 'pastaFilata', alsoFrom: ['cream'], step: 'shred, add cream' },
-	bryndza: { label: 'Bryndza', aka: ['Bryndza podhalańska', 'Slovenská bryndza'], from: 'rennetCurd', step: 'ripen, grind with salt' },
-	brined: { label: 'Brined cheese\n(feta)', aka: ['Salzlakenkäse', 'White cheese'], examples: ['Feta', 'Sirene', 'Domiati', 'Akkawi', 'Telemea'], from: 'rennetCurd', step: 'ripen in brine' },
+	stracciatella: { label: 'Stracciatella\n(burrata)', aka: ['Burrata', 'Stracciatella di bufala'], from: 'pastaFilata', alsoFrom: ['cream'], step: 'tear, add cream' },
+	bryndza: { label: 'Bryndza', aka: ['Bryndza podhalańska', 'Slovenská bryndza'], from: 'rennetCurd', step: 'grind with salt' },
+	brined: { label: 'Brined cheese\n(feta)', aka: ['Salzlakenkäse', 'White cheese'], examples: ['Feta', 'Sirene', 'Domiati', 'Akkawi', 'Telemea'], from: 'rennetCurd', step: 'brine' },
 	buttermilkCheese: { label: 'Buttermilk cheese', examples: ['Soft chhurpi', 'Datshi', 'Ayib', 'Çökelek'], from: 'fermButtermilk', step: 'boil, drain' },
 	hardChhurpi: { label: 'Hard chhurpi', aka: ['Durkha', 'Chhurpi'], from: 'buttermilkCheese', step: 'press, smoke-dry' },
 	khoa: { label: 'Khoa', aka: ['Khoya', 'Mawa', 'So'], from: 'fresh', step: 'boil down to a solid' },
@@ -268,14 +287,14 @@ const NODES: Record<string, Product> = {
 	prim: { label: 'Prim / messmör', aka: ['Prim', 'Messmör', 'Mysmør', 'Whey spread'], from: 'sweetWhey', step: 'boil down' },
 	ricotta: {
 		label: 'Ricotta',
-		examples: ['Requesón', 'Urdă', 'Brocciu', 'Mizithra', 'Manouri', 'Anthotyros', 'Mató', 'Ziger', 'Lor', 'Anari', 'Izvara', 'Brousse', 'Requeijão (Portugal)'],
+		examples: ['Requesón', 'Urdă', 'Brocciu', 'Mizithra', 'Manouri', 'Anthotyros', 'Mató', 'Ziger', 'Lor', 'Anari', 'Izvara', 'Requeijão (Portugal)'],
 		from: 'sweetWhey',
 		step: 'heat with acid',
 	},
-	blaand: { label: 'Blaand', aka: ['Fermented whey drink', 'Whey wine'], examples: ['Mysa', 'Žinčica', 'Sýra'], from: 'sweetWhey', alsoFrom: ['acidWhey'], step: 'ferment' },
+	blaand: { label: 'Blaand', aka: ['Fermented whey drink', 'Whey wine'], examples: ['Žinčica', 'Sýra'], from: 'sweetWhey', alsoFrom: ['acidWhey'], step: 'ferment' },
 	wheyPowder: { label: 'Whey powder', aka: ['Molkepulver'], from: 'sweetWhey', step: 'spray-dry' },
 	wpc: { label: 'Whey protein\nconcentrate', aka: ['WPC'], from: 'sweetWhey', step: 'ultrafilter', byproducts: { permeate: 'passes the filter' } },
-	wpi: { label: 'Whey protein\nisolate', aka: ['WPI'], from: 'wpc', step: 'filter finer' },
+	wpi: { label: 'Whey protein\nisolate', aka: ['WPI'], from: 'wpc', step: 'microfilter or ion exchange' },
 	permeate: { label: 'Whey permeate', aka: ['Permeat'], from: 'sweetWhey', step: 'what passes the filter' },
 	lactose: { label: 'Lactose', aka: ['Milk sugar', 'Milchzucker'], from: 'permeate', step: 'crystallise' },
 	lactoseDerivatives: { label: 'GOS', aka: ['Galacto-oligosaccharides'], from: 'lactose', step: 'join with an enzyme' },
@@ -299,7 +318,7 @@ const NODES: Record<string, Product> = {
 	caseinPaint: {
 		label: 'Casein &\nmilk paint',
 		aka: ['Kaseinfarbe'],
-		examples: ['Milk paint', 'Casein tempera', 'Casein distemper', 'Buttermilk paint'],
+		examples: ['Milk paint', 'Casein tempera', 'Casein distemper'],
 		from: 'curd',
 		alsoFrom: ['acidCasein'],
 		step: 'mix with lime and pigment',
@@ -308,7 +327,7 @@ const NODES: Record<string, Product> = {
 	lanital: { label: 'Casein fibre\n(Lanital)', aka: ['Lanital', 'Aralac', 'Merinova', 'QMilch', 'Azlon'], from: 'acidCasein', step: 'spin into fibre' },
 	caseinHydrolysate: {
 		label: 'Casein hydrolysate\n(Nutramigen)',
-		aka: ['Hypoallergenic formula base', 'Whey hydrolysate'],
+		aka: ['Hypoallergenic formula base'],
 		from: 'acidCasein',
 		step: 'break down with enzymes',
 	},
@@ -333,7 +352,7 @@ const IMAGES: Record<string, Picture> = {
 	},
 	pasteurised: {
 		file: 'Milk-bottle.jpg',
-		author: 'FiveRings (talk)',
+		author: 'FiveRings',
 		license: 'CC BY 3.0',
 		source: 'https://commons.wikimedia.org/wiki/File:Milk-bottle.jpg',
 	},
@@ -411,7 +430,7 @@ const IMAGES: Record<string, Picture> = {
 	},
 	semiHard: {
 		file: 'Chesses gouda affinage.JPG',
-		author: 'No machine-readable author provided. Alpha.prim~commonswiki assumed (based on co',
+		author: 'Alpha.prim',
 		license: 'Public domain',
 		source: 'https://commons.wikimedia.org/wiki/File:Chesses_gouda_affinage.JPG',
 	},
@@ -459,7 +478,7 @@ const IMAGES: Record<string, Picture> = {
 	},
 	milkPowder: {
 		file: 'PowderedMilk.jpg',
-		author: 'unknown',
+		author: 'Lorian',
 		license: 'CC BY-SA 3.0',
 		source: 'https://commons.wikimedia.org/wiki/File:PowderedMilk.jpg',
 	},
@@ -494,14 +513,14 @@ const IMAGES: Record<string, Picture> = {
 		source: 'https://commons.wikimedia.org/wiki/File:ClottedCream.JPG',
 	},
 	rabri: {
-		file: 'Chena rabidi Bhubaneswar Odisha.JPG',
-		author: '[[w:en:UserSubhashish Panigrahi:Psubhashish|Subhashish Panigrahi]]',
-		license: 'CC BY 3.0',
-		source: 'https://commons.wikimedia.org/wiki/File:Chena_rabidi_Bhubaneswar_Odisha.JPG',
+		file: 'Homemade Rabri.jpg',
+		author: 'Ravi Talwar',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Homemade_Rabri.jpg',
 	},
 	cremeFraiche: {
 		file: 'Crème fraîche.jpg',
-		author: 'unknown',
+		author: 'Danja Vassiliev',
 		license: 'CC BY-SA 2.0',
 		source: 'https://commons.wikimedia.org/wiki/File:Cr%C3%A8me_fra%C3%AEche.jpg',
 	},
@@ -510,12 +529,6 @@ const IMAGES: Record<string, Picture> = {
 		author: 'jules',
 		license: 'CC BY 2.0',
 		source: 'https://commons.wikimedia.org/wiki/File:Lemon_posset-3.jpg',
-	},
-	junket: {
-		file: 'Sportsman, Seasalter, Kent (6477078261).jpg',
-		author: 'Ewan Munro from London, UK',
-		license: 'CC BY-SA 2.0',
-		source: 'https://commons.wikimedia.org/wiki/File:Sportsman,_Seasalter,_Kent_(6477078261).jpg',
 	},
 	iceCream: {
 		file: 'An Ice-cream, Dec 2010.JPG',
@@ -536,10 +549,10 @@ const IMAGES: Record<string, Picture> = {
 		source: 'https://commons.wikimedia.org/wiki/File:Antoine_Vollon_-_Mound_of_Butter_-_National_Gallery_of_Art.jpg',
 	},
 	butterfat: {
-		file: 'Ghi and gunpowder.jpg',
-		author: 'Ranveig',
-		license: 'Public domain',
-		source: 'https://commons.wikimedia.org/wiki/File:Ghi_and_gunpowder.jpg',
+		file: 'Pure Ghee-Homemade-Maharashtra.jpg',
+		author: 'Phadke09',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Pure_Ghee-Homemade-Maharashtra.jpg',
 	},
 	clarified: {
 		file: 'Butterschmalz-1.jpg',
@@ -577,12 +590,6 @@ const IMAGES: Record<string, Picture> = {
 		license: 'CC BY-SA 2.0',
 		source: 'https://commons.wikimedia.org/wiki/File:Kefir_glass_london_feb_10.jpg',
 	},
-	mildYoghurt: {
-		file: 'Pack of Hong Kong Yakult LT.JPG',
-		author: 'Dezzawong',
-		license: 'CC BY-SA 3.0',
-		source: 'https://commons.wikimedia.org/wiki/File:Pack_of_Hong_Kong_Yakult_LT.JPG',
-	},
 	mishtiDoi: {
 		file: 'Mishti Doi.jpg',
 		author: 'Kirti Poddar',
@@ -597,7 +604,7 @@ const IMAGES: Record<string, Picture> = {
 	},
 	skyr: {
 		file: 'Skyr.is með vanillu.jpg',
-		author: 'Schnee (talk)',
+		author: 'Schnee',
 		license: 'CC BY-SA 4.0',
 		source: 'https://commons.wikimedia.org/wiki/File:Skyr.is_me%C3%B0_vanillu.jpg',
 	},
@@ -606,12 +613,6 @@ const IMAGES: Record<string, Picture> = {
 		author: 'Anton Huttenlocher',
 		license: 'Public domain',
 		source: 'https://commons.wikimedia.org/wiki/File:Kasachischer_Kurt.jpg',
-	},
-	jameed: {
-		file: 'Jameed.JPG',
-		author: 'Syrinje',
-		license: 'CC BY-SA 3.0',
-		source: 'https://commons.wikimedia.org/wiki/File:Jameed.JPG',
 	},
 	dadiah: {
 		file: 'Dadiah dan mix fruit.jpg',
@@ -639,7 +640,7 @@ const IMAGES: Record<string, Picture> = {
 	},
 	sourMilkCheese: {
 		file: 'Harzer Käse.jpg',
-		author: 'unknown',
+		author: 'Markus Hagenlocher',
 		license: 'CC BY-SA 3.0',
 		source: 'https://commons.wikimedia.org/wiki/File:Harzer_K%C3%A4se.jpg',
 	},
@@ -656,10 +657,10 @@ const IMAGES: Record<string, Picture> = {
 		source: 'https://commons.wikimedia.org/wiki/File:Xizhou_Rushan.jpg',
 	},
 	chhena: {
-		file: 'Chena rabidi Bhubaneswar Odisha.JPG',
-		author: '[[w:en:UserSubhashish Panigrahi:Psubhashish|Subhashish Panigrahi]]',
+		file: 'Chhena Ball - Rasgulla Preparation - Digha - East Midnapore - 2015-05-02 9555.JPG',
+		author: 'Biswarup Ganguly',
 		license: 'CC BY 3.0',
-		source: 'https://commons.wikimedia.org/wiki/File:Chena_rabidi_Bhubaneswar_Odisha.JPG',
+		source: 'https://commons.wikimedia.org/wiki/File:Chhena_Ball_-_Rasgulla_Preparation_-_Digha_-_East_Midnapore_-_2015-05-02_9555.JPG',
 	},
 	paneer: {
 		file: 'Homemade Paneer cut into pieces for cooking Cheese Fromage India.jpg',
@@ -690,6 +691,12 @@ const IMAGES: Record<string, Picture> = {
 		author: 'Mario M. Lommersum',
 		license: 'CC BY-SA 4.0',
 		source: 'https://commons.wikimedia.org/wiki/File:15-01_Parmigiano_Reggiano_Lokal_K_01.jpg',
+	},
+	bloomy: {
+		file: 'Camembert de Normandie (AOP) 10.jpg',
+		author: 'Coyau',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Camembert_de_Normandie_(AOP)_10.jpg',
 	},
 	blue: {
 		file: 'Bavaria blu.jpg',
@@ -729,7 +736,7 @@ const IMAGES: Record<string, Picture> = {
 	},
 	processed: {
 		file: 'Schmelzkäse-1.jpg',
-		author: 'Rainer Z ...',
+		author: 'Rainer Zenz',
 		license: 'CC BY-SA 3.0',
 		source: 'https://commons.wikimedia.org/wiki/File:Schmelzk%C3%A4se-1.jpg',
 	},
@@ -740,10 +747,10 @@ const IMAGES: Record<string, Picture> = {
 		source: 'https://commons.wikimedia.org/wiki/File:Halloumi-1.jpg',
 	},
 	pastaFilata: {
-		file: 'Brik Mandara.jpg',
-		author: 'Silviamandara',
+		file: 'Mozzarella di bufala3.jpg',
+		author: 'Popo le Chien',
 		license: 'CC BY-SA 3.0',
-		source: 'https://commons.wikimedia.org/wiki/File:Brik_Mandara.jpg',
+		source: 'https://commons.wikimedia.org/wiki/File:Mozzarella_di_bufala3.jpg',
 	},
 	stracciatella: {
 		file: 'Burrata.jpg',
@@ -753,13 +760,13 @@ const IMAGES: Record<string, Picture> = {
 	},
 	bryndza: {
 		file: 'Chleb z bryndza.jpg',
-		author: 'unknown',
+		author: 'Kpalion',
 		license: 'Public domain',
 		source: 'https://commons.wikimedia.org/wiki/File:Chleb_z_bryndza.jpg',
 	},
 	brined: {
 		file: 'Feta Greece 2.jpg',
-		author: 'unknown',
+		author: 'Dominik Hundhammer',
 		license: 'CC BY-SA 3.0',
 		source: 'https://commons.wikimedia.org/wiki/File:Feta_Greece_2.jpg',
 	},
@@ -853,8 +860,950 @@ const IMAGES: Record<string, Picture> = {
 		license: 'CC BY-SA 3.0',
 		source: 'https://commons.wikimedia.org/wiki/File:White_casein_Australian_Royal_Airforce_pre-1953_buttons.jpg',
 	},
+	semiEvaporated: {
+		file: 'Dosenmilch.jpg',
+		author: 'HV',
+		license: 'Public domain',
+		source: 'https://commons.wikimedia.org/wiki/File:Dosenmilch.jpg',
+	},
+	double: {
+		file: 'Lyzka smietany.JPG',
+		author: 'Dobromila',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Lyzka_smietany.JPG',
+	},
+	sourCream: {
+		file: 'Sour Cream.jpg',
+		author: 'jules',
+		license: 'CC BY 2.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Sour_Cream.jpg',
+	},
+	mascarpone: {
+		file: 'Mascarpone 2.jpg',
+		author: 'Ramagliolo9',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Mascarpone_2.jpg',
+	},
+	mildButter: {
+		file: '2023 Masło w maselniczce.jpg',
+		author: 'Jacek Halicki',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:2023_Mas%C5%82o_w_maselniczce.jpg',
+	},
+	amf: {
+		file: 'Butterschmalz-3.jpg',
+		author: 'Rainer Z',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Butterschmalz-3.jpg',
+	},
+	smen: {
+		file: 'Smen.JPG',
+		author: 'Lucyin',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Smen.JPG',
+	},
+	churn: {
+		file: 'Buttermilk-(right)-and-Milk-(left).jpg',
+		author: 'Ukko-wc',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Buttermilk-(right)-and-Milk-(left).jpg',
+	},
+	fermButtermilk: {
+		file: 'Chaach.JPG',
+		author: 'Rayraider',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Chaach.JPG',
+	},
+	ayran: {
+		file: 'Ayran in a beer glass.jpg',
+		author: 'E4024',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Ayran_in_a_beer_glass.jpg',
+	},
+	mish: {
+		file: 'Mesh.jpg',
+		author: 'Reem Al-Kashif',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Mesh.jpg',
+	},
+	tulum: {
+		file: 'Tulum peyniri.jpg',
+		author: 'E4024',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Tulum_peyniri.jpg',
+	},
+	acidWhey: {
+		file: 'Soured milk whey.avrs-56.jpg',
+		author: 'AVRS',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Soured_milk_whey.avrs-56.jpg',
+	},
+	lactose: {
+		file: 'Lactose crystals 2.jpg',
+		author: 'Maxim Bilovitskiy',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Lactose_crystals_2.jpg',
+	},
+	skimmedPowder: {
+		file: 'Milk powder cropped.jpg',
+		author: 'ProjectManhattan',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Milk_powder_cropped.jpg',
+	},
+	colostrumPowder: {
+		file: 'Bovine colostrum and spray-dried colostrum powder.jpg',
+		author: 'Marguerita Briana Cattell',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Bovine_colostrum_and_spray-dried_colostrum_powder.jpg',
+	},
+	whipping: {
+		file: 'Whipped Cream.jpg',
+		author: 'Rhett Sutphin',
+		license: 'CC BY 2.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Whipped_Cream.jpg',
+	},
 };
 for (const id of Object.keys(IMAGES)) if (!(id in NODES)) throw new Error(`MilkGraph: picture for unknown ${id}`);
+
+/**
+ * The same for the examples, by name, where one has a photograph of its own
+ * (not one its product already shows), under public/assets/milk/ex-<name>.webp.
+ */
+const EXAMPLE_IMAGES: Record<string, Picture> = {
+	'Kalvdans': {
+		file: 'Kalvdans.jpg',
+		author: 'masdevil',
+		license: 'Public domain',
+		source: 'https://commons.wikimedia.org/wiki/File:Kalvdans.jpg',
+	},
+	'Ábrystir': {
+		file: 'Ábrystir.JPG',
+		author: 'Navaro',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:%C3%81brystir.JPG',
+	},
+	'Kharvas': {
+		file: 'Junnu-Mangalore-Karnataka-DSC001.jpg',
+		author: 'Yakshitha',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Junnu-Mangalore-Karnataka-DSC001.jpg',
+	},
+	'Cornish clotted cream': {
+		file: 'A Cornish cream tea.png',
+		author: 'Soulv',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:A_Cornish_cream_tea.png',
+	},
+	'Kaymak': {
+		file: 'Cevapi sa kajmakom.jpg',
+		author: 'János Korom Dr. from Wien, Austria',
+		license: 'CC BY-SA 2.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Cevapi_sa_kajmakom.jpg',
+	},
+	'Lemon posset': {
+		file: 'Lemon posset with almond bread (295848437).jpg',
+		author: 'jules',
+		license: 'CC BY 2.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Lemon_posset_with_almond_bread_(295848437).jpg',
+	},
+	'Syllabub': {
+		file: 'Pineapple Syllabub (5976538294).jpg',
+		author: 'Bart Everson from New Orleans, Louisiana, USA',
+		license: 'CC BY 2.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Pineapple_Syllabub_(5976538294).jpg',
+	},
+	'Gelato': {
+		file: 'Fennochios gelato.jpg',
+		author: 'klara',
+		license: 'CC BY 2.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Fennochios_gelato.jpg',
+	},
+	'Soft serve': {
+		file: 'Gdansk tourist pictures 2009 0310.JPG',
+		author: 'Bin im Garten',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Gdansk_tourist_pictures_2009_0310.JPG',
+	},
+	'Frozen custard': {
+		file: 'FrozenCustard.jpg',
+		author: 'stu_spivack',
+		license: 'CC BY-SA 2.0',
+		source: 'https://commons.wikimedia.org/wiki/File:FrozenCustard.jpg',
+	},
+	'Dondurma': {
+		file: 'Maraş dondurması in Kyoto.jpg',
+		author: 'Chris Gladis',
+		license: 'CC BY 2.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Mara%C5%9F_dondurmas%C4%B1_in_Kyoto.jpg',
+	},
+	'Makhan': {
+		file: 'Desi makhan.jpg',
+		author: 'Rajeeb (Marajozkee)',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Desi_makhan.jpg',
+	},
+	'Lben': {
+		file: 'Lben 1.jpg',
+		author: 'Sabah HAANA',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Lben_1.jpg',
+	},
+	'Chaas': {
+		file: 'Mint lassi.jpg',
+		author: 'Nitin',
+		license: 'CC BY-SA 2.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Mint_lassi.jpg',
+	},
+	'Dickmilch': {
+		file: 'Latte 025.jpg',
+		author: 'Kagor',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Latte_025.jpg',
+	},
+	'Filmjölk': {
+		file: 'Skånemejeriers Pepparkaksfil.jpg',
+		author: 'Skånemejerier',
+		license: 'CC BY 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Sk%C3%A5nemejeriers_Pepparkaksfil.jpg',
+	},
+	'Clabber': {
+		file: 'Latte 020.jpg',
+		author: 'Kagor',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Latte_020.jpg',
+	},
+	'Långfil': {
+		file: 'Långfil4.jpg',
+		author: 'Per W',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:L%C3%A5ngfil4.jpg',
+	},
+	'Viili': {
+		file: 'Viili.jpg',
+		author: 'JP001',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Viili.jpg',
+	},
+	'Tätmjölk': {
+		file: 'Filmjolk.jpg',
+		author: 'Kristofer2',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Filmjolk.jpg',
+	},
+	'Varenets': {
+		file: 'Варенец.jpg',
+		author: 'ЧуваевНиколай',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:%D0%92%D0%B0%D1%80%D0%B5%D0%BD%D0%B5%D1%86.jpg',
+	},
+	'Actimel': {
+		file: 'Actimel.jpg',
+		author: 'Pancrat',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Actimel.jpg',
+	},
+	'Yakult': {
+		file: 'Double Barrel x Yakult (5525889350).jpg',
+		author: 'Jonathan Lin',
+		license: 'CC BY-SA 2.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Double_Barrel_x_Yakult_(5525889350).jpg',
+	},
+	'Dahi': {
+		file: 'Buffalo curd.jpg',
+		author: 'Christopher',
+		license: 'CC BY 2.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Buffalo_curd.jpg',
+	},
+	'Matsoni': {
+		file: 'Matsoni.jpg',
+		author: 'გიორგიმელა',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Matsoni.jpg',
+	},
+	'Labneh': {
+		file: 'Labneh (5196911587).jpg',
+		author: 'Leslie Seaton from Seattle, WA, USA',
+		license: 'CC BY 2.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Labneh_(5196911587).jpg',
+	},
+	'Doogh': {
+		file: 'Ayrân-ı İrân.jpg',
+		author: 'Eaeeae',
+		license: 'CC BY 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Ayr%C3%A2n-%C4%B1_%C4%B0r%C3%A2n.jpg',
+	},
+	'Salted lassi': {
+		file: 'Salt lassi.jpg',
+		author: 'Raksanand',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Salt_lassi.jpg',
+	},
+	'Kashk': {
+		file: 'Kashk.JPG',
+		author: 'Tuninait',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Kashk.JPG',
+	},
+	'Qurut': {
+		file: 'Kurut fromages kirghize.jpg',
+		author: 'Paul Munhoven',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Kurut_fromages_kirghize.jpg',
+	},
+	'Chortan': {
+		file: 'Fromage kyrghize.jpg',
+		author: 'Paul Munhoven',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Fromage_kyrghize.jpg',
+	},
+	'Aaruul': {
+		file: 'Mongolian Cuisine 13.JPG',
+		author: 'Brücke-Osteuropa',
+		license: 'Public domain',
+		source: 'https://commons.wikimedia.org/wiki/File:Mongolian_Cuisine_13.JPG',
+	},
+	'Shubat': {
+		file: 'Shubat.jpg',
+		author: 'Upyernoz on Flickr',
+		license: 'CC BY 2.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Shubat.jpg',
+	},
+	'Harzer': {
+		file: 'Harzer Käse 13 WikiCheese Lokal K.jpg',
+		author: 'Elke Wetzig',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Harzer_K%C3%A4se_13_WikiCheese_Lokal_K.jpg',
+	},
+	'Olmützer Quargel': {
+		file: 'Olomoucké tvarůžky (3).jpg',
+		author: 'Chmee2',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Olomouck%C3%A9_tvar%C5%AF%C5%BEky_(3).jpg',
+	},
+	'Tiroler Graukäse': {
+		file: 'Tyrolean grey cheese Loaf Cut.jpg',
+		author: 'RudolfSimon',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Tyrolean_grey_cheese_Loaf_Cut.jpg',
+	},
+	'Handkäse': {
+		file: 'Handkaese 20060117.jpg',
+		author: 'Manuel Heinrich Emha',
+		license: 'CC BY-SA 2.5',
+		source: 'https://commons.wikimedia.org/wiki/File:Handkaese_20060117.jpg',
+	},
+	'Rasgulla': {
+		file: 'Rasagulla pot.jpg',
+		author: 'Charles Haynes',
+		license: 'CC BY-SA 2.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Rasagulla_pot.jpg',
+	},
+	'Sandesh': {
+		file: 'Rose sandesh.jpg',
+		author: 'Hrishikes',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Rose_sandesh.jpg',
+	},
+	'Rasmalai': {
+		file: 'Ras Malai.JPG',
+		author: 'Miansari66',
+		license: 'CC0',
+		source: 'https://commons.wikimedia.org/wiki/File:Ras_Malai.JPG',
+	},
+	'Dangke': {
+		file: 'Dangke (dairy product).jpg',
+		author: 'RianHS',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Dangke_(dairy_product).jpg',
+	},
+	'Ginger milk curd': {
+		file: 'GD 廣東 Guangdong 廣州 Guangzhou 石基村 Shijicun 城中村 village tourism shop 奶娑薑撞奶 雙皮奶 Milk January 2024 R12S 05.jpg',
+		author: 'Lau Hau Yatyue Tiger',
+		license: 'CC0',
+		source: 'https://commons.wikimedia.org/wiki/File:GD_%E5%BB%A3%E6%9D%B1_Guangdong_%E5%BB%A3%E5%B7%9E_Guangzhou_%E7%9F%B3%E5%9F%BA%E6%9D%91_Shijicun_%E5%9F%8E%E4%B8%AD%E6%9D%91_village_tourism_shop_%E5%A5%B6%E5%A8%91%E8%96%91%E6%92%9E%E5%A5%B6_%E9%9B%99%E7%9A%AE%E5%A5%B6_Milk_January_2024_R12S_05.jpg',
+	},
+	'Robiola': {
+		file: 'Robiola Monte Rosa.jpg',
+		author: 'Jan-Tore Egge',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Robiola_Monte_Rosa.jpg',
+	},
+	'Tomino': {
+		file: 'Medaglione di Melanzana con Tomino (close-up).jpg',
+		author: 'FakirNL',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Medaglione_di_Melanzana_con_Tomino_(close-up).jpg',
+	},
+	'Bel Paese': {
+		file: 'Cheese 29 bg 051906.jpg',
+		author: 'Jon Sullivan',
+		license: 'Public domain',
+		source: 'https://commons.wikimedia.org/wiki/File:Cheese_29_bg_051906.jpg',
+	},
+	'Butterkäse': {
+		file: 'DeutschButterkäse.jpg',
+		author: 'Porsche997SBS',
+		license: 'CC0',
+		source: 'https://commons.wikimedia.org/wiki/File:DeutschButterk%C3%A4se.jpg',
+	},
+	'Saint-Paulin': {
+		file: 'StPaulin.jpg',
+		author: 'Antoinel',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:StPaulin.jpg',
+	},
+	'Stracchino': {
+		file: 'Stracchino 2.jpg',
+		author: 'Lasagnolo9 at Italian Wikipedia (= formerly Ramagliolo9 at Italian Wikipedia)',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Stracchino_2.jpg',
+	},
+	'Manchego': {
+		file: 'Manchego.jpg',
+		author: 'Zerohund',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Manchego.jpg',
+	},
+	'Tilsiter': {
+		file: 'Tilsiter.jpg',
+		author: 'Rainer Zenz',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Tilsiter.jpg',
+	},
+	'Havarti': {
+		file: 'Cream havarti on bread.jpg',
+		author: 'Ulaek',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Cream_havarti_on_bread.jpg',
+	},
+	'Morbier': {
+		file: 'Morbier (fromage) 01.jpg',
+		author: 'Pierre-Yves Beaudouin',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Morbier_(fromage)_01.jpg',
+	},
+	'Parmigiano Reggiano': {
+		file: 'Wheel of 2013 Parmigiano-Reggiano DOP.JPG',
+		author: 'Wittylama',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Wheel_of_2013_Parmigiano-Reggiano_DOP.JPG',
+	},
+	'Grana Padano': {
+		file: 'Grana Padano.jpg',
+		author: 'Eptalon',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Grana_Padano.jpg',
+	},
+	'Pecorino Romano': {
+		file: 'Pecorino romano on board cropped.PNG',
+		author: 'Deanna from Chicago ’burbs',
+		license: 'CC BY-SA 2.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Pecorino_romano_on_board_cropped.PNG',
+	},
+	'Sbrinz': {
+		file: 'Sbrinz.jpg',
+		author: 'Mussklprozz at German Wikipedia',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Sbrinz.jpg',
+	},
+	'Mahón': {
+		file: 'Mahon Cheese.JPG',
+		author: 'Asphaltbuffet',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Mahon_Cheese.JPG',
+	},
+	'Camembert de Normandie': {
+		file: 'Camembert de Normandie Bonchoix - Photo 4.jpg',
+		author: 'Lyokoï',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Camembert_de_Normandie_Bonchoix_-_Photo_4.jpg',
+	},
+	'Brie de Meaux': {
+		file: 'Brie de Meaux.jpg',
+		author: 'Jon Sullivan',
+		license: 'Public domain',
+		source: 'https://commons.wikimedia.org/wiki/File:Brie_de_Meaux.jpg',
+	},
+	'Coulommiers': {
+		file: 'Coulommiers lait cru.jpg',
+		author: 'Myrabella',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Coulommiers_lait_cru.jpg',
+	},
+	'Brillat-Savarin': {
+		file: 'Brillat-Savarin frais.jpg',
+		author: 'BastienM',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Brillat-Savarin_frais.jpg',
+	},
+	'Roquefort': {
+		file: 'Wikicheese - Roquefort - 20150417 - 002.jpg',
+		author: 'Thesupermat',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Wikicheese_-_Roquefort_-_20150417_-_002.jpg',
+	},
+	'Gorgonzola': {
+		file: 'Gorgonzola and a pear.jpg',
+		author: 'Jon Sullivan',
+		license: 'Public domain',
+		source: 'https://commons.wikimedia.org/wiki/File:Gorgonzola_and_a_pear.jpg',
+	},
+	'Stilton': {
+		file: 'Blue Stilton 01.jpg',
+		author: 'Coyau',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Blue_Stilton_01.jpg',
+	},
+	'Danish Blue': {
+		file: 'Danish Blue cheese.jpg',
+		author: 'Brookie',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Danish_Blue_cheese.jpg',
+	},
+	'Époisses': {
+		file: 'Époisses Gaugry 03.jpg',
+		author: 'Coyau',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:%C3%89poisses_Gaugry_03.jpg',
+	},
+	'Munster': {
+		file: 'Munster-fabrique.JPG',
+		author: 'Abrahami',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Munster-fabrique.JPG',
+	},
+	'Limburger': {
+		file: 'Limburger-Käse.jpg',
+		author: 'MarkusHagenlocher',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Limburger-K%C3%A4se.jpg',
+	},
+	'Taleggio': {
+		file: 'Taleggio vecchia lavorazione (3323694182).jpg',
+		author: 'F. D. Richards from Clinton, MI',
+		license: 'CC BY-SA 2.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Taleggio_vecchia_lavorazione_(3323694182).jpg',
+	},
+	'Emmentaler': {
+		file: 'Emmental 015.jpg',
+		author: 'StaraBlazkova',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Emmental_015.jpg',
+	},
+	'Gruyère': {
+		file: 'Gruyère.jpg',
+		author: 'Rolf Krahl (Rotkraut)',
+		license: 'CC BY 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Gruy%C3%A8re.jpg',
+	},
+	'Comté': {
+		file: 'Comte AOP.jpg',
+		author: 'Myrabella',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Comte_AOP.jpg',
+	},
+	'Beaufort': {
+		file: 'Beaufort (fromage) 01.jpg',
+		author: 'Coyau',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Beaufort_(fromage)_01.jpg',
+	},
+	'Appenzeller': {
+		file: 'Appenzeller (cheese).jpg',
+		author: 'PDPhoto.org',
+		license: 'Public domain',
+		source: 'https://commons.wikimedia.org/wiki/File:Appenzeller_(cheese).jpg',
+	},
+	'Red Leicester': {
+		file: 'WikiCheese - Sparkenhoe Red Leicester 02.jpg',
+		author: 'Pierre-Yves Beaudouin',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:WikiCheese_-_Sparkenhoe_Red_Leicester_02.jpg',
+	},
+	'Double Gloucester': {
+		file: 'Cheese 24 bg 051306.jpg',
+		author: 'Jon Sullivan',
+		license: 'Public domain',
+		source: 'https://commons.wikimedia.org/wiki/File:Cheese_24_bg_051306.jpg',
+	},
+	'Dunlop': {
+		file: 'Ayrshire\'s Dunlop Cheese.JPG',
+		author: 'Rosser1954 Roger Griffith',
+		license: 'Public domain',
+		source: 'https://commons.wikimedia.org/wiki/File:Ayrshire%27s_Dunlop_Cheese.JPG',
+	},
+	'Cheese curds': {
+		file: 'FriedCheeseCurds.jpg',
+		author: 'Jonathunder',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:FriedCheeseCurds.jpg',
+	},
+	'Colby': {
+		file: 'Colby Cheese.jpg',
+		author: 'Jeff the quiet',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Colby_Cheese.jpg',
+	},
+	'Leyden': {
+		file: 'Leyden cheese AvL.jpg',
+		author: 'AlexanderVanLoon',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Leyden_cheese_AvL.jpg',
+	},
+	'Casu marzu': {
+		file: 'CremaDiCasuMarzu.JPG',
+		author: 'Shardan',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:CremaDiCasuMarzu.JPG',
+	},
+	'Mimolette': {
+		file: 'Mimolette vieille etuvee.jpg',
+		author: 'Jastrow at French Wikipedia',
+		license: 'Public domain',
+		source: 'https://commons.wikimedia.org/wiki/File:Mimolette_vieille_etuvee.jpg',
+	},
+	'Milbenkäse': {
+		file: 'Würchwitzer Milbenkäse in der Reisekiste.jpg',
+		author: 'BerlinUndDieWelt',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:W%C3%BCrchwitzer_Milbenk%C3%A4se_in_der_Reisekiste.jpg',
+	},
+	'American cheese': {
+		file: 'Single wrapped slice of processed cheese.jpg',
+		author: 'Amin',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Single_wrapped_slice_of_processed_cheese.jpg',
+	},
+	'Cancoillotte': {
+		file: 'Cancoillotte de Franche-Comté.jpg',
+		author: 'Hamelin de Guettelet',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Cancoillotte_de_Franche-Comt%C3%A9.jpg',
+	},
+	'Velveeta': {
+		file: 'Velveeta Cheese.JPG',
+		author: 'PeRshGo',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Velveeta_Cheese.JPG',
+	},
+	'Halloumi': {
+		file: 'Grilled haloumi cheese.jpg',
+		author: 'Salimfadhley',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Grilled_haloumi_cheese.jpg',
+	},
+	'Leipäjuusto': {
+		file: 'Leipäjuusto 2.jpg',
+		author: 'Tiia Monto',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Leip%C3%A4juusto_2.jpg',
+	},
+	'Kefalotyri': {
+		file: 'Kefalotyri.jpg',
+		author: 'J.P.Lon',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Kefalotyri.jpg',
+	},
+	'Provoleta': {
+		file: 'Provoleta argentina (cheese).jpg',
+		author: 'Horacio Cambeiro',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Provoleta_argentina_(cheese).jpg',
+	},
+	'Mozzarella di bufala': {
+		file: 'Mozzarella.jpg',
+		author: 'Luigi Versaggi',
+		license: 'CC BY-SA 2.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Mozzarella.jpg',
+	},
+	'Provolone': {
+		file: 'Formaggio Murmari - 5.jpg',
+		author: 'Enzian44',
+		license: 'CC BY 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Formaggio_Murmari_-_5.jpg',
+	},
+	'Caciocavallo': {
+		file: 'Caciocavallo.JPG',
+		author: 'Captain76',
+		license: 'Public domain',
+		source: 'https://commons.wikimedia.org/wiki/File:Caciocavallo.JPG',
+	},
+	'Kashkaval': {
+		file: 'Kashkaval-Galichki-Republik of Macedonia.jpg',
+		author: 'Nnikolce',
+		license: 'Public domain',
+		source: 'https://commons.wikimedia.org/wiki/File:Kashkaval-Galichki-Republik_of_Macedonia.jpg',
+	},
+	'Queso Oaxaca': {
+		file: '01 Queso Mexicano Oaxaca.jpg',
+		author: 'Javier Lastras',
+		license: 'CC BY 2.0',
+		source: 'https://commons.wikimedia.org/wiki/File:01_Queso_Mexicano_Oaxaca.jpg',
+	},
+	'Feta': {
+		file: 'Greek feta.jpg',
+		author: 'Jon Sullivan',
+		license: 'Public domain',
+		source: 'https://commons.wikimedia.org/wiki/File:Greek_feta.jpg',
+	},
+	'Sirene': {
+		file: 'Bulgarischer Salzlakenkäse ist nicht immer Schafskäse.jpg',
+		author: 'Apostoloff',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Bulgarischer_Salzlakenk%C3%A4se_ist_nicht_immer_Schafsk%C3%A4se.jpg',
+	},
+	'Domiati': {
+		file: 'Domiati cheese.jpg',
+		author: 'MartinKassemJ120',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Domiati_cheese.jpg',
+	},
+	'Akkawi': {
+		file: 'جبنة عكاوي.jpg',
+		author: 'Rotana Nawwaf Al Hasanat',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:%D8%AC%D8%A8%D9%86%D8%A9_%D8%B9%D9%83%D8%A7%D9%88%D9%8A.jpg',
+	},
+	'Telemea': {
+		file: 'Telemea vom Schaf.jpg',
+		author: 'Sacha47',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Telemea_vom_Schaf.jpg',
+	},
+	'Ayib': {
+		file: 'Addis-Abeba-Cuisine éthiopienne (6).jpg',
+		author: 'Ji-Elle',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Addis-Abeba-Cuisine_%C3%A9thiopienne_(6).jpg',
+	},
+	'Peda': {
+		file: 'Pera - Sweet - Banke Bihari Mandir Area - Vrindavan - 2013-02-22 4785.JPG',
+		author: 'Biswarup Ganguly',
+		license: 'CC BY 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Pera_-_Sweet_-_Banke_Bihari_Mandir_Area_-_Vrindavan_-_2013-02-22_4785.JPG',
+	},
+	'Barfi': {
+		file: 'Barfi.JPG',
+		author: 'Miansari66',
+		license: 'Public domain',
+		source: 'https://commons.wikimedia.org/wiki/File:Barfi.JPG',
+	},
+	'Kalakand': {
+		file: 'Kalakand1.JPG',
+		author: 'Pradeep717',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Kalakand1.JPG',
+	},
+	'Gulab jamun': {
+		file: 'Bowl of Gulab Jamun.JPG',
+		author: 'Ali A. Fazal',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Bowl_of_Gulab_Jamun.JPG',
+	},
+	'Requesón': {
+		file: 'Barreña de Grau.jpg',
+		author: 'Amasuela, Luis Lafuente Agudín',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Barre%C3%B1a_de_Grau.jpg',
+	},
+	'Urdă': {
+		file: 'Urdă.jpg',
+		author: 'Mngck',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Urd%C4%83.jpg',
+	},
+	'Brocciu': {
+		file: 'Brocciu2.jpg',
+		author: 'Zouzou',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Brocciu2.jpg',
+	},
+	'Mizithra': {
+		file: 'Homemade Mizithra.jpg',
+		author: 'grongar',
+		license: 'CC BY 2.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Homemade_Mizithra.jpg',
+	},
+	'Manouri': {
+		file: 'Manouri.jpg',
+		author: 'Antonio Fajardo i López',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Manouri.jpg',
+	},
+	'Junnu': {
+		file: 'Junnu-Mangalore-Karnataka-DSC001.jpg',
+		author: 'Yakshitha',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Junnu-Mangalore-Karnataka-DSC001.jpg',
+	},
+	'Rob': {
+		file: 'اللبن الحامض(الروب).jpg',
+		author: 'Ghada Elajb',
+		license: 'CC0',
+		source: 'https://commons.wikimedia.org/wiki/File:%D8%A7%D9%84%D9%84%D8%A8%D9%86_%D8%A7%D9%84%D8%AD%D8%A7%D9%85%D8%B6(%D8%A7%D9%84%D8%B1%D9%88%D8%A8).jpg',
+	},
+	'Suzma': {
+		file: 'Turkish strained yogurt.jpg',
+		author: 'Takeaway',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Turkish_strained_yogurt.jpg',
+	},
+	'Urum': {
+		file: 'Iraqi Kaymak-Mosul.jpg',
+		author: 'Abdulsalam Al Dabbagh',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Iraqi_Kaymak-Mosul.jpg',
+	},
+	'Çökelek': {
+		file: 'Sürk çökelek.jpg',
+		author: 'Masisoz',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:S%C3%BCrk_%C3%A7%C3%B6kelek.jpg',
+	},
+	'Casgiu merzu': {
+		file: 'Pot de casgiù merzu.jpg',
+		author: 'vpagnouf',
+		license: 'CC BY-SA 2.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Pot_de_casgi%C3%B9_merzu.jpg',
+	},
+	'Rubing': {
+		file: 'Rubing Goats Cheese of Yunnan China.jpg',
+		author: 'Pratyeka',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Rubing_Goats_Cheese_of_Yunnan_China.jpg',
+	},
+	'Wagashi': {
+		file: 'Waagashi.jpg',
+		author: 'Noahalorwu',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Waagashi.jpg',
+	},
+	'Panela': {
+		file: 'WikiCheese - Queso Panela 01.jpg',
+		author: 'Pyb',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:WikiCheese_-_Queso_Panela_01.jpg',
+	},
+	'Chaource': {
+		file: 'Chaource (fromage) 09.jpg',
+		author: 'Coyau',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Chaource_(fromage)_09.jpg',
+	},
+	'Cabrales': {
+		file: 'Cabrales.jpg',
+		author: 'Asturnut',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Cabrales.jpg',
+	},
+	'Herve': {
+		file: 'Fromage de Herve.jpg',
+		author: 'Marianne Casamance',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Fromage_de_Herve.jpg',
+	},
+	'Cheddar': {
+		file: 'White cheddar cheese.jpg',
+		author: 'Jon Sullivan',
+		license: 'Public domain',
+		source: 'https://commons.wikimedia.org/wiki/File:White_cheddar_cheese.jpg',
+	},
+	'Gouda': {
+		file: 'Winterswijk (NL), Wochenmarkt -- 2024 -- 4337.jpg',
+		author: 'Dietmar Rabich',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Winterswijk_(NL),_Wochenmarkt_--_2024_--_4337.jpg',
+	},
+	'Edam': {
+		file: 'SmallEdamCheese.jpg',
+		author: 'Yvwv',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:SmallEdamCheese.jpg',
+	},
+	'Maasdam': {
+		file: 'Maasdam-cheese.jpg',
+		author: 'Arz',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Maasdam-cheese.jpg',
+	},
+	'Requeijão cremoso': {
+		file: 'RequeijaoCremoso.jpg',
+		author: 'Tom B',
+		license: 'Public domain',
+		source: 'https://commons.wikimedia.org/wiki/File:RequeijaoCremoso.jpg',
+	},
+	'Jameed': {
+		file: 'Jameed.JPG',
+		author: 'Syrinje',
+		license: 'CC BY-SA 3.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Jameed.JPG',
+	},
+};
+const named = new Set(Object.values(NODES).flatMap(({ examples = [] }) => examples));
+for (const name of Object.keys(EXAMPLE_IMAGES)) if (!named.has(name)) throw new Error(`MilkGraph: picture for unknown example ${name}`);
+
+// What an example goes by besides, as a product's `aka`: found by the search and said on its card.
+const EXAMPLE_AKA: Record<string, string[]> = {
+	'Parmigiano Reggiano': ['Parmesan', 'Parmigiano'],
+	'Jameed': ['Jameed balls', 'جميد'],
+};
+for (const name of Object.keys(EXAMPLE_AKA)) if (!named.has(name)) throw new Error(`MilkGraph: other names for unknown example ${name}`);
+
+/**
+ * How a step is done, told when its arrow is clicked: the facts of it
+ * (milk, set, cultures, curd, shaping, salting, ripening, rind), what they do
+ * to what is made, and the sources they are from: the product's own
+ * specification where it has one. Kept in milk-steps.json, by product id,
+ * and by name for an example, whose arrow gets its `label` written on it.
+ */
+/**
+ * Where a regional product or example comes from: up to four countries, as
+ * ISO codes, each drawn as its flag (public/assets/flags/). Made in more
+ * places than that, it is not regional, and has none. Kept in
+ * milk-regions.json, by product id, and by name for an example.
+ */
+const regions = REGIONS as Record<string, string[]>;
+for (const [key, codes] of Object.entries(regions)) {
+	if (!(key in NODES) && !named.has(key)) throw new Error(`MilkGraph: region for unknown ${key}`);
+	if (codes.length < 1 || codes.length > 4 || codes.some((c) => !/^[A-Z]{2}$/.test(c)))
+		throw new Error(`MilkGraph: ${key} has to come from one to four countries`);
+}
+
+// `table`: the few facts written under the arrow itself, a row each.
+type How = {
+	label?: string;
+	table?: { k: string; v: string }[];
+	facts?: { k: string; v: string }[];
+	text?: string;
+	sources?: { name: string; url: string }[];
+};
+const steps = STEPS as Record<string, How>;
+for (const key of Object.keys(steps))
+	if (!(key in NODES) && !named.has(key)) throw new Error(`MilkGraph: how unknown ${key} is made`);
+const exampleFile = (name: string) =>
+	`ex-${name.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`;
+const pictured = (file: string, { file: what, author, license, source }: Picture) => ({
+	src: `/assets/milk/${file}.webp`,
+	credit: `${what} · ${author} · ${license}`,
+	author,
+	license,
+	source,
+});
+
+/**
+ * What each product and each example drawn is, shown when it is clicked: the
+ * first paragraph of its Wikipedia article, with a link to it, or, for the
+ * ones Wikipedia has none on, a paragraph written here from the source it
+ * names. Kept in milk-about.json, by product id, and by name for an example.
+ */
+type About = { text: string; wiki?: string; source?: string; sourceName?: string };
+const sourced = (a: About) => !!a.wiki || (!!a.source && !!a.sourceName);
+const about = ABOUT as { products: Record<string, About>; examples: Record<string, About> };
+for (const id of Object.keys(about.products)) if (!(id in NODES)) throw new Error(`MilkGraph: about for unknown ${id}`);
+for (const id of Object.keys(NODES)) if (!about.products[id]) throw new Error(`MilkGraph: nothing said about ${id}`);
+for (const [key, a] of [...Object.entries(about.products), ...Object.entries(about.examples)])
+	if (!sourced(a)) console.warn(`MilkGraph: no source for what is said about ${key}`);
+for (const name of Object.keys(about.examples)) if (!named.has(name)) throw new Error(`MilkGraph: about for unknown example ${name}`);
 
 /**
  * The families, each given its own slice of the circle round milk, in the
@@ -891,13 +1840,13 @@ const GROUPS: { name: string; hub?: string; ids: string[] }[] = [
 	{
 		name: 'Fermented',
 		hub: 'ferment',
-		ids: ['soured', 'ropy', 'ryazhenka', 'kefir', 'mildYoghurt', 'yoghurt', 'mishtiDoi', 'creamYoghurt', 'greek', 'skyr', 'ayran', 'fermButtermilk', 'driedYoghurt', 'kishk', 'jameed', 'qaraqurut', 'dadiah', 'mursik', 'choormog'],
+		ids: ['soured', 'ropy', 'ryazhenka', 'kefir', 'mildYoghurt', 'probioticDrink', 'yoghurt', 'mishtiDoi', 'creamYoghurt', 'greek', 'ayran', 'fermButtermilk', 'driedYoghurt', 'kishk', 'qaraqurut', 'dadiah', 'mursik', 'choormog'],
 	},
 	{ name: 'Alcohol', hub: 'make alcohol', ids: ['kumis', 'arkhi', 'arkhiGrades', 'stillCheese', 'blaand'] },
 	{
 		name: 'Acid & heat-set',
 		hub: 'set with acid',
-		ids: ['curd', 'quark', 'sourMilkCheese', 'cookedCheese', 'mish', 'eezgii', 'rushan', 'chhena', 'paneer', 'chhenaSweets', 'plantCheese', 'buttermilkCheese', 'hardChhurpi'],
+		ids: ['curd', 'quark', 'skyr', 'sourMilkCheese', 'cookedCheese', 'mish', 'eezgii', 'rushan', 'chhena', 'paneer', 'chhenaSweets', 'plantCheese', 'buttermilkCheese', 'hardChhurpi'],
 	},
 	{
 		name: 'Cheese',
@@ -915,7 +1864,6 @@ const GROUPS: { name: string; hub?: string; ids: string[] }[] = [
 	{ name: 'Materials', hub: 'make materials', ids: ['caseinGlue', 'beerLabelGlue', 'caseinPaint', 'galalith', 'lanital', 'blotto'] },
 	{
 		name: 'Medicine',
-		hub: 'make medicine',
 		ids: ['lactulose', 'inhalers', 'glycomacropeptide', 'caseinHydrolysate', 'cppAcp', 'milkDrugs', 'travelan'],
 	},
 	{ name: 'Colostrum', ids: ['colostrum', 'colostrumPudding', 'colostrumPowder'] },
@@ -966,7 +1914,7 @@ const KNOWN = new Set([
 	'certified', 'esl', 'sterilised', 'colostrum',
 	'coffeeCream', 'double', 'clotted', 'smetana', 'cremeFraiche', 'mascarpone', 'souredCream',
 	'culturedButter', 'clarified', 'amf',
-	'mildYoghurt', 'creamYoghurt', 'skyr', 'ayran', 'driedYoghurt', 'ryazhenka', 'fermButtermilk', 'choormog', 'kumis',
+	'mildYoghurt', 'probioticDrink', 'creamYoghurt', 'skyr', 'ayran', 'driedYoghurt', 'ryazhenka', 'fermButtermilk', 'choormog', 'kumis',
 	'chhena', 'chhenaSweets', 'khoa', 'khoaSweets', 'dulce', 'kulfi', 'rabri',
 	'bloomy', 'blue', 'washed', 'alpine', 'cheddared', 'washedCurd', 'brined', 'grilling', 'stracciatella',
 	'acidWhey', 'ricotta', 'wheyCheese', 'wpi', 'acidCasein', 'caseinate',
@@ -1006,6 +1954,12 @@ const examples = Object.entries(NODES).flatMap(([kind, { examples: names = [] }]
 		rank: i,
 		group: groupOf.get(kind) ?? -1,
 		niche: 2,
+		image: EXAMPLE_IMAGES[label] && pictured(exampleFile(label), EXAMPLE_IMAGES[label]),
+		about: about.examples[label],
+		regions: regions[label],
+		aka: EXAMPLE_AKA[label],
+		step: steps[label]?.label,
+		how: steps[label],
 	})),
 );
 
@@ -1019,10 +1973,12 @@ const graph = {
 		// examples past the ones drawn.
 		aka,
 		unshown: named.slice(SHOWN),
-		image: IMAGES[id] && {
-			src: `/assets/milk/${id}.webp`,
-			credit: `${IMAGES[id].file} · ${IMAGES[id].author} · ${IMAGES[id].license}`,
-		},
+		image: IMAGES[id] && pictured(id, IMAGES[id]),
+		about: about.products[id],
+		regions: regions[id],
+		how: steps[id],
+		// All its examples, for the card that tells of it.
+		named,
 		step,
 		byproducts,
 		group: groupOf.get(id) ?? -1,
@@ -1037,31 +1993,51 @@ const graph = {
 ---
 
 <figure class="milk-graph" data-milk-graph={JSON.stringify(graph)}>
-	<div class="milk-search" data-no-swipe>
+	<div class="milk-search" data-no-swipe data-deck-tool>
 		<svg class="milk-search-icon" viewBox="0 0 16 16" aria-hidden="true">
 			<circle cx="6.75" cy="6.75" r="4.75"></circle>
 			<path d="M10.25 10.25L14 14"></path>
 		</svg>
-		<input type="search" placeholder="Find…" aria-label="Find a product" autocomplete="off" spellcheck="false" />
+		<input
+			type="search"
+			role="combobox"
+			placeholder="Find…"
+			aria-label="Find a product"
+			aria-autocomplete="list"
+			aria-expanded="false"
+			autocomplete="off"
+			spellcheck="false"
+		/>
 		<ul role="listbox" hidden></ul>
 	</div>
 	<svg role="img" aria-label="Milk products and how each is made from another" data-no-swipe>
 		<defs>
-			<marker id="milk-arrow" viewBox="0 0 8 8" refX="8" refY="4" markerWidth="7" markerHeight="7" orient="auto">
-				<path d="M0 0L8 4L0 8z"></path>
-			</marker>
 			<marker id="milk-by" class="by-head" viewBox="0 0 8 8" refX="8" refY="4" markerWidth="6" markerHeight="6" orient="auto">
 				<path d="M0 0L8 4L0 8z"></path>
 			</marker>
+			<!-- The chrome's grain, for milk: its tiles, kept their size on the screen however far in it is zoomed. -->
+			<pattern id="milk-dots" class="grain" data-tile="26" patternUnits="userSpaceOnUse" width="26" height="26">
+				<image href="/assets/chrome-dots.png" width="26" height="26"></image>
+			</pattern>
+			<pattern id="milk-noise" class="grain" data-tile="128" patternUnits="userSpaceOnUse" width="128" height="128">
+				<image href="/assets/chrome-noise.png" width="128" height="128"></image>
+			</pattern>
 		</defs>
 		<g class="view">
 			<g class="edges"></g>
 			<g class="hits"></g>
 			<g class="steps"></g>
+			<g class="tables"></g>
 			<g class="nodes"></g>
 			<g class="by"></g>
 		</g>
 	</svg>
+	<aside class="milk-about" data-no-swipe inert>
+		<button type="button" class="milk-about-close" aria-label="Close">
+			<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4L12 12M12 4L4 12"></path></svg>
+		</button>
+		<div class="milk-about-body"></div>
+	</aside>
 </figure>
 
 <style>
@@ -1076,9 +2052,14 @@ const graph = {
 		position: relative;
 	}
 
-	/* The search: a small field on glass in the top left, over the picture,
-	   and what it finds in a list under it. */
+	/* The search: a small field in the top left, over the picture, and what
+	   it finds in a list under it; as the pills are on a light ground, on
+	   glass on a dark one. */
 	.milk-search {
+		--field: var(--pill);
+		--field-rim: var(--pill-rim);
+		--found: var(--pill);
+		--found-on: color-mix(in oklab, var(--deck-ground), white 30%);
 		position: absolute;
 		top: 0.75rem;
 		left: 0.75rem;
@@ -1108,8 +2089,8 @@ const graph = {
 		padding: 0.45em 0.7em 0.45em 2.1em;
 		font: inherit;
 		color: var(--deck-ink);
-		background: var(--viz-glass);
-		border: 1px solid var(--viz-glass-rim);
+		background: var(--field);
+		border: 1px solid var(--field-rim);
 		border-radius: var(--radius-medium);
 		backdrop-filter: blur(8px);
 		outline: none;
@@ -1123,9 +2104,15 @@ const graph = {
 		padding: 0.25rem 0;
 		max-height: 16rem;
 		overflow-y: auto;
-		background: var(--ground-300);
-		border: 1px solid var(--flb);
+		background: var(--found);
+		border: 1px solid var(--field-rim);
 		border-radius: var(--radius-medium);
+	}
+	:global(.deck-dark) .milk-search {
+		--field: var(--viz-glass);
+		--field-rim: var(--viz-glass-rim);
+		--found: var(--ground-300);
+		--found-on: var(--ground-400);
 	}
 	/* Written by the script as it finds things, so out of the scoping. */
 	.milk-search :global(li) {
@@ -1139,9 +2126,259 @@ const graph = {
 		font-size: 0.85em;
 	}
 	.milk-search :global(li[aria-selected='true']) {
-		background: var(--ground-400);
-		color: var(--ink-accent);
+		background: var(--found-on);
+		color: var(--lit);
 	}
+	/* The graph's own colours, by the ground it is on (the post's `ground`).
+	   On the light one, the pills stand out of it a little whiter, edged in
+	   a faint dark line, and the arrows are darker than the pills, the ink
+	   they are drawn in; a lit arrow is the ink itself. On the dark one, the
+	   pills are a rung up the ground's ladder, edged in the FLB, and a lit
+	   arrow is the accent. */
+	.milk-graph {
+		--pill: color-mix(in oklab, var(--deck-ground), white 70%);
+		--pill-rim: rgb(0 0 0 / 0.14);
+		--line: color-mix(in oklab, var(--deck-ink-dim) 70%, var(--deck-ground));
+		--lit: var(--deck-ink);
+	}
+	:global(.deck-dark) .milk-graph {
+		--pill: var(--ground-300);
+		--pill-rim: var(--flb);
+		--line: color-mix(in oklab, var(--deck-ink-dim) 55%, var(--deck-ground));
+		--lit: var(--ink-accent);
+	}
+	/* The product clicked, edged in the ink while it is told of. */
+	.nodes :global(.node.is-chosen rect.rim) {
+		stroke: var(--lit);
+		stroke-width: 2px;
+	}
+
+	/* The card telling of what was clicked: a panel on the pills' own white,
+	   slid in over the left of the picture, edge to edge, top to bottom; most
+	   of the pane where it is too narrow for the card and the picture side
+	   by side (below). */
+	.milk-graph {
+		container-type: inline-size;
+	}
+	.milk-about {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		z-index: 3;
+		box-sizing: border-box;
+		width: min(23rem, 100%);
+		color: var(--deck-ink);
+		background: var(--pill);
+		border-right: 1px solid var(--pill-rim);
+		font-family: var(--font-sans);
+		font-size: 0.85rem;
+		line-height: 1.5;
+		/* Out of sight to the left until opened, and gone once it is out. */
+		transform: translateX(-100%);
+		visibility: hidden;
+		transition:
+			transform 0.25s ease,
+			visibility 0s 0.25s;
+	}
+	.milk-about.is-open {
+		transform: none;
+		visibility: visible;
+		box-shadow: 0.5rem 0 1.5rem rgb(0 0 0 / 0.1);
+		transition: transform 0.25s ease;
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.milk-about,
+		.milk-about.is-open {
+			transition: none;
+		}
+	}
+	/* Where the pane is too narrow for the card and the picture side by
+	   side, the card takes most of it but not all: a strip of the picture
+	   is left at its side to tap, which shuts it. */
+	@container (max-width: 40rem) {
+		.milk-about {
+			width: 80%;
+		}
+	}
+	/* What scrolls, under the close button, which stays put. */
+	.milk-about-body {
+		box-sizing: border-box;
+		height: 100%;
+		overflow-y: auto;
+		overscroll-behavior: contain;
+		padding: 1rem 1.1rem 0.9rem;
+	}
+	.milk-about-close {
+		position: absolute;
+		top: 0.5rem;
+		right: 0.5rem;
+		z-index: 1;
+		width: 1.75rem;
+		height: 1.75rem;
+		padding: 0.35rem;
+		color: var(--deck-ink-dim);
+		background: none;
+		border: 0;
+		border-radius: var(--radius-medium);
+		cursor: pointer;
+	}
+	.milk-about-close:hover {
+		color: var(--deck-ink);
+	}
+	.milk-about-close svg {
+		display: block;
+		width: 100%;
+		height: 100%;
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 1.6;
+		stroke-linecap: round;
+	}
+	/* Written by the script as it tells of each, so out of the scoping. */
+	.milk-about :global(header) {
+		display: flex;
+		align-items: center;
+		gap: 0.9rem;
+		margin-bottom: 0.8rem;
+	}
+	/* The photograph in the panel's corner, out to its edges, the name and
+	   other names beside it. */
+	.milk-about :global(header.has-image) {
+		margin: -1rem 0 0.8rem -1.1rem;
+	}
+	/* Clear of the close button. */
+	.milk-about :global(header > div) {
+		padding-right: 1.5rem;
+	}
+	/* Without the frame and the "###" the site gives an image and a heading in a post. */
+	.milk-about :global(header img) {
+		flex: none;
+		width: 8rem;
+		height: 8rem;
+		padding: 0;
+		border: 0;
+		/* Rounded where it meets the panel, as the pane round it is (see ChromePane). */
+		border-radius: 0 0 var(--pane-corner, 12px) 0;
+		object-fit: cover;
+	}
+	.milk-about :global(header .milk-about-aka) {
+		margin: 0.3rem 0 0;
+	}
+	.milk-about :global(h3) {
+		margin: 0;
+		font-size: 1.15rem;
+		line-height: 1.25;
+	}
+	.milk-about :global(h3::before) {
+		content: none;
+	}
+	.milk-about :global(p) {
+		margin: 0 0 0.6rem;
+	}
+	.milk-about :global(.milk-about-kind),
+	.milk-about :global(.milk-about-aka),
+	.milk-about :global(.milk-about-source),
+	.milk-about :global(.milk-about-credit),
+	.milk-about :global(dt) {
+		color: var(--deck-ink-dim);
+		font-size: 0.9em;
+	}
+	.milk-about :global(.milk-about-kind) {
+		margin: 0 0 0.1rem;
+	}
+	.milk-about :global(dl) {
+		margin: 0.8rem 0 0.6rem;
+		padding-top: 0.6rem;
+		border-top: 1px solid var(--pill-rim);
+	}
+	.milk-about :global(.milk-about-fact) {
+		display: grid;
+		grid-template-columns: 6.5rem 1fr;
+		gap: 0.6rem;
+		margin-bottom: 0.3rem;
+	}
+	.milk-about :global(dd) {
+		margin: 0;
+	}
+	.milk-about :global(a),
+	.milk-about :global(.milk-about-to) {
+		color: inherit;
+		text-decoration: underline;
+		text-decoration-color: color-mix(in oklab, currentColor 35%, transparent);
+		text-underline-offset: 0.15em;
+	}
+	.milk-about :global(.milk-about-to) {
+		padding: 0;
+		font: inherit;
+		background: none;
+		border: 0;
+		cursor: pointer;
+	}
+	.milk-about :global(a:hover),
+	.milk-about :global(.milk-about-to:hover) {
+		text-decoration-color: currentColor;
+	}
+	.milk-about :global(.milk-about-credit) {
+		margin: 0;
+		font-size: 0.8em;
+	}
+	/* On a wide screen the panel is tall and has the room: the photograph
+	   leaves the name's side for the foot of the panel, under everything
+	   said, its credit just above, within the panel's padding and centred.
+	   The header's own box goes, so its picture can be placed apart from the
+	   rest of it; the name keeps the room the header gave it. */
+	@media (min-width: 1100px) {
+		/* And the panel only the upper half of the picture's left, so the
+		   picture below it stays in sight: a card of its own, set in from the
+		   corner and rounded as the pane round the picture is (ChromePane's
+		   corner), its words clipped to that round. Slid out past the inset. */
+		.milk-about {
+			top: 0.75rem;
+			left: 0.75rem;
+			bottom: auto;
+			height: calc(50% - 0.75rem);
+			border: 1px solid var(--pill-rim);
+			border-radius: var(--pane-corner, 12px);
+			overflow: hidden;
+			transform: translateX(calc(-100% - 0.75rem));
+		}
+		/* Lifted well off the picture, a close shadow under its edge and a
+		   long soft one round it. */
+		.milk-about.is-open {
+			transform: none;
+			box-shadow:
+				0 4px 12px rgb(0 0 0 / 0.35),
+				0 12px 32px rgb(0 0 0 / 0.45),
+				0 32px 80px rgb(0 0 0 / 0.55);
+		}
+		.milk-about-body {
+			display: flex;
+			flex-direction: column;
+		}
+		.milk-about :global(header.has-image) {
+			display: contents;
+		}
+		.milk-about :global(header.has-image > div) {
+			margin-bottom: 0.8rem;
+		}
+		.milk-about :global(.milk-about-credit) {
+			margin-bottom: 0.8rem;
+		}
+		.milk-about :global(header.has-image img) {
+			order: 1;
+			align-self: center;
+			/* The width of what is said over it, however small the photograph
+			   itself; a tall one cut down to a band rather than a column. */
+			width: 100%;
+			height: auto;
+			max-height: 12rem;
+			object-fit: cover;
+			margin-top: auto;
+			border-radius: var(--radius-large);
+		}
+	}
+
 	svg[role='img'] {
 		display: block;
 		width: 100%;
@@ -1153,28 +2390,25 @@ const graph = {
 		cursor: grabbing;
 	}
 
-	/* The tree, set back a little until a product is looked at. */
+	/* The tree, set back a little until a product is looked at. Set back
+	   by mixing it into the ground, not by seeing through it: the lines
+	   are solid, so where two cross or run together they are one colour,
+	   and so is an arrow's head with its line. */
+	/* Edged in a hairline of their own colour, a pixel on the screen
+	   whatever the zoom, so strands side by side show no seam between. */
 	.edges :global(path) {
-		fill: none;
-		stroke: var(--deck-ink-dim);
-		stroke-width: 1.2;
-		transition: opacity 0.15s ease;
+		--edge: var(--line);
+		fill: var(--edge);
+		stroke: var(--edge);
+		stroke-width: 1px;
+		stroke-linejoin: round;
+		vector-effect: non-scaling-stroke;
+		transition:
+			fill 0.15s ease,
+			stroke 0.15s ease;
 	}
-	.edges :global(path.is-tree) {
-		opacity: 0.55;
-	}
-	svg:global(.is-looking) .edges :global(path) {
-		opacity: 0.08;
-	}
-	svg:global(.is-looking) .edges :global(path.is-on) {
-		opacity: 0.9;
-		stroke: var(--ink-accent);
-	}
-	svg:global(.is-looking) .nodes :global(.node:not(.is-near)) {
-		opacity: 0.25;
-	}
-	marker path {
-		fill: var(--deck-ink-dim);
+	.edges :global(path.is-on) {
+		--edge: color-mix(in oklab, var(--lit) 90%, var(--deck-ground));
 	}
 	/* What a step leaves besides its product: thin curves in the accent,
 	   out of the step to each byproduct, while the step is looked at. */
@@ -1199,18 +2433,14 @@ const graph = {
 		pointer-events: none;
 		user-select: none;
 	}
-	/* A wide, unseen stroke along each arrow that has byproducts, so a line
-	   a pixel wide can still be pointed at. */
+	/* A wide, unseen stroke along each arrow, so a line a pixel wide can
+	   still be pointed at and clicked. */
 	.hits :global(path) {
 		fill: none;
 		stroke: transparent;
 		stroke-width: 14;
 		pointer-events: stroke;
-		cursor: help;
-	}
-	.steps :global(text.has-by) {
-		pointer-events: auto;
-		cursor: help;
+		cursor: pointer;
 	}
 	.steps :global(text.is-by) {
 		fill: var(--ink-accent);
@@ -1220,12 +2450,77 @@ const graph = {
 		font-family: var(--font-sans);
 		font-style: italic;
 		text-anchor: middle;
-		pointer-events: none;
 		user-select: none;
+		pointer-events: none;
 		transition: opacity 0.15s ease;
 	}
-	svg:global(.is-looking) .steps :global(text:not(.is-near)) {
-		opacity: 0.25;
+	/* A step's table: what each fact is, quiet, and its value in the ink. */
+	.tables :global(text) {
+		font-family: var(--font-sans);
+		user-select: none;
+		pointer-events: none;
+		transition: fill 0.15s ease;
+	}
+	/* Its lines in the quieter ink, thin for its size; the ink when pointed at. */
+	.tables :global(rect.cells) {
+		fill: var(--pill);
+		pointer-events: none;
+	}
+	.tables :global(path.names) {
+		fill: color-mix(in oklab, var(--deck-ink) 6%, var(--pill));
+		pointer-events: none;
+	}
+	.tables :global(rect.frame),
+	.tables :global(line.rule) {
+		fill: none;
+		stroke: var(--deck-ink-dim);
+		stroke-opacity: 0.5;
+		pointer-events: none;
+		transition: stroke 0.15s ease;
+	}
+	.tables :global(g.is-by rect.frame),
+	.tables :global(g.is-by line.rule) {
+		stroke: var(--lit);
+	}
+	.tables :global(rect.area) {
+		fill: transparent;
+		pointer-events: none;
+	}
+	.tables :global(g.tells rect.area) {
+		pointer-events: all;
+		cursor: pointer;
+	}
+	/* Its arrow, its name or its table pointed at: the name and all of the
+	   table in the ink, from the quieter ink they rest in. */
+	.tables :global(g.is-by text),
+	.steps :global(text.has-table.is-by) {
+		fill: var(--lit);
+	}
+	.tables :global(text.k) {
+		fill: var(--deck-ink-dim);
+		font-weight: 600;
+		text-anchor: end;
+	}
+	.tables :global(text.v) {
+		fill: var(--deck-ink-dim);
+	}
+	.steps :global(text.tells) {
+		pointer-events: auto;
+		cursor: pointer;
+	}
+	/* A flag edged as the pills are. */
+	.nodes :global(.regions circle.ground) {
+		fill: #fff;
+		stroke: none;
+	}
+	.nodes :global(.regions circle) {
+		fill: none;
+		stroke: var(--pill-rim);
+		stroke-width: 1.2;
+	}
+	/* Written inside its arrow, white on it. */
+	.steps :global(text.is-inside) {
+		fill: #fff;
 	}
 
 	.nodes :global(.node) {
@@ -1234,15 +2529,13 @@ const graph = {
 	.nodes :global(.node:active) {
 		cursor: grabbing;
 	}
-	/* A pill stands a little lighter than the ground it is on: a rung up
-	   the ground's ladder. */
+	/* A pill stands a little out of the ground it is on, and is edged. */
 	.nodes :global(.node rect) {
-		fill: var(--ground-300);
+		fill: var(--pill);
 	}
-	/* Its edge the FLB: white at a fifth over whatever is under it. */
 	.nodes :global(.node rect.rim) {
 		fill: none;
-		stroke: var(--flb);
+		stroke: var(--pill-rim);
 		stroke-width: 1.2;
 	}
 	/* An example's name a shade quieter than a product's, and the "…" after
@@ -1263,16 +2556,22 @@ const graph = {
 		pointer-events: none;
 		user-select: none;
 	}
-	/* Milk, where it all starts: large, in the middle of the chrome's gradient,
-	   the post's colour a step lighter, not the accent the site evens out
-	   for words: a grey-white post gets milk near white. */
-	.nodes :global(.node.is-root circle) {
-		fill: var(--accent-200);
-		stroke: none;
+	/* Milk, where it all starts: large, and white, whiter than the pills,
+	   with their edge. */
+	.nodes :global(.node.is-root circle:not(.grain)) {
+		fill: color-mix(in oklab, var(--pill), white 70%);
+		stroke: var(--pill-rim);
+		stroke-width: 2;
+	}
+	.nodes :global(.node.is-root circle.grain) {
+		mix-blend-mode: soft-light;
+	}
+	.nodes :global(.node.is-root circle.grain.is-dots) {
+		mix-blend-mode: overlay;
 	}
 	.nodes :global(.node.is-root text) {
 		fill: #000;
-		font-family: var(--font-prose);
+		font-family: var(--font-sans);
 		font-weight: 700;
 	}
 	.nodes :global(.node) {
@@ -1283,7 +2582,7 @@ const graph = {
 <script>
 	import { select } from 'd3-selection';
 	import 'd3-transition';
-	import { zoom, zoomIdentity } from 'd3-zoom';
+	import { zoom, zoomIdentity, zoomTransform } from 'd3-zoom';
 	import { eachPage } from '../lib/page';
 
 	type Node = {
@@ -1294,7 +2593,21 @@ const graph = {
 		// How it is made from what it hangs from, written on the arrow into it.
 		step?: string;
 		// Its photograph, if it has one, and whose it is.
-		image?: { src: string; credit: string };
+		image?: { src: string; credit: string; author: string; license: string; source: string };
+		// What it is, said when it is clicked, and where that was said first.
+		about?: { text: string; wiki?: string; source?: string; sourceName?: string };
+		// All a product's examples, the drawn and the rest.
+		named?: string[];
+		// The countries it comes from, if it is regional.
+		regions?: string[];
+		// How the step into it is done, and the sources (see milk-steps.json).
+		how?: {
+			label?: string;
+			table?: { k: string; v: string }[];
+			facts?: { k: string; v: string }[];
+			text?: string;
+			sources?: { name: string; url: string }[];
+		};
 		// What that step leaves besides, by id, with how.
 		byproducts?: Record<string, string>;
 		// Which family's slice it is held in; milk, in the middle, is in none.
@@ -1324,15 +2637,14 @@ const graph = {
 	const PAD_X = 14;
 	// The words' size at 1×, matching the stylesheet.
 	const FONT = 13;
-	// Milk's, for a circle 54 across.
-	const ROOT_FONT = 26;
+	// How much of milk's width its word runs across.
+	const ROOT_WORD = 0.7;
 	// The gap between one column and the next, where the lines turn.
 	const GAP_X = 56;
-	// The steps' words at 1×, the room either side of them (both growing
-	// with the product the arrow makes), and the arrowhead.
+	// The steps' words at 1×, and the room either side of them (both growing
+	// with the product the arrow makes).
 	const STEP_FONT = 10;
 	const STEP_PAD = 16;
-	const ARROW = 8;
 	// A pill's corners at 1×: the design system's --radius-medium.
 	const RADIUS = 4;
 	// How tall on the screen a product found by the search is zoomed to, in px.
@@ -1353,9 +2665,25 @@ const graph = {
 	   branch points read from afar, the ends of the branches close up. */
 	const sizeOf = (made: number) => Math.sqrt(1 + made);
 	const MILK = 2;
+	/* How thick a line is for each thing at the end of it: a line carries
+	   everything made down its branch, so it is this many times as thick as
+	   that is many, and a line out of a product splits into its children's
+	   as a river does, each strand as thick as its own branch (see draw). */
+	const STRAND = 1.5;
+	/* An arrowhead: the line's own end, tapering to a point, as wide as the
+	   line, or as a small head's width where the line is thinner than that. */
+	const headWidth = (line: number) => Math.max(line, 7);
+	const headLength = (line: number) => 0.8 * headWidth(line) + 4;
 	// How round a line's corners are.
 	const CORNER = 8;
+	// The room round the whole, framed, in pixels on the screen.
+	const MARGIN = 16;
+	/* How far in it can be zoomed: until the smallest words, a step's table
+	   on a thin arrow, read. */
+	const MAX_ZOOM = 150;
 
+	// How many have been drawn, to name each one's own parts apart.
+	let drawn = 0;
 	function draw(figure: HTMLElement, signal: AbortSignal) {
 		const data = JSON.parse(figure.dataset.milkGraph!) as {
 			light: number;
@@ -1365,6 +2693,12 @@ const graph = {
 		};
 		const { light, groups, links } = data;
 		const svg = select(figure).select<SVGSVGElement>('svg[role="img"]');
+		/* Its patterns and marker named for it alone, and the search's list,
+		   as another graph on the page would name its own the same. */
+		const uid = `milk-${++drawn}`;
+		svg.selectAll<Element, unknown>('defs [id]').attr('id', function () {
+			return `${uid}-${this.id.replace(/^milk-/, '')}`;
+		});
 		const products = data.nodes;
 		const byId = new Map(products.map((n) => [n.id, n]));
 
@@ -1457,7 +2791,7 @@ const graph = {
 		/* Siblings by size, the biggest branch at the top and the small ones
 		   gathered at the bottom. Branches as big as each other keep the order
 		   above; examples stay together after the products. Milk's own are
-		   left as they are, split between its two sides. */
+		   left as they are, and ordered when they are placed. */
 		for (const [p, kids] of children) {
 			if (p === root) continue;
 			const products = kids.filter((k) => !k.example);
@@ -1465,9 +2799,30 @@ const graph = {
 			const biggest = [...products].sort((a, b) => made.get(b)! - made.get(a)!);
 			kids.splice(0, kids.length, ...biggest, ...examples);
 		}
-		const size = (n: Node) => sizeOf(made.get(n)!) * (n === root ? MILK : 1);
-		// Milk is a circle as wide as a pill of its size is tall.
-		const rootR = (NODE_H / 2) * size(root);
+		/* What each is left behind by: the steps whose byproducts it is, as
+		   the whey is by setting milk with rennet. Each counts towards its size
+		   as one more thing made from it would. */
+		const byIn = new Map<Node, Node[]>();
+		for (const n of nodes)
+			for (const id of Object.keys(n.byproducts ?? {})) {
+				const b = byId.get(id);
+				if (b) byIn.set(b, [...(byIn.get(b) ?? []), n]);
+			}
+		const size = (n: Node) => sizeOf(made.get(n)! + (byIn.get(n)?.length ?? 0)) * (n === root ? MILK : 1);
+		/* How much a line into each carries: itself, and all made from it
+		   (a branch point is no product, so only what it splits into). */
+		const carried = new Map<Node, number>();
+		const carry = (n: Node): number => {
+			const v = (n.hub ? 0 : 1) + (children.get(n) ?? []).reduce((sum, k) => sum + carry(k), 0);
+			carried.set(n, v);
+			return v;
+		};
+		carry(root);
+		// The line into a product, and how long its arrowhead is.
+		const line = (n: Node) => STRAND * carried.get(n)!;
+		const arrow = (n: Node) => headLength(line(n));
+		// Milk is a circle half as wide again as a pill of its size is tall.
+		const rootR = 1.5 * (NODE_H / 2) * size(root);
 
 		// A photograph is square, as tall as its pill.
 		const picture = (d: Node) => NODE_H * size(d);
@@ -1484,7 +2839,7 @@ const graph = {
 		node.filter((d) => d !== root).append('rect');
 		node.append('text').each(function (d) {
 			const lines = d.label.split('\n');
-			select(this).style('font-size', `${d === root ? (ROOT_FONT * rootR) / 54 : FONT * size(d)}px`);
+			select(this).style('font-size', `${FONT * size(d)}px`);
 			select(this)
 				.selectAll('tspan')
 				.data(lines)
@@ -1513,7 +2868,9 @@ const graph = {
 			.attr('y', (d) => -d.h / 2)
 			.attr('width', (d) => d.w)
 			.attr('height', (d) => d.h)
-			.attr('rx', radius);
+			.attr('rx', radius)
+			// Lifted off the ground by a soft shadow, as deep as the pill is big.
+			.style('filter', (d) => `drop-shadow(0 ${d.h * 0.04}px ${d.h * 0.1}px rgb(0 0 0 / 0.12))`);
 		/* The photograph filling the pill's left end, edge to edge, its outer
 		   corners rounded as the pill's are; its credit on hovering it. */
 		node
@@ -1538,54 +2895,134 @@ const graph = {
 			.attr('width', (d) => d.w)
 			.attr('height', (d) => d.h)
 			.attr('rx', radius);
+		/* A regional one's flag on its top right corner, a little over it, a
+		   round one edged as the pill is; two to four side by side leftwards
+		   from there, each a little over the one before. */
+		const countryName = new Intl.DisplayNames(['en'], { type: 'region' });
+		node
+			.filter((d) => !!d.regions?.length)
+			.each(function (d) {
+				const r = d.h * 0.2;
+				const badge = select(this)
+					.append('g')
+					.attr('class', 'regions')
+					.attr('transform', `translate(${d.w / 2 - r * 0.35},${-d.h / 2 + r * 0.35})`);
+				badge.append('title').text(d.regions!.map((c) => countryName.of(c)).join(', '));
+				const n = d.regions!.length;
+				d.regions!.forEach((c, i) => {
+					// The last on the corner, the first furthest left, each overlapping the next by a third.
+					const flag = badge
+						.append('g')
+						.attr('transform', `translate(${-(n - 1 - i) * r * 1.4},0)`)
+						// The pills' shadow, as deep for its size.
+						.style('filter', `drop-shadow(0 ${r * 0.08}px ${r * 0.2}px rgb(0 0 0 / 0.18))`);
+					// On white, for a flag that does not fill its square, as Nepal's does not.
+					flag.append('circle').attr('class', 'ground').attr('r', r);
+					flag
+						.append('image')
+						.attr('href', `/assets/flags/${c.toLowerCase()}.webp`)
+						.attr('x', -r)
+						.attr('y', -r)
+						.attr('width', 2 * r)
+						.attr('height', 2 * r)
+						.style('clip-path', 'circle(50%)');
+					flag.append('circle').attr('r', r);
+				});
+			});
 
-		/* Laid out as a tree on a grid, as a diagram on paper is: milk in the
-		   middle and its branches shared between its two sides, so that each
-		   side has about as many ends; each step of making a column further
-		   out from what it is made from; each product at the
+		/* Laid out as a tree on a grid, as a diagram on paper is: milk at the
+		   left and its branches off to the right of it; each step of making a
+		   column further out from what it is made from; each product at the
 		   end of a branch a row of its own, and every parent level with the
 		   middle of what hangs from it. Nothing can overlap, and no line has
 		   to cross a pill. */
-		const leaves = new Map<Node, number>();
-		const count = (n: Node): number => {
-			const kids = children.get(n) ?? [];
-			const v = kids.length ? kids.reduce((s, k) => s + count(k), 0) : 1;
-			leaves.set(n, v);
-			return v;
-		};
-		count(root);
-
-		const side = new Map<Node, number>([[root, 0]]);
-		let ends = 0;
-		for (const k of children.get(root) ?? []) {
-			side.set(k, ends + leaves.get(k)! / 2 < leaves.get(root)! / 2 ? 1 : -1);
-			ends += leaves.get(k)!;
-		}
-		const descend = (n: Node) => {
-			for (const k of children.get(n) ?? []) {
-				if (n !== root) side.set(k, side.get(n)!);
-				descend(k);
-			}
-		};
-		descend(root);
 
 		/* The steps, written on the last stretch of each arrow, just before
 		   the product it makes; measured here, so each parent leaves room
 		   enough for its children's. A hub's own arrow is a kind, not a
 		   step, and has none. */
 		// At the same scale as the product the arrow makes, as its own words are.
-		const stepFont = (n: Node) => STEP_FONT * size(n);
+		/* Larger on an arrow whose step is told of in full, a title, whether or
+		   not it has a table under it, so siblings read alike. */
+		const stepFont = (n: Node) => STEP_FONT * size(n) * (n.how?.facts?.length || n.how?.table?.length ? 1.6 : 1);
 		const step = svg
 			.select('.steps')
 			.selectAll<SVGTextElement, Node>('text')
 			.data(nodes.filter((n) => n.step && n !== root))
 			.join('text')
-			.style('font-size', (n) => `${stepFont(n)}px`)
-			.text((n) => n.step!);
+			.style('font-size', (n) => `${stepFont(n)}px`);
+		/* A step in as many lines as it is written in, the last just over its
+		   arrow and the rest stacked up from there; inside an arrow, all of
+		   them centred on it. */
+		const lines = (n: Node) => n.step!.split('\n');
+		const LEADING = 1.15;
+		step
+			.selectAll('tspan')
+			.data((n) => lines(n).map((said) => ({ said, n })))
+			.join('tspan')
+			.text(({ said }) => said);
+		// How much taller than one line its words are.
+		const extra = (n: Node) => (n.step ? (lines(n).length - 1) * LEADING * stepFont(n) : 0);
 		const stepWidth = new Map<Node, number>();
 		step.each(function (n) {
 			stepWidth.set(n, this.getBBox().width);
 		});
+		/* A step's table, under the step's name and laid over its arrow: a row a
+		   fact, what it is on the left and its value on the right, a value in
+		   as many lines as it is written in; small, a footnote to the name. */
+		const ROW = 1.3;
+		const rows = (n: Node) => n.how?.table ?? [];
+		const tableFont = (n: Node) => STEP_FONT * size(n) * 0.2;
+		const rowLines = (v: string) => v.split('\n');
+		const table = svg
+			.select('.tables')
+			.selectAll<SVGGElement, Node>('g')
+			.data(nodes.filter((n) => rows(n).length > 0))
+			.join('g')
+			.style('font-size', (n) => `${tableFont(n)}px`)
+			// Its lines a fraction of its words, however big it is drawn.
+			.style('stroke-width', (n) => `${tableFont(n) * 0.08}px`);
+		const columns = new Map<Node, { key: number; value: number }>();
+		table.each(function (n) {
+			const g = select(this);
+			// One area to point at, round the step's name and the table both.
+			g.append('rect').attr('class', 'area');
+			/* On the pills' white, the names' column a shade darker; a rule
+			   between each two rows and one between the columns; and its frame,
+			   round as the site's medium corners are, over them. */
+			g.append('rect').attr('class', 'cells');
+			g.append('path').attr('class', 'names');
+			for (let i = 1; i < rows(n).length; i++) g.append('line').attr('class', 'rule');
+			g.append('line').attr('class', 'rule column');
+			g.append('rect').attr('class', 'frame');
+			const keys = rows(n).map(({ k }) => g.append('text').attr('class', 'k').text(k).node()!);
+			const values = rows(n).map(({ v }) => {
+				const t = g.append('text').attr('class', 'v');
+				for (const said of rowLines(v)) t.append('tspan').text(said);
+				return t.node()!;
+			});
+			const widest = (t: SVGTextContentElement[]) => Math.max(...t.map((e) => e.getComputedTextLength()));
+			columns.set(n, { key: widest(keys), value: widest(values.flatMap((t) => [...t.querySelectorAll('tspan')])) });
+		});
+		// The room in a cell round its words.
+		const pad = (n: Node) => tableFont(n) * 0.6;
+		const tableWidth = (n: Node) => {
+			const c = columns.get(n);
+			return c ? c.key + c.value + 4 * pad(n) : 0;
+		};
+		// A row as tall as its value's lines, and its padding.
+		const rowHeight = (n: Node, v: string) => rowLines(v).length * ROW * tableFont(n) + pad(n);
+		// How tall it is, with a little air under it.
+		const tableHeight = (n: Node) =>
+			rows(n).length ? rows(n).reduce((sum, { v }) => sum + rowHeight(n, v), 0) + tableFont(n) * 0.6 : 0;
+		// Inside its arrow, centred on it, where the arrow is that thick.
+		const tableInside = (n: Node) => line(n) >= tableHeight(n) + tableFont(n);
+		/* Where it begins, from the middle of its arrow: in the arrow, or just
+		   under the step's words, laid over it. */
+		const tableTop = (n: Node) =>
+			tableInside(n) ? -(tableHeight(n) - tableFont(n) * 0.6) / 2 : -line(n) / 2 - stepFont(n) * 0.45 + stepFont(n) * 0.3;
+		// How far under the middle of its arrow it reaches, laid over the arrow.
+		const tableBottom = (n: Node) => (rows(n).length ? tableTop(n) + tableHeight(n) : 0);
 
 		/* Across: each product just past the edge of what it is made from,
 		   by a gap as wide as that parent wants, the bigger the wider; not in
@@ -1593,25 +3030,34 @@ const graph = {
 		   push every small one's children far off. A branch keeps its own
 		   rows, so nothing it shares a column with can be in its way. */
 		/* From a parent's edge out to its trunk, then from the trunk on to each
-		   child: a distance that goes by the child's size alone, so that any
-		   two products drawn the same size sit the same way out from their
-		   trunks. For each size it is as long as the longest step written into
-		   anything of that size needs, so every step still fits. Siblings are
-		   in rows of their own, so they cannot meet. */
+		   child: a distance that goes by the parent and the child's size, so
+		   that its children drawn the same size line up, as far out as the
+		   longest step written into any of them needs, so every step still
+		   fits; and a small child is not pushed out by a great sibling's
+		   words, nor by any other parent's. Siblings are in rows of their own,
+		   so they cannot meet. */
 		// A branch point turns at once: it has no pill to clear.
-		const toTrunk = (n: Node) => (n.hub ? GAP_X / 4 : (GAP_X / 2) * Math.sqrt(size(n)));
+		// Milk keeps a margin of half its own size, its radius, all round it.
+		const toTrunk = (n: Node) => (n === root ? rootR : n.hub ? GAP_X / 4 : (GAP_X / 2) * Math.sqrt(size(n)));
+		/* Half as wide as the trunk out of a product, the line into the
+		   biggest of its children: kept clear of on both sides, so neither the
+		   parent nor a step's words beside it are under it. */
+		const halfTrunk = (n: Node) => (children.get(n) ?? []).reduce((sum, k) => sum + line(k), 0) / 2;
 		const needs = (k: Node) =>
-			Math.max((GAP_X / 2) * Math.sqrt(size(k)), (stepWidth.get(k) ?? 0) + 2 * STEP_PAD * size(k) + ARROW);
-		// Examples, with no step written on their lines, go by a measure of their own.
-		const key = (k: Node) => `${size(k)}${k.example ? 'e' : ''}`;
-		const bySize = new Map<string, number>();
-		for (const k of nodes) if (k !== root) bySize.set(key(k), Math.max(bySize.get(key(k)) ?? 0, needs(k)));
-		const fromTrunk = (k: Node) => bySize.get(key(k))!;
-		const outer = (n: Node) => Math.abs(n.x) + n.w / 2;
+			Math.max(
+				(GAP_X / 2) * Math.sqrt(size(k)),
+				Math.max(stepWidth.get(k) ?? 0, tableWidth(k)) + 2 * STEP_PAD * size(k) + arrow(k),
+			);
+		const key = (k: Node) => `${treeParent.get(k)!.id} ${size(k)}`;
+		const out = new Map<string, number>();
+		for (const k of nodes) if (k !== root) out.set(key(k), Math.max(out.get(key(k)) ?? 0, needs(k)));
+		const fromTrunk = (k: Node) => out.get(key(k))!;
+		// How far a product reaches out to the right.
+		const outer = (n: Node) => n.x + n.w / 2;
 		root.x = 0;
 		const across = (n: Node) => {
 			for (const k of children.get(n) ?? []) {
-				k.x = side.get(k)! * (outer(n) + toTrunk(n) + fromTrunk(k) + k.w / 2);
+				k.x = outer(n) + toTrunk(n) + 2 * halfTrunk(n) + fromTrunk(k) + k.w / 2;
 				across(k);
 			}
 		};
@@ -1624,11 +3070,13 @@ const graph = {
 		   product by the trunk tucks in just above a great branch whose far end
 		   reaches up past it, as kefir does over soured milk. A parent sits
 		   level with the middle of its first and last child. Worked out within
-		   each branch, then the branches stacked down each side of milk, and
-		   both sides centred on it. */
+		   each branch, then milk's branches stacked down and centred on it. */
 		// `own`: the box is a sibling's own pill or arrow, not something further down its branch.
 		type Box = { x0: number; x1: number; y0: number; y1: number; own?: boolean };
-		const trunkX = (p: Node) => side.get(p)! * (outer(p) + toTrunk(p));
+		// The middle of the trunk out of a product.
+		const trunkAt = (p: Node) => outer(p) + toTrunk(p) + halfTrunk(p);
+		// For packing, milk's lines are taken from its middle.
+		const trunkX = (p: Node) => (p === root ? 0 : trunkAt(p));
 		const pillBox = (n: Node): Box => ({ x0: n.x - n.w / 2, x1: n.x + n.w / 2, y0: -n.h / 2, y1: n.h / 2 });
 		/* The line into a product, from the trunk, taken as a band as tall as
 		   the product it leads to (or its step's words, if taller), so that
@@ -1636,9 +3084,9 @@ const graph = {
 		const inBox = (n: Node): Box => {
 			const p = treeParent.get(n)!;
 			const t = trunkX(p);
-			const edge = n.x - (side.get(n)! * n.w) / 2;
-			const words = n.step ? stepFont(n) * 1.3 : 0;
-			return { x0: Math.min(t, edge), x1: Math.max(t, edge), y0: -Math.max(words, n.h / 2), y1: n.h / 2 };
+			const edge = n.x - n.w / 2;
+			const words = n.step ? stepFont(n) * 1.3 + extra(n) : 0;
+			return { x0: Math.min(t, edge), x1: Math.max(t, edge), y0: -Math.max(words, n.h / 2), y1: Math.max(n.h / 2, tableBottom(n)) };
 		};
 		const moved = (b: Box, dy: number): Box => ({ ...b, y0: b.y0 + dy, y1: b.y1 + dy });
 		/* How far down `next` must go to clear everything in `above`: tucked in
@@ -1649,7 +3097,8 @@ const graph = {
 			let dy = -Infinity;
 			for (const b of next)
 				for (const a of above)
-					if (b.x0 < a.x1 + 2 && a.x0 < b.x1 + 2)
+					// Side by side counts as in the way unless as far apart as rows are.
+					if (b.x0 < a.x1 + APART / 2 && a.x0 < b.x1 + APART / 2)
 						// Siblings close together; anything else, cousins and trunks, further apart.
 						dy = Math.max(dy, a.y1 + (a.own && b.own ? ROW_GAP : APART) - b.y0);
 			if (snug) return dy;
@@ -1660,7 +3109,10 @@ const graph = {
 		// with the branch's own root at 0.
 		const rel = new Map<Node, number>();
 		const shape = (n: Node): Box[] => {
-			const own = [pillBox(n), ...(n === root || !treeParent.has(n) ? [] : [inBox(n)])].map((b) => ({ ...b, own: true }));
+			const own = [pillBox(n), ...(n === root || !treeParent.has(n) ? [] : [inBox(n)])].map((b) => ({
+				...b,
+				own: true,
+			}));
 			const kids = children.get(n) ?? [];
 			if (!kids.length) return own;
 			let packed: Box[] = [];
@@ -1677,39 +3129,149 @@ const graph = {
 			const mid = (at.get(kids[0])! + at.get(kids.at(-1)!)!) / 2;
 			for (const k of kids) rel.set(k, at.get(k)! - mid);
 			const t = trunkX(n);
-			const trunk: Box = { x0: t - 1, x1: t + 1, y0: at.get(kids[0])! - mid, y1: at.get(kids.at(-1)!)! - mid };
+			// As wide as the line out is: its strands turn down anywhere across it.
+			const trunk: Box = { x0: t - halfTrunk(n) - 1, x1: t + halfTrunk(n) + 1, y0: at.get(kids[0])! - mid, y1: at.get(kids.at(-1)!)! - mid };
 			// Its own pill and arrow stay its own, for packing it against its
 			// siblings; all that hangs from it is no sibling of theirs.
 			return [...own, { ...trunk, own: false }, ...packed.map((b) => ({ ...moved(b, -mid), own: false }))];
 		};
-		for (const s of [1, -1]) {
-			const tops = (children.get(root) ?? []).filter((k) => side.get(k) === s);
-			let packed: Box[] = [];
-			const at = new Map<Node, number>();
-			let last = 0;
-			for (const k of tops) {
-				const branch = shape(k);
-				const dy = packed.length ? Math.max(clear(packed, branch, false), last) : 0;
-				last = dy;
-				at.set(k, dy);
-				packed = packed.concat(branch.map((b) => moved(b, dy)));
-			}
-			if (!tops.length) continue;
-			const mid = (at.get(tops[0])! + at.get(tops.at(-1)!)!) / 2;
-			const place = (n: Node, y: number) => {
-				n.y = y;
-				for (const k of children.get(n) ?? []) place(k, y + rel.get(k)!);
-			};
-			for (const k of tops) place(k, at.get(k)! - mid);
+		const place = (n: Node, y: number) => {
+			n.y = y;
+			for (const k of children.get(n) ?? []) place(k, y + rel.get(k)!);
+		};
+		/* Milk's branches, cheese at the top and cream at the bottom, the
+		   rest between from the biggest down, centred on milk. */
+		const pinned = (n: Node) => (n.id === 'rennetCurd' ? -1 : n.id === 'rawCream' ? 1 : 0);
+		const tops = [...(children.get(root) ?? [])].sort((a, b) => pinned(a) - pinned(b) || made.get(b)! - made.get(a)!);
+		let packed: Box[] = [];
+		const at = new Map<Node, number>();
+		let last = 0;
+		for (const k of tops) {
+			const branch = shape(k);
+			const dy = packed.length ? Math.max(clear(packed, branch, false), last) : 0;
+			last = dy;
+			at.set(k, dy);
+			packed = packed.concat(branch.map((b) => moved(b, dy)));
 		}
+		const mid = tops.length ? (at.get(tops[0])! + at.get(tops.at(-1)!)!) / 2 : 0;
+		for (const k of tops) place(k, at.get(k)! - mid);
+
+		/* A jog too short for a strand to turn down and back with two corners
+		   and a clear stretch between, rather than a kink; and one so short
+		   it is less than the strand is thick, which is no jog at all. */
+		const cramped = (k: Node, by: number) => Math.abs(by) < line(k) + 4 * CORNER;
+		const level = (k: Node, by: number) => Math.abs(by) < line(k);
+		/* Where each child's strand is in the line out of its parent: the line
+		   as thick as all of theirs together, on the parent's middle, and
+		   theirs side by side in it in the order they go down. */
+		const slots = (p: Node) => {
+			let edge = p.y - halfTrunk(p);
+			return new Map(
+				[...(children.get(p) ?? [])]
+					.sort((a, b) => a.y - b.y)
+					.map((k) => {
+						edge += line(k);
+						return [k, edge - line(k) / 2] as const;
+					}),
+			);
+		};
+		/* What a product takes up where it is: its pill, the line into it with
+		   its step's words over it, and the line out of it to its trunk and
+		   down the trunk. */
+		const family = (n: Node): Node[] => [n, ...(children.get(n) ?? []).flatMap(family)];
+		const room = (n: Node, own = true): Box[] => {
+			const boxes: Box[] = [moved(pillBox(n), n.y)];
+			const p = treeParent.get(n);
+			if (p) {
+				const words = n.step ? stepFont(n) * 1.3 + extra(n) : 0;
+				const reach = Math.max(n.h / 2, line(n) / 2);
+				boxes.push({ x0: trunkAt(p) - halfTrunk(p), x1: n.x - n.w / 2, y0: n.y - reach - words, y1: n.y + Math.max(reach, tableBottom(n)) });
+			}
+			const kids = children.get(n) ?? [];
+			if (kids.length && own) {
+				const ys = kids.map((k) => k.y);
+				const t = trunkAt(n);
+				boxes.push({ x0: outer(n), x1: t + halfTrunk(n), y0: n.y - halfTrunk(n), y1: n.y + halfTrunk(n) });
+				boxes.push({ x0: t - halfTrunk(n), x1: t + halfTrunk(n), y0: Math.min(...ys), y1: Math.max(...ys) });
+			}
+			return boxes;
+		};
+		const clash = (a: Box, b: Box) => a.x0 < b.x1 && b.x0 < a.x1 && a.y0 < b.y1 + ROW_GAP && b.y0 < a.y1 + ROW_GAP;
+		/* Products moved up or down by `by`, if that brings them near nothing
+		   they were not near already and keeps them between the siblings
+		   either side; or left where they are. A child is moved with all
+		   made from it. */
+		const move = (mine: Node[], by: number) => {
+			const p = treeParent.get(mine[0]);
+			// Not the lines into what they make, which they are meant to meet.
+			const rest = nodes
+				.filter((n) => !mine.includes(n))
+				.flatMap((n) => room(n, n !== p).filter((_, i) => !(i === 1 && mine.includes(treeParent.get(n)!))));
+			const order = () => [...(children.get(p!) ?? [])].sort((a, b) => a.y - b.y).join();
+			const was = order();
+			const before = mine.flatMap((n) => room(n));
+			for (const n of mine) n.y += by;
+			const after = mine.flatMap((n) => room(n));
+			// And never a pill onto another, however near they were before.
+			const pills = mine.map((n) => moved(pillBox(n), n.y));
+			const others = nodes.filter((n) => !mine.includes(n)).map((n) => moved(pillBox(n), n.y));
+			const onto = pills.some((a) => others.some((b) => a.x0 < b.x1 && b.x0 < a.x1 && a.y0 < b.y1 && b.y0 < a.y1));
+			if (order() === was && !onto && !after.some((a, i) => rest.some((b) => clash(a, b) && !clash(before[i], b)))) return true;
+			for (const n of mine) n.y -= by;
+			return false;
+		};
+		const shift = (k: Node, by: number) => move(family(k), by);
+		/* A child its strand runs into nearly level would be met by a jog too
+		   short to draw well: its parent moved up or down instead, so the
+		   strand meets it square on; of several, the thickest. Only a parent
+		   that is not itself met that way, so as not to undo it. Any others
+		   met short are moved level with their strands themselves, with all
+		   made from them, where there is room; a branch point, with no pill,
+		   at least by itself. Down from milk. */
 		root.y = 0;
+		const squared = new Set<Node>();
+		const square = (p: Node) => {
+			if (!squared.has(p)) {
+				const near = [...slots(p)]
+					.map(([k, at]) => ({ k, by: k.y - at }))
+					.filter(({ k, by }) => cramped(k, by))
+					.sort((a, b) => line(b.k) - line(a.k) || Math.abs(a.by) - Math.abs(b.by))[0];
+				// Itself alone, where that brings it near nothing either.
+				if (near && move([p], near.by)) squared.add(near.k);
+			}
+			for (const [k, at] of slots(p)) {
+				if (squared.has(k) || !cramped(k, k.y - at)) continue;
+				if (shift(k, at - k.y)) squared.add(k);
+				else if (k.hub && level(k, k.y - at)) {
+					k.y = at;
+					squared.add(k);
+				}
+			}
+			for (const k of children.get(p) ?? []) square(k);
+		};
+		square(root);
+		const rootNode = node.filter((d) => d === root);
+		/* In the chrome's grain, as the page round it is: its dots blended
+		   over it, and its noise over that as many times as the post asks. */
+		const grains = ['dots', ...Array.from({ length: Number(document.documentElement.dataset.grain ?? 1) }, () => 'noise')];
+		for (const grain of grains)
+			rootNode
+				.insert('circle', 'text')
+				.attr('class', `grain is-${grain}`)
+				.attr('r', rootR)
+				// Inline, over the pills' own fill.
+				.style('fill', `url(#${uid}-${grain})`);
+		// Its word as big as fits across it.
+		const word = rootNode.select<SVGTextElement>('text');
+		word.selectAll('tspan').text((l) => String(l).toUpperCase());
+		word.style('font-size', `${(FONT * size(root) * ROOT_WORD * 2 * rootR) / word.node()!.getBBox().width}px`);
 
 		/* The tree's edges, with an arrowhead into every product; the arrow
 		   into a branch point has none, its head is on the arrows it splits into. */
 		const edges: Edge[] = [...treeParent].map(([n, p]) => ({
 			source: p,
 			target: n,
-			made: !n.hub && !n.example,
+			made: !n.hub && (!n.example || !!n.step),
 		}));
 
 		const edge = svg
@@ -1717,10 +3279,7 @@ const graph = {
 			.selectAll<SVGPathElement, Edge>('path')
 			.data(edges)
 			.join('path')
-			.attr('class', 'is-tree')
-			.attr('marker-end', (e) => (e.made ? 'url(#milk-arrow)' : null))
-			// Thicker the more it leads to, so the main branches read as trunks.
-			.style('stroke-width', (e) => `${1.2 * Math.sqrt(size(e.target))}`);
+			.attr('class', 'is-tree');
 
 		/* Every line runs straight across or straight up and down, never
 		   slantwise: out of the parent's side that faces the child, halfway
@@ -1728,22 +3287,137 @@ const graph = {
 		   child's row, and round again into it. The trunk is the same for
 		   every child, so a family reads as one bracket off what it is made
 		   from. */
-		const elbow = (s: Node, t: Node) => {
-			const sx = side.get(t)!;
-			const x1 = s.x + (sx * s.w) / 2;
-			const x2 = t.x - (sx * t.w) / 2;
-			// In the parent's gap, before any of its children.
-			const trunk = sx * (outer(s) + toTrunk(s));
-			return rounded([
-				[x1, s.y],
-				[trunk, s.y],
-				[trunk, t.y],
+		/* Where each child's strand runs in the line out of its parent: the
+		   line out is as thick as all its children's together, and holds them
+		   side by side in the order they go down, each at its own height in
+		   it. They turn off it one by one into the gap before the children:
+		   those that go up, the topmost first, and those that go down, the
+		   lowest first, so a strand turns only once all on its far side have,
+		   and none crosses another. Each bends round the one that turned
+		   before it, on the same middle, so the two meet all the way round
+		   the corner; the first round as tight a bend as any line has. */
+		const strands = new Map<Node, { at: number; turn: number; bends: number[] }>();
+		const split = (p: Node) => {
+			const at = slots(p);
+			const kids = [...at.keys()];
+			// The gap's near edge, where the first strand turns.
+			const start = trunkAt(p) - halfTrunk(p);
+			const up = kids.filter((k) => k.y < at.get(k)!);
+			const down = kids.filter((k) => k.y >= at.get(k)!).reverse();
+			for (const group of [up, down]) {
+				let past = 0;
+				// The bend of the one before, as it was drawn, and how thick it is.
+				let inner = CORNER;
+				let before = 0;
+				for (const k of group) {
+					strands.set(k, { at: at.get(k)!, turn: start + past + line(k) / 2, bends: [] });
+					past += line(k);
+					const q = elbowPoints(p, k);
+					if (q.length < 4) continue;
+					const w = line(k) / 2;
+					const out = q[1][0] - q[0][0];
+					const jog = Math.abs(q[2][1] - q[1][1]);
+					const into = q[3][0] - q[2][0];
+					// Round the one before, on its middle; then into the product.
+					let first = inner + (before + line(k)) / 2;
+					let last = CORNER + w;
+					/* Too short a jog for both: still round the one before, and into the
+					   product the tighter; and only with no room even for that, two
+					   tight corners, an S. */
+					if (first + last > jog) last = Math.max(w, jog - first);
+					if (first + last > jog) first = last = Math.min(CORNER + w, jog / 2);
+					// No further round than the stretches either side reach, leaving the head its own.
+					first = Math.min(first, out);
+					last = Math.min(last, Math.max(into - (k.hub ? 0 : arrow(k)), into / 2), jog - first);
+					strands.get(k)!.bends = [0, first, last];
+					inner = first;
+					before = line(k);
+				}
+			}
+		};
+		const elbowPoints = (s: Node, t: Node): [number, number][] => {
+			// Out of the parent's edge; out of milk, from where its round edge is as high as the line.
+			const x1 = s === root ? s.x + Math.sqrt(Math.max(0, rootR ** 2 - halfTrunk(s) ** 2)) - 1 : s.x + (s.w - 2) / 2;
+			/* Into a product, to its edge; into a branch point, just past it,
+			   where the strands out of it begin. */
+			const x2 = t.hub ? t.x + 1 : t.x - t.w / 2;
+			const { at, turn } = strands.get(t)!;
+			// Its strand level with it already: straight on in its place in the line.
+			if (level(t, t.y - at))
+				return [
+					[x1, at],
+					[x2, at],
+				];
+			return [
+				[x1, at],
+				[turn, at],
+				[turn, t.y],
 				[x2, t.y],
-			]);
+			];
+		};
+		const elbow = (s: Node, t: Node) => rounded(elbowPoints(s, t), strands.get(t)!.bends);
+		/* An arrow drawn as one shape, filled: both edges of a line as wide as
+		   the product it leads to is big, round its corners, and, for a product
+		   made, in to a point at the product's edge. Not a stroked line with a
+		   head put on its end, which shows a hairline seam between the two. */
+		type Pt = [number, number];
+		const arrowShape = (s: Node, t: Node, made: boolean) => {
+			const p = elbowPoints(s, t);
+			const w = line(t) / 2;
+			const n = p.length - 1;
+			const dir = (i: number): Pt => {
+				const [ax, ay] = p[i];
+				const [bx, by] = p[i + 1];
+				const len = Math.hypot(bx - ax, by - ay) || 1;
+				return [(bx - ax) / len, (by - ay) / len];
+			};
+			const len = (i: number) => Math.hypot(p[i + 1][0] - p[i][0], p[i + 1][1] - p[i][1]);
+			// Round its corners as its strand was given room for (see split).
+			const bends = strands.get(t)!.bends;
+			const radius = (i: number) => Math.min(bends[i] ?? CORNER, len(i - 1), len(i));
+			/* One edge, `way` 1 the left and -1 the right: each point, and the
+			   control point of the curve into it if it is one. */
+			const edgeOf = (way: number) => {
+				const at = (q: Pt, d: Pt, by: number): Pt => [q[0] - d[1] * by, q[1] + d[0] * by];
+				const out: { p: Pt; c?: Pt }[] = [{ p: at(p[0], dir(0), way * w) }];
+				for (let i = 1; i < n; i++) {
+					const din = dir(i - 1);
+					const dout = dir(i);
+					const r = radius(i);
+					// The corner of the edge, and how far from it each way its curve begins.
+					const corner = at(at(p[i], din, way * w), dout, way * w);
+					const offIn = [-dout[1] * way * w, dout[0] * way * w];
+					const offOut = [-din[1] * way * w, din[0] * way * w];
+					const before = r + offIn[0] * din[0] + offIn[1] * din[1];
+					const after = r - (offOut[0] * dout[0] + offOut[1] * dout[1]);
+					if (before <= 0 || after <= 0) out.push({ p: corner });
+					else {
+						out.push({ p: [corner[0] - din[0] * before, corner[1] - din[1] * before] });
+						out.push({ p: [corner[0] + dout[0] * after, corner[1] + dout[1] * after], c: corner });
+					}
+				}
+				const d = dir(n - 1);
+				if (made) {
+					// The head: from as far back as it is long, out to its width, in to the point.
+					const back = Math.max(0, Math.min(headLength(2 * w), len(n - 1) - (n > 1 ? radius(n - 1) : 0)));
+					const base: Pt = [p[n][0] - d[0] * back, p[n][1] - d[1] * back];
+					out.push({ p: at(base, d, way * w) });
+					out.push({ p: at(base, d, (way * headWidth(2 * w)) / 2) });
+				} else out.push({ p: at(p[n], d, way * w) });
+				return out;
+			};
+			const left = edgeOf(1);
+			const right = edgeOf(-1);
+			const to = ({ p: [x, y], c }: { p: Pt; c?: Pt }) => (c ? `Q${c[0]},${c[1]} ${x},${y}` : `L${x},${y}`);
+			let d = `M${left[0].p[0]},${left[0].p[1]}` + left.slice(1).map(to).join('');
+			if (made) d += `L${p[n][0]},${p[n][1]}`;
+			// Back along the other edge, each curve now from its other end.
+			for (let i = right.length - 1; i >= 0; i--) d += i === right.length - 1 ? `L${right[i].p[0]},${right[i].p[1]}` : to({ p: right[i].p, c: right[i + 1].c });
+			return d + 'Z';
 		};
 		/* A run of straight segments with its corners rounded off, each by
 		   as much as both segments meeting there have room for. */
-		const rounded = (p: [number, number][]) => {
+		const rounded = (p: [number, number][], bends: number[] = []) => {
 			let d = `M${p[0][0]},${p[0][1]}`;
 			for (let i = 1; i < p.length - 1; i++) {
 				const [px, py] = p[i - 1];
@@ -1751,7 +3425,7 @@ const graph = {
 				const [nx, ny] = p[i + 1];
 				const inLen = Math.hypot(cx - px, cy - py);
 				const outLen = Math.hypot(nx - cx, ny - cy);
-				const r = Math.min(CORNER, inLen / 2, outLen / 2);
+				const r = Math.min(bends[i] ?? CORNER, inLen, outLen);
 				if (r < 0.5) {
 					d += `L${cx},${cy}`;
 					continue;
@@ -1765,26 +3439,40 @@ const graph = {
 			const [lx, ly] = p[p.length - 1];
 			return d + `L${lx},${ly}`;
 		};
-		// Each step in the middle of its arrow's last stretch, just above it.
+		/* Each step in the middle of its arrow's last stretch: just above it,
+		   or, on an arrow fat enough to hold its words, inside it. */
+		const leg = (n: Node) => {
+			const strand = strands.get(n);
+			return strand && level(n, n.y - strand.at) ? strand.at : n.y;
+		};
+		// Not with a table to go under it.
+		const inside = (n: Node) => !rows(n).length && line(n) >= stepFont(n) * 1.3 + extra(n);
+		const stepY = (n: Node) =>
+			inside(n) ? leg(n) + stepFont(n) * 0.35 : leg(n) - line(n) / 2 - stepFont(n) * 0.45;
 		const stepX = (n: Node) => {
 			const p = treeParent.get(n)!;
-			const trunk = side.get(n)! * (outer(p) + toTrunk(p));
-			const edge = n.x - (side.get(n)! * n.w) / 2;
-			return (trunk + edge - side.get(n)! * ARROW) / 2;
+			// From the trunk's far side.
+			const trunk = trunkAt(p) + halfTrunk(p);
+			const edge = n.x - n.w / 2;
+			return (trunk + edge - arrow(n)) / 2;
 		};
-		const hasBy = (e: Edge) => Object.keys(e.target.byproducts ?? {}).length > 0;
+		/* Every arrow with something to tell, how its step is done or what it
+		   leaves, to be pointed at and clicked; the rest are only drawn. */
+		const told = (n: Node) => !!(n.how?.facts?.length || n.how?.text);
+		const tells = (n: Node) => told(n) || Object.keys(n.byproducts ?? {}).length > 0;
 		const hit = svg
 			.select('.hits')
 			.selectAll<SVGPathElement, Edge>('path')
-			.data(edges.filter(hasBy))
+			.data(edges.filter((e) => tells(e.target)))
 			.join('path');
-		step.classed('has-by', (n) => Object.keys(n.byproducts ?? {}).length > 0);
+		step.classed('tells', (n) => tells(n) && !rows(n).length).classed('has-table', (n) => rows(n).length > 0);
+		table.classed('tells', tells);
 
 		/* A step's byproducts: a curve from the step, where its words are,
 		   to the edge of each thing it leaves. */
 		const bend = (from: Node, to: Node) => {
 			const sx = stepX(from);
-			const sy = from.y;
+			const sy = stepY(from);
 			const dx = to.x - sx;
 			const dy = to.y - sy;
 			const len = Math.hypot(dx, dy) || 1;
@@ -1812,42 +3500,119 @@ const graph = {
 			return [0.25 * sx + 0.5 * cx + 0.25 * ex, 0.25 * sy + 0.5 * cy + 0.25 * ey];
 		};
 		let heldBy: Node | null = null;
-		const showBy = (n: Node | null) => {
-			step.classed('is-by', (d) => d === n);
-			const left = n ? Object.entries(n.byproducts ?? {}).map(([id, how]) => ({ b: byId.get(id)!, how })) : [];
+		type Left = { from: Node; b: Node; how: string };
+		const drawBy = (left: Left[]) => {
 			const by = svg.select('.by');
-			by.selectAll<SVGPathElement, (typeof left)[number]>('path')
+			by.selectAll<SVGPathElement, Left>('path')
 				.data(left)
 				.join('path')
-				.attr('d', ({ b }) => curve(n!, b))
-				.attr('marker-end', 'url(#milk-by)')
-				.style('stroke-width', `${0.9 * Math.sqrt(size(n!))}`);
-			by.selectAll<SVGTextElement, (typeof left)[number]>('text')
+				.attr('d', ({ from, b }) => curve(from, b))
+				.attr('marker-end', `url(#${uid}-by)`)
+				.style('stroke-width', ({ from }) => `${0.9 * Math.sqrt(size(from))}`);
+			by.selectAll<SVGTextElement, Left>('text')
 				.data(left)
 				.join('text')
-				.attr('x', ({ b }) => middle(n!, b)[0])
-				.attr('y', ({ b }) => middle(n!, b)[1] - stepFont(n!) * 0.35)
-				.style('font-size', `${stepFont(n!)}px`)
-				.style('stroke-width', `${stepFont(n!) * 0.5}px`)
+				.attr('x', ({ from, b }) => middle(from, b)[0])
+				.attr('y', ({ from, b }) => middle(from, b)[1] - stepFont(from) * 0.35)
+				.style('font-size', ({ from }) => `${stepFont(from)}px`)
+				.style('stroke-width', ({ from }) => `${stepFont(from) * 0.5}px`)
 				.text(({ how }) => how);
 		};
-		/* Pointing at an arrow with byproducts, or at its words, shows them;
-		   a tap holds them until the ground or another is tapped. */
+		// What a step leaves behind, out of it.
+		const leftBy = (n: Node): Left[] =>
+			Object.entries(n.byproducts ?? {}).map(([id, how]) => ({ from: n, b: byId.get(id)!, how }));
+		// What steps leave a product behind, into it.
+		const leftInto = (b: Node): Left[] =>
+			(byIn.get(b) ?? []).map((from) => ({ from, b, how: from.byproducts![b.id] }));
+		const showBy = (n: Node | null) => {
+			step.classed('is-by', (d) => d === n);
+			table.classed('is-by', (d) => d === n);
+			// With no step looked at, a product held looked at keeps its own.
+			drawBy(n ? leftBy(n) : held ? leftInto(held) : []);
+		};
+		/* Pointing at an arrow, or at its words, shows its byproducts; a
+		   click tells of the step (see tellStep), and holds them until the
+		   ground or another is clicked. */
 		const pointAt = (sel: any, of: (d: any) => Node) =>
 			sel
 				.on('pointerenter', (e: PointerEvent, d: any) => e.pointerType === 'mouse' && !heldBy && showBy(of(d)))
 				.on('pointerleave', (e: PointerEvent) => e.pointerType === 'mouse' && !heldBy && showBy(null))
 				.on('click', (e: MouseEvent, d: any) => {
 					e.stopPropagation();
-					heldBy = heldBy === of(d) ? null : of(d);
-					showBy(heldBy);
+					// Told of if there is more to it; its byproducts alone are only held shown.
+					if (told(of(d))) tellStep(of(d));
+					else {
+						heldBy = heldBy === of(d) ? null : of(d);
+						showBy(heldBy);
+					}
 				});
 		pointAt(hit, (e: Edge) => e.target);
-		pointAt(step.filter((n) => Object.keys(n.byproducts ?? {}).length > 0), (n: Node) => n);
+		pointAt(step.filter((n) => tells(n) && !rows(n).length), (n: Node) => n);
+		pointAt(table.filter(tells), (n: Node) => n);
 
 		const render = () => {
-			step.attr('x', stepX).attr('y', (n) => n.y - stepFont(n) * 0.45);
-			edge.attr('d', ({ source, target }) => elbow(source, target));
+			strands.clear();
+			// Down from milk, so a line in is placed before the lines out of it.
+			const down = (p: Node) => {
+				split(p);
+				for (const k of children.get(p) ?? []) down(k);
+			};
+			down(root);
+			step.attr('x', stepX).attr('y', stepY).classed('is-inside', inside);
+			table.each(function (n) {
+				const { key } = columns.get(n)!;
+				const left = stepX(n) - tableWidth(n) / 2;
+				const font = tableFont(n);
+				const wide = Math.max(stepWidth.get(n) ?? 0, tableWidth(n)) + 2 * font;
+				// Under the step's name, over its arrow.
+				const top = leg(n) + tableTop(n);
+				const named = stepY(n) - stepFont(n) * (0.9 + (lines(n).length - 1) * LEADING);
+				select(this)
+					.select('rect.area')
+					.attr('x', stepX(n) - wide / 2)
+					.attr('y', named)
+					.attr('width', wide)
+					.attr('height', top + tableHeight(n) - named);
+				// Down from its top, a row after another, each as tall as its value.
+				const g = select(this);
+				const p = pad(n);
+				const split = left + key + 2 * p;
+				const height = tableHeight(n) - font * 0.6;
+				// --radius-medium on 16px words, as on this table's.
+				const r = font * (4 / 16) * 1.5;
+				g.selectAll('rect.cells, rect.frame')
+					.attr('x', left)
+					.attr('y', top)
+					.attr('width', tableWidth(n))
+					.attr('height', height)
+					.attr('rx', r);
+				g.select('path.names').attr(
+					'd',
+					`M${split},${top}H${left + r}A${r},${r} 0 0 0 ${left},${top + r}V${top + height - r}A${r},${r} 0 0 0 ${left + r},${top + height}H${split}Z`,
+				);
+				g.select('line.column').attr('x1', split).attr('x2', split).attr('y1', top).attr('y2', top + height);
+				const rules = g.selectAll<SVGLineElement, unknown>('line.rule:not(.column)').nodes();
+				const keys = g.selectAll<SVGTextElement, unknown>('text.k').nodes();
+				let y = top;
+				g.selectAll<SVGTextElement, unknown>('text.v').each(function (_, i) {
+					if (i) select(rules[i - 1]).attr('x1', left).attr('x2', left + tableWidth(n)).attr('y1', y).attr('y2', y);
+					const baseline = y + p / 2 + font * 0.95;
+					select(keys[i]).attr('x', split - p).attr('y', baseline);
+					select(this).attr('y', baseline);
+					select(this)
+						.selectAll('tspan')
+						.attr('x', split + p)
+						.attr('dy', (_, j) => (j ? `${ROW}em` : 0));
+					y += rowHeight(n, rows(n)[i].v);
+				});
+			});
+			step
+				.selectAll<SVGTSpanElement, { said: string; n: Node }>('tspan')
+				.attr('x', ({ n }) => stepX(n))
+				.attr('dy', ({ n }, i) =>
+					i ? `${LEADING}em` : `${-(lines(n).length - 1) * LEADING * (inside(n) ? 0.5 : 1)}em`,
+				);
+			edge.attr('d', ({ source, target, made }) => arrowShape(source, target, made));
 			hit.attr('d', ({ source, target }) => elbow(source, target));
 			node.attr('transform', (d) => `translate(${d.x},${d.y})`);
 		};
@@ -1856,26 +3621,40 @@ const graph = {
 		/* Framed whole: the great branch points read from there, and the rest
 		   is a zoom away. */
 		const bounds = (svg.select('.view').node() as SVGGElement).getBBox();
-		const m = 24;
+		// A margin round it as wide on the screen as the frame's gutter is, however big the pane.
+		const pane = svg.node()!.getBoundingClientRect();
+		const m = MARGIN / (Math.min((pane.width - 2 * MARGIN) / bounds.width, (pane.height - 2 * MARGIN) / bounds.height) || 1);
 		svg.attr('viewBox', `${bounds.x - m} ${bounds.y - m} ${bounds.width + 2 * m} ${bounds.height + 2 * m}`);
+		// The grain's tiles their own size on the screen, at this zoom.
+		const grainAt = (k: number) => {
+			const rect = svg.node()!.getBoundingClientRect();
+			const fit = Math.min(rect.width / (bounds.width + 2 * m), rect.height / (bounds.height + 2 * m)) || 1;
+			svg.selectAll<SVGPatternElement, unknown>('pattern.grain').each(function () {
+				const tile = Number(this.dataset.tile) / (fit * k);
+				select(this).attr('width', tile).attr('height', tile).select('image').attr('width', tile).attr('height', tile);
+			});
+		};
+		grainAt(1);
+		// And again when the pane changes size, which changes the zoom it is drawn at.
+		const resized = new ResizeObserver(() => grainAt(zoomTransform(svg.node()!).k));
+		resized.observe(svg.node()!);
+		signal.addEventListener('abort', () => resized.disconnect());
 
-		/* Looking at a product: pointing at it, or tapping it, shows every way
-		   it is made and everything made from it, and sets the rest back. A
-		   tap holds it until the ground or another product is tapped. */
+		/* Looking at a product: pointing at it, or having clicked it, draws
+		   every way it is made and everything made from it in the ink. A
+		   click tells of it besides (see tell), and holds it so until it is
+		   closed or another is clicked. */
 		let held: Node | null = null;
 		const look = (n: Node | null) => {
-			svg.classed('is-looking', !!n);
 			/* Its own lines, and on through any branch point at their far end,
 			   which is no product of its own: pasteurised milk lights soured
 			   milk and yoghurt past the point where "ferment" splits. */
-			const near = new Set<Node>(n ? [n] : []);
 			const lit = new Set<Edge>();
 			const reach = (from: Node, outward: boolean) => {
 				for (const e of edges) {
 					const next = outward ? (e.source === from ? e.target : null) : e.target === from ? e.source : null;
 					if (!next) continue;
 					lit.add(e);
-					near.add(next);
 					if (next.hub) reach(next, outward);
 				}
 			};
@@ -1884,20 +3663,22 @@ const graph = {
 				reach(n, false);
 			}
 			edge.classed('is-on', (e) => lit.has(e));
-			node.classed('is-near', (d) => near.has(d));
-			step.classed('is-near', (d) => near.has(d) && near.has(treeParent.get(d)!));
+			// Over the lines set back, which would otherwise cross it where drawn later.
+			edge.filter((e) => lit.has(e)).raise();
+			node.classed('is-chosen', (d) => d === held);
+			// And whatever steps leave it behind, curving into it.
+			if (!heldBy) drawBy(n ? leftInto(n) : []);
 		};
 		node
-			.on('pointerenter', (e: PointerEvent, d) => e.pointerType === 'mouse' && !held && look(d))
-			.on('pointerleave', (e: PointerEvent) => e.pointerType === 'mouse' && !held && look(null))
+			.on('pointerenter', (e: PointerEvent, d) => e.pointerType === 'mouse' && look(d))
+			.on('pointerleave', (e: PointerEvent) => e.pointerType === 'mouse' && look(held))
 			.on('click', (e: MouseEvent, d) => {
 				e.stopPropagation();
-				held = held === d ? null : d;
-				look(held);
+				// The "…" for the many more tells of the product they are examples of.
+				tell(d.more ? treeParent.get(d)! : d);
 			});
 		svg.on('click', () => {
-			held = null;
-			look(null);
+			tell(null);
 			heldBy = null;
 			showBy(null);
 		});
@@ -1906,8 +3687,11 @@ const graph = {
 		   ground or a node to pan, a double-click or double-tap to zoom in. */
 		const view = svg.select<SVGGElement>('.view');
 		const zoomer = zoom<SVGSVGElement, unknown>()
-			.scaleExtent([0.5, 40])
-			.on('zoom', (e) => view.attr('transform', e.transform.toString()));
+			.scaleExtent([0.5, MAX_ZOOM])
+			.on('zoom', (e) => {
+				view.attr('transform', e.transform.toString());
+				grainAt(e.transform.k);
+			});
 		svg.call(zoomer);
 
 		/* Finding a product: by its name, any of its other names, or an
@@ -1925,16 +3709,28 @@ const graph = {
 			for (const a of n.aka ?? []) index.push({ said: a, plain: plain(a), to: n, hint: `= ${name(n)}` });
 			for (const x of n.unshown ?? []) index.push({ said: x, plain: plain(x), to: n, hint: `example of ${name(n)}` });
 		}
-		const search = figure.querySelector<HTMLDivElement>('.milk-search')!;
+		// In the figure, or already moved up into a sidebar deck's column of
+		// tools (data-deck-tool, see DeckPost), which it works the same from.
+		const search = (figure.querySelector<HTMLDivElement>('.milk-search') ??
+			document.querySelector<HTMLDivElement>('[data-deck-tools] .milk-search'))!;
 		const field = search.querySelector('input')!;
 		const list = search.querySelector('ul')!;
 		let found: typeof index = [];
 		let chosen = 0;
+		// The list shown or not, and said to be.
+		list.id = `${uid}-found`;
+		field.setAttribute('aria-controls', list.id);
+		const open = (on: boolean) => {
+			list.hidden = !on;
+			field.setAttribute('aria-expanded', String(on));
+			if (on && found[chosen]) field.setAttribute('aria-activedescendant', `${list.id}-${chosen}`);
+			else field.removeAttribute('aria-activedescendant');
+		};
 		const show = () => {
-			list.hidden = !found.length;
 			list.replaceChildren(
 				...found.map((r, i) => {
 					const li = document.createElement('li');
+					li.id = `${list.id}-${i}`;
 					li.setAttribute('role', 'option');
 					li.setAttribute('aria-selected', String(i === chosen));
 					li.textContent = r.said;
@@ -1950,6 +3746,7 @@ const graph = {
 					return li;
 				}),
 			);
+			open(found.length > 0);
 		};
 		// Best first: the name starting with it, then a word in it, then anywhere.
 		const rank = (r: (typeof index)[number], q: string) =>
@@ -1981,23 +3778,201 @@ const graph = {
 			} else return;
 			e.preventDefault();
 		});
-		field.addEventListener('blur', () => (list.hidden = true));
-		field.addEventListener('focus', () => (list.hidden = !found.length));
+		field.addEventListener('blur', () => open(false));
+		field.addEventListener('focus', () => open(found.length > 0));
+		/* Where a narrow pane has no room for the card beside the picture, it
+		   is the whole pane, and only a tap on a product opens it: finding one,
+		   or pressing one named in the words, only goes to it. */
+		const narrow = () => figure.clientWidth < 40 * parseFloat(getComputedStyle(document.documentElement).fontSize);
 		const go = (n: Node) => {
-			list.hidden = true;
+			open(false);
 			field.blur();
-			// Zoomed until its pill is about this tall on the screen.
+			if (narrow()) {
+				tell(null);
+				held = n;
+				look(n);
+			} else tell(n);
+			/* Zoomed until its pill is about this tall on the screen, and into
+			   the middle of what the card leaves of the picture, as if that
+			   were all of it. */
 			const box = svg.node()!.viewBox.baseVal;
 			const rect = svg.node()!.getBoundingClientRect();
 			const fit = Math.min(rect.width / box.width, rect.height / box.height);
-			const k = Math.max(0.5, Math.min(40, FOUND_HEIGHT / (n.h * fit)));
-			const to = zoomIdentity
-				.translate(box.x + box.width / 2 - k * n.x, box.y + box.height / 2 - k * n.y)
-				.scale(k);
+			// Its width, not where it is, which while it slides in is not yet where it will be.
+			const left = card.classList.contains('is-open') ? card.offsetWidth : 0;
+			const free = rect.width - left;
+			const k = Math.max(0.5, Math.min(MAX_ZOOM, FOUND_HEIGHT / (n.h * fit), (0.8 * free) / (n.w * fit)));
+			// That middle, from the screen into the picture's own units.
+			const mx = box.x + (left + free / 2 - (rect.width - box.width * fit) / 2) / fit;
+			const to = zoomIdentity.translate(mx - k * n.x, box.y + box.height / 2 - k * n.y).scale(k);
 			svg.transition().duration(750).call(zoomer.transform, to);
+		};
+
+		/* Telling of a product, or an example, in a card over the picture:
+		   its photograph and name, what else it is called, what it is, and
+		   where it sits in the tree, each product named there a way to it. */
+		const card = figure.querySelector<HTMLElement>('.milk-about')!;
+		const cardBody = card.querySelector<HTMLElement>('.milk-about-body')!;
+		const el = <K extends keyof HTMLElementTagNameMap>(tag: K, cls?: string, text?: string) => {
+			const e = document.createElement(tag);
+			if (cls) e.className = cls;
+			if (text !== undefined) e.textContent = text;
+			return e;
+		};
+		const to = (n: Node) => {
+			const b = el('button', 'milk-about-to', name(n));
+			b.type = 'button';
+			b.addEventListener('click', () => go(n));
+			return b;
+		};
+		// What it is made from, past the branch point between.
+		const parentOf = (n: Node) => {
+			const p = treeParent.get(n);
+			return p?.hub ? treeParent.get(p) : p;
+		};
+		// A row of the card's facts: what it says, and the things it names.
+		const fact = (term: string, ...parts: (Node | string | Node[])[]) => {
+			const row = el('div', 'milk-about-fact');
+			row.append(el('dt', '', term));
+			const dd = el('dd');
+			for (const part of parts) {
+				if (typeof part === 'string') dd.append(part);
+				else if (Array.isArray(part))
+					part.forEach((k, i) => {
+						if (i) dd.append(', ');
+						dd.append(to(k));
+					});
+				else dd.append(to(part));
+			}
+			row.append(dd);
+			return row;
+		};
+		const tell = (n: Node | null) => {
 			held = n;
 			look(n);
+			card.classList.toggle('is-open', !!n);
+			card.inert = !n;
+			if (!n) return;
+			card.setAttribute('aria-label', name(n));
+			const top = el('header');
+			if (n.image) {
+				const img = el('img');
+				img.src = n.image.src;
+				img.alt = '';
+				top.append(img);
+			}
+			const title = el('div');
+			const p = parentOf(n);
+			if (n.example && p) {
+				const kind = el('p', 'milk-about-kind', 'Example of ');
+				kind.append(to(p));
+				title.append(kind);
+			}
+			title.append(el('h3', '', name(n)));
+			if (n.aka?.length) title.append(el('p', 'milk-about-aka', `Also known as ${n.aka.join(', ')}`));
+			top.append(title);
+			top.classList.toggle('has-image', !!n.image);
+			const parts: HTMLElement[] = [top];
+			if (n.about) {
+				parts.push(el('p', 'milk-about-text', n.about.text));
+				// Where it comes from: Wikipedia, or the source it was written from.
+				const { wiki, source, sourceName } = n.about;
+				const href = wiki ?? source;
+				if (href) {
+					const from = el('p', 'milk-about-source', wiki ? '' : 'Source: ');
+					const a = el('a', '', wiki ? 'Read more on Wikipedia' : (sourceName ?? href));
+					a.href = href;
+					a.target = '_blank';
+					a.rel = 'noopener';
+					from.append(a);
+					parts.push(from);
+				}
+			}
+			// What it is made from and into, and what it leaves, the picture shows
+			// round it already; the card says only what the picture does not.
+			const facts = el('dl');
+			const from = byIn.get(n) ?? [];
+			if (from.length) facts.append(fact('Left over from', from));
+			if (n.named?.length) {
+				const drawn = new Map((children.get(n) ?? []).filter((k) => k.example && !k.more).map((k) => [k.label, k]));
+				const row = fact('Examples');
+				const dd = row.querySelector('dd')!;
+				n.named.forEach((x, i) => {
+					if (i) dd.append(', ');
+					const k = drawn.get(x);
+					dd.append(k ? to(k) : x);
+				});
+				facts.append(row);
+			}
+			if (facts.childElementCount) parts.push(facts);
+			if (n.image) {
+				const credit = el('p', 'milk-about-credit', 'Photo: ');
+				const a = el('a', '', n.image.author);
+				a.href = n.image.source;
+				a.target = '_blank';
+				a.rel = 'noopener';
+				credit.append(a, `, ${n.image.license}`);
+				parts.push(credit);
+			}
+			cardBody.replaceChildren(...parts);
+			cardBody.scrollTop = 0;
 		};
+		/* Telling of a step, the arrow into a product: what it is made from
+		   and how, the facts of it, and where they come from. */
+		const tellStep = (n: Node) => {
+			const p = treeParent.get(n)!;
+			tell(null);
+			held = n;
+			look(n);
+			heldBy = n;
+			showBy(n);
+			card.classList.add('is-open');
+			card.inert = false;
+			card.setAttribute('aria-label', n.step ?? name(n));
+			const top = el('header');
+			const title = el('div');
+			const kind = el('p', 'milk-about-kind');
+			kind.append(to(p.hub ? treeParent.get(p)! : p), ' → ', to(n));
+			title.append(kind, el('h3', '', n.step ?? ''));
+			top.append(title);
+			const parts: HTMLElement[] = [top];
+			const how = n.how;
+			if (how?.text) parts.push(el('p', 'milk-about-text', how.text));
+			const facts = el('dl');
+			for (const { k, v } of how?.facts ?? []) facts.append(fact(k, v));
+			if (facts.childElementCount) parts.push(facts);
+			if (how?.sources?.length) {
+				const from = el('p', 'milk-about-source', how.sources.length > 1 ? 'Sources: ' : 'Source: ');
+				how.sources.forEach(({ name: said, url }, i) => {
+					if (i) from.append(', ');
+					const a = el('a', '', said);
+					a.href = url;
+					a.target = '_blank';
+					a.rel = 'noopener';
+					from.append(a);
+				});
+				parts.push(from);
+			}
+			cardBody.replaceChildren(...parts);
+			cardBody.scrollTop = 0;
+		};
+		card.querySelector('.milk-about-close')!.addEventListener('click', () => {
+			tell(null);
+			heldBy = null;
+			showBy(null);
+		});
+		// A product named in the words beside it, pressed (see MilkLink).
+		document.addEventListener(
+			'milk:go',
+			(e) => {
+				const to = (e as CustomEvent<string>).detail;
+				const n = nodes.find((n) => (n.example ? n.label === to : n.id === to));
+				if (n) go(n);
+				else console.warn(`MilkGraph: no product or drawn example ${to}`);
+			},
+			{ signal },
+		);
+		document.addEventListener('keydown', (e) => e.key === 'Escape' && held && e.target !== field && tell(null), { signal });
 
 	}
 

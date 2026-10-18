@@ -1,0 +1,59 @@
+---
+title: "The Typescript Lattice"
+accent: "oklch(0.92 0.19 105)"
+description: ""
+pubDate: "December 12 2025"
+---
+
+import Question from "../../../components/Question.astro";
+import SeriesNav from "../../../components/SeriesNav.astro";
+
+<SeriesNav
+  seriesName="type systems"
+  currentPart="13"
+  prevPart="12"
+  nextPart="14"
+/>
+
+On the thirteenth day of christmas, my true love gave to me... a typescript type diagram, tee hee!
+
+Here is a non-exhaustive diagram of types that exist in typescript, and their subtypes.
+
+![TypeScript type system lattice diagram](/assets/2025-12-type-systems/ts-lattice.png)
+
+Arrows represent a subtype relationship -- so for example, `1` is a subtype of `number`, and `number`
+is a subtype of `unknown`. Teal squares represent literal types -- as many of you will know, `0` is not
+only a value, but also a type in typescript, which is one of typescript's cooler features.
+
+Roughly we can categorize types in typescript into the "primitives", like `string`, `number`,
+and "reference types", like objects and arrays and functions.
+
+Especially notable is `unknown`, which is the supertype of all types, and `never`, which is
+the subtype of all types. This is not something that we think about in day-to-day programming,
+but it's true: the function `const foo = <T extends unknown>(x: T) => {}` and `const foo = <T>(x: T) => {}`
+are the same -- since everything inherits from `unknown` anyway, it's redundant to specify it.
+
+`never` is typically used to denote dead code paths, or impossible types, so it maybe seems odd to
+call it a subtype of all types. For now the only justification I will give is "in typescript it's true",
+meaning if you have `const foo = <T extends number>(x: T) => {}`, you can indeed call `foo` with a value of type `never`.
+You'll have a hard time finding a value of type `never`, but your code will typecheck just fine.
+
+Oh yeah. And then there's `any`.
+
+![any](/assets/2025-12-type-systems/ts-any.png)
+
+It's _simultaneously_ the subtype and supertype of all types, which pretty much ruins any
+mathematical framework we can establish, and breaks many nice mathematical
+properties. `any` is more like an escape hatch that disables type checking
+though, so it's not really meant to be used in the same way as other types
+and we choose to ignore it whenever convenient.
+
+Hope that's okay!
+
+<SeriesNav
+  seriesName="type systems"
+  currentPart="13"
+  prevPart="12"
+  nextPart="14"
+  position="footer"
+/>

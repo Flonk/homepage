@@ -1,0 +1,47 @@
+---
+title: "Milk"
+description: ""
+pubDate: "October 19 2026"
+accent: "oklch(0.8 0.05 70)"
+chromeGrain: 2
+format: "deck"
+ground: "light"
+---
+
+import DeckCard from "../../../components/DeckCard.astro";
+import DeckViz from "../../../components/DeckViz.astro";
+import MilkPour from "../../../components/MilkPour.astro";
+
+<DeckViz framed>
+  <MilkPour />
+</DeckViz>
+
+<DeckCard vizProps={{ contents: ["water"] }}>
+  ## What is milk?
+
+  Mostly water: about 87.5 % of cow's milk.
+</DeckCard>
+
+<DeckCard vizProps={{ contents: ["water", "fat"] }}>
+  ## Fat
+
+  About 3.9 %, in tiny globules. Lighter than the water round them, they rise to the top, which is where cream comes from.
+</DeckCard>
+
+<DeckCard vizProps={{ contents: ["water", "fat", "lactose"] }}>
+  ## Lactose
+
+  About 4.8 %: milk sugar, dissolved in the water.
+</DeckCard>
+
+<DeckCard vizProps={{ contents: ["water", "fat", "lactose", "protein"] }}>
+  ## Protein
+
+  About 3.4 %, most of it casein, held in the water in tiny clusters.
+</DeckCard>
+
+<DeckCard vizProps={{ contents: ["water", "fat", "lactose", "protein", "minerals"] }}>
+  ## Minerals
+
+  About 0.8 %, calcium and phosphate above all. Together these are milk, mean values for cow's milk from the Tetra Pak Dairy Processing Handbook.
+</DeckCard>

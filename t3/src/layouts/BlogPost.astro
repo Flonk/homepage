@@ -8,8 +8,16 @@ import SplitPane from '../components/SplitPane.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 import type { SeriesLink } from '../series';
 
-type Props = CollectionEntry<'blog'>['data'] & {
-	id: string;
+type Props = CollectionEntry<'posts'>['data'] & {
+	// Where the post is (see src/site.ts).
+	href: string;
+	// The title where it stands alone, in the browser's tab: a numbered
+	// chapter's with its series and number ("Colour #1: The RGB Cube").
+	fullTitle?: string;
+	// For a numbered chapter, its series' name and which part it is, said once
+	// over the title, which is its own.
+	series?: string;
+	part?: string;
 	// The home page: the list is the page, and the post beside it is only
 	// there on a screen wide enough to have a beside.
 	home?: boolean;
@@ -19,7 +27,9 @@ type Props = CollectionEntry<'blog'>['data'] & {
 };
 
 const {
-	id,
+	href,
+	fullTitle,
+	part,
 	home = false,
 	title,
 	description,
@@ -45,7 +55,7 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 <html lang="en" style={own && !home ? own : undefined} data-grain={home ? undefined : chromeGrain}>
 	<head>
 		<BaseHead
-			title={home ? SITE_TITLE : title}
+			title={home ? SITE_TITLE : (fullTitle ?? title)}
 			description={home ? SITE_DESCRIPTION : description}
 		/>
 		{hidden && <meta name="robots" content="noindex, nofollow" />}
@@ -138,12 +148,13 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 
 	<body>
 		<Header />
-		<SplitPane mode={home ? 'home' : 'post'} current={home ? undefined : id}>
+		<SplitPane mode={home ? 'home' : 'post'} current={home ? undefined : href}>
 			<main class="post-main">
 				<header class="masthead">
 					<span class="masthead-dots" aria-hidden="true"></span>
 					<div class="prose title">
 						<div class="date">
+							{series && part && <span class="series-label">{series} #{part} · </span>}
 							<FormattedDate date={pubDate} />
 							{
 								updatedDate && (
@@ -153,7 +164,7 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 								)
 							}
 						</div>
-						{home ? <a href={`/blog/${id}/`}><h1>{title}</h1></a> : <h1>{title}</h1>}
+						{home ? <a href={href}><h1>{title || fullTitle}</h1></a> : <h1>{title || fullTitle}</h1>}
 					</div>
 				</header>
 				<article>
@@ -165,7 +176,7 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 					<SeriesBar
 						series={series}
 						parts={seriesParts}
-						current={`/blog/${id}/`}
+						current={href}
 						prevPart={prevPart}
 						nextPart={nextPart}
 						hn={hn}

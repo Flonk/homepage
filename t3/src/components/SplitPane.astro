@@ -15,21 +15,33 @@ interface Props {
 }
 
 const { mode, current } = Astro.props;
+
+// Font Awesome Free 6, "angles-left" (solid): https://fontawesome.com, CC BY 4.0.
+const ANGLES =
+	'M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160zm352-160l-160 160c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L301.3 256 438.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0z';
 ---
 
 <script is:inline>
 	// The split is set before anything below paints, so a page never opens at
 	// the default and then jumps to where the reader left it.
 	try {
-		const split = Number(localStorage.getItem('split'));
-		if (split >= 20 && split <= 80)
-			document.documentElement.style.setProperty('--split', `${split}%`);
+		const split = Number(localStorage.getItem('split-rem'));
+		if (split >= 14 && split <= 40)
+			document.documentElement.style.setProperty('--split', `${split}rem`);
+		// And the tree folded down to its bar, if that is how it was left.
+		if (localStorage.getItem('tree') === 'folded') document.documentElement.dataset.tree = 'folded';
 	} catch {}
 </script>
 
 <div class:list={['split', `is-${mode}`]}>
 	<aside class="split-list" transition:persist="tree">
 		<div class="pane-dots" aria-hidden="true"></div>
+		<div class="tree-bar">
+			<span class="tree-bar-label" aria-hidden="true">Posts</span>
+			<button class="tree-fold" type="button" aria-label="Fold the posts away" title="Fold the posts away">
+				<svg viewBox="0 0 448 512" aria-hidden="true"><path d={ANGLES} /></svg>
+			</button>
+		</div>
 		<div class="pane-scroll">
 			<PostIndex current={current} />
 		</div>
@@ -133,6 +145,11 @@ const { mode, current } = Astro.props;
 	.pane-scroll {
 		display: contents;
 	}
+	/* The tree's fold is a wide-screen thing too: on a narrow one the tree is
+	   either the page or not there. */
+	.tree-bar {
+		display: none;
+	}
 
 	/* A deck takes all the height there is, down a column. */
 	.is-deck,
@@ -144,8 +161,9 @@ const { mode, current } = Astro.props;
 	}
 
 	/* Wide: the tree on the left, the open thing on the right, split where
-	   the divider was left (30% for the tree until it is moved), each
-	   scrolling on its own under the header. */
+	   the divider was left, each scrolling on its own under the header. The
+	   tree is as wide as the reader made it, however wide the window: 19rem
+	   until it is moved, and never more than three fifths of the page. */
 	@media (min-width: 1100px) {
 		/* The content's corners are rounded a little under concentric with the
 		   cards in it, set by eye: the full radius and gap reads as rounder than
@@ -158,10 +176,8 @@ const { mode, current } = Astro.props;
 			   to a length in invalid: the divider's place among them. */
 			--split-pad: 0px;
 			--split-gap: 0px;
-			/* The most the tree takes, however wide the window or the split the
-			   reader dragged it to: past this it is only emptier. The drag stops
-			   here too (MOST_REM in the script below). */
-			--split-max: 30rem;
+			/* The tree's width: where the divider was left, or this. */
+			--split-default: 19rem;
 			--content-radius: 13px;
 		}
 		/* Two panes side by side, run right up to the chrome (--split-pad, which
@@ -173,7 +189,10 @@ const { mode, current } = Astro.props;
 		.split,
 		.is-deck {
 			display: grid;
-			grid-template-columns: min(var(--split, 30%), var(--split-max, 30rem)) minmax(0, 1fr);
+			grid-template-columns: min(var(--split, var(--split-default)), 60%) minmax(0, 1fr);
+			/* Folding the tree away and back (see the tree's bar, below) eased;
+			   a drag of the divider follows the pointer as it is. */
+			transition: grid-template-columns 0.28s cubic-bezier(0.3, 0, 0.2, 1);
 			column-gap: var(--split-gap);
 			background: var(--ground-100);
 			/* Square, the chrome rounding it (see above); the panes run right up
@@ -187,7 +206,9 @@ const { mode, current } = Astro.props;
 		}
 		.split-list,
 		.is-home .split-list {
-			display: block;
+			/* Its bar (below) on top, the tree scrolling under it. */
+			display: flex;
+			flex-direction: column;
 			max-width: none;
 			margin: 0;
 			padding: 0;
@@ -305,7 +326,7 @@ const { mode, current } = Astro.props;
 			position: absolute;
 			top: 0;
 			bottom: 0;
-			left: calc(var(--split-pad) + var(--split-gap) / 2 + min(var(--split, 30%), var(--split-max, 30rem)));
+			left: calc(var(--split-pad) + var(--split-gap) / 2 + min(var(--split, var(--split-default)), 60%));
 			width: 0.6rem;
 			transform: translateX(-50%);
 			cursor: col-resize;
@@ -320,6 +341,117 @@ const { mode, current } = Astro.props;
 		.is-dragging {
 			cursor: col-resize;
 			user-select: none;
+			transition: none;
+		}
+
+		/* The tree's bar: open, a row along the top of the tree, the word for
+		   what is under it on the left and the fold on the right, by the post;
+		   folded, all that is left of the tree, a strip down the left with the
+		   fold at its top, turned to unfold, and the word run down under it.
+		   The state is on <html> (data-tree), set before the page paints and
+		   kept through a swap (see the scripts). */
+		.tree-bar {
+			flex: none;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 0.5rem;
+			height: 2.5rem;
+			box-sizing: border-box;
+			/* The word lined up with the rows' words under it. */
+			padding: 0 0.5rem 0 1.25rem;
+			/* Cut off from the tree by the tree's own groove (see PostIndex). */
+			border-bottom: 1px solid var(--groove-cut);
+			box-shadow: 0 1px 0 var(--groove-edge);
+			background: rgb(0 0 0 / 0.25);
+			/* Over the dots, which come before it. */
+			position: relative;
+		}
+		.tree-bar-label {
+			font-family: var(--font-mono);
+			font-size: 0.7rem;
+			letter-spacing: 0.15em;
+			text-transform: uppercase;
+			color: var(--ink-600);
+			white-space: nowrap;
+		}
+		.tree-fold {
+			display: grid;
+			place-items: center;
+			margin: 0;
+			padding: 0.45rem;
+			border: 0;
+			border-radius: 6px;
+			background: none;
+			color: var(--ink-600);
+			cursor: pointer;
+			transition:
+				color 0.15s,
+				background-color 0.15s;
+		}
+		.tree-fold:hover,
+		.tree-fold:focus-visible,
+		:global(:root[data-tree='folded']) .split-list:hover .tree-fold {
+			color: var(--ink-accent);
+			background: rgb(0 0 0 / 0.45);
+		}
+		.tree-fold svg {
+			display: block;
+			width: 0.8rem;
+			height: 0.8rem;
+			fill: currentColor;
+			transition: transform 0.28s cubic-bezier(0.3, 0, 0.2, 1);
+		}
+		.split-list .pane-scroll {
+			flex: 1;
+			min-height: 0;
+			height: auto;
+			transition:
+				opacity 0.2s,
+				visibility 0.2s;
+		}
+
+		/* Folded: the tree's column down to the bar, the tree faded out under
+		   it and the divider gone, there being nothing to drag. The whole strip
+		   unfolds it (see the scripts). */
+		:global(:root[data-tree='folded']) .split {
+			grid-template-columns: var(--tree-bar, 2.75rem) minmax(0, 1fr);
+		}
+		:global(:root[data-tree='folded']) .split-divider {
+			display: none;
+		}
+		:global(:root[data-tree='folded']) .split-list {
+			cursor: pointer;
+		}
+		:global(:root[data-tree='folded']) .split-list .pane-scroll {
+			opacity: 0;
+			visibility: hidden;
+		}
+		:global(:root[data-tree='folded']) .tree-bar {
+			justify-content: center;
+			padding: 0;
+			border-bottom-color: transparent;
+			box-shadow: none;
+			background: none;
+		}
+		/* The word run down the strip under the fold. */
+		:global(:root[data-tree='folded']) .tree-bar-label {
+			position: absolute;
+			top: calc(100% + 0.5rem);
+			left: 50%;
+			translate: -50% 0;
+			writing-mode: vertical-rl;
+		}
+		:global(:root[data-tree='folded']) .tree-fold svg {
+			transform: rotate(180deg);
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			.split,
+			.tree-fold svg,
+			.split-list .pane-scroll {
+				transition: none;
+			}
 		}
 	}
 </style>
@@ -327,23 +459,64 @@ const { mode, current } = Astro.props;
 <script>
 	import { eachPage, keepOnRoot } from '../lib/page';
 
-	// Drag the divider to move the split, between a fifth and four fifths of
-	// the page; double-click it to put it back at 30%. Where it is left is
-	// kept for the next page.
-	// The same as --split-max, in rem.
-	const MOST_REM = 30;
+	// Drag the divider to move the split, the tree between 14rem and 40rem
+	// wide (and never past three fifths of the page, as the style has it);
+	// double-click it to put it back. Where it is left is kept for the next
+	// page, in rem, so it is the same width in any window.
+	const LEAST_REM = 14;
+	const MOST_REM = 40;
 	const rootFont = () => parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
 
 	const place = (at: number, keep: boolean) => {
-		document.documentElement.style.setProperty('--split', `${at}%`);
+		document.documentElement.style.setProperty('--split', `${at}rem`);
 		if (!keep) return;
 		try {
-			localStorage.setItem('split', String(at));
+			localStorage.setItem('split-rem', String(at));
 		} catch {}
 	};
 
 	// Set on <html>, which a swap gives the next page's attributes.
 	keepOnRoot('--split');
+
+	// The tree folded to its bar or open: on <html> as data-tree, kept for the
+	// next page, and put back on <html> as a swap takes it away, as --split is.
+	const isFolded = () => document.documentElement.dataset.tree === 'folded';
+	const labelFold = () => {
+		const fold = document.querySelector<HTMLElement>('.tree-fold');
+		if (!fold) return;
+		const label = isFolded() ? 'Unfold the posts' : 'Fold the posts away';
+		fold.setAttribute('aria-label', label);
+		fold.setAttribute('title', label);
+		fold.setAttribute('aria-expanded', String(!isFolded()));
+	};
+	const setFolded = (folded: boolean) => {
+		if (folded) document.documentElement.dataset.tree = 'folded';
+		else delete document.documentElement.dataset.tree;
+		labelFold();
+		try {
+			if (folded) localStorage.setItem('tree', 'folded');
+			else localStorage.removeItem('tree');
+		} catch {}
+	};
+	document.addEventListener('astro:before-swap', (e) => {
+		const folded = isFolded();
+		const swap = e.swap;
+		e.swap = () => {
+			swap();
+			if (folded) document.documentElement.dataset.tree = 'folded';
+		};
+	});
+	// The fold, or anywhere on the strip once folded. The bar is kept with the
+	// tree from one page to the next, so it is listened to once a visit, not
+	// once a page.
+	// The site's mark in the header, which goes home, unfolds it too: home is
+	// the tree.
+	document.addEventListener('click', (e) => {
+		if (!(e.target instanceof Element)) return;
+		if (e.target.closest('header h1 a')) setFolded(false);
+		else if (e.target.closest('.tree-fold') || (isFolded() && e.target.closest('.split-list')))
+			setFolded(!isFolded());
+	});
 
 	/* The tree is kept from one page to the next (transition:persist), but
 	   the router lifts it out of the page while it swaps the rest, and out of
@@ -362,6 +535,7 @@ const { mode, current } = Astro.props;
 	});
 
 	eachPage((signal) => {
+		labelFold();
 		const split = document.querySelector<HTMLElement>('.split');
 		const divider = document.querySelector<HTMLElement>('.split-divider');
 		if (!split || !divider) return;
@@ -371,13 +545,14 @@ const { mode, current } = Astro.props;
 			// Held, so a canvas or an embed under the pointer cannot take the drag.
 			divider.setPointerCapture(e.pointerId);
 			const rect = split.getBoundingClientRect();
-			let last =
-				parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--split')) || 30;
+			// Where it is now, whichever rule put it there.
+			const tree = split.querySelector<HTMLElement>('.split-list');
+			let last = (tree?.getBoundingClientRect().width ?? 0) / rootFont() || 19;
 			split.classList.add('is-dragging');
 			const move = (ev: PointerEvent) => {
-				const most = Math.min(80, ((MOST_REM * rootFont()) / rect.width) * 100);
-				last = Math.min(most, Math.max(20, ((ev.clientX - rect.left) / rect.width) * 100));
-				place(last, false);
+				const most = Math.min(MOST_REM, (rect.width * 0.6) / rootFont());
+				last = Math.min(most, Math.max(LEAST_REM, (ev.clientX - rect.left) / rootFont()));
+				place(Math.round(last * 100) / 100, false);
 			};
 			const up = () => {
 				window.removeEventListener('pointermove', move);
@@ -389,6 +564,11 @@ const { mode, current } = Astro.props;
 			window.addEventListener('pointerup', up, { signal });
 		});
 
-		divider.addEventListener('dblclick', () => place(30, true));
+		divider.addEventListener('dblclick', () => {
+			document.documentElement.style.removeProperty('--split');
+			try {
+				localStorage.removeItem('split-rem');
+			} catch {}
+		});
 	});
 </script>

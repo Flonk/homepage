@@ -1,0 +1,87 @@
+---
+title: "The Tristimulus"
+accent: "oklch(0.5 0.172 305)"
+chromeShift: -24
+format: "deck"
+ground: "dark"
+description: ""
+pubDate: "August 21 2026"
+---
+
+import ChannelSplit from "../../../components/ChannelSplit.astro";
+import ConeResponse from "../../../components/ConeResponse.astro";
+import DeckCard from "../../../components/DeckCard.astro";
+import DeckViz from "../../../components/DeckViz.astro";
+import VizPhase from "../../../components/VizPhase.astro";
+
+{/* The measured cone fundamentals, with the mark walking the band and the
+    reader free to take it. Cards drive whatever is in here with vizProps; see
+    DeckViz for the whole contract. */}
+<DeckViz>
+  <VizPhase name="cones">
+    <ConeResponse sweep={[400, 700]} drag />
+  </VizPhase>
+  {/* A deliberately over-compressed JPEG, taken apart into its channels.
+
+      The subject is chosen, not found: big flat squares of saturated colour
+      with hard edges and no fine texture, so there is nothing for the codec's
+      damage to hide behind. A forest was tried first and was hopeless — leaf
+      litter is already noise, so every channel looked equally bad and none of
+      them looked wronged.
+
+      Both files are the same 450x300 crop of the envelope from "Hot Air
+      Balloon" by Kupono Kuwamura (Unsplash, via Wikimedia Commons, CC0 —
+      public domain, no attribution required), so they line up pixel for pixel
+      and the fade between them shows only what the codec did.
+
+        balloon-original.webp  lossless, 163 KB — the crop as it arrived
+        balloon-q10.jpg        JPEG quality 10, 4:2:0 chroma, 4.5 KB
+
+      Quality 10 was picked by measuring, not by taste: it is the mildest
+      setting at which blue's error is unmistakable while red and green still
+      hold their edges. Blue's RMSE against the lossless crop runs about 1.6x
+      green's at every quality — see ChannelSplit for why that is arithmetic
+      rather than luck. */}
+  <VizPhase name="channels">
+    <ChannelSplit
+      src="/assets/2026-08-21-color-3-tristimulus/balloon-q10.jpg"
+      reference="/assets/2026-08-21-color-3-tristimulus/balloon-original.webp"
+      alt="A close crop of a hot air balloon's envelope, a checkerboard of saturated yellow, red, green and dark teal panels."
+    />
+  </VizPhase>
+</DeckViz>
+
+<DeckCard vizProps={{ phase: "cones", vision: "normal" }}>
+  ## We detect light via cones
+
+  Inside our eyes are three different kinds of light-sensitive cells called *cones*, which are each tuned to a different range of frequencies. We call them S, M, and L for short, medium, and long wavelength cones, though they are sometimes also called blue, green, and red cones.
+
+  Above, you are looking at the *normalized cone response diagram* from Stockman & Sharpe (2000), which shows how sensitive each cone is to different frequencies of light. 
+</DeckCard>
+
+<DeckCard vizProps={{ phase: "cones", marks: [580], probe: false, vision: "normal" }}>
+  ## Cones work together to produce colour
+
+  What you know as "colour" is the brain's interpretation of the three signals it receives from the three cone types.
+
+  Basically, when your eyes receive, say, a 580nm photon, your brain will get a strong L signal, a medium M signal and no S signal. The brain then goes, hey I know this, this is orange! 
+</DeckCard>
+
+<DeckCard vizProps={{ phase: "cones", vision: "normal" }}>
+  ## Cones aren't equidistributed
+
+  The retina has 60% L, 30% M, and 10% S cones on average, though the L to M ratio can vary wildly from person to person, from 1:1 up to 16:1. 
+  
+  Interestingly, the central 100µm of retina, part of our sharpest vision, has no S cones at all, leading to a blind spot for blue there.
+</DeckCard>
+
+<DeckCard vizProps={{ phase: "channels" }}>
+  ## Blue in image compression
+
+  The relative lack of S cones makes for less "resolution" in perceiving blue light.
+
+  The lossy image format *JPEG* takes advantage of this fact by compressing the blue channel harder than others, as it makes no difference to our perception of the final image. In the extremely compressed image above, the blue channel is 1.6x more damaged than the green. 
+
+  Similarly, cameras often have a lower resolution sensor for blue than for red or green.
+</DeckCard>
+

@@ -1,0 +1,423 @@
+---
+/**
+ * What milk is made of, poured into a glass one part at a time: water first,
+ * nearly all of it, then the fat, the milk sugar, the proteins and the
+ * minerals, each as much of the glass as it is of milk.
+ *
+ *   <DeckViz><MilkPour /></DeckViz>
+ *   <DeckCard vizProps={{ contents: ['water', 'fat'] }}>…</DeckCard>
+ *
+ * A card names what is in the glass while it is on screen; what it adds is
+ * poured in, and what it leaves out drains away. The glass holds as many
+ * particles of liquid as it does, and each part gets its share of them by
+ * the mean composition of cow's milk (Tetra Pak Dairy Processing Handbook,
+ * table 2.3): so the water pours for a long while, and the rest are a few
+ * dozen particles each.
+ *
+ * The liquid is LiquidFun's particle fluid (@box2d/particles), with pressure,
+ * viscosity and colours that mix where particles touch. The fat is lighter
+ * than the water and rises through it to sit on top, as cream does. What
+ * makes milk white is what scatters light in it, the fat's globules and the
+ * proteins' casein, so the liquid clouds from clear water towards white as
+ * those go in; the sugar and the minerals dissolve clear. It is drawn
+ * as one liquid rather than as particles: each a soft blob, the blobs
+ * blurred together and cut off at a threshold, so that touching particles
+ * merge into one surface.
+ */
+interface Props {
+	/** What is in the glass before any card says otherwise. */
+	contents?: string[];
+}
+
+const { contents = ['water'] } = Astro.props;
+
+/* The parts of milk, in the order they are poured, with their share of it in
+   percent by mass, mean values for cow's milk. */
+const PARTS = [
+	{ id: 'water', label: 'Water', share: 87.5 },
+	{ id: 'fat', label: 'Fat', share: 3.9 },
+	{ id: 'lactose', label: 'Lactose', share: 4.8 },
+	{ id: 'protein', label: 'Protein', share: 3.4 },
+	{ id: 'minerals', label: 'Minerals', share: 0.8 },
+];
+for (const id of contents)
+	if (!PARTS.some((p) => p.id === id)) throw new Error(`MilkPour: no part of milk called ${id}`);
+---
+
+<figure class="milk-pour" data-milk-pour data-parts={JSON.stringify(PARTS)} data-contents={JSON.stringify(contents)}>
+	<!-- The threshold that turns the blurred blobs into one liquid with a clean edge. -->
+	<svg class="milk-pour-filter" aria-hidden="true">
+		<filter id="milk-pour-goo" color-interpolation-filters="sRGB">
+			<feGaussianBlur in="SourceGraphic" stdDeviation="4"></feGaussianBlur>
+			<feColorMatrix values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 24 -11"></feColorMatrix>
+		</filter>
+	</svg>
+	<canvas class="pour-liquid" aria-hidden="true"></canvas>
+	<canvas class="pour-glass" aria-hidden="true"></canvas>
+	<ul class="milk-pour-key" aria-label="What is in the glass">
+		{
+			PARTS.map((p) => (
+				<li data-part={p.id}>
+					<span class="swatch" />
+					{p.label}
+					<span class="share">{p.share} %</span>
+				</li>
+			))
+		}
+	</ul>
+</figure>
+
+<style>
+	.milk-pour {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		/* Each part's colour, the water a faint blue so the glass reads as
+		   filled before the rest goes in; the rest mixed in turn it white. */
+		--water: oklch(0.84 0.05 230);
+		--fat: oklch(0.88 0.13 95);
+		--lactose: oklch(0.99 0.003 90);
+		--protein: oklch(0.95 0.03 80);
+		--minerals: oklch(0.9 0.01 250);
+		--glass: color-mix(in oklab, var(--deck-ink) 45%, transparent);
+	}
+	:global(.deck-dark) .milk-pour {
+		--glass: color-mix(in oklab, var(--deck-ink) 55%, transparent);
+	}
+	.milk-pour-filter {
+		position: absolute;
+		width: 0;
+		height: 0;
+	}
+	canvas {
+		position: absolute;
+		inset: 0;
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+	/* What is in it, each part with its share, in the top left; a part not
+	   yet poured set back. */
+	.milk-pour-key {
+		position: absolute;
+		top: 0.75rem;
+		left: 0.75rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		font-family: var(--font-sans);
+		font-size: 0.8rem;
+		line-height: 1.7;
+		color: var(--deck-ink);
+	}
+	.milk-pour-key li {
+		display: flex;
+		align-items: center;
+		gap: 0.5em;
+		transition: opacity 0.3s ease;
+	}
+	.milk-pour-key li:not(.is-in) {
+		opacity: 0.3;
+	}
+	.swatch {
+		width: 0.8em;
+		height: 0.8em;
+		border-radius: 50%;
+		border: 1px solid color-mix(in oklab, var(--deck-ink) 25%, transparent);
+	}
+	.share {
+		color: var(--deck-ink-dim);
+		font-variant-numeric: tabular-nums;
+	}
+	li[data-part='water'] .swatch {
+		background: var(--water);
+	}
+	li[data-part='fat'] .swatch {
+		background: var(--fat);
+	}
+	li[data-part='lactose'] .swatch {
+		background: var(--lactose);
+	}
+	li[data-part='protein'] .swatch {
+		background: var(--protein);
+	}
+	li[data-part='minerals'] .swatch {
+		background: var(--minerals);
+	}
+</style>
+
+<script>
+	import { b2BodyType, b2EdgeShape, b2World } from '@box2d/core';
+	import { b2ParticleFlag, b2ParticleSystemDef } from '@box2d/particles';
+	import { eachPage } from '../lib/page';
+
+	type Part = { id: string; label: string; share: number };
+
+	/* The glass, in metres, its floor's middle at the origin and y up: open
+	   at the top, a little wider there than at its floor. */
+	const RIM = 0.8;
+	const FLOOR = 0.62;
+	const HEIGHT = 2.1;
+	// A particle's radius; the glass holds about this many particles full.
+	const RADIUS = 0.045;
+	const GRAINS = 540;
+	// The spout: over the glass's left half, this far above its rim, this many particles wide.
+	const SPOUT_X = -0.35;
+	const SPOUT_Y = HEIGHT + 0.6;
+	const LANES = 5;
+	const SPOUT_SPEED = 2.5;
+	// How much of the picture's height the glass and the spout over it take.
+	const FRAME = SPOUT_Y + 0.25;
+
+	let made = 0;
+
+	function initPour(root: HTMLElement, signal: AbortSignal) {
+		const liquid = root.querySelector<HTMLCanvasElement>('canvas.pour-liquid')!;
+		const glass = root.querySelector<HTMLCanvasElement>('canvas.pour-glass')!;
+		const lctx = liquid.getContext('2d')!;
+		const gctx = glass.getContext('2d')!;
+		const parts: Part[] = JSON.parse(root.dataset.parts!);
+		const authored: string[] = JSON.parse(root.dataset.contents!);
+		const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+		const host = root.closest<HTMLElement>('[data-viz-phase]') ?? root.closest<HTMLElement>('[data-viz-stage]');
+		const gate = root.closest<HTMLElement>('[data-viz-phase]');
+
+		// The filter named for this glass alone, as another on the page would have the same.
+		const filter = root.querySelector('filter')!;
+		filter.id = `milk-pour-goo-${++made}`;
+		liquid.style.filter = `url(#${filter.id})`;
+		const blur = root.querySelector('feGaussianBlur')!;
+
+		// Each part's share of the particles, at least a few each.
+		const total = parts.reduce((s, p) => s + p.share, 0);
+		const quota = parts.map((p) => Math.max(4, Math.round((GRAINS * p.share) / total)));
+		// Each part's colour, as numbers the simulation can mix.
+		const probe = document.createElement('canvas').getContext('2d', { willReadFrequently: true })!;
+		const rgb = (css: string) => {
+			probe.clearRect(0, 0, 1, 1);
+			probe.fillStyle = css;
+			probe.fillRect(0, 0, 1, 1);
+			const [r, g, b] = probe.getImageData(0, 0, 1, 1).data;
+			return { r: r / 255, g: g / 255, b: b / 255, a: 1 };
+		};
+		const colours = () => parts.map((p) => rgb(getComputedStyle(root).getPropertyValue(`--${p.id}`).trim() || '#ccc'));
+		let colour = colours();
+
+		let wanted = new Set(authored);
+		const keys = [...root.querySelectorAll<HTMLElement>('.milk-pour-key li')];
+		const showKey = () => keys.forEach((li) => li.classList.toggle('is-in', wanted.has(li.dataset.part!)));
+		showKey();
+
+		/* ---- the world ----------------------------------------------------- */
+		const world = b2World.Create({ x: 0, y: -10 });
+		const body = world.CreateBody({ type: b2BodyType.b2_staticBody });
+		const wall = (a: [number, number], b: [number, number]) =>
+			body.CreateFixture({ shape: new b2EdgeShape().SetTwoSided({ x: a[0], y: a[1] }, { x: b[0], y: b[1] }) });
+		wall([-RIM, HEIGHT], [-FLOOR, 0]);
+		wall([-FLOOR, 0], [FLOOR, 0]);
+		wall([FLOOR, 0], [RIM, HEIGHT]);
+		const def = new b2ParticleSystemDef();
+		def.radius = RADIUS;
+		def.dampingStrength = 0.2;
+		// Stiff enough that the liquid hardly squeezes down under its own weight.
+		def.pressureStrength = 0.4;
+		def.colorMixingStrength = 0.25;
+		const system = world.CreateParticleSystem(def);
+		const FLAGS = {
+			water: b2ParticleFlag.b2_waterParticle | b2ParticleFlag.b2_colorMixingParticle,
+			// Fat keeps its colour, and is a little thick.
+			fat: b2ParticleFlag.b2_viscousParticle,
+		};
+
+		/* Which part each particle is, kept with it as the system reorders them;
+		   one past its index, as LiquidFun keeps no user data that is 0. */
+		const partOf = (i: number) => (system.GetUserDataBuffer<number>()[i] ?? 1) - 1;
+		const count = (i: number) => {
+			let n = 0;
+			for (let k = 0; k < system.GetParticleCount(); k++) if (partOf(k) === i) n++;
+			return n;
+		};
+
+		/* ---- pouring -------------------------------------------------------
+		   From a spout a few particles wide, a row of it at a time, each once
+		   the last has fallen clear. */
+		let sincePour = 0;
+		const pourGap = (2 * RADIUS) / SPOUT_SPEED;
+		const nextToPour = () => parts.findIndex((p, i) => wanted.has(p.id) && count(i) < quota[i]);
+		const pour = () => {
+			const i = nextToPour();
+			if (i < 0) return;
+			const owed = quota[i] - count(i);
+			for (let lane = 0; lane < Math.min(LANES, owed); lane++)
+				system.CreateParticle({
+					flags: parts[i].id === 'fat' ? FLAGS.fat : FLAGS.water,
+					position: { x: SPOUT_X + (lane - (LANES - 1) / 2) * RADIUS * 2, y: SPOUT_Y },
+					velocity: { x: 0.6, y: -SPOUT_SPEED },
+					color: colour[i],
+					userData: i + 1,
+				});
+		};
+		// What a card leaves out drains away: it goes, and the rest settles.
+		const drain = () => {
+			for (let k = system.GetParticleCount() - 1; k >= 0; k--)
+				if (!wanted.has(parts[partOf(k)].id)) system.DestroyParticle(k);
+		};
+
+		/* The fat rises through the water while there is water above it, and
+		   rests on top once there is none: lifted by the water it touches
+		   that is higher than it. */
+		const fat = parts.findIndex((p) => p.id === 'fat');
+		const lift = (dt: number) => {
+			const pos = system.GetPositionBuffer();
+			const vel = system.GetVelocityBuffer();
+			const contacts = system.GetContacts();
+			const under = new Set<number>();
+			for (let c = 0; c < system.GetContactCount(); c++) {
+				const a = contacts[c].GetIndexA();
+				const b = contacts[c].GetIndexB();
+				if (partOf(a) === fat && partOf(b) !== fat && pos[b].y > pos[a].y + RADIUS * 0.5) under.add(a);
+				if (partOf(b) === fat && partOf(a) !== fat && pos[a].y > pos[b].y + RADIUS * 0.5) under.add(b);
+			}
+			for (const k of under) vel[k].y += 14 * dt;
+		};
+
+		/* What colour the liquid is: clear water, turned towards milk white by
+		   what scatters light in it, the fat's globules and the protein's
+		   casein; sugar and salts dissolve clear. Each particle of it eases
+		   towards that, so the glass clouds over as they go in. */
+		const WHITENS: Record<string, number> = { fat: 0.35, protein: 0.65 };
+		const milky = () => {
+			const whiteness = Math.min(1, [...wanted].reduce((s, id) => s + (WHITENS[id] ?? 0), 0));
+			const a = colour[0];
+			const b = colour[parts.findIndex((p) => p.id === 'lactose')];
+			return { r: a.r + (b.r - a.r) * whiteness, g: a.g + (b.g - a.g) * whiteness, b: a.b + (b.b - a.b) * whiteness };
+		};
+		const cloud = (dt: number) => {
+			const to = milky();
+			const col = system.GetColorBuffer();
+			const k = 1 - Math.exp(-1.5 * dt);
+			for (let i = 0; i < system.GetParticleCount(); i++) {
+				if (partOf(i) === fat) continue;
+				const c = col[i];
+				c.r += (to.r - c.r) * k;
+				c.g += (to.g - c.g) * k;
+				c.b += (to.b - c.b) * k;
+			}
+		};
+
+		const tick = (dt: number) => {
+			cloud(dt);
+			sincePour += dt;
+			if (sincePour >= pourGap) {
+				sincePour = 0;
+				pour();
+			}
+			lift(dt);
+			world.Step(dt, { velocityIterations: 6, positionIterations: 2, particleIterations: 3 });
+			// What escaped over the rim goes, rather than piling up below.
+			const pos = system.GetPositionBuffer();
+			for (let k = system.GetParticleCount() - 1; k >= 0; k--) if (pos[k].y < -1) system.DestroyParticle(k);
+		};
+
+		/* ---- drawing ------------------------------------------------------- */
+		let w = 0;
+		let h = 0;
+		let dpr = 1;
+		let scale = 1;
+		let ox = 0;
+		let oy = 0;
+		const sx = (x: number) => ox + x * scale;
+		const sy = (y: number) => oy - y * scale;
+		const drawGlass = () => {
+			gctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+			gctx.clearRect(0, 0, w, h);
+			gctx.strokeStyle = getComputedStyle(root).getPropertyValue('--glass');
+			gctx.lineWidth = Math.max(1.5, RADIUS * scale * 0.8);
+			gctx.lineJoin = 'round';
+			gctx.lineCap = 'round';
+			gctx.beginPath();
+			gctx.moveTo(sx(-RIM), sy(HEIGHT));
+			gctx.lineTo(sx(-FLOOR), sy(0));
+			gctx.lineTo(sx(FLOOR), sy(0));
+			gctx.lineTo(sx(RIM), sy(HEIGHT));
+			gctx.stroke();
+		};
+		const resize = () => {
+			dpr = Math.min(window.devicePixelRatio || 1, 2);
+			const r = liquid.getBoundingClientRect();
+			w = r.width;
+			h = r.height;
+			for (const c of [liquid, glass]) {
+				c.width = Math.max(1, Math.round(w * dpr));
+				c.height = Math.max(1, Math.round(h * dpr));
+			}
+			scale = Math.min((h * 0.94) / FRAME, (w * 0.8) / (2 * RIM));
+			ox = w * 0.58;
+			oy = h * 0.96;
+			// Blurred together over about a particle's width, on the screen.
+			blur.setAttribute('stdDeviation', String(Math.max(1.5, RADIUS * scale * 1.1)));
+			drawGlass();
+		};
+		const draw = () => {
+			lctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+			lctx.clearRect(0, 0, w, h);
+			const pos = system.GetPositionBuffer();
+			const col = system.GetColorBuffer();
+			const r = RADIUS * scale * 1.6;
+			for (let k = 0; k < system.GetParticleCount(); k++) {
+				const c = col[k];
+				lctx.fillStyle = `rgb(${c.r * 255} ${c.g * 255} ${c.b * 255})`;
+				lctx.beginPath();
+				lctx.arc(sx(pos[k].x), sy(pos[k].y), r, 0, Math.PI * 2);
+				lctx.fill();
+			}
+		};
+		const sizing = new ResizeObserver(resize);
+		sizing.observe(liquid);
+		signal.addEventListener('abort', () => sizing.disconnect(), { once: true });
+		resize();
+
+		/* ---- running ------------------------------------------------------- */
+		// With motion reduced, the glass is filled and settled out of sight, and only that drawn.
+		const settle = () => {
+			for (let i = 0; i < 900; i++) tick(1 / 60);
+			draw();
+		};
+		const set = (contents: string[]) => {
+			wanted = new Set(contents);
+			showKey();
+			drain();
+			if (reduceMotion) settle();
+		};
+		host?.addEventListener('viz:props', (e) => {
+			const p = (e as CustomEvent).detail ?? {};
+			set(Array.isArray(p.contents) ? p.contents : authored);
+		});
+		// The colours follow the ground, which can change under it.
+		host?.addEventListener('viz:enter', () => {
+			colour = colours();
+			drawGlass();
+			last = 0;
+		});
+
+		let last = 0;
+		const frame = (now: number) => {
+			if (signal.aborted) return;
+			requestAnimationFrame(frame);
+			if (reduceMotion) return;
+			if (gate && gate.dataset.vizActive === 'false') return;
+			if (!w || !h) return;
+			const dt = last ? Math.min(1 / 30, (now - last) / 1000) : 1 / 60;
+			last = now;
+			tick(dt);
+			draw();
+		};
+		if (reduceMotion) settle();
+		requestAnimationFrame(frame);
+	}
+
+	eachPage((signal) => {
+		for (const root of document.querySelectorAll<HTMLElement>('[data-milk-pour]')) initPour(root, signal);
+	});
+</script>

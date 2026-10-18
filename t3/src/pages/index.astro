@@ -1,20 +1,28 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { render } from 'astro:content';
 import BlogPost from '../layouts/BlogPost.astro';
+import { loadSite, newestFirst } from '../site';
 
-// Beside the list on a wide screen: the newest prose post that is out by the
-// time the site is built. A deck is a full screen of its own and does not fit
-// in half of one. A post dated later than the build is left to the list,
-// which shows it once its day comes.
+// Beside the list on a wide screen: the newest prose post or chapter that is
+// out by the time the site is built. A deck is a full screen of its own and
+// does not fit in half of one. A post dated later than the build is left to
+// the list, which shows it once its day comes.
 const builtAt = Date.now();
-const [latest] = (await getCollection('blog'))
-	.filter((post) => !post.data.hidden && post.data.format !== 'deck')
-	.filter((post) => post.data.pubDate.valueOf() <= builtAt)
-	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const [latest] = (await loadSite()).pages
+	.filter((page) => !page.data.hidden && page.data.format !== 'deck')
+	.filter((page) => page.data.pubDate.valueOf() <= builtAt)
+	.sort(newestFirst);
 
-const { Content } = await render(latest);
+const { Content } = await render(latest.entry);
 ---
 
-<BlogPost {...latest.data} id={latest.id} home>
+<BlogPost
+	{...latest.data}
+	href={latest.href}
+	fullTitle={latest.fullTitle}
+	series={latest.part && latest.series?.data.title}
+	part={latest.part}
+	home
+>
 	<Content />
 </BlogPost>
