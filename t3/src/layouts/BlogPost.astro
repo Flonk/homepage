@@ -112,10 +112,12 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 			}
 			/* With the series bar at its foot, the room is kept above the bar
 			   rather than under it, so it comes to rest on the screen's edge. */
-			.post-main:has(:global(.series-bar)) {
+			/* Global as a whole: Astro scopes nothing inside :has(), so the bar,
+			   which is SeriesBar's, is only reached unscoped. */
+			:global(.post-main:has(.series-bar)) {
 				padding-bottom: 0;
 			}
-			.post-main:has(:global(.series-bar)) article {
+			:global(.post-main:has(.series-bar) article) {
 				padding-bottom: 3em;
 			}
 			@media (min-width: 1100px) {
