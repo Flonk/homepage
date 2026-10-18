@@ -913,6 +913,20 @@ em {
   margin: 1.6em 0;
 }
 
+/* Nothing embedded runs wider than the column. A video player, pasted in
+   with its fixed width and height, keeps the video's shape as it narrows;
+   anything else keeps the height it was given. */
+.prose iframe {
+  max-width: 100%;
+}
+.prose iframe[src*='youtube.com/embed'] {
+  display: block;
+  /* YouTube's own size, for one pasted in without a width. */
+  width: 560px;
+  height: auto;
+  aspect-ratio: 16 / 9;
+}
+
 /* After the rules above, which would otherwise win on a phone: the post's
    type a size down, and a deck card's lists indented as they were. */
 @media (max-width: 720px) {
