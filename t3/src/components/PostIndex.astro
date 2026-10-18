@@ -723,15 +723,12 @@ const railCards = entries.flatMap((entry) =>
 		background: rgb(0 0 0 / 0.5);
 	}
 
-	/* The first entry's picture sits in the pane's corner, so it is set in from
-	   the pane's edge as the page is set in from the window: a gutter of the
-	   frame's width above and to the left, and the corner rounded to match the
-	   pane's, less the gutter (see ChromePane). It scrolls away with the card,
-	   so the tree's scrollbar only ever passes beside it. */
+	/* The first entry's picture sits in the pane's corner, beside the tree's
+	   scrollbar, which nothing in the tree can be drawn under: so it keeps to
+	   its edge, and rounds its own corner to follow the pane's (see
+	   ChromePane). It scrolls away with the card, so the scrollbar only ever
+	   passes beside it. */
 	.tree > .nodes > li:first-child .cover {
-		top: var(--page-border, 4px);
-		left: var(--page-border, 4px);
-		height: calc(100% - var(--page-border, 4px));
 		border-top-left-radius: calc(var(--content-radius, 13px) - 3px);
 	}
 
