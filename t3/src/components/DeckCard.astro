@@ -93,6 +93,15 @@ const { vizProps } = Astro.props;
 		padding-bottom: 1.5rem;
 	}
 
+	/* Shiki gives every code block `overflow-x: auto`, which makes it a scroll
+	   container of its own, and the card's touch-action stops at the nearest
+	   one: on a code block the browser took a sideways drag as its own pan and
+	   cancelled the pointer, so a swipe begun on code never turned the card.
+	   The blocks wrap (see pre in global.css), so there is nothing to pan. */
+	.card-text-inner :global(pre) {
+		touch-action: pan-y pinch-zoom;
+	}
+
 	/* The card is its own column; it must not also apply the page measure. The
 	   margins at both ends go, so the space above and below the text is the
 	   padding and nothing else, and the two match. */
