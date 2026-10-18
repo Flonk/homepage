@@ -78,8 +78,6 @@ const allSeries = entries.flatMap((entry) => (entry.kind === 'series' ? [entry] 
 // The greeting's picture, a path under public/, or null for a mark in its
 // place until there is one.
 const PORTRAIT: string | null = null;
-// Where the greeting's link goes: the Colour series, from its first part.
-const colourStart = allSeries.find((entry) => entry.name === 'Colour')?.posts[0].id;
 
 const holds = (list: Post[]) => list.some((post) => post.id === current);
 
@@ -265,8 +263,8 @@ const railCards = entries.flatMap((entry) =>
 				<T3Mark class="portrait" />
 			)}
 			<p>
-				Hi, I'm Flo, Vienna-based Software Developer. Check out my series on{' '}
-				{colourStart ? <a href={`/blog/${colourStart}/`}>Colour</a> : 'Colour'}, it's really good!
+				Hi, I'm Flo, Vienna-based Software Developer. Check out my post on{' '}
+				<a href="/blog/2026-10-17-parser-combinators/">Parser Combinators</a>!
 			</p>
 		</div>
 		{
