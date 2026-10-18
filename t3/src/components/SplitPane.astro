@@ -345,6 +345,22 @@ const { mode, current } = Astro.props;
 	// Set on <html>, which a swap gives the next page's attributes.
 	keepOnRoot('--split');
 
+	/* The tree is kept from one page to the next (transition:persist), but
+	   the router lifts it out of the page while it swaps the rest, and out of
+	   its pane it has no height to scroll in: it came back at the top, and
+	   only got back down when the open file was brought into sight after.
+	   So where it was is noted before the swap and put back straight after,
+	   before the new page is shown. */
+	const treeScroller = () => document.querySelector<HTMLElement>('.split-list .pane-scroll');
+	let treeTop = 0;
+	document.addEventListener('astro:before-swap', () => {
+		treeTop = treeScroller()?.scrollTop ?? 0;
+	});
+	document.addEventListener('astro:after-swap', () => {
+		const scroller = treeScroller();
+		if (scroller) scroller.scrollTop = treeTop;
+	});
+
 	eachPage((signal) => {
 		const split = document.querySelector<HTMLElement>('.split');
 		const divider = document.querySelector<HTMLElement>('.split-divider');
