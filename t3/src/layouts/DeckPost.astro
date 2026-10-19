@@ -41,6 +41,7 @@ const {
 	prevPart,
 	nextPart,
 	seriesParts = [],
+	hidden,
 } = Astro.props;
 // The post's colour on <html>, where the chrome is worked out from it.
 const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-shift: ${chromeShift}`]
@@ -51,6 +52,7 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 <html lang="en" style={own || undefined} data-grain={chromeGrain}>
 	<head>
 		<BaseHead title={fullTitle ?? title} description={description} />
+		{hidden && <meta name="robots" content="noindex, nofollow" />}
 		<link
 			href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css"
 			rel="stylesheet"

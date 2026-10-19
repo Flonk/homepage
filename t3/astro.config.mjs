@@ -8,6 +8,16 @@ import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
 import rehypeNowrapInlineCode from "./src/plugins/rehype-nowrap-inline-code.mjs";
 
+// Whether a built page asks not to be indexed.
+const noindex = (page) => {
+  try {
+    const html = readFileSync(`dist${new URL(page).pathname}index.html`, "utf8");
+    return /<meta name="robots" content="noindex/.test(html);
+  } catch {
+    return false;
+  }
+};
+
 // Every address the blog has had, to where it is now: old path → new path,
 // both with their trailing slash. See src/site.ts for where things live.
 const moved = JSON.parse(readFileSync(new URL("./src/redirects.json", import.meta.url), "utf8"));
@@ -56,7 +66,12 @@ export default defineConfig({
     netlifyRedirects,
     mdx(),
     // Hidden posts carry a noindex of their own; this keeps them from being
-    // announced in the first place. See `hidden` in content.config.ts.
-    sitemap({ filter: (page) => !page.includes("/designsystem") && !page.includes("/qr") }),
+    // announced in the first place. See `hidden` in content.config.ts. Read off
+    // the built page, which is written by the time the sitemap is, so that
+    // whatever asks not to be indexed (redirects too) is left out of it.
+    sitemap({
+      filter: (page) =>
+        !page.includes("/designsystem") && !page.includes("/qr") && !noindex(page),
+    }),
   ],
 });
