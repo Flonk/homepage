@@ -9,10 +9,10 @@ deckLayout: "sidebar"
 ground: "light"
 ---
 
-import ChromePane from "../../../components/ChromePane.astro";
 import DeckCard from "../../../components/DeckCard.astro";
 import DeckViz from "../../../components/DeckViz.astro";
 import MilkGraph from "../../../components/MilkGraph.astro";
+import MilkLink from "../../../components/MilkLink.astro";
 import MilkPour from "../../../components/MilkPour.astro";
 import Sources from "../../../components/Sources.astro";
 import VizPhase from "../../../components/VizPhase.astro";
@@ -27,17 +27,13 @@ import VizStill from "../../../components/VizStill.astro";
     />
   </VizPhase>
   <VizPhase name="churned">
-    <ChromePane fill="ground">
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", height: "100%" }}>
-        <MilkPour label="Butter" shares={{ water: 16.2, lactose: 0.06, fat: 81.1, protein: 0.85, minerals: 0.09 }} />
-        <MilkPour label="Buttermilk" shares={{ water: 91, lactose: 4.5, fat: 0.4, protein: 3.4, minerals: 0.7 }} after />
-      </div>
-    </ChromePane>
+    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", height: "100%" }}>
+      <MilkPour label="Butter" shares={{ water: 16.2, lactose: 0.06, fat: 81.1, protein: 0.85, minerals: 0.09 }} />
+      <MilkPour label="Buttermilk" shares={{ water: 91, lactose: 4.5, fat: 0.4, protein: 3.4, minerals: 0.7 }} after />
+    </div>
   </VizPhase>
   <VizPhase name="products">
-    <ChromePane fill="ground">
-      <MilkGraph focus="buttermilk" />
-    </ChromePane>
+    <MilkGraph />
   </VizPhase>
 </DeckViz>
 
@@ -62,10 +58,18 @@ import VizStill from "../../../components/VizStill.astro";
   ]} />
 </DeckCard>
 
-<DeckCard vizProps={{ phase: "products" }}>
+<DeckCard vizProps={{ phase: "products", focus: "buttermilk" }}>
   ## Buttermilk is a lie
 
   The reason why buttermilk is thick and creamy and skim milk is not, is because buttermilk undergoes a fermentation process before it is sold.
 
-  That's not to say that you couldn't ferment skim milk the same way, and as a matter of fact, most buttermilk you see on the shelves today *is* skim milk which never saw any churn at all.
+  Of course, you could also ferment skim milk the same way. And as a matter of fact, most buttermilk you see on the shelves today *is* skim milk which never saw any churn at all.
+</DeckCard>
+
+<DeckCard vizProps={{ phase: "products", focus: "butterfat" }}>
+  ## Ghee
+
+  Butter still contains a good chunk of water. <MilkLink to="butterfat">Ghee</MilkLink>, the Indian staple, drives up the fat percentage to well over 99% by simmering butter until water has boiled off and the milk solids have browned and sunk to the bottom.
+
+  We also have to distinguish with the industrial <MilkLink to="clarified">clarified butter</MilkLink>, which uses a centrifuge to separate the fat rather than browning the milk solids. This leads to a different flavor and a more uniform product.
 </DeckCard>

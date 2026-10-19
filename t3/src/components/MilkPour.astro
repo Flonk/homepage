@@ -597,6 +597,11 @@ PARTS.sort((a, b) => b.share - a.share);
 			}
 			return widest;
 		};
+		/* The base's width down its height, worked out once: the strips the
+		   glass is shaded in each follow it, and it is the same every time the
+		   glass is drawn. */
+		const FOOT_YS = Array.from({ length: 301 }, (_, k) => (-FOOT * k) / 300);
+		const FOOT_WIDTHS = FOOT_YS.map(baseWidth);
 		/* The outside of the whole glass: from the lip, rounded over the wall,
 		   down the curve, across the foot's bottom, back up the other side and
 		   over the other lip. */
@@ -680,7 +685,6 @@ PARTS.sort((a, b) => b.share - a.share);
 				return c0.map((v, k) => v + (c1[k] - v) * t);
 			};
 			const glassOn = over(groundColour, rgba(tint));
-			const ys = Array.from({ length: 301 }, (_, k) => (-FOOT * k) / 300);
 			const STRIPS = 60;
 			g.save();
 			traceOutside(g);
@@ -691,8 +695,8 @@ PARTS.sort((a, b) => b.share - a.share);
 				const [r, gr, b] = over(glassOn, lightAt((i + 0.5) / STRIPS));
 				g.fillStyle = `rgb(${r * 255} ${gr * 255} ${b * 255})`;
 				g.beginPath();
-				for (const y of ys) g.lineTo(ox + (2 * u0 - 1) * baseWidth(y) * scale, sy(y));
-				for (let k = ys.length - 1; k >= 0; k--) g.lineTo(ox + (2 * Math.min(1, u1) - 1) * baseWidth(ys[k]) * scale, sy(ys[k]));
+				for (let k = 0; k < FOOT_YS.length; k++) g.lineTo(ox + (2 * u0 - 1) * FOOT_WIDTHS[k] * scale, sy(FOOT_YS[k]));
+				for (let k = FOOT_YS.length - 1; k >= 0; k--) g.lineTo(ox + (2 * Math.min(1, u1) - 1) * FOOT_WIDTHS[k] * scale, sy(FOOT_YS[k]));
 				g.fill();
 			}
 			// Under the bowl darker, seen through the glass above it.

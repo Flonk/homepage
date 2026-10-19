@@ -13,11 +13,10 @@
  *   const result = pSeq(...)("Hello 100")
  *   "Hello 100"  →  ["Hello", " ", 100]
  *
- * An aside rather than part of the thread, and painted to look it: the whole
- * pane is the site's chrome (see ChromePane), and the code sits on a card of
- * the deck's ground in the middle of it.
+ * An aside rather than part of the thread: the code sits on a card of the
+ * deck's ground in the middle of the pane, set off from it by its edge and
+ * shadow.
  */
-import ChromePane from './ChromePane.astro';
 
 interface Props {
 	/** The list, as written in code. */
@@ -29,7 +28,6 @@ interface Props {
 const { list = '["Hello", " ", 100]', text = '"Hello 100"' } = Astro.props;
 ---
 
-<ChromePane radius="calc(var(--content-radius) - 3px)">
 <figure class="aside">
 	<div class="body">
 		<section>
@@ -46,7 +44,6 @@ const { list = '["Hello", " ", 100]', text = '"Hello 100"' } = Astro.props;
 		</section>
 	</div>
 </figure>
-</ChromePane>
 
 <style>
 	.aside {

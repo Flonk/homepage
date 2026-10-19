@@ -40,6 +40,11 @@ const { name } = Astro.props;
 		opacity: 1;
 		pointer-events: auto;
 	}
+	/* Out of sight and faded out: nothing in it laid out, painted or resized
+	   (see DeckPost), though still there to be measured if asked. */
+	.viz-phase[data-viz-asleep] {
+		content-visibility: hidden;
+	}
 
 	/* DeckViz's cap, applied here rather than to the phase itself: the phase is
 	   a wrapper, and a visualization that needs the whole pane lifts the cap by

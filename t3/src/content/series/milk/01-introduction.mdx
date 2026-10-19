@@ -9,7 +9,6 @@ deckLayout: "sidebar"
 ground: "light"
 ---
 
-import ChromePane from "../../../components/ChromePane.astro";
 import DeckCard from "../../../components/DeckCard.astro";
 import DeckViz from "../../../components/DeckViz.astro";
 import MilkGraph from "../../../components/MilkGraph.astro";
@@ -18,9 +17,7 @@ import VizPhase from "../../../components/VizPhase.astro";
 
 <DeckViz>
   <VizPhase name="products">
-    <ChromePane fill="ground">
-      <MilkGraph />
-    </ChromePane>
+    <MilkGraph />
   </VizPhase>
 </DeckViz>
 

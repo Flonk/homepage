@@ -2351,8 +2351,8 @@ const graph = {
 		height: 8rem;
 		padding: 0;
 		border: 0;
-		/* Rounded where it meets the panel, as the pane round it is (see ChromePane). */
-		border-radius: 0 0 var(--pane-corner, 12px) 0;
+		/* Rounded where it meets the panel, as the pane round it is (see DeckViz). */
+		border-radius: 0 0 var(--viz-corner, 10px) 0;
 		object-fit: cover;
 	}
 	.milk-about :global(header .milk-about-aka) {
@@ -2424,7 +2424,7 @@ const graph = {
 	@media (min-width: 1100px) {
 		/* And the panel only the upper half of the picture's left, so the
 		   picture below it stays in sight: a card of its own, set in from the
-		   corner and rounded as the pane round the picture is (ChromePane's
+		   corner and rounded as the panel round the picture is (DeckViz's
 		   corner), its words clipped to that round. Slid out past the inset. */
 		.milk-about {
 			top: 0.75rem;
@@ -2432,7 +2432,7 @@ const graph = {
 			bottom: auto;
 			height: calc(50% - 0.75rem);
 			border: 1px solid var(--pill-rim);
-			border-radius: var(--pane-corner, 12px);
+			border-radius: var(--viz-corner, 10px);
 			overflow: hidden;
 			transform: translateX(calc(-100% - 0.75rem));
 		}
@@ -2610,6 +2610,9 @@ const graph = {
 		fill: none;
 		stroke: var(--pill-rim);
 		stroke-width: 1.2;
+	}
+	.flags :global(.regions circle.shadow) {
+		stroke: none;
 	}
 	/* Written inside its arrow, white on it. */
 	.steps :global(text.is-inside) {
@@ -2812,9 +2815,35 @@ const graph = {
 	const TIER_GAP = 28;
 	const SIDE_GAP = 10;
 
+	/* Words measured on a canvas, in the graph's own font, rather than asked
+	   of the SVG, which lays the whole page out again for every one asked: a
+	   text's width is its widest line. The font is loaded before anything is
+	   drawn (see eachPage), as a canvas measures in whatever it has. */
+	// Looked up once: asking the page's styles for it is not free.
+	let sans = '';
+	const SANS = () => (sans ||= getComputedStyle(document.documentElement).getPropertyValue('--font-sans').trim() || 'sans-serif');
+	const FACES = ['400', 'italic 400', '600'];
+	const ruler = document.createElement('canvas').getContext('2d')!;
+	let rulerFont = '';
+	const measure = (said: string, px: number, face = '400') => {
+		/* At a size where it measures true, and scaled to the one it is drawn
+		   at: words a few pixels high, as a step's table's are, measure wide
+		   of what they are drawn, as their widths are rounded at that size.
+		   The font set only when it changes, as setting it is not free. */
+		const font = `${face} 100px ${SANS()}`;
+		if (font !== rulerFont) ruler.font = rulerFont = font;
+		/* And the page's letter spacing, which the words inherit as so many
+		   pixels a letter whatever their size, and which on the smallest of
+		   them is a good part of their width. */
+		return Math.max(...said.split('\n').map((l) => (ruler.measureText(l).width * px) / 100 + spacing * [...l].length));
+	};
+	let spacing = 0;
+
 	// How many have been drawn, to name each one's own parts apart.
 	let drawn = 0;
 	function draw(figure: HTMLElement, signal: AbortSignal) {
+		// As the words in it have it (see measure).
+		spacing = parseFloat(getComputedStyle(figure).letterSpacing) || 0;
 		const data = JSON.parse(figure.dataset.milkGraph!) as {
 			light: number;
 			groups: { name: string; hub: string | null }[];
@@ -3044,7 +3073,7 @@ const graph = {
 				d.w = d.h = rootR * 2;
 				return;
 			}
-			d.w = (this.querySelector('text') as SVGTextElement).getBBox().width + 2 * PAD_X * size(d);
+			d.w = measure(d.label, FONT * size(d)) + 2 * PAD_X * size(d);
 			d.h = NODE_H * size(d);
 			// Room at the pill's left for its photograph, and the words moved over.
 			if (d.image) {
@@ -3067,9 +3096,32 @@ const graph = {
 			.attr('y', (d) => -d.h / 2)
 			.attr('width', (d) => d.w)
 			.attr('height', (d) => d.h)
-			.attr('rx', radius)
-			// Lifted off the ground by a soft shadow, as deep as the pill is big.
-			.style('filter', (d) => `drop-shadow(0 ${d.h * 0.04}px ${d.h * 0.1}px rgb(0 0 0 / 0.12))`);
+			.attr('rx', radius);
+		/* Lifted off the ground by a soft shadow, as deep as the pill is big:
+		   not blurred, which costs a surface of its own for every pill, but a
+		   few faint copies of its outline under it, each a little larger,
+		   lower and fainter than the last, which read as one soft shadow. */
+		const SHADOW = [
+			{ spread: 0.02, drop: 0.03, alpha: 0.05 },
+			{ spread: 0.06, drop: 0.05, alpha: 0.035 },
+			{ spread: 0.11, drop: 0.07, alpha: 0.02 },
+		];
+		node
+			.filter((d) => d !== root)
+			.each(function (d) {
+				for (const { spread, drop, alpha } of [...SHADOW].reverse()) {
+					const s = d.h * spread;
+					select(this)
+						.insert('rect', ':first-child')
+						.attr('class', 'shadow')
+						.attr('x', -d.w / 2 - s)
+						.attr('y', -d.h / 2 - s + d.h * drop)
+						.attr('width', d.w + 2 * s)
+						.attr('height', d.h + 2 * s)
+						.attr('rx', radius(d) + s)
+						.style('fill', `rgb(0 0 0 / ${alpha})`);
+				}
+			});
 		/* The photograph filling the pill's left end, edge to edge, its outer
 		   corners rounded as the pill's are; its credit on hovering it. */
 		node
@@ -3145,21 +3197,28 @@ const graph = {
 			const n = d.regions!.length;
 			d.regions!.forEach((c, i) => {
 				// The last on the corner, the first furthest left, each overlapping the next by a third.
-				const flag = badge
-					.append('g')
-					.attr('transform', `translate(${-(n - 1 - i) * r * 1.4},0)`)
-					// The pills' shadow, as deep for its size.
-					.style('filter', `drop-shadow(0 ${r * 0.08}px ${r * 0.2}px rgb(0 0 0 / 0.18))`);
+				const flag = badge.append('g').attr('transform', `translate(${-(n - 1 - i) * r * 1.4},0)`);
+				// A shadow as the pills have, faint circles under it rather than a blur.
+				for (const [spread, alpha] of [
+					[0.14, 0.05],
+					[0.06, 0.08],
+				])
+					flag
+						.append('circle')
+						.attr('class', 'shadow')
+						.attr('cy', r * 0.08)
+						.attr('r', r * (1 + spread))
+						.style('fill', `rgb(0 0 0 / ${alpha})`);
 				// On white, for a flag that does not fill its square, as Nepal's does not.
 				flag.append('circle').attr('class', 'ground').attr('r', r);
+				// Round already in its file, so it needs no clipping here.
 				flag
 					.append('image')
 					.attr('href', `/assets/flags/${c.toLowerCase()}.webp`)
 					.attr('x', -r)
 					.attr('y', -r)
 					.attr('width', 2 * r)
-					.attr('height', 2 * r)
-					.style('clip-path', 'circle(50%)');
+					.attr('height', 2 * r);
 				flag.append('circle').attr('r', r);
 			});
 		});
@@ -3198,9 +3257,7 @@ const graph = {
 		// How much taller than one line its words are.
 		const extra = (n: Node) => (n.step ? (lines(n).length - 1) * LEADING * stepFont(n) : 0);
 		const stepWidth = new Map<Node, number>();
-		step.each(function (n) {
-			stepWidth.set(n, this.getBBox().width);
-		});
+		for (const n of step.data()) stepWidth.set(n, measure(n.step!, stepFont(n), 'italic 400'));
 		/* A step's table, under the step's name and laid over its arrow: a row a
 		   fact, what it is on the left and its value on the right, a value in
 		   as many lines as it is written in; small, a footnote to the name. */
@@ -3230,14 +3287,13 @@ const graph = {
 			for (let i = 1; i < rows(n).length; i++) g.append('line').attr('class', 'rule');
 			g.append('line').attr('class', 'rule column');
 			g.append('rect').attr('class', 'frame');
-			const keys = rows(n).map(({ k }) => g.append('text').attr('class', 'k').text(k).node()!);
-			const values = rows(n).map(({ v }) => {
+			for (const { k } of rows(n)) g.append('text').attr('class', 'k').text(k);
+			for (const { v } of rows(n)) {
 				const t = g.append('text').attr('class', 'v');
 				for (const said of rowLines(v)) t.append('tspan').text(said);
-				return t.node()!;
-			});
-			const widest = (t: SVGTextContentElement[]) => Math.max(...t.map((e) => e.getComputedTextLength()));
-			columns.set(n, { key: widest(keys), value: widest(values.flatMap((t) => [...t.querySelectorAll('tspan')])) });
+			}
+			const widest = (said: string[], face: string) => Math.max(...said.map((t) => measure(t, tableFont(n), face)));
+			columns.set(n, { key: widest(rows(n).map(({ k }) => k), '600'), value: widest(rows(n).map(({ v }) => v), '400') });
 		});
 		// The room in a cell round its words.
 		const pad = (n: Node) => tableFont(n) * 0.6;
@@ -3961,10 +4017,14 @@ const graph = {
 		const pane = svg.node()!.getBoundingClientRect();
 		const m = MARGIN / (Math.min((pane.width - 2 * MARGIN) / bounds.width, (pane.height - 2 * MARGIN) / bounds.height) || 1);
 		svg.attr('viewBox', `${bounds.x - m} ${bounds.y - m} ${bounds.width + 2 * m} ${bounds.height + 2 * m}`);
-		// The grain's tiles their own size on the screen, at this zoom.
+		/* The grain's tiles their own size on the screen, at this zoom. How
+		   big the picture is drawn, kept and changed only when the picture
+		   changes size: asked of the page on every step of a glide, it would
+		   have every shape in the picture laid out again each time. */
+		const fitTo = (width: number, height: number) =>
+			Math.min(width / (bounds.width + 2 * m), height / (bounds.height + 2 * m)) || 1;
+		let fit = fitTo(svg.node()!.clientWidth, svg.node()!.clientHeight);
 		const grainAt = (k: number) => {
-			const rect = svg.node()!.getBoundingClientRect();
-			const fit = Math.min(rect.width / (bounds.width + 2 * m), rect.height / (bounds.height + 2 * m)) || 1;
 			svg.selectAll<SVGPatternElement, unknown>('pattern.grain').each(function () {
 				const tile = Number(this.dataset.tile) / (fit * k);
 				select(this).attr('width', tile).attr('height', tile).select('image').attr('width', tile).attr('height', tile);
@@ -3972,9 +4032,53 @@ const graph = {
 		};
 		grainAt(1);
 		// And again when the pane changes size, which changes the zoom it is drawn at.
-		const resized = new ResizeObserver(() => grainAt(zoomTransform(svg.node()!).k));
+		const resized = new ResizeObserver(([{ contentRect }]) => {
+			fit = fitTo(contentRect.width, contentRect.height);
+			grainAt(zoomTransform(svg.node()!).k);
+		});
 		resized.observe(svg.node()!);
 		signal.addEventListener('abort', () => resized.disconnect());
+
+		/* Sized by this, in pixels, rather than by the pane: laying its
+		   thousands of shapes out again takes far longer than a frame, and the
+		   pane changes size every frame the posts beside it fold away or open.
+		   While it is resizing the picture keeps the size it had and is only
+		   scaled and centred to the pane's, as its viewBox would place it; it
+		   takes the pane's size once the pane has kept still a moment. */
+		const drawing = svg.node()!;
+		const paneSize = () => ({ w: figure.clientWidth, h: figure.clientHeight });
+		let laid = paneSize();
+		const lay = () => {
+			laid = paneSize();
+			Object.assign(drawing.style, {
+				position: 'absolute',
+				left: '0',
+				top: '0',
+				width: `${laid.w}px`,
+				height: `${laid.h}px`,
+				transform: '',
+				transformOrigin: '0 0',
+				/* A layer of its own, always: the chrome round the page is painted
+				   again ten times a second, and in the page's layer every shape of
+				   this would be painted again with it. */
+				willChange: 'transform',
+			});
+		};
+		lay();
+		let settle = 0;
+		const holding = new ResizeObserver(() => {
+			const { w, h } = paneSize();
+			if (Math.abs(w - laid.w) < 1 && Math.abs(h - laid.h) < 1) return;
+			const k = Math.min(w / laid.w, h / laid.h);
+			drawing.style.transform = `translate(${(w - laid.w * k) / 2}px, ${(h - laid.h * k) / 2}px) scale(${k})`;
+			clearTimeout(settle);
+			settle = window.setTimeout(lay, 150);
+		});
+		holding.observe(figure);
+		signal.addEventListener('abort', () => {
+			holding.disconnect();
+			clearTimeout(settle);
+		});
 
 		/* Looking at a product: pointing at it, or having clicked it, draws
 		   every way it is made and everything made from it in the ink. A
@@ -4131,10 +4235,13 @@ const graph = {
 				held = n;
 				look(n);
 			} else tell(n);
-			/* Zoomed until its pill is about this tall on the screen, and into
-			   the middle of what the card leaves of the picture, as if that
-			   were all of it; a kind with a ruler, long and low, until it is as
-			   wide as most of that, so its ruler reads. */
+			svg.transition().duration(750).call(zoomer.transform, zoomInto(n));
+		};
+		/* Zoomed until its pill is about this tall on the screen, and into
+		   the middle of what the card leaves of the picture, as if that were
+		   all of it; a kind with a ruler, long and low, until it is as wide as
+		   most of that, so its ruler reads. */
+		const zoomInto = (n: Node) => {
 			const box = svg.node()!.viewBox.baseVal;
 			const rect = svg.node()!.getBoundingClientRect();
 			const fit = Math.min(rect.width / box.width, rect.height / box.height);
@@ -4144,8 +4251,7 @@ const graph = {
 			const k = Math.max(0.5, Math.min(MAX_ZOOM, n.scale ? Infinity : FOUND_HEIGHT / (n.h * fit), (0.8 * free) / (n.w * fit)));
 			// That middle, from the screen into the picture's own units.
 			const mx = box.x + (left + free / 2 - (rect.width - box.width * fit) / 2) / fit;
-			const to = zoomIdentity.translate(mx - k * n.x, box.y + box.height / 2 - k * n.y).scale(k);
-			svg.transition().duration(750).call(zoomer.transform, to);
+			return zoomIdentity.translate(mx - k * n.x, box.y + box.height / 2 - k * n.y).scale(k);
 		};
 
 		/* Telling of a product, or an example, in a card over the picture:
@@ -4335,11 +4441,12 @@ const graph = {
 						grew = true;
 					}
 			}
-			// Nothing made from it: what it is made from too, and the step between them.
+			held = n;
+			look(n);
+			// Nothing made from it: into it alone, as a link to it goes.
 			if (family.size === 1) {
-				let p = treeParent.get(n);
-				while (p?.hub) p = treeParent.get(p);
-				if (p) family.add(p);
+				svg.transition().duration(glide ? 750 : 0).call(zoomer.transform, zoomInto(n));
+				return;
 			}
 			const all = [...family];
 			const x0 = Math.min(...all.map((d) => d.x - d.w / 2));
@@ -4351,8 +4458,6 @@ const graph = {
 			const to = zoomIdentity
 				.translate(box.x + box.width / 2 - (k * (x0 + x1)) / 2, box.y + box.height / 2 - (k * (y0 + y1)) / 2)
 				.scale(k);
-			held = n;
-			look(n);
 			svg.transition().duration(glide ? 750 : 0).call(zoomer.transform, to);
 		};
 		if (figure.dataset.focus) focusOn(figure.dataset.focus, false);
@@ -4370,17 +4475,42 @@ const graph = {
 
 	eachPage((signal) => {
 		for (const figure of document.querySelectorAll<HTMLElement>('[data-milk-graph]')) {
-			// Laid out to the pane's shape, so not before the pane has one.
+			const phase = figure.closest<HTMLElement>('[data-viz-phase]');
+			const host = phase ?? figure.closest<HTMLElement>('[data-viz-stage]');
+			/* What a card has asked it to focus on before it is drawn, kept for
+			   it to open on (see focusOn). */
+			host?.addEventListener(
+				'viz:props',
+				(e) => {
+					const p = (e as CustomEvent).detail ?? {};
+					if ('focus' in p) figure.dataset.focus = typeof p.focus === 'string' ? p.focus : '';
+				},
+				{ signal },
+			);
+			/* Laid out to the pane's shape, so not before the pane has one, nor
+			   while its phase is out of sight: there it is not laid out (see
+			   VizPhase), and would be measured wrong. Drawn when it is first shown. */
+			let started = false;
 			const start = () => {
+				if (started) return true;
+				if (phase && phase.dataset.vizActive !== 'true') return false;
 				const { width, height } = figure.getBoundingClientRect();
 				if (!width || !height) return false;
-				draw(figure, signal);
+				started = true;
+				// Once its font is in, as its words are measured on a canvas (see measure).
+				Promise.all(FACES.map((face) => document.fonts.load(`${face} 13px ${SANS()}`))).then(
+					() => !signal.aborted && draw(figure, signal),
+				);
 				return true;
 			};
-			if (start()) continue;
-			const watch = new ResizeObserver(() => start() && watch.disconnect());
-			watch.observe(figure);
-			signal.addEventListener('abort', () => watch.disconnect());
+			// A frame on, once the deck has said which phase is shown.
+			requestAnimationFrame(() => {
+				if (signal.aborted || start()) return;
+				const watch = new ResizeObserver(() => start() && watch.disconnect());
+				watch.observe(figure);
+				phase?.addEventListener('viz:enter', () => start() && watch.disconnect(), { signal });
+				signal.addEventListener('abort', () => watch.disconnect());
+			});
 		}
 	});
 </script>

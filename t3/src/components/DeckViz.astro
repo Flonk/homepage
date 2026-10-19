@@ -39,22 +39,16 @@
  * three fire on the enclosing <VizPhase>, or on this element when there are
  * none — so a stage holding several pieces reaches all of them at once.
  *
- * `framed` sets the whole stage in a frame, so the line between it and the
- * text is plain to see: a gutter of the dark ground round a rounded panel a
- * shade lighter than the deck's ground, as <ChromePane fill="ground"> frames
- * a single picture. On the stage rather than round each phase, so the frame
- * holds still while the phases cross-fade inside it.
- *
- *   <DeckViz framed>…</DeckViz>
+ * The stage is set in a frame, so the line between it and the text is plain
+ * to see: a gutter of the dark ground round a rounded panel a shade lighter
+ * than the deck's ground, as the page is a frame round its content. On the
+ * stage rather than round each phase, so the frame holds still while the
+ * phases cross-fade inside it; and on every deck, so no picture brings a
+ * frame of its own.
  */
-interface Props {
-	framed?: boolean;
-}
-
-const { framed = false } = Astro.props;
 ---
 
-<div class:list={['deck-viz', framed && 'is-framed']} data-viz-stage>
+<div class="deck-viz" data-viz-stage>
 	<slot />
 </div>
 
@@ -83,30 +77,46 @@ const { framed = false } = Astro.props;
 		   simply fills it. */
 		display: grid;
 		grid-template: 'pane' minmax(0, 1fr) / minmax(0, 1fr);
-		/* No bottom padding: a viz may run to the pane edge and be clipped by it. */
-		padding: 1rem 1rem 0;
 		overflow: hidden;
-	}
-
-	/* Framed: the panel drawn under the phases, inset by the gutter, which is
-	   as wide as the page's frame (see ChromePane); the phases kept the same
-	   room inside it as they have in the bare pane, and off its bottom edge. */
-	.deck-viz.is-framed {
+		/* The frame: a gutter as wide as the page's own frame, and the panel
+		   drawn under the phases inside it, its corners a pixel tighter than
+		   the page's, which what is drawn into them can follow; the phases
+		   kept a little room inside it, but for its bottom, which a picture may
+		   run down to, as the cube's ground does. */
 		--frame: var(--page-border, 4px);
+		--pane-corner: calc(var(--content-radius, 13px) - 1px);
+		/* What is drawn into its corners follows them two pixels tighter. */
+		--viz-corner: calc(var(--pane-corner) - 2px);
 		position: relative;
 		isolation: isolate;
-		padding: calc(var(--frame) + 1rem) calc(var(--frame) + 1rem) calc(var(--frame) + 0.5rem);
+		padding: calc(var(--frame) + 1rem) calc(var(--frame) + 1rem) var(--frame);
 		background: var(--ground-200);
 	}
-	.deck-viz.is-framed::before {
+	.deck-viz::before {
 		content: '';
 		position: absolute;
 		inset: var(--frame);
 		z-index: -1;
-		border-radius: calc(var(--content-radius, 13px) - 1px);
+		border-radius: var(--pane-corner);
 		/* The deck's ground, four percent toward white. */
 		background: color-mix(in oklab, var(--deck-ground), white 4%);
-		box-shadow: inset 0 0 0 1px var(--flb-subtle);
+	}
+	/* And the frame again over the pictures, so that what runs out past the
+	   panel, as the cube's ground does, is hidden under it: the gutter as a
+	   spread of the dark ground out from the panel's round edge, and the
+	   edge's line. Painted over them rather than clipping them, which would
+	   repaint every picture every frame the pane changes size, as it does
+	   while the posts beside it fold away; and never in the pointer's way. */
+	.deck-viz::after {
+		content: '';
+		position: absolute;
+		inset: var(--frame);
+		z-index: 10;
+		border-radius: var(--viz-corner);
+		box-shadow:
+			0 0 0 calc(var(--frame) + 2px) var(--ground-200),
+			inset 0 0 0 1px var(--flb-subtle);
+		pointer-events: none;
 	}
 
 	/* :global, because slotted children carry the caller's scope, not ours. */

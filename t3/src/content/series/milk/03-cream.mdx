@@ -9,7 +9,6 @@ deckLayout: "sidebar"
 ground: "light"
 ---
 
-import ChromePane from "../../../components/ChromePane.astro";
 import DeckCard from "../../../components/DeckCard.astro";
 import DeckViz from "../../../components/DeckViz.astro";
 import MilkGraph from "../../../components/MilkGraph.astro";
@@ -20,17 +19,13 @@ import VizPhase from "../../../components/VizPhase.astro";
 
 <DeckViz>
   <VizPhase name="products">
-    <ChromePane fill="ground">
-      <MilkGraph focus="rawCream" />
-    </ChromePane>
+    <MilkGraph focus="rawCream" />
   </VizPhase>
   <VizPhase name="separated">
-    <ChromePane fill="ground">
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", height: "100%" }}>
-        <MilkPour label="Cream" shares={{ water: 57.7, lactose: 2.84, fat: 36.1, protein: 2.84, minerals: 0.53 }} />
-        <MilkPour label="Skimmed milk" shares={{ water: 90.8, lactose: 4.86, fat: 0.18, protein: 3.37, minerals: 0.75 }} after />
-      </div>
-    </ChromePane>
+    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", height: "100%" }}>
+      <MilkPour label="Cream" shares={{ water: 57.7, lactose: 2.84, fat: 36.1, protein: 2.84, minerals: 0.53 }} />
+      <MilkPour label="Skimmed milk" shares={{ water: 90.8, lactose: 4.86, fat: 0.18, protein: 3.37, minerals: 0.75 }} after />
+    </div>
   </VizPhase>
 </DeckViz>
 

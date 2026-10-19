@@ -847,12 +847,33 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 
 					/* Straight to the phase the starting card asks for — which is not
 					   necessarily the first one, if the reader arrived on a deep link. */
+					/* A phase out of sight is put to sleep once it has faded out (see
+					   VizPhase): not laid out, painted or resized, so that nothing in
+					   it does any work while the pane changes size, as it does every
+					   frame the posts beside it fold away. Woken before it is shown,
+					   when anything in it that watches its size hears it once. */
+					const FADE = 400;
+					const asleep = new WeakMap<HTMLElement, number>();
+					const sleep = (el: HTMLElement, after: number) => {
+						clearTimeout(asleep.get(el));
+						asleep.set(
+							el,
+							window.setTimeout(() => {
+								if (el.dataset.vizActive === 'false') el.dataset.vizAsleep = '';
+							}, after),
+						);
+					};
+					const wake = (el: HTMLElement) => {
+						clearTimeout(asleep.get(el));
+						delete el.dataset.vizAsleep;
+					};
 					if (phases.length) {
 						phaseName = JSON.parse(vizPlan[index]).phase ?? null;
 						for (const el of phases) {
 							const on = el.dataset.vizPhase === phaseName;
 							el.dataset.vizActive = String(on);
 							el.inert = !on;
+							if (!on) sleep(el, 0);
 						}
 					}
 
@@ -862,6 +883,8 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 						for (const el of phases) {
 							const on = el.dataset.vizPhase === name;
 							const was = el.dataset.vizActive === 'true';
+							if (on) wake(el);
+							else if (was) sleep(el, FADE);
 							el.dataset.vizActive = String(on);
 							el.inert = !on;
 							if (was !== on) {
