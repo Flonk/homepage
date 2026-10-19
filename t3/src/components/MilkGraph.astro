@@ -13,6 +13,11 @@ import REGIONS from './milk-regions.json';
  * fermented milks of the steppe, and whey protein.
  *
  *   <DeckViz><MilkGraph /></DeckViz>
+ *   <DeckViz><MilkGraph focus="rawCream" /></DeckViz>
+ *
+ * With `focus`, a product's id, it opens on that product and everything
+ * made from it, framed and lit, rather than on the whole tree; a card can
+ * move it with `vizProps={{ focus: … }}`, or back to the whole with null.
  *
  * Laid out in the browser as a tree on a grid, worked out once so that no
  * two nodes overlap, each arrow saying how the one is made from the other. The products are a plain list below,
@@ -37,6 +42,11 @@ import REGIONS from './milk-regions.json';
  * same step leaves besides, each with a few words of how: setting milk with
  * rennet makes the curd, and the whey drains off. They are shown when the
  * arrow is looked at.
+ *
+ * A product with a `scale` is a kind measured along it rather than a
+ * product of its own: drawn with a ruler under it, and what is made from it
+ * hung below, each straight down from where its own `at` is on the ruler;
+ * cultured cream, and its creams by how much fat they have.
  */
 type Product = {
 	label: string;
@@ -46,6 +56,10 @@ type Product = {
 	alsoFrom?: string[];
 	step?: string;
 	byproducts?: Record<string, string>;
+	scale?: { name: string; unit: string; to: number; every: number };
+	at?: number;
+	// Drawn just below the branch of this sibling, as its kin, whatever their sizes.
+	below?: string;
 };
 
 /** Every product, by a short id. */
@@ -70,7 +84,7 @@ const NODES: Record<string, Product> = {
 	// Dried from a concentrate, not from evaporated milk.
 	milkPowder: { label: 'Milk powder', aka: ['Dried milk', 'Whole milk powder', 'Milchpulver'], from: 'pasteurised', step: 'concentrate, spray-dry' },
 	bakedMilk: { label: 'Baked milk', aka: ['Toplyonoye moloko', 'Топлёное молоко'], from: 'pasteurised', step: 'hold hot for hours' },
-	skimRaw: { label: 'Skimmed raw milk', aka: ['Fettarme bis magere Rohmilch'], from: 'raw', step: 'skim', byproducts: { rawCream: 'cream taken off' } },
+	skimRaw: { label: 'Skimmed raw milk', aka: ['Fettarme bis magere Rohmilch'], from: 'raw', step: 'the rest' },
 	semi: { label: 'Semi-skimmed milk', aka: ['Low-fat milk', 'Fettarme Milch'], from: 'skimRaw', step: 'standardise the fat' },
 	semiUht: { label: 'Semi-skimmed\nUHT milk', aka: ['Fettarme H-Milch'], from: 'semi', step: 'heat to ≥135 °C' },
 	semiEvaporated: { label: 'Semi-skimmed\nevaporated milk', aka: ['Teilentrahmte Kondensmilch'], from: 'semi', step: 'evaporate, sterilise in can' },
@@ -106,19 +120,63 @@ const NODES: Record<string, Product> = {
 		step: 'express in transgenic milk, purify',
 	},
 
-	rawCream: { label: 'Raw cream', aka: ['Rahm'], from: 'raw', step: 'separate', byproducts: { skimRaw: 'skimmed milk left' } },
+	rawCream: { label: 'Raw cream', aka: ['Rahm'], from: 'raw', step: 'the fat' },
 	cream: { label: 'Cream', aka: ['Sahne', 'Crème liquide'], from: 'rawCream', step: 'pasteurise' },
 	// Kaymak and malai also skim off heated whole milk as it cools.
 	clotted: { label: 'Clotted cream\n(kaymak)', aka: ['Kajmak', 'Öröm'], examples: ['Cornish clotted cream', 'Kaymak', 'Malai', 'Urum'], from: 'cream', alsoFrom: ['fresh'], step: 'heat slowly, skim the crust' },
 	rabri: { label: 'Rabri', aka: ['Rabdi', 'Layered milk skins'], from: 'fresh', step: 'reduce, layer the skins' },
-	coffeeCream: { label: 'Coffee cream', aka: ['Kaffeesahne'], from: 'rawCream', step: 'standardise, sterilise' },
-	whipping: { label: 'Whipping cream', aka: ['Schlagsahne', 'Schlagobers'], from: 'rawCream', step: 'standardise to 30 %+' },
-	double: { label: 'Double cream', aka: ['Crème double'], from: 'rawCream', step: 'standardise to 48 %' },
+	/* Cream as it is sold, its fat set to a grade and heated: each country
+	   names its own grades, hung under the ruler at the least fat the name
+	   allows (or, where it sets none, what it usually has). */
+	creamGrades: {
+		label: 'Cream grades',
+		aka: ['Sahne', 'Rahm', 'Obers', 'Table cream'],
+		from: 'rawCream',
+		step: 'standardise, pasteurise',
+		scale: { name: 'fat', unit: '%', to: 50, every: 10 },
+	},
+	coffeeCream: { label: 'Kaffeesahne', aka: ['Coffee cream'], from: 'creamGrades', at: 10 },
+	kaffeeobers: { label: 'Kaffeeobers', aka: ['Kaffeerahm'], from: 'creamGrades', at: 10 },
+	cremeDeLeite: { label: 'Creme de leite', from: 'creamGrades', at: 10 },
+	halfAndHalf: { label: 'Half-and-half', from: 'creamGrades', at: 12 },
+	cremeLegere: { label: 'Crème légère', from: 'creamGrades', at: 12 },
+	kaffeerahm: { label: 'Kaffeerahm', from: 'creamGrades', at: 15 },
+	singleCream: { label: 'Single cream', from: 'creamGrades', at: 18 },
+	lightCream: { label: 'Light cream', aka: ['Coffee cream', 'Table cream'], from: 'creamGrades', at: 18 },
+	namaKurimu: { label: 'Nama kurīmu', aka: ['生クリーム', 'Fresh cream'], from: 'creamGrades', at: 18 },
+	mediaCrema: { label: 'Media crema', aka: ['Table cream'], from: 'creamGrades', at: 20 },
+	pannaDaCucina: { label: 'Panna da cucina', aka: ['Cooking cream'], from: 'creamGrades', at: 20 },
+	schlagsahne: { label: 'Schlagsahne', aka: ['Whipped cream'], from: 'creamGrades', at: 30 },
+	schlagobers: { label: 'Schlagobers', aka: ['Schlagrahm'], from: 'creamGrades', at: 30 },
+	cremeFluide: { label: 'Crème fluide', aka: ['Crème fraîche fluide', 'Crème entière'], from: 'creamGrades', at: 30 },
+	vollrahm: { label: 'Vollrahm', aka: ['Schlagrahm'], from: 'creamGrades', at: 35 },
+	thickenedCream: { label: 'Thickened cream', from: 'creamGrades', at: 35 },
+	whipping: { label: 'Whipping cream', from: 'creamGrades', at: 35 },
+	heavyCream: { label: 'Heavy cream', aka: ['Heavy whipping cream'], from: 'creamGrades', at: 36 },
+	cremeDouble: { label: 'Crème double', aka: ['Double crème'], from: 'creamGrades', at: 40 },
+	vispgradde: { label: 'Vispgrädde', from: 'creamGrades', at: 40 },
+	doppelrahm: { label: 'Doppelrahm', aka: ['Double crème de la Gruyère'], from: 'creamGrades', at: 45 },
+	double: { label: 'Double cream', from: 'creamGrades', at: 48 },
 	evaporatedCream: { label: 'Evaporated cream', aka: ['Kondenssahne'], from: 'rawCream', step: 'evaporate' },
-	souredCream: { label: 'Cultured cream', aka: ['Sauerrahm'], from: 'rawCream', step: 'ferment cream' },
-	sourCream: { label: 'Sour cream', aka: ['Saure Sahne'], from: 'souredCream', step: 'ferment cream' },
-	smetana: { label: 'Smetana', aka: ['Schmand', 'Smetana', 'Smântână'], from: 'souredCream', step: 'ferment cream' },
-	cremeFraiche: { label: 'Crème fraîche', aka: ['Crème épaisse'], from: 'souredCream', step: 'ferment rich cream' },
+	/* Cream soured once, by the same lactic cultures, into what is one product
+	   under many names, told apart by little more than how much fat it has:
+	   each hung under the ruler at what it typically has. */
+	culturedCream: {
+		label: 'Cultured cream grades',
+		aka: ['Soured cream', 'Sauerrahmerzeugnisse'],
+		from: 'cream',
+		step: 'culture, ferment',
+		scale: { name: 'fat', unit: '%', to: 40, every: 10 },
+	},
+	saureSahne: { label: 'Saure Sahne', aka: ['Sahnesauermilch'], from: 'culturedCream', at: 10 },
+	graddfil: { label: 'Gräddfil', from: 'culturedCream', at: 12 },
+	sauerrahm: { label: 'Sauerrahm', aka: ['Rahm, sauer'], from: 'culturedCream', at: 15 },
+	saurerHalbrahm: { label: 'Saurer Halbrahm', from: 'culturedCream', at: 15 },
+	smetana: { label: 'Smetana', aka: ['Сметана', 'Smântână', 'Śmietana'], from: 'culturedCream', at: 20 },
+	sourCream: { label: 'Sour cream', aka: ['Cultured sour cream'], from: 'culturedCream', at: 18 },
+	tejfol: { label: 'Tejföl', from: 'culturedCream', at: 20 },
+	schmand: { label: 'Schmand', from: 'culturedCream', at: 24 },
+	cremeFraiche: { label: 'Crème fraîche', aka: ['Crème épaisse'], from: 'culturedCream', at: 30 },
 	// Cream set by heat and acid, rather than made from crème fraîche.
 	mascarpone: { label: 'Mascarpone', from: 'cream', step: 'heat with acid' },
 	posset: { label: 'Posset', examples: ['Lemon posset', 'Syllabub'], from: 'cream', step: 'curdle with wine or citrus' },
@@ -127,8 +185,8 @@ const NODES: Record<string, Product> = {
 	iceCream: { label: 'Ice cream', aka: ['Speiseeis'], examples: ['Gelato', 'Soft serve', 'Frozen custard', 'Dondurma'], from: 'cream', step: 'sweeten, churn, freeze' },
 	kulfi: { label: 'Kulfi', from: 'fresh', step: 'reduce, freeze in moulds' },
 
-	butter: { label: 'Sweet cream butter', aka: ['Butter', 'Süßrahmbutter'], from: 'cream', step: 'churn', byproducts: { churn: 'liquid left in the churn' } },
-	culturedButter: { label: 'Cultured butter', aka: ['Sauerrahmbutter'], examples: ['Makhan', 'Kibe', 'Zebda'], from: 'souredCream', alsoFrom: ['soured'], step: 'ripen, churn', byproducts: { buttermilk: 'buttermilk left' } },
+	butter: { label: 'Butter', aka: ['Sweet cream butter', 'Süßrahmbutter'], from: 'cream', step: 'the fat' },
+	culturedButter: { label: 'Cultured butter', aka: ['Sauerrahmbutter'], examples: ['Makhan', 'Kibe', 'Zebda'], from: 'cream', alsoFrom: ['soured'], step: 'culture, ripen, churn', byproducts: { buttermilk: 'buttermilk left' }, below: 'butter' },
 	mildButter: { label: 'Mildly soured butter', aka: ['Mildgesäuerte Butter'], from: 'butter', step: 'work in culture' },
 	// Desi ghee is boiled from butter churned from dahi.
 	butterfat: { label: 'Ghee', aka: ['Desi ghee'], from: 'butter', alsoFrom: ['culturedButter'], step: 'simmer until brown' },
@@ -137,7 +195,7 @@ const NODES: Record<string, Product> = {
 	smen: { label: 'Smen', aka: ['Aged butter', 'Semn'], from: 'clarified', step: 'salt, age in jars' },
 	bogButter: { label: 'Bog butter', aka: ['Im portaigh'], from: 'butter', step: 'bury in peat' },
 	nitirKibbeh: { label: 'Spiced butter\n(niter kibbeh)', aka: ['Niter kibbeh', 'Niter qibe', 'Tesmi'], from: 'clarified', step: 'simmer with spices' },
-	churn: { label: 'Churning liquid', aka: ['Sweet buttermilk', 'Süßrahmbuttermilch'], from: 'cream', step: 'left from churning' },
+	churn: { label: 'Churning liquid', aka: ['Sweet buttermilk', 'Süßrahmbuttermilch'], from: 'cream', step: 'the rest' },
 	buttermilk: { label: 'Buttermilk', aka: ['Buttermilch'], from: 'churn', step: 'sour' },
 	// The buttermilk of butter churned from soured milk or yoghurt rather than
 	// cream, as across North Africa, the Middle East, Ethiopia and South Asia.
@@ -434,12 +492,6 @@ const IMAGES: Record<string, Picture> = {
 		license: 'Public domain',
 		source: 'https://commons.wikimedia.org/wiki/File:Chesses_gouda_affinage.JPG',
 	},
-	souredCream: {
-		file: 'Sour Cream.jpg',
-		author: 'jules',
-		license: 'CC BY 2.0',
-		source: 'https://commons.wikimedia.org/wiki/File:Sour_Cream.jpg',
-	},
 	colostrum: {
 		file: 'Bovine colostrum and spray-dried colostrum powder.jpg',
 		author: 'Marguerita Briana Cattell',
@@ -523,6 +575,13 @@ const IMAGES: Record<string, Picture> = {
 		author: 'Danja Vassiliev',
 		license: 'CC BY-SA 2.0',
 		source: 'https://commons.wikimedia.org/wiki/File:Cr%C3%A8me_fra%C3%AEche.jpg',
+	},
+	// Polish śmietana, the same product as Schmand; the Schmand on Commons is only its tubs.
+	schmand: {
+		file: 'Smietana.JPG',
+		author: 'Dobromila',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Smietana.JPG',
 	},
 	posset: {
 		file: 'Lemon posset-3.jpg',
@@ -1826,7 +1885,7 @@ const GROUPS: { name: string; hub?: string; ids: string[] }[] = [
 	},
 	{
 		name: 'Creams',
-		ids: ['rawCream', 'cream', 'clotted', 'coffeeCream', 'whipping', 'double', 'evaporatedCream', 'souredCream', 'sourCream', 'smetana', 'cremeFraiche', 'mascarpone', 'posset'],
+		ids: ['rawCream', 'cream', 'clotted', 'creamGrades', 'coffeeCream', 'kaffeeobers', 'cremeDeLeite', 'halfAndHalf', 'cremeLegere', 'kaffeerahm', 'singleCream', 'lightCream', 'namaKurimu', 'mediaCrema', 'pannaDaCucina', 'schlagsahne', 'schlagobers', 'cremeFluide', 'vollrahm', 'thickenedCream', 'whipping', 'heavyCream', 'cremeDouble', 'vispgradde', 'doppelrahm', 'double', 'evaporatedCream', 'culturedCream', 'saureSahne', 'graddfil', 'sauerrahm', 'saurerHalbrahm', 'smetana', 'sourCream', 'tejfol', 'schmand', 'cremeFraiche', 'mascarpone', 'posset'],
 	},
 	{
 		name: 'Butter & fat',
@@ -1883,6 +1942,20 @@ for (const id of Object.keys(NODES))
 	if (id !== 'raw' && !groupOf.has(id)) throw new Error(`MilkGraph: ${id} is in no group`);
 
 /**
+ * Products made together by one step, from one parent: the step drawn as
+ * one arrow out of the parent, split into each of them, its own words on
+ * each part. Separating milk makes the cream and the skimmed milk at once,
+ * not one and then the other, as churning cream makes the butter and the
+ * liquid it leaves.
+ */
+const SPLITS: { from: string; step: string; ids: string[] }[] = [
+	{ from: 'raw', step: 'separate', ids: ['rawCream', 'skimRaw'] },
+	{ from: 'cream', step: 'churn', ids: ['butter', 'churn'] },
+];
+for (const { from, ids } of SPLITS)
+	for (const id of ids) if (NODES[id]?.from !== from) throw new Error(`MilkGraph: ${id} is split off ${from} but not made from it`);
+
+/**
  * How close a product is to milk: the steps of making it, but a step that
  * only treats milk (heating it, homogenising it, skimming it, separating its
  * cream off) counts for less than one that turns it into something else. So
@@ -1905,14 +1978,14 @@ const LIGHT = 0.4;
  */
 const STAPLE = new Set([
 	'pasteurised', 'homogenised', 'fresh', 'uht', 'semi', 'skimmed', 'milkPowder', 'skimmedPowder', 'evaporated', 'condensed',
-	'rawCream', 'cream', 'whipping', 'sourCream', 'butter', 'butterfat', 'buttermilk',
+	'rawCream', 'cream', 'whipping', 'culturedCream', 'sourCream', 'butter', 'butterfat', 'buttermilk',
 	'soured', 'yoghurt', 'greek', 'kefir', 'iceCream',
 	'curd', 'quark', 'paneer', 'rennetCurd', 'freshCheese', 'soft', 'semiHard', 'hard', 'pastaFilata', 'processed',
 	'sweetWhey', 'wheyPowder', 'wpc', 'lactose',
 ]);
 const KNOWN = new Set([
 	'certified', 'esl', 'sterilised', 'colostrum',
-	'coffeeCream', 'double', 'clotted', 'smetana', 'cremeFraiche', 'mascarpone', 'souredCream',
+	'coffeeCream', 'double', 'clotted', 'saureSahne', 'schmand', 'cremeFraiche', 'mascarpone',
 	'culturedButter', 'clarified', 'amf',
 	'mildYoghurt', 'probioticDrink', 'creamYoghurt', 'skyr', 'ayran', 'driedYoghurt', 'ryazhenka', 'fermButtermilk', 'choormog', 'kumis',
 	'chhena', 'chhenaSweets', 'khoa', 'khoaSweets', 'dulce', 'kulfi', 'rabri',
@@ -1925,7 +1998,15 @@ for (const id of [...STAPLE, ...KNOWN])
 
 // Every parent named must be a product, and no product its own ancestor.
 for (const [id, { from, alsoFrom = [] }] of Object.entries(NODES)) {
-	if (from !== undefined && !NODES[id].step) throw new Error(`MilkGraph: ${id} has no step`);
+	// Under a ruler the arrow in has its value, not a step.
+	const ruled = from !== undefined && !!NODES[from]?.scale;
+	if (from !== undefined && !ruled && !NODES[id].step) throw new Error(`MilkGraph: ${id} has no step`);
+	if (ruled !== (NODES[id].at !== undefined)) throw new Error(`MilkGraph: ${id} must have a value on a ruler if and only if it hangs from one`);
+	/* Two at one value share its arrow; two nearly at one would hang one's
+	   arrow down beside the other's. */
+	const gap = (n: Product) => Math.abs(n.at! - NODES[id].at!);
+	if (ruled && Object.entries(NODES).some(([o, n]) => o !== id && n.from === from && gap(n) > 0 && gap(n) < 1))
+		throw new Error(`MilkGraph: ${id} is too near another on its ruler`);
 	for (const b of Object.keys(NODES[id].byproducts ?? {}))
 		if (!(b in NODES)) throw new Error(`MilkGraph: ${id} leaves unknown ${b}`);
 	for (const p of [from, ...alsoFrom])
@@ -1963,10 +2044,18 @@ const examples = Object.entries(NODES).flatMap(([kind, { examples: names = [] }]
 	})),
 );
 
+interface Props {
+	/** A product to open on, with everything made from it, framed and lit. */
+	focus?: string;
+}
+
+const { focus } = Astro.props;
+
 const graph = {
 	light: LIGHT,
 	groups: GROUPS.map(({ name, hub }) => ({ name, hub: hub ?? null })),
-	nodes: Object.entries(NODES).map(([id, { label, step, byproducts, aka = [], examples: named = [] }]) => ({
+	splits: SPLITS,
+	nodes: Object.entries(NODES).map(([id, { label, step, byproducts, scale, at, below, aka = [], examples: named = [] }]) => ({
 		id,
 		label,
 		// Not drawn, but found by the search: its other names, and its
@@ -1981,6 +2070,9 @@ const graph = {
 		named,
 		step,
 		byproducts,
+		scale,
+		at,
+		below,
 		group: groupOf.get(id) ?? -1,
 		// 0 a staple, 1 well known, 2 niche.
 		niche: STAPLE.has(id) ? 0 : KNOWN.has(id) ? 1 : 2,
@@ -1992,7 +2084,7 @@ const graph = {
 };
 ---
 
-<figure class="milk-graph" data-milk-graph={JSON.stringify(graph)}>
+<figure class="milk-graph" data-milk-graph={JSON.stringify(graph)} data-focus={focus}>
 	<div class="milk-search" data-no-swipe data-deck-tool>
 		<svg class="milk-search-icon" viewBox="0 0 16 16" aria-hidden="true">
 			<circle cx="6.75" cy="6.75" r="4.75"></circle>
@@ -2029,6 +2121,7 @@ const graph = {
 			<g class="steps"></g>
 			<g class="tables"></g>
 			<g class="nodes"></g>
+			<g class="flags"></g>
 			<g class="by"></g>
 		</g>
 	</svg>
@@ -2509,11 +2602,11 @@ const graph = {
 		cursor: pointer;
 	}
 	/* A flag edged as the pills are. */
-	.nodes :global(.regions circle.ground) {
+	.flags :global(.regions circle.ground) {
 		fill: #fff;
 		stroke: none;
 	}
-	.nodes :global(.regions circle) {
+	.flags :global(.regions circle) {
 		fill: none;
 		stroke: var(--pill-rim);
 		stroke-width: 1.2;
@@ -2555,6 +2648,31 @@ const graph = {
 		dominant-baseline: central;
 		pointer-events: none;
 		user-select: none;
+	}
+	/* A kind's ruler, quiet as the steps are, its values small over it. */
+	.nodes :global(.node .ruler line) {
+		stroke: var(--deck-ink-dim);
+		stroke-width: 1;
+		stroke-linecap: round;
+	}
+	.nodes :global(.node .ruler text) {
+		fill: var(--deck-ink-dim);
+		font-size: 10px;
+		dominant-baseline: auto;
+	}
+	.nodes :global(.node .ruler line.is-major) {
+		stroke: var(--deck-ink);
+		stroke-width: 1.5;
+	}
+	.nodes :global(.node .ruler text.is-first) {
+		text-anchor: end;
+	}
+	.nodes :global(.node .ruler tspan.name) {
+		fill: var(--deck-ink);
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
 	}
 	/* Milk, where it all starts: large, and white, whiter than the pills,
 	   with their edge. */
@@ -2610,6 +2728,10 @@ const graph = {
 		};
 		// What that step leaves besides, by id, with how.
 		byproducts?: Record<string, string>;
+		// A kind measured along a ruler, and where on its parent's ruler a product hangs (see Product).
+		scale?: { name: string; unit: string; to: number; every: number };
+		at?: number;
+		below?: string;
 		// Which family's slice it is held in; milk, in the middle, is in none.
 		group: number;
 		// 0 a staple, 1 well known, 2 niche (see STAPLE and KNOWN).
@@ -2681,6 +2803,14 @@ const graph = {
 	/* How far in it can be zoomed: until the smallest words, a step's table
 	   on a thin arrow, read. */
 	const MAX_ZOOM = 150;
+	/* A ruler in a kind (see Product), along the bottom of its pill: this
+	   long a unit, room either end for what it measures; its products this far under it and their rows this far apart, and products
+	   side by side this far apart. */
+	const RULE_PX = 20;
+	const RULER_END = 4 * PAD_X + 48;
+	const DROP = 36;
+	const TIER_GAP = 28;
+	const SIDE_GAP = 10;
 
 	// How many have been drawn, to name each one's own parts apart.
 	let drawn = 0;
@@ -2688,6 +2818,7 @@ const graph = {
 		const data = JSON.parse(figure.dataset.milkGraph!) as {
 			light: number;
 			groups: { name: string; hub: string | null }[];
+			splits: { from: string; step: string; ids: string[] }[];
 			nodes: Node[];
 			links: Made[];
 		};
@@ -2760,6 +2891,27 @@ const graph = {
 				for (const k of family) treeParent.set(k, h);
 			});
 		}
+		// And a step making several at once, as separating milk does (see SPLITS).
+		for (const { from, step, ids } of data.splits) {
+			const p = byId.get(from)!;
+			const made = ids.map((id) => byId.get(id)!);
+			const h: Node = {
+				id: `split:${from}:${ids.join(':')}`,
+				label: '',
+				step,
+				group: made[0].group,
+				niche: 0,
+				hub: true,
+				dist: p.dist + 0.3,
+				x: 0,
+				y: 0,
+				w: 0,
+				h: 0,
+			};
+			hubs.push(h);
+			treeParent.set(h, p);
+			for (const k of made) treeParent.set(k, h);
+		}
 		const nodes = [...products, ...hubs];
 
 		/* Who hangs from whom: the families in the order they are listed,
@@ -2791,13 +2943,22 @@ const graph = {
 		/* Siblings by size, the biggest branch at the top and the small ones
 		   gathered at the bottom. Branches as big as each other keep the order
 		   above; examples stay together after the products. Milk's own are
-		   left as they are, and ordered when they are placed. */
+		   left as they are, and ordered when they are placed. A kind with a
+		   ruler goes last, below the rest, as all it hangs reaches down. */
 		for (const [p, kids] of children) {
 			if (p === root) continue;
 			const products = kids.filter((k) => !k.example);
 			const examples = kids.filter((k) => k.example);
-			const biggest = [...products].sort((a, b) => made.get(b)! - made.get(a)!);
+			const biggest = [...products].sort((a, b) => Number(!!a.scale) - Number(!!b.scale) || made.get(b)! - made.get(a)!);
 			kids.splice(0, kids.length, ...biggest, ...examples);
+			// One drawn below a sibling moved there, after that sibling's branch, a split's included.
+			for (const k of [...kids].filter((k) => k.below)) {
+				const leads = (n: Node): boolean => n.id === k.below || (!!n.hub && (children.get(n) ?? []).some(leads));
+				const kin = kids.find((n) => n !== k && leads(n));
+				if (!kin) continue;
+				kids.splice(kids.indexOf(k), 1);
+				kids.splice(kids.indexOf(kin) + 1, 0, k);
+			}
 		}
 		/* What each is left behind by: the steps whose byproducts it is, as
 		   the whey is by setting milk with rennet. Each counts towards its size
@@ -2808,7 +2969,18 @@ const graph = {
 				const b = byId.get(id);
 				if (b) byIn.set(b, [...(byIn.get(b) ?? []), n]);
 			}
-		const size = (n: Node) => sizeOf(made.get(n)! + (byIn.get(n)?.length ?? 0)) * (n === root ? MILK : 1);
+		const grown = (n: Node) => sizeOf(made.get(n)! + (byIn.get(n)?.length ?? 0)) * (n === root ? MILK : 1);
+		/* A kind with a ruler no bigger than the products beside it with any
+		   of their own are, middling among them: it is as wide as its ruler
+		   already, and what hangs under it is drawn at its own size. */
+		const size = (n: Node): number => {
+			if (!n.scale) return grown(n);
+			const beside = (children.get(treeParent.get(n)!) ?? [])
+				.filter((k) => !k.scale && !k.example && made.get(k)! > 0)
+				.map(grown)
+				.sort((a, b) => a - b);
+			return beside.length ? Math.min(grown(n), beside[Math.floor(beside.length / 2)]) : grown(n);
+		};
 		/* How much a line into each carries: itself, and all made from it
 		   (a branch point is no product, so only what it splits into). */
 		const carried = new Map<Node, number>();
@@ -2818,6 +2990,25 @@ const graph = {
 			return v;
 		};
 		carry(root);
+		/* What hangs under a ruler is laid out there, not out to the right as
+		   a branch is: taken out of the tree's layout once it has counted
+		   towards the sizes and lines above. */
+		const hanging = new Map<Node, Node[]>();
+		for (const [p, kids] of children)
+			if (p.scale) {
+				hanging.set(p, kids);
+				children.delete(p);
+			}
+		// What hangs under a ruler, by value: those at one value are one list.
+		const listsOf = (r: Node) => {
+			const at = new Map<number, Node[]>();
+			for (const k of hanging.get(r)!) at.set(k.at!, [...(at.get(k.at!) ?? []), k]);
+			return at;
+		};
+		const hangsFrom = (n: Node) => {
+			const p = treeParent.get(n);
+			return p && hanging.has(p) ? p : null;
+		};
 		// The line into a product, and how long its arrowhead is.
 		const line = (n: Node) => STRAND * carried.get(n)!;
 		const arrow = (n: Node) => headLength(line(n));
@@ -2861,7 +3052,15 @@ const graph = {
 				d.w += room;
 				select(this).selectAll('tspan').attr('x', room / 2);
 			}
+			// A kind's pill is its ruler: as wide as the ruler and a margin either end.
+			if (d.scale) d.w = Math.max(d.w, d.scale.to * RULE_PX + RULER_END);
 		});
+		// A list under a ruler as wide as the widest in it.
+		for (const r of hanging.keys())
+			for (const ks of listsOf(r).values()) {
+				const wide = Math.max(...ks.map((k) => k.w));
+				for (const k of ks) k.w = wide;
+			}
 		node
 			.select('rect')
 			.attr('x', (d) => -d.w / 2)
@@ -2895,40 +3094,75 @@ const graph = {
 			.attr('width', (d) => d.w)
 			.attr('height', (d) => d.h)
 			.attr('rx', radius);
+		/* A kind is its ruler: its pill's bottom edge, grooved up into the pill
+		   every unit, deeper every step with its value over the groove, and
+		   what it measures written before its nought. The arrows leave from the edge
+		   under the grooves. Drawn at the size of what hangs under it, not its
+		   own, as it is theirs that it gives. */
+		node
+			.filter((d) => !!d.scale)
+			.each(function (d) {
+				const { to, every, unit, name } = d.scale!;
+				const x = (v: number) => (v - to / 2) * RULE_PX;
+				const edge = d.h / 2;
+				const g = select(this).append('g').attr('class', 'ruler');
+				for (let v = 0; v <= to; v++) {
+					const major = v % every === 0;
+					g.append('line')
+						.classed('is-major', major)
+						.attr('x1', x(v))
+						.attr('x2', x(v))
+						.attr('y1', edge - (major ? 8 : 4))
+						.attr('y2', edge);
+					if (!major) continue;
+					const said = g.append('text').attr('x', x(v)).attr('y', edge - 12);
+					if (v) said.text(`${v} ${unit}`);
+					else {
+						// What it measures, before its nought, ending over the groove.
+						said.attr('class', 'is-first').attr('x', x(0) + 3);
+						said.append('tspan').attr('class', 'name').text(name);
+						said.append('tspan').text(' 0');
+					}
+				}
+			});
 		/* A regional one's flag on its top right corner, a little over it, a
 		   round one edged as the pill is; two to four side by side leftwards
-		   from there, each a little over the one before. */
+		   from there, each a little over the one before. In a layer of their
+		   own over all the pills, as a flag reaches over the next pill up, in a
+		   list under a ruler most of all; placed with them (see render). */
 		const countryName = new Intl.DisplayNames(['en'], { type: 'region' });
-		node
-			.filter((d) => !!d.regions?.length)
-			.each(function (d) {
-				const r = d.h * 0.2;
-				const badge = select(this)
+		const flagAt = (d: Node) => `translate(${d.x + d.w / 2 - d.h * 0.2 * 0.35},${d.y - d.h / 2 + d.h * 0.2 * 0.35})`;
+		const badges = svg
+			.select('.flags')
+			.selectAll<SVGGElement, Node>('g.regions')
+			.data(nodes.filter((n) => !n.hub && !!n.regions?.length))
+			.join('g')
+			.attr('class', 'regions');
+		badges.each(function (d) {
+			const r = d.h * 0.2;
+			const badge = select(this);
+			badge.append('title').text(d.regions!.map((c) => countryName.of(c)).join(', '));
+			const n = d.regions!.length;
+			d.regions!.forEach((c, i) => {
+				// The last on the corner, the first furthest left, each overlapping the next by a third.
+				const flag = badge
 					.append('g')
-					.attr('class', 'regions')
-					.attr('transform', `translate(${d.w / 2 - r * 0.35},${-d.h / 2 + r * 0.35})`);
-				badge.append('title').text(d.regions!.map((c) => countryName.of(c)).join(', '));
-				const n = d.regions!.length;
-				d.regions!.forEach((c, i) => {
-					// The last on the corner, the first furthest left, each overlapping the next by a third.
-					const flag = badge
-						.append('g')
-						.attr('transform', `translate(${-(n - 1 - i) * r * 1.4},0)`)
-						// The pills' shadow, as deep for its size.
-						.style('filter', `drop-shadow(0 ${r * 0.08}px ${r * 0.2}px rgb(0 0 0 / 0.18))`);
-					// On white, for a flag that does not fill its square, as Nepal's does not.
-					flag.append('circle').attr('class', 'ground').attr('r', r);
-					flag
-						.append('image')
-						.attr('href', `/assets/flags/${c.toLowerCase()}.webp`)
-						.attr('x', -r)
-						.attr('y', -r)
-						.attr('width', 2 * r)
-						.attr('height', 2 * r)
-						.style('clip-path', 'circle(50%)');
-					flag.append('circle').attr('r', r);
-				});
+					.attr('transform', `translate(${-(n - 1 - i) * r * 1.4},0)`)
+					// The pills' shadow, as deep for its size.
+					.style('filter', `drop-shadow(0 ${r * 0.08}px ${r * 0.2}px rgb(0 0 0 / 0.18))`);
+				// On white, for a flag that does not fill its square, as Nepal's does not.
+				flag.append('circle').attr('class', 'ground').attr('r', r);
+				flag
+					.append('image')
+					.attr('href', `/assets/flags/${c.toLowerCase()}.webp`)
+					.attr('x', -r)
+					.attr('y', -r)
+					.attr('width', 2 * r)
+					.attr('height', 2 * r)
+					.style('clip-path', 'circle(50%)');
+				flag.append('circle').attr('r', r);
 			});
+		});
 
 		/* Laid out as a tree on a grid, as a diagram on paper is: milk at the
 		   left and its branches off to the right of it; each step of making a
@@ -2971,7 +3205,8 @@ const graph = {
 		   fact, what it is on the left and its value on the right, a value in
 		   as many lines as it is written in; small, a footnote to the name. */
 		const ROW = 1.3;
-		const rows = (n: Node) => n.how?.table ?? [];
+		// None under a ruler, where the arrows in are its own and have no step written on them.
+		const rows = (n: Node) => (hangsFrom(n) ? [] : (n.how?.table ?? []));
 		const tableFont = (n: Node) => STEP_FONT * size(n) * 0.2;
 		const rowLines = (v: string) => v.split('\n');
 		const table = svg
@@ -3054,8 +3289,77 @@ const graph = {
 		const fromTrunk = (k: Node) => out.get(key(k))!;
 		// How far a product reaches out to the right.
 		const outer = (n: Node) => n.x + n.w / 2;
+		/* A ruler: the arrows off it leave from its pill's bottom edge, this
+		   far under its middle, each where its value is along the ruler, which
+		   is centred in the pill. */
+		const axisY = (r: Node) => r.h / 2;
+		const tickX = (r: Node, v: number) => r.x + (v - r.scale!.to / 2) * RULE_PX;
+		/* Each product centred straight under its value, its arrow straight
+		   down into its middle; those at one value as one list, stacked one on
+		   another as wide as each other, the arrow into the top of it. In rows, no two values' lists meeting in one: of every way to put them
+		   in rows, the one with the fewest arrows passing under a pill in a row
+		   above, then the fewest rows, then the most in the upper ones. An arrow
+		   may pass under a pill here, and only here, as the arrows are drawn
+		   under the pills; but one that splits under another product reads as
+		   made from it, so that is the last thing chosen. How far under its
+		   kind each comes. */
+		const hangY = new Map<Node, number>();
+		// And how far under it the top of each one's list is, where its arrow comes in.
+		const listTop = new Map<Node, number>();
+		const hang = (r: Node) => {
+			const values = [...listsOf(r)].sort(([a], [b]) => a - b).map(([v, ks]) => {
+				const tick = tickX(r, v);
+				for (const k of ks) k.x = tick;
+				const wide = ks[0].w;
+				return { ks, tick, x0: tick - wide / 2, x1: tick + wide / 2, tall: ks.reduce((sum, k) => sum + k.h, 0) };
+			});
+			const meet = (a: (typeof values)[number], b: (typeof values)[number]) => a.x1 + SIDE_GAP > b.x0 && b.x1 + SIDE_GAP > a.x0;
+			// Under a pill: the arrow down to b passes behind a, in a row above it.
+			const under = (a: (typeof values)[number], b: (typeof values)[number]) => b.tick > a.x0 - 2 && b.tick < a.x1 + 2;
+			const most = Math.min(values.length, 5);
+			const row: number[] = [];
+			let best: number[] = values.map((_, i) => i);
+			let bestCost = Infinity;
+			/* Built up a value at a time, its cost so far carried along, and
+			   given up as soon as that is no better than the best found, which
+			   only grows as more are placed; so it is quick, rows tried from the
+			   top. */
+			const fit = (i: number, hidden: number, deepest: number, sum: number) => {
+				const cost = hidden * 1e4 + deepest * 100 + sum;
+				if (cost >= bestCost) return;
+				if (i === values.length) {
+					[bestCost, best] = [cost, [...row]];
+					return;
+				}
+				for (let t = 0; t < most; t++) {
+					let meets = false;
+					let more = 0;
+					for (let j = 0; j < i && !meets; j++) {
+						if (row[j] === t) meets = meet(values[j], values[i]);
+						else if (row[j] < t ? under(values[j], values[i]) : under(values[i], values[j])) more++;
+					}
+					if (meets) continue;
+					row[i] = t;
+					fit(i + 1, hidden + more, Math.max(deepest, t), sum + t);
+				}
+			};
+			fit(0, 0, 0, 0);
+			// Each row as tall as its tallest list, and the rows down from the ruler.
+			const rows = Math.max(0, ...best) + 1;
+			const tallest = Array.from({ length: rows }, (_, t) => Math.max(0, ...values.filter((_, i) => best[i] === t).map((v) => v.tall)));
+			const rowTop = tallest.map((_, t) => axisY(r) + DROP + tallest.slice(0, t).reduce((sum, h) => sum + h + TIER_GAP, 0));
+			values.forEach(({ ks }, i) => {
+				let y = rowTop[best[i]];
+				for (const k of ks) {
+					listTop.set(k, rowTop[best[i]]);
+					hangY.set(k, y + k.h / 2);
+					y += k.h;
+				}
+			});
+		};
 		root.x = 0;
 		const across = (n: Node) => {
+			if (hanging.has(n)) hang(n);
 			for (const k of children.get(n) ?? []) {
 				k.x = outer(n) + toTrunk(n) + 2 * halfTrunk(n) + fromTrunk(k) + k.w / 2;
 				across(k);
@@ -3085,10 +3389,22 @@ const graph = {
 			const p = treeParent.get(n)!;
 			const t = trunkX(p);
 			const edge = n.x - n.w / 2;
-			const words = n.step ? stepFont(n) * 1.3 + extra(n) : 0;
+			// Over the arrow, which is as thick as it carries.
+			const words = n.step ? stepFont(n) * 1.7 + extra(n) + line(n) / 2 : 0;
 			return { x0: Math.min(t, edge), x1: Math.max(t, edge), y0: -Math.max(words, n.h / 2), y1: Math.max(n.h / 2, tableBottom(n)) };
 		};
 		const moved = (b: Box, dy: number): Box => ({ ...b, y0: b.y0 + dy, y1: b.y1 + dy });
+		// All that hangs under a ruler, with the arrows down to it, its kind at 0.
+		const hangBoxes = (r: Node): Box[] => [
+			...hanging.get(r)!.flatMap((k) => {
+				const y = hangY.get(k)!;
+				const t = tickX(r, k.at!);
+				return [
+					{ x0: k.x - k.w / 2, x1: k.x + k.w / 2, y0: y - k.h / 2, y1: y + k.h / 2 },
+					{ x0: t - 3, x1: t + 3, y0: axisY(r), y1: listTop.get(k)! },
+				];
+			}),
+		];
 		/* How far down `next` must go to clear everything in `above`: tucked in
 		   as close as their outlines allow for an example, and for anything
 		   else only PACKING of the way there from below the whole of `above`,
@@ -3114,6 +3430,7 @@ const graph = {
 				own: true,
 			}));
 			const kids = children.get(n) ?? [];
+			if (hanging.has(n)) return [...own, ...hangBoxes(n).map((b) => ({ ...b, own: false }))];
 			if (!kids.length) return own;
 			let packed: Box[] = [];
 			const at = new Map<Node, number>();
@@ -3138,10 +3455,13 @@ const graph = {
 		const place = (n: Node, y: number) => {
 			n.y = y;
 			for (const k of children.get(n) ?? []) place(k, y + rel.get(k)!);
+			for (const k of hanging.get(n) ?? []) k.y = y + hangY.get(k)!;
 		};
 		/* Milk's branches, cheese at the top and cream at the bottom, the
 		   rest between from the biggest down, centred on milk. */
-		const pinned = (n: Node) => (n.id === 'rennetCurd' ? -1 : n.id === 'rawCream' ? 1 : 0);
+		// Whatever leads to them, as the split that makes raw cream does.
+		const leads = (n: Node, id: string): boolean => n.id === id || (!!n.hub && (children.get(n) ?? []).some((k) => leads(k, id)));
+		const pinned = (n: Node) => (leads(n, 'rennetCurd') ? -1 : leads(n, 'rawCream') ? 1 : 0);
 		const tops = [...(children.get(root) ?? [])].sort((a, b) => pinned(a) - pinned(b) || made.get(b)! - made.get(a)!);
 		let packed: Box[] = [];
 		const at = new Map<Node, number>();
@@ -3177,12 +3497,17 @@ const graph = {
 		};
 		/* What a product takes up where it is: its pill, the line into it with
 		   its step's words over it, and the line out of it to its trunk and
-		   down the trunk. */
-		const family = (n: Node): Node[] => [n, ...(children.get(n) ?? []).flatMap(family)];
+		   down the trunk; or the line down into it from a ruler. */
+		const family = (n: Node): Node[] => [n, ...[...(children.get(n) ?? []), ...(hanging.get(n) ?? [])].flatMap(family)];
 		const room = (n: Node, own = true): Box[] => {
 			const boxes: Box[] = [moved(pillBox(n), n.y)];
 			const p = treeParent.get(n);
-			if (p) {
+			// Under a ruler: the arrow straight down into it.
+			const r = hangsFrom(n);
+			if (r) {
+				const t = tickX(r, n.at!);
+				boxes.push({ x0: t - 3, x1: t + 3, y0: r.y + axisY(r), y1: r.y + listTop.get(n)! });
+			} else if (p) {
 				const words = n.step ? stepFont(n) * 1.3 + extra(n) : 0;
 				const reach = Math.max(n.h / 2, line(n) / 2);
 				boxes.push({ x0: trunkAt(p) - halfTrunk(p), x1: n.x - n.w / 2, y0: n.y - reach - words, y1: n.y + Math.max(reach, tableBottom(n)) });
@@ -3355,14 +3680,24 @@ const graph = {
 				[x2, t.y],
 			];
 		};
-		const elbow = (s: Node, t: Node) => rounded(elbowPoints(s, t), strands.get(t)!.bends);
+		// Off a ruler, straight down from the product's value into its top.
+		const pointsOf = (s: Node, t: Node): [number, number][] => {
+			if (!hanging.has(s)) return elbowPoints(s, t);
+			// Into the top of its list, which one at a value alone is.
+			const x = tickX(s, t.at!);
+			return [
+				[x, s.y + axisY(s)],
+				[x, s.y + listTop.get(t)!],
+			];
+		};
+		const elbow = (s: Node, t: Node) => rounded(pointsOf(s, t), strands.get(t)?.bends);
 		/* An arrow drawn as one shape, filled: both edges of a line as wide as
 		   the product it leads to is big, round its corners, and, for a product
 		   made, in to a point at the product's edge. Not a stroked line with a
 		   head put on its end, which shows a hairline seam between the two. */
 		type Pt = [number, number];
 		const arrowShape = (s: Node, t: Node, made: boolean) => {
-			const p = elbowPoints(s, t);
+			const p = pointsOf(s, t);
 			const w = line(t) / 2;
 			const n = p.length - 1;
 			const dir = (i: number): Pt => {
@@ -3373,7 +3708,7 @@ const graph = {
 			};
 			const len = (i: number) => Math.hypot(p[i + 1][0] - p[i][0], p[i + 1][1] - p[i][1]);
 			// Round its corners as its strand was given room for (see split).
-			const bends = strands.get(t)!.bends;
+			const bends = strands.get(t)?.bends ?? [];
 			const radius = (i: number) => Math.min(bends[i] ?? CORNER, len(i - 1), len(i));
 			/* One edge, `way` 1 the left and -1 the right: each point, and the
 			   control point of the curve into it if it is one. */
@@ -3615,6 +3950,7 @@ const graph = {
 			edge.attr('d', ({ source, target, made }) => arrowShape(source, target, made));
 			hit.attr('d', ({ source, target }) => elbow(source, target));
 			node.attr('transform', (d) => `translate(${d.x},${d.y})`);
+			badges.attr('transform', flagAt);
 		};
 		render();
 
@@ -3784,24 +4120,28 @@ const graph = {
 		   is the whole pane, and only a tap on a product opens it: finding one,
 		   or pressing one named in the words, only goes to it. */
 		const narrow = () => figure.clientWidth < 40 * parseFloat(getComputedStyle(document.documentElement).fontSize);
-		const go = (n: Node) => {
+		/* Gone to, and told of unless `quiet`: a product named in the words
+		   beside the picture is only glided to and lit, the words being the
+		   telling. */
+		const go = (n: Node, quiet = false) => {
 			open(false);
 			field.blur();
-			if (narrow()) {
+			if (narrow() || quiet) {
 				tell(null);
 				held = n;
 				look(n);
 			} else tell(n);
 			/* Zoomed until its pill is about this tall on the screen, and into
 			   the middle of what the card leaves of the picture, as if that
-			   were all of it. */
+			   were all of it; a kind with a ruler, long and low, until it is as
+			   wide as most of that, so its ruler reads. */
 			const box = svg.node()!.viewBox.baseVal;
 			const rect = svg.node()!.getBoundingClientRect();
 			const fit = Math.min(rect.width / box.width, rect.height / box.height);
 			// Its width, not where it is, which while it slides in is not yet where it will be.
 			const left = card.classList.contains('is-open') ? card.offsetWidth : 0;
 			const free = rect.width - left;
-			const k = Math.max(0.5, Math.min(MAX_ZOOM, FOUND_HEIGHT / (n.h * fit), (0.8 * free) / (n.w * fit)));
+			const k = Math.max(0.5, Math.min(MAX_ZOOM, n.scale ? Infinity : FOUND_HEIGHT / (n.h * fit), (0.8 * free) / (n.w * fit)));
 			// That middle, from the screen into the picture's own units.
 			const mx = box.x + (left + free / 2 - (rect.width - box.width * fit) / 2) / fit;
 			const to = zoomIdentity.translate(mx - k * n.x, box.y + box.height / 2 - k * n.y).scale(k);
@@ -3933,7 +4273,8 @@ const graph = {
 			const title = el('div');
 			const kind = el('p', 'milk-about-kind');
 			kind.append(to(p.hub ? treeParent.get(p)! : p), ' → ', to(n));
-			title.append(kind, el('h3', '', n.step ?? ''));
+			// Under a ruler, its value along it.
+			title.append(kind, el('h3', '', n.step ?? (p.scale && n.at != null ? `${n.at} ${p.scale.unit} ${p.scale.name}` : '')));
 			top.append(title);
 			const parts: HTMLElement[] = [top];
 			const how = n.how;
@@ -3967,12 +4308,63 @@ const graph = {
 			(e) => {
 				const to = (e as CustomEvent<string>).detail;
 				const n = nodes.find((n) => (n.example ? n.label === to : n.id === to));
-				if (n) go(n);
+				if (n) go(n, true);
 				else console.warn(`MilkGraph: no product or drawn example ${to}`);
 			},
 			{ signal },
 		);
 		document.addEventListener('keydown', (e) => e.key === 'Escape' && held && e.target !== field && tell(null), { signal });
+
+		/* Focused on a product and everything made from it: framed, with a
+		   margin, in what the pane has, and the product held looked at. */
+		const focusOn = (id: string | null, glide: boolean) => {
+			const n = id ? nodes.find((n) => n.id === id) : null;
+			if (id && !n) console.warn(`MilkGraph: no product ${id} to focus on`);
+			if (!n) {
+				held = null;
+				look(null);
+				svg.transition().duration(glide ? 750 : 0).call(zoomer.transform, zoomIdentity);
+				return;
+			}
+			const family = new Set([n]);
+			for (let grew = true; grew; ) {
+				grew = false;
+				for (const e of edges)
+					if (family.has(e.source) && !family.has(e.target)) {
+						family.add(e.target);
+						grew = true;
+					}
+			}
+			// Nothing made from it: what it is made from too, and the step between them.
+			if (family.size === 1) {
+				let p = treeParent.get(n);
+				while (p?.hub) p = treeParent.get(p);
+				if (p) family.add(p);
+			}
+			const all = [...family];
+			const x0 = Math.min(...all.map((d) => d.x - d.w / 2));
+			const x1 = Math.max(...all.map((d) => d.x + d.w / 2));
+			const y0 = Math.min(...all.map((d) => d.y - d.h / 2));
+			const y1 = Math.max(...all.map((d) => d.y + d.h / 2));
+			const box = svg.node()!.viewBox.baseVal;
+			const k = Math.max(0.5, Math.min(MAX_ZOOM, (0.9 * box.width) / (x1 - x0), (0.9 * box.height) / (y1 - y0)));
+			const to = zoomIdentity
+				.translate(box.x + box.width / 2 - (k * (x0 + x1)) / 2, box.y + box.height / 2 - (k * (y0 + y1)) / 2)
+				.scale(k);
+			held = n;
+			look(n);
+			svg.transition().duration(glide ? 750 : 0).call(zoomer.transform, to);
+		};
+		if (figure.dataset.focus) focusOn(figure.dataset.focus, false);
+		const host = figure.closest<HTMLElement>('[data-viz-phase]') ?? figure.closest<HTMLElement>('[data-viz-stage]');
+		host?.addEventListener(
+			'viz:props',
+			(e) => {
+				const p = (e as CustomEvent).detail ?? {};
+				if ('focus' in p) focusOn(typeof p.focus === 'string' ? p.focus : null, true);
+			},
+			{ signal },
+		);
 
 	}
 

@@ -5261,7 +5261,7 @@
 			}
 		]
 	},
-	"souredCream": {
+	"culturedCream": {
 		"table": [
 			{
 				"k": "Bacteria added",
@@ -5279,7 +5279,7 @@
 		"facts": [
 			{
 				"k": "Milk",
-				"v": "Cream 10–12 % or 20–30 % fat, homogenised, 90 °C for 5 min"
+				"v": "Cream heated to 90 °C for 5 min and homogenised"
 			},
 			{
 				"k": "Cultures",
@@ -5290,10 +5290,6 @@
 				"v": "18–21 °C for 18–20 h (in pot: 20 °C, 16–18 h)"
 			},
 			{
-				"k": "Acidity",
-				"v": "About 85 °Th in the fat-free phase"
-			},
-			{
 				"k": "After",
 				"v": "Cooled quickly; held at least 24 h at about 6 °C"
 			},
@@ -5302,7 +5298,7 @@
 				"v": "Uniform, fairly viscous, mild and slightly acidic"
 			}
 		],
-		"text": "Mesophilic lactococci sour the cream slowly at room temperature, and the aroma strains add diacetyl and CO₂. Acid sets the protein around the fat globules, so the cream thickens, more so the higher its fat.",
+		"text": "Mesophilic lactococci sour the cream slowly at room temperature, and the aroma strains add diacetyl and CO₂. Acid sets the protein around the fat globules, so the cream thickens, more so the higher its fat. The same culture makes all of these creams; what tells them apart is mostly how much fat the cream has.",
 		"sources": [
 			{
 				"name": "Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products",
@@ -5315,48 +5311,30 @@
 		]
 	},
 	"sourCream": {
-		"table": [
-			{
-				"k": "Bacteria added",
-				"v": "Lactococcus"
-			}
-		],
 		"facts": [
 			{
 				"k": "Milk",
-				"v": "Pasteurised cream; ≥10 % fat (DE Sauerrahm), 15–25 % (Schmand), ≥18 % (US)"
-			},
-			{
-				"k": "Cultures",
-				"v": "Lactococci, or lactococci with thermophilic streptococci"
+				"v": "Pasteurised cream, at least 18 % fat"
 			},
 			{
 				"k": "Acidity",
 				"v": "At least 0.5 % titratable acidity as lactic acid (US)"
-			},
-			{
-				"k": "After",
-				"v": "Not heat-treated after fermentation (Sauerrahm)"
 			}
 		],
-		"text": "Sour cream is cultured cream sold at the lower fat levels. With less fat it is less viscous than higher-fat cultured creams such as crème fraîche.",
+		"text": "In the United States, sour cream is cultured cream of at least 18 % fat; it may be thickened with stabilisers such as starch or gelatine.",
 		"sources": [
-			{
-				"name": "German MilchPQV, Anlage 8 (2025)",
-				"url": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html"
-			},
 			{
 				"name": "US 21 CFR 131.160 Sour cream",
 				"url": "https://www.law.cornell.edu/cfr/text/21/131.160"
-			},
-			{
-				"name": "EAEU Technical Regulation TR TS 033/2013 (English translation)",
-				"url": "https://agriexchange.apeda.gov.in/ImportRegulations/CustomsUnionTechnicalRegulationonMilkandDairyProductsMoscowRussianFederation11182013.pdf"
 			}
 		]
 	},
-	"smetana": {
+	"schmand": {
 		"table": [
+			{
+				"k": "Cream fat",
+				"v": "15–25 % (DE); smetana ≥10 % (Russia)"
+			},
 			{
 				"k": "Bacteria added",
 				"v": "Lactococcus"
@@ -5365,7 +5343,7 @@
 		"facts": [
 			{
 				"k": "Milk",
-				"v": "Cream; at least 10 % fat"
+				"v": "Cream; 15–25 % fat as Schmand (DE), at least 10 % as smetana (Russia and neighbours)"
 			},
 			{
 				"k": "Cultures",
@@ -5376,8 +5354,12 @@
 				"v": "Smooth mass with a glossy surface; a rendered-butter flavour is allowed"
 			}
 		],
-		"text": "Smetana is cream soured by lactococci, sometimes with thermophilic streptococci, into a thick, glossy cream.",
+		"text": "Schmand, and smetana further east, is cream soured by lactococci, sometimes with thermophilic streptococci, into a thick, glossy cream: richer than sour cream, leaner than crème fraîche.",
 		"sources": [
+			{
+				"name": "German MilchPQV, Anlage 8 (2025)",
+				"url": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html"
+			},
 			{
 				"name": "EAEU Technical Regulation TR TS 033/2013 (English translation)",
 				"url": "https://agriexchange.apeda.gov.in/ImportRegulations/CustomsUnionTechnicalRegulationonMilkandDairyProductsMoscowRussianFederation11182013.pdf"
@@ -5386,6 +5368,10 @@
 	},
 	"cremeFraiche": {
 		"table": [
+			{
+				"k": "Cream fat",
+				"v": "≥30 %"
+			},
 			{
 				"k": "Bacteria added",
 				"v": "Lactococcus lactis"

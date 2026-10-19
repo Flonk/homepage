@@ -11,6 +11,14 @@
  * Under the glass, in capitals, what is in it: `label`, which a card can
  * change as it can the contents.
  *
+ * Something other than milk, made of its parts in other shares, as cream
+ * or skimmed milk is, takes them as `shares`, in percent by mass:
+ *
+ *   <MilkPour label="Cream" shares={{ water: 57.7, lactose: 2.84, fat: 36.1, protein: 2.84, minerals: 0.53 }} />
+ *
+ * Several glasses in one picture pour at once, unless one is poured `after`:
+ * that one waits until the glass before it has settled.
+ *
  * All of milk goes in unless a card names only some of it; what a card
  * leaves out drains away. Each part gets its share of the particles by the
  * mean composition of cow's milk (Tetra Pak Dairy Processing Handbook,
@@ -33,9 +41,13 @@ interface Props {
 	contents?: string[];
 	/** What the glass holds, written under it. */
 	label?: string;
+	/** Its parts' shares in percent by mass, where it is not milk; any left out are milk's. */
+	shares?: Partial<Record<string, number>>;
+	/** Poured only once the glass before it in its picture has settled. */
+	after?: boolean;
 }
 
-const { contents = ['water', 'lactose', 'fat', 'protein', 'minerals'], label = 'Raw milk' } = Astro.props;
+const { contents = ['water', 'lactose', 'fat', 'protein', 'minerals'], label = 'Raw milk', shares = {}, after = false } = Astro.props;
 
 /* The parts of milk, in the order they are poured, with their share of it in
    percent by mass, mean values for cow's milk. */
@@ -46,11 +58,20 @@ const PARTS = [
 	{ id: 'protein', label: 'Protein', share: 3.4 },
 	{ id: 'minerals', label: 'Minerals', share: 0.8 },
 ];
-for (const id of contents)
+for (const id of [...contents, ...Object.keys(shares)])
 	if (!PARTS.some((p) => p.id === id)) throw new Error(`MilkPour: no part of milk called ${id}`);
+for (const p of PARTS) p.share = shares[p.id] ?? p.share;
+// Poured the most first, so each glass fills in the order of what it is most made of.
+PARTS.sort((a, b) => b.share - a.share);
 ---
 
-<figure class="milk-pour" data-milk-pour data-parts={JSON.stringify(PARTS)} data-contents={JSON.stringify(contents)}>
+<figure
+	class="milk-pour"
+	data-milk-pour
+	data-parts={JSON.stringify(PARTS)}
+	data-contents={JSON.stringify(contents)}
+	data-after={after ? '' : undefined}
+>
 	<!-- The threshold that turns the blurred blobs into one liquid with a clean edge, one for each part. -->
 	<svg class="milk-pour-filter" aria-hidden="true">
 		{
@@ -343,7 +364,10 @@ for (const id of contents)
 		// Each part's canvas and filter, named for this glass alone as another on the page would have the same.
 		const total = parts.reduce((s, p) => s + p.share, 0);
 		const liquids = parts.map((p, i) => {
-			const radius = i === 0 ? RADIUS : p.id === 'minerals' ? FINEST : FINE;
+			/* The finer drops only for a thin layer: one a tenth of the glass or
+			   more, as the fat in cream is, of the water's, or it would be
+			   thousands of drops. */
+			const radius = i === 0 || p.share / total >= 0.1 ? RADIUS : p.id === 'minerals' ? FINEST : FINE;
 			const canvas = root.querySelector<HTMLCanvasElement>(`canvas[data-liquid="${p.id}"]`)!;
 			const filter = root.querySelector<SVGFilterElement>(`filter[data-liquid="${p.id}"]`)!;
 			filter.id = `milk-pour-goo-${++made}`;
@@ -448,6 +472,7 @@ for (const id of contents)
 		};
 		// When what is in the glass changes, it is emptied and poured again.
 		const empty = () => {
+			delete root.dataset.settled;
 			if (pouring) world.DestroyParticleSystem(pouring.system);
 			pouring = null;
 			for (const l of layers) body.DestroyFixture(l.floor);
@@ -455,14 +480,23 @@ for (const id of contents)
 			drawLayers();
 		};
 
+		/* The glass before this one in its picture, if it is poured after it;
+		   and whether this one has settled, every part in and turned to a
+		   layer, for the one after it to see. */
+		const glasses = host ? [...host.querySelectorAll<HTMLElement>('[data-milk-pour]')] : [];
+		const before = root.dataset.after !== undefined ? glasses[glasses.indexOf(root) - 1] : undefined;
 		const tick = (dt: number) => {
+			if (before && before.dataset.settled !== 'true') return;
 			for (const l of layers)
 				if (l.shown < 1) {
 					l.shown = Math.min(1, l.shown + dt / TURN);
 					turned = true;
 				}
 			if (!pouring) begin();
-			if (!pouring) return;
+			if (!pouring) {
+				if (layers.every((l) => l.shown >= 1)) root.dataset.settled = 'true';
+				return;
+			}
 			const { part, system } = pouring;
 			sincePour += dt;
 			if (pouring.poured < liquids[part].quota && sincePour >= (2 * liquids[part].radius) / speed(part)) {
@@ -847,7 +881,9 @@ for (const id of contents)
 		host?.addEventListener('viz:props', (e) => {
 			const p = (e as CustomEvent).detail ?? {};
 			caption.textContent = typeof p.label === 'string' ? p.label : caption.dataset.label!;
-			set(Array.isArray(p.contents) ? p.contents : authored);
+			// The same milk as before is left in the glass, not poured again.
+			const contents: string[] = Array.isArray(p.contents) ? p.contents : authored;
+			if (contents.length !== wanted.size || contents.some((id) => !wanted.has(id))) set(contents);
 		});
 		// The colours follow the ground, which can change under it.
 		host?.addEventListener('viz:enter', () => {

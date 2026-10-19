@@ -7,15 +7,65 @@ chromeGrain: 2
 format: "deck"
 deckLayout: "sidebar"
 ground: "light"
-hidden: true
 ---
 
 import DeckCard from "../../../components/DeckCard.astro";
 import DeckViz from "../../../components/DeckViz.astro";
+import FatGlobules from "../../../components/FatGlobules.astro";
+import LactaseSplit from "../../../components/LactaseSplit.astro";
 import MilkPour from "../../../components/MilkPour.astro";
+import VizTable from "../../../components/VizTable.astro";
 
 <DeckViz framed>
   <MilkPour />
+  <LactaseSplit />
+  <FatGlobules />
+  <VizTable
+    name="proteins"
+    columns={["Protein", "g/L", "of protein"]}
+    rows={[
+      { cells: ["Caseins (total)", "28", "~82 %"], total: true },
+      { cells: ["αs1-casein", "10.6", "~31 %"], sub: true },
+      { cells: ["β-casein", "10.1", "~30 %"], sub: true },
+      { cells: ["κ-casein", "3.9", "~11 %"], sub: true },
+      { cells: ["αs2-casein", "3.4", "~10 %"], sub: true },
+      { cells: ["Whey proteins (total)", "6.0", "~18 %"], total: true },
+      { cells: ["β-lactoglobulin", "3.2", "~9 %"], sub: true },
+      { cells: ["α-lactalbumin", "1.2", "~3.5 %"], sub: true },
+      { cells: ["Immunoglobulins", "1.1", "~3 %"], sub: true },
+      { cells: ["Serum albumin", "0.4", "~1 %"], sub: true },
+      { cells: ["Proteose-peptones", "0.2–0.4", "~1 %"], sub: true },
+      { cells: ["Lactoferrin", "0.02–0.2", "<0.6 %"], sub: true },
+      { cells: ["Lactoperoxidase", "0.03", "~0.1 %"], sub: true },
+    ]}
+    sources={[
+      { label: "Wu et al. 2016, table 3", href: "https://jasbsci.biomedcentral.com/articles/10.1186/s40104-016-0078-8/tables/3" },
+      { label: "Polymers 2021, table 2", href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8468757/table/polymers-13-03164-t002" },
+      { label: "Whey protein review 2024, table 1", href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11023716/table/tab1" },
+    ]}
+  />
+  <VizTable
+    name="minerals"
+    columns={["Mineral", "mg/L, range", "mg/kg, US mean"]}
+    rows={[
+      { cells: ["Potassium", "1100–1500", "1340"] },
+      { cells: ["Calcium", "1100–1300", "1060"] },
+      { cells: ["Chloride", "800–1200", "–"] },
+      { cells: ["Phosphorus", "800–1000", "830"] },
+      { cells: ["Sodium", "250–640", "420"] },
+      { cells: ["Magnesium", "70–140", "98"] },
+      { cells: ["Zinc", "2.5–7", "3.7"] },
+      { cells: ["Iron", "0.1–0.7", "0.7"] },
+      { cells: ["Iodine", "0.05–0.6", "0.34"] },
+      { cells: ["Copper", "0.1–0.35", "0.09"] },
+      { cells: ["Manganese", "0.01–0.05", "0.04"] },
+      { cells: ["Selenium", "0.02–0.04", "0.01"] },
+    ]}
+    sources={[
+      { label: "Univ. of Guelph, Dairy Science and Technology", href: "https://books.lib.uoguelph.ca/dairyscienceandtechnologyebook/chapter/minerals/" },
+      { label: "Pennington et al. 1987, FDA Total Diet Study", href: "https://agris.fao.org/search/fr/records/65df0e1d0f3e94b9e5d47ebf" },
+    ]}
+  />
 </DeckViz>
 
 <DeckCard>
@@ -26,7 +76,7 @@ import MilkPour from "../../../components/MilkPour.astro";
   Notice that this covers every macronutrient category: carbohydrates, fats, and proteins. This is of course not a coincidence, as milk is designed to provide complete nutrition for the young of the species.
 </DeckCard>
 
-<DeckCard>
+<DeckCard vizProps={{ overlay: "lactase" }}>
   ## Lactose
 
   Lactose is a simple sugar, making up about 4.8 % of cow's milk.
@@ -37,7 +87,7 @@ import MilkPour from "../../../components/MilkPour.astro";
   there are lactase supplements available so everyone can enjoy fresh mozzarella.
 </DeckCard>
 
-<DeckCard>
+<DeckCard vizProps={{ overlay: "fat" }}>
   ## Fat
 
   Fat makes up about 3.9 % of cow's milk.
@@ -46,17 +96,19 @@ import MilkPour from "../../../components/MilkPour.astro";
   milk has a white color.
 </DeckCard>
 
-<DeckCard>
+<DeckCard vizProps={{ overlay: "proteins" }}>
   ## Protein
 
-  Protein makes up about 3.4 % of cow's milk.
+  Protein makes up about 3.4 % of cow's milk.  We categorize milk proteins into two types:
 
-  Milk contains two main types of protein: casein (~80 %), which clumps together into bigger particles, and whey proteins (~15 %), which are dissolved in the water.
+  - Caseins, "the cheese stuff"
+  - Whey proteins, "the rest"
 
-  There are other proteins present aswell, like things leaking in from the cow's blood, but they represent only a small fraction of the total protein content.
+  The categorization follows actual dairy practice here -- if it stays in the whey during cheese making, it's a whey protein.
+  
 </DeckCard>
 
-<DeckCard>
+<DeckCard vizProps={{ overlay: "minerals" }}>
   ## Minerals
 
   About 0.8 %, potassium, calcium, chloride and phosphate above all.

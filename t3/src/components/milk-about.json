@@ -128,15 +128,120 @@
 			"text": "Rabri, rabdi or rabidi is a sweet, condensed-milk-based dish, originating from the Indian subcontinent, made by boiling milk on low heat for a long time until it becomes dense and changes its colour to off-white or pale yellow. Jaggery, spices, and nuts are added to it to give it flavor. It is chilled and served as dessert. Rabri is the main ingredient in several desserts, such as rasabali, chhena kheeri, and khira sagara.",
 			"wiki": "https://en.wikipedia.org/wiki/Rabri"
 		},
+		"creamGrades": {
+			"text": "Cream as it is sold: the cream spun off raw milk, its fat set to a grade, by adding back skimmed milk, and then pasteurised or UHT-treated. Each country names its own grades by how much fat they have, from coffee cream to double cream.",
+			"source": "https://www.lebensmittelbuch.at/lebensmittelbuch/b-32-milch-und-milchprodukte/1-konsummilch-und-rahm/1-1-beschreibung/1-1-5-rahm-obers",
+			"sourceName": "Österreichisches Lebensmittelbuch, B 32, 1.1.5"
+		},
+		"kaffeeobers": {
+			"text": "Austria’s coffee cream: cream of at least 10 % fat, to which nothing is added when it is pasteurised.",
+			"source": "https://www.lebensmittelbuch.at/lebensmittelbuch/b-32-milch-und-milchprodukte/1-konsummilch-und-rahm/1-1-beschreibung/1-1-5-rahm-obers",
+			"sourceName": "Österreichisches Lebensmittelbuch, B 32, 1.1.5"
+		},
+		"halfAndHalf": {
+			"text": "A mixture of milk and cream with at least 10.5 % and less than 18 % milkfat, poured into coffee in the United States.",
+			"source": "https://www.ecfr.gov/current/title-21/part-131/section-131.180",
+			"sourceName": "US 21 CFR 131.180"
+		},
+		"singleCream": {
+			"text": "Britain’s pouring cream, with at least 18 % fat: too lean to whip, used in coffee and over puddings.",
+			"source": "https://www.legislation.gov.uk/uksi/1996/1499/schedule/8/part/III/made",
+			"sourceName": "UK Food Labelling Regulations 1996, Schedule 8"
+		},
+		"lightCream": {
+			"text": "Cream with at least 18 % and less than 30 % milkfat, also sold in the United States as coffee cream or table cream.",
+			"source": "https://www.ecfr.gov/current/title-21/part-131/section-131.155",
+			"sourceName": "US 21 CFR 131.155"
+		},
+		"schlagsahne": {
+			"text": "German whipping cream: at least 30 % fat, and it must whip; its protein may not be raised by adding any.",
+			"source": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html",
+			"sourceName": "German MilchPQV, Anlage 8"
+		},
+		"schlagobers": {
+			"text": "Austria’s whipping cream: at least 30 % fat, or 36 % sold as “extra schlagfähig”, extra whippable.",
+			"source": "https://www.lebensmittelbuch.at/lebensmittelbuch/b-32-milch-und-milchprodukte/1-konsummilch-und-rahm/1-1-beschreibung/1-1-5-rahm-obers",
+			"sourceName": "Österreichisches Lebensmittelbuch, B 32, 1.1.5"
+		},
+		"heavyCream": {
+			"text": "Cream with at least 36 % milkfat, the richest of the creams defined in the United States, often sold as heavy whipping cream.",
+			"source": "https://www.ecfr.gov/current/title-21/part-131/section-131.150",
+			"sourceName": "US 21 CFR 131.150"
+		},
+		"cremeDouble": {
+			"text": "A particularly rich sweet cream of 40 to 55 % fat, firm enough to spoon and to cook with without splitting, used to finish soups, sauces and desserts.",
+			"source": "https://de.wikipedia.org/wiki/Cr%C3%A8me_double",
+			"sourceName": "German Wikipedia: Crème double"
+		},
 		"coffeeCream": {
 			"text": "Cream standardised to at least 10 % fat, usually 10–15 %, homogenised and UHT-treated or sterilised so that it keeps and stays smooth in hot coffee. Sold in Germany as Kaffeesahne.",
 			"source": "https://www.sciencedirect.com/topics/agricultural-and-biological-sciences/whipping-cream",
 			"sourceName": "ScienceDirect Topics (dairy science textbook excerpts)"
 		},
+		"cremeDeLeite": {
+			"text": "Brazil’s cream, sold above all in cans and UHT cartons that keep without cooling, and stirred into strogonoff and desserts; by law it has at least 10 % fat.",
+			"source": "https://www.planalto.gov.br/ccivil_03/decreto/1996/d1812.htm",
+			"sourceName": "Brazilian Decree 1.812/1996"
+		},
+		"namaKurimu": {
+			"text": "Japan’s “fresh cream”: what the milk ordinance calls cream, at least 18 % fat with nothing added. Cream with emulsifiers, stabilisers or vegetable fat in it is not cream there, and much of what is sold for whipping is.",
+			"source": "https://www.meiji.co.jp/meiji-shokuiku/know/lovable-milk/cream/",
+			"sourceName": "Meiji: クリーム"
+		},
+		"mediaCrema": {
+			"text": "Mexico’s “half cream”: a sweet table cream of about 20 % fat, sold in small cans that keep, and spooned over fruit, soups and enchiladas.",
+			"source": "https://www.fatsecret.com.mx/calor%C3%ADas-nutrici%C3%B3n/nestl%C3%A9/media-crema/100g",
+			"sourceName": "FatSecret México: Nestlé Media Crema"
+		},
+		"pannaDaCucina": {
+			"text": "Italy’s cooking cream: UHT cream of at least 20 % fat, too lean and too processed to whip, kept in the cupboard for sauces; the cream for whipping has at least 30 %.",
+			"source": "https://ilfattoalimentare.it/panna-da-cucina-grassi-prezzo.html",
+			"sourceName": "Il Fatto Alimentare: panna da cucina"
+		},
+		"thickenedCream": {
+			"text": "Australia’s everyday cream: at least 35 % fat, as all cream there must have, with gelatine or another thickener added so that it whips firmer and holds.",
+			"source": "https://legislation.gov.au/F2015L00470/asmade/2015-04-01/text/original/epub/OEBPS/document_1/document_1.html",
+			"sourceName": "Food Standards Code, Standard 2.5.2"
+		},
+		"vispgradde": {
+			"text": "Sweden’s whipping cream, at 40 % fat richer than most countries’, with nothing in it but pasteurised cream.",
+			"source": "https://handla.ica.se/handla/produkt/vispgradde-40-1l-arla-ko-id_p_7310865072757",
+			"sourceName": "ICA: Arla Vispgrädde 40 %"
+		},
+		"cremeLegere": {
+			"text": "France’s light cream: at least 12 % and less than 30 % fat, poured or thickened, as the full crème has at least 30 %.",
+			"source": "https://www.economie.gouv.fr/node/3237976",
+			"sourceName": "French Ministry of the Economy: laits et crèmes"
+		},
+		"kaffeerahm": {
+			"text": "Switzerland’s coffee cream: UHT-treated cream with at least 15 % milk fat, sold in the small portion cups that go with coffee.",
+			"source": "https://www.swissmilk.ch/de/nachhaltigkeit/milchprodukte/creme-fraiche-kaffeerahm-und-co/",
+			"sourceName": "Swissmilk: Crème fraîche, Kaffeerahm und Co."
+		},
+		"cremeFluide": {
+			"text": "France’s plain cream, at least 30 % fat: sold as crème fraîche fluide when it is only pasteurised, for in France crème fraîche need not be soured; only the épaisse, thick, kind is.",
+			"source": "https://www.economie.gouv.fr/node/3237976",
+			"sourceName": "French Ministry of the Economy: laits et crèmes"
+		},
+		"vollrahm": {
+			"text": "Switzerland’s full cream for whipping, at least 35 % fat, more than the 30 % of German Schlagsahne.",
+			"source": "https://de.wikipedia.org/wiki/Rahm",
+			"sourceName": "German Wikipedia: Rahm"
+		},
+		"doppelrahm": {
+			"text": "Switzerland’s double cream, at least 45 % fat, thick enough to spoon; the double crème of the Gruyère is eaten with meringues.",
+			"source": "https://www.swissmilk.ch/de/nachhaltigkeit/milchprodukte/creme-fraiche-kaffeerahm-und-co/",
+			"sourceName": "Swissmilk: Crème fraîche, Kaffeerahm und Co."
+		},
+		"saurerHalbrahm": {
+			"text": "Switzerland’s lighter soured cream, at least 15 % fat; its full soured cream is sold as crème fraîche, at least 35 %.",
+			"source": "https://www.swissmilk.ch/de/nachhaltigkeit/milchprodukte/creme-fraiche-kaffeerahm-und-co/",
+			"sourceName": "Swissmilk: Crème fraîche, Kaffeerahm und Co."
+		},
 		"whipping": {
-			"text": "Cream with enough fat to trap air when beaten and hold it as whipped cream: at least 30 % in Germany, where it is sold as Schlagsahne, 35 % in Britain, and usually 32–36 % for Austrian Schlagobers.",
-			"source": "https://de.wikipedia.org/wiki/Schlagsahne",
-			"sourceName": "German Wikipedia: Schlagsahne"
+			"text": "Britain’s whipping cream: at least 35 % fat, enough to trap air when beaten and hold it as whipped cream.",
+			"source": "https://www.legislation.gov.uk/uksi/1996/1499/schedule/8/part/III/made",
+			"sourceName": "UK Food Labelling Regulations 1996, Schedule 8"
 		},
 		"double": {
 			"text": "British cream with at least 48 % fat, the richest after clotted cream: thick enough to spoon, it whips easily and can go into hot sauces without splitting.",
@@ -148,18 +253,43 @@
 			"source": "https://de.wikipedia.org/wiki/Kondensmilch",
 			"sourceName": "German Wikipedia: Kondensmilch"
 		},
-		"souredCream": {
-			"text": "Cream soured with lactic acid bacteria, which thicken it and give it its tang. At different fat levels it becomes sour cream (at least 10 %), Schmand (15–25 %) and crème fraîche (at least 30 %); churned, it gives cultured butter.",
+		"culturedCream": {
+			"text": "Cream soured with lactic acid bacteria, which thicken it and give it its tang. It is one product under many names, from Saure Sahne to crème fraîche, told apart by little more than how much fat the cream has.",
 			"source": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html",
 			"sourceName": "German MilchPQV, Anlage 8"
+		},
+		"saureSahne": {
+			"text": "Germany’s everyday soured cream, sold as Saure Sahne or Sauerrahm: cream soured with lactic acid bacteria to at least 10 % fat, and not heated again after souring.",
+			"source": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html",
+			"sourceName": "German MilchPQV, Anlage 8"
+		},
+		"sauerrahm": {
+			"text": "Austria’s soured cream: made as sour milk is, but from cream of at least 10 % fat, and mostly from cream of 15 %, the fat it is usually sold at.",
+			"source": "https://www.lebensmittelbuch.at/lebensmittelbuch/b-32-milch-und-milchprodukte/6-fermentierte-milcherzeugnisse/6-2-spezifische-beschreibung-der-fermentierten-produkte",
+			"sourceName": "Österreichisches Lebensmittelbuch, B 32, 6.2"
+		},
+		"smetana": {
+			"text": "Smetana is the English-language name for the different types of sour cream traditionally prevalent in Central, Eastern, and Southeastern Europe, and Central Asia. It is a dairy product produced by souring heavy cream. It is similar to crème fraîche, but nowadays mainly sold with 9% to 42% milkfat content depending on the country. Its cooking properties are different from crème fraîche and sour cream sold in the US, which contain 18% butterfat. It is widely used in cooking and baking.",
+			"wiki": "https://en.wikipedia.org/wiki/Smetana_(dairy_product)"
+		},
+		"graddfil": {
+			"text": "Sweden’s soured cream: cream of usually 12 % fat, homogenised, pasteurised and then soured with a culture. It was first tried in Sweden as “sur grädde”, a word-for-word translation of the English sour cream.",
+			"source": "https://sv.wikipedia.org/wiki/Gr%C3%A4ddfil",
+			"sourceName": "Swedish Wikipedia: Gräddfil"
+		},
+		"tejfol": {
+			"text": "Hungary’s soured cream, bone-white, thick and pourable: by the Hungarian food code, cream made from milk with added cream or butter, homogenised and set by a pure culture of lactic acid bacteria.",
+			"source": "https://hu.wikipedia.org/wiki/Tejf%C3%B6l",
+			"sourceName": "Hungarian Wikipedia: Tejföl"
 		},
 		"sourCream": {
 			"text": "Sour cream is a dairy product obtained by fermenting regular cream with certain kinds of lactic acid bacteria. The bacterial culture, which is introduced either deliberately or naturally, sours and thickens the cream. Its name comes from the production of lactic acid by bacterial fermentation, which is called souring.",
 			"wiki": "https://en.wikipedia.org/wiki/Sour_cream"
 		},
-		"smetana": {
-			"text": "Smetana is the English-language name for the different types of sour cream traditionally prevalent in Central, Eastern, and Southeastern Europe, and Central Asia. It is a dairy product produced by souring heavy cream. It is similar to crème fraîche, but nowadays mainly sold with 9% to 42% milkfat content depending on the country. Its cooking properties are different from crème fraîche and sour cream sold in the US, which contain 18% butterfat. It is widely used in cooking and baking.",
-			"wiki": "https://en.wikipedia.org/wiki/Smetana_(dairy_product)"
+		"schmand": {
+			"text": "Schmand is cream soured with lactic acid bacteria to between 15 and 25 % fat: thicker and richer than sour cream, leaner than crème fraîche, and, unlike them, it may be heated again after souring, which helps it keep. Further east the same thing is smetana.",
+			"source": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html",
+			"sourceName": "German MilchPQV, Anlage 8"
 		},
 		"cremeFraiche": {
 			"text": "Crème fraîche is a dairy product similar to sour cream; it is a soured cream containing 10–45% butterfat, with a pH of approximately 4.5. It is soured with a bacterial culture. European labeling regulations specify the two ingredients must be cream and bacterial culture. It is served over fruit and baked goods, as well as being added to soups and sauces. It is used in a variety of other recipes. Sour cream is a similar foodstuff, except that crème fraîche is less sour and has a higher fat content. Sour cream may contain thickening agents not permitted in crème fraîche in many jurisdictions.",

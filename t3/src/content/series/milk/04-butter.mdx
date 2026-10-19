@@ -1,0 +1,71 @@
+---
+title: "Butter"
+description: ""
+pubDate: "October 19 2026"
+accent: "oklch(0.8 0.05 70)"
+chromeGrain: 2
+format: "deck"
+deckLayout: "sidebar"
+ground: "light"
+---
+
+import ChromePane from "../../../components/ChromePane.astro";
+import DeckCard from "../../../components/DeckCard.astro";
+import DeckViz from "../../../components/DeckViz.astro";
+import MilkGraph from "../../../components/MilkGraph.astro";
+import MilkPour from "../../../components/MilkPour.astro";
+import Sources from "../../../components/Sources.astro";
+import VizPhase from "../../../components/VizPhase.astro";
+import VizStill from "../../../components/VizStill.astro";
+
+<DeckViz>
+  <VizPhase name="churn">
+    <VizStill
+      src="/assets/2026-10-19-milk-4-butter/churn.jpg"
+      alt="A tall glazed earthenware butter churn, brown with yellow decoration, its wooden dasher standing up out of the lid."
+      credit="Butter churn, Musée alsacien, Strasbourg. Ji-Elle, CC BY-SA 4.0"
+    />
+  </VizPhase>
+  <VizPhase name="churned">
+    <ChromePane fill="ground">
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", height: "100%" }}>
+        <MilkPour label="Butter" shares={{ water: 16.2, lactose: 0.06, fat: 81.1, protein: 0.85, minerals: 0.09 }} />
+        <MilkPour label="Buttermilk" shares={{ water: 91, lactose: 4.5, fat: 0.4, protein: 3.4, minerals: 0.7 }} after />
+      </div>
+    </ChromePane>
+  </VizPhase>
+  <VizPhase name="products">
+    <ChromePane fill="ground">
+      <MilkGraph focus="buttermilk" />
+    </ChromePane>
+  </VizPhase>
+</DeckViz>
+
+<DeckCard>
+  ## Churning
+
+  Churning is the act of beating cream until it is butter.
+
+  The "beating" is quite literal: by applying physical force to cream, the fat 
+  globules inside will collide and break, causing the fat to clump together into big blobs -- that's butter.
+
+</DeckCard>
+
+<DeckCard vizProps={{ phase: "churned" }}>
+  ## Butter and buttermilk
+
+  Churning splits cream in two once more: butter with about 80% fat, and buttermilk, which has a similar composition to skimmed milk.
+
+  <Sources links={[
+    { label: "USDA: unsalted butter", href: "https://fdc.nal.usda.gov/food-details/173430/nutrients" },
+    { label: "Indian Journal of Nutrition and Dietetics: sweet cream buttermilk", href: "https://i-scholar.in/index.php/Ijnd/article/view/105426" },
+  ]} />
+</DeckCard>
+
+<DeckCard vizProps={{ phase: "products" }}>
+  ## Buttermilk is a lie
+
+  The reason why buttermilk is thick and creamy and skim milk is not, is because buttermilk undergoes a fermentation process before it is sold.
+
+  That's not to say that you couldn't ferment skim milk the same way, and as a matter of fact, most buttermilk you see on the shelves today *is* skim milk which never saw any churn at all.
+</DeckCard>

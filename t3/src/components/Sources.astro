@@ -1,0 +1,39 @@
+---
+/**
+ * Where a card's figures come from: a small line under its words, each
+ * source a link, quieter than the text it vouches for.
+ *
+ *   <Sources links={[{ label: 'USDA: heavy cream', href: '…' }]} />
+ */
+interface Props {
+	links: { label: string; href: string }[];
+}
+
+const { links } = Astro.props;
+---
+
+<p class="sources">
+	{links.length > 1 ? 'Sources: ' : 'Source: '}
+	{
+		links.map((l, i) => (
+			<>
+				{i > 0 && ' · '}
+				<a href={l.href} target="_blank" rel="noopener">
+					{l.label}
+				</a>
+			</>
+		))
+	}
+</p>
+
+<style>
+	.sources {
+		font-family: var(--font-sans);
+		font-size: 0.75rem;
+		line-height: 1.5;
+		color: var(--deck-ink-dim, var(--ink-dim));
+	}
+	.sources a {
+		color: inherit;
+	}
+</style>

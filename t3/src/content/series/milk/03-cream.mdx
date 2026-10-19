@@ -1,0 +1,86 @@
+---
+title: "Cream"
+description: ""
+pubDate: "October 19 2026"
+accent: "oklch(0.8 0.05 70)"
+chromeGrain: 2
+format: "deck"
+deckLayout: "sidebar"
+ground: "light"
+---
+
+import ChromePane from "../../../components/ChromePane.astro";
+import DeckCard from "../../../components/DeckCard.astro";
+import DeckViz from "../../../components/DeckViz.astro";
+import MilkGraph from "../../../components/MilkGraph.astro";
+import MilkLink from "../../../components/MilkLink.astro";
+import MilkPour from "../../../components/MilkPour.astro";
+import Sources from "../../../components/Sources.astro";
+import VizPhase from "../../../components/VizPhase.astro";
+
+<DeckViz>
+  <VizPhase name="products">
+    <ChromePane fill="ground">
+      <MilkGraph focus="rawCream" />
+    </ChromePane>
+  </VizPhase>
+  <VizPhase name="separated">
+    <ChromePane fill="ground">
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", height: "100%" }}>
+        <MilkPour label="Cream" shares={{ water: 57.7, lactose: 2.84, fat: 36.1, protein: 2.84, minerals: 0.53 }} />
+        <MilkPour label="Skimmed milk" shares={{ water: 90.8, lactose: 4.86, fat: 0.18, protein: 3.37, minerals: 0.75 }} after />
+      </div>
+    </ChromePane>
+  </VizPhase>
+</DeckViz>
+
+<DeckCard>
+  ## Cream
+
+  While fat is dispersed throughout milk in tiny globules, it is less dense than water, and if left to it's own devices, it will slowly rise to the top, forming a layer of <MilkLink to="creamGrades">cream</MilkLink>.
+
+  This is how cream was harvested traditionally -- just let the milk sit and skim the cream off the top. After a day you get to eat fresh cream, and if you leave it for a bit longer, the cream will
+  turn sour -- that's <MilkLink to="culturedCream">sour cream</MilkLink>!
+</DeckCard>
+
+<DeckCard vizProps={{ phase: "separated" }}>
+  ## Industrial Cream
+
+  In industrial settings cream is made by centrifuging milk. Since fat is lighter than the water around it, spinning the milk very fast flings the heavier <MilkLink to="skimRaw">skimmed milk</MilkLink> outwards, while the fat gathers towards the middle and is drawn off as <MilkLink to="rawCream">raw cream</MilkLink>.
+
+  The skimmed milk is left with well under 0.1 % of the incoming fat. The cream usually comes out at 35–40 % fat.
+
+  <Sources links={[
+    { label: "USDA: heavy cream", href: "https://fdc.nal.usda.gov/food-details/170859/nutrients" },
+    { label: "USDA: skimmed milk", href: "https://fdc.nal.usda.gov/food-details/173432/nutrients" },
+  ]} />
+</DeckCard>
+
+<DeckCard vizProps={{ phase: "products" }}>
+  ## Industrial Cream
+
+  Cream products exist with varying fat contents, but they are all just centrifuged cream with skim milk mixed back to <MilkLink to="creamGrades">hit a target fet percentage</MilkLink>.
+
+  That's right -- heavy cream and half-and-half are more or less the same thing.
+
+</DeckCard>
+
+<DeckCard vizProps={{ phase: "products" }}>
+  ## Skim Milk
+
+  <MilkLink to="skimmed">Skim Milk</MilkLink> has historically been a low-value byproduct used for animal feed, but the remaining proteins and sugars are still valuable and have found applications in industrial settings. <MilkLink to="skimmedPowder">Skim milk powder</MilkLink> is in a lot of <MilkLink to="Milk chocolate">candy bars</MilkLink> like mars or snickers, and microfiltration is used to turn skim milk into <MilkLink to="wpi">whey protein isolate</MilkLink>, (again for the gym bros; not shown in diagram).
+
+  <MilkLink to="acidCasein">Casein</MilkLink> makes for a good <MilkLink to="caseinGlue">adhesive</MilkLink> that can be used to get beer labels to stick on wet bottles (and that can still be washed off easily), and <MilkLink to="galalith">Galalith</MilkLink> is a plastic made from casein that was used for buttons and jewelry.
+
+  Oh, and of course my personal favourite -- they use skim milk powder as <MilkLink to="Film-set cocaine">fake cocaine</MilkLink> on film sets. Let's snort some lactose, yo!
+</DeckCard>
+
+<DeckCard>
+  ## We need more fat!
+
+  If we want to get the fat content of our cream even higher, we have two options.
+
+  <MilkLink to="clotted">Kaymak</MilkLink>, serbian staple food, is made by slowly heating milk or cream and then letting it cool, allowing the fat to rise and form a thick layer that is skimmed off. If you've never had it you should try! The 60+% fat content will give you heart palpitations but it is absolutely delicious.
+
+  The most common approach however is churning cream into <MilkLink to="butter">Butter</MilkLink>.
+</DeckCard>

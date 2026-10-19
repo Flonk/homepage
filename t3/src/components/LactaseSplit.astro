@@ -1,0 +1,203 @@
+---
+/**
+ * Lactose split by lactase, as a reaction, laid over the glass: the milk
+ * sugar on top, two rings of sugar held together by an oxygen; an arrow
+ * down, with the enzyme that does it; and under it the two sugars the gut
+ * can take up, galactose and glucose, apart. The bond's oxygen goes with
+ * the glucose, and the water the enzyme fits into the bond gives the
+ * galactose an OH in its place.
+ *
+ *   <DeckViz>
+ *     <MilkPour />
+ *     <LactaseSplit />
+ *   </DeckViz>
+ *
+ *   <DeckCard vizProps={{ overlay: 'lactase' }}>…</DeckCard>   show it
+ *   <DeckCard vizProps={{ overlay: null }}>…</DeckCard>        put it away
+ *
+ * An overlay as <VizImage> is one: `overlay` is the deck's (see DeckPost),
+ * and the glass keeps running underneath. Shown, it builds top to bottom.
+ */
+interface Props {
+	/** The name cards show it by. */
+	name?: string;
+}
+
+const { name = 'lactase' } = Astro.props;
+
+/* A ring of a sugar, the six-membered pyranose, flat-topped, round its
+   centre; the ring's oxygen at the top right corner, as it is drawn. */
+const R = 24;
+const corner = (k: number) => [R * Math.cos((Math.PI / 3) * k), R * Math.sin((Math.PI / 3) * k)].map((v) => Math.round(v * 100) / 100);
+const ring = Array.from({ length: 6 }, (_, k) => corner(k).join(',')).join(' ');
+const [ox, oy] = corner(5);
+/* Where the rings are: joined on top, apart underneath. */
+const TOP = 74;
+const BOTTOM = 240;
+const sugars = [
+	{ id: 'galactose', joined: 80, apart: 64 },
+	{ id: 'glucose', joined: 180, apart: 196 },
+];
+const BRIDGE = [130, TOP + 13];
+---
+
+<figure class="lactase" data-viz-overlay={name} data-viz-active="false" inert>
+	<svg viewBox="0 0 260 300" role="img" aria-label="Lactose and water, with the enzyme lactase, become galactose and glucose">
+		<g class="step top">
+			<text class="title" x="130" y="22">Lactose</text>
+			<line class="bond" x1={sugars[0].joined + R} y1={TOP} x2={BRIDGE[0]} y2={BRIDGE[1]} />
+			<line class="bond" x1={BRIDGE[0]} y1={BRIDGE[1]} x2={sugars[1].joined - R} y2={TOP} />
+			<circle class="atom" cx={BRIDGE[0]} cy={BRIDGE[1]} r="8" />
+			<text class="small" x={BRIDGE[0]} y={BRIDGE[1]}>O</text>
+			{
+				sugars.map((s) => (
+					<g transform={`translate(${s.joined} ${TOP})`}>
+						<polygon class="ring" points={ring} />
+						<circle class="atom" cx={ox} cy={oy} r="7" />
+						<text class="small" x={ox} y={oy}>O</text>
+					</g>
+				))
+			}
+		</g>
+
+		<g class="step arrow">
+			<line class="shaft" x1="130" y1="122" x2="130" y2="182" />
+			<path class="head" d="M 122 176 L 130 190 L 138 176 Z" />
+			<text class="enzyme" x="142" y="146">+ lactase</text>
+			<text class="aside" x="142" y="164">+ water</text>
+		</g>
+
+		<g class="step bottom">
+			{
+				sugars.map((s, i) => (
+					<g transform={`translate(${s.apart} ${BOTTOM})`}>
+						<polygon class="ring" points={ring} />
+						<circle class="atom" cx={ox} cy={oy} r="7" />
+						<text class="small" x={ox} y={oy}>O</text>
+						{i === 0 ? (
+							<text class="small start" x={R + 3} y="0">OH</text>
+						) : (
+							<text class="small end" x={-R - 3} y="0">HO</text>
+						)}
+						<text class="name" x="0" y="46">{s.id}</text>
+					</g>
+				))
+			}
+			<text class="plus" x="130" y={BOTTOM}>+</text>
+		</g>
+	</svg>
+</figure>
+
+<style>
+	.lactase {
+		place-self: center;
+		position: relative;
+		/* Over everything the glass puts up, as <VizImage> is. */
+		z-index: 2;
+		width: min(16rem, calc(100cqw - 2rem));
+		max-height: calc(100cqh - 2rem);
+		margin: 0;
+		padding: 0.75rem;
+		border-radius: var(--radius-large, 12px);
+		background: color-mix(in oklab, var(--deck-ground) 75%, transparent);
+		backdrop-filter: blur(6px);
+		box-shadow:
+			0 0 0 1px color-mix(in oklab, var(--deck-ink) 12%, transparent),
+			0 0.75rem 2rem rgb(0 0 0 / 0.18);
+		/* The sugar's colour in the glass. */
+		--sugar: oklch(0.99 0.003 90);
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity 0.35s ease;
+	}
+	.lactase[data-viz-active='true'] {
+		opacity: 1;
+	}
+	svg {
+		display: block;
+		width: 100%;
+		height: auto;
+		max-height: calc(100cqh - 3.5rem);
+		font-family: var(--font-sans);
+	}
+	/* Shown, it builds: the sugar, then the arrow, then what it becomes. */
+	.step {
+		opacity: 0;
+		transform: translateY(-6px);
+		transition:
+			opacity 0.4s ease,
+			transform 0.4s ease;
+	}
+	[data-viz-active='true'] .step {
+		opacity: 1;
+		transform: none;
+	}
+	[data-viz-active='true'] .arrow {
+		transition-delay: 0.5s;
+	}
+	[data-viz-active='true'] .bottom {
+		transition-delay: 1s;
+	}
+	text {
+		fill: var(--deck-ink);
+		text-anchor: middle;
+		dominant-baseline: central;
+	}
+	.title,
+	.name {
+		font-size: 14px;
+		font-weight: 600;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+	}
+	.name {
+		font-size: 11px;
+	}
+	.small {
+		font-size: 11px;
+		font-weight: 600;
+	}
+	.start {
+		text-anchor: start;
+	}
+	.end {
+		text-anchor: end;
+	}
+	.plus {
+		font-size: 18px;
+	}
+	.enzyme,
+	.aside {
+		text-anchor: start;
+		font-size: 13px;
+		font-style: italic;
+	}
+	.aside {
+		font-size: 11px;
+		fill: var(--deck-ink-dim);
+	}
+	.ring {
+		fill: var(--sugar);
+		stroke: var(--deck-ink);
+		stroke-width: 2;
+		stroke-linejoin: round;
+	}
+	.bond,
+	.shaft {
+		stroke: var(--deck-ink);
+		stroke-width: 2;
+	}
+	.head {
+		fill: var(--deck-ink);
+	}
+	.atom {
+		fill: var(--deck-ground);
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.lactase,
+		.step {
+			transition-duration: 0.01ms;
+			transition-delay: 0s !important;
+		}
+	}
+</style>

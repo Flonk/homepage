@@ -1,0 +1,163 @@
+---
+/**
+ * A table laid over a deck's visualization, for a card whose numbers are
+ * worth seeing all at once: a column of names, columns of figures, and
+ * where the figures come from under it.
+ *
+ *   <DeckViz>
+ *     <MilkPour />
+ *     <VizTable
+ *       name="proteins"
+ *       columns={['Protein', 'g/L', 'of protein']}
+ *       rows={[
+ *         { cells: ['Caseins (total)', '28', '~82 %'], total: true },
+ *         { cells: ['β-casein', '10.1', '~30 %'], sub: true },
+ *       ]}
+ *       sources={[{ label: 'Wu et al. 2016, table 3', href: '…' }]}
+ *     />
+ *   </DeckViz>
+ *
+ *   <DeckCard vizProps={{ overlay: 'proteins' }}>…</DeckCard>   show it
+ *   <DeckCard vizProps={{ overlay: null }}>…</DeckCard>         put it away
+ *
+ * An overlay as <VizImage> is one: `overlay` is the deck's (see DeckPost),
+ * and whatever is underneath keeps running. A `total` row is set bold, a
+ * `sub` row in under the total above it. The type is sized to the pane, so
+ * the whole table fits on a phone's too.
+ */
+interface Props {
+	/** The name cards show it by. */
+	name: string;
+	columns: string[];
+	rows: { cells: string[]; total?: boolean; sub?: boolean }[];
+	sources?: { label: string; href: string }[];
+}
+
+const { name, columns, rows, sources = [] } = Astro.props;
+---
+
+<figure class="viz-table" data-viz-overlay={name} data-viz-active="false" inert>
+	<table>
+		<thead>
+			<tr>{columns.map((c) => <th scope="col">{c}</th>)}</tr>
+		</thead>
+		<tbody>
+			{
+				rows.map((r) => (
+					<tr class:list={[r.total && 'total', r.sub && 'sub']}>
+						<th scope="row">{r.cells[0]}</th>
+						{r.cells.slice(1).map((c) => (
+							<td>{c}</td>
+						))}
+					</tr>
+				))
+			}
+		</tbody>
+	</table>
+	{
+		sources.length > 0 && (
+			<figcaption>
+				{sources.map((s, i) => (
+					<>
+						{i > 0 && ' · '}
+						<a href={s.href} target="_blank" rel="noopener">
+							{s.label}
+						</a>
+					</>
+				))}
+			</figcaption>
+		)
+	}
+</figure>
+
+<style>
+	.viz-table {
+		place-self: center;
+		position: relative;
+		/* Over everything the viz puts up, as <VizImage> is. */
+		z-index: 2;
+		width: min(26rem, calc(100cqw - 1rem));
+		margin: 0;
+		padding: 0.6em 0.9em 0.7em;
+		/* Sized to the pane rather than the page, so the whole table fits a
+		   phone's shallow pane as it does a desktop's. */
+		font-family: var(--font-sans);
+		font-size: clamp(0.5rem, 3.1cqh, 0.85rem);
+		line-height: 1.25;
+		color: var(--deck-ink);
+		border-radius: var(--radius-large, 12px);
+		background: color-mix(in oklab, var(--deck-ground) 85%, transparent);
+		backdrop-filter: blur(6px);
+		box-shadow:
+			0 0 0 1px color-mix(in oklab, var(--deck-ink) 12%, transparent),
+			0 0.75rem 2rem rgb(0 0 0 / 0.18);
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity 0.35s ease;
+	}
+	.viz-table[data-viz-active='true'] {
+		opacity: 1;
+	}
+	table {
+		width: 100%;
+		margin: 0;
+		border-collapse: collapse;
+		font-size: 1em;
+		font-variant-numeric: tabular-nums;
+	}
+	th,
+	td {
+		padding: 0.2em 0.4em;
+		border: 0;
+		border-bottom: 1px solid color-mix(in oklab, var(--deck-ink) 10%, transparent);
+		text-align: left;
+		font-weight: 400;
+		white-space: nowrap;
+	}
+	thead th {
+		font-weight: 600;
+		border-bottom-color: color-mix(in oklab, var(--deck-ink) 30%, transparent);
+	}
+	/* The figures to the right, so their places line up. */
+	td,
+	thead th:not(:first-child) {
+		text-align: right;
+	}
+	td {
+		color: var(--deck-ink-dim);
+	}
+	tbody th {
+		width: 100%;
+	}
+	/* What a total is made of, set in under it. */
+	.sub th {
+		padding-left: 1.4em;
+	}
+	.sub th::before {
+		content: '– ';
+		color: var(--deck-ink-dim);
+	}
+	.total th,
+	.total td {
+		font-weight: 600;
+		color: var(--deck-ink);
+	}
+	tbody tr:last-child > * {
+		border-bottom: 0;
+	}
+	figcaption {
+		margin-top: 0.5em;
+		font-size: 0.85em;
+		color: var(--deck-ink-dim);
+	}
+	/* The one thing on it to click, and only while it is shown. */
+	figcaption a {
+		color: inherit;
+		pointer-events: auto;
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.viz-table {
+			transition-duration: 0.01ms;
+		}
+	}
+</style>
