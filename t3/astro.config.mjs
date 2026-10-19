@@ -44,7 +44,7 @@ const netlifyRedirects = {
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://example.com",
+  site: "https://t3.at",
   // Posts that moved, for wherever Netlify's _redirects are not read, such as
   // `astro preview`. The old link should still land on the post.
   redirects: Object.fromEntries(
