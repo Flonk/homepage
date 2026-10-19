@@ -92,12 +92,15 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 					</div>
 				</div>
 				<script is:inline>
-					// Where the reader left this deck's split, set before it paints, so
-					// it never opens at the post's own and then jumps.
+					// Where the reader left this deck's split, and a sidebar deck's
+					// column, set before it paints, so it never opens at the post's own
+					// and then jumps.
 					try {
 						const deck = document.currentScript.previousElementSibling;
 						const split = Number(localStorage.getItem(`deck-split:${location.pathname}`));
 						if (split >= 20 && split <= 80) deck.style.setProperty('--deck-drag', `${split}%`);
+						const col = Number(localStorage.getItem(`deck-col:${location.pathname}`));
+						if (col > 0) deck.parentElement.style.setProperty('--deck-col', `${col}px`);
 					} catch {}
 				</script>
 	
@@ -444,11 +447,12 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 				display: none;
 			}
 			/* The sidebar layout (deckLayout), on a wide screen: the text down a
-			   column on the left as wide as Milk's detail panel, the picture all
-			   the rest, and the groove between them running down. No line to drag:
-			   the column is the width it is. The card's controls go down into the
-			   foot of the column, so the picture runs to the bottom as well, and
-			   the card's words leave room for them at their end. */
+			   column on the left, as wide as Milk's detail panel until the reader
+			   drags its edge (--deck-col, on .deck-main so the controls under it
+			   follow), the picture all the rest, and the groove between them
+			   running down. The card's controls go down into the foot of the
+			   column, so the picture runs to the bottom as well, and the card's
+			   words leave room for them at their end. */
 			@media (min-width: 1100px) {
 				.deck-main:has(> .deck.is-sidebar) {
 					position: relative;
@@ -457,12 +461,16 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 					position: absolute;
 					left: 0;
 					bottom: 0;
-					width: 23rem;
+					width: var(--deck-col, 23rem);
 					box-sizing: border-box;
 					z-index: 2;
 				}
+				/* And the card's words in the middle of the column's height: by
+				   auto margins, which centre it while it fits and are nothing once
+				   it is longer, so a long card still starts at its top and scrolls. */
 				.deck.is-sidebar :global(.card-text-inner) {
 					padding-bottom: 5rem;
+					margin-block: auto;
 				}
 				/* And the picture's own controls, a search say, up at the head of
 				   the column over the card's words, which start below them: what
@@ -496,7 +504,7 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 				}
 				.deck.is-sidebar {
 					grid-template-areas: 'text viz';
-					grid-template-columns: 23rem minmax(0, 1fr);
+					grid-template-columns: var(--deck-col, 23rem) minmax(0, 1fr);
 					grid-template-rows: minmax(0, 1fr);
 				}
 				.deck.is-sidebar::before {
@@ -507,8 +515,28 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 					justify-self: end;
 					width: 0;
 				}
+				/* Its edge the line to drag, as the stacked deck's is, but across. */
 				.deck.is-sidebar .deck-divider {
-					display: none;
+					top: 0;
+					bottom: 0;
+					left: var(--deck-col, 23rem);
+					right: auto;
+					width: 0.6rem;
+					height: auto;
+					transform: translateX(-50%);
+					cursor: col-resize;
+				}
+				.deck.is-sidebar .deck-divider:hover,
+				.deck.is-sidebar.is-dragging .deck-divider {
+					background: linear-gradient(
+						to right,
+						transparent 45%,
+						var(--ink-accent) 45% 55%,
+						transparent 55%
+					);
+				}
+				.deck.is-sidebar.is-dragging {
+					cursor: col-resize;
 				}
 			}
 
@@ -629,7 +657,10 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 
 			// Drag the line between the picture and the text to move it; double-
 			// click it to let go of it again, back to the deck's own. Kept per deck,
-			// on the deck itself, since each post has its own to go back to.
+			// on the deck itself, since each post has its own to go back to. On a
+			// wide screen a sidebar deck's line is the column's edge, and moves
+			// across: the column's width, in pixels, between a narrow column and
+			// three fifths of the deck.
 			eachPage((signal) => {
 				const deck = document.querySelector<HTMLElement>('[data-deck]');
 				const divider = deck?.querySelector<HTMLElement>('.deck-divider');
@@ -645,8 +676,21 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 				};
 				const release = () => {
 					deck.style.removeProperty('--deck-drag');
+					main.style.removeProperty('--deck-col');
 					try {
 						localStorage.removeItem(key);
+						localStorage.removeItem(colKey);
+					} catch {}
+				};
+				const main = deck.parentElement!;
+				const colKey = `deck-col:${location.pathname}`;
+				const wideScreen = matchMedia('(min-width: 1100px)');
+				const across = () => deck.classList.contains('is-sidebar') && wideScreen.matches;
+				const placeCol = (px: number, keep: boolean) => {
+					main.style.setProperty('--deck-col', `${px}px`);
+					if (!keep) return;
+					try {
+						localStorage.setItem(colKey, String(Math.round(px)));
 					} catch {}
 				};
 
@@ -676,6 +720,8 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 				try {
 					const kept = Number(localStorage.getItem(key));
 					if (kept >= 20 && kept <= 80) place(kept, false);
+					const col = Number(localStorage.getItem(colKey));
+					if (col > 0) placeCol(col, false);
 				} catch {}
 
 				divider.addEventListener('pointerdown', (e) => {
@@ -685,18 +731,30 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 					const rect = deck.getBoundingClientRect();
 					// Where it is now, whichever rule put it there.
 					const viz = deck.querySelector<HTMLElement>('.deck-viz');
-					let last = viz ? (viz.getBoundingClientRect().height / rect.height) * 100 : 50;
+					const sideways = across();
+					const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
+					let last = sideways
+						? (viz ? viz.getBoundingClientRect().left - rect.left : 23 * rem)
+						: viz
+							? (viz.getBoundingClientRect().height / rect.height) * 100
+							: 50;
 					deck.classList.add('is-dragging');
 					const move = (ev: PointerEvent) => {
-						last = Math.min(80, Math.max(20, ((ev.clientY - rect.top) / rect.height) * 100));
-						place(last, false);
+						if (sideways) {
+							last = Math.min(rect.width * 0.6, Math.max(16 * rem, ev.clientX - rect.left));
+							placeCol(last, false);
+						} else {
+							last = Math.min(80, Math.max(20, ((ev.clientY - rect.top) / rect.height) * 100));
+							place(last, false);
+						}
 					};
 					const up = () => {
 						window.removeEventListener('pointermove', move);
 						window.removeEventListener('pointerup', up);
 						window.removeEventListener('pointercancel', up);
 						deck.classList.remove('is-dragging');
-						place(last, true);
+						if (sideways) placeCol(last, true);
+						else place(last, true);
 					};
 					window.addEventListener('pointermove', move, { signal });
 					window.addEventListener('pointerup', up, { signal });

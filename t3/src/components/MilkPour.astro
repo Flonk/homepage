@@ -1,42 +1,48 @@
 ---
 /**
- * What milk is made of, poured into a glass one part at a time: water first,
- * nearly all of it, then the fat, the milk sugar, the proteins and the
- * minerals, each as much of the glass as it is of milk.
+ * What milk is made of, poured into a glass a part at a time and left to
+ * separate, the most of it first: water, nearly all of it, then the milk
+ * sugar, the fat, the proteins and the minerals, each as much of the glass
+ * as it is of milk, each settling as a layer on top of the last.
  *
- *   <DeckViz><MilkPour /></DeckViz>
- *   <DeckCard vizProps={{ contents: ['water', 'fat'] }}>…</DeckCard>
+ *   <DeckViz><MilkPour label="Raw milk" /></DeckViz>
+ *   <DeckCard vizProps={{ contents: ['water', 'fat'], label: 'Skimmed' }}>…</DeckCard>
  *
- * A card names what is in the glass while it is on screen; what it adds is
- * poured in, and what it leaves out drains away. The glass holds as many
- * particles of liquid as it does, and each part gets its share of them by
- * the mean composition of cow's milk (Tetra Pak Dairy Processing Handbook,
- * table 2.3): so the water pours for a long while, and the rest are a few
- * dozen particles each.
+ * Under the glass, in capitals, what is in it: `label`, which a card can
+ * change as it can the contents.
  *
- * The liquid is LiquidFun's particle fluid (@box2d/particles), with pressure,
- * viscosity and colours that mix where particles touch. The fat is lighter
- * than the water and rises through it to sit on top, as cream does. What
- * makes milk white is what scatters light in it, the fat's globules and the
- * proteins' casein, so the liquid clouds from clear water towards white as
- * those go in; the sugar and the minerals dissolve clear. It is drawn
- * as one liquid rather than as particles: each a soft blob, the blobs
+ * All of milk goes in unless a card names only some of it; what a card
+ * leaves out drains away. Each part gets its share of the particles by the
+ * mean composition of cow's milk (Tetra Pak Dairy Processing Handbook,
+ * table 2.3), so the water is a deep layer and the rest thin bands, which
+ * the glass's narrowing chimney makes thicker. They stack in the order they
+ * go in. That is not milk's order: in milk they do not part at all, the
+ * sugar and salts are dissolved and the fat and protein held in it; the
+ * layers show how much of each there is.
+ *
+ * Each part is poured as a liquid of its own, LiquidFun's particle fluid
+ * (@box2d/particles), with pressure and viscosity, the thin ones of finer
+ * drops than the water. Once it has come to rest it is still: a layer drawn
+ * as a shape, and the floor the next part is poured onto. While poured it is
+ * drawn as one liquid rather than as particles: each a soft blob, the blobs
  * blurred together and cut off at a threshold, so that touching particles
  * merge into one surface.
  */
 interface Props {
 	/** What is in the glass before any card says otherwise. */
 	contents?: string[];
+	/** What the glass holds, written under it. */
+	label?: string;
 }
 
-const { contents = ['water'] } = Astro.props;
+const { contents = ['water', 'lactose', 'fat', 'protein', 'minerals'], label = 'Raw milk' } = Astro.props;
 
 /* The parts of milk, in the order they are poured, with their share of it in
    percent by mass, mean values for cow's milk. */
 const PARTS = [
 	{ id: 'water', label: 'Water', share: 87.5 },
-	{ id: 'fat', label: 'Fat', share: 3.9 },
 	{ id: 'lactose', label: 'Lactose', share: 4.8 },
+	{ id: 'fat', label: 'Fat', share: 3.9 },
 	{ id: 'protein', label: 'Protein', share: 3.4 },
 	{ id: 'minerals', label: 'Minerals', share: 0.8 },
 ];
@@ -45,15 +51,22 @@ for (const id of contents)
 ---
 
 <figure class="milk-pour" data-milk-pour data-parts={JSON.stringify(PARTS)} data-contents={JSON.stringify(contents)}>
-	<!-- The threshold that turns the blurred blobs into one liquid with a clean edge. -->
+	<!-- The threshold that turns the blurred blobs into one liquid with a clean edge, one for each part. -->
 	<svg class="milk-pour-filter" aria-hidden="true">
-		<filter id="milk-pour-goo" color-interpolation-filters="sRGB">
-			<feGaussianBlur in="SourceGraphic" stdDeviation="4"></feGaussianBlur>
-			<feColorMatrix values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 24 -11"></feColorMatrix>
-		</filter>
+		{
+			PARTS.map((p) => (
+				<filter data-liquid={p.id} color-interpolation-filters="sRGB">
+					<feGaussianBlur in="SourceGraphic" stdDeviation="4" />
+					<feColorMatrix values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 24 -11" />
+				</filter>
+			))
+		}
 	</svg>
-	<canvas class="pour-liquid" aria-hidden="true"></canvas>
+	<canvas class="pour-layers" aria-hidden="true"></canvas>
+	{PARTS.map((p) => <canvas class="pour-liquid" data-liquid={p.id} aria-hidden="true" />)}
 	<canvas class="pour-glass" aria-hidden="true"></canvas>
+	<p class="milk-pour-label" data-label={label}>{label}</p>
+	<p class="milk-pour-pouring" aria-live="polite"></p>
 	<ul class="milk-pour-key" aria-label="What is in the glass">
 		{
 			PARTS.map((p) => (
@@ -73,17 +86,25 @@ for (const id of contents)
 		width: 100%;
 		height: 100%;
 		margin: 0;
-		/* Each part's colour, the water a faint blue so the glass reads as
-		   filled before the rest goes in; the rest mixed in turn it white. */
-		--water: oklch(0.84 0.05 230);
-		--fat: oklch(0.88 0.13 95);
+		/* Each part's colour, as it looks on its own, only nudged apart where
+		   they are all but the same: the water near clear, a little cool;
+		   the fat butter yellow, from the carotene in the grass;
+		   and the rest white powders, the milk sugar the whitest, the proteins
+		   (casein and whey) a warm beige, away from the fat's yellow, and the
+		   salts (calcium phosphate above all) a cool grey-white. */
+		--water: #d4dddd;
+		--fat: oklch(0.9 0.09 92);
 		--lactose: oklch(0.99 0.003 90);
-		--protein: oklch(0.95 0.03 80);
-		--minerals: oklch(0.9 0.01 250);
+		--protein: oklch(0.86 0.05 55);
+		--minerals: oklch(0.86 0.012 250);
 		--glass: color-mix(in oklab, var(--deck-ink) 45%, transparent);
+		/* The glass's own faint colour, and the light it catches. */
+		--glass-tint: color-mix(in oklab, var(--deck-ink) 5%, transparent);
+		--glass-shine: rgb(255 255 255 / 0.75);
 	}
 	:global(.deck-dark) .milk-pour {
 		--glass: color-mix(in oklab, var(--deck-ink) 55%, transparent);
+		--glass-shine: rgb(255 255 255 / 0.35);
 	}
 	.milk-pour-filter {
 		position: absolute;
@@ -97,9 +118,37 @@ for (const id of contents)
 		width: 100%;
 		height: 100%;
 	}
+	/* Under the glass's foot, centred on it, what it holds; and over the
+	   spout, what is being poured, there only while it is. Placed by the
+	   script. */
+	.milk-pour-label,
+	.milk-pour-pouring {
+		position: absolute;
+		margin: 0;
+		transform: translateX(-50%);
+		font-family: var(--font-sans);
+		font-size: 0.8rem;
+		font-weight: 600;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		white-space: nowrap;
+		color: var(--deck-ink);
+	}
+	.milk-pour-pouring {
+		transform: translate(-50%, -100%);
+		color: var(--deck-ink-dim);
+		opacity: 0;
+		transition: opacity 0.3s ease;
+	}
+	.milk-pour-pouring.is-on {
+		opacity: 1;
+	}
 	/* What is in it, each part with its share, in the top left; a part not
-	   yet poured set back. */
+	   yet poured set back. Listed as they lie in the glass, the top layer
+	   first. */
 	.milk-pour-key {
+		display: flex;
+		flex-direction: column-reverse;
 		position: absolute;
 		top: 0.75rem;
 		left: 0.75rem;
@@ -148,61 +197,133 @@ for (const id of contents)
 </style>
 
 <script>
-	import { b2BodyType, b2EdgeShape, b2World } from '@box2d/core';
-	import { b2ParticleFlag, b2ParticleSystemDef } from '@box2d/particles';
+	import { b2BodyType, b2EdgeShape, b2World, type b2Fixture } from '@box2d/core';
+	import { b2ParticleFlag, b2ParticleSystemDef, type b2ParticleSystem } from '@box2d/particles';
 	import { eachPage } from '../lib/page';
 
 	type Part = { id: string; label: string; share: number };
 
-	/* The glass, in metres, its floor's middle at the origin and y up: open
-	   at the top, a little wider there than at its floor. */
-	const RIM = 0.8;
-	const FLOOR = 0.62;
-	const HEIGHT = 2.1;
-	// A particle's radius; the glass holds about this many particles full.
+	/* The glass, a nosing glass, in metres, the bowl's floor's middle at the
+	   origin and y up: a round bowl, widest a third of the way up, closing
+	   to a chimney half as wide that flares a little at the lip, so the thin
+	   layers at the top stand taller there. Under it a solid foot.
+	   Its half-width at heights up the bowl, curved through. */
+	const HEIGHT = 2.2;
+	const KNOTS: [number, number][] = [
+		[0, 0.36],
+		[0.12, 0.66],
+		[0.35, 0.9],
+		[0.65, 0.97],
+		[1, 0.86],
+		[1.4, 0.62],
+		[1.8, 0.47],
+		[2.05, 0.445],
+		[2.2, 0.44],
+	];
+	/* A spline through points (centripetal Catmull-Rom, which keeps to them
+	   without looping or cusping), each segment sampled this many times; the
+	   first and last points only guide it. */
+	const spline = (points: number[][], each: number) => {
+		const out: number[][] = [];
+		const gap = (a: number[], b: number[]) => Math.max(1e-6, Math.hypot(b[0] - a[0], b[1] - a[1]) ** 0.5);
+		const lerp = (a: number[], b: number[], ta: number, tb: number, t: number) =>
+			a.map((v, k) => ((tb - t) / (tb - ta)) * v + ((t - ta) / (tb - ta)) * b[k]);
+		for (let i = 1; i < points.length - 2; i++) {
+			const [p0, p1, p2, p3] = [points[i - 1], points[i], points[i + 1], points[i + 2]];
+			const t1 = gap(p0, p1);
+			const t2 = t1 + gap(p1, p2);
+			const t3 = t2 + gap(p2, p3);
+			for (let j = 0; j < each; j++) {
+				const t = t1 + ((t2 - t1) * j) / each;
+				const a1 = lerp(p0, p1, 0, t1, t);
+				const a2 = lerp(p1, p2, t1, t2, t);
+				const a3 = lerp(p2, p3, t2, t3, t);
+				out.push(lerp(lerp(a1, a2, 0, t2, t), lerp(a2, a3, t1, t3, t), t1, t2, t));
+			}
+		}
+		out.push(points[points.length - 2]);
+		return out;
+	};
+	// The bowl's inside, as [half-width, height] from its floor up, finely.
+	const CURVE = spline(
+		[[KNOTS[0][1], -0.15], ...KNOTS.map(([y, x]) => [x, y]), [KNOTS[KNOTS.length - 1][1], HEIGHT + 0.15]],
+		30,
+	);
+	// Its half-width at a height, along it.
+	const halfWidth = (y: number) => {
+		if (y <= CURVE[0][1]) return CURVE[0][0];
+		for (let k = 1; k < CURVE.length; k++) {
+			const [x0, y0] = CURVE[k - 1];
+			const [x1, y1] = CURVE[k];
+			if (y <= y1) return x0 + ((x1 - x0) * (y - y0)) / (y1 - y0 || 1);
+		}
+		return CURVE[CURVE.length - 1][0];
+	};
+	// The same more roughly, for the liquid's walls, which need no more.
+	const SIDE = CURVE.filter((_, k) => k % 6 === 0 || k === CURVE.length - 1);
+	const FLOOR = KNOTS[0][1];
+	const WIDEST = Math.max(...SIDE.map(([x]) => x));
+	// The foot: a short stem down to a disc as wide as this.
+	const FOOT = 0.4;
+	const FOOT_WIDTH = 0.8;
+	// The glass's thickness: its walls, and under the bowl, solid down to the stem.
+	const WALL = 0.035;
+	const BOTTOM = 0.12;
+	/* A particle's radius: the water's, the finer one of the thin layers on
+	   it, so that they are layers of many drops and not a row of a few, and
+	   finer still for the minerals, the thinnest of them. */
 	const RADIUS = 0.045;
-	const GRAINS = 540;
-	// The spout: over the glass's left half, this far above its rim, this many particles wide.
-	const SPOUT_X = -0.35;
-	const SPOUT_Y = HEIGHT + 0.6;
-	const LANES = 5;
-	const SPOUT_SPEED = 2.5;
-	// How much of the picture's height the glass and the spout over it take.
-	const FRAME = SPOUT_Y + 0.25;
+	const FINE = 0.0112;
+	const FINEST = FINE / 2;
+	// A particle is drawn larger than it is, that touching ones merge into one liquid.
+	const DRAWN = 1.6;
+	// How much of the glass's height the milk fills.
+	const FILL = 0.68;
+	/* As many particles as fill it that far, each taking about this much
+	   room, in squared radii, once the liquid has settled under its own weight. */
+	const ROOM = 2.1;
+	let area = 0;
+	for (let y = 0; y < FILL * HEIGHT; y += 0.005) area += 2 * halfWidth(y) * 0.005;
+	// The spout: straight over the mouth, a little above it, this many particles wide.
+	const SPOUT_Y = HEIGHT + 0.35;
+	const LANES = 4;
+	const FINE_LANES = 4;
+	/* Each part poured at a slant, from over the mouth's left towards its
+	   right, so that it spreads as it lands rather than standing in a column:
+	   the water fast, the rest gently, so it does not plunge through the
+	   layers under it. Their speeds down, and across. */
+	const SPOUT_SPEED = 6;
+	const GENTLE_SPEED = 1.5;
+	const SLANT = { x: -0.2, water: 1.2, rest: 0.8 };
+	// How much of the picture's height the glass, its foot and the spout over it take.
+	const FRAME = FOOT + SPOUT_Y + 0.2;
 
 	let made = 0;
 
 	function initPour(root: HTMLElement, signal: AbortSignal) {
-		const liquid = root.querySelector<HTMLCanvasElement>('canvas.pour-liquid')!;
 		const glass = root.querySelector<HTMLCanvasElement>('canvas.pour-glass')!;
-		const lctx = liquid.getContext('2d')!;
+		const caption = root.querySelector<HTMLElement>('.milk-pour-label')!;
+		const pouringCaption = root.querySelector<HTMLElement>('.milk-pour-pouring')!;
 		const gctx = glass.getContext('2d')!;
+		const layersCanvas = root.querySelector<HTMLCanvasElement>('canvas.pour-layers')!;
+		const layersCtx = layersCanvas.getContext('2d')!;
 		const parts: Part[] = JSON.parse(root.dataset.parts!);
 		const authored: string[] = JSON.parse(root.dataset.contents!);
 		const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 		const host = root.closest<HTMLElement>('[data-viz-phase]') ?? root.closest<HTMLElement>('[data-viz-stage]');
 		const gate = root.closest<HTMLElement>('[data-viz-phase]');
 
-		// The filter named for this glass alone, as another on the page would have the same.
-		const filter = root.querySelector('filter')!;
-		filter.id = `milk-pour-goo-${++made}`;
-		liquid.style.filter = `url(#${filter.id})`;
-		const blur = root.querySelector('feGaussianBlur')!;
-
-		// Each part's share of the particles, at least a few each.
-		const total = parts.reduce((s, p) => s + p.share, 0);
-		const quota = parts.map((p) => Math.max(4, Math.round((GRAINS * p.share) / total)));
-		// Each part's colour, as numbers the simulation can mix.
+		const colours = () => parts.map((p) => getComputedStyle(root).getPropertyValue(`--${p.id}`).trim() || '#ccc');
+		let colour = colours();
+		// A CSS colour as numbers from 0 to 1, red, green, blue and alpha, as a canvas paints it.
 		const probe = document.createElement('canvas').getContext('2d', { willReadFrequently: true })!;
-		const rgb = (css: string) => {
+		const rgba = (css: string) => {
 			probe.clearRect(0, 0, 1, 1);
+			probe.fillStyle = '#0000';
 			probe.fillStyle = css;
 			probe.fillRect(0, 0, 1, 1);
-			const [r, g, b] = probe.getImageData(0, 0, 1, 1).data;
-			return { r: r / 255, g: g / 255, b: b / 255, a: 1 };
+			return [...probe.getImageData(0, 0, 1, 1).data].map((v) => v / 255);
 		};
-		const colours = () => parts.map((p) => rgb(getComputedStyle(root).getPropertyValue(`--${p.id}`).trim() || '#ccc'));
-		let colour = colours();
 
 		let wanted = new Set(authored);
 		const keys = [...root.querySelectorAll<HTMLElement>('.milk-pour-key li')];
@@ -214,113 +335,174 @@ for (const id of contents)
 		const body = world.CreateBody({ type: b2BodyType.b2_staticBody });
 		const wall = (a: [number, number], b: [number, number]) =>
 			body.CreateFixture({ shape: new b2EdgeShape().SetTwoSided({ x: a[0], y: a[1] }, { x: b[0], y: b[1] }) });
-		wall([-RIM, HEIGHT], [-FLOOR, 0]);
 		wall([-FLOOR, 0], [FLOOR, 0]);
-		wall([FLOOR, 0], [RIM, HEIGHT]);
-		const def = new b2ParticleSystemDef();
-		def.radius = RADIUS;
-		def.dampingStrength = 0.2;
-		// Stiff enough that the liquid hardly squeezes down under its own weight.
-		def.pressureStrength = 0.4;
-		def.colorMixingStrength = 0.25;
-		const system = world.CreateParticleSystem(def);
-		const FLAGS = {
-			water: b2ParticleFlag.b2_waterParticle | b2ParticleFlag.b2_colorMixingParticle,
-			// Fat keeps its colour, and is a little thick.
-			fat: b2ParticleFlag.b2_viscousParticle,
-		};
+		for (let k = 1; k < SIDE.length; k++)
+			for (const side of [-1, 1]) wall([side * SIDE[k - 1][0], SIDE[k - 1][1]], [side * SIDE[k][0], SIDE[k][1]]);
 
-		/* Which part each particle is, kept with it as the system reorders them;
-		   one past its index, as LiquidFun keeps no user data that is 0. */
-		const partOf = (i: number) => (system.GetUserDataBuffer<number>()[i] ?? 1) - 1;
-		const count = (i: number) => {
-			let n = 0;
-			for (let k = 0; k < system.GetParticleCount(); k++) if (partOf(k) === i) n++;
-			return n;
-		};
+		// Each part's canvas and filter, named for this glass alone as another on the page would have the same.
+		const total = parts.reduce((s, p) => s + p.share, 0);
+		const liquids = parts.map((p, i) => {
+			const radius = i === 0 ? RADIUS : p.id === 'minerals' ? FINEST : FINE;
+			const canvas = root.querySelector<HTMLCanvasElement>(`canvas[data-liquid="${p.id}"]`)!;
+			const filter = root.querySelector<SVGFilterElement>(`filter[data-liquid="${p.id}"]`)!;
+			filter.id = `milk-pour-goo-${++made}`;
+			canvas.style.filter = `url(#${filter.id})`;
+			return {
+				radius,
+				canvas,
+				ctx: canvas.getContext('2d')!,
+				blur: filter.querySelector('feGaussianBlur')!,
+				// Its share of the particles of its size, at least a few.
+				quota: Math.max(8, Math.round((area * p.share) / total / (ROOM * radius ** 2))),
+			};
+		});
 
-		/* ---- pouring -------------------------------------------------------
-		   From a spout a few particles wide, a row of it at a time, each once
-		   the last has fallen clear. */
+		/* ---- pouring and settling -------------------------------------------
+		   A part at a time, poured from a spout a few particles wide, a row at
+		   a time, each once the last has fallen clear: the water fast, the
+		   rest gently, slow enough to be seen going in. Once it is all in and
+		   has come to rest it is still: no longer particles but a layer, a
+		   level in the glass, and the floor the next part is poured onto. So
+		   only what is being poured is ever moving. */
+		/* A part once still: its level, the floor on it, and, while it turns
+		   from drops into a layer, the drops as they last lay and how far it
+		   has turned, from 0 to 1. */
+		type Layer = { part: number; level: number; floor: b2Fixture; drops: { x: number; y: number }[]; shown: number };
+		let layers: Layer[] = [];
+		/* What is being poured: how much of it is in, how long since it all
+		   was, the level it was last seen settling at and how long it has
+		   kept to it. */
+		let pouring: { part: number; system: b2ParticleSystem; poured: number; since: number; level: number; steady: number } | null = null;
 		let sincePour = 0;
-		const pourGap = (2 * RADIUS) / SPOUT_SPEED;
-		const nextToPour = () => parts.findIndex((p, i) => wanted.has(p.id) && count(i) < quota[i]);
+		const lanes = (i: number) => (i === 0 ? LANES : FINE_LANES);
+		const speed = (i: number) => (i === 0 ? SPOUT_SPEED : GENTLE_SPEED);
+		// How long a part rests before it is still, at most, however it stirs.
+		const SETTLE = 3;
+		// How fast a part is calmed once it is all in, its drops slowed by this much a second.
+		const CALM = 4;
+		// How long a part's level must keep, near enough, for where it settles to be clear.
+		const STEADY = 0.3;
+		// And how much longer the water is given, for its being so much more and so stirred.
+		const WATER_LONGER = 0.5;
+		// How long a part takes to turn from drops into a layer, in seconds.
+		const TURN = 0.8;
+		// Whether a layer has turned further since the layers were last drawn.
+		let turned = false;
+		const begin = () => {
+			const part = parts.findIndex((p, i) => wanted.has(p.id) && !layers.some((l) => l.part === i));
+			if (part < 0) return;
+			const def = new b2ParticleSystemDef();
+			def.radius = liquids[part].radius;
+			def.dampingStrength = 0.2;
+			// Stiff enough that the liquid hardly squeezes down under its own weight.
+			def.pressureStrength = 0.4;
+			if (parts[part].id === 'fat') def.viscousStrength = 0.4;
+			pouring = { part, system: world.CreateParticleSystem(def), poured: 0, since: 0, level: -Infinity, steady: 0 };
+		};
 		const pour = () => {
-			const i = nextToPour();
-			if (i < 0) return;
-			const owed = quota[i] - count(i);
-			for (let lane = 0; lane < Math.min(LANES, owed); lane++)
+			if (!pouring) return;
+			const { part, system } = pouring;
+			const { radius, quota } = liquids[part];
+			for (let lane = 0; lane < Math.min(lanes(part), quota - pouring.poured); lane++, pouring.poured++)
 				system.CreateParticle({
-					flags: parts[i].id === 'fat' ? FLAGS.fat : FLAGS.water,
-					position: { x: SPOUT_X + (lane - (LANES - 1) / 2) * RADIUS * 2, y: SPOUT_Y },
-					velocity: { x: 0.6, y: -SPOUT_SPEED },
-					color: colour[i],
-					userData: i + 1,
+					flags: parts[part].id === 'fat' ? b2ParticleFlag.b2_viscousParticle : b2ParticleFlag.b2_waterParticle,
+					position: { x: SLANT.x + (lane - (lanes(part) - 1) / 2) * radius * 2, y: SPOUT_Y },
+					velocity: { x: part === 0 ? SLANT.water : SLANT.rest, y: -speed(part) },
 				});
 		};
-		// What a card leaves out drains away: it goes, and the rest settles.
-		const drain = () => {
-			for (let k = system.GetParticleCount() - 1; k >= 0; k--)
-				if (!wanted.has(parts[partOf(k)].id)) system.DestroyParticle(k);
-		};
-
-		/* The fat rises through the water while there is water above it, and
-		   rests on top once there is none: lifted by the water it touches
-		   that is higher than it. */
-		const fat = parts.findIndex((p) => p.id === 'fat');
-		const lift = (dt: number) => {
+		/* Its level once at rest: the middle of the tops of it, strip by strip
+		   across the glass at its surface, each as far up as it is drawn, so
+		   that the layer stands where the liquid did; and a drop still bobbing
+		   does not lift it. Only across the glass as wide as it is there: where
+		   the bowl is wider under it, the top of a strip is down in the bowl. */
+		const levelOf = (system: b2ParticleSystem, radius: number) => {
+			const STRIP = radius * 4;
 			const pos = system.GetPositionBuffer();
-			const vel = system.GetVelocityBuffer();
-			const contacts = system.GetContacts();
-			const under = new Set<number>();
-			for (let c = 0; c < system.GetContactCount(); c++) {
-				const a = contacts[c].GetIndexA();
-				const b = contacts[c].GetIndexB();
-				if (partOf(a) === fat && partOf(b) !== fat && pos[b].y > pos[a].y + RADIUS * 0.5) under.add(a);
-				if (partOf(b) === fat && partOf(a) !== fat && pos[a].y > pos[b].y + RADIUS * 0.5) under.add(b);
+			let highest = -Infinity;
+			for (let k = 0; k < system.GetParticleCount(); k++) highest = Math.max(highest, pos[k].y);
+			const reach = halfWidth(highest) - radius;
+			const top = new Map<number, number>();
+			for (let k = 0; k < system.GetParticleCount(); k++) {
+				if (Math.abs(pos[k].x) > reach) continue;
+				const s = Math.round(pos[k].x / STRIP);
+				top.set(s, Math.max(top.get(s) ?? -Infinity, pos[k].y + radius * DRAWN));
 			}
-			for (const k of under) vel[k].y += 14 * dt;
+			const tops = [...top.values()].sort((a, b) => a - b);
+			return tops.length ? tops[tops.length >> 1] : null;
 		};
-
-		/* What colour the liquid is: clear water, turned towards milk white by
-		   what scatters light in it, the fat's globules and the protein's
-		   casein; sugar and salts dissolve clear. Each particle of it eases
-		   towards that, so the glass clouds over as they go in. */
-		const WHITENS: Record<string, number> = { fat: 0.35, protein: 0.65 };
-		const milky = () => {
-			const whiteness = Math.min(1, [...wanted].reduce((s, id) => s + (WHITENS[id] ?? 0), 0));
-			const a = colour[0];
-			const b = colour[parts.findIndex((p) => p.id === 'lactose')];
-			return { r: a.r + (b.r - a.r) * whiteness, g: a.g + (b.g - a.g) * whiteness, b: a.b + (b.b - a.b) * whiteness };
+		const freeze = () => {
+			if (!pouring) return;
+			const { part, system } = pouring;
+			const level = levelOf(system, liquids[part].radius);
+			const pos = system.GetPositionBuffer();
+			const drops = Array.from({ length: system.GetParticleCount() }, (_, k) => ({ x: pos[k].x, y: pos[k].y }));
+			world.DestroyParticleSystem(system);
+			pouring = null;
+			if (level === null) return;
+			// Across the glass at that height, into its walls, that nothing slips by.
+			const reach = halfWidth(level) + RADIUS;
+			const floor = body.CreateFixture({ shape: new b2EdgeShape().SetTwoSided({ x: -reach, y: level }, { x: reach, y: level }) });
+			layers.push({ part, level, floor, drops, shown: 0 });
+			drawLayers();
 		};
-		const cloud = (dt: number) => {
-			const to = milky();
-			const col = system.GetColorBuffer();
-			const k = 1 - Math.exp(-1.5 * dt);
-			for (let i = 0; i < system.GetParticleCount(); i++) {
-				if (partOf(i) === fat) continue;
-				const c = col[i];
-				c.r += (to.r - c.r) * k;
-				c.g += (to.g - c.g) * k;
-				c.b += (to.b - c.b) * k;
-			}
+		// When what is in the glass changes, it is emptied and poured again.
+		const empty = () => {
+			if (pouring) world.DestroyParticleSystem(pouring.system);
+			pouring = null;
+			for (const l of layers) body.DestroyFixture(l.floor);
+			layers = [];
+			drawLayers();
 		};
 
 		const tick = (dt: number) => {
-			cloud(dt);
+			for (const l of layers)
+				if (l.shown < 1) {
+					l.shown = Math.min(1, l.shown + dt / TURN);
+					turned = true;
+				}
+			if (!pouring) begin();
+			if (!pouring) return;
+			const { part, system } = pouring;
 			sincePour += dt;
-			if (sincePour >= pourGap) {
+			if (pouring.poured < liquids[part].quota && sincePour >= (2 * liquids[part].radius) / speed(part)) {
 				sincePour = 0;
 				pour();
 			}
-			lift(dt);
 			world.Step(dt, { velocityIterations: 6, positionIterations: 2, particleIterations: 3 });
-			// What escaped over the rim goes, rather than piling up below.
+			// What escaped over the rim goes, rather than piling up below or clinging to the glass outside.
 			const pos = system.GetPositionBuffer();
-			for (let k = system.GetParticleCount() - 1; k >= 0; k--) if (pos[k].y < -1) system.DestroyParticle(k);
+			for (let k = system.GetParticleCount() - 1; k >= 0; k--) {
+				const { x, y } = pos[k];
+				if (y < -FOOT - 0.3 || (y < HEIGHT && Math.abs(x) > halfWidth(y) + 2 * liquids[part].radius)) system.DestroyParticle(k);
+			}
+			if (pouring.poured < liquids[part].quota) return;
+			/* All in, it is calmed, every drop slowed, so that it comes to rest
+			   quickly and at the level it will keep: still sloshing, it stands
+			   higher than at rest. Still once it is clear where it settles, its
+			   level kept for a moment, though its drops still stir: turning into
+			   a layer hides the rest, and the next part need not wait for it.
+			   Or once it has had long enough. */
+			pouring.since += dt;
+			system.SetDamping(1);
+			const calm = Math.exp(-CALM * dt);
+			const vel = system.GetVelocityBuffer();
+			for (let k = 0; k < system.GetParticleCount(); k++) {
+				vel[k].x *= calm;
+				vel[k].y *= calm;
+			}
+			const level = levelOf(system, liquids[part].radius) ?? -Infinity;
+			if (Math.abs(level - pouring.level) < liquids[part].radius * 0.5) pouring.steady += dt;
+			else {
+				pouring.level = level;
+				pouring.steady = 0;
+			}
+			const longer = part === 0 ? WATER_LONGER : 0;
+			if (pouring.steady > STEADY + longer || pouring.since > SETTLE + longer) freeze();
 		};
 
-		/* ---- drawing ------------------------------------------------------- */
+		/* ---- drawing -------------------------------------------------------
+		   From the side, flat as the liquid is, the glass made round only by
+		   how it is lit and the liquid by how it darkens towards the glass. */
 		let w = 0;
 		let h = 0;
 		let dpr = 1;
@@ -329,88 +511,368 @@ for (const id of contents)
 		let oy = 0;
 		const sx = (x: number) => ox + x * scale;
 		const sy = (y: number) => oy - y * scale;
+		/* The inside of the bowl, the corner where its wall meets its floor
+		   rounded, as glass is blown: from the wall FILLET up it to the floor
+		   as far in again, the corner the curve's guide. The liquid's own
+		   floor is the plain one; the difference is too small to see. */
+		const FILLET = 0.06;
+		const walls = CURVE.filter(([, y]) => y >= FILLET);
+		const traceGlass = (ctx: CanvasRenderingContext2D, fresh = true) => {
+			if (fresh) ctx.beginPath();
+			const [x0, y0] = walls[walls.length - 1];
+			ctx.moveTo(sx(-x0), sy(y0));
+			for (let k = walls.length - 1; k >= 0; k--) ctx.lineTo(sx(-walls[k][0]), sy(walls[k][1]));
+			const inset = walls[0][0] - FLOOR + FILLET;
+			ctx.quadraticCurveTo(sx(-FLOOR), sy(0), sx(-FLOOR + inset), sy(0));
+			ctx.lineTo(sx(FLOOR - inset), sy(0));
+			ctx.quadraticCurveTo(sx(FLOOR), sy(0), sx(walls[0][0]), sy(walls[0][1]));
+			for (const [x, y] of walls) ctx.lineTo(sx(x), sy(y));
+		};
+		/* The glass's outside: one curve, the right side's, from its lip down
+		   the bowl's wall, round under its solid bottom into the stem, out
+		   along the foot's flare, round its edge and in along its flat bottom;
+		   the bowl's part of it through its knots, thick as WALL. */
+		const OUTER = spline(
+			[
+				[KNOTS[KNOTS.length - 1][1] + WALL, HEIGHT + 0.15],
+				...[...KNOTS].reverse().filter(([y]) => y >= 0.12).map(([y, x]) => [x + WALL, y]),
+				[0.5, 0.02],
+				[0.33, -0.06],
+				[0.23, -0.13],
+				[0.19, -0.2],
+				[0.22, -0.27],
+				[0.36, -0.33],
+				[0.6, -FOOT + 0.048],
+				[FOOT_WIDTH - 0.03, -FOOT + 0.038],
+				[FOOT_WIDTH, -FOOT + 0.02],
+				[FOOT_WIDTH - 0.025, -FOOT],
+				[FOOT_WIDTH * 0.6, -FOOT],
+				[0, -FOOT],
+			],
+			30,
+		);
+		// How wide the base is at a height, from the curve: the outermost of it there.
+		const baseWidth = (y: number) => {
+			let widest = 0;
+			for (let k = 1; k < OUTER.length; k++) {
+				const [x0, y0] = OUTER[k - 1];
+				const [x1, y1] = OUTER[k];
+				if ((y - y0) * (y - y1) > 0 || y0 === y1) continue;
+				widest = Math.max(widest, x0 + ((x1 - x0) * (y - y0)) / (y1 - y0));
+			}
+			return widest;
+		};
+		/* The outside of the whole glass: from the lip, rounded over the wall,
+		   down the curve, across the foot's bottom, back up the other side and
+		   over the other lip. */
+		const traceOutside = (ctx: CanvasRenderingContext2D) => {
+			const mouth = CURVE[CURVE.length - 1][0];
+			const lip = (WALL / 2) * scale;
+			ctx.beginPath();
+			ctx.moveTo(sx(-mouth), sy(HEIGHT));
+			ctx.arc(sx(-mouth - WALL / 2), sy(HEIGHT), lip, 0, Math.PI, true);
+			for (const [x, y] of OUTER) ctx.lineTo(sx(-x), sy(y));
+			for (let k = OUTER.length - 1; k >= 0; k--) ctx.lineTo(sx(OUTER[k][0]), sy(OUTER[k][1]));
+			ctx.arc(sx(mouth + WALL / 2), sy(HEIGHT), lip, 0, Math.PI, true);
+		};
 		const drawGlass = () => {
-			gctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-			gctx.clearRect(0, 0, w, h);
-			gctx.strokeStyle = getComputedStyle(root).getPropertyValue('--glass');
-			gctx.lineWidth = Math.max(1.5, RADIUS * scale * 0.8);
-			gctx.lineJoin = 'round';
-			gctx.lineCap = 'round';
-			gctx.beginPath();
-			gctx.moveTo(sx(-RIM), sy(HEIGHT));
-			gctx.lineTo(sx(-FLOOR), sy(0));
-			gctx.lineTo(sx(FLOOR), sy(0));
-			gctx.lineTo(sx(RIM), sy(HEIGHT));
-			gctx.stroke();
+			const css = getComputedStyle(root);
+			const edge = css.getPropertyValue('--glass');
+			const tint = css.getPropertyValue('--glass-tint');
+			const shine = css.getPropertyValue('--glass-shine');
+			const g = gctx;
+			g.setTransform(dpr, 0, 0, dpr, 0, 0);
+			g.clearRect(0, 0, w, h);
+			g.lineJoin = 'round';
+			g.lineCap = 'round';
+			const line = Math.max(1, 0.012 * scale);
+			const mouth = CURVE[CURVE.length - 1][0];
+
+			// Its shadow on what it stands on.
+			const shadow = g.createRadialGradient(sx(0), sy(-FOOT), 0, sx(0), sy(-FOOT), FOOT_WIDTH * 1.3 * scale);
+			shadow.addColorStop(0, 'rgb(0 0 0 / 0.18)');
+			shadow.addColorStop(1, 'rgb(0 0 0 / 0)');
+			g.save();
+			g.translate(0, sy(-FOOT));
+			g.scale(1, 0.12);
+			g.translate(0, -sy(-FOOT));
+			g.fillStyle = shadow;
+			g.fillRect(0, sy(-FOOT) - FOOT_WIDTH * 1.3 * scale, w, FOOT_WIDTH * 2.6 * scale);
+			g.restore();
+
+			// The glass itself, faintly, over all it holds, and its thickness more so.
+			traceOutside(g);
+			g.fillStyle = tint;
+			g.fill();
+			g.save();
+			traceOutside(g);
+			g.closePath();
+			traceGlass(g, false);
+			g.closePath();
+			g.fill('evenodd');
+			g.restore();
+			/* The solid bottom, stem and foot, thick glass and round: lit as a
+			   cylinder is, from the left, a bright stripe a fifth of the way in
+			   and its edges darker. In strips running down it, each at its share
+			   of the way across, so that the light follows the shape however it
+			   curves; opaque, worked out over the ground behind, so that where
+			   two meet no seam shows. */
+			// The ground: the nearest painted, a frame's card (its ::before, see DeckViz) before the frame.
+			const groundColour = (() => {
+				for (let el: Element | null = root; el; el = el.parentElement)
+					for (const pseudo of ['::before', null]) {
+						const c = rgba(getComputedStyle(el, pseudo).backgroundColor);
+						if (c[3] > 0.99) return c;
+					}
+				return [1, 1, 1, 1];
+			})();
+			const over = (under: number[], c: number[]) => under.map((v, k) => (k < 3 ? v * (1 - c[3]) + c[k] * c[3] : 1));
+			const shineRGBA = rgba(shine);
+			const STOPS: [number, number[]][] = [
+				[0, [0, 0, 0, 0.16]],
+				[0.1, [0, 0, 0, 0.03]],
+				[0.2, shineRGBA],
+				[0.3, [1, 1, 1, 0.12]],
+				[0.6, [1, 1, 1, 0]],
+				[0.85, [0, 0, 0, 0.07]],
+				[1, [0, 0, 0, 0.2]],
+			];
+			const lightAt = (u: number) => {
+				const i = Math.max(1, STOPS.findIndex(([at]) => at >= u));
+				const [u0, c0] = STOPS[i - 1];
+				const [u1, c1] = STOPS[i];
+				const t = (u - u0) / (u1 - u0 || 1);
+				return c0.map((v, k) => v + (c1[k] - v) * t);
+			};
+			const glassOn = over(groundColour, rgba(tint));
+			const ys = Array.from({ length: 301 }, (_, k) => (-FOOT * k) / 300);
+			const STRIPS = 60;
+			g.save();
+			traceOutside(g);
+			g.clip();
+			for (let i = 0; i < STRIPS; i++) {
+				const u0 = i / STRIPS;
+				const u1 = (i + 1.6) / STRIPS;
+				const [r, gr, b] = over(glassOn, lightAt((i + 0.5) / STRIPS));
+				g.fillStyle = `rgb(${r * 255} ${gr * 255} ${b * 255})`;
+				g.beginPath();
+				for (const y of ys) g.lineTo(ox + (2 * u0 - 1) * baseWidth(y) * scale, sy(y));
+				for (let k = ys.length - 1; k >= 0; k--) g.lineTo(ox + (2 * Math.min(1, u1) - 1) * baseWidth(ys[k]) * scale, sy(ys[k]));
+				g.fill();
+			}
+			// Under the bowl darker, seen through the glass above it.
+			const under = g.createLinearGradient(0, sy(0.02), 0, sy(-0.24));
+			under.addColorStop(0, 'rgb(0 0 0 / 0.32)');
+			under.addColorStop(1, 'rgb(0 0 0 / 0)');
+			g.fillStyle = under;
+			g.fillRect(0, sy(0.02), w, 0.26 * scale);
+			g.restore();
+			// The light along the top of the foot, just inside its curve where it flares out.
+			g.strokeStyle = shine;
+			g.lineWidth = Math.max(1, 0.01 * scale);
+			const flare = OUTER.filter(([x, y]) => y < -0.25 && x < FOOT_WIDTH - 0.04 && y > -FOOT + 0.03);
+			for (const side of [-1, 1]) {
+				g.beginPath();
+				for (const [x, y] of flare) g.lineTo(sx(side * (x - 0.01)), sy(y - 0.012));
+				g.globalAlpha = side < 0 ? 0.9 : 0.4;
+				g.stroke();
+			}
+			g.globalAlpha = 1;
+
+			// Its edges: the outside firm, the inside fainter.
+			g.strokeStyle = edge;
+			g.lineWidth = line;
+			traceOutside(g);
+			g.stroke();
+			g.globalAlpha = 0.45;
+			traceGlass(g);
+			g.stroke();
+			g.globalAlpha = 1;
+
+			/* The light caught down the bowl: a long streak in its left wall,
+			   following it, brightest at the bowl's widest, and a thin one right. */
+			const streak = (side: number, inset: number, width: number, from: number, to: number) => {
+				const along = g.createLinearGradient(0, sy(to), 0, sy(from));
+				along.addColorStop(0, 'rgb(255 255 255 / 0)');
+				along.addColorStop(0.45, shine);
+				along.addColorStop(1, 'rgb(255 255 255 / 0)');
+				g.strokeStyle = along;
+				g.lineWidth = width * scale;
+				g.beginPath();
+				for (const [x, y] of CURVE) if (y >= from && y <= to) g.lineTo(sx(side * (x - inset)), sy(y));
+				g.stroke();
+			};
+			streak(-1, 0.07, 0.045, 0.25, 1.95);
+			streak(-1, 0.16, 0.012, 0.45, 1.5);
+			streak(1, 0.05, 0.014, 0.4, 1.4);
+		};
+		/* The layers that are still, as the glass filled to each one's level,
+		   the highest first and each lower one over it, so each shows as the
+		   band between its level and the one under it. The liquid darkens
+		   towards the glass, round as it is. */
+		const drawLayers = () => {
+			const c = layersCtx;
+			c.setTransform(dpr, 0, 0, dpr, 0, 0);
+			c.clearRect(0, 0, w, h);
+			if (!layers.length) return;
+			c.save();
+			traceGlass(c);
+			c.clip();
+			const at = (l: Layer) => {
+				/* Turning, it first comes up from under the drops to its level,
+				   rather than showing at once where their surface dips below that;
+				   only then do the drops fade (see draw). */
+				const rise = 1 - (1 - Math.min(1, 2 * l.shown)) ** 2;
+				return l.level - (1 - rise) * 3 * DRAWN * liquids[l.part].radius;
+			};
+			const below = (y: number) => {
+				c.beginPath();
+				c.rect(0, sy(y), w, h);
+			};
+			/* Each only between its level and the one under it, so that what is
+			   seen through, the water, shows the glass behind it and not the
+			   layers above. */
+			const ordered = [...layers].reverse();
+			ordered.forEach((l, k) => {
+				const under = ordered[k + 1];
+				c.fillStyle = colour[l.part];
+				c.beginPath();
+				c.rect(0, sy(at(l)), w, under ? sy(at(under)) - sy(at(l)) : h);
+				c.fill();
+			});
+			// Darker towards the glass, in widening strokes along its inside.
+			below(at(ordered[0]));
+			c.clip();
+			c.strokeStyle = 'rgb(0 0 0 / 0.025)';
+			for (let i = 1; i <= 8; i++) {
+				c.lineWidth = i * 0.03 * scale;
+				traceGlass(c);
+				c.stroke();
+			}
+			c.restore();
 		};
 		const resize = () => {
 			dpr = Math.min(window.devicePixelRatio || 1, 2);
-			const r = liquid.getBoundingClientRect();
+			const r = glass.getBoundingClientRect();
 			w = r.width;
 			h = r.height;
-			for (const c of [liquid, glass]) {
+			for (const c of [glass, layersCanvas, ...liquids.map((l) => l.canvas)]) {
 				c.width = Math.max(1, Math.round(w * dpr));
 				c.height = Math.max(1, Math.round(h * dpr));
 			}
-			scale = Math.min((h * 0.94) / FRAME, (w * 0.8) / (2 * RIM));
+			// Room under the foot for what the glass holds, and over the spout for what is poured.
+			const room = caption.offsetHeight + 12;
+			scale = Math.min((h * 0.94 - 2 * room) / FRAME, (w * 0.7) / (2 * (WIDEST + WALL)));
 			ox = w * 0.58;
-			oy = h * 0.96;
-			// Blurred together over about a particle's width, on the screen.
-			blur.setAttribute('stdDeviation', String(Math.max(1.5, RADIUS * scale * 1.1)));
-			drawGlass();
-		};
-		const draw = () => {
-			lctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-			lctx.clearRect(0, 0, w, h);
-			const pos = system.GetPositionBuffer();
-			const col = system.GetColorBuffer();
-			const r = RADIUS * scale * 1.6;
-			for (let k = 0; k < system.GetParticleCount(); k++) {
-				const c = col[k];
-				lctx.fillStyle = `rgb(${c.r * 255} ${c.g * 255} ${c.b * 255})`;
-				lctx.beginPath();
-				lctx.arc(sx(pos[k].x), sy(pos[k].y), r, 0, Math.PI * 2);
-				lctx.fill();
+			oy = h * 0.96 - room - FOOT * scale;
+			// On a wide screen, with room all round it, smaller and in the middle.
+			if (matchMedia('(min-width: 1100px)').matches) {
+				scale = Math.min(scale, (h * 0.3) / (HEIGHT + FOOT));
+				ox = w / 2;
+				oy = h / 2 + ((HEIGHT - FOOT) / 2) * scale;
 			}
+			caption.style.left = `${ox}px`;
+			caption.style.top = `${sy(-FOOT) + 10}px`;
+			pouringCaption.style.left = `${sx(SLANT.x)}px`;
+			pouringCaption.style.top = `${sy(SPOUT_Y) - 8}px`;
+			// Blurred together over about a particle's width, on the screen.
+			for (const l of liquids) l.blur.setAttribute('stdDeviation', String(Math.max(0.8, l.radius * scale * 1.1)));
+			drawGlass();
+			drawLayers();
+		};
+		/* What is being poured, its particles drawn as one liquid; and a part
+		   turning into a layer, its last drops fading over the layer already
+		   under them, the whole canvas faded, as the threshold would eat into
+		   drops drawn fainter. */
+		let named = -1;
+		const draw = () => {
+			if (turned) drawLayers();
+			turned = false;
+			// What is being poured, named over the spout while it pours.
+			const now = pouring && pouring.poured < liquids[pouring.part].quota ? pouring.part : -1;
+			if (now !== named) {
+				named = now;
+				if (now >= 0) pouringCaption.textContent = parts[now].label;
+				pouringCaption.classList.toggle('is-on', now >= 0);
+			}
+			liquids.forEach((l, i) => {
+				const { ctx } = l;
+				ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+				ctx.clearRect(0, 0, w, h);
+				let drops: { x: number; y: number }[] = [];
+				let shown = 0;
+				if (pouring?.part === i) {
+					const pos = pouring.system.GetPositionBuffer();
+					drops = Array.from({ length: pouring.system.GetParticleCount() }, (_, k) => pos[k]);
+				} else {
+					const layer = layers.find((y) => y.part === i && y.shown < 1);
+					if (!layer) return;
+					({ drops, shown } = layer);
+				}
+				/* Drawn solid, as the threshold would make it so, and as clear as
+				   its colour is by the canvas's opacity, which a layer turning
+				   fades further. */
+				const [red, green, blue, a] = rgba(colour[i]);
+				l.canvas.style.opacity = String(a * Math.min(1, 2 - 2 * shown));
+				const r = l.radius * scale * DRAWN;
+				ctx.fillStyle = `rgb(${red * 255} ${green * 255} ${blue * 255})`;
+				ctx.beginPath();
+				for (const { x, y } of drops) {
+					ctx.moveTo(sx(x) + r, sy(y));
+					ctx.arc(sx(x), sy(y), r, 0, Math.PI * 2);
+				}
+				ctx.fill();
+			});
 		};
 		const sizing = new ResizeObserver(resize);
-		sizing.observe(liquid);
+		sizing.observe(glass);
 		signal.addEventListener('abort', () => sizing.disconnect(), { once: true });
 		resize();
 
 		/* ---- running ------------------------------------------------------- */
 		// With motion reduced, the glass is filled and settled out of sight, and only that drawn.
 		const settle = () => {
-			for (let i = 0; i < 900; i++) tick(1 / 60);
+			for (let i = 0; i < 3600 && (pouring || parts.some((p, k) => wanted.has(p.id) && !layers.some((l) => l.part === k))); i++)
+				tick(1 / 60);
+			for (const l of layers) l.shown = 1;
 			draw();
 		};
 		const set = (contents: string[]) => {
 			wanted = new Set(contents);
 			showKey();
-			drain();
+			empty();
 			if (reduceMotion) settle();
 		};
 		host?.addEventListener('viz:props', (e) => {
 			const p = (e as CustomEvent).detail ?? {};
+			caption.textContent = typeof p.label === 'string' ? p.label : caption.dataset.label!;
 			set(Array.isArray(p.contents) ? p.contents : authored);
 		});
 		// The colours follow the ground, which can change under it.
 		host?.addEventListener('viz:enter', () => {
 			colour = colours();
 			drawGlass();
+			drawLayers();
 			last = 0;
 		});
 
+		/* In steps of a sixtieth of a second however fast the screen draws, so
+		   the liquid behaves the same on every screen; and its time running
+		   faster than ours by PACE, so the pouring does not drag: more steps a
+		   frame, each the same, so the liquid moves as it did, only sooner. */
+		const STEP = 1 / 60;
+		const PACE = 2.5;
 		let last = 0;
+		let behind = 0;
 		const frame = (now: number) => {
 			if (signal.aborted) return;
 			requestAnimationFrame(frame);
 			if (reduceMotion) return;
 			if (gate && gate.dataset.vizActive === 'false') return;
 			if (!w || !h) return;
-			const dt = last ? Math.min(1 / 30, (now - last) / 1000) : 1 / 60;
+			behind += last ? Math.min(0.1, (now - last) / 1000) * PACE : STEP;
 			last = now;
-			tick(dt);
+			for (; behind >= STEP; behind -= STEP) tick(STEP);
 			draw();
 		};
 		if (reduceMotion) settle();

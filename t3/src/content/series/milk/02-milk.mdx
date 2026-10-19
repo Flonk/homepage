@@ -5,6 +5,7 @@ pubDate: "October 19 2026"
 accent: "oklch(0.8 0.05 70)"
 chromeGrain: 2
 format: "deck"
+deckLayout: "sidebar"
 ground: "light"
 ---
 
@@ -16,32 +17,46 @@ import MilkPour from "../../../components/MilkPour.astro";
   <MilkPour />
 </DeckViz>
 
-<DeckCard vizProps={{ contents: ["water"] }}>
-  ## What is milk?
+<DeckCard>
+  ## What is milk made of?
 
-  Mostly water: about 87.5 % of cow's milk.
+  According to the *Tetra Pak Dairy Processing Handbook*, cow's milk is about 87.5 % water, with the remaining 12.5 % consisting of lactose, fat, protein, and minerals.
+
+  Notice that this covers every macronutrient category: carbohydrates, fats, and proteins. This is of course not a coincidence, as milk is designed to provide complete nutrition for the young of the species.
 </DeckCard>
 
-<DeckCard vizProps={{ contents: ["water", "fat"] }}>
-  ## Fat
-
-  About 3.9 %, in tiny globules. Lighter than the water round them, they rise to the top, which is where cream comes from.
-</DeckCard>
-
-<DeckCard vizProps={{ contents: ["water", "fat", "lactose"] }}>
+<DeckCard>
   ## Lactose
 
-  About 4.8 %: milk sugar, dissolved in the water.
+  Lactose is a simple sugar, making up about 4.8 % of cow's milk.
+
+  To break down lactose into sugars the human body can absorb, it needs the enzyme lactase. The ability to produce lactase was historically limited to infancy in most mammals, but some 7000 years ago a genetic mutation spread across europeans, allowing them to digest lactose into adulthood.
+
+  Everyone else remains lactose intolerant to some degree, the symptoms of which are best descibed to you by friends. Thankfully
+  there are lactase supplements available so everyone can enjoy fresh mozzarella.
 </DeckCard>
 
-<DeckCard vizProps={{ contents: ["water", "fat", "lactose", "protein"] }}>
+<DeckCard>
+  ## Fat
+
+  Fat makes up about 3.9 % of cow's milk.
+
+  The fat in milk exists in tiny globules suspended in the water, which is why you don't see an oily layer floating on top, and why
+  milk has a white color.
+</DeckCard>
+
+<DeckCard>
   ## Protein
 
-  About 3.4 %, most of it casein, held in the water in tiny clusters.
+  Protein makes up about 3.4 % of cow's milk.
+
+  Milk contains two main types of protein: casein (~80 %), which clumps together into bigger particles, and whey proteins (~15 %), which are dissolved in the water.
+
+  There are other proteins present aswell, like things leaking in from the cow's blood, but they represent only a small fraction of the total protein content.
 </DeckCard>
 
-<DeckCard vizProps={{ contents: ["water", "fat", "lactose", "protein", "minerals"] }}>
+<DeckCard>
   ## Minerals
 
-  About 0.8 %, calcium and phosphate above all. Together these are milk, mean values for cow's milk from the Tetra Pak Dairy Processing Handbook.
+  About 0.8 %, potassium, calcium, chloride and phosphate above all.
 </DeckCard>
