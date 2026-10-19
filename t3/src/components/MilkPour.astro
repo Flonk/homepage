@@ -200,6 +200,7 @@ for (const id of contents)
 	import { b2BodyType, b2EdgeShape, b2World, type b2Fixture } from '@box2d/core';
 	import { b2ParticleFlag, b2ParticleSystemDef, type b2ParticleSystem } from '@box2d/particles';
 	import { eachPage } from '../lib/page';
+	import { pixelRatio } from '../lib/canvas';
 
 	type Part = { id: string; label: string; share: number };
 
@@ -752,7 +753,7 @@ for (const id of contents)
 			c.restore();
 		};
 		const resize = () => {
-			dpr = Math.min(window.devicePixelRatio || 1, 2);
+			dpr = pixelRatio();
 			const r = glass.getBoundingClientRect();
 			w = r.width;
 			h = r.height;

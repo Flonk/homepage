@@ -354,8 +354,10 @@ const {
 	import { C_NM_PER_S, wavelengthRgb } from '../lib/spectrum';
 	import { shuttleAt, shuttleEntry } from '../lib/shuttle';
 	import { lightenRgb } from '../lib/oklch';
+	import { setText } from '../lib/text';
 	import { parseHex, rgbCss, type Rgb } from '../lib/rgb';
 	import { eachPage } from '../lib/page';
+	import { pixelRatio } from '../lib/canvas';
 
 	/* ---- the two scales -------------------------------------------------
 	   Space: how many screen pixels stand for a nanometre. Time: how much
@@ -644,7 +646,7 @@ const {
 		const showLight = () => {
 			const nm = C_NM_PER_S / (freqThz * 1e12);
 			const text = `${Math.round(nm)} nm · ${Math.round(freqThz)} THz`;
-			outLight.textContent = text;
+			setText(outLight, text);
 			// The same words the readout is showing, for anyone working the axis
 			// without seeing it. Set here rather than in the frame so it cannot
 			// fall behind the value it is describing.
@@ -770,7 +772,7 @@ const {
 		};
 
 		const resize = () => {
-			dpr = Math.min(window.devicePixelRatio || 1, 2);
+			dpr = pixelRatio();
 			const r = canvas.getBoundingClientRect();
 			w = r.width;
 			h = r.height;

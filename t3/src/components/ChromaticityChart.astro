@@ -144,6 +144,7 @@ const {
 		type GamutName,
 	} from '../lib/spectrum';
 	import { eachPage } from '../lib/page';
+	import { pixelRatio } from '../lib/canvas';
 
 	/* Room for the horseshoe and no more. It reaches x = 0.735 at the red end
 	   and y = 0.834 at the top of the green, so this is those plus a margin. */
@@ -267,7 +268,7 @@ const {
 		}
 
 		const resize = () => {
-			dpr = Math.min(window.devicePixelRatio || 1, 2);
+			dpr = pixelRatio();
 			const r = canvas.getBoundingClientRect();
 			w = r.width;
 			h = r.height;

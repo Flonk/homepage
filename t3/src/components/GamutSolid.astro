@@ -601,6 +601,8 @@ const gradId = `gamut-swatch-${Math.random().toString(36).slice(2, 9)}`;
 <script>
 	import { contextFor } from '../lib/animate';
 	import { eachPage, releaseOnLeave } from '../lib/page';
+	import { setText } from '../lib/text';
+	import { pixelRatio } from '../lib/canvas';
 	import {
 		SPACE_LABEL,
 		decode,
@@ -1175,9 +1177,10 @@ const gradId = `gamut-swatch-${Math.random().toString(36).slice(2, 9)}`;
 			   numbers. */
 			root.style.setProperty('--readout-ink', L > 0.6 ? '#12100c' : '#f6f1e6');
 			if (readout) {
-				readout.textContent = `oklch(${L.toFixed(2)} ${C.toFixed(2)} ${H.toFixed(0)})`;
+				setText(readout, `oklch(${L.toFixed(2)} ${C.toFixed(2)} ${H.toFixed(0)})`);
 			}
-			if (outside) outside.hidden = C <= ceiling + 1e-4;
+			const inside = C <= ceiling + 1e-4;
+			if (outside && outside.hidden !== inside) outside.hidden = inside;
 			/* The boundary, on the bar that runs into it. It moves as the other
 			   two bars do, which is the point: there is no one number that is
 			   "full chroma".
@@ -1255,7 +1258,7 @@ const gradId = `gamut-swatch-${Math.random().toString(36).slice(2, 9)}`;
 		let h = 0;
 		let dpr = 1;
 		const resize = () => {
-			dpr = Math.min(window.devicePixelRatio || 1, 2);
+			dpr = pixelRatio();
 			const r = canvas.getBoundingClientRect();
 			w = Math.max(1, r.width);
 			h = Math.max(1, r.height);

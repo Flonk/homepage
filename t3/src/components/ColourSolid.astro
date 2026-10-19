@@ -1027,9 +1027,11 @@ const HSL = [
 
 <script>
 	import { contextFor } from '../lib/animate';
+	import { setText } from '../lib/text';
 	import { eachPage, releaseOnLeave } from '../lib/page';
 	import { lightenRgb } from '../lib/oklch';
 	import { rgbCss, type Rgb } from '../lib/rgb';
+	import { pixelRatio } from '../lib/canvas';
 
 	type Quat = [number, number, number, number];
 
@@ -1842,7 +1844,7 @@ const HSL = [
 		let dpr = 1;
 		let scale = 0.52;
 		const resize = () => {
-			dpr = Math.min(window.devicePixelRatio || 1, 2);
+			dpr = pixelRatio();
 			scale = parseFloat(getComputedStyle(root).getPropertyValue('--solid-scale')) || 0.52;
 			const r = canvas.getBoundingClientRect();
 			w = r.width;
@@ -2073,7 +2075,7 @@ const HSL = [
 			const said = `${space}|${A8}|${H} ${S} ${L}`;
 			if (!comparing && said !== lastSaid) {
 				lastSaid = said;
-				readout.textContent = space === 'hsl' ? `hsl(${H} ${S}% ${L}%)` : rgbCss(A8);
+				setText(readout, space === 'hsl' ? `hsl(${H} ${S}% ${L}%)` : rgbCss(A8));
 				root.style.setProperty('--swatch-a', rgbCss(A8));
 				root.style.setProperty('--swatch-b', rgbCss(A8));
 				/* Black and white contrast equally at luminance 0.179, which is

@@ -499,9 +499,11 @@ const markList = marks
 <script>
 	import { dimRgb, metamerLine, mixCones, mixRgb, wavelengthRgb, type Vision } from '../lib/spectrum';
 	import { shuttleAt, shuttleEntry } from '../lib/shuttle';
+	import { setText } from '../lib/text';
 	import { lightenRgb } from '../lib/oklch';
 	import { rgbCss, type Rgb } from '../lib/rgb';
 	import { eachPage } from '../lib/page';
+	import { pixelRatio } from '../lib/canvas';
 	import {
 		CONE_FIRST_NM,
 		CONE_LAST_NM,
@@ -843,7 +845,7 @@ const markList = marks
 		const nmOf = (x: number) => LO_NM + ((x - plot.x) / plot.w) * (HI_NM - LO_NM);
 
 		const resize = () => {
-			dpr = Math.min(window.devicePixelRatio || 1, 2);
+			dpr = pixelRatio();
 			const r = canvas.getBoundingClientRect();
 			w = r.width;
 			h = r.height;
@@ -930,7 +932,7 @@ const markList = marks
 				for (const c of CONES) {
 					const v = sum[c.at] ?? 0;
 					bars[c.key].style.width = `${(Math.min(1, v) * 100).toFixed(1)}%`;
-					vals[c.key].textContent = v.toFixed(2);
+					setText(vals[c.key], v.toFixed(2));
 				}
 				if (lights.length) {
 					const [mr, mg, mb] = mixRgb(lights);
@@ -942,7 +944,7 @@ const markList = marks
 			const r = responseAt(nm);
 			for (const c of CONES) {
 				bars[c.key].style.width = `${(r[c.at] * 100).toFixed(1)}%`;
-				vals[c.key].textContent = r[c.at].toFixed(2);
+				setText(vals[c.key], r[c.at].toFixed(2));
 			}
 			const [nearC, farC] = eyeSwatches(nm);
 			paintDisc(swatchEl, nearC);

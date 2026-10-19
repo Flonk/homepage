@@ -549,15 +549,30 @@ const ends = Array.from({ length: thumbs }, (_, i) => i);
 		// Read per grab rather than once: a card may hand the bar a new one.
 		const idleSeconds = () => Number(root.dataset.idleResume) || 6;
 
+		/* A host may set the bar every frame, to where it already is as often as
+		   not, and every write to it, the same or not, is a style worked out
+		   again. So only what has changed is written: the last of each, kept. */
+		const was: Record<string, string> = {};
+		const write = (key: string, value: string, put: () => void) => {
+			if (was[key] === value) return;
+			was[key] = value;
+			put();
+		};
+
 		const place = (i: number, value: number) => {
-			root.style.setProperty(`--at-${i}`, String((value - min) / span));
-			if (document.activeElement !== grips[i]) grips[i].value = String(value);
+			const at = String((value - min) / span);
+			write(`at-${i}`, at, () => root.style.setProperty(`--at-${i}`, at));
+			const v = String(value);
+			if (document.activeElement !== grips[i] && grips[i].value !== v) grips[i].value = v;
 		};
 
 		const api: TrackApi = {
 			set: (i, value) => place(i, Math.min(max, Math.max(min, value))),
 			get: (i) => Number(grips[i]?.value ?? min),
 			marks: (list) => {
+				const said = JSON.stringify(list);
+				if (was.marks === said) return;
+				was.marks = said;
 				while (marksEl.children.length > list.length) marksEl.lastElementChild!.remove();
 				while (marksEl.children.length < list.length) marksEl.append(document.createElement('span'));
 				list.forEach((m, i) => {
@@ -569,8 +584,8 @@ const ends = Array.from({ length: thumbs }, (_, i) => i);
 					else el.style.removeProperty('--mark-ink');
 				});
 			},
-			backdrop: (css) => bed.style.setProperty('--backdrop', css),
-			edge: (css) => bed.style.setProperty('--track-edge', css),
+			backdrop: (css) => write('backdrop', css, () => bed.style.setProperty('--backdrop', css)),
+			edge: (css) => write('edge', css, () => bed.style.setProperty('--track-edge', css)),
 			start: () => start(),
 			stop: () => stop(),
 			grip: (i) => grips[i],
@@ -578,7 +593,7 @@ const ends = Array.from({ length: thumbs }, (_, i) => i);
 				for (const el of root.querySelectorAll<HTMLElement>(
 					`[data-thumb='${index}'], [data-input='${index}']`,
 				)) {
-					el.hidden = !on;
+					if (el.hidden !== !on) el.hidden = !on;
 				}
 			},
 			motion: (on) => (on ? start() : stop()),

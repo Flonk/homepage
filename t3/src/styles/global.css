@@ -329,6 +329,18 @@
   animation-play-state: paused;
 }
 
+/* And held still on a touch screen for good. A turn of the chrome is the
+   whole window painted again, blended through its grain, ten times a second;
+   measured on a phone that was a sixth of the page's time and a further
+   hundred and fifty milliseconds of the compositor's and the GPU's every
+   second, for as long as a finger kept it awake, which while swiping
+   through a deck is always. */
+@media (pointer: coarse) {
+  :root {
+    animation: none;
+  }
+}
+
 @keyframes chrome-turn {
   from {
     --chrome-turn: 110deg;

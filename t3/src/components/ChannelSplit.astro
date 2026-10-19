@@ -327,6 +327,7 @@ const CHANNELS = [
 
 <script>
 	import { eachPage } from '../lib/page';
+	import { pixelRatio } from '../lib/canvas';
 
 	type Panel = {
 		canvas: HTMLCanvasElement;
@@ -392,7 +393,7 @@ const CHANNELS = [
 			const rect = metric.getBoundingClientRect();
 			if (!rect.width || !rect.height) return;
 
-			const dpr = Math.min(window.devicePixelRatio || 1, 2);
+			const dpr = pixelRatio();
 			const w = Math.max(1, Math.round(rect.width * dpr));
 			const h = Math.max(1, Math.round(rect.height * dpr));
 

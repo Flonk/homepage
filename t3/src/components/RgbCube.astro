@@ -441,7 +441,9 @@ const {
 	import { contextFor } from '../lib/animate';
 	import { approach } from '../lib/easing';
 	import { rgbCss, type Rgb } from '../lib/rgb';
+	import { setText } from '../lib/text';
 	import { eachPage, releaseOnLeave } from '../lib/page';
+	import { pixelRatio } from '../lib/canvas';
 	type Quat = [number, number, number, number]; // x, y, z, w
 
 	const IDENTITY: Quat = [0, 0, 0, 1];
@@ -1216,7 +1218,7 @@ const {
 		let dpr = 1;
 		let cubeScale = 0.5;
 		const resize = () => {
-			dpr = Math.min(window.devicePixelRatio || 1, 2);
+			dpr = pixelRatio();
 			cubeScale =
 				parseFloat(getComputedStyle(root).getPropertyValue('--cube-scale')) || 0.5;
 			const r = canvas.getBoundingClientRect();
@@ -1320,8 +1322,8 @@ const {
 				lastCss = css;
 				root.style.setProperty('--swatch-a', rgbCss(A8 as Rgb));
 				root.style.setProperty('--swatch-b', rgbCss(B8 as Rgb));
-				rgbOut[0].textContent = rgbCss(A8 as Rgb);
-				rgbOut[1].textContent = rgbCss(B8 as Rgb);
+				setText(rgbOut[0], rgbCss(A8 as Rgb));
+				setText(rgbOut[1], rgbCss(B8 as Rgb));
 				/* The readings sit in the bottom-right corner, which projects onto
 				   the middle of a ramp running bottom-left to top-right — so it is
 				   the halfway colour they have to hold up against, not either end.
