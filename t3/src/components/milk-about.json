@@ -24,7 +24,7 @@
 			"sourceName": "Verbraucherzentrale"
 		},
 		"esl": {
-			"text": "Extended shelf life milk: heated higher than pasteurised milk, to about 125–130 °C for a second or two, or filtered through fine membranes, so that unopened in the fridge it keeps for about three weeks while tasting close to fresh milk.",
+			"text": "Extended shelf life milk: heated higher than pasteurised milk, to about 120–135 °C for a second or two, or filtered through fine membranes, so that unopened in the fridge it keeps for about three weeks while tasting close to fresh milk.",
 			"source": "https://dairyprocessinghandbook.tetrapak.com/chapter/pasteurized-and-esl-dairy-products",
 			"sourceName": "Tetra Pak Dairy Processing Handbook"
 		},
@@ -83,12 +83,12 @@
 			"sourceName": "German MilchPQV, Anlage 6"
 		},
 		"skimmedPowder": {
-			"text": "Skimmed milk dried, mostly by spraying it into hot air, to a fine powder with no more than 1.5 % fat, which keeps for up to three years if stored cool and dry. Used in bread and cakes, confectionery and infant formula, and mixed back with water as milk where fresh milk is scarce.",
+			"text": "Skimmed milk dried, mostly by spraying it into hot air, to a fine powder with no more than 1.5 % fat, which keeps for up to three years if stored cool and dry. Used in bread and cakes, confectionery and infant formula, and mixed back with water as milk where fresh milk is scarce. Used in chocolate and infant formula, shipped as UN food aid, and even stood in for cocaine on film sets.",
 			"source": "https://cdc-ccl.ca/en/node/798",
 			"sourceName": "Canadian Dairy Commission"
 		},
 		"colostrum": {
-			"text": "Colostrum, also known as foremilk, is the milk expressed by the mammary glands of a female mammal during the first few days following delivery of the newborn. Animal colostrum may be called beestings, the traditional word from Old English dialects.",
+			"text": "Colostrum, also called first milk, is the milk expressed by the mammary glands of a female mammal during the first few days following delivery of the newborn. Animal colostrum may be called beestings, the traditional word from Old English dialects.",
 			"wiki": "https://en.wikipedia.org/wiki/Colostrum"
 		},
 		"colostrumPudding": {
@@ -107,7 +107,7 @@
 			"sourceName": "Otto et al., Scandinavian Journal of Gastroenterology (2011)"
 		},
 		"milkDrugs": {
-			"text": "Human proteins made in the milk of genetically modified animals and purified from it as medicines. The first approved was ATryn, an anticoagulant from goats' milk (2006); Ruconest, for hereditary angioedema, is made in rabbits' milk.",
+			"text": "Human proteins made in the milk of genetically modified animals and purified from it as medicines. The first approved was ATryn, an anticoagulant from goats' milk (2006); Ruconest, for hereditary angioedema, is made in rabbits' milk. Ruconest is made by the Dutch company Pharming.",
 			"source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3612824/",
 			"sourceName": "Acta Naturae (2013)"
 		},
@@ -287,7 +287,7 @@
 			"wiki": "https://en.wikipedia.org/wiki/Sour_cream"
 		},
 		"schmand": {
-			"text": "Schmand is cream soured with lactic acid bacteria to between 15 and 25 % fat: thicker and richer than sour cream, leaner than crème fraîche, and, unlike them, it may be heated again after souring, which helps it keep. Further east the same thing is smetana.",
+			"text": "Schmand is cream soured with lactic acid bacteria with at least 20 % fat: thicker and richer than sour cream, leaner than crème fraîche, and, unlike them, it may be heated again after souring, which helps it keep. Further east the same thing is smetana.",
 			"source": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html",
 			"sourceName": "German MilchPQV, Anlage 8"
 		},
@@ -390,9 +390,14 @@
 			"wiki": "https://en.wikipedia.org/wiki/Kefir"
 		},
 		"mildYoghurt": {
-			"text": "Yoghurt made with milder-souring cultures, often Lactobacillus acidophilus and bifidobacteria, in place of the usual Lactobacillus bulgaricus, and often sold for its probiotic bacteria. Less sour than ordinary yoghurt; in Germany sold as Joghurt mild.",
+			"text": "Yoghurt made with milder-souring cultures, often Lactobacillus acidophilus and bifidobacteria, in place of the usual Lactobacillus delbrueckii subsp. bulgaricus, and often sold for its probiotic bacteria. Less sour than ordinary yoghurt; in Germany sold as Joghurt mild.",
 			"source": "https://www.test.de/Naturjoghurt-im-Test-Nicht-immer-ist-drin-was-draufsteht-5264514-5264521/",
 			"sourceName": "Stiftung Warentest (2018)"
+		},
+		"probioticYoghurt": {
+			"text": "Yoghurt fermented by both the usual yoghurt bacteria, Streptococcus thermophilus and Lactobacillus delbrueckii subsp. bulgaricus, with a probiotic strain added besides, often a Lacticaseibacillus paracasei (formerly Lactobacillus casei) or a bifidobacterium chosen to survive in large numbers. So it is as sour as ordinary yoghurt; often sold as a small drink.",
+			"source": "https://www.fao.org/input/download/standards/400/CXS_243e.pdf",
+			"sourceName": "Codex Standard for Fermented Milks (CXS 243-2003)"
 		},
 		"probioticDrink": {
 			"text": "Milk fermented with a single strain of probiotic bacteria rather than with yoghurt cultures, such as acidophilus milk, made with Lactobacillus acidophilus, or Yakult, a small sweetened drink of skimmed milk fermented with Lactobacillus casei Shirota since 1935.",
@@ -408,7 +413,7 @@
 			"wiki": "https://en.wikipedia.org/wiki/Mishti_doi"
 		},
 		"creamYoghurt": {
-			"text": "Yoghurt made from cream with the usual yoghurt cultures, to at least 10 % fat. Sold in Germany as Sahnejoghurt.",
+			"text": "Yoghurt made from milk enriched with cream, fermented with the usual yoghurt cultures, to at least 10 % fat. Sold in Germany as Sahnejoghurt.",
 			"source": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html",
 			"sourceName": "German MilchPQV, Anlage 8"
 		},
@@ -571,7 +576,7 @@
 			"sourceName": "Tetra Pak Dairy Processing Handbook, ch. Cheese"
 		},
 		"insect": {
-			"text": "Cheese ripened with the help of insects or mites: the larvae of the cheese fly, Piophila casei, that work through Sardinia's sheep's-milk casu marzu, or the mites put on the rinds of France's Mimolette and Germany's Milbenkäse, which help give them their rind and character.",
+			"text": "Cheese ripened with the help of insects or mites: the larvae of the cheese fly, Piophila casei, that work through Sardinia's sheep's-milk casu marzu, or the mites that colonise the rinds of France's Mimolette and Germany's Milbenkäse during ripening, which help give them their rind and character.",
 			"source": "https://doi.org/10.3168/jds.2009-2937",
 			"sourceName": "Journal of Dairy Science (2010), Melnyk et al."
 		},
@@ -651,7 +656,7 @@
 			"wiki": "https://en.wikipedia.org/wiki/Brunost"
 		},
 		"prim": {
-			"text": "A soft, sweet, light golden-brown spread from Norway, called mysmør or prim there and messmör in Sweden. It is made by boiling down whey with cream, like brunost, but it is sweetened with sugar and left spreadable instead of being pressed into a block. It tastes of mild caramel.",
+			"text": "A soft, sweet, light golden-brown spread from Norway, called mysmør or prim. It is made by boiling down whey with cream, like brunost, but it is sweetened with sugar and left spreadable instead of being pressed into a block. It tastes of mild caramel.",
 			"source": "https://snl.no/prim",
 			"sourceName": "Store norske leksikon"
 		},
@@ -674,12 +679,12 @@
 			"sourceName": "Tetra Pak Dairy Processing Handbook, ch. Whey processing"
 		},
 		"wpi": {
-			"text": "Whey protein separated further, by membrane filtration or ion exchange, to more than 90 % protein in its dry matter, with almost no fat or lactose left. Used in sports and clinical nutrition.",
+			"text": "Whey protein separated from whey by microfiltration or ion exchange, a route parallel to whey protein concentrate, to more than 90 % protein in its dry matter, with almost no fat or lactose left. Used in sports and clinical nutrition.",
 			"source": "https://dairyprocessinghandbook.tetrapak.com/chapter/whey-processing",
 			"sourceName": "Tetra Pak Dairy Processing Handbook, ch. Whey processing"
 		},
 		"permeate": {
-			"text": "What passes through the membrane when whey is ultrafiltered to make whey protein: water, lactose and the milk's minerals, with some acids, but no protein. Dried as an ingredient, or crystallised for its lactose.",
+			"text": "What passes through the membrane when whey is ultrafiltered to make whey protein: water, lactose and the milk's minerals, with some acids, but no protein. Dried as an ingredient, or crystallised for its lactose. Crystallising the lactose out leaves delactosed permeate as the other half.",
 			"source": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-powder",
 			"sourceName": "Tetra Pak Dairy Processing Handbook, ch. Milk and whey powder"
 		},
@@ -696,8 +701,9 @@
 			"wiki": "https://en.wikipedia.org/wiki/Lactulose"
 		},
 		"inhalers": {
-			"text": "A dry-powder inhaler (DPI) is a device that delivers medication to the lungs in the form of a dry powder. DPIs are commonly used to treat respiratory diseases such as asthma, bronchitis, emphysema, and COPD, although DPIs have also been used in the treatment of diabetes mellitus.",
-			"wiki": "https://en.wikipedia.org/wiki/Dry-powder_inhaler"
+			"text": "Inhalation-grade lactose is crystalline alpha-lactose monohydrate, milled and sieved to a controlled particle size. Dry-powder inhalers use it as a carrier: a small amount of drug sticks to the coarse lactose grains, which make the dose easier to meter, and the drug is released into the airstream when the patient inhales.",
+			"source": "https://en.wikipedia.org/wiki/Lactose",
+			"sourceName": "Wikipedia: Lactose (carrier of pharmaceutical products)"
 		},
 		"lactoferrin": {
 			"text": "Lactoferrin (LF), also known as lactotransferrin (LTF), is a multifunctional protein found in milk and mucus which is encoded by the LTF gene in humans. It functions as an antimicrobial protein and affects the body's immune response in a complex way, with both pro- and anti-inflammatory effects.",
@@ -754,10 +760,375 @@
 			"source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC130212",
 			"sourceName": "BMC Pediatrics (2002)"
 		},
+		"wheyHydrolysate": {
+			"text": "Whey protein that enzymes have chopped into short peptides, so that it is easier to digest and less allergenic than the intact protein. It goes into infant formulas, medical foods and sports drinks.",
+			"wiki": "https://en.wikipedia.org/wiki/Whey_protein"
+		},
 		"cppAcp": {
 			"text": "Casein phosphopeptide–amorphous calcium phosphate: a material made from the milk protein casein that holds calcium and phosphate in a form the body can use. It is sold in products such as Tooth Mousse and MI Paste, under the Recaldent name, and deposits these minerals on tooth enamel to help repair early white-spot decay.",
 			"source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6937959",
 			"sourceName": "BMC Oral Health (2019)"
+		},
+		"dickmilch": {
+			"text": "German soured milk that has set thick enough to spoon, made from milk with mesophilic lactic cultures and not heated after fermentation. The standard variety has at least 3.5 % fat.",
+			"source": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html",
+			"sourceName": "German Milk Products Regulation (MilchPQV), Annex 8"
+		},
+		"filmjolk": {
+			"text": "Filmjölk, also known as fil, is a traditional fermented milk product from Sweden, and a common dairy product within most of the Nordic countries. It is made by fermenting cow's milk with a variety of bacteria from the species Lactococcus lactis and Leuconostoc mesenteroides. The bacteria metabolize lactose, the sugar naturally found in milk, into lactic acid, which means people who are lactose intolerant can tolerate it better than other dairy products. The acid gives filmjölk a sour taste and causes proteins in the milk, mainly casein, to coagulate, thus thickening the final product. The bacteria also produce a limited amount of diacetyl, a compound with a buttery flavor, which gives filmjölk its characteristic taste.",
+			"wiki": "https://en.wikipedia.org/wiki/Filmj%C3%B6lk"
+		},
+		"piima": {
+			"text": "The Finnish soured milk drink, tart and thicker than milk. Pasteurised milk is fermented at 18–24 °C for 15–24 hours. It is also the buttermilk left from churning cultured cream (kirnupiimä). Western Finland traditionally made a stringy long piimä, eastern Finland a curdled one.",
+			"source": "https://fi.wikipedia.org/wiki/Piim%C3%A4",
+			"sourceName": "Finnish Wikipedia: Piimä"
+		},
+		"lumpCheese": {
+			"text": "Lump cheese (hrudkový syr) is the matured, drained curd of sheep's milk, or sheep's milk with cow's milk, that is made in Slovak mountain huts and then ground with salt into bryndza.",
+			"source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8005922",
+			"sourceName": "Kačániová et al. 2021, Open Life Sciences"
+		},
+		"dahi": {
+			"text": "Dahi is a traditional yogurt or fermented milk product originating from and popular throughout the Indian subcontinent. It is usually prepared from cows' milk, and sometimes buffalo milk or goat milk. The word curd is used in Indian English to refer to homemade yogurt, while the term yogurt refers to the pasteurized commercial variety known as \"heat-treated fermented milk\".",
+			"wiki": "https://en.wikipedia.org/wiki/Dahi_(curd)"
+		},
+		"ymer": {
+			"text": "A Danish concentrated soured milk, first sold commercially in the 1930s: skimmed milk fermented with mesophilic cultures, drained of about half its volume as whey and blended smooth, with cream added to about 3.5 % fat. About 5–6 g protein per 100 g, so thick and spoonable.",
+			"wiki": "https://en.wikipedia.org/wiki/Ymer_(dairy_product)"
+		},
+		"cultureButtermilk": {
+			"text": "Milk soured with lactic acid-producing cultures to a titratable acidity of at least 0.5 % as lactic acid. The US standard of identity for cultured milk lets it be sold as 'cultured buttermilk' when certain characterizing organisms are used. Not the sour liquid left from churning butter.",
+			"source": "https://www.law.cornell.edu/cfr/text/21/131.112",
+			"sourceName": "21 CFR 131.112, Cultured milk"
+		},
+		"shanklish": {
+			"text": "A ball-shaped cheese of the Levant made from strained yoghurt, about 6 cm across, rolled in thyme, za'atar or Aleppo pepper and aged and dried. Fresh it is soft and mild; aged, it turns hard and very pungent. Cheese from the Syrian coast around Tartus and Lebanon's Akkar is prized.",
+			"wiki": "https://en.wikipedia.org/wiki/Shanklish"
+		},
+		"zhentytsia": {
+			"text": "A sour drink of the Polish and Ukrainian Carpathians made from sheep's whey left over from making bundz cheese in the shepherds' huts. The whey is heated, the protein that rises is skimmed off, and the rest is left to ferment in a wooden barrel with its own microflora.",
+			"source": "https://jsite.uwm.edu.pl/articles/view/2039",
+			"sourceName": "Nutritional value of żentyca, J. Elem."
+		},
+		"heatTreatedYoghurt": {
+			"text": "Yoghurt that is heated again after it has set, so that its bacteria are killed and it keeps for weeks or, with a hotter heat and a sterile fill, months without a fridge. Pectin or another stabiliser stops the gel curdling.",
+			"source": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products",
+			"sourceName": "Tetra Pak Dairy Processing Handbook, Fermented milk products"
+		},
+		"frozenYoghurt": {
+			"text": "A frozen dessert made from yoghurt, sweetened and stabilised, then whipped and frozen like ice cream. Invented in New England, USA, in the 1970s.",
+			"wiki": "https://en.wikipedia.org/wiki/Frozen_yogurt"
+		},
+		"lactoseFree": {
+			"text": "Milk in which the lactose has been split into glucose and galactose by the enzyme lactase, or largely removed by membranes, so that people who cannot digest lactose can drink it. It tastes sweeter than ordinary milk.",
+			"wiki": "https://en.wikipedia.org/wiki/Lactose-free_milk"
+		},
+		"ultrafilteredMilk": {
+			"text": "Milk pushed through a fine membrane that keeps the proteins and lets much of the water, lactose and minerals through, so it ends up with more protein and less sugar than ordinary milk. Sold in the US mostly as fairlife.",
+			"source": "https://extension.sdstate.edu/what-ultra-filtered-milk-product",
+			"sourceName": "SDSU Extension: What is an ultra-filtered milk product?"
+		},
+		"recombined": {
+			"text": "Milk made again from its dried parts: skimmed milk powder dissolved in water and anhydrous milk fat emulsified into it. Dairies in countries with little milk of their own make it, then pasteurise or UHT it like fresh milk.",
+			"source": "https://dairyprocessinghandbook.tetrapak.com/chapter/recombined-milk-products",
+			"sourceName": "Tetra Pak Dairy Processing Handbook: Recombined milk products"
+		},
+		"reconstituted": {
+			"text": "Liquid milk made by adding water to skim milk powder, whole milk powder or a mix of the two. Unlike recombined milk it takes its fat from the powder and has no milk fat added separately. It is made where fresh milk is scarce.",
+			"source": "https://dairyprocessinghandbook.tetrapak.com/chapter/recombined-milk-products",
+			"sourceName": "Tetra Pak Dairy Processing Handbook: Recombined milk products"
+		},
+		"thermised": {
+			"text": "Raw milk heated briefly to 57–68 °C (usually 63–65 °C for 15 s), enough to cut the spoilage bacteria but not to pasteurise it, so it keeps its taste and its enzymes. Used for storing raw milk and for some cheeses.",
+			"wiki": "https://en.wikipedia.org/wiki/Thermization"
+		},
+		"mpc": {
+			"text": "Skimmed milk run through an ultrafiltration membrane, often with water added to wash more lactose out, and then dried: a powder of 40 to 90 % milk protein that has the casein and whey proteins in the ratio of milk. Used in protein drinks, yoghurts, bars and to raise the protein in cheese milk.",
+			"source": "https://en.wikipedia.org/wiki/Milk_protein_concentrate",
+			"sourceName": "Wikipedia: Milk protein concentrate"
+		},
+		"milkPermeate": {
+			"text": "What passes through the membrane when skimmed milk is ultrafiltered to make milk protein: water, lactose and minerals, with no protein to speak of. It is dried or concentrated and used as a lactose and mineral ingredient.",
+			"source": "https://adpi.org/ingredient-resources/dairy-milk-permeate/",
+			"sourceName": "ADPI: Dairy milk permeate; Tetra Pak Dairy Processing Handbook, ch. Milk and whey fractionation"
+		},
+		"mcc": {
+			"text": "The casein micelles of skim milk, kept back on a microfiltration membrane with pores so fine that the whey proteins slip through, washed with water and dried to about 85–90 % protein.",
+			"source": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation",
+			"sourceName": "Tetra Pak Dairy Processing Handbook, ch. Milk and whey fractionation (retentate called milk colloidal casein concentrate)"
+		},
+		"nativeWhey": {
+			"text": "The whey proteins of skim milk that pass through a microfiltration membrane which holds back the casein: whey made without rennet or acid, and so the cleanest starting point for milk whey protein isolate.",
+			"source": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation",
+			"sourceName": "Tetra Pak Dairy Processing Handbook, ch. Milk and whey fractionation"
+		},
+		"cottageCheese": {
+			"text": "A soft, unripened, rindless cheese of separate, near-white curd grains about 3–12 mm across, made from skimmed milk that is soured, cut and cooked, then usually mixed with a cream dressing.",
+			"source": "https://www.fao.org/input/download/standards/201/CXS_273e.pdf",
+			"sourceName": "Codex Standard for Cottage Cheese, CXS 273-1968"
+		},
+		"creamCheese": {
+			"text": "A soft, mild, unripened cheese made from cream, or milk with cream, soured by lactic bacteria and drained; the US standard demands at least 33 % milk fat and at most 55 % moisture.",
+			"wiki": "https://en.wikipedia.org/wiki/Cream_cheese"
+		},
+		"lacticCheese": {
+			"text": "Cheese whose milk is set mainly by lactic acid after a day or more at cool room temperature, with only a trace of rennet; the curd is ladled into moulds, drains by itself and is often ash-coated and mould-ripened for a few weeks.",
+			"source": "https://extranet.inao.gouv.fr/fichier/CDCPNOSainteMauredeTouraine.pdf",
+			"sourceName": "Sainte-Maure de Touraine AOP cahier des charges (INAO)"
+		},
+		"tonedMilk": {
+			"text": "Toned milk is milk, usually from buffalo, whose fat is brought down to about 3 % by adding skim milk, skim milk powder and water, while the non-fat solids are restored to their original level. It was devised in India to stretch scarce milk and sell buffalo milk at a price near cow milk.",
+			"wiki": "https://en.wikipedia.org/wiki/Toned_milk"
+		},
+		"nimish": {
+			"text": "Nimish, also called malaiyo or makhan malai, is a winter sweet of Uttar Pradesh: milk boiled, cooled overnight in the open and whipped at dawn into a light foam that is flavoured with saffron and cardamom and sold in clay cups. The name Makhan malai means cream butter, though it contains neither.",
+			"wiki": "https://en.wikipedia.org/wiki/Makhan_malai"
+		},
+		"kheer": {
+			"text": "Kheer is a sweet rice pudding of the Indian subcontinent, made by boiling milk, sugar or jaggery and rice together and flavoured with cardamom, saffron, nuts and dried fruit. Its name comes from Sanskrit kshira, milk, and it is a staple temple offering.",
+			"wiki": "https://en.wikipedia.org/wiki/Kheer"
+		},
+		"milkPudding": {
+			"text": "Milk set or thickened into a soft sweet dessert with starch, flour, egg or gelatin: blancmange, rice pudding, muhallebi and double-skin milk are all milk puddings.",
+			"wiki": "https://en.wikipedia.org/wiki/Pudding"
+		},
+		"butterTea": {
+			"text": "Butter tea is a salty drink of the Himalayas and Tibet: strongly brewed tea, often pu-erh, churned with butter and salt in a wooden churn (mdong mo) until it is thick. Yak butter is traditional, cow butter is increasingly used, and it is drunk in many bowls a day for its calories at altitude.",
+			"wiki": "https://en.wikipedia.org/wiki/Butter_tea"
+		},
+		"milletMilk": {
+			"text": "Drinks of the Sahel made by mashing millet into milk: fura da nono, millet balls (fura) stirred into fermented milk (nono), is served as a meal or on special occasions in northern Nigeria and Niger.",
+			"wiki": "https://en.wikipedia.org/wiki/Fura_(food)"
+		},
+		"calpis": {
+			"text": "A Japanese soft-drink concentrate made by fermenting skimmed milk with lactic acid bacteria and then, after sugar is added, with yeast. Founded by Kaiun Mishima, who was inspired by airag in Mongolia; released 7 July 1919 and diluted before drinking.",
+			"wiki": "https://en.wikipedia.org/wiki/Calpis"
+		},
+		"byaslag": {
+			"text": "A Mongolian cheese made by adding fermented milk to foaming heated milk, straining the curds through cloth and pressing them under a stone.",
+			"source": "https://www.mongoliantour.guide/post/short-information-about-mongolian-dairy-products",
+			"sourceName": "Mongolian Tour Guide, short information about Mongolian dairy products"
+		},
+		"sunDriedCheese": {
+			"text": "Cheese set with rennet and dried hard in the sun instead of being pressed and ripened, so it keeps through the dry season. Best documented is tchoukou of Niger, made by Fulani, Hausa and Tuareg women from raw cow's or goat's milk.",
+			"source": "https://ajfand.net/Volume25/No8/Oumarou25240.pdf",
+			"sourceName": "Oumarou et al. 2025, AJFAND 25(8)"
+		},
+		"steamedCheese": {
+			"text": "Steamed cheese is the Slovak way of turning matured sheep lump cheese into a plastic mass by working it in hot water, then pulling it into ribbons or strings. Parenica is wound into spirals, korbáčik braided; both are usually smoked and are traditionally sheep, now often cow.",
+			"source": "https://www.fondazioneslowfood.com/en/ark-of-taste-slow-food/parenica-2/",
+			"sourceName": "Slow Food Ark of Taste, Parenica"
+		},
+		"whippedCream": {
+			"text": "Cream whipped until it is light and holds its shape: air bubbles are trapped in a foam stiffened by the cream's fat globules. It needs cream of roughly 30-40 % fat and about doubles in volume.",
+			"source": "https://dairyprocessinghandbook.tetrapak.com/chapter/pasteurized-and-esl-dairy-products",
+			"sourceName": "Tetra Pak Dairy Processing Handbook, ch. 9 (whipping cream)",
+			"wiki": "https://en.wikipedia.org/wiki/Whipped_cream"
+		},
+		"romme": {
+			"text": "Norway's soured cream, made from cream, or a mix of whole milk and cream, soured with a natural or added lactic culture. Ordinary rømme has 18-20 % fat, seterrømme 35 %. Eaten on pancakes and waffles, with rakfisk, and cooked into rømmegrøt.",
+			"source": "https://no.wikipedia.org/wiki/R%C3%B8mme",
+			"sourceName": "Wikipedia (no): Rømme"
+		},
+		"cremaMexicana": {
+			"text": "Mexican and Central American cultured cream, prepared from heavy cream and buttermilk and sold fresh; thinner, tangier and softer than US sour cream, closer to crème fraîche. Used on tacos, soups, beans and roasted corn.",
+			"wiki": "https://en.wikipedia.org/wiki/Crema_(dairy_product)"
+		},
+		"gheeResidue": {
+			"text": "The brown solids that settle and are filtered off when ghee is made: heat-denatured milk protein, caramelised milk sugar, minerals, some fat and moisture. It is used for sweets such as candy, chocolate and burfi.",
+			"source": "https://epubs.icar.org.in/index.php/IJDS/article/view/34943",
+			"sourceName": "Janghu et al. 2014, Indian Journal of Dairy Science 67(4): Physicochemical analysis of ghee residue and conversion into confectionary food products"
+		},
+		"milkFatFractions": {
+			"text": "AMF split by melting point: high-melting and low-melting fats with different properties, made for bakery, chocolate and other uses.",
+			"source": "https://dairyprocessinghandbook.tetrapak.com/chapter/anhydrous-milk-fat-amf-and-butter-oil",
+			"sourceName": "Tetra Pak Dairy Processing Handbook, ch. 15 AMF and butter oil"
+		},
+		"brownButter": {
+			"text": "Butter melted and heated until the milk solids that sink to the bottom turn a deep, toasty hazelnut brown, which gives it a nutty smell and flavour. Used in French pastry (madeleines, financiers) and over fish, pasta and vegetables.",
+			"wiki": "https://en.wikipedia.org/wiki/Brown_butter"
+		},
+		"demineralisedWhey": {
+			"text": "Sweet whey with most of its mineral salts removed, then evaporated and spray-dried. Heavily demineralised grades (about 90 %) are a main ingredient of infant formula, because they give whey protein and lactose without the mineral load of whey or milk.",
+			"source": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation",
+			"sourceName": "Tetra Pak Dairy Processing Handbook, ch. 18 Milk and whey fractionation"
+		},
+		"infantFormula": {
+			"text": "A manufactured food that replaces breast milk for babies under 12 months. Cow-milk formula starts from skim milk, which is re-balanced with demineralised whey, lactose and vegetable oils, then vitamins and minerals, and is mostly sold as a spray-dried powder.",
+			"wiki": "https://en.wikipedia.org/wiki/Infant_formula"
+		},
+		"delactosedPermeate": {
+			"text": "What is left of whey permeate after lactose has been crystallised out and spun off. It keeps the minerals, the lactose that would not crystallise and small nitrogen compounds, and goes mostly into animal feed, or on to milk-mineral and lactic acid production.",
+			"source": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation",
+			"sourceName": "Tetra Pak Dairy Processing Handbook, ch. 18 Milk and whey fractionation"
+		},
+		"microparticulatedWhey": {
+			"text": "Whey protein concentrate heated in a controlled way so that the protein partly sets into a dispersion of microscopic particles. They feel creamy on the tongue and stand in for fat in ice cream, yoghurt, dressings and spreads.",
+			"wiki": "https://en.wikipedia.org/wiki/Simplesse"
+		},
+		"heatWheyProtein": {
+			"text": "Whey protein pushed out of whey by heat and acid as a soft coagulum, then separated by centrifuge. 90-95 % of the coagulable protein is recovered as a 12-15 % protein-solids concentrate.",
+			"source": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation",
+			"sourceName": "Tetra Pak Dairy Processing Handbook, ch. 18 Milk and whey fractionation"
+		},
+		"milkSerumDrink": {
+			"text": "A soft drink in which about a third is milk serum, the clear, protein-free liquid left of whey, soured with lactic acid and flavoured with fruit extracts and herbs. It is a Swiss tradition; Rivella, from 1952, is the best known.",
+			"source": "https://api.swissmilk.ch/wp-content/uploads/2019/05/fachinformation-milchserum-ernaehrungswissenschaft-de.pdf",
+			"sourceName": "Swissmilk: Fachinformation Milchserum"
+		},
+		"milkMinerals": {
+			"text": "The calcium and phosphate of whey, collected as a powder. Heated whey permeate drops its calcium phosphate, which is washed, dried and sold as a milk calcium for fortifying foods and supplements.",
+			"source": "https://researchcommons.waikato.ac.nz/handle/10289/13383",
+			"sourceName": "University of Waikato: Calcium phosphate precipitation from whey permeate"
+		},
+		"alphaLactalbumin": {
+			"text": "The smaller of the two big whey proteins (14.2 kDa, about 20 % of whey protein in cow milk), made into enriched ingredients for infant formula, where it brings the protein closer to human milk.",
+			"source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9914712",
+			"sourceName": "Romo et al., Foods 2023: Separation of alpha-Lactalbumin Enriched Fraction from Bovine Native Whey Concentrate"
+		},
+		"betaLactoglobulin": {
+			"text": "The most abundant whey protein of cow milk, made into a pure ingredient for sports and medical drinks; it carries more leucine than ordinary whey isolate.",
+			"source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9914712",
+			"sourceName": "Romo et al., Foods 2023 (58 % of whey protein, 18.4 kDa, absent from human milk)"
+		},
+		"lactitol": {
+			"text": "Lactitol is a disaccharide sugar alcohol produced from lactose. It is a bulk sweetener (E966) in sugar-free sweets, biscuits, chocolate and ice cream, and an osmotic laxative.",
+			"wiki": "https://en.wikipedia.org/wiki/Lactitol"
+		},
+		"lactobionicAcid": {
+			"text": "A sugar acid formed when the glucose half of lactose is oxidised. Its salts go into organ-transplant preservation fluids, calcium lactobionate is a food stabiliser and mineral source (E399), and the acid is used in cosmetics.",
+			"wiki": "https://en.wikipedia.org/wiki/Lactobionic_acid"
+		},
+		"tagatose": {
+			"text": "A rare sugar, a hexose that sweetens almost like sucrose with far fewer calories. From milk it is made by splitting lactose into glucose and galactose and then isomerising the galactose into tagatose.",
+			"wiki": "https://en.wikipedia.org/wiki/Tagatose"
+		},
+		"wheyVodka": {
+			"text": "Vodka distilled from cheese whey. A yeast turns the lactose of the whey into alcohol, which is distilled, filtered and brought to 40 %. Black Cow in West Dorset has made it since 2012.",
+			"wiki": "https://en.wikipedia.org/wiki/Black_Cow_Vodka"
+		},
+		"maltedMilk": {
+			"text": "A powder of malted barley, wheat flour and dried whole milk, stirred into hot or cold milk or water. It began as an infant food and became a drink and a flavour of sweets.",
+			"wiki": "https://en.wikipedia.org/wiki/Malted_milk"
+		},
+		"sweetCurd": {
+			"text": "Curd (tvorog or quark) pressed, sieved and mixed with sugar, butter, sour cream or egg, sometimes cooked, and set in a mould; the East Slavic Easter dish paskha is the classic.",
+			"wiki": "https://en.wikipedia.org/wiki/Paskha"
+		},
+		"cheesecake": {
+			"text": "A dessert of soft fresh cheese, sugar and eggs or cream, on a crumb or pastry base, baked or set cold. Cheese cakes go back to ancient Greece.",
+			"wiki": "https://en.wikipedia.org/wiki/Cheesecake"
+		},
+		"staka": {
+			"text": "Staka is a Cretan speciality made by cooking sheep or goat cream with a little flour over low heat. The protein-rich part sets with the flour into staka, a thick white paste eaten hot with bread or in pies and pilaf.",
+			"wiki": "https://en.wikipedia.org/wiki/Roux"
+		},
+		"stakovoutiro": {
+			"text": "The fat that separates when Cretan cream is cooked into staka. It is kept as a butter with a faint cheesy flavour and used, above all, in the Cretan wedding rice, gamopilafo.",
+			"wiki": "https://en.wikipedia.org/wiki/Roux"
+		},
+		"custard": {
+			"text": "A sweet milk or cream cooked with egg or egg yolk until it thickens or sets. It runs from a thin pouring sauce (crème anglaise) to thick pastry cream and to desserts that set whole, such as crème caramel.",
+			"wiki": "https://en.wikipedia.org/wiki/Custard"
+		},
+		"milkChocolate": {
+			"text": "Solid chocolate made of cocoa products, sugar and milk or milk products. In the EU it must hold at least 25 % cocoa solids and 14 % dry milk solids.",
+			"source": "https://www.legislation.gov.uk/eudr/2000/36/annexes/data.htm",
+			"sourceName": "Directive 2000/36/EC, Annex I (legislation.gov.uk copy)"
+		},
+		"milkCaramel": {
+			"text": "A chewy sweet cooked from milk or cream, sugar, glucose syrup and butter; sold as milk caramels or cream caramels.",
+			"wiki": "https://en.wikipedia.org/wiki/Caramel"
+		},
+		"brigadeiro": {
+			"text": "A Brazilian sweet of condensed milk, cocoa powder and butter, cooked to a soft-ball stage, rolled into balls and coated in chocolate sprinkles.",
+			"wiki": "https://en.wikipedia.org/wiki/Brigadeiro"
+		},
+		"pannaCotta": {
+			"text": "An Italian dessert of sweetened cream, sometimes with milk, set with gelatin in a mould, flavoured with vanilla, coffee or other things.",
+			"wiki": "Panna cotta"
+		},
+		"rommegrot": {
+			"text": "A thick Norwegian porridge of soured cream, whole milk and wheat flour, eaten with sugar and cinnamon on festive occasions.",
+			"wiki": "Rømmegrøt"
+		},
+		"lactotripeptide": {
+			"text": "Milk soured with Lactobacillus helveticus, whose enzymes cut the casein so that two tiny peptides, Val-Pro-Pro (VPP) and Ile-Pro-Pro (IPP), come free. Both inhibit angiotensin-converting enzyme in the test tube, and the milk is sold in Japan and Finland to people with mild high blood pressure.",
+			"source": "https://en.wikipedia.org/wiki/Lactotripeptides",
+			"sourceName": "Wikipedia: Lactotripeptides"
+		},
+		"lactoperoxidase": {
+			"text": "An enzyme that milk carries to defend itself: with hydrogen peroxide it oxidises thiocyanate into compounds that stop bacteria. It is isolated from whey, like lactoferrin, and used in toothpaste, mouthrinse and cosmetics, and in a Codex method to keep raw milk in warm countries.",
+			"source": "https://en.wikipedia.org/wiki/Lactoperoxidase",
+			"sourceName": "Wikipedia: Lactoperoxidase"
+		},
+		"tabletLactose": {
+			"text": "Milk sugar is the filler that gives tablets and capsules their bulk and lets the powder flow and press. Different grades are made by drying a lactose suspension in a spray, gluing fine crystals into granules, or dehydrating the crystals.",
+			"source": "https://en.wikipedia.org/wiki/Lactose",
+			"sourceName": "Wikipedia: Lactose"
+		},
+		"donorMilk": {
+			"text": "Milk given by screened mothers to a milk bank, heated gently and handed out on prescription to babies, mostly premature ones, whose own mothers cannot supply enough. The first milk bank is credited to Vienna in 1909 and the first American one to the Boston Floating Hospital the year after.",
+			"source": "https://en.wikipedia.org/wiki/Milk_bank",
+			"sourceName": "Wikipedia: Milk bank"
+		},
+		"ghrita": {
+			"text": "Ghee cooked slowly with a herb paste and water or a decoction, then strained, as a classical Ayurvedic preparation. The ghee carries fat-soluble herb compounds and is taken as medicine, not food.",
+			"source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7527999",
+			"sourceName": "PMC7527999: Polyherbal Bhallatakadi ghrita"
+		},
+		"calfReplacer": {
+			"text": "A powder that replaces the cow's milk for a calf, so the cow's milk can be sold. It is made of dried skim milk and whey with added fat, vitamins and minerals, mixed with warm water and fed from bottle, bucket or automatic feeder.",
+			"source": "https://www.aphis.usda.gov/sites/default/files/bamn18_guidemilkrepl.pdf",
+			"sourceName": "USDA BAMN, A Guide to Calf Milk Replacers"
+		},
+		"mfgm": {
+			"text": "The thin skin that wraps each fat globule in milk, rich in phospholipids and special proteins. Because churning breaks the globules, it ends up in the buttermilk, from which it is concentrated and dried for infant formula and supplements.",
+			"source": "https://www.frontiersin.org/journals/nutrition/articles/10.3389/fnut.2021.807284/pdf",
+			"sourceName": "Frontiers in Nutrition 2021: Wang & Mu, Advancement on Milk Fat Globule Membrane"
+		},
+		"wineFiningCasein": {
+			"text": "A milk protein used to clean up white wine: it binds the polyphenols that make wine brown and bitter, clumps, and sinks. It is racked off with the lees, so little or none should remain.",
+			"wiki": "https://en.wikipedia.org/wiki/Fining_(wine)"
+		},
+		"butterSculpture": {
+			"text": "Butter shaped into figures. The earliest documented one is from a papal banquet in 1536; American dairy promoters made butter sculptures to compete with margarine from 1890 to 1930, and the Iowa State Fair has shown a butter cow every year since 1911. In Tibetan Buddhism coloured butter torma are altar offerings and lamps burn butter.",
+			"wiki": "https://en.wikipedia.org/wiki/Butter_sculpture"
+		},
+		"litmusMilk": {
+			"text": "Skim milk with the dye litmus, kept in tubes to see what a bacterium does to milk: sours the lactose, clots or digests the casein, or bleaches the dye. It has been a classroom and diagnostic medium for identifying species for a century.",
+			"wiki": "https://en.wikipedia.org/wiki/Litmus_milk"
+		},
+		"skimMilkAgar": {
+			"text": "Skim milk with agar (and nutrients such as tryptone, yeast extract and dextrose) set as a solid plate. The casein makes it opaque, so a bacterium that digests casein with a protease leaves a clear halo around its colonies. A separate lab test medium, not litmus milk.",
+			"source": "https://microbeonline.com/casein-hydrolysis-test-principle-procedure-and-uses/",
+			"sourceName": "Microbe Online, casein hydrolysis test"
+		},
+		"milkSpray": {
+			"text": "Fresh milk diluted with water and sprayed on squash or zucchini leaves to hold back powdery mildew. In Brazilian greenhouse tests it worked as well as the fungicides fenarimol and benomyl, which is why organic growers use it.",
+			"source": "https://echocommunity.org/resources/3e8e70b3-685e-4edc-93c5-a5c489382a54",
+			"sourceName": "ECHO, milk as a fungicide (summarising Bettiol, Crop Protection 18, 1999)"
+		},
+		"caseinCoating": {
+			"text": "Dissolved casein used as the glue in a coating: with clay on art paper in the late 19th to mid 20th century, and with pigment on leather, which is then glazed under heat and pressure. It was the main leather binder by 1920.",
+			"source": "https://mci.si.edu/node/1265284",
+			"sourceName": "Smithsonian Museum Conservation Institute"
+		},
+		"flavouredMilk": {
+			"text": "Milk sweetened and flavoured, most often with cocoa, but also with coffee, malt, vanilla, strawberry or banana. It is sold pasteurised and chilled, or UHT-treated and shelf-stable.",
+			"wiki": "https://en.wikipedia.org/wiki/Flavored_milk"
+		},
+		"milkTea": {
+			"text": "A family of drinks that combine tea and milk, hot or cold, often with spices or sweetener. Some are brewed in milk, others have milk added to strong tea.",
+			"wiki": "https://en.wikipedia.org/wiki/Milk_tea"
+		},
+		"creamLiqueur": {
+			"text": "A liqueur made from dairy cream and a flavoured spirit: whiskey in Irish cream, marula-fruit spirit in Amarula, rum in several others. It can be drunk neat, on ice or in cocktails.",
+			"wiki": "https://en.wikipedia.org/wiki/Cream_liqueur"
+		},
+		"milkshake": {
+			"text": "A cold, thick, sweet drink made by blending milk and ice cream with flavourings such as chocolate, caramel, malt or fruit.",
+			"wiki": "https://en.wikipedia.org/wiki/Milkshake"
 		}
 	},
 	"examples": {
@@ -770,16 +1141,12 @@
 			"source": "https://is.wikipedia.org/wiki/Ábrystir",
 			"sourceName": "Wikipedia (is): Ábrystir"
 		},
-		"Junnu": {
-			"text": "Kharvas, also known as Junnu, or Ginnu, is an Indian milk pudding made from cow or buffalo colostrum, the first form of milk produced within one or two days of giving birth. It is prepared by steaming a mix of colostrum, milk, and jaggery or sugar until it coagulates into a jiggling solid. Cardamom, saffron, nutmeg or sesame is added for flavoring. The dish is rich in protein.",
-			"wiki": "https://en.wikipedia.org/wiki/Kharvas"
-		},
 		"Kharvas": {
 			"text": "Kharvas, also known as Junnu, or Ginnu, is an Indian milk pudding made from cow or buffalo colostrum, the first form of milk produced within one or two days of giving birth. It is prepared by steaming a mix of colostrum, milk, and jaggery or sugar until it coagulates into a jiggling solid. Cardamom, saffron, nutmeg or sesame is added for flavoring. The dish is rich in protein.",
 			"wiki": "https://en.wikipedia.org/wiki/Kharvas"
 		},
 		"ATryn": {
-			"text": "ATryn is the brand name of the anticoagulant antithrombin manufactured by the Massachusetts-based U.S. company rEVO Biologics. It is made from the milk of goats that have been genetically modified to produce human antithrombin, a plasma protein with anticoagulant properties. Microinjection was used to insert human antithrombin genes into the cell nucleus of their embryos. ATryn is the first medicine produced using genetically engineered animals. GTC states that one genetically modified goat can produce the same amount of antithrombin in a year as 90,000 blood donations. GTC chose goats for the process because they reproduce more rapidly than cattle and produce more protein than rabbits or mice.",
+			"text": "ATryn is the brand name of the anticoagulant antithrombin manufactured by the Massachusetts-based U.S. company rEVO Biologics. It is made from the milk of goats that have been genetically modified to produce human antithrombin, a plasma protein with anticoagulant properties. Microinjection was used to insert human antithrombin genes into the cell nucleus of their embryos. ATryn is the first medicine produced using genetically engineered animals. GTC states that one genetically modified goat can produce the same amount of antithrombin in a year as 90,000 blood donations. GTC chose goats for the process because they reproduce more rapidly than cattle and produce more protein than rabbits or mice. It has since been withdrawn from the market.",
 			"wiki": "https://en.wikipedia.org/wiki/ATryn"
 		},
 		"Ruconest": {
@@ -864,15 +1231,6 @@
 			"source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11521749/",
 			"sourceName": "Food Science & Nutrition (2024), review of Ethiopian fermented milk products"
 		},
-		"Dickmilch": {
-			"text": "German soured milk that has set thick enough to spoon, made from milk with mesophilic lactic cultures and not heated after fermentation. The standard variety has at least 3.5 % fat.",
-			"source": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html",
-			"sourceName": "German Milk Products Regulation (MilchPQV), Annex 8"
-		},
-		"Filmjölk": {
-			"text": "Filmjölk, also known as fil, is a traditional fermented milk product from Sweden, and a common dairy product within most of the Nordic countries. It is made by fermenting cow's milk with a variety of bacteria from the species Lactococcus lactis and Leuconostoc mesenteroides. The bacteria metabolize lactose, the sugar naturally found in milk, into lactic acid, which means people who are lactose intolerant can tolerate it better than other dairy products. The acid gives filmjölk a sour taste and causes proteins in the milk, mainly casein, to coagulate, thus thickening the final product. The bacteria also produce a limited amount of diacetyl, a compound with a buttery flavor, which gives filmjölk its characteristic taste.",
-			"wiki": "https://en.wikipedia.org/wiki/Filmj%C3%B6lk"
-		},
 		"Prostokvasha": {
 			"text": "The Russian soured milk. Traditionally milk was left to sour on its own or started with some ready soured milk. Factory versions use pure cultures that define the type: mesophilic lactococci for ordinary prostokvasha, thermophilic streptococci with Lactobacillus bulgaricus for the Mechnikov kind.",
 			"source": "https://ru.wikipedia.org/wiki/%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%BA%D0%B2%D0%B0%D1%88%D0%B0",
@@ -881,11 +1239,6 @@
 		"Clabber": {
 			"text": "Clabber is a type of soured milk. It is produced by allowing unpasteurized milk to turn sour (ferment) at a specific humidity and temperature. Over time, the milk thickens or curdles into a yogurt-like consistency with a strong, sour flavor. According to Joy of Cooking, \"Clabber... is milk that has soured to the stage of a firm curd but not to a separation of the whey.\"",
 			"wiki": "https://en.wikipedia.org/wiki/Clabber_(food)"
-		},
-		"Piimä": {
-			"text": "The Finnish soured milk drink, tart and thicker than milk. Pasteurised milk is fermented at 18–24 °C for 15–24 hours. It is also the buttermilk left from churning cultured cream (kirnupiimä). Western Finland traditionally made a stringy long piimä, eastern Finland a curdled one.",
-			"source": "https://fi.wikipedia.org/wiki/Piim%C3%A4",
-			"sourceName": "Finnish Wikipedia: Piimä"
 		},
 		"Långfil": {
 			"text": "A Swedish fermented milk with a cohesive, stretchy ('long') texture and mild sourness. It is cultured slowly at low temperature with Lactococcus lactis subsp. cremoris strains that make exopolysaccharides. It was traditional in northern and central Sweden and western Finland, where a dried cloth soaked in old fil carried the culture.",
@@ -914,6 +1267,10 @@
 			"text": "Actimel is a probiotic yoghurt-type drink produced by the French company Danone.",
 			"wiki": "https://en.wikipedia.org/wiki/Actimel"
 		},
+		"Activia": {
+			"text": "Activia is a brand of yoghurt made by the French company Danone, fermented with the two yoghurt bacteria and its own strain of Bifidobacterium animalis.",
+			"wiki": "https://en.wikipedia.org/wiki/Activia"
+		},
 		"Yakult": {
 			"text": "Yakult is a Japanese sweetened probiotic milk beverage fermented with the bacteria strain Lacticaseibacillus casei Shirota. It is sold by Yakult Honsha, based in Tokyo. The name \"Yakult\" was coined from jahurto, an Esperanto word meaning \"yogurt\".",
 			"wiki": "https://en.wikipedia.org/wiki/Yakult"
@@ -923,12 +1280,8 @@
 			"source": "https://doi.org/10.3168/jds.S0022-0302(89)79389-9",
 			"sourceName": "Journal of Dairy Science (1989)"
 		},
-		"Dahi": {
-			"text": "Dahi is a traditional yogurt or fermented milk product originating from and popular throughout the Indian subcontinent. It is usually prepared from cows' milk, and sometimes buffalo milk or goat milk. The word curd is used in Indian English to refer to homemade yogurt, while the term yogurt refers to the pasteurized commercial variety known as \"heat-treated fermented milk\".",
-			"wiki": "https://en.wikipedia.org/wiki/Dahi_(curd)"
-		},
 		"Tarag": {
-			"text": "Mongolian yoghurt, made from cow's, yak's, goat's or sheep's milk. Eaten as it is, dried into aaruul, or, made from cow's or yak's milk, distilled into shimiin arkhi.",
+			"text": "Mongolian soured milk, made from cow's, yak's, goat's or sheep's milk. Eaten as it is, dried into aaruul, or, made from cow's or yak's milk, distilled into shimiin arkhi.",
 			"source": "https://www.lemangeur-ocha.com/wp-content/uploads/2012/02/I_BIANQUIS_alcools_lait_mongolie_01.pdf",
 			"sourceName": "Bianquis, Les alcools de lait en Mongolie (OCHA, 2004)"
 		},
@@ -994,6 +1347,10 @@
 			"source": "https://www.fao.org/one-country-one-priority-product/asia-pacific/mongolia/en",
 			"sourceName": "FAO, One Country One Priority Product: Mongolia"
 		},
+		"Chal": {
+			"text": "Chal is the Turkmen fermented camel milk, a sparkling white, sour drink. It is the regional counterpart of Kazakh shubat, and is difficult to export because it is perishable.",
+			"wiki": "https://en.wikipedia.org/wiki/Chal"
+		},
 		"Shubat": {
 			"text": "Chal, also shubat or khoormog, is a Turkic and Mongolic beverage of fermented camel milk, sparkling white with a sour flavor, popular in Central Asia — particularly in Kazakhstan, Uzbekistan and Turkmenistan. In Kazakhstan the drink is known as shubat, and is a staple summer food. Due to preparation requirements and perishable nature, chal has proved difficult to export. Agaran is collected from the surface of chal.",
 			"wiki": "https://en.wikipedia.org/wiki/Chal"
@@ -1039,7 +1396,7 @@
 			"sourceName": "Bianquis, Les alcools de lait en Mongolie (OCHA, 2004)"
 		},
 		"Khorz": {
-			"text": "Arkhi distilled a third time, stronger still, after artz.",
+			"text": "Arz distilled once more (a third distillation), stronger still.",
 			"source": "https://mongoltoli.mn/print.php?opt=1&ug_id=6890",
 			"sourceName": "Mongolian Academy of Sciences dictionary (mongoltoli.mn), entry арз"
 		},
@@ -1325,9 +1682,14 @@
 			"text": "Cancoillotte or cancoyotte is a runny French cheese made from metton cheese, and produced principally in Franche-Comté, but also Lorraine and Luxembourg, where it is also called Kachkéis or Kochkäse in German. It is a typical cheese in Franc-Comtois gastronomy. It is eaten all year around, served cold or hot.",
 			"wiki": "https://en.wikipedia.org/wiki/Cancoillotte"
 		},
-		"Requeijão cremoso": {
+		"Requeijão (Portugal)": {
 			"text": "Requeijão is a whey cheese produced in Portugal and Brazil. It is similar to ricotta and is used to make cheese spreads and as an ingredient in some pastries, such as queijada.",
 			"wiki": "https://en.wikipedia.org/wiki/Requeij%C3%A3o"
+		},
+		"Requeijão cremoso": {
+			"text": "The Brazilian spreadable cheese sold in cups, made by melting a drained, washed milk curd with cream or butter and melting salts. Not the Portuguese whey cheese of the same name, which is closer to ricotta.",
+			"source": "https://vigilanciasanitaria.prefeitura.rio/wp-content/uploads/sites/84/2023/05/Portaria-359-RTIQ-Requeijao.pdf",
+			"sourceName": "MAPA Portaria 359/1997, RTIQ do Requeijão (Brazil)"
 		},
 		"Plavleny syrok": {
 			"text": "The small foil-wrapped processed cheese of the Soviet Union and Russia. The best known, Druzhba, was developed in 1960 at Moscow's Karat plant and is still made to the same recipe.",
@@ -1345,6 +1707,23 @@
 		"Leipäjuusto": {
 			"text": "Bread cheese, sometimes known in the United States as Finnish squeaky cheese, is a Finnish fresh cheese traditionally made from cow's colostrum. In the US, cow's milk is generally used but can also be made with goat milk. Commercially available versions are typically made from cow's milk. The cheese originally comes from Southern Ostrobothnia, Northern Finland, and Kainuu.",
 			"wiki": "https://en.wikipedia.org/wiki/Bread_cheese"
+		},
+		"Burrata": {
+			"text": "Burrata is an Italian fresh cheese from Apulia: a shell of pasta filata mozzarella filled with stracciatella and cream.",
+			"wiki": "https://en.wikipedia.org/wiki/Burrata"
+		},
+		"Stracciatella di bufala": {
+			"text": "Stracciatella made from buffalo milk: shredded stretched curd mixed with cream.",
+			"wiki": "https://en.wikipedia.org/wiki/Stracciatella_(cheese)"
+		},
+		"Bryndza podhalańska": {
+			"text": "Bryndza Podhalańska is a Polish PDO cheese from the Podhale region, made from sheep milk with at most 40% cow milk.",
+			"wiki": "https://en.wikipedia.org/wiki/Bryndza"
+		},
+		"Slovenská bryndza": {
+			"text": "Slovenská bryndza is a Slovak PGI cheese: ground sheep lump cheese, or sheep lump cheese mixed with up to 50% cow lump cheese, with salt (OJ C 232/2007).",
+			"source": "https://epa.hu/00800/00877/01322/pdf/C_2007_232_0017_0022.pdf",
+			"sourceName": "Slovenská bryndza PGI summary, OJ C 232/2007"
 		},
 		"Queso para freír": {
 			"text": "A firm, salty white cheese from the Spanish-speaking Caribbean and Central America, made to be sliced and fried rather than melted. In the Dominican Republic and Nicaragua it is the cheese used for queso frito, slices of fried cheese.",
@@ -1506,30 +1885,1218 @@
 			"source": "https://www.designingbuildings.co.uk/wiki/Paris_white",
 			"sourceName": "Designing Buildings Wiki (quoting Historic Scotland, Interior Paint)"
 		},
-		"Milk chocolate": {
-			"text": "Chocolate made from cocoa, sugar and milk solids, the milk going in as powder: powdered milk is used in chocolate and caramel sweets, and wherever liquid milk would make a mixture too thin.",
-			"source": "https://en.wikipedia.org/wiki/Powdered_milk",
-			"sourceName": "Wikipedia: Powdered milk"
-		},
-		"Infant formula": {
-			"text": "Powdered milk is frequently used in the manufacture of infant formula.",
-			"source": "https://en.wikipedia.org/wiki/Powdered_milk",
-			"sourceName": "Wikipedia: Powdered milk"
-		},
-		"Food aid": {
-			"text": "Keeping for months without a fridge and cheap to ship, powdered milk is a common item in UN food aid supplies, and is widely used where fresh milk is not a viable option.",
-			"source": "https://en.wikipedia.org/wiki/Powdered_milk",
-			"sourceName": "Wikipedia: Powdered milk"
-		},
-		"Film-set cocaine": {
-			"text": "Non-toxic and white, powdered milk is used on film sets as a stand-in for cocaine and other drugs.",
-			"source": "https://en.wikipedia.org/wiki/Powdered_milk",
-			"sourceName": "Wikipedia: Powdered milk"
-		},
 		"Jameed": {
 			"text": "Jordan's hard, dry skimmed yogurt, made mainly from sheep's milk on a small scale. Traditionally the yogurt is churned to take off the butter, and the skimmed remainder is salted and dried. Market samples average about 85% solids and 16% salt, which lets it keep for months.",
 			"source": "https://repo.mel.cgiar.org/items/8150ce16-1c34-465a-a19d-cf72f9d5aac0/full",
 			"sourceName": "Hilali et al., ICARDA (2017)"
+		},
+		"Kule naoto": {
+			"text": "A traditional fermented milk of the Maasai in Kenya, soured in a gourd. Like mursik of the Nandi, it is one of the two fermented milks studied together for their lactic acid bacteria.",
+			"source": "https://en.wikipedia.org/wiki/Mursik",
+			"sourceName": "Wikipedia: Mursik"
+		},
+		"Milch ab Hof": {
+			"text": "Raw milk sold directly on the farm under a registration, not the certified kind; the buyer is told to boil it before drinking.",
+			"source": "https://de.wikipedia.org/wiki/Rohmilch",
+			"sourceName": "Wikipedia: Rohmilch"
+		},
+		"Mató": {
+			"text": "A fresh Catalan cheese of cow's or goat's milk, set with a little rennet or acid and drained in a mould; mild, soft and eaten with honey.",
+			"wiki": "https://en.wikipedia.org/wiki/Mat%C3%B3"
+		},
+		"Gjetost": {
+			"text": "A brown Norwegian whey cheese boiled down with goat milk; ekte geitost is made of whey and goat milk only.",
+			"wiki": "https://en.wikipedia.org/wiki/Brunost"
+		},
+		"Gudbrandsdalsost": {
+			"text": "The best-known brunost: a sweet brown cheese boiled down from cow and goat milk, cream and whey.",
+			"wiki": "https://en.wikipedia.org/wiki/Brunost"
+		},
+		"Fløtemysost": {
+			"text": "A brunost of whey, cow milk and cream, with no goat milk.",
+			"wiki": "https://en.wikipedia.org/wiki/Brunost"
+		},
+		"Queso blanco": {
+			"text": "Queso blanco is a fresh white cheese of Latin America and the Caribbean, made by curdling hot milk with acid (or sometimes rennet) and lightly pressing the curd. It is soft, mild and does not melt.",
+			"wiki": "https://en.wikipedia.org/wiki/Queso_blanco"
+		},
+		"Duphalac": {
+			"text": "Duphalac is a brand name of lactulose, sold as a syrup.",
+			"source": "https://en.wikipedia.org/wiki/Lactulose",
+			"sourceName": "Wikipedia: Lactulose"
+		},
+		"Kristalose": {
+			"text": "Kristalose is a brand name of lactulose, sold as crystals.",
+			"source": "https://en.wikipedia.org/wiki/Lactulose",
+			"sourceName": "Wikipedia: Lactulose"
+		},
+		"Glytactin": {
+			"text": "Glytactin is a brand of PKU medical food made from glycomacropeptide.",
+			"source": "https://en.wikipedia.org/wiki/Glycomacropeptide",
+			"sourceName": "Wikipedia: Glycomacropeptide"
+		},
+		"Tooth Mousse": {
+			"text": "Tooth Mousse is a tooth-care paste containing CPP-ACP.",
+			"source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6937959",
+			"sourceName": "BMC Oral Health (2019)"
+		},
+		"MI Paste": {
+			"text": "MI Paste is a tooth-care paste containing CPP-ACP.",
+			"source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6937959",
+			"sourceName": "BMC Oral Health (2019)"
+		},
+		"Sweet cream butter": {
+			"text": "Butter made from cream that has not been soured, with no lactic acid bacteria culture added. German law (Süßrahmbutter) sets its pH above 6.4; it is one type of butter beside cultured (Sauerrahmbutter) and mildly soured butter.",
+			"source": "https://milchindustrie.de/milkipedia/butter/",
+			"sourceName": "Milchindustrie-Verband, Milkipedia: Butter"
+		},
+		"Brunost gomme": {
+			"text": "Brown gomme: the whey is boiled in with the curd until it browns.",
+			"source": "https://snl.no/gomme_-_melkerett",
+			"sourceName": "Store norske leksikon, Gomme (melkerett)"
+		},
+		"Hvitgomme": {
+			"text": "White gomme: the curd is separated from the whey and boiled down with cream, so it is not browned.",
+			"source": "https://www.melk.no/Melkefakta/Tradisjonelle-melkeretter/Gomme",
+			"sourceName": "Melk.no, Gomme"
+		},
+		"Ylette": {
+			"text": "The lighter version of ymer, with 1.5 % fat.",
+			"wiki": "https://en.wikipedia.org/wiki/Ymer_(dairy_product)"
+		},
+		"Gioddu": {
+			"text": "A Sardinian fermented milk, white, creamy and quite acidic (pH about 3.8–4.2), made by back-slopping from boiled or pasteurised milk. A starter called sa madrighe, milk curdled with calf rennet and left for one to two days, can start it, and it is ready in about 8 hours.",
+			"source": "https://www.mdpi.com/2624-862X/6/5/61/htm",
+			"sourceName": "Dairy 6(5):61"
+		},
+		"Zabady": {
+			"text": "The yoghurt of Egypt, made mainly from buffalo or cow milk and firm enough to hold its shape. Sold commercially and made at home, where a spoonful of the last batch starts the next.",
+			"source": "https://doi.org/10.3390/fermentation8120679",
+			"sourceName": "Bintsis & Papademas 2022, Table 2"
+		},
+		"Meekiri": {
+			"text": "The traditional fermented buffalo-milk gel of Sri Lanka, set by back-slopping in a clay pot. It is thicker, creamier and whiter than cow's-milk yoghurt and is eaten with kithul palm treacle.",
+			"source": "https://journalofethnicfoods.biomedcentral.com/articles/10.1186/s42779-021-00105-4",
+			"sourceName": "Journal of Ethnic Foods (2021)"
+		},
+		"Mabisi": {
+			"text": "A spontaneously fermented raw milk of Zambia, left at room temperature in a calabash for about two days. Lactococcus dominates, and seven named types are known, e.g. tonga and barotse.",
+			"source": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6417723/",
+			"sourceName": "The art of mabisi production"
+		},
+		"Nunu": {
+			"text": "A yoghurt-like spontaneously fermented milk of Ghana and West Africa, made from raw cow's milk.",
+			"source": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4745485/",
+			"sourceName": "Int. J. Food Sci. (2014)"
+		},
+		"Trahanas": {
+			"text": "A dried food of cracked wheat or a couscous-like paste mixed with fermented milk, dried into coarse crumbs and made into a thick soup. It is acidic and dry, so it keeps long. In Cyprus it is a national speciality, often served with halloumi.",
+			"source": "https://en.wikipedia.org/wiki/Tarhana",
+			"sourceName": "Tarhana, Wikipedia"
+		},
+		"Maconi": {
+			"text": "A kefir-like drink of the Caucasian mountains, made from cow's milk by spontaneous fermentation with mesophilic lactic acid bacteria and yeasts.",
+			"source": "https://doi.org/10.3390/fermentation8120679",
+			"sourceName": "Bintsis & Papademas 2022, Table 2"
+		},
+		"Podkvasa": {
+			"text": "A kefir-like drink of Bulgaria, made from sheep's milk by spontaneous fermentation with mesophilic lactic acid bacteria and yeasts.",
+			"source": "https://doi.org/10.3390/fermentation8120679",
+			"sourceName": "Bintsis & Papademas 2022, Table 2"
+		},
+		"Thermised yoghurt": {
+			"text": "Yoghurt heated to 60–70 °C for a few seconds after fermenting, which keeps 1–2 months chilled.",
+			"source": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products",
+			"sourceName": "Tetra Pak Dairy Processing Handbook, Fermented milk products"
+		},
+		"Ambient yoghurt": {
+			"text": "Yoghurt heated to 75–110 °C for 5–20 s after fermenting and filled aseptically, so it keeps 4–12 months at room temperature; sold as drinking yoghurt pouches.",
+			"source": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products",
+			"sourceName": "Tetra Pak Dairy Processing Handbook, Fermented milk products"
+		},
+		"Chigee": {
+			"text": "A traditional fermented mare's milk of Mongolia and Inner Mongolia, soured and lightly alcoholic by spontaneous fermentation with lactic bacteria and yeasts, closely related to airag.",
+			"source": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6977523/",
+			"sourceName": "Food Sci. Nutr. (2020), 188 Xilin Gol samples; Table 2"
+		},
+		"Torta del Casar": {
+			"text": "A soft sheep milk cheese from Casar de Cáceres in Extremadura, curdled with the pistils of the wild cardoon thistle, which give it a faint bitterness.",
+			"wiki": "https://en.wikipedia.org/wiki/Torta_del_Casar"
+		},
+		"Serra da Estrela": {
+			"text": "A Portuguese sheep milk cheese from the Serra da Estrela mountains, curdled with thistle instead of rennet.",
+			"wiki": "https://en.wikipedia.org/wiki/Serra_da_Estrela_cheese"
+		},
+		"Areesh": {
+			"text": "An Egyptian fresh cheese of skimmed buffalo or cow milk: the milk is fermented to laban rayeb, gently heated so the curd separates, and drained. Eaten with honey or tomatoes and herbs, and the base of mish.",
+			"wiki": "https://en.wikipedia.org/wiki/Areesh_cheese"
+		},
+		"Petit-suisse": {
+			"text": "A Normandy fresh cheese, unripened and unsalted, of cow milk enriched with cream, smoothed and drained in a centrifuge.",
+			"wiki": "https://en.wikipedia.org/wiki/Petit-suisse"
+		},
+		"Sainte-Maure de Touraine": {
+			"text": "A French goat cheese from Touraine, a log with a rye straw through the middle and an ash-coloured rind, ripened at least 10 days; protected designation of origin.",
+			"source": "https://extranet.inao.gouv.fr/fichier/CDCPNOSainteMauredeTouraine.pdf",
+			"sourceName": "Sainte-Maure de Touraine AOP cahier des charges (INAO)"
+		},
+		"Crottin de Chavignol": {
+			"text": "A small French goat cheese from Chavignol in the Loire valley, eaten young with a white rind or aged hard; AOC since 1976.",
+			"wiki": "https://en.wikipedia.org/wiki/Crottin_de_Chavignol"
+		},
+		"Selles-sur-Cher": {
+			"text": "A charcoal-coated French goat cheese cylinder from the Loire valley; AOC since 1975.",
+			"wiki": "https://en.wikipedia.org/wiki/Selles-sur-Cher_cheese"
+		},
+		"Valençay": {
+			"text": "A French goat cheese shaped as a truncated pyramid of 200–250 g, dusted with charcoal and ripened about three weeks; AOC since 1998.",
+			"wiki": "https://en.wikipedia.org/wiki/Valen%C3%A7ay_cheese"
+		},
+		"Chabichou du Poitou": {
+			"text": "A French goat cheese from Poitou in a small truncated cone; AOC since 1990.",
+			"wiki": "https://en.wikipedia.org/wiki/Chabichou_du_Poitou"
+		},
+		"Pouligny-Saint-Pierre": {
+			"text": "A French goat cheese of the Berry shaped as a pyramid of 250 g; AOC since 1976.",
+			"wiki": "https://en.wikipedia.org/wiki/Pouligny-Saint-Pierre_cheese"
+		},
+		"Reblochon": {
+			"text": "A soft washed-rind cheese from the Alps of Haute-Savoie, made from raw cow milk of the second milking.",
+			"wiki": "https://en.wikipedia.org/wiki/Reblochon"
+		},
+		"Maroilles": {
+			"text": "A soft cheese from northern France with an orange-red washed rind, in a rectangular block; AOC since 1976.",
+			"wiki": "https://en.wikipedia.org/wiki/Maroilles_cheese"
+		},
+		"Livarot": {
+			"text": "A Normandy washed-rind cow-milk cheese wrapped in rings of dried reedmace, AOC since 1975.",
+			"wiki": "https://en.wikipedia.org/wiki/Livarot_cheese"
+		},
+		"Pont-l'Évêque": {
+			"text": "A Normandy cow-milk cheese, uncooked and unpressed, washed, brushed and turned during ripening; AOC since 1972.",
+			"wiki": "https://en.wikipedia.org/wiki/Pont-l%27%C3%89v%C3%AAque_cheese"
+		},
+		"Vacherin Mont d'Or": {
+			"text": "A soft cow-milk cheese from the Jura, bound in a band of spruce bark; made only from mid-August to mid-March.",
+			"wiki": "https://en.wikipedia.org/wiki/Vacherin_Mont_d%27Or"
+		},
+		"Neufchâtel": {
+			"text": "A soft, slightly crumbly cheese from Neufchâtel-en-Bray in Normandy with a white bloomy rind, saltier and sharper than Camembert.",
+			"wiki": "https://en.wikipedia.org/wiki/Neufch%C3%A2tel_(cheese)"
+		},
+		"Fourme d'Ambert": {
+			"text": "A semi-hard French blue cheese from the Auvergne, made from cow milk in a narrow cylinder.",
+			"wiki": "https://en.wikipedia.org/wiki/Fourme_d%27Ambert"
+		},
+		"Oscypek": {
+			"text": "A smoked cheese of the Polish Tatra Mountains, pressed in carved wooden moulds from salted sheep milk.",
+			"wiki": "https://en.wikipedia.org/wiki/Oscypek"
+		},
+		"Idiazabal": {
+			"text": "A Basque sheep-milk cheese from Latxa milk, ripened at least two months and sometimes smoked; DO since 1987.",
+			"wiki": "https://en.wikipedia.org/wiki/Idiaz%C3%A1bal_cheese"
+		},
+		"Asiago": {
+			"text": "An Italian cow-milk cheese from the Veneto and Trentino plateau, made as fresh Pressato and as aged d'Allevo; DOP since 1996.",
+			"wiki": "https://en.wikipedia.org/wiki/Asiago_cheese"
+		},
+		"Pecorino Toscano": {
+			"text": "A firm Tuscan sheep-milk cheese with protected designation of origin since 1996.",
+			"wiki": "https://en.wikipedia.org/wiki/Pecorino_Toscano"
+		},
+		"Brick": {
+			"text": "An American cheese from Wisconsin, made since 1877, derived from white Cheddar but cultured at a slightly higher temperature, so softer and a bit fattier.",
+			"wiki": "https://en.wikipedia.org/wiki/Brick_cheese"
+		},
+		"Montasio": {
+			"text": "A cow-milk cheese from Friuli-Venezia Giulia and the Veneto, aged at least two months and sometimes a year or more; PDO since 1986.",
+			"wiki": "https://en.wikipedia.org/wiki/Montasio"
+		},
+		"Kasseri": {
+			"text": "Kasseri is a Greek pasta filata cheese made from sheep's milk, with at most 20 % goat's milk. It is made in Thessaly, Macedonia, Lesbos and Xanthi, and holds a Greek PDO. Turkish kaşar and Balkan kashkaval are the same family.",
+			"wiki": "https://en.wikipedia.org/wiki/Kasseri"
+		},
+		"Scamorza": {
+			"text": "Scamorza is an Italian stretched-curd cheese from southern Italy, made from cow's milk (in Bari also sheep's). It is hung tied by a string, which gives it a pear shape, and is also sold smoked (affumicata).",
+			"wiki": "https://en.wikipedia.org/wiki/Scamorza"
+		},
+		"Suluguni": {
+			"text": "Suluguni is a Georgian brined stretched-curd cheese from Samegrelo, made from cow's, buffalo's or mixed milk. It has a Georgian geographical indication from 2012.",
+			"wiki": "https://en.wikipedia.org/wiki/Suluguni"
+		},
+		"Beyaz peynir": {
+			"text": "Beyaz peynir is the Turkish white cheese, traditionally made from unpasteurised sheep's milk (cow's or goat's also) set with rennet, and brined. It is eaten at breakfast, in salads, menemen and börek, and resembles feta, lighvan and sirene.",
+			"wiki": "https://en.wikipedia.org/wiki/Beyaz_peynir"
+		},
+		"String cheese": {
+			"text": "The US snack cheese: low-moisture part-skim mozzarella that is pulled into strings and peeled apart.",
+			"wiki": "https://en.wikipedia.org/wiki/String_cheese"
+		},
+		"Nabulsi": {
+			"text": "Nabulsi is a brined cheese from Nablus in the West Bank, made mainly from sheep's milk (goat's or cow's also, or a sheep-cow blend called mashmouleh). The pressed curd is boiled and stored in brine flavoured with mastic and mahleb. It is soaked to remove salt before it is used in knafeh.",
+			"wiki": "https://en.wikipedia.org/wiki/Nabulsi_cheese"
+		},
+		"Erzincan tulum": {
+			"text": "Erzincan tulum is a skin-ripened tulum cheese from Eastern Anatolia, Turkey.",
+			"wiki": "https://en.wikipedia.org/wiki/Tulum_cheese"
+		},
+		"İzmir tulum": {
+			"text": "İzmir tulum is a skin-ripened tulum cheese of the Aegean region of Turkey, also made in Aydın, Manisa, Muğla and Balıkesir.",
+			"wiki": "https://en.wikipedia.org/wiki/Tulum_cheese"
+		},
+		"Divle": {
+			"text": "Divle is a tulum cheese from Karaman in Central Anatolia, Turkey, also known as Divle Obruk.",
+			"wiki": "https://en.wikipedia.org/wiki/Tulum_cheese"
+		},
+		"Çimi": {
+			"text": "Çimi is a tulum cheese from Akseki in Antalya, Turkey.",
+			"wiki": "https://en.wikipedia.org/wiki/Tulum_cheese"
+		},
+		"Kargı": {
+			"text": "Kargı is a tulum cheese from Çorum on the Black Sea side of Turkey, made at about 25 t a year.",
+			"wiki": "https://en.wikipedia.org/wiki/Tulum_cheese"
+		},
+		"Cotija": {
+			"text": "Cotija is a Mexican cow's-milk cheese from Michoacán. The milk is salted before fermentation, the curd is milled into small pieces, pressed and aged 100–365 days. Young Cotija resembles a mild feta; aged Cotija (añejo) is close to Parmesan.",
+			"wiki": "https://en.wikipedia.org/wiki/Cotija_cheese"
+		},
+		"Kefalotyri": {
+			"text": "Kefalotyri is a hard, salty Greek and Cypriot cheese made from sheep's milk, goat's milk or a mix of the two, white to yellow depending on the milk. It is ripened for about three months or longer, and is eaten as it is, fried in olive oil as saganaki, or grated over dishes and into pies.",
+			"wiki": "https://en.wikipedia.org/wiki/Kefalotyri"
+		},
+		"Queso Oaxaca": {
+			"text": "Oaxaca cheese, also called quesillo or queso de hebra, is a white, semi-hard Mexican cow's-milk cheese first made in the state of Oaxaca. It is a pasta filata cheese: the curd is stretched into long ribbons that are rolled up like a ball of yarn, and it is stringy like string cheese or mozzarella.",
+			"wiki": "https://en.wikipedia.org/wiki/Oaxaca_cheese"
+		},
+		"Ricotta salata": {
+			"text": "Ricotta salata is ricotta pressed, salted, dried and aged into a firm table or grating cheese. Aged varieties keep for up to a year.",
+			"wiki": "https://en.wikipedia.org/wiki/Ricotta_salata"
+		},
+		"Ricotta infornata": {
+			"text": "Ricotta infornata is ricotta baked until it gets a brown, lightly charred crust; it is popular in Sardinia and Sicily.",
+			"wiki": "https://en.wikipedia.org/wiki/Ricotta"
+		},
+		"Ricotta affumicata": {
+			"text": "Ricotta affumicata is smoked ricotta, usually smoked over oak or chestnut; a Calabrian version comes from the Sila.",
+			"wiki": "https://en.wikipedia.org/wiki/Ricotta"
+		},
+		"Aralac": {
+			"text": "Aralac was the American casein fibre, developed by the research arm of National Dairy Products from skim-milk casein and marketed around 1940. It was blended with wool, mohair, rayon and fur felt, and milk-protein fibre was no longer made in the US by the end of the 1940s.",
+			"source": "https://forums.vintagefashionguild.org/threads/fabric-friday-other-protein-fibers-azlon.75910/",
+			"sourceName": "Vintage Fashion Guild, Fabric Friday: other protein fibers (azlon)"
+		},
+		"QMilch": {
+			"text": "Qmilch is a modern German milk fibre developed by Anke Domaske, made from German dairy waste milk that cannot be sold. The maker says the process is free of harsh chemicals (\"so natural you can eat it\"), unlike older casein fibres that were hardened with formaldehyde; this rests on the company's own statements.",
+			"source": "https://cordis.europa.eu/article/id/135536-making-clothes-from-milk",
+			"sourceName": "CORDIS, Making clothes from milk"
+		},
+		"Erinoid": {
+			"text": "Erinoid was the British name for Galalith casein-formaldehyde plastic: Syrolit Ltd took the UK licence and renamed itself Erinoid Ltd, making it at Dudbridge near Stroud, Gloucestershire.",
+			"wiki": "https://en.wikipedia.org/wiki/Galalith"
+		},
+		"Lactoid": {
+			"text": "Lactoid is a trade name for casein-formaldehyde plastic, of the Galalith kind.",
+			"wiki": "https://en.wikipedia.org/wiki/Galalith"
+		},
+		"Aladdinite": {
+			"text": "Aladdinite was the name of Galalith-type casein-formaldehyde plastic in the US.",
+			"wiki": "https://en.wikipedia.org/wiki/Galalith"
+		},
+		"fairlife": {
+			"text": "An American brand of ultra-filtered milk owned by Coca-Cola, sold as whole, reduced-fat, fat-free and flavoured milk. It first appeared in Minnesota in February 2014 and went national in February 2015; it is lactose-free and made without added protein powder.",
+			"source": "https://en.wikipedia.org/wiki/Fairlife",
+			"sourceName": "Wikipedia: fairlife"
+		},
+		"Basundi": {
+			"text": "Basundi is an Indian dessert from Maharashtra and Gujarat made by slowly boiling milk until it is reduced by about half, then sweetening it with sugar, cardamom, charoli or saffron and serving it chilled with nuts.",
+			"wiki": "https://en.wikipedia.org/wiki/Basundi"
+		},
+		"Palkova": {
+			"text": "Palkova is a sweet of Tamil Nadu made by boiling milk down with sugar to a thick grainy mass; the Srivilliputhur version, from cow milk and sugar only, has a geographical indication.",
+			"source": "https://www.outlooktraveller.com/experiences/heritage/exploring-tamil-nadus-gi-tag-products-part-2",
+			"sourceName": "Outlook Traveller, Tamil Nadu GI products"
+		},
+		"Cuajada": {
+			"text": "A creamy, jelly-like milk dessert of northern Spain, especially Navarre and the Basque Country: warm milk set with rennet and eaten with sugar or honey. It was traditionally made with sheep's milk in a clay or wooden bowl; today it is mostly cow's milk.",
+			"wiki": "https://en.wikipedia.org/wiki/Cuajada"
+		},
+		"So": {
+			"text": "A dairy product made in Japan from the 7th to the 10th century by boiling milk down to a solid; it was paid to the court as tribute, used as medicine and offered to the gods, and daigo was made by processing it further.",
+			"wiki": "https://en.wikipedia.org/wiki/So_(dairy_product)"
+		},
+		"Pastillas de leche": {
+			"text": "A Filipino milk sweet whose name means milk pills; it is made from carabao or cow milk (or both) with sugar and calamansi juice and comes from San Miguel, Bulacan.",
+			"wiki": "https://en.wikipedia.org/wiki/Pastillas"
+		},
+		"Yak butter": {
+			"text": "Yak butter is butter made from the milk of the female yak, a staple of Tibet, the Himalaya and Mongolia: eaten with roasted barley flour, churned into butter tea, burned in lamps and modelled into festival sculptures.",
+			"wiki": "https://en.wikipedia.org/wiki/Yak_butter"
+		},
+		"Shar tos": {
+			"text": "Mongolian clarified butter, the yellow oil melted gently from tsagaan tos, the white butter made by straining and churning cream.",
+			"source": "https://www.mongoliantour.guide/post/short-information-about-mongolian-dairy-products",
+			"sourceName": "Mongolian dairy products guide"
+		},
+		"Manteiga de garrafa": {
+			"text": "A liquid or pasty butterfat from north-east Brazil, made by cooking cream until almost all its water has gone, then decanting and bottling the fat. Brazilian law calls it manteiga da terra, manteiga de garrafa or manteiga do sertao.",
+			"source": "https://wikisda.agricultura.gov.br/dipoa_baselegal/in_30-2001_rt_manteiga_garrafa_queijo_coalho_queijo_manteiga.pdf",
+			"sourceName": "MAPA IN 30/2001, Anexo I"
+		},
+		"Shrikhand": {
+			"text": "Shrikhand is a sweet dish of strained yoghurt, sugar, saffron and cardamom from Gujarat and Maharashtra, chilled and often topped with nuts. The BIS standard calls for at least 58 % total solids.",
+			"wiki": "https://en.wikipedia.org/wiki/Shrikhand"
+		},
+		"Sweet lassi": {
+			"text": "Sweet lassi is the sweet form of lassi, a drink of dahi stirred with water and sugar and served chilled, popular in Punjab and Haryana. Fruit such as mango is often blended in.",
+			"wiki": "https://en.wikipedia.org/wiki/Lassi"
+		},
+		"Juju dhau": {
+			"text": "Juju dhau, 'king of yoghurt' in Nepal Bhasa, is a thick, custard-like sweet curd from Bhaktapur, made by the Newar from boiled, sweetened buffalo milk and set in clay pots.",
+			"wiki": "https://en.wikipedia.org/wiki/Dhau"
+		},
+		"Sho": {
+			"text": "Sho is the Tibetan word for the yoghurt made from the milk of the dri, the female yak. It is the usual first step of Tibetan butter-making and gives its name to the Shoton yoghurt festival.",
+			"source": "https://en.wikipedia.org/wiki/Yak_butter",
+			"sourceName": "Wikipedia, Yak butter; Oxford Companion to Food, Yak (via ckbk)"
+		},
+		"Aqit": {
+			"text": "A dried dairy product of the Arabian Bedouin: churned buttermilk is heated until it curdles and the curd is dried into hard discs that keep for months.",
+			"source": "https://saudipedia.com/%D8%A7%D9%84%D8%A3%D9%82%D8%B7",
+			"sourceName": "Saudipedia, Aqit"
+		},
+		"Qatiq": {
+			"text": "A fermented milk of the Turkic countries and Bulgaria, a more solid yoghurt than ayran, made from boiled milk left warm for 6-10 hours.",
+			"wiki": "https://en.wikipedia.org/wiki/Qatiq"
+		},
+		"Kivuguto": {
+			"text": "The popular soured milk of Rwanda: raw milk left to sour for two to three days in a smoked wooden jar or gourd, giving a thick, tangy, lightly smoky drink.",
+			"source": "https://popups.uliege.be/1780-4507/index.php?id=9985",
+			"sourceName": "Karenzi et al. 2013, Biotechnol. Agron. Soc. Environ. 17(2)"
+		},
+		"Ititu": {
+			"text": "A concentrated sour milk curd of the Borana of southern Ethiopia, built up in a smoked vessel over weeks by adding fresh milk and draining whey.",
+			"source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11521749/",
+			"sourceName": "Karssa et al. 2024, Insights on the microbiology of Ethiopian fermented milk products"
+		},
+		"Amabere amaruranu": {
+			"text": "A fermented milk of the Abagusii people of the Kisii highlands in south-western Kenya, made from boiled cow's milk soured in a gourd.",
+			"source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4256574",
+			"sourceName": "Lactic acid bacteria and yeasts involved in the fermentation of amabere amaruranu, a Kenyan fermented milk"
+		},
+		"Hazo": {
+			"text": "A spiced, fermented buttermilk of northern Ethiopia (Tigray): arrera is mixed with pulse or cereal flour and spices and left to ferment for two to three days.",
+			"source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11521749/",
+			"sourceName": "Karssa et al. 2024, Insights on the microbiology of Ethiopian fermented milk products"
+		},
+		"Jocoque": {
+			"text": "A Mexican fermented milk between yoghurt and cheese, soured with lactic cultures and strained until thick; its dry form, jocoque seco, is eaten with tostadas. It came with Lebanese cooking and resembles labneh.",
+			"wiki": "https://en.wikipedia.org/wiki/Jocoque"
+		},
+		"Jocoque seco": {
+			"text": "The dried form of Mexican jocoque: the strained, soured milk is dehydrated into firm curd, similar to Arab labneh, and shaped into 3-4 cm balls that may be kept in olive oil with thyme, dill or mint. Eaten with tostadas.",
+			"wiki": "https://en.wikipedia.org/wiki/Jocoque"
+		},
+		"Suero costeño": {
+			"text": "A viscous, salted, sour milk of Colombia’s Caribbean coast, made from raw milk that sours by itself and eaten with arepas and boiled yuca. Its name is the Spanish word for whey, but it is a soured whole milk.",
+			"source": "https://www.redalyc.org/pdf/693/69319041007.pdf",
+			"sourceName": "Universidad de Córdoba study on suero costeño (Redalyc)"
+		},
+		"Meiji Bulgaria": {
+			"text": "A plain set yoghurt from the Japanese dairy Meiji, made with two defined strains of the yoghurt bacteria, which its name LB81 is built from.",
+			"source": "https://www.meiji.co.jp/products/yogurt/4902705011625.html",
+			"sourceName": "Meiji, Meiji Bulgaria Yogurt LB81 plain 400 g (product page)"
+		},
+		"Beijing yoghurt": {
+			"text": "A traditional sweet fermented milk of Beijing: milk is sweetened, mixed with glutinous-rice wine, poured into small bowls and heated in a special barrel with a central heat chamber, then cooled.",
+			"wiki": "https://en.wikipedia.org/wiki/Nai_lao"
+		},
+		"Amasi": {
+			"text": "A thick, curdled, sour fermented milk of southern Africa (also emasi, maas, mafi), eaten in South Africa, Zimbabwe and Lesotho and often compared to cottage cheese or plain yoghurt with a much stronger flavour. Traditionally unpasteurised cow's milk sours in a smoked calabash or skin bag; the watery whey (umlaza) is poured off and the thick curd is amasi.",
+			"wiki": "https://en.wikipedia.org/wiki/Amasi"
+		},
+		"Kalari": {
+			"text": "Kalari, or kaladi, is a traditional cheese of the Dogra people of Jammu, made around Ramnagar in the Udhampur district from raw full-fat cow or buffalo milk. The curd is packed into small leaf bowls and dried in the sun, so it is dry outside and moist inside, and it is usually fried before eating.",
+			"wiki": "https://en.wikipedia.org/wiki/Kalari_cheese"
+		},
+		"Bandel cheese": {
+			"text": "Bandel cheese is a small round, salted and often smoked unripened cheese from West Bengal, introduced by the Portuguese at Bandel and made today mainly near Kolkata. It is like Surti paneer but made from cow's milk.",
+			"wiki": "https://en.wikipedia.org/wiki/Bandel_cheese"
+		},
+		"Chhena poda": {
+			"text": "Chhena poda, Odia for burnt cheese, is a baked sweet of Odisha made from kneaded chhena, sugar and semolina, browned for several hours so that the sugar caramelises. It is credited to Sudarsan Sahu of Dashapalla after 1947.",
+			"wiki": "https://en.wikipedia.org/wiki/Chhena_poda"
+		},
+		"Pantua": {
+			"text": "Pantua is a Bengali sweet of deep-fried balls of chhena, semolina, milk and ghee soaked in sugar syrup, from pale brown to nearly black depending on how long it is fried.",
+			"wiki": "https://en.wikipedia.org/wiki/Pantua"
+		},
+		"Chum chum": {
+			"text": "Chomchom, cham cham or chum chum is a Bengali sweet made from chhena and garnished with coconut or mawa flakes; the oval brown Porabari variety of Tangail district dates from the mid-19th century.",
+			"wiki": "https://en.wikipedia.org/wiki/Cham_cham"
+		},
+		"Rasabali": {
+			"text": "Rasabali is a sweet of Odisha: flat palm-sized patties of chhena deep-fried until reddish-brown and soaked in rabri, thickened sweetened milk with cardamom. It began as an offering at the Baladevjew temple in Kendrapara and received a GI tag in October 2023.",
+			"wiki": "https://en.wikipedia.org/wiki/Rasabali"
+		},
+		"Adyghe cheese": {
+			"text": "A mild, crumbly fresh cheese of the North Caucasus made from heated cow milk curdled with sour whey and moulded in baskets; it does not melt when baked or fried.",
+			"wiki": "https://en.wikipedia.org/wiki/Circassian_cheese"
+		},
+		"Dambalkhacho": {
+			"text": "A pungent Georgian cheese from Pshavi and Tianeti: salted curd balls dried by the fire and ripened in sealed clay pots until a mould grows on them.",
+			"wiki": "https://en.wikipedia.org/wiki/Dambalkhacho"
+		},
+		"Klila": {
+			"text": "A very hard, dried cheese of eastern Algeria (and Morocco) made by heating lben until it curdles, draining the curd and drying it in the sun to under 10 % water.",
+			"source": "https://lrrd.org/lrrd27/5/chem27083.html",
+			"sourceName": "Leksir & Chemmam 2015, Livestock Research for Rural Development 27(5)"
+		},
+		"Karish": {
+			"text": "A fresh, soft, white, low-fat Egyptian cheese made by draining laban rayeb (soured skimmed milk) on a mat and salting it lightly.",
+			"source": "https://en.wikipedia.org/wiki/Laban_rayeb",
+			"sourceName": "Wikipedia: Laban rayeb"
+		},
+		"Queijo de Azeitão": {
+			"text": "A soft, creamy Portuguese sheep's-milk cheese from the Arrábida hills near Setúbal, curdled with cardoon flower instead of animal rennet and ripened about three weeks. Protected designation of origin since 1986.",
+			"source": "https://diariodarepublica.pt/dr/detalhe/decreto-regulamentar/49-1986-221723",
+			"sourceName": "Decreto Regulamentar 49/1986"
+		},
+		"Dali ni horbo": {
+			"text": "A cheese of the Batak people of Tapanuli, North Sumatra: water buffalo milk is boiled and curdled with pineapple juice or papaya leaf juice.",
+			"wiki": "https://en.wikipedia.org/wiki/Dali_ni_horbo"
+		},
+		"Litsusu": {
+			"text": "A water buffalo cheese of Nusa Tenggara, Indonesia, set with enzymes from the litsusu tree.",
+			"source": "https://en.wikipedia.org/wiki/List_of_water_buffalo_cheeses",
+			"sourceName": "Wikipedia: List of water buffalo cheeses"
+		},
+		"Cologanti": {
+			"text": "A water buffalo cheese of Nusa Tenggara, Indonesia, set with enzymes from the litsusu tree.",
+			"source": "https://en.wikipedia.org/wiki/List_of_water_buffalo_cheeses",
+			"sourceName": "Wikipedia: List of water buffalo cheeses"
+		},
+		"Philadelphia": {
+			"text": "An American cream cheese brand, first made in 1872 by William Lawrence of Chester, New York, who tried to make Neufchâtel and added too much cream. It took the Philadelphia name in 1880 with the distributor A. L. Reynolds, and is now owned by Kraft Heinz and Mondelez International.",
+			"wiki": "https://en.wikipedia.org/wiki/Philadelphia_Cream_Cheese"
+		},
+		"Tvorog": {
+			"text": "A soft white fresh cheese of Central and Eastern Europe: milk is fermented and the whey is drained off, traditionally in hanging bags. Its fat runs from nil to about 23 %, and unlike German quark it is often made from whole milk.",
+			"wiki": "https://en.wikipedia.org/wiki/Tvorog"
+		},
+		"Magerquark": {
+			"text": "The lean grade of German quark, made from skimmed milk with no cream stirred in, so it holds under 10 % fat in dry matter. Like all quark it is about 80 % water, and the law asks for at least 73 % water in the fat-free mass.",
+			"source": "https://de.wikipedia.org/wiki/Quark_(Lebensmittel)",
+			"sourceName": "German Wikipedia: Quark (Lebensmittel)"
+		},
+		"Dry curd cottage cheese": {
+			"text": "Cottage cheese of washed curd grains with no cream dressing, so under 0.5 % milkfat. The US standard of identity allows at most 80 % moisture and requires skimmed-milk ingredients.",
+			"source": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-133/subpart-B/section-133.129",
+			"sourceName": "21 CFR 133.129, Cottage cheese dry curd"
+		},
+		"Neufchâtel (US)": {
+			"text": "A factory-made, unaged cream cheese with about a third less fat and more moisture than regular cream cheese, softer and sold as the reduced-fat choice. It is not the French Neufchâtel, a Normandy PDO cheese ripened under white mould for 8–10 weeks.",
+			"wiki": "https://en.wikipedia.org/wiki/Neufch%C3%A2tel_cheese"
+		},
+		"Chechil": {
+			"text": "A brined string cheese of Armenia and Georgia, usually made from skimmed cow milk that is soured, set with rennet, scalded and pulled into thin strands that are braided into coils.",
+			"wiki": "https://en.wikipedia.org/wiki/Chechil"
+		},
+		"Tenili": {
+			"text": "A traditional Georgian string cheese from Meskheti, made from sheep milk, braided in hot whey and matured packed into a clay pot.",
+			"wiki": "https://en.wikipedia.org/wiki/Tenili"
+		},
+		"Imeruli": {
+			"text": "A young Georgian cheese from Imereti, made from cow milk with up to 20 % buffalo or goat milk, set, scalded, self-pressed in forms and brined for a day.",
+			"source": "https://assets.publishing.service.gov.uk/media/6414615e8fa8f5556c6a12ea/Imeruli_Kveli.pdf",
+			"sourceName": "Imeruli Kveli, Georgian GI product specification (GOV.UK)"
+		},
+		"Guda": {
+			"text": "A sheep-milk cheese from Tusheti in Georgia, salted in layers and ripened in a sheepskin bag; the name means cheese from a bag.",
+			"wiki": "https://en.wikipedia.org/wiki/Guda_cheese"
+		},
+		"Lighvan": {
+			"text": "A sour, brined curd cheese traditionally made from raw sheep milk in Lighvan, Iran, without any starter; its acidity comes from the milk's own bacteria.",
+			"wiki": "https://en.wikipedia.org/wiki/Lighvan_cheese"
+		},
+		"Jibneh Arabieh": {
+			"text": "A soft white cheese of the Middle East, popular around the Persian Gulf, with a mild taste like feta but less salty; originally from Bedouin goat or sheep milk, now mostly cow milk.",
+			"wiki": "https://en.wikipedia.org/wiki/Jibneh_Arabieh"
+		},
+		"Otlu peynir": {
+			"text": "A semi-hard, salty cheese of the Van province in Turkey, flavoured with wild herbs and matured underground.",
+			"wiki": "https://en.wikipedia.org/wiki/Van_herbed_cheese"
+		},
+		"Jben": {
+			"text": "A fresh, unripened cheese of Morocco and Algeria, made from raw cow's or goat's milk and traditionally drained in cloth and wrapped in palm leaves in the Rif town of Chefchaouen.",
+			"wiki": "https://fr.wikipedia.org/wiki/Jben"
+		},
+		"Bouhezza": {
+			"text": "A soft, salty, semi-fat Algerian cheese of the Aurès (Chaouia) region, made from raw goat, sheep or cow milk and ripened for one to six months in a goatskin bag filled with salted lben.",
+			"source": "https://fac.umc.edu.dz/inataa/revue/files/ajnfs0203002.pdf",
+			"sourceName": "Aissaoui Zitoun et al. 2022, Algerian J. Nutrition and Food Sciences 2(3)"
+		},
+		"Rumi": {
+			"text": "The main hard cheese of Egypt, made from full-cream cow's or buffalo milk without starter and ripened for several months, when it turns sharp and pungent.",
+			"wiki": "https://en.wikipedia.org/wiki/Rumi_cheese"
+		},
+		"Gibna bayda": {
+			"text": "A soft, white, salty Sudanese cheese pickled in brine or whey, resembling feta; made from cow, goat or sheep milk, usually at home or on small farms.",
+			"source": "https://www.fao.org/4/t0251e/t0251e12.htm",
+			"sourceName": "FAO, The technology of traditional milk products in developing countries, ch. 7"
+		},
+		"Mudafara": {
+			"text": "A Sudanese stretched-curd cheese: rennet-set cow's milk curd is scalded in hot water, pulled into threads, braided and stored in brine.",
+			"source": "https://www.fao.org/4/t0251e/t0251e12.htm",
+			"sourceName": "FAO, The technology of traditional milk products in developing countries, ch. 7"
+		},
+		"Caravane": {
+			"text": "A soft, Brie-like cheese made from camel's milk in Mauritania by the dairy Tiviski, founded by Nancy Abeiderrahmane; sold mainly in Mauritania and Senegal.",
+			"wiki": "https://en.wikipedia.org/wiki/Caravane_cheese"
+		},
+		"Queijo Canastra": {
+			"text": "A pressed raw-milk cow's cheese from Serra da Canastra in south-west Minas Gerais, Brazil, sold fresh (about 4 days), half-cured or fully cured (about 40 days). Part of the Minas artisanal cheese craft that IPHAN recognised as national heritage in 2008.",
+			"wiki": "https://en.wikipedia.org/wiki/Queijo_Canastra"
+		},
+		"Queijo Minas frescal": {
+			"text": "The soft, white, very moist fresh cheese of Brazil, named for Minas Gerais: milk is set with rennet, the raw curd is drained and the cheese is eaten fresh, often with guava paste (Romeu e Julieta).",
+			"wiki": "https://pt.wikipedia.org/wiki/Queijo_minas_frescal"
+		},
+		"Tchoukou": {
+			"text": "A hard, dry cheese of Niger, made by women from raw cow's or goat's milk, set with a spiced rennet, drained and sun-dried on mats.",
+			"source": "https://ajfand.net/Volume25/No8/Oumarou25240.pdf",
+			"sourceName": "Oumarou et al. 2025, AJFAND 25(8)"
+		},
+		"Queijo de coalho": {
+			"text": "A firm, elastic, mild and slightly acidic cow's-milk cheese of north-east Brazil that squeaks when bitten and browns without melting, so it is grilled on skewers over charcoal. Brazilian law (IN 30/2001) defines it as a cheese sold within about ten days of making.",
+			"source": "https://wikisda.agricultura.gov.br/dipoa_baselegal/in_30-2001_rt_manteiga_garrafa_queijo_coalho_queijo_manteiga.pdf",
+			"sourceName": "MAPA IN 30/2001, Anexo II (Queijo de coalho)"
+		},
+		"Queijo de manteiga": {
+			"text": "A soft, buttery, straw-yellow cheese of north-east Brazil: curd made by acidifying milk is washed, melted and enriched with manteiga de garrafa, then moulded. Brazilian law (IN 30/2001) reserves the name for a purely dairy product.",
+			"source": "https://wikisda.agricultura.gov.br/dipoa_baselegal/in_30-2001_rt_manteiga_garrafa_queijo_coalho_queijo_manteiga.pdf",
+			"sourceName": "MAPA IN 30/2001, Anexo III"
+		},
+		"Reggianito": {
+			"text": "An Argentine hard cheese made in 6.8 kg wheels by Italian immigrants as a local answer to Parmigiano Reggiano, ripened about six months and grated over pasta.",
+			"wiki": "https://en.wikipedia.org/wiki/Reggianito"
+		},
+		"Afuega'l pitu": {
+			"text": "A soft, crumbly cow's-milk cheese from central Asturias, set slowly by lactic acid and drained in moulds or cloth. It is eaten fresh or ripened for weeks, white or kneaded with paprika to a red-orange paste. Protected designation of origin.",
+			"wiki": "https://es.wikipedia.org/wiki/Afuega%27l_pitu"
+		},
+		"Queso Chihuahua": {
+			"text": "A soft white Mexican cow's-milk cheese, similar to mild white Cheddar or Monterey Jack, first made by the Mennonite communities of Chihuahua and sold in braids, balls or rounds. It melts well.",
+			"wiki": "https://en.wikipedia.org/wiki/Chihuahua_cheese"
+		},
+		"Kesong puti": {
+			"text": "A soft, unaged white cheese from the Philippines, made from unskimmed carabao (water buffalo) milk and salt, set with rennet, vinegar or citrus juice and traditionally sold wrapped in banana leaf.",
+			"wiki": "https://en.wikipedia.org/wiki/Kesong_puti"
+		},
+		"Langtang yak cheese": {
+			"text": "A hard cheese of the Langtang valley in Nepal, made from yak and nak (female yak) milk by the Swiss method that Swiss cheesemakers brought to Kyangjin in the 1950s.",
+			"source": "https://www.nepalitimes.com/the-story-of-langtang-cheese",
+			"sourceName": "Nepali Times, The story of Langtang cheese"
+		},
+		"Afyon kaymagi": {
+			"text": "Turkish buffalo-milk kaymak from Afyonkarahisar, a protected geographical indication: a thick cream of at least 60 % fat skimmed from slowly heated, overnight-rested raw buffalo milk.",
+			"source": "https://kureansiklopedi.com/en/detay/afyon-kaymagi-ddae2",
+			"sourceName": "Kure Ansiklopedi, Afyon kaymagi"
+		},
+		"Double-skin milk": {
+			"text": "A milk dessert from Daliang in Shunde, Guangdong, now eaten across Guangzhou, Hong Kong and Macau: boiled buffalo milk forms a skin as it cools, egg white sets the milk beneath, and a second skin forms after steaming.",
+			"wiki": "https://en.wikipedia.org/wiki/Double_skin_milk"
+		},
+		"MPC80": {
+			"text": "A milk protein concentrate named for its protein: at least 79.5 % of the powder is milk protein, the rest mostly lactose (under 9 %), ash (under 8 %) and fat (under 2.5 %). Casein and whey proteins stay at about 80:20, as in milk. Mostly used in beverages and bars, and as a replacement for skim milk powder or caseinate where more protein is needed.",
+			"source": "https://thinkusadairy.org/products/milk-proteins/milk-protein-categories/milk-protein-concentrate",
+			"sourceName": "U.S. Dairy Export Council: Milk protein concentrate (MPC 80)"
+		},
+		"Merinova": {
+			"text": "Merinova was one of the trade names of casein wool, the regenerated milk-protein fibre that Antonio Ferretti patented in 1935 and that Snia Viscosa in Italy sold from 1936, like Lanital and Aralac.",
+			"source": "https://www.modip.ac.uk/projects/curators-guide-synthetic-garments/featured-fibres-and-materials/casein-fibre",
+			"sourceName": "Museum of Design in Plastics, Casein fibre"
+		},
+		"Sorke": {
+			"text": "A Levantine spread made by mashing well-aged, fermented shanklish with its mould and herbs into a strong, pungent paste, usually eaten with chopped tomato and onion and olive oil.",
+			"wiki": "https://en.wikipedia.org/wiki/Shanklish"
+		},
+		"Messmör": {
+			"text": "Swedish whey spread: whey boiled down until it caramelises into a soft, brownish spread. Unlike Norwegian prim, no cream or sugar is mentioned.",
+			"source": "https://sv.wikipedia.org/wiki/Messm%C3%B6r",
+			"sourceName": "Swedish Wikipedia: Messmör"
+		},
+		"Getmessmör": {
+			"text": "Messmör made from goat whey instead of cow whey.",
+			"source": "https://sv.wikipedia.org/wiki/Messm%C3%B6r",
+			"sourceName": "Swedish Wikipedia: Messmör"
+		},
+		"Parenica": {
+			"text": "Parenica is a semi-firm, non-ripening, steamed and usually smoked Slovak cheese, wound from strips into snail-like spirals. In the 1800s it was made from pure raw sheep milk; modern versions also use cow milk or mixtures.",
+			"wiki": "https://en.wikipedia.org/wiki/Parenica"
+		},
+		"Korbáčik": {
+			"text": "Korbáčik, Polish korbacz, is a semi-hard string cheese from the Orava region of Slovakia and southern Poland: steamed cheese pulled into fine threads and interwoven into braids. It comes smoked or unsmoked, from sheep or cow milk.",
+			"wiki": "https://en.wikipedia.org/wiki/Korb%C3%A1%C4%8Dik"
+		},
+		"Žázrivský korbáčik": {
+			"text": "Žázrivský korbáčik is a korbáčik that may be made only in the village of Žázrivá in northern Slovakia. Soured cow milk cheese is steamed, pulled by hand into strands and plaited into the shape of a whip. It is a protected geographical indication product.",
+			"source": "https://sk.wikipedia.org/wiki/Korb%C3%A1%C4%8Dik",
+			"sourceName": "Wikipedia (Slovak), Korbáčik"
+		},
+		"Oštiepok": {
+			"text": "Oštiepok is a traditional smoked Slovak sheep milk cheese, protected under the EU PGI. It is shaped like a large egg or cone and decorated with patterns; milk is sheep, sheep plus cow, or cow.",
+			"wiki": "https://en.wikipedia.org/wiki/O%C5%A1tiepok"
+		},
+		"Pule": {
+			"text": "Pule, or magareći sir, is a Serbian cheese made from 60 % Balkan donkey milk and 40 % goat milk at the Zasavica nature reserve. It is crumbly and reported to taste like manchego, and is among the most expensive cheeses because so little milk is available.",
+			"wiki": "https://en.wikipedia.org/wiki/Pule_cheese"
+		},
+		"Katiki Domokou": {
+			"text": "Katiki Domokou is a soft white cheese from Domokos in Phthiotis, Greece, made from goat and sheep milk. It has PDO status, a low fat content, and is eaten on toast, in salads or in pitas.",
+			"wiki": "https://en.wikipedia.org/wiki/Katiki_Domokou"
+		},
+		"Picodon": {
+			"text": "Picodon is a small flat disc of goat milk cheese from the Rhône hills of the Drôme and Ardèche, France. The name means spicy in Occitan; it is soft, unpressed and dry, and loses up to half its weight when aged.",
+			"wiki": "https://en.wikipedia.org/wiki/Picodon"
+		},
+		"Graviera Kritis": {
+			"text": "Graviera is a Greek hard cheese made in wheels with the crisscross mark of its draining cloth, and is Greece's second most popular cheese after feta. Graviera of Crete is made from sheep milk and has a slightly sweet, burnt caramel flavour.",
+			"wiki": "https://en.wikipedia.org/wiki/Graviera"
+		},
+		"Ladotyri Mytilinis": {
+			"text": "Ladotyri Mytilinis is a hard PDO cheese from Lesbos, Greece, preserved in extra virgin olive oil. It is made from sheep milk or sheep with at most 30 % goat milk and has been produced since ancient times.",
+			"wiki": "https://en.wikipedia.org/wiki/Ladotyri_Mytilinis"
+		},
+		"Ossau-Iraty": {
+			"text": "Ossau-Iraty is a Basque and Béarn cheese made from sheep milk, with AOC status since 1980. It is an uncooked, pressed cheese from the Basco-Béarnaise, Manech red-face and Manech black-face breeds.",
+			"wiki": "https://en.wikipedia.org/wiki/Ossau-Iraty"
+		},
+		"Roncal": {
+			"text": "Roncal is a hard, creamy sheep milk cheese made in the seven villages of the Roncal valley in the Navarrese Pyrenees, Spain. It has PDO status and a firm, slightly sharp taste.",
+			"wiki": "https://en.wikipedia.org/wiki/Roncal_cheese"
+		},
+		"Pecorino Sardo": {
+			"text": "Pecorino Sardo is a firm cheese from Sardinia made from the milk of the local Sarda sheep. It has PDO status and comes as dolce, aged 20 to 60 days, and maturo, aged more than 2 months.",
+			"wiki": "https://en.wikipedia.org/wiki/Pecorino_sardo"
+		},
+		"Fiore Sardo": {
+			"text": "Fiore Sardo is a hard Sardinian sheep cheese with PDO status, made from raw milk of Sarda ewes set with lamb or kid rennet paste. Wheels are double truncated cones of 1.5 to 4 kg, a table cheese that becomes a grating cheese after six months.",
+			"source": "https://it.wikipedia.org/wiki/Fiore_sardo",
+			"sourceName": "Italian Wikipedia, Fiore sardo"
+		},
+		"Majorero": {
+			"text": "Majorero is a firm, pale goat milk cheese from the island of Fuerteventura in the Canary Islands, made from the milk of the Majorera goat. It has PDO status and is sold with a natural, oiled, paprika or gofio rind.",
+			"wiki": "https://en.wikipedia.org/wiki/Majorero"
+		},
+		"Ezine": {
+			"text": "Ezine is a full-fat Turkish white cheese from the Ezine district of Çanakkale and the Kaz Dağları, soft to medium-hard and ripened in brine. It is one of the most popular white cheeses in Turkey, with PDO status.",
+			"source": "https://tr.wikipedia.org/wiki/Ezine_peyniri",
+			"sourceName": "Turkish Wikipedia, Ezine peyniri"
+		},
+		"Brânză de burduf": {
+			"text": "Brânză de burduf is a salty Romanian cheese made from sheep, or occasionally buffalo, milk. The matured curd is kneaded with salt and packed into a sheep stomach, a sheep skin or a tube of pine bark.",
+			"wiki": "https://en.wikipedia.org/wiki/Br%C3%A2nz%C4%83_de_burduf"
+		},
+		"Renost": {
+			"text": "Renost is the traditional cheese of the Sámi, made from reindeer milk in northern Scandinavia. Historically the curdled milk was poured into a reindeer stomach and hung in the open air; today the few makers use linen cloths, and the cheese turns hard and grainy in the cold and is sometimes smoked.",
+			"source": "https://www.fondazioneslowfood.com/en/ark-of-taste-slow-food/reindeer-cheese/",
+			"sourceName": "Slow Food Ark of Taste, Renost (Reindeer Cheese)"
+		},
+		"Galotyri": {
+			"text": "Galotyri is a Greek PDO acid-curd, soft spreadable cheese made in Epirus and Thessaly from boiled, naturally acidified ewe milk or ewe and goat milk. It is thick and creamy, with at least 40 % fat in dry matter, at most 75 % moisture and pH 4 to 4.5.",
+			"source": "https://www.aimspress.com/article/10.3934/agrfood.2019.3.685",
+			"sourceName": "AIMS Agriculture and Food 2019, Galotyri LAB survey (plus Greek Wikipedia for composition)"
+		},
+		"Crème Chantilly": {
+			"text": "Whipped cream sweetened with sugar and usually flavoured with vanilla. Its invention is often credited to François Vatel, steward of the Château de Chantilly in the 1660s, which gave it its name.",
+			"wiki": "https://fr.wikipedia.org/wiki/Cr%C3%A8me_chantilly"
+		},
+		"Spray whipped cream": {
+			"text": "Whipped cream sold in an aerosol can: the cream is charged with nitrous oxide, which dissolves in the butterfat under pressure and foams the cream as it leaves the can.",
+			"wiki": "https://en.wikipedia.org/wiki/Whipped_cream"
+		},
+		"Devon clotted cream": {
+			"text": "Clotted cream from Devon, the rival of the Cornish in the origin dispute; paler, since the grass has less carotene. In Devon the cream goes on the scone first, in Cornwall the jam.",
+			"wiki": "https://en.wikipedia.org/wiki/Clotted_cream"
+		},
+		"Three-quarter fat butter": {
+			"text": "An EU legal category of butter with 60-62 % milk fat, below the 80 % of plain butter. It may be sold as reduced-fat or light butter.",
+			"source": "https://www.legislation.gov.uk/eur/2013/1308/annex/VII",
+			"sourceName": "EU Regulation 1308/2013, Annex VII"
+		},
+		"Half-fat butter": {
+			"text": "An EU legal category of butter with 39-41 % milk fat. Butter itself must have at least 80 % and under 90 %; anything between the categories is a dairy spread.",
+			"source": "https://www.legislation.gov.uk/eur/2013/1308/annex/VII",
+			"sourceName": "EU Regulation 1308/2013, Annex VII"
+		},
+		"Dairy spread": {
+			"text": "A spreadable milk-fat product that falls outside the butter categories: under 39 %, between 41 and 60 %, or between 62 and 80 % milk fat.",
+			"source": "https://www.legislation.gov.uk/eur/2013/1308/annex/VII",
+			"sourceName": "EU Regulation 1308/2013, Annex VII"
+		},
+		"Rucava white butter": {
+			"text": "A hand-made Latvian butter (Rucavas baltais sviests) of 39-41 % fat, soft, fluffy and slightly acidic, eaten fresh with boiled potatoes or rye bread. It has a protected geographical indication (2018).",
+			"source": "https://eng.lsm.lv/article/culture/food-drink/no-buts-its-rucava-butter.a291313/",
+			"sourceName": "LSM: No buts, it's Rucava butter"
+		},
+		"Beurre d'Isigny": {
+			"text": "Butter from the Bay of Veys in Normandy with a protected designation of origin (AOP, PDO since 1996). It can be salted, and can be textured to suit puff pastry; creamy, with hazelnut aromas.",
+			"wiki": "https://en.wikipedia.org/wiki/Beurre_d%27Isigny"
+		},
+		"Beurre d'Échiré": {
+			"text": "Butter from cream matured with lactic ferments for 18 hours and churned in wooden churns by the Échiré cooperative in Deux-Sèvres; AOP Charentes-Poitou.",
+			"source": "https://www.niortmaraispoitevin.com/en/patrimoine-culturel/laiterie-cooperative-dechire/",
+			"sourceName": "Laiterie coopérative d'Échiré (Niort Marais Poitevin)"
+		},
+		"Beurre Rose": {
+			"text": "Cultured milk butter from Luxembourg under the national quality mark, PDO since 2000. The name comes from the pink quality label, not from the butter. Made by continuous churning and tested 15 times a year.",
+			"wiki": "https://en.wikipedia.org/wiki/Beurre_Rose"
+		},
+		"Vologda butter": {
+			"text": "Butter from the Vologda region of Russia, known for a sweet, creamy, nutty flavour. Invented by Nikolai Vereshchagin, who won a gold medal at Paris in 1878 with it as \"Parisian butter\"; Russia's first protected designation of origin (2010).",
+			"wiki": "https://en.wikipedia.org/wiki/Vologda_butter"
+		},
+		"Beurre noir": {
+			"text": "Black butter: a sauce like brown butter, but cooked longer.",
+			"wiki": "https://en.wikipedia.org/wiki/Brown_butter"
+		},
+		"Demin 90 (D90)": {
+			"text": "NZMP's SureStart Demineralised Whey Powder 90 %: spray-dried, made from cheese whey by precipitation, filtration and ion exchange, for wet and dry blending into infant formula.",
+			"source": "https://www.nzmp.com/global/en/ingredients/powders-concentrates/paediatric-grade-powders/surestart-demineralised-whey-powder-90.html",
+			"sourceName": "NZMP: SureStart Demineralised Whey Powder 90 %"
+		},
+		"Partly demineralised whey": {
+			"text": "Whey with only about 25-30 % of its ash removed, enough for ice cream, bakery and quark, against 90-95 % for infant formula.",
+			"source": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation",
+			"sourceName": "Tetra Pak Dairy Processing Handbook, ch. 18 Milk and whey fractionation"
+		},
+		"Follow-on formula": {
+			"text": "Follow-on infant milk formula (FO-IMF), named in the Teagasc/UCC infant-formula thesis as a sibling process of ordinary infant milk formula.",
+			"source": "https://cora.ucc.ie/server/api/core/bitstreams/d714f4fc-a941-4744-8650-fc050287f509/content",
+			"sourceName": "Murphy 2015, infant formula manufacture (Teagasc/UCC thesis)"
+		},
+		"Hydrolysed-protein formula": {
+			"text": "Formula made with hydrolysed proteins; the Teagasc/UCC thesis classes such powders as Type III.",
+			"source": "https://cora.ucc.ie/server/api/core/bitstreams/d714f4fc-a941-4744-8650-fc050287f509/content",
+			"sourceName": "Murphy 2015, infant formula manufacture (Teagasc/UCC thesis)"
+		},
+		"Simplesse": {
+			"text": "The best-known microparticulated whey protein: research began in 1979 at Labatt, it was licensed to NutraSweet in 1984 and trademarked in January 1988. Partial coagulation by heat, a mechanical rather than chemical process.",
+			"wiki": "https://en.wikipedia.org/wiki/Simplesse"
+		},
+		"Rivella": {
+			"text": "Swiss soft drink made with milk serum, launched as Rivella Red in 1952 by Robert Barth with the biologist Hans Süsli. The recipe was first meant for a whey-based beer.",
+			"wiki": "https://en.wikipedia.org/wiki/Rivella"
+		},
+		"Vivinal GOS": {
+			"text": "The galacto-oligosaccharide ingredient of FrieslandCampina, made from lactose by an enzyme and added to infant formula and other foods to feed gut bifidobacteria.",
+			"source": "https://www.nutraingredients.com/Article/2025/09/11/gos-gains-traction-in-infant-milk-formulas-the-science-behind-the-trend",
+			"sourceName": "NutraIngredients 2025: GOS gains traction in infant milk formulas"
+		},
+		"MPC70": {
+			"text": "A milk protein concentrate powder of about 70 % protein in dry matter, the middle of the 40 to 90 % MPC range: skimmed milk ultrafiltered to hold back casein and whey proteins while lactose, minerals and water pass, then evaporated and spray dried. More protein and less lactose than MPC35 or MPC50, but short of the diafiltered MPC80 and above.",
+			"wiki": "https://en.wikipedia.org/wiki/Milk_protein_concentrate"
+		},
+		"Black Cow": {
+			"text": "Vodka made in West Dorset since 2012 by Jason Barber and Paul Archard from the whey of cheese milk, distilled to about 48 %, cut to 40 % and filtered three times, once through coconut-husk carbon.",
+			"wiki": "https://en.wikipedia.org/wiki/Black_Cow_Vodka"
+		},
+		"Low-heat skim milk powder": {
+			"text": "Skim milk powder heated only lightly before drying, so most of its whey protein stays undenatured (WPNI above 6.0 mg/g). It is the grade for milk fortification, cottage cheese, cultured skim milk and chocolate milk drinks.",
+			"source": "https://www.thinkusadairy.org/products/milk-powders/milk-powder-categories/non-fat-dry-milk-and-skim-milk-powder",
+			"sourceName": "US Dairy Export Council: Non-fat dry milk and skim milk powder"
+		},
+		"Medium-heat skim milk powder": {
+			"text": "The middle heat class of skim milk powder (WPNI 1.51-5.99 mg/g), used in prepared mixes, ice cream, confectionery and meat products. The vast majority of skim milk powder is of this class.",
+			"source": "https://www.thinkusadairy.org/products/milk-powders/milk-powder-categories/non-fat-dry-milk-and-skim-milk-powder",
+			"sourceName": "US Dairy Export Council: Non-fat dry milk and skim milk powder"
+		},
+		"High-heat skim milk powder": {
+			"text": "Skim milk powder heated hardest before drying, so little whey protein is left undenatured (WPNI below 1.50 mg/g). It goes into bakery, meat products and ice cream.",
+			"source": "https://www.thinkusadairy.org/products/milk-powders/milk-powder-categories/non-fat-dry-milk-and-skim-milk-powder",
+			"sourceName": "US Dairy Export Council: Non-fat dry milk and skim milk powder"
+		},
+		"Instant skim milk powder": {
+			"text": "Skim milk powder that has been agglomerated after spray-drying so that it dissolves in cold water.",
+			"source": "https://www.thinkusadairy.org/products/milk-powders/milk-powder-categories/non-fat-dry-milk-and-skim-milk-powder",
+			"sourceName": "US Dairy Export Council: Non-fat dry milk and skim milk powder"
+		},
+		"Double-toned milk": {
+			"text": "Toned milk taken one step further: the fat is brought down to a minimum of 1.5 % and the non-fat solids raised to at least 9 %, by blending buffalo or cow milk with skim milk or skim milk powder and water. Sold in India as a cheap low-fat pasteurised milk, for example in pouches.",
+			"wiki": "https://en.wikipedia.org/wiki/Toned_milk"
+		},
+		"Valio lactose-free milk": {
+			"text": "Milk from the Finnish dairy cooperative Valio with the lactose removed, developed in 2001 and called the first totally lactose-free milk in the world. Unlike milk treated only with lactase it does not taste sweet.",
+			"source": "https://www.valio.com/articles/valio-pioneer-in-lactose-free-dairy/",
+			"sourceName": "Valio: pioneer in lactose free dairy"
+		},
+		"Minus L": {
+			"text": "Lactose-free UHT milk of the Omira dairy group in Ravensburg, Germany, introduced in 2001 and still sold as MinusL. The classic 1.5 % fat version holds under 0.1 g lactose per 100 g, down from about 4.5 %, because the lactose is split by lactase.",
+			"source": "https://www.dairyindustries.com/?p=3449",
+			"sourceName": "Dairy Industries International: Milk aimed at the lactose intolerant (24 Sep 2001)"
+		},
+		"Organic Valley Ultra": {
+			"text": "Line of ultra-filtered organic milk from the US farmer cooperative Organic Valley, launched on 22 July 2019 as the first organic ultra-filtered milk in the US. It has about 50 % more protein and 50 % less sugar than ordinary milk and is lactose-free.",
+			"source": "https://www.dairyreporter.com/Article/2019/07/22/Organic-Valley-debuts-new-Ultra-filtered-milk",
+			"sourceName": "DairyReporter: Organic Valley debuts new Ultra filtered milk"
+		},
+		"Speisequark 20 %": {
+			"text": "Quark of the Halbfettstufe: 20 % fat in dry matter, which is a low-fat quark, made by adding some cream to skimmed-milk quark at the end of the process. German shops mainly sell Magerquark, 20 % and 40 % quark.",
+			"source": "https://de.wikipedia.org/wiki/Quark_(Lebensmittel)",
+			"sourceName": "Quark (Lebensmittel), German Wikipedia"
+		},
+		"Sahnequark": {
+			"text": "Quark of the Fettstufe, 40 % fat in dry matter, also called Sahnequark. The fat comes from cream added to skimmed-milk quark at the end of the process; it is one of the two fat grades, with 20 %, that German shops sell besides Magerquark.",
+			"source": "https://de.wikipedia.org/wiki/Quark_(Lebensmittel)",
+			"sourceName": "Quark (Lebensmittel), German Wikipedia"
+		},
+		"Rahmquark": {
+			"text": "Quark of the Rahmstufe: 50 % fat in dry matter, about 10 g fat per 100 g since quark is roughly 80 % water. Cream is added to skimmed-milk quark at the end of the process.",
+			"source": "https://de.wikipedia.org/wiki/Quark_(Lebensmittel)",
+			"sourceName": "Quark (Lebensmittel), German Wikipedia"
+		},
+		"Doppelrahmquark": {
+			"text": "Quark of the Doppelrahmstufe, the richest German grade, with more than 60 % fat in dry matter (German Wikipedia gives 65 to 85 %). Cream is added to skimmed-milk quark at the end of the process.",
+			"source": "https://de.wikipedia.org/wiki/Quark_(Lebensmittel)",
+			"sourceName": "Quark (Lebensmittel), German Wikipedia"
+		},
+		"Long-life quark": {
+			"text": "Quark that is heated after separation to inactivate all microorganisms, so it keeps without a cold chain. Stabilisers are added in the buffer tank before the final heating.",
+			"source": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese",
+			"sourceName": "Tetra Pak Dairy Processing Handbook, Cheese"
+		},
+		"Muhallebi": {
+			"text": "A milk pudding of the Middle East made by boiling milk with sugar and thickening it with rice flour, starch or semolina; it was in Arab and Persian cookbooks by the 10th century.",
+			"wiki": "https://en.wikipedia.org/wiki/Muhallebi"
+		},
+		"Gammelost": {
+			"text": "Gammelost (gamalost) is a traditional Norwegian cheese, once a staple that kept for long without cooling. It is made from soured skimmed cow milk, is brownish-yellow, firm, moist and coarse, with about 1 % fat and 50 % protein, and is now made in small quantity, mostly by one dairy in Vik.",
+			"wiki": "https://en.wikipedia.org/wiki/Gamalost"
+		},
+		"Pultost": {
+			"text": "Pultost is a soft, mature Norwegian sour milk cheese flavoured with caraway. It is made from soured skimmed milk, salted, and is acid-set and very low in fat; it is spread on bread or flatbread or eaten with boiled potatoes.",
+			"wiki": "https://en.wikipedia.org/wiki/Pultost"
+		},
+		"Jānu siers": {
+			"text": "Jāņu siers is a Latvian sour milk cheese eaten at the Jāņi midsummer festival. Its curd comes from both soured and fresh cow milk and is cooked with eggs, butter, salt and caraway into a firm cylinder. It has been an EU Traditional Speciality Guaranteed since 2015.",
+			"wiki": "https://en.wikipedia.org/wiki/J%C4%81%C5%86i_cheese"
+		},
+		"Brousse du Rove": {
+			"text": "Brousse du Rove is a fresh goat cheese from Le Rove near Marseille, made only on the farm from whole milk of the Rove goat breed. It has had a protected designation of origin since 2018 and is traditionally eaten sweetened with orange-flower water.",
+			"source": "https://fr.wikipedia.org/wiki/Brousse_du_Rove",
+			"sourceName": "French Wikipedia: Brousse du Rove"
+		},
+		"Caboc": {
+			"text": "Caboc is a Scottish cream cheese made from double cream or cream-enriched milk, formed into a log and rolled in toasted pinhead oatmeal. It is rennet-free, with about 67-69 % fat, and is served with oatcakes. It is said to go back to the 15th century and was a cheese of the wealthy, unlike crowdie.",
+			"wiki": "https://en.wikipedia.org/wiki/Caboc"
+		},
+		"Double-cream cheese": {
+			"text": "The richer of the two classic kinds of cream cheese: soured and drained from a mix of cream and milk that starts at about 9–11 % fat, which gives a final product with at least 33 % fat. This is the type of Philadelphia-style cream cheese.",
+			"source": "https://sjst.psu.ac.th/index.php/article/317/PaperPDFw-Links/download",
+			"sourceName": "Phadungath 2005, Cream cheese products: A review, Songklanakarin J. Sci. Technol. 27(1)"
+		},
+		"Single-cream cheese": {
+			"text": "The lighter of the two classic kinds of cream cheese: made from a mix of cream and milk that starts at only about 4.5–5 % fat, so the finished cheese is leaner and moister than double-cream cheese. Both kinds are soured by a mesophilic starter and drained the same way.",
+			"source": "https://sjst.psu.ac.th/index.php/article/317/PaperPDFw-Links/download",
+			"sourceName": "Phadungath 2005, Cream cheese products: A review, Songklanakarin J. Sci. Technol. 27(1)"
+		},
+		"Paskha": {
+			"text": "Paskha is a festive Easter dish of Eastern Orthodox countries, eaten at the end of Lent. It is made of curd pressed in a mould, in a cooked version with an egg custard and in an uncooked one.",
+			"wiki": "https://en.wikipedia.org/wiki/Paskha"
+		},
+		"Sernik": {
+			"text": "Polish baked cheesecake made from twaróg curd cheese.",
+			"wiki": "https://en.wikipedia.org/wiki/Sernik"
+		},
+		"Schabziger": {
+			"text": "Schabziger is a hard, green, strongly flavoured Swiss cheese made only in the canton of Glarus from the Ziger of skimmed milk and powdered blue fenugreek. A Glarus assembly fixed its recipe and origin stamp in 1463, one of the earliest protected brands; today one company, Geska, makes it.",
+			"wiki": "https://en.wikipedia.org/wiki/Schabziger"
+		},
+		"Ricotta forte": {
+			"text": "Ricotta forte is a traditional soft, creamy, spicy and slightly bitter cheese of Basilicata and Apulia in southern Italy. Bacteria and yeast ferment the ricotta, which gives it its sharp taste and strong smell. It is on the Italian list of traditional food products (PAT).",
+			"wiki": "https://en.wikipedia.org/wiki/Ricotta_forte"
+		},
+		"Anari": {
+			"text": "A soft, chalk-white Cypriot whey cheese, usually made from the whey left over from halloumi or kefalotyri with a little goat or sheep milk added. Eaten fresh with carob syrup or honey, or salted and dried hard for grating.",
+			"wiki": "https://en.wikipedia.org/wiki/Anari_cheese"
+		},
+		"Ziger": {
+			"text": "Ziger (Zieger in Germany and Austria) is a Swiss whey cheese: the whey protein is precipitated with acid, alone or with some skimmed milk or buttermilk. It is not aged, and is sold fresh or smoked.",
+			"wiki": "https://de.wikipedia.org/wiki/Ziger"
+		},
+		"Formaggio di fossa": {
+			"text": "Formaggio di fossa (pit cheese) comes from Sogliano al Rubicone in Emilia-Romagna, where cheese has been buried in pits dug in tufa since the 14th century. Cheese sold as fossa di Sogliano has had protected designation of origin status since 2009.",
+			"wiki": "https://en.wikipedia.org/wiki/Formaggio_di_fossa"
+		},
+		"Montebore": {
+			"text": "Montebore is a raw-milk cheese from the Tortona hills of Piedmont, built from stacked rounds like a tiered cake. It is mentioned in the 12th century, was served at a Sforza wedding in 1489, and had practically died out by 1982 before one old maker taught it to a new generation; it is now a Slow Food Presidium.",
+			"source": "https://it.wikipedia.org/wiki/Montébore",
+			"sourceName": "Italian Wikipedia: Montébore"
+		},
+		"Crowdie": {
+			"text": "Crowdie (Gaelic gruth) is a soft, fresh, crumbly Scottish cheese that crofters made from the skim milk left after taking the cream for butter. It is a lactic cheese: the milk sours by itself and the curd is warmed, drained in a cloth and salted, sometimes with a little cream.",
+			"wiki": "https://en.wikipedia.org/wiki/Crowdie"
+		},
+		"Hangop": {
+			"text": "Hangop is a Dutch dessert made from buttermilk or yoghurt that is hung in a cloth to drain overnight, leaving a thick, quark-like mass. It is easy to make at home and is now also made in factories.",
+			"source": "https://nl.wikipedia.org/wiki/Hangop",
+			"sourceName": "Dutch Wikipedia: Hangop"
+		},
+		"Chongos zamoranos": {
+			"text": "Chongos zamoranos is a Mexican dessert of curdled milk, made with rennet tablets, milk, sugar and cinnamon. The result is soft cheese-like curd in a sweet brown milky syrup; its origin is attributed to convents in Zamora, Michoacán, in the colonial period.",
+			"wiki": "https://en.wikipedia.org/wiki/Chongos_zamoranos"
+		},
+		"Ostkaka": {
+			"text": "Ostkaka is a Swedish curd cake from Hälsingland and Småland, traditionally made from raw milk and rennet. The set curd is drained, baked, and eaten tepid with jam, cloudberries and cream.",
+			"wiki": "https://en.wikipedia.org/wiki/Ostkaka"
+		},
+		"Pastry cream": {
+			"text": "Thick custard stabilised with starch, used to fill éclairs, tarts and cakes.",
+			"wiki": "https://en.wikipedia.org/wiki/Pastry_cream"
+		},
+		"Crème caramel": {
+			"text": "A baked egg custard set over a layer of soft caramel and turned out of its mould.",
+			"wiki": "https://en.wikipedia.org/wiki/Cr%C3%A8me_caramel"
+		},
+		"Crème brûlée": {
+			"text": "A rich custard topped with a crisp layer of burnt sugar, served slightly chilled.",
+			"wiki": "https://en.wikipedia.org/wiki/Cr%C3%A8me_br%C3%BBl%C3%A9e"
+		},
+		"Crema catalana": {
+			"text": "A Catalan custard of milk, egg yolks and sugar with a burnt-sugar crust.",
+			"wiki": "https://en.wikipedia.org/wiki/Crema_catalana"
+		},
+		"Leche flan": {
+			"text": "The Philippine version of flan: a firm caramel-topped egg custard.",
+			"wiki": "https://en.wikipedia.org/wiki/Leche_flan"
+		},
+		"Natillas": {
+			"text": "A Spanish custard of milk and eggs, thinner than flan and without caramel.",
+			"wiki": "https://en.wikipedia.org/wiki/Natillas"
+		},
+		"Fudge": {
+			"text": "A soft confection of sugar, butter and milk, beaten as it cools so the sugar forms fine crystals.",
+			"wiki": "https://en.wikipedia.org/wiki/Fudge"
+		},
+		"Booza": {
+			"text": "A frozen dairy dessert from the Levant, pounded and stretched rather than churned, so it is chewy and stretchy.",
+			"wiki": "https://en.wikipedia.org/wiki/Booza"
+		},
+		"Bastani": {
+			"text": "Iranian ice cream of milk, egg yolk, sugar, rose water, saffron and pistachios, often with flakes of frozen clotted cream.",
+			"wiki": "https://en.wikipedia.org/wiki/Bastani"
+		},
+		"Semifreddo": {
+			"text": "An Italian frozen dessert of whipped cream, egg whites and sugar, frozen in a mould for a light, mousse-like texture.",
+			"wiki": "https://en.wikipedia.org/wiki/Semifreddo"
+		},
+		"Blancmange": {
+			"text": "A sweet European dessert of milk or cream, sugar and a thickener, usually set in a mould and served cold.",
+			"wiki": "https://en.wikipedia.org/wiki/Blancmange"
+		},
+		"Tavuk göğsü": {
+			"text": "A Turkish milk pudding made with shredded chicken breast.",
+			"wiki": "https://en.wikipedia.org/wiki/Tavuk_g%C3%B6%C4%9Fs%C3%BC"
+		},
+		"Kazandibi": {
+			"text": "A Turkish dessert, a milk pudding whose bottom is caramelised in the pan, from the Ottoman palace kitchens.",
+			"wiki": "https://en.wikipedia.org/wiki/Kazandibi"
+		},
+		"Vla": {
+			"text": "A Dutch custard-like milk dessert sold in cartons, in vanilla, chocolate and other flavours.",
+			"wiki": "https://en.wikipedia.org/wiki/Vla"
+		},
+		"Semolina pudding": {
+			"text": "Porridge-like pudding of semolina cooked in milk, served with sugar, cinnamon, fruit or syrup.",
+			"wiki": "https://en.wikipedia.org/wiki/Semolina_pudding"
+		},
+		"Sütlaç": {
+			"text": "Turkish rice pudding of milk, rice and sugar, often baked in clay dishes.",
+			"wiki": "https://en.wikipedia.org/wiki/Rice_pudding"
+		},
+		"Arroz con leche": {
+			"text": "The Spanish and Latin American rice pudding, usually flavoured with cinnamon.",
+			"wiki": "https://en.wikipedia.org/wiki/Rice_pudding"
+		},
+		"Arroz doce": {
+			"text": "The Portuguese and Brazilian sweet rice pudding.",
+			"wiki": "https://en.wikipedia.org/wiki/Rice_pudding"
+		},
+		"Mathura peda": {
+			"text": "The original peda, from Mathura in Uttar Pradesh: thick, semi-soft brown balls of khoa, sugar and cardamom.",
+			"wiki": "https://en.wikipedia.org/wiki/Peda"
+		},
+		"Dharwad peda": {
+			"text": "A peda from Dharwad in Karnataka, made from the milk of Dharwadi buffaloes heated and stirred continuously with sugar; it has GI tag number 80.",
+			"wiki": "https://en.wikipedia.org/wiki/Dharwad_pedha"
+		},
+		"Khurchan": {
+			"text": "A North Indian winter sweet of scraped layers of cream skin from simmering milk, sweetened.",
+			"wiki": "https://en.wikipedia.org/wiki/Khurchan"
+		},
+		"Sgushchyonka": {
+			"text": "The Russian name for condensed milk; sweetened whole condensed milk is made to a GOST standard.",
+			"source": "https://ru.wikipedia.org/wiki/Сгущённое_молоко",
+			"sourceName": "Wikipedia (ru): Сгущённое молоко"
+		},
+		"Varenaya sgushchyonka": {
+			"text": "Condensed milk cooked until it browns, eaten as a spread and filling in Russia, Ukraine and Belarus.",
+			"source": "https://ru.wikipedia.org/wiki/Варёная_сгущёнка",
+			"sourceName": "Wikipedia (ru): Варёная сгущёнка"
+		},
+		"Milk protein isolate (MPI)": {
+			"text": "The most protein-rich milk protein powder: skim milk ultrafiltered and diafiltered until at least 89.5 % of the powder (ADPI definition; commonly sold as 90 % or more) is milk protein, with casein and whey proteins still in roughly their milk ratio. It cannot be made by mixing separately produced caseinate and whey protein. Used to fortify high-protein bars and heat-treated (UHT) drinks.",
+			"source": "https://adpi.org/the-powerful-list-of-dairy-ingredients/mpi-milk-protein-isolate/",
+			"sourceName": "American Dairy Products Institute: Milk protein isolate (MPI)"
+		},
+		"Importal": {
+			"text": "A lactitol laxative sold as a powder in 10 g sachets that is dissolved in water; in France it is licensed for the symptomatic treatment of constipation and for hepatic encephalopathy. The marketing authorisation holder in France is Angelini Pharma (Rome), distributed by SERB. Wikipedia lists it as the trade name of lactitol in Europe.",
+			"source": "https://www.vidal.fr/Medicament/importal-8581-formes_et_presentations.htm",
+			"sourceName": "Vidal: Importal 10 g, poudre pour solution buvable en sachet"
+		},
+		"Pizensy": {
+			"text": "The US brand of lactitol, a powder for solution taken as an osmotic laxative for chronic idiopathic constipation in adults, approved in February 2020.",
+			"wiki": "https://en.wikipedia.org/wiki/Lactitol"
+		},
+		"Iowa State Fair butter cow": {
+			"text": "A life-size cow sculpted in butter at the Iowa State Fair every year since 1911; the first was made by John K. Daniels, sponsored by Beatrice Creamery.",
+			"wiki": "https://en.wikipedia.org/wiki/Butter_sculpture"
+		},
+		"Tibetan torma": {
+			"text": "A temporary altar offering of Tibetan Buddhism, made of butter (ideally yak butter), dyed, often with flour and milk, shaped at Tibetan New Year.",
+			"wiki": "https://en.wikipedia.org/wiki/Butter_sculpture"
+		},
+		"Butter lamp": {
+			"text": "A lamp that burns butter, in Tibetan Buddhism clarified yak butter, now often vegetable oil.",
+			"wiki": "https://en.wikipedia.org/wiki/Butter_lamp"
+		},
+		"Chocolate milk": {
+			"text": "Milk with cocoa and sugar; the commonest flavoured milk.",
+			"wiki": "https://en.wikipedia.org/wiki/Chocolate_milk"
+		},
+		"Horlicks": {
+			"text": "British-American malted milk powder for a hot drink, first sold as an infant and invalid food. The brand began with the Horlick brothers in Chicago in 1873.",
+			"wiki": "https://en.wikipedia.org/wiki/Horlicks"
+		},
+		"Ovaltine": {
+			"text": "Malt-based drink powder invented by the Swiss pharmacist Albert Wander in Bern in 1904 and sold as Ovomaltine in Switzerland.",
+			"wiki": "https://en.wikipedia.org/wiki/Ovaltine"
+		},
+		"Milo": {
+			"text": "Malted chocolate drink powder created by Thomas Mayne at Nestlé in Australia in 1934, made of malted barley, milk powder, cocoa and sugar.",
+			"wiki": "https://en.wikipedia.org/wiki/Milo_(drink)"
+		},
+		"Viking Melk": {
+			"text": "Norwegian evaporated milk in a tin, developed by Olav Johan Sopp in 1891 and sold under the Viking Melk name by Nestlé since 1897.",
+			"wiki": "https://en.wikipedia.org/wiki/Evaporated_milk"
+		},
+		"Carnation": {
+			"text": "American evaporated milk brand, now Nestlé’s; the first Carnation plant opened in Kent, Washington, in 1899.",
+			"wiki": "https://en.wikipedia.org/wiki/Evaporated_milk"
+		},
+		"PET": {
+			"text": "American evaporated milk brand now owned by Smucker’s.",
+			"wiki": "https://en.wikipedia.org/wiki/Evaporated_milk"
+		},
+		"Matka kulfi": {
+			"text": "Kulfi frozen in a matka, an earthen pot kept cold with ice and salt. Sold by kulfiwallahs, the street vendors, and said to give a smooth texture without ice crystals.",
+			"wiki": "https://en.wikipedia.org/wiki/Kulfi"
+		},
+		"Kulfi falooda": {
+			"text": "A scoop or slice of kulfi served over falooda, thin vermicelli noodles, often with rose syrup. Served this way it is a dessert plate rather than a different kind of kulfi.",
+			"wiki": "https://en.wikipedia.org/wiki/Kulfi"
+		},
+		"Beijinho": {
+			"text": "Brazilian party sweet, a brigadeiro made with coconut instead of cocoa and rolled in sugar. Its name means \"little kiss\".",
+			"wiki": "https://en.wikipedia.org/wiki/Brigadeiro"
+		},
+		"Brigadeiro de colher": {
+			"text": "Spoon brigadeiro: the brigadeiro mixture served soft in a small container and eaten with a spoon instead of being rolled into balls.",
+			"wiki": "https://en.wikipedia.org/wiki/Brigadeiro"
+		},
+		"Dois amores": {
+			"text": "Brigadeiro combining dark chocolate and white chocolate.",
+			"wiki": "https://en.wikipedia.org/wiki/Brigadeiro"
+		},
+		"Eagle Brand": {
+			"text": "American sweetened condensed milk from Gail Borden's company, sold under the Eagle Brand name by 1858.",
+			"wiki": "https://en.wikipedia.org/wiki/Sweetened_condensed_milk"
+		},
+		"Milchmädchen": {
+			"text": "Nestlé's Swiss sweetened condensed milk, the best known tin in Germany.",
+			"wiki": "https://en.wikipedia.org/wiki/Sweetened_condensed_milk"
+		},
+		"La Lechera": {
+			"text": "The Mexican version of Nestlé's Milchmädchen tin.",
+			"wiki": "https://en.wikipedia.org/wiki/Sweetened_condensed_milk"
+		},
+		"Gala Peter": {
+			"text": "The first milk chocolate sold for eating, made by Daniel Peter of Vevey from 1887 (he had solved the problem in 1875 using condensed milk from his neighbour Henri Nestlé).",
+			"wiki": "https://en.wikipedia.org/wiki/Milk_chocolate"
+		},
+		"Cadbury Dairy Milk": {
+			"text": "British milk chocolate bar launched in 1905 by George Cadbury Jr, made with milk crumb; the UK's best-selling bar in 2014.",
+			"wiki": "https://en.wikipedia.org/wiki/Cadbury_Dairy_Milk"
+		},
+		"Hershey bar": {
+			"text": "American milk chocolate bar introduced by Milton Hershey in 1900, made by a secret process rather than by crumb.",
+			"wiki": "https://en.wikipedia.org/wiki/Milk_chocolate"
+		},
+		"Pinkberry": {
+			"text": "California frozen yoghurt chain opened in West Hollywood in January 2005 that revived the 1980s frozen yoghurt craze; customers choose toppings.",
+			"wiki": "https://en.wikipedia.org/wiki/Pinkberry"
+		},
+		"Malted milkshake": {
+			"text": "A milkshake made with malted milk powder, called a malt.",
+			"wiki": "https://en.wikipedia.org/wiki/Milkshake"
+		},
+		"Raclette du Valais": {
+			"text": "Raclette du Valais is a semi-hard Swiss cow cheese from the canton of Valais, protected as an AOP, made to be melted and scraped onto plates.",
+			"source": "https://www.aop-igp.ch/fileadmin/Dokumente/kampagne2025/Pflichtenhefte/RAC/Pflichtenheft%20FR%20Raclette%20du%20Valais%20AOP.pdf",
+			"sourceName": "Cahier des charges Raclette du Valais AOP"
+		},
+		"Jarlsberg": {
+			"text": "Jarlsberg is a mild Swiss-type cow cheese from Norway with medium to large eyes, aged at least three months.",
+			"wiki": "https://en.wikipedia.org/wiki/Jarlsberg_cheese"
+		},
+		"Tête de Moine": {
+			"text": "Tête de Moine is a semi-hard Swiss cheese from raw cow milk, made in the Bernese Jura and Canton of Jura and pared into rosettes rather than cut.",
+			"wiki": "https://en.wikipedia.org/wiki/T%C3%AAte_de_Moine"
+		},
+		"Fontina": {
+			"text": "Fontina is a cow cheese from Italy, first made in the Aosta Valley, where the PDO version must be made from raw milk of a single milking.",
+			"wiki": "https://en.wikipedia.org/wiki/Fontina"
+		},
+		"Lancashire": {
+			"text": "Lancashire is an English cow cheese from the county of Lancashire, traditionally made by mixing curds of two or three days.",
+			"wiki": "https://en.wikipedia.org/wiki/Lancashire_cheese"
+		},
+		"Cantal": {
+			"text": "Cantal is an uncooked, pressed French cheese from the Auvergne, aged from a few months to over a year.",
+			"wiki": "https://en.wikipedia.org/wiki/Cantal_cheese"
+		},
+		"Bogurar doi": {
+			"text": "Sweet doi from Bogura in northern Bangladesh, sold in earthen pots; it received a Geographical Indication tag. Bogura makes about 50 tonnes a day in around 400 factories, per the Financial Express.",
+			"source": "https://thefinancialexpress.com.bd/country/gi-tag-drives-growth-of-bogura-yogurt-industry-1",
+			"sourceName": "The Financial Express"
+		},
+		"Bhapa doi": {
+			"text": "Bengali steamed yoghurt dessert: thick hung curd is mixed with sweetened condensed milk, cardamom and often saffron, steamed in small bowls for about 20 minutes and chilled until it sets like a soft cheesecake. Traditional versions sweeten with nolen gur, date-palm jaggery.",
+			"source": "https://www.jeyashriskitchen.com/bhapa-doi-recipe-bengali-steamed-yogurt/",
+			"sourceName": "Jeyashri's Kitchen (recipe)"
+		},
+		"Lifeway kefir": {
+			"text": "Chicago-area kefir maker founded in 1986 by Michael Smolyansky; it reports about 95 percent of the US kefir market.",
+			"wiki": "https://en.wikipedia.org/wiki/Lifeway_Foods"
+		},
+		"Arla filmjölk": {
+			"text": "Arla's one-litre carton of filmjölk, the everyday Swedish fil sold in shops.",
+			"source": "https://commons.wikimedia.org/wiki/File:Filmj%C3%B6lksf%C3%B6rpackning_1_liter_fr%C3%A5n_Arla_-_Vlm-31191.jpg",
+			"sourceName": "Västmanlands läns museum (Wikimedia Commons)"
+		},
+		"New York cheesecake": {
+			"text": "A baked cheesecake on a cream cheese base, rich and dense, often on a graham-cracker or biscuit crust. Gil Marks traces it to Ashkenazi Jewish cooking of the 1930s, made famous by New York places such as Reuben's and Lindy's.",
+			"wiki": "https://en.wikipedia.org/wiki/Cheesecake"
 		}
 	}
 }
