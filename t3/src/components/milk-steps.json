@@ -22605,5 +22605,32 @@
 				"url": "https://world.openfoodfacts.org/product/7038010028427"
 			}
 		]
+	},
+	"cheesePowder": {
+		"table": [
+			{
+				"k": "Feed",
+				"v": "melted cheese and water,\nabout 38 % dry matter"
+			},
+			{
+				"k": "Emulsifying salt",
+				"v": "phosphates, about 3.5 %"
+			},
+			{
+				"k": "Heated",
+				"v": "80 °C, 5 min"
+			},
+			{
+				"k": "Spray dryer",
+				"v": "190 °C in, 60 °C out"
+			}
+		],
+		"text": "Cheese is minced, melted with water and emulsifying salts (usually phosphates) into a uniform \"cheese feed\", heated, often homogenised, and sprayed into hot air. Without the salts the hot cheese parts into fat and water, and the powder comes out coarse, dark and lumpy.",
+		"sources": [
+			{
+				"name": "Felix da Silva et al., Powder Technology 378 (2021) 227–236",
+				"url": "https://doi.org/10.1016/j.powtec.2020.10.004"
+			}
+		]
 	}
 }

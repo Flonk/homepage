@@ -46,6 +46,11 @@ import REGIONS from './milk-regions.json';
  * product of its own: drawn with a ruler under it, and what is made from it
  * hung below, each straight down from where its own `at` is on the ruler;
  * cultured cream, and its creams by how much fat they have.
+ *
+ * A product with `panel` is a family of cheeses too many for a list: its
+ * examples are drawn in a panel under it, each placed by how long it is
+ * ripened across and how firm it is down (see EXAMPLE_AXES); what is made
+ * from it branches off to its right as from any other.
  */
 type Product = {
 	label: string;
@@ -56,6 +61,7 @@ type Product = {
 	step?: string;
 	scale?: { name: string; unit: string; to: number; every: number };
 	at?: number;
+	panel?: boolean;
 	// Drawn just below the branch of this sibling, as its kin, whatever their sizes.
 	below?: string;
 	// A remark worth having at a glance, behind an info mark on its pill's bottom right corner.
@@ -162,7 +168,7 @@ const NODES: Record<string, Product> = {
 	skimmedPowder: {
 		label: 'Skimmed milk\npowder',
 		aka: ['Nonfat dry milk', 'Magermilchpulver'],
-		examples: ['Low-heat skim milk powder', 'Medium-heat skim milk powder', 'High-heat skim milk powder', 'Instant skim milk powder'],
+		examples: ['Low-heat skim milk powder', 'Medium-heat skim milk powder', 'High-heat skim milk powder', 'Instant skim milk powder', 'Film-set cocaine'],
 		from: 'skimmed',
 		step: 'spray-dry',
 	},
@@ -194,7 +200,7 @@ const NODES: Record<string, Product> = {
 		examples: ['ATryn', 'Ruconest'],
 		from: 'raw',
 		step: 'transgenic goat or rabbit milk, purify',
-		note: "Not cow's milk: the milk comes from goats and rabbits carrying a human gene.",
+		note: "The goats (and rabbits) carry a human gene.",
 	},
 
 	lactotripeptide: {
@@ -396,7 +402,7 @@ const NODES: Record<string, Product> = {
 	churn: { label: 'Churning liquid', aka: ['Sweet buttermilk', 'Süßrahmbuttermilch'], from: 'cream', step: 'the rest' },
 	buttermilk: { label: 'Buttermilk', aka: ['Buttermilch', 'Babeurre', 'Lait ribot', 'Lait battu'], from: 'churn', alsoFrom: ['skimmed'], step: 'sour' },
 	// Cretan staka and staka butter: cream cooked with flour splits into protein paste and fat.
-	staka: { label: 'Staka', aka: ['Στάκα'], from: 'cream', step: 'the protein', note: 'Cretan, from sheep or goat milk cream; a roux-like paste of protein and flour, eaten hot with bread' },
+	staka: { label: 'Staka', aka: ['Στάκα'], from: 'cream', step: 'the protein', note: 'Cretan, from cream; a roux-like paste of protein and flour, eaten hot with bread' },
 	stakovoutiro: { label: 'Stakovoutiro', aka: ['Staka butter', 'Σταχοβούτυρο'], from: 'cream', step: 'the fat', note: 'Keeps for later; faint cheesy flavour; goes into Cretan pilaf (gamopilafo)' },
 	// The buttermilk of butter churned from soured milk or yoghurt rather than
 	// cream, as across North Africa, the Middle East, Ethiopia and South Asia.
@@ -560,17 +566,18 @@ const NODES: Record<string, Product> = {
 	freshCheese: { label: 'Fresh cheese', aka: ['Frischkäse'], examples: ['Queso fresco', 'Queso blanco', 'Panela', 'Stracchino', 'Robiola', 'Tomino', 'Mató', 'Jben', 'Queijo Minas frescal', 'Kesong puti', 'Renost'], from: 'rennetCurd', alsoFrom: ['lacticCheese'], step: 'drain fresh' },
 	lacticCheese: { label: 'Lactic-set cheese', aka: ['Fromage lactique', 'Lactic cheese'], examples: ['Sainte-Maure de Touraine', 'Crottin de Chavignol', 'Selles-sur-Cher', 'Valençay', 'Chabichou du Poitou', 'Pouligny-Saint-Pierre', 'Chaource', "Afuega'l pitu", 'Katiki Domokou', 'Picodon', 'Bouhezza', 'Crowdie'], from: 'raw', alsoFrom: ['pasteurised'], step: 'set slowly with acid, ladle unpressed' },
 	soft: { label: 'Soft cheese', aka: ['Weichkäse'], examples: ['Bel Paese', 'Cuartirolo', 'Pule', 'Montebore'], from: 'rennetCurd', step: 'drain unpressed' },
-	semiHard: { label: 'Semi-hard cheese', aka: ['Schnittkäse'], examples: ['Manchego', 'Tilsiter', 'Appenzeller', 'Butterkäse', 'Morbier', 'Havarti', 'Saint-Paulin', 'Mahón', 'Oscypek', 'Idiazabal', 'Asiago', 'Montasio', 'Pecorino Toscano', 'Queijo Canastra', 'Queso Chihuahua', 'Ossau-Iraty', 'Pecorino Sardo', 'Majorero', 'Formaggio di fossa', 'Roncal', 'Fiore Sardo', 'Raclette du Valais', 'Tête de Moine', 'Fontina', 'Lancashire', 'Cantal'], from: 'rennetCurd', step: 'press, brine' },
+	semiHard: { label: 'Semi-hard cheese', aka: ['Schnittkäse'], examples: ['Manchego', 'Tilsiter', 'Appenzeller', 'Butterkäse', 'Morbier', 'Havarti', 'Saint-Paulin', 'Mahón', 'Oscypek', 'Idiazabal', 'Asiago', 'Montasio', 'Pecorino Toscano', 'Queijo Canastra', 'Queso Chihuahua', 'Ossau-Iraty', 'Pecorino Sardo', 'Majorero', 'Formaggio di fossa', 'Roncal', 'Fiore Sardo', 'Raclette du Valais', 'Tête de Moine', 'Fontina', 'Lancashire', 'Cantal'], from: 'rennetCurd', step: 'press, brine', panel: true },
 	hard: { label: 'Hard cheese', aka: ['Hartkäse'], examples: ['Parmigiano Reggiano', 'Grana Padano', 'Pecorino Romano', 'Sbrinz', 'Kefalotyri', 'Cotija', 'Rumi', 'Reggianito', 'Graviera Kritis', 'Ladotyri Mytilinis'], from: 'rennetCurd', step: 'scald, press' },
 	bloomy: { label: 'Bloomy-rind cheese', aka: ['Weißschimmelkäse'], examples: ['Brie de Meaux', 'Camembert de Normandie', 'Coulommiers', 'Brillat-Savarin', 'Neufchâtel', 'Caravane'], from: 'soft', step: 'grow white mould' },
 	blue: { label: 'Blue cheese', aka: ['Blauschimmelkäse'], examples: ['Roquefort', 'Gorgonzola', 'Stilton', 'Danish Blue', 'Cabrales', "Fourme d'Ambert"], from: 'rennetCurd', step: 'pierce, grow blue' },
-	washed: { label: 'Washed-rind cheese', aka: ['Smear-ripened cheese', 'Rotschmierkäse'], examples: ['Époisses', 'Munster', 'Limburger', 'Taleggio', 'Herve', 'Reblochon', 'Maroilles', 'Livarot', "Pont-l'Évêque", "Vacherin Mont d'Or"], from: 'soft', step: 'smear the rind' },
+	washed: { label: 'Washed-rind cheese', aka: ['Smear-ripened cheese', 'Rotschmierkäse'], examples: ['Époisses', 'Munster', 'Limburger', 'Taleggio', 'Herve', 'Reblochon', 'Maroilles', 'Livarot', "Pont-l'Évêque", "Vacherin Mont d'Or"], from: 'soft', step: 'smear the rind', panel: true },
 	alpine: { label: 'Alpine cheese', aka: ['Bergkäse'], examples: ['Emmentaler', 'Gruyère', 'Comté', 'Beaufort', 'Langtang yak cheese', 'Jarlsberg'], from: 'hard', step: 'scald, ripen' },
 	cheddared: { label: 'Cheddared cheese', examples: ['Cheddar', 'Red Leicester', 'Dunlop', 'Double Gloucester', 'Cheese curds'], from: 'rennetCurd', step: 'cheddar' },
 	washedCurd: { label: 'Washed-curd cheese', examples: ['Gouda', 'Edam', 'Colby', 'Monterey Jack', 'Leyden', 'Maasdam', 'Brick'], from: 'semiHard', step: 'wash the curd' },
 	insect: { label: 'Insect- or mite-\nripened cheese', examples: ['Casu marzu', 'Casgiu merzu', 'Marcetto', 'Mimolette'], from: 'rennetCurd', alsoFrom: ['semiHard', 'washedCurd', 'hard', 'quark'], step: 'ripen with mites or larvae' },
 	tulum: { label: 'Tulum', aka: ['Tulum peyniri'], examples: ['Erzincan tulum', 'İzmir tulum', 'Divle', 'Çimi', 'Kargı', 'Guda', 'Brânză de burduf'], from: 'rennetCurd', step: 'pack in skin', note: 'Ripened in an animal skin (tulum), the method that gives it its name. Other skin-packed cheeses exist too, such as Greek touloumotyri.' },
 	processed: { label: 'Processed cheese', aka: ['Schmelzkäse'], examples: ['American cheese', 'Cancoillotte', 'Requeijão cremoso', 'Queijo de manteiga', 'Plavleny syrok', 'Velveeta'], from: 'semiHard', alsoFrom: ['hard', 'cheddared', 'freshCheese'], step: 'melt', note: 'Made from whatever natural cheese the maker has: mostly Cheddar and Colby in the US, Emmental or Gouda types in Europe, and fresh curd for Cancoillotte and requeijão' },
+	cheesePowder: { label: 'Cheese powder', examples: ['Mac and cheese powder', 'Snack seasoning'], from: 'cheddared', alsoFrom: ['semiHard', 'hard', 'creamCheese'], step: 'melt with water and salts, spray-dry' },
 	grilling: { label: 'Grilling cheese', examples: ['Halloumi', 'Leipäjuusto', 'Queso para freír', 'Queijo de coalho'], from: 'rennetCurd', alsoFrom: ['colostrum'], step: 'heat hard' },
 	pastaFilata: {
 		label: 'Pasta filata\n(mozzarella)',
@@ -820,6 +827,12 @@ const NODES: Record<string, Product> = {
  */
 type Picture = { file: string; author: string; license: string; source: string };
 const IMAGES: Record<string, Picture> = {
+	cheesePowder: {
+		file: 'Kraft Dinner, additional ingredients for classic prep, plus cheese powder 3.jpg',
+		author: 'Bodhi Peace',
+		license: 'CC BY-SA 4.0',
+		source: 'https://commons.wikimedia.org/wiki/File:Kraft_Dinner,_additional_ingredients_for_classic_prep,_plus_cheese_powder_3.jpg',
+	},
 	sauerrahm: {
 		file: 'Sour Cream.jpg',
 		author: 'jules',
@@ -3994,7 +4007,7 @@ const EXAMPLE_NOTES: Record<string, string> = {
 	'Arroz con leche': 'The Spanish and Latin American rice pudding, usually flavoured with cinnamon',
 	'Arroz doce': 'Portuguese and Brazilian sweet rice pudding',
 	'Mathura peda': 'The peda originated in Mathura, Uttar Pradesh; thick semi-soft brown balls of khoa, sugar and cardamom; the word comes from Sanskrit piṇḍa, a lump; Bhojanakutūhala (17th c.) describes milk and sugar with cardamom, cloves and pepper',
-	'Dharwad peda': 'Karnataka; GI tag number 80; about 175 years old; from the milk of Dharwadi buffaloes, heated and stirred continuously with sugar; started by the Thakur family who came from Unnao',
+	'Dharwad peda': 'Karnataka; GI tag number 80; about 175 years old; milk heated and stirred continuously with sugar; started by the Thakur family who came from Unnao',
 	'Khurchan': 'From khurchana, Hindi for to scrape; Old Delhi and Khurja, Mathura; Not reduced to a solid like rabri: the scraped skins are the product',
 	'Varenaya sgushchyonka': 'In the USSR the tin was boiled unopened at home, with a risk of bursting; industrial production began only in the 1990s',
 	'Chongos zamoranos': 'Milk is set with rennet and served on a sweet brown milky syrup; origin attributed to colonial convents of Zamora, Michoacán',
@@ -4011,7 +4024,7 @@ const EXAMPLE_NOTES: Record<string, string> = {
 	'Semifreddo': 'Italian, "half-cold"; earliest mention Antonio Nebbia, Il cuoco maceratese, 1779, semifreddo fior di latte of milk, sugar and cream',
 	'Hangop': 'Traditionally from buttermilk, today mostly yoghurt; not Jan-in-de-zak',
 	'Clabber': 'Came to the American South with the Ulster Scots and was once used as a quick leavener before baking powder; making it virtually stopped once milk was pasteurised',
-	'Formaggio di fossa': 'Sheep, cow, mixed or rarely buffalo milk; matured 20-30 days before burying per Wikipedia (the PDO rules are reported as at least 80 days, sources differ)',
+	'Formaggio di fossa': 'Rarely buffalo milk too; matured 20-30 days before burying per Wikipedia (the PDO rules are reported as at least 80 days, sources differ)',
 	'Montebore': 'Shaped as stacked rounds of decreasing diameter, after the ruined tower of Montebore castle; served at the 1489 wedding of Isabella of Aragon',
 	'Crowdie': 'Traditional skim-milk cheese of the Highlands and Islands; Gruth dhu (black crowdie) is crowdie mixed with double cream and rolled in oatmeal and black pepper; Hramsa has wild garlic',
 	'Schabziger': 'Made only in Glarus; the green comes from blue fenugreek (Schabzigerklee, Trigonella caerulea). Grated, never sliced',
@@ -4019,7 +4032,7 @@ const EXAMPLE_NOTES: Record<string, string> = {
 	'Gammelost': 'Ripens from the surface inward with a mould (Mucor mucedo) instead of a smear; about 1 % fat and 50 % protein',
 	'Pultost': 'Spreadable (Loiten) and grainy (Hedemark, Lillehammer) types; stronger when aged',
 	'Jānu siers': 'Eaten at Jāņi, the midsummer festival; under 30 % fat; a firm cylinder, not a spreadable cooked cheese',
-	'Brousse du Rove': 'Made from whole milk of the Rove goat, not from whey like other brousses; farm production only',
+	'Brousse du Rove': 'Made from whole milk, not from whey like other brousses; farm production only',
 	'Caboc': 'Rennet-free; formed into a log and rolled in toasted pinhead oatmeal. The 15th-century Mariota de Ile story is family legend, not documented history',
 	'Paskha': 'Moulded in a wooden pasochnitsa; eaten at the end of Lent',
 	'Sernik': 'Polish cheesecake from twaróg (curd), eggs and butter, no cream or sour cream; dates to the 17th century; variants krakowski with lattice crust, królewski with cocoa crust, wiedeński crustless',
@@ -4042,22 +4055,22 @@ const EXAMPLE_NOTES: Record<string, string> = {
 	'Crème Chantilly': 'Whipped cream sweetened with sugar and usually flavoured with vanilla',
 	'Spray whipped cream': 'Aerosol can: nitrous oxide dissolves in the butterfat under pressure and foams as the can is released; CO2 would taste sour',
 	'Devon clotted cream': 'Disputed origin with Cornwall; paler because the grass has less carotene (Wikipedia); in Devon the cream goes on the scone first, in Cornwall the jam; only Cornish clotted cream is a PDO (1998, min 55 % butterfat, milk from Cornwall)',
-	'Brânză de burduf': 'Sheep milk, occasionally buffalo. Made from caş dospit (matured sweet curd), cut, salted and kneaded by hand; fir bark gives a resin taste. Softer fattier versions: brânză de putină, Cremă Focșani.',
+	'Brânză de burduf': 'Made from caş dospit (matured sweet curd), cut, salted and kneaded by hand; fir bark gives a resin taste. Softer fattier versions: brânză de putină, Cremă Focșani.',
 	'Ezine': 'Mixed milk, about 40 % goat, 50 % sheep, 10 % cow; no starter; ripened in metal tins like Edirne cheese. First Turkish cheese registered in the EU.',
-	'Majorero': 'Goat milk of the Majorera breed (cured versions may include up to 15 % Canarian sheep milk); rind left natural or rubbed with oil, paprika or toasted gofio; edges show the imprint of the palm-leaf braid mould.',
-	'Fiore Sardo': 'Raw Sarda ewe milk, no starter added; named for the old wooden moulds carved with a flower. Raw-milk, uncooked curd (curd broken to millet-grain size, not cooked); firm from long ripening, grated after 6 months.',
+	'Majorero': 'Cured versions may include up to 15 % Canarian sheep milk; rind left natural or rubbed with oil, paprika or toasted gofio; edges show the imprint of the palm-leaf braid mould.',
+	'Fiore Sardo': 'Raw milk, no starter added; named for the old wooden moulds carved with a flower. Raw-milk, uncooked curd (curd broken to millet-grain size, not cooked); firm from long ripening, grated after 6 months.',
 	'Pecorino Sardo': 'Two types: dolce (20–60 d) and maturo (over 2 months). The only Sardinian PDO set with calf rennet.',
-	'Roncal': 'Raw milk of Lacha and Rasa sheep, made December to July; first Spanish cheese with a denominación de origen (1981). Pressed, uncooked: the curd stays at 30–37 °C; firm from 4+ months of ripening.',
-	'Ossau-Iraty': 'Ewe milk only; farm versions raw milk only. Pressed, uncooked: heating stays below 44 °C.',
+	'Roncal': 'Raw milk, made December to July; first Spanish cheese with a denominación de origen (1981). Pressed, uncooked: the curd stays at 30–37 °C; firm from 4+ months of ripening.',
+	'Ossau-Iraty': 'Farm versions raw milk only. Pressed, uncooked: heating stays below 44 °C.',
 	'Ladotyri Mytilinis': 'Ladotyri means oil cheese: after ripening it is submerged in olive oil, a preservation method common before household refrigerators. Mass-market version is called graviera.',
-	'Parenica': 'Slovak PGI. Sheep milk traditionally, now also cow or mixed; wound into two spiral rolls joined in an S, usually smoked.',
+	'Parenica': 'Slovak PGI; wound into two spiral rolls joined in an S, usually smoked.',
 	'Žázrivský korbáčik': 'Protected local variety (PGI) of korbáčik from the Žázrivá area in Orava; the generic korbáčik is made in many places.',
-	'Korbáčik': 'Smoked and unsmoked, also salty or garlic versions; lump cheese from sheep, now often cow.',
+	'Korbáčik': 'Smoked and unsmoked, also salty or garlic versions.',
 	'Oštiepok': 'The PGI allows it steamed or not, smoked or not; Goral oscypek is a different cheese (different ratios and process). Egg-, cone- or ellipse-shaped with ornaments pressed in.',
 	'Pule': 'Needs goat milk: donkey milk has too little casein, especially kappa-casein, for rennet to set it alone. About 25 L of milk per kg; only a few dozen jennies are milked, by hand.',
-	'Katiki Domokou': 'Goat and sheep milk; PDO; spreadable, low fat.',
+	'Katiki Domokou': 'PDO; spreadable, low fat.',
 	'Picodon': "Washed variant ('affiné lavé' / méthode Dieulefit) is dried, washed at least twice and kept in covered jars; sold from 30 days after renneting instead of 12.",
-	'Graviera Kritis': 'Cretan PDO: sheep milk, goat at most about 20 %. Naxos graviera (PDO) is mostly cow milk, Agrafa the third PDO graviera. The name comes from Gruyère.',
+	'Graviera Kritis': 'Cretan PDO, goat milk at most about 20 %. Naxos graviera (PDO) is mostly cow milk, Agrafa the third PDO graviera. The name comes from Gruyère.',
 	'Messmör': 'Swedish; whey only, boiled down until it caramelises, no cream or sugar.',
 	'Getmessmör': 'Swedish; the same, from goat whey.',
 	'Sýra': 'Soured whey kept in barrels for preserving food, and drunk after dilution.',
@@ -4068,29 +4081,29 @@ const EXAMPLE_NOTES: Record<string, string> = {
 	'Suzma': 'In Central Asia strained qatiq (boiled milk set with its own starter), not Greek-style thermophilic yoghurt; Turkish süzme yoğurt is strained ordinary yoghurt',
 	'Jocoque seco': 'The dried form of jocoque: strained curd dried, or kept in oil as balls',
 	'Jocoque': 'The Mexican kind is a soured milk, traditionally spontaneous, not strained thermophilic yoghurt',
-	'Afyon kaymagi': 'Raw buffalo milk; Turkish GI: at least 60 % fat and 65 % dry matter',
+	'Afyon kaymagi': 'Raw milk; Turkish GI: at least 60 % fat and 65 % dry matter',
 	'Muhallebi': 'Rice-flour or cornstarch-thickened milk pudding, scented with rose or orange-blossom water',
-	'Double-skin milk': 'Traditionally buffalo milk: the skin that forms on cooled boiled milk is lifted aside, the milk is beaten with egg white and sugar and poured back under it, and steaming grows a second skin; a dessert, not a cream',
+	'Double-skin milk': 'The skin that forms on cooled boiled milk is lifted aside, the milk is beaten with egg white and sugar and poured back under it, and steaming grows a second skin; a dessert, not a cream',
 	'Queijo de coalho': 'Not heated hard like halloumi: the curd is cooked to 45–55 °C at most, and it holds its shape on a grill because it is firm and moist',
 	'Queijo de manteiga': 'Made from acid-set milk curd, not from finished cheese, then melted with manteiga de garrafa',
-	'Kesong puti': 'Carabao (water buffalo) milk; the vinegar version is not fermented and is slightly sour, the rennet version is firmer. Salted in the milk or in brine afterwards, sold wrapped in banana leaf',
-	'Langtang yak cheese': 'Swiss-style cheese made from yak and nak milk at Kyangjin since the 1950s; taught by Swiss cheesemakers (Werner Schulthess, Sepp Dubach), Swiss project handed to the government in 1964',
+	'Kesong puti': 'The vinegar version is not fermented and is slightly sour, the rennet version is firmer. Salted in the milk or in brine afterwards, sold wrapped in banana leaf',
+	'Langtang yak cheese': 'Swiss-style cheese made at Kyangjin since the 1950s; taught by Swiss cheesemakers (Werner Schulthess, Sepp Dubach), Swiss project handed to the government in 1964',
 	'Chechil': 'Made from skimmed, soured milk, scalded and pulled into strands, braided and kept in brine; Armenia and Georgia',
-	'Tenili': 'Sheep milk; the strands are packed tightly into a clay pot (tenili = stuffed) and matured about two months',
+	'Tenili': 'The strands are packed tightly into a clay pot (tenili = stuffed) and matured about two months',
 	'Imeruli': 'Cow milk, up to 20 % buffalo or goat; Georgian GI; young cheese, sold a day after brining',
 	'Bouhezza': 'Made by filling a skin bag with salted lben and milk over weeks, not by packing pressed curd.',
 	'Rumi': 'Raw milk, no starter; the name means Roman, but it is Egyptian.',
 	'Gibna bayda': 'Salt is added to the milk before the rennet, as in Domiati.',
 	'Mudafara': 'Stretched in boiled water but kept in brine like a feta.',
-	'Caravane': 'Made from camel\'s milk, which sets poorly with rennet; the FAO sent a scientist to teach the dairy a method (Wikipedia, 1992).',
-	'Guda': 'Sheep milk from Tusheti; the name means cheese from a bag; the skin is a young sheep hide with the wool shaved off',
-	'Lighvan': 'Raw ewe milk, no starter; Lighvan village, East Azerbaijan',
-	'Jibneh Arabieh': 'Originally goat or sheep milk of the Bedouin; today mostly cow milk; mild, less salty than feta; also the filling of knafeh',
-	'Otlu peynir': 'Raw sheep milk (cow and goat may be added); wild herbs mixed into the curd; brined and matured underground',
+	'Caravane': 'Camel\'s milk sets poorly with rennet; the FAO sent a scientist to teach the dairy a method (Wikipedia, 1992).',
+	'Guda': 'From Tusheti; the name means cheese from a bag; the skin is a young sheep hide with the wool shaved off',
+	'Lighvan': 'Raw milk, no starter; Lighvan village, East Azerbaijan',
+	'Jibneh Arabieh': 'Of the Bedouin first; mild, less salty than feta; also the filling of knafeh',
+	'Otlu peynir': 'Raw milk; wild herbs mixed into the curd; brined and matured underground',
 	'Jben': 'Moroccan and Algerian sources describe it as rennet-set or lactic-set depending on the maker; it sits here with rennet fresh cheeses.',
 	'Klila': 'Dried, unlike soft chhurpi or ayib; the closest relative is hard chhurpi',
 	'Karish': 'Drained cold, unlike Areesh, which is heated gently',
-	'Dali ni horbo': 'Water buffalo milk, boiled and set with pineapple juice or papaya leaf juice (it also tames the strong smell, per Indonesia Travel); a Batak staple sold in the markets (onan) of Tapanuli',
+	'Dali ni horbo': 'Boiled and set with pineapple juice or papaya leaf juice (it also tames the strong smell, per Indonesia Travel); a Batak staple sold in the markets (onan) of Tapanuli',
 	'Litsusu': 'Set with sap enzymes of the litsusu tree',
 	'Cologanti': 'Set with sap enzymes of the litsusu tree',
 	'Matsoni': 'Of Armenian origin (matz = sour, in Grigor Magistros, 11th century); on Armenia\'s intangible heritage list; Georgian matsoni a protected GI since 24 January 2012; the Caspian Sea yoghurt sold in Japan is said to be the same type, but a microbiota and viscosity comparison found them entirely different',
@@ -4098,17 +4111,17 @@ const EXAMPLE_NOTES: Record<string, string> = {
 	'Sweet lassi': 'Made from set dahi, with its mesophilic starter, not from thermophilic yoghurt; sugar is stirred in instead of salt',
 	'Meiji Bulgaria': 'Japan’s best-known plain yoghurt; named LB81 after its two strains, L. bulgaricus 2038 and S. thermophilus 1131 (last digits 8 and 1)',
 	'Beijing yoghurt': 'Sweetened with sugar or honey and made with glutinous-rice wine; sold in small porcelain or ceramic jars with a deposit, today often in plastic cups',
-	'Juju dhau': 'Newar sweet curd from Bhaktapur, Nepal: buffalo milk, brown sugar, set in clay pots',
-	'Sho': 'Tibetan yoghurt from the milk of the female yak (dri); the yoghurt is churned for yak butter',
+	'Juju dhau': 'Newar sweet curd from Bhaktapur, Nepal: milk and brown sugar, set in clay pots',
+	'Sho': 'Tibetan yoghurt, also churned for butter',
 	'Aqit': 'Bedouin: milk churned in a goatskin, the buttermilk heated until it curdles, curd shaped into discs and dried in the shade at least a day; some accounts make it from boiled yoghurt instead (sources differ)',
 	'Qatiq': 'Boiled milk fermented 6-10 h in a warm place; denser than ayran; strained gives suzma, dried suzma is kurut; used in the Uzbek chalop soup',
-	'Yak butter': 'Churned from soured yak milk, not from separated cream; keeps up to a year away from air. Fat of butter tea and butter lamps',
+	'Yak butter': 'Churned from soured milk, not from separated cream; keeps up to a year away from air. Fat of butter tea and butter lamps',
 	'Shar tos': 'Mongolian clarified butter, melted gently from tsagaan tos (white butter, made by straining and churning cream)',
 	'Manteiga de garrafa': 'Cooked from cream, not from butter',
 	'Makhan': 'Churned from dahi (set whole milk or malai), not from separated cream',
 	'Zebda': 'Churned from raw milk that sours on its own, not from separated cream',
 	'Kibe': 'Churned from soured whole milk, not from cream',
-	'Pastillas de leche': 'Traditionally from carabao milk, cow milk now common; sugar and calamansi juice go in; origin San Miguel, Bulacan',
+	'Pastillas de leche': 'Sugar and calamansi juice go in; origin San Miguel, Bulacan',
 	'Phirni': 'Ground rice cooked in milk and eaten chilled',
 	'Payasam': 'South Indian; often jaggery, coconut milk or vermicelli',
 	'Payesh': 'Bengali; scented gobindobhog rice, often date-palm jaggery',
@@ -4123,10 +4136,10 @@ const EXAMPLE_NOTES: Record<string, string> = {
 	'Erinoid': 'British trade name for casein plastic',
 	'Lactoid': 'Trade name for casein plastic',
 	'Aladdinite': 'American trade name for casein plastic',
-	'Dondurma': "Maraş dondurma: goat's milk, salep and sugar, no cream; pounded and stretched, not churned",
+	'Dondurma': "Maraş dondurma: milk, salep and sugar, no cream; pounded and stretched, not churned",
 	'Frozen custard': 'Ice-cream mix with egg yolks (US standard: at least 1.4 %)',
 	'Soft serve': 'The same kind of mix, drawn off at about -5 °C with more air',
-	'Žinčica': "The Slovak name for the same sheep's-whey drink, made from the whey left over from bryndza.",
+	'Žinčica': "The Slovak name for the same whey drink, made from the whey left over from bryndza.",
 	'Salted lassi': 'Made from set dahi, with its mesophilic starter, not from thermophilic yoghurt; the curd is broken up and salt and cumin go in after fermentation',
 	'Renost': 'Reindeer milk is very rich (about 22 % fat, 10 % protein) but a doe gives about 1.5 cups a day, so production is tiny; it was often taken in coffee instead of cream.',
 	'Leipäjuusto': 'Traditionally made from reindeer milk; today usually cow milk, preferably the first milk (colostrum) after calving, or goat',
@@ -4150,13 +4163,13 @@ const EXAMPLE_NOTES: Record<string, string> = {
 	'Thermised yoghurt': 'Heated to 60–70 °C for a few seconds, so it keeps 1–2 months chilled',
 	'Ambient yoghurt': 'Heated to 75–110 °C for 5–20 s and filled aseptically, so it keeps 4–12 months at room temperature; sold as drinking yoghurt pouches',
 	Ylette: 'The lighter version, 1.5 % fat',
-	Gioddu: "Sardinian gioddu is often made from sheep or goat milk and is listed in Italy's register of traditional food products; its starter, sa madrighe, is milk curdled with calf rennet",
-	Zabady: 'Egyptian zabady is traditionally made from buffalo milk, boiled hard first; the heat treatment is long (85 °C to boiling, 10 to 30 minutes), which thickens the milk before it is set',
-	Meekiri: "Made from buffalo milk, so it is thicker, creamier and whiter than cow's-milk yoghurt; usually eaten with kithul (palm) or coconut treacle",
+	Gioddu: "Sardinian gioddu is listed in Italy's register of traditional food products; its starter, sa madrighe, is milk curdled with calf rennet",
+	Zabady: 'Egyptian zabady: the milk is boiled hard first; the heat treatment is long (85 °C to boiling, 10 to 30 minutes), which thickens the milk before it is set',
+	Meekiri: "Thicker, creamier and whiter than cow's-milk yoghurt; usually eaten with kithul (palm) or coconut treacle",
 	Mabisi: 'Zambian mabisi is made in a calabash or clay pot, and in recent years often a plastic container, since calabashes are scarce; a field trial found no difference between the vessels',
 	Nunu: "Made from raw cow's milk by spontaneous fermentation",
 	Khuruud: 'Aarts (pressed curd) dried in the sun until rock-hard; a modern version presses unfermented curds in moulds; aaruul is the softer sweetened, sliced version of the same curd',
-	Ititu: 'Mostly camel milk; built up in layers, not left in one batch.',
+	Ititu: 'Built up in layers, not left in one batch.',
 	'Fura da nono': 'Millet dough balls mashed into nono; Hausa, Fulani and Zarma-Songhai',
 	Brukina: 'Ground millet and milk, Ghana (Northern Region); sources disagree on whether the milk is fermented: Wikipedia says pasteurised, a 2023 Discover Food paper lists it as a fermented milk-millet drink',
 	'Dégué': 'Ground millet and milk, Senegal and Côte d\'Ivoire; sources disagree on whether the milk is fermented: Wikipedia says pasteurised for brukina, a 2023 Discover Food paper lists it as a fermented milk-millet drink',
@@ -4187,22 +4200,239 @@ const EXAMPLE_NOTES: Record<string, string> = {
 	Brocciu: 'Milk added to the whey',
 	Mizithra: 'Milk added to the whey',
 	Manouri: 'Milk or cream added to the whey',
-	'Mató': 'Made from heat-treated milk (traditionally goat), set with rennet, cardoon or lemon, not from whey, so unlike ricotta',
-	Gjetost: 'Whey with goat milk (ekte geitost is whey and goat milk only)',
-	Gudbrandsdalsost: 'Cow and goat milk, cream and whey',
+	'Mató': 'Made from heat-treated milk, set with rennet, cardoon or lemon, not from whey, so unlike ricotta',
+	Gjetost: 'Ekte geitost is whey and goat milk only',
+	Gudbrandsdalsost: 'Milk, cream and whey',
 	'Fløtemysost': 'Whey, cow milk and cream, no goat milk',
 	Chal: 'Turkmen counterpart of Kazakh shubat',
 	Milbenkäse: 'Quark balls ripened by mites',
 	Burrata: 'A mozzarella shell filled with stracciatella and cream',
-	'Stracciatella di bufala': 'Made from buffalo milk',
 	'Parmigiano Reggiano': 'A grana-type cheese, like Grana Padano. In the EU, "Parmesan" means only this PDO cheese; in the US and Canada the name is sold on a generic, pasteurised cheese.',
-	'Bryndza podhalańska': 'Polish PDO: sheep milk, at most 40% cow milk',
-	'Slovenská bryndza': 'Slovak PGI: sheep lump cheese, with up to 50% cow lump cheese',
+	'Bryndza podhalańska': 'Polish PDO: at most 40% cow milk',
+	'Slovenská bryndza': 'Slovak PGI: up to 50% cow lump cheese',
 	'Ginger milk curd': 'A dessert set with ginger juice (the protease zingibain), not a cheese',
 	'Queso blanco': 'The Latin American fresh cheese, made by curdling hot milk with acid (or sometimes rennet) and pressed lightly, so softer than paneer, a different cheese',
 	'Kule naoto': 'The Maasai version, a different people\'s gourd-fermented milk',
 };
 for (const name of Object.keys(EXAMPLE_NOTES)) if (!named.has(name)) throw new Error(`MilkGraph: note for unknown example ${name}`);
+
+/* Where each cheese in a panel goes (see Product): how firm it is as it is
+   eaten, by the Codex classes of its moisture in the cheese without its
+   fat, and the days it is ripened, the least and the most usual. Estimated
+   for now, until the inventory has them. */
+const FIRMS = ['fresh', 'soft', 'semi-soft', 'semi-hard', 'hard', 'extra-hard'] as const;
+const EXAMPLE_AXES: Record<string, { firm: (typeof FIRMS)[number]; days: [number, number] }> = {
+	Époisses: { firm: 'soft', days: [28, 56] },
+	Munster: { firm: 'soft', days: [21, 90] },
+	Limburger: { firm: 'semi-soft', days: [42, 90] },
+	Taleggio: { firm: 'semi-soft', days: [35, 70] },
+	Herve: { firm: 'soft', days: [35, 90] },
+	Reblochon: { firm: 'semi-soft', days: [15, 50] },
+	Maroilles: { firm: 'soft', days: [35, 120] },
+	Livarot: { firm: 'soft', days: [21, 90] },
+	"Pont-l'Évêque": { firm: 'soft', days: [21, 60] },
+	"Vacherin Mont d'Or": { firm: 'soft', days: [21, 60] },
+	Manchego: { firm: 'semi-hard', days: [60, 730] },
+	Tilsiter: { firm: 'semi-hard', days: [60, 150] },
+	Appenzeller: { firm: 'semi-hard', days: [90, 180] },
+	Butterkäse: { firm: 'semi-soft', days: [21, 45] },
+	Morbier: { firm: 'semi-soft', days: [45, 75] },
+	Havarti: { firm: 'semi-soft', days: [60, 365] },
+	'Saint-Paulin': { firm: 'semi-soft', days: [20, 60] },
+	Mahón: { firm: 'semi-hard', days: [21, 300] },
+	Oscypek: { firm: 'semi-hard', days: [3, 14] },
+	Idiazabal: { firm: 'hard', days: [60, 365] },
+	Asiago: { firm: 'semi-hard', days: [20, 540] },
+	Montasio: { firm: 'semi-hard', days: [60, 540] },
+	'Pecorino Toscano': { firm: 'semi-hard', days: [20, 120] },
+	'Queijo Canastra': { firm: 'semi-hard', days: [22, 60] },
+	'Queso Chihuahua': { firm: 'semi-hard', days: [7, 30] },
+	'Ossau-Iraty': { firm: 'semi-hard', days: [80, 300] },
+	'Pecorino Sardo': { firm: 'semi-hard', days: [20, 365] },
+	Majorero: { firm: 'semi-hard', days: [8, 180] },
+	'Formaggio di fossa': { firm: 'semi-hard', days: [80, 180] },
+	Roncal: { firm: 'hard', days: [120, 240] },
+	'Fiore Sardo': { firm: 'hard', days: [105, 365] },
+	'Raclette du Valais': { firm: 'semi-hard', days: [60, 180] },
+	'Tête de Moine': { firm: 'semi-hard', days: [75, 180] },
+	Fontina: { firm: 'semi-soft', days: [80, 150] },
+	Lancashire: { firm: 'semi-hard', days: [21, 365] },
+	Cantal: { firm: 'semi-hard', days: [30, 240] },
+};
+for (const name of Object.keys(EXAMPLE_AXES)) if (!named.has(name)) throw new Error(`MilkGraph: axes for unknown example ${name}`);
+for (const [id, { panel, examples: names = [] }] of Object.entries(NODES)) {
+	if (!panel) continue;
+	for (const name of names) if (!EXAMPLE_AXES[name]) throw new Error(`MilkGraph: ${name} in the panel of ${id} has no axes`);
+}
+
+/* The animals whose milk it is made from, where that is not only a cow's: a
+   mark for each on its bottom left corner, the biggest share first, and the
+   cow among them where it is made from hers as well, or as often. Marked
+   only where the other milk is what it is made from, by law or as it
+   usually is, not where it only may be: kefir can be made of goat's milk,
+   but is not marked. By product id or example name. */
+const BEASTS = {
+	cow: { mark: '🐄', milk: 'cow' },
+	sheep: { mark: '🐑', milk: 'sheep' },
+	goat: { mark: '🐐', milk: 'goat' },
+	horse: { mark: '🐎', milk: 'mare' },
+	donkey: { mark: '🫏', milk: 'donkey' },
+	buffalo: { mark: '🐃', milk: 'buffalo' },
+	camel: { mark: '🐪', milk: 'camel' },
+	yak: { mark: '🦬', milk: 'yak' },
+	reindeer: { mark: '🦌', milk: 'reindeer' },
+};
+const MILK_OF: Record<string, (keyof typeof BEASTS)[]> = {
+	'Afyon kaymagi': ['buffalo'],
+	Dondurma: ['goat'],
+	'Double-skin milk': ['buffalo'],
+	milkDrugs: ['goat'],
+	ATryn: ['goat'],
+	'Yak butter': ['yak'],
+	staka: ['sheep', 'goat'],
+	stakovoutiro: ['sheep', 'goat'],
+	Podkvasa: ['sheep'],
+	Galotyri: ['sheep', 'goat'],
+	Meekiri: ['buffalo'],
+	Sho: ['yak'],
+	Gioddu: ['sheep', 'goat'],
+	Zabady: ['buffalo'],
+	zhentytsia: ['sheep'],
+	'Žinčica': ['sheep'],
+	'Juju dhau': ['buffalo'],
+	Jameed: ['sheep'],
+	dadiah: ['buffalo'],
+	choormog: ['camel'],
+	Choormog: ['camel'],
+	Shubat: ['camel'],
+	Chal: ['camel'],
+	Gariss: ['camel'],
+	Suusac: ['camel'],
+	Dhanaan: ['camel'],
+	Ititu: ['camel'],
+	kumis: ['horse'],
+	Chigee: ['horse'],
+	Tenili: ['sheep'],
+	'Stracciatella di bufala': ['buffalo'],
+	bryndza: ['sheep'],
+	Feta: ['sheep', 'goat'],
+	Nabulsi: ['sheep', 'goat'],
+	Lighvan: ['sheep'],
+	'Dharwad peda': ['buffalo'],
+	Cajeta: ['goat'],
+	'Getmessmör': ['goat'],
+	Brocciu: ['sheep', 'goat'],
+	Mizithra: ['sheep', 'goat'],
+	Manouri: ['goat', 'sheep'],
+	Anthotyros: ['sheep', 'goat'],
+	Anari: ['goat', 'sheep'],
+	'Urdă': ['sheep'],
+	'Tibetan torma': ['yak'],
+	'Brousse du Rove': ['goat'],
+	Rubing: ['goat'],
+	'Kesong puti': ['buffalo'],
+	Renost: ['reindeer'],
+	'Sainte-Maure de Touraine': ['goat'],
+	'Crottin de Chavignol': ['goat'],
+	'Selles-sur-Cher': ['goat'],
+	'Valençay': ['goat'],
+	'Chabichou du Poitou': ['goat'],
+	'Pouligny-Saint-Pierre': ['goat'],
+	'Katiki Domokou': ['goat', 'sheep'],
+	Picodon: ['goat'],
+	Pule: ['donkey', 'goat'],
+	Manchego: ['sheep'],
+	Oscypek: ['sheep'],
+	Idiazabal: ['sheep'],
+	'Pecorino Toscano': ['sheep'],
+	'Ossau-Iraty': ['sheep'],
+	'Pecorino Sardo': ['sheep'],
+	Majorero: ['goat'],
+	Roncal: ['sheep'],
+	'Fiore Sardo': ['sheep'],
+	'Pecorino Romano': ['sheep'],
+	Kefalotyri: ['sheep', 'goat'],
+	'Graviera Kritis': ['sheep', 'goat'],
+	'Ladotyri Mytilinis': ['sheep', 'goat'],
+	Caravane: ['camel'],
+	Roquefort: ['sheep'],
+	'Langtang yak cheese': ['yak'],
+	'Torta del Casar': ['sheep'],
+	'Serra da Estrela': ['sheep'],
+	'Queijo de Azeitão': ['sheep'],
+	'Dali ni horbo': ['buffalo'],
+	Litsusu: ['buffalo'],
+	Cologanti: ['buffalo'],
+	'Casu marzu': ['sheep'],
+	'Casgiu merzu': ['sheep', 'goat'],
+	Marcetto: ['sheep'],
+	tulum: ['goat'],
+	'Erzincan tulum': ['sheep', 'goat'],
+	'İzmir tulum': ['goat', 'sheep'],
+	Divle: ['goat', 'sheep'],
+	'Çimi': ['goat', 'sheep'],
+	'Kargı': ['goat'],
+	Guda: ['sheep'],
+	'Brânză de burduf': ['sheep'],
+	Halloumi: ['sheep', 'goat'],
+	'Mozzarella di bufala': ['buffalo'],
+	Kasseri: ['sheep', 'goat'],
+	butterTea: ['yak'],
+	Ezine: ['sheep', 'goat', 'cow'],
+	Parenica: ['sheep', 'cow'],
+	'Pastillas de leche': ['buffalo', 'cow'],
+	'Otlu peynir': ['sheep', 'cow', 'goat'],
+	'Bryndza podhalańska': ['sheep', 'cow'],
+	'Slovenská bryndza': ['sheep', 'cow'],
+	lumpCheese: ['sheep', 'cow'],
+	steamedCheese: ['sheep', 'cow'],
+	'Oštiepok': ['sheep', 'cow'],
+	Gudbrandsdalsost: ['cow', 'goat'],
+	Gjetost: ['goat', 'cow'],
+	Domiati: ['buffalo', 'cow'],
+	Kharvas: ['cow', 'buffalo'],
+	Urum: ['cow', 'yak'],
+	Khurchan: ['buffalo', 'cow'],
+	nimish: ['cow', 'buffalo'],
+	'Laban rayeb': ['cow', 'buffalo'],
+	Tarag: ['cow', 'yak', 'goat', 'sheep'],
+	Jocoque: ['cow', 'sheep', 'goat'],
+	Aaruul: ['cow', 'yak'],
+	mursik: ['cow', 'goat'],
+	'Shimiin arkhi': ['cow', 'yak'],
+	Tarasun: ['horse', 'cow'],
+	Areesh: ['buffalo', 'cow'],
+	Karish: ['buffalo', 'cow'],
+	byaslag: ['cow', 'yak'],
+	eezgii: ['cow', 'sheep', 'goat'],
+	paneer: ['cow', 'buffalo'],
+	chhena: ['cow', 'buffalo'],
+	khoa: ['cow', 'buffalo'],
+	Kalari: ['cow', 'buffalo'],
+	Dangke: ['buffalo', 'cow'],
+	Robiola: ['cow', 'goat', 'sheep'],
+	Tomino: ['cow', 'goat'],
+	'Mató': ['goat', 'cow'],
+	Jben: ['cow', 'goat'],
+	Bouhezza: ['goat', 'sheep', 'cow'],
+	'Formaggio di fossa': ['sheep', 'cow'],
+	Rumi: ['cow', 'buffalo'],
+	Cabrales: ['cow', 'goat', 'sheep'],
+	Kashkaval: ['cow', 'sheep', 'goat'],
+	Suluguni: ['cow', 'buffalo'],
+	sunDriedCheese: ['cow', 'goat'],
+	Tchoukou: ['cow', 'goat'],
+	'Korbáčik': ['sheep', 'cow'],
+	Sirene: ['cow', 'sheep', 'goat'],
+	Telemea: ['sheep', 'cow'],
+	'Jibneh Arabieh': ['cow', 'goat', 'sheep'],
+	'Gibna bayda': ['cow', 'goat', 'sheep'],
+	Klila: ['cow', 'sheep', 'goat'],
+};
+for (const key of Object.keys(MILK_OF)) if (!(key in NODES) && !named.has(key)) throw new Error(`MilkGraph: milk of unknown ${key}`);
+const beastsOf = (key: string) => MILK_OF[key]?.map((b) => BEASTS[b]);
+// The animals to filter by: those any product is marked with, the cow first.
+const herd = Object.values(BEASTS).filter((b) => b.milk === 'cow' || Object.values(MILK_OF).some((of) => of.some((k) => BEASTS[k] === b)));
 
 /**
  * How a step is done, told when its arrow is clicked: the facts of it
@@ -4305,7 +4535,7 @@ const GROUPS: { name: string; hub?: string; ids: string[] }[] = [
 	},
 	{
 		name: 'Cheese',
-		ids: ['rennetCurd', 'freshCheese', 'lacticCheese', 'soft', 'semiHard', 'hard', 'bloomy', 'blue', 'washed', 'alpine', 'cheddared', 'washedCurd', 'insect', 'tulum', 'processed', 'grilling', 'pastaFilata', 'stracciatella', 'lumpCheese', 'steamedCheese', 'bryndza', 'sunDriedCheese', 'brined'],
+		ids: ['rennetCurd', 'freshCheese', 'lacticCheese', 'soft', 'semiHard', 'hard', 'bloomy', 'blue', 'washed', 'alpine', 'cheddared', 'washedCurd', 'insect', 'tulum', 'processed', 'cheesePowder', 'grilling', 'pastaFilata', 'stracciatella', 'lumpCheese', 'steamedCheese', 'bryndza', 'sunDriedCheese', 'brined'],
 	},
 	{
 		name: 'Whey',
@@ -4500,6 +4730,8 @@ const examples = Object.entries(NODES).flatMap(([kind, { examples: names = [] }]
 		regions: regions[label],
 		aka: EXAMPLE_AKA[label],
 		note: EXAMPLE_NOTES[label],
+		beasts: beastsOf(label),
+		axes: EXAMPLE_AXES[label],
 		step: steps[label]?.label,
 		how: steps[label],
 	})),
@@ -4517,7 +4749,7 @@ const graph = {
 	groups: GROUPS.map(({ name, hub }) => ({ name, hub: hub ?? null })),
 	splits: SPLITS,
 	kinds: KINDS,
-	nodes: Object.entries(NODES).map(([id, { label, step, scale, at, below, link, note, aka = [], examples: named = [] }]) => ({
+	nodes: Object.entries(NODES).map(([id, { label, step, scale, at, panel, below, link, note, aka = [], examples: named = [] }]) => ({
 		id,
 		label,
 		// Not drawn, but found by the search: its other names, and its
@@ -4533,9 +4765,11 @@ const graph = {
 		step,
 		scale,
 		at,
+		panel,
 		below,
 		link,
 		note,
+		beasts: beastsOf(link ?? id),
 		group: groupOf.get(id) ?? -1,
 		// 0 a staple, 1 well known, 2 niche.
 		niche: STAPLE.has(id) ? 0 : KNOWN.has(id) ? 1 : 2,
@@ -4556,13 +4790,22 @@ const graph = {
 		<input
 			type="search"
 			role="combobox"
-			placeholder="Find…"
-			aria-label="Find a product"
+			placeholder="Search in Diagram…"
+			aria-label="Search in the diagram"
 			aria-autocomplete="list"
 			aria-expanded="false"
 			autocomplete="off"
 			spellcheck="false"
 		/>
+		<div class="milk-beasts" role="group" aria-label="Only what is made from the milk of">
+			{
+				herd.map(({ mark, milk }) => (
+					<button type="button" aria-pressed="false" data-milk={milk} title={`${milk[0].toUpperCase()}${milk.slice(1)} milk`}>
+						{mark}
+					</button>
+				))
+			}
+		</div>
 		<ul role="listbox" hidden></ul>
 	</div>
 	<div class="milk-note" role="tooltip" hidden></div>
@@ -4632,6 +4875,31 @@ const graph = {
 	}
 	.milk-search input:focus {
 		border-color: var(--flb);
+	}
+	/* The animals, a row of them under the field: pressed, the tree shows
+	   only what is made from their milk; the rest faded while any is. */
+	.milk-beasts {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.25rem;
+		margin-top: 0.35rem;
+	}
+	.milk-beasts button {
+		padding: 0.1em 0.25em;
+		font-size: 0.95rem;
+		line-height: 1.2;
+		background: var(--field);
+		border: 1px solid var(--field-rim);
+		border-radius: var(--radius-medium);
+		backdrop-filter: blur(8px);
+		cursor: pointer;
+	}
+	.milk-beasts button[aria-pressed='true'] {
+		border-color: var(--deck-ink);
+		box-shadow: inset 0 0 0 1px var(--deck-ink);
+	}
+	.milk-beasts:has([aria-pressed='true']) button[aria-pressed='false'] {
+		opacity: 0.45;
 	}
 	.milk-search ul {
 		list-style: none;
@@ -4975,11 +5243,16 @@ const graph = {
 		// A kind measured along a ruler, and where on its parent's ruler a product hangs (see Product).
 		scale?: { name: string; unit: string; to: number; every: number };
 		at?: number;
+		// A family drawn as a panel, and where a cheese goes in one (see Product and EXAMPLE_AXES).
+		panel?: boolean;
+		axes?: { firm: string; days: [number, number] };
 		below?: string;
 		// The product this one is drawn again of (see Product).
 		link?: string;
 		// Its remark, behind the info mark (see Product).
 		note?: string;
+		// The animals it is made from the milk of, if not a cow (see MILK_OF).
+		beasts?: { mark: string; milk: string }[];
 		// Which family's slice it is held in; milk, in the middle, is in none.
 		group: number;
 		// 0 a staple, 1 well known, 2 niche (see STAPLE and KNOWN).
@@ -5032,11 +5305,11 @@ const graph = {
 	// The room left under each pill, between it and the next row.
 	const ROW_GAP = 8;
 	/* A product is drawn the bigger the more is made from it, all the way
-	   down: as the square root of one more than that, so a product with
-	   nothing under it is 1×, three under it 2×, fifteen 4×. Milk is twice
-	   what that makes it. The picture is meant to be zoomed into: the great
+	   down: as a little more than the square root of one more than that, so
+	   a product with nothing under it is 1×, three under it about 2.7×,
+	   fifteen 7.4×. Milk is twice what that makes it. The picture is meant to be zoomed into: the great
 	   branch points read from afar, the ends of the branches close up. */
-	const sizeOf = (made: number) => Math.sqrt(1 + made);
+	const sizeOf = (made: number) => (1 + made) ** 0.72;
 	const MILK = 2;
 	/* How thick a line is for each thing at the end of it: a line carries
 	   everything made down its branch, so it is this many times as thick as
@@ -5053,7 +5326,7 @@ const graph = {
 	const MARGIN = 16;
 	/* How far in it can be zoomed: until the smallest words, a step's table
 	   on a thin arrow, read. */
-	const MAX_ZOOM = 150;
+	const MAX_ZOOM = 400;
 	/* A ruler in a kind (see Product), along the bottom of its pill: this
 	   long a unit, room either end for what it measures; its products this far under it and their rows this far apart, and products
 	   side by side this far apart. */
@@ -5095,17 +5368,39 @@ const graph = {
 
 	// How many have been drawn, to name each one's own parts apart.
 	let drawn = 0;
-	function draw(figure: HTMLElement, signal: AbortSignal) {
+	type Graph = {
+		light: number;
+		groups: { name: string; hub: string | null }[];
+		splits: { from: string; step: string; ids: string[] }[];
+		kinds: { step: string; ids: string[]; how: Node['how'] }[];
+		nodes: Node[];
+		links: Made[];
+	};
+	/* Only what is made from the milk of the animals chosen, and what that
+	   is made from, so the tree still reads down to it. A product with no
+	   animal marked is a cow's; one drawn again goes as the one it is of. */
+	const only = (data: Graph, milks: Set<string>): Graph => {
+		if (!milks.size) return data;
+		const byId = new Map(data.nodes.map((n) => [n.id, n]));
+		const fits = (n: Node) => ((n.link && byId.get(n.link)) || n).beasts?.map((b) => b.milk) ?? ['cow'];
+		const parent = new Map(data.links.map((l) => [l.target, l.source]));
+		const kept = new Set([ROOT]);
+		for (const n of data.nodes)
+			if (fits(n).some((m) => milks.has(m))) for (let id: string | undefined = n.id; id && !kept.has(id); id = parent.get(id)) kept.add(id);
+		return {
+			...data,
+			nodes: data.nodes.filter((n) => kept.has(n.id)),
+			links: data.links.filter((l) => kept.has(l.source) && kept.has(l.target)),
+			splits: data.splits.map((p) => ({ ...p, ids: p.ids.filter((id) => kept.has(id)) })).filter((p) => p.ids.length > 1),
+			kinds: data.kinds.map((k) => ({ ...k, ids: k.ids.filter((id) => kept.has(id)) })).filter((k) => k.ids.length),
+		};
+	};
+
+	/* Drawn from the graph given, the whole of it or what a filter left of
+	   it; framed whole, not on the card's product, when it is filtered. */
+	function draw(figure: HTMLElement, signal: AbortSignal, data: Graph, whole = false) {
 		// As the words in it have it (see measure).
 		spacing = parseFloat(getComputedStyle(figure).letterSpacing) || 0;
-		const data = JSON.parse(figure.dataset.milkGraph!) as {
-			light: number;
-			groups: { name: string; hub: string | null }[];
-			splits: { from: string; step: string; ids: string[] }[];
-			kinds: { step: string; ids: string[]; how: Node['how'] }[];
-			nodes: Node[];
-			links: Made[];
-		};
 		const { light, groups, links } = data;
 		// The search's list named for it alone, as another graph on the page would name its own the same.
 		const uid = `milk-${++drawn}`;
@@ -5317,6 +5612,18 @@ const graph = {
 				hanging.set(p, kids);
 				children.delete(p);
 			}
+		// A panel's cheeses are laid out in it, not as leaves of the tree (see Product); its products stay.
+		const paneled = new Map<Node, Node[]>();
+		for (const [p, kids] of children)
+			if (p.panel) {
+				paneled.set(p, kids.filter((k) => k.example));
+				children.set(p, kids.filter((k) => !k.example));
+				if (!children.get(p)!.length) children.delete(p);
+			}
+		const panelOf = (n: Node) => {
+			const p = treeParent.get(n);
+			return p && paneled.has(p) ? p : null;
+		};
 		// What hangs under a ruler, by value: those at one value are one list.
 		const listsOf = (r: Node) => {
 			const at = new Map<number, Node[]>();
@@ -5384,7 +5691,7 @@ const graph = {
 		/* Larger on an arrow whose step is told of in full, a title, whether or
 		   not it has a table under it, so siblings read alike. */
 		const stepFont = (n: Node) => STEP_FONT * size(n) * (n.how?.facts?.length || n.how?.table?.length ? 1.6 : 1);
-		const stepped = nodes.filter((n) => n.step && n !== root);
+		const stepped = nodes.filter((n) => n.step && n !== root && !panelOf(n));
 		/* A step in as many lines as it is written in, the last just over its
 		   arrow and the rest stacked up from there; inside an arrow, all of
 		   them centred on it. */
@@ -5401,15 +5708,41 @@ const graph = {
 		/* None under a ruler, where the arrows in are its own and have no step
 		   written on them. An example's arrow may have no words and still its
 		   table, of what it is fermented with, say. */
-		const rows = (n: Node) => (hangsFrom(n) ? [] : (n.how?.table ?? []));
+		const rows = (n: Node) => (hangsFrom(n) || panelOf(n) ? [] : (n.how?.table ?? []));
 		// An example's a little bigger, its pill and arrow being small, so it reads zoomed out as far as a product's.
 		const tableFont = (n: Node) => STEP_FONT * size(n) * (n.example ? 0.5 : 0.35);
-		const rowLines = (v: string) => v.split('\n');
+		/* Its words broken onto lines no wider than so many of its letters
+		   high, a key narrower than a value, so a long list of cultures reads
+		   down the table and not off across the graph. Kept, as measuring is
+		   not free and the size does not change what breaks where. */
+		const KEY_WIDE = 9;
+		const VALUE_WIDE = 18;
+		const broken = new Map<string, string[]>();
+		const wrap = (said: string, wide: number, face: string) => {
+			const kept = broken.get(`${face}${wide}${said}`);
+			if (kept) return kept;
+			const out: string[] = [];
+			for (const given of said.split('\n')) {
+				let at = '';
+				for (const word of given.split(' ')) {
+					const tried = at ? `${at} ${word}` : word;
+					if (at && measure(tried, 100, face) / 100 > wide) {
+						out.push(at);
+						at = word;
+					} else at = tried;
+				}
+				out.push(at);
+			}
+			broken.set(`${face}${wide}${said}`, out);
+			return out;
+		};
+		const keyLines = (k: string) => wrap(k, KEY_WIDE, '600');
+		const rowLines = (v: string) => wrap(v, VALUE_WIDE, '400');
 		const tabled = nodes.filter((n) => rows(n).length > 0);
 		const columns = new Map<Node, { key: number; value: number }>();
 		for (const n of tabled) {
 			const widest = (said: string[], face: string) => Math.max(...said.map((t) => measure(t, tableFont(n), face)));
-			columns.set(n, { key: widest(rows(n).map(({ k }) => k), '600'), value: widest(rows(n).map(({ v }) => v), '400') });
+			columns.set(n, { key: widest(rows(n).flatMap(({ k }) => keyLines(k)), '600'), value: widest(rows(n).flatMap(({ v }) => rowLines(v)), '400') });
 		}
 		// The room in a cell round its words.
 		const pad = (n: Node) => tableFont(n) * 0.6;
@@ -5417,11 +5750,12 @@ const graph = {
 			const c = columns.get(n);
 			return c ? c.key + c.value + 4 * pad(n) : 0;
 		};
-		// A row as tall as its value's lines, and its padding.
-		const rowHeight = (n: Node, v: string) => rowLines(v).length * ROW * tableFont(n) + pad(n);
+		// A row as tall as its key's lines or its value's, and its padding.
+		const rowHeight = (n: Node, { k, v }: { k: string; v: string }) =>
+			Math.max(keyLines(k).length, rowLines(v).length) * ROW * tableFont(n) + pad(n);
 		// How tall it is, with a little air under it.
 		const tableHeight = (n: Node) =>
-			rows(n).length ? rows(n).reduce((sum, { v }) => sum + rowHeight(n, v), 0) + tableFont(n) * 0.6 : 0;
+			rows(n).length ? rows(n).reduce((sum, row) => sum + rowHeight(n, row), 0) + tableFont(n) * 0.6 : 0;
 		// Inside its arrow, centred on it, where the arrow is that thick.
 		const tableInside = (n: Node) => line(n) >= tableHeight(n) + tableFont(n);
 		/* Where it begins, from the middle of its arrow: in the arrow, or just
@@ -5529,9 +5863,79 @@ const graph = {
 				}
 			});
 		};
+		/* A panel: ripening across, on a log scale, as a week and a month are
+		   as far apart as a month and four; firmness down, a row for each
+		   class from the softest to the firmest of its cheeses. Each cheese at
+		   the middle of its ripening, a line behind it from the least to the
+		   most; those in one row that would meet stacked one under another, so
+		   each stays at its own time, as a pill is far wider than it is tall.
+		   Hung straight under its family, its pill as wide as the panel: the
+		   pill's bottom edge is the panel's ruler of time, as a kind's is of
+		   fat, and the column under its photograph holds the rows' names. */
+		const FIRM_ORDER = ['fresh', 'soft', 'semi-soft', 'semi-hard', 'hard', 'extra-hard'];
+		const PANEL_DECADE = 10 * NODE_H;
+		const PANEL_PAD = 18;
+		const TIMES: [number, string][] = [
+			[1, '1 day'], [7, '1 wk'], [14, '2 wk'], [30, '1 mo'], [60, '2 mo'], [90, '3 mo'], [180, '6 mo'], [365, '1 yr'], [730, '2 yr'], [1095, '3 yr'], [1825, '5 yr'],
+		];
+		type Panel = {
+			w: number;
+			h: number;
+			rows: { firm: string; y: number; h: number }[];
+			times: [number, string][];
+			xOf: (days: number) => number;
+			at: Map<Node, { x: number; y: number }>;
+		};
+		const panels = new Map<Node, Panel>();
+		const ripe = (k: Node) => Math.sqrt(Math.max(1, k.axes!.days[0]) * Math.max(1, k.axes!.days[1]));
+		const lay = (p: Node) => {
+			const ks = paneled.get(p)!;
+			const least = Math.min(...ks.map((k) => Math.max(1, k.axes!.days[0])));
+			const most = Math.max(...ks.map((k) => k.axes!.days[1]));
+			const from = [...TIMES].reverse().find(([d]) => d <= least) ?? TIMES[0];
+			const to = TIMES.find(([d]) => d >= most) ?? TIMES.at(-1)!;
+			const times = TIMES.filter(([d]) => d >= from[0] && d <= to[0]);
+			// Room at the left for the widest cheese to sit at the very start.
+			const lead = picture(p) + PANEL_PAD + Math.max(...ks.map((k) => k.w)) / 2;
+			const xOf = (days: number) => lead + (Math.log10(Math.max(1, days)) - Math.log10(from[0])) * PANEL_DECADE;
+			const firms = ks.map((k) => FIRM_ORDER.indexOf(k.axes!.firm));
+			const at = new Map<Node, { x: number; y: number }>();
+			const rows: Panel['rows'] = [];
+			let y = PANEL_PAD;
+			for (let c = Math.min(...firms); c <= Math.max(...firms); c++) {
+				const mine = ks.filter((k) => FIRM_ORDER.indexOf(k.axes!.firm) === c).sort((a, b) => ripe(a) - ripe(b));
+				const tall = Math.max(...ks.map((k) => k.h)) + ROW_GAP;
+				const lanes: number[] = [];
+				for (const k of mine) {
+					const x = xOf(ripe(k));
+					let lane = lanes.findIndex((right) => right + SIDE_GAP <= x - k.w / 2);
+					if (lane < 0) lane = lanes.push(-Infinity) - 1;
+					lanes[lane] = x + k.w / 2;
+					at.set(k, { x, y: y + ROW_GAP / 2 + lane * tall + k.h / 2 });
+				}
+				const h = Math.max(1, lanes.length) * tall;
+				rows.push({ firm: FIRM_ORDER[c], y, h });
+				y += h + PANEL_PAD;
+			}
+			const w = Math.max(xOf(to[0]), ...[...at].map(([k, { x }]) => x + k.w / 2)) + PANEL_PAD;
+			p.w = Math.max(p.w, w);
+			panels.set(p, { w: p.w, h: y, rows, times, xOf, at });
+		};
+		for (const p of paneled.keys()) lay(p);
+		// Its box, its family at 0, under its family's pill.
+		const panelBox = (p: Node): Box => {
+			const P = panels.get(p)!;
+			return { x0: p.x - p.w / 2, x1: p.x + p.w / 2, y0: p.h / 2, y1: p.h / 2 + P.h };
+		};
+		// And where it is.
+		const panelArea = (p: Node): Box => {
+			const b = panelBox(p);
+			return { ...b, y0: b.y0 + p.y, y1: b.y1 + p.y };
+		};
 		root.x = 0;
 		const across = (n: Node) => {
 			if (hanging.has(n)) hang(n);
+			for (const k of paneled.get(n) ?? []) k.x = n.x - n.w / 2 + panels.get(n)!.at.get(k)!.x;
 			for (const k of children.get(n) ?? []) {
 				k.x = outer(n) + toTrunk(n) + 2 * halfTrunk(n) + fromTrunk(k) + k.w / 2;
 				across(k);
@@ -5603,6 +6007,8 @@ const graph = {
 			}));
 			const kids = children.get(n) ?? [];
 			if (hanging.has(n)) return [...own, ...hangBoxes(n).map((b) => ({ ...b, own: false }))];
+			// A panel under its family, as much the family's own as its pill.
+			if (paneled.has(n)) own.push({ ...panelBox(n), own: true });
 			if (!kids.length) return own;
 			let packed: Box[] = [];
 			const at = new Map<Node, number>();
@@ -5628,6 +6034,8 @@ const graph = {
 			n.y = y;
 			for (const k of children.get(n) ?? []) place(k, y + rel.get(k)!);
 			for (const k of hanging.get(n) ?? []) k.y = y + hangY.get(k)!;
+			const P = panels.get(n);
+			for (const k of paneled.get(n) ?? []) k.y = y + n.h / 2 + P!.at.get(k)!.y;
 		};
 		/* Milk's branches, cheese at the top and cream at the bottom, the
 		   rest between from the biggest down, centred on milk. */
@@ -5670,9 +6078,12 @@ const graph = {
 		/* What a product takes up where it is: its pill, the line into it with
 		   its step's words over it, and the line out of it to its trunk and
 		   down the trunk; or the line down into it from a ruler. */
-		const family = (n: Node): Node[] => [n, ...[...(children.get(n) ?? []), ...(hanging.get(n) ?? [])].flatMap(family)];
+		const family = (n: Node): Node[] => [n, ...[...(children.get(n) ?? []), ...(hanging.get(n) ?? []), ...(paneled.get(n) ?? [])].flatMap(family)];
 		const room = (n: Node, own = true): Box[] => {
 			const boxes: Box[] = [moved(pillBox(n), n.y)];
+			// In a panel, only its pill; the panel is its family's.
+			if (panelOf(n)) return boxes;
+			if (paneled.has(n)) boxes.push(moved(panelBox(n), n.y));
 			const p = treeParent.get(n);
 			// Under a ruler: the arrow straight down into it.
 			const r = hangsFrom(n);
@@ -5756,7 +6167,7 @@ const graph = {
 
 		/* The tree's edges, with an arrowhead into every product; the arrow
 		   into a branch point has none, its head is on the arrows it splits into. */
-		const edges: Edge[] = [...treeParent].map(([n, p]) => ({
+		const edges: Edge[] = [...treeParent].filter(([n]) => !panelOf(n)).map(([n, p]) => ({
 			source: p,
 			target: n,
 			made: !n.hub && (!n.example || !!n.step),
@@ -6017,7 +6428,13 @@ const graph = {
 		/* Framed whole: the great branch points read from there, and the rest
 		   is a zoom away. All it covers, with a margin round it as wide on the
 		   screen as the frame's gutter is, however big the pane. */
-		const all: Box[] = [...shown.map(pillBoxOf), ...edgeBox.values(), ...stepped.map(stepBox), ...tabled.map((n) => tableOf(n).area)];
+		const all: Box[] = [
+			...shown.map(pillBoxOf),
+			...edgeBox.values(),
+			...stepped.map(stepBox),
+			...tabled.map((n) => tableOf(n).area),
+			...[...panels.keys()].map(panelArea),
+		];
 		const bounds = {
 			x: Math.min(...all.map((b) => b.x0)),
 			y: Math.min(...all.map((b) => b.y0)),
@@ -6076,6 +6493,9 @@ const graph = {
 				milk: colourOf('color-mix(in oklab, var(--pill), white 70%)'),
 				// An info mark's blue, half way to the ground.
 				info: colourOf('color-mix(in oklab, #2f6fdb 50%, var(--deck-ground))'),
+				// A panel's ground, a shade off the graph's, and its lines of time fainter than the arrows.
+				panel: colourOf('color-mix(in oklab, var(--deck-ink) 4%, var(--deck-ground))'),
+				grid: colourOf('color-mix(in oklab, var(--line) 35%, var(--deck-ground))'),
 			};
 		};
 		readInk();
@@ -6150,12 +6570,12 @@ const graph = {
 			g.moveTo(t.split, t.top);
 			g.lineTo(t.split, t.top + t.height);
 			let y = t.top;
-			rows(n).forEach(({ v }, i) => {
+			rows(n).forEach((row, i) => {
 				if (i) {
 					g.moveTo(t.left, y);
 					g.lineTo(t.left + w, y);
 				}
-				y += rowHeight(n, v);
+				y += rowHeight(n, row);
 			});
 			g.stroke();
 			roundRect(g, t.left, t.top, w, t.height, r);
@@ -6169,11 +6589,11 @@ const graph = {
 				const baseline = y + p / 2 + t.font * 0.95;
 				g.font = font(t.font, '600');
 				g.textAlign = 'right';
-				g.fillText(k, t.split - p, baseline);
+				keyLines(k).forEach((said, j) => g.fillText(said, t.split - p, baseline + j * ROW * t.font));
 				g.font = font(t.font);
 				g.textAlign = 'left';
 				rowLines(v).forEach((said, j) => g.fillText(said, t.split + p, baseline + j * ROW * t.font));
-				y += rowHeight(n, v);
+				y += rowHeight(n, { k, v });
 			}
 			return true;
 		};
@@ -6219,7 +6639,7 @@ const graph = {
 			   A canvas blurs in the screen's pixels whatever it is scaled by, so
 			   the shadow is sized for the zoom it is drawn at. */
 			const px = s * dpr;
-			roundRect(g, x, y, d.w, d.h, r);
+			roundRect(g, x, y, d.w, d.h, d.panel ? [r, r, 0, 0] : r);
 			g.fillStyle = ink.pill;
 			g.shadowColor = 'rgb(0 0 0 / 0.12)';
 			g.shadowBlur = d.h * 0.1 * px;
@@ -6267,10 +6687,29 @@ const graph = {
 					g.restore();
 				}
 			}
-			roundRect(g, x, y, d.w, d.h, r);
+			roundRect(g, x, y, d.w, d.h, d.panel ? [r, r, 0, 0] : r);
 			g.lineWidth = !unlit && d === held ? 2 : 1.2;
 			g.strokeStyle = !unlit && d === held ? ink.lit : ink.rim;
 			g.stroke();
+			// A panel's ruler of time: its bottom edge grooved at each time, the time over it.
+			if (d.panel && panels.has(d) && legible(10, s)) {
+				const P = panels.get(d)!;
+				const edge = d.y + d.h / 2;
+				g.textBaseline = 'alphabetic';
+				g.textAlign = 'center';
+				for (const [days, said] of P.times) {
+					const x = d.x - d.w / 2 + P.xOf(days);
+					g.beginPath();
+					g.moveTo(x, edge - 8);
+					g.lineTo(x, edge);
+					g.lineWidth = 1.5;
+					g.strokeStyle = ink.text;
+					g.stroke();
+					g.font = font(10);
+					g.fillStyle = ink.dim;
+					g.fillText(said, x, edge - 12);
+				}
+			}
 			// A kind's ruler: its bottom edge grooved every unit, deeper every step, the value over each.
 			if (d.scale && legible(10, s)) {
 				const { to, every, unit, name: measures } = d.scale;
@@ -6310,6 +6749,58 @@ const graph = {
 			return whole;
 		};
 
+		/* A panel, on the ground itself: each time a faint line down from the
+		   ruler on its family's pill; each row's class right-aligned under the
+		   photograph; and behind each cheese a line from the least of its
+		   ripening to the most. */
+		const drawPanel = (g: Pen, p: Node, s: number) => {
+			const P = panels.get(p)!;
+			const top = p.y + p.h / 2;
+			const left = p.x - p.w / 2;
+			// Edged down its sides and along its bottom as the pill is, rounded there; open at the top, where the pill is.
+			const r = radius(p);
+			g.beginPath();
+			g.moveTo(left, top);
+			g.lineTo(left, top + P.h - r);
+			g.arcTo(left, top + P.h, left + r, top + P.h, r);
+			g.lineTo(left + P.w - r, top + P.h);
+			g.arcTo(left + P.w, top + P.h, left + P.w, top + P.h - r, r);
+			g.lineTo(left + P.w, top);
+			g.lineWidth = 1.2;
+			g.strokeStyle = ink.rim;
+			g.stroke();
+			for (const [d] of P.times) {
+				const x = left + P.xOf(d);
+				g.beginPath();
+				g.moveTo(x, top);
+				g.lineTo(x, top + P.h);
+				g.lineWidth = 0.75;
+				g.strokeStyle = ink.grid;
+				g.stroke();
+			}
+			if (legible(11, s)) {
+				g.textBaseline = 'middle';
+				g.textAlign = 'right';
+				g.font = font(11, '600');
+				const spaced = g.letterSpacing;
+				g.letterSpacing = '0.14em';
+				g.fillStyle = ink.text;
+				for (const { firm, y, h } of P.rows) g.fillText(firm.toUpperCase(), left + picture(p), top + y + h / 2);
+				g.letterSpacing = spaced;
+			}
+			g.lineCap = 'round';
+			for (const [k] of P.at) {
+				g.beginPath();
+				g.moveTo(left + P.xOf(k.axes!.days[0]), k.y);
+				g.lineTo(left + P.xOf(k.axes!.days[1]), k.y);
+				g.lineWidth = 3;
+				g.strokeStyle = ink.line;
+				g.stroke();
+			}
+			g.lineCap = 'butt';
+			return true;
+		};
+
 		// A regional one's flags, on its top right corner.
 		const flagBox = (d: Node): Box => {
 			const f = flagsOf(d);
@@ -6339,6 +6830,34 @@ const graph = {
 				g.stroke();
 			}
 			return whole;
+		};
+
+		/* The animals whose milk it is, on the bottom left corner, as the
+		   flags are on the top right: bare, bigger than a flag, with a soft
+		   shadow under each, each a little in from the one before. */
+		const beastsAt = (d: Node) => {
+			const r = d.h * 0.2;
+			return d.beasts!.map((b, i) => ({ ...b, r, x: d.x - d.w / 2 + r * 0.3 + i * r * 1.5, y: d.y + d.h / 2 - r * 0.3 }));
+		};
+		const beastBox = (d: Node): Box => {
+			const b = beastsAt(d);
+			const r = b[0].r * 1.5;
+			return { x0: b[0].x - r, x1: b.at(-1)!.x + r, y0: b[0].y - r, y1: b[0].y + r * 1.2 };
+		};
+		const drawBeasts = (g: Pen, d: Node, s: number) => {
+			for (const { mark, r, x, y } of beastsAt(d)) {
+				if (!legible(r * 2, s)) continue;
+				g.font = `${r * 2}px "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif`;
+				g.textAlign = 'center';
+				g.textBaseline = 'middle';
+				g.fillStyle = '#000';
+				g.shadowColor = 'rgb(0 0 0 / 0.35)';
+				g.shadowBlur = r * 0.25 * s * dpr;
+				g.shadowOffsetY = r * 0.1 * s * dpr;
+				g.fillText(mark, x, y);
+				g.shadowColor = 'transparent';
+			}
+			return true;
 		};
 
 		/* A remark's info mark: on the bottom right corner, a little over it,
@@ -6419,6 +6938,7 @@ const graph = {
 		   tables, the pills, the flags over them; each named for how it looks,
 		   so one drawn lit is kept apart from one drawn unlit. */
 		const everyPart = (): Part[] => [
+			...[...panels.keys()].map((p) => ({ key: `panel:${p.id}`, box: panelArea(p), draw: (g: Pen, at: number) => drawPanel(g, p, at) })),
 			...stepped.map((n) => {
 				const box = stepBox(n);
 				const wide = (box.x1 - box.x0) * 0.1 + stepFont(n) * 0.3;
@@ -6434,6 +6954,9 @@ const graph = {
 			...shown
 				.filter((d) => d.note)
 				.map((d) => ({ key: `i:${d.id}`, box: infoBox(d), draw: (g: Pen, at: number) => drawInfo(g, d, at) })),
+			...shown
+				.filter((d) => d.beasts?.length)
+				.map((d) => ({ key: `b:${d.id}`, box: beastBox(d), draw: (g: Pen, at: number) => drawBeasts(g, d, at) })),
 		];
 		/* Kept, when there is nothing else to do: everything at this zoom, the
 		   nearest first, then what is in sight at the zooms either side. */
@@ -6576,6 +7099,7 @@ const graph = {
 					drawPill(ctx, held, s);
 					if (held.regions?.length) drawFlags(ctx, held, s);
 					if (held.note) drawInfo(ctx, held, s);
+					if (held.beasts?.length) drawBeasts(ctx, held, s);
 				}
 				return;
 			}
@@ -6676,6 +7200,9 @@ const graph = {
 			for (const d of shown)
 				if (d.regions?.length)
 					for (const f of flagsOf(d)) if (Math.hypot(x - f.x, y - f.y) <= f.r) hint = d.regions.map((c) => countryName.of(c)).join(', ');
+			for (const d of shown)
+				if (d.beasts?.length)
+					for (const b of beastsAt(d)) if (Math.hypot(x - b.x, y - b.y) <= b.r) hint = `From ${d.beasts.map((m) => m.milk).join(' and ')} milk`;
 			// A little more than the mark itself, to be tapped.
 			const info = shown.find((d) => d.note && Math.hypot(x - infoOf(d).x, y - infoOf(d).y) <= infoOf(d).r * 1.3) ?? null;
 			let pill: Node | null = null;
@@ -6859,7 +7386,7 @@ const graph = {
 				: [];
 			chosen = 0;
 			show();
-		});
+		}, { signal });
 		field.addEventListener('keydown', (e) => {
 			if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
 				if (!found.length) return;
@@ -6873,9 +7400,9 @@ const graph = {
 				show();
 			} else return;
 			e.preventDefault();
-		});
-		field.addEventListener('blur', () => open(false));
-		field.addEventListener('focus', () => open(found.length > 0));
+		}, { signal });
+		field.addEventListener('blur', () => open(false), { signal });
+		field.addEventListener('focus', () => open(found.length > 0), { signal });
 		/* Where a narrow pane has no room for the card beside the picture, it
 		   is the whole pane, and only a tap on a product opens it: finding one,
 		   or pressing one named in the words, only goes to it. */
@@ -6930,6 +7457,13 @@ const graph = {
 			return p?.hub ? treeParent.get(p) : p;
 		};
 		// A row of the card's facts: what it says, and the things it names.
+		// A span of days as it is said: days, weeks, months or years.
+		const lasting = ([least, most]: [number, number]) => {
+			const [per, unit] = most < 14 ? [1, 'days'] : most < 90 ? [7, 'weeks'] : most < 730 ? [30, 'months'] : [365, 'years'];
+			const a = Math.round(least / per);
+			const b = Math.round(most / per);
+			return a === b ? `${a} ${unit}` : `${a}–${b} ${unit}`;
+		};
 		const fact = (term: string, ...parts: (Node | string | Node[])[]) => {
 			const row = el('div', 'milk-about-fact');
 			row.append(el('dt', '', term));
@@ -6987,11 +7521,34 @@ const graph = {
 					parts.push(from);
 				}
 			}
+			/* A cheese in a panel has no arrow to write its table on: told here
+			   instead, after where the panel puts it, with the rest of how it is
+			   made and where that is from. */
+			if (n.axes && panelOf(n)) {
+				const how = n.how;
+				const made = el('dl');
+				made.append(fact('Firmness', n.axes.firm), fact('Ripened', lasting(n.axes.days)));
+				for (const { k, v } of [...(how?.table ?? []), ...(how?.facts ?? [])]) made.append(fact(k, v.split('\n').join(', ')));
+				parts.push(made);
+				if (how?.text) parts.push(el('p', 'milk-about-text', how.text));
+				if (how?.sources?.length) {
+					const from = el('p', 'milk-about-source', how.sources.length > 1 ? 'Sources: ' : 'Source: ');
+					how.sources.forEach(({ name: said, url }, i) => {
+						if (i) from.append(', ');
+						const a = el('a', '', said);
+						a.href = url;
+						a.target = '_blank';
+						a.rel = 'noopener';
+						from.append(a);
+					});
+					parts.push(from);
+				}
+			}
 			// What it is made from and into the picture shows
 			// round it already; the card says only what the picture does not.
 			const facts = el('dl');
 			if (n.named?.length) {
-				const drawn = new Map((children.get(n) ?? []).filter((k) => k.example && !k.more).map((k) => [k.label, k]));
+				const drawn = new Map([...(children.get(n) ?? []), ...(paneled.get(n) ?? [])].filter((k) => k.example && !k.more).map((k) => [k.label, k]));
 				const row = fact('Examples');
 				const dd = row.querySelector('dd')!;
 				n.named.forEach((x, i) => {
@@ -7057,11 +7614,15 @@ const graph = {
 			cardBody.replaceChildren(...parts);
 			cardBody.scrollTop = 0;
 		};
-		card.querySelector('.milk-about-close')!.addEventListener('click', () => {
-			tell(null);
-			heldStep = null;
-			showStep(null);
-		});
+		card.querySelector('.milk-about-close')!.addEventListener(
+			'click',
+			() => {
+				tell(null);
+				heldStep = null;
+				showStep(null);
+			},
+			{ signal },
+		);
 		// A product named in the words beside it, pressed (see MilkLink).
 		document.addEventListener(
 			'milk:go',
@@ -7112,7 +7673,7 @@ const graph = {
 			const to = zoomIdentity.translate(paneW / 2 - k * px, paneH / 2 - k * py).scale(k);
 			surface.transition().duration(glide ? 750 : 0).call(zoomer.transform, to);
 		};
-		if (figure.dataset.focus) focusOn(figure.dataset.focus, false);
+		if (figure.dataset.focus && !whole) focusOn(figure.dataset.focus, false);
 		const host = figure.closest<HTMLElement>('[data-viz-phase]') ?? figure.closest<HTMLElement>('[data-viz-stage]');
 		host?.addEventListener(
 			'viz:props',
@@ -7150,9 +7711,30 @@ const graph = {
 				if (!width || !height) return false;
 				started = true;
 				// Once its font is in, as its words are measured on a canvas (see measure).
-				Promise.all(FACES.map((face) => document.fonts.load(`${face} 13px ${SANS()}`))).then(
-					() => !signal.aborted && draw(figure, signal),
-				);
+				Promise.all(FACES.map((face) => document.fonts.load(`${face} 13px ${SANS()}`))).then(() => {
+					if (signal.aborted) return;
+					const data = JSON.parse(figure.dataset.milkGraph!) as Graph;
+					/* Drawn again from scratch when an animal is pressed, the
+					   drawing before let go of. */
+					let drawing = new AbortController();
+					signal.addEventListener('abort', () => drawing.abort());
+					draw(figure, AbortSignal.any([signal, drawing.signal]), data);
+					// Under the search, wherever that is (see draw).
+					const search = figure.querySelector('.milk-search') ?? document.querySelector('[data-deck-tools] .milk-search');
+					const chips = [...(search?.querySelectorAll<HTMLButtonElement>('.milk-beasts button') ?? [])];
+					for (const chip of chips)
+						chip.addEventListener(
+							'click',
+							() => {
+								chip.setAttribute('aria-pressed', String(chip.getAttribute('aria-pressed') !== 'true'));
+								const milks = new Set(chips.filter((c) => c.getAttribute('aria-pressed') === 'true').map((c) => c.dataset.milk!));
+								drawing.abort();
+								drawing = new AbortController();
+								draw(figure, AbortSignal.any([signal, drawing.signal]), only(data, milks), milks.size > 0);
+							},
+							{ signal },
+						);
+				});
 				return true;
 			};
 			// A frame on, once the deck has said which phase is shown.
