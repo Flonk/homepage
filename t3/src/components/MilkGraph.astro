@@ -6088,8 +6088,10 @@ const graph = {
 		/* A pin's head, round, the count in it, its point on the country's
 		   middle: bigger the more cheeses it has. Shown zoomed out, until the
 		   cheeses themselves can be read. */
-		const PIN = 18;
-		const PIN_GROWS = 7;
+		const PIN = 6;
+		const PIN_GROWS = 1.2;
+		// The screen's pixels to one of the picture's with the map about framed.
+		const PIN_FRAMED = 700 / MAP_W;
 		const pillsShown = (s: number) => FONT * MAP_PILL * s >= 5;
 		// A rim as fine as the pill it is on, for the small ones on the map.
 		const rim = (d: Node) => Math.min(1, size(d));
@@ -7027,16 +7029,28 @@ const graph = {
 				g.stroke(path);
 			}
 		};
-		// Where a pin is, in the picture: its head and its point.
+		/* Where a pin is, in the picture: its point. Its size at a zoom: so
+		   many pixels on the screen with the map framed, and from there it
+		   grows only a little, by the fourth root of the zoom. `r` is its
+		   size in pixels, framed. */
 		const pinsOf = (p: Node) => {
 			const left = p.x - p.w / 2;
 			const top = p.y + p.h / 2;
-			return (panels.get(p)?.pins ?? []).map((pin) => ({ ...pin, x: left + pin.x, y: top + pin.y, head: top + pin.y - pin.r * 1.6 }));
+			return (panels.get(p)?.pins ?? []).map((pin) => ({ ...pin, x: left + pin.x, y: top + pin.y }));
 		};
-		const pinBox = (pin: ReturnType<typeof pinsOf>[number]): Box => ({ x0: pin.x - pin.r * 1.2, x1: pin.x + pin.r * 1.2, y0: pin.head - pin.r * 1.2, y1: pin.y + pin.r * 0.2 });
+		const pinAt = (pin: ReturnType<typeof pinsOf>[number], s: number) => {
+			const r = (pin.r / s) * (s / PIN_FRAMED) ** 0.25;
+			return { r, head: pin.y - r * 1.6 };
+		};
+		// Room for it as big as it gets in the picture, zoomed out as far as can be.
+		const pinBox = (pin: ReturnType<typeof pinsOf>[number]): Box => {
+			const { r, head } = pinAt(pin, fit * 0.5);
+			return { x0: pin.x - r * 1.2, x1: pin.x + r * 1.5, y0: head - r * 1.5, y1: pin.y + r * 0.2 };
+		};
 		const drawPin = (g: Pen, pin: ReturnType<typeof pinsOf>[number], s: number) => {
 			if (pillsShown(s)) return true;
-			const { x, y, r, head, n } = pin;
+			const { x, y, n } = pin;
+			const { r, head } = pinAt(pin, s);
 			// A teardrop: the head's circle, drawn down to its point.
 			const reach = Math.asin(r / (y - head));
 			g.beginPath();
@@ -7049,14 +7063,35 @@ const graph = {
 			g.shadowOffsetY = r * 0.1 * s * dpr;
 			g.fill();
 			g.shadowColor = 'transparent';
-			if (legible(r * 0.8, s)) {
-				g.font = font(r * (n > 99 ? 0.75 : 0.9), '600');
+			// Its country's flag in its head, on white, as the flags on the pills are.
+			let whole = true;
+			const flag = r * 0.8;
+			g.beginPath();
+			g.arc(x, head, flag, 0, Math.PI * 2);
+			g.fillStyle = '#fff';
+			g.fill();
+			const im = flag * s >= 2 ? imageOf(`/assets/flags/${pin.iso.toLowerCase()}.webp`) : null;
+			if (im) g.drawImage(im, x - flag, head - flag, 2 * flag, 2 * flag);
+			else if (flag * s >= 2) whole = false;
+			// How many, in a little round on its shoulder.
+			const badge = r * 0.5;
+			const bx = x + r * 0.78;
+			const by = head - r * 0.78;
+			g.beginPath();
+			g.arc(bx, by, badge, 0, Math.PI * 2);
+			g.fillStyle = ink.text;
+			g.fill();
+			g.lineWidth = r * 0.08;
+			g.strokeStyle = ink.ground;
+			g.stroke();
+			if (legible(badge * 0.9, s)) {
+				g.font = font(badge * (n > 99 ? 0.85 : 1.05), '600');
 				g.textAlign = 'center';
 				g.textBaseline = 'middle';
 				g.fillStyle = ink.ground;
-				g.fillText(String(n), x, head + r * 0.05);
+				g.fillText(String(n), bx, by + badge * 0.05);
 			}
-			return true;
+			return whole;
 		};
 		const drawPanel = (g: Pen, p: Node, s: number) => {
 			const P = panels.get(p)!;
@@ -7618,7 +7653,10 @@ const graph = {
 			const s = shownAt.k * fit;
 			const pin = pillsShown(s)
 				? null
-				: ([...panels.keys()].flatMap(pinsOf).find((p) => Math.hypot(x - p.x, y - p.head) <= p.r * 1.1) ?? null);
+				: ([...panels.keys()].flatMap(pinsOf).find((p) => {
+						const { r, head } = pinAt(p, s);
+						return Math.hypot(x - p.x, y - head) <= r * 1.1;
+					}) ?? null);
 			if (pin) {
 				hint = `${pin.name}: ${pin.n} ${pin.n === 1 ? 'cheese' : 'cheeses'}`;
 				return { pill: null, step: null, hint, info: null, pin };
