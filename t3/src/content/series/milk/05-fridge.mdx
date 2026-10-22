@@ -1,0 +1,64 @@
+---
+title: "The milk in your fridge"
+description: ""
+pubDate: "October 20 2026"
+accent: "oklch(0.8 0.05 70)"
+chromeGrain: 2
+format: "deck"
+deckLayout: "sidebar"
+ground: "light"
+---
+
+import DeckCard from "../../../components/DeckCard.astro";
+import DeckViz from "../../../components/DeckViz.astro";
+import MilkGraph from "../../../components/MilkGraph.astro";
+import MilkLink from "../../../components/MilkLink.astro";
+import Sources from "../../../components/Sources.astro";
+import VizPhase from "../../../components/VizPhase.astro";
+
+<DeckViz>
+  <VizPhase name="products">
+    <MilkGraph focus="homogenised" />
+  </VizPhase>
+</DeckViz>
+
+<DeckCard>
+  ## Homogenization
+
+  To prevent a layer of cream forming on top of milk, the milk in your fridge will have been <MilkLink to="homogenised">homogenised</MilkLink>.
+
+  If you recall, milk fat lives as globules suspended in the water phase of milk; the size of them varies between 0.1 and 15 µm, and the larger ones like to rise to the top.
+
+  Homogenization forces the milk through a narrow gap at 100–250 bar, tearing the fat globules apart into smaller ones, which will remain suspended in the milk.
+
+  <Sources links={[
+    { label: "Tetra Pak Dairy Processing Handbook: Homogenizers", href: "https://dairyprocessinghandbook.tetrapak.com/chapter/homogenizers" },
+  ]} />
+</DeckCard>
+
+<DeckCard vizProps={{ focus: "pasteurised" }}>
+  ## Pasteurization
+
+  <MilkLink to="pasteurised">Pasteurization</MilkLink> is a heat treatment process famously invented by Louis Pasteur to kill harmful bacteria in food and beverages, making it shelf-stable for a longer period.
+
+  By heating milk to 72 °C for 15 seconds, or holding it at 63 °C for half an hour, many harmful bacteria like Salmonella, Listeria, and E. coli are killed.
+
+  Whether it was heated enough is checked by an enzyme of the milk itself, alkaline phosphatase, which the heat destroys: if any is left, the milk wasn't pasteurised properly.
+
+  <Sources links={[
+    { label: "EU Regulation 853/2004", href: "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:02004R0853-20230215" },
+    { label: "US 21 CFR 1240.61", href: "https://www.law.cornell.edu/cfr/text/21/1240.61" },
+    { label: "Tetra Pak Dairy Processing Handbook", href: "https://dairyprocessinghandbook.tetrapak.com/chapter/pasteurized-and-esl-dairy-products" },
+  ]} />
+</DeckCard>
+
+<DeckCard vizProps={{ focus: "certified" }}>
+  ## Raw milk
+
+  You can also drink unpasteurized milk straight from the cow, and some shops or farm even sell <MilkLink to="certified">raw milk</MilkLink>.
+
+
+  <MilkLink to="certified">Raw milk</MilkLink> can taste a bit cow-y and I usually don't buy milk for straight up consumption so I'll rarely spend the money, but do try it out, it's super creamy and a little sweet!
+
+  Keep in mind that it will turn sour after a few days, and go off faster than pasteurized milk.
+</DeckCard>

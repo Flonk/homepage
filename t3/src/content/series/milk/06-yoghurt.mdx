@@ -1,0 +1,63 @@
+---
+title: "Yoghurt"
+description: ""
+pubDate: "October 21 2026"
+accent: "oklch(0.8 0.05 70)"
+chromeGrain: 2
+format: "deck"
+deckLayout: "sidebar"
+ground: "light"
+---
+
+import DeckCard from "../../../components/DeckCard.astro";
+import DeckViz from "../../../components/DeckViz.astro";
+import MilkGraph from "../../../components/MilkGraph.astro";
+import MilkLink from "../../../components/MilkLink.astro";
+import Sources from "../../../components/Sources.astro";
+import VizPhase from "../../../components/VizPhase.astro";
+
+<DeckViz>
+  <VizPhase name="products">
+    <MilkGraph focus="yoghurt" />
+  </VizPhase>
+</DeckViz>
+
+<DeckCard>
+  ## Two bacteria
+
+  <MilkLink to="yoghurt">Yoghurt</MilkLink> is milk fermented by two bacteria working together: *Streptococcus thermophilus* and *Lactobacillus delbrueckii* subsp. *bulgaricus*. Ferment milk with anything else and, strictly speaking, what you get isn't yoghurt.
+
+  They eat the milk's lactose and turn it into lactic acid. As the milk gets more acidic, the casein proteins lose their charge, stop repelling each other, and clump into a soft gel at around pH 4.6. That's the set, and the acid is the tang.
+
+  <Sources links={[
+    { label: "Codex Alimentarius: Standard for Fermented Milks (CXS 243-2003)", href: "https://www.fao.org/fao-who-codexalimentarius/sh-proxy/en/?lnk=1&url=https%253A%252F%252Fworkspace.fao.org%252Fsites%252Fcodex%252FStandards%252FCXS%2B243-2003%252FCXS_243e.pdf" },
+  ]} />
+</DeckCard>
+
+<DeckCard>
+  ## Heat first
+
+  Before the cultures go in, the milk is heated well beyond pasteurization, to 90–95 °C for about five minutes.
+
+  This isn't about killing bacteria. It unfolds the whey proteins, which then stick to the casein and join the gel when it sets, instead of floating around in the liquid. The result is a firmer yoghurt that holds on to its whey.
+
+  Then the milk is cooled to 40–45 °C, where both bacteria are happiest, and left for a few hours until it sets.
+
+  <Sources links={[
+    { label: "Tetra Pak Dairy Processing Handbook: Fermented milk products", href: "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products" },
+  ]} />
+</DeckCard>
+
+<DeckCard vizProps={{ focus: "greek" }}>
+  ## Greek yoghurt
+
+  <MilkLink to="greek">Greek yoghurt</MilkLink> is yoghurt with some of the whey strained off, through cloth or, industrially, in a centrifuge. What remains is thicker and higher in protein; strain it further still and you get labneh.
+
+  The whey that comes out is <MilkLink to="acidWhey">acid whey</MilkLink>: sour, and with little in it worth selling. Each kilogram of Greek yoghurt leaves behind a few kilograms of it, and getting rid of it is a real problem for the dairies.
+</DeckCard>
+
+<DeckCard vizProps={{ focus: "ayran" }}>
+  ## Ayran
+
+  Go the other way and add water instead of taking it out: yoghurt thinned down and salted is <MilkLink to="ayran">ayran</MilkLink>, or doogh, or salted lassi, depending on where you are.
+</DeckCard>

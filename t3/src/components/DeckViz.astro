@@ -80,16 +80,15 @@
 		overflow: hidden;
 		/* The frame: a gutter as wide as the page's own frame, and the panel
 		   drawn under the phases inside it, its corners a pixel tighter than
-		   the page's, which what is drawn into them can follow; the phases
-		   kept a little room inside it, but for its bottom, which a picture may
-		   run down to, as the cube's ground does. */
+		   the page's, which what is drawn into them can follow; the pictures
+		   running out to the panel's edges, as the cube's ground does. */
 		--frame: var(--page-border, 4px);
 		--pane-corner: calc(var(--content-radius, 13px) - 1px);
 		/* What is drawn into its corners follows them two pixels tighter. */
 		--viz-corner: calc(var(--pane-corner) - 2px);
 		position: relative;
 		isolation: isolate;
-		padding: calc(var(--frame) + 1rem) calc(var(--frame) + 1rem) var(--frame);
+		padding: var(--frame);
 		background: var(--ground-200);
 	}
 	.deck-viz::before {
