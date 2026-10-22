@@ -2,6 +2,8 @@
 import ABOUT from './milk-about.json';
 import STEPS from './milk-steps.json';
 import REGIONS from './milk-regions.json';
+import CHEESES from './milk-cheeses.json';
+import MAP from './milk-map.json';
 
 /**
  * What milk becomes: every product as a node and every making-of as an arrow,
@@ -62,6 +64,8 @@ type Product = {
 	scale?: { name: string; unit: string; to: number; every: number };
 	at?: number;
 	panel?: boolean;
+	// Drawn as the header of a map of the world's cheeses, each where it is made (see WORLD).
+	map?: boolean;
 	// Drawn just below the branch of this sibling, as its kin, whatever their sizes.
 	below?: string;
 	// A remark worth having at a glance, behind an info mark on its pill's bottom right corner.
@@ -562,7 +566,7 @@ const NODES: Record<string, Product> = {
 	},
 
 	// Set by rennet: the enzyme from a calf's stomach, or a microbial one.
-	rennetCurd: { label: 'Rennet curd', aka: ['Bruch', 'Käsebruch'], from: 'raw', alsoFrom: ['pasteurised'], step: 'set with rennet' },
+	rennetCurd: { label: 'Rennet curd', aka: ['Bruch', 'Käsebruch'], from: 'raw', alsoFrom: ['pasteurised'], step: 'set with rennet', map: true },
 	freshCheese: { label: 'Fresh cheese', aka: ['Frischkäse'], examples: ['Queso fresco', 'Queso blanco', 'Panela', 'Stracchino', 'Robiola', 'Tomino', 'Mató', 'Jben', 'Queijo Minas frescal', 'Kesong puti', 'Renost'], from: 'rennetCurd', alsoFrom: ['lacticCheese'], step: 'drain fresh' },
 	lacticCheese: { label: 'Lactic-set cheese', aka: ['Fromage lactique', 'Lactic cheese'], examples: ['Sainte-Maure de Touraine', 'Crottin de Chavignol', 'Selles-sur-Cher', 'Valençay', 'Chabichou du Poitou', 'Pouligny-Saint-Pierre', 'Chaource', "Afuega'l pitu", 'Katiki Domokou', 'Picodon', 'Bouhezza', 'Crowdie'], from: 'raw', alsoFrom: ['pasteurised'], step: 'set slowly with acid, ladle unpressed' },
 	soft: { label: 'Soft cheese', aka: ['Weichkäse'], examples: ['Bel Paese', 'Cuartirolo', 'Pule', 'Montebore'], from: 'rennetCurd', step: 'drain unpressed' },
@@ -3831,6 +3835,52 @@ const EXAMPLE_IMAGES: Record<string, Picture> = {
 		source: 'https://commons.wikimedia.org/wiki/File:Sainte-maure-de-touraine_cheese.jpg',
 	},
 };
+/* The world's cheeses (see milk-cheeses.json), gathered from Wikipedia's
+   lists of cheeses and looked up one by one: every one on the map under
+   rennet curd (see WORLD), by the name the graph has it under if it has
+   it, and that one, an example of a family, takes its facts. */
+type Cheese = {
+	name: string;
+	aka: string[];
+	family: string;
+	secondary?: string;
+	countries: string[];
+	milk: string[];
+	firm: string | null;
+	days: [number, number] | null;
+	// The days not found in a source, but its family's usual.
+	estimated: boolean;
+	coagulation?: string;
+	rind?: string;
+	protected?: 'PDO' | 'PGI' | 'TSG';
+	wiki?: string;
+	source?: string;
+	confidence: 'high' | 'medium' | 'low';
+	note?: string;
+	desc?: string;
+};
+const plainName = (said: string) =>
+	said.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+// Ripened long enough for time to tell their cheeses apart: drawn as panels once they have enough of them.
+const RIPENED = ['soft', 'bloomy', 'washed', 'semiHard', 'washedCurd', 'hard', 'alpine', 'cheddared', 'blue', 'brined', 'pastaFilata', 'lacticCheese', 'sourMilkCheese', 'plantCheese', 'tulum', 'steamedCheese'];
+const CHEESE: Record<string, Cheese> = {};
+// The families of cheese, whose examples not in the inventory go on the map too, where their flags say.
+const CHEESY = [...RIPENED, 'freshCheese', 'quark', 'cottageCheese', 'creamCheese', 'mascarpone', 'paneer', 'chhena', 'ricotta', 'wheyCheese', 'grilling', 'processed', 'insect', 'lumpCheese', 'bryndza', 'sunDriedCheese', 'byaslag', 'eezgii', 'buttermilkCheese', 'hardChhurpi', 'stillCheese', 'cookedCheese', 'mish', 'stracciatella'];
+const WORLD: string[] = [];
+{
+	const had = new Map<string, string>();
+	for (const { examples = [] } of Object.values(NODES)) for (const x of examples) had.set(plainName(x), x);
+	const onMap = new Set<string>();
+	for (const c of CHEESES as Cheese[]) {
+		const same = [c.name, ...c.aka].map(plainName).map((n) => had.get(n)).find(Boolean) ?? c.name;
+		if (onMap.has(same)) continue;
+		onMap.add(same);
+		CHEESE[same] ??= c;
+		WORLD.push(same);
+	}
+	for (const id of CHEESY) for (const x of NODES[id]?.examples ?? []) if (!onMap.has(x)) WORLD.push(x);
+	for (const id of RIPENED) if ((NODES[id].examples?.length ?? 0) >= 6) NODES[id].panel = true;
+}
 const named = new Set(Object.values(NODES).flatMap(({ examples = [] }) => examples));
 for (const name of Object.keys(EXAMPLE_IMAGES)) if (!named.has(name)) throw new Error(`MilkGraph: picture for unknown example ${name}`);
 
@@ -4260,6 +4310,66 @@ const EXAMPLE_AXES: Record<string, { firm: (typeof FIRMS)[number]; days: [number
 	Cantal: { firm: 'semi-hard', days: [30, 240] },
 };
 for (const name of Object.keys(EXAMPLE_AXES)) if (!named.has(name)) throw new Error(`MilkGraph: axes for unknown example ${name}`);
+/* The rest from the inventory, and its over the guesses above where it has
+   a source. A cheese whose place it could not find in a source is marked
+   so (see UNSURE); one in a panel it has nothing for at all goes where most
+   of its family's go. */
+const UNSURE = new Set<string>();
+const middling = (xs: number[]) => [...xs].sort((a, b) => a - b)[Math.floor(xs.length / 2)];
+for (const n of Object.values(NODES)) {
+	const names = n.examples ?? [];
+	for (const x of names) {
+		const c = CHEESE[x];
+		if (c && (c.estimated || c.confidence === 'low')) UNSURE.add(x);
+		if (!n.panel || !c?.firm || !c.days || (EXAMPLE_AXES[x] && c.estimated)) continue;
+		const [least, most] = c.days.map((d) => Math.max(1, d));
+		EXAMPLE_AXES[x] = { firm: c.firm as (typeof FIRMS)[number], days: [Math.min(least, most), Math.max(least, most)] };
+	}
+	if (!n.panel) continue;
+	const placed = names.filter((x) => EXAMPLE_AXES[x]).map((x) => EXAMPLE_AXES[x]);
+	const firms = placed.map((a) => a.firm);
+	const usual = {
+		firm: firms.sort((a, b) => firms.filter((v) => v === b).length - firms.filter((v) => v === a).length)[0] ?? 'semi-hard',
+		days: [middling(placed.map((a) => a.days[0])) ?? 30, middling(placed.map((a) => a.days[1])) ?? 90] as [number, number],
+	};
+	for (const x of names) {
+		if (!CHEESE[x] || CHEESE[x].estimated) UNSURE.add(x);
+		if (EXAMPLE_AXES[x]) continue;
+		EXAMPLE_AXES[x] = usual;
+	}
+}
+const UNSURE_SAID = 'Not found in a source: placed where its family’s cheeses usually are';
+/* What the inventory says of a cheese the graph has nothing else on: what
+   it is, from the list it was found in or else from its facts, and how it
+   is made, for its card. */
+const regionName = new Intl.DisplayNames(['en'], { type: 'region' });
+const MILK_WORD: Record<string, string> = { cow: 'cow', sheep: 'sheep', goat: 'goat', buffalo: 'buffalo', camel: 'camel', yak: 'yak', horse: 'mare', donkey: 'donkey', reindeer: 'reindeer' };
+// A source's site, or nothing if it is not a link at all.
+const siteOf = (url?: string) => {
+	try {
+		return url ? new URL(url).hostname.replace(/^www\./, '') : null;
+	} catch {
+		return null;
+	}
+};
+const cheeseAbout = (c: Cheese): About => {
+	const milk = c.milk.map((m) => MILK_WORD[m] ?? m).join(' and ');
+	const from = c.countries.map((k) => regionName.of(k)).join(', ');
+	const text = c.desc ?? `A ${c.firm ? `${c.firm} ` : ''}cheese${milk ? ` of ${milk} milk` : ''}${from ? ` from ${from}` : ''}.`;
+	const site = siteOf(c.source);
+	return c.wiki ? { text, wiki: c.wiki } : site ? { text, source: c.source, sourceName: site } : { text };
+};
+const SET_WORD: Record<string, string> = { rennet: 'rennet', acid: 'lactic acid', 'rennet-acid': 'lactic acid and a little rennet', 'acid-heat': 'heat and acid', plant: 'a plant coagulant', heat: 'boiled down', none: 'melted' };
+const cheeseHow = (c: Cheese): How => ({
+	table: [
+		...(c.milk.length ? [{ k: 'Milk', v: c.milk.map((m) => MILK_WORD[m] ?? m).join(', ') }] : []),
+		...(c.coagulation ? [{ k: 'Set with', v: SET_WORD[c.coagulation] ?? c.coagulation }] : []),
+		...(c.rind ? [{ k: 'Rind', v: c.rind }] : []),
+		...(c.protected ? [{ k: 'Protected', v: c.protected }] : []),
+	],
+	text: c.note,
+	sources: siteOf(c.source) ? [{ name: siteOf(c.source)!, url: c.source! }] : [],
+});
 for (const [id, { panel, examples: names = [] }] of Object.entries(NODES)) {
 	if (!panel) continue;
 	for (const name of names) if (!EXAMPLE_AXES[name]) throw new Error(`MilkGraph: ${name} in the panel of ${id} has no axes`);
@@ -4715,6 +4825,20 @@ for (const [id, { from, alsoFrom = [] }] of Object.entries(NODES)) {
  */
 // Every one of them, for now: the more the better. A number here draws that many and a “…” for the rest.
 const SHOWN = Infinity;
+// What is known of an example, or a cheese on the map, by its name.
+const factsOf = (label: string) => ({
+		image: EXAMPLE_IMAGES[label] && pictured(exampleFile(label), EXAMPLE_IMAGES[label]),
+		about: about.examples[label] ?? (CHEESE[label] && cheeseAbout(CHEESE[label])),
+		regions: regions[label] ?? (CHEESE[label]?.countries.length ? CHEESE[label].countries.slice(0, 4) : undefined),
+		aka: EXAMPLE_AKA[label],
+		note: EXAMPLE_NOTES[label],
+		beasts: beastsOf(label) ?? (CHEESE[label] && CHEESE[label].milk.join() !== 'cow' && CHEESE[label].milk.length ? CHEESE[label].milk.map((m) => BEASTS[m as keyof typeof BEASTS]).filter(Boolean) : undefined),
+		axes: EXAMPLE_AXES[label] ?? (CHEESE[label]?.firm && CHEESE[label].days ? { firm: CHEESE[label].firm!, days: CHEESE[label].days! } : undefined),
+		protected: CHEESE[label]?.protected,
+		unsure: UNSURE.has(label) ? UNSURE_SAID : undefined,
+		step: steps[label]?.label,
+		how: steps[label] ?? (CHEESE[label] && cheeseHow(CHEESE[label])),
+});
 const examples = Object.entries(NODES).flatMap(([kind, { examples: names = [] }]) =>
 	(names.length > SHOWN ? [...names.slice(0, SHOWN), '…'] : names).map((label, i, all) => ({
 		id: `${kind}:${i}`,
@@ -4725,17 +4849,16 @@ const examples = Object.entries(NODES).flatMap(([kind, { examples: names = [] }]
 		rank: i,
 		group: groupOf.get(kind) ?? -1,
 		niche: 2,
-		image: EXAMPLE_IMAGES[label] && pictured(exampleFile(label), EXAMPLE_IMAGES[label]),
-		about: about.examples[label],
-		regions: regions[label],
-		aka: EXAMPLE_AKA[label],
-		note: EXAMPLE_NOTES[label],
-		beasts: beastsOf(label),
-		axes: EXAMPLE_AXES[label],
-		step: steps[label]?.label,
-		how: steps[label],
+		...factsOf(label),
 	})),
 );
+/* The map's cheeses (see WORLD): each where it is made, the first of its
+   countries; one with none known is left off. No step on its line, which
+   is not drawn: the map is under rennet curd, as the panels are under
+   their families. */
+const atlas = WORLD.map((label) => ({ label, ...factsOf(label) }))
+	.filter((x) => x.regions?.length)
+	.map((x, i) => ({ ...x, id: `atlas:${i}`, kind: 'rennetCurd', example: true, onMap: true, place: x.regions![0], rank: i, group: groupOf.get('rennetCurd') ?? -1, niche: 2, step: undefined }));
 
 interface Props {
 	/** A product to open on, with everything made from it, framed and lit. */
@@ -4749,7 +4872,7 @@ const graph = {
 	groups: GROUPS.map(({ name, hub }) => ({ name, hub: hub ?? null })),
 	splits: SPLITS,
 	kinds: KINDS,
-	nodes: Object.entries(NODES).map(([id, { label, step, scale, at, panel, below, link, note, aka = [], examples: named = [] }]) => ({
+	nodes: Object.entries(NODES).map(([id, { label, step, scale, at, panel, map, below, link, note, aka = [], examples: named = [] }]) => ({
 		id,
 		label,
 		// Not drawn, but found by the search: its other names, and its
@@ -4766,6 +4889,7 @@ const graph = {
 		scale,
 		at,
 		panel,
+		map,
 		below,
 		link,
 		note,
@@ -4773,11 +4897,16 @@ const graph = {
 		group: groupOf.get(id) ?? -1,
 		// 0 a staple, 1 well known, 2 niche.
 		niche: STAPLE.has(id) ? 0 : KNOWN.has(id) ? 1 : 2,
-	})).concat(examples.map(({ kind, ...example }) => example) as any),
+	}))
+		.concat(examples.map(({ kind, ...example }) => example) as any)
+		.concat(atlas.map(({ kind, ...cheese }) => cheese) as any),
 	links: Object.entries(NODES)
 		.filter(([, { from }]) => from !== undefined)
 		.map(([target, { from }]) => ({ source: from!, target, weight: TREATED.has(target) ? LIGHT : 1 }))
-		.concat(examples.map(({ id, kind }) => ({ source: kind, target: id, weight: 1 }))),
+		.concat(examples.map(({ id, kind }) => ({ source: kind, target: id, weight: 1 })))
+		.concat(atlas.map(({ id, kind }) => ({ source: kind, target: id, weight: 1 }))),
+	// The world's outline, for the map under rennet curd (see milk-map.json).
+	map: MAP,
 };
 ---
 
@@ -5246,6 +5375,13 @@ const graph = {
 		// A family drawn as a panel, and where a cheese goes in one (see Product and EXAMPLE_AXES).
 		panel?: boolean;
 		axes?: { firm: string; days: [number, number] };
+		// A map's header, and a cheese on it, with the country it is put in (see WORLD).
+		map?: boolean;
+		onMap?: boolean;
+		place?: string;
+		// A protected name (PDO, PGI or TSG), and why its place is a guess, if it is.
+		protected?: string;
+		unsure?: string;
 		below?: string;
 		// The product this one is drawn again of (see Product).
 		link?: string;
@@ -5326,7 +5462,9 @@ const graph = {
 	const MARGIN = 16;
 	/* How far in it can be zoomed: until the smallest words, a step's table
 	   on a thin arrow, read. */
-	const MAX_ZOOM = 400;
+	const MAX_ZOOM = 2000;
+	// How big a cheese is drawn on the map (see layMap), against a product's least.
+	const MAP_PILL = 0.12;
 	/* A ruler in a kind (see Product), along the bottom of its pill: this
 	   long a unit, room either end for what it measures; its products this far under it and their rows this far apart, and products
 	   side by side this far apart. */
@@ -5375,6 +5513,7 @@ const graph = {
 		kinds: { step: string; ids: string[]; how: Node['how'] }[];
 		nodes: Node[];
 		links: Made[];
+		map: { height: number; countries: Record<string, { name: string; label: [number, number]; rings: number[][] }> };
 	};
 	/* Only what is made from the milk of the animals chosen, and what that
 	   is made from, so the tree still reads down to it. A product with no
@@ -5542,7 +5681,7 @@ const graph = {
 		   points stand out without swamping the rest. */
 		const made = new Map<Node, number>();
 		const tally = (n: Node): number => {
-			const v = (children.get(n) ?? []).reduce((s, k) => s + (k.hub ? 0 : 1) + tally(k), 0);
+			const v = (children.get(n) ?? []).filter((k) => !k.onMap).reduce((s, k) => s + (k.hub ? 0 : 1) + tally(k), 0);
 			made.set(n, v);
 			return v;
 		};
@@ -5581,6 +5720,7 @@ const graph = {
 		   of their own are, middling among them: it is as wide as its ruler
 		   already, and what hangs under it is drawn at its own size. */
 		const size = (n: Node): number => {
+			if (n.onMap) return MAP_PILL;
 			if (!n.scale) return grown(n);
 			const beside = (children.get(treeParent.get(n)!) ?? [])
 				.filter((k) => !k.scale && !k.example && made.get(k)! > 0)
@@ -5598,7 +5738,7 @@ const graph = {
 				carried.set(n, v);
 				return v;
 			}
-			const v = (n.hub ? 0 : 1) + (children.get(n) ?? []).reduce((sum, k) => sum + carry(k), 0);
+			const v = (n.hub ? 0 : 1) + (children.get(n) ?? []).filter((k) => !k.onMap).reduce((sum, k) => sum + carry(k), 0);
 			carried.set(n, v);
 			return v;
 		};
@@ -5615,9 +5755,10 @@ const graph = {
 		// A panel's cheeses are laid out in it, not as leaves of the tree (see Product); its products stay.
 		const paneled = new Map<Node, Node[]>();
 		for (const [p, kids] of children)
-			if (p.panel) {
-				paneled.set(p, kids.filter((k) => k.example));
-				children.set(p, kids.filter((k) => !k.example));
+			if (p.panel || p.map) {
+				const mine = (k: Node) => (p.map ? !!k.onMap : k.example);
+				paneled.set(p, kids.filter(mine));
+				children.set(p, kids.filter((k) => !mine(k)));
 				if (!children.get(p)!.length) children.delete(p);
 			}
 		const panelOf = (n: Node) => {
@@ -5879,6 +6020,9 @@ const graph = {
 			[1, '1 day'], [7, '1 wk'], [14, '2 wk'], [30, '1 mo'], [60, '2 mo'], [90, '3 mo'], [180, '6 mo'], [365, '1 yr'], [730, '2 yr'], [1095, '3 yr'], [1825, '5 yr'],
 		];
 		type Panel = {
+			kind: 'grid' | 'map';
+			// A map's pins, a country each, where its cheeses are and how many.
+			pins?: { iso: string; name: string; x: number; y: number; r: number; n: number }[];
 			w: number;
 			h: number;
 			rows: { firm: string; y: number; h: number }[];
@@ -5898,16 +6042,30 @@ const graph = {
 			// Room at the left for the widest cheese to sit at the very start.
 			const lead = picture(p) + PANEL_PAD + Math.max(...ks.map((k) => k.w)) / 2;
 			const xOf = (days: number) => lead + (Math.log10(Math.max(1, days)) - Math.log10(from[0])) * PANEL_DECADE;
+			/* A cheese whose time is a guess is not stacked on the one point its
+			   family's usual time is, but spread evenly with the others like it
+			   across that span, from its usual least to its usual most: somewhere
+			   in there, as its question mark says. */
+			const sure = ks.filter((k) => !k.unsure);
+			const logs = (i: 0 | 1) => (sure.length ? sure : ks).map((k) => Math.log10(Math.max(1, k.axes!.days[i]))).sort((a, b) => a - b);
+			const mid = (xs: number[]) => xs[Math.floor(xs.length / 2)];
+			const [lo, hi] = [mid(logs(0)), mid(logs(1))];
+			const guessed = ks.filter((k) => k.unsure);
+			const at0 = (k: Node) => {
+				if (!k.unsure) return ripe(k);
+				const i = guessed.indexOf(k);
+				return 10 ** (lo + ((hi - lo) * (i + 0.5)) / guessed.length);
+			};
 			const firms = ks.map((k) => FIRM_ORDER.indexOf(k.axes!.firm));
 			const at = new Map<Node, { x: number; y: number }>();
 			const rows: Panel['rows'] = [];
 			let y = PANEL_PAD;
 			for (let c = Math.min(...firms); c <= Math.max(...firms); c++) {
-				const mine = ks.filter((k) => FIRM_ORDER.indexOf(k.axes!.firm) === c).sort((a, b) => ripe(a) - ripe(b));
+				const mine = ks.filter((k) => FIRM_ORDER.indexOf(k.axes!.firm) === c).sort((a, b) => at0(a) - at0(b));
 				const tall = Math.max(...ks.map((k) => k.h)) + ROW_GAP;
 				const lanes: number[] = [];
 				for (const k of mine) {
-					const x = xOf(ripe(k));
+					const x = xOf(at0(k));
 					let lane = lanes.findIndex((right) => right + SIDE_GAP <= x - k.w / 2);
 					if (lane < 0) lane = lanes.push(-Infinity) - 1;
 					lanes[lane] = x + k.w / 2;
@@ -5919,9 +6077,94 @@ const graph = {
 			}
 			const w = Math.max(xOf(to[0]), ...[...at].map(([k, { x }]) => x + k.w / 2)) + PANEL_PAD;
 			p.w = Math.max(p.w, w);
-			panels.set(p, { w: p.w, h: y, rows, times, xOf, at });
+			panels.set(p, { kind: 'grid', w: p.w, h: y, rows, times, xOf, at });
 		};
-		for (const p of paneled.keys()) lay(p);
+		/* The map: the world on Mercator's projection, as wide as MAP_W, its
+		   cheeses small on it (see MAP_PILL), each in its country, as near
+		   its middle as there is room: the nearest free place inside the
+		   country, or once there is none the nearest free place at all. The countries with most first, so each keeps its own
+		   ground. Zoomed into, a country's cheeses read one by one. */
+		const MAP_W = 9000;
+		/* A pin's head, round, the count in it, its point on the country's
+		   middle: bigger the more cheeses it has. Shown zoomed out, until the
+		   cheeses themselves can be read. */
+		const PIN = 18;
+		const PIN_GROWS = 7;
+		const pillsShown = (s: number) => FONT * MAP_PILL * s >= 5;
+		// A rim as fine as the pill it is on, for the small ones on the map.
+		const rim = (d: Node) => Math.min(1, size(d));
+		const insideOf = (rings: number[][], x: number, y: number) => {
+			let inside = false;
+			for (const r of rings)
+				for (let i = 0, j = r.length - 2; i < r.length; j = i, i += 2)
+					if (r[i + 1] > y !== r[j + 1] > y && x < ((r[j] - r[i]) * (y - r[i + 1])) / (r[j + 1] - r[i + 1]) + r[i]) inside = !inside;
+			return inside;
+		};
+		const layMap = (p: Node) => {
+			const ks = paneled.get(p)!;
+			const at = new Map<Node, { x: number; y: number }>();
+			const top = PANEL_PAD;
+			const h = data.map.height * MAP_W + 2 * PANEL_PAD;
+			// What is placed already, in cells, so a place is checked against what is near it only.
+			const CELL = 40;
+			const cells = new Map<string, Box[]>();
+			const cellsOf = (b: Box) => {
+				const keys: string[] = [];
+				for (let i = Math.floor(b.x0 / CELL); i <= Math.floor(b.x1 / CELL); i++)
+					for (let j = Math.floor(b.y0 / CELL); j <= Math.floor(b.y1 / CELL); j++) keys.push(`${i},${j}`);
+				return keys;
+			};
+			const GAP = 0.6;
+			const free = (b: Box) =>
+				cellsOf(b).every((key) => (cells.get(key) ?? []).every((o) => b.x1 + GAP <= o.x0 || o.x1 + GAP <= b.x0 || b.y1 + GAP <= o.y0 || o.y1 + GAP <= b.y0));
+			const take = (b: Box) => cellsOf(b).forEach((key) => cells.set(key, [...(cells.get(key) ?? []), b]));
+			const widths = ks.map((k) => k.w).sort((a, b) => a - b);
+			const dx = widths[Math.floor(widths.length / 2)] / 2;
+			const dy = ks[0]?.h * 1.15;
+			// Steps out from a country's middle, nearest first, as far as any country needs.
+			const NEAR: [number, number][] = [];
+			for (let i = -120; i <= 120; i++) for (let j = -120; j <= 120; j++) NEAR.push([i, j]);
+			NEAR.sort(([a, b], [c, d]) => Math.hypot(a * dx, b * dy) - Math.hypot(c * dx, d * dy));
+			const byPlace = new Map<string, Node[]>();
+			for (const k of ks) byPlace.set(k.place!, [...(byPlace.get(k.place!) ?? []), k]);
+			const order = [...byPlace].sort((a, b) => b[1].length - a[1].length);
+			for (const [iso, list] of order) {
+				const country = data.map.countries[iso];
+				if (!country) continue;
+				const [lx, ly] = [country.label[0] * MAP_W, top + country.label[1] * MAP_W];
+				const rings = country.rings.map((r) => r.map((v, i) => (i % 2 ? top + v * MAP_W : v * MAP_W)));
+				list.sort((a, b) => Number(!!b.protected) - Number(!!a.protected) || a.label.localeCompare(b.label));
+				for (const k of list) {
+					// The nearest free place inside the country, else the nearest free place at all.
+					const place = (inside: boolean) => {
+						for (const [i, j] of NEAR) {
+							const x = lx + i * dx;
+							const y = ly + j * dy;
+							const b = { x0: x - k.w / 2, x1: x + k.w / 2, y0: y - k.h / 2, y1: y + k.h / 2 };
+							if ((!inside || insideOf(rings, x, y)) && free(b)) {
+								take(b);
+								return { x, y };
+							}
+						}
+						return null;
+					};
+					at.set(k, (rings.length ? place(true) : null) ?? place(false) ?? { x: lx, y: ly });
+				}
+			}
+			p.w = Math.max(p.w, MAP_W);
+			const pins = order
+				.filter(([iso]) => data.map.countries[iso])
+				.map(([iso, list]) => ({
+					iso,
+					name: data.map.countries[iso].name,
+					x: data.map.countries[iso].label[0] * MAP_W,
+					y: top + data.map.countries[iso].label[1] * MAP_W,
+					r: PIN + PIN_GROWS * Math.sqrt(list.length),
+					n: list.length,
+				}));
+			panels.set(p, { kind: 'map', w: p.w, h, rows: [], times: [], xOf: () => 0, at, pins });
+		};
+		for (const p of paneled.keys()) (p.map ? layMap : lay)(p);
 		// Its box, its family at 0, under its family's pill.
 		const panelBox = (p: Node): Box => {
 			const P = panels.get(p)!;
@@ -6493,6 +6736,10 @@ const graph = {
 				milk: colourOf('color-mix(in oklab, var(--pill), white 70%)'),
 				// An info mark's blue, half way to the ground.
 				info: colourOf('color-mix(in oklab, #2f6fdb 50%, var(--deck-ground))'),
+				// A guess's amber, as far towards the ground.
+				unsure: colourOf('color-mix(in oklab, #d98a10 55%, var(--deck-ground))'),
+				// The map's land, a shade off the ground.
+				land: colourOf('color-mix(in oklab, var(--deck-ink) 7%, var(--deck-ground))'),
 				// A panel's ground, a shade off the graph's, and its lines of time fainter than the arrows.
 				panel: colourOf('color-mix(in oklab, var(--deck-ink) 4%, var(--deck-ground))'),
 				grid: colourOf('color-mix(in oklab, var(--line) 35%, var(--deck-ground))'),
@@ -6630,6 +6877,8 @@ const graph = {
 
 		// A pill: its shadow, its white, its photograph, its words, its edge, and a kind's ruler.
 		const drawPill = (g: Pen, d: Node, s: number) => {
+			// A map's cheese only once it can be read; a pin for its country till then (see drawPins).
+			if (d.onMap && !pillsShown(s)) return true;
 			let whole = true;
 			const x = d.x - d.w / 2;
 			const y = d.y - d.h / 2;
@@ -6639,7 +6888,7 @@ const graph = {
 			   A canvas blurs in the screen's pixels whatever it is scaled by, so
 			   the shadow is sized for the zoom it is drawn at. */
 			const px = s * dpr;
-			roundRect(g, x, y, d.w, d.h, d.panel ? [r, r, 0, 0] : r);
+			roundRect(g, x, y, d.w, d.h, d.panel || d.map ? [r, r, 0, 0] : r);
 			g.fillStyle = ink.pill;
 			g.shadowColor = 'rgb(0 0 0 / 0.12)';
 			g.shadowBlur = d.h * 0.1 * px;
@@ -6687,8 +6936,8 @@ const graph = {
 					g.restore();
 				}
 			}
-			roundRect(g, x, y, d.w, d.h, d.panel ? [r, r, 0, 0] : r);
-			g.lineWidth = !unlit && d === held ? 2 : 1.2;
+			roundRect(g, x, y, d.w, d.h, d.panel || d.map ? [r, r, 0, 0] : r);
+			g.lineWidth = (!unlit && d === held ? 2 : 1.2) * rim(d);
 			g.strokeStyle = !unlit && d === held ? ink.lit : ink.rim;
 			g.stroke();
 			// A panel's ruler of time: its bottom edge grooved at each time, the time over it.
@@ -6753,6 +7002,62 @@ const graph = {
 		   ruler on its family's pill; each row's class right-aligned under the
 		   photograph; and behind each cheese a line from the least of its
 		   ripening to the most. */
+		// Each country's outline as a path, made once where the map is.
+		const countryPaths = new Map<Node, Path2D[]>();
+		const drawMap = (g: Pen, p: Node, left: number, top: number) => {
+			if (!countryPaths.has(p))
+				countryPaths.set(
+					p,
+					Object.values(data.map.countries).map(({ rings }) => {
+						const path = new Path2D();
+						for (const r of rings) {
+							path.moveTo(left + r[0] * MAP_W, top + PANEL_PAD + r[1] * MAP_W);
+							for (let i = 2; i < r.length; i += 2) path.lineTo(left + r[i] * MAP_W, top + PANEL_PAD + r[i + 1] * MAP_W);
+							path.closePath();
+						}
+						return path;
+					}),
+				);
+			g.fillStyle = ink.land;
+			g.strokeStyle = ink.grid;
+			g.lineWidth = 0.6;
+			g.lineJoin = 'round';
+			for (const path of countryPaths.get(p)!) {
+				g.fill(path);
+				g.stroke(path);
+			}
+		};
+		// Where a pin is, in the picture: its head and its point.
+		const pinsOf = (p: Node) => {
+			const left = p.x - p.w / 2;
+			const top = p.y + p.h / 2;
+			return (panels.get(p)?.pins ?? []).map((pin) => ({ ...pin, x: left + pin.x, y: top + pin.y, head: top + pin.y - pin.r * 1.6 }));
+		};
+		const pinBox = (pin: ReturnType<typeof pinsOf>[number]): Box => ({ x0: pin.x - pin.r * 1.2, x1: pin.x + pin.r * 1.2, y0: pin.head - pin.r * 1.2, y1: pin.y + pin.r * 0.2 });
+		const drawPin = (g: Pen, pin: ReturnType<typeof pinsOf>[number], s: number) => {
+			if (pillsShown(s)) return true;
+			const { x, y, r, head, n } = pin;
+			// A teardrop: the head's circle, drawn down to its point.
+			const reach = Math.asin(r / (y - head));
+			g.beginPath();
+			g.moveTo(x, y);
+			g.arc(x, head, r, Math.PI / 2 + reach, Math.PI / 2 - reach + Math.PI * 2);
+			g.closePath();
+			g.fillStyle = ink.text;
+			g.shadowColor = 'rgb(0 0 0 / 0.25)';
+			g.shadowBlur = r * 0.3 * s * dpr;
+			g.shadowOffsetY = r * 0.1 * s * dpr;
+			g.fill();
+			g.shadowColor = 'transparent';
+			if (legible(r * 0.8, s)) {
+				g.font = font(r * (n > 99 ? 0.75 : 0.9), '600');
+				g.textAlign = 'center';
+				g.textBaseline = 'middle';
+				g.fillStyle = ink.ground;
+				g.fillText(String(n), x, head + r * 0.05);
+			}
+			return true;
+		};
 		const drawPanel = (g: Pen, p: Node, s: number) => {
 			const P = panels.get(p)!;
 			const top = p.y + p.h / 2;
@@ -6769,6 +7074,10 @@ const graph = {
 			g.lineWidth = 1.2;
 			g.strokeStyle = ink.rim;
 			g.stroke();
+			if (P.kind === 'map') {
+				drawMap(g, p, left, top);
+				return true;
+			}
 			for (const [d] of P.times) {
 				const x = left + P.xOf(d);
 				g.beginPath();
@@ -6790,6 +7099,8 @@ const graph = {
 			}
 			g.lineCap = 'round';
 			for (const [k] of P.at) {
+				// A guess has no span to show.
+				if (k.unsure) continue;
 				g.beginPath();
 				g.moveTo(left + P.xOf(k.axes!.days[0]), k.y);
 				g.lineTo(left + P.xOf(k.axes!.days[1]), k.y);
@@ -6808,6 +7119,8 @@ const graph = {
 			return { x0: f[0].x - r, x1: f.at(-1)!.x + r, y0: f[0].y - r, y1: f[0].y + r * 1.1 };
 		};
 		const drawFlags = (g: Pen, d: Node, s: number) => {
+			// A map's cheese only once it can be read; a pin for its country till then (see drawPins).
+			if (d.onMap && !pillsShown(s)) return true;
 			let whole = true;
 			for (const { c, r, x, y } of flagsOf(d)) {
 				// On white, for a flag that does not fill its square, as Nepal's does not; with the pills' soft shadow.
@@ -6825,7 +7138,7 @@ const graph = {
 				else if (r * s >= 2) whole = false;
 				g.beginPath();
 				g.arc(x, y, r, 0, Math.PI * 2);
-				g.lineWidth = 1.2;
+				g.lineWidth = 1.2 * rim(d);
 				g.strokeStyle = ink.rim;
 				g.stroke();
 			}
@@ -6845,6 +7158,8 @@ const graph = {
 			return { x0: b[0].x - r, x1: b.at(-1)!.x + r, y0: b[0].y - r, y1: b[0].y + r * 1.2 };
 		};
 		const drawBeasts = (g: Pen, d: Node, s: number) => {
+			// A map's cheese only once it can be read; a pin for its country till then (see drawPins).
+			if (d.onMap && !pillsShown(s)) return true;
 			for (const { mark, r, x, y } of beastsAt(d)) {
 				if (!legible(r * 2, s)) continue;
 				g.font = `${r * 2}px "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif`;
@@ -6860,38 +7175,102 @@ const graph = {
 			return true;
 		};
 
-		/* A remark's info mark: on the bottom right corner, a little over it,
-		   as big and edged as a flag is on the top right. */
-		const infoOf = (d: Node) => {
+		/* Its marks on the bottom right corner, a little over it, as big and
+		   edged as a flag is on the top right: a remark's info mark at the
+		   corner, and left of it a question mark where its place is a guess.
+		   Each says what it is in a tip. */
+		type Mark = { d: Node; kind: 'note' | 'unsure'; said: string; r: number; x: number; y: number };
+		const marksOf = (d: Node): Mark[] => {
 			const r = d.h * 0.2;
-			return { r, x: d.x + d.w / 2 - r * 0.35, y: d.y + d.h / 2 - r * 0.35 };
+			const said = [
+				...(d.unsure ? [{ kind: 'unsure' as const, said: d.unsure }] : []),
+				...(d.note ? [{ kind: 'note' as const, said: d.note }] : []),
+			];
+			return said.map((m, i) => ({ ...m, d, r, x: d.x + d.w / 2 - r * 0.35 - (said.length - 1 - i) * r * 1.4, y: d.y + d.h / 2 - r * 0.35 }));
 		};
+		const sameMark = (a: Mark | null, b: Mark | null) => a?.d === b?.d && a?.kind === b?.kind;
 		const infoBox = (d: Node): Box => {
-			const { r, x, y } = infoOf(d);
-			return { x0: x - r * 1.5, x1: x + r * 1.5, y0: y - r * 1.5, y1: y + r * 1.6 };
+			const m = marksOf(d);
+			const { r, y } = m[0];
+			return { x0: m[0].x - r * 1.5, x1: m.at(-1)!.x + r * 1.5, y0: y - r * 1.5, y1: y + r * 1.6 };
 		};
 		const drawInfo = (g: Pen, d: Node, s: number) => {
-			const { r, x, y } = infoOf(d);
+			// A map's cheese only once it can be read; a pin for its country till then (see drawPins).
+			if (d.onMap && !pillsShown(s)) return true;
+			for (const { kind, r, x, y } of marksOf(d)) {
+				g.beginPath();
+				g.arc(x, y, r, 0, Math.PI * 2);
+				// Blue, as an info mark is, with a white italic i; amber for a guess, with a ?.
+				g.fillStyle = kind === 'note' ? ink.info : ink.unsure;
+				g.shadowColor = 'rgb(0 0 0 / 0.18)';
+				g.shadowBlur = r * 0.2 * s * dpr;
+				g.shadowOffsetY = r * 0.08 * s * dpr;
+				g.fill();
+				g.shadowColor = 'transparent';
+				// Edged as a flag is.
+				g.lineWidth = 1.2 * rim(d);
+				g.strokeStyle = ink.rim;
+				g.stroke();
+				if (!legible(r * 1.4, s)) continue;
+				g.textAlign = 'center';
+				g.textBaseline = 'middle';
+				g.fillStyle = '#fff';
+				if (kind === 'note') {
+					g.font = `italic 600 ${r * 1.4}px ${SERIF()}`;
+					// A little low of the middle, as an italic i sits; 1 px at the pill's own size.
+					g.fillText('i', x, y + r * 0.05 + size(d));
+				} else {
+					g.font = `600 ${r * 1.3}px ${SERIF()}`;
+					g.fillText('?', x, y + r * 0.08);
+				}
+			}
+			return true;
+		};
+
+		/* A protected name's seal on the top left corner, as the flags are on
+		   the top right: red ringed in gold for a PDO, blue for a PGI, as the
+		   EU's are, with a gold star; said on hover. */
+		const SEAL_SAID: Record<string, string> = {
+			PDO: 'Protected designation of origin (PDO)',
+			PGI: 'Protected geographical indication (PGI)',
+			TSG: 'Traditional speciality guaranteed (TSG)',
+		};
+		const sealOf = (d: Node) => {
+			const r = d.h * 0.2;
+			return { r, x: d.x - d.w / 2 + r * 0.35, y: d.y - d.h / 2 + r * 0.35 };
+		};
+		const sealBox = (d: Node): Box => {
+			const { r, x, y } = sealOf(d);
+			return { x0: x - r * 1.5, x1: x + r * 1.5, y0: y - r * 1.5, y1: y + r * 1.6 };
+		};
+		const drawSeal = (g: Pen, d: Node, s: number) => {
+			// A map's cheese only once it can be read; a pin for its country till then (see drawPins).
+			if (d.onMap && !pillsShown(s)) return true;
+			const { r, x, y } = sealOf(d);
 			g.beginPath();
 			g.arc(x, y, r, 0, Math.PI * 2);
-			// Blue, as an info mark is, with a white italic i.
-			g.fillStyle = ink.info;
+			g.fillStyle = d.protected === 'PDO' ? '#b8102a' : d.protected === 'PGI' ? '#1d4f9c' : '#c08a00';
 			g.shadowColor = 'rgb(0 0 0 / 0.18)';
 			g.shadowBlur = r * 0.2 * s * dpr;
 			g.shadowOffsetY = r * 0.08 * s * dpr;
 			g.fill();
 			g.shadowColor = 'transparent';
-			// Edged as a flag is.
-			g.lineWidth = 1.2;
+			g.beginPath();
+			g.arc(x, y, r * 0.78, 0, Math.PI * 2);
+			g.lineWidth = r * 0.16;
+			g.strokeStyle = '#f2c200';
+			g.stroke();
+			g.beginPath();
+			g.arc(x, y, r, 0, Math.PI * 2);
+			g.lineWidth = 1.2 * rim(d);
 			g.strokeStyle = ink.rim;
 			g.stroke();
-			if (legible(r * 1.4, s)) {
-				g.font = `italic 600 ${r * 1.4}px ${SERIF()}`;
+			if (legible(r, s)) {
+				g.font = `${r * 1.05}px ${SANS()}`;
 				g.textAlign = 'center';
 				g.textBaseline = 'middle';
-				g.fillStyle = '#fff';
-				// A little low of the middle, as an italic i sits; 1 px at the pill's own size.
-				g.fillText('i', x, y + r * 0.05 + size(d));
+				g.fillStyle = '#f2c200';
+				g.fillText('★', x, y + r * 0.05);
 			}
 			return true;
 		};
@@ -6952,11 +7331,15 @@ const graph = {
 				.filter((d) => d.regions?.length)
 				.map((d) => ({ key: `f:${d.id}`, box: flagBox(d), draw: (g: Pen, at: number) => drawFlags(g, d, at) })),
 			...shown
-				.filter((d) => d.note)
+				.filter((d) => d.note || d.unsure)
 				.map((d) => ({ key: `i:${d.id}`, box: infoBox(d), draw: (g: Pen, at: number) => drawInfo(g, d, at) })),
 			...shown
 				.filter((d) => d.beasts?.length)
 				.map((d) => ({ key: `b:${d.id}`, box: beastBox(d), draw: (g: Pen, at: number) => drawBeasts(g, d, at) })),
+			...shown
+				.filter((d) => d.protected)
+				.map((d) => ({ key: `seal:${d.id}`, box: sealBox(d), draw: (g: Pen, at: number) => drawSeal(g, d, at) })),
+			...[...panels.keys()].flatMap((p) => pinsOf(p).map((pin) => ({ key: `pin:${p.id}:${pin.iso}`, box: pinBox(pin), draw: (g: Pen, at: number) => drawPin(g, pin, at) }))),
 		];
 		/* Kept, when there is nothing else to do: everything at this zoom, the
 		   nearest first, then what is in sight at the zooms either side. */
@@ -7098,7 +7481,8 @@ const graph = {
 				if (held && held !== root) {
 					drawPill(ctx, held, s);
 					if (held.regions?.length) drawFlags(ctx, held, s);
-					if (held.note) drawInfo(ctx, held, s);
+					if (held.note || held.unsure) drawInfo(ctx, held, s);
+					if (held.protected) drawSeal(ctx, held, s);
 					if (held.beasts?.length) drawBeasts(ctx, held, s);
 				}
 				return;
@@ -7203,8 +7587,13 @@ const graph = {
 			for (const d of shown)
 				if (d.beasts?.length)
 					for (const b of beastsAt(d)) if (Math.hypot(x - b.x, y - b.y) <= b.r) hint = `From ${d.beasts.map((m) => m.milk).join(' and ')} milk`;
+			for (const d of shown)
+				if (d.protected) {
+					const seal = sealOf(d);
+					if (Math.hypot(x - seal.x, y - seal.y) <= seal.r) hint = SEAL_SAID[d.protected] ?? d.protected;
+				}
 			// A little more than the mark itself, to be tapped.
-			const info = shown.find((d) => d.note && Math.hypot(x - infoOf(d).x, y - infoOf(d).y) <= infoOf(d).r * 1.3) ?? null;
+			const info = shown.flatMap((d) => (d.note || d.unsure ? marksOf(d) : [])).find((m) => Math.hypot(x - m.x, y - m.y) <= m.r * 1.3) ?? null;
 			let pill: Node | null = null;
 			for (let i = shown.length - 1; i >= 0 && !pill && !info; i--) {
 				const d = shown[i];
@@ -7226,20 +7615,28 @@ const graph = {
 					step = hittable.find((e) => ctx.isPointInStroke(edgeLine.get(e)!, sx, sy))?.target ?? null;
 				}
 			}
-			return { pill, step, hint, info };
+			const s = shownAt.k * fit;
+			const pin = pillsShown(s)
+				? null
+				: ([...panels.keys()].flatMap(pinsOf).find((p) => Math.hypot(x - p.x, y - p.head) <= p.r * 1.1) ?? null);
+			if (pin) {
+				hint = `${pin.name}: ${pin.n} ${pin.n === 1 ? 'cheese' : 'cheeses'}`;
+				return { pill: null, step: null, hint, info: null, pin };
+			}
+			return { pill, step, hint, info, pin: null };
 		};
 		/* A remark, said in a little tip over its mark: on hover, or held by a
 		   tap until the next one anywhere; gone once the picture moves. */
 		const tip = figure.querySelector<HTMLElement>('.milk-note')!;
-		let tipped: Node | null = null;
+		let tipped: Mark | null = null;
 		let tipHeld = false;
-		const showTip = (d: Node | null, hold = false) => {
-			tipped = d;
-			tipHeld = !!d && hold;
-			tip.hidden = !d;
-			if (!d) return;
-			tip.textContent = d.note!;
-			const { x, y, r } = infoOf(d);
+		const showTip = (m: Mark | null, hold = false) => {
+			tipped = m;
+			tipHeld = !!m && hold;
+			tip.hidden = !m;
+			if (!m) return;
+			tip.textContent = m.said;
+			const { x, y, r } = m;
 			const s = shownAt.k * fit;
 			tip.style.left = `${canvas.offsetLeft + (x * fit + offX) * shownAt.k + shownAt.x}px`;
 			tip.style.top = `${canvas.offsetTop + (y * fit + offY) * shownAt.k + shownAt.y + r * s}px`;
@@ -7250,7 +7647,7 @@ const graph = {
 			(e) => {
 				if (e.pointerType !== 'mouse' || e.buttons) return;
 				const { pill, step, hint, info } = pointedAt(e);
-				if (!tipHeld && info !== tipped) showTip(info);
+				if (!tipHeld && !sameMark(info, tipped)) showTip(info);
 				if (pill !== pointing.pill) look(pill ?? held);
 				if (step !== pointing.step && !heldStep) showStep(step);
 				pointing = { pill, step };
@@ -7272,9 +7669,11 @@ const graph = {
 		canvas.addEventListener(
 			'click',
 			(e) => {
-				const { pill, step, info } = pointedAt(e);
+				const { pill, step, info, pin } = pointedAt(e);
+				// A pin zooms into its country, to where its cheeses can be read.
+				if (pin) return intoCountry(pin);
 				// A remark's mark only says it, held.
-				if (info) return showTip(tipped === info && tipHeld ? null : info, true);
+				if (info) return showTip(sameMark(tipped, info) && tipHeld ? null : info, true);
 				showTip(null);
 				// The "…" for the many more tells of the product they are examples of.
 				// One drawn again only goes to the product it is, lit, not told of.
@@ -7496,7 +7895,8 @@ const graph = {
 			}
 			const title = el('div');
 			const p = parentOf(n);
-			if (n.example && p) {
+			if (n.onMap) title.append(el('p', 'milk-about-kind', (n.regions ?? []).map((c) => countryName.of(c)).join(', ')));
+			else if (n.example && p) {
 				const kind = el('p', 'milk-about-kind', 'Example of ');
 				kind.append(to(p));
 				title.append(kind);
@@ -7524,10 +7924,10 @@ const graph = {
 			/* A cheese in a panel has no arrow to write its table on: told here
 			   instead, after where the panel puts it, with the rest of how it is
 			   made and where that is from. */
-			if (n.axes && panelOf(n)) {
+			if ((n.axes && panelOf(n)) || n.onMap) {
 				const how = n.how;
 				const made = el('dl');
-				made.append(fact('Firmness', n.axes.firm), fact('Ripened', lasting(n.axes.days)));
+				if (n.axes) made.append(fact('Firmness', n.axes.firm), fact('Ripened', lasting(n.axes.days)));
 				for (const { k, v } of [...(how?.table ?? []), ...(how?.facts ?? [])]) made.append(fact(k, v.split('\n').join(', ')));
 				parts.push(made);
 				if (how?.text) parts.push(el('p', 'milk-about-text', how.text));
@@ -7672,6 +8072,20 @@ const graph = {
 			const [px, py] = toPane((x0 + x1) / 2, (y0 + y1) / 2);
 			const to = zoomIdentity.translate(paneW / 2 - k * px, paneH / 2 - k * py).scale(k);
 			surface.transition().duration(glide ? 750 : 0).call(zoomer.transform, to);
+		};
+		/* Into a country on the map: framed round its cheeses, at least as
+		   far in as they can be read. */
+		const intoCountry = (pin: { iso: string }) => {
+			const mine = [...paneled.values()].flat().filter((k) => k.onMap && k.place === pin.iso);
+			if (!mine.length) return;
+			const x0 = Math.min(...mine.map((d) => d.x - d.w / 2));
+			const x1 = Math.max(...mine.map((d) => d.x + d.w / 2));
+			const y0 = Math.min(...mine.map((d) => d.y - d.h / 2));
+			const y1 = Math.max(...mine.map((d) => d.y + d.h / 2));
+			const read = 5 / (FONT * MAP_PILL * fit);
+			const k = Math.min(MAX_ZOOM, Math.max(read, Math.min((0.9 * paneW) / (fit * (x1 - x0)), (0.9 * paneH) / (fit * (y1 - y0)))));
+			const [px, py] = toPane((x0 + x1) / 2, (y0 + y1) / 2);
+			surface.transition().duration(750).call(zoomer.transform, zoomIdentity.translate(paneW / 2 - k * px, paneH / 2 - k * py).scale(k));
 		};
 		if (figure.dataset.focus && !whole) focusOn(figure.dataset.focus, false);
 		const host = figure.closest<HTMLElement>('[data-viz-phase]') ?? figure.closest<HTMLElement>('[data-viz-stage]');
