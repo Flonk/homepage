@@ -8026,52 +8026,6 @@
 				}
 			],
 			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"holds": [
-			{
-				"does": "incubate",
-				"adds": {
-					"microbes": [
-						{
-							"name": "Lactococcus lactis",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							]
-						},
-						{
-							"name": "Leuconostoc spp.",
-							"kind": "bacterium",
-							"does": [
-								"aroma"
-							]
-						},
-						{
-							"name": "Lactobacillus plantarum",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							]
-						},
-						{
-							"name": "enterococci",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							]
-						}
-					],
-					"by": [
-						"wild"
-					]
-				}
-			}
-		],
-		"ferment": {
-			"kinds": [
-				"lactic"
-			],
-			"text": "Raw cow's milk left to sour on its own at room temperature until it sets, then churned."
 		}
 	},
 	"driedYoghurt": {
@@ -8109,47 +8063,13 @@
 		},
 		"holds": [
 			{
-				"does": "heat",
-				"temperature": {
-					"min": 90,
-					"max": 100
-				},
-				"seconds": {
-					"min": 900,
-					"max": 1200
-				}
-			},
-			{
-				"does": "incubate",
-				"adds": {
-					"microbes": [],
-					"by": [
-						"backslop"
-					],
-					"dose": {
-						"min": 2,
-						"max": 3
-					}
-				},
-				"temperature": {
-					"min": 40,
-					"max": 45
-				}
-			},
-			{
 				"does": "dry",
 				"seconds": {
 					"min": 864000,
 					"max": 1296000
 				}
 			}
-		],
-		"ferment": {
-			"kinds": [
-				"lactic"
-			],
-			"text": "Yoghurt kept from an earlier batch; the curd is then drained, salted and sun-dried as balls for 10-15 d."
-		}
+		]
 	},
 	"kishk": {
 		"facts": [
@@ -15068,67 +14988,6 @@
 			{
 				"does": "heat",
 				"temperature": {
-					"min": 85,
-					"max": 95
-				},
-				"seconds": {
-					"min": 300,
-					"max": 900
-				}
-			},
-			{
-				"does": "incubate",
-				"adds": {
-					"microbes": [
-						{
-							"name": "Lactococcus lactis subsp. lactis",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							],
-							"grows": "mesophilic",
-							"formerly": [
-								"Lactobacillus lactis",
-								"Streptococcus lactis"
-							]
-						},
-						{
-							"name": "Lactococcus lactis subsp. cremoris",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							],
-							"grows": "mesophilic",
-							"formerly": [
-								"Lactobacillus cremoris",
-								"Streptococcus cremoris"
-							]
-						}
-					],
-					"by": [
-						"starter"
-					],
-					"dose": {
-						"min": 1,
-						"max": 2
-					}
-				},
-				"temperature": {
-					"min": 20,
-					"max": 32
-				},
-				"seconds": {
-					"min": 21600,
-					"max": 57600
-				},
-				"pH": {
-					"min": 4.5,
-					"max": 4.7
-				}
-			},
-			{
-				"does": "heat",
-				"temperature": {
 					"min": 58,
 					"max": 60
 				},
@@ -15150,13 +15009,7 @@
 					"max": 12
 				}
 			}
-		],
-		"ferment": {
-			"kinds": [
-				"lactic"
-			],
-			"text": "A trace of rennet (about 1 ml per 100 kg milk) helps the set; a short set at 32 °C takes 4–6 h to pH 4.8."
-		}
+		]
 	},
 	"Speisequark 20 %": {
 		"label": "cream stirred in",
