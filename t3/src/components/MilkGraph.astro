@@ -510,7 +510,7 @@ const { focus } = Astro.props;
 	import { zoom, zoomIdentity } from 'd3-zoom';
 	import type { Sourcing } from './milk/schema';
 	import { eachPage } from '../lib/page';
-	import { LINE, PAD_X, FONT, FOUND_HEIGHT, PICTURE_GAP, LINK_MARK, LINK_ROOM, MARGIN, MAX_ZOOM, MAP_PILL, RULE_PX, SANS, MONO, SERIF, FACES, spacing, only, setSpacing, nextUid, type Node, type Edge, type Graph } from './milk/client/base';
+	import { LINE, PAD_X, FONT, FOUND_HEIGHT, PICTURE_GAP, LINK_MARK, LINK_ROOM, MARGIN, MAX_ZOOM, MAP_PILL, RULE_PX, SANS, MONO, SERIF, FACES, spacing, only, setSpacing, nextUid, corner, type Node, type Edge, type Graph } from './milk/client/base';
 	import { layout, type Pin, type Box } from './milk/client/layout';
 
 
@@ -519,7 +519,7 @@ const { focus } = Astro.props;
 	function draw(figure: HTMLElement, signal: AbortSignal, data: Graph, whole = false) {
 		// As the words in it have it (see measure).
 		setSpacing(parseFloat(getComputedStyle(figure).letterSpacing) || 0);
-		const { root, treeParent, nodes, children, size, paneled, panelOf, rootR, picture, radius, shown, countryName, flagsOf, stepFont, stepped, ROW, rows, keyLines, rowLines, tabled, pad, tableWidth, rowHeight, PANEL_PAD, panels, MAP_W, PIN, PIN_GROWS, PIN_FRAMED, pillsShown, rim, panelArea, rootWord, rootFont, grains, edges, inside, stepX, told, hittable, edgeShape, edgeLine, edgeBox, stepLines, stepBox, tableOf, pillBoxOf, bounds } = layout(data);
+		const { root, treeParent, nodes, children, size, paneled, panelOf, rootR, picture, radius, shown, countryName, stepFont, stepped, ROW, rows, keyLines, rowLines, tabled, pad, tableWidth, rowHeight, PANEL_PAD, panels, MAP_W, PIN, PIN_GROWS, PIN_FRAMED, pillsShown, rim, panelArea, rootWord, rootFont, grains, edges, inside, stepX, told, hittable, edgeShape, edgeLine, edgeBox, stepLines, stepBox, tableOf, pillBoxOf, bounds } = layout(data);
 		// The search's list named for it alone, as another graph on the page would name its own the same.
 		const uid = nextUid();
 
@@ -1031,35 +1031,43 @@ const { focus } = Astro.props;
 			return true;
 		};
 
-		// A regional one's flags, on its top right corner.
-		const flagBox = (d: Node): Box => {
-			const f = flagsOf(d);
-			const r = f[0].r * 1.5;
-			return { x0: f[0].x - r, x1: f.at(-1)!.x + r, y0: f[0].y - r, y1: f[0].y + r * 1.1 };
+		/* The box round a row of marks on a corner, with their shadows: as
+		   far below them as `below` of their size. */
+		const ringBox = (m: { r: number; x: number; y: number }[], below: number): Box => {
+			const { r, y } = m[0];
+			return { x0: m[0].x - r * 1.5, x1: m.at(-1)!.x + r * 1.5, y0: y - r * 1.5, y1: y + r * below };
 		};
+		// A round mark, with the pills' soft shadow; and its edge, as a pill's is.
+		const disc = (g: Pen, x: number, y: number, r: number, fill: string, s: number) => {
+			g.beginPath();
+			g.arc(x, y, r, 0, Math.PI * 2);
+			g.fillStyle = fill;
+			g.shadowColor = 'rgb(0 0 0 / 0.18)';
+			g.shadowBlur = r * 0.2 * s * dpr;
+			g.shadowOffsetY = r * 0.08 * s * dpr;
+			g.fill();
+			g.shadowColor = 'transparent';
+		};
+		const rimmed = (g: Pen, d: Node, x: number, y: number, r: number) => {
+			g.beginPath();
+			g.arc(x, y, r, 0, Math.PI * 2);
+			g.lineWidth = 1.2 * rim(d);
+			g.strokeStyle = ink.rim;
+			g.stroke();
+		};
+
+		// A regional one's flags, on its top right corner, two to four side by side leftwards from there.
+		const flagsOf = (d: Node) => corner(d, d.regions!.length, true, false).map((at, i) => ({ ...at, c: d.regions![i] }));
 		const drawFlags = (g: Pen, d: Node, s: number) => {
-			// A map's cheese only once it can be read; a pin for its country till then (see drawPins).
-			if (d.onMap && !pillsShown(s)) return true;
 			let whole = true;
 			for (const { c, r, x, y } of flagsOf(d)) {
-				// On white, for a flag that does not fill its square, as Nepal's does not; with the pills' soft shadow.
-				g.beginPath();
-				g.arc(x, y, r, 0, Math.PI * 2);
-				g.fillStyle = '#fff';
-				g.shadowColor = 'rgb(0 0 0 / 0.18)';
-				g.shadowBlur = r * 0.2 * s * dpr;
-				g.shadowOffsetY = r * 0.08 * s * dpr;
-				g.fill();
-				g.shadowColor = 'transparent';
+				// On white, for a flag that does not fill its square, as Nepal's does not.
+				disc(g, x, y, r, '#fff', s);
 				// Round already in its file, so it needs no clipping here.
 				const im = r * s >= 2 ? imageOf(`/assets/flags/${c.toLowerCase()}.webp`) : null;
 				if (im) g.drawImage(im, x - r, y - r, 2 * r, 2 * r);
 				else if (r * s >= 2) whole = false;
-				g.beginPath();
-				g.arc(x, y, r, 0, Math.PI * 2);
-				g.lineWidth = 1.2 * rim(d);
-				g.strokeStyle = ink.rim;
-				g.stroke();
+				rimmed(g, d, x, y, r);
 			}
 			return whole;
 		};
@@ -1067,18 +1075,8 @@ const { focus } = Astro.props;
 		/* The animals whose milk it is, on the bottom left corner, as the
 		   flags are on the top right: bare, bigger than a flag, with a soft
 		   shadow under each, each a little in from the one before. */
-		const beastsAt = (d: Node) => {
-			const r = d.h * 0.2;
-			return d.beasts!.map((b, i) => ({ ...b, r, x: d.x - d.w / 2 + r * 0.3 + i * r * 1.5, y: d.y + d.h / 2 - r * 0.3 }));
-		};
-		const beastBox = (d: Node): Box => {
-			const b = beastsAt(d);
-			const r = b[0].r * 1.5;
-			return { x0: b[0].x - r, x1: b.at(-1)!.x + r, y0: b[0].y - r, y1: b[0].y + r * 1.2 };
-		};
+		const beastsAt = (d: Node) => corner(d, d.beasts!.length, false, true, 0.3, 1.5).map((at, i) => ({ ...at, ...d.beasts![i] }));
 		const drawBeasts = (g: Pen, d: Node, s: number) => {
-			// A map's cheese only once it can be read; a pin for its country till then (see drawPins).
-			if (d.onMap && !pillsShown(s)) return true;
 			for (const { mark, r, x, y } of beastsAt(d)) {
 				if (!legible(r * 2, s)) continue;
 				g.font = `${r * 2}px "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif`;
@@ -1100,36 +1098,18 @@ const { focus } = Astro.props;
 		   Each says what it is in a tip. */
 		type Mark = { d: Node; kind: 'note' | 'unsure'; said: string; r: number; x: number; y: number };
 		const marksOf = (d: Node): Mark[] => {
-			const r = d.h * 0.2;
 			const said = [
 				...(d.unsure ? [{ kind: 'unsure' as const, said: d.unsure }] : []),
 				...(d.note ? [{ kind: 'note' as const, said: d.note }] : []),
 			];
-			return said.map((m, i) => ({ ...m, d, r, x: d.x + d.w / 2 - r * 0.35 - (said.length - 1 - i) * r * 1.4, y: d.y + d.h / 2 - r * 0.35 }));
+			return corner(d, said.length, true, true).map((at, i) => ({ ...said[i], ...at, d }));
 		};
 		const sameMark = (a: Mark | null, b: Mark | null) => a?.d === b?.d && a?.kind === b?.kind;
-		const infoBox = (d: Node): Box => {
-			const m = marksOf(d);
-			const { r, y } = m[0];
-			return { x0: m[0].x - r * 1.5, x1: m.at(-1)!.x + r * 1.5, y0: y - r * 1.5, y1: y + r * 1.6 };
-		};
 		const drawInfo = (g: Pen, d: Node, s: number) => {
-			// A map's cheese only once it can be read; a pin for its country till then (see drawPins).
-			if (d.onMap && !pillsShown(s)) return true;
 			for (const { kind, r, x, y } of marksOf(d)) {
-				g.beginPath();
-				g.arc(x, y, r, 0, Math.PI * 2);
-				// Blue, as an info mark is, with a white italic i; amber for a guess, with a ?.
-				g.fillStyle = kind === 'note' ? ink.info : ink.unsure;
-				g.shadowColor = 'rgb(0 0 0 / 0.18)';
-				g.shadowBlur = r * 0.2 * s * dpr;
-				g.shadowOffsetY = r * 0.08 * s * dpr;
-				g.fill();
-				g.shadowColor = 'transparent';
-				// Edged as a flag is.
-				g.lineWidth = 1.2 * rim(d);
-				g.strokeStyle = ink.rim;
-				g.stroke();
+				// Blue, as an info mark is, with a white italic i; amber for a guess, with a ?. Edged as a flag is.
+				disc(g, x, y, r, kind === 'note' ? ink.info : ink.unsure, s);
+				rimmed(g, d, x, y, r);
 				if (!legible(r * 1.4, s)) continue;
 				g.textAlign = 'center';
 				g.textBaseline = 'middle';
@@ -1154,36 +1134,16 @@ const { focus } = Astro.props;
 			PGI: 'Protected geographical indication (PGI)',
 			TSG: 'Traditional speciality guaranteed (TSG)',
 		};
-		const sealOf = (d: Node) => {
-			const r = d.h * 0.2;
-			return { r, x: d.x - d.w / 2 + r * 0.35, y: d.y - d.h / 2 + r * 0.35 };
-		};
-		const sealBox = (d: Node): Box => {
-			const { r, x, y } = sealOf(d);
-			return { x0: x - r * 1.5, x1: x + r * 1.5, y0: y - r * 1.5, y1: y + r * 1.6 };
-		};
+		const sealOf = (d: Node) => corner(d, 1, false, false)[0];
 		const drawSeal = (g: Pen, d: Node, s: number) => {
-			// A map's cheese only once it can be read; a pin for its country till then (see drawPins).
-			if (d.onMap && !pillsShown(s)) return true;
 			const { r, x, y } = sealOf(d);
-			g.beginPath();
-			g.arc(x, y, r, 0, Math.PI * 2);
-			g.fillStyle = d.protected === 'PDO' ? '#b8102a' : d.protected === 'PGI' ? '#1d4f9c' : '#c08a00';
-			g.shadowColor = 'rgb(0 0 0 / 0.18)';
-			g.shadowBlur = r * 0.2 * s * dpr;
-			g.shadowOffsetY = r * 0.08 * s * dpr;
-			g.fill();
-			g.shadowColor = 'transparent';
+			disc(g, x, y, r, d.protected === 'PDO' ? '#b8102a' : d.protected === 'PGI' ? '#1d4f9c' : '#c08a00', s);
 			g.beginPath();
 			g.arc(x, y, r * 0.78, 0, Math.PI * 2);
 			g.lineWidth = r * 0.16;
 			g.strokeStyle = '#f2c200';
 			g.stroke();
-			g.beginPath();
-			g.arc(x, y, r, 0, Math.PI * 2);
-			g.lineWidth = 1.2 * rim(d);
-			g.strokeStyle = ink.rim;
-			g.stroke();
+			rimmed(g, d, x, y, r);
 			if (legible(r, s)) {
 				g.font = `${r * 1.05}px ${SANS()}`;
 				g.textAlign = 'center';
@@ -1237,13 +1197,22 @@ const { focus } = Astro.props;
 		   so one drawn lit is kept apart from one drawn unlit. */
 		/* A pill's parts: the pill, the flags, the marks, the animals and the
 		   seal over it; a map's cheeses' are drawn into the map's tiles. */
-		const partsOf = (list: Node[]): Part[] => [
-			...list.filter((d) => d !== root).map((d) => ({ key: `p:${d.id}:${d === held ? 1 : 0}`, box: pillBoxOf(d), draw: (g: Pen, at: number) => drawPill(g, d, at) })),
-			...list.filter((d) => d.regions?.length).map((d) => ({ key: `f:${d.id}`, box: flagBox(d), draw: (g: Pen, at: number) => drawFlags(g, d, at) })),
-			...list.filter((d) => d.note || d.unsure).map((d) => ({ key: `i:${d.id}`, box: infoBox(d), draw: (g: Pen, at: number) => drawInfo(g, d, at) })),
-			...list.filter((d) => d.beasts?.length).map((d) => ({ key: `b:${d.id}`, box: beastBox(d), draw: (g: Pen, at: number) => drawBeasts(g, d, at) })),
-			...list.filter((d) => d.protected).map((d) => ({ key: `seal:${d.id}`, box: sealBox(d), draw: (g: Pen, at: number) => drawSeal(g, d, at) })),
+		const MARKS: [string, (d: Node) => unknown, (d: Node) => Box, (g: Pen, d: Node, s: number) => boolean | void][] = [
+			['p', (d) => d !== root, pillBoxOf, drawPill],
+			['f', (d) => d.regions?.length, (d) => ringBox(flagsOf(d), 1.65), drawFlags],
+			['i', (d) => d.note || d.unsure, (d) => ringBox(marksOf(d), 1.6), drawInfo],
+			['b', (d) => d.beasts?.length, (d) => ringBox(beastsAt(d), 1.8), drawBeasts],
+			['seal', (d) => d.protected, (d) => ringBox([sealOf(d)], 1.6), drawSeal],
 		];
+		const partsOf = (list: Node[]): Part[] =>
+			MARKS.flatMap(([kind, has, box, draw]) =>
+				list.filter(has).map((d) => ({
+					key: `${kind}:${d.id}${kind === 'p' ? `:${d === held ? 1 : 0}` : ''}`,
+					box: box(d),
+					// A map's cheese only once it can be read; a pin for its country till then (see drawPins).
+					draw: (g: Pen, at: number) => (d.onMap && !pillsShown(at) ? true : draw(g, d, at)),
+				})),
+			);
 		const pinParts = (s: number): Part[] =>
 			pillsShown(s)
 				? []

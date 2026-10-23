@@ -202,3 +202,14 @@ export const only = (data: Graph, milks: Set<string>): Graph => {
 		kinds: data.kinds.map((k) => ({ ...k, ids: k.ids.filter((id) => kept.has(id)) })).filter((k) => k.ids.length),
 	};
 };
+
+/* Marks on a pill's corner, a little over it, each a fifth of its height:
+   flags, a remark's, animals, a seal. So many in a row from the corner
+   inwards, each `step` of its own size from the one before, the corner's
+   `inset` in; where each one's middle is, and how big. */
+export const corner = (d: Node, n: number, right: boolean, bottom: boolean, inset = 0.35, step = 1.4) => {
+	const r = d.h * 0.2;
+	const x = (i: number) => (right ? d.x + d.w / 2 - r * inset - (n - 1 - i) * r * step : d.x - d.w / 2 + r * inset + i * r * step);
+	const y = bottom ? d.y + d.h / 2 - r * inset : d.y - d.h / 2 + r * inset;
+	return Array.from({ length: n }, (_, i) => ({ r, x: x(i), y }));
+};

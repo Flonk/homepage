@@ -285,15 +285,6 @@ export function layout(data: Graph) {
 			for (const k of ks) k.w = wide;
 		}
 	const countryName = new Intl.DisplayNames(['en'], { type: 'region' });
-	/* A regional one's flags: on its top right corner, a little over it,
-	   round, edged as the pill is; two to four side by side leftwards from
-	   there, each a little over the one before. Each one's middle, and how
-	   big. */
-	const flagsOf = (d: Node) => {
-		const r = d.h * 0.2;
-		const n = d.regions!.length;
-		return d.regions!.map((c, i) => ({ c, r, x: d.x + d.w / 2 - r * 0.35 - (n - 1 - i) * r * 1.4, y: d.y - d.h / 2 + r * 0.35 }));
-	};
 
 	/* Laid out as a tree on a grid, as a diagram on paper is: milk at the
 	   left and its branches off to the right of it; each step of making a
@@ -1137,5 +1128,5 @@ export function layout(data: Graph) {
 		width: Math.max(...all.map((b) => b.x1)) - Math.min(...all.map((b) => b.x0)),
 		height: Math.max(...all.map((b) => b.y1)) - Math.min(...all.map((b) => b.y0)),
 	};
-	return { root, treeParent, nodes, children, size, paneled, panelOf, rootR, picture, radius, shown, countryName, flagsOf, stepFont, stepped, ROW, rows, keyLines, rowLines, tabled, pad, tableWidth, rowHeight, PANEL_PAD, panels, MAP_W, PIN, PIN_GROWS, PIN_FRAMED, pillsShown, rim, panelArea, rootWord, rootFont, grains, edges, inside, stepX, told, hittable, edgeShape, edgeLine, edgeBox, stepLines, stepBox, tableOf, pillBoxOf, bounds };
+	return { root, treeParent, nodes, children, size, paneled, panelOf, rootR, picture, radius, shown, countryName, stepFont, stepped, ROW, rows, keyLines, rowLines, tabled, pad, tableWidth, rowHeight, PANEL_PAD, panels, MAP_W, PIN, PIN_GROWS, PIN_FRAMED, pillsShown, rim, panelArea, rootWord, rootFont, grains, edges, inside, stepX, told, hittable, edgeShape, edgeLine, edgeBox, stepLines, stepBox, tableOf, pillBoxOf, bounds };
 }
