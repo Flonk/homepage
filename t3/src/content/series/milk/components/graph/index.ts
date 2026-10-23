@@ -78,7 +78,7 @@ const TITLE: Record<S.HeatTreatment['does'] | S.Ferment['does'] | 'dry', string>
 	dry: '☀️ DRY',
 };
 const DONE: Record<keyof typeof TITLE, string> = { heat: 'heated', cook: 'cooked', cool: 'cooled', incubate: 'soured', ripen: 'ripened', smear: 'smeared', pierce: 'pierced', dry: 'dried' };
-const doesOf = (h: S.ProcessingStep) => (h.type === 'dry' ? 'dry' : h.does);
+const doesOf = (h: Exclude<S.ProcessingStep, { type: 'custom' }>) => (h.type === 'dry' ? 'dry' : h.does);
 /* A measure as it is said: "~18°C", "2–4°C", "≥85%", "6 h–4 days"; each
    end in the unit that suits it, the unit said once where both share it. */
 const spanOf = ({ min, max, about }: S.Range, unitOf: (x: number) => [number, string]) => {
@@ -104,9 +104,9 @@ const chipOf = (h: S.ProcessingStep) => {
 	const warm = [h.seconds && spanOf(h.seconds, inTime), h.temperature && spanOf(h.temperature, inUnit('°C'))].filter(Boolean).join(' @ ');
 	const t = h.temperature;
 	return {
-		title: TITLE[doesOf(h)],
+		title: h.type === 'custom' ? `⚙️ ${h.name.toUpperCase()}` : TITLE[doesOf(h)],
 		said: [warm, h.humidity && `${spanOf(h.humidity, inUnit('%'))} RH`].filter(Boolean).join(', '),
-		done: DONE[doesOf(h)],
+		done: h.type === 'custom' ? h.name : DONE[doesOf(h)],
 		...(t && { warmth: ((t.min ?? t.max)! + (t.max ?? t.min)!) / 2 }),
 		...(h.type === 'ferment' && h.adds?.microbes.length && { microbes: h.adds.microbes.map((m) => m.name).join(', ') }),
 		...(h.note && { note: h.note }),

@@ -258,6 +258,14 @@ export const Drying = z.strictObject({
 	type: z.literal('dry'),
 	...Held,
 });
+/* Any other step a thing is held at or put through, named in a word or
+   two: set with rennet, cut, pressed, salted, brined, stretched, smoked,
+   churned, frozen; so warm and so long where that is said. */
+export const CustomStep = z.strictObject({
+	type: z.literal('custom'),
+	name: z.string().min(1).max(20),
+	...Held,
+});
 /* How a thing is made from its parent, step by step, in order: heated,
    soured, its curd cooked, ripened. Kefir is two ferments (soured at
    23 °C, then ripened cool), a washed rind cheese three (soured with a
@@ -265,7 +273,7 @@ export const Drying = z.strictObject({
    treatment, a ferment and two coolings. In words what its steps do not
    hold, such as a second way it is made; and where all of it is from. */
 export const Processing = z.strictObject({
-	steps: z.array(z.discriminatedUnion('type', [HeatTreatment, Ferment, Drying])).min(1),
+	steps: z.array(z.discriminatedUnion('type', [HeatTreatment, Ferment, Drying, CustomStep])).min(1),
 	text: z.string().optional(),
 	sources: Sourcing,
 });
