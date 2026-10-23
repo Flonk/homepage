@@ -258,9 +258,25 @@ export const Drying = z.strictObject({
 	type: z.literal('dry'),
 	...Held,
 });
+/* The steps done to milk above all others, each its own. Pasteurised:
+   heated just enough to kill what could make one ill, 72 °C for 15 s or
+   63 °C for 30 min. Homogenised: forced through a narrow gap, at so many
+   bar, so its fat breaks into globules too small to rise. Coagulated:
+   its casein set into a curd, by rennet, by acid, by acid and heat, by a
+   plant's enzymes (thistle, fig), by heat alone, until it is so sour.
+   Churned: cream or soured milk beaten until its fat clumps into butter. */
+export const Pasteurise = z.strictObject({ type: z.literal('pasteurise'), ...Held });
+export const Homogenise = z.strictObject({ type: z.literal('homogenise'), bar: Range.optional(), ...Held });
+export const Coagulate = z.strictObject({
+	type: z.literal('coagulate'),
+	by: z.enum(['rennet', 'rennet-acid', 'acid', 'acid-heat', 'plant', 'heat']).optional(),
+	pH: Range.optional(),
+	...Held,
+});
+export const Churn = z.strictObject({ type: z.literal('churn'), ...Held });
 /* Any other step a thing is held at or put through, named in a word or
-   two: set with rennet, cut, pressed, salted, brined, stretched, smoked,
-   churned, frozen; so warm and so long where that is said. */
+   two: cut, pressed, salted, brined, stretched, smoked, frozen; so warm
+   and so long where that is said. */
 export const CustomStep = z.strictObject({
 	type: z.literal('custom'),
 	name: z.string().min(1).max(20),
@@ -273,7 +289,7 @@ export const CustomStep = z.strictObject({
    treatment, a ferment and two coolings. In words what its steps do not
    hold, such as a second way it is made; and where all of it is from. */
 export const Processing = z.strictObject({
-	steps: z.array(z.discriminatedUnion('type', [HeatTreatment, Ferment, Drying, CustomStep])).min(1),
+	steps: z.array(z.discriminatedUnion('type', [Pasteurise, Homogenise, Coagulate, Churn, HeatTreatment, Ferment, Drying, CustomStep])).min(1),
 	text: z.string().optional(),
 	sources: Sourcing,
 });
@@ -330,3 +346,5 @@ export type Range = z.infer<typeof Range>;
 export type Processing = z.infer<typeof Processing>;
 export type ProcessingStep = Processing['steps'][number];
 export type HeatTreatment = z.infer<typeof HeatTreatment>;
+export type Coagulate = z.infer<typeof Coagulate>;
+export type Drying = z.infer<typeof Drying>;

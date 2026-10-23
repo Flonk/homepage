@@ -78,7 +78,17 @@ const TITLE: Record<S.HeatTreatment['does'] | S.Ferment['does'] | 'dry', string>
 	dry: '☀️ DRY',
 };
 const DONE: Record<keyof typeof TITLE, string> = { heat: 'heated', cook: 'cooked', cool: 'cooled', incubate: 'soured', ripen: 'ripened', smear: 'smeared', pierce: 'pierced', dry: 'dried' };
-const doesOf = (h: Exclude<S.ProcessingStep, { type: 'custom' }>) => (h.type === 'dry' ? 'dry' : h.does);
+const doesOf = (h: S.HeatTreatment | S.Ferment | S.Drying) => (h.type === 'dry' ? 'dry' : h.does);
+// The steps done to milk above all others, each titled for itself; any other by its own name.
+const OWN: Record<'pasteurise' | 'homogenise' | 'coagulate' | 'churn', [string, string]> = {
+	pasteurise: ['🔥 PASTEURISE', 'pasteurised'],
+	homogenise: ['🌀 HOMOGENISE', 'homogenised'],
+	coagulate: ['🧀 COAGULATE', 'set'],
+	churn: ['🧈 CHURN', 'churned'],
+};
+const titleOf = (h: S.ProcessingStep): [string, string] =>
+	h.type === 'custom' ? [`⚙️ ${h.name.toUpperCase()}`, h.name] : h.type in OWN ? OWN[h.type as keyof typeof OWN] : [TITLE[doesOf(h as S.HeatTreatment)], DONE[doesOf(h as S.HeatTreatment)]];
+const BY: Record<NonNullable<S.Coagulate['by']>, string> = { rennet: 'rennet', 'rennet-acid': 'acid and rennet', acid: 'acid', 'acid-heat': 'acid and heat', plant: 'plant enzymes', heat: 'heat' };
 /* A measure as it is said: "~18°C", "2–4°C", "≥85%", "6 h–4 days"; each
    end in the unit that suits it, the unit said once where both share it. */
 const spanOf = ({ min, max, about }: S.Range, unitOf: (x: number) => [number, string]) => {
@@ -101,12 +111,19 @@ const inTime = (s: number): [number, string] => {
 	return [v, ` ${unit}${unit.length > 3 && +v.toPrecision(2) !== 1 ? 's' : ''}`];
 };
 const chipOf = (h: S.ProcessingStep) => {
-	const warm = [h.seconds && spanOf(h.seconds, inTime), h.temperature && spanOf(h.temperature, inUnit('°C'))].filter(Boolean).join(' @ ');
+	const warm = [
+		h.type === 'homogenise' && h.bar && spanOf(h.bar, inUnit(' bar')),
+		h.seconds && spanOf(h.seconds, inTime),
+		h.temperature && spanOf(h.temperature, inUnit('°C')),
+	]
+		.filter(Boolean)
+		.join(' @ ');
+	const [title, done] = titleOf(h);
 	const t = h.temperature;
 	return {
-		title: h.type === 'custom' ? `⚙️ ${h.name.toUpperCase()}` : TITLE[doesOf(h)],
-		said: [warm, h.humidity && `${spanOf(h.humidity, inUnit('%'))} RH`].filter(Boolean).join(', '),
-		done: h.type === 'custom' ? h.name : DONE[doesOf(h)],
+		title,
+		said: [h.type === 'coagulate' && h.by && `by ${BY[h.by]}`, warm, h.humidity && `${spanOf(h.humidity, inUnit('%'))} RH`].filter(Boolean).join(', '),
+		done,
 		...(t && { warmth: ((t.min ?? t.max)! + (t.max ?? t.min)!) / 2 }),
 		...(h.type === 'ferment' && h.adds?.microbes.length && { microbes: h.adds.microbes.map((m) => m.name).join(', ') }),
 		...(h.note && { note: h.note }),

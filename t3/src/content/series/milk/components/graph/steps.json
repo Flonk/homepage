@@ -35,8 +35,8 @@
 					"note": "The starter is pre-ripened before the rennet goes in."
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"temperature": {
 						"min": 31,
 						"max": 33
@@ -507,8 +507,8 @@
 					"note": "The mould is added to the milk or curd, or settles from the cave air."
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "With rennet."
 				},
 				{
@@ -940,8 +940,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
 					"temperature": {
 						"min": 30,
 						"max": 30,
@@ -1041,8 +1040,7 @@
 					"note": "One or more natural cheeses."
 				},
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "pasteurise",
 					"temperature": {
 						"min": 65.6
 					},
@@ -1091,8 +1089,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"temperature": {
 						"min": 30,
 						"max": 34
@@ -1163,8 +1161,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"temperature": {
 						"min": 35,
 						"max": 37
@@ -1243,8 +1241,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "pasteurise",
 					"temperature": {
 						"min": 72,
 						"max": 72
@@ -1255,8 +1252,8 @@
 					}
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"temperature": {
 						"min": 35,
 						"max": 37
@@ -1341,8 +1338,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"temperature": {
 						"min": 29,
 						"max": 31
@@ -1503,8 +1500,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"temperature": {
 						"min": 30,
 						"max": 32
@@ -1589,8 +1586,8 @@
 					"name": "add calcium chloride"
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"temperature": {
 						"min": 30,
 						"max": 40
@@ -1768,8 +1765,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"temperature": {
 						"min": 30,
 						"max": 35
@@ -1888,8 +1885,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"temperature": {
 						"min": 40,
 						"max": 43
@@ -2055,8 +2052,8 @@
 					}
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"temperature": {
 						"min": 40,
 						"max": 42
@@ -2135,8 +2132,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "With rennet or other coagulating enzymes, while microbes develop the acid."
 				},
 				{
@@ -2206,8 +2203,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"temperature": {
 						"min": 30,
 						"max": 32
@@ -2321,8 +2318,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "pasteurise",
 					"temperature": {
 						"min": 73,
 						"max": 73
@@ -2355,8 +2351,8 @@
 					"note": "A thermophilic starter was used in the trial."
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"temperature": {
 						"min": 35,
 						"max": 35,
@@ -2463,8 +2459,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"temperature": {
 						"min": 28,
 						"max": 32
@@ -2601,8 +2597,8 @@
 					}
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "With rennet or other coagulating enzymes."
 				},
 				{
@@ -2717,8 +2713,8 @@
 					}
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "With rennet or other coagulating enzymes."
 				},
 				{
@@ -2840,8 +2836,8 @@
 					}
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "With rennet."
 				},
 				{
@@ -2955,8 +2951,8 @@
 					}
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"temperature": {
 						"max": 40
 					},
@@ -3055,8 +3051,8 @@
 					"note": "A natural whey starter from the previous day, with no selected cultures."
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "With calf rennet only, in copper vats."
 				},
 				{
@@ -3153,8 +3149,8 @@
 					"note": "A natural whey starter."
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "With calf rennet after the natural whey starter, and lysozyme up to 2.5 g per 100 kg."
 				},
 				{
@@ -3263,8 +3259,8 @@
 					"note": "The cultures are optional."
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"temperature": {
 						"min": 38,
 						"max": 40
@@ -3362,8 +3358,8 @@
 					}
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "With rennet, in copper vats."
 				},
 				{
@@ -3462,8 +3458,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"temperature": {
 						"min": 30,
 						"max": 34
@@ -3601,8 +3597,8 @@
 					"note": "Mould cultures are permitted too."
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"temperature": {
 						"max": 37
 					},
@@ -3699,8 +3695,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"temperature": {
 						"max": 37
 					},
@@ -3822,8 +3818,8 @@
 					}
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "With rennet or other coagulating enzymes."
 				},
 				{
@@ -4172,8 +4168,8 @@
 					"note": "With strains isolated in the Roquefort caves."
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"temperature": {
 						"min": 28,
 						"max": 34
@@ -4276,8 +4272,8 @@
 					}
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"temperature": {
 						"min": 28,
 						"max": 36
@@ -4386,8 +4382,8 @@
 					"note": "The mould is added to the milk and/or sprayed on the curds."
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "With animal or non-animal rennet."
 				},
 				{
@@ -4480,8 +4476,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "homogenise"
+					"type": "homogenise"
 				},
 				{
 					"type": "ferment",
@@ -4504,8 +4499,8 @@
 					"note": "An acid starter goes in together with the blue mould."
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "Rennet is added after the acidification."
 				},
 				{
@@ -4577,8 +4572,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "With rennet of animal origin only."
 				},
 				{
@@ -4680,8 +4675,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet-acid",
 					"note": "Mostly by lactic coagulation, with rennet the only coagulant allowed."
 				},
 				{
@@ -4758,8 +4753,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "Calf rennet on acidified curd."
 				},
 				{
@@ -4868,8 +4863,8 @@
 					}
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "With rennet."
 				},
 				{
@@ -4963,8 +4958,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"temperature": {
 						"min": 32,
 						"max": 35
@@ -5068,8 +5063,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"seconds": {
 						"min": 5400,
 						"max": 5400,
@@ -5181,8 +5176,8 @@
 					}
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"seconds": {
 						"min": 2100,
 						"max": 2700
@@ -5323,8 +5318,8 @@
 					"note": "Optionally with RMK milk cultures."
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"temperature": {
 						"min": 31,
 						"max": 31,
@@ -5471,8 +5466,8 @@
 					"note": "The milk is pre-ripened for at least 40 min before the rennet."
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "With rennet, in copper vats."
 				},
 				{
@@ -5555,8 +5550,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "With rennet from calf stomachs."
 				},
 				{
@@ -5776,8 +5771,8 @@
 					}
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "With rennet."
 				},
 				{
@@ -5987,8 +5982,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "pasteurise",
 					"temperature": {
 						"min": 72,
 						"max": 72
@@ -6029,8 +6023,8 @@
 					"note": "A lactic starter ripened for an hour."
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"seconds": {
 						"min": 2400,
 						"max": 3000
@@ -6172,8 +6166,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "pasteurise",
 					"temperature": {
 						"min": 72
 					},
@@ -6211,8 +6204,8 @@
 					}
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"temperature": {
 						"min": 30,
 						"max": 30,
@@ -6330,8 +6323,8 @@
 					}
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "With calf rennet."
 				},
 				{
@@ -6469,8 +6462,8 @@
 					}
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"temperature": {
 						"min": 29,
 						"max": 30
@@ -6673,8 +6666,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "With rennet, as for pecorino."
 				},
 				{
@@ -6827,8 +6820,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "With rennet, liquid or powder diluted in water."
 				},
 				{
@@ -6936,8 +6929,8 @@
 					}
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "With animal rennet, 0.04–0.25 mL per litre."
 				},
 				{
@@ -7126,8 +7119,7 @@
 					"note": "Cheddar, washed-curd, colby or granular cheese, ground and mixed."
 				},
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "pasteurise",
 					"temperature": {
 						"min": 66
 					},
@@ -7246,8 +7238,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet-acid",
 					"note": "With acid, with rennet, or with both."
 				},
 				{
@@ -7432,16 +7424,15 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "pasteurise",
 					"temperature": {
 						"min": 65
 					},
 					"note": "Pasteurised, or heated above 65 °C."
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "With rennet, not from pigs."
 				},
 				{
@@ -7522,13 +7513,12 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "pasteurise",
 					"note": "The milk is pasteurised."
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "With rennet, and salt added to the milk."
 				},
 				{
@@ -7668,8 +7658,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"temperature": {
 						"min": 34,
 						"max": 38
@@ -7748,8 +7738,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "pasteurise",
 					"temperature": {
 						"min": 72,
 						"max": 72
@@ -7761,8 +7750,8 @@
 					"note": "Milk up to 6 kg is pasteurised, larger batches are thermised at up to 55 °C."
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"temperature": {
 						"min": 36,
 						"max": 39
@@ -7935,8 +7924,8 @@
 					"note": "The milk is raw or thermised."
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"temperature": {
 						"min": 36,
 						"max": 38
@@ -8046,8 +8035,8 @@
 					}
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"seconds": {
 						"min": 1800,
 						"max": 2400
@@ -8239,8 +8228,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "pasteurise",
 					"temperature": {
 						"min": 68,
 						"max": 74
@@ -8251,8 +8239,8 @@
 					}
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"temperature": {
 						"min": 30,
 						"max": 34
@@ -8384,8 +8372,8 @@
 					"note": "The milk is salted with 5–14 % NaCl before renneting."
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "Rennet is added to the salted milk."
 				},
 				{
@@ -8459,8 +8447,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "pasteurise",
 					"note": "The milk is pasteurised."
 				},
 				{
@@ -8515,8 +8502,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "With rennet, microbial rennet in the Ibănești PDO."
 				},
 				{
@@ -9461,8 +9448,7 @@
 					"name": "raise solids"
 				},
 				{
-					"type": "custom",
-					"name": "homogenise"
+					"type": "homogenise"
 				},
 				{
 					"type": "heat",
@@ -9980,8 +9966,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "churn",
+					"type": "churn",
 					"note": "The butter floats off and the skimmed sour liquid is lben."
 				}
 			],
@@ -10710,8 +10695,7 @@
 					}
 				},
 				{
-					"type": "custom",
-					"name": "homogenise"
+					"type": "homogenise"
 				},
 				{
 					"type": "ferment",
@@ -11075,8 +11059,7 @@
 					"note": "In the summer programme the cream is cooled at about 22 °SH."
 				},
 				{
-					"type": "custom",
-					"name": "churn",
+					"type": "churn",
 					"note": "Churned into grains and buttermilk."
 				},
 				{
@@ -11269,8 +11252,7 @@
 					"note": "The dahi is diluted with water."
 				},
 				{
-					"type": "custom",
-					"name": "churn",
+					"type": "churn",
 					"note": "Churned with a wooden beater in the morning."
 				},
 				{
@@ -11364,8 +11346,7 @@
 					"note": "Raw milk is accumulated over days in smoked clay pots and sours spontaneously or by back-slopping."
 				},
 				{
-					"type": "custom",
-					"name": "churn",
+					"type": "churn",
 					"note": "The ergo is shaken in a clay-pot churn."
 				},
 				{
@@ -11451,8 +11432,7 @@
 					"note": "At room temperature until it coagulates, the lben ending at a mean pH of 4.38 and 73–112 °D."
 				},
 				{
-					"type": "custom",
-					"name": "churn",
+					"type": "churn",
 					"note": "Yields zebda beldia (raw butter) and lben."
 				}
 			],
@@ -11540,8 +11520,7 @@
 					"note": "At room temperature until it coagulates, the lben ending at a mean pH of 4.38 and 73–112 °D (mean 83 °D)."
 				},
 				{
-					"type": "custom",
-					"name": "churn",
+					"type": "churn",
 					"note": "Churned to remove the butter (zebda)."
 				}
 			],
@@ -11606,8 +11585,7 @@
 					"note": "The dahi is diluted with about equal water."
 				},
 				{
-					"type": "custom",
-					"name": "churn",
+					"type": "churn",
 					"note": "Churned, and the makkhan is lifted off."
 				}
 			],
@@ -11669,8 +11647,7 @@
 					"note": "Seeded with the previous day's ferment and left overnight."
 				},
 				{
-					"type": "custom",
-					"name": "churn",
+					"type": "churn",
 					"note": "Churned early in the morning to remove the butter."
 				}
 			],
@@ -11751,8 +11728,7 @@
 					"note": "Soured as ergo, or at about 30 °C for 24–48 h before churning."
 				},
 				{
-					"type": "custom",
-					"name": "churn",
+					"type": "churn",
 					"note": "The fat is churned off."
 				}
 			],
@@ -11795,8 +11771,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "homogenise"
+					"type": "homogenise"
 				},
 				{
 					"type": "ferment",
@@ -12101,8 +12076,7 @@
 					"name": "standardise"
 				},
 				{
-					"type": "custom",
-					"name": "homogenise"
+					"type": "homogenise"
 				},
 				{
 					"type": "heat",
@@ -12718,8 +12692,7 @@
 					"note": "Skim milk powder, sugar and dextrose in water."
 				},
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "pasteurise",
 					"temperature": {
 						"min": 100
 					},
@@ -12757,8 +12730,7 @@
 					"note": "L. paracasei grows best at 30–38 °C, so the fermentation is long and makes acid but little aroma."
 				},
 				{
-					"type": "custom",
-					"name": "homogenise"
+					"type": "homogenise"
 				},
 				{
 					"type": "custom",
@@ -13551,8 +13523,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "churn",
+					"type": "churn",
 					"seconds": {
 						"min": 2700,
 						"max": 3600
@@ -14399,8 +14370,11 @@
 					"note": "Below 40 °C the fat is broken up poorly."
 				},
 				{
-					"type": "custom",
-					"name": "homogenise",
+					"type": "homogenise",
+					"bar": {
+						"min": 100,
+						"max": 250
+					},
 					"note": "Pumped through a narrow gap at 100–250 bar (for example 200 bar), then a second stage at about 30 bar back-pressure."
 				}
 			],
@@ -14465,8 +14439,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "pasteurise",
 					"temperature": {
 						"min": 72,
 						"max": 72
@@ -14800,8 +14773,7 @@
 					"note": "Soured by its own flora."
 				},
 				{
-					"type": "custom",
-					"name": "churn"
+					"type": "churn"
 				},
 				{
 					"type": "heat",
@@ -14873,8 +14845,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"temperature": {
 						"min": 29,
 						"max": 31
@@ -16427,8 +16399,7 @@
 					"note": "Milk, sugar and a stabiliser (gelatin, guar gum or carrageenan) hold back ice crystals."
 				},
 				{
-					"type": "custom",
-					"name": "homogenise"
+					"type": "homogenise"
 				},
 				{
 					"type": "ferment",
@@ -16896,8 +16867,8 @@
 					}
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "Rennet dissolved in water is stirred in, and the milk is left undisturbed until it sets to a soft jelly."
 				}
 			],
@@ -17400,8 +17371,7 @@
 					"note": "The melted fat is mixed into the 45–50 °C base."
 				},
 				{
-					"type": "custom",
-					"name": "homogenise"
+					"type": "homogenise"
 				},
 				{
 					"type": "heat",
@@ -17559,8 +17529,7 @@
 					"note": "Skim milk keeps 0.04–0.07 % fat."
 				},
 				{
-					"type": "custom",
-					"name": "homogenise",
+					"type": "homogenise",
 					"note": "The cream to be homogenised is at most 18 % fat."
 				},
 				{
@@ -17709,8 +17678,11 @@
 					"note": "Boiled down under vacuum in a multistage falling-film evaporator, the milk running through steam-heated tubes, to about twice the solids."
 				},
 				{
-					"type": "custom",
-					"name": "homogenise",
+					"type": "homogenise",
+					"bar": {
+						"min": 50,
+						"max": 250
+					},
 					"note": "At 5–25 MPa (50–250 bar); in-can lines use two stages at 12.5–25 MPa."
 				},
 				{
@@ -17817,8 +17789,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "pasteurise",
 					"temperature": {
 						"min": 75,
 						"max": 75
@@ -17834,8 +17805,7 @@
 					"note": "Under vacuum to 50–52 % total solids."
 				},
 				{
-					"type": "custom",
-					"name": "homogenise",
+					"type": "homogenise",
 					"note": "Between evaporation and drying, to cut the free fat in the powder."
 				},
 				{
@@ -17980,8 +17950,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "pasteurise",
 					"temperature": {
 						"min": 55,
 						"max": 65
@@ -17994,8 +17963,7 @@
 					"note": "In a centrifugal separator, which leaves 0.04–0.07 % fat."
 				},
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "pasteurise",
 					"temperature": {
 						"min": 72,
 						"max": 72
@@ -18300,8 +18268,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "pasteurise",
 					"temperature": {
 						"min": 78,
 						"max": 78
@@ -18395,8 +18362,8 @@
 					}
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "With rennet (chymosin), which cuts kappa-casein at Phe105–Met106, so the para-casein left keeps its calcium."
 				},
 				{
@@ -18620,8 +18587,7 @@
 					"note": "With calcium hydroxide (lime), a 5 % solution in the patent example, or with ammonia first and then Ca(OH)₂ with sucrose."
 				},
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "pasteurise",
 					"temperature": {
 						"min": 80,
 						"max": 80
@@ -18828,8 +18794,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "pasteurise",
 					"temperature": {
 						"min": 85,
 						"max": 95
@@ -19195,8 +19160,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "pasteurise",
 					"temperature": {
 						"min": 72
 					},
@@ -19253,8 +19217,8 @@
 					"note": "A mesophilic culture that must not be gassy (heterofermentative) or ropy."
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "A little rennet, 50 IMCU per 100 kg, is added about 90 min after the culture."
 				},
 				{
@@ -19391,8 +19355,7 @@
 					"note": "Fat standardised to 8–14 % (double cream cheese) or 3–5 % (single); Guelph: cream of 11–20 % fat."
 				},
 				{
-					"type": "custom",
-					"name": "homogenise",
+					"type": "homogenise",
 					"temperature": {
 						"min": 50,
 						"max": 55
@@ -19400,8 +19363,7 @@
 					"note": "At 12–14 MPa (Guelph: 6.9–10.3 MPa at 63 °C)."
 				},
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "pasteurise",
 					"temperature": {
 						"min": 72,
 						"max": 75
@@ -19622,8 +19584,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "plant",
 					"note": "With pistils of the cardoon thistle (Cynara cardunculus) as coagulant."
 				},
 				{
@@ -19670,8 +19632,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "plant",
 					"note": "With local thistle instead of rennet."
 				},
 				{
@@ -21219,8 +21181,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"temperature": {
 						"min": 25,
 						"max": 35
@@ -21278,8 +21240,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "Whole milk set with rennet and lipase."
 				},
 				{
@@ -21457,8 +21419,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"temperature": {
 						"min": 36,
 						"max": 36
@@ -21683,8 +21645,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "With animal rennet, traditionally calf or lamb abomasum, or microbial rennet in industrial dairies."
 				},
 				{
@@ -21771,8 +21733,8 @@
 					"note": "The milk is heated before the rennet goes in."
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "With rennet."
 				},
 				{
@@ -22035,8 +21997,8 @@
 					"note": "Far above normal cheese-milk heating, so the whey proteins stay in the curd."
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "Animal rennet (most common) or cardoon thistle extract; calcium chloride flocculation industrially; lemon juice or other organic acid (pH about 4.6) at home."
 				},
 				{
@@ -22124,8 +22086,8 @@
 					"note": "Cultures are added before the rennet."
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "With rennet."
 				},
 				{
@@ -22217,8 +22179,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "Rennet (calf, microbial or plant) cuts casein at the kappa-casein bond."
 				},
 				{
@@ -22827,8 +22789,7 @@
 					"note": "Cream and skimmed milk are mixed back to the fat of the grade."
 				},
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "pasteurise",
 					"temperature": {
 						"min": 72,
 						"max": 72
@@ -23114,8 +23075,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "pasteurise",
 					"temperature": {
 						"min": 77,
 						"max": 87
@@ -23205,8 +23165,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "homogenise"
+					"type": "homogenise"
 				},
 				{
 					"type": "custom",
@@ -23326,8 +23285,7 @@
 					"note": "Cooled by a temperature programme set to the fat's iodine value (for example 8-21-16 °C for iodine value 28-29; 6-17-11 °C for 35-37), as in a study aged 10 °C for 17 h."
 				},
 				{
-					"type": "custom",
-					"name": "churn",
+					"type": "churn",
 					"temperature": {
 						"min": 10,
 						"max": 10,
@@ -23837,8 +23795,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "churn",
+					"type": "churn",
 					"note": "The cream breaks into butter grains and this liquid."
 				}
 			],
@@ -24012,8 +23969,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "churn",
+					"type": "churn",
 					"note": "Cream that is not soured and has no lactic acid bacteria culture added is churned."
 				}
 			],
@@ -24751,8 +24707,7 @@
 					"note": "Buffalo milk of 7-8 % fat is stretched with skim milk or skim milk powder and water to 3 % fat (toned) or 1.5 % (double-toned), restoring non-fat solids to 8.5 % or 9.0 %."
 				},
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "pasteurise",
 					"note": "Always pasteurised."
 				}
 			],
@@ -24833,8 +24788,7 @@
 					"note": "At a higher temperature for a few seconds than ordinary milk; no figures given."
 				},
 				{
-					"type": "custom",
-					"name": "homogenise"
+					"type": "homogenise"
 				},
 				{
 					"type": "custom",
@@ -25097,8 +25051,7 @@
 					"note": "Evaporated under vacuum, boiling at 65–70 °C."
 				},
 				{
-					"type": "custom",
-					"name": "homogenise"
+					"type": "homogenise"
 				},
 				{
 					"type": "heat",
@@ -25255,8 +25208,11 @@
 					"note": "Preheated to about 75 °C in an indirect plant, or about 80 °C in a direct plant."
 				},
 				{
-					"type": "custom",
-					"name": "homogenise",
+					"type": "homogenise",
+					"bar": {
+						"min": 180,
+						"max": 250
+					},
 					"note": "Before UHT at 180–250 bar in indirect plants, or aseptically after."
 				},
 				{
@@ -25610,8 +25566,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "With animal rennet or a plant extract."
 				}
 			],
@@ -25960,8 +25916,7 @@
 					"note": "The mix is held at this temperature, unfrozen, in the machine."
 				},
 				{
-					"type": "custom",
-					"name": "churn",
+					"type": "churn",
 					"note": "Drawn into the freezing chamber with air worked in, 0–60 % overrun, ideal 33–45 %."
 				},
 				{
@@ -26265,8 +26220,7 @@
 					"name": "salt"
 				},
 				{
-					"type": "custom",
-					"name": "churn",
+					"type": "churn",
 					"note": "The butter is churned straight into the hot salted tea until the two emulsify, in a wooden churn (mdong mo) or now a blender."
 				}
 			],
@@ -26323,8 +26277,7 @@
 					"note": "Yak milk is left overnight to form a yoghurt-like mass."
 				},
 				{
-					"type": "custom",
-					"name": "churn",
+					"type": "churn",
 					"seconds": {
 						"min": 3600,
 						"max": 3600,
@@ -26729,8 +26682,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "churn",
+					"type": "churn",
 					"note": "Milk is churned in a goatskin (qirba) and the butter taken off."
 				},
 				{
@@ -28053,8 +28005,8 @@
 					"note": "Raw full-fat milk is warmed gently and stirred hard."
 				},
 				{
-					"type": "custom",
-					"name": "curdle",
+					"type": "coagulate",
+					"by": "acid",
 					"note": "With sour whey (matthar) left from earlier batches, or sour milk."
 				},
 				{
@@ -28119,8 +28071,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "curdle",
+					"type": "coagulate",
+					"by": "acid-heat",
 					"note": "Lemon juice curdles the hot milk."
 				},
 				{
@@ -28815,9 +28767,9 @@
 					"note": "Warmed to a median of about 57 °C."
 				},
 				{
-					"type": "custom",
-					"name": "set",
-					"note": "With Calotropis procera leaf extract (77.1 % of studies), or papaya or citrus juice."
+					"type": "coagulate",
+					"note": "With Calotropis procera leaf extract (77.1 % of studies), or papaya or citrus juice.",
+					"by": "plant"
 				},
 				{
 					"type": "heat",
@@ -29076,8 +29028,8 @@
 					"note": "Buffalo milk is boiled."
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "plant",
 					"note": "With pineapple juice or papaya leaf juice (plant proteases)."
 				}
 			],
@@ -29552,9 +29504,9 @@
 					"does": "heat"
 				},
 				{
-					"type": "custom",
-					"name": "curdle",
-					"note": "With nǎiténg (奶藤, 'milk vine'), a mixture made from a cultivated vine, and no rennet."
+					"type": "coagulate",
+					"note": "With nǎiténg (奶藤, 'milk vine'), a mixture made from a cultivated vine, and no rennet.",
+					"by": "plant"
 				},
 				{
 					"type": "custom",
@@ -29612,8 +29564,7 @@
 					"note": "The milk is boiled."
 				},
 				{
-					"type": "custom",
-					"name": "curdle",
+					"type": "coagulate",
 					"note": "The boiled milk curdles and releases whey; the source names no agent."
 				},
 				{
@@ -29680,8 +29631,8 @@
 					"note": "Soured by warming, or acid whey, sour milk or matsoni is added instead."
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"temperature": {
 						"min": 38,
 						"max": 40
@@ -29856,8 +29807,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
 					"temperature": {
 						"min": 32,
 						"max": 34
@@ -29939,8 +29889,8 @@
 					"note": "The sheep milk is strained through herbs."
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"seconds": {
 						"min": 3600,
 						"max": 3600
@@ -30009,8 +29959,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "With rennet tablets."
 				},
 				{
@@ -30169,8 +30119,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "With rennet."
 				},
 				{
@@ -30255,8 +30205,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "With animal rennet (Ain Sefra: dried lamb or kid abomasum, \"el Hakka\"), calf rennet or a plant extract such as artichoke flower; home versions use lben."
 				},
 				{
@@ -30502,8 +30452,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "With rennet, calf or microbial; the source names no standard coagulant."
 				},
 				{
@@ -30589,8 +30539,8 @@
 					"note": "8–12 % salt goes into the milk before renneting."
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"temperature": {
 						"min": 37,
 						"max": 49
@@ -30703,8 +30653,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"temperature": {
 						"min": 37,
 						"max": 38
@@ -30791,8 +30741,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "With commercial rennet (coalho) and the pingo, the drained whey of the previous day's cheeses."
 				},
 				{
@@ -30888,8 +30838,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "With rennet and/or other suitable enzymes, optionally selected lactic bacteria."
 				},
 				{
@@ -30956,8 +30906,7 @@
 					"name": "filter"
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
 					"seconds": {
 						"min": 43200,
 						"max": 86400
@@ -31026,8 +30975,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"seconds": {
 						"min": 2400,
 						"max": 2400,
@@ -31217,13 +31166,12 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "pasteurise",
 					"note": "Generally pasteurised."
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "With mostly recombinant bovine chymosin."
 				},
 				{
@@ -31476,8 +31424,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "pasteurise",
 					"temperature": {
 						"min": 72,
 						"max": 75
@@ -31496,8 +31443,8 @@
 					}
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"seconds": {
 						"min": 1800,
 						"max": 3600
@@ -31572,8 +31519,8 @@
 					"note": "In a large vat, or in cans in a hot-water bath over a wood fire to about 71 °C at Chandanbari (Cheese Professor)."
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"seconds": {
 						"min": 900,
 						"max": 2100
@@ -31865,13 +31812,11 @@
 					"note": "Milk and cream are blended to the fat grade, 10.5 to under 18 % milkfat."
 				},
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "pasteurise",
 					"note": "Pasteurised or ultra-pasteurised."
 				},
 				{
-					"type": "custom",
-					"name": "homogenise",
+					"type": "homogenise",
 					"note": "Optional."
 				},
 				{
@@ -31924,13 +31869,11 @@
 					"note": "Cream is standardised to 18 to under 30 % milkfat."
 				},
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "pasteurise",
 					"note": "Pasteurised or ultra-pasteurised."
 				},
 				{
-					"type": "custom",
-					"name": "homogenise",
+					"type": "homogenise",
 					"note": "Optional."
 				},
 				{
@@ -31980,8 +31923,7 @@
 					"note": "The stabiliser carrageenan (E407) is permitted, to stop creaming."
 				},
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "pasteurise",
 					"note": "Pasteurised."
 				}
 			],
@@ -33799,13 +33741,12 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "pasteurise",
 					"note": "Gently pasteurised."
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "With rennet."
 				},
 				{
@@ -33866,14 +33807,13 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "pasteurise",
 					"note": "The goat and sheep milk is pasteurised."
 				},
 				{
-					"type": "custom",
-					"name": "set",
-					"note": "Curdles without rennet; the cultures are not named."
+					"type": "coagulate",
+					"note": "Curdles without rennet; the cultures are not named.",
+					"by": "acid"
 				},
 				{
 					"type": "custom",
@@ -33923,8 +33863,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet-acid",
 					"note": "By lactic coagulation with a small amount of rennet; the cultures are not named."
 				},
 				{
@@ -33990,8 +33930,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
 					"temperature": {
 						"min": 34,
 						"max": 36,
@@ -34091,8 +34030,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"temperature": {
 						"min": 32,
 						"max": 34
@@ -34215,8 +34154,8 @@
 					}
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"temperature": {
 						"min": 28,
 						"max": 35
@@ -34314,8 +34253,8 @@
 					}
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"temperature": {
 						"min": 30,
 						"max": 37
@@ -34406,8 +34345,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "pasteurise",
 					"temperature": {
 						"min": 68,
 						"max": 72
@@ -34440,8 +34378,8 @@
 					"note": "Lactic ferments from the production area restore the flora killed by heating; the species are not named."
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "With liquid calf rennet."
 				},
 				{
@@ -34496,8 +34434,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"temperature": {
 						"min": 33,
 						"max": 36
@@ -34596,8 +34534,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"seconds": {
 						"min": 3600,
 						"max": 3600,
@@ -34817,8 +34755,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "Historically with the reindeer stomach, its rennet."
 				},
 				{
@@ -34915,8 +34853,8 @@
 					}
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "With the lactic culture and clotting enzymes (rennet)."
 				},
 				{
@@ -35056,8 +34994,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"temperature": {
 						"min": 33,
 						"max": 38
@@ -35302,8 +35240,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"temperature": {
 						"min": 29,
 						"max": 31
@@ -35464,8 +35402,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "With rennet (a soft rennet cheese)."
 				},
 				{
@@ -36120,8 +36058,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "pasteurise",
 					"note": "Pasteurised, so it has to stay chilled."
 				}
 			],
@@ -36505,8 +36442,7 @@
 					"does": "heat"
 				},
 				{
-					"type": "custom",
-					"name": "homogenise"
+					"type": "homogenise"
 				},
 				{
 					"type": "custom",
@@ -36758,8 +36694,7 @@
 					"note": "Fruit extracts, aromas, herb extracts and sugar or sweetener are added."
 				},
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "pasteurise",
 					"note": "Pasteurised."
 				}
 			],
@@ -36965,8 +36900,8 @@
 					"note": "A slow boil for a few minutes."
 				},
 				{
-					"type": "custom",
-					"name": "curdle",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "With rennet, whey from a previous batch, or acid (lemon juice, vinegar, fresh fig sprig)."
 				},
 				{
@@ -37979,8 +37914,7 @@
 					"note": "More skim milk (or skim powder) and water are blended in so the fat falls to 1.5 % and the non-fat solids rise to 9 %."
 				},
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "pasteurise",
 					"note": "Pasteurised."
 				}
 			],
@@ -38142,8 +38076,7 @@
 					"note": "UHT-treated."
 				},
 				{
-					"type": "custom",
-					"name": "homogenise"
+					"type": "homogenise"
 				}
 			],
 			"sources": {
@@ -39282,8 +39215,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"temperature": {
 						"min": 30,
 						"max": 36
@@ -39523,8 +39456,8 @@
 					"note": "Packed into a cleaned goatskin that is sewn shut."
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "With rennet; commercial liquid rennet in the Akkaraman sheep-milk studies."
 				}
 			],
@@ -39798,8 +39731,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "pasteurise",
 					"note": "The cow cream is pasteurised."
 				},
 				{
@@ -39827,8 +39759,7 @@
 					"note": "The ferments give hazelnut notes."
 				},
 				{
-					"type": "custom",
-					"name": "churn",
+					"type": "churn",
 					"note": "In wooden churns."
 				}
 			],
@@ -39935,8 +39866,7 @@
 					"note": "Ripened biologically under a strictly controlled temperature profile, no figures given."
 				},
 				{
-					"type": "custom",
-					"name": "churn",
+					"type": "churn",
 					"note": "Today it is churned continuously."
 				},
 				{
@@ -40059,8 +39989,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "With rennet tablets."
 				}
 			],
@@ -40106,8 +40036,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "With cheese rennet, in warm raw milk with a little flour."
 				},
 				{
@@ -40914,13 +40844,11 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "homogenise",
+					"type": "homogenise",
 					"note": "Cream is homogenised."
 				},
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "pasteurise",
 					"note": "Pasteurised."
 				},
 				{
@@ -40980,8 +40908,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "pasteurise",
 					"note": "Cream is pasteurised first."
 				},
 				{
@@ -41052,8 +40979,11 @@
 					}
 				},
 				{
-					"type": "custom",
-					"name": "homogenise",
+					"type": "homogenise",
+					"bar": {
+						"min": 100,
+						"max": 160
+					},
 					"note": "At 100–160 bar, so that it does not separate."
 				},
 				{
@@ -41457,8 +41387,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "pasteurise",
 					"temperature": {
 						"min": 62.5,
 						"max": 62.5
@@ -42236,8 +42165,7 @@
 					"note": "Cream and spirit, about 17 % vol alcohol in Baileys."
 				},
 				{
-					"type": "custom",
-					"name": "homogenise",
+					"type": "homogenise",
 					"note": "With an emulsifier, so the alcohol does not curdle the cream or separate in storage."
 				}
 			],
@@ -43243,8 +43171,8 @@
 					}
 				},
 				{
-					"type": "custom",
-					"name": "set",
+					"type": "coagulate",
+					"by": "rennet",
 					"note": "With calf rennet only."
 				},
 				{
