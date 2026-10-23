@@ -64,6 +64,12 @@ mustAll(Object.keys(regions), isKnown, 'region for unknown');
  */
 const steps: Record<string, How> = S.Steps.parse(STEPS);
 mustAll(Object.keys(steps), isKnown, 'how is made unknown');
+// A step as the page has it: only whether it is a ferment, which marks its table, not the ferment itself, which nothing draws yet.
+const stepOf = (key: string) => {
+	if (!steps[key]) return undefined;
+	const { ferment, ...rest } = steps[key];
+	return { ...rest, ...(ferment && { fermented: true }) };
+};
 
 /**
  * What each product and each example drawn is, shown when it is clicked: the
@@ -258,7 +264,7 @@ const factsOf = (label: string) => {
 		unsure: UNSURE.has(label) ? UNSURE_SAID : undefined,
 		step: steps[label]?.label,
 		// A cheese's sources once: with its paragraph where that is its own, else with how it is made.
-		how: steps[label] ?? (c && { ...cheeseHow(c), ...(about.examples[label] && { sources: c.sources }) }),
+		how: stepOf(label) ?? (c && { ...cheeseHow(c), ...(about.examples[label] && { sources: c.sources }) }),
 	};
 };
 const drawn = Object.entries(NODES).filter(([, { mapped }]) => !mapped);
@@ -315,7 +321,7 @@ export const graph = {
 				image: pictures[own] && pictured(own, pictures[own]),
 				about: about.products[own],
 				regions: regions[own],
-				how: steps[id],
+				how: stepOf(id),
 				// All its examples, for the card that tells of it.
 				named,
 				step,

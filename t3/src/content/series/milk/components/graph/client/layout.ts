@@ -1113,7 +1113,7 @@ export function layout(data: Graph) {
 			top,
 			split: left + key + 2 * pad(n),
 			height: tableHeight(n) - font * 0.6,
-			area: { x0: stepX(n) - wide / 2, x1: stepX(n) + wide / 2, y0: named, y1: top + tableHeight(n) } as Box,
+			area: { x0: stepX(n) - wide / 2, x1: stepX(n) + wide / 2, y0: named, y1: top + tableHeight(n) + (n.how?.fermented ? font : 0) } as Box,
 		};
 	};
 	// A pill and its shadow, which reaches a quarter of its height round it.

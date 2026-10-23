@@ -688,6 +688,13 @@ const { focus } = Astro.props;
 				rowLines(v).forEach((said, j) => g.fillText(said, t.split + p, baseline + j * ROW * t.font));
 				y += rowHeight(n, { k, v });
 			}
+			// A ferment's, a microbe on its bottom left corner (its area reaches down to hold it).
+			if (n.how?.fermented) {
+				g.font = font(t.font * 1.5);
+				g.textAlign = 'center';
+				g.textBaseline = 'middle';
+				g.fillText('🦠', t.left, t.top + t.height);
+			}
 			return true;
 		};
 
