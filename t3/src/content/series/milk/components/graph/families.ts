@@ -85,12 +85,20 @@ export const KINDS: S.Kind[] = [
 		step: 'mesophilic, 20–30 °C',
 		ids: ['soured', 'dickmilch', 'filmjolk', 'dahi', 'ymer', 'cultureButtermilk', 'piima', 'ropy'],
 		how: {
-			facts: [
-				{ k: 'Bacteria', v: 'Lactococcus lactis and its subspecies, often with Leuconostoc' },
-				{ k: 'Temperature', v: '20–30 °C, room temperature' },
-				{ k: 'Time', v: 'Most of a day, about 15–24 h' },
-				{ k: 'Made', v: 'Soured milks, ropy milks, cultured buttermilk, sour cream' },
-			],
+			processing: {
+				steps: [
+					{
+						type: 'ferment',
+						does: 'incubate',
+						kinds: ['lactic'],
+						adds: { microbes: [{ name: 'Lactococcus lactis', kind: 'bacterium', does: ['acid'] }, { name: 'Leuconostoc', kind: 'bacterium', does: ['aroma'] }] },
+						temperature: { min: 20, max: 30 },
+						seconds: { min: 54000, max: 86400, about: true },
+						note: 'At room temperature, Leuconostoc often with the lactococci.',
+					},
+				],
+				sources: { links: [{ name: 'Bintsis & Papademas 2022, Fermentation 8:679', url: 'https://doi.org/10.3390/fermentation8120679' }, { name: 'Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products', url: 'https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products' }], text: 'The bacteria, how warm and how long, and what they make, from these.' },
+			},
 			text: 'Lactococci grow best at room temperature, so they sour milk slowly and gently, into a soft set curd with a fresh, often buttery aroma. Where it is cool, as in northern Europe, milk left to stand sours this way, and the fermented milks there are mostly of this kind.',
 			sources: { links: [{ name: 'Bintsis & Papademas 2022, Fermentation 8:679', url: 'https://doi.org/10.3390/fermentation8120679' }, { name: 'Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products', url: 'https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products' }], text: 'The bacteria, how warm and how long, and what they make, from these.' },
 		},
@@ -99,12 +107,20 @@ export const KINDS: S.Kind[] = [
 		step: 'thermophilic, 40–45 °C',
 		ids: ['yoghurt', 'mildYoghurt', 'probioticYoghurt', 'creamYoghurt', 'heatTreatedYoghurt'],
 		how: {
-			facts: [
-				{ k: 'Bacteria', v: 'Streptococcus thermophilus with a Lactobacillus, in yoghurt L. bulgaricus' },
-				{ k: 'Temperature', v: '40–45 °C' },
-				{ k: 'Time', v: 'A few hours, about 3–5 h' },
-				{ k: 'Made', v: 'Yoghurt, cream yoghurt, and yoghurts with other lactobacilli besides or instead' },
-			],
+			processing: {
+				steps: [
+					{
+						type: 'ferment',
+						does: 'incubate',
+						kinds: ['lactic'],
+						adds: { microbes: [{ name: 'Streptococcus thermophilus', kind: 'bacterium', does: ['acid'] }, { name: 'Lactobacillus delbrueckii subsp. bulgaricus', kind: 'bacterium', does: ['acid'] }] },
+						temperature: { min: 40, max: 45 },
+						seconds: { min: 10800, max: 18000, about: true },
+						note: 'In yoghurt the lactobacillus is L. bulgaricus; other yoghurts take others besides or instead.',
+					},
+				],
+				sources: { links: [{ name: 'Bintsis & Papademas 2022, Fermentation 8:679', url: 'https://doi.org/10.3390/fermentation8120679' }, { name: 'Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products', url: 'https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products' }, { name: 'Codex Standard for Fermented Milks (CXS 243-2003)', url: 'https://www.fao.org/input/download/standards/400/CXS_243e.pdf' }], text: 'The bacteria, how warm and how long, and what they make, from these.' },
+			},
 			text: 'These bacteria grow best warm, so they sour milk fast and sharply, into a firmer gel. Where it is hot, from the Balkans and the Middle East to Central Asia, milk kept warm sours this way, and the fermented milks there are mostly of this kind.',
 			sources: { links: [{ name: 'Bintsis & Papademas 2022, Fermentation 8:679', url: 'https://doi.org/10.3390/fermentation8120679' }, { name: 'Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products', url: 'https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products' }, { name: 'Codex Standard for Fermented Milks (CXS 243-2003)', url: 'https://www.fao.org/input/download/standards/400/CXS_243e.pdf' }], text: 'The bacteria, how warm and how long, and what they make, from these.' },
 		},

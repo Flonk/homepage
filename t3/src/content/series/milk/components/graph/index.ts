@@ -5,7 +5,7 @@ import { GROUPS, KINDS, SPLITS, LIGHT } from './families';
 import { WORLD_MILK } from './world';
 import { page as howPage } from './render/How';
 import { page as picturePage } from './render/Picture';
-import { about as cheeseAbout, how as cheeseHow } from './render/Cheese';
+import { about as cheeseAbout, facts as cheeseFacts } from './render/Cheese';
 
 /*
  * The graph handed to the page (see MilkGraph.astro and
@@ -113,7 +113,8 @@ mustAll(
 			n.how?.processing?.sources,
 			// Sources of their own, inside it: a step's, a microbe's, a row's.
 			...(n.how?.processing?.steps ?? []).flatMap((x) => [x.sources, ...(x.type === 'ferment' ? (x.adds?.microbes ?? []).map((m) => m.sources) : [])]),
-			...[...(n.how?.table ?? []), ...(n.how?.facts ?? [])].map((r) => r.sources),
+			...(n.facts ?? []).map((r) => r.sources),
+			n.composition?.sources,
 		])
 		.concat(
 			KINDS.map((k) => k.how.sources),
@@ -197,10 +198,15 @@ const exampleOf = (id: string) => {
 		beasts: marked(n),
 		axes: axesOf.get(id),
 		protected: n.protected,
+		composition: n.composition,
+		facts: [...(cheese ? cheeseFacts(n) : []), ...(n.facts ?? []).map(({ k, v }) => ({ k, v }))],
+		raw: n.raw,
+		live: n.live,
+		// Its sources, where they are not with its paragraph.
+		sources: n.sources && JSON.stringify(n.sources) !== JSON.stringify(n.about?.sources) ? n.sources : undefined,
 		unsure: unsure.has(id) ? UNSURE_SAID : undefined,
 		step: n.how?.label,
-		// A cheese's sources once: with its paragraph where those are its own, else with how it is made.
-		how: n.how ? howPage(n.how) : cheese ? { ...cheeseHow(n), ...(n.about && n.sources && JSON.stringify(n.about.sources) !== JSON.stringify(n.sources) && { sources: n.sources }) } : undefined,
+		how: n.how && howPage(n.how),
 		example: true as const,
 		niche: 2 as const,
 	};
@@ -266,6 +272,10 @@ export const graph = S.Payload.parse({
 				link,
 				note,
 				beasts: marked(own),
+				composition: own.composition,
+				facts: own.facts?.map(({ k, v }) => ({ k, v })),
+				raw: own.raw,
+				live: own.live,
 				group: groupOf.get(id) ?? -1,
 				niche: niche ?? 2,
 				// How much of the world's milk goes its way, in Mt a year and in percent, and how that was worked out (see world.ts).

@@ -473,6 +473,12 @@ const { focus } = Astro.props;
 		line-height: 1;
 		transform: translate(-40%, 45%);
 	}
+	.milk-about :global(.milk-about-composition) {
+		margin: 0.6rem 0 0;
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		color: var(--deck-ink-dim);
+	}
 	.milk-about :global(.milk-about-fact) {
 		display: grid;
 		grid-template-columns: 6.5rem 1fr;
@@ -581,7 +587,6 @@ const { focus } = Astro.props;
 	import { font, roundRect, legible, type Pen } from './graph/render/canvas';
 	import { el, commas, fact } from './graph/render/dom';
 	import { drawStrip } from './graph/render/Processing';
-	import { draw as drawRowsOf } from './graph/render/Row';
 	import { html as howHtml } from './graph/render/How';
 	import { html as sourcesHtml } from './graph/render/Sourcing';
 	import { html as shareHtml } from './graph/render/Share';
@@ -590,6 +595,8 @@ const { focus } = Astro.props;
 	import { said as regionsSaid, nameOf } from './graph/render/Regions';
 	import { said as beastsSaid, MARK as BEAST_MARK } from './graph/render/Beasts';
 	import { SEAL } from './graph/render/Cheese';
+	import { html as compositionHtml } from './graph/render/Composition';
+	import { html as factsHtml } from './graph/render/Fact';
 	import type { Beast } from './graph/schema';
 
 
@@ -598,7 +605,7 @@ const { focus } = Astro.props;
 	function draw(figure: HTMLElement, signal: AbortSignal, data: Graph, whole = false) {
 		// As the words in it have it (see measure).
 		setSpacing(parseFloat(getComputedStyle(figure).letterSpacing) || 0);
-		const { root, treeParent, nodes, children, size, paneled, panelOf, rootR, picture, radius, shown, stepFont, stepped, rows, tabled, tableWidth, PANEL_PAD, panels, MAP_W, PIN, PIN_GROWS, PIN_FRAMED, pillsShown, rim, panelArea, rootWord, rootFont, grains, edges, inside, stepX, told, hittable, edgeShape, edgeLine, edgeBox, stepLines, stepBox, tableOf, pillBoxOf, bounds, tickX } = layout(data);
+		const { root, treeParent, nodes, children, size, paneled, panelOf, rootR, picture, radius, shown, stepFont, stepped, tabled, PANEL_PAD, panels, MAP_W, PIN, PIN_GROWS, PIN_FRAMED, pillsShown, rim, panelArea, rootWord, rootFont, grains, edges, inside, stepX, told, hittable, edgeShape, edgeLine, edgeBox, stepLines, stepBox, tableOf, pillBoxOf, bounds, tickX } = layout(data);
 		// Those whose step has a table under it: its holds, its rows, or both.
 		const hasTable = new Set(tabled);
 		// The search's list named for it alone, as another graph on the page would name its own the same.
@@ -728,14 +735,12 @@ const { focus } = Astro.props;
 			return true;
 		};
 
-		/* A step's table: its processing's chain of cards over its rows (see
-		   render/Processing and render/Row). */
+		// A step's table: its processing's chain of cards (see render/Processing).
 		const drawTable = (g: Pen, n: Node, s: number) => {
 			const t = tableOf(n);
 			if (!legible(t.font, s)) return true;
 			const paint = { ink, s, on: !unlit && n === stepShown };
 			if (t.strip) drawStrip(g, t.strip, t.left, t.top, t.font, paint);
-			if (t.rowsHeight) drawRowsOf(g, rows(n), { left: t.left, top: t.rowsTop, split: t.split, w: tableWidth(n), h: t.rowsHeight }, t.font, paint);
 			return true;
 		};
 
@@ -1947,6 +1952,9 @@ const { focus } = Astro.props;
 				parts.push(el('p', 'milk-about-text', n.about.text));
 				parts.push(sourcesHtml(n.about.sources));
 			}
+			// What it is as it comes out, and its own facts.
+			if (n.composition) parts.push(compositionHtml(n.composition));
+			if (n.facts?.length || n.raw || n.live) parts.push(factsHtml(n.facts ?? [], n.raw, n.live));
 			/* A cheese in a panel has no arrow to write its table on: told here
 			   instead, after where the panel puts it, with the rest of how it is
 			   made and where that is from. */
@@ -1957,6 +1965,7 @@ const { focus } = Astro.props;
 				if (how?.text) parts.push(el('p', 'milk-about-text', how.text));
 				if (how?.sources) parts.push(sourcesHtml(how.sources));
 			}
+			if (n.sources) parts.push(sourcesHtml(n.sources));
 			// What it is made from and into the picture shows
 			// round it already; the card says only what the picture does not.
 			const facts = el('dl');

@@ -224,14 +224,11 @@ export const Processing = z.strictObject({
 	sources: Sourcing,
 });
 
-const Row = z.object({ k: z.string(), v: z.string(), ...Own });
-/* How a node is made from its parent: a table
-   drawn on the arrow, facts and words told on its card, and their sources;
-   an example's step its own words, there being no arrow to write them on. */
+/* How a node is made from its parent: its processing, drawn on the arrow
+   in; a paragraph on it, told on the arrow's card; their sources; and an
+   example's step its own words, there being no arrow to write them on. */
 export const How = z.object({
 	label: z.string().optional(),
-	table: z.array(Row).optional(),
-	facts: z.array(Row).optional(),
 	text: z.string().optional(),
 	sources: Sourcing,
 	// How it is processed, heated, fermented, dried, step by step.
@@ -245,6 +242,25 @@ export const Split = z.strictObject({ from: ProductId, step: z.string().min(1), 
 export const Kind = z.strictObject({ step: z.string().min(1), ids: z.array(ProductId).min(1), how: How });
 
 /* ---- Each node (nodes.json) ---- */
+
+/* What a thing is as it comes out, by weight, in percent, and its pH: fat,
+   fat in its dry matter (as cheese is labelled), water, protein, lactose,
+   sugar, all solids. */
+export const Composition = z.strictObject({
+	fat: Percent.optional(),
+	fatInDryMatter: Percent.optional(),
+	moisture: Percent.optional(),
+	protein: Percent.optional(),
+	lactose: Percent.optional(),
+	sugar: Percent.optional(),
+	solids: Percent.optional(),
+	// Alcohol, in percent by volume: a spirit's, a fermented milk's.
+	alcohol: Percent.optional(),
+	pH: PH.optional(),
+	...Own,
+});
+// A fact of a node's own, told on its card, a row each: what it is like, where it is from, what it is called and why.
+export const Fact = z.strictObject({ k: z.string().min(1), v: z.string().min(1), ...Own });
 
 /*
  * A node: a product, or an example of one, everything said of it in one
@@ -333,6 +349,13 @@ export const Node = z
 			.optional(),
 		// How sure the inventory of the world's cheeses is of all of the above.
 		confidence: z.enum(['high', 'medium', 'low']).optional(),
+		// Made from raw milk, by law or as it usually is.
+		raw: z.literal(true).optional(),
+		// Its cultures alive when it is sold: not heated after it is fermented.
+		live: z.literal(true).optional(),
+		// What it is as it comes out; and its other facts, told on its card.
+		composition: Composition.optional(),
+		facts: z.array(Fact).min(1).optional(),
 		// How much of it is made; how it is made from its parent.
 		share: Share.optional(),
 		how: How.optional(),
@@ -351,13 +374,9 @@ export const Chip = z.strictObject({ title: z.string(), said: z.string(), done: 
 // A photograph where it is, and its credit.
 export const PicturePage = z.strictObject({ src: z.string(), credit: z.string(), author: z.string(), license: z.string(), source: z.string() });
 export const RowPage = z.strictObject({ k: z.string(), v: z.string() });
-/* How it is made: its rows, its processing as chips and whether any of it
-   ferments; its sources, but for a cheese on the map, whose are with its
-   paragraph. */
+// How it is made: its processing as chips, whether any of it ferments, its paragraph and its sources.
 export const HowPage = z.strictObject({
 	label: z.string().optional(),
-	table: z.array(RowPage).optional(),
-	facts: z.array(RowPage).optional(),
 	text: z.string().optional(),
 	sources: Sourcing.optional(),
 	holds: z.array(Chip).optional(),
@@ -392,6 +411,13 @@ export const PageNode = z.strictObject({
 	// 0 a staple, 1 well known, 2 niche (see niche in Node).
 	niche: z.union([z.literal(0), z.literal(1), z.literal(2)]),
 	share: SharePage.optional(),
+	// What it is as it comes out, its own facts, and whether it is made from raw milk: told on its card.
+	composition: Composition.optional(),
+	facts: z.array(RowPage).optional(),
+	raw: z.literal(true).optional(),
+	live: z.literal(true).optional(),
+	// Where what is said of it is from, where not with its paragraph.
+	sources: Sourcing.optional(),
 	example: z.literal(true).optional(),
 	rank: z.number().int().optional(),
 	axes: z.strictObject({ firm: Firm, days: Days }).optional(),
@@ -448,3 +474,5 @@ export type HowPage = z.infer<typeof HowPage>;
 export type PageNode = z.infer<typeof PageNode>;
 export type SharePage = z.infer<typeof SharePage>;
 export type Payload = z.infer<typeof Payload>;
+export type Composition = z.infer<typeof Composition>;
+export type Fact = z.infer<typeof Fact>;

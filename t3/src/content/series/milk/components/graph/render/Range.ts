@@ -18,6 +18,6 @@ export const said = ({ min, max, about }: Range, unitOf: (x: number) => [number,
 export const inUnit = (unit: string) => (x: number): [number, string] => [x, unit];
 // Seconds in the unit that reads best, as a recipe would say it, in words where there is room.
 export const inTime = (s: number): [number, string] => {
-	const [v, unit] = s < 120 ? [s, 's'] : s < 7200 ? [s / 60, 'min'] : s < 172800 ? [s / 3600, 'h'] : s < 1814400 ? [s / 86400, 'day'] : s < 7776000 ? [s / 604800, 'week'] : s < 63072000 ? [s / 2592000, 'month'] : [s / 31536000, 'year'];
-	return [v, ` ${unit}${['day', 'week', 'month', 'year'].includes(unit) && +v.toPrecision(2) !== 1 ? 's' : ''}`];
+	const [v, unit] = s < 120 ? [s, 's'] : s < 7200 ? [s / 60, 'min'] : s < 172800 ? [s / 3600, 'h'] : s < 7776000 ? [s / 86400, 'day'] : s < 63072000 ? [s / 2592000, 'month'] : [s / 31536000, 'year'];
+	return [v, ` ${unit}${['day', 'month', 'year'].includes(unit) && +v.toPrecision(2) !== 1 ? 's' : ''}`];
 };

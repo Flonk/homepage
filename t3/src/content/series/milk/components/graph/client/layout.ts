@@ -1,6 +1,5 @@
 import { ROOT, NODE_H, PAD_X, FONT, ROOT_WORD, GAP_X, STEP_FONT, STEP_PAD, RADIUS, PACKING, PICTURE_GAP, LINK_ROOM, APART, ROW_GAP, sizeOf, MILK, STRAND, headWidth, headLength, CORNER, MAP_PILL, RULE_PX, RULER_END, DROP, TIER_GAP, SIDE_GAP, MONO, measure, type Node, type Edge, type Graph } from './base';
 import { strip, type Strip } from '../render/Processing';
-import { columns as rowColumns, pad as rowPad, rowHeight as rowHeightOf } from '../render/Row';
 
 // A map's pin: a country's, or closer in a region's, where its cheeses are and how many.
 /* A map's pin: a region's cheeses, or those of a country whose region is
@@ -304,7 +303,7 @@ export function layout(data: Graph) {
 	// At the same scale as the product the arrow makes, as its own words are.
 	/* Larger on an arrow whose step is told of in full, a title, whether or
 	   not it has a table under it, so siblings read alike. */
-	const stepFont = (n: Node) => STEP_FONT * size(n) * (n.how?.facts?.length || n.how?.table?.length || n.how?.holds?.length ? 1.6 : 1);
+	const stepFont = (n: Node) => STEP_FONT * size(n) * (n.how?.holds?.length ? 1.6 : 1);
 	const stepped = nodes.filter((n) => n.step && n !== root && !panelOf(n));
 	/* A step in as many lines as it is written in, the last just over its
 	   arrow and the rest stacked up from there; inside an arrow, all of
@@ -316,11 +315,10 @@ export function layout(data: Graph) {
 	const stepWidth = new Map<Node, number>();
 	for (const n of stepped) stepWidth.set(n, measure(n.step!, stepFont(n), 'italic 400'));
 	/* A step's table, under the step's name and laid over its arrow: its
-	   processing's chain of cards (see render/Processing) over its rows (see
-	   render/Row); small, a footnote to the name. None under a ruler, where
-	   the arrows in are its own and have no step written on them. An
-	   example's arrow may have no words and still its table. */
-	const rows = (n: Node) => (hangsFrom(n) || panelOf(n) ? [] : (n.how?.table ?? []));
+	   processing's chain of cards (see render/Processing); small, a
+	   footnote to the name. None under a ruler, where the arrows in are its
+	   own and have no step written on them. An example's arrow may have no
+	   words and still its chain. */
 	const holds = (n: Node) => (hangsFrom(n) || panelOf(n) ? [] : (n.how?.holds ?? []));
 	// An example's a little bigger, its pill and arrow being small, so it reads zoomed out as far as a product's.
 	const tableFont = (n: Node) => STEP_FONT * size(n) * (n.example ? 0.5 : 0.35);
@@ -330,22 +328,10 @@ export function layout(data: Graph) {
 		if (!laid) strips.set(n, (laid = strip(holds(n), tableFont(n))));
 		return laid;
 	};
-	const tabled = nodes.filter((n) => rows(n).length > 0 || holds(n).length > 0);
-	const columns = new Map<Node, { key: number; value: number }>();
-	for (const n of tabled.filter((n) => rows(n).length)) columns.set(n, rowColumns(rows(n), tableFont(n)));
-	const pad = (n: Node) => rowPad(tableFont(n));
-	const tableWidth = (n: Node) => {
-		const c = columns.get(n);
-		return Math.max(c ? c.key + c.value + 4 * pad(n) : 0, holds(n).length ? stripOf(n).w : 0);
-	};
-	const rowHeight = (n: Node, row: { k: string; v: string }) => rowHeightOf(row, tableFont(n));
-	// Its rows, and its holds over them with a little air between; how tall it is, with a little air under it.
-	const rowsHeight = (n: Node) => rows(n).reduce((sum, row) => sum + rowHeight(n, row), 0);
-	const stripHeight = (n: Node) => (holds(n).length ? stripOf(n).h + (rows(n).length ? tableFont(n) * 0.5 : 0) : 0);
-	const tableHeight = (n: Node) => {
-		const tall = stripHeight(n) + rowsHeight(n);
-		return tall ? tall + tableFont(n) * 0.6 : 0;
-	};
+	const tabled = nodes.filter((n) => holds(n).length > 0);
+	const tableWidth = (n: Node) => (holds(n).length ? stripOf(n).w : 0);
+	// How tall its chain is, with a little air under it.
+	const tableHeight = (n: Node) => (holds(n).length ? stripOf(n).h + tableFont(n) * 0.6 : 0);
 	// Inside its arrow, centred on it, where the arrow is that thick.
 	const tableInside = (n: Node) => line(n) >= tableHeight(n) + tableFont(n);
 	/* Where it begins, from the middle of its arrow: in the arrow, or just
@@ -1044,7 +1030,7 @@ export function layout(data: Graph) {
 	};
 	/* Every arrow with something to tell, how its step is done, to be
 	   pointed at and clicked; the rest are only drawn. */
-	const told = (n: Node) => !!(n.how?.facts?.length || n.how?.text);
+	const told = (n: Node) => !!(n.how?.holds?.length || n.how?.text);
 	const hittable = edges.filter((e) => told(e.target));
 
 	/* Where every arrow goes, worked out once: down from milk, so a line in
@@ -1076,9 +1062,8 @@ export function layout(data: Graph) {
 		const w = stepWidth.get(n)! / 2;
 		return { x0: stepX(n) - w, x1: stepX(n) + w, y0: at[0].y - stepFont(n), y1: at.at(-1)!.y + stepFont(n) * 0.3 };
 	};
-	// A step's table: where it is, its holds and its rows, and the area round it and the step's name, to point at.
+	// A step's table: where it is, its chain, and the area round it and the step's name, to point at.
 	const tableOf = (n: Node) => {
-		const key = columns.get(n)?.key ?? 0;
 		const font = tableFont(n);
 		const left = stepX(n) - tableWidth(n) / 2;
 		const top = leg(n) + tableTop(n);
@@ -1089,11 +1074,8 @@ export function layout(data: Graph) {
 			font,
 			left,
 			top,
-			split: left + key + 2 * pad(n),
 			height: tableHeight(n) - font * 0.6,
 			strip: holds(n).length ? stripOf(n) : null,
-			rowsTop: top + stripHeight(n),
-			rowsHeight: rowsHeight(n),
 			area: { x0: stepX(n) - wide / 2, x1: stepX(n) + wide / 2, y0: named, y1: top + tableHeight(n) } as Box,
 		};
 	};
@@ -1119,5 +1101,5 @@ export function layout(data: Graph) {
 		width: Math.max(...all.map((b) => b.x1)) - Math.min(...all.map((b) => b.x0)),
 		height: Math.max(...all.map((b) => b.y1)) - Math.min(...all.map((b) => b.y0)),
 	};
-	return { root, treeParent, nodes, children, size, paneled, panelOf, rootR, picture, radius, shown, stepFont, stepped, rows, tabled, tableWidth, PANEL_PAD, panels, MAP_W, PIN, PIN_GROWS, PIN_FRAMED, pillsShown, rim, panelArea, rootWord, rootFont, grains, edges, inside, stepX, told, hittable, edgeShape, edgeLine, edgeBox, stepLines, stepBox, tableOf, pillBoxOf, bounds, tickX };
+	return { root, treeParent, nodes, children, size, paneled, panelOf, rootR, picture, radius, shown, stepFont, stepped, tabled, PANEL_PAD, panels, MAP_W, PIN, PIN_GROWS, PIN_FRAMED, pillsShown, rim, panelArea, rootWord, rootFont, grains, edges, inside, stepX, told, hittable, edgeShape, edgeLine, edgeBox, stepLines, stepBox, tableOf, pillBoxOf, bounds, tickX };
 }
