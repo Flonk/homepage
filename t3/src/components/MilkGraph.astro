@@ -1,5 +1,5 @@
 ---
-import { graph, herd } from './milk/graph';
+import { herd } from './milk/graph';
 
 /**
  * What milk becomes: every product as a node and every making-of as an arrow,
@@ -33,7 +33,7 @@ interface Props {
 const { focus } = Astro.props;
 ---
 
-<figure class="milk-graph" data-milk-graph={JSON.stringify(graph)} data-focus={focus}>
+<figure class="milk-graph" data-milk-graph="/milk-graph.json" data-focus={focus}>
 	<div class="milk-search" data-no-swipe data-deck-tool>
 		<svg class="milk-search-icon" viewBox="0 0 16 16" aria-hidden="true">
 			<circle cx="6.75" cy="6.75" r="4.75"></circle>
@@ -3534,8 +3534,18 @@ const { focus } = Astro.props;
 
 	}
 
+	/* The graph, from its own file (see pages/milk-graph.json.ts), fetched
+	   once a page and kept as text: each drawing lays out a copy of its own. */
+	const graphs = new Map<string, Promise<string>>();
+	const graphAt = (url: string) => {
+		if (!graphs.has(url)) graphs.set(url, fetch(url).then((r) => r.text()));
+		return graphs.get(url)!;
+	};
+
 	eachPage((signal) => {
 		for (const figure of document.querySelectorAll<HTMLElement>('[data-milk-graph]')) {
+			// Asked for at once, while the rest of the page is still coming in.
+			const fetched = graphAt(figure.dataset.milkGraph!);
 			const phase = figure.closest<HTMLElement>('[data-viz-phase]');
 			const host = phase ?? figure.closest<HTMLElement>('[data-viz-stage]');
 			/* What a card has asked it to focus on before it is drawn, kept for
@@ -3558,10 +3568,10 @@ const { focus } = Astro.props;
 				const { width, height } = figure.getBoundingClientRect();
 				if (!width || !height) return false;
 				started = true;
-				// Once its font is in, as its words are measured on a canvas (see measure).
-				Promise.all(FACES.map((face) => document.fonts.load(`${face} 13px ${SANS()}`))).then(() => {
+				// Once it and its font are in, as its words are measured on a canvas (see measure).
+				Promise.all([fetched, ...FACES.map((face) => document.fonts.load(`${face} 13px ${SANS()}`))]).then(([text]) => {
 					if (signal.aborted) return;
-					const data = JSON.parse(figure.dataset.milkGraph!) as Graph;
+					const data = JSON.parse(text as string) as Graph;
 					/* Drawn again from scratch when an animal is pressed, the
 					   drawing before let go of. */
 					let drawing = new AbortController();
