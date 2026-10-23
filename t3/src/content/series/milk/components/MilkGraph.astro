@@ -436,15 +436,33 @@ const { focus } = Astro.props;
 		margin: 0 0 0.35rem;
 		font-size: 0.85em;
 	}
+	/* A hold: as a cell of the table is, on the pills' white, framed, in
+	   the pills' type; a bar at its edge for how warm it is held. */
 	.milk-about :global(.milk-about-hold) {
-		padding: 0.1rem 0.5rem;
-		border: 1px solid;
-		border-radius: 999px;
-		font-weight: 500;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4em;
+		padding: 0.15rem 0.45rem;
+		border: 1px solid var(--pill-rim);
+		border-radius: var(--radius-medium);
+		background: var(--pill);
+		font-family: var(--font-mono);
+		font-size: 0.72rem;
+		letter-spacing: 0.02em;
 		white-space: nowrap;
+	}
+	.milk-about :global(.milk-about-hold[style]::before) {
+		content: '';
+		align-self: stretch;
+		width: 3px;
+		margin: 0.12rem 0;
+		border-radius: 1px;
+		background: var(--warmth);
 	}
 	.milk-about :global(.milk-about-then) {
 		color: var(--deck-ink-dim);
+		font-family: var(--font-mono);
+		font-size: 0.72rem;
 	}
 	.milk-about :global(.milk-about-microbes) {
 		margin: 0 0 0.35rem;
@@ -576,7 +594,7 @@ const { focus } = Astro.props;
 	function draw(figure: HTMLElement, signal: AbortSignal, data: Graph, whole = false) {
 		// As the words in it have it (see measure).
 		setSpacing(parseFloat(getComputedStyle(figure).letterSpacing) || 0);
-		const { root, treeParent, nodes, children, size, paneled, panelOf, rootR, picture, radius, shown, countryName, stepFont, stepped, ROW, rows, keyLines, rowLines, tabled, pad, tableWidth, rowHeight, PANEL_PAD, panels, MAP_W, PIN, PIN_GROWS, PIN_FRAMED, pillsShown, rim, panelArea, rootWord, rootFont, grains, edges, inside, stepX, told, hittable, edgeShape, edgeLine, edgeBox, stepLines, stepBox, tableOf, pillBoxOf, bounds, tickX, CHIP_H, CHIP_PAD } = layout(data);
+		const { root, treeParent, nodes, children, size, paneled, panelOf, rootR, picture, radius, shown, countryName, stepFont, stepped, ROW, rows, keyLines, rowLines, tabled, pad, tableWidth, rowHeight, PANEL_PAD, panels, MAP_W, PIN, PIN_GROWS, PIN_FRAMED, pillsShown, rim, panelArea, rootWord, rootFont, grains, edges, inside, stepX, told, hittable, edgeShape, edgeLine, edgeBox, stepLines, stepBox, tableOf, pillBoxOf, bounds, tickX, CHIP_H, CHIP_PAD, CHIP_BAR, CHIP_TEXT } = layout(data);
 		// Those whose step has a table under it: its holds, its rows, or both.
 		const hasTable = new Set(tabled);
 		// The search's list named for it alone, as another graph on the page would name its own the same.
@@ -688,7 +706,7 @@ const { focus } = Astro.props;
 			return p;
 		};
 
-		const font = (px: number, face = '400') => `${face} ${px}px ${SANS()}`;
+		const font = (px: number, face = '400', family = SANS()) => `${face} ${px}px ${family}`;
 		// Drawing for the overview (see below): plain, with nothing lit or held.
 		let unlit = false;
 		/* How each part is drawn, onto the picture's canvas or one of its own,
@@ -713,14 +731,13 @@ const { focus } = Astro.props;
 			return true;
 		};
 
-		/* How warm a hold is, as its chip's fill and edge: blue for cold,
-		   plain about room temperature, orange for warm, red for hot. */
-		const warmthInk = (c?: number): [string, string] => {
-			if (c === undefined) return [ink.pill, ink.dim];
+		/* How warm a hold is, as the bar at its chip's edge: blue for cold,
+		   grey about room temperature, amber for warm, red for hot. */
+		const warmthInk = (c: number) => {
 			const cold = Math.max(0, Math.min(1, (20 - c) / 20));
 			const warm = Math.max(0, Math.min(1, (c - 22) / 60));
-			const [chroma, hue] = cold ? [0.09 * cold, 240] : [0.13 * warm, 75 - 50 * warm];
-			return [`oklch(0.95 ${chroma * 0.6} ${hue})`, `oklch(0.62 ${chroma + 0.02} ${hue})`];
+			const [chroma, hue] = cold ? [0.15 * cold, 245] : [0.18 * warm, 70 - 42 * warm];
+			return `oklch(0.64 ${chroma.toFixed(3)} ${hue.toFixed(0)})`;
 		};
 		// A ferment's microbe, round its table's bottom left corner (its area reaches down to hold it), and what it says when pointed at.
 		const FERMENT_MARK = '🦠';
@@ -729,29 +746,43 @@ const { focus } = Astro.props;
 			const t = tableOf(n);
 			return { x: t.left, y: t.top + t.height, r: t.font * 0.75 };
 		};
-		/* A step's holds: each a chip tinted by how warm it is held, an arrow
-		   to the next, and the microbes each brings under them. */
+		/* A step's holds: each a chip as the table's cells are, on the pills'
+		   white, framed, its words in the pills' type, a bar at its edge for
+		   how warm it is held; an arrow to the next, and the microbes each
+		   brings under them. */
 		const drawStrip = (g: Pen, n: Node, on: boolean) => {
 			const t = tableOf(n);
 			const strip = t.strip!;
 			const f = t.font;
-			const r = (CHIP_H * f) / 2;
+			const h = CHIP_H * f;
+			const r = f * (4 / 16) * 1.5;
 			g.lineWidth = f * 0.08;
 			g.textBaseline = 'middle';
 			g.textAlign = 'left';
-			g.font = font(f, '500');
+			g.font = font(CHIP_TEXT * f, '400', MONO());
 			for (const c of strip.chips) {
-				const [fill, edge] = warmthInk(c.warmth);
-				roundRect(g, t.left + c.x, t.top + c.y, c.w, CHIP_H * f, r);
-				g.fillStyle = fill;
+				const x = t.left + c.x;
+				const y = t.top + c.y;
+				roundRect(g, x, y, c.w, h, r);
+				g.fillStyle = ink.pill;
 				g.fill();
-				g.strokeStyle = on ? ink.lit : edge;
+				g.strokeStyle = on ? ink.lit : ink.dim;
+				g.globalAlpha = on ? 1 : 0.5;
 				g.stroke();
+				g.globalAlpha = 1;
+				let at = x + CHIP_PAD * f;
+				if (c.warmth !== undefined) {
+					roundRect(g, at, y + h * 0.22, CHIP_BAR * f, h * 0.56, (CHIP_BAR * f) / 2);
+					g.fillStyle = warmthInk(c.warmth);
+					g.fill();
+					at += (CHIP_BAR + CHIP_PAD * 0.6) * f;
+				}
 				g.fillStyle = on ? ink.lit : ink.dim;
-				g.fillText(c.said, t.left + c.x + CHIP_PAD * f, t.top + c.y + r);
+				g.fillText(c.said, at, y + h / 2);
 			}
 			g.textAlign = 'center';
 			g.fillStyle = ink.dim;
+			g.font = font(CHIP_TEXT * f, '700', MONO());
 			for (const j of strip.joins) g.fillText('→', t.left + j.x, t.top + j.y);
 			g.textAlign = 'left';
 			g.textBaseline = 'alphabetic';
@@ -2058,9 +2089,7 @@ const { focus } = Astro.props;
 				holds.forEach((c, i) => {
 					if (i) strip.append(el('span', 'milk-about-then', '→'));
 					const chip = el('span', 'milk-about-hold', c.said);
-					const [fill, edge] = warmthInk(c.warmth);
-					chip.style.background = fill;
-					chip.style.borderColor = edge;
+					if (c.warmth !== undefined) chip.style.setProperty('--warmth', warmthInk(c.warmth));
 					strip.append(chip);
 				});
 				framed.append(strip);

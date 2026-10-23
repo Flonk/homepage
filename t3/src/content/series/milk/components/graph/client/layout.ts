@@ -357,9 +357,12 @@ export function layout(data: Graph) {
 	   wrapped as wide as the chips run. Laid out in its table's letters,
 	   from its top left. */
 	const holds = (n: Node) => (hangsFrom(n) || panelOf(n) ? [] : (n.how?.holds ?? []));
-	const CHIP_H = 1.5;
-	const CHIP_PAD = 0.45;
-	const CHIP_GAP = 1.3;
+	// In its table's letters: a chip's height, the room round its words, its warmth's bar, the room for the arrow between two, its words' size.
+	const CHIP_H = 1.45;
+	const CHIP_PAD = 0.4;
+	const CHIP_BAR = 0.2;
+	const CHIP_GAP = 1.2;
+	const CHIP_TEXT = 0.85;
 	const STRIP_WIDE = KEY_WIDE + VALUE_WIDE + 2;
 	type Strip = {
 		w: number;
@@ -377,7 +380,7 @@ export function layout(data: Graph) {
 		let x = 0;
 		let y = 0;
 		holds(n).forEach((c, i) => {
-			const w = measure(c.said, f, '500') + 2 * CHIP_PAD * f;
+			const w = measure(c.said, CHIP_TEXT * f, '400', MONO()) + (2 * CHIP_PAD + (c.warmth === undefined ? 0 : CHIP_BAR + CHIP_PAD * 0.6)) * f;
 			if (i && x + CHIP_GAP * f + w > STRIP_WIDE * f) {
 				x = 0;
 				y += (CHIP_H + 0.4) * f;
@@ -1195,5 +1198,5 @@ export function layout(data: Graph) {
 		width: Math.max(...all.map((b) => b.x1)) - Math.min(...all.map((b) => b.x0)),
 		height: Math.max(...all.map((b) => b.y1)) - Math.min(...all.map((b) => b.y0)),
 	};
-	return { root, treeParent, nodes, children, size, paneled, panelOf, rootR, picture, radius, shown, countryName, stepFont, stepped, ROW, rows, keyLines, rowLines, tabled, pad, tableWidth, rowHeight, PANEL_PAD, panels, MAP_W, PIN, PIN_GROWS, PIN_FRAMED, pillsShown, rim, panelArea, rootWord, rootFont, grains, edges, inside, stepX, told, hittable, edgeShape, edgeLine, edgeBox, stepLines, stepBox, tableOf, pillBoxOf, bounds, tickX, CHIP_H, CHIP_PAD };
+	return { root, treeParent, nodes, children, size, paneled, panelOf, rootR, picture, radius, shown, countryName, stepFont, stepped, ROW, rows, keyLines, rowLines, tabled, pad, tableWidth, rowHeight, PANEL_PAD, panels, MAP_W, PIN, PIN_GROWS, PIN_FRAMED, pillsShown, rim, panelArea, rootWord, rootFont, grains, edges, inside, stepX, told, hittable, edgeShape, edgeLine, edgeBox, stepLines, stepBox, tableOf, pillBoxOf, bounds, tickX, CHIP_H, CHIP_PAD, CHIP_BAR, CHIP_TEXT };
 }
