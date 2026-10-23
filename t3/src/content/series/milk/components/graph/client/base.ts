@@ -5,9 +5,9 @@ type Sourcing = S.Sourcing;
    milk/graph/index.ts) and as it is laid out: its own fields as the schema has
    them, the rest worked out on the way. */
 /* A step of processing as a card: what it is ("🦠 FERMENT"), what it
-   says ("2 weeks @ 20–30°C"), what is done, how warm it is, to mark it
-   by, the microbes added at it, and a sentence on it. */
-export type Chip = { title: string; said: string; done: string; warmth?: number; microbes?: string; note?: string };
+   says ("2 weeks @ 20–30°C"), what is done, the microbes added at it,
+   and a sentence on it. */
+export type Chip = { title: string; said: string; done: string; microbes?: string; note?: string };
 
 export type Node = Pick<S.Product, 'label' | 'step' | 'scale' | 'at' | 'panel' | 'map' | 'below' | 'link' | 'note' | 'aka'> & {
 	id: string;

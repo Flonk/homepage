@@ -436,8 +436,7 @@ const { focus } = Astro.props;
 		margin: 0 0 0.35rem;
 		font-size: 0.85em;
 	}
-	/* A hold: as a cell of the table is, on the pills' white, framed, in
-	   the pills' type; a bar at its edge for how warm it is held. */
+	// A hold: as a cell of the table is, on the pills' white, framed, in the pills' type.
 	.milk-about :global(.milk-about-hold) {
 		display: inline-flex;
 		align-items: center;
@@ -450,14 +449,6 @@ const { focus } = Astro.props;
 		font-size: 0.72rem;
 		letter-spacing: 0.02em;
 		white-space: nowrap;
-	}
-	.milk-about :global(.milk-about-hold[style]::before) {
-		content: '';
-		align-self: stretch;
-		width: 3px;
-		margin: 0.12rem 0;
-		border-radius: 1px;
-		background: var(--warmth);
 	}
 	.milk-about :global(.milk-about-then) {
 		color: var(--deck-ink-dim);
@@ -730,20 +721,11 @@ const { focus } = Astro.props;
 			return true;
 		};
 
-		/* How warm a hold is, as the bar at its chip's edge: blue for cold,
-		   grey about room temperature, amber for warm, red for hot. */
-		const warmthInk = (c: number) => {
-			const cold = Math.max(0, Math.min(1, (20 - c) / 20));
-			const warm = Math.max(0, Math.min(1, (c - 22) / 60));
-			const [chroma, hue] = cold ? [0.15 * cold, 245] : [0.18 * warm, 70 - 42 * warm];
-			return `oklch(0.64 ${chroma.toFixed(3)} ${hue.toFixed(0)})`;
-		};
 		// A ferment's microbe, on the bottom left corner of its table on a card, and what it says when pointed at.
 		const FERMENT_MARK = '🦠';
 		const FERMENT_SAID = 'Fermented';
 		/* A step's processing: each step a card as the table's cells are, on
-		   the pills' white, framed, a bar down its edge for how warm it is
-		   held; its words each drawn once big enough to read, the microbes'
+		   the pills' white, framed; its words each drawn once big enough to read, the microbes'
 		   only zoomed well in; an arrow to the next. */
 		const drawStrip = (g: Pen, n: Node, on: boolean, s: number) => {
 			const t = tableOf(n);
@@ -763,13 +745,7 @@ const { focus } = Astro.props;
 				g.globalAlpha = on ? 1 : 0.5;
 				g.stroke();
 				g.globalAlpha = 1;
-				let at = x + CARD.pad * f;
-				if (card.warmth !== undefined) {
-					roundRect(g, at, y + CARD.pad * f, CARD.bar * f, card.h - 2 * CARD.pad * f, (CARD.bar * f) / 2);
-					g.fillStyle = warmthInk(card.warmth);
-					g.fill();
-					at += (CARD.bar + CARD.pad * 0.6) * f;
-				}
+				const at = x + CARD.pad * f;
 				for (const l of card.lines) {
 					if (!legible(l.size, s)) continue;
 					g.font = font(l.size, l.face, l.mono ? MONO() : SANS());
@@ -2074,7 +2050,6 @@ const { focus } = Astro.props;
 				holds.filter((c) => c.said).forEach((c, i) => {
 					if (i) strip.append(el('span', 'milk-about-then', '→'));
 					const chip = el('span', 'milk-about-hold', c.said);
-					if (c.warmth !== undefined) chip.style.setProperty('--warmth', warmthInk(c.warmth));
 					strip.append(chip);
 				});
 				if (strip.childElementCount) framed.append(strip);

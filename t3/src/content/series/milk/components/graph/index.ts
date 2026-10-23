@@ -66,7 +66,7 @@ const steps: Record<string, How> = S.Steps.parse(STEPS);
 mustAll(Object.keys(steps), isKnown, 'how is made unknown');
 /* A step of a step's processing as the page draws it, a card each: what
    it is, "🦠 FERMENT"; for how long, how warm and how damp, "2 weeks @
-   20–30°C"; how warm, to mark it by; the microbes it adds; and its note. */
+   20–30°C"; the microbes it adds; and its note. */
 const TITLE: Record<S.HeatTreatment['does'] | S.Ferment['does'] | 'dry', string> = {
 	heat: '🔥 HEAT',
 	cook: '🔥 COOK',
@@ -119,12 +119,10 @@ const chipOf = (h: S.ProcessingStep) => {
 		.filter(Boolean)
 		.join(' @ ');
 	const [title, done] = titleOf(h);
-	const t = h.temperature;
 	return {
 		title,
 		said: [h.type === 'coagulate' && h.by && `by ${BY[h.by]}`, warm, h.humidity && `${spanOf(h.humidity, inUnit('%'))} RH`].filter(Boolean).join(', '),
 		done,
-		...(t && { warmth: ((t.min ?? t.max)! + (t.max ?? t.min)!) / 2 }),
 		...(h.type === 'ferment' && h.adds?.microbes.length && { microbes: h.adds.microbes.map((m) => m.name).join(', ') }),
 		...(h.note && { note: h.note }),
 	};
