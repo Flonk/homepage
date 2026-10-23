@@ -1,0 +1,82 @@
+{
+	"label": "Prim",
+	"aka": [
+		"Mysmør"
+	],
+	"from": "sweetWhey",
+	"step": "boil down",
+	"about": {
+		"text": "A soft, sweet, light golden-brown spread from Norway, called mysmør or prim. It is made by boiling down whey with cream, like brunost, but it is sweetened with sugar and left spreadable instead of being pressed into a block. It tastes of mild caramel.",
+		"sources": {
+			"links": [
+				{
+					"name": "Store norske leksikon",
+					"url": "https://snl.no/prim"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Messmor.jpg",
+		"author": "JonasB",
+		"license": "Public domain",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Messmor.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"NO"
+	],
+	"how": {
+		"text": "Norwegian prim is whey and cream boiled down with sugar added (Store norske leksikon).",
+		"sources": {
+			"links": [
+				{
+					"name": "Store norske leksikon: prim",
+					"url": "https://snl.no/prim"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "evaporate",
+					"note": "Whey and cream are boiled down."
+				},
+				{
+					"type": "custom",
+					"name": "sweeten",
+					"note": "Sugar is added."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Store norske leksikon: prim",
+						"url": "https://snl.no/prim"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"messmor",
+		"getmessmor"
+	],
+	"facts": [
+		{
+			"k": "Same boil-down",
+			"v": "Pushed further, it becomes mesost (whey cheese)"
+		}
+	]
+}

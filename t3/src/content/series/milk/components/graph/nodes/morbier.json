@@ -1,0 +1,164 @@
+{
+	"label": "Morbier",
+	"example": true,
+	"family": "semiHard",
+	"also": "washed",
+	"about": {
+		"text": "Morbier is a semi-soft cows' milk cheese of France named after the small village of Morbier in Franche-Comté. It is ivory colored, soft and slightly elastic, and is immediately recognizable by the distinctive thin black layer separating it horizontally in the middle. It has a yellowish, sticky rind.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Morbier_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Morbier (fromage) 01.jpg",
+		"author": "Pierre-Yves Beaudouin",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Morbier_(fromage)_01.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-soft",
+	"days": [
+		45,
+		75
+	],
+	"setting": "rennet",
+	"rind": "washed",
+	"protected": "PDO",
+	"place": {
+		"region": "Bourgogne-Franche-Comté",
+		"lat": 46.52,
+		"lon": 6.04,
+		"x": 0.51678,
+		"y": 0.21222,
+		"located": "hint"
+	},
+	"confidence": "high",
+	"how": {
+		"label": "charcoal line",
+		"text": "A face of the curd is coated with vegetable charcoal before pressing, which leaves the horizontal black line through the uncooked, pressed paste. The rind is built up solely by rubbing the wheels with salt water during at least 45 days of ripening.",
+		"sources": {
+			"links": [
+				{
+					"name": "Commission Reg. (EC) 1027/2009 (Morbier PDO)",
+					"url": "https://www.legislation.gov.uk/eur/2009/1027/data.htm?view=plain"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"max": 40
+					}
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "lactic acid bacteria",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							}
+						],
+						"by": [
+							"starter"
+						]
+					}
+				},
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"temperature": {
+						"max": 40
+					},
+					"note": "With rennet only."
+				},
+				{
+					"type": "custom",
+					"name": "cut",
+					"note": "To grains of about 1 cm."
+				},
+				{
+					"type": "custom",
+					"name": "add charcoal",
+					"note": "On half a cake, leaving the horizontal black line."
+				},
+				{
+					"type": "custom",
+					"name": "press",
+					"note": "Lightly, into cakes of 5–8 kg and 30–40 cm."
+				},
+				{
+					"type": "custom",
+					"name": "rub",
+					"note": "The rind forms only by rubbing with salt water, which may carry lactic starters, and no colourings are used."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"temperature": {
+						"min": 7,
+						"max": 15
+					},
+					"seconds": {
+						"min": 3888000
+					}
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Commission Reg. (EC) 1027/2009 (Morbier PDO)",
+						"url": "https://www.legislation.gov.uk/eur/2009/1027/data.htm?view=plain"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Morbier_cheese"
+			}
+		],
+		"text": "Central ash line"
+	},
+	"facts": [
+		{
+			"k": "Breeds",
+			"v": "Montbéliarde or French Simmental cows"
+		}
+	],
+	"raw": true
+}

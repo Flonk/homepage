@@ -1,0 +1,135 @@
+{
+	"label": "Queso fresco",
+	"example": true,
+	"aka": [
+		"Queso blanco fresco"
+	],
+	"family": "freshCheese",
+	"about": {
+		"text": "Mexico's most popular fresh cheese, also widely eaten in the United States. Skimmed or partly skimmed milk is set with rennet at about 38 °C, and the curd is finely milled before salting, which makes the cheese crumbly. It is pressed only by its own weight, is not ripened and has a short shelf life.",
+		"sources": {
+			"links": [
+				{
+					"name": "Temas Selectos de Ingeniería de Alimentos (2012)",
+					"url": "https://www.udlap.mx/TSIA/assets/files/volumen6-2/TSIA-Vol6-No2-Ramirez-Lopez-et-al-2012.pdf"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Queso Fresco Mexicano.jpg",
+		"author": "Nsaum75",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Queso_Fresco_Mexicano.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"MX",
+		"PE"
+	],
+	"beasts": [
+		"cow",
+		"goat"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		0
+	],
+	"setting": "rennet",
+	"rind": "none",
+	"confidence": "high",
+	"how": {
+		"label": "mill the curd",
+		"text": "The rennet curd is ground fine, salted and packed into moulds instead of being pressed into a solid block, so the cheese stays moist (46–57%) and crumbles. It is eaten unripened, so it tastes of fresh milk and salt.",
+		"sources": {
+			"links": [
+				{
+					"name": "Van Hekken & Farkye, Hispanic Cheeses: The Quest for Queso, Food Technology (IFT)",
+					"url": "https://www.ift.org/food-technology-magazine/hispanic-cheeses-the-quest-for-queso"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"temperature": {
+						"min": 30,
+						"max": 32
+					},
+					"note": "With rennet."
+				},
+				{
+					"type": "custom",
+					"name": "cut"
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"note": "Cooked to the desired firmness."
+				},
+				{
+					"type": "custom",
+					"name": "drain",
+					"note": "The whey is drained."
+				},
+				{
+					"type": "custom",
+					"name": "mill",
+					"note": "Finely."
+				},
+				{
+					"type": "custom",
+					"name": "salt",
+					"note": "Dry-salted after milling."
+				},
+				{
+					"type": "custom",
+					"name": "mould",
+					"note": "The milled curd is stuffed into moulds of various shapes and sizes."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Van Hekken & Farkye, Hispanic Cheeses: The Quest for Queso, Food Technology (IFT)",
+						"url": "https://www.ift.org/food-technology-magazine/hispanic-cheeses-the-quest-for-queso"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Queso_Fresco"
+			}
+		],
+		"text": "Its facts, from these."
+	},
+	"composition": {
+		"moisture": {
+			"min": 46,
+			"max": 57
+		}
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Whole or part-skim; pasteurised in industry, raw traditionally"
+		}
+	]
+}

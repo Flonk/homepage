@@ -1,0 +1,37 @@
+{
+	"label": "Berner Alpkäse",
+	"example": true,
+	"family": "alpine",
+	"regions": [
+		"CH"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "hard",
+	"days": [
+		150,
+		730
+	],
+	"setting": "rennet",
+	"rind": "washed",
+	"protected": "PDO",
+	"place": {
+		"region": "Bern",
+		"lat": 46.7,
+		"lon": 7.6,
+		"x": 0.52111,
+		"y": 0.21149,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Berner_Alpk%C3%A4se"
+			}
+		],
+		"text": "made in copper kettle over fire on alps"
+	}
+}

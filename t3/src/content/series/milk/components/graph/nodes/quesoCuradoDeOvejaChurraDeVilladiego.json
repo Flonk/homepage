@@ -1,0 +1,41 @@
+{
+	"label": "Queso curado de oveja churra de Villadiego",
+	"example": true,
+	"family": "hard",
+	"regions": [
+		"ES"
+	],
+	"beasts": [
+		"sheep"
+	],
+	"firm": "hard",
+	"days": [
+		60,
+		180
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Castile and León",
+		"lat": 42.61,
+		"lon": -3.97,
+		"x": 0.48897,
+		"y": 0.22747,
+		"located": "knowledge"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Queso_curado_de_oveja_churra_de_la_comarca_de_Villadiego"
+			},
+			{
+				"name": "en.wikipedia.org",
+				"url": "https://en.wikipedia.org/wiki/List_of_Spanish_cheeses"
+			}
+		],
+		"text": "Burgos, churra sheep; the name says cured (curado); ripening estimated"
+	}
+}

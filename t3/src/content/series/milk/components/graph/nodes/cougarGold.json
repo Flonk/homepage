@@ -1,0 +1,36 @@
+{
+	"label": "Cougar Gold",
+	"example": true,
+	"family": "cheddared",
+	"regions": [
+		"US"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "hard",
+	"days": [
+		365,
+		365
+	],
+	"setting": "rennet",
+	"rind": "none",
+	"place": {
+		"region": "Washington",
+		"lat": 46.73,
+		"lon": -117.18,
+		"x": 0.1745,
+		"y": 0.21137,
+		"located": "knowledge"
+	},
+	"confidence": "high",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Cougar_Gold"
+			}
+		],
+		"text": "canned white cheddar from Washington State University, aged at least a year"
+	}
+}

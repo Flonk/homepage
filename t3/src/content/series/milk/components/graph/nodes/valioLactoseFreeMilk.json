@@ -1,0 +1,73 @@
+{
+	"label": "Valio lactose-free milk",
+	"example": true,
+	"note": "The first fully lactose-free milk, launched in September 2001 as a \"light milk drink\" because it could not be called milk; made by taking the lactose out with membranes rather than only by lactase (how exactly is disputed between sources)",
+	"about": {
+		"text": "Milk from the Finnish dairy cooperative Valio with the lactose removed, developed in 2001 and called the first totally lactose-free milk in the world. Unlike milk treated only with lactase it does not taste sweet.",
+		"sources": {
+			"links": [
+				{
+					"name": "Valio: pioneer in lactose free dairy",
+					"url": "https://www.valio.com/articles/valio-pioneer-in-lactose-free-dairy/"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"regions": [
+		"FI"
+	],
+	"how": {
+		"text": "The lactose is taken out of the milk physically, not split in it, so the milk keeps its ordinary taste. How exactly this is done is not stated on Valio own pages.",
+		"label": "take the lactose out",
+		"sources": {
+			"links": [
+				{
+					"name": "Valio: pioneer in lactose free dairy",
+					"url": "https://www.valio.com/articles/valio-pioneer-in-lactose-free-dairy/"
+				},
+				{
+					"name": "Wikipedia: Valio",
+					"url": "https://en.wikipedia.org/wiki/Valio"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "remove lactose",
+					"note": "Lactose is taken out physically, not split, by chromatographic separation (Valio's patent) or, in some markets, ultrafiltration."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Valio: pioneer in lactose free dairy",
+						"url": "https://www.valio.com/articles/valio-pioneer-in-lactose-free-dairy/"
+					},
+					{
+						"name": "Wikipedia: Valio",
+						"url": "https://en.wikipedia.org/wiki/Valio"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Developed",
+			"v": "2001; Valio calls it the first totally lactose-free milk in the world and says it uses a unique patented technology"
+		},
+		{
+			"k": "Taste",
+			"v": "Not sweet, unlike milk where lactase has split the lactose (Wikipedia: Valio contrasts it with HYLA milk)"
+		},
+		{
+			"k": "Regular milk for comparison",
+			"v": "About 4.8 g lactose per 100 g (Valio)"
+		}
+	]
+}

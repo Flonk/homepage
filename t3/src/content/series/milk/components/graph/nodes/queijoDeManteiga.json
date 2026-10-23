@@ -1,0 +1,120 @@
+{
+	"label": "Queijo de manteiga",
+	"example": true,
+	"aka": [
+		"Queijo do sertão",
+		"Queijo do sertao"
+	],
+	"note": "Made from acid-set milk curd, not from finished cheese, then melted with manteiga de garrafa",
+	"about": {
+		"text": "A soft, buttery, straw-yellow cheese of north-east Brazil: curd made by acidifying milk is washed, melted and enriched with manteiga de garrafa, then moulded. Brazilian law (IN 30/2001) reserves the name for a purely dairy product.",
+		"sources": {
+			"links": [
+				{
+					"name": "MAPA IN 30/2001, Anexo III",
+					"url": "https://wikisda.agricultura.gov.br/dipoa_baselegal/in_30-2001_rt_manteiga_garrafa_queijo_coalho_queijo_manteiga.pdf"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Queijo manteiga.jpg",
+		"author": "Gorete Queiroga de Figueiredo",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Queijo_manteiga.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"BR"
+	],
+	"how": {
+		"label": "wash, melt the curd with bottled butterfat",
+		"sources": {
+			"links": [
+				{
+					"name": "MAPA IN 30/2001, Anexo III",
+					"url": "https://wikisda.agricultura.gov.br/dipoa_baselegal/in_30-2001_rt_manteiga_garrafa_queijo_coalho_queijo_manteiga.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "acidify",
+					"note": "A food-grade organic acid (lactic, citric or acetic) is added directly to the milk, with no rennet and no culture."
+				},
+				{
+					"type": "custom",
+					"name": "draw off whey",
+					"note": "Part of the whey is drawn off."
+				},
+				{
+					"type": "custom",
+					"name": "wash",
+					"note": "With hot water or hot milk."
+				},
+				{
+					"type": "custom",
+					"name": "melt",
+					"note": "The curd is melted."
+				},
+				{
+					"type": "custom",
+					"name": "add fat",
+					"note": "Only manteiga da terra or manteiga de garrafa, and salt."
+				},
+				{
+					"type": "custom",
+					"name": "mould",
+					"note": "Poured into moulds."
+				},
+				{
+					"type": "heat",
+					"does": "cool"
+				},
+				{
+					"type": "custom",
+					"name": "pack"
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "MAPA IN 30/2001, Anexo III",
+						"url": "https://wikisda.agricultura.gov.br/dipoa_baselegal/in_30-2001_rt_manteiga_garrafa_queijo_coalho_queijo_manteiga.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"composition": {
+		"fatInDryMatter": {
+			"min": 25,
+			"max": 55
+		},
+		"moisture": {
+			"max": 54.9
+		}
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Whole, standardised, semi-skimmed or skimmed"
+		},
+		{
+			"k": "Name",
+			"v": "The name Queijo de manteiga or Queijo do sertão is reserved for a dairy base with no non-dairy fat or protein"
+		}
+	]
+}

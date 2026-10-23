@@ -1,0 +1,37 @@
+{
+	"label": "Trou du Cru",
+	"example": true,
+	"family": "washed",
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "soft",
+	"days": [
+		28,
+		45
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "washed",
+	"place": {
+		"region": "Burgundy",
+		"lat": 47.3,
+		"lon": 4.8,
+		"x": 0.51333,
+		"y": 0.20905,
+		"located": "hint"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Trou_du_Cru"
+			}
+		],
+		"text": "Burgundy, Epoisses-style marc-washed"
+	}
+}

@@ -1,0 +1,38 @@
+{
+	"label": "Furmaggiu du quagliu",
+	"example": true,
+	"family": "hard",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"sheep",
+		"goat"
+	],
+	"firm": "hard",
+	"days": [
+		60,
+		180
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Calabria",
+		"lat": 39.2,
+		"lon": 16.4,
+		"x": 0.54556,
+		"y": 0.24001,
+		"located": "guess"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Furmaggiu_du_quagliu"
+			}
+		],
+		"text": "Calabrian, set with kid rennet"
+	}
+}

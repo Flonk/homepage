@@ -1,0 +1,200 @@
+{
+	"label": "Galotyri",
+	"example": true,
+	"aka": [
+		"Γαλοτύρι",
+		"Galotiri"
+	],
+	"note": "Greek PDO of Epirus and Thessaly; counted as neither cheese nor yoghurt; the industrial version uses a yoghurt starter, artisan ones sour naturally and are ripened.",
+	"family": "lacticCheese",
+	"about": {
+		"text": "Galotyri is a Greek PDO acid-curd, soft spreadable cheese made in Epirus and Thessaly from boiled, naturally acidified ewe milk or ewe and goat milk. It is thick and creamy, with at least 40 % fat in dry matter, at most 75 % moisture and pH 4 to 4.5.",
+		"sources": {
+			"links": [
+				{
+					"name": "AIMS Agriculture and Food 2019, Galotyri LAB survey (plus Greek Wikipedia for composition)",
+					"url": "https://www.aimspress.com/article/10.3934/agrfood.2019.3.685"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"regions": [
+		"GR"
+	],
+	"beasts": [
+		"sheep",
+		"goat"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		2
+	],
+	"estimated": true,
+	"setting": "acid",
+	"rind": "none",
+	"protected": "PDO",
+	"confidence": "medium",
+	"how": {
+		"sources": {
+			"links": [
+				{
+					"name": "AIMS Agriculture and Food 2019, 4(3):685 (abstract opened)",
+					"url": "https://www.aimspress.com/article/10.3934/agrfood.2019.3.685"
+				},
+				{
+					"name": "Greek Wikipedia, Γαλοτύρι",
+					"url": "https://el.wikipedia.org/wiki/Γαλοτύρι"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 80,
+						"max": 90
+					},
+					"note": "Boiled in a water bath so no skin forms, and salt is added."
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"by": [
+							"wild"
+						],
+						"microbes": [
+							{
+								"name": "Lactococcus lactis",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								],
+								"isolates": 19.8
+							},
+							{
+								"name": "Lactiplantibacillus plantarum",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								],
+								"isolates": 16.9
+							},
+							{
+								"name": "Streptococcus thermophilus",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								],
+								"isolates": 14.7
+							},
+							{
+								"name": "Leuconostoc mesenteroides group",
+								"kind": "bacterium",
+								"isolates": 11.3
+							},
+							{
+								"name": "Enterococcus faecalis",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								],
+								"isolates": 8.5
+							},
+							{
+								"name": "Pediococcus inopinatus",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								],
+								"isolates": 7.3
+							},
+							{
+								"name": "Enterococcus faecium",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								],
+								"isolates": 6.2
+							},
+							{
+								"name": "Enterococcus durans",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								],
+								"isolates": 5.1
+							},
+							{
+								"name": "Lacticaseibacillus rhamnosus",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								],
+								"isolates": 3.4
+							},
+							{
+								"name": "Lactobacillus gasseri",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								],
+								"isolates": 3.4
+							},
+							{
+								"name": "Lactobacillus delbrueckii subsp. bulgaricus",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								],
+								"isolates": 2.8
+							}
+						]
+					},
+					"temperature": {
+						"min": 18,
+						"max": 20
+					},
+					"note": "Left covered and stirred daily until thick and creamy."
+				}
+			],
+			"text": "Boiled ewe's milk is left covered and stirred daily until thick. Industrially it is made with a starter of Streptococcus thermophilus and/or Lactobacillus delbrueckii subsp. bulgaricus (97.4 % of isolates); the microbes listed are those found in the artisan product.",
+			"sources": {
+				"links": [
+					{
+						"name": "AIMS Agriculture and Food 2019, 4(3):685 (abstract opened)",
+						"url": "https://www.aimspress.com/article/10.3934/agrfood.2019.3.685"
+					},
+					{
+						"name": "Greek Wikipedia, Γαλοτύρι",
+						"url": "https://el.wikipedia.org/wiki/Γαλοτύρι"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Galotyri"
+			}
+		],
+		"text": "Soft creamy, yoghurt-like acid-set cheese from Epirus and Thessaly"
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Fat-rich late-lactation milk traditionally"
+		}
+	]
+}

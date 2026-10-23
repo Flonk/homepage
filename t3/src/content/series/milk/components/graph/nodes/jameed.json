@@ -1,0 +1,169 @@
+{
+	"label": "Jameed",
+	"example": true,
+	"aka": [
+		"Jameed balls",
+		"جميد",
+		"Kashk",
+		"Qurut"
+	],
+	"family": "sunDriedCheese",
+	"about": {
+		"text": "Jordan's hard, dry skimmed yogurt, made mainly from sheep's milk on a small scale. Traditionally the yogurt is churned to take off the butter, and the skimmed remainder is salted and dried. Market samples average about 85% solids and 16% salt, which lets it keep for months.",
+		"sources": {
+			"links": [
+				{
+					"name": "Hilali et al., ICARDA (2017)",
+					"url": "https://repo.mel.cgiar.org/items/8150ce16-1c34-465a-a19d-cf72f9d5aac0/full"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Jameed.JPG",
+		"author": "Syrinje",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Jameed.JPG"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"JO",
+		"PS"
+	],
+	"beasts": [
+		"sheep"
+	],
+	"firm": "extra-hard",
+	"days": [
+		14,
+		30
+	],
+	"estimated": true,
+	"setting": "acid",
+	"rind": "none",
+	"confidence": "medium",
+	"how": {
+		"label": "churn, boil, dry",
+		"text": "Jameed is the curd of churned sour yoghurt, strained, heavily salted and dried in the sun. Low moisture, low pH and high salt together let it keep for up to two years.",
+		"sources": {
+			"links": [
+				{
+					"name": "Hamad et al., J. Food Technology Research 3(2) (2016)",
+					"url": "https://archive.conscientiabeam.com/index.php/58/article/download/361/493"
+				},
+				{
+					"name": "Hilali et al., ICARDA (2018)",
+					"url": "https://repo.mel.cgiar.org/items/2f635dc9-fe83-4b8b-a5ae-f2c06885475b/full"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"note": "The milk is weakly heated."
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [],
+						"by": [
+							"wild"
+						]
+					},
+					"note": "Soured by its own flora."
+				},
+				{
+					"type": "churn"
+				},
+				{
+					"type": "heat",
+					"does": "heat",
+					"note": "The buttermilk is heated."
+				},
+				{
+					"type": "custom",
+					"name": "strain",
+					"note": "In cloth bags."
+				},
+				{
+					"type": "custom",
+					"name": "knead",
+					"note": "With salt."
+				},
+				{
+					"type": "custom",
+					"name": "shape",
+					"note": "Into balls."
+				},
+				{
+					"type": "dry",
+					"seconds": {
+						"min": 1296000,
+						"max": 1296000,
+						"about": true
+					},
+					"note": "In the sun, to about 20 % moisture."
+				}
+			],
+			"text": "Mostly sheep milk, weakly heated and soured by its own flora, then churned; the heated buttermilk curd is strained, salted and sun-dried.",
+			"sources": {
+				"links": [
+					{
+						"name": "Hamad et al., J. Food Technology Research 3(2) (2016)",
+						"url": "https://archive.conscientiabeam.com/index.php/58/article/download/361/493"
+					},
+					{
+						"name": "Hilali et al., ICARDA (2018)",
+						"url": "https://repo.mel.cgiar.org/items/2f635dc9-fe83-4b8b-a5ae-f2c06885475b/full"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Jameed"
+			}
+		],
+		"text": "salted strained yoghurt/buttermilk dried hard in the sun (weeks); rehydrated for mansaf"
+	},
+	"composition": {
+		"pH": {
+			"min": 3.7,
+			"max": 3.7,
+			"about": true
+		},
+		"solids": {
+			"min": 62,
+			"max": 92
+		}
+	},
+	"facts": [
+		{
+			"k": "Salt",
+			"v": "11.7 % in market samples"
+		},
+		{
+			"k": "Texture",
+			"v": "Stone-hard balls"
+		}
+	]
+}

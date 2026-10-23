@@ -1,0 +1,120 @@
+{
+	"label": "Domiati",
+	"example": true,
+	"family": "brined",
+	"about": {
+		"text": "Domiati cheese, also referred to as \"white cheese\", is a soft white salty cheese made primarily in Egypt, but also in Sudan and other Middle Eastern countries. Typically made from buffalo milk, cow milk, or a mixture, it can also be made from other milks, such as sheep, goat or camel milk. It is the most common Egyptian cheese. Unlike feta and other white cheeses, salt is added directly to the milk, before rennet is added. It is named after the seaport city of Damietta (دمياط).",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Domiati"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Domiati cheese.jpg",
+		"author": "MartinKassemJ120",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Domiati_cheese.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"EG"
+	],
+	"beasts": [
+		"buffalo",
+		"cow"
+	],
+	"firm": "soft",
+	"days": [
+		60,
+		240
+	],
+	"setting": "rennet",
+	"rind": "brine",
+	"confidence": "high",
+	"how": {
+		"label": "salt the milk",
+		"text": "Domiati is unusual in that the milk is heavily salted before renneting, so only salt-tolerant bacteria can grow; the curd is then pickled in salted whey or brine, becoming more acid and sharply pickled in flavour with age.",
+		"sources": {
+			"links": [
+				{
+					"name": "El-Baradei et al., Appl. Environ. Microbiol. 73:1248 (2007)",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1828670"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "salt",
+					"note": "The milk is salted with 5–14 % NaCl before renneting."
+				},
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"note": "Rennet is added to the salted milk."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Leuconostoc mesenteroides",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Lactococcus garvieae",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							}
+						]
+					},
+					"seconds": {
+						"max": 10368000
+					},
+					"note": "No starter, salt-tolerant lactic bacteria pickle the curd in salted whey or brine for up to 2–4 months, or it is eaten fresh."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "El-Baradei et al., Appl. Environ. Microbiol. 73:1248 (2007)",
+						"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1828670"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Domiati"
+			}
+		],
+		"text": "May be eaten fresh or stored in brine up to 8 months"
+	}
+}

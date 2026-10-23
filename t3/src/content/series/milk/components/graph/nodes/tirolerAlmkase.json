@@ -1,0 +1,45 @@
+{
+	"label": "Tiroler Almkäse",
+	"example": true,
+	"aka": [
+		"Tiroler Alpkäse"
+	],
+	"family": "alpine",
+	"regions": [
+		"AT"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "hard",
+	"days": [
+		60,
+		180
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Tyrol",
+		"lat": 47.25,
+		"lon": 11.4,
+		"x": 0.53167,
+		"y": 0.20925,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Tiroler_Almk%C3%A4se%3B_Tiroler_Alpk%C3%A4se"
+			},
+			{
+				"name": "de.wikipedia.org",
+				"url": "https://de.wikipedia.org/wiki/Alpk%C3%A4se"
+			}
+		],
+		"text": "g.U.; raw milk made only on alpine pastures May-September, silage-free; PDO legal minimum ripening not found"
+	}
+}

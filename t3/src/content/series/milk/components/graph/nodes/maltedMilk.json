@@ -1,0 +1,120 @@
+{
+	"label": "Malted milk",
+	"aka": [
+		"Malted milk powder"
+	],
+	"from": "milkPowder",
+	"step": "mix with malt extract and flour, dry",
+	"note": "Invented as an infant food: James Horlick, a London pharmacist, formed J & W Horlicks in 1873, patent 1883 for a formula with dried milk; the name malted milk was trademarked 1887.",
+	"about": {
+		"text": "A powder of malted barley, wheat flour and dried whole milk, stirred into hot or cold milk or water. It began as an infant food and became a drink and a flavour of sweets.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Malted_milk"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Malted Milk Can.jpg",
+		"author": "Smash the Iron Cage",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Malted_Milk_Can.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "Wheat flour and ground barley malt are mashed, so the malt enzymes convert insoluble starch into sugars (maltose, dextrins). The mash extract is mixed with milk, evaporated to a syrup in a vacuum pan and dried under vacuum to a powder. Whether the milk goes in fresh or as powder varies; the arrow in the graph starts from milk powder, the modern route. No source I could open gave mash temperature, time or the malt/flour/milk ratio.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Malted milk",
+					"url": "https://en.wikipedia.org/wiki/Malted_milk"
+				},
+				{
+					"name": "OQLF Grand dictionnaire: lait malté en poudre",
+					"url": "https://vitrinelinguistique.oqlf.gouv.qc.ca/fiche-gdt/fiche/2298766/lait-malte-en-poudre"
+				},
+				{
+					"name": "US patent 1,851,988: Malted milk process",
+					"url": "https://patents.google.com/patent/US1851988A/en"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "mash",
+					"note": "Wheat flour and ground barley malt are mashed, the malt amylases turning starch into maltose and dextrins."
+				},
+				{
+					"type": "custom",
+					"name": "mix",
+					"note": "The mash extract is mixed with milk or milk powder."
+				},
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 57,
+						"max": 57,
+						"about": true
+					},
+					"note": "Concentrated in a vacuum pan to a heavy syrup."
+				},
+				{
+					"type": "dry",
+					"temperature": {
+						"min": 96,
+						"max": 96,
+						"about": true
+					},
+					"note": "Dried under vacuum on shelves, to about 3 % moisture or less."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Malted milk",
+						"url": "https://en.wikipedia.org/wiki/Malted_milk"
+					},
+					{
+						"name": "OQLF Grand dictionnaire: lait malté en poudre",
+						"url": "https://vitrinelinguistique.oqlf.gouv.qc.ca/fiche-gdt/fiche/2298766/lait-malte-en-poudre"
+					},
+					{
+						"name": "US patent 1,851,988: Malted milk process",
+						"url": "https://patents.google.com/patent/US1851988A/en"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"horlicks",
+		"ovaltine",
+		"milo"
+	],
+	"facts": [
+		{
+			"k": "Drying",
+			"v": "Roller, spray or vacuum drying all occur (Indian standard IS 1806:2018, seen in a search summary)"
+		},
+		{
+			"k": "Historic process (1932 patent)",
+			"v": "Syrup beaten about 15–20 min into a taffy, rolled into sheets about 3/16 in thick, cut to balls, puffed and dried under about 28 in vacuum; figures partly garbled in the scanned text"
+		}
+	]
+}

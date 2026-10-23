@@ -1,0 +1,44 @@
+{
+	"label": "Crème légère",
+	"from": "cream",
+	"at": 12,
+	"about": {
+		"text": "France’s light cream: at least 12 % and less than 30 % fat, poured or thickened, as the full crème has at least 30 %.",
+		"sources": {
+			"links": [
+				{
+					"name": "French Ministry of the Economy: laits et crèmes",
+					"url": "https://www.economie.gouv.fr/node/3237976"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"regions": [
+		"FR"
+	],
+	"how": {
+		"text": "Light cream is cream standardised to 12-30 % fat. The fluid UHT kind is sterilised for shelf life and thickened with starch and guar. Temperatures are not given by the sources opened.",
+		"sources": {
+			"links": [
+				{
+					"name": "Auchan: Bridélice crème légère fluide UHT 12 % MG",
+					"url": "https://www.auchan.fr/bridelice-creme-legere-fluide-uht-12-mg/pr-C1177965"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 12,
+			"max": 30
+		}
+	},
+	"facts": [
+		{
+			"k": "Variants",
+			"v": "Sold pasteurised or sterilised (UHT); the fluid shelf-stable kind is 'Crème légère stérilisée UHT à 12 % MG'"
+		}
+	]
+}

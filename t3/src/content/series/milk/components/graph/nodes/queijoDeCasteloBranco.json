@@ -1,0 +1,41 @@
+{
+	"label": "Queijo de Castelo Branco",
+	"example": true,
+	"family": "plantCheese",
+	"regions": [
+		"PT"
+	],
+	"beasts": [
+		"sheep"
+	],
+	"firm": "semi-hard",
+	"days": [
+		45,
+		90
+	],
+	"setting": "plant",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Castelo Branco District",
+		"lat": 39.82,
+		"lon": -7.49,
+		"x": 0.47919,
+		"y": 0.23778,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Queijo_de_Castelo_Branco"
+			},
+			{
+				"name": "en.wikipedia.org",
+				"url": "https://en.wikipedia.org/wiki/Queijos_da_Beira_Baixa"
+			}
+		],
+		"text": "Its facts, from these."
+	}
+}

@@ -1,0 +1,98 @@
+{
+	"label": "Blancmange",
+	"example": true,
+	"note": "Milk or cream and sugar thickened with rice flour, gelatin or cornflour, often almond flavoured, set in a mould; medieval ones had shredded capon; traces back to the older Middle Eastern muhallebi",
+	"about": {
+		"text": "A sweet European dessert of milk or cream, sugar and a thickener, usually set in a mould and served cold.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Blancmange"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Blancmange on plate.jpg",
+		"author": "Apmarles",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Blancmange_on_plate.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"FR",
+		"GB"
+	],
+	"how": {
+		"text": "The cornflour is stirred smooth in a little cold milk, then into the hot sweetened milk. Boiling gelatinises the starch, which then sets to a gel as it cools. Home recipes differ a lot in proportions; Wikipedia gives no numbers.",
+		"sources": {
+			"links": [
+				{
+					"name": "Sydney Living Museums: Blancmange made with cornflour (1961 recipe)",
+					"url": "https://blogs.sydneylivingmuseums.com.au/cook/recipe/blancmange-version-1/"
+				},
+				{
+					"name": "Wikipedia: Blancmange",
+					"url": "https://en.wikipedia.org/wiki/Blancmange"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "infuse",
+					"note": "Bay leaf or lemon peel in the hot milk."
+				},
+				{
+					"type": "custom",
+					"name": "mix",
+					"note": "Cornflour, 2 tablespoons, mixed with 1/4 cup of the cold milk first."
+				},
+				{
+					"type": "heat",
+					"does": "heat",
+					"seconds": {
+						"min": 180,
+						"max": 180
+					},
+					"note": "Brought to the boil, then simmered 3 min, stirring."
+				},
+				{
+					"type": "custom",
+					"name": "set",
+					"note": "In a mould rinsed with cold water, chilled until set."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Sydney Living Museums: Blancmange made with cornflour (1961 recipe)",
+						"url": "https://blogs.sydneylivingmuseums.com.au/cook/recipe/blancmange-version-1/"
+					},
+					{
+						"name": "Wikipedia: Blancmange",
+						"url": "https://en.wikipedia.org/wiki/Blancmange"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Thickener options",
+			"v": "Rice flour, gelatin or cornflour; arrowroot and cornflour were added in the 19th century"
+		}
+	]
+}

@@ -1,0 +1,41 @@
+{
+	"label": "Cornish Garland",
+	"example": true,
+	"family": "soft",
+	"regions": [
+		"GB"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "soft",
+	"days": [
+		0,
+		14
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "none",
+	"place": {
+		"region": "Cornwall",
+		"lat": 50.4,
+		"lon": -4.9,
+		"x": 0.48639,
+		"y": 0.19595,
+		"located": "knowledge"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Cornish_Garland"
+			},
+			{
+				"name": "en.wikipedia.org",
+				"url": "https://en.wikipedia.org/wiki/List_of_Cornish_cheeses"
+			}
+		],
+		"text": "Only a name in the Wikipedia Cornish list; probably a flavoured (garlic/herb) soft cheese, details unverified"
+	}
+}

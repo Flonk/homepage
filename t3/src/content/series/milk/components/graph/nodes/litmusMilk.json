@@ -1,0 +1,104 @@
+{
+	"label": "Litmus milk\n(test medium)",
+	"aka": [
+		"Litmus SM broth"
+	],
+	"from": "skimmedPowder",
+	"step": "add litmus, sterilise",
+	"alsoFrom": [
+		"skimmed"
+	],
+	"note": "Same family as Blotto: skim milk powder used as a lab reagent, not eaten. A related skim-milk test medium is skim milk agar.",
+	"about": {
+		"text": "Skim milk with the dye litmus, kept in tubes to see what a bacterium does to milk: sours the lactose, clots or digests the casein, or bleaches the dye. It has been a classroom and diagnostic medium for identifying species for a century.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Litmus_milk"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"how": {
+		"sources": {
+			"links": [
+				{
+					"name": "HiMedia, Litmus SM Broth datasheet",
+					"url": "https://www.himedialabs.com/media/TD/M609S.pdf"
+				},
+				{
+					"name": "Biology Notes Online, Litmus milk test",
+					"url": "https://biologynotesonline.com/litmus-milk-test-principle-procedure/"
+				},
+				{
+					"name": "Wikipedia: Litmus milk",
+					"url": "https://en.wikipedia.org/wiki/Litmus_milk"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "mix",
+					"note": "Skim milk powder about 100 g/L with litmus at 0.5–5 g/L depending on the maker, some adding 0.5 g/L sodium sulphite."
+				},
+				{
+					"type": "custom",
+					"name": "fill",
+					"note": "10 ml in 15 x 150 mm tubes."
+				},
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 121,
+						"max": 121
+					},
+					"seconds": {
+						"min": 300,
+						"max": 300
+					}
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "HiMedia, Litmus SM Broth datasheet",
+						"url": "https://www.himedialabs.com/media/TD/M609S.pdf"
+					},
+					{
+						"name": "Biology Notes Online, Litmus milk test",
+						"url": "https://biologynotesonline.com/litmus-milk-test-principle-procedure/"
+					},
+					{
+						"name": "Wikipedia: Litmus milk",
+						"url": "https://en.wikipedia.org/wiki/Litmus_milk"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Acid",
+			"v": "Lactose fermented: pink to red (red below pH 4.5), casein may clot; gas in the clot is a stormy clot"
+		},
+		{
+			"k": "Alkaline",
+			"v": "Protein broken down, ammonia or amines: blue (above pH 8.3), sometimes soft blue clot from rennin-like enzyme"
+		},
+		{
+			"k": "Peptonisation",
+			"v": "Casein digested, clot dissolves, medium clears"
+		},
+		{
+			"k": "Reduction",
+			"v": "Litmus bleached to white under oxygen-free conditions; thioglycollate or an iron nail for anaerobes such as Clostridium"
+		}
+	]
+}

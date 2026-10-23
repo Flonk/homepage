@@ -1,0 +1,102 @@
+{
+	"label": "Stracciatella di bufala",
+	"example": true,
+	"family": "stracciatella",
+	"about": {
+		"text": "Stracciatella made from buffalo milk: shredded stretched curd mixed with cream.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Stracciatella_(cheese)"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Stracciatella di Bufala, with tomatoes.jpg",
+		"author": "Tyuvc",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Stracciatella_di_Bufala,_with_tomatoes.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"buffalo"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		2
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "none",
+	"place": {
+		"region": "Apulia",
+		"lat": 41.46,
+		"lon": 15.54,
+		"x": 0.54317,
+		"y": 0.23177,
+		"located": "hint"
+	},
+	"confidence": "medium",
+	"how": {
+		"text": "The buffalo version is the same pulled-curd cheese as stracciatella, made from the curd of buffalo mozzarella: the stretched curd is shredded and mixed with cream. Buffalo herds and their cheeses are much more common west of the Apennines, in Lazio and Campania. No buffalo-specific temperatures or fat figures were found.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Stracciatella di bufala",
+					"url": "https://en.wikipedia.org/wiki/Stracciatella_di_bufala"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "shred",
+					"note": "The stretched curd of buffalo mozzarella is shredded."
+				},
+				{
+					"type": "custom",
+					"name": "mix",
+					"note": "Mixed with cream."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Stracciatella di bufala",
+						"url": "https://en.wikipedia.org/wiki/Stracciatella_di_bufala"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Stracciatella_di_bufala"
+			},
+			{
+				"name": "en.wikipedia.org",
+				"url": "https://en.wikipedia.org/wiki/Stracciatella_(cheese)"
+			}
+		],
+		"text": "buffalo-milk version of stracciatella: shredded stretched curd in cream; Wikipedia treats it as a variant of Stracciatella (Apulia)"
+	}
+}

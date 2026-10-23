@@ -1,0 +1,89 @@
+{
+	"label": "Half-and-half",
+	"from": "cream",
+	"at": 12,
+	"about": {
+		"text": "A mixture of milk and cream with at least 10.5 % and less than 18 % milkfat, poured into coffee in the United States.",
+		"sources": {
+			"links": [
+				{
+					"name": "US 21 CFR 131.180",
+					"url": "https://www.ecfr.gov/current/title-21/part-131/section-131.180"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Berkeley Farms Fat-Free Half & Half.jpg",
+		"author": "John White from San Francisco",
+		"license": "CC BY 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Berkeley_Farms_Fat-Free_Half_%26_Half.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"US"
+	],
+	"how": {
+		"text": "Cream and milk are blended to the fat grade (10.5 to under 18 %) and heat-treated; nothing is soured or cultured. The figures are the US legal definition.",
+		"sources": {
+			"links": [
+				{
+					"name": "US 21 CFR 131.180 Half-and-half",
+					"url": "https://www.law.cornell.edu/cfr/text/21/131.180"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "blend",
+					"note": "Milk and cream are blended to the fat grade, 10.5 to under 18 % milkfat."
+				},
+				{
+					"type": "pasteurise",
+					"note": "Pasteurised or ultra-pasteurised."
+				},
+				{
+					"type": "homogenise",
+					"note": "Optional."
+				},
+				{
+					"type": "custom",
+					"name": "add",
+					"note": "Optional emulsifiers, stabilisers, nutritive sweeteners and flavourings."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "US 21 CFR 131.180 Half-and-half",
+						"url": "https://www.law.cornell.edu/cfr/text/21/131.180"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 10.5,
+			"max": 18
+		}
+	},
+	"facts": [
+		{
+			"k": "Label",
+			"v": "'Ultra-pasteurized' must be shown if it is; 'sweetened' if sweetened without a flavour"
+		}
+	]
+}

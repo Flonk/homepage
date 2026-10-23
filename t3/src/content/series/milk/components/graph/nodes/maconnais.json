@@ -1,0 +1,37 @@
+{
+	"label": "Mâconnais",
+	"example": true,
+	"family": "lacticCheese",
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"goat"
+	],
+	"firm": "soft",
+	"days": [
+		10,
+		30
+	],
+	"setting": "rennet-acid",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Burgundy",
+		"lat": 46.3,
+		"lon": 4.83,
+		"x": 0.51342,
+		"y": 0.2131,
+		"located": "hint"
+	},
+	"confidence": "high",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/M%C3%A2connais_cheese"
+			}
+		],
+		"text": "Its facts, from these."
+	}
+}

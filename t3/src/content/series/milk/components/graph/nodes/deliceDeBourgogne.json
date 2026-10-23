@@ -1,0 +1,41 @@
+{
+	"label": "Délice de Bourgogne",
+	"example": true,
+	"family": "bloomy",
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "soft",
+	"days": [
+		7,
+		28
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "bloomy",
+	"place": {
+		"region": "Burgundy",
+		"lat": 47.2,
+		"lon": 4.8,
+		"x": 0.51333,
+		"y": 0.20945,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/D%C3%A9lice_de_Bourgogne"
+			},
+			{
+				"name": "cheeseprofessor.com",
+				"url": "https://cheeseprofessor.com/blog/why-delice-de-bourgogne-is-the-triple-cream-cheese-of-your-dreams"
+			}
+		],
+		"text": "Triple-cream by Fromagerie Lincet (1975), trademarked, not PDO; cream is added to the milk, not to whey. Sources only give 'at least 7 days' in the cellar, so max is still an estimate"
+	}
+}

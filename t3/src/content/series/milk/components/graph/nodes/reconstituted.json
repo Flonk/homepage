@@ -1,0 +1,74 @@
+{
+	"label": "Reconstituted milk",
+	"from": "milkPowder",
+	"step": "add water",
+	"alsoFrom": [
+		"skimmedPowder"
+	],
+	"note": "Water stirred into whole or skim milk powder; the fat comes from the powder, none is added separately. Unlike recombined milk.",
+	"about": {
+		"text": "Liquid milk made by adding water to skim milk powder, whole milk powder or a mix of the two. Unlike recombined milk it takes its fat from the powder and has no milk fat added separately. It is made where fresh milk is scarce.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook: Recombined milk products",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/recombined-milk-products"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"how": {
+		"text": "Water is stirred into milk powder until it is liquid milk again. With whole milk powder the fat is already in it.",
+		"label": "add water",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook: Recombined milk products",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/recombined-milk-products"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "add water",
+					"note": "Water is added to skim milk powder, whole milk powder or a mix of both, the fat coming from the powder."
+				},
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 72
+					},
+					"seconds": {
+						"min": 15,
+						"max": 15
+					},
+					"note": "Pasteurised, or UHT, as for recombined milk."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Tetra Pak Dairy Processing Handbook: Recombined milk products",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/recombined-milk-products"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Versus recombined",
+			"v": "Recombined = skim powder + water + milk fat added separately (usually anhydrous milk fat); reconstituted = water added to powder only"
+		},
+		{
+			"k": "Why",
+			"v": "Milk is perishable and scarce in countries with little or no dairy production of their own; powder keeps months or years"
+		}
+	]
+}

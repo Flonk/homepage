@@ -1,0 +1,110 @@
+{
+	"label": "Maroilles",
+	"example": true,
+	"aka": [
+		"Marolles"
+	],
+	"family": "washed",
+	"about": {
+		"text": "A soft cheese from northern France with an orange-red washed rind, in a rectangular block; AOC since 1976.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Maroilles_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Maroilles.jpg",
+		"author": "Antoinel",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Maroilles.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "soft",
+	"days": [
+		35,
+		120
+	],
+	"setting": "rennet",
+	"rind": "washed",
+	"protected": "PDO",
+	"place": {
+		"region": "Hauts-de-France",
+		"lat": 50.12,
+		"lon": 3.79,
+		"x": 0.51053,
+		"y": 0.19717,
+		"located": "knowledge"
+	},
+	"confidence": "high",
+	"how": {
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Maroilles cheese",
+					"url": "https://en.wikipedia.org/wiki/Maroilles_cheese"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "dry",
+					"seconds": {
+						"min": 864000,
+						"max": 864000,
+						"about": true
+					}
+				},
+				{
+					"type": "custom",
+					"name": "brush and wash"
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"seconds": {
+						"min": 3024000
+					}
+				}
+			],
+			"text": "Brushed and washed after drying. Smaller sizes ripen 4, 3 and 2 weeks (Sorbais, Mignon, Quart).",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Maroilles cheese",
+						"url": "https://en.wikipedia.org/wiki/Maroilles_cheese"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Maroilles_cheese"
+			}
+		],
+		"text": "Its facts, from these."
+	}
+}

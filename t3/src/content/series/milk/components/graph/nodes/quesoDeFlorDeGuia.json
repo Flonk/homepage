@@ -1,0 +1,45 @@
+{
+	"label": "Queso de Flor de Guía",
+	"example": true,
+	"aka": [
+		"Queso de Media Flor de Guía",
+		"Queso de Guía",
+		"Flor de Guía"
+	],
+	"family": "semiHard",
+	"also": "plantCheese",
+	"regions": [
+		"ES"
+	],
+	"beasts": [
+		"sheep",
+		"cow",
+		"goat"
+	],
+	"firm": "semi-hard",
+	"days": [
+		15,
+		60
+	],
+	"setting": "plant",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Canary Islands",
+		"lat": 28.12,
+		"lon": -15.73,
+		"x": 0.45631,
+		"y": 0.27709,
+		"located": "knowledge"
+	},
+	"confidence": "high",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Flor_de_Gu%C3%ADa_cheese"
+			}
+		],
+		"text": "Gran Canaria PDO; sheep milk at least 60 %, cow max 40 %, goat max 10 %; Flor = cardoon-set, Media Flor = 50 % cardoon / 50 % other vegetable, Guía = vegetable and/or animal rennet; matured 15 to 60 days"
+	}
+}

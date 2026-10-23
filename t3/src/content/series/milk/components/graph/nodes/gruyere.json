@@ -1,0 +1,158 @@
+{
+	"label": "Gruyère",
+	"example": true,
+	"about": {
+		"text": "Gruyère is a hard Swiss cheese that originated in the Fribourg, Vaud, Neuchâtel, Jura, and Bern cantons in Switzerland. It is named after the town of Gruyères in Fribourg. In 2001, Gruyère gained the appellation d'origine contrôlée (AOC), which became the appellation d'origine protégée (AOP) as of 2013.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Gruy%C3%A8re_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Gruyère.jpg",
+		"author": "Rolf Krahl (Rotkraut)",
+		"license": "CC BY 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Gruy%C3%A8re.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"CH"
+	],
+	"how": {
+		"label": "smear the rind",
+		"text": "Instead of a warm propionic room, Gruyère goes straight into cool, humid cellars where the wheels are rubbed with salt water to grow a smear. The smear drives flavour and aroma, and holes are welcome but not required.",
+		"sources": {
+			"links": [
+				{
+					"name": "Le Gruyère AOP Pflichtenheft (BLW)",
+					"url": "https://www.aop-igp.ch/fileadmin/Dokumente/kampagne2025/Pflichtenhefte/GRU/Pflichtenheft%20DE%20Gruyere%20AOP.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "cool",
+					"temperature": {
+						"min": 12,
+						"max": 18
+					}
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic",
+						"smear"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "whey (Sirten) cultures",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							}
+						]
+					},
+					"note": "Optionally with RMK milk cultures."
+				},
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"temperature": {
+						"min": 31,
+						"max": 31,
+						"about": true
+					},
+					"seconds": {
+						"min": 1800,
+						"max": 3000
+					},
+					"note": "With rennet, in an open copper vat."
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"temperature": {
+						"min": 54,
+						"max": 59
+					}
+				},
+				{
+					"type": "custom",
+					"name": "press",
+					"seconds": {
+						"min": 57600
+					},
+					"note": "Into wheels of 55–65 cm and 25–40 kg."
+				},
+				{
+					"type": "custom",
+					"name": "brine",
+					"temperature": {
+						"min": 12,
+						"max": 20
+					},
+					"note": "In a brine of over 20 °Bé."
+				},
+				{
+					"type": "ferment",
+					"does": "smear",
+					"seconds": {
+						"min": 691200,
+						"max": 1036800
+					},
+					"note": "Rubbed daily with salt water, which starts the smear."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"temperature": {
+						"min": 12,
+						"max": 18
+					},
+					"seconds": {
+						"min": 12960000
+					},
+					"humidity": {
+						"min": 92,
+						"max": 92,
+						"about": true
+					}
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Le Gruyère AOP Pflichtenheft (BLW)",
+						"url": "https://www.aop-igp.ch/fileadmin/Dokumente/kampagne2025/Pflichtenhefte/GRU/Pflichtenheft%20DE%20Gruyere%20AOP.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Rind",
+			"v": "Brownish"
+		}
+	],
+	"raw": true
+}

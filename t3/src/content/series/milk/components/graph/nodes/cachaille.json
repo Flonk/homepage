@@ -1,0 +1,39 @@
+{
+	"label": "Cachaille",
+	"example": true,
+	"family": "soft",
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"goat",
+		"sheep",
+		"cow"
+	],
+	"firm": "soft",
+	"days": [
+		14,
+		60
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "none",
+	"place": {
+		"region": "Provence-Alpes-Côte d'Azur",
+		"lat": 43.9,
+		"lon": 5.8,
+		"x": 0.51611,
+		"y": 0.22255,
+		"located": "guess"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Cachaille"
+			}
+		],
+		"text": "fermented spreadable cheese from cheese remnants (fromage fort type, Provence); probably the same preparation as Cachat; no separate source found"
+	}
+}

@@ -1,0 +1,126 @@
+{
+	"label": "Colby",
+	"example": true,
+	"aka": [
+		"Colby cheese"
+	],
+	"family": "washedCurd",
+	"also": "cheddared",
+	"about": {
+		"text": "Colby is a semihard orange cheese made from cow's milk. It is named after the U.S. city of Colby, Wisconsin, where it was first developed in 1885 and quickly became popular. Today the cheese is typically used in snacks, sandwiches, and salads.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Colby_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Colby Cheese.jpg",
+		"author": "Jeff the quiet",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Colby_Cheese.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"US"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		30,
+		90
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "none",
+	"place": {
+		"region": "Wisconsin",
+		"lat": 44.5,
+		"lon": -89.5,
+		"x": 0.25139,
+		"y": 0.22023,
+		"located": "hint"
+	},
+	"confidence": "high",
+	"how": {
+		"label": "cool the curd",
+		"text": "Adding water to cool the stirred curd stops the pieces from matting together into slabs, the step that defines cheddaring. The pieces are then drained, salted and pressed, giving a cheese with up to 40% moisture.",
+		"sources": {
+			"links": [
+				{
+					"name": "21 CFR 133.118 Colby cheese (US standard of identity)",
+					"url": "https://www.law.cornell.edu/cfr/text/21/133.118"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "cool",
+					"note": "By adding water while stirring, so the pieces do not mat."
+				},
+				{
+					"type": "custom",
+					"name": "drain"
+				},
+				{
+					"type": "custom",
+					"name": "salt"
+				},
+				{
+					"type": "custom",
+					"name": "stir"
+				},
+				{
+					"type": "custom",
+					"name": "press",
+					"note": "Into forms."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"temperature": {
+						"min": 1.7
+					},
+					"seconds": {
+						"min": 5184000
+					},
+					"note": "Cured this long only if made from raw milk."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "21 CFR 133.118 Colby cheese (US standard of identity)",
+						"url": "https://www.law.cornell.edu/cfr/text/21/133.118"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Colby_cheese"
+			}
+		],
+		"text": "Its facts, from these."
+	}
+}

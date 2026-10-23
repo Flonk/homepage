@@ -1,0 +1,71 @@
+{
+	"label": "Aqit",
+	"example": true,
+	"aka": [
+		"Aqt",
+		"Iqt",
+		"الأقط"
+	],
+	"note": "Bedouin: milk churned in a goatskin, the buttermilk heated until it curdles, curd shaped into discs and dried in the shade at least a day; some accounts make it from boiled yoghurt instead (sources differ)",
+	"about": {
+		"text": "A dried dairy product of the Arabian Bedouin: churned buttermilk is heated until it curdles and the curd is dried into hard discs that keep for months.",
+		"sources": {
+			"links": [
+				{
+					"name": "Saudipedia, Aqit",
+					"url": "https://saudipedia.com/%D8%A7%D9%84%D8%A3%D9%82%D8%B7"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"regions": [
+		"SA",
+		"JO",
+		"YE"
+	],
+	"how": {
+		"label": "churn, heat, dry",
+		"text": "Milk churned in a goatskin (qirba), butter taken off, the buttermilk heated until it thickens, then shaped into discs and dried on cloth in the shade.",
+		"sources": {
+			"links": [
+				{
+					"name": "Saudipedia: Aqit",
+					"url": "https://saudipedia.com/%D8%A7%D9%84%D8%A3%D9%82%D8%B7"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "churn",
+					"note": "Milk is churned in a goatskin (qirba) and the butter taken off."
+				},
+				{
+					"type": "heat",
+					"does": "heat",
+					"note": "The buttermilk is heated until it thickens."
+				},
+				{
+					"type": "custom",
+					"name": "shape",
+					"note": "Into discs."
+				},
+				{
+					"type": "dry",
+					"note": "On cloth in the shade."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Saudipedia: Aqit",
+						"url": "https://saudipedia.com/%D8%A7%D9%84%D8%A3%D9%82%D8%B7"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	}
+}

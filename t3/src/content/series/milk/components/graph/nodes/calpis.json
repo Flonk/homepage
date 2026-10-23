@@ -1,0 +1,118 @@
+{
+	"label": "Calpis-type\nmilk concentrate",
+	"from": "skimmed",
+	"step": "ferment with bacteria, then yeast",
+	"note": "Sold as a concentrate and diluted with water or milk before drinking; the yeast stage is what gives the sweet, fruity aroma that a bacteria-only lactic drink lacks.",
+	"about": {
+		"text": "A Japanese soft-drink concentrate made by fermenting skimmed milk with lactic acid bacteria and then, after sugar is added, with yeast. Founded by Kaiun Mishima, who was inspired by airag in Mongolia; released 7 July 1919 and diluted before drinking.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Calpis"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Calpis karupisu.JPG",
+		"author": "Immanuel Giel",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Calpis_karupisu.JPG"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"JP"
+	],
+	"how": {
+		"sources": {
+			"links": [
+				{
+					"name": "Nikkan Kogyo / Newswitch, 2015-04-10",
+					"url": "https://newswitch.jp/p/197"
+				},
+				{
+					"name": "Wikipedia: Calpis",
+					"url": "https://en.wikipedia.org/wiki/Calpis"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic",
+						"yeast"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "lactic acid bacteria",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							}
+						]
+					},
+					"note": "Skimmed milk is fermented with lactic acid bacteria; species are not published."
+				},
+				{
+					"type": "custom",
+					"name": "add sugar"
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"adds": {
+						"microbes": [
+							{
+								"name": "yeast",
+								"kind": "yeast",
+								"does": [
+									"aroma"
+								]
+							}
+						]
+					},
+					"note": "Fermented with yeast, which gives the sweetness and fruit-like aroma; species are not published."
+				}
+			],
+			"text": "Skimmed milk is fermented with lactic acid bacteria; then sugar is added and yeast ferments it, which gives the sweetness and fruit-like aroma. Species are not published.",
+			"sources": {
+				"links": [
+					{
+						"name": "Nikkan Kogyo / Newswitch, 2015-04-10",
+						"url": "https://newswitch.jp/p/197"
+					},
+					{
+						"name": "Wikipedia: Calpis",
+						"url": "https://en.wikipedia.org/wiki/Calpis"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Why two stages",
+			"v": "Sweetness and fruit-like aroma come from the second fermentation; a first-stage-only lactic drink does not have it"
+		},
+		{
+			"k": "Origin",
+			"v": "Mishima found that sugar added to lactic-fermented skimmed milk (Daigoso) left overnight mellowed it"
+		}
+	]
+}

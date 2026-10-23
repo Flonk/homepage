@@ -1,0 +1,40 @@
+{
+	"label": "Tomme fraîche de l'Aubrac",
+	"example": true,
+	"aka": [
+		"Tome fraîche"
+	],
+	"family": "freshCheese",
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		3
+	],
+	"setting": "rennet",
+	"rind": "none",
+	"protected": "PGI",
+	"place": {
+		"region": "Auvergne",
+		"lat": 44.6,
+		"lon": 2.95,
+		"x": 0.50819,
+		"y": 0.21984,
+		"located": "hint"
+	},
+	"confidence": "high",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Tome_fra%C3%AEche"
+			}
+		],
+		"text": "fresh curd used for aligot"
+	}
+}

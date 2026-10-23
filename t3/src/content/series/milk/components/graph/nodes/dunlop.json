@@ -1,0 +1,203 @@
+{
+	"label": "Dunlop",
+	"example": true,
+	"aka": [
+		"Dunlop cheese"
+	],
+	"family": "cheddared",
+	"about": {
+		"text": "Dunlop is a mild cheese or 'sweet-milk cheese' from Dunlop, East Ayrshire, Scotland. It resembles a soft Cheddar cheese in texture. Though it fell out of popularity some time after the end of the Second World War, it is now appreciated for its value in various recipes and for eating on its own or with a dram of whisky.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Dunlop_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Ayrshire's Dunlop Cheese.JPG",
+		"author": "Rosser1954 Roger Griffith",
+		"license": "Public domain",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Ayrshire%27s_Dunlop_Cheese.JPG"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"GB"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		180,
+		360
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "East Ayrshire",
+		"lat": 55.63,
+		"lon": -4.45,
+		"x": 0.48764,
+		"y": 0.17177,
+		"located": "hint"
+	},
+	"confidence": "high",
+	"how": {
+		"label": "scald the rind",
+		"text": "The small fat globules of Ayrshire milk let more fat stay in the curd, giving a moist, smooth, close texture that becomes slightly springy. Scalding the pressed cheese and binding it in hot cloth forms its thin golden rind.",
+		"sources": {
+			"links": [
+				{
+					"name": "Traditional Ayrshire Dunlop PGI specification (Defra)",
+					"url": "https://assets.publishing.service.gov.uk/media/5fd36bb78fa8f54d6249ea23/traditional-ayrshire-dunlop-pgi-140922.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "pasteurise",
+					"temperature": {
+						"min": 72,
+						"max": 72
+					},
+					"seconds": {
+						"min": 15,
+						"max": 15
+					}
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "lactic acid bacteria",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"temperature": {
+						"min": 30,
+						"max": 30
+					},
+					"seconds": {
+						"min": 3600,
+						"max": 3600
+					},
+					"note": "A lactic starter ripened for an hour."
+				},
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"seconds": {
+						"min": 2400,
+						"max": 3000
+					},
+					"note": "With rennet."
+				},
+				{
+					"type": "custom",
+					"name": "cut",
+					"note": "To ¼ in cubes."
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"temperature": {
+						"min": 38,
+						"max": 38
+					},
+					"seconds": {
+						"min": 3600,
+						"max": 5400
+					},
+					"note": "Stirred."
+				},
+				{
+					"type": "custom",
+					"name": "turn",
+					"note": "The slabs are cut and turned."
+				},
+				{
+					"type": "custom",
+					"name": "mill",
+					"note": "Pegmilled at 0.55–0.65 % acidity."
+				},
+				{
+					"type": "custom",
+					"name": "salt",
+					"note": "Sea salt, about 1 kg per 100 gal of milk."
+				},
+				{
+					"type": "custom",
+					"name": "press",
+					"note": "Overnight."
+				},
+				{
+					"type": "custom",
+					"name": "scald",
+					"note": "In hot water, then bound in a scalded cloth."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"seconds": {
+						"min": 15552000,
+						"max": 46656000
+					},
+					"note": "Most popular at 10–12 months."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Traditional Ayrshire Dunlop PGI specification (Defra)",
+						"url": "https://assets.publishing.service.gov.uk/media/5fd36bb78fa8f54d6249ea23/traditional-ayrshire-dunlop-pgi-140922.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Dunlop_cheese"
+			}
+		],
+		"text": "Scottish, soft-Cheddar-like, sweet-milk cheese; 6-12 months"
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Whole milk of Ayrshire cows"
+		},
+		{
+			"k": "Rind",
+			"v": "Thin and golden"
+		}
+	]
+}

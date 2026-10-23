@@ -1,0 +1,37 @@
+{
+	"label": "Queso de Lanzarote",
+	"example": true,
+	"family": "semiHard",
+	"regions": [
+		"ES"
+	],
+	"beasts": [
+		"goat"
+	],
+	"firm": "semi-hard",
+	"days": [
+		15,
+		90
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Canary Islands",
+		"lat": 29,
+		"lon": -13.6,
+		"x": 0.46222,
+		"y": 0.27431,
+		"located": "knowledge"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Queso_de_Lanzarote"
+			}
+		],
+		"text": "Canary Islands goat cheese; no PDO of its own; values unverified"
+	}
+}

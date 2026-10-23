@@ -1,0 +1,207 @@
+{
+	"label": "Harzer",
+	"example": true,
+	"aka": [
+		"Harzer Käse",
+		"Harzer Roller"
+	],
+	"family": "sourMilkCheese",
+	"about": {
+		"text": "A German sour-milk cheese from the northern Harz foothills, though most is now made elsewhere. Crumbly, low-fat sour-milk quark from cow’s milk is shaped and coated with red-smear bacteria, ripening within days into a pungent cheese with under 10% fat in dry matter, often seasoned with caraway.",
+		"sources": {
+			"links": [
+				{
+					"name": "German Wikipedia",
+					"url": "https://de.wikipedia.org/wiki/Harzer_K%C3%A4se"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Harzer Käse 13 WikiCheese Lokal K.jpg",
+		"author": "Elke Wetzig",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Harzer_K%C3%A4se_13_WikiCheese_Lokal_K.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"DE"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "soft",
+	"days": [
+		7,
+		21
+	],
+	"estimated": true,
+	"setting": "acid",
+	"rind": "washed",
+	"place": {
+		"region": "Saxony-Anhalt",
+		"lat": 51.75,
+		"lon": 10.6,
+		"x": 0.52944,
+		"y": 0.18998,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"how": {
+		"text": "Yeasts eat the lactic acid on the surface and raise its pH; the red-smear bacteria then take over and give the yellow rind and strong smell. The ripening salts neutralise part of the acid first.",
+		"sources": {
+			"links": [
+				{
+					"name": "de.Wikipedia: Harzer Käse",
+					"url": "https://de.wikipedia.org/wiki/Harzer_K%C3%A4se"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic",
+						"yeast",
+						"smear"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Lactobacillus delbrueckii subsp. bulgaricus",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								],
+								"formerly": [
+									"Lactobacillus bulgaricus"
+								]
+							},
+							{
+								"name": "Streptococcus thermophilus",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "wild yeast flora",
+								"kind": "yeast"
+							},
+							{
+								"name": "Kluyveromyces marxianus",
+								"kind": "yeast"
+							},
+							{
+								"name": "Candida krusei",
+								"kind": "yeast"
+							},
+							{
+								"name": "Saccharomyces cerevisiae",
+								"kind": "yeast"
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"temperature": {
+						"min": 30,
+						"max": 30,
+						"about": true
+					},
+					"seconds": {
+						"min": 86400,
+						"max": 86400,
+						"about": true
+					}
+				},
+				{
+					"type": "custom",
+					"name": "mix",
+					"note": "Table salt (NaCl), sodium bicarbonate (NaHCO₃) and calcium carbonate (CaCO₃) as ripening salts, plus some ripened cheese (Kulturkäse)."
+				},
+				{
+					"type": "ferment",
+					"does": "smear",
+					"adds": {
+						"microbes": [
+							{
+								"name": "Brevibacterium linens",
+								"kind": "bacterium",
+								"does": [
+									"rind",
+									"ripening"
+								]
+							},
+							{
+								"name": "Corynebacterium",
+								"kind": "bacterium"
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"note": "Sprayed on with a red-smear culture (Brevibacterium linens)."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"temperature": {
+						"min": 10,
+						"max": 14
+					},
+					"seconds": {
+						"min": 86400,
+						"max": 259200
+					}
+				}
+			],
+			"text": "Ripening salts neutralise part of the acid first; the yeasts then raise the surface pH and the red-smear bacteria take over. Some ripened cheese is mixed in. Ripening goes on in the pack, best at 2-4 weeks.",
+			"sources": {
+				"links": [
+					{
+						"name": "de.Wikipedia: Harzer Käse",
+						"url": "https://de.wikipedia.org/wiki/Harzer_K%C3%A4se"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Harzer"
+			}
+		],
+		"text": "Low-fat quark cheese; ripens 'a few days to a few weeks' (Wikipedia); no protected status"
+	},
+	"facts": [
+		{
+			"k": "Ripening goes on",
+			"v": "In the pack, in the shop and at home; best at 2–4 weeks"
+		},
+		{
+			"k": "By best-before date",
+			"v": "5–6 weeks before: mild, white core; 3–4 weeks: aromatic, small white core; 1–2 weeks: strong, no white core"
+		},
+		{
+			"k": "Shapes",
+			"v": "Small round Taler or roll-shaped Stangenkäse; several small loaves sold together as Harzer Roller"
+		}
+	]
+}

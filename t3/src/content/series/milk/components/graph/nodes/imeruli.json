@@ -1,0 +1,153 @@
+{
+	"label": "Imeruli",
+	"example": true,
+	"aka": [
+		"Imeretian cheese",
+		"Imeruli kveli"
+	],
+	"note": "Cow milk, up to 20 % buffalo or goat; Georgian GI; young cheese, sold a day after brining",
+	"family": "freshCheese",
+	"about": {
+		"text": "A young Georgian cheese from Imereti, made from cow milk with up to 20 % buffalo or goat milk, set, scalded, self-pressed in forms and brined for a day.",
+		"sources": {
+			"links": [
+				{
+					"name": "Imeruli Kveli, Georgian GI product specification (GOV.UK)",
+					"url": "https://assets.publishing.service.gov.uk/media/6414615e8fa8f5556c6a12ea/Imeruli_Kveli.pdf"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Imerian Cheese.png",
+		"author": "Malkhaz Tchubabria",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Imerian_Cheese.png"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"GE"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		7
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "none",
+	"place": {
+		"region": "Imereti",
+		"lat": 42.25,
+		"lon": 42.8,
+		"x": 0.61889,
+		"y": 0.22883,
+		"located": "hint"
+	},
+	"confidence": "medium",
+	"how": {
+		"label": "self-press, brine",
+		"text": "Georgian GI no. 15 (2012): taste of a cultured milk product, moderately salty, a little soft and elastic; holes optional.",
+		"sources": {
+			"links": [
+				{
+					"name": "Imeruli Kveli, Georgian GI product specification (GOV.UK)",
+					"url": "https://assets.publishing.service.gov.uk/media/6414615e8fa8f5556c6a12ea/Imeruli_Kveli.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "coagulate",
+					"temperature": {
+						"min": 32,
+						"max": 34
+					}
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"temperature": {
+						"min": 37,
+						"max": 41
+					},
+					"seconds": {
+						"min": 600,
+						"max": 900
+					}
+				},
+				{
+					"type": "custom",
+					"name": "stir",
+					"seconds": {
+						"min": 1200,
+						"max": 1500
+					},
+					"note": "Then 30 % of the whey is removed."
+				},
+				{
+					"type": "custom",
+					"name": "press",
+					"seconds": {
+						"min": 10800,
+						"max": 14400
+					},
+					"note": "Self-pressing in forms."
+				},
+				{
+					"type": "custom",
+					"name": "brine",
+					"temperature": {
+						"min": 8,
+						"max": 12
+					},
+					"note": "In 16 Baumé brine."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Imeruli Kveli, Georgian GI product specification (GOV.UK)",
+						"url": "https://assets.publishing.service.gov.uk/media/6414615e8fa8f5556c6a12ea/Imeruli_Kveli.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"unsourced": true,
+		"text": "quick cheese, springy and salty"
+	},
+	"composition": {
+		"moisture": {
+			"max": 52
+		},
+		"fatInDryMatter": {
+			"min": 45
+		}
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Cow, up to 20 % buffalo or goat"
+		},
+		{
+			"k": "Salt",
+			"v": "2–5 % in the finished cheese"
+		}
+	]
+}

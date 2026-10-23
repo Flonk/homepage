@@ -1,0 +1,39 @@
+{
+	"label": "Robiola di Roccaverano",
+	"example": true,
+	"family": "lacticCheese",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"goat",
+		"cow",
+		"sheep"
+	],
+	"firm": "soft",
+	"days": [
+		4,
+		30
+	],
+	"setting": "rennet-acid",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Piedmont",
+		"lat": 44.63,
+		"lon": 8.25,
+		"x": 0.52292,
+		"y": 0.21972,
+		"located": "knowledge"
+	},
+	"confidence": "high",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Robiola_di_Roccaverano"
+			}
+		],
+		"text": "PDO requires goat milk (min 50%), cow max 85% per list; fresh from 4 days"
+	}
+}

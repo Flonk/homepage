@@ -1,0 +1,186 @@
+{
+	"label": "Appenzeller",
+	"example": true,
+	"aka": [
+		"Appenzeller cheese",
+		"Appenzeller Käse"
+	],
+	"family": "alpine",
+	"also": "washed",
+	"about": {
+		"text": "Appenzeller cheese is a hard cow's-milk washed-rind cheese produced in the Appenzellerland region of northeast Switzerland, in the two modern-day cantons of Appenzell Innerrhoden and Appenzell Ausserrhoden. It is classified as a Swiss-type or Alpine cheese.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Appenzeller_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Appenzeller (cheese).jpg",
+		"author": "PDPhoto.org",
+		"license": "Public domain",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Appenzeller_(cheese).jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"CH"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		90,
+		180
+	],
+	"setting": "rennet",
+	"rind": "washed",
+	"protected": "PDO",
+	"place": {
+		"region": "Appenzell",
+		"lat": 47.33,
+		"lon": 9.4,
+		"x": 0.52611,
+		"y": 0.20892,
+		"located": "knowledge"
+	},
+	"confidence": "high",
+	"how": {
+		"label": "rub with herbs",
+		"text": "Throughout ripening the wheels are rubbed every two days with a herbal brine, the Kräutersulz, which treats the rind as the cheese matures. Scalded only to about 40–42 °C and made in 6–8 kg wheels, it differs from the large, high-cooked Emmentaler and Gruyère.",
+		"sources": {
+			"links": [
+				{
+					"name": "Kulinarisches Erbe der Schweiz: Appenzeller",
+					"url": "https://www.patrimoineculinaire.ch/Produkt/Appenzeller-Kase/348"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "skim",
+					"note": "The milk is partly skimmed."
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "lactic acid bacteria",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"temperature": {
+						"min": 31,
+						"max": 31
+					},
+					"seconds": {
+						"min": 1800,
+						"max": 1800,
+						"about": true
+					},
+					"note": "Set with rennet together with the lactic bacteria."
+				},
+				{
+					"type": "custom",
+					"name": "cut",
+					"note": "To maize-grain size."
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"temperature": {
+						"min": 40,
+						"max": 42
+					},
+					"note": "The curd is lifted from the vat at that temperature."
+				},
+				{
+					"type": "custom",
+					"name": "press",
+					"seconds": {
+						"min": 900,
+						"max": 900,
+						"about": true
+					},
+					"note": "Twice, in round moulds, 6–8 kg and about 30 cm."
+				},
+				{
+					"type": "custom",
+					"name": "brine",
+					"seconds": {
+						"min": 172800,
+						"max": 172800,
+						"about": true
+					}
+				},
+				{
+					"type": "custom",
+					"name": "rub",
+					"note": "Rubbed every 2 days with a secret herbal brine, the Kräutersulz."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"temperature": {
+						"min": 13,
+						"max": 14
+					},
+					"seconds": {
+						"min": 7776000
+					},
+					"humidity": {
+						"min": 92,
+						"max": 92,
+						"about": true
+					},
+					"note": "Classic is ripened 3 mo at least, Surchoix 4 and Extra 6."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Kulinarisches Erbe der Schweiz: Appenzeller",
+						"url": "https://www.patrimoineculinaire.ch/Produkt/Appenzeller-Kase/348"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Appenzeller_cheese"
+			}
+		],
+		"text": "Rind washed with herbal brine; Classic 3-4, Surchoix 4-6, Extra 6+ months"
+	},
+	"raw": true
+}

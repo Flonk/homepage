@@ -1,0 +1,36 @@
+{
+	"label": "Suffolk Gold",
+	"example": true,
+	"family": "semiHard",
+	"regions": [
+		"GB"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-soft",
+	"days": [
+		70,
+		84
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Suffolk",
+		"lat": 52.2,
+		"lon": 0.85,
+		"x": 0.50236,
+		"y": 0.18796,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Suffolk_Gold_cheese"
+			}
+		],
+		"text": "Guernsey cow milk, pasteurised; aged 10-12 weeks; Suffolk Farmhouse Cheeses"
+	}
+}

@@ -1,0 +1,92 @@
+{
+	"label": "American cheese",
+	"example": true,
+	"about": {
+		"text": "American cheese is a type of processed cheese made from cheddar, Colby, or similar cheeses, in conjunction with sodium citrate, which permits the cheese to be pasteurized without its components separating. It is mild with a creamy texture and salty flavor, has a medium-firm consistency, and has a low melting point. It is typically yellow or white in color; yellow American cheese is seasoned and colored with annatto.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/American_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Single wrapped slice of processed cheese.jpg",
+		"author": "Amin",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Single_wrapped_slice_of_processed_cheese.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"US"
+	],
+	"how": {
+		"text": "Under the US standard, 'pasteurized process American cheese' is made by grinding cheddar-family cheeses and heating them with emulsifying salts into a smooth, homogeneous plastic mass. The salts bind calcium so the proteins re-emulsify the fat, which is why it melts smoothly without separating.",
+		"sources": {
+			"links": [
+				{
+					"name": "21 CFR 133.169 Pasteurized process cheese",
+					"url": "https://www.law.cornell.edu/cfr/text/21/133.169"
+				},
+				{
+					"name": "21 CFR 133.173 Pasteurized process cheese food",
+					"url": "https://www.law.cornell.edu/cfr/text/21/133.173"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "grind",
+					"note": "Cheddar, washed-curd, colby or granular cheese, ground and mixed."
+				},
+				{
+					"type": "pasteurise",
+					"temperature": {
+						"min": 66
+					},
+					"seconds": {
+						"min": 30
+					},
+					"note": "With up to 3 % emulsifying salts (citrates, phosphates)."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "21 CFR 133.169 Pasteurized process cheese",
+						"url": "https://www.law.cornell.edu/cfr/text/21/133.169"
+					},
+					{
+						"name": "21 CFR 133.173 Pasteurized process cheese food",
+						"url": "https://www.law.cornell.edu/cfr/text/21/133.173"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"composition": {
+		"moisture": {
+			"max": 40
+		},
+		"fatInDryMatter": {
+			"min": 47
+		},
+		"pH": {
+			"min": 5.3
+		}
+	}
+}

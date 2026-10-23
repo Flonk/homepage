@@ -1,0 +1,49 @@
+{
+	"label": "Lappi",
+	"example": true,
+	"family": "alpine",
+	"about": {
+		"text": "Made from partially skimmed cow's milk, similar to Emmental except that it is pasteurized.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Lappi_cheese"
+				}
+			],
+			"text": "Emmental-style, pasteurised; not the same as Lapin juusto (leipäjuusto)"
+		}
+	},
+	"regions": [
+		"FI"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		60,
+		90
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Lapland",
+		"lat": 67.5,
+		"lon": 25,
+		"x": 0.56944,
+		"y": 0.10153,
+		"located": "hint"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Lappi_cheese"
+			}
+		],
+		"text": "Emmental-style, pasteurised; not the same as Lapin juusto (leipäjuusto)"
+	}
+}

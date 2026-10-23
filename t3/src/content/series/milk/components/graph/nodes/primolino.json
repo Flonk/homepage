@@ -1,0 +1,37 @@
+{
+	"label": "Primolino",
+	"example": true,
+	"family": "freshCheese",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		14
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "none",
+	"place": {
+		"region": "Piedmont",
+		"lat": 44.95,
+		"lon": 7.9,
+		"x": 0.52194,
+		"y": 0.21847,
+		"located": "hint"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Primolino"
+			}
+		],
+		"text": "unverified"
+	}
+}

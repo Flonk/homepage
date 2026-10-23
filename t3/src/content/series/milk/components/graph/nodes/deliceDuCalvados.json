@@ -1,0 +1,37 @@
+{
+	"label": "Délice du Calvados",
+	"example": true,
+	"family": "bloomy",
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "soft",
+	"days": [
+		21,
+		35
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "bloomy",
+	"place": {
+		"region": "Normandy",
+		"lat": 49,
+		"lon": 0.1,
+		"x": 0.50028,
+		"y": 0.20197,
+		"located": "knowledge"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/D%C3%A9lice_du_Calvados"
+			}
+		],
+		"text": "Normandy; no product sheet or spec found, family and ripening are typical-value guesses"
+	}
+}

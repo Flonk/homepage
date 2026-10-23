@@ -1,0 +1,134 @@
+{
+	"label": "Casein fibre\n(Lanital)",
+	"aka": [
+		"Lanital"
+	],
+	"from": "acidCasein",
+	"step": "spin into fibre",
+	"about": {
+		"text": "Milk fiber or milk wool is a type of Azlon, a regenerated protein fiber based on the casein protein found in milk. There are several trade names for milk-casein-based fibers, including Lanital, Fibrolane and Aralac.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Milk_fiber"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Casein Fibre.jpg",
+		"author": "Mx Lucy",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Casein_Fibre.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"IT"
+	],
+	"how": {
+		"text": "Casein is dissolved in alkali, pushed through spinnerets into an acid bath where it sets as filaments, then made insoluble with formaldehyde.",
+		"sources": {
+			"links": [
+				{
+					"name": "US patent 2,338,917 (Ferretti), casein artificial fibres",
+					"url": "https://patents.google.com/patent/US2338917A/en"
+				},
+				{
+					"name": "US patent 2,312,998 (de Kadt), hardening fibrous protein",
+					"url": "https://patents.google.com/patent/US2312998A/en"
+				},
+				{
+					"name": "Museum of Design in Plastics, Casein fibre",
+					"url": "https://www.modip.ac.uk/projects/curators-guide-synthetic-garments/featured-fibres-and-materials/casein-fibre"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "dissolve",
+					"note": "Casein is dissolved in alkali to a spinning dope."
+				},
+				{
+					"type": "custom",
+					"name": "spin",
+					"note": "Pushed through spinnerets into an acid bath where it coagulates as filaments."
+				},
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 35,
+						"max": 40
+					},
+					"note": "In a hardening bath of sodium chloride or other salts."
+				},
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 60,
+						"max": 70
+					},
+					"seconds": {
+						"min": 18000,
+						"max": 18000,
+						"about": true
+					},
+					"note": "In a formaldehyde hardening bath, several hours (5 h in the example)."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "US patent 2,338,917 (Ferretti), casein artificial fibres",
+						"url": "https://patents.google.com/patent/US2338917A/en"
+					},
+					{
+						"name": "US patent 2,312,998 (de Kadt), hardening fibrous protein",
+						"url": "https://patents.google.com/patent/US2312998A/en"
+					},
+					{
+						"name": "Museum of Design in Plastics, Casein fibre",
+						"url": "https://www.modip.ac.uk/projects/curators-guide-synthetic-garments/featured-fibres-and-materials/casein-fibre"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"aralac",
+		"merinova",
+		"qmilch"
+	],
+	"facts": [
+		{
+			"k": "First patent",
+			"v": "Antonio Ferretti, Milan; Italian application 1937, US 2,338,917 granted 1944"
+		},
+		{
+			"k": "Producer",
+			"v": "SNIA Viscosa, Italy, Lanital from 1936"
+		},
+		{
+			"k": "Hardening alt.",
+			"v": "de Kadt (NL, 1938): bath of 4 % formaldehyde, 5 % sodium sulfate, 2 % sodium acetate, 15 min at the boil"
+		},
+		{
+			"k": "Properties",
+			"v": "soft, warm, absorbs water, weak when wet, poor wash-fastness"
+		}
+	]
+}

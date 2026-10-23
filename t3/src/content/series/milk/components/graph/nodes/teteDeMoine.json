@@ -1,0 +1,143 @@
+{
+	"label": "Tête de Moine",
+	"example": true,
+	"aka": [
+		"Fromage de Bellelay",
+		"Bellelay"
+	],
+	"note": "Eaten as thin rosettes shaved with the girolle (invented 1982 by Nicolas Crevoisier); AOC 2001, AOP since 2010",
+	"family": "alpine",
+	"also": "washed",
+	"about": {
+		"text": "Tête de Moine is a semi-hard Swiss cheese from raw cow milk, made in the Bernese Jura and Canton of Jura and pared into rosettes rather than cut.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/T%C3%AAte_de_Moine"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Tête de Moine.jpg",
+		"author": "Mr Thinktank",
+		"license": "CC BY 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:T%C3%AAte_de_Moine.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"CH"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		75,
+		180
+	],
+	"setting": "rennet",
+	"rind": "washed",
+	"protected": "PDO",
+	"place": {
+		"region": "Bern",
+		"lat": 47.25,
+		"lon": 7.23,
+		"x": 0.52008,
+		"y": 0.20925,
+		"located": "knowledge"
+	},
+	"confidence": "high",
+	"how": {
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Tête de Moine",
+					"url": "https://en.wikipedia.org/wiki/T%C3%AAte_de_Moine"
+				},
+				{
+					"name": "Tête de Moine specification (via search summary)",
+					"url": "https://www.tetedemoine.ch/images/PDF/Cahier-des-charges/201111_Tête-de-Moine-Cahier-des-charges_FR.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "brine",
+					"note": "In a salt-water bath."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"kinds": [
+						"smear"
+					],
+					"seconds": {
+						"min": 6480000
+					},
+					"note": "On spruce boards."
+				}
+			],
+			"text": "Ripened on spruce boards with a smeared brown-red rind; the source names no microbes or how they arrive.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Tête de Moine",
+						"url": "https://en.wikipedia.org/wiki/T%C3%AAte_de_Moine"
+					},
+					{
+						"name": "Tête de Moine specification (via search summary)",
+						"url": "https://www.tetedemoine.ch/images/PDF/Cahier-des-charges/201111_Tête-de-Moine-Cahier-des-charges_FR.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/T%C3%AAte_de_Moine"
+			}
+		],
+		"text": "shaved into rosettes with a girolle"
+	},
+	"composition": {
+		"fatInDryMatter": {
+			"min": 51,
+			"max": 54
+		}
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Processed in copper vats, within 24 h of the oldest milking"
+		},
+		{
+			"k": "Rind",
+			"v": "Firm, moist, brown-red, smeared (emmorgée)"
+		},
+		{
+			"k": "Feed",
+			"v": "At least 120 days of green feeding; no silage"
+		},
+		{
+			"k": "Salt",
+			"v": "At most 25 g/kg"
+		}
+	],
+	"raw": true
+}

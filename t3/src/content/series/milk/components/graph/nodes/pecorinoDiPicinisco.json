@@ -1,0 +1,42 @@
+{
+	"label": "Pecorino di Picinisco",
+	"example": true,
+	"family": "hard",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"sheep"
+	],
+	"firm": "hard",
+	"days": [
+		30,
+		180
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Lazio",
+		"lat": 41.67,
+		"lon": 13.79,
+		"x": 0.53831,
+		"y": 0.23099,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Pecorino_di_Picinisco"
+			},
+			{
+				"name": "it.wikipedia.org",
+				"url": "https://it.wikipedia.org/wiki/Pecorino_di_Picinisco"
+			}
+		],
+		"text": "corrected: raw sheep's milk only (Sopravissana, Comisana, Massese), no goat per Italian article; 'scamosciato' 30-60 days (semi-hard), 'stagionato' over 90 days (hard); cooked pressed curd; the upper bound is estimated"
+	}
+}

@@ -1,0 +1,97 @@
+{
+	"label": "Peda",
+	"example": true,
+	"about": {
+		"text": "Peda, pedha or pera is an Indian sweet that originated in the city of Mathura, Uttar Pradesh, India. Traditionally prepared as thick, semi-soft round balls, its main ingredients are khoa, sugar and traditional flavourings including cardamom seeds. It is brown in colour. Variant spellings and names for the dessert include pedha, penda and pera and it is found in several varities in north India.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Peda"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Pera - Sweet - Banke Bihari Mandir Area - Vrindavan - 2013-02-22 4785.JPG",
+		"author": "Biswarup Ganguly",
+		"license": "CC BY 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Pera_-_Sweet_-_Banke_Bihari_Mandir_Area_-_Vrindavan_-_2013-02-22_4785.JPG"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"IN"
+	],
+	"how": {
+		"text": "Khoa is warmed with sugar and cardamom, stirred until it comes together, then kneaded while still warm and pressed into round balls. Proportions vary by region and maker.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Peda (2023 copy with the process figures)",
+					"url": "https://kaweah.freedombox.rocks/kiwix/wikipedia_en_all_maxi_2023-10/Peda"
+				},
+				{
+					"name": "Wikipedia: Peda",
+					"url": "https://en.wikipedia.org/wiki/Peda"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 80,
+						"max": 80,
+						"about": true
+					},
+					"note": "Warmed with sugar (about 30 g per 100 g khoa) and cardamom powder (about 0.1 g) and stirred until it comes together."
+				},
+				{
+					"type": "custom",
+					"name": "knead",
+					"temperature": {
+						"min": 50,
+						"max": 50,
+						"about": true
+					},
+					"note": "Kneaded while still warm, when the dough can be worked."
+				},
+				{
+					"type": "custom",
+					"name": "shape",
+					"note": "Pressed into round balls."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Peda (2023 copy with the process figures)",
+						"url": "https://kaweah.freedombox.rocks/kiwix/wikipedia_en_all_maxi_2023-10/Peda"
+					},
+					{
+						"name": "Wikipedia: Peda",
+						"url": "https://en.wikipedia.org/wiki/Peda"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Variants",
+			"v": "Mathura peda (Uttar Pradesh), Dharwad peda (Karnataka, 1850s), Kunthalgiri and Lal peda"
+		}
+	]
+}

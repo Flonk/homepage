@@ -1,0 +1,37 @@
+{
+	"label": "Ricotta Romana",
+	"example": true,
+	"family": "ricotta",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"sheep"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		0
+	],
+	"setting": "acid-heat",
+	"rind": "none",
+	"protected": "PDO",
+	"place": {
+		"region": "Lazio",
+		"lat": 41.9,
+		"lon": 12.5,
+		"x": 0.53472,
+		"y": 0.23014,
+		"located": "knowledge"
+	},
+	"confidence": "high",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Ricotta_Romana"
+			}
+		],
+		"text": "sheep whey"
+	}
+}

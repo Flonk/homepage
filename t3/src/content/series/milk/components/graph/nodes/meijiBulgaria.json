@@ -1,0 +1,110 @@
+{
+	"label": "Meiji Bulgaria",
+	"example": true,
+	"note": "Japan’s best-known plain yoghurt; named LB81 after its two strains, L. bulgaricus 2038 and S. thermophilus 1131 (last digits 8 and 1)",
+	"about": {
+		"text": "A plain set yoghurt from the Japanese dairy Meiji, made with two defined strains of the yoghurt bacteria, which its name LB81 is built from.",
+		"sources": {
+			"links": [
+				{
+					"name": "Meiji, Meiji Bulgaria Yogurt LB81 plain 400 g (product page)",
+					"url": "https://www.meiji.co.jp/products/yogurt/4902705011625.html"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Meiji Bulgaria Yogurt in 2024.jpg",
+		"author": "Yebisu4",
+		"license": "CC0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Meiji_Bulgaria_Yogurt_in_2024.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"JP"
+	],
+	"how": {
+		"sources": {
+			"links": [
+				{
+					"name": "Meiji: Meiji Bulgaria Yogurt LB81 (product page)",
+					"url": "https://www.meiji.co.jp/products/yogurt/4902705011625.html"
+				},
+				{
+					"name": "Meiji: research on LB81",
+					"url": "https://www.meiji.co.jp/yogurtlibrary/en/laboratory/report/lb81/top/"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Lactobacillus delbrueckii subsp. bulgaricus strain 2038",
+								"kind": "bacterium",
+								"does": [
+									"acid",
+									"probiotic"
+								],
+								"grows": "thermophilic"
+							},
+							{
+								"name": "Streptococcus thermophilus strain 1131",
+								"kind": "bacterium",
+								"does": [
+									"acid",
+									"probiotic"
+								],
+								"grows": "thermophilic"
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"note": "Declared at least 1 billion of the bulgaricus strain and 10 billion of the thermophilus strain per serving."
+				}
+			],
+			"text": "LB81 is the trailing digits of strains 2038 and 1131; sold as a FOSHU product for intestinal balance.",
+			"sources": {
+				"links": [
+					{
+						"name": "Meiji: Meiji Bulgaria Yogurt LB81 (product page)",
+						"url": "https://www.meiji.co.jp/products/yogurt/4902705011625.html"
+					},
+					{
+						"name": "Meiji: research on LB81",
+						"url": "https://www.meiji.co.jp/yogurtlibrary/en/laboratory/report/lb81/top/"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Name",
+			"v": "LB81 = the trailing digits of strains 2038 and 1131"
+		},
+		{
+			"k": "Claim",
+			"v": "Sold as a Foods for Specified Health Uses (FOSHU) product for intestinal balance; Meiji reports improved gut flora and relief of constipation (company research)"
+		}
+	]
+}

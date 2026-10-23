@@ -1,0 +1,117 @@
+{
+	"label": "Skimmed milk",
+	"aka": [
+		"Skim milk",
+		"Magermilch"
+	],
+	"from": "skimRaw",
+	"step": "pasteurise",
+	"niche": 0,
+	"light": true,
+	"about": {
+		"text": "Skimmed milk, or skim milk, is made when all the milkfat is removed from whole milk. It tends to contain around 0.1% to 0.3% fat.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Skimmed_milk"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Skimmed milk.jpg",
+		"author": "Renee Comet (Photographer)",
+		"license": "Public domain",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Skimmed_milk.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "The cream is spun off the warm raw milk, which leaves almost no fat; what is left is then pasteurised like any milk. The fat on the label is whatever the dairy leaves in.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook: Centrifugal separators and milk standardization",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/centrifugal-separators-and-milk-standardization"
+				},
+				{
+					"name": "Tetra Pak Dairy Processing Handbook: Pasteurized and ESL dairy products",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/pasteurized-and-esl-dairy-products"
+				},
+				{
+					"name": "Regulation (EU) No 1308/2013, Annex VII Part IV (UK retained copy)",
+					"url": "https://www.legislation.gov.uk/eur/2013/1308/annex/VII/part/IV/division/III"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "pasteurise",
+					"temperature": {
+						"min": 55,
+						"max": 65
+					},
+					"note": "In the pasteuriser, before the milk goes to the separator."
+				},
+				{
+					"type": "custom",
+					"name": "separate",
+					"note": "In a centrifugal separator, which leaves 0.04–0.07 % fat."
+				},
+				{
+					"type": "pasteurise",
+					"temperature": {
+						"min": 72,
+						"max": 72
+					},
+					"seconds": {
+						"min": 15,
+						"max": 15
+					}
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Tetra Pak Dairy Processing Handbook: Centrifugal separators and milk standardization",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/centrifugal-separators-and-milk-standardization"
+					},
+					{
+						"name": "Tetra Pak Dairy Processing Handbook: Pasteurized and ESL dairy products",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/pasteurized-and-esl-dairy-products"
+					},
+					{
+						"name": "Regulation (EU) No 1308/2013, Annex VII Part IV (UK retained copy)",
+						"url": "https://www.legislation.gov.uk/eur/2013/1308/annex/VII/part/IV/division/III"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"composition": {
+		"fat": {
+			"max": 0.5
+		}
+	},
+	"facts": [
+		{
+			"k": "On the shelf",
+			"v": "0.1 % and 0.5 % fat both occur"
+		},
+		{
+			"k": "Slower is cleaner",
+			"v": "A separator skims closer the lower its throughput"
+		}
+	]
+}

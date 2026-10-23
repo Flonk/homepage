@@ -1,0 +1,41 @@
+{
+	"label": "Queso de La Nucía",
+	"example": true,
+	"family": "freshCheese",
+	"regions": [
+		"ES"
+	],
+	"beasts": [
+		"goat",
+		"cow"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		7
+	],
+	"setting": "rennet",
+	"rind": "none",
+	"place": {
+		"region": "Valencian Community",
+		"lat": 38.61,
+		"lon": -0.1,
+		"x": 0.49972,
+		"y": 0.24211,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Queso_de_la_Nucia"
+			},
+			{
+				"name": "es.wikipedia.org",
+				"url": "https://es.wikipedia.org/wiki/Queso_de_La_Nuc%C3%ADa"
+			}
+		],
+		"text": "Alicante; goat and cow milk, 1-2 kg truncated cone, white, rindless, gelatinous soft texture, unsalted taste, diamond pattern from egg-box moulds; unripened"
+	}
+}

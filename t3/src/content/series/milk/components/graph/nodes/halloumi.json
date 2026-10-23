@@ -1,0 +1,134 @@
+{
+	"label": "Halloumi",
+	"example": true,
+	"aka": [
+		"Hellim"
+	],
+	"family": "grilling",
+	"about": {
+		"text": "Halloumi, or haloumi, is a type of dairy product made with milk originating from Cyprus. It is traditionally made from a mixture of goat milk and sheep's milk; however, due to lower cost of cow's milk and price sensitivity of consumers, modern halloumi increasingly contains cow's milk.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Halloumi"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Grilled haloumi cheese.jpg",
+		"author": "Salimfadhley",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Grilled_haloumi_cheese.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"CY"
+	],
+	"beasts": [
+		"sheep",
+		"goat"
+	],
+	"firm": "semi-hard",
+	"days": [
+		0,
+		30
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "brine",
+	"protected": "PDO",
+	"confidence": "high",
+	"how": {
+		"text": "Cooking the curd in whey above 90 °C sets the protein so firmly that halloumi does not melt and can be grilled or fried; it is then folded with Cypriot mint leaves, giving its characteristic shape.",
+		"sources": {
+			"links": [
+				{
+					"name": "Halloumi PDO application, OJ C 246, 28.7.2015",
+					"url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=uriserv:OJ.C_.2015.246.01.0009.01.ENG"
+				},
+				{
+					"name": "Commission Implementing Regulation (EU) 2021/591",
+					"url": "https://eur-lex.europa.eu/eli/reg_impl/2021/591/oj/eng"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "pasteurise",
+					"temperature": {
+						"min": 65
+					},
+					"note": "Pasteurised, or heated above 65 °C."
+				},
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"note": "With rennet, not from pigs."
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"temperature": {
+						"min": 90
+					},
+					"seconds": {
+						"min": 1800
+					},
+					"note": "Curd pieces are heated in the whey."
+				},
+				{
+					"type": "custom",
+					"name": "fold",
+					"note": "Folded into rectangles or half-moons with Cypriot mint, 150–350 g each."
+				},
+				{
+					"type": "custom",
+					"name": "salt",
+					"note": "The fresh type is salted with up to 3 % salt."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"seconds": {
+						"min": 3456000
+					},
+					"note": "Only the mature type is kept, in salted whey of at most 6 % salt."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Halloumi PDO application, OJ C 246, 28.7.2015",
+						"url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=uriserv:OJ.C_.2015.246.01.0009.01.ENG"
+					},
+					{
+						"name": "Commission Implementing Regulation (EU) 2021/591",
+						"url": "https://eur-lex.europa.eu/eli/reg_impl/2021/591/oj/eng"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Halloumi"
+			}
+		],
+		"text": "Its facts, from these."
+	}
+}

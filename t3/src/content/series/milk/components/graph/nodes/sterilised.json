@@ -1,0 +1,93 @@
+{
+	"label": "Sterilised milk",
+	"aka": [
+		"Sterilmilch"
+	],
+	"from": "homogenised",
+	"step": "sterilise in bottle",
+	"niche": 1,
+	"light": true,
+	"about": {
+		"text": "Milk heated in its sealed bottle or can to around 110–120 °C for 20 minutes or more, which kills everything in it and lets it keep for months unopened without cooling. The long heating browns it slightly and gives it a cooked, caramel taste.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/long-life-dairy-products"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Sterilised milk. Don't remember seeing this in a bottle since the 1970s #oldgit",
+		"author": "Lloyd Davis",
+		"license": "CC BY-SA 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Flickr",
+					"url": "https://www.flickr.com/photos/25294611@N00/7184013179"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "The milk is filled and sealed first, then the whole bottle is heated for many minutes. That long heat makes it keep for about a year, but destroys more of the vitamins.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook: Long-life dairy products",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/long-life-dairy-products"
+				},
+				{
+					"name": "Verbraucherzentrale Niedersachsen: Milch – was verrät das Etikett?",
+					"url": "https://www.verbraucherzentrale-niedersachsen.de/node/120393"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "fill",
+					"note": "Filled and sealed in the bottle first."
+				},
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 110,
+						"max": 125
+					},
+					"seconds": {
+						"min": 180,
+						"max": 2400
+					},
+					"note": "In a batch autoclave, the whole bottle heated."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Tetra Pak Dairy Processing Handbook: Long-life dairy products",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/long-life-dairy-products"
+					},
+					{
+						"name": "Verbraucherzentrale Niedersachsen: Milch – was verrät das Etikett?",
+						"url": "https://www.verbraucherzentrale-niedersachsen.de/node/120393"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Variants",
+			"v": "Tower: hydrostatic, 115–125 °C for 3–30 min. Rotary: 132–140 °C for 10–12 min. Sterilmilch (DE): 112–120 °C for 20–40 min"
+		}
+	]
+}

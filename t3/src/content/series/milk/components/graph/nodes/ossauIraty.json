@@ -1,0 +1,184 @@
+{
+	"label": "Ossau-Iraty",
+	"example": true,
+	"aka": [
+		"Esquirrou"
+	],
+	"note": "Farm versions raw milk only. Pressed, uncooked: heating stays below 44 °C.",
+	"family": "semiHard",
+	"about": {
+		"text": "Ossau-Iraty is a Basque and Béarn cheese made from sheep milk, with AOC status since 1980. It is an uncooked, pressed cheese from the Basco-Béarnaise, Manech red-face and Manech black-face breeds.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Ossau-Iraty"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Fromages Ossau-Iraty 001.jpg",
+		"author": "Jean Michel Etchecolonea",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Fromages_Ossau-Iraty_001.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"sheep"
+	],
+	"firm": "semi-hard",
+	"days": [
+		80,
+		300
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Nouvelle-Aquitaine",
+		"lat": 43.19,
+		"lon": -0.8,
+		"x": 0.49778,
+		"y": 0.22527,
+		"located": "knowledge"
+	},
+	"confidence": "high",
+	"how": {
+		"label": "press, brush, ripen",
+		"sources": {
+			"links": [
+				{
+					"name": "French Wikipedia, Ossau-iraty (summarising the cahier des charges)",
+					"url": "https://fr.wikipedia.org/wiki/Ossau-iraty"
+				},
+				{
+					"name": "INAO cahier des charges 2015 (could not open; cited by the article)",
+					"url": "https://www.inao.gouv.fr/fichier/PNOCDCOssauIraty2015.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "lactic ferments",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"pH": {
+						"max": 5.5
+					}
+				},
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"temperature": {
+						"min": 28,
+						"max": 35
+					},
+					"note": "With under 3 cm³ of rennet per 10 L."
+				},
+				{
+					"type": "custom",
+					"name": "cut and stir",
+					"seconds": {
+						"min": 3600,
+						"max": 3600,
+						"about": true
+					}
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"temperature": {
+						"max": 44
+					},
+					"note": "Heating below 44 °C is allowed."
+				},
+				{
+					"type": "custom",
+					"name": "press",
+					"note": "In perforated moulds, pressed and turned, and demoulded when the pH is below 5.5."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"temperature": {
+						"min": 6,
+						"max": 15
+					},
+					"seconds": {
+						"min": 6912000
+					},
+					"humidity": {
+						"min": 75
+					}
+				}
+			],
+			"text": "Non-GMO lactic ferments, species not named. The rind is brushed with a salt, water and surface-ferment solution, washed with morge. Ripening is at least 80 d (2-3 kg) or 120 d (4-7 kg).",
+			"sources": {
+				"links": [
+					{
+						"name": "French Wikipedia, Ossau-iraty (summarising the cahier des charges)",
+						"url": "https://fr.wikipedia.org/wiki/Ossau-iraty"
+					},
+					{
+						"name": "INAO cahier des charges 2015 (could not open; cited by the article)",
+						"url": "https://www.inao.gouv.fr/fichier/PNOCDCOssauIraty2015.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Ossau-Iraty"
+			}
+		],
+		"text": "Its facts, from these."
+	},
+	"composition": {
+		"fatInDryMatter": {
+			"min": 50
+		},
+		"solids": {
+			"min": 58
+		}
+	},
+	"facts": [
+		{
+			"k": "Law",
+			"v": "The milk may not be concentrated, and heat treatment is only allowed in dairy (artisan) production; only rennet, salt and non-GMO lactic ferments may be added"
+		}
+	]
+}

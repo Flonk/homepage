@@ -1,0 +1,70 @@
+{
+	"label": "Messmör",
+	"example": true,
+	"note": "Swedish; whey only, boiled down until it caramelises, no cream or sugar.",
+	"about": {
+		"text": "Swedish whey spread: whey boiled down until it caramelises into a soft, brownish spread. Unlike Norwegian prim, no cream or sugar is mentioned.",
+		"sources": {
+			"links": [
+				{
+					"name": "Swedish Wikipedia: Messmör",
+					"url": "https://sv.wikipedia.org/wiki/Messm%C3%B6r"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Messmor.jpg",
+		"author": "JonasB",
+		"license": "Public domain",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Messmor.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"SE"
+	],
+	"how": {
+		"text": "Like brunost, the water is boiled off and the lactose caramelises, but it is stopped at a soft spreadable stage. The Swedish page gives no times, ratios or fat percentages.",
+		"sources": {
+			"links": [
+				{
+					"name": "Swedish Wikipedia: Messmör",
+					"url": "https://sv.wikipedia.org/wiki/Messm%C3%B6r"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "evaporate",
+					"note": "Boiled down over an open fire in large copper kettles at the summer farms, stirred constantly with a wooden ladle against scorching, until it caramelises and turns brownish."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Swedish Wikipedia: Messmör",
+						"url": "https://sv.wikipedia.org/wiki/Messm%C3%B6r"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Same boil-down",
+			"v": "Pushed further, it becomes mesost (whey cheese)"
+		}
+	]
+}

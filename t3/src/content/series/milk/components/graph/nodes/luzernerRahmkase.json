@@ -1,0 +1,41 @@
+{
+	"label": "Luzerner Rahmkäse",
+	"example": true,
+	"family": "semiHard",
+	"regions": [
+		"CH"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		28,
+		60
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Lucerne",
+		"lat": 47.07,
+		"lon": 8,
+		"x": 0.52222,
+		"y": 0.20999,
+		"located": "knowledge"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Luzerner_Rahmk%C3%A4se"
+			},
+			{
+				"name": "swiss.com",
+				"url": "https://www.swiss.com/magazine/en/switzerland/culinary/emmi-luzerner---the-taste-of-the-region---the-mild--creamy-treat"
+			}
+		],
+		"text": "cream-enriched mild Emmi cheese made in Emmen since late 1960s, pasteurised milk, classed as Swiss semi-hard (Halbhartkäse); ripening time not published"
+	}
+}

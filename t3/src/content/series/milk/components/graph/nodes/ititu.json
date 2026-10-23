@@ -1,0 +1,101 @@
+{
+	"label": "Ititu",
+	"example": true,
+	"note": "Built up in layers, not left in one batch.",
+	"about": {
+		"text": "A concentrated sour milk curd of the Borana of southern Ethiopia, built up in a smoked vessel over weeks by adding fresh milk and draining whey.",
+		"sources": {
+			"links": [
+				{
+					"name": "Karssa et al. 2024, Insights on the microbiology of Ethiopian fermented milk products",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11521749/"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"regions": [
+		"ET"
+	],
+	"beasts": [
+		"camel"
+	],
+	"how": {
+		"label": "top up, drain whey",
+		"text": "Ititu is concentrated by repeated topping up and draining, so it ends as a sour curd, not a drink.",
+		"sources": {
+			"links": [
+				{
+					"name": "Karssa et al. 2024, Insights on the microbiology of Ethiopian fermented milk products",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11521749/"
+				},
+				{
+					"name": "ILRI, Traditional milk processing in Borana pastoral area",
+					"url": "https://www.ilri.org/knowledge/publications/traditional-milk-processing-borana-pastoral-area-southern-ethiopia-practices"
+				},
+				{
+					"name": "Kassaye et al. 1991, Chemical and microbiological characteristics of Ititu",
+					"url": "https://www.ilri.org/knowledge/publications/chemical-and-microbiological-characteristics-ititu"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Ligilactobacillus salivarius",
+								"kind": "bacterium"
+							}
+						],
+						"by": [
+							"wild",
+							"vessel"
+						],
+						"vessel": "gorfa, a pear-shaped container smoked with Olea africana"
+					},
+					"temperature": {
+						"min": 27,
+						"max": 30
+					},
+					"seconds": {
+						"min": 1296000,
+						"max": 2592000
+					},
+					"note": "Every 3–4 days whey is drained off and fresh milk added until the curd is thick."
+				}
+			],
+			"text": "No starter; natural fermentation. Every 3-4 days whey is drained off and fresh milk added until the curd is thick; the Borana study gives 1 week to 3 months.",
+			"sources": {
+				"links": [
+					{
+						"name": "Karssa et al. 2024, Insights on the microbiology of Ethiopian fermented milk products",
+						"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11521749/"
+					},
+					{
+						"name": "ILRI, Traditional milk processing in Borana pastoral area",
+						"url": "https://www.ilri.org/knowledge/publications/traditional-milk-processing-borana-pastoral-area-southern-ethiopia-practices"
+					},
+					{
+						"name": "Kassaye et al. 1991, Chemical and microbiological characteristics of Ititu",
+						"url": "https://www.ilri.org/knowledge/publications/chemical-and-microbiological-characteristics-ititu"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Mainly camel; cow, goat or sheep also used"
+		}
+	]
+}

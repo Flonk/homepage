@@ -1,0 +1,161 @@
+{
+	"label": "Chechil",
+	"example": true,
+	"aka": [
+		"Chechili",
+		"Cecil",
+		"Dil peyniri",
+		"Örgü peyniri"
+	],
+	"note": "Made from skimmed, soured milk, scalded and pulled into strands, braided and kept in brine; Armenia and Georgia",
+	"family": "pastaFilata",
+	"about": {
+		"text": "A brined string cheese of Armenia and Georgia, usually made from skimmed cow milk that is soured, set with rennet, scalded and pulled into thin strands that are braided into coils.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Chechil"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Chechil panir 3.jpg",
+		"author": "Valen1988",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:%D5%89%D5%A5%D5%B9%D5%AB%D5%AC_%D5%BA%D5%A1%D5%B6%D5%AB%D6%80_3.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"AM",
+		"GE",
+		"TR"
+	],
+	"beasts": [
+		"cow",
+		"sheep",
+		"goat"
+	],
+	"firm": "semi-soft",
+	"days": [
+		0,
+		30
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "brine",
+	"confidence": "medium",
+	"how": {
+		"label": "sour, scald, braid",
+		"text": "Curd is gathered, kneaded, stretched and tied into skeins; coils weigh 3–4 kg and are soaked in water before eating.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Chechil",
+					"url": "https://en.wikipedia.org/wiki/Chechil"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "skim",
+					"note": "Skimmed cow milk; sheep and goat mixes are also used."
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [],
+						"by": [
+							"backslop"
+						]
+					},
+					"temperature": {
+						"min": 35,
+						"max": 40
+					},
+					"note": "Soured by warming, or acid whey, sour milk or matsoni is added instead."
+				},
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"temperature": {
+						"min": 38,
+						"max": 40
+					},
+					"seconds": {
+						"min": 300,
+						"max": 600
+					},
+					"note": "With rennet or pepsin, added at 45–50 T for cow milk or 100–110 T for sheep milk."
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"temperature": {
+						"min": 48,
+						"max": 54
+					},
+					"note": "Stirred until it flakes and sticks into a ribbon."
+				},
+				{
+					"type": "custom",
+					"name": "stretch",
+					"note": "The curd is gathered, kneaded, stretched and tied into skeins."
+				},
+				{
+					"type": "custom",
+					"name": "brine",
+					"note": "In a 16–19 % brine."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Chechil",
+						"url": "https://en.wikipedia.org/wiki/Chechil"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Braided_cheese"
+			}
+		],
+		"text": "Stretched strips braided; often brined or soaked to remove salt; article names no milk or ageing"
+	},
+	"composition": {
+		"moisture": {
+			"max": 60
+		},
+		"fatInDryMatter": {
+			"max": 10
+		}
+	},
+	"facts": [
+		{
+			"k": "Salt",
+			"v": "4–8 % in the finished cheese"
+		}
+	]
+}

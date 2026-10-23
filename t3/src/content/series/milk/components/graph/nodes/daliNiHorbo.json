@@ -1,0 +1,123 @@
+{
+	"label": "Dali ni horbo",
+	"example": true,
+	"aka": [
+		"Bagot ni horbo",
+		"Dali"
+	],
+	"note": "Boiled and set with pineapple juice or papaya leaf juice (it also tames the strong smell, per Indonesia Travel); a Batak staple sold in the markets (onan) of Tapanuli",
+	"family": "plantCheese",
+	"about": {
+		"text": "A cheese of the Batak people of Tapanuli, North Sumatra: water buffalo milk is boiled and curdled with pineapple juice or papaya leaf juice.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Dali_ni_horbo"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"regions": [
+		"ID"
+	],
+	"beasts": [
+		"buffalo"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		0
+	],
+	"setting": "plant",
+	"rind": "none",
+	"place": {
+		"region": "North Sumatra",
+		"lat": 2,
+		"lon": 99,
+		"x": 0.775,
+		"y": 0.35299,
+		"located": "hint"
+	},
+	"confidence": "medium",
+	"how": {
+		"text": "No temperature or time for the set is published in any source opened.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Dali ni horbo",
+					"url": "https://en.wikipedia.org/wiki/Dali_ni_horbo"
+				},
+				{
+					"name": "Indonesia Travel: local foods around Lake Toba",
+					"url": "https://www.indonesia.travel/nl-nl/travel-ideas/gastronomy/7-local-food-s-around-lake-toba-that-you-should-not-miss"
+				},
+				{
+					"name": "VOI News: Dali ni horbo",
+					"url": "https://voinews.id/index.php/component/k2/item/17026-dali-ni-horbo"
+				},
+				{
+					"name": "Asia Pac J Clin Nutr 24(5), Indonesian traditional dairy",
+					"url": "https://apjcn.qdu.edu.cn/24_5_5.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"seconds": {
+						"min": 600,
+						"max": 600,
+						"about": true
+					},
+					"note": "Buffalo milk is boiled."
+				},
+				{
+					"type": "coagulate",
+					"by": "plant",
+					"note": "With pineapple juice or papaya leaf juice (plant proteases)."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Dali ni horbo",
+						"url": "https://en.wikipedia.org/wiki/Dali_ni_horbo"
+					},
+					{
+						"name": "Indonesia Travel: local foods around Lake Toba",
+						"url": "https://www.indonesia.travel/nl-nl/travel-ideas/gastronomy/7-local-food-s-around-lake-toba-that-you-should-not-miss"
+					},
+					{
+						"name": "VOI News: Dali ni horbo",
+						"url": "https://voinews.id/index.php/component/k2/item/17026-dali-ni-horbo"
+					},
+					{
+						"name": "Asia Pac J Clin Nutr 24(5), Indonesian traditional dairy",
+						"url": "https://apjcn.qdu.edu.cn/24_5_5.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Dali_ni_horbo"
+			}
+		],
+		"text": "Batak; buffalo milk boiled, set with papaya leaf or unripe pineapple juice"
+	},
+	"facts": [
+		{
+			"k": "Milking",
+			"v": "Water buffalo, milked early morning; about 2 L a day taken, the rest left to the calf"
+		}
+	]
+}

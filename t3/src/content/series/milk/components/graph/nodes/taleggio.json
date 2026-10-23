@@ -1,0 +1,168 @@
+{
+	"label": "Taleggio",
+	"example": true,
+	"family": "washed",
+	"about": {
+		"text": "Taleggio is a semisoft washed-rind Italian cheese named after Val Taleggio, Italy. The cheese has a thin, edible rind and a strong aroma, but its flavour is comparatively mild with an unusual fruity tang. The rind is a pinkish-brown, and the interior is creamy and pale yellow. It has a protected designation of origin so that only such cheese produced in the Lombardy or Piedmont regions of Italy may be designated as Taleggio.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Taleggio_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Taleggio vecchia lavorazione (3323694182).jpg",
+		"author": "F. D. Richards from Clinton, MI",
+		"license": "CC BY-SA 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Taleggio_vecchia_lavorazione_(3323694182).jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-soft",
+	"days": [
+		35,
+		70
+	],
+	"setting": "rennet",
+	"rind": "washed",
+	"protected": "PDO",
+	"place": {
+		"region": "Lombardy",
+		"lat": 45.84,
+		"lon": 9.55,
+		"x": 0.52653,
+		"y": 0.21495,
+		"located": "knowledge"
+	},
+	"confidence": "high",
+	"how": {
+		"label": "wipe the rind",
+		"text": "During at least 35 days in cold, humid caves or rooms the square cheeses are turned and wiped with salt water, which keeps the rind moist and removes mould hyphae. The resulting pink rind flora ripens the paste from the outside in, so it is softer under the rind than at the centre.",
+		"sources": {
+			"links": [
+				{
+					"name": "Taleggio PDO amendment, OJ C 72 (2022)",
+					"url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=uriserv:OJ.C_.2022.072.01.0012.01.ENG"
+				},
+				{
+					"name": "Taleggio DOP disciplinare summary (Qualigeo)",
+					"url": "https://www.qualigeo.eu/prodotto-qualigeo/taleggio-dop/"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"temperature": {
+						"min": 32,
+						"max": 35
+					},
+					"note": "With liquid calf rennet, after the lactic starters."
+				},
+				{
+					"type": "custom",
+					"name": "cut",
+					"note": "In stages to hazelnut size."
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic",
+						"smear"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "lactic acid bacteria",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"temperature": {
+						"min": 20,
+						"max": 28
+					},
+					"seconds": {
+						"min": 28800,
+						"max": 57600
+					},
+					"note": "Stewed in square moulds, 1.5–2.5 kg."
+				},
+				{
+					"type": "custom",
+					"name": "salt",
+					"note": "Dry and/or in brine."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"temperature": {
+						"min": 1,
+						"max": 6
+					},
+					"seconds": {
+						"min": 3024000
+					},
+					"humidity": {
+						"min": 80
+					},
+					"note": "Often on wooden boards, turned and wiped with salt water only."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Taleggio PDO amendment, OJ C 72 (2022)",
+						"url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=uriserv:OJ.C_.2022.072.01.0012.01.ENG"
+					},
+					{
+						"name": "Taleggio DOP disciplinare summary (Qualigeo)",
+						"url": "https://www.qualigeo.eu/prodotto-qualigeo/taleggio-dop/"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Taleggio_cheese"
+			}
+		],
+		"text": "Its facts, from these."
+	},
+	"facts": [
+		{
+			"k": "Rind",
+			"v": "Thin, soft, natural pink"
+		}
+	]
+}

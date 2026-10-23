@@ -1,0 +1,43 @@
+{
+	"label": "Comelico",
+	"example": true,
+	"aka": [
+		"Formaggio Comelico"
+	],
+	"family": "semiHard",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		30,
+		180
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Veneto",
+		"lat": 46.6,
+		"lon": 12.5,
+		"x": 0.53472,
+		"y": 0.21189,
+		"located": "hint"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Comelico_(cheese)"
+			},
+			{
+				"name": "onaf.it",
+				"url": "https://www.onaf.it/uploads/public/formaggi/12583_formaggio-comelico-reg-veneto.pdf"
+			}
+		],
+		"text": "Veneto (Cadore, Belluno) latteria cheese, brined; fresco 1-3 months, mezzano over 3, vecchio over 5; max is approximate"
+	}
+}

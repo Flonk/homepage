@@ -1,0 +1,157 @@
+{
+	"label": "Steamed cheese (parenica)",
+	"aka": [
+		"Parený syr"
+	],
+	"from": "cheese",
+	"step": "steam in hot water, pull",
+	"note": "Slovak and Goral cheeses: matured lump cheese is scalded and stretched; not the same as oscypek, which is pressed in wooden moulds and smoked, not stretched.",
+	"cheese": true,
+	"ripened": true,
+	"about": {
+		"text": "Steamed cheese is the Slovak way of turning matured sheep lump cheese into a plastic mass by working it in hot water, then pulling it into ribbons or strings. Parenica is wound into spirals, korbáčik braided; both are usually smoked and are traditionally sheep, now often cow.",
+		"sources": {
+			"links": [
+				{
+					"name": "Slow Food Ark of Taste, Parenica",
+					"url": "https://www.fondazioneslowfood.com/en/ark-of-taste-slow-food/parenica-2/"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Parenica.jpg",
+		"author": "Stanislav Doronenko",
+		"license": "Public domain",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Parenica.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"SK",
+		"PL"
+	],
+	"beasts": [
+		"sheep",
+		"cow"
+	],
+	"how": {
+		"text": "The lump cheese is already soured by its day of fermentation, so it stretches in hot water without any extra acid, the way pasta filata curd does.",
+		"sources": {
+			"links": [
+				{
+					"name": "Slow Food Ark of Taste, Parenica",
+					"url": "https://www.fondazioneslowfood.com/en/ark-of-taste-slow-food/parenica-2/"
+				},
+				{
+					"name": "Čubon et al., traditional Slovak sheep cheeses, J Microbiol Biotechnol Food Sci: raw-milk sheep lump cheese is the base material of parenica, korbáčik, oštiepok; parenica and korbáčik are lump cheese steamed in hot water and pulled",
+					"url": "https://doi.org/10.55251/jmbfs.12714"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "lactic acid bacteria",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"temperature": {
+						"min": 20,
+						"max": 23
+					},
+					"seconds": {
+						"min": 86400,
+						"max": 86400,
+						"about": true
+					}
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"temperature": {
+						"min": 60,
+						"max": 70
+					},
+					"note": "Pieces of about 500 g are worked in a wooden vessel of 60–70 °C water."
+				},
+				{
+					"type": "custom",
+					"name": "pull",
+					"note": "With a wooden spatula into a ribbon about 4–6 m long and 6 cm wide."
+				},
+				{
+					"type": "custom",
+					"name": "brine",
+					"note": "In cold brine."
+				},
+				{
+					"type": "custom",
+					"name": "spiral"
+				},
+				{
+					"type": "dry"
+				},
+				{
+					"type": "custom",
+					"name": "smoke",
+					"seconds": {
+						"min": 7200,
+						"max": 7200,
+						"about": true
+					},
+					"note": "Smoked, though an unsmoked version exists."
+				}
+			],
+			"text": "This is the lump cheese that is steamed: milk at 32 C with rennet and lactic bacteria (species not named), curd left to ferment for about a day. It is already soured, so it stretches in hot water without extra acid.",
+			"sources": {
+				"links": [
+					{
+						"name": "Slow Food Ark of Taste, Parenica",
+						"url": "https://www.fondazioneslowfood.com/en/ark-of-taste-slow-food/parenica-2/"
+					},
+					{
+						"name": "Čubon et al., traditional Slovak sheep cheeses, J Microbiol Biotechnol Food Sci: raw-milk sheep lump cheese is the base material of parenica, korbáčik, oštiepok; parenica and korbáčik are lump cheese steamed in hot water and pulled",
+						"url": "https://doi.org/10.55251/jmbfs.12714"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"parenica",
+		"korbacik",
+		"zazrivskyKorbacik",
+		"ostiepok"
+	],
+	"facts": [
+		{
+			"k": "Starting material",
+			"v": "Sheep lump cheese (hrudkový syr), now also cow"
+		}
+	]
+}

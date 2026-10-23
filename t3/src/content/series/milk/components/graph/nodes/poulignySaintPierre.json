@@ -1,0 +1,95 @@
+{
+	"label": "Pouligny-Saint-Pierre",
+	"example": true,
+	"family": "lacticCheese",
+	"about": {
+		"text": "A French goat cheese of the Berry shaped as a pyramid of 250 g; AOC since 1976.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Pouligny-Saint-Pierre_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "AOP Pouligny-saint-pierre fromage bis.jpg",
+		"author": "Valdis72",
+		"license": "Public domain",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:AOP_Pouligny-saint-pierre_fromage_bis.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"goat"
+	],
+	"firm": "soft",
+	"days": [
+		14,
+		35
+	],
+	"setting": "rennet-acid",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Centre-Val de Loire",
+		"lat": 46.65,
+		"lon": 1.68,
+		"x": 0.50467,
+		"y": 0.21169,
+		"located": "hint"
+	},
+	"confidence": "high",
+	"how": {
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Pouligny-Saint-Pierre cheese",
+					"url": "https://en.wikipedia.org/wiki/Pouligny-Saint-Pierre_cheese"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"seconds": {
+						"min": 1209600
+					}
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Pouligny-Saint-Pierre cheese",
+						"url": "https://en.wikipedia.org/wiki/Pouligny-Saint-Pierre_cheese"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Pouligny-Saint-Pierre_cheese"
+			}
+		],
+		"text": "pyramid shape, 'Eiffel Tower'"
+	},
+	"raw": true
+}

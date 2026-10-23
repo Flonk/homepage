@@ -1,0 +1,85 @@
+{
+	"label": "Manjar",
+	"example": true,
+	"about": {
+		"text": "The Chilean name for dulce de leche: a brown, sweet, pasty spread made mainly from milk and sugar heated for a long time until it caramelises and thickens. In Chile it is made to specific rules that require a minimum milk-solids content and a smooth texture.",
+		"sources": {
+			"links": [
+				{
+					"name": "El Mostrador (2026)",
+					"url": "https://www.elmostrador.cl/revista-jengibre/gastronomia/2026/07/06/estudio-revela-que-mas-de-la-mitad-de-los-chilenos-no-distingue-entre-manjar-y-dulce-de-leche/"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Manjar",
+		"author": "gpoo",
+		"license": "CC BY 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Flickr",
+					"url": "https://www.flickr.com/photos/32593403@N00/5066673087"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"CL"
+	],
+	"how": {
+		"text": "Manjar is the Chilean name for dulce de leche. The sources give no Chile-specific quantities, temperatures or times; the method is that of dulce de leche. Note that 'manjar blanco' elsewhere (Colombia, Peru) can be a different, rice-thickened sweet.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Dulce de leche",
+					"url": "https://en.wikipedia.org/wiki/Dulce_de_leche"
+				},
+				{
+					"name": "Wikipedia (es): Arequipe",
+					"url": "https://es.wikipedia.org/wiki/Arequipe"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"seconds": {
+						"min": 5400,
+						"max": 7200
+					},
+					"note": "Milk and sugar are simmered and stirred."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Dulce de leche",
+						"url": "https://en.wikipedia.org/wiki/Dulce_de_leche"
+					},
+					{
+						"name": "Wikipedia (es): Arequipe",
+						"url": "https://es.wikipedia.org/wiki/Arequipe"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Names",
+			"v": "Manjar in Chile; 'manjar blanco' in Bolivia, Ecuador and Peru"
+		},
+		{
+			"k": "History",
+			"v": "Customs records show manjar imported into Argentina from Chile in 1693 and 1712"
+		}
+	]
+}

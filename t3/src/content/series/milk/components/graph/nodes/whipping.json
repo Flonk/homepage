@@ -1,0 +1,58 @@
+{
+	"label": "Whipping cream",
+	"from": "cream",
+	"at": 35,
+	"niche": 0,
+	"about": {
+		"text": "Britain’s whipping cream: at least 35 % fat, enough to trap air when beaten and hold it as whipped cream.",
+		"sources": {
+			"links": [
+				{
+					"name": "UK Food Labelling Regulations 1996, Schedule 8",
+					"url": "https://www.legislation.gov.uk/uksi/1996/1499/schedule/8/part/III/made"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Whipped Cream.jpg",
+		"author": "Rhett Sutphin",
+		"license": "CC BY 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Whipped_Cream.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"GB"
+	],
+	"how": {
+		"text": "Nothing is added: cream is standardised to the fat grade and pasteurised. Enough fat is what lets the beaten cream trap air and hold it.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Cream (grades by country)",
+					"url": "https://en.wikipedia.org/wiki/Cream"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 35
+		}
+	},
+	"facts": [
+		{
+			"k": "US",
+			"v": "Whipping cream 30–36 %; heavy whipping cream 36 % and above"
+		}
+	]
+}

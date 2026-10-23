@@ -1,0 +1,91 @@
+{
+	"label": "Washed-curd cheese",
+	"from": "semiHard",
+	"step": "wash the curd",
+	"mapped": true,
+	"niche": 1,
+	"about": {
+		"text": "Cheese whose curd has part of its whey drawn off and replaced with water while it is being made, diluting its milk sugar so that less lactic acid forms: the cheese ends up less acidic and smooth in texture. Gouda, Edam, Havarti and Tilsiter are made this way.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Edamer.JPG",
+		"author": "DrMItos",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Edamer.JPG"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "Replacing whey with water washes out lactose, so less lactic acid forms later and the cheese avoids a sour, brittle texture. This gives the smooth, supple body of Gouda- and Havarti-type cheeses.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "wash",
+					"note": "30–50 % of the batch is drained as whey and replaced by water, which sets the scald temperature."
+				},
+				{
+					"type": "custom",
+					"name": "brine",
+					"note": "In brine; Gouda ends at 1.5–2.2 % salt."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"temperature": {
+						"min": 12
+					},
+					"seconds": {
+						"min": 2419200
+					},
+					"humidity": {
+						"min": 75,
+						"max": 80
+					}
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"gouda",
+		"edam",
+		"colby",
+		"montereyJack",
+		"leyden",
+		"maasdam",
+		"brick"
+	]
+}

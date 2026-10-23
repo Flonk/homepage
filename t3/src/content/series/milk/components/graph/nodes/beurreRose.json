@@ -1,0 +1,133 @@
+{
+	"label": "Beurre Rose",
+	"example": true,
+	"note": "Luxembourg cultured milk butter, PDO since 2000; the name comes from the pink state quality label, not the butter; continuous churning, tested 15 times a year",
+	"about": {
+		"text": "Cultured milk butter from Luxembourg under the national quality mark, PDO since 2000. The name comes from the pink quality label, not from the butter. Made by continuous churning and tested 15 times a year.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Beurre_Rose"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Beurre Rose.jpg",
+		"author": "Procrastineur49",
+		"license": "CC0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Beurre_Rose.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"LU"
+	],
+	"how": {
+		"text": "The aroma comes from ripening the cream with a mesophilic starter before churning; today it is churned continuously.",
+		"sources": {
+			"links": [
+				{
+					"name": "Document unique, IGP Beurre ROSE (version of 27-07-2026), Luxembourg ministry of agriculture",
+					"url": "https://agriculture.public.lu/dam-assets/ernaehrung/normen-label-eu-qualitaetskennzeichen/document-unique-igp-beurre-rose.pdf"
+				},
+				{
+					"name": "Wikipedia: Beurre Rose",
+					"url": "https://en.wikipedia.org/wiki/Beurre_Rose"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "mesophilic lactic acid bacteria",
+								"kind": "bacterium",
+								"does": [
+									"acid",
+									"aroma"
+								],
+								"grows": "mesophilic"
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"pH": {
+						"min": 4.4,
+						"max": 4.8
+					},
+					"note": "Ripened biologically under a strictly controlled temperature profile, no figures given."
+				},
+				{
+					"type": "churn",
+					"note": "Today it is churned continuously."
+				},
+				{
+					"type": "custom",
+					"name": "separate",
+					"note": "The buttermilk is drawn off."
+				},
+				{
+					"type": "custom",
+					"name": "wash",
+					"note": "The butter grains are washed."
+				},
+				{
+					"type": "custom",
+					"name": "knead",
+					"note": "The butter is worked."
+				}
+			],
+			"text": "The cream is ripened biologically under a controlled temperature profile before churning; the pH is that of the finished butter. Strains and figures are not given.",
+			"sources": {
+				"links": [
+					{
+						"name": "Document unique, IGP Beurre ROSE (version of 27-07-2026), Luxembourg ministry of agriculture",
+						"url": "https://agriculture.public.lu/dam-assets/ernaehrung/normen-label-eu-qualitaetskennzeichen/document-unique-igp-beurre-rose.pdf"
+					},
+					{
+						"name": "Wikipedia: Beurre Rose",
+						"url": "https://en.wikipedia.org/wiki/Beurre_Rose"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Yeasts and moulds",
+			"v": "Under 100 CFU/g"
+		},
+		{
+			"k": "Coliforms",
+			"v": "Under 10 CFU/g"
+		},
+		{
+			"k": "Flavour",
+			"v": "Milky, with notes of diacetyl"
+		},
+		{
+			"k": "Texture",
+			"v": "Melting and malleable, very good for lamination (puff pastry)"
+		}
+	]
+}

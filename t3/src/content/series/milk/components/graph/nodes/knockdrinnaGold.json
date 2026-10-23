@@ -1,0 +1,37 @@
+{
+	"label": "Knockdrinna Gold",
+	"example": true,
+	"family": "semiHard",
+	"regions": [
+		"IE"
+	],
+	"beasts": [
+		"goat"
+	],
+	"firm": "semi-hard",
+	"days": [
+		30,
+		90
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Laois",
+		"lat": 52.95,
+		"lon": -7.35,
+		"x": 0.47958,
+		"y": 0.18453,
+		"located": "knowledge"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "agriland.ie",
+				"url": "https://www.agriland.ie/farming-news/cheesey-does-it/"
+			}
+		],
+		"text": "Knockdrinna Farmhouse Cheese, Stoneyford, Co. Kilkenny; described as a semi-hard goat's cheese (so not washed, family changed from washed); ripening time not stated"
+	}
+}

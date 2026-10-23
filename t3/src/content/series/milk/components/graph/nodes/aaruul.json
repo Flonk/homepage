@@ -1,0 +1,147 @@
+{
+	"label": "Aaruul",
+	"example": true,
+	"about": {
+		"text": "Mongolian dried curd, a long-standing portable food of herding families. Most is made from the yoghurt of cows or yaks, although any livestock milk or yoghurt can be used. The curd is spread on the sloping roof of the ger to dry in the sun, then shaped. Sugar is sometimes added. Once hard, it keeps for a long time.",
+		"sources": {
+			"links": [
+				{
+					"name": "ANU Mongolia Institute",
+					"url": "https://mongoliainstitute.anu.edu.au/content-centre/article/series/white-foods"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Mongolian Cuisine 13.JPG",
+		"author": "Brücke-Osteuropa",
+		"license": "Public domain",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Mongolian_Cuisine_13.JPG"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"MN"
+	],
+	"beasts": [
+		"cow",
+		"yak"
+	],
+	"how": {
+		"label": "press, dry",
+		"text": "Mongolian aaruul is the curd of soured or yoghurt-fermented milk, drained in cloth, pressed, cut and dried in sun and air on the yurt roof. It becomes a hard snack that keeps through winter.",
+		"sources": {
+			"links": [
+				{
+					"name": "Daginder, Aaruul thesis, SLU (2015)",
+					"url": "https://stud.epsilon.slu.se/8197/"
+				},
+				{
+					"name": "Jargalsaikhan & Dorjsuren, Mong. J. Agric. Sci. (2024)",
+					"url": "https://www.mongoliajol.info/index.php/MJAS/article/view/3875"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Streptococcus thermophilus",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								],
+								"grows": "thermophilic"
+							},
+							{
+								"name": "Lactobacillus delbrueckii",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								],
+								"grows": "thermophilic"
+							}
+						],
+						"by": [
+							"backslop"
+						]
+					},
+					"temperature": {
+						"min": 43,
+						"max": 43
+					},
+					"seconds": {
+						"min": 14400,
+						"max": 14400
+					}
+				},
+				{
+					"type": "custom",
+					"name": "drain",
+					"note": "In cloth."
+				},
+				{
+					"type": "custom",
+					"name": "press",
+					"note": "To about 60 % moisture."
+				},
+				{
+					"type": "custom",
+					"name": "cut"
+				},
+				{
+					"type": "dry",
+					"seconds": {
+						"min": 345600,
+						"max": 432000
+					},
+					"note": "In the sun."
+				}
+			],
+			"text": "Traditionally soured with soured milk (tarag); the study recipe used the two named cultures.",
+			"sources": {
+				"links": [
+					{
+						"name": "Daginder, Aaruul thesis, SLU (2015)",
+						"url": "https://stud.epsilon.slu.se/8197/"
+					},
+					{
+						"name": "Jargalsaikhan & Dorjsuren, Mong. J. Agric. Sci. (2024)",
+						"url": "https://www.mongoliajol.info/index.php/MJAS/article/view/3875"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"composition": {
+		"moisture": {
+			"max": 20
+		}
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Also goat or camel; mare's milk does not curd"
+		},
+		{
+			"k": "Texture",
+			"v": "Hard dried curd"
+		}
+	]
+}

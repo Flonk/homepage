@@ -1,0 +1,137 @@
+{
+	"label": "Lactose-free milk",
+	"aka": [
+		"Laktosefreie Milch"
+	],
+	"from": "pasteurised",
+	"step": "split the lactose with lactase",
+	"alsoFrom": [
+		"uht",
+		"skimmed"
+	],
+	"note": "In Germany only a product with under 0.1 g lactose per 100 g, and labelled so, may be called laktosefrei (MilchPQV § 58). The milk tastes sweeter because glucose and galactose are sweeter than the lactose they came from.",
+	"niche": 1,
+	"about": {
+		"text": "Milk in which the lactose has been split into glucose and galactose by the enzyme lactase, or largely removed by membranes, so that people who cannot digest lactose can drink it. It tastes sweeter than ordinary milk.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Lactose-free_milk"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Lactose-free milk, BKK, 2021-10-01.jpg",
+		"author": "21janvier1793",
+		"license": "CC0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Lactose-free_milk,_BKK,_2021-10-01.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "Lactase is stirred into the milk, or a few drops go into the sealed carton, and splits each lactose molecule into glucose and galactose. The milk is the same milk, only sweeter.",
+		"sources": {
+			"links": [
+				{
+					"name": "MilchPQV § 58 (laktosefrei: under 0.1 g/100 g, labelled)",
+					"url": "https://www.gesetze-im-internet.de/milchpqv/__58.html"
+				},
+				{
+					"name": "US 8,354,259 B2 (Cornell), description of commercial lactase processes",
+					"url": "https://patents.google.com/patent/US8354259B2/en"
+				},
+				{
+					"name": "Wikipedia: Lactose-free milk",
+					"url": "https://en.wikipedia.org/wiki/Lactose-free_milk"
+				},
+				{
+					"name": "Valio: pioneer in lactose free dairy",
+					"url": "https://www.valio.com/articles/valio-pioneer-in-lactose-free-dairy/"
+				},
+				{
+					"name": "Wikipedia: Valio",
+					"url": "https://en.wikipedia.org/wiki/Valio"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "add lactase",
+					"temperature": {
+						"min": 30,
+						"max": 35
+					},
+					"note": "Lactase (beta-galactosidase), usually from the yeast Kluyveromyces lactis, splits the lactose into glucose and galactose and is denatured above about 40 °C."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "MilchPQV § 58 (laktosefrei: under 0.1 g/100 g, labelled)",
+						"url": "https://www.gesetze-im-internet.de/milchpqv/__58.html"
+					},
+					{
+						"name": "US 8,354,259 B2 (Cornell), description of commercial lactase processes",
+						"url": "https://patents.google.com/patent/US8354259B2/en"
+					},
+					{
+						"name": "Wikipedia: Lactose-free milk",
+						"url": "https://en.wikipedia.org/wiki/Lactose-free_milk"
+					},
+					{
+						"name": "Valio: pioneer in lactose free dairy",
+						"url": "https://www.valio.com/articles/valio-pioneer-in-lactose-free-dairy/"
+					},
+					{
+						"name": "Wikipedia: Valio",
+						"url": "https://en.wikipedia.org/wiki/Valio"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"valioLactoseFreeMilk",
+		"minusL"
+	],
+	"composition": {
+		"lactose": {
+			"max": 0.1
+		}
+	},
+	"facts": [
+		{
+			"k": "Law (DE)",
+			"v": "Lactose-free means under 0.1 g lactose per 100 g"
+		},
+		{
+			"k": "Lactase after UHT",
+			"v": "A little yeast lactase is injected through a sterile 0.22 µm filter into the sterile, packed UHT milk; hydrolysis is complete after 7–10 days at room temperature. Yeast lactase does not survive 135 °C, so it cannot go in before UHT unless it is dosed again afterwards"
+		},
+		{
+			"k": "Membrane route",
+			"v": "Valio filters the milk, takes the lactose out, puts proteins, minerals and fat back and hydrolyses the rest; Wikipedia says ultrafiltration, Valio's wiki entry says chromatographic separation (conflict, unresolved)"
+		},
+		{
+			"k": "Sweetness",
+			"v": "Hydrolysis makes the milk taste sweeter (lactose is far less sweet than glucose and galactose); a patent says consumers notice it at about 80 % hydrolysis"
+		},
+		{
+			"k": "Lactase before heating",
+			"v": "Added before pasteurising or UHT; the milk is held at the enzyme temperature until the lactose is gone, within the plant's 72 h holding limit (Cornell patent description)"
+		}
+	]
+}

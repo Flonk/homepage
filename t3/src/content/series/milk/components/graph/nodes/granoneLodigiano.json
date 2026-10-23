@@ -1,0 +1,37 @@
+{
+	"label": "Granone Lodigiano",
+	"example": true,
+	"family": "hard",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "extra-hard",
+	"days": [
+		365,
+		730
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Lombardy",
+		"lat": 45.31,
+		"lon": 9.5,
+		"x": 0.52639,
+		"y": 0.21705,
+		"located": "knowledge"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Granone_Lodigiano"
+			}
+		],
+		"text": "Grana-style cheese of the Lodi area; the Wikipedia link is dead and no consortium specification was found, ripening is estimated"
+	}
+}

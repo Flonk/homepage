@@ -1,0 +1,36 @@
+{
+	"label": "Carlow Sheep Cheddar",
+	"example": true,
+	"family": "cheddared",
+	"regions": [
+		"IE"
+	],
+	"beasts": [
+		"sheep"
+	],
+	"firm": "hard",
+	"days": [
+		180,
+		730
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Carlow",
+		"lat": 52.84,
+		"lon": -6.93,
+		"x": 0.48075,
+		"y": 0.18503,
+		"located": "hint"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "bordbia.ie",
+				"url": "https://www.bordbia.ie/farmhouse-cheese/profiles/carlow-farmhouse-cheese/"
+			}
+		],
+		"text": "Carlow Farmhouse Cheese, Fennagh; hard cheddar-type sheep cheese, cloth-bound, matured 6 months to 2 years"
+	}
+}

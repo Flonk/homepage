@@ -1,0 +1,130 @@
+{
+	"label": "Pasta filata\n(mozzarella)",
+	"aka": [
+		"Stretched-curd cheese",
+		"Brühkäse"
+	],
+	"from": "rennetCurd",
+	"step": "stretch",
+	"mapped": true,
+	"niche": 0,
+	"about": {
+		"text": "Stretch-curd cheeses are those prepared using the pasta filata technique. They are also known as pulled-curd and plastic-curd cheeses. The cheeses manufactured from this technique undergo a plasticising and kneading treatment of the fresh curd in hot water, which gives them fibrous structures.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/List_of_stretch-curd_cheeses"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Mozzarella di bufala3.jpg",
+		"author": "Popo le Chien",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Mozzarella_di_bufala3.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "Once acid has built up, the curd becomes plastic in hot water. It can then be kneaded and stretched into a fibrous, elastic paste.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+				},
+				{
+					"name": "ONAF sheet: Burrata di Andria IGP",
+					"url": "https://www.onaf.it/uploads/public/15494_burrata.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"temperature": {
+						"min": 35,
+						"max": 37
+					},
+					"note": "With rennet, as in the burrata specification."
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"acidity": {
+						"min": 0.7,
+						"max": 0.8
+					},
+					"note": "The hazelnut-size grains rest until the whey has 0.7–0.8 % lactic acid."
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"temperature": {
+						"min": 65,
+						"max": 70
+					},
+					"note": "The curd is kneaded and stretched in the hot water."
+				},
+				{
+					"type": "custom",
+					"name": "mould",
+					"temperature": {
+						"min": 55,
+						"max": 65
+					}
+				},
+				{
+					"type": "custom",
+					"name": "brine",
+					"seconds": {
+						"min": 28800,
+						"max": 28800,
+						"about": true
+					},
+					"note": "About 2 h if dry-salted, or the stretching water is salted instead."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+					},
+					{
+						"name": "ONAF sheet: Burrata di Andria IGP",
+						"url": "https://www.onaf.it/uploads/public/15494_burrata.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"mozzarellaDiBufala",
+		"provolone",
+		"provoleta",
+		"caciocavallo",
+		"kashkaval",
+		"quesoOaxaca",
+		"kasseri",
+		"scamorza",
+		"suluguni",
+		"chechil",
+		"tenili",
+		"mudafara",
+		"stringCheese"
+	]
+}

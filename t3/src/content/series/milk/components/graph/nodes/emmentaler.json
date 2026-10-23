@@ -1,0 +1,208 @@
+{
+	"label": "Emmentaler",
+	"example": true,
+	"aka": [
+		"Emmental"
+	],
+	"family": "alpine",
+	"about": {
+		"text": "Emmental is a yellow, medium-hard cheese with natural holes that originated in the Emme Valley in Switzerland. It is classified as a Swiss-type cheese.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Emmental_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Emmental 015.jpg",
+		"author": "StaraBlazkova",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Emmental_015.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"CH"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "hard",
+	"days": [
+		120,
+		365
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Bern",
+		"lat": 46.98,
+		"lon": 7.62,
+		"x": 0.52117,
+		"y": 0.21035,
+		"located": "knowledge"
+	},
+	"confidence": "high",
+	"how": {
+		"label": "grow eyes",
+		"text": "Weeks in the warm fermentation cellar drive the propionic acid fermentation that gives Emmentaler its regular, mostly 2–4 cm holes and its sweet, slightly tangy, mildly spicy taste. The wheels are then washed and moved to a cool cellar to mature.",
+		"sources": {
+			"links": [
+				{
+					"name": "Emmentaler AOP Pflichtenheft (BLW, rev. 2016)",
+					"url": "https://2021.aop-igp.ch/fileadmin/Dokumente/Pflichtenhefter/Emmentaler_Pflichtenheft.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"max": 40
+					},
+					"note": "The raw milk is never heated above this, and is used within 24 h."
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic",
+						"propionic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "lactic cultures",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "propionic acid bacteria",
+								"kind": "bacterium",
+								"does": [
+									"gas"
+								]
+							}
+						],
+						"by": [
+							"starter"
+						]
+					}
+				},
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"seconds": {
+						"min": 2100,
+						"max": 2700
+					},
+					"note": "With rennet, in a copper vat."
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"temperature": {
+						"min": 52,
+						"max": 54
+					},
+					"seconds": {
+						"min": 1800,
+						"max": 3600
+					}
+				},
+				{
+					"type": "custom",
+					"name": "mould",
+					"temperature": {
+						"min": 49,
+						"max": 52
+					}
+				},
+				{
+					"type": "custom",
+					"name": "press",
+					"seconds": {
+						"max": 72000
+					},
+					"note": "Into wheels of 80–100 cm and 75–120 kg."
+				},
+				{
+					"type": "custom",
+					"name": "brine",
+					"seconds": {
+						"min": 86400,
+						"max": 259200
+					},
+					"note": "In a brine of 20–22 °Bé."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"temperature": {
+						"min": 19,
+						"max": 24
+					},
+					"seconds": {
+						"min": 2592000,
+						"max": 6048000
+					}
+				},
+				{
+					"type": "custom",
+					"name": "wash",
+					"note": "The wheels are washed when they move to the cool cellar."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"temperature": {
+						"min": 11,
+						"max": 14
+					},
+					"note": "At least 4 mo in all for the classic grade, 8 mo or more for the Réserve."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Emmentaler AOP Pflichtenheft (BLW, rev. 2016)",
+						"url": "https://2021.aop-igp.ch/fileadmin/Dokumente/Pflichtenhefter/Emmentaler_Pflichtenheft.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Emmental_cheese"
+			}
+		],
+		"text": "Its facts, from these."
+	},
+	"facts": [
+		{
+			"k": "Rind",
+			"v": "Firm, yellow-brown"
+		}
+	],
+	"raw": true
+}

@@ -1,0 +1,150 @@
+{
+	"label": "Jānu siers",
+	"example": true,
+	"aka": [
+		"Jāņi cheese",
+		"Caraway cheese",
+		"Ķimeņu siers",
+		"Jāņu siers"
+	],
+	"note": "Eaten at Jāņi, the midsummer festival; under 30 % fat; a firm cylinder, not a spreadable cooked cheese",
+	"family": "cookedCheese",
+	"about": {
+		"text": "Jāņu siers is a Latvian sour milk cheese eaten at the Jāņi midsummer festival. Its curd comes from both soured and fresh cow milk and is cooked with eggs, butter, salt and caraway into a firm cylinder. It has been an EU Traditional Speciality Guaranteed since 2015.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/J%C4%81%C5%86i_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Mājās siets Jāņu siers.jpg",
+		"author": "Turaids",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:M%C4%81j%C4%81s_siets_J%C4%81%C5%86u_siers.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"LV"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "soft",
+	"days": [
+		1,
+		3
+	],
+	"estimated": true,
+	"setting": "acid",
+	"rind": "none",
+	"confidence": "medium",
+	"how": {
+		"label": "cook curd with egg, butter, caraway",
+		"text": "Whole milk is heated and curd added; the mass is cooked until curds separate from clear whey, then stirred with egg, butter, salt and caraway into a firm ball. The temperature and size figures come from Wikipedia, not from the TSG regulation.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Jāņi cheese",
+					"url": "https://en.wikipedia.org/wiki/J%C4%81%C5%86i_cheese"
+				},
+				{
+					"name": "Commission Implementing Regulation (EU) 2015/2045 (TSG; PDF text not extractable here, detail via search summary)",
+					"url": "https://eur-lex.europa.eu/eli/reg_impl/2015/2045/oj/eng"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "lactic acid bacteria",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							}
+						]
+					},
+					"note": "Lactic acid bacteria only, no rennet; no species named."
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"temperature": {
+						"min": 72,
+						"max": 77
+					},
+					"note": "Cooked until the curds separate from the clear whey, which is drawn off at 72-77 °C."
+				},
+				{
+					"type": "custom",
+					"name": "mix",
+					"note": "Stirred with egg, butter or cream, salt and caraway seeds into a firm ball."
+				},
+				{
+					"type": "custom",
+					"name": "rest",
+					"note": "In cheesecloth, often pressed, for a few days in a cool place."
+				}
+			],
+			"text": "Lactic acid bacteria only, no rennet; no species named. The soured-milk curd is then cooked.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Jāņi cheese",
+						"url": "https://en.wikipedia.org/wiki/J%C4%81%C5%86i_cheese"
+					},
+					{
+						"name": "Commission Implementing Regulation (EU) 2015/2045 (TSG; PDF text not extractable here, detail via search summary)",
+						"url": "https://eur-lex.europa.eu/eli/reg_impl/2015/2045/oj/eng"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/J%C4%81%C5%86i_cheese"
+			}
+		],
+		"text": "Curd from soured and fresh milk heated with egg, butter and caraway, then pressed; eaten at Midsummer; cooked-cheese rather than raw quark, so estimate-based family move"
+	},
+	"composition": {
+		"fat": {
+			"max": 30
+		}
+	},
+	"facts": [
+		{
+			"k": "Shape",
+			"v": "Cylinder 4–6 cm high, 8–30 cm across"
+		},
+		{
+			"k": "Texture",
+			"v": "Soft, compact, slightly grainy, homogeneous"
+		}
+	]
+}

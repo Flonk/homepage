@@ -1,0 +1,93 @@
+{
+	"label": "Mish",
+	"aka": [
+		"Mish cheese"
+	],
+	"from": "quark",
+	"step": "pickle for years",
+	"cheese": true,
+	"about": {
+		"text": "An Egyptian cheese made by fermenting salted soft cheese, traditionally Areesh, for a year or more in an earthenware jar under a pickle of buttermilk, sour milk, whey and peppers. It turns yellowish-brown, sharp and pungent. The jar can be topped up with fresh cheese for years.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia (citing Robinson & Tamime, Feta and Related Cheeses, 1991)",
+					"url": "https://en.wikipedia.org/wiki/Mish"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Mesh.jpg",
+		"author": "Reem Al-Kashif",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Mesh.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"EG"
+	],
+	"how": {
+		"text": "Salted fresh cheese is packed into a jar and covered with a sour pickle; fermentation runs for a year or more, giving a very salty, sharp, soft cheese.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Mish",
+					"url": "https://en.wikipedia.org/wiki/Mish"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "drain",
+					"note": "Areesh (some sources say Karish) is drained."
+				},
+				{
+					"type": "custom",
+					"name": "wash",
+					"note": "Rinsed."
+				},
+				{
+					"type": "custom",
+					"name": "salt",
+					"note": "Layered with salt."
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"adds": {
+						"microbes": [],
+						"by": [
+							"backslop"
+						]
+					},
+					"seconds": {
+						"min": 31536000
+					},
+					"note": "Sealed in an earthenware jar under a pickle of buttermilk, sour skimmed milk, whey and red and green peppers, with a little older mish as starter."
+				}
+			],
+			"text": "The jar is topped up as cheese is taken out and fresh added, so there is no fixed age.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Mish",
+						"url": "https://en.wikipedia.org/wiki/Mish"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	}
+}

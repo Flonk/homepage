@@ -1,0 +1,87 @@
+{
+	"label": "Calcium caseinate",
+	"example": true,
+	"about": {
+		"text": "Acid casein reacted with calcium hydroxide and dried: a protein powder that disperses in water to a white, milky liquid, used in drinks, nutrition bars, creamers and toppings.",
+		"sources": {
+			"links": [
+				{
+					"name": "NZMP (Fonterra), Calcium Caseinate 380",
+					"url": "https://www.nzmp.com/global/en/ingredients/proteins/caseins-and-caseinates/caseinates/calcium-caseinate-380.html"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"how": {
+		"text": "Made like sodium caseinate, but with lime. The result is a calcium-rich protein that does not dissolve as freely.",
+		"sources": {
+			"links": [
+				{
+					"name": "US4075196A, Production of casein and caseinates (Example 7)",
+					"url": "https://patents.google.com/patent/US4075196A/en"
+				},
+				{
+					"name": "Technology of dairy byproducts 1: Caseinates (INFLIBNET)",
+					"url": "https://ebooks.inflibnet.ac.in/ftp04/chapter/technology-of-dairy-byproducts-1-caseinates/"
+				},
+				{
+					"name": "Wikipedia, Casein",
+					"url": "https://en.wikipedia.org/wiki/Casein"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "neutralise",
+					"note": "With calcium hydroxide (lime), a 5 % solution in the patent example, or with ammonia first and then Ca(OH)₂ with sucrose."
+				},
+				{
+					"type": "pasteurise",
+					"temperature": {
+						"min": 80,
+						"max": 80
+					},
+					"seconds": {
+						"min": 20,
+						"max": 20
+					}
+				},
+				{
+					"type": "dry",
+					"note": "To about 4 % moisture."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "US4075196A, Production of casein and caseinates (Example 7)",
+						"url": "https://patents.google.com/patent/US4075196A/en"
+					},
+					{
+						"name": "Technology of dairy byproducts 1: Caseinates (INFLIBNET)",
+						"url": "https://ebooks.inflibnet.ac.in/ftp04/chapter/technology-of-dairy-byproducts-1-caseinates/"
+					},
+					{
+						"name": "Wikipedia, Casein",
+						"url": "https://en.wikipedia.org/wiki/Casein"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Reaction",
+			"v": "Ca(OH)₂ reacts more slowly with the curd than NaOH"
+		},
+		{
+			"k": "Solubility",
+			"v": "Less soluble than sodium caseinate, poorer functional properties; solutions can destabilise on heating, especially below pH 6"
+		}
+	]
+}

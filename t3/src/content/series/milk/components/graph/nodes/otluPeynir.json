@@ -1,0 +1,107 @@
+{
+	"label": "Otlu peynir",
+	"example": true,
+	"aka": [
+		"Van herbed cheese",
+		"Van otlu peyniri",
+		"Jaji"
+	],
+	"note": "Raw milk; wild herbs mixed into the curd; brined and matured underground",
+	"about": {
+		"text": "A semi-hard, salty cheese of the Van province in Turkey, flavoured with wild herbs and matured underground.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Van_herbed_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Otlu peynir from Van.jpg",
+		"author": "E4024",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Otlu_peynir_from_Van.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"TR"
+	],
+	"beasts": [
+		"sheep",
+		"cow",
+		"goat"
+	],
+	"how": {
+		"text": "Studies (Tuncturk and Coskun 2002; Tarakci et al. 2004) compare brine ripening with dry salting and filling; no starter cultures are named.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Van_herbed_cheese",
+					"url": "https://en.wikipedia.org/wiki/Van_herbed_cheese"
+				},
+				{
+					"name": "Some properties of fresh and ripened herby cheese (Food Technology and Biotechnology)",
+					"url": "https://ftb.com.hr/archives/601-some-properties-of-fresh-and-ripened-herby-cheese-a-traditional-variety-produced-in-turkey"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"note": "With rennet."
+				},
+				{
+					"type": "custom",
+					"name": "mix",
+					"note": "Alliums, thyme, Silene vulgaris, Chaerophyllum and others are mixed into the curd; the herbs are antimicrobial and lengthen shelf life."
+				},
+				{
+					"type": "custom",
+					"name": "press",
+					"note": "The curd with herbs is drained and pressed."
+				},
+				{
+					"type": "custom",
+					"name": "brine"
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"seconds": {
+						"min": 5184000,
+						"max": 7776000
+					},
+					"note": "Stored underground."
+				}
+			],
+			"text": "No starter cultures are named.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Van_herbed_cheese",
+						"url": "https://en.wikipedia.org/wiki/Van_herbed_cheese"
+					},
+					{
+						"name": "Some properties of fresh and ripened herby cheese (Food Technology and Biotechnology)",
+						"url": "https://ftb.com.hr/archives/601-some-properties-of-fresh-and-ripened-herby-cheese-a-traditional-variety-produced-in-turkey"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"raw": true
+}

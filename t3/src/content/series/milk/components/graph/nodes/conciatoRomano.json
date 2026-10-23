@@ -1,0 +1,45 @@
+{
+	"label": "Conciato romano",
+	"example": true,
+	"aka": [
+		"Caso conzato"
+	],
+	"family": "hard",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"sheep",
+		"goat",
+		"cow"
+	],
+	"firm": "hard",
+	"days": [
+		180,
+		730
+	],
+	"setting": "rennet",
+	"rind": "other",
+	"place": {
+		"region": "Lazio",
+		"lat": 41.9,
+		"lon": 12.8,
+		"x": 0.53556,
+		"y": 0.23014,
+		"located": "hint"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Conciato_romano"
+			},
+			{
+				"name": "fondazioneslowfood.com",
+				"url": "https://www.fondazioneslowfood.com/it/presidi-slow-food/conciato-romano/"
+			}
+		],
+		"text": "Slow Food Presidium and Campania PAT; kid rennet; at least 6 months in terracotta amphorae, up to 2 years; Caserta, Monte Maggiore"
+	}
+}

@@ -1,0 +1,137 @@
+{
+	"label": "Mild yoghurt",
+	"aka": [
+		"Joghurt mild"
+	],
+	"comment": "Yoghurt without the sharper of its two bacteria, gentler ones in its place.",
+	"from": "pasteurised",
+	"step": "without L. bulgaricus",
+	"niche": 1,
+	"about": {
+		"text": "Yoghurt made with milder-souring cultures, often Lactobacillus acidophilus and bifidobacteria, in place of the usual Lactobacillus delbrueckii subsp. bulgaricus, and often sold for its probiotic bacteria. Less sour than ordinary yoghurt; in Germany sold as Joghurt mild.",
+		"sources": {
+			"links": [
+				{
+					"name": "Stiftung Warentest (2018)",
+					"url": "https://www.test.de/Naturjoghurt-im-Test-Nicht-immer-ist-drin-was-draufsteht-5264514-5264521/"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"how": {
+		"text": "S. thermophilus still makes most of the acid, but L. delbrueckii subsp. bulgaricus is replaced by gentler lactobacilli such as L. acidophilus, and probiotic strains are added together with the starter. L. delbrueckii subsp. bulgaricus is the main producer of acetaldehyde, yoghurt's key flavour, so leaving it out gives a milder yoghurt.",
+		"sources": {
+			"links": [
+				{
+					"name": "German MilchPQV, Anlage 8 (2025)",
+					"url": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html"
+				},
+				{
+					"name": "Codex Standard for Fermented Milks (CXS 243-2003)",
+					"url": "https://www.fao.org/input/download/standards/400/CXS_243e.pdf"
+				},
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"note": "Heated as for yoghurt."
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Streptococcus thermophilus",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Lactobacillus acidophilus",
+								"kind": "bacterium",
+								"does": [
+									"acid",
+									"probiotic"
+								]
+							},
+							{
+								"name": "Lacticaseibacillus paracasei",
+								"kind": "bacterium",
+								"does": [
+									"acid",
+									"probiotic"
+								],
+								"formerly": [
+									"Lactobacillus casei"
+								]
+							},
+							{
+								"name": "bifidobacteria",
+								"kind": "bacterium",
+								"does": [
+									"probiotic"
+								]
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"temperature": {
+						"min": 37,
+						"max": 45
+					},
+					"acidity": {
+						"min": 0.6
+					},
+					"note": "Growth optima are 40–45 °C for S. thermophilus and 37 °C for L. acidophilus."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "German MilchPQV, Anlage 8 (2025)",
+						"url": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html"
+					},
+					{
+						"name": "Codex Standard for Fermented Milks (CXS 243-2003)",
+						"url": "https://www.fao.org/input/download/standards/400/CXS_243e.pdf"
+					},
+					{
+						"name": "Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"bioghurt"
+	],
+	"facts": [
+		{
+			"k": "Fat grades",
+			"v": "Whole ≥3.5 %, low-fat 1.5–1.8 % or skimmed ≤0.5 % fat"
+		},
+		{
+			"k": "Probiotic count",
+			"v": "At least 10⁶ cfu/g of any labelled probiotic"
+		}
+	],
+	"live": true
+}

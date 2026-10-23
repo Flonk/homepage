@@ -1,0 +1,139 @@
+{
+	"label": "Robiola",
+	"example": true,
+	"about": {
+		"text": "Robiola is an Italian soft-ripened cheese of the stracchino family. It is from the Langhe region and made with varying proportions of cow's, goat's, and sheep's milk. One theory is that the cheese gets its name from the comune (municipality) of Robbio, in the province of Pavia; another that the name comes from the word rubeole (ruddy) because of the color of the seasoned rind.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Robiola"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Robiola Monte Rosa.jpg",
+		"author": "Jan-Tore Egge",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Robiola_Monte_Rosa.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"cow",
+		"goat",
+		"sheep"
+	],
+	"how": {
+		"label": "set with lactic",
+		"text": "A long, cool, mostly lactic set gives a soft, acidic, creamy paste with live lactic bacteria that is never cooked or pressed. If left longer, natural moulds on the surface turn it creamy under the rind and give it a more pronounced taste.",
+		"sources": {
+			"links": [
+				{
+					"name": "ONAF fact sheet: Roccaverano DOP (after Feb 2023 disciplinare amendment)",
+					"url": "https://onaf.it/uploads/public/19958_roccaverano-2023-02-23.pdf"
+				},
+				{
+					"name": "Roccaverano DOP disciplinare (MIPAAF)",
+					"url": "https://www.unionalimentari.com/wp-content/uploads/2024/09/MIPAAF-mod-discipl-Robiola-di-Roccaverano-CP.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic",
+						"mould"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "lactic acid bacteria",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"temperature": {
+						"min": 18,
+						"max": 24
+					},
+					"seconds": {
+						"min": 28800,
+						"max": 129600
+					},
+					"note": "Set lactic with animal rennet, and an optional local natural milk or whey starter."
+				},
+				{
+					"type": "custom",
+					"name": "mould",
+					"seconds": {
+						"max": 172800
+					},
+					"note": "In cylindrical plastic moulds, turned; 10–14 cm across, 250–400 g."
+				},
+				{
+					"type": "custom",
+					"name": "salt",
+					"note": "Dry-salted on both faces."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"temperature": {
+						"min": 20,
+						"max": 24
+					},
+					"seconds": {
+						"min": 259200
+					},
+					"note": "Fresco is ready after 3–10 d, affinato after more than 10 d, when natural moulds bloom on the surface."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "ONAF fact sheet: Roccaverano DOP (after Feb 2023 disciplinare amendment)",
+						"url": "https://onaf.it/uploads/public/19958_roccaverano-2023-02-23.pdf"
+					},
+					{
+						"name": "Roccaverano DOP disciplinare (MIPAAF)",
+						"url": "https://www.unionalimentari.com/wp-content/uploads/2024/09/MIPAAF-mod-discipl-Robiola-di-Roccaverano-CP.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Whole goat (Roccaverano DOP); mixed milk allowed, now rare"
+		},
+		{
+			"k": "Rind",
+			"v": "None or faint white bloom (fresco); thin, mould-bloomed (affinato)"
+		}
+	],
+	"raw": true
+}

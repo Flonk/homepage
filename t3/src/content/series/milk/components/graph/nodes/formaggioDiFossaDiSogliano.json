@@ -1,0 +1,38 @@
+{
+	"label": "Formaggio di Fossa di Sogliano",
+	"example": true,
+	"family": "hard",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"sheep",
+		"cow"
+	],
+	"firm": "hard",
+	"days": [
+		80,
+		100
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Emilia-Romagna",
+		"lat": 43.98,
+		"lon": 12.33,
+		"x": 0.53425,
+		"y": 0.22224,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Formaggio_di_Fossa_di_Sogliano"
+			}
+		],
+		"text": "ripened in pits dug in tuff"
+	}
+}

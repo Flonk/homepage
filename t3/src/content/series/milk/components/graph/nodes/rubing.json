@@ -1,0 +1,116 @@
+{
+	"label": "Rubing",
+	"example": true,
+	"family": "paneer",
+	"also": "grilling",
+	"about": {
+		"text": "Rubing is a firm, acid-set, non-melting, fresh goat milk farmer cheese made in the Yunnan Province of China by people of the Bai and Sani minorities. Its Bai name is youdbap, meaning \"goat's milk\".",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Rubing"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Rubing Goats Cheese of Yunnan China.jpg",
+		"author": "Pratyeka",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Rubing_Goats_Cheese_of_Yunnan_China.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"CN"
+	],
+	"beasts": [
+		"goat"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		0
+	],
+	"setting": "acid-heat",
+	"rind": "none",
+	"place": {
+		"region": "Yunnan",
+		"lat": 25.04,
+		"lon": 101.5,
+		"x": 0.78194,
+		"y": 0.28666,
+		"located": "hint"
+	},
+	"confidence": "medium",
+	"how": {
+		"text": "Heated milk is curdled with a plant-based sour mixture, then pressed into cakes. Wikipedia gives no temperatures, times or pressing details, so none are given here.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Rubing",
+					"url": "https://en.wikipedia.org/wiki/Rubing"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat"
+				},
+				{
+					"type": "coagulate",
+					"note": "With nǎiténg (奶藤, 'milk vine'), a mixture made from a cultivated vine, and no rennet.",
+					"by": "plant"
+				},
+				{
+					"type": "custom",
+					"name": "press",
+					"note": "Pressed into cakes."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Rubing",
+						"url": "https://en.wikipedia.org/wiki/Rubing"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Rubing"
+			}
+		],
+		"text": "Yunnan; often fried"
+	},
+	"facts": [
+		{
+			"k": "Variants",
+			"v": "Cow's milk is often used instead in Jianchuan"
+		},
+		{
+			"k": "Result",
+			"v": "Fist-sized, rounded-brick cakes, creamy white and spongy; unaged, non-melting, with the aroma of fresh goat's milk"
+		},
+		{
+			"k": "Makers",
+			"v": "Bai (youdbap) and Sani people, Yunnan; mainly the Jianchuan and Heqing areas"
+		}
+	]
+}

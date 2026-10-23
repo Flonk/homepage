@@ -1,0 +1,199 @@
+{
+	"label": "Plant-set cheese",
+	"comment": "Set by an enzyme from a plant: a third way, after rennet and acid.",
+	"from": "raw",
+	"step": "set with a plant enzyme",
+	"cheese": true,
+	"ripened": true,
+	"about": {
+		"text": "Cheese set not by rennet from a calf's stomach or by acid but by an enzyme from a plant: cardoon thistle flowers in the cheeses of Portugal and Spain, Calotropis in West Africa's wagashi, papaya latex in Indonesia's dangke, ginger juice in southern China's ginger milk curd.",
+		"sources": {
+			"links": [
+				{
+					"name": "Heliyon (2022), Processing and preservation methods of Wagashi Gassirè",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9489737"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Ginger Milk Pudding.jpg",
+		"author": "Chika",
+		"license": "CC BY 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Ginger_Milk_Pudding.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"share": {
+		"mt": 0.1,
+		"sources": {
+			"unsourced": true,
+			"text": "A few cheeses of Portugal, Spain and West Africa set with thistle or other plants. My own rough estimate."
+		}
+	},
+	"how": {
+		"text": "Instead of calf rennet or acid, a plant enzyme clots the milk. Which plant decides the cheese: cardoon in Iberian ewe's-milk cheeses, Calotropis in West African wagashi, papaya in Indonesian dangke. The enzyme of Calotropis procera sets the milk but breaks protein down little, so the cheese can be reboiled every other day and kept for about a month (Licitra, quoted in Seini et al. 2018).",
+		"sources": {
+			"links": [
+				{
+					"name": "An Overview of West African Traditional Soft Cheese, PMC12497476",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12497476/"
+				},
+				{
+					"name": "Seini et al. 2018 IJCMAS 7(12)",
+					"url": "https://doi.org/10.20546/ijcmas.2018.712.039"
+				},
+				{
+					"name": "Plant Aspartic Proteases for Industrial Applications: Thistle Get Better (PMC7076372)",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7076372"
+				},
+				{
+					"name": "Heliyon (2022): Processing and preservation methods of Wagashi Gassirè",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9489737"
+				},
+				{
+					"name": "Wikipedia: Cardoon",
+					"url": "https://en.wikipedia.org/wiki/Cardoon"
+				},
+				{
+					"name": "Wikipedia: Dangke",
+					"url": "https://en.wikipedia.org/wiki/Dangke"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "filter"
+				},
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 32,
+						"max": 100
+					},
+					"note": "Warmed to a median of about 57 °C."
+				},
+				{
+					"type": "coagulate",
+					"note": "With Calotropis procera leaf extract (77.1 % of studies), or papaya or citrus juice.",
+					"by": "plant"
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"temperature": {
+						"min": 72.5,
+						"max": 100
+					},
+					"seconds": {
+						"min": 600,
+						"max": 3900
+					},
+					"note": "To expel whey and kill the enzyme."
+				},
+				{
+					"type": "custom",
+					"name": "mould",
+					"note": "Scooped into baskets and shaped."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "An Overview of West African Traditional Soft Cheese, PMC12497476",
+						"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12497476/"
+					},
+					{
+						"name": "Seini et al. 2018 IJCMAS 7(12)",
+						"url": "https://doi.org/10.20546/ijcmas.2018.712.039"
+					},
+					{
+						"name": "Plant Aspartic Proteases for Industrial Applications: Thistle Get Better (PMC7076372)",
+						"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7076372"
+					},
+					{
+						"name": "Heliyon (2022): Processing and preservation methods of Wagashi Gassirè",
+						"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9489737"
+					},
+					{
+						"name": "Wikipedia: Cardoon",
+						"url": "https://en.wikipedia.org/wiki/Cardoon"
+					},
+					{
+						"name": "Wikipedia: Dangke",
+						"url": "https://en.wikipedia.org/wiki/Dangke"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"wagashi",
+		"dangke",
+		"tortaDelCasar",
+		"serraDaEstrela",
+		"queijoDeAzeitao",
+		"daliNiHorbo",
+		"litsusu",
+		"cologanti",
+		"gingerMilkCurd"
+	],
+	"facts": [
+		{
+			"k": "Cardoon",
+			"v": "Flower pistils, soaked and used as the coagulant; aspartic proteinases: cardosins A–H plus cyprosin"
+		},
+		{
+			"k": "Iberian thistle cheeses",
+			"v": "Sheep or goat milk set at about 30 °C with cardoon or thistle; curd not cooked, pressed and ripened for weeks to months (Azeitão about 20 d, Serra da Estrela at least 30 d, Torta del Casar at least 60 d)"
+		},
+		{
+			"k": "Wagashi, one study",
+			"v": "Milk heated to 59 °C for 20 min; coagulum then cooked at about 91 °C for 34 min"
+		},
+		{
+			"k": "Papaya (dangke, Indonesia)",
+			"v": "Sliced papaya leaves, stems or unripe fruit boiled with the milk"
+		},
+		{
+			"k": "Countries",
+			"v": "Benin (wagashi, gassirè), Nigeria (wara, warankasi), Ghana, Burkina Faso, Niger, Togo"
+		},
+		{
+			"k": "Enzymes",
+			"v": "Almost all plant milk coagulants are aspartic proteases; cysteine and serine proteases can also clot milk"
+		},
+		{
+			"k": "Cardoon cardosins",
+			"v": "Cardosin A attacks κ-casein and gives softer textures; cardosin B is less specific and linked to firmness defects"
+		},
+		{
+			"k": "Drawback",
+			"v": "Strong proteolysis gives lower yields, bitterness and texture defects, so plant coagulants are used on a small or semi-industrial scale"
+		},
+		{
+			"k": "Cardoon cheeses",
+			"v": "Torta del Casar, Torta de la Serena (Spain); Nisa (Portugal)"
+		},
+		{
+			"k": "Wagashi yield",
+			"v": "27–32 % of the milk; moulded in colanders"
+		},
+		{
+			"k": "Dangke",
+			"v": "Brined overnight, wrapped in banana leaves that mask the papaya bitterness; no temperature given"
+		}
+	]
+}

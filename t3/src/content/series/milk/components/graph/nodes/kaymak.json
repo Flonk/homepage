@@ -1,0 +1,108 @@
+{
+	"label": "Kaymak",
+	"example": true,
+	"aka": [
+		"Kajmak",
+		"qishta",
+		"sarshir"
+	],
+	"note": "Balkan kajmak is salted and lightly soured",
+	"about": {
+		"text": "Kaymak, also known as qishta or sarshir, is a creamy dairy food similar to clotted cream, made from the milk of water buffalo, cows, sheep, or goats in Central Asia, most Turkic regions on the Eurasian Steppe, the Caucasus, Turkey, most Balkan countries, the Levant, Iran and Iraq.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Kaymak"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Cevapi sa kajmakom.jpg",
+		"author": "János Korom Dr. from Wien, Austria",
+		"license": "CC BY-SA 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Cevapi_sa_kajmakom.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"TR",
+		"RS",
+		"BA",
+		"IR"
+	],
+	"how": {
+		"text": "Kaymak is made by heating milk slowly and long, so that the cream gathers into a skin that is lifted off. The Balkan kind may sour slightly while it stands; qishta is not soured.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Kaymak",
+					"url": "https://en.wikipedia.org/wiki/Kaymak"
+				},
+				{
+					"name": "Wikipedia: Qishta",
+					"url": "https://en.wikipedia.org/wiki/Qishta"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"seconds": {
+						"min": 7200,
+						"max": 7200,
+						"about": true
+					},
+					"note": "A slow boil, then about 2 h of simmering."
+				},
+				{
+					"type": "custom",
+					"name": "skim",
+					"note": "The skin that gathers is lifted off."
+				},
+				{
+					"type": "heat",
+					"does": "cool"
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Kaymak",
+						"url": "https://en.wikipedia.org/wiki/Kaymak"
+					},
+					{
+						"name": "Wikipedia: Qishta",
+						"url": "https://en.wikipedia.org/wiki/Qishta"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Qishta",
+			"v": "Milk held around 60 °C in wide shallow pans for several hours until the proteins coagulate and trap the fat into a layer; no culture and no coagulant (Wikipedia)"
+		},
+		{
+			"k": "Qishta pudding",
+			"v": "The cornstarch- or flour-thickened version"
+		},
+		{
+			"k": "History",
+			"v": "A qishta recipe is in the 13th–14th century Egyptian Kanz al-fawa'id"
+		}
+	]
+}

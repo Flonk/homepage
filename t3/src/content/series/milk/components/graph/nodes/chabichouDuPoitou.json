@@ -1,0 +1,122 @@
+{
+	"label": "Chabichou du Poitou",
+	"example": true,
+	"aka": [
+		"Chabichou"
+	],
+	"family": "lacticCheese",
+	"about": {
+		"text": "A French goat cheese from Poitou in a small truncated cone; AOC since 1990.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Chabichou_du_Poitou"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Chabichou du Poitou.jpg",
+		"author": "Tangopaso",
+		"license": "Public domain",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Chabichou_du_Poitou.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"goat"
+	],
+	"firm": "soft",
+	"days": [
+		10,
+		30
+	],
+	"setting": "rennet-acid",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Nouvelle-Aquitaine",
+		"lat": 46.5,
+		"lon": 0.3,
+		"x": 0.50083,
+		"y": 0.2123,
+		"located": "hint"
+	},
+	"confidence": "high",
+	"how": {
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Chabichou du Poitou",
+					"url": "https://en.wikipedia.org/wiki/Chabichou_du_Poitou"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"temperature": {
+						"min": 20,
+						"max": 22
+					},
+					"seconds": {
+						"min": 86400,
+						"max": 86400,
+						"about": true
+					}
+				},
+				{
+					"type": "custom",
+					"name": "drain",
+					"seconds": {
+						"min": 64800,
+						"max": 86400
+					}
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"temperature": {
+						"min": 10,
+						"max": 12
+					},
+					"seconds": {
+						"min": 864000
+					}
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Chabichou du Poitou",
+						"url": "https://en.wikipedia.org/wiki/Chabichou_du_Poitou"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Chabichou_du_Poitou"
+			}
+		],
+		"text": "Its facts, from these."
+	}
+}

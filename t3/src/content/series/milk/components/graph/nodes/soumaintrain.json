@@ -1,0 +1,42 @@
+{
+	"label": "Soumaintrain",
+	"example": true,
+	"family": "washed",
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "soft",
+	"days": [
+		28,
+		56
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "washed",
+	"protected": "PGI",
+	"place": {
+		"region": "Burgundy-Franche-Comté",
+		"lat": 47.8,
+		"lon": 3.75,
+		"x": 0.51042,
+		"y": 0.20699,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Soumaintrain_(cheese)"
+			},
+			{
+				"name": "en.wikipedia.org",
+				"url": "https://en.wikipedia.org/wiki/Soumaintrain"
+			}
+		],
+		"text": "Burgundy (Yonne) washed-rind cheese; PGI confirmed on Wikipedia, ripening time not stated there"
+	}
+}

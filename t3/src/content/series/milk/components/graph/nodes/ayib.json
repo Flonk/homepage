@@ -1,0 +1,90 @@
+{
+	"label": "Ayib",
+	"example": true,
+	"about": {
+		"text": "A soft cottage-type cheese from the Ethiopian highlands. Fermented whole milk (ergo) is churned for butter, and the leftover buttermilk is heated until curd and whey separate. The curd is then drained through cloth. About six litres of buttermilk make one kilogram of ayib.",
+		"sources": {
+			"links": [
+				{
+					"name": "Livestock Research for Rural Development (2007)",
+					"url": "https://lrrd.org/lrrd19/7/yilm19088.htm"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Addis-Abeba-Cuisine éthiopienne (6).jpg",
+		"author": "Ji-Elle",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Addis-Abeba-Cuisine_%C3%A9thiopienne_(6).jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"ET"
+	],
+	"how": {
+		"sources": {
+			"links": [
+				{
+					"name": "FAO, The technology of traditional milk products in developing countries, 7.2.1",
+					"url": "https://www.fao.org/4/t0251e/t0251e05.htm"
+				},
+				{
+					"name": "Karssa et al. 2024, PMC11521749",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11521749/"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 40,
+						"max": 50,
+						"about": true
+					}
+				},
+				{
+					"type": "custom",
+					"name": "drain",
+					"note": "Through straw, enset fibre or cloth."
+				},
+				{
+					"type": "custom",
+					"name": "add herbs",
+					"note": "Koseret, black cumin, korarima, rue and fenugreek, for flavour and keeping."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "FAO, The technology of traditional milk products in developing countries, 7.2.1",
+						"url": "https://www.fao.org/4/t0251e/t0251e05.htm"
+					},
+					{
+						"name": "Karssa et al. 2024, PMC11521749",
+						"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11521749/"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Safety",
+			"v": "E. coli O157:H7 survives in ayib; heating the buttermilk to 70 °C stopped it"
+		}
+	]
+}

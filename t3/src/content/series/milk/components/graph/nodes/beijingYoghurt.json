@@ -1,0 +1,92 @@
+{
+	"label": "Beijing yoghurt",
+	"example": true,
+	"aka": [
+		"Nailao",
+		"Suannai",
+		"酸奶"
+	],
+	"note": "Sweetened with sugar or honey and made with glutinous-rice wine; sold in small porcelain or ceramic jars with a deposit, today often in plastic cups",
+	"about": {
+		"text": "A traditional sweet fermented milk of Beijing: milk is sweetened, mixed with glutinous-rice wine, poured into small bowls and heated in a special barrel with a central heat chamber, then cooled.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Nai_lao"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "酸奶 Yoghurt Йогурт @Wangfujing Food Market (9466868922).jpg",
+		"author": "Nikolaj Potanin from Russia",
+		"license": "CC BY-SA 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:%E9%85%B8%E5%A5%B6_Yoghurt_%D0%99%D0%BE%D0%B3%D1%83%D1%80%D1%82_@Wangfujing_Food_Market_(9466868922).jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"CN"
+	],
+	"how": {
+		"text": "Poured into about fifty small bowls, stacked against the wall of a yoghurt barrel and heated about 30 min, then cooled. No starter species are named in the sources.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Nai lao",
+					"url": "https://en.wikipedia.org/wiki/Nai_lao"
+				},
+				{
+					"name": "The World of Chinese: history of yogurt’s rise in China",
+					"url": "https://www.theworldofchinese.com/2025/06/history-of-yogurts-rise-in-china/"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate"
+				},
+				{
+					"type": "heat",
+					"does": "heat",
+					"seconds": {
+						"min": 1800,
+						"max": 1800,
+						"about": true
+					},
+					"note": "Poured into about fifty small bowls, stacked against the wall of a yoghurt barrel and heated about 30 min."
+				},
+				{
+					"type": "heat",
+					"does": "cool",
+					"note": "Then cooled."
+				}
+			],
+			"text": "Poured into about fifty small bowls, stacked against the wall of a yoghurt barrel and heated, then cooled. No starter species are named.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Nai lao",
+						"url": "https://en.wikipedia.org/wiki/Nai_lao"
+					},
+					{
+						"name": "The World of Chinese: history of yogurt’s rise in China",
+						"url": "https://www.theworldofchinese.com/2025/06/history-of-yogurts-rise-in-china/"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	}
+}

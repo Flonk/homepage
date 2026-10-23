@@ -1,0 +1,41 @@
+{
+	"label": "Buxton Blue",
+	"example": true,
+	"family": "blue",
+	"regions": [
+		"GB"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		28,
+		70
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Derbyshire",
+		"lat": 53.26,
+		"lon": -1.91,
+		"x": 0.49469,
+		"y": 0.18309,
+		"located": "knowledge"
+	},
+	"confidence": "high",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Buxton_Blue_cheese"
+			},
+			{
+				"name": "assets.publishing.service.gov.uk",
+				"url": "https://assets.publishing.service.gov.uk/media/604b67d7e90e07154010b683/product_specification_Buxton_Blue_Cheese.pdf"
+			}
+		],
+		"text": "UK/EU PDO spec: normally despatched at 4-10 weeks; made in Derbyshire, Notts and Staffordshire"
+	}
+}

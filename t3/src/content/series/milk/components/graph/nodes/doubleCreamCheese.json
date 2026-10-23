@@ -1,0 +1,45 @@
+{
+	"label": "Double-cream cheese",
+	"example": true,
+	"about": {
+		"text": "The richer of the two classic kinds of cream cheese: soured and drained from a mix of cream and milk that starts at about 9–11 % fat, which gives a final product with at least 33 % fat. This is the type of Philadelphia-style cream cheese.",
+		"sources": {
+			"links": [
+				{
+					"name": "Phadungath 2005, Cream cheese products: A review, Songklanakarin J. Sci. Technol. 27(1)",
+					"url": "https://sjst.psu.ac.th/index.php/article/317/PaperPDFw-Links/download"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"how": {
+		"sources": {
+			"links": [
+				{
+					"name": "Phadungath 2005, Cream cheese products: A review",
+					"url": "https://sjst.psu.ac.th/index.php/article/317/PaperPDFw-Links/download"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "standardise",
+					"note": "Fat in the initial mix is 9–11 %."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Phadungath 2005, Cream cheese products: A review",
+						"url": "https://sjst.psu.ac.th/index.php/article/317/PaperPDFw-Links/download"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	}
+}

@@ -1,0 +1,106 @@
+{
+	"label": "Valençay",
+	"example": true,
+	"family": "lacticCheese",
+	"also": "bloomy",
+	"about": {
+		"text": "A French goat cheese shaped as a truncated pyramid of 200–250 g, dusted with charcoal and ripened about three weeks; AOC since 1998.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Valen%C3%A7ay_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "AOP Valençay fromage - fermier.jpg",
+		"author": "Tangopaso",
+		"license": "Public domain",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:AOP_Valen%C3%A7ay_fromage_-_fermier.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"goat"
+	],
+	"firm": "soft",
+	"days": [
+		11,
+		30
+	],
+	"setting": "rennet-acid",
+	"rind": "bloomy",
+	"protected": "PDO",
+	"place": {
+		"region": "Centre-Val de Loire",
+		"lat": 47.16,
+		"lon": 1.56,
+		"x": 0.50433,
+		"y": 0.20962,
+		"located": "hint"
+	},
+	"confidence": "high",
+	"how": {
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Valençay cheese",
+					"url": "https://en.wikipedia.org/wiki/Valen%C3%A7ay_cheese"
+				},
+				{
+					"name": "Hill & Ferrer, Cheese Making Technology (Guelph), Cheese families",
+					"url": "https://books.lib.uoguelph.ca/cheesemakingtechnologyebook/chapter/cheese-families/"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"seconds": {
+						"min": 1814400,
+						"max": 1814400,
+						"about": true
+					}
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Valençay cheese",
+						"url": "https://en.wikipedia.org/wiki/Valen%C3%A7ay_cheese"
+					},
+					{
+						"name": "Hill & Ferrer, Cheese Making Technology (Guelph), Cheese families",
+						"url": "https://books.lib.uoguelph.ca/cheesemakingtechnologyebook/chapter/cheese-families/"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Valen%C3%A7ay_cheese"
+			}
+		],
+		"text": "truncated pyramid coated in ash"
+	},
+	"raw": true
+}

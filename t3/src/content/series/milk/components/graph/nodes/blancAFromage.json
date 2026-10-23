@@ -1,0 +1,37 @@
+{
+	"label": "Blanc à fromage",
+	"example": true,
+	"family": "lacticCheese",
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		3
+	],
+	"estimated": true,
+	"setting": "rennet-acid",
+	"rind": "none",
+	"place": {
+		"region": "Grand Est",
+		"lat": 48.2,
+		"lon": 6.6,
+		"x": 0.51833,
+		"y": 0.20533,
+		"located": "hint"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Blanc_%C3%A0_fromage"
+			}
+		],
+		"text": "no English article found; lactic fresh curd (Vosges/Lorraine) used as base for Munster/Maroilles-type cheeses, a semi-product"
+	}
+}

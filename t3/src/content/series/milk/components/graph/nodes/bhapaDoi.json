@@ -1,0 +1,93 @@
+{
+	"label": "Bhapa doi",
+	"example": true,
+	"note": "Not fermented at the pot: hung curd is whisked with sweetened condensed milk and cardamom, then steamed and chilled. A dessert made FROM yoghurt, so a different arrow.",
+	"about": {
+		"text": "Bengali steamed yoghurt dessert: thick hung curd is mixed with sweetened condensed milk, cardamom and often saffron, steamed in small bowls for about 20 minutes and chilled until it sets like a soft cheesecake. Traditional versions sweeten with nolen gur, date-palm jaggery.",
+		"sources": {
+			"links": [
+				{
+					"name": "Jeyashri's Kitchen (recipe)",
+					"url": "https://www.jeyashriskitchen.com/bhapa-doi-recipe-bengali-steamed-yogurt/"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Bhapa Doi.JPG",
+		"author": "Kajori.p",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Bhapa_Doi.JPG"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"IN",
+		"BD"
+	],
+	"how": {
+		"label": "hang, sweeten, steam",
+		"sources": {
+			"links": [
+				{
+					"name": "Jeyashri's Kitchen (recipe)",
+					"url": "https://www.jeyashriskitchen.com/bhapa-doi-recipe-bengali-steamed-yogurt/"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "drain",
+					"note": "Plain yoghurt hung in muslin.",
+					"seconds": {
+						"min": 7200,
+						"max": 7200,
+						"about": true
+					}
+				},
+				{
+					"type": "custom",
+					"name": "sweeten",
+					"note": "With sweetened condensed milk (or sugar, or nolen gur)."
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"seconds": {
+						"min": 1200,
+						"max": 1200,
+						"about": true
+					},
+					"note": "Foil-covered."
+				},
+				{
+					"type": "heat",
+					"does": "cool",
+					"seconds": {
+						"min": 10800,
+						"max": 14400
+					}
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Jeyashri's Kitchen (recipe)",
+						"url": "https://www.jeyashriskitchen.com/bhapa-doi-recipe-bengali-steamed-yogurt/"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	}
+}

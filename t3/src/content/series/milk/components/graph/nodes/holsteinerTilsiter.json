@@ -1,0 +1,38 @@
+{
+	"label": "Holsteiner Tilsiter",
+	"example": true,
+	"family": "semiHard",
+	"also": "washed",
+	"regions": [
+		"DE"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		60,
+		90
+	],
+	"setting": "rennet",
+	"rind": "washed",
+	"protected": "PGI",
+	"place": {
+		"region": "Schleswig-Holstein",
+		"lat": 54.1,
+		"lon": 9.9,
+		"x": 0.5275,
+		"y": 0.17915,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Holsteiner_Tilsiter"
+			}
+		],
+		"text": "PGI since 2013; rests a further two months after main production"
+	}
+}

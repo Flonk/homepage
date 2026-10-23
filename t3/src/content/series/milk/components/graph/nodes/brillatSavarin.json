@@ -1,0 +1,191 @@
+{
+	"label": "Brillat-Savarin",
+	"example": true,
+	"family": "bloomy",
+	"about": {
+		"text": "Brillat-Savarin is a soft-ripened triple cream cow's milk cheese with at least 72% fat in dry matter. It has a natural, bloomy rind. It was created in 1890 as \"Excelsior\" or \"Délice des gourmets\" by the Dubuc family, near Forges-les-Eaux in Seine-Maritime. Brillat-Savarin is produced all year round, mainly in Normandy, and also in Burgundy.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Brillat-Savarin_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Brillat-Savarin frais.jpg",
+		"author": "BastienM",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Brillat-Savarin_frais.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "soft",
+	"days": [
+		5,
+		28
+	],
+	"setting": "rennet-acid",
+	"rind": "bloomy",
+	"protected": "PGI",
+	"place": {
+		"region": "Bourgogne-Franche-Comté",
+		"lat": 47.8,
+		"lon": 3.8,
+		"x": 0.51056,
+		"y": 0.20699,
+		"located": "hint"
+	},
+	"confidence": "high",
+	"how": {
+		"label": "add cream",
+		"text": "Cream is added to the milk before it sets, giving at least 72% fat in the dry matter, a triple-cream cheese with a fine paste tasting of cream and fresh butter. The long, cool lactic set gives a mildly acid taste, and only the 'affiné' version grows a white bloomy rind.",
+		"sources": {
+			"links": [
+				{
+					"name": "Brillat-Savarin PGI cahier des charges (2016)",
+					"url": "https://extranet.inao.gouv.fr/fichier/CDCBrillat-Savarin.pdf"
+				},
+				{
+					"name": "INAO product sheet: Brillat-Savarin",
+					"url": "https://www.inao.gouv.fr/produit/brillat-savarin-23084"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "add cream",
+					"note": "Cow's cream is added to the milk before it sets."
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic",
+						"mould"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "mesophilic lactic acid bacteria",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								],
+								"grows": "mesophilic"
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"temperature": {
+						"max": 32
+					},
+					"seconds": {
+						"min": 43200
+					},
+					"pH": {
+						"max": 4.9
+					},
+					"note": "Set mostly lactic, with calf rennet of up to 20 ml per 100 L."
+				},
+				{
+					"type": "custom",
+					"name": "mould",
+					"seconds": {
+						"min": 72000
+					},
+					"note": "At pH 4.9 or less, drained by gravity without pressing, as cylinders of 100–250 g or 500 g and more."
+				},
+				{
+					"type": "custom",
+					"name": "salt",
+					"note": "Optional, on one face, below 2 % salt."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"adds": {
+						"microbes": [
+							{
+								"name": "Penicillium candidum",
+								"kind": "mould",
+								"does": [
+									"rind"
+								]
+							},
+							{
+								"name": "Geotrichum candidum",
+								"kind": "yeast",
+								"does": [
+									"rind"
+								]
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"temperature": {
+						"min": 5,
+						"max": 14
+					},
+					"seconds": {
+						"min": 432000
+					},
+					"note": "Only the affiné version is ripened, for at least 5 d (small) or 8 d (large), while the fresh one is sold from day 3."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Brillat-Savarin PGI cahier des charges (2016)",
+						"url": "https://extranet.inao.gouv.fr/fichier/CDCBrillat-Savarin.pdf"
+					},
+					{
+						"name": "INAO product sheet: Brillat-Savarin",
+						"url": "https://www.inao.gouv.fr/produit/brillat-savarin-23084"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Brillat-Savarin_cheese"
+			},
+			{
+				"name": "inao.gouv.fr",
+				"url": "https://www.inao.gouv.fr/fichier/CDCBrillat-Savarin.pdf"
+			}
+		],
+		"text": "Triple cream; PGI specification: when sold 'affiné' at least 5 days (small) or 8 days (large) from renneting, first sale 3 days after renneting; max estimated"
+	},
+	"facts": [
+		{
+			"k": "Rind",
+			"v": "If ripened: white to ivory bloom of P. candidum and/or Geotrichum"
+		}
+	]
+}

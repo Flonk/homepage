@@ -1,0 +1,130 @@
+{
+	"label": "Ladotyri Mytilinis",
+	"example": true,
+	"aka": [
+		"Λαδοτύρι Μυτιλήνης",
+		"Ladotyri"
+	],
+	"note": "Ladotyri means oil cheese: after ripening it is submerged in olive oil, a preservation method common before household refrigerators. Mass-market version is called graviera.",
+	"about": {
+		"text": "Ladotyri Mytilinis is a hard PDO cheese from Lesbos, Greece, preserved in extra virgin olive oil. It is made from sheep milk or sheep with at most 30 % goat milk and has been produced since ancient times.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Ladotyri_Mytilinis"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Λαδοτύρι 7719.jpg",
+		"author": "C messier",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:%CE%9B%CE%B1%CE%B4%CE%BF%CF%84%CF%8D%CF%81%CE%B9_7719.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"GR"
+	],
+	"beasts": [
+		"sheep",
+		"goat"
+	],
+	"how": {
+		"label": "press, ripen, store in olive oil",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia, Ladotyri Mytilinis (quoting the PDO designation)",
+					"url": "https://en.wikipedia.org/wiki/Ladotyri_Mytilinis"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"temperature": {
+						"min": 32,
+						"max": 34
+					},
+					"seconds": {
+						"min": 1800,
+						"max": 1800
+					},
+					"note": "With rennet."
+				},
+				{
+					"type": "custom",
+					"name": "break up"
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"temperature": {
+						"min": 45,
+						"max": 45
+					},
+					"note": "Reheated after the curd is broken up."
+				},
+				{
+					"type": "custom",
+					"name": "drain"
+				},
+				{
+					"type": "custom",
+					"name": "press",
+					"note": "Pressed in the vat into a mass."
+				},
+				{
+					"type": "custom",
+					"name": "cut",
+					"note": "Into pieces of 5–7 kg, then to final size."
+				},
+				{
+					"type": "custom",
+					"name": "mould",
+					"note": "Firmly pressed by hand in the moulds."
+				},
+				{
+					"type": "custom",
+					"name": "salt"
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"seconds": {
+						"min": 7776000
+					}
+				}
+			],
+			"text": "Ripened in a ripening room, then stored in olive oil.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia, Ladotyri Mytilinis (quoting the PDO designation)",
+						"url": "https://en.wikipedia.org/wiki/Ladotyri_Mytilinis"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Sheep, or sheep with at most 30 % goat; from local animals fed on local flora"
+		}
+	]
+}

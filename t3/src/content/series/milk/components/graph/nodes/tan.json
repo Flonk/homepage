@@ -1,0 +1,75 @@
+{
+	"label": "Tan",
+	"example": true,
+	"about": {
+		"text": "The Armenian yogurt drink: matsun (Armenian yogurt) thinned with water and salted, sometimes with herbs. It is drunk across the Caucasus mountains, and industrial versions have been sold since the 1990s.",
+		"sources": {
+			"links": [
+				{
+					"name": "Armenian Wikipedia: Թան",
+					"url": "https://hy.wikipedia.org/wiki/%D4%B9%D5%A1%D5%B6"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Armenian tan.jpg",
+		"author": "Pandukht",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Armenian_tan.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"AM"
+	],
+	"how": {
+		"text": "Tan is the Armenian drink of yoghurt (matsun) thinned with water and salted, close to ayran.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Ayran (incl. Armenian t'an)",
+					"url": "https://en.wikipedia.org/wiki/Ayran"
+				},
+				{
+					"name": "Codex Standard for Fermented Milks CXS 243-2003",
+					"url": "https://www.fao.org/input/download/standards/400/CXS_243e.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "dilute",
+					"note": "The yoghurt is mixed with water."
+				},
+				{
+					"type": "custom",
+					"name": "salt"
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Ayran (incl. Armenian t'an)",
+						"url": "https://en.wikipedia.org/wiki/Ayran"
+					},
+					{
+						"name": "Codex Standard for Fermented Milks CXS 243-2003",
+						"url": "https://www.fao.org/input/download/standards/400/CXS_243e.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	}
+}

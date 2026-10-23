@@ -1,0 +1,123 @@
+{
+	"label": "Bryndza",
+	"from": "lumpCheese",
+	"step": "grind with salt",
+	"mapped": true,
+	"about": {
+		"text": "Bryndza or brynza is a sheep milk cheese made across the countries in Central and Eastern Europe, most notably in Slovakia and Poland. Bryndza cheese is creamy white in appearance, known for its characteristic strong smell and taste. The cheese is white, tangy, crumbly and slightly moist. It has characteristic odor and flavor with a notable taste of butyric acid. The overall flavor sensation begins slightly mild, then goes strong and finally fades to a salty finish. Recipes differ slightly across countries.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Bryndza"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Chleb z bryndza.jpg",
+		"author": "Kpalion",
+		"license": "Public domain",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Chleb_z_bryndza.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"SK",
+		"PL",
+		"RO",
+		"UA"
+	],
+	"beasts": [
+		"sheep"
+	],
+	"how": {
+		"text": "Ripened sheep's lump cheese has its rind removed and is crushed and ground with salt. This gives a white, spreadable cheese with a few small lumps.",
+		"sources": {
+			"links": [
+				{
+					"name": "Kačániová et al. 2021, Open Life Sciences",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8005922"
+				},
+				{
+					"name": "Slovenská bryndza PGI summary, OJ C 232/2007",
+					"url": "https://epa.hu/00800/00877/01322/pdf/C_2007_232_0017_0022.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"temperature": {
+						"min": 29,
+						"max": 31
+					},
+					"seconds": {
+						"min": 1800,
+						"max": 1800,
+						"about": true
+					},
+					"note": "With rennet (chymosin)."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"temperature": {
+						"min": 20,
+						"max": 20,
+						"about": true
+					},
+					"note": "The lump cheese is washed and matured in a cheese bath."
+				},
+				{
+					"type": "custom",
+					"name": "trim",
+					"note": "The rind is removed."
+				},
+				{
+					"type": "custom",
+					"name": "grind",
+					"note": "Crushed, then ground."
+				},
+				{
+					"type": "custom",
+					"name": "salt",
+					"note": "Mixed into the ground cheese."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Kačániová et al. 2021, Open Life Sciences",
+						"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8005922"
+					},
+					{
+						"name": "Slovenská bryndza PGI summary, OJ C 232/2007",
+						"url": "https://epa.hu/00800/00877/01322/pdf/C_2007_232_0017_0022.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"bryndzaPodhalanska",
+		"slovenskaBryndza"
+	],
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Ewe’s lump cheese, or mixed with up to 50 % cow’s lump cheese"
+		}
+	]
+}

@@ -1,0 +1,144 @@
+{
+	"label": "Amabere amaruranu",
+	"example": true,
+	"about": {
+		"text": "A fermented milk of the Abagusii people of the Kisii highlands in south-western Kenya, made from boiled cow's milk soured in a gourd.",
+		"sources": {
+			"links": [
+				{
+					"name": "Lactic acid bacteria and yeasts involved in the fermentation of amabere amaruranu, a Kenyan fermented milk",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4256574"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"regions": [
+		"KE"
+	],
+	"how": {
+		"text": "A boiled-milk, back-slopped ferment, so its microbes come from the gourd and the previous batch, not from the raw milk.",
+		"sources": {
+			"links": [
+				{
+					"name": "Lactic acid bacteria and yeasts involved in the fermentation of amabere amaruranu, a Kenyan fermented milk",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4256574"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"seconds": {
+						"min": 600,
+						"max": 600
+					},
+					"note": "Heated and held at boiling."
+				},
+				{
+					"type": "heat",
+					"does": "cool",
+					"seconds": {
+						"min": 600,
+						"max": 1200
+					}
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic",
+						"yeast"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Streptococcus thermophilus",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								],
+								"isolates": 25
+							},
+							{
+								"name": "Lactiplantibacillus plantarum",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								],
+								"formerly": [
+									"Lactobacillus plantarum"
+								],
+								"isolates": 20
+							},
+							{
+								"name": "Leuconostoc mesenteroides",
+								"kind": "bacterium",
+								"isolates": 20
+							},
+							{
+								"name": "Saccharomyces cerevisiae",
+								"kind": "yeast",
+								"isolates": 25
+							},
+							{
+								"name": "Trichosporon mucoides",
+								"kind": "yeast"
+							},
+							{
+								"name": "Candida famata",
+								"kind": "yeast"
+							}
+						],
+						"by": [
+							"backslop",
+							"vessel"
+						],
+						"vessel": "gourd from Lagenaria fruit (preferred) or plastic"
+					},
+					"temperature": {
+						"min": 10,
+						"max": 32
+					},
+					"seconds": {
+						"min": 345600
+					},
+					"pH": {
+						"min": 4.54,
+						"max": 4.54
+					}
+				}
+			],
+			"text": "Cow milk boiled 10 min and cooled first, so the microbes come from the gourd and the previous batch. The pH of 4.54 is after 96 h in a gourd.",
+			"sources": {
+				"links": [
+					{
+						"name": "Lactic acid bacteria and yeasts involved in the fermentation of amabere amaruranu, a Kenyan fermented milk",
+						"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4256574"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"composition": {
+		"pH": {
+			"min": 4,
+			"max": 4,
+			"about": true
+		}
+	},
+	"facts": [
+		{
+			"k": "pH",
+			"v": "Traditional samples average 4.00; 4.54 after 96 h (gourd); lab 3.64 in gourd"
+		},
+		{
+			"k": "Safety",
+			"v": "Enterobacteriaceae below 1 log in gourd, 2.2 log in plastic"
+		}
+	]
+}

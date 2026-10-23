@@ -1,0 +1,121 @@
+{
+	"label": "Meekiri",
+	"example": true,
+	"note": "Thicker, creamier and whiter than cow's-milk yoghurt; usually eaten with kithul (palm) or coconut treacle",
+	"about": {
+		"text": "The traditional fermented buffalo-milk gel of Sri Lanka, set by back-slopping in a clay pot. It is thicker, creamier and whiter than cow's-milk yoghurt and is eaten with kithul palm treacle.",
+		"sources": {
+			"links": [
+				{
+					"name": "Journal of Ethnic Foods (2021)",
+					"url": "https://journalofethnicfoods.biomedcentral.com/articles/10.1186/s42779-021-00105-4"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Curd and treacle.jpg",
+		"author": "Hafiz Issadeen",
+		"license": "CC BY 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Curd_and_treacle.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"LK"
+	],
+	"beasts": [
+		"buffalo"
+	],
+	"how": {
+		"text": "In 23 samples from 22 areas, only four lactobacilli were isolated, L. fermentum in 18 of them, so the culture is a heterofermentative lactobacillus set rather than the yoghurt pair; clay pots draw whey out and give a firmer set but shorten shelf life.",
+		"sources": {
+			"links": [
+				{
+					"name": "Meekiri lactobacilli, PMC8503854",
+					"url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8503854/"
+				},
+				{
+					"name": "Journal of Ethnic Foods (2021)",
+					"url": "https://journalofethnicfoods.biomedcentral.com/articles/10.1186/s42779-021-00105-4"
+				},
+				{
+					"name": "Bintsis & Papademas 2022, Table 2, Fermentation 8:679",
+					"url": "https://doi.org/10.3390/fermentation8120679"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Limosilactobacillus fermentum",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Latilactobacillus curvatus",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Lactobacillus acidophilus",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Lactiplantibacillus plantarum",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							}
+						],
+						"by": [
+							"backslop"
+						]
+					}
+				}
+			],
+			"text": "L. fermentum was found in 18 of 23 samples.",
+			"sources": {
+				"links": [
+					{
+						"name": "Meekiri lactobacilli, PMC8503854",
+						"url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8503854/"
+					},
+					{
+						"name": "Journal of Ethnic Foods (2021)",
+						"url": "https://journalofethnicfoods.biomedcentral.com/articles/10.1186/s42779-021-00105-4"
+					},
+					{
+						"name": "Bintsis & Papademas 2022, Table 2, Fermentation 8:679",
+						"url": "https://doi.org/10.3390/fermentation8120679"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	}
+}

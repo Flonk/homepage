@@ -1,0 +1,109 @@
+{
+	"label": "fairlife",
+	"example": true,
+	"note": "Coca-Cola; launched in Minnesota in February 2014, nationally in February 2015; lactase is added, so it is lactose-free",
+	"about": {
+		"text": "An American brand of ultra-filtered milk owned by Coca-Cola, sold as whole, reduced-fat, fat-free and flavoured milk. It first appeared in Minnesota in February 2014 and went national in February 2015; it is lactose-free and made without added protein powder.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: fairlife",
+					"url": "https://en.wikipedia.org/wiki/Fairlife"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Fairlife Milk",
+		"author": "JeepersMedia",
+		"license": "CC BY 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Flickr",
+					"url": "https://www.flickr.com/photos/39160147@N03/16329230071"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "The milk is split, the skim part runs through membranes that hold back the proteins and let water and lactose go, and lactase handles the lactose that is left. fairlife says its protein is only what was in the milk.",
+		"sources": {
+			"links": [
+				{
+					"name": "fairlife: FAQ",
+					"url": "https://fairlife.com/frequently-asked-questions"
+				},
+				{
+					"name": "Wikipedia: fairlife",
+					"url": "https://en.wikipedia.org/wiki/Fairlife"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "separate",
+					"note": "The cream is separated first."
+				},
+				{
+					"type": "custom",
+					"name": "ultrafilter",
+					"note": "Through soft membranes, with no protein powder added."
+				},
+				{
+					"type": "custom",
+					"name": "add lactase",
+					"note": "Makes the milk lactose-free."
+				},
+				{
+					"type": "heat",
+					"does": "heat",
+					"note": "At a higher temperature for a few seconds than ordinary milk; no figures given."
+				},
+				{
+					"type": "homogenise"
+				},
+				{
+					"type": "custom",
+					"name": "test"
+				},
+				{
+					"type": "custom",
+					"name": "bottle"
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "fairlife: FAQ",
+						"url": "https://fairlife.com/frequently-asked-questions"
+					},
+					{
+						"name": "Wikipedia: fairlife",
+						"url": "https://en.wikipedia.org/wiki/Fairlife"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Protein",
+			"v": "80 % casein, 20 % whey, concentrated from the milk itself"
+		},
+		{
+			"k": "Compared with regular milk",
+			"v": "50 % more protein, 50 % less sugar (fairlife's own claim)"
+		},
+		{
+			"k": "Sugar figures differ",
+			"v": "Coca-Cola's North America president cited 30 % less sugar in 2015"
+		}
+	]
+}

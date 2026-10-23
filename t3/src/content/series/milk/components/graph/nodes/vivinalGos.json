@@ -1,0 +1,64 @@
+{
+	"label": "Vivinal GOS",
+	"example": true,
+	"note": "FrieslandCampina; 57 % of infant formulas launched in 2025 contained GOS (NutraIngredients 2025)",
+	"about": {
+		"text": "The galacto-oligosaccharide ingredient of FrieslandCampina, made from lactose by an enzyme and added to infant formula and other foods to feed gut bifidobacteria.",
+		"sources": {
+			"links": [
+				{
+					"name": "NutraIngredients 2025: GOS gains traction in infant milk formulas",
+					"url": "https://www.nutraingredients.com/Article/2025/09/11/gos-gains-traction-in-infant-milk-formulas-the-science-behind-the-trend"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"how": {
+		"sources": {
+			"links": [
+				{
+					"name": "FSAI 2017 opinion on GOS",
+					"url": "https://www.fsai.ie/getattachment/e18a9025-620a-4af8-a501-7d5952b7b9ce/2017-SE-opinion-GOS.pdf?lang=en-IE"
+				},
+				{
+					"name": "UK ACNFP paper on Vivinal GOS",
+					"url": "https://acnfp.food.gov.uk/sites/default/files/131-05vivinal.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "join with enzyme",
+					"note": "With beta-galactosidase from Bacillus circulans in the original grade; newer grades use enzyme from Pichia pastoris expressing a Sporobolomyces singularis gene (Vivinal GOS B) or from Papiliotrema terrestris (Vivinal GOS PT)."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "FSAI 2017 opinion on GOS",
+						"url": "https://www.fsai.ie/getattachment/e18a9025-620a-4af8-a501-7d5952b7b9ce/2017-SE-opinion-GOS.pdf?lang=en-IE"
+					},
+					{
+						"name": "UK ACNFP paper on Vivinal GOS",
+						"url": "https://acnfp.food.gov.uk/sites/default/files/131-05vivinal.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Products",
+			"v": "3'-, 4'- and 6'-galactosyllactose"
+		},
+		{
+			"k": "Made at",
+			"v": "Borculo (NL) and Warrnambool (Australia)"
+		}
+	]
+}

@@ -1,0 +1,169 @@
+{
+	"label": "Fiore Sardo",
+	"example": true,
+	"note": "Raw milk, no starter added; named for the old wooden moulds carved with a flower. Raw-milk, uncooked curd (curd broken to millet-grain size, not cooked); firm from long ripening, grated after 6 months.",
+	"family": "hard",
+	"about": {
+		"text": "Fiore Sardo is a hard Sardinian sheep cheese with PDO status, made from raw milk of Sarda ewes set with lamb or kid rennet paste. Wheels are double truncated cones of 1.5 to 4 kg, a table cheese that becomes a grating cheese after six months.",
+		"sources": {
+			"links": [
+				{
+					"name": "Italian Wikipedia, Fiore sardo",
+					"url": "https://it.wikipedia.org/wiki/Fiore_sardo"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Fiore Sardo DOP chunk.jpg",
+		"author": "Yozh",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Fiore_Sardo_DOP_chunk.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"sheep"
+	],
+	"firm": "hard",
+	"days": [
+		105,
+		365
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Sardinia",
+		"lat": 40.1,
+		"lon": 9,
+		"x": 0.525,
+		"y": 0.23676,
+		"located": "knowledge"
+	},
+	"confidence": "high",
+	"how": {
+		"label": "press, ripen",
+		"sources": {
+			"links": [
+				{
+					"name": "Pisano et al. 2006, Microbiological and chemical characterization of Fiore Sardo (12 artisanal batches)",
+					"url": "https://agris.fao.org/search/en/records/65dfd44763b8185d9caf4a22"
+				},
+				{
+					"name": "Italian Wikipedia, Fiore sardo",
+					"url": "https://it.wikipedia.org/wiki/Fiore_sardo"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"temperature": {
+						"min": 33,
+						"max": 36
+					},
+					"note": "With lamb or kid rennet paste, the milk raw."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"kinds": [
+						"lactic",
+						"yeast"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Lactococcus lactis subsp. lactis",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Enterococcus faecium",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Lactiplantibacillus plantarum",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Lacticaseibacillus casei group (paracasei)",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Debaryomyces hansenii",
+								"kind": "yeast"
+							},
+							{
+								"name": "Kluyveromyces lactis var. lactis",
+								"kind": "yeast"
+							}
+						],
+						"by": [
+							"wild"
+						]
+					},
+					"seconds": {
+						"max": 23652000
+					},
+					"note": "No starter is added."
+				}
+			],
+			"text": "Counts were followed for 9 months.",
+			"sources": {
+				"links": [
+					{
+						"name": "Pisano et al. 2006, Microbiological and chemical characterization of Fiore Sardo (12 artisanal batches)",
+						"url": "https://agris.fao.org/search/en/records/65dfd44763b8185d9caf4a22"
+					},
+					{
+						"name": "Italian Wikipedia, Fiore sardo",
+						"url": "https://it.wikipedia.org/wiki/Fiore_sardo"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Fiore_Sardo"
+			}
+		],
+		"text": "often lightly smoked"
+	},
+	"facts": [
+		{
+			"k": "Counts",
+			"v": "About 10 log cfu/g mesophiles at 48 h falling to about 3 log cfu/g at 9 months; coliforms and staphylococci peak at 48 h then fall"
+		}
+	],
+	"raw": true
+}

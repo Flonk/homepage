@@ -1,0 +1,190 @@
+{
+	"label": "Lactic-set cheese",
+	"aka": [
+		"Fromage lactique",
+		"Lactic cheese"
+	],
+	"from": "raw",
+	"step": "set slowly with acid, ladle unpressed",
+	"alsoFrom": [
+		"pasteurised"
+	],
+	"niche": 1,
+	"cheese": true,
+	"ripened": true,
+	"about": {
+		"text": "Cheese whose milk is set mainly by lactic acid after a day or more at cool room temperature, with only a trace of rennet; the curd is ladled into moulds, drains by itself and is often ash-coated and mould-ripened for a few weeks.",
+		"sources": {
+			"links": [
+				{
+					"name": "Sainte-Maure de Touraine AOP cahier des charges (INAO)",
+					"url": "https://extranet.inao.gouv.fr/fichier/CDCPNOSainteMauredeTouraine.pdf"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Sainte-maure-de-touraine cheese.jpg",
+		"author": "Tangopaso",
+		"license": "Public domain",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Sainte-maure-de-touraine_cheese.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"FR"
+	],
+	"share": {
+		"mt": 1.2,
+		"sources": {
+			"unsourced": true,
+			"text": "Mostly French goat’s cheeses: a few hundred thousand tonnes of cheese, at about 6 kg of milk a kilo. My own rough estimate."
+		}
+	},
+	"how": {
+		"text": "The milk is soured for a day or more at cool room temperature with only a few drops of rennet, so the gel is fragile and is ladled into moulds, where it drains under its own weight. Moulds and yeasts then grow on the salted, ash-coated surface.",
+		"sources": {
+			"links": [
+				{
+					"name": "Sainte-Maure de Touraine AOP cahier des charges (INAO)",
+					"url": "https://extranet.inao.gouv.fr/fichier/CDCPNOSainteMauredeTouraine.pdf"
+				},
+				{
+					"name": "Hill & Ferrer, Cheese Making Technology (Guelph), Cheese families",
+					"url": "https://books.lib.uoguelph.ca/cheesemakingtechnologyebook/chapter/cheese-families/"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic",
+						"yeast",
+						"mould"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Leuconostoc",
+								"kind": "bacterium"
+							}
+						],
+						"by": [
+							"wild"
+						]
+					},
+					"temperature": {
+						"max": 25
+					},
+					"seconds": {
+						"min": 64800,
+						"max": 172800
+					},
+					"pH": {
+						"min": 4.6,
+						"max": 4.8
+					},
+					"note": "Only a little rennet is added, at most 5 ml of 520 mg/L chymosin per 100 L."
+				},
+				{
+					"type": "custom",
+					"name": "ladle",
+					"note": "By hand into perforated truncated moulds in several passes, no pressing."
+				},
+				{
+					"type": "custom",
+					"name": "drain",
+					"seconds": {
+						"min": 64800
+					},
+					"note": "Spontaneous, under its own weight."
+				},
+				{
+					"type": "custom",
+					"name": "salt",
+					"note": "Dry salt and charcoal ash on the surface."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"adds": {
+						"microbes": [
+							{
+								"name": "Candida",
+								"kind": "yeast"
+							},
+							{
+								"name": "moulds",
+								"kind": "mould"
+							}
+						]
+					},
+					"temperature": {
+						"min": 10,
+						"max": 15
+					},
+					"seconds": {
+						"min": 864000
+					},
+					"humidity": {
+						"min": 80,
+						"max": 80,
+						"about": true
+					},
+					"note": "In a humid cellar; Valençay is matured at 80 % RH for several weeks (Guelph)."
+				}
+			],
+			"text": "Soured by the natural flora of the raw milk and cheese-dairy whey (heterofermentative), or by a lactic starter. Moulds and Candida yeasts on the surface come from the milk, the whey or bought cultures.",
+			"sources": {
+				"links": [
+					{
+						"name": "Sainte-Maure de Touraine AOP cahier des charges (INAO)",
+						"url": "https://extranet.inao.gouv.fr/fichier/CDCPNOSainteMauredeTouraine.pdf"
+					},
+					{
+						"name": "Hill & Ferrer, Cheese Making Technology (Guelph), Cheese families",
+						"url": "https://books.lib.uoguelph.ca/cheesemakingtechnologyebook/chapter/cheese-families/"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"sainteMaureDeTouraine",
+		"crottinDeChavignol",
+		"sellesSurCher",
+		"valencay",
+		"chabichouDuPoitou",
+		"poulignySaintPierre",
+		"chaource",
+		"afuegaLPitu",
+		"katikiDomokou",
+		"picodon",
+		"bouhezza",
+		"crowdie"
+	],
+	"composition": {
+		"moisture": {
+			"min": 60,
+			"max": 70
+		}
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Whole raw goat’s milk in Sainte-Maure de Touraine AOP"
+		}
+	]
+}

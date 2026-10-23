@@ -1,0 +1,101 @@
+{
+	"label": "Whey protein\nconcentrate",
+	"aka": [
+		"WPC"
+	],
+	"from": "sweetWhey",
+	"step": "what the filter holds",
+	"niche": 0,
+	"about": {
+		"text": "Whey with much of its lactose and minerals filtered out through an ultrafiltration membrane that holds back the proteins, then dried: a powder of 35 to 80 % protein in its dry matter. Used in sports and clinical nutrition and in many foods.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. Whey processing",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/whey-processing"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Optimus nutrition gold standard whey protein (2).jpg",
+		"author": "Ganesh Mohan T",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Optimus_nutrition_gold_standard_whey_protein_(2).jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "The membrane lets water, lactose and minerals through and holds the proteins, so the retentate gets richer in protein the harder it is concentrated. WPC80 needs diafiltration; WPI (above 90 %) goes further.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 18 Milk and whey fractionation",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
+				},
+				{
+					"name": "Wikipedia: Whey protein",
+					"url": "https://en.wikipedia.org/wiki/Whey_protein"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "separate",
+					"note": "Whey is defatted and clarified, fat and casein fines removed; microfiltration is an option."
+				},
+				{
+					"type": "custom",
+					"name": "ultrafilter",
+					"note": "The membrane holds back the protein."
+				},
+				{
+					"type": "custom",
+					"name": "diafilter",
+					"note": "Water added during UF to wash out more lactose and minerals."
+				},
+				{
+					"type": "dry",
+					"note": "Spray-dried."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Tetra Pak Dairy Processing Handbook, ch. 18 Milk and whey fractionation",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
+					},
+					{
+						"name": "Wikipedia: Whey protein",
+						"url": "https://en.wikipedia.org/wiki/Whey_protein"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Protein kept",
+			"v": "More than 99 % of the true protein"
+		},
+		{
+			"k": "WPC35",
+			"v": "Concentrated to about 9 % dry matter (35 % protein) before drying"
+		},
+		{
+			"k": "WPC80",
+			"v": "UF retentate taken to 27–32 % solids; example 81.0 % crude protein, 3.5 % lactose"
+		}
+	]
+}

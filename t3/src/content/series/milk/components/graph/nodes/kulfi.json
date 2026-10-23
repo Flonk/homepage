@@ -1,0 +1,91 @@
+{
+	"label": "Kulfi",
+	"from": "fresh",
+	"step": "reduce, freeze in moulds",
+	"niche": 1,
+	"about": {
+		"text": "Kulfi is a frozen dairy dessert from the Indian subcontinent. It is often described as \"traditional Indian ice cream\". Kulfi originated in 16th-century Delhi during the Mughal era.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Kulfi"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Burmese kulfi.JPG",
+		"author": "Hintha",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Burmese_kulfi.JPG"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"IN",
+		"PK",
+		"BD"
+	],
+	"how": {
+		"text": "Reduced, browned milk is frozen still in sealed moulds, not whipped.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Kulfi",
+					"url": "https://en.wikipedia.org/wiki/Kulfi"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "reduce",
+					"note": "Sweetened, flavoured milk is simmered and stirred almost constantly."
+				},
+				{
+					"type": "custom",
+					"name": "mould",
+					"note": "Often in small clay cups (kulhar), sealed."
+				},
+				{
+					"type": "custom",
+					"name": "freeze",
+					"note": "In a matka of ice and salt, not churned."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Kulfi",
+						"url": "https://en.wikipedia.org/wiki/Kulfi"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"matkaKulfi",
+		"kulfiFalooda"
+	],
+	"facts": [
+		{
+			"k": "Flavour",
+			"v": "Sugar caramelises and the milk proteins brown while it reduces"
+		},
+		{
+			"k": "Texture",
+			"v": "No churning, so denser than ice cream"
+		}
+	]
+}

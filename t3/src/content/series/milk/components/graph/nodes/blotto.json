@@ -1,0 +1,86 @@
+{
+	"label": "Blotto\n(blocking buffer)",
+	"aka": [
+		"Bovine Lacto Transfer Technique Optimizer"
+	],
+	"from": "skimmedPowder",
+	"step": "dissolve at 5 %",
+	"about": {
+		"text": "Bovine Lacto Transfer Technique Optimizer: a solution of nonfat dry milk, usually 5 % in buffer, used in laboratories since 1984 to block the empty places on a blot membrane, so that antibodies or probes stick only to what they are meant to find.",
+		"sources": {
+			"links": [
+				{
+					"name": "Gene Analysis Techniques (1984), Johnson et al.",
+					"url": "https://doi.org/10.1016/0735-0651(84)90049-9"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "ATG7 antibody.png",
+		"author": "Snowy0597",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:ATG7_antibody.png"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "No cooking is involved: the skimmed milk powder is just stirred into buffer. The proteins coat the membrane so that antibodies bind only to the target.",
+		"sources": {
+			"links": [
+				{
+					"name": "Galva et al. 2012, Anal Biochem (milk as blocker, caveats)",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3383026"
+				},
+				{
+					"name": "Wikipedia, Blotto (biology)",
+					"url": "https://en.wikipedia.org/wiki/Blotto_(biology)"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "dissolve",
+					"note": "Nonfat dry milk is stirred into buffer at 5 % (some protocols 10 %)."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Galva et al. 2012, Anal Biochem (milk as blocker, caveats)",
+						"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3383026"
+					},
+					{
+						"name": "Wikipedia, Blotto (biology)",
+						"url": "https://en.wikipedia.org/wiki/Blotto_(biology)"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "What blocks",
+			"v": "Mainly casein, which sticks to every free spot on the membrane"
+		},
+		{
+			"k": "Before 1984",
+			"v": "Purified BSA, ovalbumin or gelatin: costly"
+		},
+		{
+			"k": "Caveat",
+			"v": "Casein is a phosphoprotein, so milk is unsuitable with phospho-specific antibodies"
+		}
+	]
+}

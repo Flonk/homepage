@@ -1,0 +1,143 @@
+{
+	"label": "Viili",
+	"example": true,
+	"about": {
+		"text": "Viili (Finnish) or Fil (Swedish) is a mesophilic fermented milk product found in the Nordic countries, particularly Finland and Sweden. Viili is similar to yoghurt or kefir, but when left unmixed, its texture is malleable, or \"long\". The metabolism of the bacteria used in the fermentation also gives viili a slightly different taste.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Viili"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Viili.jpg",
+		"author": "JP001",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Viili.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"FI"
+	],
+	"how": {
+		"label": "ferment, grow mould",
+		"text": "Slime-forming Lc. lactis subsp. cremoris produce an exopolysaccharide network that binds casein into viili's stretchy, adhesive gel, while diacetylactis strains and Leuconostoc add aroma. Unhomogenised cream rises and the mould Geotrichum candidum grows a velvety skin on it.",
+		"sources": {
+			"links": [
+				{
+					"name": "Kahala et al. 2008, J Appl Microbiol (viili starters)",
+					"url": "https://doi.org/10.1111/j.1365-2672.2008.03952.x"
+				},
+				{
+					"name": "Toba et al. 1990, Int J Food Microbiol (viili texture)",
+					"url": "https://pubmed.ncbi.nlm.nih.gov/2126446/"
+				},
+				{
+					"name": "Valio: Viilit",
+					"url": "https://www.valio.fi/viili/"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "pasteurise"
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic",
+						"mould"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Lactococcus lactis subsp. cremoris",
+								"kind": "bacterium",
+								"does": [
+									"acid",
+									"slime"
+								]
+							},
+							{
+								"name": "Lactococcus lactis subsp. lactis",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Lactococcus lactis subsp. lactis biovar diacetylactis",
+								"kind": "bacterium",
+								"does": [
+									"aroma"
+								]
+							},
+							{
+								"name": "Leuconostoc mesenteroides",
+								"kind": "bacterium",
+								"does": [
+									"aroma"
+								]
+							},
+							{
+								"name": "Geotrichum candidum",
+								"kind": "mould",
+								"does": [
+									"rind"
+								]
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"temperature": {
+						"min": 20,
+						"max": 20
+					},
+					"seconds": {
+						"min": 86400,
+						"max": 86400
+					}
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Kahala et al. 2008, J Appl Microbiol (viili starters)",
+						"url": "https://doi.org/10.1111/j.1365-2672.2008.03952.x"
+					},
+					{
+						"name": "Toba et al. 1990, Int J Food Microbiol (viili texture)",
+						"url": "https://pubmed.ncbi.nlm.nih.gov/2126446/"
+					},
+					{
+						"name": "Valio: Viilit",
+						"url": "https://www.valio.fi/viili/"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Texture",
+			"v": "Ropy, sticky gel under a cream layer with a velvety mould skin"
+		}
+	]
+}

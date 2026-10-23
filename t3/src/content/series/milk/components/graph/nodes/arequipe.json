@@ -1,0 +1,88 @@
+{
+	"label": "Arequipe",
+	"example": true,
+	"about": {
+		"text": "Colombia's and Venezuela's dulce de leche, simmered from milk and sugar until it is thick and caramel brown.",
+		"sources": {
+			"links": [
+				{
+					"name": "Pontificia Universidad Javeriana, 'Arequipe' (2018)",
+					"url": "https://perfilesycapacidades.javeriana.edu.co/en/publications/arequipe/"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "arequipe con queso",
+		"author": "secretlondon123",
+		"license": "CC BY-SA 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Flickr",
+					"url": "https://www.flickr.com/photos/25834786@N03/4341354339"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"CO",
+		"VE"
+	],
+	"how": {
+		"text": "Arequipe is the Colombian and Venezuelan name for dulce de leche in its fluid, brown form. In Colombia it grew out of the colonial manjar blanco into a creamier, caramel-coloured product; Buga is noted for artisanal production.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia (es): Arequipe",
+					"url": "https://es.wikipedia.org/wiki/Arequipe"
+				},
+				{
+					"name": "Wikipedia: Dulce de leche",
+					"url": "https://en.wikipedia.org/wiki/Dulce_de_leche"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "add bicarbonate",
+					"note": "A pinch neutralises lactic acid so the milk does not curdle while it is concentrated, and promotes browning."
+				},
+				{
+					"type": "custom",
+					"name": "evaporate",
+					"note": "Under vacuum to 45–50 °Brix."
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"note": "Finished in an open pan, industrially to about 68 °Brix."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia (es): Arequipe",
+						"url": "https://es.wikipedia.org/wiki/Arequipe"
+					},
+					{
+						"name": "Wikipedia: Dulce de leche",
+						"url": "https://en.wikipedia.org/wiki/Dulce_de_leche"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Not the same as",
+			"v": "Colombian manjar blanco, which is thickened with rice powder or cornstarch"
+		}
+	]
+}

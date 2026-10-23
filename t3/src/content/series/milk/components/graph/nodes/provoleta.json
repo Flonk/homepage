@@ -1,0 +1,100 @@
+{
+	"label": "Provoleta",
+	"example": true,
+	"family": "pastaFilata",
+	"also": "grilling",
+	"about": {
+		"text": "Provoleta is an Argentine variant of provolone cheese described as \"Argentine pulled-curd provolone cheese\". It can be heated on a grill, or indoors in a cast-iron pan. The cheese is firm and can hold its shape when grilled.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Provoleta"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Provoleta argentina (cheese).jpg",
+		"author": "Horacio Cambeiro",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Provoleta_argentina_(cheese).jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"AR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		15,
+		45
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "none",
+	"confidence": "medium",
+	"how": {
+		"label": "spin the curd",
+		"text": "Provoleta is an Argentine provolone-type spun-curd cheese sold in small thick discs; the spun curd is dense enough to hold its shape when grilled whole at an asado.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Provoleta",
+					"url": "https://en.wikipedia.org/wiki/Provoleta"
+				},
+				{
+					"name": "Código Alimentario Argentino, cap. VIII (archived)",
+					"url": "https://web.archive.org/web/20101031072855/http://www.alimentosargentinos.gov.ar/programa_calidad/Marco_Regulatorio/CAA/CAPITULOVIII.htm"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "spin",
+					"note": "The curd is spun (hilado), as for provolone."
+				},
+				{
+					"type": "custom",
+					"name": "mould",
+					"note": "Formed into discs about 10–15 cm across and 1–1.5 cm thick."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Provoleta",
+						"url": "https://en.wikipedia.org/wiki/Provoleta"
+					},
+					{
+						"name": "Código Alimentario Argentino, cap. VIII (archived)",
+						"url": "https://web.archive.org/web/20101031072855/http://www.alimentosargentinos.gov.ar/programa_calidad/Marco_Regulatorio/CAA/CAPITULOVIII.htm"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Provoleta"
+			}
+		],
+		"text": "Argentine pulled-curd provolone in small discs, grilled on the asado; Wikipedia gives no milk or ripening"
+	}
+}

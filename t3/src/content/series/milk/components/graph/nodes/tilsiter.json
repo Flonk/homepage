@@ -1,0 +1,161 @@
+{
+	"label": "Tilsiter",
+	"example": true,
+	"aka": [
+		"Tilsit cheese"
+	],
+	"family": "semiHard",
+	"also": "washed",
+	"about": {
+		"text": "Tilsit cheese or Tilsiter cheese is a pale yellow semihard smear-ripened cheese, created in the mid-19th century by Prussian-Swiss settlers, the Westphal family, from the Emmental valley. The original buildings from the cheese plant still exist in Sovetsk, Russia, formerly Tilsit, on the Neman River, in the former German province of East Prussia.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Tilsit_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Tilsiter.jpg",
+		"author": "Rainer Zenz",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Tilsiter.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"CH",
+		"DE"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		60,
+		150
+	],
+	"setting": "rennet",
+	"rind": "washed",
+	"confidence": "medium",
+	"how": {
+		"label": "smear the rind",
+		"text": "During ripening the rind is repeatedly worked with a smear of Brevibacterium linens, which forms a thin yellow-brown rind. The flavour runs from mild to strong and spicy depending on age. The paste is supple, with the irregular shiny eyes and cracks typical of Tilsiter.",
+		"sources": {
+			"links": [
+				{
+					"name": "Codex Standard for Tilsiter (CXS 270-1968)",
+					"url": "https://www.fao.org/3/i2085e/i2085e00.pdf"
+				},
+				{
+					"name": "Holsteiner Tilsiter PGI single document (OJ C 288, 2012)",
+					"url": "https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=CELEX%3A52012XC0925%2804%29"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic",
+						"smear"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "lactic acid bacteria",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							}
+						],
+						"by": [
+							"starter"
+						]
+					}
+				},
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"note": "With rennet or other coagulating enzymes."
+				},
+				{
+					"type": "custom",
+					"name": "mould",
+					"note": "As a wheel or loaf, the Holsteiner loaf or box 3.5–5.0 kg."
+				},
+				{
+					"type": "ferment",
+					"does": "smear",
+					"adds": {
+						"microbes": [
+							{
+								"name": "Brevibacterium linens",
+								"kind": "bacterium",
+								"does": [
+									"rind"
+								]
+							}
+						],
+						"by": [
+							"starter"
+						]
+					}
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"temperature": {
+						"min": 10,
+						"max": 16
+					},
+					"seconds": {
+						"min": 1814400
+					},
+					"note": "The Codex asks for 3 wk, the Holsteiner for at least 5 wk."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Codex Standard for Tilsiter (CXS 270-1968)",
+						"url": "https://www.fao.org/3/i2085e/i2085e00.pdf"
+					},
+					{
+						"name": "Holsteiner Tilsiter PGI single document (OJ C 288, 2012)",
+						"url": "https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=CELEX%3A52012XC0925%2804%29"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Tilsit_cheese"
+			}
+		],
+		"text": "smear-ripened semi-hard, created mid-19th c. by Swiss settlers in Tilsit, East Prussia; rests at least 2 months after production; often with caraway or pepper; max is typical, not sourced"
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Codex also allows buffalo"
+		}
+	]
+}

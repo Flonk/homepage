@@ -1,0 +1,113 @@
+{
+	"label": "Gjetost",
+	"example": true,
+	"aka": [
+		"Geitost",
+		"Mysost"
+	],
+	"note": "Ekte geitost is whey and goat milk only",
+	"family": "wheyCheese",
+	"about": {
+		"text": "A brown Norwegian whey cheese boiled down with goat milk; ekte geitost is made of whey and goat milk only.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Brunost"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Geitost.JPG",
+		"author": "Svickova",
+		"license": "Public domain",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Geitost.JPG"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"NO"
+	],
+	"beasts": [
+		"goat",
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		0,
+		0
+	],
+	"estimated": true,
+	"setting": "heat",
+	"rind": "none",
+	"place": {
+		"region": "Innlandet",
+		"lat": 61.3,
+		"lon": 10,
+		"x": 0.52778,
+		"y": 0.14158,
+		"located": "hint"
+	},
+	"confidence": "high",
+	"how": {
+		"text": "Made like brunost, but from goat's whey and goat's milk only, so no cow milk goes in. Neither source gives boiling times, ratios or fat and sugar figures.",
+		"sources": {
+			"links": [
+				{
+					"name": "Norwegian Wikipedia: Geitost",
+					"url": "https://no.wikipedia.org/wiki/Geitost"
+				},
+				{
+					"name": "Wikipedia: Brunost",
+					"url": "https://en.wikipedia.org/wiki/Brunost"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "evaporate",
+					"note": "Whey is boiled down carefully for several hours until the water has evaporated."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Norwegian Wikipedia: Geitost",
+						"url": "https://no.wikipedia.org/wiki/Geitost"
+					},
+					{
+						"name": "Wikipedia: Brunost",
+						"url": "https://en.wikipedia.org/wiki/Brunost"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Brunost"
+			}
+		],
+		"text": "Its facts, from these."
+	},
+	"facts": [
+		{
+			"k": "Colour",
+			"v": "Caramelised milk sugar: from dark brown to nearly white, brown being the most common in Norway"
+		}
+	]
+}

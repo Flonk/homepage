@@ -1,0 +1,38 @@
+{
+	"label": "Tome de la Brigue",
+	"example": true,
+	"family": "semiHard",
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"sheep",
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		30,
+		90
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Provence-Alpes-Côte d'Azur",
+		"lat": 44.04,
+		"lon": 7.56,
+		"x": 0.521,
+		"y": 0.22201,
+		"located": "knowledge"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Tome_de_la_Brigue"
+			}
+		],
+		"text": "Roya valley; no article found; values are typicals"
+	}
+}

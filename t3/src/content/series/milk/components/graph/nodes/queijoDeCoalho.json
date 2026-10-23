@@ -1,0 +1,132 @@
+{
+	"label": "Queijo de coalho",
+	"example": true,
+	"aka": [
+		"Queijo coalho"
+	],
+	"note": "Not heated hard like halloumi: the curd is cooked to 45–55 °C at most, and it holds its shape on a grill because it is firm and moist",
+	"about": {
+		"text": "A firm, elastic, mild and slightly acidic cow's-milk cheese of north-east Brazil that squeaks when bitten and browns without melting, so it is grilled on skewers over charcoal. Brazilian law (IN 30/2001) defines it as a cheese sold within about ten days of making.",
+		"sources": {
+			"links": [
+				{
+					"name": "MAPA IN 30/2001, Anexo II (Queijo de coalho)",
+					"url": "https://wikisda.agricultura.gov.br/dipoa_baselegal/in_30-2001_rt_manteiga_garrafa_queijo_coalho_queijo_manteiga.pdf"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Queijo coalho.jpg",
+		"author": "Thiago Parente Lima",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Queijo_coalho.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"BR"
+	],
+	"how": {
+		"label": "cook the curd, press",
+		"sources": {
+			"links": [
+				{
+					"name": "MAPA IN 30/2001, Anexo II",
+					"url": "https://wikisda.agricultura.gov.br/dipoa_baselegal/in_30-2001_rt_manteiga_garrafa_queijo_coalho_queijo_manteiga.pdf"
+				},
+				{
+					"name": "Wikipedia: Queijo coalho",
+					"url": "https://en.wikipedia.org/wiki/Queijo_coalho"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"seconds": {
+						"min": 2400,
+						"max": 2400,
+						"about": true
+					},
+					"note": "With rennet or other suitable coagulating enzymes, optionally with selected lactic bacteria."
+				},
+				{
+					"type": "custom",
+					"name": "cut"
+				},
+				{
+					"type": "custom",
+					"name": "stir"
+				},
+				{
+					"type": "custom",
+					"name": "draw off whey",
+					"note": "Part of the whey is drawn off."
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"temperature": {
+						"max": 55
+					},
+					"note": "The curd is heated with hot water or indirect steam."
+				},
+				{
+					"type": "custom",
+					"name": "salt"
+				},
+				{
+					"type": "custom",
+					"name": "press"
+				},
+				{
+					"type": "dry"
+				},
+				{
+					"type": "custom",
+					"name": "pack"
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "MAPA IN 30/2001, Anexo II",
+						"url": "https://wikisda.agricultura.gov.br/dipoa_baselegal/in_30-2001_rt_manteiga_garrafa_queijo_coalho_queijo_manteiga.pdf"
+					},
+					{
+						"name": "Wikipedia: Queijo coalho",
+						"url": "https://en.wikipedia.org/wiki/Queijo_coalho"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"composition": {
+		"fatInDryMatter": {
+			"min": 35,
+			"max": 60
+		}
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Whole, or standardised to 3 % fat"
+		},
+		{
+			"k": "Paste",
+			"v": "Medium to high moisture, semi-hard elastic paste, thin rind"
+		}
+	]
+}

@@ -1,0 +1,100 @@
+{
+	"label": "Casein hydrolysate\n(Nutramigen)",
+	"from": "acidCasein",
+	"step": "break down with enzymes",
+	"about": {
+		"text": "Casein broken down into short peptides, used as the protein in 'extensively hydrolysed' infant formulas for babies allergic to cow's-milk protein. Mead Johnson's Nutramigen is the long-standing reference product. Its peptides are mostly under about 2 kDa, too small to trigger the antibodies that cause an allergic reaction.",
+		"sources": {
+			"links": [
+				{
+					"name": "BMC Pediatrics (2002)",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC130212"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Nutramigen Baby Formula.JPG",
+		"author": "ParentingPatch",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Nutramigen_Baby_Formula.JPG"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "The allergen is the intact protein, so the casein is chopped small enough that the immune system no longer recognises it. The exact process of Nutramigen is the maker's own and not published.",
+		"sources": {
+			"links": [
+				{
+					"name": "Patent US 5,405,637, milk protein partial hydrolysate (process background)",
+					"url": "https://www.google.com.ua/patents/US5405637"
+				},
+				{
+					"name": "Nutramigen LGG German product information (Mead Johnson)",
+					"url": "https://cdn.shop-apotheke.com/PDF/D09/706/581/D09706581-lv.pdf"
+				},
+				{
+					"name": "Allergologia et Immunopathologia, clinical study of a casein hydrolysate formula",
+					"url": "https://www.elsevier.es/en-revista-allergologia-et-immunopathologia-105-pdf-download-S0301054609000470"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "hydrolyse",
+					"note": "With added proteases, e.g. trypsin, chymotrypsin, pancreatic enzymes."
+				},
+				{
+					"type": "custom",
+					"name": "ultrafilter",
+					"note": "Removes the enzyme and leftover large protein."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Patent US 5,405,637, milk protein partial hydrolysate (process background)",
+						"url": "https://www.google.com.ua/patents/US5405637"
+					},
+					{
+						"name": "Nutramigen LGG German product information (Mead Johnson)",
+						"url": "https://cdn.shop-apotheke.com/PDF/D09/706/581/D09706581-lv.pdf"
+					},
+					{
+						"name": "Allergologia et Immunopathologia, clinical study of a casein hydrolysate formula",
+						"url": "https://www.elsevier.es/en-revista-allergologia-et-immunopathologia-105-pdf-download-S0301054609000470"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Peptides",
+			"v": "under 2000 Da (example of a casein hydrolysate formula: mean 380 Da)"
+		},
+		{
+			"k": "Definition",
+			"v": "'Extensively hydrolysed': expected to be tolerated by at least 90 % of children with cow's-milk allergy; no single agreed legal definition"
+		},
+		{
+			"k": "Nutramigen LGG",
+			"v": "Also carries the live probiotic Lactobacillus rhamnosus GG"
+		},
+		{
+			"k": "Lactose",
+			"v": "Lactose-free"
+		}
+	]
+}

@@ -1,0 +1,92 @@
+{
+	"label": "Requeijão cremoso",
+	"example": true,
+	"note": "Made from milk curd, not from finished cheese or whey",
+	"about": {
+		"text": "The Brazilian spreadable cheese sold in cups, made by melting a drained, washed milk curd with cream or butter and melting salts. Not the Portuguese whey cheese of the same name, which is closer to ricotta.",
+		"sources": {
+			"links": [
+				{
+					"name": "MAPA Portaria 359/1997, RTIQ do Requeijão (Brazil)",
+					"url": "https://vigilanciasanitaria.prefeitura.rio/wp-content/uploads/sites/84/2023/05/Portaria-359-RTIQ-Requeijao.pdf"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "RequeijaoCremoso.jpg",
+		"author": "Tom B",
+		"license": "Public domain",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:RequeijaoCremoso.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"BR"
+	],
+	"how": {
+		"label": "melt with cream",
+		"text": "Requeijão cremoso is made by melting a drained, washed milk curd together with cream or butter, which must be added in the 'cremoso' type, giving a smooth, spreadable, mildly acidic product sold in cups.",
+		"sources": {
+			"links": [
+				{
+					"name": "MAPA Portaria 359/1997, RTIQ do Requeijão (Brazil)",
+					"url": "https://vigilanciasanitaria.prefeitura.rio/wp-content/uploads/sites/84/2023/05/Portaria-359-RTIQ-Requeijao.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "coagulate",
+					"by": "rennet-acid",
+					"note": "With acid, with rennet, or with both."
+				},
+				{
+					"type": "custom",
+					"name": "drain"
+				},
+				{
+					"type": "custom",
+					"name": "wash"
+				},
+				{
+					"type": "heat",
+					"does": "heat",
+					"note": "Melted with added cream, butter or milkfat, and citrate or phosphate salts are allowed."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "MAPA Portaria 359/1997, RTIQ do Requeijão (Brazil)",
+						"url": "https://vigilanciasanitaria.prefeitura.rio/wp-content/uploads/sites/84/2023/05/Portaria-359-RTIQ-Requeijao.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"composition": {
+		"fatInDryMatter": {
+			"min": 55
+		},
+		"moisture": {
+			"max": 65
+		}
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Milk or reconstituted milk"
+		}
+	]
+}

@@ -1,0 +1,105 @@
+{
+	"label": "Arroz con leche",
+	"example": true,
+	"note": "The Spanish and Latin American rice pudding, usually flavoured with cinnamon",
+	"about": {
+		"text": "The Spanish and Latin American rice pudding, usually flavoured with cinnamon.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Rice_pudding"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Arroz con leche Tregar Canela.jpg",
+		"author": "Flipwared",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Arroz_con_leche_Tregar_Canela.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"ES",
+		"MX",
+		"AR",
+		"PE"
+	],
+	"how": {
+		"text": "The milk is infused first, then the rice simmers slowly so its starch thickens the milk; the sugar goes in at the end because it would stop the rice softening. It thickens more as it cools. Amounts are the Asturian recipe from asturias.com; the quick ratio is from a search-result summary of other recipes, not an opened page.",
+		"sources": {
+			"links": [
+				{
+					"name": "Asturias.com: Receta arroz con leche",
+					"url": "https://asturias.com/receta-arroz-con-leche/"
+				},
+				{
+					"name": "Wikipedia: Rice pudding",
+					"url": "https://en.wikipedia.org/wiki/Rice_pudding"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "boil",
+					"note": "200 g round (bomba) rice boiled in 200 ml water with salt first."
+				},
+				{
+					"type": "custom",
+					"name": "infuse",
+					"note": "Peel of 1 lemon and 1 cinnamon stick in the hot milk.",
+					"seconds": {
+						"min": 300,
+						"max": 300,
+						"about": true
+					}
+				},
+				{
+					"type": "heat",
+					"does": "heat",
+					"seconds": {
+						"min": 7200,
+						"max": 7200,
+						"about": true
+					},
+					"note": "Over very low heat, stirred, with more milk added after about 30 min; roughly 2 h in all."
+				},
+				{
+					"type": "custom",
+					"name": "sweeten",
+					"note": "150 g sugar, stirred in once creamy."
+				},
+				{
+					"type": "custom",
+					"name": "burn",
+					"note": "100 g sugar with 10 g cinnamon on top, torched (Asturian style)."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Asturias.com: Receta arroz con leche",
+						"url": "https://asturias.com/receta-arroz-con-leche/"
+					},
+					{
+						"name": "Wikipedia: Rice pudding",
+						"url": "https://en.wikipedia.org/wiki/Rice_pudding"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	}
+}

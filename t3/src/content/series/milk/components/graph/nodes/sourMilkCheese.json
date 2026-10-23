@@ -1,0 +1,173 @@
+{
+	"label": "Sour milk cheese",
+	"aka": [
+		"Sauermilchkäse"
+	],
+	"from": "quark",
+	"step": "ripen",
+	"cheese": true,
+	"ripened": true,
+	"about": {
+		"text": "Acid-set or sour milk cheese is cheese that has been curdled (coagulated) by natural souring, often from lactic acid bacteria, or by the addition of acid. This type of cheese is technologically simple to produce.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Acid-set_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Harzer Käse.jpg",
+		"author": "Markus Hagenlocher",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Harzer_K%C3%A4se.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"DE",
+		"AT",
+		"CZ"
+	],
+	"how": {
+		"text": "Yeasts eat the lactic acid on the surface of the quark loaf and raise its pH; only then can the smear bacteria grow and give the yellow or red rind and strong smell.",
+		"sources": {
+			"links": [
+				{
+					"name": "de.Wikipedia: Sauermilchkäse",
+					"url": "https://de.wikipedia.org/wiki/Sauermilchk%C3%A4se"
+				},
+				{
+					"name": "Wikipedia: Acid-set cheese",
+					"url": "https://en.wikipedia.org/wiki/Acid-set_cheese"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic",
+						"yeast",
+						"smear"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "lactic acid bacteria",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"temperature": {
+						"min": 38,
+						"max": 40
+					}
+				},
+				{
+					"type": "custom",
+					"name": "drain"
+				},
+				{
+					"type": "custom",
+					"name": "grind"
+				},
+				{
+					"type": "custom",
+					"name": "mix",
+					"note": "With salt, spices (caraway) and a ripening agent, sodium bicarbonate (Natron) or calcium carbonate, to neutralise part of the acid."
+				},
+				{
+					"type": "custom",
+					"name": "shape",
+					"note": "Into small loaves."
+				},
+				{
+					"type": "ferment",
+					"does": "smear",
+					"adds": {
+						"microbes": [
+							{
+								"name": "Kahmhefen (film yeasts)",
+								"kind": "yeast"
+							}
+						]
+					},
+					"note": "Sweated a few days, warm and very humid, the film yeasts coming first."
+				},
+				{
+					"type": "ferment",
+					"does": "smear",
+					"adds": {
+						"microbes": [
+							{
+								"name": "yellow or red smear bacteria",
+								"kind": "bacterium",
+								"does": [
+									"rind"
+								]
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"note": "Smeared with salted water and red cultures."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"note": "Kept cooler a few more days."
+				}
+			],
+			"text": "The quark is soured within a few hours, then sweated a few days warm and very humid, smeared with salted water and red cultures and kept cooler a few more days. Mould sorts are ripened 6-7 days at 17-19 °C.",
+			"sources": {
+				"links": [
+					{
+						"name": "de.Wikipedia: Sauermilchkäse",
+						"url": "https://de.wikipedia.org/wiki/Sauermilchk%C3%A4se"
+					},
+					{
+						"name": "Wikipedia: Acid-set cheese",
+						"url": "https://en.wikipedia.org/wiki/Acid-set_cheese"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"harzer",
+		"olmutzerQuargel",
+		"tirolerGraukase",
+		"handkase",
+		"mainzer",
+		"milbenkase",
+		"gammelost",
+		"pultost"
+	],
+	"facts": [
+		{
+			"k": "Mould type",
+			"v": "For white or blue mould sorts the quark is salted less and neutralised less, with no sweating; ripened 6–7 days at 17–19 °C"
+		}
+	]
+}

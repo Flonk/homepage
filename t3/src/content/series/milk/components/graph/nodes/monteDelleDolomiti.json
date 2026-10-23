@@ -1,0 +1,37 @@
+{
+	"label": "Monte delle Dolomiti",
+	"example": true,
+	"family": "semiHard",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		30,
+		90
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Trentino",
+		"lat": 46.07,
+		"lon": 11.12,
+		"x": 0.53089,
+		"y": 0.21403,
+		"located": "hint"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Monte_delle_Dolomiti"
+			}
+		],
+		"text": "Trentino mountain cheese; not verified, values estimated"
+	}
+}

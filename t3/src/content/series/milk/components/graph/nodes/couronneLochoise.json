@@ -1,0 +1,37 @@
+{
+	"label": "Couronne lochoise",
+	"example": true,
+	"family": "lacticCheese",
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"goat"
+	],
+	"firm": "soft",
+	"days": [
+		10,
+		30
+	],
+	"estimated": true,
+	"setting": "rennet-acid",
+	"rind": "natural",
+	"place": {
+		"region": "Centre-Val de Loire",
+		"lat": 47.13,
+		"lon": 0.99,
+		"x": 0.50275,
+		"y": 0.20974,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Couronne_lochoise"
+			}
+		],
+		"text": "raw goat milk, ring mould, covered in vegetable ash, aged at least ten days; maximum is a guess"
+	}
+}

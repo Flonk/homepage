@@ -1,0 +1,38 @@
+{
+	"label": "Felciata di Calabria",
+	"example": true,
+	"family": "soft",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"sheep",
+		"goat"
+	],
+	"firm": "soft",
+	"days": [
+		15,
+		30
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Calabria",
+		"lat": 39.3,
+		"lon": 16.3,
+		"x": 0.54528,
+		"y": 0.23965,
+		"located": "hint"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Felciata_di_Calabria"
+			}
+		],
+		"text": "ripened under fern fronds"
+	}
+}

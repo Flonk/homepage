@@ -1,0 +1,176 @@
+{
+	"label": "Kefalotyri",
+	"example": true,
+	"aka": [
+		"Kefalotiri"
+	],
+	"family": "hard",
+	"about": {
+		"text": "Kefalotyri is a hard, salty Greek and Cypriot cheese made from sheep's milk, goat's milk or a mix of the two, white to yellow depending on the milk. It is ripened for about three months or longer, and is eaten as it is, fried in olive oil as saganaki, or grated over dishes and into pies.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Kefalotyri"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Kefalotyri.jpg",
+		"author": "J.P.Lon",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Kefalotyri.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"GR",
+		"CY"
+	],
+	"beasts": [
+		"sheep",
+		"goat"
+	],
+	"firm": "hard",
+	"days": [
+		90,
+		180
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PDO",
+	"confidence": "high",
+	"how": {
+		"text": "Kefalotyri is a cooked hard cheese of sheep's or goat's milk. It has no protected name or single legal recipe; the cultures listed are those of a 2025 semi-industrial Epirus study of a Kefalotyri-type cheese, not a rule for every maker.",
+		"sources": {
+			"links": [
+				{
+					"name": "Bosnea et al. 2025, Fermentation 11(12):673",
+					"url": "https://doi.org/10.3390/fermentation11120673"
+				},
+				{
+					"name": "Wikipedia: Kefalotyri",
+					"url": "https://en.wikipedia.org/wiki/Kefalotyri"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 65,
+						"max": 65
+					},
+					"seconds": {
+						"min": 30,
+						"max": 30
+					}
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"by": [
+							"starter"
+						],
+						"microbes": [
+							{
+								"name": "Streptococcus thermophilus ST1",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								],
+								"grows": "thermophilic"
+							},
+							{
+								"name": "Lactococcus lactis",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Lactiplantibacillus plantarum H25",
+								"kind": "bacterium"
+							},
+							{
+								"name": "Leuconostoc mesenteroides KFM7",
+								"kind": "bacterium"
+							},
+							{
+								"name": "Leuconostoc mesenteroides KFM9",
+								"kind": "bacterium"
+							}
+						]
+					}
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"seconds": {
+						"min": 7776000
+					}
+				}
+			],
+			"text": "Cultures are those of a 2025 Epirus study cheese ripened 90 d; the L. plantarum and Leuconostoc strains are adjuncts of the study, and one L. lactis strain makes nisin A. Native S. thermophilus and L. lactis grow best in the first 24 h; later mesophilic lactic bacteria and the L. plantarum adjunct dominate.",
+			"sources": {
+				"links": [
+					{
+						"name": "Bosnea et al. 2025, Fermentation 11(12):673",
+						"url": "https://doi.org/10.3390/fermentation11120673"
+					},
+					{
+						"name": "Wikipedia: Kefalotyri",
+						"url": "https://en.wikipedia.org/wiki/Kefalotyri"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Kefalotyri"
+			}
+		],
+		"text": "Its facts, from these."
+	},
+	"composition": {
+		"moisture": {
+			"max": 35
+		},
+		"fatInDryMatter": {
+			"min": 47
+		}
+	},
+	"facts": [
+		{
+			"k": "Starter",
+			"v": "Native S. thermophilus plus L. lactis grew best in the first 24 h; later mesophilic lactic bacteria and the L. plantarum adjunct (about 8.5 log CFU/g) dominated during ripening"
+		},
+		{
+			"k": "Volatiles",
+			"v": "Main volatiles are acetone, butyric acid, methyl butyrate and ethanol"
+		},
+		{
+			"k": "Aged",
+			"v": "A kefalotyri aged a year or more is drier and stronger"
+		}
+	]
+}

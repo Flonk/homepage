@@ -1,0 +1,50 @@
+{
+	"label": "Yemeni cheese",
+	"example": true,
+	"family": "semiHard",
+	"about": {
+		"text": "A local sheep-milk, smoked-cheese, handmade in the city of Taiz",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Yemeni_cheese"
+				}
+			],
+			"text": "sheep or goat milk set with lamb/kid/calf rennet, rested in baskets then smoked 10-15 min; round flat 20 cm wheel; no ageing described"
+		}
+	},
+	"regions": [
+		"YE"
+	],
+	"beasts": [
+		"sheep",
+		"goat"
+	],
+	"firm": "semi-hard",
+	"days": [
+		0,
+		14
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Taiz Governorate",
+		"lat": 13.58,
+		"lon": 44.02,
+		"x": 0.62228,
+		"y": 0.32046,
+		"located": "hint"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Yemeni_cheese"
+			}
+		],
+		"text": "sheep or goat milk set with lamb/kid/calf rennet, rested in baskets then smoked 10-15 min; round flat 20 cm wheel; no ageing described"
+	}
+}

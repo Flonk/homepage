@@ -1,0 +1,40 @@
+{
+	"label": "Grande Vecchio di Montefollonico",
+	"example": true,
+	"family": "hard",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"sheep"
+	],
+	"firm": "hard",
+	"days": [
+		300,
+		365
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Tuscany",
+		"lat": 43.14,
+		"lon": 11.82,
+		"x": 0.53283,
+		"y": 0.22546,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Grande_Vecchio_di_Montefollonico"
+			},
+			{
+				"name": "onaf.it",
+				"url": "https://www.onaf.it/uploads/public/10603_il-grande-vecchio-di-montefollonico.pdf"
+			}
+		],
+		"text": "Tuscan PAT aged pecorino-type, about 300 days (one ONAF sheet says at least 10 months), rind rubbed with olive oil; sheep's milk assumed, not confirmed"
+	}
+}

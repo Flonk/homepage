@@ -1,0 +1,122 @@
+{
+	"label": "Nimish (milk foam)",
+	"aka": [
+		"Malaiyo",
+		"Malai makkhan",
+		"Makhan malai",
+		"Daulat ki chaat"
+	],
+	"from": "fresh",
+	"step": "boil, chill overnight, whip to a foam",
+	"note": "Only made in the cold months: in warmth the foam collapses. It is served at dawn.",
+	"about": {
+		"text": "Nimish, also called malaiyo or makhan malai, is a winter sweet of Uttar Pradesh: milk boiled, cooled overnight in the open and whipped at dawn into a light foam that is flavoured with saffron and cardamom and sold in clay cups. The name Makhan malai means cream butter, though it contains neither.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Makhan_malai"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Neemus - Sheherwali Milk Foam.jpg",
+		"author": "Sumit Surai",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Neemus_-_Sheherwali_Milk_Foam.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"IN"
+	],
+	"beasts": [
+		"cow",
+		"buffalo"
+	],
+	"how": {
+		"text": "The milk is boiled and cooled without stirring in a skin, left in the cold overnight, then beaten to a foam at dawn. The foam is skimmed off and sweetened.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Makhan malai",
+					"url": "https://en.wikipedia.org/wiki/Makhan_malai"
+				},
+				{
+					"name": "Atlas Obscura: Nimish",
+					"url": "https://assets.atlasobscura.com/foods/nimish"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"note": "Boiled, then left to cool without stirring."
+				},
+				{
+					"type": "heat",
+					"does": "cool",
+					"seconds": {
+						"min": 28800,
+						"max": 43200,
+						"about": true
+					},
+					"note": "Left outdoors overnight, traditionally in the dew, 4-5 h in the Wikipedia recipe."
+				},
+				{
+					"type": "custom",
+					"name": "whip",
+					"seconds": {
+						"min": 10800,
+						"max": 10800,
+						"about": true
+					},
+					"note": "Churned or whisked by hand in the morning."
+				},
+				{
+					"type": "custom",
+					"name": "sweeten",
+					"note": "Sugar, saffron, cardamom, rose water; nuts and silver leaf on top."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Makhan malai",
+						"url": "https://en.wikipedia.org/wiki/Makhan_malai"
+					},
+					{
+						"name": "Atlas Obscura: Nimish",
+						"url": "https://assets.atlasobscura.com/foods/nimish"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Variants",
+			"v": "Cream is added in some recipes"
+		},
+		{
+			"k": "Season",
+			"v": "Winter only; cold keeps the foam from draining"
+		},
+		{
+			"k": "Caveat",
+			"v": "That dew itself helps is disputed; some cooks call it folklore"
+		}
+	]
+}

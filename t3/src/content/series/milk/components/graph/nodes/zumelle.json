@@ -1,0 +1,41 @@
+{
+	"label": "Zumelle",
+	"example": true,
+	"family": "soft",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "soft",
+	"days": [
+		7,
+		30
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Veneto",
+		"lat": 45.6,
+		"lon": 11.9,
+		"x": 0.53306,
+		"y": 0.2159,
+		"located": "hint"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Zumelle_(cheese)"
+			},
+			{
+				"name": "it.wikipedia.org",
+				"url": "https://it.wikipedia.org/wiki/Zumelle"
+			}
+		],
+		"text": "Veneto (Belluno, near Mel, named after Zumelle castle); Italian PAT cheese. Milk, ripening and rind unverified."
+	}
+}

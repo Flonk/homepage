@@ -1,0 +1,87 @@
+{
+	"label": "Renost",
+	"example": true,
+	"aka": [
+		"Reindeer cheese"
+	],
+	"note": "Reindeer milk is very rich (about 22 % fat, 10 % protein) but a doe gives about 1.5 cups a day, so production is tiny; it was often taken in coffee instead of cream.",
+	"about": {
+		"text": "Renost is the traditional cheese of the Sámi, made from reindeer milk in northern Scandinavia. Historically the curdled milk was poured into a reindeer stomach and hung in the open air; today the few makers use linen cloths, and the cheese turns hard and grainy in the cold and is sometimes smoked.",
+		"sources": {
+			"links": [
+				{
+					"name": "Slow Food Ark of Taste, Renost (Reindeer Cheese)",
+					"url": "https://www.fondazioneslowfood.com/en/ark-of-taste-slow-food/reindeer-cheese/"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"regions": [
+		"SE",
+		"NO",
+		"FI"
+	],
+	"beasts": [
+		"reindeer"
+	],
+	"how": {
+		"label": "curdle in a stomach, drain",
+		"sources": {
+			"links": [
+				{
+					"name": "Slow Food Ark of Taste, Renost",
+					"url": "https://www.fondazioneslowfood.com/en/ark-of-taste-slow-food/reindeer-cheese/"
+				},
+				{
+					"name": "Wikipedia, Reindeer cheese (milk composition, 1913 description)",
+					"url": "https://en.wikipedia.org/wiki/Reindeer_cheese"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"note": "Historically with the reindeer stomach, its rennet."
+				},
+				{
+					"type": "custom",
+					"name": "drain",
+					"note": "In a linen cloth, where it hardens in the cold climate."
+				},
+				{
+					"type": "custom",
+					"name": "shape",
+					"note": "Shaped round and flat."
+				},
+				{
+					"type": "custom",
+					"name": "smoke",
+					"note": "Sometimes, for keeping."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Slow Food Ark of Taste, Renost",
+						"url": "https://www.fondazioneslowfood.com/en/ark-of-taste-slow-food/reindeer-cheese/"
+					},
+					{
+						"name": "Wikipedia, Reindeer cheese (milk composition, 1913 description)",
+						"url": "https://en.wikipedia.org/wiki/Reindeer_cheese"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "From the vaja, the female reindeer; very little per animal"
+		}
+	]
+}

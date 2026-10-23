@@ -1,0 +1,162 @@
+{
+	"label": "Munster",
+	"example": true,
+	"aka": [
+		"Munster-Géromé"
+	],
+	"family": "washed",
+	"about": {
+		"text": "Munster, Munster-géromé, or (Alsatian) Minschterkaas, is a soft cheese with a strong taste and aroma, made mainly from milk first produced in the Vosges, between the Alsace, Lorraine and Franche-Comté regions in France. The name \"Munster\" is derived from the Alsatian town of Munster, where, among Vosgian abbeys and monasteries, the cheese was conserved and matured in monks' cellars. \"Géromé\", a variant from munster, comes from the Vosgien patois pronunciation of the town of Gérardmer, located on the Lorrain side of the Vosges mountains, where it originates.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Munster_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Munster-fabrique.JPG",
+		"author": "Abrahami",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Munster-fabrique.JPG"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "soft",
+	"days": [
+		21,
+		90
+	],
+	"setting": "rennet",
+	"rind": "washed",
+	"protected": "PDO",
+	"place": {
+		"region": "Alsace",
+		"lat": 48.04,
+		"lon": 7.13,
+		"x": 0.51981,
+		"y": 0.20599,
+		"located": "hint"
+	},
+	"confidence": "high",
+	"how": {
+		"text": "The acidified curd is first left to deacidify, then repeatedly wetted and rubbed with water that may carry Brevibacterium linens, so red bacteria and yeasts colonise the rind. This gives the thin orange smear and pungent, slightly ammoniac smell over a sweet, melting paste.",
+		"sources": {
+			"links": [
+				{
+					"name": "Munster PDO amendment and single document, OJ C 295 (2020)",
+					"url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=uriserv:OJ.C_.2020.295.01.0005.01.ENG"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"note": "Calf rennet on acidified curd."
+				},
+				{
+					"type": "custom",
+					"name": "mould",
+					"seconds": {
+						"min": 54000
+					},
+					"note": "In cylindrical moulds of 7.5–19 cm across, drained unpressed."
+				},
+				{
+					"type": "custom",
+					"name": "salt",
+					"note": "Salted after draining."
+				},
+				{
+					"type": "ferment",
+					"does": "smear",
+					"kinds": [
+						"smear"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Brevibacterium linens",
+								"kind": "bacterium",
+								"does": [
+									"rind"
+								]
+							},
+							{
+								"name": "yeasts",
+								"kind": "yeast"
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"note": "Rubbed in two or three wet treatments or more, so the rind turns ivory-orange to red-orange."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"temperature": {
+						"min": 10,
+						"max": 16
+					},
+					"seconds": {
+						"min": 1814400
+					},
+					"humidity": {
+						"min": 90
+					},
+					"note": "At least 21 d, or 14 d for small cheeses."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Munster PDO amendment and single document, OJ C 295 (2020)",
+						"url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=uriserv:OJ.C_.2020.295.01.0005.01.ENG"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Munster_cheese"
+			}
+		],
+		"text": "Its facts, from these."
+	},
+	"composition": {
+		"pH": {
+			"min": 4.5,
+			"max": 4.9
+		}
+	},
+	"facts": [
+		{
+			"k": "Farm Munster",
+			"v": "Made of raw milk only"
+		}
+	]
+}

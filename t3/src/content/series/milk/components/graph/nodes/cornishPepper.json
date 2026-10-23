@@ -1,0 +1,40 @@
+{
+	"label": "Cornish Pepper",
+	"example": true,
+	"family": "soft",
+	"regions": [
+		"GB"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "soft",
+	"days": [
+		28,
+		42
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Cornwall",
+		"lat": 50.4,
+		"lon": -4.9,
+		"x": 0.48639,
+		"y": 0.19595,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Cornish_Pepper"
+			},
+			{
+				"name": "cheese.com",
+				"url": "https://www.cheese.com/cornish-pepper/"
+			}
+		],
+		"text": "Lynher Valley Dairy; creamy pasteurised cow's cheese coated in cracked peppercorns; 4-6 weeks per cheese.com, coagulation assumed"
+	}
+}

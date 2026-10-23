@@ -1,0 +1,118 @@
+{
+	"label": "Cheddared cheese",
+	"from": "rennetCurd",
+	"step": "cheddar",
+	"mapped": true,
+	"niche": 1,
+	"about": {
+		"text": "The manufacture of Cheddar cheese includes the process of cheddaring, which contributes significantly to the unique flavour profile of the eponymous cheese, but is employed in the production of many related and inspired varieties, such as Red Leicester and Lincolnshire Poacher. Cheddar cheese is named for the village of Cheddar in Somerset in Southwest England where it was originally manufactured. The technique applied in the production of this cheese has since spread around the world and thus the name of its most significant component — cheddaring — has become generically known.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Manufacture_of_cheddar_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Bandaged Wrapped Cheddar.jpg",
+		"author": "PDPhoto.org",
+		"license": "Public domain",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Bandaged_Wrapped_Cheddar.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "During cheddaring the drained curd mats and fuses, which aligns the protein strands and gives a dense, close texture.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+				},
+				{
+					"name": "FAO: proposed draft Codex standard for Cheddar",
+					"url": "https://www.fao.org/4/j2366e/j2366e06.htm"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "cook",
+					"note": "Heated by 0.2–0.5 °C per min."
+				},
+				{
+					"type": "custom",
+					"name": "drain",
+					"note": "At pH 6.0–6.1, about 2 h after the rennet."
+				},
+				{
+					"type": "custom",
+					"name": "cheddar",
+					"note": "The curd mats and fuses into slabs."
+				},
+				{
+					"type": "custom",
+					"name": "mill",
+					"note": "Into chips."
+				},
+				{
+					"type": "custom",
+					"name": "salt",
+					"note": "Dry salt on the milled chips, to 1.75–1.95 % salt."
+				},
+				{
+					"type": "custom",
+					"name": "press",
+					"note": "Into blocks of 18–20 kg."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"temperature": {
+						"min": 5,
+						"max": 10
+					},
+					"seconds": {
+						"min": 10368000,
+						"max": 31104000
+					},
+					"humidity": {
+						"max": 80
+					}
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+					},
+					{
+						"name": "FAO: proposed draft Codex standard for Cheddar",
+						"url": "https://www.fao.org/4/j2366e/j2366e06.htm"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"cheddar",
+		"redLeicester",
+		"dunlop",
+		"doubleGloucester",
+		"cheeseCurds"
+	]
+}

@@ -1,0 +1,43 @@
+{
+	"label": "Carboncino",
+	"example": true,
+	"family": "lacticCheese",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"goat",
+		"cow",
+		"sheep"
+	],
+	"firm": "soft",
+	"days": [
+		10,
+		20
+	],
+	"estimated": true,
+	"setting": "rennet-acid",
+	"rind": "other",
+	"place": {
+		"region": "Piedmont",
+		"lat": 44.6,
+		"lon": 7.5,
+		"x": 0.52083,
+		"y": 0.21984,
+		"located": "hint"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Carboncino"
+			},
+			{
+				"name": "onaf.it",
+				"url": "https://www.onaf.it/uploads/public/18096_degustazione-formaggi-20-06-23.pdf"
+			}
+		],
+		"text": "Ash-coated small tomino (Caseificio dell'Alta Langa style); ripening time not documented"
+	}
+}

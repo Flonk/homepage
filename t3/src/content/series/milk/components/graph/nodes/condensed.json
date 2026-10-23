@@ -1,0 +1,117 @@
+{
+	"label": "Sweetened\ncondensed milk",
+	"aka": [
+		"Gezuckerte Kondensmilch",
+		"Leche condensada"
+	],
+	"comment": "The sugar goes in before the milk is boiled down, and keeps it.",
+	"from": "fresh",
+	"step": "add sugar, evaporate",
+	"niche": 0,
+	"about": {
+		"text": "Condensed milk is cow's milk from which water has been removed. It is most often found with sugar added, in the form of sweetened condensed milk, to the extent that the terms \"condensed milk\" and \"sweetened condensed milk\" are often used interchangeably today. Sweetened condensed milk is a very thick, sweet product, which when canned can last for years without refrigeration if not opened. The product is used in numerous dessert dishes in many countries.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Condensed_milk"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Tin of condensed milk.jpg",
+		"author": "Robin from Rotterdam, Netherlands",
+		"license": "CC BY-SA 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Tin_of_condensed_milk.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "Milk is standardised, heated, evaporated and sweetened, then cooled while lactose crystallisation is induced to keep the texture smooth.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Condensed milk",
+					"url": "https://en.wikipedia.org/wiki/Condensed_milk"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "standardise"
+				},
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 85,
+						"max": 90
+					}
+				},
+				{
+					"type": "custom",
+					"name": "evaporate",
+					"note": "About 60 % of the milk is removed as water."
+				},
+				{
+					"type": "custom",
+					"name": "add sugar",
+					"note": "Sugar and evaporated milk 9 : 11, about 45 % sugar."
+				},
+				{
+					"type": "heat",
+					"does": "cool",
+					"note": "Cooled while lactose crystallisation is induced to keep the texture smooth."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Condensed milk",
+						"url": "https://en.wikipedia.org/wiki/Condensed_milk"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"sgushchyonka",
+		"eagleBrand",
+		"milchmadchen",
+		"laLechera"
+	],
+	"composition": {
+		"fat": {
+			"min": 8,
+			"max": 8,
+			"about": true
+		},
+		"sugar": {
+			"min": 45,
+			"max": 45,
+			"about": true
+		}
+	},
+	"facts": [
+		{
+			"k": "Non-fat milk solids",
+			"v": "About 20 %"
+		},
+		{
+			"k": "Why the sugar",
+			"v": "Sucrose raises the osmotic pressure, so microbes cannot grow and the tin keeps"
+		}
+	]
+}

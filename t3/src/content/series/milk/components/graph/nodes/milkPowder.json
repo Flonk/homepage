@@ -1,0 +1,144 @@
+{
+	"label": "Milk powder",
+	"aka": [
+		"Dried milk",
+		"Whole milk powder",
+		"Milchpulver"
+	],
+	"comment": "Dried from a concentrate, not from evaporated milk.",
+	"from": "pasteurised",
+	"step": "concentrate, spray-dry",
+	"niche": 0,
+	"about": {
+		"text": "Powdered milk, also called milk powder, dried milk, dry milk, or milk solids, is a manufactured dairy product made by evaporating milk to a state of dryness. One purpose of drying milk is to preserve it; milk powder has a far longer shelf life than liquid milk and does not need to be refrigerated, due to its low moisture content. Another purpose is to reduce its bulk for the economy of transportation. Powdered milk and dairy products include such items as dry whole milk, nonfat (skimmed) dry milk, dry buttermilk, dry whey products and dry dairy blends. Many exported dairy products conform to standards laid out in Codex Alimentarius.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Powdered_milk"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "PowderedMilk.jpg",
+		"author": "Lorian",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:PowderedMilk.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "Pasteurised milk is boiled down under vacuum to about half solids, then sprayed as a fine mist into hot air, where the water leaves in a moment and a dry powder falls out. It keeps unchilled because it holds so little water.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook: Milk and whey powdered ingredients",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-powdered-ingredients"
+				},
+				{
+					"name": "Codex Alimentarius CXS 207-1999, Standard for Milk Powders and Cream Powder",
+					"url": "https://www.fao.org/fao-who-codexalimentarius/codex-texts/list-standards/en/"
+				},
+				{
+					"name": "Wikipedia: Powdered milk",
+					"url": "https://en.wikipedia.org/wiki/Powdered_milk"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "pasteurise",
+					"temperature": {
+						"min": 75,
+						"max": 75
+					},
+					"seconds": {
+						"min": 15,
+						"max": 15
+					}
+				},
+				{
+					"type": "custom",
+					"name": "evaporate",
+					"note": "Under vacuum to 50–52 % total solids."
+				},
+				{
+					"type": "homogenise",
+					"note": "Between evaporation and drying, to cut the free fat in the powder."
+				},
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 10,
+						"max": 80
+					},
+					"note": "Preheated from 10 to 80 °C to set its viscosity before it is atomised."
+				},
+				{
+					"type": "dry",
+					"note": "Sprayed into hot air that enters at 200–220 °C and leaves at 75–80 °C."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Tetra Pak Dairy Processing Handbook: Milk and whey powdered ingredients",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-powdered-ingredients"
+					},
+					{
+						"name": "Codex Alimentarius CXS 207-1999, Standard for Milk Powders and Cream Powder",
+						"url": "https://www.fao.org/fao-who-codexalimentarius/codex-texts/list-standards/en/"
+					},
+					{
+						"name": "Wikipedia: Powdered milk",
+						"url": "https://en.wikipedia.org/wiki/Powdered_milk"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"composition": {
+		"moisture": {
+			"min": 2.8,
+			"max": 3.5
+		},
+		"fat": {
+			"min": 26,
+			"max": 40
+		}
+	},
+	"facts": [
+		{
+			"k": "Fat limits",
+			"v": "Codex: from 26 % up to under 42 % milkfat"
+		},
+		{
+			"k": "Moisture limit",
+			"v": "At most 5 % (Codex)"
+		},
+		{
+			"k": "Bulk density (tapped)",
+			"v": "0.50–0.60 g/ml"
+		},
+		{
+			"k": "Instant powder",
+			"v": "Fines returned to the spray zone to agglomerate; lecithin 0.2–0.5 % added in the fluid bed"
+		},
+		{
+			"k": "Drum drying",
+			"v": "Older route: a thin film on a hot drum, more cooked flavour"
+		}
+	]
+}

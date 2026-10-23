@@ -241,7 +241,7 @@ export const Split = z.strictObject({ from: ProductId, step: z.string().min(1), 
 // Kinds of a family's step: one branch off the family's hub, named, before each splits off (KINDS).
 export const Kind = z.strictObject({ step: z.string().min(1), ids: z.array(ProductId).min(1), how: How });
 
-/* ---- Each node (nodes.json) ---- */
+/* ---- Each node (nodes/<id>.json) ---- */
 
 /* What a thing is as it comes out, by weight, in percent, and its pH: fat,
    fat in its dry matter (as cheese is labelled), water, protein, lactose,

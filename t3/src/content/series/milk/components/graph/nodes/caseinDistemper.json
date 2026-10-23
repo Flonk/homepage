@@ -1,0 +1,59 @@
+{
+	"label": "Casein distemper",
+	"example": true,
+	"about": {
+		"text": "A 'washable' form of distemper, the chalk-based matt finish used on British plaster walls and ceilings from the mid-18th century. Ordinary distemper is bound with animal glue and rubs off easily. Adding casein, a by-product of cheesemaking, as a binder made the finish more durable.",
+		"sources": {
+			"links": [
+				{
+					"name": "Designing Buildings Wiki (quoting Historic Scotland, Interior Paint)",
+					"url": "https://www.designingbuildings.co.uk/wiki/Paris_white"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"how": {
+		"text": "Distemper is a water-based wall paint of chalk bound by a protein. Using casein rather than animal glue gives the harder, more wear-resistant kind; cold-water paint powders of casein, lime and filler were mixed with water on site.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia, Distemper (paint)",
+					"url": "https://en.wikipedia.org/wiki/Distemper_(paint)"
+				},
+				{
+					"name": "Wikipedia, Casein paint",
+					"url": "https://en.wikipedia.org/wiki/Casein_paint"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "dissolve",
+					"note": "Casein is dissolved with lime to make the binder."
+				},
+				{
+					"type": "custom",
+					"name": "mix",
+					"note": "Mixed with calcium carbonate (whiting) as pigment and base."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia, Distemper (paint)",
+						"url": "https://en.wikipedia.org/wiki/Distemper_(paint)"
+					},
+					{
+						"name": "Wikipedia, Casein paint",
+						"url": "https://en.wikipedia.org/wiki/Casein_paint"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	}
+}

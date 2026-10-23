@@ -1,4 +1,3 @@
-import NODES from './nodes.json';
 import MAP from './map.json';
 import * as S from './schema';
 import { GROUPS, KINDS, SPLITS, LIGHT } from './families';
@@ -9,8 +8,9 @@ import { about as cheeseAbout, facts as cheeseFacts } from './render/Cheese';
 
 /*
  * The graph handed to the page (see MilkGraph.astro and
- * pages/milk-graph.json.ts): every node in nodes.json, a product or an
- * example, put together into the tree and the map, and checked as it is. A
+ * pages/milk-graph.json.ts): every node in nodes/, a file each by its id, a
+ * product or an example, put together into the tree and the map, and
+ * checked as it is. A
  * node that names one that is not there, a product made from one that is
  * not, or one in two families, is a mistake: said at build time, not drawn
  * wrong.
@@ -18,7 +18,8 @@ import { about as cheeseAbout, facts as cheeseFacts } from './render/Cheese';
 
 type Node = S.Node;
 
-const nodes: Record<string, Node> = S.Nodes.parse(NODES);
+const files = import.meta.glob<unknown>('./nodes/*.json', { eager: true, import: 'default' });
+const nodes: Record<string, Node> = S.Nodes.parse(Object.fromEntries(Object.entries(files).map(([path, node]) => [path.slice('./nodes/'.length, -'.json'.length), node])));
 // Each list of the families against its schema.
 S.Group.array().parse(GROUPS);
 S.Kind.array().parse(KINDS);
@@ -129,8 +130,7 @@ mustAll(
 
 /* The world's cheeses on the map under cheese: every example that is a
    cheese, those the inventory of the world's cheeses has first (each with
-   its family), then the cheese families' own the inventory does not, in
-   the order nodes.json has them. */
+   its family), then the cheese families' own the inventory does not. */
 const cheesy = (id: string) => !!nodes[id].mapped || !!nodes[id].cheese;
 const world = all.filter(([id, n]) => n.example && (n.family !== undefined || cheesy(ofProduct.get(id) ?? '')));
 

@@ -1,0 +1,119 @@
+{
+	"label": "Smetana",
+	"aka": [
+		"Сметана",
+		"Smântână",
+		"Śmietana"
+	],
+	"from": "culturedCream",
+	"at": 20,
+	"about": {
+		"text": "Smetana is the English-language name for the different types of sour cream traditionally prevalent in Central, Eastern, and Southeastern Europe, and Central Asia. It is a dairy product produced by souring heavy cream. It is similar to crème fraîche, but nowadays mainly sold with 9% to 42% milkfat content depending on the country. Its cooking properties are different from crème fraîche and sour cream sold in the US, which contain 18% butterfat. It is widely used in cooking and baking.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Smetana_(dairy_product)"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Полка со сметаной.jpg",
+		"author": "JustKronos",
+		"license": "CC0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:%D0%9F%D0%BE%D0%BB%D0%BA%D0%B0_%D1%81%D0%BE_%D1%81%D0%BC%D0%B5%D1%82%D0%B0%D0%BD%D0%BE%D0%B9.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"RU",
+		"UA"
+	],
+	"how": {
+		"text": "Smetana is cream soured by lactic acid bacteria and not homogenised. In Romania, smantana is instead the cream left from decanted milk fat.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Smetana (dairy product)",
+					"url": "https://en.wikipedia.org/wiki/Smetana_(dairy_product)"
+				},
+				{
+					"name": "EAEU Technical Regulation TR TS 033/2013 (English translation)",
+					"url": "https://agriexchange.apeda.gov.in/ImportRegulations/CustomsUnionTechnicalRegulationonMilkandDairyProductsMoscowRussianFederation11182013.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Lactococci",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "thermophilic lactic streptococci",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								],
+								"grows": "thermophilic"
+							}
+						],
+						"by": [
+							"starter"
+						]
+					}
+				}
+			],
+			"text": "Lactococci, sometimes with thermophilic lactic streptococci. Not homogenised.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Smetana (dairy product)",
+						"url": "https://en.wikipedia.org/wiki/Smetana_(dairy_product)"
+					},
+					{
+						"name": "EAEU Technical Regulation TR TS 033/2013 (English translation)",
+						"url": "https://agriexchange.apeda.gov.in/ImportRegulations/CustomsUnionTechnicalRegulationonMilkandDairyProductsMoscowRussianFederation11182013.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 9,
+			"max": 42
+		}
+	},
+	"facts": [
+		{
+			"k": "Fat",
+			"v": "Sold at roughly 9–42 %, depending on the country; Czech, Hungarian and Slovak usage at least 10 %"
+		},
+		{
+			"k": "Thickeners",
+			"v": "Gelatine or starch sometimes added, often seen as adulteration"
+		}
+	]
+}

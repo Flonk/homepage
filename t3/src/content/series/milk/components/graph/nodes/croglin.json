@@ -1,0 +1,37 @@
+{
+	"label": "Croglin",
+	"example": true,
+	"family": "semiHard",
+	"regions": [
+		"GB"
+	],
+	"beasts": [
+		"sheep"
+	],
+	"firm": "semi-hard",
+	"days": [
+		60,
+		120
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Cumbria",
+		"lat": 54.78,
+		"lon": -2.64,
+		"x": 0.49267,
+		"y": 0.17591,
+		"located": "guess"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Croglin"
+			}
+		],
+		"text": "Wikipedia article is only about the Cumbrian village; no cheese details found, candidate for exclusion"
+	}
+}

@@ -1,0 +1,139 @@
+{
+	"label": "Leipäjuusto",
+	"example": true,
+	"aka": [
+		"Juustoleipä",
+		"Bread cheese",
+		"Finnish squeaky cheese"
+	],
+	"note": "Traditionally made from reindeer milk; today usually cow milk, preferably the first milk (colostrum) after calving, or goat",
+	"family": "grilling",
+	"about": {
+		"text": "Bread cheese, sometimes known in the United States as Finnish squeaky cheese, is a Finnish fresh cheese traditionally made from cow's colostrum. In the US, cow's milk is generally used but can also be made with goat milk. Commercially available versions are typically made from cow's milk. The cheese originally comes from Southern Ostrobothnia, Northern Finland, and Kainuu.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Bread_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Leipäjuusto 2.jpg",
+		"author": "Tiia Monto",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Leip%C3%A4juusto_2.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"FI"
+	],
+	"beasts": [
+		"cow",
+		"goat",
+		"reindeer"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		0
+	],
+	"setting": "rennet",
+	"rind": "none",
+	"protected": "TSG",
+	"place": {
+		"region": "Southern Ostrobothnia",
+		"lat": 62.9,
+		"lon": 23,
+		"x": 0.56389,
+		"y": 0.13208,
+		"located": "hint"
+	},
+	"confidence": "high",
+	"how": {
+		"label": "bake",
+		"text": "A fresh rennet curd is spread into a thin sheet and baked on both sides until dark-spotted; the heat firms the squeaky curd and browns its surface, and the cheese is ready to eat straight after baking.",
+		"sources": {
+			"links": [
+				{
+					"name": "Kainuun juustoleipä PGI application (Ruokavirasto)",
+					"url": "https://www.ruokavirasto.fi/globalassets/elintarvikkeet/elintarvikeala/ainesosat-ja-sisalto/nimisuojatut-tuotteet/hakemus_kainuun_juustoleipa.pdf"
+				},
+				{
+					"name": "Wikipedia (fi): Leipäjuusto",
+					"url": "https://fi.wikipedia.org/wiki/Leipäjuusto"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "pasteurise",
+					"note": "The milk is pasteurised."
+				},
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"note": "With rennet, and salt added to the milk."
+				},
+				{
+					"type": "custom",
+					"name": "cut"
+				},
+				{
+					"type": "custom",
+					"name": "drain",
+					"note": "The whey is drained off the cut coagulum."
+				},
+				{
+					"type": "custom",
+					"name": "press",
+					"note": "Pressed into a flat round or rectangular sheet 0.5–3 cm thick."
+				},
+				{
+					"type": "custom",
+					"name": "bake",
+					"note": "Baked on both sides in an oven, under a grill or by open fire."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Kainuun juustoleipä PGI application (Ruokavirasto)",
+						"url": "https://www.ruokavirasto.fi/globalassets/elintarvikkeet/elintarvikeala/ainesosat-ja-sisalto/nimisuojatut-tuotteet/hakemus_kainuun_juustoleipa.pdf"
+					},
+					{
+						"name": "Wikipedia (fi): Leipäjuusto",
+						"url": "https://fi.wikipedia.org/wiki/Leipäjuusto"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Leip%C3%A4juusto"
+			}
+		],
+		"text": "traditionally from beestings, baked"
+	},
+	"facts": [
+		{
+			"k": "Look",
+			"v": "Black-brown spotted baked surface; squeaky, firm white inside"
+		}
+	]
+}

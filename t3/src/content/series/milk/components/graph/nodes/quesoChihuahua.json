@@ -1,0 +1,99 @@
+{
+	"label": "Queso Chihuahua",
+	"example": true,
+	"aka": [
+		"Queso menonita"
+	],
+	"family": "cheddared",
+	"about": {
+		"text": "A soft white Mexican cow's-milk cheese, similar to mild white Cheddar or Monterey Jack, first made by the Mennonite communities of Chihuahua and sold in braids, balls or rounds. It melts well.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Chihuahua_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Queso Chihuahua.jpg",
+		"author": "Levi bernardo",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Queso_Chihuahua.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"MX"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		7,
+		30
+	],
+	"setting": "rennet",
+	"rind": "none",
+	"place": {
+		"region": "Chihuahua",
+		"lat": 28.6,
+		"lon": -106.1,
+		"x": 0.20528,
+		"y": 0.27558,
+		"located": "hint"
+	},
+	"confidence": "medium",
+	"how": {
+		"text": "No source opened gives the coagulant, cultures, cooking or pressing; only the composition limits are known.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Chihuahua cheese",
+					"url": "https://en.wikipedia.org/wiki/Chihuahua_cheese"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Chihuahua_cheese"
+			}
+		],
+		"text": "Mennonite, mild white Cheddar or Jack style, soft white and good melting; sold in braids, balls, rounds"
+	},
+	"composition": {
+		"moisture": {
+			"max": 45
+		},
+		"fat": {
+			"min": 26
+		},
+		"pH": {
+			"min": 5,
+			"max": 5.5
+		}
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Traditionally raw, now increasingly pasteurised"
+		},
+		{
+			"k": "Origin",
+			"v": "Mennonite settlers of Chihuahua state; called menonita in the north"
+		}
+	]
+}

@@ -1,0 +1,96 @@
+{
+	"label": "Afyon kaymagi",
+	"example": true,
+	"aka": [
+		"Afyon kaymak"
+	],
+	"note": "Raw milk; Turkish GI: at least 60 % fat and 65 % dry matter",
+	"about": {
+		"text": "Turkish buffalo-milk kaymak from Afyonkarahisar, a protected geographical indication: a thick cream of at least 60 % fat skimmed from slowly heated, overnight-rested raw buffalo milk.",
+		"sources": {
+			"links": [
+				{
+					"name": "Kure Ansiklopedi, Afyon kaymagi",
+					"url": "https://kureansiklopedi.com/en/detay/afyon-kaymagi-ddae2"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"regions": [
+		"TR"
+	],
+	"beasts": [
+		"buffalo"
+	],
+	"how": {
+		"label": "heat to 90 °C, rest overnight",
+		"text": "Buffalo milk is heated slowly, then left to stand overnight; the cream that has gathered on top is lifted off in the morning. The figures are those of the Turkish geographical indication.",
+		"sources": {
+			"links": [
+				{
+					"name": "Grasas y Aceites: Afyon kaymagi",
+					"url": "https://grasasyaceites.revistas.csic.es/index.php/grasasyaceites/article/download/1337/1335/1333"
+				},
+				{
+					"name": "Kure Ansiklopedi: Afyon kaymagi",
+					"url": "https://kureansiklopedi.com/en/detay/afyon-kaymagi-ddae2"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "strain",
+					"note": "Strained twice through cheesecloth into copper containers."
+				},
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 90,
+						"max": 90
+					},
+					"seconds": {
+						"min": 1800,
+						"max": 1800
+					}
+				},
+				{
+					"type": "custom",
+					"name": "rest",
+					"note": "Left at room temperature overnight."
+				},
+				{
+					"type": "custom",
+					"name": "skim",
+					"note": "Next morning, the cream layer is removed."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Grasas y Aceites: Afyon kaymagi",
+						"url": "https://grasasyaceites.revistas.csic.es/index.php/grasasyaceites/article/download/1337/1335/1333"
+					},
+					{
+						"name": "Kure Ansiklopedi: Afyon kaymagi",
+						"url": "https://kureansiklopedi.com/en/detay/afyon-kaymagi-ddae2"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 60
+		},
+		"solids": {
+			"min": 65
+		}
+	},
+	"raw": true
+}

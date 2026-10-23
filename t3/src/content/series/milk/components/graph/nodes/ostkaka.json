@@ -1,0 +1,87 @@
+{
+	"label": "Ostkaka",
+	"example": true,
+	"note": "Hälsinge ostkaka is pressed and smooth, almost halloumi-like; Småland ostkaka is soft-grained, with cream, eggs and almonds. Not American cheesecake",
+	"about": {
+		"text": "Ostkaka is a Swedish curd cake from Hälsingland and Småland, traditionally made from raw milk and rennet. The set curd is drained, baked, and eaten tepid with jam, cloudberries and cream.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Ostkaka"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Smålands bästa ostkaka.jpg",
+		"author": "Frugan",
+		"license": "CC BY 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Sm%C3%A5lands_b%C3%A4sta_ostkaka.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"SE"
+	],
+	"how": {
+		"label": "set with rennet and flour, drain, bake",
+		"text": "No temperature or times in the source.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Ostkaka",
+					"url": "https://en.wikipedia.org/wiki/Ostkaka"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"note": "With cheese rennet, in warm raw milk with a little flour."
+				},
+				{
+					"type": "custom",
+					"name": "strain",
+					"note": "Strained (Småland) or press-strained (Hälsingland)."
+				},
+				{
+					"type": "custom",
+					"name": "mix",
+					"note": "Cream, sugar, eggs and almonds are mixed into the strained curd."
+				},
+				{
+					"type": "custom",
+					"name": "bake",
+					"note": "Baked until set, in Småland to a scrambled-egg consistency."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Ostkaka",
+						"url": "https://en.wikipedia.org/wiki/Ostkaka"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Hälsingland",
+			"v": "Base ingredients only, curd pressed into the dish, sometimes saffron"
+		}
+	],
+	"raw": true
+}

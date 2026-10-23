@@ -1,0 +1,37 @@
+{
+	"label": "Cabécou",
+	"example": true,
+	"family": "lacticCheese",
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"goat",
+		"sheep"
+	],
+	"firm": "soft",
+	"days": [
+		10,
+		28
+	],
+	"setting": "rennet-acid",
+	"rind": "natural",
+	"place": {
+		"region": "Occitanie",
+		"lat": 44.6,
+		"lon": 1.7,
+		"x": 0.50472,
+		"y": 0.21984,
+		"located": "hint"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Cab%C3%A9cou"
+			}
+		],
+		"text": "small lactic goat disc (about 40 g), 10 days to 4 weeks, thin bloomy/blue-mould crust; Cabécou du Périgord is a collective mark; Rocamadour is the PDO version"
+	}
+}

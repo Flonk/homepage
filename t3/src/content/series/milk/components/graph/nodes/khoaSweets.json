@@ -1,0 +1,92 @@
+{
+	"label": "Khoa sweets",
+	"from": "khoa",
+	"step": "sweeten, shape",
+	"niche": 1,
+	"about": {
+		"text": "Sweets made from khoa, milk boiled down in an open pan to a stiff dough: cooked with sugar into peda and burfi, or kneaded with flour, fried and soaked in syrup as gulab jamun.",
+		"sources": {
+			"links": [
+				{
+					"name": "National Dairy Development Board (India)",
+					"url": "https://nddb.coop/services/ppd/dairyproducts/khoa"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Pera - Sweet - Banke Bihari Mandir Area - Vrindavan - 2013-02-22 4784.JPG",
+		"author": "Biswarup Ganguly",
+		"license": "CC BY 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Pera_-_Sweet_-_Banke_Bihari_Mandir_Area_-_Vrindavan_-_2013-02-22_4784.JPG"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"IN",
+		"PK",
+		"BD"
+	],
+	"how": {
+		"text": "Which khoa goes into a sweet depends on how dry the sweet must be; the khoa is then worked with sugar and shaped (or, for gulab jamun, kneaded, fried and soaked in syrup).",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Khoa",
+					"url": "https://en.wikipedia.org/wiki/Khoa"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "sweeten",
+					"note": "The khoa is worked with sugar."
+				},
+				{
+					"type": "custom",
+					"name": "shape"
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Khoa",
+						"url": "https://en.wikipedia.org/wiki/Khoa"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"peda",
+		"mathuraPeda",
+		"dharwadPeda",
+		"barfi",
+		"gulabJamun"
+	],
+	"facts": [
+		{
+			"k": "Peda, barfi",
+			"v": "From dry pindi khoa, cooked with sugar"
+		},
+		{
+			"k": "Gulab jamun, pantua",
+			"v": "From the less dried dhap khoa"
+		},
+		{
+			"k": "Kalakand",
+			"v": "From grainy daanedaar khoa"
+		}
+	]
+}

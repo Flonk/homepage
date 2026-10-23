@@ -1,0 +1,37 @@
+{
+	"label": "Bouq' Émissaire",
+	"example": true,
+	"family": "bloomy",
+	"regions": [
+		"CA"
+	],
+	"beasts": [
+		"goat"
+	],
+	"firm": "soft",
+	"days": [
+		60,
+		90
+	],
+	"estimated": true,
+	"setting": "rennet-acid",
+	"rind": "bloomy",
+	"place": {
+		"region": "Quebec",
+		"lat": 46,
+		"lon": -73,
+		"x": 0.29722,
+		"y": 0.21431,
+		"located": "guess"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Bouq_%C3%89missaire"
+			}
+		],
+		"text": "Raw-milk goat cheese with ash-covered rind from Fromages Chaput (Châteauguay, Quebec), aged by Dépendances du Manoir; raw-milk cheeses in Canada need 60 days, so min raised; article gives no ageing time"
+	}
+}

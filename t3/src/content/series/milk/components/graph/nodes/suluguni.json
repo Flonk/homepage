@@ -1,0 +1,131 @@
+{
+	"label": "Suluguni",
+	"example": true,
+	"family": "pastaFilata",
+	"also": "brined",
+	"about": {
+		"text": "Suluguni is a Georgian brined stretched-curd cheese from Samegrelo, made from cow's, buffalo's or mixed milk. It has a Georgian geographical indication from 2012.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Suluguni"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Sulguni (unsmoked).JPG",
+		"author": "Jonathan Cardy",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Sulguni_(unsmoked).JPG"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"GE"
+	],
+	"beasts": [
+		"cow",
+		"buffalo"
+	],
+	"firm": "semi-soft",
+	"days": [
+		14,
+		30
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "brine",
+	"protected": "PGI",
+	"place": {
+		"region": "Samegrelo-Zemo Svaneti",
+		"lat": 42.4,
+		"lon": 42,
+		"x": 0.61667,
+		"y": 0.22826,
+		"located": "hint"
+	},
+	"confidence": "medium",
+	"how": {
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Suluguni",
+					"url": "https://en.wikipedia.org/wiki/Suluguni"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [],
+						"by": [
+							"starter"
+						]
+					},
+					"note": "Set with starter and rennet."
+				},
+				{
+					"type": "custom",
+					"name": "cheddar",
+					"note": "The curd is cheddared in the whey."
+				},
+				{
+					"type": "custom",
+					"name": "dice"
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"temperature": {
+						"min": 60,
+						"max": 80
+					},
+					"note": "Heated in a rotating mixer, kneaded and shaped by hand."
+				},
+				{
+					"type": "custom",
+					"name": "brine",
+					"seconds": {
+						"min": 21600,
+						"max": 172800
+					},
+					"note": "Held in cold, mildly acid brine."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Suluguni",
+						"url": "https://en.wikipedia.org/wiki/Suluguni"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Sulguni"
+			}
+		],
+		"text": "stretched curd, brined; Georgian national GI since 2012; modern standard is cow milk, ~50% water, 1-5% salt; no ripening time found"
+	}
+}

@@ -1,0 +1,120 @@
+{
+	"label": "Juju dhau",
+	"example": true,
+	"aka": [
+		"King of curd"
+	],
+	"note": "Newar sweet curd from Bhaktapur, Nepal: milk and brown sugar, set in clay pots",
+	"about": {
+		"text": "Juju dhau, 'king of yoghurt' in Nepal Bhasa, is a thick, custard-like sweet curd from Bhaktapur, made by the Newar from boiled, sweetened buffalo milk and set in clay pots.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Dhau"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Ju Ju Dhau Famous Curd from Bhaktpur Nepal.jpg",
+		"author": "Zeetendra",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Ju_Ju_Dhau_Famous_Curd_from_Bhaktpur_Nepal.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"NP"
+	],
+	"beasts": [
+		"buffalo"
+	],
+	"how": {
+		"text": "The milk is poured into the pots in batches, each after a boil, and the starter is added while it is still warm; the husks keep it warm until it sets.",
+		"sources": {
+			"links": [
+				{
+					"name": "Bhaktapur.com: how Juju dhau is made",
+					"url": "https://www.bhaktapur.com/discover/juju-dhau"
+				},
+				{
+					"name": "Wikipedia: Dhau",
+					"url": "https://en.wikipedia.org/wiki/Dhau"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"seconds": {
+						"min": 1800,
+						"max": 1800,
+						"about": true
+					},
+					"note": "Buffalo milk is boiled, in batches, a 60 L boil taking about half an hour."
+				},
+				{
+					"type": "custom",
+					"name": "sweeten",
+					"note": "Brown sugar is stirred in once the milk boils."
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [],
+						"by": [
+							"backslop",
+							"vessel"
+						],
+						"vessel": "unglazed clay pot (kataro) with a clay lid, standing on rice husks and wrapped in warm cloth"
+					},
+					"seconds": {
+						"min": 18000,
+						"max": 21600,
+						"about": true
+					},
+					"note": "Two to three spoons of plain curd (backslopped) go into each pot while the milk is still warm."
+				}
+			],
+			"text": "Two to three spoons of plain curd go into each pot; species are not given.",
+			"sources": {
+				"links": [
+					{
+						"name": "Bhaktapur.com: how Juju dhau is made",
+						"url": "https://www.bhaktapur.com/discover/juju-dhau"
+					},
+					{
+						"name": "Wikipedia: Dhau",
+						"url": "https://en.wikipedia.org/wiki/Dhau"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Vessel",
+			"v": "Unglazed clay pot (kataro) with a clay lid, standing on rice husks and wrapped in warm cloth"
+		},
+		{
+			"k": "Texture",
+			"v": "Dense, custard-like: the clay absorbs water"
+		}
+	]
+}

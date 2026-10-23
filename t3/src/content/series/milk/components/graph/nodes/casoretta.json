@@ -1,0 +1,42 @@
+{
+	"label": "Casoretta",
+	"example": true,
+	"family": "semiHard",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"cow",
+		"goat"
+	],
+	"firm": "semi-hard",
+	"days": [
+		30,
+		90
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Lombardy",
+		"lat": 45.6,
+		"lon": 9.6,
+		"x": 0.52667,
+		"y": 0.2159,
+		"located": "hint"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Casoretta"
+			},
+			{
+				"name": "onaf.it",
+				"url": "https://www.onaf.it/uploads/public/formaggi/11384_casoretta-reg-lombardia.pdf"
+			}
+		],
+		"text": "Val d'Intelvi (Como), PAT; about 6 kg wheels, partly skimmed milk (cow, up to 10% goat), dry-salted 1 week, cellar-ripened at least 1 month (max estimated); not a soft cheese"
+	}
+}

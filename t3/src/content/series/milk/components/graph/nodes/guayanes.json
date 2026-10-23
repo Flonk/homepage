@@ -1,0 +1,53 @@
+{
+	"label": "Guayanés",
+	"example": true,
+	"aka": [
+		"Guayanés cheese",
+		"Queso guayanés"
+	],
+	"family": "freshCheese",
+	"about": {
+		"text": "A soft, salty, white cheese.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Guayan%C3%A9s_cheese"
+				}
+			],
+			"text": "Soft, salty white cow's-milk cheese from the Guayana region of Venezuela; no ripening information in the source"
+		}
+	},
+	"regions": [
+		"VE"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "soft",
+	"days": [
+		0,
+		14
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "none",
+	"place": {
+		"region": "Bolívar",
+		"lat": 7.9,
+		"lon": -63.5,
+		"x": 0.32361,
+		"y": 0.33653,
+		"located": "hint"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Guayan%C3%A9s_cheese"
+			}
+		],
+		"text": "Soft, salty white cow's-milk cheese from the Guayana region of Venezuela; no ripening information in the source"
+	}
+}

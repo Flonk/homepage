@@ -1,0 +1,86 @@
+{
+	"label": "Organic Valley Ultra",
+	"example": true,
+	"about": {
+		"text": "Line of ultra-filtered organic milk from the US farmer cooperative Organic Valley, launched on 22 July 2019 as the first organic ultra-filtered milk in the US. It has about 50 % more protein and 50 % less sugar than ordinary milk and is lactose-free.",
+		"sources": {
+			"links": [
+				{
+					"name": "DairyReporter: Organic Valley debuts new Ultra filtered milk",
+					"url": "https://www.dairyreporter.com/Article/2019/07/22/Organic-Valley-debuts-new-Ultra-filtered-milk"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"how": {
+		"text": "Milk is run through a membrane that keeps protein and calcium and lets sugar and water pass, then lactase breaks down the lactose that is left. No membrane type or temperature is published.",
+		"sources": {
+			"links": [
+				{
+					"name": "DairyReporter: Organic Valley debuts new Ultra filtered milk",
+					"url": "https://www.dairyreporter.com/Article/2019/07/22/Organic-Valley-debuts-new-Ultra-filtered-milk"
+				},
+				{
+					"name": "Prepared Foods: Organic Valley Ultra",
+					"url": "https://preparedfoods.com/articles/122589-organic-valley-ultra"
+				},
+				{
+					"name": "FoodNavigator-USA: new products gallery (2019)",
+					"url": "https://www.foodnavigator-usa.com/Article/2019/07/30/NEW-PRODUCTS-GALLERY-From-oatmilk-yogurt-to-Baby-Shark-cereal-high-protein-organic-milk-and-CBD-in-everything?page=2"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "ultrafilter",
+					"note": "A membrane keeps protein and calcium and lets water and part of the lactose through."
+				},
+				{
+					"type": "custom",
+					"name": "add lactase",
+					"note": "Added after filtering, which makes the milk lactose-free."
+				},
+				{
+					"type": "custom",
+					"name": "add fat back",
+					"note": "Fat is added back to the filtered skim milk to make 1 %, 2 % or whole (a single source, less certain)."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "DairyReporter: Organic Valley debuts new Ultra filtered milk",
+						"url": "https://www.dairyreporter.com/Article/2019/07/22/Organic-Valley-debuts-new-Ultra-filtered-milk"
+					},
+					{
+						"name": "Prepared Foods: Organic Valley Ultra",
+						"url": "https://preparedfoods.com/articles/122589-organic-valley-ultra"
+					},
+					{
+						"name": "FoodNavigator-USA: new products gallery (2019)",
+						"url": "https://www.foodnavigator-usa.com/Article/2019/07/30/NEW-PRODUCTS-GALLERY-From-oatmilk-yogurt-to-Baby-Shark-cereal-high-protein-organic-milk-and-CBD-in-everything?page=2"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Milk used",
+			"v": "Starts with the cooperative USDA Certified Organic milk from pasture-raised cows (company announcement, via search summary)"
+		},
+		{
+			"k": "Range",
+			"v": "Launch range was whole, 2 %, 2 % chocolate and skim (FoodNavigator)"
+		},
+		{
+			"k": "Calcium",
+			"v": "FoodNavigator adds 45 % more calcium than ordinary milk"
+		}
+	]
+}

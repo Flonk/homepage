@@ -1,0 +1,187 @@
+{
+	"label": "Sbrinz",
+	"example": true,
+	"family": "hard",
+	"also": "alpine",
+	"about": {
+		"text": "Sbrinz is a very hard cheese produced in Central Switzerland. It is often used as grated cheese in Swiss cuisine, although it is also eaten in small pieces. The cheese is produced in only 42 dairies in Central Switzerland. Only local cow's milk is used when producing this cheese. It is kept in the region until ready for consumption. It is the hardest of Swiss cheeses together with Berner Hobelkäse.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Sbrinz"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Sbrinz.jpg",
+		"author": "Mussklprozz at German Wikipedia",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Sbrinz.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"CH"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "extra-hard",
+	"days": [
+		540,
+		900
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Lucerne",
+		"lat": 47.05,
+		"lon": 8.31,
+		"x": 0.52308,
+		"y": 0.21007,
+		"located": "knowledge"
+	},
+	"confidence": "high",
+	"how": {
+		"label": "press hard",
+		"text": "A high cook, heavy pressing and long dry storage at low humidity make an extra-hard, crumbly cheese with few or no holes. After at least 18 months the paste has crunchy crystals and a fruity, roasted taste.",
+		"sources": {
+			"links": [
+				{
+					"name": "Sbrinz AOP Pflichtenheft (2019)",
+					"url": "https://2021.aop-igp.ch/fileadmin/Dokumente/Pflichtenhefter/Sbrinz-Pflichtenheft-DE.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "thermophilic lactic cultures",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								],
+								"grows": "thermophilic"
+							}
+						],
+						"by": [
+							"starter"
+						]
+					}
+				},
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"note": "With rennet, in copper vats."
+				},
+				{
+					"type": "custom",
+					"name": "cut",
+					"note": "With a harp."
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"temperature": {
+						"min": 54,
+						"max": 57
+					}
+				},
+				{
+					"type": "custom",
+					"name": "press",
+					"seconds": {
+						"min": 36000
+					},
+					"note": "Under up to 1200 kg, into wheels of 50–62 cm and 35–48 kg."
+				},
+				{
+					"type": "custom",
+					"name": "brine",
+					"temperature": {
+						"min": 10,
+						"max": 15
+					},
+					"seconds": {
+						"min": 1296000
+					},
+					"note": "In a brine of at least 20 °Bé."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"temperature": {
+						"min": 12,
+						"max": 20
+					},
+					"seconds": {
+						"min": 1296000
+					}
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"temperature": {
+						"min": 9,
+						"max": 14
+					},
+					"seconds": {
+						"min": 46656000
+					},
+					"humidity": {
+						"min": 60,
+						"max": 75
+					}
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Sbrinz AOP Pflichtenheft (2019)",
+						"url": "https://2021.aop-igp.ch/fileadmin/Dokumente/Pflichtenhefter/Sbrinz-Pflichtenheft-DE.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Sbrinz"
+			}
+		],
+		"text": "Its facts, from these."
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Only cooled; partly skimmed; no silage feeding"
+		},
+		{
+			"k": "Rind",
+			"v": "Firm, dry, light to golden yellow, smooth"
+		}
+	],
+	"raw": true
+}

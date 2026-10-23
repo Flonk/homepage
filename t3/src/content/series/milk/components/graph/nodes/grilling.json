@@ -1,0 +1,119 @@
+{
+	"label": "Grilling cheese",
+	"from": "rennetCurd",
+	"step": "heat hard",
+	"alsoFrom": [
+		"colostrum"
+	],
+	"mapped": true,
+	"niche": 1,
+	"about": {
+		"text": "Cheese made with little or no acid and heated hard, boiled in its whey or baked, so that its protein network holds and it softens when grilled or fried instead of melting. Halloumi, cooked in whey at up to 90 °C, and Finland's leipäjuusto, baked or grilled after setting, are the best known.",
+		"sources": {
+			"links": [
+				{
+					"name": "culture: the word on cheese, 'Squeaky, Non-Melting Cheeses'",
+					"url": "https://culturecheesemag.com/cheese-iq/squeaky-cheeses/"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Halloumi-1.jpg",
+		"author": "Rainer Zenz",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Halloumi-1.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "Without starter bacteria the curd stays at a high pH, so the casein network stays intact and the cheese keeps its shape and squeak when grilled. Cooking the pressed curd in hot whey is the step that sets this texture.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Halloumi",
+					"url": "https://en.wikipedia.org/wiki/Halloumi"
+				},
+				{
+					"name": "Halloumi PDO amendments (Charalambides Christis)",
+					"url": "https://www.halloumicheese.eu/media-files/news/changes-to-the-pdo-agreement--halloumi-cheese"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"temperature": {
+						"min": 30,
+						"max": 34
+					},
+					"seconds": {
+						"min": 1800,
+						"max": 2700
+					},
+					"note": "With rennet."
+				},
+				{
+					"type": "custom",
+					"name": "press"
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"seconds": {
+						"min": 1800
+					},
+					"note": "In hot whey."
+				},
+				{
+					"type": "custom",
+					"name": "salt",
+					"note": "Salted and folded with mint."
+				},
+				{
+					"type": "custom",
+					"name": "steep in whey",
+					"seconds": {
+						"min": 28800,
+						"max": 259200
+					},
+					"note": "In salted whey."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Halloumi",
+						"url": "https://en.wikipedia.org/wiki/Halloumi"
+					},
+					{
+						"name": "Halloumi PDO amendments (Charalambides Christis)",
+						"url": "https://www.halloumicheese.eu/media-files/news/changes-to-the-pdo-agreement--halloumi-cheese"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"halloumi",
+		"leipajuusto",
+		"quesoParaFreir",
+		"queijoDeCoalho"
+	],
+	"beasts": [
+		"sheep",
+		"goat",
+		"cow"
+	]
+}

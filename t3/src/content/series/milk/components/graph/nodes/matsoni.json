@@ -1,0 +1,132 @@
+{
+	"label": "Matsoni",
+	"example": true,
+	"aka": [
+		"Matzoon",
+		"Matsun",
+		"Madzoon",
+		"Madzun",
+		"Matzoun",
+		"მაწონი",
+		"մածուն"
+	],
+	"note": "Of Armenian origin (matz = sour, in Grigor Magistros, 11th century); on Armenia's intangible heritage list; Georgian matsoni a protected GI since 24 January 2012; the Caspian Sea yoghurt sold in Japan is said to be the same type, but a microbiota and viscosity comparison found them entirely different",
+	"about": {
+		"text": "Matzoon or matsoni is a fermented milk product of Armenian origin found in Armenia and Georgia. The Caspian Sea yogurt commercialized in Japan is said to be the same type of yogurt as matzoon, but a comparison of microbiota and viscosity found that the two are entirely different. Georgian matsoni has been a protected geographical indication in Georgia since 24 January 2012.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Matzoon"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Matsoni.jpg",
+		"author": "გიორგიმელა",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Matsoni.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"GE",
+		"AM"
+	],
+	"how": {
+		"text": "Matsoni, from Georgia and Armenia, is soured mainly by thermophilic S. thermophilus and L. delbrueckii subsp. bulgaricus, the same pair as yoghurt, with strains carried from batch to batch. Yeasts such as Kluyveromyces marxianus vary by region and milk type.",
+		"sources": {
+			"links": [
+				{
+					"name": "Matsoni LAB microbiota, Anim. Sci. J. (2007)",
+					"url": "https://doi.org/10.1111/j.1740-0929.2006.00409.x"
+				},
+				{
+					"name": "Bokulich et al., Food Microbiol. (2015)",
+					"url": "https://doi.org/10.1016/j.fm.2015.01.018"
+				},
+				{
+					"name": "Wikipedia: Matzoon",
+					"url": "https://en.wikipedia.org/wiki/Matzoon"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic",
+						"yeast"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Streptococcus thermophilus",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Lactobacillus delbrueckii subsp. bulgaricus",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Lactobacillus rhamnosus",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "yeasts",
+								"kind": "yeast"
+							}
+						],
+						"by": [
+							"backslop"
+						]
+					}
+				}
+			],
+			"text": "Strains are carried from batch to batch; yeasts such as Kluyveromyces marxianus vary by region and milk.",
+			"sources": {
+				"links": [
+					{
+						"name": "Matsoni LAB microbiota, Anim. Sci. J. (2007)",
+						"url": "https://doi.org/10.1111/j.1740-0929.2006.00409.x"
+					},
+					{
+						"name": "Bokulich et al., Food Microbiol. (2015)",
+						"url": "https://doi.org/10.1016/j.fm.2015.01.018"
+					},
+					{
+						"name": "Wikipedia: Matzoon",
+						"url": "https://en.wikipedia.org/wiki/Matzoon"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Cow, also sheep, goat or buffalo"
+		}
+	]
+}

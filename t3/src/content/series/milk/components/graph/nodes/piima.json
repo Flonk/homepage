@@ -1,0 +1,155 @@
+{
+	"label": "Piimä",
+	"from": "pasteurised",
+	"step": "ferment slowly, cool",
+	"about": {
+		"text": "The Finnish soured milk drink, tart and thicker than milk. Pasteurised milk is fermented at 18–24 °C for 15–24 hours. It is also the buttermilk left from churning cultured cream (kirnupiimä). Western Finland traditionally made a stringy long piimä, eastern Finland a curdled one.",
+		"sources": {
+			"links": [
+				{
+					"name": "Finnish Wikipedia: Piimä",
+					"url": "https://fi.wikipedia.org/wiki/Piim%C3%A4"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Piimä.png",
+		"author": "Tiia Monto",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Piim%C3%A4.png"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"FI"
+	],
+	"how": {
+		"text": "Lactic acid bacteria sour the milk slowly at room temperature, giving a sour drink thicker than milk. Kirnupiimä is the related buttermilk from churning cultured cream. Lactococci make the acid, and the diacetylactis strains and Leuconostoc make diacetyl and CO₂ from citrate.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia (fi): Piimä (after Aho & Hildén 2007, Opetushallitus)",
+					"url": "https://fi.wikipedia.org/wiki/Piim%C3%A4"
+				},
+				{
+					"name": "Valio: Piimät",
+					"url": "https://www.valio.fi/piimat/"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "standardise"
+				},
+				{
+					"type": "homogenise"
+				},
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 90,
+						"max": 95
+					},
+					"seconds": {
+						"min": 120,
+						"max": 300
+					}
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Lactococcus lactis subsp. lactis",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Lactococcus lactis subsp. cremoris",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Lactococcus lactis subsp. lactis biovar diacetylactis",
+								"kind": "bacterium",
+								"does": [
+									"aroma",
+									"gas"
+								]
+							},
+							{
+								"name": "Leuconostoc mesenteroides subsp. cremoris",
+								"kind": "bacterium",
+								"does": [
+									"aroma",
+									"gas"
+								]
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"temperature": {
+						"min": 18,
+						"max": 24
+					},
+					"seconds": {
+						"min": 54000,
+						"max": 86400
+					}
+				},
+				{
+					"type": "custom",
+					"name": "stir"
+				},
+				{
+					"type": "heat",
+					"does": "cool",
+					"temperature": {
+						"max": 8
+					}
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia (fi): Piimä (after Aho & Hildén 2007, Opetushallitus)",
+						"url": "https://fi.wikipedia.org/wiki/Piim%C3%A4"
+					},
+					{
+						"name": "Valio: Piimät",
+						"url": "https://www.valio.fi/piimat/"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Texture",
+			"v": "Thicker than milk; modern piimä is the western 'long' ropy type"
+		}
+	]
+}

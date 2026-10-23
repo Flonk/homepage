@@ -1,0 +1,37 @@
+{
+	"label": "Bleu des Causses",
+	"example": true,
+	"family": "blue",
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-soft",
+	"days": [
+		70,
+		120
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Occitanie",
+		"lat": 44.1,
+		"lon": 3.1,
+		"x": 0.50861,
+		"y": 0.22178,
+		"located": "hint"
+	},
+	"confidence": "high",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Bleu_des_Causses"
+			}
+		],
+		"text": "Its facts, from these."
+	}
+}

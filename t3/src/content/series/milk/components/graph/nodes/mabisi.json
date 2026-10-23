@@ -1,0 +1,103 @@
+{
+	"label": "Mabisi",
+	"example": true,
+	"note": "Zambian mabisi is made in a calabash or clay pot, and in recent years often a plastic container, since calabashes are scarce; a field trial found no difference between the vessels",
+	"about": {
+		"text": "A spontaneously fermented raw milk of Zambia, left at room temperature in a calabash for about two days. Lactococcus dominates, and seven named types are known, e.g. tonga and barotse.",
+		"sources": {
+			"links": [
+				{
+					"name": "The art of mabisi production",
+					"url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6417723/"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"regions": [
+		"ZM"
+	],
+	"how": {
+		"sources": {
+			"links": [
+				{
+					"name": "The art of mabisi production",
+					"url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6417723/"
+				},
+				{
+					"name": "Mabisi, PMC7667141",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7667141"
+				},
+				{
+					"name": "Mabisi, Wageningen",
+					"url": "https://edepot.wur.nl/533602"
+				},
+				{
+					"name": "Bintsis & Papademas 2022, Table 2, Fermentation 8:679",
+					"url": "https://doi.org/10.3390/fermentation8120679"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Lactococcus lactis",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Lactobacillus spp.",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							}
+						]
+					},
+					"temperature": {
+						"min": 25,
+						"max": 30
+					},
+					"seconds": {
+						"min": 172800,
+						"max": 172800,
+						"about": true
+					}
+				}
+			],
+			"text": "At 25 °C it gave a thick, Lactococcus-led mabisi; at 30 °C a more acidic, Lactobacillus-led one.",
+			"sources": {
+				"links": [
+					{
+						"name": "The art of mabisi production",
+						"url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6417723/"
+					},
+					{
+						"name": "Mabisi, PMC7667141",
+						"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7667141"
+					},
+					{
+						"name": "Mabisi, Wageningen",
+						"url": "https://edepot.wur.nl/533602"
+					},
+					{
+						"name": "Bintsis & Papademas 2022, Table 2, Fermentation 8:679",
+						"url": "https://doi.org/10.3390/fermentation8120679"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	}
+}

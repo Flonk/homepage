@@ -1,0 +1,137 @@
+{
+	"label": "Skyr",
+	"comment": "A fresh sour milk cheese, though eaten as yoghurt is: the curd of skimmed milk, set with a little rennet besides, strained as quark is.",
+	"from": "curd",
+	"step": "what is left when the whey goes",
+	"alsoFrom": [
+		"skimmed"
+	],
+	"niche": 1,
+	"about": {
+		"text": "Skyr is a traditional Icelandic cultured dairy product. It has the consistency of strained yogurt, but a milder flavor. Skyr can be classified as a fresh sour milk cheese, similar to curd cheese consumed like a yogurt in the Baltic states, the Low Countries and Germany. It has been a part of Icelandic cuisine for centuries.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Skyr"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Skyr.is með vanillu.jpg",
+		"author": "Schnee",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Skyr.is_me%C3%B0_vanillu.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"IS"
+	],
+	"how": {
+		"text": "Skimmed milk is set by lactic acid bacteria, sometimes helped by a little rennet, and then strained hard, so the result is a fat-free but very high-protein, thick curd.",
+		"sources": {
+			"links": [
+				{
+					"name": "German MilchPQV, Anlage 8 (2025)",
+					"url": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html"
+				},
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products"
+				},
+				{
+					"name": "Wikipedia: Skyr (cites the Vísindavefurinn production account)",
+					"url": "https://en.wikipedia.org/wiki/Skyr"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Streptococcus thermophilus",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Lactobacillus delbrueckii subsp. bulgaricus",
+								"kind": "bacterium",
+								"does": [
+									"acid",
+									"aroma"
+								]
+							}
+						],
+						"by": [
+							"backslop"
+						]
+					},
+					"temperature": {
+						"min": 37,
+						"max": 37
+					},
+					"seconds": {
+						"min": 18000,
+						"max": 18000,
+						"about": true
+					},
+					"note": "A little rennet is added, and a yeast active at low temperature makes it skyr rather than yoghurt."
+				},
+				{
+					"type": "heat",
+					"does": "cool",
+					"temperature": {
+						"min": 18,
+						"max": 18
+					}
+				},
+				{
+					"type": "custom",
+					"name": "strain",
+					"note": "The whey is removed until the protein is at least 8 %."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "German MilchPQV, Anlage 8 (2025)",
+						"url": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html"
+					},
+					{
+						"name": "Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products"
+					},
+					{
+						"name": "Wikipedia: Skyr (cites the Vísindavefurinn production account)",
+						"url": "https://en.wikipedia.org/wiki/Skyr"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"composition": {
+		"fat": {
+			"max": 0.5
+		}
+	}
+}

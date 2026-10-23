@@ -1,0 +1,37 @@
+{
+	"label": "Cacioreale",
+	"example": true,
+	"family": "semiHard",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		30,
+		90
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Lombardy",
+		"lat": 45.6,
+		"lon": 9.6,
+		"x": 0.52667,
+		"y": 0.2159,
+		"located": "hint"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Cacioreale"
+			}
+		],
+		"text": "no source found in Wikipedia, ONAF or cheese.com searches; values family-typical"
+	}
+}

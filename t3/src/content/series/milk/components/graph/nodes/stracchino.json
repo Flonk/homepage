@@ -1,0 +1,178 @@
+{
+	"label": "Stracchino",
+	"example": true,
+	"aka": [
+		"Crescenza-Stracchino"
+	],
+	"family": "soft",
+	"about": {
+		"text": "Stracchino, also known as crescenza, is an Italian cow's milk cheese typical of the regions of Lombardy, Tuscany, Veneto, Friuli-Venezia Giulia, and Liguria. It is eaten very young, has no rind and has a very soft, creamy texture and normally a mild, slightly acidic flavour. It is normally square in shape.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Stracchino"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Stracchino 2.jpg",
+		"author": "Lasagnolo9 at Italian Wikipedia (= formerly Ramagliolo9 at Italian Wikipedia)",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Stracchino_2.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "soft",
+	"days": [
+		3,
+		10
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "none",
+	"place": {
+		"region": "Lombardy",
+		"lat": 45.67,
+		"lon": 9.7,
+		"x": 0.52694,
+		"y": 0.21562,
+		"located": "hint"
+	},
+	"confidence": "medium",
+	"how": {
+		"label": "drain, chill",
+		"text": "The uncooked, walnut-sized curd is left to drain and acidify in perforated moulds at 25 °C and full humidity, then kept for only about ten days in the cold. This leaves a rindless, very moist, creamy paste with a mild, slightly acidic, yoghurt-like taste.",
+		"sources": {
+			"links": [
+				{
+					"name": "ONAF sheet: Stracchino (PAT Regione Toscana)",
+					"url": "https://www.onaf.it/uploads/public/10933_stracchino.pdf"
+				},
+				{
+					"name": "ONAF sheet: Crescenza (PAT Regione Lombardia)",
+					"url": "https://www.onaf.it/uploads/public/formaggi/11445_crescenza-reg-lombardia.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "pasteurise"
+				},
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"temperature": {
+						"min": 30,
+						"max": 32
+					},
+					"seconds": {
+						"min": 1800,
+						"max": 2400
+					},
+					"note": "With liquid calf rennet."
+				},
+				{
+					"type": "custom",
+					"name": "cut",
+					"note": "A coarse first cut, then to walnut size, and no cooking."
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "lactic acid bacteria",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"temperature": {
+						"min": 25,
+						"max": 25
+					},
+					"humidity": {
+						"min": 95
+					},
+					"note": "In square moulds, 18–20 cm a side and 4–5 cm high, about 2 kg."
+				},
+				{
+					"type": "custom",
+					"name": "brine",
+					"note": "Or the salt goes into the milk in the vat."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"temperature": {
+						"min": 4,
+						"max": 4,
+						"about": true
+					},
+					"seconds": {
+						"min": 864000,
+						"max": 864000,
+						"about": true
+					},
+					"humidity": {
+						"min": 95
+					}
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "ONAF sheet: Stracchino (PAT Regione Toscana)",
+						"url": "https://www.onaf.it/uploads/public/10933_stracchino.pdf"
+					},
+					{
+						"name": "ONAF sheet: Crescenza (PAT Regione Lombardia)",
+						"url": "https://www.onaf.it/uploads/public/formaggi/11445_crescenza-reg-lombardia.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Stracchino"
+			}
+		],
+		"text": "same cheese as Stracchino on Wikipedia; eaten very young, rindless, mild slightly acidic; Lombardy, Veneto, Tuscany, Liguria, Friuli; consider merging with Stracchino"
+	},
+	"facts": [
+		{
+			"k": "Surface",
+			"v": "Smooth and moist"
+		}
+	]
+}

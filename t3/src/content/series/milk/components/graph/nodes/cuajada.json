@@ -1,0 +1,105 @@
+{
+	"label": "Cuajada",
+	"example": true,
+	"aka": [
+		"Cuajada de oveja"
+	],
+	"note": "Spanish counterpart of junket; the Brazilian coalhada is a different thing, a soured milk curdled with whey from earlier batches",
+	"family": "freshCheese",
+	"about": {
+		"text": "A creamy, jelly-like milk dessert of northern Spain, especially Navarre and the Basque Country: warm milk set with rennet and eaten with sugar or honey. It was traditionally made with sheep's milk in a clay or wooden bowl; today it is mostly cow's milk.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Cuajada"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Cuajada.jpg",
+		"author": "Ardo Beltz",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Cuajada.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"ES"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		3
+	],
+	"setting": "rennet",
+	"rind": "none",
+	"confidence": "medium",
+	"how": {
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Cuajada",
+					"url": "https://en.wikipedia.org/wiki/Cuajada"
+				},
+				{
+					"name": "Wikipedia (es): Cuajada",
+					"url": "https://es.wikipedia.org/wiki/Cuajada"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"note": "With animal rennet or a plant extract."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Cuajada",
+						"url": "https://en.wikipedia.org/wiki/Cuajada"
+					},
+					{
+						"name": "Wikipedia (es): Cuajada",
+						"url": "https://es.wikipedia.org/wiki/Cuajada"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Cuajada"
+			}
+		],
+		"text": "also called Quesillo"
+	},
+	"facts": [
+		{
+			"k": "Vessel",
+			"v": "Traditionally a clay or wooden bowl (kaiku), in the Basque Country warmed with a red-hot poker, which gave a faint burnt taste"
+		},
+		{
+			"k": "Colombia",
+			"v": "Cundiboyacense highland: cow-milk cuajada with melado (panela syrup)"
+		}
+	]
+}

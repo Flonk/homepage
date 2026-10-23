@@ -1,0 +1,57 @@
+{
+	"label": "Aladdinite",
+	"example": true,
+	"note": "American trade name for casein plastic",
+	"about": {
+		"text": "Aladdinite was the name of Galalith-type casein-formaldehyde plastic in the US.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Galalith"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"how": {
+		"text": "Aladdinite is the US trade name for casein-formaldehyde plastic; made like galalith by hardening shaped casein in formaldehyde.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Galalith",
+					"url": "https://en.wikipedia.org/wiki/Galalith"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "shape"
+				},
+				{
+					"type": "custom",
+					"name": "harden",
+					"note": "In formaldehyde."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Galalith",
+						"url": "https://en.wikipedia.org/wiki/Galalith"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Country",
+			"v": "United States"
+		}
+	]
+}

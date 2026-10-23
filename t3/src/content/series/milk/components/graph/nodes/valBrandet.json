@@ -1,0 +1,37 @@
+{
+	"label": "Val Brandet",
+	"example": true,
+	"family": "semiHard",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		30,
+		90
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Lombardy",
+		"lat": 45.6,
+		"lon": 9.9,
+		"x": 0.5275,
+		"y": 0.2159,
+		"located": "hint"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Val_Brandet"
+			}
+		],
+		"text": "Lombardy"
+	}
+}

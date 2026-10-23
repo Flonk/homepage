@@ -1,0 +1,110 @@
+{
+	"label": "CPP-ACP\n(Recaldent)",
+	"from": "caseinate",
+	"step": "digest, bind calcium",
+	"about": {
+		"text": "Casein phosphopeptide–amorphous calcium phosphate: a material made from the milk protein casein that holds calcium and phosphate in a form the body can use. It is sold in products such as Tooth Mousse and MI Paste, under the Recaldent name, and deposits these minerals on tooth enamel to help repair early white-spot decay.",
+		"sources": {
+			"links": [
+				{
+					"name": "BMC Oral Health (2019)",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6937959"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "GC Tooth Mousse",
+		"author": "LoopZilla",
+		"license": "CC BY-SA 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Flickr",
+					"url": "https://www.flickr.com/photos/24987280@N00/492967748"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "The phosphopeptides keep calcium and phosphate dissolved as tiny amorphous particles, which in a paste can top up the enamel surface. Lab-scale conditions from the Reynolds patent; the commercial process may differ.",
+		"sources": {
+			"links": [
+				{
+					"name": "US 7312193, Calcium phosphopeptide complexes (Reynolds)",
+					"url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/7312193"
+				},
+				{
+					"name": "Cross, Huq & Reynolds 2007, Curr Pharm Des",
+					"url": "https://www.doi.org/10.2174/138161207780363086"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "digest",
+					"temperature": {
+						"min": 50,
+						"max": 50
+					},
+					"seconds": {
+						"min": 7200,
+						"max": 7200
+					},
+					"note": "Trypsin at 0.2 % of the casein weight, in a 10 % casein solution, with the pH held at 8.0 with NaOH."
+				},
+				{
+					"type": "custom",
+					"name": "clarify",
+					"note": "Acidified to pH 4.6 and the precipitate removed by centrifuge or microfilter, or microfiltered at pH 8.0 instead."
+				},
+				{
+					"type": "custom",
+					"name": "add calcium",
+					"note": "The supernatant is taken to pH 9.0, then CaCl₂ (1.6 M) and Na₂HPO₄ (1 M) are added slowly while stirring."
+				},
+				{
+					"type": "custom",
+					"name": "microfilter",
+					"note": "Microfiltration/diafiltration keeps only the peptide-calcium phosphate complexes."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "US 7312193, Calcium phosphopeptide complexes (Reynolds)",
+						"url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/7312193"
+					},
+					{
+						"name": "Cross, Huq & Reynolds 2007, Curr Pharm Des",
+						"url": "https://www.doi.org/10.2174/138161207780363086"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"toothMousse",
+		"miPaste"
+	],
+	"facts": [
+		{
+			"k": "Active peptides",
+			"v": "Phosphorylated fragments of β-casein, αs1-casein and αs2-casein"
+		},
+		{
+			"k": "What forms",
+			"v": "Nanocomplexes of amorphous calcium phosphate (ACP) held apart by the casein phosphopeptides (CPP)"
+		},
+		{
+			"k": "Fluoride version",
+			"v": "Can take up fluoride, giving CPP-ACFP"
+		}
+	]
+}

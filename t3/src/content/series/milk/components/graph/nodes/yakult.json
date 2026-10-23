@@ -1,0 +1,128 @@
+{
+	"label": "Yakult",
+	"example": true,
+	"about": {
+		"text": "Yakult is a Japanese sweetened probiotic milk beverage fermented with the bacteria strain Lacticaseibacillus casei Shirota. It is sold by Yakult Honsha, based in Tokyo. The name \"Yakult\" was coined from jahurto, an Esperanto word meaning \"yogurt\".",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Yakult"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Double Barrel x Yakult (5525889350).jpg",
+		"author": "Jonathan Lin",
+		"license": "CC BY-SA 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Double_Barrel_x_Yakult_(5525889350).jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"JP"
+	],
+	"how": {
+		"text": "A single strain, L. paracasei Shirota, slowly sours a heat-treated sweetened skim-milk base into a concentrate. This is homogenised, mixed with syrup and diluted into a thin, sweet drink.",
+		"sources": {
+			"links": [
+				{
+					"name": "Yakult Australia: About Yakult",
+					"url": "https://www.yakult.com.au/product/"
+				},
+				{
+					"name": "Wikipedia: Yakult",
+					"url": "https://en.wikipedia.org/wiki/Yakult"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "mix",
+					"note": "Skim milk powder, sugar and dextrose in water."
+				},
+				{
+					"type": "pasteurise",
+					"temperature": {
+						"min": 100
+					},
+					"note": "Heated HTST."
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Lacticaseibacillus paracasei Shirota",
+								"kind": "bacterium",
+								"does": [
+									"acid",
+									"probiotic"
+								]
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"temperature": {
+						"min": 37,
+						"max": 38
+					},
+					"seconds": {
+						"min": 518400,
+						"max": 604800
+					},
+					"note": "L. paracasei grows best at 30–38 °C, so the fermentation is long and makes acid but little aroma."
+				},
+				{
+					"type": "homogenise"
+				},
+				{
+					"type": "custom",
+					"name": "blend",
+					"note": "Blended with sugar syrup and flavour."
+				},
+				{
+					"type": "custom",
+					"name": "dilute",
+					"note": "Diluted with water."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Yakult Australia: About Yakult",
+						"url": "https://www.yakult.com.au/product/"
+					},
+					{
+						"name": "Wikipedia: Yakult",
+						"url": "https://en.wikipedia.org/wiki/Yakult"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Texture",
+			"v": "Thin, sweet; 6.5 billion LcS per 65 mL bottle"
+		}
+	]
+}

@@ -1,0 +1,107 @@
+{
+	"label": "Pont-l'Évêque",
+	"example": true,
+	"family": "washed",
+	"about": {
+		"text": "A Normandy cow-milk cheese, uncooked and unpressed, washed, brushed and turned during ripening; AOC since 1972.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Pont-l%27%C3%89v%C3%AAque_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Fromage pont l'évêque (petit).JPG",
+		"author": "LAGRIC",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Fromage_pont_l%27%C3%A9v%C3%AAque_(petit).JPG"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "soft",
+	"days": [
+		21,
+		60
+	],
+	"setting": "rennet",
+	"rind": "washed",
+	"protected": "PDO",
+	"place": {
+		"region": "Normandy",
+		"lat": 49.29,
+		"lon": 0.23,
+		"x": 0.50064,
+		"y": 0.20074,
+		"located": "knowledge"
+	},
+	"confidence": "high",
+	"how": {
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Pont-l'Évêque cheese",
+					"url": "https://en.wikipedia.org/wiki/Pont-l%27%C3%89v%C3%AAque_cheese"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "divide"
+				},
+				{
+					"type": "custom",
+					"name": "knead"
+				},
+				{
+					"type": "custom",
+					"name": "drain"
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"seconds": {
+						"min": 1209600
+					}
+				}
+			],
+			"text": "Most is ripened over 6 weeks.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Pont-l'Évêque cheese",
+						"url": "https://en.wikipedia.org/wiki/Pont-l%27%C3%89v%C3%AAque_cheese"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Pont-l'%C3%89v%C3%AAque_cheese"
+			}
+		],
+		"text": "Its facts, from these."
+	}
+}

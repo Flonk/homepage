@@ -1,0 +1,146 @@
+{
+	"label": "Gioddu",
+	"example": true,
+	"note": "Sardinian gioddu is listed in Italy's register of traditional food products; its starter, sa madrighe, is milk curdled with calf rennet",
+	"about": {
+		"text": "A Sardinian fermented milk, white, creamy and quite acidic (pH about 3.8–4.2), made by back-slopping from boiled or pasteurised milk. A starter called sa madrighe, milk curdled with calf rennet and left for one to two days, can start it, and it is ready in about 8 hours.",
+		"sources": {
+			"links": [
+				{
+					"name": "Dairy 6(5):61",
+					"url": "https://www.mdpi.com/2624-862X/6/5/61/htm"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"sheep",
+		"goat"
+	],
+	"how": {
+		"text": "The yeasts give a little ethanol and CO₂. The literature gives two culture sets: Table 2 lists L. delbrueckii subsp. bulgaricus, S. thermophilus, Lactococcus lactis subsp. lactis and Enterococcus; a sequencing study of producers found L. delbrueckii, S. thermophilus, L. kefiri in two of three, and yeasts.",
+		"sources": {
+			"links": [
+				{
+					"name": "Dairy 6(5):61",
+					"url": "https://www.mdpi.com/2624-862X/6/5/61/htm"
+				},
+				{
+					"name": "Maoloni et al. 2020",
+					"url": "https://iris.unito.it/retrieve/handle/2318/1734830/599224/Maoloni%20et%20al%202020.pdf"
+				},
+				{
+					"name": "Bintsis & Papademas 2022, Table 2, Fermentation 8:679",
+					"url": "https://doi.org/10.3390/fermentation8120679"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic",
+						"yeast"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Lactobacillus delbrueckii",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Streptococcus thermophilus",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Lactococcus lactis",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Enterococcus spp.",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Kluyveromyces marxianus",
+								"kind": "yeast",
+								"does": [
+									"alcohol",
+									"gas"
+								]
+							},
+							{
+								"name": "Galactomyces candidum",
+								"kind": "yeast",
+								"does": [
+									"alcohol",
+									"gas"
+								]
+							},
+							{
+								"name": "Geotrichum",
+								"kind": "yeast",
+								"does": [
+									"alcohol",
+									"gas"
+								]
+							}
+						],
+						"by": [
+							"backslop"
+						],
+						"dose": {
+							"min": 1,
+							"max": 2
+						}
+					},
+					"seconds": {
+						"min": 28800,
+						"max": 28800,
+						"about": true
+					},
+					"pH": {
+						"min": 3.8,
+						"max": 4.22
+					}
+				}
+			],
+			"text": "Started with sa madrighe or back-slopped gioddu. A sequencing study of producers found L. delbrueckii, S. thermophilus and L. kefiri in two of three, with yeasts.",
+			"sources": {
+				"links": [
+					{
+						"name": "Dairy 6(5):61",
+						"url": "https://www.mdpi.com/2624-862X/6/5/61/htm"
+					},
+					{
+						"name": "Maoloni et al. 2020",
+						"url": "https://iris.unito.it/retrieve/handle/2318/1734830/599224/Maoloni%20et%20al%202020.pdf"
+					},
+					{
+						"name": "Bintsis & Papademas 2022, Table 2, Fermentation 8:679",
+						"url": "https://doi.org/10.3390/fermentation8120679"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	}
+}

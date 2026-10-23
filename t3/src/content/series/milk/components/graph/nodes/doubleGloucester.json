@@ -1,0 +1,123 @@
+{
+	"label": "Double Gloucester",
+	"example": true,
+	"aka": [
+		"Single Gloucester"
+	],
+	"family": "cheddared",
+	"about": {
+		"text": "Gloucester is a traditional, semi-hard cheese which has been made in Gloucestershire, England, since the 16th century. There are two varieties of the cheese, Single and Double; both are traditionally made from milk from Gloucester cattle. Both types have a natural rind and a hard texture, but Single Gloucester is more crumbly, lighter in texture and lower in fat. Double Gloucester is allowed to age for longer periods than Single, and it has a stronger and more savoury flavour. It is also slightly firmer. The wild flower Galium verum, known colloquially as lady's bedstraw, was originally responsible for the distinctively yellow colour of Double Gloucester cheese.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Gloucester_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Cheese 24 bg 051306.jpg",
+		"author": "Jon Sullivan",
+		"license": "Public domain",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Cheese_24_bg_051306.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"GB"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		60,
+		180
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Gloucestershire",
+		"lat": 51.8,
+		"lon": -2.2,
+		"x": 0.49389,
+		"y": 0.18976,
+		"located": "hint"
+	},
+	"confidence": "medium",
+	"how": {
+		"text": "Double Gloucester is made with full-fat milk, whereas Single Gloucester is often made from part-skimmed milk. It is aged longer than Single, which gives a stronger, more savoury flavour.",
+		"sources": {
+			"links": [
+				{
+					"name": "Slow Food UK: Artisan Single and Double Gloucester",
+					"url": "https://www.slowfood.org.uk/ff-products/artisan-single-and-double-gloucester-cheese/"
+				},
+				{
+					"name": "Single Gloucester PDO summary (eAmbrosia), for contrast",
+					"url": "https://webgate.ec.europa.eu/eambrosia-api/api/v1/attachments/62118"
+				},
+				{
+					"name": "Wikipedia: Gloucester cheese",
+					"url": "https://en.wikipedia.org/wiki/Gloucester_cheese"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "ripen"
+				}
+			],
+			"text": "Aged longer than Single Gloucester.",
+			"sources": {
+				"links": [
+					{
+						"name": "Slow Food UK: Artisan Single and Double Gloucester",
+						"url": "https://www.slowfood.org.uk/ff-products/artisan-single-and-double-gloucester-cheese/"
+					},
+					{
+						"name": "Single Gloucester PDO summary (eAmbrosia), for contrast",
+						"url": "https://webgate.ec.europa.eu/eambrosia-api/api/v1/attachments/62118"
+					},
+					{
+						"name": "Wikipedia: Gloucester cheese",
+						"url": "https://en.wikipedia.org/wiki/Gloucester_cheese"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Gloucester_cheese"
+			}
+		],
+		"text": "PDO covers only Single Gloucester (Gloucester cattle, Gloucestershire); Double Gloucester ages longer and is unprotected. Wikipedia's infobox gives a single 36-week figure; split by variety not found"
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Traditionally from Gloucester cattle"
+		},
+		{
+			"k": "Paste",
+			"v": "Pale to deep red-orange"
+		}
+	]
+}

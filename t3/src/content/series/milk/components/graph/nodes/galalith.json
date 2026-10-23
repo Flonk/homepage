@@ -1,0 +1,111 @@
+{
+	"label": "Galalith",
+	"aka": [
+		"Casein plastic",
+		"Kunsthorn"
+	],
+	"from": "rennetCasein",
+	"step": "harden in formaldehyde",
+	"about": {
+		"text": "Galalith is a synthetic plastic material manufactured by the interaction of casein and formaldehyde. The commercial name is derived from the Ancient Greek words gala and lithos. It is odourless, hard, resists humidity to a certain degree, is antistatic, also an electrical insulator and virtually nonflammable. It was produced under a plethora of other commercial names such as aladdinite, Casolith and lactoloid.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Galalith"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "White casein Australian Royal Airforce pre-1953 buttons.jpg",
+		"author": "Tyranny Sue",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:White_casein_Australian_Royal_Airforce_pre-1953_buttons.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "Casein is first formed into rods, tubes or sheets, and only then hardened: the shaped piece soaks in a formaldehyde bath that cross-links the protein into an insoluble, horn-like thermoset. Because the bath works from the outside in, the hardening is the long step.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia, Galalith",
+					"url": "https://en.wikipedia.org/wiki/Galalith"
+				},
+				{
+					"name": "Museum of Design in Plastics, Casein formaldehyde",
+					"url": "https://www.modip.ac.uk/projects/curators-guide/plastics-materials/casein-formaldehyde"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "mix",
+					"note": "Dry casein powder is mixed with colourants."
+				},
+				{
+					"type": "heat",
+					"does": "heat",
+					"note": "Heated until it agglomerates."
+				},
+				{
+					"type": "custom",
+					"name": "press",
+					"note": "Pressed into bars and re-extruded, then the bars are pressed into blocks."
+				},
+				{
+					"type": "custom",
+					"name": "cut",
+					"note": "Cut to sheets."
+				},
+				{
+					"type": "custom",
+					"name": "harden",
+					"seconds": {
+						"max": 31536000
+					},
+					"note": "In a formaldehyde bath of about 5 % (formalin), weeks to months and up to a year for 25 mm thickness."
+				},
+				{
+					"type": "dry",
+					"note": "Slowly, to avoid cracking and warping."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia, Galalith",
+						"url": "https://en.wikipedia.org/wiki/Galalith"
+					},
+					{
+						"name": "Museum of Design in Plastics, Casein formaldehyde",
+						"url": "https://www.modip.ac.uk/projects/curators-guide/plastics-materials/casein-formaldehyde"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"erinoid",
+		"lactoid",
+		"aladdinite"
+	],
+	"facts": [
+		{
+			"k": "Discovered",
+			"v": "1893 Trillat (formaldehyde hardens casein); 1897 Krische and Spitteler"
+		}
+	]
+}

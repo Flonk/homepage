@@ -1,0 +1,93 @@
+{
+	"label": "Zebda",
+	"example": true,
+	"note": "Churned from raw milk that sours on its own, not from separated cream",
+	"about": {
+		"text": "The raw fresh butter of Morocco (zebda beldiya), churned from rayeb, raw milk left to sour for one to three days in an earthen jar or goatskin bag; the liquid left behind is lben. Salted and fermented, it becomes smen.",
+		"sources": {
+			"links": [
+				{
+					"name": "Benkirane et al., J. Microbiology, Biotechnology and Food Sciences (2022)",
+					"url": "https://office2.jmbfs.org/index.php/JMBFS/article/view/5636"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"regions": [
+		"MA",
+		"DZ"
+	],
+	"how": {
+		"label": "sour, churn",
+		"text": "Raw milk is left to sour on its own until it clots; lactococci and leuconostocs make the acid and aroma, and churning the soured milk separates zebda beldia from the skimmed lben.",
+		"sources": {
+			"links": [
+				{
+					"name": "Ouadghiri et al. 2009, J Appl Microbiol (LAB in Moroccan lben)",
+					"url": "https://staff.najah.edu/media/sites/default/files/OuadghiriJAM2008.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Lactococcus lactis",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Leuconostoc pseudomesenteroides",
+								"kind": "bacterium",
+								"does": [
+									"aroma"
+								]
+							},
+							{
+								"name": "Lactobacillus plantarum",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							}
+						],
+						"by": [
+							"wild"
+						]
+					},
+					"pH": {
+						"min": 4.38,
+						"max": 4.38,
+						"about": true
+					},
+					"note": "At room temperature until it coagulates, the lben ending at a mean pH of 4.38 and 73–112 °D."
+				},
+				{
+					"type": "churn",
+					"note": "Yields zebda beldia (raw butter) and lben."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Ouadghiri et al. 2009, J Appl Microbiol (LAB in Moroccan lben)",
+						"url": "https://staff.najah.edu/media/sites/default/files/OuadghiriJAM2008.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"raw": true
+}

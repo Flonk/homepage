@@ -1,0 +1,135 @@
+{
+	"label": "Milbenkäse",
+	"example": true,
+	"note": "Quark balls ripened by mites",
+	"family": "sourMilkCheese",
+	"about": {
+		"text": "Milbenkäse, called Mellnkase in the local dialect and often known as Spinnenkäse, is a German speciality cheese. It is made by flavouring balls of quark with caraway and salt, allowing them to dry, and then leaving them in a wooden box containing rye flour and cheese mites for about three months. An enzyme in the digestive juices excreted by the mites causes the cheese to ripen. Milbenkäse tastes similar to Harzer cheese, but with a bitter note and a zesty aftertaste. Mites clinging to the cheese rind are consumed along with the cheese.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Milbenk%C3%A4se"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Würchwitzer Milbenkäse in der Reisekiste.jpg",
+		"author": "BerlinUndDieWelt",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:W%C3%BCrchwitzer_Milbenk%C3%A4se_in_der_Reisekiste.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"DE"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "hard",
+	"days": [
+		90,
+		365
+	],
+	"setting": "acid",
+	"rind": "other",
+	"protected": "TSG",
+	"place": {
+		"region": "Saxony",
+		"lat": 51.1,
+		"lon": 13.2,
+		"x": 0.53667,
+		"y": 0.19288,
+		"located": "guess"
+	},
+	"confidence": "medium",
+	"how": {
+		"label": "ripen with mites",
+		"text": "Small shapes of dried lean quark are kept in boxes with cheese mites, which are fed rye flour so they nibble only the surface; their activity and secretions ripen the cheese, giving a sharp, slightly bitter taste and a lemony note from the mite compound neral.",
+		"sources": {
+			"links": [
+				{
+					"name": "Slow Food Deutschland, Ark of Taste: Würchwitzer Milbenkäse",
+					"url": "https://www.slowfood.de/was-wir-tun/arche_des_geschmacks/die_arche_passagiere/wuerchwitzer_milbenkaese"
+				},
+				{
+					"name": "Shimano et al., Exp. Appl. Acarol. (2022), JST summary",
+					"url": "https://sj.jst.go.jp/news/202209/n0922-03k.html"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"kinds": [
+						"animal"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Tyrolichus casei",
+								"kind": "animal",
+								"does": [
+									"ripening"
+								]
+							}
+						],
+						"by": [
+							"vessel"
+						],
+						"vessel": "wooden boxes with rye flour"
+					},
+					"seconds": {
+						"min": 7776000,
+						"max": 15552000
+					},
+					"note": "Kept in wooden boxes with the mites, which are fed rye flour."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Slow Food Deutschland, Ark of Taste: Würchwitzer Milbenkäse",
+						"url": "https://www.slowfood.de/was-wir-tun/arche_des_geschmacks/die_arche_passagiere/wuerchwitzer_milbenkaese"
+					},
+					{
+						"name": "Shimano et al., Exp. Appl. Acarol. (2022), JST summary",
+						"url": "https://sj.jst.go.jp/news/202209/n0922-03k.html"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Milbenk%C3%A4se"
+			}
+		],
+		"text": "Würchwitz quark cheese ripened by cheese mites in a box with rye flour; at least three months, some producers up to a year. TSG as Würchwitzer Milbenkäse (from memory, not re-verified)"
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Dried lean quark (Magerquark) of cow's, goat's or sheep's milk"
+		},
+		{
+			"k": "Rind",
+			"v": "Turns amber at best ripeness"
+		}
+	]
+}

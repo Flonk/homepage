@@ -1,0 +1,65 @@
+{
+	"label": "Milk fat fractions",
+	"aka": [
+		"High-melting and low-melting fractions"
+	],
+	"from": "amf",
+	"step": "melt, cool in stages, filter",
+	"about": {
+		"text": "AMF split by melting point: high-melting and low-melting fats with different properties, made for bakery, chocolate and other uses.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 15 AMF and butter oil",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/anhydrous-milk-fat-amf-and-butter-oil"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"how": {
+		"text": "Repeated in steps, so each cut has its own melting range. Other refining steps named in the chapter: polishing (wash with 20-30 % water), neutralisation, decholesterolisation (with beta-cyclodextrin, centrifuged out).",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 15",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/anhydrous-milk-fat-amf-and-butter-oil"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"note": "AMF, often polished, is melted."
+				},
+				{
+					"type": "heat",
+					"does": "cool",
+					"note": "Cooled slowly to a calculated temperature at which the wanted fraction crystallises, with no additives in the common method."
+				},
+				{
+					"type": "custom",
+					"name": "filter",
+					"note": "The crystals are taken out on special filters."
+				},
+				{
+					"type": "heat",
+					"does": "cool",
+					"note": "The filtrate is cooled further and the next fraction harvested, and so on."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Tetra Pak Dairy Processing Handbook, ch. 15",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/anhydrous-milk-fat-amf-and-butter-oil"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	}
+}

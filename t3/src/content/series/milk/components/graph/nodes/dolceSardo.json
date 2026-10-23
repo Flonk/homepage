@@ -1,0 +1,44 @@
+{
+	"label": "Dolce sardo",
+	"example": true,
+	"aka": [
+		"Dolcesardo"
+	],
+	"family": "semiHard",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		15,
+		60
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Sardinia",
+		"lat": 40.1,
+		"lon": 9,
+		"x": 0.525,
+		"y": 0.23676,
+		"located": "hint"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Dolce_sardo"
+			},
+			{
+				"name": "onaf.it",
+				"url": "https://www.onaf.it/uploads/public/6803_dolcesardo-arborea.pdf"
+			}
+		],
+		"text": "ONAF lists Dolcesardo (Arborea, Sardinia) as a cow's-milk cheese eaten after ~15 days; the earlier 'sheep, like Pecorino Sardo dolce (20-60 d)' was a guess. Max still estimated; only the minimum is sourced"
+	}
+}

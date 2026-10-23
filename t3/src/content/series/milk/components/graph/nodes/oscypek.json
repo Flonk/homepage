@@ -1,0 +1,130 @@
+{
+	"label": "Oscypek",
+	"example": true,
+	"aka": [
+		"Oscypki"
+	],
+	"family": "steamedCheese",
+	"about": {
+		"text": "A smoked cheese of the Polish Tatra Mountains, pressed in carved wooden moulds from salted sheep milk.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Oscypek"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Oscypki.jpg",
+		"author": "Pawel Swiegoda (Paberu)",
+		"license": "CC BY-SA 2.5",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Oscypki.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"PL"
+	],
+	"beasts": [
+		"sheep"
+	],
+	"firm": "semi-hard",
+	"days": [
+		3,
+		14
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Lesser Poland",
+		"lat": 49.3,
+		"lon": 19.95,
+		"x": 0.55542,
+		"y": 0.20069,
+		"located": "hint"
+	},
+	"confidence": "high",
+	"how": {
+		"label": "press in a wooden mould, smoke",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Oscypek",
+					"url": "https://en.wikipedia.org/wiki/Oscypek"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "salt milk",
+					"note": "Salt is added to the milk."
+				},
+				{
+					"type": "custom",
+					"name": "rinse",
+					"note": "The curd is rinsed with boiling water."
+				},
+				{
+					"type": "custom",
+					"name": "squeeze"
+				},
+				{
+					"type": "custom",
+					"name": "press",
+					"note": "Into wooden spindle-shaped moulds."
+				},
+				{
+					"type": "custom",
+					"name": "brine",
+					"note": "Soaked a night or two."
+				},
+				{
+					"type": "custom",
+					"name": "smoke",
+					"seconds": {
+						"max": 1209600
+					},
+					"note": "Hot-smoked for up to 14 d."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Oscypek",
+						"url": "https://en.wikipedia.org/wiki/Oscypek"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Oscypek"
+			}
+		],
+		"text": "smoked, scalded curd pressed in wooden moulds, brined"
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "At least 60 % sheep's milk"
+		}
+	],
+	"raw": true
+}

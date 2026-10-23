@@ -1,0 +1,176 @@
+{
+	"label": "Comté",
+	"example": true,
+	"family": "alpine",
+	"about": {
+		"text": "Comté, also known as Gruyère de Comté, is a hard cheese made from unpasteurised cow's milk in eastern France. The production of Comté is the largest of the Protected designation of origin (PDO) cheeses made in France.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Comt%C3%A9_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Comte AOP.jpg",
+		"author": "Myrabella",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Comte_AOP.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "hard",
+	"days": [
+		120,
+		365
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Bourgogne-Franche-Comté",
+		"lat": 46.9,
+		"lon": 6.3,
+		"x": 0.5175,
+		"y": 0.21068,
+		"located": "hint"
+	},
+	"confidence": "high",
+	"how": {
+		"label": "ripen in stages",
+		"text": "After pre-ripening, Comté goes through a separate fermentation stage and then ripening, and its paste can show some openings up to the size of a small cherry. Long ripening with a rubbed smear rind builds fruity (hazelnut, citrus) and toasted aromas.",
+		"sources": {
+			"links": [
+				{
+					"name": "Comté PDO amendment and single document (2026)",
+					"url": "http://data.europa.eu/eli/C/2026/2773/oj"
+				},
+				{
+					"name": "Comté PDO registration summary (eAmbrosia)",
+					"url": "https://webgate.ec.europa.eu/eambrosia-api/api/v1/attachments/71716"
+				},
+				{
+					"name": "Comté, CNAOL produits laitiers AOP",
+					"url": "https://www.produits-laitiers-aop.fr/fromage/comte/"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic",
+						"smear"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "lactic acid bacteria",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							}
+						],
+						"by": [
+							"starter"
+						],
+						"dose": {
+							"max": 0.5
+						}
+					},
+					"seconds": {
+						"min": 2400,
+						"max": 2400
+					},
+					"note": "The milk is pre-ripened for at least 40 min before the rennet."
+				},
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"note": "With rennet, in copper vats."
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"temperature": {
+						"max": 57
+					}
+				},
+				{
+					"type": "custom",
+					"name": "press",
+					"note": "Into wheels of 50–70 cm, 35–45 kg at day 50."
+				},
+				{
+					"type": "custom",
+					"name": "salt",
+					"note": "Dry-salted on the surface or in brine."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"seconds": {
+						"min": 10368000
+					},
+					"note": "Pre-ripened to day 21 or later, fermented, then ripened, with a smear rind rubbed with a solution kept at 13 °C or below."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Comté PDO amendment and single document (2026)",
+						"url": "http://data.europa.eu/eli/C/2026/2773/oj"
+					},
+					{
+						"name": "Comté PDO registration summary (eAmbrosia)",
+						"url": "https://webgate.ec.europa.eu/eambrosia-api/api/v1/attachments/71716"
+					},
+					{
+						"name": "Comté, CNAOL produits laitiers AOP",
+						"url": "https://www.produits-laitiers-aop.fr/fromage/comte/"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Comt%C3%A9_cheese"
+			}
+		],
+		"text": "Its facts, from these."
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Whole milk of Montbéliarde or French Simmental cows"
+		},
+		{
+			"k": "Rind",
+			"v": "Smeared, ochre yellow"
+		}
+	],
+	"raw": true
+}

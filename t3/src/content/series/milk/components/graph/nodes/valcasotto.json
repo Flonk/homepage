@@ -1,0 +1,38 @@
+{
+	"label": "Valcasotto",
+	"example": true,
+	"family": "semiHard",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"cow",
+		"sheep"
+	],
+	"firm": "semi-hard",
+	"days": [
+		30,
+		90
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Piedmont",
+		"lat": 44.13,
+		"lon": 8,
+		"x": 0.52222,
+		"y": 0.22166,
+		"located": "guess"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Valcasotto"
+			}
+		],
+		"text": "Piedmont"
+	}
+}

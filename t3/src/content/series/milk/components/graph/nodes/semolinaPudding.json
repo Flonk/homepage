@@ -1,0 +1,122 @@
+{
+	"label": "Semolina pudding",
+	"example": true,
+	"aka": [
+		"Grießbrei",
+		"Krupicová kaše"
+	],
+	"note": "Semolina cooked with milk, or milk and water; eaten in Europe since Roman times (Apicius describes a farina porridge); instant versions use milk powder",
+	"about": {
+		"text": "Porridge-like pudding of semolina cooked in milk, served with sugar, cinnamon, fruit or syrup.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Semolina_pudding"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Griessbrei.jpg",
+		"author": "Alice Wiegand",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Griessbrei.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"DE",
+		"AT",
+		"CZ"
+	],
+	"how": {
+		"text": "Semolina is first stirred smooth in a little cold milk, then into the rest, and cooked while stirring until the starch swells and thickens it. On the hob the same takes a few minutes; it firms up on cooling, so it is taken off while still loose. Served warm or chilled.",
+		"sources": {
+			"links": [
+				{
+					"name": "British Dietetic Association: Simple semolina pudding",
+					"url": "https://www.bda.uk.com/resource/simple-semolina-pudding.html"
+				},
+				{
+					"name": "Wikipedia: Semolina pudding",
+					"url": "https://en.wikipedia.org/wiki/Semolina_pudding"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "mix",
+					"note": "Semolina is stirred smooth in a little cold milk, then into the rest."
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"note": "In the microwave at 800 W (BDA recipe), then stirred.",
+					"seconds": {
+						"min": 240,
+						"max": 240
+					}
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"note": "Sugar is added after it.",
+					"seconds": {
+						"min": 120,
+						"max": 120
+					}
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"seconds": {
+						"min": 60,
+						"max": 60
+					}
+				},
+				{
+					"type": "custom",
+					"name": "stand",
+					"seconds": {
+						"min": 120,
+						"max": 120
+					}
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "British Dietetic Association: Simple semolina pudding",
+						"url": "https://www.bda.uk.com/resource/simple-semolina-pudding.html"
+					},
+					{
+						"name": "Wikipedia: Semolina pudding",
+						"url": "https://en.wikipedia.org/wiki/Semolina_pudding"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Liquid",
+			"v": "Milk, or milk and water, or water alone"
+		},
+		{
+			"k": "Variants",
+			"v": "Thicker baked version with more semolina; Syrian mamonia toasts the semolina in butter first"
+		}
+	]
+}

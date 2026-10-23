@@ -1,0 +1,188 @@
+{
+	"label": "Kashkaval",
+	"example": true,
+	"family": "pastaFilata",
+	"about": {
+		"text": "Kashkaval is a type of cheese made from the milk of cows, sheep, goats, or a mixture thereof, popular in the Balkans, Turkey, and the Levant. In Hungary, kashkaval refers specifically to this type of cheese, whereas, in the rest of the Balkans, Turkey and the Levant, the term is often used to refer to all yellow cheeses. In English-language menus in Bulgaria, kashkaval is translated as 'yellow cheese'.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Kashkaval"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Kashkaval-Galichki-Republik of Macedonia.jpg",
+		"author": "Nnikolce",
+		"license": "Public domain",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Kashkaval-Galichki-Republik_of_Macedonia.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"BG",
+		"MK",
+		"RS",
+		"RO"
+	],
+	"beasts": [
+		"cow",
+		"sheep",
+		"goat"
+	],
+	"firm": "semi-hard",
+	"days": [
+		30,
+		90
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"confidence": "medium",
+	"how": {
+		"label": "scald in brine",
+		"text": "Kashkaval curd is cheddared until plastic, then sliced and scalded in hot salted water rather than plain water, kneaded and moulded into wheels; the brine scald salts the paste as it is stretched.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+				},
+				{
+					"name": "Wikipedia (bg): Кашкавал",
+					"url": "https://bg.wikipedia.org/wiki/Кашкавал"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 60,
+						"max": 63
+					},
+					"seconds": {
+						"min": 20,
+						"max": 20
+					}
+				},
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"seconds": {
+						"min": 1800,
+						"max": 2400
+					},
+					"note": "With starter and rennet."
+				},
+				{
+					"type": "custom",
+					"name": "cut",
+					"note": "The curd is cut to pea size."
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"temperature": {
+						"min": 38,
+						"max": 39
+					},
+					"note": "The pea-size curd is heated."
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [],
+						"by": [
+							"starter"
+						]
+					},
+					"temperature": {
+						"min": 35,
+						"max": 37
+					},
+					"seconds": {
+						"min": 7200,
+						"max": 10800
+					},
+					"note": "The curd is cheddared until plastic."
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"temperature": {
+						"min": 72,
+						"max": 74
+					},
+					"seconds": {
+						"min": 180,
+						"max": 240
+					},
+					"note": "The sliced curd is scalded in hot brine of 5–6 % salt."
+				},
+				{
+					"type": "custom",
+					"name": "knead",
+					"note": "Kneaded and moulded into wheels."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"seconds": {
+						"min": 5184000,
+						"max": 5184000,
+						"about": true
+					}
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+					},
+					{
+						"name": "Wikipedia (bg): Кашкавал",
+						"url": "https://bg.wikipedia.org/wiki/Кашкавал"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Ca%C8%99caval"
+			},
+			{
+				"name": "en.wikipedia.org",
+				"url": "https://en.wikipedia.org/wiki/Kashkaval"
+			}
+		],
+		"text": "Romanian form of Balkan kashkaval; may overlap with a Kashkaval record"
+	},
+	"facts": [
+		{
+			"k": "Variants",
+			"v": "Balkan from sheep's milk, Vitosha from cow's, Preslav from a mix"
+		}
+	]
+}

@@ -1,0 +1,37 @@
+{
+	"label": "Vaciarin",
+	"example": true,
+	"family": "soft",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "soft",
+	"days": [
+		15,
+		60
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Piedmont",
+		"lat": 44.9,
+		"lon": 7.7,
+		"x": 0.52139,
+		"y": 0.21866,
+		"located": "hint"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Vaciarin"
+			}
+		],
+		"text": "Piedmont, Valsesia"
+	}
+}

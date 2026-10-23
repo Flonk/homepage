@@ -1,0 +1,93 @@
+{
+	"label": "Soft cheese",
+	"aka": [
+		"Weichkäse"
+	],
+	"from": "rennetCurd",
+	"step": "drain unpressed",
+	"mapped": true,
+	"niche": 0,
+	"about": {
+		"text": "Cheese that keeps much of its water, more than 67 % in the cheese without its fat under German cheese law, so that it stays soft and, as it ripens from the outside in, turns creamy. In Germany called Weichkäse; the bloomy and washed rinds are soft cheeses taken further.",
+		"sources": {
+			"links": [
+				{
+					"name": "German Käseverordnung (KäseV) § 6",
+					"url": "https://lxgesetze.de/käsev/6"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Reblochon AOC.jpg",
+		"author": "Myrabella",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Reblochon_AOC.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "The curd drains under its own weight instead of being pressed, so it keeps a lot of water: soft cheese has more than 67 % moisture in the fat-free mass under both Codex and German law. That moist paste ripens quickly and stays spoonable or spreadable.",
+		"sources": {
+			"links": [
+				{
+					"name": "Codex General Standard for Cheese (CXS 283-1978)",
+					"url": "https://www.fao.org/input/download/standards/175/CXS_283e.pdf"
+				},
+				{
+					"name": "Käseverordnung § 6 (Germany)",
+					"url": "https://lxgesetze.de/käsev/6"
+				},
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "drain",
+					"note": "Under its own weight, not pressed."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen"
+				}
+			],
+			"text": "The moist paste ripens quickly.",
+			"sources": {
+				"links": [
+					{
+						"name": "Codex General Standard for Cheese (CXS 283-1978)",
+						"url": "https://www.fao.org/input/download/standards/175/CXS_283e.pdf"
+					},
+					{
+						"name": "Käseverordnung § 6 (Germany)",
+						"url": "https://lxgesetze.de/käsev/6"
+					},
+					{
+						"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"belPaese",
+		"cuartirolo",
+		"pule",
+		"montebore"
+	]
+}

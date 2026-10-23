@@ -1,0 +1,89 @@
+{
+	"label": "Cheesecake",
+	"aka": [
+		"Käsekuchen",
+		"Sernik"
+	],
+	"from": "creamCheese",
+	"step": "mix with sugar and eggs, bake",
+	"alsoFrom": [
+		"quark",
+		"ricotta",
+		"cottageCheese"
+	],
+	"note": "Whether it is baked (with eggs) or unbaked (with cream or gelatin) depends on the style. Cream cheese was first made commercially in 1872.",
+	"about": {
+		"text": "A dessert of soft fresh cheese, sugar and eggs or cream, on a crumb or pastry base, baked or set cold. Cheese cakes go back to ancient Greece.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Cheesecake"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "New York cheesecake 3.jpg",
+		"author": "Muago",
+		"license": "CC0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:New_York_cheesecake_3.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "Eggs set the cheese mix as it bakes; unbaked cakes get their body from cream and gelatin.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Cheesecake",
+					"url": "https://en.wikipedia.org/wiki/Cheesecake"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "mix",
+					"note": "Mixed with eggs and sugar."
+				},
+				{
+					"type": "heat",
+					"does": "heat",
+					"note": "Eggs set the cheese mix as it bakes."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Cheesecake",
+						"url": "https://en.wikipedia.org/wiki/Cheesecake"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"sernik",
+		"japaneseSouffleCheesecake",
+		"newYorkCheesecake",
+		"basqueBurntCheesecake",
+		"noBakeCheesecake"
+	],
+	"facts": [
+		{
+			"k": "Cheese",
+			"v": "Cream cheese, quark, cottage cheese, mascarpone or ricotta"
+		}
+	]
+}

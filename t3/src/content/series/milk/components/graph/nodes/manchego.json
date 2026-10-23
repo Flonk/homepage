@@ -1,0 +1,166 @@
+{
+	"label": "Manchego",
+	"example": true,
+	"aka": [
+		"Queso Manchego"
+	],
+	"family": "hard",
+	"about": {
+		"text": "Manchego is a cheese made in the La Mancha region of Spain from the milk of sheep of the Manchega breed. It is aged between 60 days and 2 years.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Manchego"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Manchego.jpg",
+		"author": "Zerohund",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Manchego.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"ES"
+	],
+	"beasts": [
+		"sheep"
+	],
+	"firm": "semi-hard",
+	"days": [
+		60,
+		730
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Castile-La Mancha",
+		"lat": 39.3,
+		"lon": -3.1,
+		"x": 0.49139,
+		"y": 0.23965,
+		"located": "knowledge"
+	},
+	"confidence": "high",
+	"how": {
+		"label": "press in pleita",
+		"text": "Only Manchega ewes' milk may be used. The curd is reheated to at most 40 °C, pressed for up to 12 hours and ripened from one month to two years, giving a firm pressed paste. The moulds stamp the traditional braided-grass (pleita) pattern on the sides and a flower (flor) on the faces.",
+		"sources": {
+			"links": [
+				{
+					"name": "Queso Manchego DOP pliego de condiciones (2025)",
+					"url": "https://apliagri.castillalamancha.es/sites/default/files/2026-07/Pliego_Condiciones_DOP_Queso_Manchego_2025_0.pdf"
+				},
+				{
+					"name": "eAmbrosia: Queso Manchego PDO-ES-0087",
+					"url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=uriserv%3AOJ.C_.2022.420.01.0010.01.ENG&toc=OJ%3AC%3A2022%3A420%3ATOC"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"temperature": {
+						"min": 28,
+						"max": 32
+					},
+					"seconds": {
+						"min": 1800,
+						"max": 3600
+					},
+					"note": "With natural rennet or authorised enzymes."
+				},
+				{
+					"type": "custom",
+					"name": "cut",
+					"note": "Finely."
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"temperature": {
+						"min": 28,
+						"max": 40
+					},
+					"seconds": {
+						"min": 900,
+						"max": 2700
+					},
+					"note": "Stirred while it is reheated."
+				},
+				{
+					"type": "custom",
+					"name": "press",
+					"seconds": {
+						"min": 3600,
+						"max": 43200
+					},
+					"note": "In flor and pleita moulds up to 12 cm tall and 22 cm wide, 0.4–4 kg."
+				},
+				{
+					"type": "custom",
+					"name": "salt",
+					"seconds": {
+						"min": 10800,
+						"max": 172800
+					},
+					"note": "In brine, dry, or both, and the brining takes 3–48 h."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"temperature": {
+						"min": 3,
+						"max": 16
+					},
+					"seconds": {
+						"min": 2592000,
+						"max": 63072000
+					},
+					"humidity": {
+						"min": 65,
+						"max": 90
+					},
+					"note": "At least 30 d for up to 1.5 kg, otherwise 60 d, and at most 2 yr."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Queso Manchego DOP pliego de condiciones (2025)",
+						"url": "https://apliagri.castillalamancha.es/sites/default/files/2026-07/Pliego_Condiciones_DOP_Queso_Manchego_2025_0.pdf"
+					},
+					{
+						"name": "eAmbrosia: Queso Manchego PDO-ES-0087",
+						"url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=uriserv%3AOJ.C_.2022.420.01.0010.01.ENG&toc=OJ%3AC%3A2022%3A420%3ATOC"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Manchego"
+			}
+		],
+		"text": "Manchega sheep; fresh to curado grades"
+	}
+}

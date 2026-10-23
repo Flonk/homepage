@@ -1,0 +1,37 @@
+{
+	"label": "Garda Tremosine",
+	"example": true,
+	"family": "lacticCheese",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"goat"
+	],
+	"firm": "soft",
+	"days": [
+		7,
+		60
+	],
+	"estimated": true,
+	"setting": "rennet-acid",
+	"rind": "natural",
+	"place": {
+		"region": "Lombardy",
+		"lat": 45.82,
+		"lon": 10.73,
+		"x": 0.52981,
+		"y": 0.21503,
+		"located": "knowledge"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Garda_Tremosine"
+			}
+		],
+		"text": "Tremosine, Lake Garda goat cheese"
+	}
+}

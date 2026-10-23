@@ -1,0 +1,160 @@
+{
+	"label": "Tvorog",
+	"example": true,
+	"aka": [
+		"Twaróg",
+		"Творог"
+	],
+	"note": "Made from whole milk",
+	"family": "quark",
+	"about": {
+		"text": "A soft white fresh cheese of Central and Eastern Europe: milk is fermented and the whey is drained off, traditionally in hanging bags. Its fat runs from nil to about 23 %, and unlike German quark it is often made from whole milk.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Tvorog"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Творог.jpg",
+		"author": "Loyna",
+		"license": "CC BY-SA 2.5",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:%D0%A2%D0%B2%D0%BE%D1%80%D0%BE%D0%B3.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"RU"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		0
+	],
+	"setting": "acid",
+	"rind": "none",
+	"confidence": "high",
+	"how": {
+		"text": "Milk is soured with a starter (and sometimes a little pepsin) for about 8 hours until it forms a curd block, which is cut, warmed a little to drain and pressed. The sources opened do not name the starter species.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Tvorog",
+					"url": "https://en.wikipedia.org/wiki/Tvorog"
+				},
+				{
+					"name": "ru.Wikipedia: Творог",
+					"url": "https://ru.wikipedia.org/wiki/%D0%A2%D0%B2%D0%BE%D1%80%D0%BE%D0%B3"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "pasteurise",
+					"note": "Standardised to the wanted fat first, so whole milk can be used; classic acid-set curd is often from skimmed milk."
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "lactic acid bacteria",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"temperature": {
+						"min": 28,
+						"max": 34
+					},
+					"seconds": {
+						"min": 28800,
+						"max": 28800,
+						"about": true
+					},
+					"note": "In the acid-rennet kind rennet (chymosin) or pepsin is added with the starter."
+				},
+				{
+					"type": "custom",
+					"name": "cut",
+					"note": "The curd block is cut."
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"temperature": {
+						"min": 40,
+						"max": 45
+					}
+				},
+				{
+					"type": "custom",
+					"name": "drain",
+					"note": "Traditionally in free-hanging bags; industrially the curd block is cut with strings, then squeezed, cooled and packed."
+				},
+				{
+					"type": "custom",
+					"name": "press"
+				}
+			],
+			"text": "Species are not named. The acid-rennet kind adds rennet or pepsin with the starter; the curd is then cut, warmed to 40-45 °C and drained.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Tvorog",
+						"url": "https://en.wikipedia.org/wiki/Tvorog"
+					},
+					{
+						"name": "ru.Wikipedia: Творог",
+						"url": "https://ru.wikipedia.org/wiki/%D0%A2%D0%B2%D0%BE%D1%80%D0%BE%D0%B3"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Tvorog"
+			}
+		],
+		"text": "Its facts, from these."
+	},
+	"facts": [
+		{
+			"k": "Fat classes",
+			"v": "Full-fat 19–23 %, classic 4–18 %, low-fat 1.8 %, fat-free (GOST R 52096-2003 as cited)"
+		},
+		{
+			"k": "Separate method",
+			"v": "Milk split into skimmed milk and cream (50–55 % fat); fat-free tvorog is made from the skimmed milk by acid-rennet set and the cream is mixed back in"
+		}
+	]
+}

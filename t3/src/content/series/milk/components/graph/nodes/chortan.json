@@ -1,0 +1,83 @@
+{
+	"label": "Chortan",
+	"example": true,
+	"about": {
+		"text": "The Armenian name (չորթան) for dried tan, the buttermilk left after butter is churned from matsun; dried into a hard, keeping food like the qurut of Central Asia.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia, Matzoon (citing FAO)",
+					"url": "https://en.wikipedia.org/wiki/Matzoon"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Fromage kyrghize.jpg",
+		"author": "Paul Munhoven",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Fromage_kyrghize.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"AM"
+	],
+	"how": {
+		"label": "heat, dry",
+		"text": "Chortan ('dry tan') is the Armenian dried product made by heating and straining diluted yoghurt and drying the curd, the Armenian counterpart of kashk and qurut.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Kashk",
+					"url": "https://en.wikipedia.org/wiki/Kashk"
+				},
+				{
+					"name": "Chortan fermentation study, Int. J. Food Sci. Technol. (2020)",
+					"url": "https://doi.org/10.1111/ijfs.14365"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "dilute",
+					"note": "The yoghurt is diluted into tan."
+				},
+				{
+					"type": "heat",
+					"does": "heat"
+				},
+				{
+					"type": "custom",
+					"name": "strain"
+				},
+				{
+					"type": "dry"
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Kashk",
+						"url": "https://en.wikipedia.org/wiki/Kashk"
+					},
+					{
+						"name": "Chortan fermentation study, Int. J. Food Sci. Technol. (2020)",
+						"url": "https://doi.org/10.1111/ijfs.14365"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	}
+}

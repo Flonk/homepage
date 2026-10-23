@@ -1,0 +1,110 @@
+{
+	"label": "Cooked cheese",
+	"aka": [
+		"Kochkäse"
+	],
+	"from": "quark",
+	"step": "cook",
+	"cheese": true,
+	"about": {
+		"text": "A spreadable German cheese made from drained quark. Baking soda is mixed in and left to work until the curd turns glassy, and the curd is then gently heated and stirred until it melts. Butter, salt and often caraway are added. Industrial versions use melting salts. It is closely related to French cancoillotte.",
+		"sources": {
+			"links": [
+				{
+					"name": "German Wikipedia: Kochkäse",
+					"url": "https://de.wikipedia.org/wiki/Kochk%C3%A4se"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Kochkaese Musik.JPG",
+		"author": "Thogru",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Kochkaese_Musik.JPG"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"DE"
+	],
+	"how": {
+		"text": "Drained quark is mixed with Natron, which takes up acid, and left to turn glassy. It is then warmed while stirring until it runs, enriched with butter and seasoned with salt and caraway.",
+		"sources": {
+			"links": [
+				{
+					"name": "de.Wikipedia: Kochkäse",
+					"url": "https://de.wikipedia.org/wiki/Kochk%C3%A4se"
+				},
+				{
+					"name": "de.Wikipedia: Sauermilchkäse",
+					"url": "https://de.wikipedia.org/wiki/Sauermilchk%C3%A4se"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "mix",
+					"note": "With sodium bicarbonate (Natron), which takes up acid."
+				},
+				{
+					"type": "custom",
+					"name": "rest",
+					"seconds": {
+						"min": 3600
+					},
+					"note": "From about 1 h to several days, until glassy and yellowish."
+				},
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"max": 42
+					},
+					"note": "Warmed while stirring until it runs."
+				},
+				{
+					"type": "custom",
+					"name": "season",
+					"note": "Enriched with butter and seasoned with salt and caraway."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "de.Wikipedia: Kochkäse",
+						"url": "https://de.wikipedia.org/wiki/Kochk%C3%A4se"
+					},
+					{
+						"name": "de.Wikipedia: Sauermilchkäse",
+						"url": "https://de.wikipedia.org/wiki/Sauermilchk%C3%A4se"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"januSiers"
+	],
+	"facts": [
+		{
+			"k": "Industry",
+			"v": "Melting salts keep it spreadable"
+		},
+		{
+			"k": "Stronger sort",
+			"v": "Aged Handkäse or Harzer can replace some quark"
+		}
+	]
+}

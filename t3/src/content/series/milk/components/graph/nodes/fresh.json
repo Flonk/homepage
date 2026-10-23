@@ -1,0 +1,89 @@
+{
+	"label": "Fresh whole milk",
+	"aka": [
+		"Frischmilch",
+		"Frische Vollmilch"
+	],
+	"from": "pasteurised",
+	"step": "chill and bottle",
+	"niche": 0,
+	"light": true,
+	"about": {
+		"text": "Pasteurised whole milk with its full fat, at least 3.5 % in the EU, chilled and keeping about a week unopened in the fridge. In Germany it is sold as Frischmilch, as against the longer-keeping ESL and UHT milks.",
+		"sources": {
+			"links": [
+				{
+					"name": "Verbraucherzentrale",
+					"url": "https://www.verbraucherzentrale.de/wissen/lebensmittel/auswaehlen-zubereiten-aufbewahren/milch-alles-wichtige-zu-haltbarkeit-und-lagerung-58934"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Milk bottle and two doughnuts.jpg",
+		"author": "www.Pixel.la Free Stock Photos",
+		"license": "CC0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Milk_bottle_and_two_doughnuts.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "Pasteurised milk is cooled at once, held in tanks and filled into bottles or cartons, then kept chilled. It keeps about a week unopened, and light spoils it faster than time does.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook: Pasteurized and ESL dairy products",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/pasteurized-and-esl-dairy-products"
+				},
+				{
+					"name": "Regulation (EU) No 1308/2013, Annex VII Part IV (UK retained copy)",
+					"url": "https://www.legislation.gov.uk/eur/2013/1308/annex/VII/part/IV/division/III"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "cool",
+					"temperature": {
+						"min": 5,
+						"max": 7
+					},
+					"note": "First against the incoming raw milk, then with ice water, before the buffer tanks."
+				},
+				{
+					"type": "custom",
+					"name": "fill",
+					"note": "From the buffer tanks into bottles or cartons, protected from light once packed."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Tetra Pak Dairy Processing Handbook: Pasteurized and ESL dairy products",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/pasteurized-and-esl-dairy-products"
+					},
+					{
+						"name": "Regulation (EU) No 1308/2013, Annex VII Part IV (UK retained copy)",
+						"url": "https://www.legislation.gov.uk/eur/2013/1308/annex/VII/part/IV/division/III"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 3.5
+		}
+	}
+}

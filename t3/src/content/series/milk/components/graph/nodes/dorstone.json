@@ -1,0 +1,41 @@
+{
+	"label": "Dorstone",
+	"example": true,
+	"family": "lacticCheese",
+	"also": "bloomy",
+	"regions": [
+		"GB"
+	],
+	"beasts": [
+		"goat"
+	],
+	"firm": "soft",
+	"days": [
+		21,
+		28
+	],
+	"setting": "rennet-acid",
+	"rind": "bloomy",
+	"place": {
+		"region": "Herefordshire",
+		"lat": 52.02,
+		"lon": -3.03,
+		"x": 0.49158,
+		"y": 0.18877,
+		"located": "guess"
+	},
+	"confidence": "high",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Dorstone_cheese"
+			},
+			{
+				"name": "nealsyarddairy.co.uk",
+				"url": "https://www.nealsyarddairy.co.uk/products/dorstone"
+			}
+		],
+		"text": "Neal's Yard Creamery, Herefordshire (Charlie Westhead); pasteurised goat's milk, slow overnight lactic set, rolled in vegetable ash, wrinkled Geotrichum rind. Average age 3-4 weeks"
+	}
+}

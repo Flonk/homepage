@@ -1,0 +1,80 @@
+{
+	"label": "Booza",
+	"example": true,
+	"aka": [
+		"Būẓah",
+		"بُوظَة"
+	],
+	"note": "Syrian, documented in Damascus since at least the late 19th century (Bakdash by 1895)",
+	"about": {
+		"text": "A frozen dairy dessert from the Levant, pounded and stretched rather than churned, so it is chewy and stretchy.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Booza"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Bakdash Icecream (2789962718).jpg",
+		"author": "Graham van der Wielen from Perth, Australia",
+		"license": "CC BY 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Bakdash_Icecream_(2789962718).jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"SY",
+		"JO",
+		"PS"
+	],
+	"how": {
+		"label": "pound and stretch while freezing",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Booza",
+					"url": "https://en.wikipedia.org/wiki/Booza"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "stretch",
+					"note": "Pounded and stretched in a freezer drum instead of being churned."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Booza",
+						"url": "https://en.wikipedia.org/wiki/Booza"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Texture",
+			"v": "Creamy yet dense, firm enough to roll"
+		},
+		{
+			"k": "Thickener",
+			"v": "Salep, with mastic in Jordan"
+		}
+	]
+}

@@ -1,0 +1,148 @@
+{
+	"label": "Kesong puti",
+	"example": true,
+	"note": "The vinegar version is not fermented and is slightly sour, the rennet version is firmer. Salted in the milk or in brine afterwards, sold wrapped in banana leaf",
+	"family": "freshCheese",
+	"about": {
+		"text": "A soft, unaged white cheese from the Philippines, made from unskimmed carabao (water buffalo) milk and salt, set with rennet, vinegar or citrus juice and traditionally sold wrapped in banana leaf.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Kesong_puti"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Kesong Puti from Laguna, Feb 2024.jpg",
+		"author": "Ralff Nestor Nacor",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Kesong_Puti_from_Laguna,_Feb_2024.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"PH"
+	],
+	"beasts": [
+		"buffalo"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		0
+	],
+	"setting": "rennet",
+	"rind": "none",
+	"place": {
+		"region": "Quezon",
+		"lat": 14.11,
+		"lon": 121.55,
+		"x": 0.83764,
+		"y": 0.31895,
+		"located": "guess"
+	},
+	"confidence": "high",
+	"how": {
+		"text": "Traditionally vinegar sets it, which makes it slightly sour and soft; the Philippine Carabao Center teaches rennet instead, for a firmer, milder cheese.",
+		"sources": {
+			"links": [
+				{
+					"name": "Philippine Carabao Center iASK B-02-2017: Proper heat treatment yields more cheese with firmer texture (Abella, Saturno, Baltazar)",
+					"url": "https://k-portal.pcc.gov.ph/assets/pdfs/Kesong%20Puti-edited%20mam%20cel&EPP.pdf"
+				},
+				{
+					"name": "Kesong puti, Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Kesong_puti"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "pasteurise",
+					"temperature": {
+						"min": 72,
+						"max": 75
+					},
+					"seconds": {
+						"min": 15,
+						"max": 15
+					}
+				},
+				{
+					"type": "heat",
+					"does": "cool",
+					"temperature": {
+						"min": 40,
+						"max": 45
+					}
+				},
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"seconds": {
+						"min": 1800,
+						"max": 3600
+					},
+					"note": "Left undisturbed with calf or carabao rennet (PCC/Laguna), or with vinegar or citrus juice (Bulacan, Cavite)."
+				},
+				{
+					"type": "custom",
+					"name": "cut",
+					"note": "In 1–2 in cubes, rested 10 min, then cut smaller and rested 15 min."
+				},
+				{
+					"type": "custom",
+					"name": "salt",
+					"note": "400 g salt in 5 L boiled, cooled (35–40 °C) water is added to the cut curd for 20 min, or 1–4 tsp salt in the milk at home."
+				},
+				{
+					"type": "custom",
+					"name": "drain",
+					"seconds": {
+						"min": 3600,
+						"max": 5400
+					}
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Philippine Carabao Center iASK B-02-2017: Proper heat treatment yields more cheese with firmer texture (Abella, Saturno, Baltazar)",
+						"url": "https://k-portal.pcc.gov.ph/assets/pdfs/Kesong%20Puti-edited%20mam%20cel&EPP.pdf"
+					},
+					{
+						"name": "Kesong puti, Wikipedia",
+						"url": "https://en.wikipedia.org/wiki/Kesong_puti"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Kesong_puti"
+			}
+		],
+		"text": "carabao's milk"
+	},
+	"facts": [
+		{
+			"k": "Laguna and Cebu",
+			"v": "Rennet-set, firm, described as lactic fermented (Wikipedia; no starter named in any source)"
+		}
+	]
+}

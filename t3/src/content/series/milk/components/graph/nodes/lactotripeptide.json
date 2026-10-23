@@ -1,0 +1,116 @@
+{
+	"label": "Lactotripeptide milk\n(Ameal S, Evolus)",
+	"aka": [
+		"Blood-pressure sour milk"
+	],
+	"from": "skimmed",
+	"step": "ferment with L. helveticus",
+	"note": "Two routes exist: this one ferments skimmed milk; the other digests casein with enzymes (patent US7785824). Trial evidence is mixed: a Cochrane review (Usinger 2012) found no confirmed ACE-inhibiting effect in people.",
+	"about": {
+		"text": "Milk soured with Lactobacillus helveticus, whose enzymes cut the casein so that two tiny peptides, Val-Pro-Pro (VPP) and Ile-Pro-Pro (IPP), come free. Both inhibit angiotensin-converting enzyme in the test tube, and the milk is sold in Japan and Finland to people with mild high blood pressure.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Lactotripeptides",
+					"url": "https://en.wikipedia.org/wiki/Lactotripeptides"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"regions": [
+		"JP",
+		"FI"
+	],
+	"how": {
+		"text": "The bacterium's cell-wall proteinase cuts casein into a peptide of about 28 amino acids holding both sequences; the cell takes it up and its peptidases trim out VPP and IPP. Falling pH switches the proteinase off, and added amino acids lower the yield.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Lactotripeptides",
+					"url": "https://en.wikipedia.org/wiki/Lactotripeptides"
+				},
+				{
+					"name": "Patent EP1581062 (strain, 38-42 °C, times; Evolus = Valio; Calpis sour milk = L. helveticus + S. cerevisiae)",
+					"url": "https://patents.google.com/patent/EP1581062"
+				},
+				{
+					"name": "IntechOpen chapter 29734 (mechanism, 3.4 mg dose, FOSHU)",
+					"url": "https://www.intechopen.com/chapters/29734"
+				},
+				{
+					"name": "Patent WO2004060073A1",
+					"url": "https://patents.google.com/patent/WO2004060073A1/en"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Lactobacillus helveticus",
+								"kind": "bacterium"
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"temperature": {
+						"min": 38,
+						"max": 42
+					},
+					"seconds": {
+						"min": 21600,
+						"max": 360000
+					},
+					"note": "Strains named are CNRZ 244 in the Dutch patent, CM4 in the Calpis work, and one isolated from Evolus."
+				}
+			],
+			"text": "Skimmed milk or 9 % reconstituted skim milk powder; preferably 15-50 h. Calpis sour milk also holds Saccharomyces cerevisiae. A run reached pH 4.6 after 9-11 h, was held 5-7 h, then went to pH 4.0.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Lactotripeptides",
+						"url": "https://en.wikipedia.org/wiki/Lactotripeptides"
+					},
+					{
+						"name": "Patent EP1581062 (strain, 38-42 °C, times; Evolus = Valio; Calpis sour milk = L. helveticus + S. cerevisiae)",
+						"url": "https://patents.google.com/patent/EP1581062"
+					},
+					{
+						"name": "IntechOpen chapter 29734 (mechanism, 3.4 mg dose, FOSHU)",
+						"url": "https://www.intechopen.com/chapters/29734"
+					},
+					{
+						"name": "Patent WO2004060073A1",
+						"url": "https://patents.google.com/patent/WO2004060073A1/en"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"calpisAmealS",
+		"evolus"
+	],
+	"facts": [
+		{
+			"k": "Yeast in Calpis sour milk",
+			"v": "Saccharomyces cerevisiae besides L. helveticus"
+		},
+		{
+			"k": "Clinical result",
+			"v": "Hata 1996 (Am J Clin Nutr 64:767-771) and Seppo 2003 found lower systolic pressure; Cochrane (Usinger 2012) found no conclusive benefit"
+		}
+	]
+}

@@ -1,0 +1,76 @@
+{
+	"label": "Basundi",
+	"example": true,
+	"note": "Milk simmered to about half and sweetened; thinner than rabri, which is boiled down further with the skins folded in",
+	"about": {
+		"text": "Basundi is an Indian dessert from Maharashtra and Gujarat made by slowly boiling milk until it is reduced by about half, then sweetening it with sugar, cardamom, charoli or saffron and serving it chilled with nuts.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Basundi"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Basundi.jpg",
+		"author": "Thamizhpparithi Maari",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Basundi.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"IN"
+	],
+	"how": {
+		"label": "reduce by half, no skins",
+		"text": "Sugar thins the milk again, so it goes in once the milk has thickened.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Basundi",
+					"url": "https://en.wikipedia.org/wiki/Basundi"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"note": "Milk is simmered on low heat to about half."
+				},
+				{
+					"type": "custom",
+					"name": "sweeten",
+					"note": "Sugar is added after thickening; a little more cooking tints it pink."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Basundi",
+						"url": "https://en.wikipedia.org/wiki/Basundi"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Quicker version",
+			"v": "Cream added to speed thickening"
+		}
+	]
+}

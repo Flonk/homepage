@@ -1,0 +1,111 @@
+{
+	"label": "Queso blanco",
+	"example": true,
+	"note": "The Latin American fresh cheese, made by curdling hot milk with acid (or sometimes rennet) and pressed lightly, so softer than paneer, a different cheese",
+	"about": {
+		"text": "Queso blanco is a fresh white cheese of Latin America and the Caribbean, made by curdling hot milk with acid (or sometimes rennet) and lightly pressing the curd. It is soft, mild and does not melt.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Queso_blanco"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Homemade queso blanco and olive bread (16215994960).jpg",
+		"author": "Ruth Hartnup from Vancouver, Canada",
+		"license": "CC BY 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Homemade_queso_blanco_and_olive_bread_(16215994960).jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"MX",
+		"CO",
+		"VE",
+		"US"
+	],
+	"how": {
+		"text": "Queso blanco is made like paneer or chhena: heating the milk to at least 85 °C and adding food acid makes the protein clot without rennet or starter. The curd is drained, salted and lightly pressed in hoops, so it is firm but moist and, because it is acid-set, does not melt when heated.",
+		"sources": {
+			"links": [
+				{
+					"name": "Van Hekken & Farkye, Hispanic Cheeses: The Quest for Queso, Food Technology (IFT)",
+					"url": "https://www.ift.org/food-technology-magazine/hispanic-cheeses-the-quest-for-queso"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 85
+					},
+					"note": "Hot milk, 85 °C or above."
+				},
+				{
+					"type": "custom",
+					"name": "acidify",
+					"note": "With an organic acid to pH about 5.3; the acid, not rennet, precipitates the protein."
+				},
+				{
+					"type": "custom",
+					"name": "drain"
+				},
+				{
+					"type": "custom",
+					"name": "salt"
+				},
+				{
+					"type": "custom",
+					"name": "press",
+					"note": "In hoops, to remove excess whey."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Van Hekken & Farkye, Hispanic Cheeses: The Quest for Queso, Food Technology (IFT)",
+						"url": "https://www.ift.org/food-technology-magazine/hispanic-cheeses-the-quest-for-queso"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"composition": {
+		"moisture": {
+			"min": 51,
+			"max": 53
+		},
+		"fat": {
+			"min": 19,
+			"max": 25
+		},
+		"protein": {
+			"min": 20,
+			"max": 22
+		},
+		"pH": {
+			"max": 5.6
+		}
+	},
+	"facts": [
+		{
+			"k": "Salt",
+			"v": "1.8–3 %"
+		}
+	]
+}

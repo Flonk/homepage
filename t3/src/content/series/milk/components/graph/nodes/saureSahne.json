@@ -1,0 +1,92 @@
+{
+	"label": "Saure Sahne",
+	"aka": [
+		"Sahnesauermilch"
+	],
+	"from": "culturedCream",
+	"at": 10,
+	"niche": 1,
+	"about": {
+		"text": "Germany’s everyday soured cream, sold as Saure Sahne or Sauerrahm: cream soured with lactic acid bacteria to at least 10 % fat, and not heated again after souring.",
+		"sources": {
+			"links": [
+				{
+					"name": "German MilchPQV, Anlage 8",
+					"url": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Sour Cream.jpg",
+		"author": "jules",
+		"license": "CC BY 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Sour_Cream.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"DE"
+	],
+	"how": {
+		"text": "Cream is soured with a mesophilic starter and sold without heating afterwards, so the culture stays alive. Same entry as Sauerrahm and Sahnesauermilch.",
+		"sources": {
+			"links": [
+				{
+					"name": "German MilchPQV, Anlage 8",
+					"url": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"by": [
+							"starter"
+						],
+						"microbes": [
+							{
+								"name": "mesophilic lactic acid bacteria",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								],
+								"grows": "mesophilic"
+							}
+						]
+					}
+				}
+			],
+			"text": "Not heated after souring, so the culture stays alive.",
+			"sources": {
+				"links": [
+					{
+						"name": "German MilchPQV, Anlage 8",
+						"url": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 10
+		}
+	},
+	"live": true
+}

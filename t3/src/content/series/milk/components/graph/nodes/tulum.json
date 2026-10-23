@@ -1,0 +1,146 @@
+{
+	"label": "Tulum",
+	"aka": [
+		"Tulum peyniri"
+	],
+	"from": "rennetCurd",
+	"step": "pack in skin",
+	"note": "Ripened in an animal skin (tulum), the method that gives it its name. Other skin-packed cheeses exist too, such as Greek touloumotyri.",
+	"mapped": true,
+	"about": {
+		"text": "Tulum cheese is a traditional Turkish goat's milk cheese ripened in a goatskin casing, called tulum in Turkish.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Tulum_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Tulum peyniri.jpg",
+		"author": "E4024",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Tulum_peyniri.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"TR"
+	],
+	"beasts": [
+		"goat"
+	],
+	"how": {
+		"text": "The crumbled curd is packed tightly into a salted animal skin and ripened in a cool cave or cellar for about six months. The skin acts as the casing, and residual whey can drain through holes in its sides.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Tulum cheese",
+					"url": "https://en.wikipedia.org/wiki/Tulum_cheese"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "coagulate",
+					"temperature": {
+						"min": 30,
+						"max": 30,
+						"about": true
+					},
+					"seconds": {
+						"min": 3600,
+						"max": 3600,
+						"about": true
+					}
+				},
+				{
+					"type": "custom",
+					"name": "cut",
+					"note": "Small."
+				},
+				{
+					"type": "custom",
+					"name": "hang",
+					"seconds": {
+						"min": 28800,
+						"max": 28800,
+						"about": true
+					},
+					"note": "In a cloth."
+				},
+				{
+					"type": "custom",
+					"name": "press"
+				},
+				{
+					"type": "custom",
+					"name": "crumble"
+				},
+				{
+					"type": "custom",
+					"name": "knead"
+				},
+				{
+					"type": "custom",
+					"name": "pack in skin",
+					"note": "Into a salted goatskin (tulum)."
+				},
+				{
+					"type": "custom",
+					"name": "salt",
+					"note": "Brined, plus salt on top in the skin."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"temperature": {
+						"min": 10,
+						"max": 12
+					},
+					"seconds": {
+						"min": 15552000,
+						"max": 15552000,
+						"about": true
+					},
+					"note": "In a cave or cellar."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Tulum cheese",
+						"url": "https://en.wikipedia.org/wiki/Tulum_cheese"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"erzincanTulum",
+		"izmirTulum",
+		"divle",
+		"cimi",
+		"karg",
+		"guda",
+		"branzaDeBurduf"
+	],
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Goat’s traditionally; cow’s, sheep’s or buffalo blends commercially"
+		}
+	]
+}

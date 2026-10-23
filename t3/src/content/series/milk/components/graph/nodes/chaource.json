@@ -1,0 +1,178 @@
+{
+	"label": "Chaource",
+	"example": true,
+	"note": "Set mainly by lactic acid (AOC: lactic coagulation of at least 12 h, slow spontaneous draining), then ripened under a white Penicillium candidum rind like a Brie",
+	"family": "bloomy",
+	"about": {
+		"text": "Chaource is a French cheese, originally manufactured in the village of Chaource in the Champagne-Ardenne region.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Chaource_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Chaource (fromage) 09.jpg",
+		"author": "Coyau",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Chaource_(fromage)_09.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "soft",
+	"days": [
+		14,
+		35
+	],
+	"setting": "rennet-acid",
+	"rind": "bloomy",
+	"protected": "PDO",
+	"place": {
+		"region": "Grand Est",
+		"lat": 48.06,
+		"lon": 4.14,
+		"x": 0.5115,
+		"y": 0.20591,
+		"located": "hint"
+	},
+	"confidence": "high",
+	"how": {
+		"label": "drain tall",
+		"text": "The milk sets slowly, mainly by acid, so the curd is fragile and drains on its own in tall moulds. As it ripens from the rind inwards, a creamy rim forms around a fine, slightly grainy heart, with a light mushroom smell.",
+		"sources": {
+			"links": [
+				{
+					"name": "Chaource AOP cahier des charges (2012)",
+					"url": "https://extranet.inao.gouv.fr/fichier/cdcchaource.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic",
+						"mould"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "mesophilic lactic acid bacteria",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								],
+								"grows": "mesophilic"
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"temperature": {
+						"min": 23,
+						"max": 33
+					},
+					"seconds": {
+						"min": 43200
+					},
+					"pH": {
+						"max": 4.75
+					},
+					"note": "Set mostly lactic, with animal rennet."
+				},
+				{
+					"type": "custom",
+					"name": "mould",
+					"temperature": {
+						"min": 20,
+						"max": 30
+					},
+					"note": "At pH 4.75 or less, in tall moulds of 110–115 mm (450–700 g) or 85–90 mm (250–380 g), and it drains on its own."
+				},
+				{
+					"type": "custom",
+					"name": "salt",
+					"note": "Dry salt on the surface."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"adds": {
+						"microbes": [
+							{
+								"name": "Penicillium candidum",
+								"kind": "mould",
+								"does": [
+									"rind"
+								]
+							},
+							{
+								"name": "Geotrichum candidum",
+								"kind": "yeast"
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"temperature": {
+						"min": 8,
+						"max": 14
+					},
+					"seconds": {
+						"min": 1209600
+					},
+					"note": "At least 14 d in all, of which at least 8 d at 8–14 °C."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Chaource AOP cahier des charges (2012)",
+						"url": "https://extranet.inao.gouv.fr/fichier/cdcchaource.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Chaource_cheese"
+			}
+		],
+		"text": "Its facts, from these."
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Fat and protein not adjusted"
+		},
+		{
+			"k": "Rind",
+			"v": "White Penicillium candidum, may be wrinkled by Geotrichum"
+		}
+	]
+}

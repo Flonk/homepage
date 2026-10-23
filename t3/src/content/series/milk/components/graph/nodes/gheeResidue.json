@@ -1,0 +1,88 @@
+{
+	"label": "Ghee residue",
+	"from": "butter",
+	"step": "the solids",
+	"note": "More of it forms when ghee is made from medium-fat cream than from butter",
+	"about": {
+		"text": "The brown solids that settle and are filtered off when ghee is made: heat-denatured milk protein, caramelised milk sugar, minerals, some fat and moisture. It is used for sweets such as candy, chocolate and burfi.",
+		"sources": {
+			"links": [
+				{
+					"name": "Janghu et al. 2014, Indian Journal of Dairy Science 67(4): Physicochemical analysis of ghee residue and conversion into confectionary food products",
+					"url": "https://epubs.icar.org.in/index.php/IJDS/article/view/34943"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Ghee-note milk solids in bowl",
+		"author": "ljguitar (Flickr)",
+		"license": "CC BY 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Flickr",
+					"url": "https://www.flickr.com/photos/75218757@N00/5414604212"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"IN"
+	],
+	"how": {
+		"text": "It is the solids-not-fat of the cream or butter, coagulated and browned by the heat.",
+		"sources": {
+			"links": [
+				{
+					"name": "InfLibNet: Technology of ghee making",
+					"url": "https://ebooks.inflibnet.ac.in/ftp04/chapter/technology-of-ghee-making-direct-cream-creamery-butter-continuous-method/"
+				},
+				{
+					"name": "Janghu et al. 2014",
+					"url": "https://epubs.icar.org.in/index.php/IJDS/article/view/34943"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 110,
+						"max": 120
+					},
+					"note": "The solids form at this hot end of ghee making."
+				},
+				{
+					"type": "custom",
+					"name": "remove",
+					"note": "Removed by stack filters, pressure filters or centrifugal separators."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "InfLibNet: Technology of ghee making",
+						"url": "https://ebooks.inflibnet.ac.in/ftp04/chapter/technology-of-ghee-making-direct-cream-creamery-butter-continuous-method/"
+					},
+					{
+						"name": "Janghu et al. 2014",
+						"url": "https://epubs.icar.org.in/index.php/IJDS/article/view/34943"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Particles",
+			"v": "Average size about 115 µm, density 1.14 g/cm³"
+		}
+	]
+}

@@ -1,0 +1,40 @@
+{
+	"label": "Casieddu di Moliterno",
+	"example": true,
+	"family": "freshCheese",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"goat"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		60
+	],
+	"setting": "rennet",
+	"rind": "none",
+	"place": {
+		"region": "Basilicata",
+		"lat": 40.24,
+		"lon": 15.81,
+		"x": 0.54392,
+		"y": 0.23625,
+		"located": "hint"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Casieddu_di_Moliterno"
+			},
+			{
+				"name": "onaf.it",
+				"url": "https://www.onaf.it/uploads/public/formaggi/6328_casieddu-scheda-alsia.pdf"
+			}
+		],
+		"text": "Goat milk only (not sheep), heated to 85-90 C in copper with nepeta, small 0.4-0.5 kg spheres; eaten fresh in fern leaves, dry-salted ones age up to 2 months; Basilicata, June-September"
+	}
+}

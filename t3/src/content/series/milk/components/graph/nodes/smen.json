@@ -1,0 +1,114 @@
+{
+	"label": "Smen",
+	"aka": [
+		"Aged butter",
+		"Semn"
+	],
+	"from": "butter",
+	"step": "boil, salt, age in jars",
+	"about": {
+		"text": "Smen is a salted, fermented butter native to North African cuisine, as well as a traditional Yemeni dish. In countries like Jordan and Lebanon, samneh is a type of butter similar to clarified butter, while north African smen is a type of fermented butter similar to ghee.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Smen"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Smen.JPG",
+		"author": "Lucyin",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Smen.JPG"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"MA",
+		"DZ",
+		"TN"
+	],
+	"how": {
+		"text": "Butter is boiled, skimmed, strained, salted and sealed in a jar to age. Wikipedia names no microbes and no ageing times, so none are given here.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia, Smen",
+					"url": "https://en.wikipedia.org/wiki/Smen"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"note": "Butter heated to a boil."
+				},
+				{
+					"type": "custom",
+					"name": "skim"
+				},
+				{
+					"type": "custom",
+					"name": "strain",
+					"note": "Into a ceramic jar."
+				},
+				{
+					"type": "custom",
+					"name": "salt",
+					"note": "Before it curdles."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"kinds": [
+						"yeast"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "yeast",
+								"kind": "yeast"
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"note": "Sealed and traditionally buried, it ferments and grows stronger smelling, the older the more valued."
+				}
+			],
+			"text": "Thyme is often added as a yeast and enzyme starter; the salted butter ferments sealed in a jar, traditionally buried, and grows stronger with age. No microbes or times are named.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia, Smen",
+						"url": "https://en.wikipedia.org/wiki/Smen"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Butter",
+			"v": "Sheep's or goat's milk butter or a mix; Moroccan smen may use cow's milk"
+		},
+		{
+			"k": "Starter",
+			"v": "Thyme, often added as a yeast and enzyme starter; roasted fenugreek optional"
+		}
+	]
+}

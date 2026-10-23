@@ -1,0 +1,111 @@
+{
+	"label": "Double-skin milk",
+	"example": true,
+	"aka": [
+		"Shuang pi nai",
+		"Shaungpinai"
+	],
+	"note": "The skin that forms on cooled boiled milk is lifted aside, the milk is beaten with egg white and sugar and poured back under it, and steaming grows a second skin; a dessert, not a cream",
+	"about": {
+		"text": "A milk dessert from Daliang in Shunde, Guangdong, now eaten across Guangzhou, Hong Kong and Macau: boiled buffalo milk forms a skin as it cools, egg white sets the milk beneath, and a second skin forms after steaming.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Double_skin_milk"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Double skin milk.jpg",
+		"author": "Guanlin (Gary) He",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Double_skin_milk.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"CN"
+	],
+	"beasts": [
+		"buffalo",
+		"cow"
+	],
+	"how": {
+		"label": "lift the skin, add egg white, steam",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Double skin milk",
+					"url": "https://en.wikipedia.org/wiki/Double_skin_milk"
+				},
+				{
+					"name": "The Hong Kong Cookery: double skin milk pudding",
+					"url": "https://www.thehongkongcookery.com/2025/05/double-skin-milk-pudding.html"
+				},
+				{
+					"name": "Patent CN1826918A",
+					"url": "https://eureka.patsnap.com/patent-CN1826918A"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 70,
+						"max": 99
+					},
+					"seconds": {
+						"min": 900,
+						"max": 3600
+					},
+					"note": "In one recipe the milk is heated to about 82 °C (180 °F)."
+				},
+				{
+					"type": "custom",
+					"name": "mix",
+					"note": "Egg white and sugar are added to the milk poured out from under the first skin."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Double skin milk",
+						"url": "https://en.wikipedia.org/wiki/Double_skin_milk"
+					},
+					{
+						"name": "The Hong Kong Cookery: double skin milk pudding",
+						"url": "https://www.thehongkongcookery.com/2025/05/double-skin-milk-pudding.html"
+					},
+					{
+						"name": "Patent CN1826918A",
+						"url": "https://eureka.patsnap.com/patent-CN1826918A"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Why egg white",
+			"v": "It was a later improvement that makes the milk set after boiling, so it no longer spilled in transport (Wikipedia)"
+		},
+		{
+			"k": "Warning",
+			"v": "No peer-reviewed process source found; times beyond the patent are blog values and approximate"
+		}
+	]
+}

@@ -1,0 +1,72 @@
+{
+	"label": "Beurre noir",
+	"example": true,
+	"note": "Black butter: a similar sauce cooked longer",
+	"about": {
+		"text": "Black butter: a sauce like brown butter, but cooked longer.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Brown_butter"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Raie au beurre noir.jpg",
+		"author": "Les Hotels Paris Rive Gauche - AlainB",
+		"license": "CC BY-SA 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Raie_au_beurre_noir.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "Made like brown butter, only cooked darker, then stopped with an acid. No temperature or time is given in the source; the colour is the guide.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia (fr): Beurre noir",
+					"url": "https://fr.wikipedia.org/wiki/Beurre_noir"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"note": "Melted over low heat until the water has evaporated and the butter colours, cooked past the hazelnut stage of brown butter."
+				},
+				{
+					"type": "custom",
+					"name": "add acid",
+					"note": "Vinegar, lemon juice or white wine (capers also) is stirred in after the cooking, and parsley at the end."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia (fr): Beurre noir",
+						"url": "https://fr.wikipedia.org/wiki/Beurre_noir"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Butter",
+			"v": "Sweet (unsalted) butter"
+		}
+	]
+}

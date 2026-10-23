@@ -1,0 +1,164 @@
+{
+	"label": "Queijo Canastra",
+	"example": true,
+	"aka": [
+		"Queijo Minas artesanal da Canastra",
+		"Canastra cheese",
+		"Queijo Minas Artesanal da Canastra"
+	],
+	"family": "semiHard",
+	"about": {
+		"text": "A pressed raw-milk cow's cheese from Serra da Canastra in south-west Minas Gerais, Brazil, sold fresh (about 4 days), half-cured or fully cured (about 40 days). Part of the Minas artisanal cheese craft that IPHAN recognised as national heritage in 2008.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Queijo_Canastra"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Queijo canastra, Minas Gerais.jpg",
+		"author": "Marcelo Costa (Flickr 8100764@N03)",
+		"license": "CC BY 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Queijo_canastra,_Minas_Gerais.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"BR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		22,
+		60
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Minas Gerais",
+		"lat": -20.25,
+		"lon": -46.55,
+		"x": 0.37069,
+		"y": 0.416,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"how": {
+		"label": "add pingo, press by hand",
+		"text": "Raw cow's milk is set with commercial rennet and the pingo, the drained whey of yesterday's cheeses, which carries the dairy's own lactic flora from batch to batch. The curd is pressed in the mould and the cheese is turned, salted and ripened for a few days to weeks.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Queijo Canastra",
+					"url": "https://en.wikipedia.org/wiki/Queijo_Canastra"
+				},
+				{
+					"name": "Nero et al. 2017 (UFV)",
+					"url": "https://locus.ufv.br/items/c274daa4-f4f0-461d-8b13-333169999471"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"note": "With commercial rennet (coalho) and the pingo, the drained whey of the previous day's cheeses."
+				},
+				{
+					"type": "custom",
+					"name": "press",
+					"note": "Pressed in the mould."
+				},
+				{
+					"type": "custom",
+					"name": "turn"
+				},
+				{
+					"type": "custom",
+					"name": "salt"
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"kinds": [
+						"lactic",
+						"yeast"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "lactic acid bacteria",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "yeasts",
+								"kind": "yeast"
+							}
+						],
+						"by": [
+							"backslop"
+						]
+					},
+					"seconds": {
+						"min": 1209600
+					}
+				}
+			],
+			"text": "The pingo is whey drained from the previous day's cheeses. Some makers use rala, scraped from a 3-5 day old cheese. A survey of artisanal Minas cheeses found mostly Lactobacillus, with Lactococcus, Enterococcus and Weissella.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Queijo Canastra",
+						"url": "https://en.wikipedia.org/wiki/Queijo_Canastra"
+					},
+					{
+						"name": "Nero et al. 2017 (UFV)",
+						"url": "https://locus.ufv.br/items/c274daa4-f4f0-461d-8b13-333169999471"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Canastra_cheese"
+			}
+		],
+		"text": "raw milk, Minas Gerais GI"
+	},
+	"facts": [
+		{
+			"k": "Flora",
+			"v": "In a survey of artisanal Minas cheeses from five regions (Serro, Canastra, Serra do Salitre, Araxa, Campo das Vertentes) lactic acid bacteria predominated, Lactobacillus most of all, with Lactococcus, Enterococcus and Weissella (Nero et al. 2017)"
+		},
+		{
+			"k": "Variants",
+			"v": "Some Serro makers use 'rala', scraped from a 3–5 day old cheese, instead of pingo"
+		},
+		{
+			"k": "Heritage",
+			"v": "The Minas artisanal cheese 'modo de fazer' of Serro, Canastra and Serra do Salitre/Alto Paranaiba was recognised by IPHAN in 2008"
+		}
+	],
+	"raw": true
+}

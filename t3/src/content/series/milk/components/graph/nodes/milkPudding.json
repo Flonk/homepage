@@ -1,0 +1,79 @@
+{
+	"label": "Milk pudding",
+	"from": "fresh",
+	"step": "thicken with starch, sweeten",
+	"about": {
+		"text": "Milk set or thickened into a soft sweet dessert with starch, flour, egg or gelatin: blancmange, rice pudding, muhallebi and double-skin milk are all milk puddings.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Pudding"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Blancmange_on_plate.jpg",
+		"author": "Apmarles",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Blancmange_on_plate.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "Milk is sweetened and thickened with starch, flour, egg or gelatin until it sets on cooling.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Pudding",
+					"url": "https://en.wikipedia.org/wiki/Pudding"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "sweeten"
+				},
+				{
+					"type": "custom",
+					"name": "thicken",
+					"note": "With starch, flour, egg or gelatin."
+				},
+				{
+					"type": "heat",
+					"does": "cool",
+					"note": "Sets on cooling."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Pudding",
+						"url": "https://en.wikipedia.org/wiki/Pudding"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"muhallebi",
+		"doubleSkinMilk",
+		"blancmange",
+		"tavukGogsu",
+		"kazandibi",
+		"vla",
+		"semolinaPudding"
+	]
+}

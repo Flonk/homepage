@@ -1,0 +1,36 @@
+{
+	"label": "Bonne Bouche",
+	"example": true,
+	"family": "bloomy",
+	"regions": [
+		"US"
+	],
+	"beasts": [
+		"goat"
+	],
+	"firm": "soft",
+	"days": [
+		10,
+		80
+	],
+	"setting": "rennet-acid",
+	"rind": "bloomy",
+	"place": {
+		"region": "Vermont",
+		"lat": 44.2,
+		"lon": -72.6,
+		"x": 0.29833,
+		"y": 0.22139,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Bonne_Bouche"
+			}
+		],
+		"text": "Vermont Creamery; ash-dusted, wrinkled geotrichum rind; aged 10 days at the creamery, sold up to about 80 days (article is inconsistent, 80 vs 90)"
+	}
+}

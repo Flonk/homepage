@@ -1,0 +1,68 @@
+{
+	"label": "Kristalose",
+	"example": true,
+	"about": {
+		"text": "Kristalose is a brand name of lactulose, sold as crystals.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Lactulose",
+					"url": "https://en.wikipedia.org/wiki/Lactulose"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"how": {
+		"text": "Lactulose that has been crystallised out of the reaction liquid and purified, so it is sold as a dry powder instead of a syrup, with almost none of the other sugars left.",
+		"sources": {
+			"links": [
+				{
+					"name": "Kristalose prescribing information, Drugs.com",
+					"url": "https://drugs.com/pro/kristalose.html"
+				},
+				{
+					"name": "Kristalose, RxList",
+					"url": "https://www.rxlist.com/kristalose-drug.htm"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "crystallise",
+					"note": "Crystallised out of the reaction liquid."
+				},
+				{
+					"type": "custom",
+					"name": "purify"
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Kristalose prescribing information, Drugs.com",
+						"url": "https://drugs.com/pro/kristalose.html"
+					},
+					{
+						"name": "Kristalose, RxList",
+						"url": "https://www.rxlist.com/kristalose-drug.htm"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Purity",
+			"v": "Less than 0.3 g galactose plus lactose per 10 g, far cleaner than the syrup"
+		},
+		{
+			"k": "Made by",
+			"v": "Cumberland Pharmaceuticals (US)"
+		}
+	]
+}

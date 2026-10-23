@@ -1,0 +1,147 @@
+{
+	"label": "Roquefort",
+	"example": true,
+	"family": "blue",
+	"about": {
+		"text": "Roquefort is a sheep-milk blue cheese from southern France. EU law dictates that only those cheeses aged in the natural Combalou caves of Roquefort-sur-Soulzon may bear the name \"Roquefort\", as it is a recognised geographical indication and has a protected designation of origin.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Roquefort"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Wikicheese - Roquefort - 20150417 - 002.jpg",
+		"author": "Thesupermat",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Wikicheese_-_Roquefort_-_20150417_-_002.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"sheep"
+	],
+	"firm": "semi-soft",
+	"days": [
+		90,
+		180
+	],
+	"setting": "rennet",
+	"rind": "none",
+	"protected": "PDO",
+	"place": {
+		"region": "Aveyron",
+		"lat": 43.93,
+		"lon": 2.99,
+		"x": 0.50831,
+		"y": 0.22243,
+		"located": "knowledge"
+	},
+	"confidence": "high",
+	"how": {
+		"label": "cave-ripen",
+		"text": "Ewe's milk curd seeded with Penicillium roqueforti is drained without pressing and pierced, so the air in the fleurine-ventilated Combalou caves lets the mould vein the open paste. After at least two weeks bare in the caves the cheese is wrapped to slow the mould while it keeps maturing to at least 90 days.",
+		"sources": {
+			"links": [
+				{
+					"name": "Roquefort AOP cahier des charges, amended (INAO, 2017)",
+					"url": "https://extranet.inao.gouv.fr/fichier/PNOCDCRoquefort.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"mould"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Penicillium roqueforti",
+								"kind": "mould"
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"note": "With strains isolated in the Roquefort caves."
+				},
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"temperature": {
+						"min": 28,
+						"max": 34
+					},
+					"note": "With rennet, within 48 h of the oldest milking."
+				},
+				{
+					"type": "custom",
+					"name": "mould",
+					"note": "After pre-draining and with no pressing, 19–20 cm across and 2.5–3 kg."
+				},
+				{
+					"type": "custom",
+					"name": "salt",
+					"note": "Dry salted."
+				},
+				{
+					"type": "ferment",
+					"does": "pierce",
+					"note": "To let air into the paste."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"seconds": {
+						"min": 7776000
+					},
+					"note": "At least 2 wk unwrapped in the Combalou caves, then wrapped, for 90 d or more in all."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Roquefort AOP cahier des charges, amended (INAO, 2017)",
+						"url": "https://extranet.inao.gouv.fr/fichier/PNOCDCRoquefort.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Roquefort"
+			}
+		],
+		"text": "ripened in Combalou caves, min 90 days"
+	},
+	"facts": [
+		{
+			"k": "Law",
+			"v": "The milk is whole and not standardised; only filtration is allowed"
+		}
+	],
+	"raw": true
+}

@@ -1,0 +1,159 @@
+{
+	"label": "Camembert de Normandie",
+	"example": true,
+	"family": "bloomy",
+	"about": {
+		"text": "Camembert is a moist, soft, creamy, surface-ripened cow's milk cheese. It was first made in the late 18th century in Camembert, Normandy, in northwest France. It is sometimes compared in look, taste and texture to brie cheese, albeit with a slightly lower butterfat content than brie's typical 20–25% by weight.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Camembert"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Camembert de Normandie Bonchoix - Photo 4.jpg",
+		"author": "Lyokoï",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Camembert_de_Normandie_Bonchoix_-_Photo_4.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "soft",
+	"days": [
+		21,
+		42
+	],
+	"setting": "rennet",
+	"rind": "bloomy",
+	"protected": "PDO",
+	"place": {
+		"region": "Normandy",
+		"lat": 49,
+		"lon": 0.15,
+		"x": 0.50042,
+		"y": 0.20197,
+		"located": "hint"
+	},
+	"confidence": "high",
+	"how": {
+		"label": "ladle in passes",
+		"text": "The curd is barely cut and is ladled into small moulds in at least five passes, so it drains slowly under its own weight and stays supple. The white Penicillium felt then ripens the small, flat cheese from the rind inwards over about three weeks.",
+		"sources": {
+			"links": [
+				{
+					"name": "Camembert de Normandie AOP cahier des charges (2012 draft)",
+					"url": "https://extranet.inao.gouv.fr/fichier/PNOCDCCamembertNormandie.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"max": 40
+					},
+					"note": "The milk is never heated above this."
+				},
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"temperature": {
+						"max": 37
+					},
+					"note": "With animal rennet."
+				},
+				{
+					"type": "custom",
+					"name": "cut",
+					"note": "Lightly, with the blades at least 2.5 cm apart, and moulded at once."
+				},
+				{
+					"type": "custom",
+					"name": "mould",
+					"seconds": {
+						"min": 64800
+					},
+					"note": "Ladled in at least 5 passes 40 min apart, into moulds of 10.5–11 cm, at least 250 g."
+				},
+				{
+					"type": "custom",
+					"name": "salt",
+					"note": "Dry salt."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"kinds": [
+						"mould"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Penicillium candidum",
+								"kind": "mould",
+								"does": [
+									"rind"
+								]
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"temperature": {
+						"min": 10,
+						"max": 18
+					},
+					"seconds": {
+						"min": 1900800
+					},
+					"note": "In the hâloir, boxed from day 13 and sold from day 22."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Camembert de Normandie AOP cahier des charges (2012 draft)",
+						"url": "https://extranet.inao.gouv.fr/fichier/PNOCDCCamembertNormandie.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Camembert_de_Normandie"
+			}
+		],
+		"text": "Its facts, from these."
+	},
+	"facts": [
+		{
+			"k": "Rind",
+			"v": "Thin white felt of P. candidum, may show red pigment"
+		}
+	],
+	"raw": true
+}

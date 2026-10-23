@@ -1,0 +1,87 @@
+{
+	"label": "Pantua",
+	"example": true,
+	"note": "The Bengali analogue of gulab jamun, made from chhena and semolina rather than khoa; Ledikeni is a lightly fried, syrup-filled kin",
+	"about": {
+		"text": "Pantua is a Bengali sweet of deep-fried balls of chhena, semolina, milk and ghee soaked in sugar syrup, from pale brown to nearly black depending on how long it is fried.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Pantua"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Pantua - Kolkata 2014-01-25 7472.JPG",
+		"author": "Biswarup Ganguly",
+		"license": "CC BY 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Pantua_-_Kolkata_2014-01-25_7472.JPG"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"IN",
+		"BD"
+	],
+	"how": {
+		"label": "knead, fry, soak in syrup",
+		"text": "Unlike rasgulla the balls are fried before the syrup, which browns them.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Pantua",
+					"url": "https://en.wikipedia.org/wiki/Pantua"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "knead",
+					"note": "Chhena with semolina, milk and ghee."
+				},
+				{
+					"type": "custom",
+					"name": "shape",
+					"note": "Into balls."
+				},
+				{
+					"type": "custom",
+					"name": "fry",
+					"note": "Deep-fried; frying time sets the colour."
+				},
+				{
+					"type": "custom",
+					"name": "soak",
+					"note": "In syrup."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Pantua",
+						"url": "https://en.wikipedia.org/wiki/Pantua"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Flavour",
+			"v": "Cardamom, rose water"
+		}
+	]
+}

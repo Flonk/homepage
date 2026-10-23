@@ -1,0 +1,109 @@
+{
+	"label": "Akkawi",
+	"example": true,
+	"aka": [
+		"Akawi",
+		"Akkaoui"
+	],
+	"family": "brined",
+	"about": {
+		"text": "Akkawi cheese is a white brine cheese from the Levant region, named after the Palestinian city of Acre.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Akkawi"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "جبنة عكاوي.jpg",
+		"author": "Rotana Nawwaf Al Hasanat",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:%D8%AC%D8%A8%D9%86%D8%A9_%D8%B9%D9%83%D8%A7%D9%88%D9%8A.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"LB",
+		"SY",
+		"PS"
+	],
+	"beasts": [
+		"cow",
+		"goat",
+		"sheep"
+	],
+	"firm": "semi-hard",
+	"days": [
+		2,
+		2
+	],
+	"setting": "rennet",
+	"rind": "brine",
+	"place": {
+		"region": "Northern District",
+		"lat": 32.9,
+		"lon": 35.1,
+		"x": 0.5975,
+		"y": 0.26168,
+		"located": "hint"
+	},
+	"confidence": "medium",
+	"how": {
+		"text": "Akkawi is a Levantine white cheese pressed into blocks and kept in a fairly weak brine, and is usually eaten fresh; this gives a semi-hard, chalky-white, firm curd with a salty taste.",
+		"sources": {
+			"links": [
+				{
+					"name": "Kamleh et al., J. Sci. Food Agric. 95 (2015)",
+					"url": "https://doi.org/10.1002/jsfa.6906"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "pasteurise",
+					"note": "The milk is pasteurised."
+				},
+				{
+					"type": "custom",
+					"name": "press",
+					"note": "The curd is pressed in hoops into rectangular blocks."
+				},
+				{
+					"type": "custom",
+					"name": "brine",
+					"note": "In a pasteurised brine, 10–12 % salt in commercial practice."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Kamleh et al., J. Sci. Food Agric. 95 (2015)",
+						"url": "https://doi.org/10.1002/jsfa.6906"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Akkawi"
+			}
+		],
+		"text": "Cured two days in salted whey brine, keeps up to a year; does not melt easily; Wikipedia classes it semi-hard"
+	}
+}

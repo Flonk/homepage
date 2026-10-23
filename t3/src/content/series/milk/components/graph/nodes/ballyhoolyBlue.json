@@ -1,0 +1,37 @@
+{
+	"label": "Ballyhooly Blue",
+	"example": true,
+	"family": "blue",
+	"regions": [
+		"IE"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-soft",
+	"days": [
+		60,
+		90
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Cork",
+		"lat": 52.1,
+		"lon": -8.43,
+		"x": 0.47658,
+		"y": 0.18841,
+		"located": "knowledge"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "en.wikipedia.org",
+				"url": "https://en.wikipedia.org/wiki/List_of_Irish_cheeses"
+			}
+		],
+		"text": "Raw cow milk; no ripening data found, estimated"
+	}
+}

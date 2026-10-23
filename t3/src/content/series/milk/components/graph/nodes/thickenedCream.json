@@ -1,0 +1,70 @@
+{
+	"label": "Thickened cream",
+	"from": "cream",
+	"at": 35,
+	"about": {
+		"text": "Australia’s everyday cream: at least 35 % fat, as all cream there must have, with gelatine or another thickener added so that it whips firmer and holds.",
+		"sources": {
+			"links": [
+				{
+					"name": "Food Standards Code, Standard 2.5.2",
+					"url": "https://legislation.gov.au/F2015L00470/asmade/2015-04-01/text/original/epub/OEBPS/document_1/document_1.html"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"regions": [
+		"AU"
+	],
+	"how": {
+		"text": "It is ordinary cream with a thickener stirred in, so it whips firmer and holds its shape. Nothing is soured: the thickening is physical, not a ferment. Thickener amounts are not stated in the sources opened.",
+		"sources": {
+			"links": [
+				{
+					"name": "Food Standards Code, Standard 2.5.2 (cream: at least 350 g/kg milkfat)",
+					"url": "https://www.legislation.gov.au/F2015L00470/asmade/2015-04-01/text/original/epub/OEBPS/document_1/document_1.html"
+				},
+				{
+					"name": "Wikipedia: Cream (thickened cream, 35–36.5 %, gelatine or other thickeners)",
+					"url": "https://en.wikipedia.org/wiki/Cream"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "add thickener",
+					"note": "Gelatine or another thickener is stirred in."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Food Standards Code, Standard 2.5.2 (cream: at least 350 g/kg milkfat)",
+						"url": "https://www.legislation.gov.au/F2015L00470/asmade/2015-04-01/text/original/epub/OEBPS/document_1/document_1.html"
+					},
+					{
+						"name": "Wikipedia: Cream (thickened cream, 35–36.5 %, gelatine or other thickeners)",
+						"url": "https://en.wikipedia.org/wiki/Cream"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 35,
+			"max": 36.5
+		}
+	},
+	"facts": [
+		{
+			"k": "Where",
+			"v": "Australia and New Zealand"
+		}
+	]
+}

@@ -1,0 +1,55 @@
+{
+	"label": "Vispgrädde",
+	"from": "cream",
+	"at": 40,
+	"about": {
+		"text": "Sweden’s whipping cream, at 40 % fat richer than most countries’, with nothing in it but pasteurised cream.",
+		"sources": {
+			"links": [
+				{
+					"name": "ICA: Arla Vispgrädde 40 %",
+					"url": "https://handla.ica.se/handla/produkt/vispgradde-40-1l-arla-ko-id_p_7310865072757"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"regions": [
+		"SE"
+	],
+	"how": {
+		"text": "Cream set to 40 % fat and pasteurised, so it has to stay chilled.",
+		"sources": {
+			"links": [
+				{
+					"name": "ICA: Arla Vispgrädde 40 %",
+					"url": "https://handla.ica.se/handla/produkt/vispgradde-40-1l-arla-ko-id_p_7310865072757"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "pasteurise",
+					"note": "Pasteurised, so it has to stay chilled."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "ICA: Arla Vispgrädde 40 %",
+						"url": "https://handla.ica.se/handla/produkt/vispgradde-40-1l-arla-ko-id_p_7310865072757"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 40,
+			"max": 40
+		}
+	}
+}

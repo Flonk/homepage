@@ -1,0 +1,110 @@
+{
+	"label": "Mozzarella di bufala",
+	"example": true,
+	"about": {
+		"text": "Buffalo mozzarella is a mozzarella made from the milk of the Italian Mediterranean buffalo. A fresh, soft pasta filata cheese, it is traditionally produced in Campania, particularly in the provinces of Caserta and Salerno.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Buffalo_mozzarella"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Mozzarella.jpg",
+		"author": "Luigi Versaggi",
+		"license": "CC BY-SA 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Mozzarella.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"buffalo"
+	],
+	"how": {
+		"text": "Buffalo-milk curd soured with natural whey starter until it can stretch is spun in boiling water and torn into balls, giving thin overlapping layers that ooze a milky liquid; it is not ripened but sold fresh in its liquid.",
+		"sources": {
+			"links": [
+				{
+					"name": "ONAF technical sheet, Mozzarella di Bufala Campana DOP",
+					"url": "https://www.onaf.it/uploads/public/16935_mozzarella-bufala-campana.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"temperature": {
+						"min": 34,
+						"max": 38
+					},
+					"note": "With liquid calf rennet."
+				},
+				{
+					"type": "custom",
+					"name": "cut",
+					"note": "The curd is broken to walnut size, 3–6 cm."
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [],
+						"by": [
+							"backslop"
+						]
+					},
+					"seconds": {
+						"min": 18000,
+						"max": 18000,
+						"about": true
+					},
+					"note": "Natural whey starter from previous buffalo-milk batches, and the curd is soured under whey until it can stretch."
+				},
+				{
+					"type": "custom",
+					"name": "stretch",
+					"note": "Stretched in boiling water and torn off by hand into pieces of 10–800 g, plaits up to 3 kg."
+				},
+				{
+					"type": "custom",
+					"name": "brine",
+					"note": "In a brine of typically 10–18 %."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "ONAF technical sheet, Mozzarella di Bufala Campana DOP",
+						"url": "https://www.onaf.it/uploads/public/16935_mozzarella-bufala-campana.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Whole fresh; raw, thermised or pasteurised; used ≤60 h after milking"
+		}
+	]
+}

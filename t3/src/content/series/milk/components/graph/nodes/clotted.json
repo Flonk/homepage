@@ -1,0 +1,114 @@
+{
+	"label": "Clotted cream\n(kaymak)",
+	"comment": "Kaymak and malai also skim off heated whole milk as it cools.",
+	"from": "fresh",
+	"step": "heat slowly, skim the crust",
+	"alsoFrom": [
+		"cream"
+	],
+	"niche": 1,
+	"about": {
+		"text": "Clotted cream is a thick cream made by heating full-cream cow's milk using steam or a water bath and then leaving it in shallow pans to cool slowly. During this time, the cream content rises to the surface and forms \"clots\" or \"clouts\", hence the name. Clotted cream is an essential ingredient for cream tea.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Clotted_cream"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "ClottedCream.JPG",
+		"author": "Biggishben~commonswiki",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:ClottedCream.JPG"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "Gentle prolonged heat and slow cooling make the fat clot into a golden crust that is skimmed off. No culture, no acid.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Clotted cream",
+					"url": "https://en.wikipedia.org/wiki/Clotted_cream"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "stand",
+					"note": "Milk is left in a shallow pan for hours so the cream rises."
+				},
+				{
+					"type": "heat",
+					"does": "heat",
+					"seconds": {
+						"max": 3600
+					},
+					"note": "Traditionally over hot cinders or in a water bath, the float method (double cream on milk, steam or very hot water) holds it up to an hour, and the scald method heats separated cream alone at a lower temperature for a set time."
+				},
+				{
+					"type": "heat",
+					"does": "cool",
+					"seconds": {
+						"min": 43200
+					},
+					"note": "Cooled slowly, 12 h or more in the float method, or simply chilled in the scald method."
+				},
+				{
+					"type": "custom",
+					"name": "skim",
+					"note": "The clots are skimmed with a reamer."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Clotted cream",
+						"url": "https://en.wikipedia.org/wiki/Clotted_cream"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"cornishClottedCream",
+		"devonClottedCream",
+		"kaymak",
+		"afyonKaymagi",
+		"malai",
+		"urum"
+	],
+	"composition": {
+		"fat": {
+			"min": 55
+		}
+	},
+	"facts": [
+		{
+			"k": "Average fat",
+			"v": "About 64 %"
+		},
+		{
+			"k": "Cornish PDO",
+			"v": "Cornish milk, traditional recipe"
+		},
+		{
+			"k": "Legal status UK",
+			"v": "Counts as pasteurised although the temperatures are lower"
+		}
+	]
+}

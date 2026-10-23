@@ -1,0 +1,173 @@
+{
+	"label": "Erzincan tulum",
+	"example": true,
+	"about": {
+		"text": "Erzincan tulum is a skin-ripened tulum cheese from Eastern Anatolia, Turkey.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Tulum_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "1A5A4830.jpg",
+		"author": "Dcd24~trwiki",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:1A5A4830.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"TR"
+	],
+	"beasts": [
+		"sheep",
+		"goat"
+	],
+	"how": {
+		"text": "Erzincan tulum is ripened in a goatskin by the milk's own lactic bacteria. A trial that added a yoghurt-type starter to pasteurised ewe's milk shortened the making from 10-12 days to about 2.",
+		"sources": {
+			"links": [
+				{
+					"name": "Ceylan, Caglar, Cakmakci 2007, Int. J. Dairy Technol. 60(3):191-197",
+					"url": "https://avesis.atauni.edu.tr/yayin/0d734c3c-93b5-4999-ade0-635f9dcf3fa2/some-physicochemical-microbiological-and-sensory-properties-of-tulum-cheese-produced-from-ewes-milk-via-a-modified-method"
+				},
+				{
+					"name": "Guven et al. 2025, Food Bioscience 74: LAB from Erzincan tulum",
+					"url": "https://avesis.atauni.edu.tr/yayin/707114a8-7d82-4a6d-87b0-e568e88da574/characterization-of-lactic-acid-bacteria-from-erzincan-tulum-cheese-probiotic-potential-antimicrobial-properties-and-technological-traits"
+				},
+				{
+					"name": "Cheese Atlas: Tulum Peyniri",
+					"url": "https://thecheeseatlas.com/cheese-profiles/tulum-peyniri/"
+				},
+				{
+					"name": "Raw vs pasteurised Akkaraman sheep milk Erzincan tulum (TRDizin 427247)",
+					"url": "https://search.trdizin.gov.tr/yayin/detay/427247"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "drain",
+					"note": "The curd is strained in cloth."
+				},
+				{
+					"type": "custom",
+					"name": "rest",
+					"note": "Rests overnight."
+				},
+				{
+					"type": "custom",
+					"name": "crumble",
+					"note": "Crumbled in a copper vessel."
+				},
+				{
+					"type": "custom",
+					"name": "salt",
+					"note": "Dry-salted."
+				},
+				{
+					"type": "custom",
+					"name": "press",
+					"seconds": {
+						"min": 864000,
+						"max": 1036800,
+						"about": true
+					},
+					"note": "Pressed and drained about 10 days, in the traditional run 10-12 days."
+				},
+				{
+					"type": "custom",
+					"name": "pack",
+					"note": "Packed into a cleaned goatskin that is sewn shut."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"adds": {
+						"microbes": [
+							{
+								"name": "Lactiplantibacillus plantarum",
+								"kind": "bacterium"
+							},
+							{
+								"name": "Lacticaseibacillus rhamnosus",
+								"kind": "bacterium"
+							},
+							{
+								"name": "Lactiplantibacillus pentosus",
+								"kind": "bacterium"
+							},
+							{
+								"name": "Loigolactobacillus coryniformis subsp. torquens",
+								"kind": "bacterium"
+							},
+							{
+								"name": "Levilactobacillus brevis",
+								"kind": "bacterium"
+							}
+						],
+						"by": [
+							"wild"
+						]
+					},
+					"note": "No culture is added in the traditional method; the raw milk's own lactic flora ferments it."
+				},
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"note": "With rennet; commercial liquid rennet in the Akkaraman sheep-milk studies."
+				}
+			],
+			"text": "Ripened in a goatskin at altitude. A quick method adds 0.5 % starter (Streptococcus salivarius subsp. thermophilus and Lactobacillus delbrueckii subsp. bulgaricus 1:1) to pasteurised ewe's milk and cuts making from 10-12 days to about 2.",
+			"sources": {
+				"links": [
+					{
+						"name": "Ceylan, Caglar, Cakmakci 2007, Int. J. Dairy Technol. 60(3):191-197",
+						"url": "https://avesis.atauni.edu.tr/yayin/0d734c3c-93b5-4999-ade0-635f9dcf3fa2/some-physicochemical-microbiological-and-sensory-properties-of-tulum-cheese-produced-from-ewes-milk-via-a-modified-method"
+					},
+					{
+						"name": "Guven et al. 2025, Food Bioscience 74: LAB from Erzincan tulum",
+						"url": "https://avesis.atauni.edu.tr/yayin/707114a8-7d82-4a6d-87b0-e568e88da574/characterization-of-lactic-acid-bacteria-from-erzincan-tulum-cheese-probiotic-potential-antimicrobial-properties-and-technological-traits"
+					},
+					{
+						"name": "Cheese Atlas: Tulum Peyniri",
+						"url": "https://thecheeseatlas.com/cheese-profiles/tulum-peyniri/"
+					},
+					{
+						"name": "Raw vs pasteurised Akkaraman sheep milk Erzincan tulum (TRDizin 427247)",
+						"url": "https://search.trdizin.gov.tr/yayin/detay/427247"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Akkaraman sheep in the studies"
+		},
+		{
+			"k": "Container",
+			"v": "Goatskin (tulum), or plastic or metal boxes today"
+		},
+		{
+			"k": "Quick method",
+			"v": "A trial with 0.5 % starter (1:1 Streptococcus salivarius subsp. thermophilus and Lactobacillus delbrueckii subsp. bulgaricus) in ewe's milk pasteurised at 65 °C for 30 min cut manufacture from 10-12 days to about 2 days; sensory scores like the traditional cheese"
+		}
+	]
+}

@@ -1,0 +1,37 @@
+{
+	"label": "Mount Callan Cheddar",
+	"example": true,
+	"family": "cheddared",
+	"regions": [
+		"IE"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "hard",
+	"days": [
+		180,
+		365
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Clare",
+		"lat": 52.9,
+		"lon": -9,
+		"x": 0.475,
+		"y": 0.18476,
+		"located": "knowledge"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "en.wikipedia.org",
+				"url": "https://en.wikipedia.org/wiki/List_of_Irish_cheeses"
+			}
+		],
+		"text": "Raw cow's milk farmhouse Cheddar, Co. Clare; ripening time not found"
+	}
+}

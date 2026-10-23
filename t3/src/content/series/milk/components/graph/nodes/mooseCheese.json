@@ -1,0 +1,50 @@
+{
+	"label": "Moose cheese",
+	"example": true,
+	"aka": [
+		"Elk House moose cheese",
+		"Älgens Hus moose cheese"
+	],
+	"family": "soft",
+	"about": {
+		"text": "A cheese produced in Sweden from moose milk",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Moose_cheese"
+				}
+			],
+			"text": "Made from moose milk (not in the milk enum). Three styles at Älgens Hus, Bjurholm: rind-style, blue and feta-style, so not one cheese type; roughly 300 kg a year. Also made in Russia by GamEat"
+		}
+	},
+	"regions": [
+		"SE"
+	],
+	"firm": "soft",
+	"days": [
+		0,
+		30
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "none",
+	"place": {
+		"region": "Västerbotten",
+		"lat": 63.92,
+		"lon": 19.22,
+		"x": 0.55339,
+		"y": 0.12574,
+		"located": "hint"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Moose_cheese"
+			}
+		],
+		"text": "Made from moose milk (not in the milk enum). Three styles at Älgens Hus, Bjurholm: rind-style, blue and feta-style, so not one cheese type; roughly 300 kg a year. Also made in Russia by GamEat"
+	}
+}

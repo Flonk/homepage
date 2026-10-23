@@ -1,0 +1,42 @@
+{
+	"label": "Boeren-Leidse met sleutels",
+	"example": true,
+	"family": "semiHard",
+	"regions": [
+		"NL"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		56,
+		180
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "South Holland",
+		"lat": 52.16,
+		"lon": 4.5,
+		"x": 0.5125,
+		"y": 0.18814,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Boeren-Leidse_met_sleutels"
+			},
+			{
+				"name": "en.wikipedia.org",
+				"url": "https://en.wikipedia.org/wiki/Leyden_cheese"
+			}
+		],
+		"text": "Farmhouse Leiden cheese with cumin, crossed-keys mark; raw milk, partly skimmed; PDO spec ripening minimum not verified"
+	}
+}

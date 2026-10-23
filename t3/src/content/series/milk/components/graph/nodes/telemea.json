@@ -1,0 +1,123 @@
+{
+	"label": "Telemea",
+	"example": true,
+	"family": "brined",
+	"about": {
+		"text": "Telemea is the name of a Romanian cheese traditionally made of sheep's milk. Nowadays the term encompasses cheese made out of cow's milk, and in some cases of goat's, or buffalo's milk.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Telemea"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Telemea vom Schaf.jpg",
+		"author": "Sacha47",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Telemea_vom_Schaf.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"RO"
+	],
+	"beasts": [
+		"sheep",
+		"cow"
+	],
+	"firm": "semi-soft",
+	"days": [
+		14,
+		60
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "brine",
+	"confidence": "medium",
+	"how": {
+		"text": "Telemea curd is pressed, cut into squares and matured in brine, which makes it crisper, saltier and more flavoured with age; the PDO Telemea de Ibănești is distinguished by brine taken from a local salt-water spring.",
+		"sources": {
+			"links": [
+				{
+					"name": "Telemea de Ibănești PDO single document, OJ C 6, 10.1.2015 (DFAT copy)",
+					"url": "https://www.dfat.gov.au/sites/default/files/163f.pdf"
+				},
+				{
+					"name": "Wikipedia: Telemea",
+					"url": "https://en.wikipedia.org/wiki/Telemea"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"note": "With rennet, microbial rennet in the Ibănești PDO."
+				},
+				{
+					"type": "custom",
+					"name": "drain",
+					"note": "The curd drains in cloth."
+				},
+				{
+					"type": "custom",
+					"name": "press",
+					"note": "Pressed overnight and cut into squares."
+				},
+				{
+					"type": "custom",
+					"name": "brine",
+					"note": "In the Ibănești PDO the brine is drawn from a local salt-water spring."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"seconds": {
+						"min": 1728000
+					},
+					"note": "Matured in brine, fresh after 24 h in Ibănești and mature after at least 20 days."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Telemea de Ibănești PDO single document, OJ C 6, 10.1.2015 (DFAT copy)",
+						"url": "https://www.dfat.gov.au/sites/default/files/163f.pdf"
+					},
+					{
+						"name": "Wikipedia: Telemea",
+						"url": "https://en.wikipedia.org/wiki/Telemea"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Telemea"
+			}
+		],
+		"text": "traditionally sheep, today mostly cow; fresh in brine (caș) for up to a couple of weeks, then aged in barrels; only Telemea de Ibănești is PGI"
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Ibănești PDO: milk of local cows"
+		}
+	]
+}

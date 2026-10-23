@@ -1,0 +1,99 @@
+{
+	"label": "Torta del Casar",
+	"example": true,
+	"family": "plantCheese",
+	"about": {
+		"text": "A soft sheep milk cheese from Casar de Cáceres in Extremadura, curdled with the pistils of the wild cardoon thistle, which give it a faint bitterness.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Torta_del_Casar"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Torta del Casar.jpg",
+		"author": "MollySVH (Flickr)",
+		"license": "CC BY 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Torta_del_Casar.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"ES"
+	],
+	"beasts": [
+		"sheep"
+	],
+	"firm": "soft",
+	"days": [
+		60,
+		90
+	],
+	"setting": "plant",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Extremadura",
+		"lat": 39.73,
+		"lon": -6.33,
+		"x": 0.48242,
+		"y": 0.2381,
+		"located": "knowledge"
+	},
+	"confidence": "high",
+	"how": {
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Torta del Casar",
+					"url": "https://en.wikipedia.org/wiki/Torta_del_Casar"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "coagulate",
+					"by": "plant",
+					"note": "With pistils of the cardoon thistle (Cynara cardunculus) as coagulant."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"seconds": {
+						"min": 5184000
+					}
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Torta del Casar",
+						"url": "https://en.wikipedia.org/wiki/Torta_del_Casar"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Torta_del_Casar"
+			}
+		],
+		"text": "thistle rennet, spoonable paste"
+	}
+}

@@ -1,0 +1,130 @@
+{
+	"label": "Ryazhenka",
+	"aka": [
+		"Baked fermented milk",
+		"Ряженка"
+	],
+	"from": "bakedMilk",
+	"step": "ferment baked milk",
+	"niche": 1,
+	"about": {
+		"text": "Ryazhenka or ryazhanka, is a traditional fermented milk product in Ukraine, Russia, and Belarus. It is made from baked milk by lactic acid fermentation.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Ryazhenka"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Ryazhenka7c.JPG",
+		"author": "Off-shell",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Ryazhenka7c.JPG"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"RU",
+		"UA",
+		"BY"
+	],
+	"how": {
+		"text": "The long baking browns the milk through the Maillard reaction and boils off water, so the milk is already caramel-flavoured and cream-coloured. Thermophilic streptococci then sour it to a mild, thick drink; households seed it with smetana instead.",
+		"sources": {
+			"links": [
+				{
+					"name": "EAEU Technical Regulation TR TS 033/2013 (English translation)",
+					"url": "https://agriexchange.apeda.gov.in/ImportRegulations/CustomsUnionTechnicalRegulationonMilkandDairyProductsMoscowRussianFederation11182013.pdf"
+				},
+				{
+					"name": "Wikipedia: Ryazhenka (citing GOST 31455-2012)",
+					"url": "https://en.wikipedia.org/wiki/Ryazhenka"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 85,
+						"max": 99
+					},
+					"seconds": {
+						"min": 10800
+					},
+					"note": "The milk is baked, which browns it."
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Streptococcus thermophilus",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"temperature": {
+						"min": 40
+					},
+					"seconds": {
+						"min": 10800,
+						"max": 21600
+					},
+					"note": "Households seed it with smetana instead of a starter, and L. bulgaricus may join S. thermophilus."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "EAEU Technical Regulation TR TS 033/2013 (English translation)",
+						"url": "https://agriexchange.apeda.gov.in/ImportRegulations/CustomsUnionTechnicalRegulationonMilkandDairyProductsMoscowRussianFederation11182013.pdf"
+					},
+					{
+						"name": "Wikipedia: Ryazhenka (citing GOST 31455-2012)",
+						"url": "https://en.wikipedia.org/wiki/Ryazhenka"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"varenets"
+	],
+	"composition": {
+		"fat": {
+			"min": 3.5,
+			"max": 4
+		}
+	},
+	"facts": [
+		{
+			"k": "Texture",
+			"v": "Creamy colour and caramel flavour from the baked milk"
+		}
+	]
+}

@@ -1,0 +1,42 @@
+{
+	"label": "Queijo Amarelo da Beira Baixa",
+	"example": true,
+	"family": "plantCheese",
+	"regions": [
+		"PT"
+	],
+	"beasts": [
+		"sheep",
+		"goat"
+	],
+	"firm": "semi-hard",
+	"days": [
+		40,
+		60
+	],
+	"setting": "plant",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Castelo Branco District",
+		"lat": 39.9,
+		"lon": -7.5,
+		"x": 0.47917,
+		"y": 0.23749,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Queijo_Amarelo_da_Beira_Baixa"
+			},
+			{
+				"name": "en.wikipedia.org",
+				"url": "https://en.wikipedia.org/wiki/Queijos_da_Beira_Baixa"
+			}
+		],
+		"text": "Its facts, from these."
+	}
+}

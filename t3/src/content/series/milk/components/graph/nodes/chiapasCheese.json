@@ -1,0 +1,52 @@
+{
+	"label": "Chiapas cheese",
+	"example": true,
+	"aka": [
+		"Queso crema de Chiapas"
+	],
+	"family": "freshCheese",
+	"about": {
+		"text": "A dry cream cheese with a crumbly texture that is formed into balls and often has string cheese wrapped around it.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Chiapas_cheese"
+				}
+			],
+			"text": "Soft, fresh, pressed, mixed (acid and rennet) curd, raw milk from dual-purpose cattle per academic studies; no ripening described"
+		}
+	},
+	"regions": [
+		"MX"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		14
+	],
+	"estimated": true,
+	"setting": "rennet-acid",
+	"rind": "none",
+	"place": {
+		"region": "Chiapas",
+		"lat": 16.75,
+		"lon": -93.1,
+		"x": 0.24139,
+		"y": 0.31134,
+		"located": "hint"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Chiapas_cheese"
+			}
+		],
+		"text": "Soft, fresh, pressed, mixed (acid and rennet) curd, raw milk from dual-purpose cattle per academic studies; no ripening described"
+	}
+}

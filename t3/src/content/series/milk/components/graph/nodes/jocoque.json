@@ -1,0 +1,101 @@
+{
+	"label": "Jocoque",
+	"example": true,
+	"aka": [
+		"Jocoqui"
+	],
+	"note": "The Mexican kind is a soured milk, traditionally spontaneous, not strained thermophilic yoghurt",
+	"about": {
+		"text": "A Mexican fermented milk between yoghurt and cheese, soured with lactic cultures and strained until thick; its dry form, jocoque seco, is eaten with tostadas. It came with Lebanese cooking and resembles labneh.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Jocoque"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Jocoque para acompanar tacos arabes, Puebla.jpg",
+		"author": "ProtoplasmaKid",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Jocoque_para_acompa%C3%B1ar_tacos_%C3%A1rabes,_Puebla.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"MX"
+	],
+	"beasts": [
+		"cow",
+		"sheep",
+		"goat"
+	],
+	"how": {
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Jocoque",
+					"url": "https://en.wikipedia.org/wiki/Jocoque"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [],
+						"by": [
+							"wild"
+						],
+						"vessel": "clay vessel by a fire"
+					},
+					"note": "Traditionally soured spontaneously in a clay vessel by a fire with no culture added; today a mix of dairy cultures (species not given) is added to pasteurised milk."
+				},
+				{
+					"type": "custom",
+					"name": "strain",
+					"note": "The curd is separated by filtration to firm it."
+				}
+			],
+			"text": "Traditionally no cultures are added; today a mix of dairy cultures (species not given) goes into pasteurised milk. The curd is then strained to firm it.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Jocoque",
+						"url": "https://en.wikipedia.org/wiki/Jocoque"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Jocoque seco",
+			"v": "Dehydrated, similar to Arab labneh; 3-4 cm balls may be marinated in olive oil with thyme, dill or mint"
+		},
+		{
+			"k": "Where",
+			"v": "Sinaloa, Los Altos de Jalisco, Oaxaca and central Mexico"
+		},
+		{
+			"k": "Origin",
+			"v": "Uncertain, influenced by Lebanese cuisine; served with tacos árabes in Puebla"
+		}
+	]
+}

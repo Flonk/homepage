@@ -1,0 +1,82 @@
+{
+	"label": "Dondurma",
+	"example": true,
+	"note": "Maraş dondurma: milk, salep and sugar, no cream; pounded and stretched, not churned",
+	"about": {
+		"text": "Dondurma is the Turkish word for ice cream. Maraş dondurması or dövme dondurma is a Turkish variety associated with the city and province of Kahramanmaraş, known for its elastic texture and distinctive preparation. Traditional Maraş dondurması is made using goat's milk, salep, and sugar.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Dondurma"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Maraş dondurması in Kyoto.jpg",
+		"author": "Chris Gladis",
+		"license": "CC BY 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Mara%C5%9F_dondurmas%C4%B1_in_Kyoto.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"TR"
+	],
+	"beasts": [
+		"goat"
+	],
+	"how": {
+		"text": "The mix is heated with salep and then beaten hard until it reaches the texture wanted, rather than frozen in an ordinary churn. The source gives no quantities, temperatures or times.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Dondurma",
+					"url": "https://en.wikipedia.org/wiki/Dondurma"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"note": "Milk, sugar and salep heated until the milk boils, as in the earliest recipe (1882)."
+				},
+				{
+					"type": "custom",
+					"name": "beat",
+					"note": "Beaten hard until it reaches the texture wanted, in the earliest recipe with snow, and by street vendors with long-handled paddles."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Dondurma",
+						"url": "https://en.wikipedia.org/wiki/Dondurma"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Salep",
+			"v": "Ground from an orchid tuber; Maraş uses distinctly more than usual"
+		},
+		{
+			"k": "Texture",
+			"v": "Salep and mastic together give a hard texture that resists melting; the stringy stretch comes mainly from salep"
+		}
+	]
+}

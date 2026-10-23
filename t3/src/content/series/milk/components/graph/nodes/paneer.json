@@ -1,0 +1,120 @@
+{
+	"label": "Paneer",
+	"from": "chhena",
+	"step": "press",
+	"niche": 0,
+	"cheese": true,
+	"about": {
+		"text": "Paneer is a fresh acid-set cheese, common in South Asian cuisine, made from cow milk or buffalo milk. It is a non-aged, non-melting soft cheese made by curdling milk with an acid, such as lemon juice or citric acid. Paneer is predominantly used in north Indian dishes and is commonly used throughout South Asia, especially India, due to its versatility as an ingredient in diverse dishes.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Paneer"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Homemade Paneer cut into pieces for cooking Cheese Fromage India.jpg",
+		"author": "Ian Brown",
+		"license": "CC BY 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Homemade_Paneer_cut_into_pieces_for_cooking_Cheese_Fromage_India.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"IN",
+		"PK",
+		"BD",
+		"NP"
+	],
+	"beasts": [
+		"cow",
+		"buffalo"
+	],
+	"how": {
+		"text": "Chhena, drained in muslin, is pressed under a weight to squeeze out more whey, then dipped in chilled water to firm it. Because the casein was set hot by acid, it does not melt when fried or cooked.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Paneer",
+					"url": "https://en.wikipedia.org/wiki/Paneer"
+				},
+				{
+					"name": "Wikipedia: Chhena (FSSAI limits)",
+					"url": "https://en.wikipedia.org/wiki/Chhena"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "press",
+					"seconds": {
+						"min": 7200,
+						"max": 10800
+					},
+					"note": "Under a weight (stone slab) for firm paneer, about 20 min for soft."
+				},
+				{
+					"type": "heat",
+					"does": "cool",
+					"seconds": {
+						"min": 7200,
+						"max": 10800
+					},
+					"note": "In chilled water."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Paneer",
+						"url": "https://en.wikipedia.org/wiki/Paneer"
+					},
+					{
+						"name": "Wikipedia: Chhena (FSSAI limits)",
+						"url": "https://en.wikipedia.org/wiki/Chhena"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"rubing",
+		"kalari"
+	],
+	"composition": {
+		"moisture": {
+			"max": 70
+		},
+		"fatInDryMatter": {
+			"min": 50
+		}
+	},
+	"facts": [
+		{
+			"k": "Acid",
+			"v": "Lemon juice, vinegar, citric acid or dahi"
+		},
+		{
+			"k": "Law",
+			"v": "FSSA: at most 70 % moisture, at least 50 % fat in dry matter; the older BIS limit was 60 % moisture"
+		},
+		{
+			"k": "Variants",
+			"v": "Surti paneer (buffalo milk) is drained and ripened in whey"
+		}
+	]
+}

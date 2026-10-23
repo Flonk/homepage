@@ -1,0 +1,116 @@
+{
+	"label": "Requesón",
+	"example": true,
+	"family": "ricotta",
+	"about": {
+		"text": "A soft, cheap fresh cheese made from the curd recovered from the whey left over after cheesemaking. In Mexico it is popular, spoils quickly, and is used like fresh cheese in gorditas, quesadillas, empanadas and sweet breads, or eaten with honey or jam.",
+		"sources": {
+			"links": [
+				{
+					"name": "Larousse Cocina (Diccionario enciclopédico de la gastronomía mexicana)",
+					"url": "https://laroussecocina.mx/palabra/requeson/"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Barreña de Grau.jpg",
+		"author": "Amasuela, Luis Lafuente Agudín",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Barre%C3%B1a_de_Grau.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"ES",
+		"MX"
+	],
+	"beasts": [
+		"cow",
+		"sheep",
+		"goat"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		0
+	],
+	"setting": "acid-heat",
+	"rind": "none",
+	"confidence": "high",
+	"how": {
+		"text": "The same method as ricotta: acidify the whey, heat it to about 90 °C so the whey proteins clot, then drain the curd. The Spanish article gives no fermentation time.",
+		"sources": {
+			"links": [
+				{
+					"name": "Spanish Wikipedia: Requesón",
+					"url": "https://es.wikipedia.org/wiki/Requesón"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "acidify",
+					"note": "With vinegar or citrus juice at home, about 5–10 % of the whey's volume, or citric or tartaric acid in industry."
+				},
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 90,
+						"max": 90,
+						"about": true
+					}
+				},
+				{
+					"type": "custom",
+					"name": "drain",
+					"seconds": {
+						"min": 36000,
+						"max": 36000,
+						"about": true
+					},
+					"note": "In industry."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Spanish Wikipedia: Requesón",
+						"url": "https://es.wikipedia.org/wiki/Requesón"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "en.wikipedia.org",
+				"url": "https://en.wikipedia.org/wiki/Reques%C3%B3n"
+			}
+		],
+		"text": "Its facts, from these."
+	},
+	"facts": [
+		{
+			"k": "Curd",
+			"v": "Whey proteins (albumin, globulin), not casein: a creamy white opaque mass"
+		},
+		{
+			"k": "Variants",
+			"v": "Somewhat moister than ricotta; made mainly in Cantabria, the Pyrenees and Galicia; Catalan name mató. In Río de la Plata countries requesón names a spreadable cheese and ricotta is called ricota"
+		}
+	]
+}

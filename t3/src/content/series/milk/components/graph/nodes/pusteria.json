@@ -1,0 +1,37 @@
+{
+	"label": "Pusteria",
+	"example": true,
+	"family": "semiHard",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		30,
+		90
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "South Tyrol",
+		"lat": 46.8,
+		"lon": 12,
+		"x": 0.53333,
+		"y": 0.21108,
+		"located": "hint"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Pusteria_(cheese)"
+			}
+		],
+		"text": "South Tyrol (Pustertal); possibly the same as Pustertaler"
+	}
+}

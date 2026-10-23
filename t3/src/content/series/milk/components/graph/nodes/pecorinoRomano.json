@@ -1,0 +1,153 @@
+{
+	"label": "Pecorino Romano",
+	"example": true,
+	"family": "hard",
+	"about": {
+		"text": "Pecorino romano is a hard, salty Italian cheese made from sheep milk, often used for grating over pasta or other dishes. The name pecorino means 'ovine' or 'of sheep' in Italian; the name of the cheese, although protected, is a description rather than a brand: [formaggio] pecorino romano means 'sheep's [cheese] of Rome'.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Pecorino_romano"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Pecorino romano on board cropped.PNG",
+		"author": "Deanna from Chicago ’burbs",
+		"license": "CC BY-SA 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Pecorino_romano_on_board_cropped.PNG"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"sheep"
+	],
+	"firm": "extra-hard",
+	"days": [
+		150,
+		300
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Lazio",
+		"lat": 41.95,
+		"lon": 12.8,
+		"x": 0.53556,
+		"y": 0.22995,
+		"located": "knowledge"
+	},
+	"confidence": "high",
+	"how": {
+		"label": "set with lamb rennet",
+		"text": "Whole sheep milk set with lamb rennet paste and a cooked curd give a hard, compact cheese with a sharp, piquant taste. Heavy salting and longer ripening make the grating version more intense than the table cheese.",
+		"sources": {
+			"links": [
+				{
+					"name": "Commission Reg. (EC) 1030/2009 (Pecorino Romano PDO)",
+					"url": "https://www.onaf.it/uploads/public/formaggi/1849_3-dop-modif-rich-ok-pecorino-romano-l-28320091030it00430046.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "native lactic cultures",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							}
+						]
+					},
+					"note": "The cultures are optional."
+				},
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"temperature": {
+						"min": 38,
+						"max": 40
+					},
+					"note": "With lamb rennet paste."
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"temperature": {
+						"min": 45,
+						"max": 48
+					}
+				},
+				{
+					"type": "custom",
+					"name": "mould",
+					"note": "Into a cylinder 25–35 cm across and 25–40 cm tall, 20–35 kg."
+				},
+				{
+					"type": "custom",
+					"name": "salt",
+					"note": "Dry and/or in brine."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"seconds": {
+						"min": 12960000
+					},
+					"note": "Table cheese at least 5 mo, grating cheese at least 8."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Commission Reg. (EC) 1030/2009 (Pecorino Romano PDO)",
+						"url": "https://www.onaf.it/uploads/public/formaggi/1849_3-dop-modif-rich-ok-pecorino-romano-l-28320091030it00430046.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Pecorino_Romano"
+			}
+		],
+		"text": "Its facts, from these."
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Whole fresh sheep's milk; may be thermised"
+		},
+		{
+			"k": "Rind",
+			"v": "Thin, ivory to straw; may be coated neutral or black"
+		}
+	]
+}

@@ -1,0 +1,133 @@
+{
+	"label": "Panela",
+	"example": true,
+	"family": "freshCheese",
+	"about": {
+		"text": "Queso panela is a fresh cheese common in Mexico made from pasteurized cow's milk. It is also known as queso canasta or queso de la canasta. It is derived from the Greek word for basket cheese. The cheese also has similarities to the Indian cheese paneer.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Panela_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "WikiCheese - Queso Panela 01.jpg",
+		"author": "Pyb",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:WikiCheese_-_Queso_Panela_01.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"MX"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		0
+	],
+	"setting": "rennet",
+	"rind": "none",
+	"confidence": "high",
+	"how": {
+		"label": "drain in baskets",
+		"text": "Large, gently handled curds are salted in the vat and left to drain in woven baskets without pressing, so the cheese keeps a high moisture content and takes the basket pattern on its surface. It is sold straight away, unripened.",
+		"sources": {
+			"links": [
+				{
+					"name": "Van Hekken & Farkye, Hispanic Cheeses: The Quest for Queso, Food Technology (IFT)",
+					"url": "https://www.ift.org/food-technology-magazine/hispanic-cheeses-the-quest-for-queso"
+				},
+				{
+					"name": "NMX-F-742-COFOCALEC-2012 Queso panela (catalogue entry)",
+					"url": "https://platiica.economia.gob.mx/normalizacion/?p=36296"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "add calcium chloride"
+				},
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"temperature": {
+						"min": 30,
+						"max": 40
+					},
+					"note": "With rennet."
+				},
+				{
+					"type": "custom",
+					"name": "cut",
+					"note": "Into large cubes, 1 in in the traditional make."
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"note": "With gentle stirring."
+				},
+				{
+					"type": "custom",
+					"name": "drain",
+					"note": "Half the whey is drained."
+				},
+				{
+					"type": "custom",
+					"name": "salt",
+					"note": "Dry salt or concentrated brine is added to the curd."
+				},
+				{
+					"type": "custom",
+					"name": "mould",
+					"note": "The wet curd drains overnight in basket-weave moulds."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Van Hekken & Farkye, Hispanic Cheeses: The Quest for Queso, Food Technology (IFT)",
+						"url": "https://www.ift.org/food-technology-magazine/hispanic-cheeses-the-quest-for-queso"
+					},
+					{
+						"name": "NMX-F-742-COFOCALEC-2012 Queso panela (catalogue entry)",
+						"url": "https://platiica.economia.gob.mx/normalizacion/?p=36296"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Queso_Panela"
+			}
+		],
+		"text": "Its facts, from these."
+	},
+	"composition": {
+		"moisture": {
+			"min": 53,
+			"max": 58,
+			"about": true
+		}
+	}
+}

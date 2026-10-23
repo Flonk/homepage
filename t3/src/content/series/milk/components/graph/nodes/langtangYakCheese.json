@@ -1,0 +1,105 @@
+{
+	"label": "Langtang yak cheese",
+	"example": true,
+	"note": "Swiss-style cheese made at Kyangjin since the 1950s; taught by Swiss cheesemakers (Werner Schulthess, Sepp Dubach), Swiss project handed to the government in 1964",
+	"about": {
+		"text": "A hard cheese of the Langtang valley in Nepal, made from yak and nak (female yak) milk by the Swiss method that Swiss cheesemakers brought to Kyangjin in the 1950s.",
+		"sources": {
+			"links": [
+				{
+					"name": "Nepali Times, The story of Langtang cheese",
+					"url": "https://www.nepalitimes.com/the-story-of-langtang-cheese"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"regions": [
+		"NP"
+	],
+	"beasts": [
+		"yak"
+	],
+	"how": {
+		"text": "Output at Langtang: about 14 t of cheese and 2,000 kg of butter a year from about 63 farmers (Nepali Times). The sources compare it to Swiss cheese but name no Alpine type.",
+		"sources": {
+			"links": [
+				{
+					"name": "Nepali Times: The story of Langtang cheese",
+					"url": "https://www.nepalitimes.com/the-story-of-langtang-cheese"
+				},
+				{
+					"name": "Cheese Professor: yak milk cheese in Nepal",
+					"url": "https://www.cheeseprofessor.com/blog/yak-milk-cheese-nepal"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 71,
+						"max": 71,
+						"about": true
+					},
+					"note": "In a large vat, or in cans in a hot-water bath over a wood fire to about 71 °C at Chandanbari (Cheese Professor)."
+				},
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"seconds": {
+						"min": 900,
+						"max": 2100
+					},
+					"note": "With a cheese culture or rennet, species not named in any source."
+				},
+				{
+					"type": "custom",
+					"name": "cut and stir",
+					"seconds": {
+						"min": 5400,
+						"max": 5400
+					},
+					"note": "Curd cut and stirred for 1.5 h, with and without fire."
+				},
+				{
+					"type": "custom",
+					"name": "brine",
+					"seconds": {
+						"max": 172800
+					},
+					"note": "In salt water so the rind is salty."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"seconds": {
+						"max": 7776000
+					}
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Nepali Times: The story of Langtang cheese",
+						"url": "https://www.nepalitimes.com/the-story-of-langtang-cheese"
+					},
+					{
+						"name": "Cheese Professor: yak milk cheese in Nepal",
+						"url": "https://www.cheeseprofessor.com/blog/yak-milk-cheese-nepal"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Yak and nak"
+		}
+	]
+}

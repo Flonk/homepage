@@ -1,0 +1,102 @@
+{
+	"label": "Kashk",
+	"example": true,
+	"about": {
+		"text": "Iran's kashk: yoghurt churned with water to take off the butter, the defatted liquid boiled, drained in linen bags, salted, shaped and sun-dried into hard, protein-rich balls, which are later ground and soaked back into liquid kashk.",
+		"sources": {
+			"links": [
+				{
+					"name": "Say, Soltani & Güzeler, Pamukkale Univ. J. Eng. Sci. (2015)",
+					"url": "https://doi.org/10.5505/pajes.2015.47048"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Kashk.JPG",
+		"author": "Tuninait",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Kashk.JPG"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"IR"
+	],
+	"how": {
+		"label": "churn, boil, dry",
+		"text": "In Iran, yoghurt is churned with water to remove the butter. The defatted drink is boiled, drained in linen bags, salted, shaped and sun-dried into hard, protein-rich kashk, which is later ground and rehydrated as liquid kashk.",
+		"sources": {
+			"links": [
+				{
+					"name": "Say, Soltani & Güzeler, Pamukkale Univ. J. Eng. Sci. (2015)",
+					"url": "https://doi.org/10.5505/pajes.2015.47048"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "churn",
+					"seconds": {
+						"min": 2700,
+						"max": 3600
+					},
+					"note": "The yoghurt is churned with water to remove the butter."
+				},
+				{
+					"type": "heat",
+					"does": "heat",
+					"seconds": {
+						"min": 1500,
+						"max": 1800
+					},
+					"note": "The defatted drink is boiled."
+				},
+				{
+					"type": "custom",
+					"name": "strain",
+					"seconds": {
+						"min": 86400,
+						"max": 172800
+					},
+					"note": "Drained in linen bags."
+				},
+				{
+					"type": "custom",
+					"name": "salt"
+				},
+				{
+					"type": "custom",
+					"name": "shape",
+					"note": "Into balls of 20–50 g."
+				},
+				{
+					"type": "dry",
+					"seconds": {
+						"min": 604800,
+						"max": 1209600
+					},
+					"note": "Sun-dried."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Say, Soltani & Güzeler, Pamukkale Univ. J. Eng. Sci. (2015)",
+						"url": "https://doi.org/10.5505/pajes.2015.47048"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	}
+}

@@ -1,0 +1,113 @@
+{
+	"label": "Pule",
+	"example": true,
+	"aka": [
+		"Magareći sir",
+		"Donkey cheese",
+		"Pule cheese"
+	],
+	"note": "Needs goat milk: donkey milk has too little casein, especially kappa-casein, for rennet to set it alone. About 25 L of milk per kg; only a few dozen jennies are milked, by hand.",
+	"family": "soft",
+	"about": {
+		"text": "Pule, or magareći sir, is a Serbian cheese made from 60 % Balkan donkey milk and 40 % goat milk at the Zasavica nature reserve. It is crumbly and reported to taste like manchego, and is among the most expensive cheeses because so little milk is available.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Pule_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"regions": [
+		"RS"
+	],
+	"beasts": [
+		"donkey",
+		"goat"
+	],
+	"firm": "semi-hard",
+	"days": [
+		14,
+		60
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "none",
+	"confidence": "medium",
+	"how": {
+		"text": "Pure donkey milk set with calf rennet only under extreme conditions in a University of Bari trial (5.9 % yield, soft curd); 15–30 % goat milk improved coagulation, which is why pule is blended.",
+		"sources": {
+			"links": [
+				{
+					"name": "The Cheese Atlas, Pule",
+					"url": "https://thecheeseatlas.com/cheese-profiles/pule/"
+				},
+				{
+					"name": "Technological attempts at producing cheese from donkey milk, J Dairy Res (abstract, Bari)",
+					"url": "https://www.cambridge.org/core/journals/journal-of-dairy-research/article/abs/technological-attempts-at-producing-cheese-from-donkey-milk/8F2E052D1CAFABA8719118528B1DBF88"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "pasteurise",
+					"note": "Gently pasteurised."
+				},
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"note": "With rennet."
+				},
+				{
+					"type": "custom",
+					"name": "drain",
+					"note": "The curds are strained, then packed in moulds, much as for a young rindless chèvre."
+				},
+				{
+					"type": "custom",
+					"name": "mould",
+					"seconds": {
+						"max": 259200
+					},
+					"note": "Up to 3 days in the mould."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"seconds": {
+						"min": 2592000,
+						"max": 2592000,
+						"about": true
+					},
+					"note": "In a maturation room."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "The Cheese Atlas, Pule",
+						"url": "https://thecheeseatlas.com/cheese-profiles/pule/"
+					},
+					{
+						"name": "Technological attempts at producing cheese from donkey milk, J Dairy Res (abstract, Bari)",
+						"url": "https://www.cambridge.org/core/journals/journal-of-dairy-research/article/abs/technological-attempts-at-producing-cheese-from-donkey-milk/8F2E052D1CAFABA8719118528B1DBF88"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Pule_cheese"
+			}
+		],
+		"text": "about 60% Balkan donkey milk and 40% goat, Zasavica reserve; crumbly, Manchego-like; no ripening time published"
+	}
+}

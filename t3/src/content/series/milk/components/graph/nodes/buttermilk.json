@@ -1,0 +1,138 @@
+{
+	"label": "Buttermilk",
+	"aka": [
+		"Buttermilch",
+		"Babeurre",
+		"Lait ribot",
+		"Lait battu"
+	],
+	"from": "churn",
+	"step": "sour",
+	"alsoFrom": [
+		"skimmed"
+	],
+	"niche": 0,
+	"about": {
+		"text": "Buttermilk is a dairy drink made by adding lactic acid bacteria to milk to produce a fermented dairy drink. Traditionally, it was made from the nearly fat-free milk remaining after churning butter from cream, which was cultured with natural bacteria prior to and during churning, giving a slight sour taste to the buttermilk and preventing spoilage. However, with the ubiquity of refrigeration in industrialized countries, butter in those areas is typically made from uncultured or \"sweet\" cream. Therefore, most modern buttermilk is specifically produced by inoculating fresh, pasteurized milk, and is available in different levels of fat content.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Buttermilk"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Buttermilk-(right)-and-Milk-(left).jpg",
+		"author": "Ukko-wc",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Buttermilk-(right)-and-Milk-(left).jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "In the EU, lactic acid bacteria sour the low-fat liquid left from churning sweet cream, thickening it slightly and giving it a fresh tang. Its high content of fat-globule membrane (lecithin) makes the flavour change quickly, so it has a short shelf life. In the US and Canada, buttermilk is usually cultured buttermilk: skim or low-fat milk is soured with a mesophilic aroma culture and never churned.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products"
+				},
+				{
+					"name": "German MilchPQV, Anlage 8 (2025)",
+					"url": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html"
+				},
+				{
+					"name": "Wikipedia, Buttermilk",
+					"url": "https://en.wikipedia.org/wiki/Buttermilk"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 90,
+						"max": 95
+					},
+					"seconds": {
+						"min": 300,
+						"max": 300,
+						"about": true
+					}
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "mesophilic lactic acid bacteria",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								],
+								"grows": "mesophilic"
+							}
+						],
+						"by": [
+							"starter"
+						]
+					}
+				},
+				{
+					"type": "custom",
+					"name": "add",
+					"note": "Up to 10 % water and 15 % skim milk may be added."
+				}
+			],
+			"text": "EU buttermilk is the low-fat liquid left from churning sweet cream, soured; US and Canadian cultured buttermilk is skim or low-fat milk soured with a mesophilic aroma culture, never churned.",
+			"sources": {
+				"links": [
+					{
+						"name": "Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products"
+					},
+					{
+						"name": "German MilchPQV, Anlage 8 (2025)",
+						"url": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html"
+					},
+					{
+						"name": "Wikipedia, Buttermilk",
+						"url": "https://en.wikipedia.org/wiki/Buttermilk"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"composition": {
+		"fat": {
+			"max": 1
+		}
+	},
+	"facts": [
+		{
+			"k": "Cultured buttermilk (US, Canada)",
+			"v": "Made without churning: skim or low-fat milk fermented with a mesophilic aroma culture, Lactococcus lactis subsp. lactis and subsp. cremoris, L. lactis subsp. lactis biovar diacetylactis and Leuconostoc mesenteroides subsp. cremoris"
+		},
+		{
+			"k": "Texture",
+			"v": "Thin drink, prone to whey separation; butter grains sometimes added"
+		}
+	]
+}

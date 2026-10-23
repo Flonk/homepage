@@ -1,0 +1,97 @@
+{
+	"label": "Brunost",
+	"aka": [
+		"Mysost",
+		"Braunkäse"
+	],
+	"comment": "Whey boiled down until its sugar browns; ricotta is the other way, the whey's proteins set out of it by heat and acid.",
+	"from": "sweetWhey",
+	"step": "boil down till brown",
+	"alsoFrom": [
+		"cream"
+	],
+	"niche": 1,
+	"cheese": true,
+	"about": {
+		"text": "Brunost is a common Norwegian name for mysost, a family of soft cheese-related foods made with whey, milk, and/or cream. The characteristic brown color and sweet taste result from milk sugars being caramelized after boiling. The term brunost is often used to refer to fløtemysost or Gudbrandsdalsost, which are the most popular varieties.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Brunost"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Geitost.JPG",
+		"author": "Svickova",
+		"license": "Public domain",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Geitost.JPG"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"NO"
+	],
+	"how": {
+		"text": "Nothing is coagulated here: the whey is only concentrated, so the lactose is what is left to caramelise. Milk or cream added to the whey adds fat and protein. Wikipedia gives no temperatures or finished-product percentages.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Brunost",
+					"url": "https://en.wikipedia.org/wiki/Brunost"
+				},
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "evaporate",
+					"note": "Simmered for hours until most of the water has evaporated."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Brunost",
+						"url": "https://en.wikipedia.org/wiki/Brunost"
+					},
+					{
+						"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"gjetost",
+		"gudbrandsdalsost",
+		"flTemysost"
+	],
+	"facts": [
+		{
+			"k": "Gjetost",
+			"v": "Made with goat milk"
+		},
+		{
+			"k": "Origin",
+			"v": "Anne Hov’s original method boiled down to under 80 % of the liquid (firmer, fattier)"
+		}
+	]
+}

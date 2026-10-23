@@ -1,0 +1,83 @@
+{
+	"label": "Frozen custard",
+	"example": true,
+	"note": "Ice-cream mix with egg yolks (US standard: at least 1.4 %)",
+	"about": {
+		"text": "Frozen custard is a frozen dessert that is a type of ice cream made with egg yolks in addition to cream and sweetener, and an additional flavoring such as cocoa, vanilla, or fruit such as strawberries or peaches. It is usually kept at a warmer temperature compared to ice cream, and typically has a denser and thicker consistency.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Frozen_custard"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "FrozenCustard.jpg",
+		"author": "stu_spivack",
+		"license": "CC BY-SA 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:FrozenCustard.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"US"
+	],
+	"how": {
+		"text": "Made in a continuous freezer: the mix flows through a refrigerated barrel where blades scrape off the frozen layer, and it is drawn straight into the container. Fast passage keeps air low and ice crystals small; the air is worked in by agitation, not added as an ingredient. The yolk gives a denser, richer body.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Frozen custard",
+					"url": "https://en.wikipedia.org/wiki/Frozen_custard"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "freeze",
+					"note": "The mix flows through a refrigerated barrel where blades scrape off the frozen layer and work in air, 15–30 % overrun, and is drawn straight into the container."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Frozen custard",
+						"url": "https://en.wikipedia.org/wiki/Frozen_custard"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 10
+		}
+	},
+	"facts": [
+		{
+			"k": "Law",
+			"v": "Egg yolk solids at least 1.4 % (US FDA); with less it is ice cream"
+		},
+		{
+			"k": "Served at",
+			"v": "About −8 °C (ice cream about −12 °C)"
+		},
+		{
+			"k": "Soft serve",
+			"v": "Can reach up to 100 % overrun"
+		}
+	]
+}

@@ -1,0 +1,74 @@
+{
+	"label": "Native whey",
+	"aka": [
+		"Ideal whey",
+		"Serum protein solution"
+	],
+	"from": "skimmed",
+	"step": "what passes the filter",
+	"note": "Has no glycomacropeptide, because no rennet touched it; that part only exists in sweet whey.",
+	"about": {
+		"text": "The whey proteins of skim milk that pass through a microfiltration membrane which holds back the casein: whey made without rennet or acid, and so the cleanest starting point for milk whey protein isolate.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. Milk and whey fractionation",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"how": {
+		"text": "Skim milk is pushed along a fine ceramic membrane that lets the small whey proteins through and holds back the casein micelles, then washed with water in several stages so more serum protein follows. No rennet or acid is used, so the result is whey without glycomacropeptide.",
+		"sources": {
+			"links": [
+				{
+					"name": "ADSA 2018 abstract #16 (ceramic MF at 50 °C, opened)",
+					"url": "https://m.adsa.org/2018/abs/t/73713"
+				},
+				{
+					"name": "Pilot-scale ceramic membrane filtration of skim milk (UCC; search summary only, not opened)",
+					"url": "https://research.ucc.ie/en/publications/pilot-scale-ceramic-membrane-filtration-of-skim-milk-for-the-prod/"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "microfilter",
+					"temperature": {
+						"min": 50,
+						"max": 50
+					},
+					"note": "Through a 0.1 µm ceramic membrane, concentrated 3× in 3 stages of diafiltration with water."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "ADSA 2018 abstract #16 (ceramic MF at 50 °C, opened)",
+						"url": "https://m.adsa.org/2018/abs/t/73713"
+					},
+					{
+						"name": "Pilot-scale ceramic membrane filtration of skim milk (UCC; search summary only, not opened)",
+						"url": "https://research.ucc.ie/en/publications/pilot-scale-ceramic-membrane-filtration-of-skim-milk-for-the-prod/"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Serum protein removed",
+			"v": "95–98 % from skim milk with ceramic membranes, about 70 % with spiral-wound (cited in the abstract)"
+		},
+		{
+			"k": "Cold filtering",
+			"v": "At 8.9 °C the permeate was about 35:65 casein to whey protein, against about 10:90 at 50 °C (pilot study, search summary only)"
+		}
+	]
+}

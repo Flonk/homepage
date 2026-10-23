@@ -1,0 +1,75 @@
+{
+	"label": "GOS",
+	"aka": [
+		"Galacto-oligosaccharides"
+	],
+	"from": "lactose",
+	"step": "join with an enzyme",
+	"about": {
+		"text": "Galactooligosaccharides (GOS), also known as oligogalactosyllactose, oligogalactose, oligolactose or transgalactooligosaccharides (TOS), belong to the group of prebiotics. Prebiotics are defined as non-digestible food ingredients that beneficially affect the host by stimulating the growth and/or activity of beneficial bacteria in the colon. GOS occurs in commercially available products such as food for both infants and adults.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Galactooligosaccharide"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"how": {
+		"text": "The same enzyme that splits lactose into glucose and galactose also, at high lactose concentration, hooks the galactose onto other sugars instead of water. The result is a mix of short galactose chains with a glucose at the end. Yield depends on enzyme, lactose concentration and how far the reaction is run.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia, Galactooligosaccharide (enzymatic conversion of lactose, DP 2–8)",
+					"url": "https://en.wikipedia.org/wiki/Galactooligosaccharide"
+				},
+				{
+					"name": "Comparison of GOS-forming activity of different beta-galactosidases (openagrar; yields from a search excerpt, page not opened)",
+					"url": "https://www.openagrar.de/receive/openagrar_mods_00009405"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "join with enzyme",
+					"note": "Beta-galactosidase from Bacillus circulans, Aspergillus oryzae, Aspergillus aculeatus or Kluyveromyces lactis hooks galactose onto other sugars at high lactose concentration."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia, Galactooligosaccharide (enzymatic conversion of lactose, DP 2–8)",
+						"url": "https://en.wikipedia.org/wiki/Galactooligosaccharide"
+					},
+					{
+						"name": "Comparison of GOS-forming activity of different beta-galactosidases (openagrar; yields from a search excerpt, page not opened)",
+						"url": "https://www.openagrar.de/receive/openagrar_mods_00009405"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"vivinalGos"
+	],
+	"facts": [
+		{
+			"k": "GOS yield",
+			"v": "Depends on the enzyme: in one milk-permeate study (~40 % w/w lactose) 41 % of the lactose with A. aculeatus, 21 % A. oryzae, 13 % K. lactis, 11 % B. circulans"
+		},
+		{
+			"k": "Chain length",
+			"v": "2–8 sugar units, ending in glucose"
+		},
+		{
+			"k": "Left over",
+			"v": "Unreacted lactose, glucose and galactose"
+		}
+	]
+}

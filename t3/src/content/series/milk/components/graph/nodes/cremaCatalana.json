@@ -1,0 +1,99 @@
+{
+	"label": "Crema catalana",
+	"example": true,
+	"aka": [
+		"Crema cremada"
+	],
+	"note": "Cooked on the hob (not baked) with cinnamon and lemon zest, usually thickened with cornflour, chilled, then caramelised on top; made from milk, egg yolks, sugar; cannot be frozen",
+	"about": {
+		"text": "A Catalan custard of milk, egg yolks and sugar with a burnt-sugar crust.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Crema_catalana"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Postre de crema catalana.jpg",
+		"author": "Juan Emilio Prades Bel",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Postre_de_crema_catalana.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"ES"
+	],
+	"how": {
+		"text": "Unlike crème brûlée it is cooked on the hob, not baked, and the cornstarch lets it be brought to the boil without curdling. Traditionally the sugar is burnt with a hot iron (cremador). Quantities are one blog recipe (Manu's Menu); ratios differ between recipes.",
+		"sources": {
+			"links": [
+				{
+					"name": "Manu's Menu: Crema catalana",
+					"url": "https://www.manusmenu.com/crema-catalana/"
+				},
+				{
+					"name": "Wikipedia: Crema catalana",
+					"url": "https://en.wikipedia.org/wiki/Crema_catalana"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"note": "Milk with lemon zest and cinnamon is brought to the boil."
+				},
+				{
+					"type": "custom",
+					"name": "infuse",
+					"note": "Off the heat, then strained.",
+					"seconds": {
+						"min": 1800,
+						"max": 3600
+					}
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"note": "Over medium heat, whisked, until it boils and thickens (the foam disappears)."
+				},
+				{
+					"type": "heat",
+					"does": "cool",
+					"note": "To room temperature, then in the fridge, not frozen."
+				},
+				{
+					"type": "custom",
+					"name": "burn",
+					"note": "About 1/2 tbsp sugar per portion, burnt with a torch just before serving."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Manu's Menu: Crema catalana",
+						"url": "https://www.manusmenu.com/crema-catalana/"
+					},
+					{
+						"name": "Wikipedia: Crema catalana",
+						"url": "https://en.wikipedia.org/wiki/Crema_catalana"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	}
+}

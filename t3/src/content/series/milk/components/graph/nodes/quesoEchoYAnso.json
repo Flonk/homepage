@@ -1,0 +1,38 @@
+{
+	"label": "Queso Echo y Ansó",
+	"example": true,
+	"family": "semiHard",
+	"regions": [
+		"ES"
+	],
+	"beasts": [
+		"sheep",
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		30,
+		90
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Aragon",
+		"lat": 42.8,
+		"lon": -0.7,
+		"x": 0.49806,
+		"y": 0.22675,
+		"located": "knowledge"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Queso_Echo_y_Ans%C3%B3"
+			}
+		],
+		"text": "Aragonese valleys; unverified"
+	}
+}

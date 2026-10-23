@@ -1,0 +1,155 @@
+{
+	"label": "Leyden",
+	"example": true,
+	"aka": [
+		"Leidse kaas",
+		"Boeren-Leidse"
+	],
+	"family": "washedCurd",
+	"about": {
+		"text": "Leyden, from Dutch: Leidse kaas, is a semi-hard, cumin and caraway seed flavoured cheese made in the Netherlands from cow's milk. It is made both in factories and on farms, historically in the Leiden area.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Leyden_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Leyden cheese AvL.jpg",
+		"author": "AlexanderVanLoon",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Leyden_cheese_AvL.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"NL"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		56,
+		365
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "South Holland",
+		"lat": 52.16,
+		"lon": 4.49,
+		"x": 0.51247,
+		"y": 0.18814,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"how": {
+		"label": "add cumin",
+		"text": "Leyden is made from partly skimmed milk with cumin seed worked into the curd, while plain curd on the flat faces keeps the seeds out of the rind. The rind is coloured red with annatto and stamped with Leiden's crossed keys.",
+		"sources": {
+			"links": [
+				{
+					"name": "Boeren-Leidse met sleutels PDO summary (eAmbrosia)",
+					"url": "https://webgate.ec.europa.eu/eambrosia-api/api/v1/attachments/71544"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "cool",
+					"temperature": {
+						"max": 10
+					}
+				},
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"temperature": {
+						"min": 29,
+						"max": 30
+					},
+					"seconds": {
+						"min": 1800,
+						"max": 1800,
+						"about": true
+					},
+					"note": "With rennet."
+				},
+				{
+					"type": "custom",
+					"name": "cut",
+					"note": "Chopped."
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"note": "By adding hot water to the curds and whey."
+				},
+				{
+					"type": "custom",
+					"name": "add cumin",
+					"note": "About 75 g per 100 L of milk, with plain curd kept for the white bottoms."
+				},
+				{
+					"type": "custom",
+					"name": "press",
+					"note": "In two stages."
+				},
+				{
+					"type": "custom",
+					"name": "brine",
+					"seconds": {
+						"min": 432000,
+						"max": 518400
+					},
+					"note": "In a brine of 20 °Bé."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"temperature": {
+						"min": 12
+					},
+					"seconds": {
+						"min": 1123200
+					}
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Boeren-Leidse met sleutels PDO summary (eAmbrosia)",
+						"url": "https://webgate.ec.europa.eu/eambrosia-api/api/v1/attachments/71544"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Leyden_cheese"
+			}
+		],
+		"text": "cumin and caraway; partly skimmed; PDO (1997) is for farmhouse Boeren-Leidse met sleutels; article gives no ripening time"
+	},
+	"raw": true
+}

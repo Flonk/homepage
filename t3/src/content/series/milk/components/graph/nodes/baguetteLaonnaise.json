@@ -1,0 +1,36 @@
+{
+	"label": "Baguette laonnaise",
+	"example": true,
+	"family": "washed",
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "soft",
+	"days": [
+		90,
+		120
+	],
+	"setting": "rennet",
+	"rind": "washed",
+	"place": {
+		"region": "Hauts-de-France",
+		"lat": 49.56,
+		"lon": 3.62,
+		"x": 0.51006,
+		"y": 0.19958,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Baguette_laonnaise"
+			}
+		],
+		"text": "Maroilles variant from Laon; Wikipedia gives 3-4 months in damp cellar with brine washes (long compared with Maroilles)"
+	}
+}

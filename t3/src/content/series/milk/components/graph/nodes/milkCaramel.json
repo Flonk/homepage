@@ -1,0 +1,87 @@
+{
+	"label": "Milk caramel\n(and fudge)",
+	"aka": [
+		"Chewy caramel",
+		"Milchkaramell"
+	],
+	"from": "condensed",
+	"step": "cook with sugar and fat to a set stage",
+	"alsoFrom": [
+		"fresh",
+		"cream"
+	],
+	"note": "At the firm-ball stage (120 °C) the sugar itself is too cool to caramelise, so this is called milk or cream caramel: the milk browns. Fudge is cooked to the soft-ball stage and beaten so that it crystallises.",
+	"about": {
+		"text": "A chewy sweet cooked from milk or cream, sugar, glucose syrup and butter; sold as milk caramels or cream caramels.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Caramel"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Morinaga Milk Caramel (pouched).jpg",
+		"author": "毒島みるく",
+		"license": "CC0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Morinaga_Milk_Caramel_(pouched).jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "Cream and butter are stirred into hot sugar syrup, which is cooked again to the firm-ball stage; vanilla and salt go in last (vanilla earlier would burn off, salt earlier would invert the sugar).",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Caramel",
+					"url": "https://en.wikipedia.org/wiki/Caramel"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "cook",
+					"temperature": {
+						"min": 130,
+						"max": 130
+					},
+					"note": "Sugar and glucose are heated to 130 °C, then cream and butter are added."
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"temperature": {
+						"min": 120,
+						"max": 120,
+						"about": true
+					},
+					"note": "Cooked again to the firm-ball stage; vanilla and salt go in last."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Caramel",
+						"url": "https://en.wikipedia.org/wiki/Caramel"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"fudge"
+	]
+}

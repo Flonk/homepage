@@ -1,0 +1,95 @@
+{
+	"label": "Milk chocolate",
+	"aka": [
+		"Milchschokolade"
+	],
+	"from": "milkPowder",
+	"step": "mix with cocoa mass, sugar and cocoa butter, conche",
+	"alsoFrom": [
+		"condensed"
+	],
+	"note": "Condensed milk was how Daniel Peter (Switzerland, 1875) first got milk into chocolate; Nestlé’s neighbour Henri Nestlé had just made it. British milk chocolate still uses crumb, and its Maillard browning gives a cooked caramel flavour. Germany, France and Belgium mostly add milk powder.",
+	"niche": 1,
+	"about": {
+		"text": "Solid chocolate made of cocoa products, sugar and milk or milk products. In the EU it must hold at least 25 % cocoa solids and 14 % dry milk solids.",
+		"sources": {
+			"links": [
+				{
+					"name": "Directive 2000/36/EC, Annex I (legislation.gov.uk copy)",
+					"url": "https://www.legislation.gov.uk/eudr/2000/36/annexes/data.htm"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Hershey-bar-open.JPG",
+		"author": "Evan-Amos",
+		"license": "Public domain",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Hershey-bar-open.JPG"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "Milk powder is mixed with sugar, cocoa mass and cocoa butter in a roll refiner or conche, because water would spoil the flow of the liquid chocolate. Crumb route: cocoa liquor and sweetened condensed milk are dried to a brittle powder (browned by Maillard reactions), then liquefied with more cocoa butter, refined and conched. UK/Ireland/Malta may sell \"family milk chocolate\" with 20 % cocoa solids and 20 % milk solids.",
+		"sources": {
+			"links": [
+				{
+					"name": "Directive 2000/36/EC, Annex I (legislation.gov.uk copy)",
+					"url": "https://www.legislation.gov.uk/eudr/2000/36/annexes/data.htm"
+				},
+				{
+					"name": "Wikipedia: Milk chocolate",
+					"url": "https://en.wikipedia.org/wiki/Milk_chocolate"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "mix",
+					"note": "Milk powder is mixed with sugar, cocoa mass and cocoa butter in a roll refiner or conche, as water would spoil the flow of the liquid chocolate."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Directive 2000/36/EC, Annex I (legislation.gov.uk copy)",
+						"url": "https://www.legislation.gov.uk/eudr/2000/36/annexes/data.htm"
+					},
+					{
+						"name": "Wikipedia: Milk chocolate",
+						"url": "https://en.wikipedia.org/wiki/Milk_chocolate"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"galaPeter",
+		"cadburyDairyMilk",
+		"hersheyBar"
+	],
+	"composition": {
+		"sugar": {
+			"min": 45,
+			"max": 50,
+			"about": true
+		}
+	},
+	"facts": [
+		{
+			"k": "Law (EU)",
+			"v": "At least 25 % cocoa solids (2.5 % dry non-fat) and 14 % dry milk solids, 3.5 % of it milk fat"
+		}
+	]
+}

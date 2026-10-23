@@ -1,0 +1,179 @@
+{
+	"label": "Havarti",
+	"example": true,
+	"aka": [
+		"Cream Havarti"
+	],
+	"family": "washedCurd",
+	"about": {
+		"text": "Havarti or cream Havarti is a semisoft Danish cow's milk cheese. It can be sliced, grilled, or melted.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Havarti"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Cream havarti on bread.jpg",
+		"author": "Ulaek",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Cream_havarti_on_bread.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"DK"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-soft",
+	"days": [
+		60,
+		365
+	],
+	"setting": "rennet",
+	"rind": "none",
+	"place": {
+		"region": "Zealand",
+		"lat": 55.88,
+		"lon": 12.5,
+		"x": 0.53472,
+		"y": 0.17053,
+		"located": "hint"
+	},
+	"confidence": "high",
+	"how": {
+		"label": "press lightly",
+		"text": "Lump-free curd is pumped into moulds and knits together mainly under its own weight while kept warm (around 41 °C). This light pressing leaves the many small, irregular, rice-grain-sized eyes and a soft but sliceable texture with a mild, acidic taste.",
+		"sources": {
+			"links": [
+				{
+					"name": "Havarti PGI single document (OJ C 20, 2014)",
+					"url": "https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=CELEX%3A52014XC0123%2804%29"
+				},
+				{
+					"name": "Codex Standard for Havarti (CXS 267-1966)",
+					"url": "https://www.fao.org/3/i2085e/i2085e00.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "pasteurise"
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic",
+						"smear"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "lactic acid bacteria",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "flavour-producing starter bacteria",
+								"kind": "bacterium"
+							}
+						],
+						"by": [
+							"starter"
+						]
+					}
+				},
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"note": "With rennet or other coagulating enzymes."
+				},
+				{
+					"type": "custom",
+					"name": "mould",
+					"temperature": {
+						"min": 41,
+						"max": 41,
+						"about": true
+					},
+					"note": "The lump-free curd is pumped into moulds and pressed very lightly or not at all."
+				},
+				{
+					"type": "ferment",
+					"does": "smear",
+					"adds": {
+						"microbes": [
+							{
+								"name": "smear bacteria",
+								"kind": "bacterium",
+								"does": [
+									"rind"
+								]
+							}
+						]
+					},
+					"temperature": {
+						"min": 14,
+						"max": 18
+					},
+					"seconds": {
+						"min": 604800,
+						"max": 1209600
+					},
+					"note": "For the rinded type only; the rindless type ripens 3 wk at 12–20 °C under film."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"temperature": {
+						"min": 8,
+						"max": 12
+					},
+					"seconds": {
+						"min": 604800,
+						"max": 1814400
+					}
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Havarti PGI single document (OJ C 20, 2014)",
+						"url": "https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=CELEX%3A52014XC0123%2804%29"
+					},
+					{
+						"name": "Codex Standard for Havarti (CXS 267-1966)",
+						"url": "https://www.fao.org/3/i2085e/i2085e00.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Havarti"
+			}
+		],
+		"text": "Its facts, from these."
+	}
+}

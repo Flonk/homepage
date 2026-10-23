@@ -1,0 +1,37 @@
+{
+	"label": "Frachet",
+	"example": true,
+	"family": "soft",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "soft",
+	"days": [
+		15,
+		30
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Piedmont",
+		"lat": 45.07,
+		"lon": 7.68,
+		"x": 0.52133,
+		"y": 0.21799,
+		"located": "hint"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Frachet"
+			}
+		],
+		"text": "no English article; details unverified"
+	}
+}

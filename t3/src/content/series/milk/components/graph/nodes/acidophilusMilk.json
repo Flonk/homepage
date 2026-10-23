@@ -1,0 +1,137 @@
+{
+	"label": "Acidophilus milk",
+	"example": true,
+	"about": {
+		"text": "Milk fermented with Lactobacillus acidophilus. Interest in it goes back about 80 years, to when it was used to treat intestinal infections. Later studies looked at lactose digestion, cholesterol and cancer, and concluded that any benefit depends on careful choice of strain.",
+		"sources": {
+			"links": [
+				{
+					"name": "Journal of Dairy Science (1989)",
+					"url": "https://doi.org/10.3168/jds.S0022-0302(89)79389-9"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Skeer med syrnede mælkeprodukter.jpg",
+		"author": "Nillerdk",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Skeer_med_syrnede_m%C3%A6lkeprodukter.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"label": "ferment sterilised milk",
+		"text": "Skim milk is sterilised so that only L. acidophilus grows, then held near body temperature until it forms a solid coagulum. The result is tangy and thickened.",
+		"sources": {
+			"links": [
+				{
+					"name": "Codex CXS 243-2003 Fermented Milks",
+					"url": "https://www.fao.org/fao-who-codexalimentarius/sh-proxy/en/?lnk=1&url=https%253A%252F%252Fworkspace.fao.org%252Fsites%252Fcodex%252FStandards%252FCXS%2B243-2003%252FCXS_243e.pdf"
+				},
+				{
+					"name": "CEC (India) e-PG module: Acidophilus milk",
+					"url": "https://cec.nic.in/webpath/curriculum/Module/FDTECH/Paper11/8/downloads/script.pdf"
+				},
+				{
+					"name": "Austrian Food Codex B32, Milch und Milchprodukte (2018)",
+					"url": "https://web.archive.org/web/20180202190103/https://www.verbrauchergesundheit.gv.at/lebensmittel/buch/codex/B_32_Milch_und_Milchprodukte_18_1_2018.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 121,
+						"max": 121
+					},
+					"seconds": {
+						"min": 780,
+						"max": 900
+					},
+					"note": "Sterilised first so that only L. acidophilus grows."
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Lactobacillus acidophilus",
+								"kind": "bacterium",
+								"does": [
+									"acid",
+									"probiotic"
+								]
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"temperature": {
+						"min": 37,
+						"max": 37
+					},
+					"seconds": {
+						"min": 129600,
+						"max": 129600,
+						"about": true
+					},
+					"acidity": {
+						"min": 0.6
+					},
+					"note": "Held at 37 ± 1 °C until it forms a solid coagulum."
+				},
+				{
+					"type": "heat",
+					"does": "cool",
+					"temperature": {
+						"min": 10,
+						"max": 15
+					}
+				},
+				{
+					"type": "custom",
+					"name": "stir",
+					"note": "Stirred creamy."
+				},
+				{
+					"type": "custom",
+					"name": "bottle"
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Codex CXS 243-2003 Fermented Milks",
+						"url": "https://www.fao.org/fao-who-codexalimentarius/sh-proxy/en/?lnk=1&url=https%253A%252F%252Fworkspace.fao.org%252Fsites%252Fcodex%252FStandards%252FCXS%2B243-2003%252FCXS_243e.pdf"
+					},
+					{
+						"name": "CEC (India) e-PG module: Acidophilus milk",
+						"url": "https://cec.nic.in/webpath/curriculum/Module/FDTECH/Paper11/8/downloads/script.pdf"
+					},
+					{
+						"name": "Austrian Food Codex B32, Milch und Milchprodukte (2018)",
+						"url": "https://web.archive.org/web/20180202190103/https://www.verbrauchergesundheit.gv.at/lebensmittel/buch/codex/B_32_Milch_und_Milchprodukte_18_1_2018.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	}
+}

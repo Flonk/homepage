@@ -1,0 +1,127 @@
+{
+	"label": "Sweet whey",
+	"aka": [
+		"Rennet whey",
+		"Labmolke",
+		"Süßmolke"
+	],
+	"from": "raw",
+	"step": "the whey",
+	"alsoFrom": [
+		"pasteurised"
+	],
+	"niche": 0,
+	"about": {
+		"text": "The whey that drains from curd set with rennet, in making most cheeses and rennet casein: only mildly acidic, at pH 5.9 to 6.6, and carrying the milk's sugar, its whey proteins and its minerals. About half of processed whey solids now go into whey protein concentrates, isolates, lactose and permeate.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. Whey processing",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/whey-processing"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Soured milk whey.avrs-56.jpg",
+		"author": "AVRS",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Soured_milk_whey.avrs-56.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"share": {
+		"mt": 196,
+		"sources": {
+			"links": [
+				{
+					"name": "IDF, The World Dairy Situation 2024",
+					"url": "https://www.milksa.co.za/sites/default/files/2024-12/2024%20World%20Dairy%20Situation%20Report.pdf"
+				}
+			],
+			"text": "The rest of the 222 Mt of cheese milk; most of the world’s whey comes from cheese."
+		}
+	},
+	"how": {
+		"text": "Rennet sets the casein but leaves the whey proteins in solution, so the liquid that drains off keeps nearly all the milk's lactose and whey protein and is only mildly acidic. Little acid has formed, so the whey proteins and the caseinomacropeptide stay intact, which is why this whey is the starting point for most whey products.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 18 Milk and whey fractionation",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
+				},
+				{
+					"name": "Wikipedia: Whey",
+					"url": "https://en.wikipedia.org/wiki/Whey"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"note": "Rennet (calf, microbial or plant) cuts casein at the kappa-casein bond."
+				},
+				{
+					"type": "custom",
+					"name": "cut"
+				},
+				{
+					"type": "custom",
+					"name": "drain"
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Tetra Pak Dairy Processing Handbook, ch. 18 Milk and whey fractionation",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
+					},
+					{
+						"name": "Wikipedia: Whey",
+						"url": "https://en.wikipedia.org/wiki/Whey"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"composition": {
+		"pH": {
+			"min": 5.9,
+			"max": 6.6
+		},
+		"solids": {
+			"min": 6,
+			"max": 6,
+			"about": true
+		},
+		"lactose": {
+			"min": 4.5,
+			"max": 4.5
+		},
+		"protein": {
+			"min": 0.6,
+			"max": 0.6
+		},
+		"fat": {
+			"min": 0.05,
+			"max": 0.05
+		}
+	},
+	"facts": [
+		{
+			"k": "Ash",
+			"v": "About 0.5 %"
+		}
+	]
+}

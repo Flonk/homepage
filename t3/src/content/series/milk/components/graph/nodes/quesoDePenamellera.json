@@ -1,0 +1,42 @@
+{
+	"label": "Queso de Peñamellera",
+	"example": true,
+	"family": "soft",
+	"regions": [
+		"ES"
+	],
+	"beasts": [
+		"cow",
+		"goat",
+		"sheep"
+	],
+	"firm": "semi-soft",
+	"days": [
+		10,
+		15
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Asturias",
+		"lat": 43.25,
+		"lon": -4.75,
+		"x": 0.48681,
+		"y": 0.22504,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Queso_de_Pe%C3%B1amellera"
+			},
+			{
+				"name": "es.wikipedia.org",
+				"url": "https://es.wikipedia.org/wiki/Queso_de_Pe%C3%B1amellera"
+			}
+		],
+		"text": "small (about 10 cm, under 0.5 kg) Asturian cheese dried on hazel sticks; ready when rind turns yellowish after 10-15 days, semi-cured ones firmer; mainly cow milk"
+	}
+}

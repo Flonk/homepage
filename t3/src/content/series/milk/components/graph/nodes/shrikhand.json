@@ -1,0 +1,108 @@
+{
+	"label": "Shrikhand",
+	"example": true,
+	"aka": [
+		"Sikarni"
+	],
+	"note": "Chakka worked with sugar, cardamom and saffron; sikarni in Nepal",
+	"about": {
+		"text": "Shrikhand is a sweet dish of strained yoghurt, sugar, saffron and cardamom from Gujarat and Maharashtra, chilled and often topped with nuts. The BIS standard calls for at least 58 % total solids.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Shrikhand"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Shrikhand.JPG",
+		"author": "Miansari66",
+		"license": "CC0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Shrikhand.JPG"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"IN",
+		"NP"
+	],
+	"how": {
+		"label": "sweeten, spice",
+		"text": "Chakka is mixed with sugar and flavourings. The National Dairy Development Board developed an industrial process.",
+		"sources": {
+			"links": [
+				{
+					"name": "FAO: Traditional milk products of India (T0251E, ch. 4)",
+					"url": "https://www.fao.org/4/T0251E/T0251E04.htm"
+				},
+				{
+					"name": "Wikipedia: Shrikhand",
+					"url": "https://en.wikipedia.org/wiki/Shrikhand"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "strain",
+					"seconds": {
+						"min": 14400,
+						"max": 28800
+					},
+					"note": "Dahi is hung in muslin to lose its whey."
+				},
+				{
+					"type": "custom",
+					"name": "mix",
+					"note": "Chakka is mixed with sugar and flavourings."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "FAO: Traditional milk products of India (T0251E, ch. 4)",
+						"url": "https://www.fao.org/4/T0251E/T0251E04.htm"
+					},
+					{
+						"name": "Wikipedia: Shrikhand",
+						"url": "https://en.wikipedia.org/wiki/Shrikhand"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"composition": {
+		"solids": {
+			"min": 58
+		},
+		"fatInDryMatter": {
+			"min": 5
+		}
+	},
+	"facts": [
+		{
+			"k": "Law",
+			"v": "Indian standard (BIS): protein at least 10.5 % of dry matter; sucrose at most 72.5 % of dry matter; acidity at most 1.4 % lactic acid"
+		},
+		{
+			"k": "Resembles",
+			"v": "Sweetened quark"
+		},
+		{
+			"k": "Shrikhand wadi",
+			"v": "Shrikhand concentrated further in an open pan over fire to a hard mass: 5-6 % moisture, 63-65 % sugar"
+		}
+	]
+}

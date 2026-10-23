@@ -1,0 +1,97 @@
+{
+	"label": "Palkova",
+	"example": true,
+	"note": "Srivilliputhur palkova (GI): cow milk and sugar boiled down, traditionally over tamarind-wood fires",
+	"about": {
+		"text": "Palkova is a sweet of Tamil Nadu made by boiling milk down with sugar to a thick grainy mass; the Srivilliputhur version, from cow milk and sugar only, has a geographical indication.",
+		"sources": {
+			"links": [
+				{
+					"name": "Outlook Traveller, Tamil Nadu GI products",
+					"url": "https://www.outlooktraveller.com/experiences/heritage/exploring-tamil-nadus-gi-tag-products-part-2"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Palkova.jpg",
+		"author": "Chozha",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Palkova.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"IN"
+	],
+	"how": {
+		"label": "boil down with sugar",
+		"text": "Milk and sugar are stirred constantly over a steady fire until grainy. Figures come from news pages on the GI application, not a technical source; yield is quoted as 3.3 kg from 10 L by one page and 3.3 kg from 10 kg by another.",
+		"sources": {
+			"links": [
+				{
+					"name": "30 Stades: ten GI-tagged Indian sweets and how they are made",
+					"url": "https://30stades.com/2022/02/06/ten-indian-sweets-received-geographical-indication-gi-tag-how-they-are-made-mihidana-rasogulla"
+				},
+				{
+					"name": "Outlook Traveller",
+					"url": "https://www.outlooktraveller.com/experiences/heritage/exploring-tamil-nadus-gi-tag-products-part-2"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"seconds": {
+						"min": 3000,
+						"max": 3000,
+						"about": true
+					},
+					"note": "Milk with 1.2 kg sugar per 10 L is stirred constantly over a steady fire until grainy, about 50 min for a 10 L batch to about 3.3 kg."
+				},
+				{
+					"type": "heat",
+					"does": "cool",
+					"seconds": {
+						"min": 18000,
+						"max": 21600
+					},
+					"note": "Left in the open."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "30 Stades: ten GI-tagged Indian sweets and how they are made",
+						"url": "https://30stades.com/2022/02/06/ten-indian-sweets-received-geographical-indication-gi-tag-how-they-are-made-mihidana-rasogulla"
+					},
+					{
+						"name": "Outlook Traveller",
+						"url": "https://www.outlooktraveller.com/experiences/heritage/exploring-tamil-nadus-gi-tag-products-part-2"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Fuel",
+			"v": "Mud stoves with dried tamarind wood, which gives a smoky note"
+		},
+		{
+			"k": "Colour",
+			"v": "Light caramel"
+		}
+	]
+}

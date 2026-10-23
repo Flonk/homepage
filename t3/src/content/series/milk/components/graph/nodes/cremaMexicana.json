@@ -1,0 +1,110 @@
+{
+	"label": "Crema",
+	"aka": [
+		"Crema fresca",
+		"Crema espesa",
+		"Mexican crema"
+	],
+	"from": "culturedCream",
+	"note": "Heavy cream mixed with buttermilk; softer, tangier and thinner than sour cream, close to crème fraîche; some versions have salt or lime juice",
+	"at": 18,
+	"about": {
+		"text": "Mexican and Central American cultured cream, prepared from heavy cream and buttermilk and sold fresh; thinner, tangier and softer than US sour cream, closer to crème fraîche. Used on tacos, soups, beans and roasted corn.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Crema_(dairy_product)"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Crema Mexicana at El Rio Bravo Hispanic Supermarket in KCK",
+		"author": "Steam Pipe Trunk Distribution Venue (Flickr)",
+		"license": "CC BY 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Flickr",
+					"url": "https://www.flickr.com/photos/65067366@N00/50174622532"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"MX",
+		"GT",
+		"HN",
+		"SV"
+	],
+	"how": {
+		"text": "Heavy cream is mixed with buttermilk, whose lactic bacteria sour and thicken it; no ratios, temperatures or times are given by the source.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Crema (dairy product)",
+					"url": "https://en.wikipedia.org/wiki/Crema_(dairy_product)"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "lactic acid bacteria of the buttermilk",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							}
+						],
+						"by": [
+							"backslop"
+						]
+					}
+				}
+			],
+			"text": "Heavy cream is mixed with buttermilk, whose bacteria sour and thicken it; no ratios, temperatures or times are given.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Crema (dairy product)",
+						"url": "https://en.wikipedia.org/wiki/Crema_(dairy_product)"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 18,
+			"max": 36
+		}
+	},
+	"facts": [
+		{
+			"k": "Optional",
+			"v": "Salt, lime juice"
+		},
+		{
+			"k": "Ranch crema",
+			"v": "Made on ranches outside the big cities and sold direct"
+		},
+		{
+			"k": "Commercial (US)",
+			"v": "Typically pasteurised, packed in glass jars"
+		}
+	]
+}

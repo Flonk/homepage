@@ -1,0 +1,86 @@
+{
+	"label": "Velveeta",
+	"example": true,
+	"about": {
+		"text": "Velveeta is a brand name for a processed cheese similar to American cheese. It was developed in 1918 by Emil Frey (1867–1951) of the Monroe Cheese Company in Monroe, New York. In 1923, The Velveeta Cheese Company was incorporated as a separate company. In 1925, it advertised two varieties, Swiss and American. The firm was purchased by Kraft Foods Inc. in 1927.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Velveeta"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Velveeta Cheese.JPG",
+		"author": "PeRshGo",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Velveeta_Cheese.JPG"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"US"
+	],
+	"how": {
+		"label": "emulsify",
+		"text": "Velveeta is built from milk, whey and milk protein concentrate with emulsifying phosphates and citrates rather than mainly from ripened cheese, which gives its soft, velvety melt. Because milk protein concentrate is not a permitted ingredient under the US process-cheese standards, it is labelled a 'pasteurized prepared cheese product'.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Velveeta (Kraft ingredient list)",
+					"url": "https://en.wikipedia.org/wiki/Velveeta"
+				},
+				{
+					"name": "Farm and Dairy (2002), FDA warns Kraft about MPCs",
+					"url": "https://www.farmanddairy.com/?p=123"
+				},
+				{
+					"name": "21 CFR 133.179 Pasteurized process cheese spread",
+					"url": "https://www.law.cornell.edu/cfr/text/21/133.179"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "emulsify",
+					"note": "Milk, whey, milk protein concentrate and fat are emulsified with sodium phosphate and sodium citrate."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Velveeta (Kraft ingredient list)",
+						"url": "https://en.wikipedia.org/wiki/Velveeta"
+					},
+					{
+						"name": "Farm and Dairy (2002), FDA warns Kraft about MPCs",
+						"url": "https://www.farmanddairy.com/?p=123"
+					},
+					{
+						"name": "21 CFR 133.179 Pasteurized process cheese spread",
+						"url": "https://www.law.cornell.edu/cfr/text/21/133.179"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Form",
+			"v": "Soft loaf"
+		}
+	]
+}

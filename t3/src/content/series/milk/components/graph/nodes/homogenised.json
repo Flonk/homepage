@@ -1,0 +1,108 @@
+{
+	"label": "Homogenised milk",
+	"aka": [
+		"Homogenisierte Milch"
+	],
+	"from": "raw",
+	"step": "homogenise",
+	"niche": 0,
+	"light": true,
+	"about": {
+		"text": "Milk pumped at high pressure through a narrow gap, which breaks its fat globules so small that they stay spread through it instead of rising as a layer of cream. Homogenised milk is also whiter and tastes fuller.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/homogenizers"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Glass of milk on tablecloth.jpg",
+		"author": "Janine Chedid",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Glass_of_milk_on_tablecloth.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"share": {
+		"mt": 357,
+		"sources": {
+			"links": [
+				{
+					"name": "IDF, The World Dairy Situation 2024",
+					"url": "https://www.milksa.co.za/sites/default/files/2024-12/2024%20World%20Dairy%20Situation%20Report.pdf"
+				},
+				{
+					"name": "CARE Ratings, Indian dairy industry (2020)",
+					"url": "https://www.careratings.com/upload/NewsFiles/SplAnalysis/Indian%20Dairy%20%20Dairy%20Products%20Industry%20-%20June%202020.pdf"
+				},
+				{
+					"name": "e-PG Pathshala, milk utilisation pattern in India",
+					"url": "https://epgp.inflibnet.ac.in/epgpdata/uploads/epgp_content/S000015FT/P000357/M002906/ET/1462433257P-7_1ET.pdf"
+				},
+				{
+					"name": "FAO, Dairy production and products: markets and trade",
+					"url": "https://www.fao.org/dairy-production-products/socio-economics/markets-and-trade/en"
+				}
+			],
+			"text": "All made from whole milk: packaged milk, yoghurt and dahi, whole milk powder, khoa, paneer, and the ghee churned from dahi at home. What is left once the rest is counted."
+		}
+	},
+	"how": {
+		"text": "Warm milk is pumped at high pressure through a narrow gap, which tears the fat globules into droplets under 1 µm. Droplets that small stay suspended, so no cream layer forms on top.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook: Homogenizers",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/homogenizers"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 55,
+						"max": 80
+					},
+					"note": "Below 40 °C the fat is broken up poorly."
+				},
+				{
+					"type": "homogenise",
+					"bar": {
+						"min": 100,
+						"max": 250
+					},
+					"note": "Pumped through a narrow gap at 100–250 bar (for example 200 bar), then a second stage at about 30 bar back-pressure."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Tetra Pak Dairy Processing Handbook: Homogenizers",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/homogenizers"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Fat globules",
+			"v": "Average about 3.5 µm across before; below 1 µm after, their surface area growing about 4–6 fold"
+		}
+	]
+}

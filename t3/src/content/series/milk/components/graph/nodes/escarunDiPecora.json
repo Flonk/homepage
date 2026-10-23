@@ -1,0 +1,37 @@
+{
+	"label": "Escarun di pecora",
+	"example": true,
+	"family": "soft",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"sheep"
+	],
+	"firm": "soft",
+	"days": [
+		15,
+		45
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Piedmont",
+		"lat": 44.9,
+		"lon": 7.9,
+		"x": 0.52194,
+		"y": 0.21866,
+		"located": "hint"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Escarun_di_pecora"
+			}
+		],
+		"text": "Piedmont, alpine valleys"
+	}
+}

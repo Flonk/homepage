@@ -1,0 +1,98 @@
+{
+	"label": "Panna cotta",
+	"from": "cream",
+	"step": "sweeten, set with gelatin",
+	"note": "The name is not found in Italian cookbooks before the 1960s, though Piedmont lists it as a traditional food (2001). Some say the older Piedmontese version was set with egg white; others that it descends from French bavarois.",
+	"about": {
+		"text": "An Italian dessert of sweetened cream, sometimes with milk, set with gelatin in a mould, flavoured with vanilla, coffee or other things.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Panna_cotta"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Panna cotta 2 (fcm).JPG",
+		"author": "Frank C. Müller, Baden-Baden",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Panna_cotta_2_(fcm).JPG"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"IT"
+	],
+	"how": {
+		"text": "Warm cream and sugar are mixed with bloomed gelatin and poured into moulds; it sets on cooling. Too much gelatin makes it rubbery; recipes range from about 3 g to 8 g of gelatin sheet per 500 ml cream.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Panna cotta",
+					"url": "https://en.wikipedia.org/wiki/Panna_cotta"
+				},
+				{
+					"name": "ricetta.it: Panna cotta",
+					"url": "https://italian-recipes.ricetta.it/panna-cotta"
+				},
+				{
+					"name": "Observatory wiki: Panna Cotta",
+					"url": "https://observatory.wiki/wiki/Recipe:Italian/Panna_Cotta"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "bloom",
+					"note": "Gelatin, bloomed in cold water first."
+				},
+				{
+					"type": "heat",
+					"does": "heat",
+					"note": "Warmed only until the sugar and gelatin dissolve, not to a boil."
+				},
+				{
+					"type": "custom",
+					"name": "mould",
+					"note": "Poured into moulds."
+				},
+				{
+					"type": "heat",
+					"does": "cool",
+					"seconds": {
+						"min": 14400
+					}
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Panna cotta",
+						"url": "https://en.wikipedia.org/wiki/Panna_cotta"
+					},
+					{
+						"name": "ricetta.it: Panna cotta",
+						"url": "https://italian-recipes.ricetta.it/panna-cotta"
+					},
+					{
+						"name": "Observatory wiki: Panna Cotta",
+						"url": "https://observatory.wiki/wiki/Recipe:Italian/Panna_Cotta"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	}
+}

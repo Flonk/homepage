@@ -1,0 +1,38 @@
+{
+	"label": "Maiorchino",
+	"example": true,
+	"family": "hard",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"sheep",
+		"cow",
+		"goat"
+	],
+	"firm": "hard",
+	"days": [
+		120,
+		240
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Sicily",
+		"lat": 37.5,
+		"lon": 14,
+		"x": 0.53889,
+		"y": 0.24603,
+		"located": "hint"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Maiorchino"
+			}
+		],
+		"text": "Its facts, from these."
+	}
+}

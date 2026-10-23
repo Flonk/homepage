@@ -1,0 +1,37 @@
+{
+	"label": "Piscedda",
+	"example": true,
+	"family": "freshCheese",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"sheep"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		7
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "none",
+	"place": {
+		"region": "Sardinia",
+		"lat": 40.1,
+		"lon": 9,
+		"x": 0.525,
+		"y": 0.23676,
+		"located": "guess"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Piscedda"
+			}
+		],
+		"text": "Sardinian; no English Wikipedia article and no source reachable, details unverified"
+	}
+}

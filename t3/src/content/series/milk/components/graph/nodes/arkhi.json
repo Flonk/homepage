@@ -1,0 +1,113 @@
+{
+	"label": "Arkhi",
+	"aka": [
+		"Milk vodka",
+		"Yark",
+		"Araky"
+	],
+	"from": "soured",
+	"step": "what boils over",
+	"alsoFrom": [
+		"kumis",
+		"yoghurt"
+	],
+	"about": {
+		"text": "Arkhi is a liquor made from airag, fermented milk brandy, or isgelen tarag which then gets distilled. Isgelen tarag often uses the milk of a mare, donkeys, sheep, cows, the yak, camels or of reindeer, depending on local traditions or availability. The Mongols adopted the distillation technology from Arab and Islamic producers of arak, a grape-based spirit, substituting their own local fermented ingredients to distill sometime in the 13th century. Their transmission of this technology to Korea led to the production of Soju there.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Arkhi"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Distillation of fermented milk to form the milk-spirit, Sagai, South Siberia (Wellcome M0005335)",
+		"author": "Wellcome Collection (reproduction from Handbuch der Pharmakognosie, 1930)",
+		"license": "CC BY 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wellcome Collection",
+					"url": "https://wellcomecollection.org/works/z44kahs3"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"MN",
+		"RU"
+	],
+	"how": {
+		"text": "Nothing is added here; the fermented milk already holds the alcohol. It is heated in a pot under an open-ended barrel; vapour condenses on a pan of cold water at the top and drips into a vessel hung in the barrel (closed) or runs out through a tap (open). The first spirit is the strongest, later runs weaker. What stays in the pot is the still-residue cheese. Sources disagree on the strength; no temperatures are given.",
+		"sources": {
+			"links": [
+				{
+					"name": "National Center for Cultural Heritage (Mongolia): The traditional technique of distilling milk alcohol (Shimiin arkhi)",
+					"url": "https://www.irci.jp/rdb/item/13428"
+				},
+				{
+					"name": "Wikipedia: Arkhi",
+					"url": "https://en.wikipedia.org/wiki/Arkhi"
+				},
+				{
+					"name": "Selena Travel: A country made of milk",
+					"url": "https://www.selenatravel.com/blog/a-country-made-of-milk"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "distil",
+					"note": "Heated in a pot on the fire under an open-ended barrel with a cold-water pan on top, the water swapped for cold 2-4 times per run."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "National Center for Cultural Heritage (Mongolia): The traditional technique of distilling milk alcohol (Shimiin arkhi)",
+						"url": "https://www.irci.jp/rdb/item/13428"
+					},
+					{
+						"name": "Wikipedia: Arkhi",
+						"url": "https://en.wikipedia.org/wiki/Arkhi"
+					},
+					{
+						"name": "Selena Travel: A country made of milk",
+						"url": "https://www.selenatravel.com/blog/a-country-made-of-milk"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"shimiinArkhi",
+		"araka",
+		"tarasun",
+		"araga"
+	],
+	"composition": {
+		"alcohol": {
+			"min": 10,
+			"max": 14,
+			"about": true
+		}
+	},
+	"facts": [
+		{
+			"k": "Yield",
+			"v": "13–16 L of arkhi from 100 L fermented milk"
+		},
+		{
+			"k": "Test",
+			"v": "a sprinkle on the fire burns with a blue flame when the spirit is good"
+		}
+	]
+}

@@ -1,0 +1,173 @@
+{
+	"label": "Bouhezza",
+	"example": true,
+	"note": "Made by filling a skin bag with salted lben and milk over weeks, not by packing pressed curd.",
+	"family": "tulum",
+	"about": {
+		"text": "A soft, salty, semi-fat Algerian cheese of the Aurès (Chaouia) region, made from raw goat, sheep or cow milk and ripened for one to six months in a goatskin bag filled with salted lben.",
+		"sources": {
+			"links": [
+				{
+					"name": "Aissaoui Zitoun et al. 2022, Algerian J. Nutrition and Food Sciences 2(3)",
+					"url": "https://fac.umc.edu.dz/inataa/revue/files/ajnfs0203002.pdf"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"regions": [
+		"DZ"
+	],
+	"beasts": [
+		"goat",
+		"sheep",
+		"cow"
+	],
+	"firm": "soft",
+	"days": [
+		60,
+		90
+	],
+	"estimated": true,
+	"setting": "acid",
+	"rind": "none",
+	"place": {
+		"region": "Batna",
+		"lat": 35.3,
+		"lon": 6.5,
+		"x": 0.51806,
+		"y": 0.25362,
+		"located": "hint"
+	},
+	"confidence": "medium",
+	"how": {
+		"label": "fill the skin over weeks",
+		"text": "Bouhezza is never pressed or cut: the skin bag is filled in layers over weeks, whey seeps out through it, and the mass ripens in the bag under its own lactic flora. It has been granted a quality-sign recognition (geographical indication process) in Algeria.",
+		"sources": {
+			"links": [
+				{
+					"name": "Aissaoui Zitoun et al. 2022, Algerian J. Nutrition and Food Sciences 2(3)",
+					"url": "https://fac.umc.edu.dz/inataa/revue/files/ajnfs0203002.pdf"
+				},
+				{
+					"name": "Proteolysis, microbiology, volatiles and sensory evaluation of Algerian traditional cheese Bouhezza made using goat's raw milk",
+					"url": "https://avesis.inonu.edu.tr/yayin/fec662e9-fbb6-444e-894b-7364bffd9a30/proteolysis-microbiology-volatiles-and-sensory-evaluation-of-algerian-traditional-cheese-bouhezza-made-using-goats-raw-milk"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "prepare skin",
+					"note": "The goatskin is depilated, washed, treated with salt and juniper berry, turned inside out, rinsed, then left overnight with lben."
+				},
+				{
+					"type": "custom",
+					"name": "fill",
+					"note": "Salted lben, preferably skimmed and low in acidity, fills at least half the bag, with more lben and salt added over several weeks and the raw milk last."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Lactococcus lactis",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Lactiplantibacillus plantarum",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Leuconostoc mesenteroides",
+								"kind": "bacterium",
+								"does": [
+									"aroma"
+								]
+							},
+							{
+								"name": "Leuconostoc cremoris",
+								"kind": "bacterium",
+								"does": [
+									"aroma"
+								]
+							}
+						],
+						"by": [
+							"backslop",
+							"vessel"
+						],
+						"vessel": "goatskin bag (chekoua / djeld)"
+					},
+					"seconds": {
+						"min": 2592000,
+						"max": 15552000
+					},
+					"pH": {
+						"min": 4,
+						"max": 5,
+						"about": true
+					},
+					"note": "Acidification, whey draining and ripening happen together through the permeable skin."
+				}
+			],
+			"text": "No starter; salted lben is added to the skin over weeks and the indigenous flora do the work, with yeasts and moulds at 5-6 log. Cloth bags are often used instead of skin today.",
+			"sources": {
+				"links": [
+					{
+						"name": "Aissaoui Zitoun et al. 2022, Algerian J. Nutrition and Food Sciences 2(3)",
+						"url": "https://fac.umc.edu.dz/inataa/revue/files/ajnfs0203002.pdf"
+					},
+					{
+						"name": "Proteolysis, microbiology, volatiles and sensory evaluation of Algerian traditional cheese Bouhezza made using goat's raw milk",
+						"url": "https://avesis.inonu.edu.tr/yayin/fec662e9-fbb6-444e-894b-7364bffd9a30/proteolysis-microbiology-volatiles-and-sensory-evaluation-of-algerian-traditional-cheese-bouhezza-made-using-goats-raw-milk"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "en.wikipedia.org",
+				"url": "https://en.wikipedia.org/wiki/Bouhezza"
+			}
+		],
+		"text": "Drained and ripened in a goat or sheep skin (chekoua/djeld) with repeated additions of lben; Aurès/Chaouia; Algerian process sheet gives 2-3 months, other sources only 'several weeks'; originally goat/sheep milk, cow milk now common"
+	},
+	"composition": {
+		"pH": {
+			"min": 4,
+			"max": 5,
+			"about": true
+		}
+	},
+	"facts": [
+		{
+			"k": "Season",
+			"v": "March to June"
+		},
+		{
+			"k": "Flora counts",
+			"v": "Lactococcus 8.45 log cfu/ml and Lactobacillus 7.73 log cfu/ml during manufacture, yeasts and moulds 5–6 log; LAB stay 6–7 log cfu/g in the cheese"
+		},
+		{
+			"k": "Today",
+			"v": "cloth bags are often used instead of skin"
+		}
+	],
+	"raw": true
+}

@@ -1,0 +1,80 @@
+{
+	"label": "Thermised milk",
+	"aka": [
+		"Thermisierte Milch"
+	],
+	"comment": "Heated below pasteurisation, to hold raw milk or milk for cheese.",
+	"from": "raw",
+	"step": "warm to 57–68 °C",
+	"note": "Not a drink: it still tests phosphatase-positive and cannot be sold as milk for people. It holds raw milk, or milk for cheese, for a few days or for cheese that is aged at least 60 days in the US, and it is also how quark and fermented products are sanitised before they are drained or packed.",
+	"about": {
+		"text": "Raw milk heated briefly to 57–68 °C (usually 63–65 °C for 15 s), enough to cut the spoilage bacteria but not to pasteurise it, so it keeps its taste and its enzymes. Used for storing raw milk and for some cheeses.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Thermization"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"share": {
+		"mt": 1,
+		"sources": {
+			"unsourced": true,
+			"text": "Little is sold as it is: milk thermised to be kept until it is made into cheese is counted with the cheese. My own rough estimate."
+		}
+	},
+	"how": {
+		"text": "A short, mild heat: not enough to count as pasteurisation, enough to hold the milk until it is made into cheese.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Thermization",
+					"url": "https://en.wikipedia.org/wiki/Thermization"
+				},
+				{
+					"name": "Agroscope: thermisation (publication 49728)",
+					"url": "https://ira.agroscope.ch/en-US/publication/49728"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 57,
+						"max": 68
+					},
+					"seconds": {
+						"min": 10,
+						"max": 20
+					}
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Thermization",
+						"url": "https://en.wikipedia.org/wiki/Thermization"
+					},
+					{
+						"name": "Agroscope: thermisation (publication 49728)",
+						"url": "https://ira.agroscope.ch/en-US/publication/49728"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Cheese",
+			"v": "EU distinguishes thermised-milk cheeses from raw-milk cheeses; US requires 60 days of ageing for thermised and raw milk cheese alike"
+		}
+	]
+}

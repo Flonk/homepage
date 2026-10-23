@@ -1,0 +1,103 @@
+{
+	"label": "Inhalation lactose\n(inhaler carrier)",
+	"aka": [
+		"Inhalation-grade lactose",
+		"Inhaler lactose",
+		"DPI carrier lactose"
+	],
+	"comment": "Lactose milled fine as the carrier powder the drug rides on.",
+	"from": "lactose",
+	"step": "mill fine",
+	"note": "Used in dry-powder inhalers for asthma and COPD: the lactose is the carrier for the drug, not the device.",
+	"niche": 1,
+	"about": {
+		"text": "Inhalation-grade lactose is crystalline alpha-lactose monohydrate, milled and sieved to a controlled particle size. Dry-powder inhalers use it as a carrier: a small amount of drug sticks to the coarse lactose grains, which make the dose easier to meter, and the drug is released into the airstream when the patient inhales.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Lactose (carrier of pharmaceutical products)",
+					"url": "https://en.wikipedia.org/wiki/Lactose"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "\"Spiriva HandiHaler\"-brand dry powder inhaler (open).png",
+		"author": "RonEJ at English Wikipedia",
+		"license": "Public domain",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:%22Spiriva_HandiHaler%22-brand_dry_powder_inhaler_(open).png"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "The lactose is crystallised from milk lactose as for any pharmaceutical lactose, then only the physical size is changed: sieving or air classification for coarse carrier, milling and micronising for fines. Grade names are supplier-specific (MEGGLE, DFE).",
+		"sources": {
+			"links": [
+				{
+					"name": "Abiona, Wyatt, Koner & Mohammed, carrier selection in DPI formulation (Aston)",
+					"url": "https://publications.aston.ac.uk/id/document/89364"
+				},
+				{
+					"name": "Pharmaceutical Technology: Formulation of lactose for inhaled delivery systems",
+					"url": "https://www.pharmtech.com/view/formulation-lactose-inhaled-delivery-systems"
+				},
+				{
+					"name": "Nordmann: Armor Pharma partnership (pharma lactose grades)",
+					"url": "https://www.nordmann.global/en/news-events/news/nordmann-now-partnering-with-armor-pharma"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "sieve or mill",
+					"note": "Sieved to a narrow size range for the coarse carrier grades (InhaLac 70, 120), milled (InhaLac 400, Lactohale 400 from anhydrous lactose) or micronised (InhaLac 500) for the fine ones."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Abiona, Wyatt, Koner & Mohammed, carrier selection in DPI formulation (Aston)",
+						"url": "https://publications.aston.ac.uk/id/document/89364"
+					},
+					{
+						"name": "Pharmaceutical Technology: Formulation of lactose for inhaled delivery systems",
+						"url": "https://www.pharmtech.com/view/formulation-lactose-inhaled-delivery-systems"
+					},
+					{
+						"name": "Nordmann: Armor Pharma partnership (pharma lactose grades)",
+						"url": "https://www.nordmann.global/en/news-events/news/nordmann-now-partnering-with-armor-pharma"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Form",
+			"v": "Crystalline α-lactose monohydrate (spray-dried lactose carries up to 20 % amorphous lactose, so crystalline is preferred for stability)"
+		},
+		{
+			"k": "Why lactose",
+			"v": "Still the most widely used DPI carrier; drug particles stick to the big lactose crystals and are shaken off on inhalation"
+		},
+		{
+			"k": "Variation",
+			"v": "The production method strongly affects size, shape and solid form, so batches differ and carrier choice is largely empirical"
+		},
+		{
+			"k": "Standards",
+			"v": "Sold to Ph. Eur., USP-NF and JP specifications"
+		}
+	]
+}

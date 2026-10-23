@@ -1,0 +1,106 @@
+{
+	"label": "Beer-label glue",
+	"aka": [
+		"Casein label adhesive"
+	],
+	"from": "caseinate",
+	"step": "add additives",
+	"alsoFrom": [
+		"acidCasein"
+	],
+	"about": {
+		"text": "A casein-based adhesive long established for labelling glass bottles: it holds the label through condensation and chilling, yet comes off cleanly in the hot caustic wash, so that returnable bottles can be cleaned and refilled.",
+		"sources": {
+			"links": [
+				{
+					"name": "Henkel technical article (2013), Optal XP vs casein label adhesives",
+					"url": "https://www.henkel.com/resource/blob/144170/b0efc7b91c35e9259f2472a4f008bee1/data/technical-article-optal-xp.pdf"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Tusker beer bottle with beer glass, Wikimania 2025 (01).jpg",
+		"author": "Bahnfrend",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Tusker_beer_bottle_with_beer_glass,_Wikimania_2025_(01).jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "The casein is already dissolved in alkali as a thick paste; the arrow adds what makes a label adhesive: extenders, resin, alcohol and additives that tune tack and viscosity.",
+		"sources": {
+			"links": [
+				{
+					"name": "US patent 5,455,066, Water-containing adhesive based on casein",
+					"url": "https://patents.google.com/patent/US5455066A/en"
+				},
+				{
+					"name": "Henkel technical article (2013), Optal XP",
+					"url": "https://www.henkel.com/resource/blob/144170/b0efc7b91c35e9259f2472a4f008bee1/data/technical-article-optal-xp.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 50,
+						"max": 95
+					},
+					"seconds": {
+						"min": 600,
+						"max": 1800
+					},
+					"note": "Casein and a base are stirred into water at room temperature, then heated until clear."
+				},
+				{
+					"type": "custom",
+					"name": "add additives",
+					"note": "Water-soluble extenders, resin derivatives, an alcohol; often urea, borax, antifoam, preservative."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "US patent 5,455,066, Water-containing adhesive based on casein",
+						"url": "https://patents.google.com/patent/US5455066A/en"
+					},
+					{
+						"name": "Henkel technical article (2013), Optal XP",
+						"url": "https://www.henkel.com/resource/blob/144170/b0efc7b91c35e9259f2472a4f008bee1/data/technical-article-optal-xp.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Used for",
+			"v": "wet, cold glass: breweries, sparkling wine, soft drinks"
+		},
+		{
+			"k": "Why casein",
+			"v": "holds against condensation and chilling, yet washes off in the hot caustic bottle washer"
+		},
+		{
+			"k": "Downsides",
+			"v": "viscosity very sensitive to temperature, casein price swings; casein-free adhesives now compete"
+		},
+		{
+			"k": "In caustic",
+			"v": "casein adhesive settled out of 2 % NaOH at 80 °C within 6 h and foamed more than a casein-free one (Henkel test)"
+		}
+	]
+}

@@ -1,0 +1,149 @@
+{
+	"label": "String cheese",
+	"example": true,
+	"note": "Low-moisture part-skim mozzarella, pulled into strings (US)",
+	"about": {
+		"text": "The US snack cheese: low-moisture part-skim mozzarella that is pulled into strings and peeled apart.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/String_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "String cheese.jpg",
+		"author": "이동원 lee",
+		"license": "CC0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:String_cheese.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"US"
+	],
+	"how": {
+		"text": "US string cheese is low-moisture part-skim mozzarella. Stretching the hot curd lines up its proteins, which is why a stick pulls apart into strings. Wikipedia gives about 60 °C for the stretch; the US standard names no temperature.",
+		"sources": {
+			"links": [
+				{
+					"name": "21 CFR 133.156 Mozzarella and scamorza (low-moisture)",
+					"url": "https://www.ecfr.gov/current/title-21/part-133/section-133.156"
+				},
+				{
+					"name": "21 CFR 133.158 Part-skim low-moisture mozzarella (fat limits)",
+					"url": "https://www.ecfr.gov/current/title-21/part-133/section-133.158"
+				},
+				{
+					"name": "Wikipedia: String cheese",
+					"url": "https://en.wikipedia.org/wiki/String_cheese"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "pasteurise",
+					"note": "The milk is part-skim."
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "lactic acid-producing bacteria",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							}
+						],
+						"by": [
+							"starter"
+						]
+					}
+				},
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"note": "With the lactic culture and clotting enzymes (rennet)."
+				},
+				{
+					"type": "custom",
+					"name": "cut and stir"
+				},
+				{
+					"type": "custom",
+					"name": "drain"
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"temperature": {
+						"min": 60,
+						"max": 60,
+						"about": true
+					},
+					"note": "Immersed in hot water or heated with steam."
+				},
+				{
+					"type": "custom",
+					"name": "stretch",
+					"note": "Kneaded and stretched until smooth and free of lumps, which lines the proteins up in parallel so strips peel off."
+				},
+				{
+					"type": "heat",
+					"does": "cool",
+					"note": "Firmed in cold water."
+				},
+				{
+					"type": "custom",
+					"name": "cut",
+					"note": "Cut to snack-size sticks."
+				}
+			],
+			"text": "Little or no ripening.",
+			"sources": {
+				"links": [
+					{
+						"name": "21 CFR 133.156 Mozzarella and scamorza (low-moisture)",
+						"url": "https://www.ecfr.gov/current/title-21/part-133/section-133.156"
+					},
+					{
+						"name": "21 CFR 133.158 Part-skim low-moisture mozzarella (fat limits)",
+						"url": "https://www.ecfr.gov/current/title-21/part-133/section-133.158"
+					},
+					{
+						"name": "Wikipedia: String cheese",
+						"url": "https://en.wikipedia.org/wiki/String_cheese"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"composition": {
+		"moisture": {
+			"min": 45,
+			"max": 52
+		},
+		"fatInDryMatter": {
+			"min": 30,
+			"max": 45
+		}
+	}
+}

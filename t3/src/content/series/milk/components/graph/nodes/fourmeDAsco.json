@@ -1,0 +1,38 @@
+{
+	"label": "Fourme d'Asco",
+	"example": true,
+	"family": "semiHard",
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"sheep",
+		"goat"
+	],
+	"firm": "semi-hard",
+	"days": [
+		30,
+		90
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Corsica",
+		"lat": 42.5,
+		"lon": 8.97,
+		"x": 0.52492,
+		"y": 0.22789,
+		"located": "knowledge"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Fourme_d%E2%80%99Asco"
+			}
+		],
+		"text": "Corsican; details unverified"
+	}
+}

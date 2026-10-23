@@ -1,0 +1,37 @@
+{
+	"label": "Mascarpa",
+	"example": true,
+	"family": "ricotta",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		3
+	],
+	"estimated": true,
+	"setting": "acid-heat",
+	"rind": "none",
+	"place": {
+		"region": "Lombardy",
+		"lat": 45.6,
+		"lon": 9.9,
+		"x": 0.5275,
+		"y": 0.2159,
+		"located": "hint"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Mascarpa"
+			}
+		],
+		"text": "Made from cream skimmed from whey, Lombardy; en.wikipedia title redirects to a Ziger/Sérac page, so unverified"
+	}
+}

@@ -1,0 +1,199 @@
+{
+	"label": "Mimolette",
+	"example": true,
+	"aka": [
+		"Boule de Lille"
+	],
+	"family": "hard",
+	"about": {
+		"text": "Mimolette is a cheese traditionally produced around the city of Lille, France. In France it is also known as boule de Lille after its city of origin, or vieux Hollande because it was originally inspired by the Dutch Edam cheese.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Mimolette"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Mimolette vieille etuvee.jpg",
+		"author": "Jastrow at French Wikipedia",
+		"license": "Public domain",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Mimolette_vieille_etuvee.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "hard",
+	"days": [
+		60,
+		730
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Hauts-de-France",
+		"lat": 50.5,
+		"lon": 2.8,
+		"x": 0.50778,
+		"y": 0.19552,
+		"located": "hint"
+	},
+	"confidence": "high",
+	"how": {
+		"label": "mite-ripen",
+		"text": "Mimolette is a washed-curd pressed cheese coloured with annatto and shaped into a ball; during a long cave ripening the rind is colonised by cheese mites and regularly brushed and turned, giving a dry, hard, pitted crust. Long ageing concentrates its aroma and hardens the paste.",
+		"sources": {
+			"links": [
+				{
+					"name": "Label Rouge LA 26/89 'Mimolette vieille et extra-vieille' (INAO, 2014)",
+					"url": "https://extranet.inao.gouv.fr/fichier/CDCPNOLA2689.pdf"
+				},
+				{
+					"name": "Shimano et al., Exp. Appl. Acarol. (2022), JST summary",
+					"url": "https://sj.jst.go.jp/news/202209/n0922-03k.html"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "pasteurise"
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic",
+						"animal"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "lactic acid bacteria",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							}
+						],
+						"by": [
+							"starter"
+						]
+					}
+				},
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"note": "With animal rennet, 0.04–0.25 mL per litre."
+				},
+				{
+					"type": "custom",
+					"name": "add annatto",
+					"note": "Up to 0.35 mL per litre, for the orange colour."
+				},
+				{
+					"type": "custom",
+					"name": "cut"
+				},
+				{
+					"type": "custom",
+					"name": "wash",
+					"note": "The curd grains are washed, with up to 30 % water."
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"note": "Reheated in the vat."
+				},
+				{
+					"type": "custom",
+					"name": "press",
+					"note": "Into a sphere flattened at the poles, 2–4 kg."
+				},
+				{
+					"type": "custom",
+					"name": "brine",
+					"temperature": {
+						"min": 10,
+						"max": 15
+					},
+					"seconds": {
+						"min": 172800,
+						"max": 259200
+					},
+					"note": "In saturated brine."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"adds": {
+						"microbes": [
+							{
+								"name": "cheese mites",
+								"kind": "animal",
+								"does": [
+									"ripening"
+								]
+							}
+						]
+					},
+					"temperature": {
+						"min": 8,
+						"max": 16
+					},
+					"seconds": {
+						"min": 33696000
+					},
+					"humidity": {
+						"min": 80,
+						"max": 95
+					},
+					"note": "Turned and brushed; vieille ripens 13 mo or more, extra-vieille 18."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Label Rouge LA 26/89 'Mimolette vieille et extra-vieille' (INAO, 2014)",
+						"url": "https://extranet.inao.gouv.fr/fichier/CDCPNOLA2689.pdf"
+					},
+					{
+						"name": "Shimano et al., Exp. Appl. Acarol. (2022), JST summary",
+						"url": "https://sj.jst.go.jp/news/202209/n0922-03k.html"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Mimolette"
+			}
+		],
+		"text": "Orange Edam-like cheese; rind worked by cheese mites"
+	},
+	"facts": [
+		{
+			"k": "Rind",
+			"v": "Dry, hard, 0.5–1 cm thick, mite-covered, not waxed"
+		}
+	]
+}

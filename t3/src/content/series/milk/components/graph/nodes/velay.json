@@ -1,0 +1,37 @@
+{
+	"label": "Velay",
+	"example": true,
+	"family": "soft",
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "soft",
+	"days": [
+		21,
+		60
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Auvergne-Rhône-Alpes",
+		"lat": 45.04,
+		"lon": 3.88,
+		"x": 0.51078,
+		"y": 0.21811,
+		"located": "guess"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Velay_cheese"
+			}
+		],
+		"text": "the cited Wikipedia URL returned 404"
+	}
+}

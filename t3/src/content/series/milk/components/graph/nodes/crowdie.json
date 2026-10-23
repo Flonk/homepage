@@ -1,0 +1,133 @@
+{
+	"label": "Crowdie",
+	"example": true,
+	"aka": [
+		"Gruth"
+	],
+	"note": "Traditional skim-milk cheese of the Highlands and Islands; Gruth dhu (black crowdie) is crowdie mixed with double cream and rolled in oatmeal and black pepper; Hramsa has wild garlic",
+	"family": "creamCheese",
+	"about": {
+		"text": "Crowdie (Gaelic gruth) is a soft, fresh, crumbly Scottish cheese that crofters made from the skim milk left after taking the cream for butter. It is a lactic cheese: the milk sours by itself and the curd is warmed, drained in a cloth and salted, sometimes with a little cream.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Crowdie"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"regions": [
+		"GB"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		0
+	],
+	"setting": "acid",
+	"rind": "none",
+	"confidence": "medium",
+	"how": {
+		"text": "No temperatures given in any source.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Crowdie",
+					"url": "https://en.wikipedia.org/wiki/Crowdie"
+				},
+				{
+					"name": "Highland Fine Cheeses: our story",
+					"url": "https://hf-cheeses.com/our-story"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "skim",
+					"note": "Skimmed milk, kept warm by the fire or range."
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"by": [
+							"wild"
+						],
+						"microbes": [
+							{
+								"name": "lactic acid bacteria",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							}
+						]
+					}
+				},
+				{
+					"type": "custom",
+					"name": "break up"
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"note": "Gently heated."
+				},
+				{
+					"type": "custom",
+					"name": "drain",
+					"note": "Hung in muslin to drain."
+				},
+				{
+					"type": "custom",
+					"name": "salt"
+				}
+			],
+			"text": "Raw skimmed milk kept warm by the fire sours by its own flora, no starter; today pasteurised milk is acidified with lactic acid instead.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Crowdie",
+						"url": "https://en.wikipedia.org/wiki/Crowdie"
+					},
+					{
+						"name": "Highland Fine Cheeses: our story",
+						"url": "https://hf-cheeses.com/our-story"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Crowdie"
+			}
+		],
+		"text": "low-fat Scottish soft cheese"
+	},
+	"facts": [
+		{
+			"k": "Today",
+			"v": "pasteurised milk acidified with lactic acid (Wikipedia)"
+		},
+		{
+			"k": "History",
+			"v": "back to the Viking era and possibly the Picts (Wikipedia); home production declined after WWII; commercial since the 1960s via Susannah Stone, Tain"
+		}
+	],
+	"raw": true
+}

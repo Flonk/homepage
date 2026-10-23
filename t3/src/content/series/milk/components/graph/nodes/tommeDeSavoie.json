@@ -1,0 +1,37 @@
+{
+	"label": "Tomme de Savoie",
+	"example": true,
+	"family": "semiHard",
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		30,
+		90
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PGI",
+	"place": {
+		"region": "Savoie",
+		"lat": 45.57,
+		"lon": 6.35,
+		"x": 0.51764,
+		"y": 0.21602,
+		"located": "hint"
+	},
+	"confidence": "high",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Tomme_de_Savoie"
+			}
+		],
+		"text": "Its facts, from these."
+	}
+}

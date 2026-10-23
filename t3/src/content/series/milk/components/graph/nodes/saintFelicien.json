@@ -1,0 +1,38 @@
+{
+	"label": "Saint-Félicien",
+	"example": true,
+	"family": "lacticCheese",
+	"also": "bloomy",
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "soft",
+	"days": [
+		14,
+		28
+	],
+	"estimated": true,
+	"setting": "rennet-acid",
+	"rind": "bloomy",
+	"place": {
+		"region": "Auvergne-Rhône-Alpes",
+		"lat": 45.5,
+		"lon": 4.8,
+		"x": 0.51333,
+		"y": 0.2163,
+		"located": "hint"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Saint-F%C3%A9licien_cheese"
+			}
+		],
+		"text": "cream-enriched, geotrichum rind; ripening time not found"
+	}
+}

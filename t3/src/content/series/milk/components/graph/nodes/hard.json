@@ -1,0 +1,138 @@
+{
+	"label": "Hard cheese",
+	"aka": [
+		"Hartkäse"
+	],
+	"from": "rennetCurd",
+	"step": "scald, press",
+	"mapped": true,
+	"niche": 0,
+	"about": {
+		"text": "Cheese whose curd is cut to the size of wheat grains, heated to around 50 °C and pressed, then ripened for three months to over three years, until it holds no more than 56 % water in the cheese without its fat. Emmentaler, Parmesan, Grana Padano and Pecorino are among them.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia (de): Hartkäse; KäseV § 6",
+					"url": "https://de.wikipedia.org/wiki/Hartkäse"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "15-01 Parmigiano Reggiano Lokal K 01.jpg",
+		"author": "Mario M. Lommersum",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:15-01_Parmigiano_Reggiano_Lokal_K_01.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "Scalding at 50–56 °C shrinks the curd and drives out whey, and only the most heat-loving lactic bacteria survive it. The result is a dry, long-keeping cheese with at most 56 % water in the fat-free mass.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+				},
+				{
+					"name": "Codex General Standard for Cheese (CXS 283-1978)",
+					"url": "https://www.fao.org/input/download/standards/175/CXS_283e.pdf"
+				},
+				{
+					"name": "Käseverordnung § 6 (Germany)",
+					"url": "https://lxgesetze.de/käsev/6"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "thermophilic lactic acid bacteria",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								],
+								"grows": "thermophilic"
+							}
+						],
+						"by": [
+							"starter"
+						]
+					}
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"temperature": {
+						"min": 50,
+						"max": 56
+					},
+					"note": "The thermophilic cultures survive the scald, as in Emmental, Gruyère, Parmesan and Grana."
+				},
+				{
+					"type": "custom",
+					"name": "press",
+					"note": "Pressed in moulds."
+				},
+				{
+					"type": "custom",
+					"name": "brine",
+					"note": "In brine; Emmental ends at 0.4–1.2 % salt."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"seconds": {
+						"min": 7776000,
+						"about": true
+					}
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+					},
+					{
+						"name": "Codex General Standard for Cheese (CXS 283-1978)",
+						"url": "https://www.fao.org/input/download/standards/175/CXS_283e.pdf"
+					},
+					{
+						"name": "Käseverordnung § 6 (Germany)",
+						"url": "https://lxgesetze.de/käsev/6"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"parmigianoReggiano",
+		"granaPadano",
+		"pecorinoRomano",
+		"sbrinz",
+		"kefalotyri",
+		"cotija",
+		"rumi",
+		"reggianito",
+		"gravieraKritis",
+		"ladotyriMytilinis"
+	]
+}

@@ -1,0 +1,164 @@
+{
+	"label": "Schabziger",
+	"example": true,
+	"aka": [
+		"Glarner Kräuterkäse",
+		"Sapsago",
+		"Serac",
+		"Swiss green cheese",
+		"Glarner Schabziger"
+	],
+	"note": "Made only in Glarus; the green comes from blue fenugreek (Schabzigerklee, Trigonella caerulea). Grated, never sliced",
+	"family": "sourMilkCheese",
+	"about": {
+		"text": "Schabziger is a hard, green, strongly flavoured Swiss cheese made only in the canton of Glarus from the Ziger of skimmed milk and powdered blue fenugreek. A Glarus assembly fixed its recipe and origin stamp in 1463, one of the earliest protected brands; today one company, Geska, makes it.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Schabziger"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Zürich und Schabziger 004.jpg",
+		"author": "Oliver s.",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Z%C3%BCrich_und_Schabziger_004.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"CH"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "extra-hard",
+	"days": [
+		60,
+		180
+	],
+	"setting": "acid-heat",
+	"protected": "PDO",
+	"place": {
+		"region": "Glarus",
+		"lat": 47.04,
+		"lon": 9.07,
+		"x": 0.52519,
+		"y": 0.21011,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"how": {
+		"label": "ripen the Ziger, add blue fenugreek, press into cones",
+		"text": "The sources disagree on the order and timing (Wikipedia: heat milk with fenugreek sap, acidify, curdle the whey at 90 °C, press, dry; Swiss press: long ripening of the Ziger before grinding).",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Schabziger",
+					"url": "https://en.wikipedia.org/wiki/Schabziger"
+				},
+				{
+					"name": "Beobachter: Spezialität, was für ein Käse (found via search, page returned 403 on fetch)",
+					"url": "https://www.beobachter.ch/lebensmittel-ernahrung/spezialitat-was-fur-ein-kase"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "acidify",
+					"temperature": {
+						"min": 32,
+						"max": 32,
+						"about": true
+					},
+					"note": "Skim milk is acidified with lactic, citric or acetic acid."
+				},
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 90,
+						"max": 90
+					},
+					"note": "The whey is curdled at 90 °C, giving the Ziger."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"seconds": {
+						"min": 2419200,
+						"max": 7257600
+					},
+					"note": "The Ziger is ripened in perforated vats or cloth bags under stones."
+				},
+				{
+					"type": "custom",
+					"name": "grind",
+					"note": "Ground with the blue fenugreek (Trigonella caerulea) at the grinder."
+				},
+				{
+					"type": "custom",
+					"name": "salt"
+				},
+				{
+					"type": "custom",
+					"name": "press",
+					"seconds": {
+						"min": 518400,
+						"max": 691200
+					},
+					"note": "Pressed into cones."
+				},
+				{
+					"type": "dry",
+					"seconds": {
+						"min": 5184000,
+						"max": 15552000
+					},
+					"note": "Stored 3–8 months after grinding, in the Swiss press sources."
+				}
+			],
+			"text": "The Ziger is ripened 4-12 weeks (Swiss press sources), then ground with fenugreek, salted and stored; Wikipedia gives pressing 6-8 days and drying 2-6 months instead, and the sources disagree on the order.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Schabziger",
+						"url": "https://en.wikipedia.org/wiki/Schabziger"
+					},
+					{
+						"name": "Beobachter: Spezialität, was für ein Käse (found via search, page returned 403 on fetch)",
+						"url": "https://www.beobachter.ch/lebensmittel-ernahrung/spezialitat-was-fur-ein-kase"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Schabziger"
+			}
+		],
+		"text": "skim milk set with acid, whey re-curdled at 90 C into Ziger, pressed into cones and dried 2-6 months with blue fenugreek; grating cheese; protected status is a Swiss registration, not verified"
+	},
+	"composition": {
+		"fat": {
+			"max": 3
+		}
+	}
+}

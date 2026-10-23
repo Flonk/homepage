@@ -1,0 +1,37 @@
+{
+	"label": "Gaperon",
+	"example": true,
+	"family": "lacticCheese",
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-soft",
+	"days": [
+		35,
+		60
+	],
+	"estimated": true,
+	"setting": "rennet-acid",
+	"rind": "natural",
+	"place": {
+		"region": "Auvergne",
+		"lat": 45.5,
+		"lon": 3.1,
+		"x": 0.50861,
+		"y": 0.2163,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Gaperon"
+			}
+		],
+		"text": "Garlic and pepper, Auvergne, from buttermilk/skimmed milk"
+	}
+}

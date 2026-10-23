@@ -1,0 +1,41 @@
+{
+	"label": "Castelrosso",
+	"example": true,
+	"family": "soft",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "soft",
+	"days": [
+		10,
+		30
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Piedmont",
+		"lat": 44.4,
+		"lon": 7.4,
+		"x": 0.52056,
+		"y": 0.22061,
+		"located": "hint"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Castelrosso_cheese"
+			},
+			{
+				"name": "en.wikipedia.org",
+				"url": "https://en.wikipedia.org/wiki/List_of_cheeses"
+			}
+		],
+		"text": "No article or source found (Italian Wikipedia has only a place disambiguation); unverified"
+	}
+}

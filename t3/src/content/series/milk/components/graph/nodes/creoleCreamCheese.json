@@ -1,0 +1,36 @@
+{
+	"label": "Creole cream cheese",
+	"example": true,
+	"family": "lacticCheese",
+	"regions": [
+		"US"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		0
+	],
+	"setting": "acid",
+	"rind": "none",
+	"place": {
+		"region": "Louisiana",
+		"lat": 29.95,
+		"lon": -90.07,
+		"x": 0.24981,
+		"y": 0.27128,
+		"located": "hint"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Creole_cream_cheese"
+			}
+		],
+		"text": "New Orleans; lactic-set with a trace of rennet"
+	}
+}

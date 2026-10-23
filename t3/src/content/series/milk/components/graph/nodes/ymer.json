@@ -1,0 +1,155 @@
+{
+	"label": "Ymer",
+	"comment": "Fermented thinly, then drained of half its volume as whey and topped up with cream.",
+	"from": "skimmed",
+	"step": "the curd, with cream",
+	"alsoFrom": [
+		"cream"
+	],
+	"note": "Danish ymer is soured skimmed milk that is drained of about half its volume as whey, then blended and topped up with cream to about 3.5 % fat.",
+	"about": {
+		"text": "A Danish concentrated soured milk, first sold commercially in the 1930s: skimmed milk fermented with mesophilic cultures, drained of about half its volume as whey and blended smooth, with cream added to about 3.5 % fat. About 5–6 g protein per 100 g, so thick and spoonable.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Ymer_(dairy_product)"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Skeer med syrnede mælkeprodukter.jpg",
+		"author": "Nillerdk",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Skeer_med_syrnede_m%C3%A6lkeprodukter.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"DK"
+	],
+	"how": {
+		"text": "The curd is cut and warmed so it gives up its whey by syneresis; it is then kept above 35 °C while it is blended smooth, and cream is added afterwards. The temperatures and times come from Wikipedia alone.",
+		"sources": {
+			"links": [
+				{
+					"name": "Ymer (dairy product), Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Ymer_(dairy_product)"
+				},
+				{
+					"name": "Bintsis & Papademas 2022, Table 2, Fermentation 8:679",
+					"url": "https://doi.org/10.3390/fermentation8120679"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 90,
+						"max": 95
+					}
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Lactococcus lactis subsp. lactis biovar diacetylactis",
+								"kind": "bacterium",
+								"does": [
+									"aroma"
+								],
+								"grows": "mesophilic"
+							},
+							{
+								"name": "Leuconostoc mesenteroides subsp. cremoris",
+								"kind": "bacterium",
+								"does": [
+									"aroma"
+								],
+								"grows": "mesophilic"
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"temperature": {
+						"min": 18,
+						"max": 18
+					},
+					"seconds": {
+						"min": 57600
+					},
+					"pH": {
+						"max": 4.6
+					}
+				},
+				{
+					"type": "custom",
+					"name": "cut"
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"temperature": {
+						"min": 45,
+						"max": 45,
+						"about": true
+					}
+				},
+				{
+					"type": "custom",
+					"name": "drain",
+					"note": "About half the volume is drained off as whey."
+				},
+				{
+					"type": "custom",
+					"name": "blend",
+					"temperature": {
+						"min": 35
+					},
+					"note": "Kept above 35 °C while it is blended smooth."
+				},
+				{
+					"type": "custom",
+					"name": "mix",
+					"note": "Cream is added afterwards, to about 3.5 % fat."
+				}
+			],
+			"text": "Inoculated at 19–23 °C.",
+			"sources": {
+				"links": [
+					{
+						"name": "Ymer (dairy product), Wikipedia",
+						"url": "https://en.wikipedia.org/wiki/Ymer_(dairy_product)"
+					},
+					{
+						"name": "Bintsis & Papademas 2022, Table 2, Fermentation 8:679",
+						"url": "https://doi.org/10.3390/fermentation8120679"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"ylette"
+	]
+}

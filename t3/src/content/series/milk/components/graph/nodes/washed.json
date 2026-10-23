@@ -1,0 +1,130 @@
+{
+	"label": "Washed-rind cheese",
+	"aka": [
+		"Smear-ripened cheese",
+		"Rotschmierkäse"
+	],
+	"from": "soft",
+	"step": "smear the rind",
+	"mapped": true,
+	"niche": 1,
+	"about": {
+		"text": "Washed-rind or smear-ripened cheeses are cheeses which are periodically treated with brine or mold-bearing agents. This encourages the growth of certain bacteria on their surfaces which give them distinctive flavors. There are hard and soft washed-rind cheeses. The softer ones are sometimes distinguished as \"smear-ripened\". Conversely, the term \"washed-rind\" is sometimes reserved only for the hard ones.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Washed-rind_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Epoisses Germain.jpg",
+		"author": "Klaas van Buiten",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Epoisses_Germain.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "Washing the rind with a salt solution keeps it moist, so smear bacteria such as Brevibacterium linens can colonise it. They form a sticky layer that becomes part of the rind.",
+		"sources": {
+			"links": [
+				{
+					"name": "Codex General Standard for Cheese (CXS 283-1978), Appendix",
+					"url": "https://www.fao.org/input/download/standards/175/CXS_283e.pdf"
+				},
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "smear",
+					"kinds": [
+						"smear"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Brevibacterium linens",
+								"kind": "bacterium",
+								"does": [
+									"rind"
+								]
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"temperature": {
+						"min": 14,
+						"max": 16
+					},
+					"seconds": {
+						"min": 1209600,
+						"max": 1209600,
+						"about": true
+					},
+					"humidity": {
+						"min": 90,
+						"max": 90,
+						"about": true
+					},
+					"note": "Smeared with a salt solution, 5 % in the Codex example, and other types differ."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"temperature": {
+						"min": 10,
+						"max": 16
+					},
+					"seconds": {
+						"min": 1209600,
+						"max": 5184000
+					}
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Codex General Standard for Cheese (CXS 283-1978), Appendix",
+						"url": "https://www.fao.org/input/download/standards/175/CXS_283e.pdf"
+					},
+					{
+						"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"epoisses",
+		"munster",
+		"limburger",
+		"taleggio",
+		"herve",
+		"reblochon",
+		"maroilles",
+		"livarot",
+		"pontLEveque",
+		"vacherinMontDOr"
+	]
+}

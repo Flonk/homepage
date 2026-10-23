@@ -1,0 +1,107 @@
+{
+	"label": "Lactose",
+	"aka": [
+		"Milk sugar",
+		"Milchzucker"
+	],
+	"from": "permeate",
+	"step": "the crystals",
+	"niche": 0,
+	"about": {
+		"text": "Lactose is a disaccharide composed of galactose and glucose and has the molecular formula C12H22O11. Lactose makes up around 2–8% of milk (by mass). The name comes from lac (gen. lactis), the Latin word for milk, plus the suffix -ose used to name sugars. The compound is a white, water-soluble, non-hygroscopic solid with a mildly sweet taste. It is used in the food industry.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Lactose"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Lactose crystals 2.jpg",
+		"author": "Maxim Bilovitskiy",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Lactose_crystals_2.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "Lactose is much less soluble when cold, so a concentrated permeate is cooled slowly and the lactose crystallises out (as alpha-lactose monohydrate). The crystals are spun off, washed and dried; the mother liquor keeps the minerals and the rest of the sugar.",
+		"sources": {
+			"links": [
+				{
+					"name": "EP3302080B1, Second pass lactose crystallization (description of the conventional process)",
+					"url": "https://patents.google.com/patent/EP3302080B1/en"
+				},
+				{
+					"name": "Wikipedia, Lactose (permeate evaporated to 60–65 % solids)",
+					"url": "https://en.wikipedia.org/wiki/Lactose"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "evaporate",
+					"note": "The permeate is evaporated to about 60 % dry matter."
+				},
+				{
+					"type": "heat",
+					"does": "cool",
+					"temperature": {
+						"min": 15,
+						"max": 60,
+						"about": true
+					},
+					"seconds": {
+						"min": 72000,
+						"max": 72000
+					},
+					"note": "Slowly, about 3 °C/h from 60 to 30 °C, then about 1.5 °C/h to 15 °C, so the lactose crystallises out."
+				},
+				{
+					"type": "custom",
+					"name": "separate",
+					"note": "The crystals go through a decanter, then a sieve centrifuge, and are washed."
+				},
+				{
+					"type": "dry",
+					"note": "In a fluid-bed dryer, which also cools the crystals."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "EP3302080B1, Second pass lactose crystallization (description of the conventional process)",
+						"url": "https://patents.google.com/patent/EP3302080B1/en"
+					},
+					{
+						"name": "Wikipedia, Lactose (permeate evaporated to 60–65 % solids)",
+						"url": "https://en.wikipedia.org/wiki/Lactose"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Before",
+			"v": "Whey ultrafiltered for protein, nanofiltered for salts, decoloured with activated carbon"
+		},
+		{
+			"k": "Yield",
+			"v": "One pass gives ~69–70 % of the lactose; mother liquor is recycled or discarded"
+		}
+	]
+}

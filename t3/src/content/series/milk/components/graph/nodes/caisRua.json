@@ -1,0 +1,37 @@
+{
+	"label": "Cais Rua",
+	"example": true,
+	"family": "washed",
+	"regions": [
+		"IE"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-soft",
+	"days": [
+		30,
+		90
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "washed",
+	"place": {
+		"region": "Cork",
+		"lat": 51.9,
+		"lon": -7.9,
+		"x": 0.47806,
+		"y": 0.18931,
+		"located": "knowledge"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "en.wikipedia.org",
+				"url": "https://en.wikipedia.org/wiki/List_of_Irish_cheeses"
+			}
+		],
+		"text": "Fermoy Natural Cheese Co.; raw cow milk, traditional rennet; rind type assumed from the name (rua = red), not confirmed"
+	}
+}

@@ -1,0 +1,98 @@
+{
+	"label": "Flavoured milk",
+	"from": "pasteurised",
+	"step": "add cocoa or flavour, sugar and stabiliser",
+	"alsoFrom": [
+		"semi",
+		"uht"
+	],
+	"note": "Sold either pasteurised and chilled or UHT-treated so it keeps unrefrigerated. A carton of the chilled kind can hold as much sugar as a can of soft drink (2018 analysis of 90+ products).",
+	"about": {
+		"text": "Milk sweetened and flavoured, most often with cocoa, but also with coffee, malt, vanilla, strawberry or banana. It is sold pasteurised and chilled, or UHT-treated and shelf-stable.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Flavored_milk"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Chocolate milk.JPG",
+		"author": "stevepb",
+		"license": "CC0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Chocolate_milk.JPG"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "Carrageenan works in cocoa drinks mainly by interacting with milk proteins at neutral pH, forming a network that keeps the cocoa particles suspended. Kappa-carrageenan was more effective than lambda in UHT processing; too much stabiliser makes the milk lumpy or jelly-like, and sterilised milk needs less than UHT, UHT less than pasteurised.",
+		"sources": {
+			"links": [
+				{
+					"name": "Cargill, dairy drinks white paper",
+					"url": "https://www.cargill.com/food-beverage/doc/1451375238284/doc-food-emea-category-dairy-dairy-drinks-white-paper.pdf?file=1"
+				},
+				{
+					"name": "Palsgaard, preventing sedimentation in chocolate milk",
+					"url": "https://palsgaard.com/en/knowledge-innovation/dairy/how-to-prevent-sedimentation-in-chocolate-milk"
+				},
+				{
+					"name": "UCC, UHT processing of chocolate flavoured milk",
+					"url": "https://research.ucc.ie/en/publications/ultra-high-temperature-processing-of-chocolate-flavoured-milk/"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "mix",
+					"note": "Sugar, cocoa or flavouring, and colour are added."
+				},
+				{
+					"type": "custom",
+					"name": "add stabiliser",
+					"note": "Kappa-carrageenan or microcrystalline cellulose."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Cargill, dairy drinks white paper",
+						"url": "https://www.cargill.com/food-beverage/doc/1451375238284/doc-food-emea-category-dairy-dairy-drinks-white-paper.pdf?file=1"
+					},
+					{
+						"name": "Palsgaard, preventing sedimentation in chocolate milk",
+						"url": "https://palsgaard.com/en/knowledge-innovation/dairy/how-to-prevent-sedimentation-in-chocolate-milk"
+					},
+					{
+						"name": "UCC, UHT processing of chocolate flavoured milk",
+						"url": "https://research.ucc.ie/en/publications/ultra-high-temperature-processing-of-chocolate-flavoured-milk/"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"chocolateMilk",
+		"strawberryMilk",
+		"masalaMilk"
+	],
+	"facts": [
+		{
+			"k": "Heat",
+			"v": "Pasteurised (sold chilled) or UHT"
+		}
+	]
+}

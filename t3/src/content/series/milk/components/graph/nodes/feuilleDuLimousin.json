@@ -1,0 +1,42 @@
+{
+	"label": "Feuille du Limousin",
+	"example": true,
+	"family": "lacticCheese",
+	"also": "bloomy",
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"goat"
+	],
+	"firm": "soft",
+	"days": [
+		10,
+		21
+	],
+	"estimated": true,
+	"setting": "rennet-acid",
+	"rind": "natural",
+	"place": {
+		"region": "Limousin",
+		"lat": 45.8,
+		"lon": 1.6,
+		"x": 0.50444,
+		"y": 0.2151,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Feuille_du_Limousin"
+			},
+			{
+				"name": "reussir.fr",
+				"url": "https://www.reussir.fr/chevre/la-chevre-au-pays-vert"
+			}
+		],
+		"text": "raw goat milk (not cow), farmhouse, Limousin; chestnut leaf; creamy at about 10 days"
+	}
+}

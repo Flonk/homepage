@@ -1,0 +1,136 @@
+{
+	"label": "Époisses",
+	"example": true,
+	"family": "washed",
+	"about": {
+		"text": "Époisses, also known as Époisses de Bourgogne, is a legally demarcated cheese made in the village of Époisses and its environs, in the département of Côte-d'Or, about halfway between Dijon and Auxerre, in the former duchy of Burgundy, France, from agricultural processes and resources traditionally found in that region.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/%C3%89poisses"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Époisses Gaugry 03.jpg",
+		"author": "Coyau",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:%C3%89poisses_Gaugry_03.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "soft",
+	"days": [
+		28,
+		56
+	],
+	"setting": "rennet-acid",
+	"rind": "washed",
+	"protected": "PDO",
+	"place": {
+		"region": "Burgundy",
+		"lat": 47.46,
+		"lon": 4.55,
+		"x": 0.51264,
+		"y": 0.20839,
+		"located": "knowledge"
+	},
+	"confidence": "high",
+	"how": {
+		"label": "wash in marc",
+		"text": "A slow, mostly lactic set gives a fragile, moist curd that is ladled with little cutting and left to drain by itself. Repeated washing with marc de Bourgogne water during at least four weeks develops the brick-red colour and pungent aroma of the rind.",
+		"sources": {
+			"links": [
+				{
+					"name": "Époisses PDO amendment summary, OJ C 280 (2007)",
+					"url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52007XC1122(03)"
+				},
+				{
+					"name": "INAO product sheet Époisses",
+					"url": "https://www.inao.gouv.fr/node/1763/printable/pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "coagulate",
+					"by": "rennet-acid",
+					"note": "Mostly by lactic coagulation, with rennet the only coagulant allowed."
+				},
+				{
+					"type": "custom",
+					"name": "cut",
+					"note": "Roughly, without breaking up the curd."
+				},
+				{
+					"type": "custom",
+					"name": "drain",
+					"note": "Naturally."
+				},
+				{
+					"type": "custom",
+					"name": "mould",
+					"note": "Into cylinders of 95–115 mm (250–350 g) or 165–190 mm (700–1100 g)."
+				},
+				{
+					"type": "custom",
+					"name": "salt",
+					"note": "Dry salted."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"seconds": {
+						"min": 2419200
+					},
+					"note": "Washed with water containing marc de Bourgogne."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Époisses PDO amendment summary, OJ C 280 (2007)",
+						"url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52007XC1122(03)"
+					},
+					{
+						"name": "INAO product sheet Époisses",
+						"url": "https://www.inao.gouv.fr/node/1763/printable/pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/%C3%89poisses"
+			}
+		],
+		"text": "washed in marc de Bourgogne"
+	},
+	"facts": [
+		{
+			"k": "Rind",
+			"v": "Smooth, glossy, pale orange to brick red, no colourant"
+		}
+	]
+}

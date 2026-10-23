@@ -1,0 +1,88 @@
+{
+	"label": "Barfi",
+	"example": true,
+	"about": {
+		"text": "Barfi or burfi is a milk-based sweet from the Indian subcontinent with a fudge-like consistency. It is consumed throughout India and Pakistan and is especially popular in North India. Barfi is often served at celebrations and religious festivals such as Diwali and Holi.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Barfi"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Barfi.JPG",
+		"author": "Miansari66",
+		"license": "Public domain",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Barfi.JPG"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"IN",
+		"PK"
+	],
+	"how": {
+		"text": "Khoa and sugar are cooked together over low heat, stirred until the mass thickens and leaves the sides of the pan, then spread, cooled and cut. The sources give no quantities, temperatures or times.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Barfi",
+					"url": "https://en.wikipedia.org/wiki/Barfi"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "cook",
+					"note": "Khoa and sugar are cooked together over low heat, stirred until the mass thickens and pulls away from the pan to a fudge-like consistency."
+				},
+				{
+					"type": "custom",
+					"name": "spread",
+					"note": "On a greased plate or foil."
+				},
+				{
+					"type": "heat",
+					"does": "cool"
+				},
+				{
+					"type": "custom",
+					"name": "cut",
+					"note": "Into squares, diamonds or circles."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Barfi",
+						"url": "https://en.wikipedia.org/wiki/Barfi"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Flavours",
+			"v": "Cardamom, kewra, saffron, rosewater, nuts, coconut"
+		},
+		{
+			"k": "Topping",
+			"v": "Vark (edible silver foil) for special occasions"
+		}
+	]
+}

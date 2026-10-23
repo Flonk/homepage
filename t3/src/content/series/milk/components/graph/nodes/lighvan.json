@@ -1,0 +1,214 @@
+{
+	"label": "Lighvan",
+	"example": true,
+	"aka": [
+		"Liqvan",
+		"Lighvan panir",
+		"Liqvan cheese"
+	],
+	"note": "Raw milk, no starter; Lighvan village, East Azerbaijan",
+	"family": "brined",
+	"about": {
+		"text": "A sour, brined curd cheese traditionally made from raw sheep milk in Lighvan, Iran, without any starter; its acidity comes from the milk's own bacteria.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Lighvan_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Lighvan cheese 1.jpg",
+		"author": "farsnews.ir",
+		"license": "CC BY 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Lighvan_cheese_1.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"IR"
+	],
+	"beasts": [
+		"sheep"
+	],
+	"firm": "semi-soft",
+	"days": [
+		90,
+		120
+	],
+	"setting": "rennet",
+	"rind": "brine",
+	"place": {
+		"region": "East Azerbaijan",
+		"lat": 38.9,
+		"lon": 46.95,
+		"x": 0.63042,
+		"y": 0.24108,
+		"located": "guess"
+	},
+	"confidence": "medium",
+	"how": {
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Lighvan_cheese",
+					"url": "https://en.wikipedia.org/wiki/Lighvan_cheese"
+				},
+				{
+					"name": "Fsct Modares: Lighvan cheese microflora",
+					"url": "https://fsct.modares.ac.ir/article_24608.html?lang=en"
+				},
+				{
+					"name": "Ramezani et al. 2017 (University of Turin)",
+					"url": "https://iris.unito.it/retrieve/handle/2318/1632344/315991/Ramezani_2017.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"note": "With rennet tablets."
+				},
+				{
+					"type": "custom",
+					"name": "drain",
+					"note": "The curd is packed in triangular cloth bags."
+				},
+				{
+					"type": "custom",
+					"name": "salt",
+					"seconds": {
+						"min": 172800,
+						"max": 172800
+					},
+					"note": "Blocks about 20 cm thick are covered with salt in earthenware pots."
+				},
+				{
+					"type": "custom",
+					"name": "brine",
+					"note": "In a 10–12 % salt brine."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Lactobacillus",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								],
+								"isolates": 43.6
+							},
+							{
+								"name": "Enterococcus",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								],
+								"isolates": 33.8
+							},
+							{
+								"name": "Lactococcus",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								],
+								"isolates": 16.2
+							},
+							{
+								"name": "Leuconostoc",
+								"kind": "bacterium",
+								"does": [
+									"aroma"
+								],
+								"isolates": 3.7
+							},
+							{
+								"name": "Pediococcus",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								],
+								"isolates": 2.9
+							},
+							{
+								"name": "Lactococcus lactis subsp. lactis",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								],
+								"isolates": 25.3
+							},
+							{
+								"name": "Lactiplantibacillus plantarum",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								],
+								"isolates": 20
+							}
+						],
+						"by": [
+							"wild"
+						]
+					},
+					"temperature": {
+						"min": 10,
+						"max": 10,
+						"about": true
+					},
+					"seconds": {
+						"min": 7776000,
+						"max": 10368000
+					},
+					"note": "No starter is added, only indigenous lactic bacteria; Lactococcus and Lactobacillus dominate early, Enterococcus at the end of ripening."
+				}
+			],
+			"text": "The species shares overlap the genus shares.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Lighvan_cheese",
+						"url": "https://en.wikipedia.org/wiki/Lighvan_cheese"
+					},
+					{
+						"name": "Fsct Modares: Lighvan cheese microflora",
+						"url": "https://fsct.modares.ac.ir/article_24608.html?lang=en"
+					},
+					{
+						"name": "Ramezani et al. 2017 (University of Turin)",
+						"url": "https://iris.unito.it/retrieve/handle/2318/1632344/315991/Ramezani_2017.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Lighvan_cheese"
+			}
+		],
+		"text": "raw ewe's milk, 3-4 months in 10-12% brine at about 10 C"
+	},
+	"raw": true
+}

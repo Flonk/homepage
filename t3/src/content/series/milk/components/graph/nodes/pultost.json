@@ -1,0 +1,151 @@
+{
+	"label": "Pultost",
+	"example": true,
+	"note": "Spreadable (Loiten) and grainy (Hedemark, Lillehammer) types; stronger when aged",
+	"family": "sourMilkCheese",
+	"about": {
+		"text": "Pultost is a soft, mature Norwegian sour milk cheese flavoured with caraway. It is made from soured skimmed milk, salted, and is acid-set and very low in fat; it is spread on bread or flatbread or eaten with boiled potatoes.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Pultost"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Pultost.jpg",
+		"author": "Jan-Tore Egge",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Pultost.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"NO"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "soft",
+	"days": [
+		14,
+		42
+	],
+	"estimated": true,
+	"setting": "acid",
+	"rind": "none",
+	"confidence": "medium",
+	"how": {
+		"label": "cook the curd, crumble, ferment, salt",
+		"text": "After the skim-milk curd is cooked and drained, it is crumbled and left to heat itself with yeasts before salt and caraway go in. No culture species is named in any source.",
+		"sources": {
+			"links": [
+				{
+					"name": "The Common Table: Pultost, a messenger from the past",
+					"url": "https://thecommontable.eu/?p=5457"
+				},
+				{
+					"name": "Wikipedia: Pultost",
+					"url": "https://en.wikipedia.org/wiki/Pultost"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"yeast"
+					],
+					"seconds": {
+						"min": 86400,
+						"max": 172800
+					},
+					"note": "Skimmed milk soured without rennet."
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"temperature": {
+						"min": 60,
+						"max": 60,
+						"about": true
+					},
+					"seconds": {
+						"min": 18000,
+						"max": 21600
+					},
+					"note": "Heated slowly, and at nearly 60 °C the curd hardens into a raft."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"adds": {
+						"microbes": [
+							{
+								"name": "yeasts",
+								"kind": "yeast"
+							}
+						]
+					},
+					"temperature": {
+						"max": 34
+					},
+					"seconds": {
+						"min": 86400,
+						"max": 86400,
+						"about": true
+					},
+					"note": "The crumbled curd is piled in a wooden trough and smells of yeast (acetone, banana) as it warms itself to about 34 °C in a 15 °C room."
+				},
+				{
+					"type": "custom",
+					"name": "salt and caraway",
+					"note": "Salt and caraway are added."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"seconds": {
+						"min": 1814400,
+						"about": true
+					}
+				}
+			],
+			"text": "No culture species is named. The crumbled curd is piled in a wooden trough and warms itself to about 34 °C in a 15 °C room; farm versions ripen up to about a year.",
+			"sources": {
+				"links": [
+					{
+						"name": "The Common Table: Pultost, a messenger from the past",
+						"url": "https://thecommontable.eu/?p=5457"
+					},
+					{
+						"name": "Wikipedia: Pultost",
+						"url": "https://en.wikipedia.org/wiki/Pultost"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Pultost"
+			}
+		],
+		"text": "soured skimmed milk, acid-set, caraway, salted; spreadable or grainy; ripening time not given"
+	}
+}

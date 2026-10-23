@@ -1,0 +1,57 @@
+{
+	"label": "Pampanella",
+	"example": true,
+	"family": "semiHard",
+	"about": {
+		"text": "Abruzzo, Apulia",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Pampanella"
+				},
+				{
+					"name": "it.wikipedia.org",
+					"url": "https://it.wikipedia.org/wiki/Pampanella"
+				}
+			],
+			"text": "no English article exists; it.wikipedia only has a disambiguation line (cheese in Abruzzo and Puglia, and a Molise dish); all values are guesses"
+		}
+	},
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"sheep"
+	],
+	"firm": "semi-hard",
+	"days": [
+		30,
+		90
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Abruzzo",
+		"lat": 42.35,
+		"lon": 13.4,
+		"x": 0.53722,
+		"y": 0.22845,
+		"located": "hint"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Pampanella"
+			},
+			{
+				"name": "it.wikipedia.org",
+				"url": "https://it.wikipedia.org/wiki/Pampanella"
+			}
+		],
+		"text": "no English article exists; it.wikipedia only has a disambiguation line (cheese in Abruzzo and Puglia, and a Molise dish); all values are guesses"
+	}
+}

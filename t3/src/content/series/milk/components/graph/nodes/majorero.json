@@ -1,0 +1,131 @@
+{
+	"label": "Majorero",
+	"example": true,
+	"aka": [
+		"Queso majorero",
+		"Queso de Fuerteventura"
+	],
+	"note": "Cured versions may include up to 15 % Canarian sheep milk; rind left natural or rubbed with oil, paprika or toasted gofio; edges show the imprint of the palm-leaf braid mould.",
+	"family": "semiHard",
+	"about": {
+		"text": "Majorero is a firm, pale goat milk cheese from the island of Fuerteventura in the Canary Islands, made from the milk of the Majorera goat. It has PDO status and is sold with a natural, oiled, paprika or gofio rind.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Majorero"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Queso Majorero en el Club del Queso de Mumumío de Diciembre 2011.jpg",
+		"author": "Mumumío",
+		"license": "CC BY 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Queso_Majorero_en_el_Club_del_Queso_de_Mumum%C3%ADo_de_Diciembre_2011.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"ES"
+	],
+	"beasts": [
+		"goat"
+	],
+	"firm": "semi-hard",
+	"days": [
+		8,
+		180
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Canary Islands",
+		"lat": 28.45,
+		"lon": -14,
+		"x": 0.46111,
+		"y": 0.27605,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"how": {
+		"label": "press, salt, rub",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia, Majorero",
+					"url": "https://en.wikipedia.org/wiki/Majorero"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"seconds": {
+						"min": 3600,
+						"max": 3600,
+						"about": true
+					},
+					"note": "With lamb rennet."
+				},
+				{
+					"type": "custom",
+					"name": "beat and drain",
+					"note": "The curd is beaten and drained."
+				},
+				{
+					"type": "custom",
+					"name": "press",
+					"note": "Heavily pressed and shaped."
+				},
+				{
+					"type": "custom",
+					"name": "salt",
+					"note": "Dry salt is rubbed on top."
+				},
+				{
+					"type": "dry",
+					"note": "Aired for several days."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen"
+				},
+				{
+					"type": "custom",
+					"name": "rub",
+					"note": "Rubbed with oil, gofio or paprika after ageing."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia, Majorero",
+						"url": "https://en.wikipedia.org/wiki/Majorero"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Majorero"
+			}
+		],
+		"text": "Fuerteventura; tierno, semicurado and curado grades"
+	}
+}

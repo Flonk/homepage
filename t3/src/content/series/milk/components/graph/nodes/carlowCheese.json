@@ -1,0 +1,37 @@
+{
+	"label": "Carlow Cheese",
+	"example": true,
+	"family": "semiHard",
+	"regions": [
+		"IE"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		60,
+		180
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Carlow",
+		"lat": 52.84,
+		"lon": -6.93,
+		"x": 0.48075,
+		"y": 0.18503,
+		"located": "knowledge"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "en.wikipedia.org",
+				"url": "https://en.wikipedia.org/wiki/List_of_Irish_cheeses"
+			}
+		],
+		"text": "Possibly the same producer as Carlow Sheep Cheddar (Carlow Farmhouse Cheese, Fennagh); milk and type unverified"
+	}
+}

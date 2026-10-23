@@ -1,0 +1,119 @@
+{
+	"label": "Evaporated\nskimmed milk",
+	"aka": [
+		"Kondensmagermilch"
+	],
+	"from": "skimmed",
+	"step": "evaporate, sterilise in can",
+	"about": {
+		"text": "Skimmed milk with more than half its water evaporated off and sterilised in the can, with no more than 1 % fat; used in coffee and for cooking.",
+		"sources": {
+			"links": [
+				{
+					"name": "German MilchPQV, Anlage 6",
+					"url": "https://www.gesetze-im-internet.de/milchpqv/anlage_6.html"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"how": {
+		"text": "The same process as evaporated milk, but started from skimmed milk, so the can holds the milk solids without the fat. In the US it must have vitamins A and D put back.",
+		"sources": {
+			"links": [
+				{
+					"name": "Directive 2001/114/EC, Annex I (legislation.gov.uk)",
+					"url": "https://www.legislation.gov.uk/eudr/2001/114/annex/I"
+				},
+				{
+					"name": "21 CFR 131.132 Evaporated skimmed milk (govinfo, 1996 edition)",
+					"url": "https://www.govinfo.gov/content/pkg/CFR-1996-title21-vol2/html/CFR-1996-title21-vol2-part131.htm"
+				},
+				{
+					"name": "Tetra Pak Dairy Processing Handbook: Condensed milk",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/condensed-milk"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 100,
+						"max": 120
+					},
+					"seconds": {
+						"min": 60,
+						"max": 180
+					},
+					"note": "Preheated, as for whole evaporated milk."
+				},
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 65,
+						"max": 70
+					},
+					"note": "Evaporated under vacuum, boiling at 65–70 °C."
+				},
+				{
+					"type": "custom",
+					"name": "add stabiliser",
+					"note": "Sodium phosphates, the dose set by sterilisation trials."
+				},
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 110,
+						"max": 120
+					},
+					"seconds": {
+						"min": 900,
+						"max": 1200
+					},
+					"note": "Sterilised in the can."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Directive 2001/114/EC, Annex I (legislation.gov.uk)",
+						"url": "https://www.legislation.gov.uk/eudr/2001/114/annex/I"
+					},
+					{
+						"name": "21 CFR 131.132 Evaporated skimmed milk (govinfo, 1996 edition)",
+						"url": "https://www.govinfo.gov/content/pkg/CFR-1996-title21-vol2/html/CFR-1996-title21-vol2-part131.htm"
+					},
+					{
+						"name": "Tetra Pak Dairy Processing Handbook: Condensed milk",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/condensed-milk"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"composition": {
+		"fat": {
+			"max": 1
+		},
+		"solids": {
+			"min": 20
+		}
+	},
+	"facts": [
+		{
+			"k": "Law (US)",
+			"v": "21 CFR 131.132: partial removal of water only from skim milk; at least 20 % total milk solids, at most 0.5 % milkfat unless labelled"
+		},
+		{
+			"k": "Vitamins (US)",
+			"v": "Vitamins A and D must be added: 25 IU D and at least 125 IU A per fluid ounce"
+		}
+	]
+}

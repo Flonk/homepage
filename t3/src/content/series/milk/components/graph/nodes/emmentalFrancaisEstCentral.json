@@ -1,0 +1,42 @@
+{
+	"label": "Emmental français est-central",
+	"example": true,
+	"family": "alpine",
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "hard",
+	"days": [
+		75,
+		150
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PGI",
+	"place": {
+		"region": "Franche-Comté",
+		"lat": 47,
+		"lon": 5.9,
+		"x": 0.51639,
+		"y": 0.21027,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Emmental_fran%C3%A7ais_est-central"
+			},
+			{
+				"name": "en.wikipedia.org",
+				"url": "https://en.wikipedia.org/wiki/Emmental_cheese"
+			}
+		],
+		"text": "PGI; 75-day minimum recalled from the spec but not verified"
+	}
+}

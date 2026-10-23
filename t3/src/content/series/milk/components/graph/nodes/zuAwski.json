@@ -1,0 +1,37 @@
+{
+	"label": "Żuławski",
+	"example": true,
+	"family": "semiHard",
+	"regions": [
+		"PL"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		30,
+		60
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Pomeranian Voivodeship",
+		"lat": 54.2,
+		"lon": 19.1,
+		"x": 0.55306,
+		"y": 0.17868,
+		"located": "knowledge"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "en.wikipedia.org",
+				"url": "https://en.wikipedia.org/wiki/List_of_Polish_cheeses"
+			}
+		],
+		"text": "Named for the Żuławy region; the Wikipedia list gives no details and no other source was found. Fields are family-typical guesses."
+	}
+}

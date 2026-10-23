@@ -1,0 +1,81 @@
+{
+	"label": "Plavleny syrok",
+	"example": true,
+	"about": {
+		"text": "The small foil-wrapped processed cheese of the Soviet Union and Russia. The best known, Druzhba, was developed in 1960 at Moscow's Karat plant and is still made to the same recipe.",
+		"sources": {
+			"links": [
+				{
+					"name": "Interfax (2021)",
+					"url": "https://www.interfax.ru/business/765533"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"regions": [
+		"RU"
+	],
+	"how": {
+		"text": "Soviet and Russian processed cheese is made by melting rennet cheeses with tvorog, butter and melting salts at 75–95 °C into a homogeneous mass, sold as dense sliceable blocks such as the 'Druzhba' foil-wrapped bar or as soft spreadable pastes.",
+		"sources": {
+			"links": [
+				{
+					"name": "GOST 31690-2013 Processed cheeses. General specifications",
+					"url": "https://docs.cntd.ru/document/1200102735"
+				},
+				{
+					"name": "Wikipedia (ru): Плавленый сыр",
+					"url": "https://ru.wikipedia.org/wiki/Плавленый_сыр"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 75,
+						"max": 95
+					},
+					"note": "Rennet cheeses, tvorog, butter and citrate/phosphate melting salts are melted into one homogeneous mass."
+				},
+				{
+					"type": "custom",
+					"name": "smoke",
+					"temperature": {
+						"min": 50,
+						"max": 60
+					},
+					"seconds": {
+						"min": 10800,
+						"max": 10800,
+						"about": true
+					},
+					"note": "Only the 'sausage' type is smoked."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "GOST 31690-2013 Processed cheeses. General specifications",
+						"url": "https://docs.cntd.ru/document/1200102735"
+					},
+					{
+						"name": "Wikipedia (ru): Плавленый сыр",
+						"url": "https://ru.wikipedia.org/wiki/Плавленый_сыр"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Texture",
+			"v": "Sliceable or pasty"
+		}
+	]
+}

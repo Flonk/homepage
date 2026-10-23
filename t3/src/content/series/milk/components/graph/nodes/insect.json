@@ -1,0 +1,117 @@
+{
+	"label": "Insect- or mite-\nripened cheese",
+	"from": "rennetCurd",
+	"step": "ripen with mites or larvae",
+	"alsoFrom": [
+		"semiHard",
+		"washedCurd",
+		"hard",
+		"quark"
+	],
+	"mapped": true,
+	"about": {
+		"text": "Cheese ripened with the help of insects or mites: the larvae of the cheese fly, Piophila casei, that work through Sardinia's sheep's-milk casu marzu, or the mites that colonise the rinds of France's Mimolette and Germany's Milbenkäse during ripening, which help give them their rind and character.",
+		"sources": {
+			"links": [
+				{
+					"name": "Journal of Dairy Science (2010), Melnyk et al.",
+					"url": "https://doi.org/10.3168/jds.2009-2937"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Casu Marzu cheese.jpg",
+		"author": "Shardan",
+		"license": "CC BY-SA 2.5",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Casu_Marzu_cheese.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "The mites and larvae are not added to make the curd: they colonise the rind or paste while the cheese ripens. Mites eat the rind, which darkens from yellow to almost black over a year. Fly larvae tunnel inside, and the cheese they leave behind turns very soft.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia (de): Milbenkäse",
+					"url": "https://de.wikipedia.org/wiki/Milbenkäse"
+				},
+				{
+					"name": "Wikipedia: Casu martzu",
+					"url": "https://en.wikipedia.org/wiki/Casu_martzu"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"kinds": [
+						"animal"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Tyrolichus casei",
+								"kind": "animal",
+								"does": [
+									"ripening"
+								]
+							},
+							{
+								"name": "Piophila casei",
+								"kind": "animal",
+								"does": [
+									"ripening"
+								]
+							}
+						]
+					},
+					"seconds": {
+						"min": 2592000,
+						"max": 31104000
+					}
+				}
+			],
+			"text": "Mites and larvae are not added to make the curd: they colonise the rind or paste while the cheese ripens. Milbenkäse: mites with rye flour, 1–12 mo; casu marzu: larvae, about 3 mo.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia (de): Milbenkäse",
+						"url": "https://de.wikipedia.org/wiki/Milbenkäse"
+					},
+					{
+						"name": "Wikipedia: Casu martzu",
+						"url": "https://en.wikipedia.org/wiki/Casu_martzu"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"casuMarzu",
+		"casgiuMerzu",
+		"marcetto",
+		"mimolette"
+	],
+	"facts": [
+		{
+			"k": "Milbenkäse",
+			"v": "Dried quark balls with salt and caraway, ripened with Tyrolichus casei mites and rye flour for 1–12 months"
+		},
+		{
+			"k": "Casu marzu",
+			"v": "Pecorino with part of the rind removed, ripened about 3 months with Piophila casei larvae"
+		}
+	]
+}

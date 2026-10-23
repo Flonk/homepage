@@ -1,0 +1,122 @@
+{
+	"label": "Beyaz peynir",
+	"example": true,
+	"aka": [
+		"Turkish white cheese",
+		"White cheese"
+	],
+	"family": "brined",
+	"about": {
+		"text": "Beyaz peynir is the Turkish white cheese, traditionally made from unpasteurised sheep's milk (cow's or goat's also) set with rennet, and brined. It is eaten at breakfast, in salads, menemen and börek, and resembles feta, lighvan and sirene.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Beyaz_peynir"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "White cheese from Turkey.jpg",
+		"author": "E4024",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:White_cheese_from_Turkey.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"TR"
+	],
+	"beasts": [
+		"sheep",
+		"cow",
+		"goat"
+	],
+	"firm": "semi-soft",
+	"days": [
+		30,
+		90
+	],
+	"setting": "rennet",
+	"rind": "brine",
+	"confidence": "medium",
+	"how": {
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Beyaz peynir",
+					"url": "https://en.wikipedia.org/wiki/Beyaz_peynir"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"note": "With animal rennet, traditionally calf or lamb abomasum, or microbial rennet in industrial dairies."
+				},
+				{
+					"type": "custom",
+					"name": "press"
+				},
+				{
+					"type": "custom",
+					"name": "chop"
+				},
+				{
+					"type": "custom",
+					"name": "strain"
+				},
+				{
+					"type": "custom",
+					"name": "cut",
+					"note": "Into blocks."
+				},
+				{
+					"type": "custom",
+					"name": "brine",
+					"note": "Salted and put in brine."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"seconds": {
+						"min": 15552000,
+						"max": 15552000,
+						"about": true
+					},
+					"note": "About 6 months in brine for the strong mature kind."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Beyaz peynir",
+						"url": "https://en.wikipedia.org/wiki/Beyaz_peynir"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Beyaz_peynir"
+			}
+		],
+		"text": "Its facts, from these."
+	},
+	"raw": true
+}

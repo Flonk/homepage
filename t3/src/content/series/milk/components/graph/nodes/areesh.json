@@ -1,0 +1,96 @@
+{
+	"label": "Areesh",
+	"example": true,
+	"aka": [
+		"Gebna Arish",
+		"جبنة قريش",
+		"Arish",
+		"Aish"
+	],
+	"note": "Made from skimmed soured milk, so not a whole-milk cheese like Tvorog",
+	"family": "quark",
+	"about": {
+		"text": "An Egyptian fresh cheese of skimmed buffalo or cow milk: the milk is fermented to laban rayeb, gently heated so the curd separates, and drained. Eaten with honey or tomatoes and herbs, and the base of mish.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Areesh_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"regions": [
+		"EG"
+	],
+	"beasts": [
+		"buffalo",
+		"cow"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		3
+	],
+	"setting": "acid",
+	"rind": "none",
+	"confidence": "medium",
+	"how": {
+		"label": "heat the laban rayeb gently",
+		"text": "The soured skimmed milk is heated gently until the curd separates, then drained.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Areesh cheese",
+					"url": "https://en.wikipedia.org/wiki/Areesh_cheese"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "skim",
+					"note": "Buffalo or cow milk is skimmed."
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"note": "The skimmed milk is fermented to laban rayeb."
+				},
+				{
+					"type": "heat",
+					"does": "heat",
+					"note": "Gently, until the curd separates."
+				},
+				{
+					"type": "custom",
+					"name": "drain"
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Areesh cheese",
+						"url": "https://en.wikipedia.org/wiki/Areesh_cheese"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Areesh_cheese"
+			}
+		],
+		"text": "Fresh acid-curd, cottage-like; base of shanklish"
+	}
+}

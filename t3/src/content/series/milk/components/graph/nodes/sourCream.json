@@ -1,0 +1,76 @@
+{
+	"label": "Sour cream",
+	"aka": [
+		"Cultured sour cream"
+	],
+	"from": "culturedCream",
+	"at": 18,
+	"niche": 0,
+	"about": {
+		"text": "Sour cream is a dairy product obtained by fermenting regular cream with certain kinds of lactic acid bacteria. The bacterial culture, which is introduced either deliberately or naturally, sours and thickens the cream. Its name comes from the production of lactic acid by bacterial fermentation, which is called souring.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Sour_cream"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Sour Cream.jpg",
+		"author": "jules",
+		"license": "CC BY 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Sour_Cream.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"US"
+	],
+	"how": {
+		"text": "In the United States, sour cream is cultured cream of at least 18 % fat; it may be thickened with stabilisers such as starch or gelatine.",
+		"sources": {
+			"links": [
+				{
+					"name": "US 21 CFR 131.160 Sour cream",
+					"url": "https://www.law.cornell.edu/cfr/text/21/131.160"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"acidity": {
+						"min": 0.5
+					}
+				}
+			],
+			"text": "Cultured cream of at least 18 % fat (US).",
+			"sources": {
+				"links": [
+					{
+						"name": "US 21 CFR 131.160 Sour cream",
+						"url": "https://www.law.cornell.edu/cfr/text/21/131.160"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 18
+		}
+	}
+}

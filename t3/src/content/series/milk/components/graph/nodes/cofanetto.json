@@ -1,0 +1,44 @@
+{
+	"label": "Cofanetto",
+	"example": true,
+	"aka": [
+		"Caciocavallo Cofanaro"
+	],
+	"family": "pastaFilata",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"cow",
+		"sheep"
+	],
+	"firm": "semi-hard",
+	"days": [
+		20,
+		365
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Sicily",
+		"lat": 37.5,
+		"lon": 14.2,
+		"x": 0.53944,
+		"y": 0.24603,
+		"located": "hint"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Cofanetto"
+			},
+			{
+				"name": "onaf.it",
+				"url": "https://www.onaf.it/uploads/public/14830_cofanetto.pdf"
+			}
+		],
+		"text": "Sicily (Monte Cofano, Trapani), not Lombardy; raw milk from Cinisara cows (70-80%) and Belice sheep; stretched curd, 20 days to 1 year, square-based block of 2-10 kg"
+	}
+}

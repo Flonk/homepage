@@ -1,0 +1,41 @@
+{
+	"label": "Gioda",
+	"example": true,
+	"family": "semiHard",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		30,
+		90
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Piedmont",
+		"lat": 45.07,
+		"lon": 7.68,
+		"x": 0.52133,
+		"y": 0.21799,
+		"located": "hint"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Gioda"
+			},
+			{
+				"name": "onaf.it",
+				"url": "https://www.onaf.it/uploads/public/8222_gioda.pdf"
+			}
+		],
+		"text": "Piedmontese PAT; raw whole cow's milk, semi-cooked curd (tome made like fontina), 2 kg cylinders with thin dark-beige rind. Named after agronomist Alessandro Gioda. Ripening time not found"
+	}
+}

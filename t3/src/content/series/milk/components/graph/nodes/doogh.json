@@ -1,0 +1,95 @@
+{
+	"label": "Doogh",
+	"example": true,
+	"about": {
+		"text": "Doogh is a cold and savoury Persian drink. It is made with fermented milk. Unlike ayran, a yoghurt drink of Turkish origin, doogh is not diluted yogurt. According to the Iranian Ministry of Food Standards, doogh \"is a drink resulting from lactic fermentation of milk whose dry matter is standardized by diluting yogurt or buttermilk .\"",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Doogh"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Ayrân-ı İrân.jpg",
+		"author": "Eaeeae",
+		"license": "CC BY 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Ayr%C3%A2n-%C4%B1_%C4%B0r%C3%A2n.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"IR"
+	],
+	"how": {
+		"text": "Doogh is Iranian yoghurt diluted with water and salted, sometimes flavoured with herbs or carbonated. Codex calls this a drink based on fermented milk, with at least 40 % fermented milk.",
+		"sources": {
+			"links": [
+				{
+					"name": "Low-fat doogh study, Food Sci. Nutr. (2023)",
+					"url": "https://doi.org/10.1002/fsn3.3647"
+				},
+				{
+					"name": "Doogh BPA survey, Sci. Rep. (2025)",
+					"url": "https://doi.org/10.1038/s41598-025-25638-5"
+				},
+				{
+					"name": "Codex Standard for Fermented Milks CXS 243-2003",
+					"url": "https://www.fao.org/input/download/standards/400/CXS_243e.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "dilute",
+					"note": "With water, to about 40 % yoghurt."
+				},
+				{
+					"type": "custom",
+					"name": "salt",
+					"note": "To about 0.7 % salt."
+				}
+			],
+			"text": "Flavoured or carbonated variants exist.",
+			"sources": {
+				"links": [
+					{
+						"name": "Low-fat doogh study, Food Sci. Nutr. (2023)",
+						"url": "https://doi.org/10.1002/fsn3.3647"
+					},
+					{
+						"name": "Doogh BPA survey, Sci. Rep. (2025)",
+						"url": "https://doi.org/10.1038/s41598-025-25638-5"
+					},
+					{
+						"name": "Codex Standard for Fermented Milks CXS 243-2003",
+						"url": "https://www.fao.org/input/download/standards/400/CXS_243e.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Cultures",
+			"v": "Yoghurt starter: L. delbrueckii subsp. bulgaricus + S. thermophilus"
+		},
+		{
+			"k": "Texture",
+			"v": "Thin drink; prone to serum separation"
+		}
+	]
+}

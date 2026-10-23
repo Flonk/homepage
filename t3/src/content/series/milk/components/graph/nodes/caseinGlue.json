@@ -1,0 +1,109 @@
+{
+	"label": "Casein glue",
+	"aka": [
+		"Kaseinleim",
+		"Cold-water glue"
+	],
+	"from": "acidCasein",
+	"step": "mix with lime",
+	"about": {
+		"text": "Glue made from casein mixed with water, hydrated lime and often caustic soda; with enough lime it resists water. Used in crude form for woodwork since the Middle Ages, made as an industry from the 19th century, and in wide demand for military aircraft from 1916–17.",
+		"sources": {
+			"links": [
+				{
+					"name": "USDA Forest Products Laboratory, Report 280 'Casein Glues' (1930, rev. 1961)",
+					"url": "https://ir.library.oregonstate.edu/jspui/bitstream/1957/882/1/FPL_280ocr_rev.pdf"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Ca 1940s CASCO casein glue by Swedish company AB Lauxein Casco.jpg",
+		"author": "R. Henrik Nilsson",
+		"license": "CC BY 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Ca_1940s_CASCO_casein_glue_by_Swedish_company_AB_Lauxein_Casco.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "The lime does the work: it dissolves the casein into a glue and, as it reacts, makes the dried film resist water. Adjusting the balance of sodium hydroxide and lime trades water resistance against pot life. Alkali dissolves the casein, so no cooking is needed.",
+		"sources": {
+			"links": [
+				{
+					"name": "USDA Forest Products Laboratory, Report 280 'Casein Glues' (1961)",
+					"url": "https://ir.library.oregonstate.edu/jspui/bitstream/1957/882/1/FPL_280ocr_rev.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "soak",
+					"seconds": {
+						"min": 900,
+						"max": 1800
+					},
+					"note": "100 parts of casein, ground to pass a 20-mesh sieve, are soaked in 150 parts of water."
+				},
+				{
+					"type": "custom",
+					"name": "add soda",
+					"note": "Sodium hydroxide, 11 parts in 50 parts of water."
+				},
+				{
+					"type": "custom",
+					"name": "add lime",
+					"note": "Hydrated lime, 20 parts in 50 parts of water."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "USDA Forest Products Laboratory, Report 280 'Casein Glues' (1961)",
+						"url": "https://ir.library.oregonstate.edu/jspui/bitstream/1957/882/1/FPL_280ocr_rev.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"elmerSGlue",
+		"aircraftGlue"
+	],
+	"facts": [
+		{
+			"k": "Working life",
+			"v": "6–7 h at 70–75 °F (21–24 °C)"
+		},
+		{
+			"k": "Casein only + lime",
+			"v": "water-resistant but very short working life"
+		},
+		{
+			"k": "Casein + water + NaOH",
+			"v": "strong, long working life, not water-resistant"
+		},
+		{
+			"k": "Sodium silicate",
+			"v": "can replace NaOH; gives a much longer working life"
+		},
+		{
+			"k": "Pressing",
+			"v": "150–200 psi; joints strong enough to machine within a few hours"
+		},
+		{
+			"k": "Joint strength",
+			"v": "2,200 to over 3,000 psi in shear; water-resistant, not waterproof"
+		}
+	]
+}

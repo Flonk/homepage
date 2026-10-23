@@ -1,0 +1,169 @@
+{
+	"label": "Suero costeño",
+	"example": true,
+	"aka": [
+		"Suero"
+	],
+	"about": {
+		"text": "A viscous, salted, sour milk of Colombia’s Caribbean coast, made from raw milk that sours by itself and eaten with arepas and boiled yuca. Its name is the Spanish word for whey, but it is a soured whole milk.",
+		"sources": {
+			"links": [
+				{
+					"name": "Universidad de Córdoba study on suero costeño (Redalyc)",
+					"url": "https://www.redalyc.org/pdf/693/69319041007.pdf"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Suero costeno.jpg",
+		"author": "Jdvillalobos",
+		"license": "CC BY 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Suero_coste%C3%B1o.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"CO"
+	],
+	"how": {
+		"sources": {
+			"links": [
+				{
+					"name": "Universidad de Córdoba study on suero costeño (Redalyc)",
+					"url": "https://www.redalyc.org/pdf/693/69319041007.pdf"
+				},
+				{
+					"name": "Unicauca, Biotecnología en el Sector Agropecuario y Agroindustrial",
+					"url": "https://revistas.unicauca.edu.co/index.php/biotecnologia/article/download/803/427/2791"
+				},
+				{
+					"name": "Redalyc journal 496, article 49659032019",
+					"url": "https://www.redalyc.org/journal/496/49659032019/49659032019.pdf"
+				},
+				{
+					"name": "SGD reference 18693547",
+					"url": "https://www.yeastgenome.org/reference/18693547"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Lactococcus lactis",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Lactobacillus paracasei",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Levilactobacillus brevis",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								],
+								"formerly": [
+									"Lactobacillus brevis"
+								]
+							},
+							{
+								"name": "Enterococcus faecium",
+								"kind": "bacterium"
+							},
+							{
+								"name": "Lactiplantibacillus plantarum",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								],
+								"formerly": [
+									"Lactobacillus plantarum"
+								]
+							},
+							{
+								"name": "Streptococcus infantarius",
+								"kind": "bacterium"
+							}
+						],
+						"by": [
+							"wild"
+						]
+					},
+					"seconds": {
+						"min": 86400,
+						"about": true
+					}
+				},
+				{
+					"type": "custom",
+					"name": "salt",
+					"note": "Salt is added."
+				}
+			],
+			"text": "Raw cow milk soured by its native flora, with salt added. Yeasts rise early and lactic acid bacteria dominate by about 24 h; in a Cauca study L. paracasei and L. lactis at 30:70 or 40:60 gave least syneresis.",
+			"sources": {
+				"links": [
+					{
+						"name": "Universidad de Córdoba study on suero costeño (Redalyc)",
+						"url": "https://www.redalyc.org/pdf/693/69319041007.pdf"
+					},
+					{
+						"name": "Unicauca, Biotecnología en el Sector Agropecuario y Agroindustrial",
+						"url": "https://revistas.unicauca.edu.co/index.php/biotecnologia/article/download/803/427/2791"
+					},
+					{
+						"name": "Redalyc journal 496, article 49659032019",
+						"url": "https://www.redalyc.org/journal/496/49659032019/49659032019.pdf"
+					},
+					{
+						"name": "SGD reference 18693547",
+						"url": "https://www.yeastgenome.org/reference/18693547"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Starter work",
+			"v": "Cauca study: L. paracasei and L. lactis at 30:70 or 40:60 gave least syneresis"
+		},
+		{
+			"k": "Microbiology",
+			"v": "Yeasts rise early, enterobacteria fall, lactic acid bacteria dominate by about 24 h (Cueto et al. 2007)"
+		},
+		{
+			"k": "Where",
+			"v": "Bolívar, Sucre, Córdoba and Cesar on the Caribbean coast"
+		},
+		{
+			"k": "Texture",
+			"v": "Viscous, salted; eaten with arepa, yuca or bollo"
+		}
+	],
+	"raw": true
+}

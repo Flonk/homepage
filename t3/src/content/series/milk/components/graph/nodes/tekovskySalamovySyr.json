@@ -1,0 +1,38 @@
+{
+	"label": "Tekovský salámový syr",
+	"example": true,
+	"family": "steamedCheese",
+	"regions": [
+		"SK"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		14,
+		28
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "other",
+	"protected": "PGI",
+	"place": {
+		"region": "Nitra Region",
+		"lat": 48.22,
+		"lon": 18.6,
+		"x": 0.55167,
+		"y": 0.20524,
+		"located": "knowledge"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Tekovsk%C3%BD_sal%C3%A1mov%C3%BD_syr"
+			}
+		],
+		"text": "smoked, salami-shaped steamed cheese; EU PGI; ripening not found"
+	}
+}

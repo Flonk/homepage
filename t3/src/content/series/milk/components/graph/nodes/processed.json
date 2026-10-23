@@ -1,0 +1,90 @@
+{
+	"label": "Processed cheese",
+	"aka": [
+		"Schmelzkäse"
+	],
+	"from": "cheese",
+	"step": "melt",
+	"alsoFrom": [
+		"hard",
+		"cheddared",
+		"freshCheese"
+	],
+	"note": "Made from whatever natural cheese the maker has: mostly Cheddar and Colby in the US, Emmental or Gouda types in Europe, and fresh curd for Cancoillotte and requeijão",
+	"niche": 0,
+	"cheese": true,
+	"about": {
+		"text": "Processed cheese is a product made from cheese mixed with an emulsifying agent. Additional ingredients, such as unfermented dairy ingredients, salt, vegetable oils, sugar, or food coloring may be included. As a result, many flavors, colors, and textures of processed cheese exist. Processed cheese typically contains around 50–60% cheese and 40–50% other ingredients.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Processed_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Schmelzkäse-1.jpg",
+		"author": "Rainer Zenz",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Schmelzk%C3%A4se-1.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "Natural cheese is ground and heated with emulsifying salts into a smooth, uniform mass. The US standard (21 CFR 133) requires at least 65.6 °C for 30 seconds; the EU and Germany set no such figure, and factories usually melt hotter, around 80–95 °C, for a few minutes.",
+		"sources": {
+			"links": [
+				{
+					"name": "US 21 CFR 133.169, Pasteurized process cheese",
+					"url": "https://www.law.cornell.edu/cfr/text/21/133.169"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "grind",
+					"note": "One or more natural cheeses."
+				},
+				{
+					"type": "pasteurise",
+					"temperature": {
+						"min": 65.6
+					},
+					"seconds": {
+						"min": 30
+					},
+					"note": "With emulsifying salts (phosphates, citrates, tartrates) up to 3 % of the weight, and factories usually melt at about 80–95 °C for a few minutes."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "US 21 CFR 133.169, Pasteurized process cheese",
+						"url": "https://www.law.cornell.edu/cfr/text/21/133.169"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"americanCheese",
+		"cancoillotte",
+		"requeijaoCremoso",
+		"queijoDeManteiga",
+		"plavlenySyrok",
+		"velveeta"
+	]
+}

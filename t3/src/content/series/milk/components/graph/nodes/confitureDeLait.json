@@ -1,0 +1,76 @@
+{
+	"label": "Confiture de lait",
+	"example": true,
+	"about": {
+		"text": "The French name for dulce de leche: a spread of milk and sugar cooked slowly over a low heat until it caramelises.",
+		"sources": {
+			"links": [
+				{
+					"name": "Office québécois de la langue française, Grand dictionnaire terminologique",
+					"url": "https://vitrinelinguistique.oqlf.gouv.qc.ca/fiche-gdt/fiche/26544281/confiture-de-lait"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Faisselle & confiture de lait.jpg",
+		"author": "Véronique PAGNIER",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Faisselle_%26_confiture_de_lait.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"FR"
+	],
+	"how": {
+		"text": "French milk jam: milk and sugar are boiled and then cooked gently until thick and caramel-coloured. The source gives no cooking time or temperature.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia (fr): Confiture de lait",
+					"url": "https://fr.wikipedia.org/wiki/Confiture_de_lait"
+				},
+				{
+					"name": "Wikipedia: Dulce de leche",
+					"url": "https://en.wikipedia.org/wiki/Dulce_de_leche"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"note": "Milk and sugar, 300–500 g per litre, are brought to the boil."
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"note": "Then cooked on very low heat until thick and caramel-coloured."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia (fr): Confiture de lait",
+						"url": "https://fr.wikipedia.org/wiki/Confiture_de_lait"
+					},
+					{
+						"name": "Wikipedia: Dulce de leche",
+						"url": "https://en.wikipedia.org/wiki/Dulce_de_leche"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	}
+}

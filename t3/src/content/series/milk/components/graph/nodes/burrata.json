@@ -1,0 +1,111 @@
+{
+	"label": "Burrata",
+	"example": true,
+	"note": "A mozzarella shell filled with stracciatella and cream",
+	"family": "pastaFilata",
+	"also": "stracciatella",
+	"about": {
+		"text": "Burrata is an Italian fresh cheese from Apulia: a shell of pasta filata mozzarella filled with stracciatella and cream.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Burrata"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Burrata2.jpg",
+		"author": "Popo le Chien",
+		"license": "CC0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Burrata2.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"cow",
+		"buffalo"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		3
+	],
+	"setting": "rennet",
+	"rind": "none",
+	"place": {
+		"region": "Apulia",
+		"lat": 41.23,
+		"lon": 16.3,
+		"x": 0.54528,
+		"y": 0.23262,
+		"located": "hint"
+	},
+	"confidence": "high",
+	"how": {
+		"label": "fill a mozzarella pouch",
+		"text": "The stretched curd is formed into a pouch and filled with stracciatella, the shredded curd mixed with cream, then closed.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Burrata",
+					"url": "https://en.wikipedia.org/wiki/Burrata"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "shred",
+					"note": "The stretched curd is shredded for the filling."
+				},
+				{
+					"type": "custom",
+					"name": "mix in cream",
+					"note": "The shredded curd is mixed with cream into stracciatella."
+				},
+				{
+					"type": "custom",
+					"name": "form",
+					"note": "The stretched curd is formed into a pouch."
+				},
+				{
+					"type": "custom",
+					"name": "fill and close",
+					"note": "The pouch is filled with stracciatella and closed."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Burrata",
+						"url": "https://en.wikipedia.org/wiki/Burrata"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Burrata"
+			}
+		],
+		"text": "Its facts, from these."
+	}
+}

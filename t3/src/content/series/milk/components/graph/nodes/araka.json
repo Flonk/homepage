@@ -1,0 +1,73 @@
+{
+	"label": "Araka",
+	"example": true,
+	"about": {
+		"text": "The milk spirit of the Khakas of southern Siberia, distilled from airan, soured milk, and formerly also from kumis.",
+		"sources": {
+			"links": [
+				{
+					"name": "Russian Wikipedia, Арака",
+					"url": "https://ru.wikipedia.org/wiki/Арака"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"regions": [
+		"RU"
+	],
+	"how": {
+		"text": "Nothing is added in the still. Vapour of the heated airan rises to the cooling pot, condenses to drops and runs down the trough into a jug. No temperatures are given in the source.",
+		"sources": {
+			"links": [
+				{
+					"name": "Butanaev V. Ya., Torbostaev K. M.: Araka (Khakas encyclopedia article, citing Butanaev, Natsionalnye blyuda khakasov, Abakan 1994)",
+					"url": "https://nbdrx.ru/pdf/staty/ax0000027_19.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "distil",
+					"note": "Vapour of the heated airan rises to the cooling pot, condenses to drops and runs down the trough into a jug."
+				},
+				{
+					"type": "custom",
+					"name": "distil again",
+					"note": "Run a second time (khorachyn) for a stronger drink."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Butanaev V. Ya., Torbostaev K. M.: Araka (Khakas encyclopedia article, citing Butanaev, Natsionalnye blyuda khakasov, Abakan 1994)",
+						"url": "https://nbdrx.ru/pdf/staty/ax0000027_19.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"composition": {
+		"alcohol": {
+			"max": 10
+		}
+	},
+	"facts": [
+		{
+			"k": "Old still (khazan-khakhpakh)",
+			"v": "Large cauldron on a tripod, wooden domed lid with two bent wooden pipes (sorga) leading into two cast-iron jugs standing in a trough of cold water"
+		},
+		{
+			"k": "Newer still (ulger / soyan khakhpakh)",
+			"v": "Cauldron set in the stove, bottomless conical tub on top with a sloping spout-trough inside, cold-water pot (takhtai) as lid"
+		},
+		{
+			"k": "Origin of the newer still",
+			"v": "East-Mongolian (Khalkha) type, borrowed by the Khakas from Tuva in the 19th century"
+		}
+	]
+}

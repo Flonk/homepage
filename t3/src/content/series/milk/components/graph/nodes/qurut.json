@@ -1,0 +1,134 @@
+{
+	"label": "Qurut",
+	"example": true,
+	"aka": [
+		"Kurt"
+	],
+	"family": "sunDriedCheese",
+	"about": {
+		"text": "The dried fermented-milk cheese of the Kazakhs and other Central Asian nomads; the name comes from the Turkic word for ‘dry’. Milk is soured with yoghurt from an earlier batch, boiled, and the curd pressed in cloth, salted, rolled into small balls and sun-dried for up to two weeks. It keeps for over a year.",
+		"sources": {
+			"links": [
+				{
+					"name": "Oskenbay, Crossroads 14 (2016)",
+					"url": "https://www.ostasien-verlag.de/zeitschriften/crossroads/cr/pdf/CR_14_2016_205-218_Oskenbay.pdf"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Kurut fromages kirghize.jpg",
+		"author": "Paul Munhoven",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Kurut_fromages_kirghize.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"AF",
+		"TJ",
+		"UZ",
+		"KZ"
+	],
+	"beasts": [
+		"sheep",
+		"cow",
+		"yak"
+	],
+	"firm": "hard",
+	"days": [
+		14,
+		60
+	],
+	"estimated": true,
+	"setting": "acid",
+	"rind": "none",
+	"confidence": "medium",
+	"how": {
+		"text": "Yoghurt or soured milk is drained (in Kazakhstan, first cooked down), then salted, rolled into balls and dried in sun and air. The low water content lets qurut keep for years.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tuganbay et al., Mol. Nutr. Food Res. (2026)",
+					"url": "https://doi.org/10.1002/mnfr.70460"
+				},
+				{
+					"name": "Say, Soltani & Güzeler, Pamukkale Univ. J. Eng. Sci. (2015)",
+					"url": "https://doi.org/10.5505/pajes.2015.47048"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "drain",
+					"seconds": {
+						"min": 86400,
+						"max": 86400,
+						"about": true
+					},
+					"note": "In linen, or boiled down first in Kazakhstan."
+				},
+				{
+					"type": "custom",
+					"name": "salt",
+					"note": "With 1–3 % salt."
+				},
+				{
+					"type": "custom",
+					"name": "shape",
+					"note": "Into balls of 40–60 g."
+				},
+				{
+					"type": "dry",
+					"seconds": {
+						"min": 604800,
+						"max": 1209600
+					},
+					"note": "Sun-dried."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Tuganbay et al., Mol. Nutr. Food Res. (2026)",
+						"url": "https://doi.org/10.1002/mnfr.70460"
+					},
+					{
+						"name": "Say, Soltani & Güzeler, Pamukkale Univ. J. Eng. Sci. (2015)",
+						"url": "https://doi.org/10.5505/pajes.2015.47048"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Kashk"
+			}
+		],
+		"text": "air-dried balls of soured-milk solids; drying time, not ripening"
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Sheep, goat, cow; also mare or camel in Kazakhstan"
+		},
+		{
+			"k": "Texture",
+			"v": "Hard"
+		}
+	]
+}

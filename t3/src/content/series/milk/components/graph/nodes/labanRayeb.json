@@ -1,0 +1,91 @@
+{
+	"label": "Laban rayeb",
+	"example": true,
+	"aka": [
+		"Raib",
+		"Rayeb",
+		"لبن رايب"
+	],
+	"picture": {
+		"file": "A cup of laban rayeb.jpg",
+		"author": "Mint eggy93",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:A_cup_of_laban_rayeb.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"beasts": [
+		"cow",
+		"buffalo"
+	],
+	"how": {
+		"text": "Skimming makes it the base of areesh and karish.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Laban rayeb",
+					"url": "https://en.wikipedia.org/wiki/Laban_rayeb"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [],
+						"by": [
+							"wild"
+						],
+						"vessel": "earthenware pot (matared), sealed with oil or an egg-white and oil coat"
+					},
+					"temperature": {
+						"min": 20,
+						"max": 25
+					},
+					"seconds": {
+						"min": 86400,
+						"max": 345600
+					}
+				},
+				{
+					"type": "custom",
+					"name": "skim",
+					"note": "The fat that rises is skimmed off for butter."
+				}
+			],
+			"text": "Raw cow or buffalo milk soured by its own flora; the fat that rises is skimmed off for butter.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Laban rayeb",
+						"url": "https://en.wikipedia.org/wiki/Laban_rayeb"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Flavour",
+			"v": "The curd below the skimmed fat has a buttermilk-like smell and mild acidity"
+		},
+		{
+			"k": "Relatives",
+			"v": "Laban khad (fermented in a goat pelt), Laban zeer (earthenware pot; mixed with wheat and sun-dried into kishk), Goubasha (Sudanese drink of buffalo laban rayeb, cream and water)"
+		}
+	],
+	"raw": true
+}

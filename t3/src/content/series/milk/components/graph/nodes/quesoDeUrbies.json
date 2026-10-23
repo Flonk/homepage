@@ -1,0 +1,39 @@
+{
+	"label": "Queso de Urbiés",
+	"example": true,
+	"family": "semiHard",
+	"regions": [
+		"ES"
+	],
+	"beasts": [
+		"cow",
+		"goat",
+		"sheep"
+	],
+	"firm": "semi-hard",
+	"days": [
+		30,
+		60
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Asturias",
+		"lat": 43.35,
+		"lon": -5.85,
+		"x": 0.48375,
+		"y": 0.22466,
+		"located": "guess"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Queso_de_Urbi%C3%A9s"
+			}
+		],
+		"text": "Asturian (Mieres); unverified"
+	}
+}

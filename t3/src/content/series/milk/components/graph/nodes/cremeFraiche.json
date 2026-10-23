@@ -1,0 +1,108 @@
+{
+	"label": "Crème fraîche",
+	"aka": [
+		"Crème épaisse"
+	],
+	"from": "culturedCream",
+	"at": 30,
+	"niche": 1,
+	"about": {
+		"text": "Crème fraîche is a dairy product similar to sour cream; it is a soured cream containing 10–45% butterfat, with a pH of approximately 4.5. It is soured with a bacterial culture. European labeling regulations specify the two ingredients must be cream and bacterial culture. It is served over fruit and baked goods, as well as being added to soups and sauces. It is used in a variety of other recipes. Sour cream is a similar foodstuff, except that crème fraîche is less sour and has a higher fat content. Sour cream may contain thickening agents not permitted in crème fraîche in many jurisdictions.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Cr%C3%A8me_fra%C3%AEche"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Crème fraîche.jpg",
+		"author": "Danja Vassiliev",
+		"license": "CC BY-SA 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Cr%C3%A8me_fra%C3%AEche.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"FR"
+	],
+	"how": {
+		"text": "The same mesophilic cultures sour cream with at least 30 % fat. So much fat makes it very thick and rich, with a mild acidity.",
+		"sources": {
+			"links": [
+				{
+					"name": "German MilchPQV, Anlage 8 (2025)",
+					"url": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html"
+				},
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Lactococcus lactis",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							}
+						],
+						"by": [
+							"starter"
+						]
+					}
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "German MilchPQV, Anlage 8 (2025)",
+						"url": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html"
+					},
+					{
+						"name": "Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 30
+		}
+	},
+	"facts": [
+		{
+			"k": "Packing",
+			"v": "Packed within 24 h at the dairy"
+		},
+		{
+			"k": "Texture",
+			"v": "Very viscous; viscosity rises with fat content"
+		}
+	],
+	"live": true
+}

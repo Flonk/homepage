@@ -1,0 +1,85 @@
+{
+	"label": "Dulce de leche",
+	"from": "fresh",
+	"step": "simmer with sugar",
+	"alsoFrom": [
+		"condensed"
+	],
+	"niche": 1,
+	"about": {
+		"text": "Dulce de leche, caramelized milk, milk candy, or milk jam is a confection commonly made by heating sugar and milk over several hours. The substance takes on a spreadable, sauce-like consistency and derives its rich flavour and colour from non-enzymatic browning. It is typically used to top or fill other sweet foods.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Dulce_de_leche"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "DulceDeLeche.jpg",
+		"author": "audinou from Paris, France",
+		"license": "CC BY 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:DulceDeLeche.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "Sugar dissolves in simmering milk, which then slowly thickens and turns golden brown.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Dulce de leche",
+					"url": "https://en.wikipedia.org/wiki/Dulce_de_leche"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"seconds": {
+						"min": 5400,
+						"max": 7200,
+						"about": true
+					},
+					"note": "A slow simmer with sugar, stirred almost constantly."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Dulce de leche",
+						"url": "https://en.wikipedia.org/wiki/Dulce_de_leche"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"cajeta",
+		"doceDeLeite",
+		"arequipe",
+		"manjar",
+		"confitureDeLait",
+		"dulceGatas",
+		"varenayaSgushchyonka"
+	],
+	"facts": [
+		{
+			"k": "Browning",
+			"v": "Caramelisation and the Maillard reaction together give colour and flavour"
+		}
+	]
+}

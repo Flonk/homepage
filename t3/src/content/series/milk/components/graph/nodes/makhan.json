@@ -1,0 +1,153 @@
+{
+	"label": "Makhan",
+	"example": true,
+	"note": "Churned from dahi (set whole milk or malai), not from separated cream",
+	"about": {
+		"text": "The butter of the Indian subcontinent churned from dahi, set yoghurt made from whole milk or malai, rather than from fresh cream, traditionally by hand in an earthen pot. Eaten fresh, or heated slowly into desi ghee.",
+		"sources": {
+			"links": [
+				{
+					"name": "Journal of Food Science and Technology (2020)",
+					"url": "https://link.springer.com/article/10.1007/s13197-020-04711-z"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Desi makhan.jpg",
+		"author": "Rajeeb (Marajozkee)",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Desi_makhan.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"IN",
+		"PK"
+	],
+	"how": {
+		"label": "set dahi, churn",
+		"text": "Whole milk is soured into dahi with a spoonful of yesterday's dahi or chhach, and the lactic bacteria supply the diacetyl that gives makkhan its aroma. The whole curd, not separated cream, is churned, so makkhan keeps more moisture, curd and lactic acid than butter.",
+		"sources": {
+			"links": [
+				{
+					"name": "Halder et al., J Food Sci Technol (makkhan review)",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8021505/"
+				},
+				{
+					"name": "FAO: Traditional milk products of India (T0251E, ch. 4)",
+					"url": "https://www.fao.org/4/T0251E/T0251E04.htm"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"note": "The milk is usually boiled."
+				},
+				{
+					"type": "heat",
+					"does": "cool"
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Lactococcus lactis subsp. lactis biovar diacetylactis",
+								"kind": "bacterium",
+								"does": [
+									"aroma"
+								]
+							},
+							{
+								"name": "Leuconostoc mesenteroides subsp. cremoris",
+								"kind": "bacterium",
+								"does": [
+									"aroma"
+								]
+							}
+						],
+						"by": [
+							"backslop"
+						]
+					},
+					"seconds": {
+						"min": 28800,
+						"max": 57600
+					},
+					"acidity": {
+						"min": 0.9,
+						"max": 1.1
+					},
+					"note": "Set at room temperature overnight with a spoonful of the previous day's dahi or chhach, best for churning at 0.9–1.1 % acidity and up to 2 % when uncontrolled."
+				},
+				{
+					"type": "custom",
+					"name": "dilute",
+					"note": "The dahi is diluted with water."
+				},
+				{
+					"type": "churn",
+					"note": "Churned with a wooden beater in the morning."
+				},
+				{
+					"type": "custom",
+					"name": "wash",
+					"note": "The fat is washed."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Halder et al., J Food Sci Technol (makkhan review)",
+						"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8021505/"
+					},
+					{
+						"name": "FAO: Traditional milk products of India (T0251E, ch. 4)",
+						"url": "https://www.fao.org/4/T0251E/T0251E04.htm"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 78.5,
+			"max": 81.3
+		},
+		"moisture": {
+			"min": 18,
+			"max": 20
+		}
+	},
+	"facts": [
+		{
+			"k": "Texture",
+			"v": "Like whipped cream cheese"
+		},
+		{
+			"k": "Law",
+			"v": "India: at least 76 % milk fat"
+		}
+	],
+	"beasts": [
+		"cow",
+		"buffalo"
+	]
+}

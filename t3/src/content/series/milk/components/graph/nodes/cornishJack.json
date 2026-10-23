@@ -1,0 +1,41 @@
+{
+	"label": "Cornish Jack",
+	"example": true,
+	"family": "semiHard",
+	"regions": [
+		"GB"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		30,
+		90
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Cornwall",
+		"lat": 50.4,
+		"lon": -4.9,
+		"x": 0.48639,
+		"y": 0.19595,
+		"located": "knowledge"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Cornish_Jack"
+			},
+			{
+				"name": "en.wikipedia.org",
+				"url": "https://en.wikipedia.org/wiki/List_of_Cornish_cheeses"
+			}
+		],
+		"text": "Monterey Jack-style; only a name in the Wikipedia Cornish list, details unverified"
+	}
+}

@@ -1,0 +1,108 @@
+{
+	"label": "Tarag",
+	"example": true,
+	"note": "Mongolian; fermented spontaneously at ambient temperature with a mixed lactobacillus, lactococcus and yeast flora, no S. thermophilus",
+	"about": {
+		"text": "Mongolian soured milk, made from cow's, yak's, goat's or sheep's milk. Eaten as it is, dried into aaruul, or, made from cow's or yak's milk, distilled into shimiin arkhi.",
+		"sources": {
+			"links": [
+				{
+					"name": "Bianquis, Les alcools de lait en Mongolie (OCHA, 2004)",
+					"url": "https://www.lemangeur-ocha.com/wp-content/uploads/2012/02/I_BIANQUIS_alcools_lait_mongolie_01.pdf"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"regions": [
+		"MN"
+	],
+	"beasts": [
+		"cow",
+		"yak",
+		"goat",
+		"sheep"
+	],
+	"how": {
+		"text": "Tarag is a spontaneously fermented Mongolian milk in which Lactobacillus dominates (L. delbrueckii in pyrosequencing, L. helveticus and Lc. lactis among isolates), alongside yeasts such as Galactomyces. Its flora varies with region and with the animal the milk comes from.",
+		"sources": {
+			"links": [
+				{
+					"name": "Oki et al., Biosci. Microbiota Food Health (2014)",
+					"url": "https://doi.org/10.12938/bmfh.33.53"
+				},
+				{
+					"name": "Tarag LAB isolates, Microbiol. Res. (2012)",
+					"url": "https://doi.org/10.1016/j.micres.2011.05.001"
+				},
+				{
+					"name": "Tarag bacterial/fungal diversity, J. Dairy Sci. (2014)",
+					"url": "https://doi.org/10.3168/jds.2014-8360"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic",
+						"yeast"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Lactobacillus delbrueckii",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Lactobacillus helveticus",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Lactococcus lactis",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Galactomyces yeasts",
+								"kind": "yeast"
+							}
+						],
+						"by": [
+							"wild"
+						]
+					}
+				}
+			],
+			"text": "Spontaneously fermented; the flora varies with region and animal.",
+			"sources": {
+				"links": [
+					{
+						"name": "Oki et al., Biosci. Microbiota Food Health (2014)",
+						"url": "https://doi.org/10.12938/bmfh.33.53"
+					},
+					{
+						"name": "Tarag LAB isolates, Microbiol. Res. (2012)",
+						"url": "https://doi.org/10.1016/j.micres.2011.05.001"
+					},
+					{
+						"name": "Tarag bacterial/fungal diversity, J. Dairy Sci. (2014)",
+						"url": "https://doi.org/10.3168/jds.2014-8360"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	}
+}

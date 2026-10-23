@@ -1,0 +1,104 @@
+{
+	"label": "Guda",
+	"example": true,
+	"aka": [
+		"Tushuri guda",
+		"Gudis kveli",
+		"Tushetian guda"
+	],
+	"note": "From Tusheti; the name means cheese from a bag; the skin is a young sheep hide with the wool shaved off",
+	"about": {
+		"text": "A sheep-milk cheese from Tusheti in Georgia, salted in layers and ripened in a sheepskin bag; the name means cheese from a bag.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Guda_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Tushetian Guda.jpg",
+		"author": "Levan Kokiashvili (ლევან ქოქიაშვილი)",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Tushetian_Guda.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"GE"
+	],
+	"beasts": [
+		"sheep"
+	],
+	"how": {
+		"label": "salt in a sheepskin",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Guda_cheese",
+					"url": "https://en.wikipedia.org/wiki/Guda_cheese"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "strain",
+					"note": "The sheep milk is strained through herbs."
+				},
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"seconds": {
+						"min": 3600,
+						"max": 3600
+					},
+					"note": "With rennet, covered in felt to keep the milk warm."
+				},
+				{
+					"type": "custom",
+					"name": "drain",
+					"note": "The curds are stirred, the whey drained and the curd squeezed in a linen bag."
+				},
+				{
+					"type": "custom",
+					"name": "salt",
+					"note": "Wheels are packed in a wineskin with salt between layers, the air pressed out and the skin tied."
+				},
+				{
+					"type": "custom",
+					"name": "turn",
+					"note": "The skin is turned 3 times daily for the first days."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"seconds": {
+						"max": 5184000,
+						"about": true
+					}
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Guda_cheese",
+						"url": "https://en.wikipedia.org/wiki/Guda_cheese"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	}
+}

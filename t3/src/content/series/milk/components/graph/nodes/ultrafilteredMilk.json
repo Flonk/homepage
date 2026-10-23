@@ -1,0 +1,113 @@
+{
+	"label": "Ultrafiltered milk",
+	"aka": [
+		"Ultra-filtered milk"
+	],
+	"from": "skimmed",
+	"step": "ultrafilter, blend the cream back",
+	"note": "Ultra-filtered milk is not milk with protein powder added: the proteins stay in the milk and part of the water, lactose and minerals goes out through the membrane. fairlife says it takes out about half the sugar and uses no added protein powder.",
+	"about": {
+		"text": "Milk pushed through a fine membrane that keeps the proteins and lets much of the water, lactose and minerals through, so it ends up with more protein and less sugar than ordinary milk. Sold in the US mostly as fairlife.",
+		"sources": {
+			"links": [
+				{
+					"name": "SDSU Extension: What is an ultra-filtered milk product?",
+					"url": "https://extension.sdstate.edu/what-ultra-filtered-milk-product"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Fairlife Milk, Whole, by Coca Cola",
+		"author": "JeepersMedia",
+		"license": "CC BY 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Flickr",
+					"url": "https://www.flickr.com/photos/39160147@N03/16143431578"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "The milk is separated, the skim part is pushed through a membrane that holds back the proteins, and the cream and the minerals that went through are put back, so the milk keeps its fat and gets denser in protein.",
+		"sources": {
+			"links": [
+				{
+					"name": "SDSU Extension, What is an ultra-filtered milk product?",
+					"url": "https://extension.sdstate.edu/what-ultra-filtered-milk-product"
+				},
+				{
+					"name": "Wikipedia: fairlife",
+					"url": "https://en.wikipedia.org/wiki/Fairlife"
+				},
+				{
+					"name": "fairlife: FAQ",
+					"url": "https://fairlife.com/frequently-asked-questions"
+				},
+				{
+					"name": "DairyReporter: The rise of ultrafiltration (2026)",
+					"url": "https://www.dairyreporter.com/Article/2026/03/13/how-ultrafiltered-milk-is-made-benefits-protein-process/"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "ultrafiltration",
+					"note": "Cold, through a membrane that holds back the proteins (80 % casein, 20 % whey, as in milk) and fat and passes water, lactose and some minerals."
+				},
+				{
+					"type": "custom",
+					"name": "return minerals",
+					"note": "The lactose-rich stream is split again by nanofiltration and reverse osmosis, and the minerals go back."
+				},
+				{
+					"type": "custom",
+					"name": "add lactase",
+					"note": "For the lactose left over; it is on the label."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "SDSU Extension, What is an ultra-filtered milk product?",
+						"url": "https://extension.sdstate.edu/what-ultra-filtered-milk-product"
+					},
+					{
+						"name": "Wikipedia: fairlife",
+						"url": "https://en.wikipedia.org/wiki/Fairlife"
+					},
+					{
+						"name": "fairlife: FAQ",
+						"url": "https://fairlife.com/frequently-asked-questions"
+					},
+					{
+						"name": "DairyReporter: The rise of ultrafiltration (2026)",
+						"url": "https://www.dairyreporter.com/Article/2026/03/13/how-ultrafiltered-milk-is-made-benefits-protein-process/"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"fairlife",
+		"organicValleyUltra"
+	],
+	"facts": [
+		{
+			"k": "Compared with ordinary",
+			"v": "fairlife fat-free vs ordinary fat-free, per serving: 13 g vs 8 g protein, 6 g vs 12 g sugar, 370 vs 299 mg calcium"
+		},
+		{
+			"k": "Milk used",
+			"v": "About 30 % more milk goes into each litre (SDSU)"
+		}
+	]
+}

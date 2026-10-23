@@ -1,0 +1,90 @@
+{
+	"label": "Butter tea",
+	"aka": [
+		"Po cha",
+		"Suja",
+		"Bho jha"
+	],
+	"from": "butter",
+	"step": "churn with salted tea",
+	"alsoFrom": [
+		"culturedButter"
+	],
+	"about": {
+		"text": "Butter tea is a salty drink of the Himalayas and Tibet: strongly brewed tea, often pu-erh, churned with butter and salt in a wooden churn (mdong mo) until it is thick. Yak butter is traditional, cow butter is increasingly used, and it is drunk in many bowls a day for its calories at altitude.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Butter_tea"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Tibetan butter tea.jpg",
+		"author": "Yosomono",
+		"license": "CC BY 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Tibetan_butter_tea.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"NP",
+		"BT",
+		"IN",
+		"CN"
+	],
+	"beasts": [
+		"yak"
+	],
+	"how": {
+		"text": "The butter is not melted down first: it is churned straight into the hot salted tea until the two emulsify.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Butter tea",
+					"url": "https://en.wikipedia.org/wiki/Butter_tea"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"note": "Brick or pu-erh tea is boiled long."
+				},
+				{
+					"type": "custom",
+					"name": "strain"
+				},
+				{
+					"type": "custom",
+					"name": "salt"
+				},
+				{
+					"type": "churn",
+					"note": "The butter is churned straight into the hot salted tea until the two emulsify, in a wooden churn (mdong mo) or now a blender."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Butter tea",
+						"url": "https://en.wikipedia.org/wiki/Butter_tea"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	}
+}

@@ -1,0 +1,41 @@
+{
+	"label": "Chabis",
+	"example": true,
+	"family": "lacticCheese",
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"goat"
+	],
+	"firm": "soft",
+	"days": [
+		10,
+		30
+	],
+	"estimated": true,
+	"setting": "rennet-acid",
+	"rind": "natural",
+	"place": {
+		"region": "Nouvelle-Aquitaine",
+		"lat": 46.5,
+		"lon": 0.3,
+		"x": 0.50083,
+		"y": 0.2123,
+		"located": "guess"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Chabis"
+			},
+			{
+				"name": "en.wikipedia.org",
+				"url": "https://en.wikipedia.org/wiki/Chabichou"
+			}
+		],
+		"text": "Poitou goat cheese; name overlaps with Chabichou du Poitou (PDO min 10 days) and Chabis de Gatine; no separate article found"
+	}
+}

@@ -1,0 +1,92 @@
+{
+	"label": "Milk protein\nconcentrate",
+	"aka": [
+		"MPC"
+	],
+	"from": "skimmed",
+	"step": "what the filter holds, dried",
+	"note": "Casein and whey proteins stay in the same ratio as in milk, unlike a caseinate or a whey protein.",
+	"about": {
+		"text": "Skimmed milk run through an ultrafiltration membrane, often with water added to wash more lactose out, and then dried: a powder of 40 to 90 % milk protein that has the casein and whey proteins in the ratio of milk. Used in protein drinks, yoghurts, bars and to raise the protein in cheese milk.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Milk protein concentrate",
+					"url": "https://en.wikipedia.org/wiki/Milk_protein_concentrate"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"how": {
+		"text": "Skim milk is concentrated on an ultrafiltration membrane that keeps the casein and whey proteins and lets lactose, minerals and water through; for the higher grades water is added and filtered out again (diafiltration), then the retentate is evaporated and spray-dried.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook: Milk and whey fractionation",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
+				},
+				{
+					"name": "Wikipedia: Milk protein concentrate",
+					"url": "https://en.wikipedia.org/wiki/Milk_protein_concentrate"
+				},
+				{
+					"name": "PMC5603002 (MPC65 by UF, MPC80 by UF + diafiltration, pasteurised skim milk; seen in search, not opened)",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5603002"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "ultrafilter",
+					"note": "Pasteurised skim milk on a membrane that keeps the casein and whey proteins and lets lactose, minerals and water through."
+				},
+				{
+					"type": "custom",
+					"name": "diafilter",
+					"note": "Water is added and filtered out again to wash out lactose, needed above about 70 % protein."
+				},
+				{
+					"type": "custom",
+					"name": "evaporate",
+					"note": "The retentate is evaporated to 12–18 % solids before drying (MPC85/MCC85)."
+				},
+				{
+					"type": "dry",
+					"note": "Spray-dried."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Tetra Pak Dairy Processing Handbook: Milk and whey fractionation",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
+					},
+					{
+						"name": "Wikipedia: Milk protein concentrate",
+						"url": "https://en.wikipedia.org/wiki/Milk_protein_concentrate"
+					},
+					{
+						"name": "PMC5603002 (MPC65 by UF, MPC80 by UF + diafiltration, pasteurised skim milk; seen in search, not opened)",
+						"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5603002"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"mpc70",
+		"mpc80",
+		"milkProteinIsolateMpi"
+	],
+	"facts": [
+		{
+			"k": "Grades",
+			"v": "MPC35 to MPC85 and MPI, by protein in dry matter"
+		}
+	]
+}

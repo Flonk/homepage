@@ -1,0 +1,137 @@
+{
+	"label": "Ezine",
+	"example": true,
+	"aka": [
+		"Ezine peyniri",
+		"Ezine tipi beyaz peynir"
+	],
+	"note": "Mixed milk, about 40 % goat, 50 % sheep, 10 % cow; no starter; ripened in metal tins like Edirne cheese. First Turkish cheese registered in the EU.",
+	"about": {
+		"text": "Ezine is a full-fat Turkish white cheese from the Ezine district of Çanakkale and the Kaz Dağları, soft to medium-hard and ripened in brine. It is one of the most popular white cheeses in Turkey, with PDO status.",
+		"sources": {
+			"links": [
+				{
+					"name": "Turkish Wikipedia, Ezine peyniri",
+					"url": "https://tr.wikipedia.org/wiki/Ezine_peyniri"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Ezine peyniri.jpg",
+		"author": "E4024",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Ezine_peyniri.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"TR"
+	],
+	"beasts": [
+		"sheep",
+		"goat",
+		"cow"
+	],
+	"how": {
+		"text": "A metagenomic study of eight artisanal samples instead found Streptococcus thermophilus, Lactococcus and Lactobacillus dominating, so the flora differs between dairies and methods.",
+		"sources": {
+			"links": [
+				{
+					"name": "Food Sci Anim Resour 2019, 39(5):804–819, PDO Ezine cheese NSLAB diversity (abstract read)",
+					"url": "https://avesis.ankara.edu.tr/yayin/af53b8d1-85e0-456b-9c8c-c16e2308359e/physicochemical-and-microbiological-characterization-of-protected-designation-of-origin-ezine-cheese-assessment-of-non-starter-lactic-acid-bacterial-diversity-with-antimicrobial-activity"
+				},
+				{
+					"name": "Turkish Wikipedia, Ezine peyniri",
+					"url": "https://tr.wikipedia.org/wiki/Ezine_peyniri"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Enterococcus faecium",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								],
+								"isolates": 38.4
+							},
+							{
+								"name": "Enterococcus faecalis",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								],
+								"isolates": 18.9
+							},
+							{
+								"name": "Lacticaseibacillus paracasei",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								],
+								"isolates": 13.7
+							},
+							{
+								"name": "Lactiplantibacillus plantarum",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								],
+								"isolates": 11.1
+							}
+						],
+						"by": [
+							"wild"
+						]
+					},
+					"seconds": {
+						"max": 31536000
+					},
+					"note": "No culture is added, and it ripens in metal tins."
+				}
+			],
+			"text": "A metagenomic study of eight artisanal samples instead found Streptococcus thermophilus, Lactococcus and Lactobacillus dominating; ripening was followed for 12 months.",
+			"sources": {
+				"links": [
+					{
+						"name": "Food Sci Anim Resour 2019, 39(5):804–819, PDO Ezine cheese NSLAB diversity (abstract read)",
+						"url": "https://avesis.ankara.edu.tr/yayin/af53b8d1-85e0-456b-9c8c-c16e2308359e/physicochemical-and-microbiological-characterization-of-protected-designation-of-origin-ezine-cheese-assessment-of-non-starter-lactic-acid-bacterial-diversity-with-antimicrobial-activity"
+					},
+					{
+						"name": "Turkish Wikipedia, Ezine peyniri",
+						"url": "https://tr.wikipedia.org/wiki/Ezine_peyniri"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "About 40 % goat, 50 % sheep, 10 % cow (Turkish Wikipedia)"
+		},
+		{
+			"k": "Bacteria found",
+			"v": "Enterococcus faecium (38.4 % of isolates), Enterococcus faecalis (18.9 %), Lacticaseibacillus paracasei (13.7 %), Lactiplantibacillus plantarum (11.1 %); 13 NSLAB species of 7 genera in all"
+		}
+	]
+}

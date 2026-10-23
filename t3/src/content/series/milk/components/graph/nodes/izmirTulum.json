@@ -1,0 +1,60 @@
+{
+	"label": "İzmir tulum",
+	"example": true,
+	"about": {
+		"text": "İzmir tulum is a skin-ripened tulum cheese of the Aegean region of Turkey, also made in Aydın, Manisa, Muğla and Balıkesir.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Tulum_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"regions": [
+		"TR"
+	],
+	"beasts": [
+		"goat",
+		"sheep"
+	],
+	"how": {
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Tulum cheese",
+					"url": "https://en.wikipedia.org/wiki/Tulum_cheese"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 60,
+						"max": 65
+					}
+				},
+				{
+					"type": "ferment",
+					"does": "ripen"
+				}
+			],
+			"text": "Ripened in an animal skin (tulum).",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Tulum cheese",
+						"url": "https://en.wikipedia.org/wiki/Tulum_cheese"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	}
+}

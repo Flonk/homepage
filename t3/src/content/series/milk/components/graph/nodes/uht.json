@@ -1,0 +1,108 @@
+{
+	"label": "UHT milk",
+	"aka": [
+		"Long-life milk",
+		"H-Milch",
+		"H-Vollmilch",
+		"Haltbarmilch"
+	],
+	"from": "homogenised",
+	"step": "ultra-heat",
+	"niche": 0,
+	"light": true,
+	"about": {
+		"text": "Ultra-high temperature processing (UHT), ultra-heat treatment, or ultra-pasteurization is a food processing technology that sterilizes liquid food by heating it above 140 °C (284 °F) – the temperature required to kill bacterial endospores – for two to five seconds. UHT is most commonly used in milk production, but the process is also used for fruit juices, cream, soy milk, yogurt, wine, soups, honey, and stews. UHT milk was first developed in the 1960s and became generally available for consumption in the 1970s. The heat used during the UHT process can cause Maillard browning and change the taste and smell of dairy products. An alternative process is flash pasteurization, in which the milk is heated to 72 °C (162 °F) for at least fifteen seconds.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Ultra-high-temperature_processing"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Thai-Denmark UHT-milk IMG20201019.jpg",
+		"author": "Per Meistrup",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Thai-Denmark_UHT-milk_IMG20201019.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "Milk flows through a heater to at least 135 °C for a few seconds, which leaves no germs or spores that could grow, and is then filled aseptically. Unopened it keeps for months without refrigeration.",
+		"sources": {
+			"links": [
+				{
+					"name": "Regulation (EC) No 853/2004, Annex III, Section IX, Ch. II",
+					"url": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:02004R0853-20230215"
+				},
+				{
+					"name": "Tetra Pak Dairy Processing Handbook: Long-life dairy products",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/long-life-dairy-products"
+				},
+				{
+					"name": "Verbraucherzentrale Niedersachsen: Milch – was verrät das Etikett?",
+					"url": "https://www.verbraucherzentrale-niedersachsen.de/node/120393"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 135,
+						"max": 142
+					},
+					"seconds": {
+						"min": 4,
+						"max": 6
+					},
+					"note": "Typically 137–142 °C for 4–6 s, in continuous flow."
+				},
+				{
+					"type": "custom",
+					"name": "fill",
+					"note": "Filled aseptically."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Regulation (EC) No 853/2004, Annex III, Section IX, Ch. II",
+						"url": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:02004R0853-20230215"
+					},
+					{
+						"name": "Tetra Pak Dairy Processing Handbook: Long-life dairy products",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/long-life-dairy-products"
+					},
+					{
+						"name": "Verbraucherzentrale Niedersachsen: Milch – was verrät das Etikett?",
+						"url": "https://www.verbraucherzentrale-niedersachsen.de/node/120393"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Law",
+			"v": "EU: not less than 135 °C with a suitable holding time, in continuous flow. US ultra-pasteurized: at least 138 °C for at least 2 s"
+		},
+		{
+			"k": "Check",
+			"v": "Stable after 15 d at 30 °C or 7 d at 55 °C in closed packs"
+		}
+	]
+}

@@ -1,0 +1,41 @@
+{
+	"label": "Tomme du Jura",
+	"example": true,
+	"family": "semiHard",
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		30,
+		90
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Bourgogne-Franche-Comté",
+		"lat": 46.9,
+		"lon": 5.9,
+		"x": 0.51639,
+		"y": 0.21068,
+		"located": "guess"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Tomme_du_Jura"
+			},
+			{
+				"name": "fr.wikipedia.org",
+				"url": "https://fr.wikipedia.org/wiki/Tomme_du_Jura"
+			}
+		],
+		"text": "cow, uncooked pressed, grey rind with white mould, about 30% fat; article gives no ripening time"
+	}
+}

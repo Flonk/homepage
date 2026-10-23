@@ -1,0 +1,158 @@
+{
+	"label": "Kasseri",
+	"example": true,
+	"note": "Kashkaval (Balkans) and kaşar (Turkey) are the same kind of cheese",
+	"family": "pastaFilata",
+	"about": {
+		"text": "Kasseri is a Greek pasta filata cheese made from sheep's milk, with at most 20 % goat's milk. It is made in Thessaly, Macedonia, Lesbos and Xanthi, and holds a Greek PDO. Turkish kaşar and Balkan kashkaval are the same family.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Kasseri"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Kasseri Leveti AB.jpg",
+		"author": "Catlemur",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Kasseri_Leveti_AB.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"GR"
+	],
+	"beasts": [
+		"sheep",
+		"goat"
+	],
+	"firm": "semi-hard",
+	"days": [
+		90,
+		180
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PDO",
+	"confidence": "high",
+	"how": {
+		"label": "dip in hot water",
+		"text": "Kasseri curd is left to acidify to about pH 5.2, then sliced and kneaded in hot water until it stretches. Kashkaval of the Balkans and kaşar of Turkey are the same kind of cheese.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Kasseri",
+					"url": "https://en.wikipedia.org/wiki/Kasseri"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"temperature": {
+						"min": 36,
+						"max": 36
+					},
+					"seconds": {
+						"min": 2700,
+						"max": 2700,
+						"about": true
+					},
+					"note": "With rennet."
+				},
+				{
+					"type": "custom",
+					"name": "cut"
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"temperature": {
+						"min": 38,
+						"max": 40
+					}
+				},
+				{
+					"type": "custom",
+					"name": "drain"
+				},
+				{
+					"type": "custom",
+					"name": "grind",
+					"note": "By hand."
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"pH": {
+						"min": 5.2,
+						"max": 5.2,
+						"about": true
+					},
+					"note": "The curd is left to reach pH about 5.2."
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"temperature": {
+						"min": 70,
+						"max": 80
+					},
+					"note": "Sliced, dipped in the hot water and kneaded until it stretches to a thread of 1 m."
+				},
+				{
+					"type": "custom",
+					"name": "salt",
+					"seconds": {
+						"min": 172800,
+						"max": 259200
+					},
+					"note": "Salted and kept in moulds."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"temperature": {
+						"min": 18,
+						"max": 18
+					},
+					"seconds": {
+						"min": 7776000
+					}
+				}
+			],
+			"text": "The curd is left to acidify before it is stretched in hot water.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Kasseri",
+						"url": "https://en.wikipedia.org/wiki/Kasseri"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Kasseri"
+			}
+		],
+		"text": "PDO requires at least 3 months"
+	}
+}

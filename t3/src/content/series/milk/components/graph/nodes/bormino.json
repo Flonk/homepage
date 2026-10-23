@@ -1,0 +1,37 @@
+{
+	"label": "Bormino",
+	"example": true,
+	"family": "semiHard",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		30,
+		90
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Lombardy",
+		"lat": 46.47,
+		"lon": 10.37,
+		"x": 0.52881,
+		"y": 0.21242,
+		"located": "hint"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Bormino_(cheese)"
+			}
+		],
+		"text": "Lombardy (Bormio area); the Wikipedia URL returned 404 and no source on ageing was found; values are typical for Valtellina cow cheeses"
+	}
+}

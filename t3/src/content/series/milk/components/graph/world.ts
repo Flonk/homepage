@@ -1,6 +1,6 @@
 /**
  * All the world's milk, in million tonnes a year, against which each
- * node's share (see Share in nodes.json) is said: how much of it goes each
+ * node's share (see share in the schema's Node) is said: how much of it goes each
  * way, as the mass made of each product, and how that was worked out: estimates, against the
  * world's 964 Mt of 2023 (all animals; IDF). Products made together by one
  * step share its milk by weight: the cream about a tenth of the milk

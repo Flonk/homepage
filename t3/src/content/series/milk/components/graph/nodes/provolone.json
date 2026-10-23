@@ -1,0 +1,170 @@
+{
+	"label": "Provolone",
+	"example": true,
+	"family": "pastaFilata",
+	"about": {
+		"text": "Provolone is an Italian semi-hard cheese made from cow's milk. It is an aged pasta filata ('stretched-curd') cheese originating in the Campania region, near Vesuvius, where it is still produced in pear, sausage, or cone shapes 10 to 15 cm long. Provolone-type cheeses are also produced in other countries. The most important provolone production region today is northwestern Italy and, in particular, the city of Cremona. Provolone, provola, and provoleta are versions of the same basic cheese. Some versions of provolone are smoked.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Provolone"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Formaggio Murmari - 5.jpg",
+		"author": "Enzian44",
+		"license": "CC BY 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Formaggio_Murmari_-_5.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		30,
+		365
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Campania",
+		"lat": 40.82,
+		"lon": 14.43,
+		"x": 0.54008,
+		"y": 0.23413,
+		"located": "hint"
+	},
+	"confidence": "high",
+	"how": {
+		"text": "Provolone Valpadana is a semi-cooked pasta filata of cow's milk that is moulded into shapes from half a kilo to over 100 kg and ripened; the sharp 'piccante' type gets its spicy taste from kid or lamb rennet paste and months of ageing.",
+		"sources": {
+			"links": [
+				{
+					"name": "ONAF technical sheet, Provolone Valpadana DOP",
+					"url": "https://www.onaf.it/uploads/public/19983_provolone-valpadana.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "pasteurise",
+					"temperature": {
+						"min": 72,
+						"max": 72
+					},
+					"seconds": {
+						"min": 15,
+						"max": 15
+					},
+					"note": "Milk up to 6 kg is pasteurised, larger batches are thermised at up to 55 °C."
+				},
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"temperature": {
+						"min": 36,
+						"max": 39
+					},
+					"note": "With calf rennet (dolce) or kid or lamb rennet paste (piccante)."
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"temperature": {
+						"min": 51,
+						"max": 51,
+						"about": true
+					},
+					"note": "The curd is cooked in two steps."
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [],
+						"by": [
+							"backslop"
+						]
+					},
+					"temperature": {
+						"min": 20,
+						"max": 20
+					},
+					"seconds": {
+						"min": 21600,
+						"max": 28800
+					},
+					"note": "With acidified whey starter from the previous make."
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"temperature": {
+						"min": 80,
+						"max": 85
+					},
+					"note": "The curd is stretched in water and moulded into shapes from 0.5 kg to over 100 kg."
+				},
+				{
+					"type": "custom",
+					"name": "brine",
+					"seconds": {
+						"min": 1036800,
+						"max": 2160000
+					},
+					"note": "The time in brine depends on the size."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"temperature": {
+						"min": 15,
+						"max": 16
+					},
+					"seconds": {
+						"max": 7776000
+					},
+					"note": "Dolce takes up to 2–3 months, piccante over 3 and stagionato over 8, and it may be smoked."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "ONAF technical sheet, Provolone Valpadana DOP",
+						"url": "https://www.onaf.it/uploads/public/19983_provolone-valpadana.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Provolone"
+			}
+		],
+		"text": "generic Provolone (dolce to piccante)"
+	}
+}

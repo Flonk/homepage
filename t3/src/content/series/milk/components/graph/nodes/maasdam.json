@@ -1,0 +1,151 @@
+{
+	"label": "Maasdam",
+	"example": true,
+	"family": "alpine",
+	"about": {
+		"text": "Maasdam cheese is an Emmental-style Dutch cheese. Made from cow's milk, it is aged for at least four weeks. It ripens faster than other cheeses made in the Netherlands. Maasdam has internal voids, or holes from the ripening process, and a smooth, yellow rind. Sometimes, it is waxed like Gouda. The cheese was created to compete with Swiss Emmentaler cheeses by being less expensive and quicker to produce. In the process of making a cheese with the same general components as Swiss cheeses, the Dutch ended up with a cheese that is nutty and sweet, but softer than Emmental, due to a higher moisture content.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Maasdam_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Maasdam-cheese.jpg",
+		"author": "Arz",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Maasdam-cheese.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"NL"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		28,
+		90
+	],
+	"setting": "rennet",
+	"rind": "waxed",
+	"confidence": "medium",
+	"how": {
+		"label": "grow eyes",
+		"text": "Maasdam is a washed-curd Dutch cheese to which propionic acid bacteria are added; during a warm-room stage they multiply and ferment lactate to CO2, propionate and acetate, giving large round eyes and a sweet, nutty taste. Its low salt, high moisture and warm ripening make it prone to butyric spoilage, so the milk is often centrifuged to remove spores.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+				},
+				{
+					"name": "Lamichhane et al., J. Dairy Sci. 101:5738 (2018)",
+					"url": "https://doi.org/10.3168/jds.2017-14180"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "centrifuge",
+					"note": "To remove spores."
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic",
+						"propionic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Lactococcus",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Lactobacillus helveticus",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							}
+						],
+						"by": [
+							"starter"
+						]
+					}
+				},
+				{
+					"type": "custom",
+					"name": "wash",
+					"note": "The curd grains are washed with water, to lower the lactose and the final pH."
+				},
+				{
+					"type": "custom",
+					"name": "press",
+					"note": "Drained and pre-pressed under the whey, which gives a closed, round-eyed body."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"adds": {
+						"microbes": [
+							{
+								"name": "Propionibacterium",
+								"kind": "bacterium",
+								"does": [
+									"gas"
+								]
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"note": "In a warm-room stage the propionic bacteria multiply and ferment lactate to CO2, propionate and acetate, making large round eyes."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+					},
+					{
+						"name": "Lamichhane et al., J. Dairy Sci. 101:5738 (2018)",
+						"url": "https://doi.org/10.3168/jds.2017-14180"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Maasdam_cheese"
+			}
+		],
+		"text": "Emmental-style Dutch cheese with holes, aged at least four weeks (max is an estimate); softer than Emmental; Leerdammer is the trademarked version"
+	}
+}

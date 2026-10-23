@@ -1,0 +1,93 @@
+{
+	"label": "Muhallebi",
+	"example": true,
+	"aka": [
+		"Mahalabia",
+		"Muhalabiyya",
+		"مهلبية",
+		"Mhallabiyyeh"
+	],
+	"note": "Rice-flour or cornstarch-thickened milk pudding, scented with rose or orange-blossom water",
+	"about": {
+		"text": "A milk pudding of the Middle East made by boiling milk with sugar and thickening it with rice flour, starch or semolina; it was in Arab and Persian cookbooks by the 10th century.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Muhallebi"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Turkish muhallebi.jpg",
+		"author": "E4024",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Turkish_muhallebi.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"TR",
+		"LB",
+		"SY",
+		"EG"
+	],
+	"how": {
+		"text": "Milk is boiled with sugar and thickened with rice flour, starch or semolina until it sets on cooling.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Muhallebi",
+					"url": "https://en.wikipedia.org/wiki/Muhallebi"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"note": "Milk is boiled with sugar."
+				},
+				{
+					"type": "custom",
+					"name": "thicken",
+					"note": "Thickened with rice flour, starch or semolina."
+				},
+				{
+					"type": "heat",
+					"does": "cool",
+					"note": "It sets on cooling."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Muhallebi",
+						"url": "https://en.wikipedia.org/wiki/Muhallebi"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Flavour",
+			"v": "Rose or orange-flower water, mastic, pistachio"
+		},
+		{
+			"k": "Oldest recipes",
+			"v": "10th century: thickened milk with ground rice, milk with rice grains and chicken, and an egg custard; an Ottoman recipe of 1530 is meatless, with rose water"
+		}
+	]
+}

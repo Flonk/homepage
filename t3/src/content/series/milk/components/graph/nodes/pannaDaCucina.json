@@ -1,0 +1,65 @@
+{
+	"label": "Panna da cucina",
+	"aka": [
+		"Cooking cream"
+	],
+	"from": "cream",
+	"at": 20,
+	"about": {
+		"text": "Italy’s cooking cream: UHT cream of at least 20 % fat, too lean and too processed to whip, kept in the cupboard for sauces; the cream for whipping has at least 30 %.",
+		"sources": {
+			"links": [
+				{
+					"name": "Il Fatto Alimentare: panna da cucina",
+					"url": "https://ilfattoalimentare.it/panna-da-cucina-grassi-prezzo.html"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"regions": [
+		"IT"
+	],
+	"how": {
+		"text": "Cream taken off the milk, set to 20–25 % fat and UHT-treated so it keeps on the shelf; too lean to whip, it is for sauces.",
+		"sources": {
+			"links": [
+				{
+					"name": "Il Fatto Alimentare: panna da cucina",
+					"url": "https://ilfattoalimentare.it/panna-da-cucina-grassi-prezzo.html"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"note": "UHT-treated so that it keeps on the shelf."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Il Fatto Alimentare: panna da cucina",
+						"url": "https://ilfattoalimentare.it/panna-da-cucina-grassi-prezzo.html"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 20,
+			"max": 25
+		}
+	},
+	"facts": [
+		{
+			"k": "Separation",
+			"v": "Natural creaming (affioramento) or centrifuge; the centrifuge is the one a big brand prefers"
+		}
+	]
+}

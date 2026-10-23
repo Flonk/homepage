@@ -1,0 +1,50 @@
+{
+	"label": "Provatura",
+	"example": true,
+	"family": "pastaFilata",
+	"about": {
+		"text": "a traditionally Lazian dairy product made from Italian buffalo milk by the pasta filata method.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Provatura"
+				}
+			],
+			"text": "Lazio, pasta filata like mozzarella; cow or buffalo milk; 17th-century source says it can be fresh or matured"
+		}
+	},
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"buffalo",
+		"cow"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		7
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "none",
+	"place": {
+		"region": "Lazio",
+		"lat": 42,
+		"lon": 12.6,
+		"x": 0.535,
+		"y": 0.22976,
+		"located": "hint"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Provatura"
+			}
+		],
+		"text": "Lazio, pasta filata like mozzarella; cow or buffalo milk; 17th-century source says it can be fresh or matured"
+	}
+}

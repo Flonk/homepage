@@ -1,0 +1,40 @@
+{
+	"label": "Dobrodar",
+	"example": true,
+	"family": "semiHard",
+	"about": {
+		"text": "Hard cheese 50% of fat in dry matter. Ageing period: 45 days.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Dobrodar"
+				}
+			],
+			"text": "Ageing 45 days, 50% FDM"
+		}
+	},
+	"regions": [
+		"UA"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		45,
+		60
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Dobrodar"
+			}
+		],
+		"text": "Ageing 45 days, 50% FDM"
+	}
+}

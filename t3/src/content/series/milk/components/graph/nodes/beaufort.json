@@ -1,0 +1,151 @@
+{
+	"label": "Beaufort",
+	"example": true,
+	"family": "alpine",
+	"about": {
+		"text": "Beaufort is a firm, raw cow's milk cheese associated with the gruyère family. An Alpine cheese, it is produced in Beaufortain, Tarentaise valley and Maurienne, which are located in the Savoie region of the French Alps.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Beaufort_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Beaufort (fromage) 01.jpg",
+		"author": "Coyau",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Beaufort_(fromage)_01.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "hard",
+	"days": [
+		150,
+		540
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Savoie",
+		"lat": 45.68,
+		"lon": 6.58,
+		"x": 0.51828,
+		"y": 0.21558,
+		"located": "hint"
+	},
+	"confidence": "high",
+	"how": {
+		"label": "press in a hoop",
+		"text": "Ripening in a cold cellar keeps the paste supple and almost free of holes, unlike the eyed alpine cheeses. The wooden Beaufort hoop pressed around the cloth-wrapped curd gives the wheel its concave heel.",
+		"sources": {
+			"links": [
+				{
+					"name": "Beaufort PDO amendment and single document (2025)",
+					"url": "http://data.europa.eu/eli/C/2025/4106/oj"
+				},
+				{
+					"name": "Beaufort PDO registration summary (eAmbrosia)",
+					"url": "https://webgate.ec.europa.eu/eambrosia-api/api/v1/attachments/71852"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"note": "With rennet from calf stomachs."
+				},
+				{
+					"type": "custom",
+					"name": "cut",
+					"note": "Small."
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"note": "Scalded and stirred."
+				},
+				{
+					"type": "custom",
+					"name": "press",
+					"seconds": {
+						"min": 72000,
+						"max": 72000,
+						"about": true
+					},
+					"note": "In a linen cloth inside a wooden hoop, which gives the concave heel; 20–70 kg."
+				},
+				{
+					"type": "custom",
+					"name": "brine"
+				},
+				{
+					"type": "custom",
+					"name": "salt",
+					"note": "On the surface."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"seconds": {
+						"min": 12960000,
+						"max": 31104000
+					},
+					"note": "In a cold cellar."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Beaufort PDO amendment and single document (2025)",
+						"url": "http://data.europa.eu/eli/C/2025/4106/oj"
+					},
+					{
+						"name": "Beaufort PDO registration summary (eAmbrosia)",
+						"url": "https://webgate.ec.europa.eu/eambrosia-api/api/v1/attachments/71852"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Beaufort_cheese"
+			}
+		],
+		"text": "Its facts, from these."
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Whole milk of Tarine or Abondance cows, used soon after milking"
+		},
+		{
+			"k": "Rind",
+			"v": "Washed, firm rind"
+		}
+	],
+	"raw": true
+}

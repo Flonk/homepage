@@ -1,0 +1,153 @@
+{
+	"label": "Cabrales",
+	"example": true,
+	"family": "blue",
+	"about": {
+		"text": "Cabrales is a blue cheese made in the artisan tradition by rural dairy farmers in Asturias, Spain. This cheese can be made from pure, unpasteurized cow’s milk or blended in the traditional manner with goat and/or sheep milk, which lends the cheese a stronger, spicier flavor.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Cabrales_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Cabrales.jpg",
+		"author": "Asturnut",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Cabrales.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"ES"
+	],
+	"beasts": [
+		"cow",
+		"goat",
+		"sheep"
+	],
+	"firm": "semi-soft",
+	"days": [
+		60,
+		150
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Asturias",
+		"lat": 43.3,
+		"lon": -4.8,
+		"x": 0.48667,
+		"y": 0.22485,
+		"located": "knowledge"
+	},
+	"confidence": "high",
+	"how": {
+		"label": "cave-ripen",
+		"text": "Cabrales is finished in limestone caves of the Picos de Europa whose draughts carry Penicillium roqueforti spores off the walls onto the cheese, where they germinate and spread through the paste. The cold, saturated cave air and two to five months on wooden shelves give its strong blue veining.",
+		"sources": {
+			"links": [
+				{
+					"name": "Cabrales PDO single document, OJ C 61 (2018)",
+					"url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52018XC0217(02)"
+				},
+				{
+					"name": "Cabrales PDO standard amendment (2025)",
+					"url": "http://data.europa.eu/eli/C/2025/5117/oj"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"note": "With rennet of animal origin only."
+				},
+				{
+					"type": "custom",
+					"name": "salt",
+					"note": "Dry salt on top for 12 h or more, then the cheese is turned and the other side salted for 12 h or more."
+				},
+				{
+					"type": "dry",
+					"seconds": {
+						"min": 1296000,
+						"max": 1296000,
+						"about": true
+					},
+					"note": "Aired first."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"kinds": [
+						"mould"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Penicillium roqueforti",
+								"kind": "mould"
+							}
+						],
+						"by": [
+							"place"
+						]
+					},
+					"temperature": {
+						"min": 6,
+						"max": 10
+					},
+					"seconds": {
+						"min": 5184000
+					},
+					"humidity": {
+						"min": 90
+					},
+					"note": "Two months or more in all counting the airing, turned and cleaned on wooden shelves."
+				},
+				{
+					"type": "custom",
+					"name": "wrap",
+					"note": "In leaf-printed paper."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Cabrales PDO single document, OJ C 61 (2018)",
+						"url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52018XC0217(02)"
+					},
+					{
+						"name": "Cabrales PDO standard amendment (2025)",
+						"url": "http://data.europa.eu/eli/C/2025/5117/oj"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Cabrales_cheese"
+			}
+		],
+		"text": "ripened in mountain caves, min 2 months per PDO"
+	},
+	"raw": true
+}

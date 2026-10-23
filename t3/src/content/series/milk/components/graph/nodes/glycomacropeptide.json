@@ -1,0 +1,93 @@
+{
+	"label": "Glycomacropeptide\n(PKU food)",
+	"aka": [
+		"GMP"
+	],
+	"from": "sweetWhey",
+	"step": "isolate",
+	"about": {
+		"text": "Glycomacropeptide (GMP) is a glycosylated peptide formed during renneting as a fragment of sweet whey. Acid whey from yogurt or curdling cheese without the use of rennet does not contain GMP. The unglycosylated form is known as caseinomacropeptide or CMP. Both forms exist in roughly similar amounts in whey.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Glycomacropeptide"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"how": {
+		"text": "Only sweet whey (from rennet cheese) has it. Because GMP contains no phenylalanine, people with phenylketonuria can eat it as their protein source, in puddings, drinks and bars, instead of a bitter amino-acid formula.",
+		"sources": {
+			"links": [
+				{
+					"name": "LaClair, Ney, MacLeod & Etzel 2009, J Food Sci 74(4): E199–E206",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3632067"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "cation exchange",
+					"note": "At pH 4, where the GMP runs through."
+				},
+				{
+					"type": "custom",
+					"name": "ultrafilter",
+					"temperature": {
+						"min": 60,
+						"max": 60
+					},
+					"note": "Ultrafiltration and diafiltration with a 3 kDa membrane."
+				},
+				{
+					"type": "dry",
+					"seconds": {
+						"min": 172800,
+						"max": 172800
+					},
+					"note": "Freeze-drying."
+				},
+				{
+					"type": "custom",
+					"name": "supplement",
+					"note": "Histidine, tryptophan, tyrosine, arginine and cysteine are added, as GMP lacks them, for a complete PKU food."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "LaClair, Ney, MacLeod & Etzel 2009, J Food Sci 74(4): E199–E206",
+						"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3632067"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"glytactin"
+	],
+	"facts": [
+		{
+			"k": "Origin",
+			"v": "Chymosin (rennet) cuts κ-casein between residues 105 and 106; GMP = residues 106–169 (64 amino acids, about 7 kDa) goes into the whey"
+		},
+		{
+			"k": "Share of whey protein",
+			"v": "15–25 %"
+		},
+		{
+			"k": "Phenylalanine",
+			"v": "GMP has none of its own; commercial GMP still carries about 5 mg Phe/g from leftover whey protein, pilot polishing got 4.7 down to 2.7 mg/g"
+		},
+		{
+			"k": "Recovery",
+			"v": "About 52 % in the pilot process (purity chosen over yield)"
+		}
+	]
+}

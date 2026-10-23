@@ -1,0 +1,40 @@
+{
+	"label": "Chèvre noir",
+	"example": true,
+	"family": "cheddared",
+	"regions": [
+		"CA"
+	],
+	"beasts": [
+		"goat"
+	],
+	"firm": "hard",
+	"days": [
+		180,
+		730
+	],
+	"setting": "rennet",
+	"rind": "waxed",
+	"place": {
+		"region": "Quebec",
+		"lat": 46.3,
+		"lon": -72,
+		"x": 0.3,
+		"y": 0.2131,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Ch%C3%A8vre_noir"
+			},
+			{
+				"name": "culturecheesemag.com",
+				"url": "https://culturecheesemag.com/cheese-library/Chvre-Noir"
+			}
+		],
+		"text": "Fromagerie Tournevent, Chesterville QC; goat Cheddar in black wax; raw milk version 6-12 months, thermalised 1-2 years"
+	}
+}

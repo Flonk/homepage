@@ -1,0 +1,159 @@
+{
+	"label": "Queijo de Azeitão",
+	"example": true,
+	"aka": [
+		"Queijo de Azeitao",
+		"Queso de Azeitao"
+	],
+	"family": "plantCheese",
+	"about": {
+		"text": "A soft, creamy Portuguese sheep's-milk cheese from the Arrábida hills near Setúbal, curdled with cardoon flower instead of animal rennet and ripened about three weeks. Protected designation of origin since 1986.",
+		"sources": {
+			"links": [
+				{
+					"name": "Decreto Regulamentar 49/1986",
+					"url": "https://diariodarepublica.pt/dr/detalhe/decreto-regulamentar/49-1986-221723"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Queijo de Azeitao.jpg",
+		"author": "Adriao",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Queijo_de_Azeit%C3%A3o.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"PT"
+	],
+	"beasts": [
+		"sheep"
+	],
+	"firm": "soft",
+	"days": [
+		20,
+		40
+	],
+	"setting": "plant",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Setúbal District",
+		"lat": 38.53,
+		"lon": -9,
+		"x": 0.475,
+		"y": 0.2424,
+		"located": "hint"
+	},
+	"confidence": "high",
+	"how": {
+		"text": "Figures are from a University of Évora report and the 1986 decree as seen in search summaries; one recipe page gives 30 d of ripening.",
+		"sources": {
+			"links": [
+				{
+					"name": "University of Évora report",
+					"url": "https://rdpc.uevora.pt/bitstream/10174/10627/1/SUBPROJECTOCrisjan2013DezembroULTIMO.pdf"
+				},
+				{
+					"name": "Decreto Regulamentar 49/1986",
+					"url": "https://diariodarepublica.pt/dr/detalhe/decreto-regulamentar/49-1986-221723"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "filter",
+					"note": "The milk is filtered after milking."
+				},
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 30,
+						"max": 30
+					},
+					"seconds": {
+						"min": 2700,
+						"max": 2700
+					},
+					"note": "Set with dried cardoon flower (Cynara cardunculus), about 0.5 g per kg of milk, with salt added to the milk."
+				},
+				{
+					"type": "custom",
+					"name": "drain",
+					"note": "The whey is drained by hand."
+				},
+				{
+					"type": "custom",
+					"name": "press"
+				},
+				{
+					"type": "dry",
+					"note": "In the drying room."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"temperature": {
+						"min": 10,
+						"max": 12
+					},
+					"seconds": {
+						"min": 1728000,
+						"max": 1728000,
+						"about": true
+					},
+					"humidity": {
+						"min": 85,
+						"max": 90
+					}
+				}
+			],
+			"text": "Sheep milk set with dried cardoon flower at 30 °C for 45 min; one recipe page gives 30 d of ripening.",
+			"sources": {
+				"links": [
+					{
+						"name": "University of Évora report",
+						"url": "https://rdpc.uevora.pt/bitstream/10174/10627/1/SUBPROJECTOCrisjan2013DezembroULTIMO.pdf"
+					},
+					{
+						"name": "Decreto Regulamentar 49/1986",
+						"url": "https://diariodarepublica.pt/dr/detalhe/decreto-regulamentar/49-1986-221723"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Queijo_de_Azeit%C3%A3o"
+			}
+		],
+		"text": "thistle-set, spreadable paste"
+	},
+	"facts": [
+		{
+			"k": "Origin",
+			"v": "Milk from the demarcated region (Palmela, Sesimbra, Setúbal)"
+		},
+		{
+			"k": "Flavour",
+			"v": "Spicy, acidic and salty; the cardoon coagulant and local pasture are credited for it"
+		}
+	]
+}

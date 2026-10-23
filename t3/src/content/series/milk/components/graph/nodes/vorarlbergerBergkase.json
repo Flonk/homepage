@@ -1,0 +1,37 @@
+{
+	"label": "Vorarlberger Bergkäse",
+	"example": true,
+	"family": "alpine",
+	"regions": [
+		"AT"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "hard",
+	"days": [
+		60,
+		365
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Vorarlberg",
+		"lat": 47.25,
+		"lon": 9.9,
+		"x": 0.5275,
+		"y": 0.20925,
+		"located": "knowledge"
+	},
+	"confidence": "high",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Vorarlberger_Bergk%C3%A4se"
+			}
+		],
+		"text": "Its facts, from these."
+	}
+}

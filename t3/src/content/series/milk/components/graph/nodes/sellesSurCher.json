@@ -1,0 +1,121 @@
+{
+	"label": "Selles-sur-Cher",
+	"example": true,
+	"family": "lacticCheese",
+	"also": "bloomy",
+	"about": {
+		"text": "A charcoal-coated French goat cheese cylinder from the Loire valley; AOC since 1975.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Selles-sur-Cher_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Selles-sur-cher.jpg",
+		"author": "Zubro",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Selles-sur-cher.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"goat"
+	],
+	"firm": "soft",
+	"days": [
+		10,
+		30
+	],
+	"setting": "rennet-acid",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Centre-Val de Loire",
+		"lat": 47.28,
+		"lon": 1.52,
+		"x": 0.50422,
+		"y": 0.20913,
+		"located": "knowledge"
+	},
+	"confidence": "high",
+	"how": {
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Selles-sur-Cher cheese",
+					"url": "https://en.wikipedia.org/wiki/Selles-sur-Cher_cheese"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [],
+						"by": [
+							"starter"
+						]
+					},
+					"temperature": {
+						"min": 20,
+						"max": 20,
+						"about": true
+					},
+					"seconds": {
+						"min": 86400,
+						"max": 86400
+					},
+					"note": "Warmed to about 20 °C, a little rennet is added and the milk rests 24 h."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"seconds": {
+						"min": 864000,
+						"max": 2592000
+					}
+				}
+			],
+			"text": "Soured with a ferment, warmed, a little rennet added.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Selles-sur-Cher cheese",
+						"url": "https://en.wikipedia.org/wiki/Selles-sur-Cher_cheese"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Selles-sur-Cher_cheese"
+			}
+		],
+		"text": "ash-coated"
+	},
+	"raw": true
+}

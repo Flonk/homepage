@@ -1,0 +1,42 @@
+{
+	"label": "Tuma",
+	"example": true,
+	"aka": [
+		"Toma fresca"
+	],
+	"family": "freshCheese",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"cow",
+		"sheep",
+		"goat"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		7
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "none",
+	"place": {
+		"region": "Piedmont",
+		"lat": 45,
+		"lon": 7.8,
+		"x": 0.52167,
+		"y": 0.21827,
+		"located": "hint"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Tuma_(cheese)"
+			}
+		],
+		"text": "Its facts, from these."
+	}
+}

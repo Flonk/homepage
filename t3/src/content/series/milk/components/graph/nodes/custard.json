@@ -1,0 +1,91 @@
+{
+	"label": "Custard",
+	"aka": [
+		"Crème anglaise",
+		"Pouring custard"
+	],
+	"from": "fresh",
+	"step": "cook with egg yolks and sugar",
+	"alsoFrom": [
+		"cream"
+	],
+	"note": "The egg proteins set at about 70 °C, so milk and egg yolk thicken with no starch. Two or three degrees too much and it curdles. Thin pouring custard, thick pastry cream and the set desserts are all this step.",
+	"niche": 1,
+	"about": {
+		"text": "A sweet milk or cream cooked with egg or egg yolk until it thickens or sets. It runs from a thin pouring sauce (crème anglaise) to thick pastry cream and to desserts that set whole, such as crème caramel.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Custard"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Creme anglaise p1050159.jpg",
+		"author": "David Monniaux",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Creme_anglaise_p1050159.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "Egg proteins coagulate as the milk warms and hold the water in a soft gel. A rise of only 3–6 °C past the setting point overcooks and curdles it, so custard is cooked in a water bath or stirred over low heat; a little cornflour makes it more forgiving. Baked custards (crème caramel) set in the oven in a bain-marie.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Custard",
+					"url": "https://en.wikipedia.org/wiki/Custard"
+				},
+				{
+					"name": "Wikipedia: Crème anglaise",
+					"url": "https://en.wikipedia.org/wiki/Cr%C3%A8me_anglaise"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "cook",
+					"note": "Gentle heat from a bain-marie, saucepan, steam or oven; it starts to set at about 70 °C and curdles past about 80 °C.",
+					"temperature": {
+						"min": 70,
+						"max": 80,
+						"about": true
+					}
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Custard",
+						"url": "https://en.wikipedia.org/wiki/Custard"
+					},
+					{
+						"name": "Wikipedia: Crème anglaise",
+						"url": "https://en.wikipedia.org/wiki/Cr%C3%A8me_anglaise"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"pastryCream",
+		"cremeCaramel",
+		"cremeBrulee",
+		"cremaCatalana",
+		"lecheFlan",
+		"natillas"
+	]
+}

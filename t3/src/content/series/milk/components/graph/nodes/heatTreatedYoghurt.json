@@ -1,0 +1,86 @@
+{
+	"label": "Heat-treated yoghurt",
+	"aka": [
+		"Haltbarer Joghurt"
+	],
+	"comment": "Yoghurt with both its bacteria, and a probiotic strain besides. Yoghurt heated again once it has set: the live bacteria are gone, and it keeps.",
+	"from": "yoghurt",
+	"step": "heat after fermenting",
+	"note": "In the EU and under Codex the heat-treated kind must be labelled so; it has no live cultures left, so it cannot be sold as a probiotic. Stabilisers such as pectin keep the gel from splitting in the heat.",
+	"about": {
+		"text": "Yoghurt that is heated again after it has set, so that its bacteria are killed and it keeps for weeks or, with a hotter heat and a sterile fill, months without a fridge. Pectin or another stabiliser stops the gel curdling.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, Fermented milk products",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"how": {
+		"text": "The yoghurt is made as usual, with both yoghurt bacteria, and then heated once more, in the tank before filling or in the pot afterwards. The heat stops the bacteria souring it further.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook: Fermented milk products",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products"
+				},
+				{
+					"name": "Gao et al., Foods 12(16):3042 (2023), post-heating of stirred fermented milk",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10453288/"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 60,
+						"max": 70
+					},
+					"note": "Ambient yoghurt is heated harder, 75–110 °C for 5–20 s, and filled aseptically, or the yoghurt is heated in the pot afterwards at 60–70 °C for about 30 min."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Tetra Pak Dairy Processing Handbook: Fermented milk products",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products"
+					},
+					{
+						"name": "Gao et al., Foods 12(16):3042 (2023), post-heating of stirred fermented milk",
+						"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10453288/"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"thermisedYoghurt",
+		"ambientYoghurt"
+	],
+	"facts": [
+		{
+			"k": "Thermised yoghurt",
+			"v": "60–70 °C for a few seconds"
+		},
+		{
+			"k": "Live bacteria",
+			"v": "None or few left"
+		},
+		{
+			"k": "Stabiliser",
+			"v": "Required (pectin 0.30 % in the 2023 test)"
+		},
+		{
+			"k": "Texture limit",
+			"v": "In a lab study of stirred ambient yoghurt (S. thermophilus, fermented to pH 4.50), post-heating at or below 65 °C for 25 s kept firmness; hotter gave grainy aggregates"
+		}
+	]
+}

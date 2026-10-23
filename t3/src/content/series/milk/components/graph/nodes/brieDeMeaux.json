@@ -1,0 +1,183 @@
+{
+	"label": "Brie de Meaux",
+	"example": true,
+	"family": "bloomy",
+	"about": {
+		"text": "Brie de Meaux is a French brie cheese of the Brie region and a designated AOC product since 1980. Its name comes from the town of Meaux in the Brie region. As of 2003, 6,774 tonnes were produced annually.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Brie_de_Meaux"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Brie de Meaux.jpg",
+		"author": "Jon Sullivan",
+		"license": "Public domain",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Brie_de_Meaux.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "soft",
+	"days": [
+		28,
+		56
+	],
+	"setting": "rennet",
+	"rind": "bloomy",
+	"protected": "PDO",
+	"place": {
+		"region": "Île-de-France",
+		"lat": 48.96,
+		"lon": 2.88,
+		"x": 0.508,
+		"y": 0.20214,
+		"located": "hint"
+	},
+	"confidence": "high",
+	"how": {
+		"label": "layer with pelle",
+		"text": "The firm rennet curd is hardly cut and is laid by hand in thin layers into very wide, flat moulds with the perforated pelle à brie, so it drains slowly on its own. The rind ripens the wide, thin wheel from the outside in, turning it from chalky to supple with cream, butter and hazelnut notes after 6–8 weeks.",
+		"sources": {
+			"links": [
+				{
+					"name": "Brie de Meaux AOP cahier des charges (2019)",
+					"url": "https://extranet.inao.gouv.fr/fichier/CDCBrieMeaux190320.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "skim",
+					"temperature": {
+						"max": 40
+					},
+					"note": "The milk is partly skimmed."
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic",
+						"mould"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "lactic acid bacteria",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"note": "Mould cultures are permitted too."
+				},
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"temperature": {
+						"max": 37
+					},
+					"seconds": {
+						"max": 7200
+					},
+					"note": "With calf rennet."
+				},
+				{
+					"type": "custom",
+					"name": "cut",
+					"note": "Vertically, at least 1 cm, with no stirring."
+				},
+				{
+					"type": "custom",
+					"name": "mould",
+					"note": "In thin layers by the pelle à brie into moulds 36–37 cm across, 2.6–3.3 kg."
+				},
+				{
+					"type": "custom",
+					"name": "salt",
+					"note": "Dry salt only."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"adds": {
+						"microbes": [
+							{
+								"name": "mould cultures",
+								"kind": "mould"
+							}
+						]
+					},
+					"temperature": {
+						"min": 8,
+						"max": 16
+					},
+					"note": "In the hâloir, and the ripening takes at least 4 wk in all."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"temperature": {
+						"min": 4,
+						"max": 14
+					},
+					"humidity": {
+						"min": 80,
+						"max": 98
+					},
+					"note": "Then in the cellar, turned weekly."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Brie de Meaux AOP cahier des charges (2019)",
+						"url": "https://extranet.inao.gouv.fr/fichier/CDCBrieMeaux190320.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Brie_de_Meaux"
+			}
+		],
+		"text": "Its facts, from these."
+	},
+	"facts": [
+		{
+			"k": "Rind",
+			"v": "Thin white bloom with red streaks or spots"
+		}
+	],
+	"raw": true
+}

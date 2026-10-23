@@ -1,0 +1,163 @@
+{
+	"label": "Edam",
+	"example": true,
+	"family": "washedCurd",
+	"about": {
+		"text": "Edam is a semi-hard cheese that originated in the Netherlands, and is named after the town of Edam in the province of North Holland. Edam is traditionally sold in flat-ended spheres with a pale yellow interior and a coat, or rind, of red paraffin wax. Edam ages and travels well and hardens, instead of spoiling, for an extended period. These qualities made it the world's most popular cheese between the 14th and 18th centuries, both at sea and in remote colonies.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Edam_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "SmallEdamCheese.jpg",
+		"author": "Yvwv",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:SmallEdamCheese.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"NL"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		28,
+		365
+	],
+	"setting": "rennet",
+	"rind": "waxed",
+	"protected": "PGI",
+	"place": {
+		"region": "North Holland",
+		"lat": 52.51,
+		"lon": 5.05,
+		"x": 0.51403,
+		"y": 0.18655,
+		"located": "hint"
+	},
+	"confidence": "high",
+	"how": {
+		"label": "part-skim",
+		"text": "Edam is made from partially skimmed milk, so it has 40–44% fat in dry matter against 48–52% for Gouda Holland. The Noord-Hollandse Edammer is moulded as a small sphere with flat top and bottom.",
+		"sources": {
+			"links": [
+				{
+					"name": "Edam Holland PGI specification (eAmbrosia)",
+					"url": "https://webgate.ec.europa.eu/eambrosia-api/api/v1/attachments/64030"
+				},
+				{
+					"name": "Noord-Hollandse Edammer PDO summary (eAmbrosia)",
+					"url": "https://webgate.ec.europa.eu/eambrosia-api/api/v1/attachments/72284"
+				},
+				{
+					"name": "Gouda Holland PGI, Regulation (EU) No 1122/2010 (fat comparison)",
+					"url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32010R1122"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "skim",
+					"note": "The milk is partially skimmed."
+				},
+				{
+					"type": "pasteurise"
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Lactococcus lactis",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								],
+								"grows": "mesophilic"
+							},
+							{
+								"name": "Leuconostoc",
+								"kind": "bacterium",
+								"grows": "mesophilic"
+							}
+						],
+						"by": [
+							"starter"
+						]
+					}
+				},
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"note": "With calf rennet."
+				},
+				{
+					"type": "custom",
+					"name": "mould",
+					"note": "The Noord-Hollandse Edammer is a sphere with flat ends, 1.7–1.9 kg."
+				},
+				{
+					"type": "custom",
+					"name": "brine",
+					"note": "For a few days."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"seconds": {
+						"min": 2419200
+					},
+					"note": "Baby Edam ripens at least 21 d."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Edam Holland PGI specification (eAmbrosia)",
+						"url": "https://webgate.ec.europa.eu/eambrosia-api/api/v1/attachments/64030"
+					},
+					{
+						"name": "Noord-Hollandse Edammer PDO summary (eAmbrosia)",
+						"url": "https://webgate.ec.europa.eu/eambrosia-api/api/v1/attachments/72284"
+					},
+					{
+						"name": "Gouda Holland PGI, Regulation (EU) No 1122/2010 (fat comparison)",
+						"url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32010R1122"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Edam_cheese"
+			}
+		],
+		"text": "Edam Holland is PGI"
+	}
+}

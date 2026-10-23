@@ -1,0 +1,37 @@
+{
+	"label": "Pressato",
+	"example": true,
+	"family": "soft",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "soft",
+	"days": [
+		10,
+		30
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "none",
+	"place": {
+		"region": "Veneto",
+		"lat": 45.6,
+		"lon": 11.9,
+		"x": 0.53306,
+		"y": 0.2159,
+		"located": "guess"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Pressato"
+			}
+		],
+		"text": "no article found; 'pressato' just means pressed, so it may be a generic term"
+	}
+}

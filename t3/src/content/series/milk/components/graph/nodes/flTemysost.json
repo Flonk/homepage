@@ -1,0 +1,111 @@
+{
+	"label": "Fløtemysost",
+	"example": true,
+	"note": "Whey, cow milk and cream, no goat milk",
+	"family": "wheyCheese",
+	"about": {
+		"text": "A brunost of whey, cow milk and cream, with no goat milk.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Brunost"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"regions": [
+		"NO"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-soft",
+	"days": [
+		0,
+		0
+	],
+	"setting": "heat",
+	"rind": "none",
+	"confidence": "high",
+	"how": {
+		"text": "Cream and milk are added to the whey and the mix is boiled down for several hours until the water has gone and the milk sugar has caramelised. No goat's milk. No temperatures or times given in the sources opened.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Fløtemysost",
+					"url": "https://en.wikipedia.org/wiki/Fl%C3%B8temysost"
+				},
+				{
+					"name": "Wikipedia (no): Fløtemysost",
+					"url": "https://no.wikipedia.org/wiki/Fl%C3%B8temysost"
+				},
+				{
+					"name": "Wikipedia: Brunost",
+					"url": "https://en.wikipedia.org/wiki/Brunost"
+				},
+				{
+					"name": "Open Food Facts: TINE Fløtemysost",
+					"url": "https://world.openfoodfacts.org/product/7038010028427"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "boil down",
+					"note": "Cream and milk are added to the whey and boiled down for several hours until the water has gone and the milk sugar has caramelised."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Fløtemysost",
+						"url": "https://en.wikipedia.org/wiki/Fl%C3%B8temysost"
+					},
+					{
+						"name": "Wikipedia (no): Fløtemysost",
+						"url": "https://no.wikipedia.org/wiki/Fl%C3%B8temysost"
+					},
+					{
+						"name": "Wikipedia: Brunost",
+						"url": "https://en.wikipedia.org/wiki/Brunost"
+					},
+					{
+						"name": "Open Food Facts: TINE Fløtemysost",
+						"url": "https://world.openfoodfacts.org/product/7038010028427"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Fl%C3%B8temysost"
+			}
+		],
+		"text": "brunost from whey with added cream, cow's milk"
+	},
+	"composition": {
+		"fat": {
+			"min": 26,
+			"max": 26
+		}
+	},
+	"facts": [
+		{
+			"k": "First made",
+			"v": "Anne Hov, 1863, Valseter near Gålå: cream added to whey, boiled in an iron pot until the liquid was under 80 % (first called feitost)"
+		},
+		{
+			"k": "Character",
+			"v": "Milder and lighter in colour than Gudbrandsdalsost; second most popular brunost in Norway"
+		}
+	]
+}

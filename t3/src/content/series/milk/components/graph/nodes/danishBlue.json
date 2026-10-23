@@ -1,0 +1,160 @@
+{
+	"label": "Danish Blue",
+	"example": true,
+	"family": "blue",
+	"about": {
+		"text": "Danablu, often marketed under the trademark Danish Blue Cheese within North America, is a strong, blue-veined cheese. This semi-soft creamy cheese is typically drum- or block-shaped and has a yellowish, slightly moist, edible rind. Made from full fat cow's milk and homogenized cream, it has a fat content of 25–30% and is aged for eight to twelve weeks.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Danish_Blue_Cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Danish Blue cheese.jpg",
+		"author": "Brookie",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Danish_Blue_cheese.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"DK"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-soft",
+	"days": [
+		56,
+		84
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PGI",
+	"place": {
+		"region": "Zealand",
+		"lat": 55.87,
+		"lon": 12.5,
+		"x": 0.53472,
+		"y": 0.17058,
+		"located": "hint"
+	},
+	"confidence": "high",
+	"how": {
+		"text": "Homogenising the cheese milk, a Danish practice since 1927, gives Danablu its sharp, piquant flavour and cuttable, slightly crumbly texture. Needle piercing after salting spreads the blue mould through holes and cracks while the rind stays almost clean.",
+		"sources": {
+			"links": [
+				{
+					"name": "Danablu PGI amendment and single document, OJ C 151 (2012)",
+					"url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52012XC0526(02)"
+				},
+				{
+					"name": "Danablu summary sheet (eAmbrosia)",
+					"url": "https://webgate.ec.europa.eu/eambrosia-api/api/v1/attachments/71390"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "standardise"
+				},
+				{
+					"type": "homogenise"
+				},
+				{
+					"type": "pasteurise",
+					"note": "Thermised or pasteurised."
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic",
+						"mould"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "blue mould",
+								"kind": "mould"
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"note": "An acid starter goes in together with the blue mould."
+				},
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"note": "Rennet is added after the acidification."
+				},
+				{
+					"type": "custom",
+					"name": "mould",
+					"note": "Moulded and drained, as a flat cylinder of about 3 kg or a block of about 4 kg."
+				},
+				{
+					"type": "custom",
+					"name": "salt",
+					"note": "Salted after draining."
+				},
+				{
+					"type": "ferment",
+					"does": "pierce",
+					"note": "With needles."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"seconds": {
+						"min": 3024000
+					}
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Danablu PGI amendment and single document, OJ C 151 (2012)",
+						"url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52012XC0526(02)"
+					},
+					{
+						"name": "Danablu summary sheet (eAmbrosia)",
+						"url": "https://webgate.ec.europa.eu/eambrosia-api/api/v1/attachments/71390"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Danish_Blue_Cheese"
+			}
+		],
+		"text": "Its facts, from these."
+	},
+	"facts": [
+		{
+			"k": "Rind",
+			"v": "White to light yellowish, no appreciable smear or mould growth"
+		}
+	]
+}

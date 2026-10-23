@@ -1,0 +1,97 @@
+{
+	"label": "Mascarpone",
+	"comment": "Cream set by heat and acid, rather than made from crème fraîche.",
+	"from": "cream",
+	"step": "heat with acid",
+	"niche": 1,
+	"cheese": true,
+	"about": {
+		"text": "Mascarpone is a soft Italian dairy product obtained by acid-heat coagulation of cream. It is a dairy cream, not a cheese in the technical sense, as it is made without rennet and does not undergo true curd formation. It is recognized as a prodotto agroalimentare tradizionale (PAT).",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Mascarpone"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Mascarpone 2.jpg",
+		"author": "Ramagliolo9",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Mascarpone_2.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"IT"
+	],
+	"how": {
+		"text": "Tartaric acid dissolved in a little hot water is stirred into the hot cream; after about five minutes it thickens, is cooled and drained in cloth, and sets firm in the fridge. Quantities are from a Wikipedia recipe; commercial dairies use other acids.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Mascarpone",
+					"url": "https://en.wikipedia.org/wiki/Mascarpone"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "pasteurise",
+					"temperature": {
+						"min": 77,
+						"max": 87
+					},
+					"seconds": {
+						"min": 300,
+						"max": 300
+					}
+				},
+				{
+					"type": "custom",
+					"name": "acidify",
+					"note": "Tartaric acid, 2.4 g per 1 kg cream, dissolved in a little hot water and stirred in."
+				},
+				{
+					"type": "custom",
+					"name": "drain",
+					"note": "In a cheesecloth-lined colander."
+				},
+				{
+					"type": "heat",
+					"does": "cool",
+					"seconds": {
+						"min": 21600
+					},
+					"note": "Sets firm in the fridge."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Mascarpone",
+						"url": "https://en.wikipedia.org/wiki/Mascarpone"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Traditional acid",
+			"v": "Residual tartaric acid from wine barrels"
+		}
+	]
+}

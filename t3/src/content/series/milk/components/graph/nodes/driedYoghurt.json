@@ -1,0 +1,114 @@
+{
+	"label": "Dried yoghurt\n(kashk, qurut)",
+	"aka": [
+		"Getrockneter Joghurt",
+		"Kurt",
+		"Aarul"
+	],
+	"from": "yoghurt",
+	"step": "drain, dry",
+	"alsoFrom": [
+		"fermButtermilk"
+	],
+	"niche": 1,
+	"about": {
+		"text": "Strained yoghurt, buttermilk or soured milk, shaped and dried until hard: a family of keeping foods of Iran, the Caucasus and Central Asia, rolled into balls, sliced into strips or formed into chunks.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Kashk",
+					"url": "https://en.wikipedia.org/wiki/Kashk"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Kasachischer Kurt.jpg",
+		"author": "Anton Huttenlocher",
+		"license": "Public domain",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Kasachischer_Kurt.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "Yoghurt or soured milk is drained or pressed into a firm curd, salted, shaped into balls or pieces and dried in sun and air. Kashk and jameed take a detour: the yoghurt is first churned and the sour buttermilk boiled to curdle it, as for buttermilk cheese.",
+		"sources": {
+			"links": [
+				{
+					"name": "Oskenbay, Crossroads 14 (2016), Kazakh qurt",
+					"url": "https://www.ostasien-verlag.de/zeitschriften/crossroads/cr/pdf/CR_14_2016_205-218_Oskenbay.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "drain",
+					"note": "Drained or pressed in cloth."
+				},
+				{
+					"type": "custom",
+					"name": "salt",
+					"note": "Salted with 1–3 % salt."
+				},
+				{
+					"type": "custom",
+					"name": "hang",
+					"seconds": {
+						"min": 172800,
+						"max": 259200
+					},
+					"note": "Hung to 60–70 % solids."
+				},
+				{
+					"type": "custom",
+					"name": "shape",
+					"note": "Into balls of 30–40 g."
+				},
+				{
+					"type": "dry",
+					"seconds": {
+						"min": 864000,
+						"max": 1296000
+					},
+					"note": "Sun-dried."
+				}
+			],
+			"text": "Kashk and jameed are churned first and the buttermilk boiled.",
+			"sources": {
+				"links": [
+					{
+						"name": "Oskenbay, Crossroads 14 (2016), Kazakh qurt",
+						"url": "https://www.ostasien-verlag.de/zeitschriften/crossroads/cr/pdf/CR_14_2016_205-218_Oskenbay.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"kashk",
+		"jameed",
+		"qurut",
+		"chortan",
+		"aaruul",
+		"khuruud",
+		"aqit",
+		"jocoqueSeco"
+	],
+	"facts": [
+		{
+			"k": "Texture",
+			"v": "Hard balls"
+		}
+	]
+}

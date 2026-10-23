@@ -1,0 +1,36 @@
+{
+	"label": "Crutin",
+	"example": true,
+	"family": "semiHard",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		30,
+		60
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Piedmont",
+		"lat": 45.07,
+		"lon": 7.68,
+		"x": 0.52133,
+		"y": 0.21799,
+		"located": "hint"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Crutin"
+			}
+		],
+		"text": "Langhe, Piedmont; cow's milk (not goat) with black truffle flakes, crumbly, aged one to two months in small stone cellars (crutin)"
+	}
+}

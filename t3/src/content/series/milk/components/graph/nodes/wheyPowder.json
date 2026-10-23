@@ -1,0 +1,86 @@
+{
+	"label": "Whey powder",
+	"aka": [
+		"Molkepulver"
+	],
+	"from": "sweetWhey",
+	"step": "spray-dry",
+	"niche": 0,
+	"about": {
+		"text": "Sweet whey concentrated and spray-dried to a powder, still holding its lactose, proteins and minerals. Used in bakery, soups and other processed foods, and in animal feed.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. Milk and whey powder",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-powder"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Whey powder.jpg",
+		"author": "Adrem68 (Dutch Wikipedia)",
+		"license": "Public domain",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Whey_powder.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "Whey is mostly water, so it is evaporated first and then dried. The key step is lactose crystallisation before drying; without it the powder is a hygroscopic lump. The handbook gives no dryer temperatures.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 18 Milk and whey fractionation",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "cool",
+					"note": "Cooled or pasteurised first so it does not ferment."
+				},
+				{
+					"type": "custom",
+					"name": "evaporate"
+				},
+				{
+					"type": "heat",
+					"does": "cool",
+					"temperature": {
+						"min": 30,
+						"max": 40
+					},
+					"seconds": {
+						"min": 14400,
+						"max": 28800
+					},
+					"note": "Flash-cooled to start lactose crystals, then held in crystallisers."
+				},
+				{
+					"type": "dry",
+					"note": "Spray-dried (drum drying exists, with bran as filler to ease scraping)."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Tetra Pak Dairy Processing Handbook, ch. 18 Milk and whey fractionation",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	}
+}

@@ -1,0 +1,37 @@
+{
+	"label": "Doolin",
+	"example": true,
+	"family": "washedCurd",
+	"regions": [
+		"IE"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		60,
+		180
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "County Clare",
+		"lat": 53,
+		"lon": -9.4,
+		"x": 0.47389,
+		"y": 0.1843,
+		"located": "knowledge"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "en.wikipedia.org",
+				"url": "https://en.wikipedia.org/wiki/List_of_Irish_cheeses"
+			}
+		],
+		"text": "Wikipedia's Irish list gives cow's milk and places the producer in County Waterford, not Clare (Doolin is a Clare village); the 'Gouda-style' claim is not confirmed. Burren Gold is the Clare Gouda-style cheese"
+	}
+}

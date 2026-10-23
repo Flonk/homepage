@@ -1,0 +1,172 @@
+{
+	"label": "Cuartirolo",
+	"example": true,
+	"aka": [
+		"Cuartirolo argentino",
+		"Quartirolo"
+	],
+	"family": "soft",
+	"about": {
+		"text": "An Argentine soft cheese defined in the national food code: whole or standardised milk is soured with lactic cultures and set with rennet, and the curd is moulded, pressed, salted and ripened for at least 20 days. The result is a high-moisture, fatty cheese with a soft, slightly acidic, white-to-yellowish paste.",
+		"sources": {
+			"links": [
+				{
+					"name": "Código Alimentario Argentino, Art. 621",
+					"url": "https://www.argentina.gob.ar/sites/default/files/capitulo_viii_lacteos_actualizado_0123.pdf"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"regions": [
+		"AR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "soft",
+	"days": [
+		12,
+		20
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "none",
+	"confidence": "medium",
+	"how": {
+		"label": "cold brine",
+		"text": "Large curd cubes, a light pressing and a short brining keep this cheese high in moisture. A brief cold ripening of three to four weeks leaves a soft, closed, slightly elastic paste with no eyes and a mildly acidic taste.",
+		"sources": {
+			"links": [
+				{
+					"name": "Fusé, Queso Cuartirolo thesis (UNLP), citing Código Alimentario Argentino",
+					"url": "https://lipa.agro.unlp.edu.ar/wp-content/uploads/sites/29/2020/04/Trabajo-Final-Juan-Fuse.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "pasteurise",
+					"temperature": {
+						"min": 73,
+						"max": 73
+					},
+					"seconds": {
+						"min": 15,
+						"max": 15
+					}
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "lactic acid bacteria",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"note": "A thermophilic starter was used in the trial."
+				},
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"temperature": {
+						"min": 35,
+						"max": 35,
+						"about": true
+					},
+					"seconds": {
+						"min": 1200,
+						"max": 1200,
+						"about": true
+					},
+					"note": "With rennet or enzymes, after the lactic acidification."
+				},
+				{
+					"type": "custom",
+					"name": "cut",
+					"note": "To cubes of 2–3 cm."
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"temperature": {
+						"max": 42
+					},
+					"note": "The cut curd is warmed."
+				},
+				{
+					"type": "custom",
+					"name": "mould",
+					"note": "Into a block or flat cylinder of 2–5 kg."
+				},
+				{
+					"type": "custom",
+					"name": "press",
+					"note": "Lightly."
+				},
+				{
+					"type": "custom",
+					"name": "brine",
+					"temperature": {
+						"min": 2,
+						"max": 4
+					},
+					"seconds": {
+						"min": 10800,
+						"max": 14400
+					},
+					"note": "In a cold brine of 25–28 % salt."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"temperature": {
+						"max": 8
+					},
+					"seconds": {
+						"min": 1728000
+					},
+					"note": "At least 20 d for up to 2.5 kg, 30 d for 2.5–5 kg."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Fusé, Queso Cuartirolo thesis (UNLP), citing Código Alimentario Argentino",
+						"url": "https://lipa.agro.unlp.edu.ar/wp-content/uploads/sites/29/2020/04/Trabajo-Final-Juan-Fuse.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Cuartirolo"
+			}
+		],
+		"text": "Argentine derivative of Italy's Quartirolo Lombardo (fresh type 5-30 days there, es.wikipedia); Argentine ripening not found"
+	},
+	"facts": [
+		{
+			"k": "Rind",
+			"v": "Colourless or absent, sometimes coated with starch"
+		}
+	]
+}

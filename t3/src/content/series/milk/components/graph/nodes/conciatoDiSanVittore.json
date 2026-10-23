@@ -1,0 +1,42 @@
+{
+	"label": "Conciato di San Vittore",
+	"example": true,
+	"family": "semiHard",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"sheep",
+		"goat"
+	],
+	"firm": "semi-hard",
+	"days": [
+		60,
+		365
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "other",
+	"place": {
+		"region": "Lazio",
+		"lat": 41.45,
+		"lon": 13.9,
+		"x": 0.53861,
+		"y": 0.23181,
+		"located": "hint"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Conciato_di_San_Vittore"
+			},
+			{
+				"name": "onaf.it",
+				"url": "https://www.onaf.it/uploads/public/9350_conciato-di-san-vittore.pdf"
+			}
+		],
+		"text": "Lazio (San Vittore del Lazio, Frosinone), not Campania; separate from Conciato romano; cured with herbs, oil and wine; ripening time not confirmed"
+	}
+}

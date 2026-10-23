@@ -1,0 +1,91 @@
+{
+	"label": "Bog butter",
+	"aka": [
+		"Im portaigh"
+	],
+	"from": "butter",
+	"step": "bury in peat",
+	"about": {
+		"text": "Bog butter is an ancient waxy substance found buried in peat bogs, particularly in Ireland and Scotland. Likely an old method of making and preserving butter, some tested lumps of bog butter were made of dairy, while others were made of animal fat.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Bog_butter"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Bog butter in wooden vessel.JPG",
+		"author": "Bazonka",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Bog_butter_in_wooden_vessel.JPG"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"IE",
+		"GB"
+	],
+	"how": {
+		"text": "Butter or other fat was packed in a wooden vessel and sunk into peat, where the cold, acidic, oxygen-poor bog kept it for years. No ferment is involved, so there is no culture table.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia, Bog butter",
+					"url": "https://en.wikipedia.org/wiki/Bog_butter"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "pack",
+					"note": "In a wooden bucket, keg, barrel, dish or churn, sealed, sometimes wrapped in deerskin bladder or plant fibre."
+				},
+				{
+					"type": "custom",
+					"name": "bury",
+					"note": "In a peat bog."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia, Bog butter",
+						"url": "https://en.wikipedia.org/wiki/Bog_butter"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Burial",
+			"v": "Buried in a peat bog; the 2011 Tullamore find lay at 2.3 m, a vessel about 30 cm wide and 60 cm tall holding about 50 kg"
+		},
+		{
+			"k": "Why it keeps",
+			"v": "Bogs are cold, low in oxygen and acidic"
+		},
+		{
+			"k": "Age",
+			"v": "Irish finds from the 1st century AD to the 15th–16th century"
+		},
+		{
+			"k": "Contents",
+			"v": "Bristol analysis (2003): some samples dairy fat, others animal tallow from adipose tissue"
+		}
+	]
+}

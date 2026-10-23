@@ -1,0 +1,121 @@
+{
+	"label": "Acid curd",
+	"aka": [
+		"Curd"
+	],
+	"comment": "Set by acid: the milk soured until it curdles. Made industrially from skimmed milk, fermented on its own; traditionally, soured milk set and drained.",
+	"from": "skimmed",
+	"step": "ferment, a little rennet",
+	"alsoFrom": [
+		"soured"
+	],
+	"niche": 0,
+	"about": {
+		"text": "Curd is obtained by coagulating milk in a sequential process called curdling. It can be a final dairy product or the first stage in cheesemaking. The coagulation can be caused by adding rennet, a culture, or any edible acidic substance such as lemon juice or vinegar, and then allowing it to coagulate. The increased acidity causes the milk proteins (casein) to tangle into solid masses, or curds. Milk that has been left to sour will also automatically produce curds, and sour milk cheeses are produced this way.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Curd"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Curdled milk (22413233226).jpg",
+		"author": "leesean from New York, USA",
+		"license": "CC BY-SA 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Curdled_milk_(22413233226).jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "Lactic acid bacteria lower the pH to 4.6–4.7, the isoelectric point at which casein micelles stop repelling each other and clump into a curd. The whey is then drained or pressed off.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 16 Cheese",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+				},
+				{
+					"name": "EAEU Technical Regulation TR TS 033/2013 (English translation)",
+					"url": "https://agriexchange.apeda.gov.in/ImportRegulations/CustomsUnionTechnicalRegulationonMilkandDairyProductsMoscowRussianFederation11182013.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Lactococcus",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "thermophilic lactic streptococci",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								],
+								"grows": "thermophilic"
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"seconds": {
+						"min": 21600,
+						"max": 43200
+					},
+					"pH": {
+						"min": 4.6,
+						"max": 4.7
+					},
+					"note": "Often with a little rennet."
+				},
+				{
+					"type": "custom",
+					"name": "drain",
+					"note": "The whey is removed by self-pressing, pressing, separator or ultrafiltration."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Tetra Pak Dairy Processing Handbook, ch. 16 Cheese",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+					},
+					{
+						"name": "EAEU Technical Regulation TR TS 033/2013 (English translation)",
+						"url": "https://agriexchange.apeda.gov.in/ImportRegulations/CustomsUnionTechnicalRegulationonMilkandDairyProductsMoscowRussianFederation11182013.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Texture",
+			"v": "Soft or grainy"
+		}
+	]
+}

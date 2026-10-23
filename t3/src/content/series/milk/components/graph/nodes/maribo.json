@@ -1,0 +1,49 @@
+{
+	"label": "Maribo",
+	"example": true,
+	"family": "semiHard",
+	"about": {
+		"text": "A semi-hard cheese made from cow's milk. It has a firm, dry interior; a creamy texture; and many small, irregular holes. It has a pale tan rind covered in yellow wax. Its flavour is tangy, and it is sometimes seasoned with caraway seeds.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Maribo_cheese"
+				}
+			],
+			"text": "Danish, small irregular holes, yellow wax, sometimes with caraway; ripening time not stated in source"
+		}
+	},
+	"regions": [
+		"DK"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		60,
+		180
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "waxed",
+	"place": {
+		"region": "Lolland",
+		"lat": 54.78,
+		"lon": 11.5,
+		"x": 0.53194,
+		"y": 0.17591,
+		"located": "hint"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Maribo_cheese"
+			}
+		],
+		"text": "Danish, small irregular holes, yellow wax, sometimes with caraway; ripening time not stated in source"
+	}
+}

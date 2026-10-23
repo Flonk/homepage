@@ -1,0 +1,92 @@
+{
+	"label": "Whey permeate",
+	"aka": [
+		"Permeat",
+		"Milchserum"
+	],
+	"from": "sweetWhey",
+	"step": "what passes the filter",
+	"about": {
+		"text": "What passes through the membrane when whey is ultrafiltered to make whey protein: water, lactose and the milk's minerals, with some acids, but no protein. Dried as an ingredient, or crystallised for its lactose. Crystallising the lactose out leaves delactosed permeate as the other half.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. Milk and whey powder",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-powder"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"how": {
+		"text": "Lactose is about 87 % of the permeate's dry matter, so it is the raw material for lactose and for the cheap sweet powder in feed and food.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 18 Milk and whey fractionation (Table 18.3)",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "evaporate",
+					"note": "To 60–62 % dry matter."
+				},
+				{
+					"type": "custom",
+					"name": "crystallise",
+					"seconds": {
+						"min": 14400,
+						"max": 21600
+					},
+					"note": "The concentrate is crystallised, over 75 % of it, before the spray-dryer."
+				},
+				{
+					"type": "dry",
+					"note": "Spray-dried whole as permeate powder."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Tetra Pak Dairy Processing Handbook, ch. 18 Milk and whey fractionation (Table 18.3)",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"composition": {
+		"solids": {
+			"min": 5.38,
+			"max": 5.38
+		},
+		"lactose": {
+			"min": 4.69,
+			"max": 4.69
+		},
+		"protein": {
+			"min": 0.01,
+			"max": 0.01
+		}
+	},
+	"facts": [
+		{
+			"k": "Share of the whey",
+			"v": "About 83 kg of 100 kg whey; up to 95 % in WPC80 runs"
+		},
+		{
+			"k": "Ash (minerals)",
+			"v": "0.51 %"
+		},
+		{
+			"k": "Non-protein nitrogen",
+			"v": "0.17 %"
+		}
+	]
+}

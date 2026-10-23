@@ -1,0 +1,89 @@
+{
+	"label": "Gomme",
+	"aka": [
+		"Gumme",
+		"Gubbost"
+	],
+	"from": "fresh",
+	"step": "curdle, boil down",
+	"about": {
+		"text": "Gomme is a traditional Norwegian dish usually served as a spread or a dessert. Gomme has long traditions in several places in the country and was largely used as a party food when cakes were served, for example at Christmas.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Gomme_(food)"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Gomme.jpg",
+		"author": "Eirik Newth",
+		"license": "CC BY 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Gomme.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"NO"
+	],
+	"how": {
+		"text": "Brown gomme boils the whey in with the curd; white gomme (hvitgomme) separates the curd from the whey and boils it down with cream. Dravle is a district name for gomme that means other things elsewhere, one of them a whey-protein dish.",
+		"sources": {
+			"links": [
+				{
+					"name": "Store norske leksikon, Gomme (melkerett)",
+					"url": "https://snl.no/gomme_-_melkerett"
+				},
+				{
+					"name": "Melk.no, Gomme",
+					"url": "https://www.melk.no/Melkefakta/Tradisjonelle-melkeretter/Gomme"
+				},
+				{
+					"name": "Store norske leksikon, Dravle",
+					"url": "https://snl.no/dravle"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "boil down",
+					"note": "Brown gomme boils the whey in with the curd."
+				}
+			],
+			"text": "White gomme (hvitgomme) separates the curd from the whey and boils it down with cream.",
+			"sources": {
+				"links": [
+					{
+						"name": "Store norske leksikon, Gomme (melkerett)",
+						"url": "https://snl.no/gomme_-_melkerett"
+					},
+					{
+						"name": "Melk.no, Gomme",
+						"url": "https://www.melk.no/Melkefakta/Tradisjonelle-melkeretter/Gomme"
+					},
+					{
+						"name": "Store norske leksikon, Dravle",
+						"url": "https://snl.no/dravle"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"brunostGomme",
+		"hvitgomme"
+	]
+}

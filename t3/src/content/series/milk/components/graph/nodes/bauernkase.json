@@ -1,0 +1,49 @@
+{
+	"label": "Bauernkäse",
+	"example": true,
+	"family": "semiHard",
+	"about": {
+		"text": "South Tyrol; a cheese made from pasteurised, semi-skimmed cow's milk around Meran and Vinschgau",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Bauernk%C3%A4se"
+				}
+			],
+			"text": "South Tyrol farmhouse cheese; generic farm-type name, ripening varies by farm (3 weeks to over a year); estimated"
+		}
+	},
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		30,
+		90
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "South Tyrol",
+		"lat": 46.65,
+		"lon": 10.9,
+		"x": 0.53028,
+		"y": 0.21169,
+		"located": "hint"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Bauernk%C3%A4se"
+			}
+		],
+		"text": "South Tyrol farmhouse cheese; generic farm-type name, ripening varies by farm (3 weeks to over a year); estimated"
+	}
+}

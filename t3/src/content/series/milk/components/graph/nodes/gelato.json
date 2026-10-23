@@ -1,0 +1,97 @@
+{
+	"label": "Gelato",
+	"example": true,
+	"about": {
+		"text": "Gelato refers to a specific type of ice cream of Italian origin. In Italian, gelato is the common word for all types of ice cream. Artisanal gelato in Italy generally contains 6–9% butterfat, which is lower than other styles of frozen dessert. Gelato typically contains 20–35% air, and more flavoring than other types of frozen desserts, giving it an intense flavor with creamy, smooth texture, density and richness that distinguishes it from other ice creams.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Gelato"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Fennochios gelato.jpg",
+		"author": "klara",
+		"license": "CC BY 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Fennochios_gelato.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"IT"
+	],
+	"how": {
+		"text": "A milk-heavy custard base is pasteurised, cooled and batch-frozen with little air, and served warmer than ice cream.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Gelato",
+					"url": "https://en.wikipedia.org/wiki/Gelato"
+				},
+				{
+					"name": "Wikipedia: Ice cream",
+					"url": "https://en.wikipedia.org/wiki/Ice_cream"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 85,
+						"max": 85
+					}
+				},
+				{
+					"type": "heat",
+					"does": "cool",
+					"temperature": {
+						"min": 5,
+						"max": 5
+					}
+				},
+				{
+					"type": "custom",
+					"name": "freeze",
+					"note": "Batch-frozen with little air."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Gelato",
+						"url": "https://en.wikipedia.org/wiki/Gelato"
+					},
+					{
+						"name": "Wikipedia: Ice cream",
+						"url": "https://en.wikipedia.org/wiki/Ice_cream"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 6,
+			"max": 9
+		},
+		"moisture": {
+			"min": 60,
+			"max": 65
+		}
+	}
+}

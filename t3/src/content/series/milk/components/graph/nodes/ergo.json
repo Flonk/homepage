@@ -1,0 +1,100 @@
+{
+	"label": "Ergo",
+	"example": true,
+	"how": {
+		"text": "Lactic acid bacteria dominate, followed by yeasts and moulds. E. coli O157:H7 has been found surviving in ergo, so hygiene matters.",
+		"sources": {
+			"links": [
+				{
+					"name": "Karssa et al. 2024, PMC11521749",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11521749/"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic",
+						"yeast"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Lacticaseibacillus paracasei",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Lacticaseibacillus rhamnosus",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Lactiplantibacillus plantarum",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Latilactobacillus sakei",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Latilactobacillus curvatus",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Lacticaseibacillus casei",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Saccharomyces cerevisiae",
+								"kind": "yeast"
+							}
+						],
+						"by": [
+							"vessel"
+						],
+						"vessel": "well-smoked clay pot (ensira)"
+					},
+					"temperature": {
+						"min": 16,
+						"max": 18
+					},
+					"seconds": {
+						"min": 86400,
+						"max": 259200
+					}
+				}
+			],
+			"text": "No starter, or a bit of the last batch.",
+			"sources": {
+				"links": [
+					{
+						"name": "Karssa et al. 2024, PMC11521749",
+						"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11521749/"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	}
+}

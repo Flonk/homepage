@@ -1,0 +1,148 @@
+{
+	"label": "Mahón",
+	"example": true,
+	"about": {
+		"text": "Mahón cheese is a soft to hard white cheese made from cows' milk, named after the town and natural port of Mahón, on the island of Menorca off the Mediterranean coast of Spain. Menorca is known for its cheese production.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Mah%C3%B3n_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Mahon Cheese.JPG",
+		"author": "Asphaltbuffet",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Mahon_Cheese.JPG"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"ES"
+	],
+	"firm": "semi-hard",
+	"days": [
+		21,
+		300
+	],
+	"how": {
+		"label": "press in cloth",
+		"text": "The curd is gathered in a knotted square cloth and pressed, which gives the cushion-shaped square with a 'mamella' crease on top. Rubbing the rind with butter, olive oil or oil and paprika stops it drying out too fast and gives its orange-brown colour, while long ripening makes it sharper.",
+		"sources": {
+			"links": [
+				{
+					"name": "Mahón-Menorca DOP single document (Govern de les Illes Balears)",
+					"url": "https://www.caib.es/sites/qualitatagroalimentaria/es/archivopub.do?ctrl=MCRST63ZI567108&id=567108"
+				},
+				{
+					"name": "DO Mahón registration file, eAmbrosia",
+					"url": "https://ec.europa.eu/geographical-indications-register/eambrosia-public-api/api/v1/attachments/59621"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"temperature": {
+						"min": 30,
+						"max": 34
+					},
+					"seconds": {
+						"min": 1800
+					},
+					"note": "With rennet, for at least 30–40 min."
+				},
+				{
+					"type": "custom",
+					"name": "cut",
+					"note": "To grains of about 1 cm."
+				},
+				{
+					"type": "custom",
+					"name": "rest",
+					"temperature": {
+						"min": 30,
+						"max": 34
+					},
+					"seconds": {
+						"min": 600,
+						"max": 600,
+						"about": true
+					},
+					"note": "The grains are kept warm."
+				},
+				{
+					"type": "custom",
+					"name": "press",
+					"seconds": {
+						"min": 36000,
+						"max": 36000,
+						"about": true
+					},
+					"note": "Tied in a square cotton cloth (fogasser), 0.6–4 kg."
+				},
+				{
+					"type": "custom",
+					"name": "brine",
+					"seconds": {
+						"max": 172800
+					},
+					"note": "In saturated brine."
+				},
+				{
+					"type": "dry",
+					"seconds": {
+						"min": 259200,
+						"max": 345600
+					},
+					"note": "Aired after the brine."
+				},
+				{
+					"type": "custom",
+					"name": "rub",
+					"note": "The rind is rubbed with butter, olive oil, or oil with paprika, and turns yellow to brownish."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"seconds": {
+						"min": 5184000
+					},
+					"note": "Turned; semicurado under 150 d, curado over 150 d, Artesano at least 60 d."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Mahón-Menorca DOP single document (Govern de les Illes Balears)",
+						"url": "https://www.caib.es/sites/qualitatagroalimentaria/es/archivopub.do?ctrl=MCRST63ZI567108&id=567108"
+					},
+					{
+						"name": "DO Mahón registration file, eAmbrosia",
+						"url": "https://ec.europa.eu/geographical-indications-register/eambrosia-public-api/api/v1/attachments/59621"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Cow, with up to 5 % Menorcan sheep; raw for Artesano, treated for industrial"
+		}
+	]
+}

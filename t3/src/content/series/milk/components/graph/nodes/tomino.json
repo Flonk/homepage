@@ -1,0 +1,136 @@
+{
+	"label": "Tomino",
+	"example": true,
+	"about": {
+		"text": "A small cheese from Piedmont, made from cow's or goat's milk or a mix of both. The milk is warmed with rennet and the curd is broken up finely and drained. Eaten fresh, it is soft, moist and white. Matured ones get a thin rind and a stronger smell and are often warmed in a pan or on soapstone.",
+		"sources": {
+			"links": [
+				{
+					"name": "Italian Wikipedia",
+					"url": "https://it.wikipedia.org/wiki/Tomino_(formaggio)"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Medaglione di Melanzana con Tomino (close-up).jpg",
+		"author": "FakirNL",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Medaglione_di_Melanzana_con_Tomino_(close-up).jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"cow",
+		"goat"
+	],
+	"how": {
+		"text": "Small, uncooked, unpressed curds drained in individual moulds give a soft, slightly chalky little cheese that is eaten within days and tastes sweetly of milk. If it is kept longer, a Geotrichum bloom softens the chalky core.",
+		"sources": {
+			"links": [
+				{
+					"name": "ONAF fact sheet: Tomino del Bot (PAT Piemonte)",
+					"url": "https://www.onaf.it/uploads/public/8255_tomino-del-bot.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "pasteurise",
+					"note": "The milk is whole cow, raw in the past."
+				},
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"temperature": {
+						"min": 30,
+						"max": 35
+					},
+					"seconds": {
+						"min": 3600,
+						"max": 7200
+					},
+					"note": "With calf rennet."
+				},
+				{
+					"type": "custom",
+					"name": "cut",
+					"note": "To hazelnut size, and not cooked."
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic",
+						"mould"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "mesophilic lactic acid bacteria",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								],
+								"grows": "mesophilic"
+							},
+							{
+								"name": "Geotrichum candidum",
+								"kind": "yeast"
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"temperature": {
+						"min": 20,
+						"max": 20,
+						"about": true
+					},
+					"seconds": {
+						"min": 64800,
+						"max": 64800,
+						"about": true
+					},
+					"note": "Ladled into small plastic moulds 10 cm across and drained, with optional Geotrichum candidum spores."
+				},
+				{
+					"type": "custom",
+					"name": "salt",
+					"note": "Dry-salted or brined during the draining."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"seconds": {
+						"min": 259200,
+						"max": 345600
+					},
+					"note": "Turned daily in cold rooms, and a light white Geotrichum bloom grows if it is kept longer."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "ONAF fact sheet: Tomino del Bot (PAT Piemonte)",
+						"url": "https://www.onaf.it/uploads/public/8255_tomino-del-bot.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	}
+}

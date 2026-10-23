@@ -1,0 +1,173 @@
+{
+	"label": "Pecorino Toscano",
+	"example": true,
+	"family": "semiHard",
+	"about": {
+		"text": "A firm Tuscan sheep-milk cheese with protected designation of origin since 1996.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Pecorino_Toscano"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Pecorino.jpg",
+		"author": "Guzzella",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Pecorino.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"sheep"
+	],
+	"firm": "semi-hard",
+	"days": [
+		20,
+		120
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Tuscany",
+		"lat": 43.3,
+		"lon": 11.2,
+		"x": 0.53111,
+		"y": 0.22485,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"how": {
+		"text": "Two types share one rule: the soft fresco is cut small and not cooked, ripened a few weeks; the semi-hard stagionato is cut finer, may be cooked a little, salted longer and ripened four months or more. Only whole sheep's milk of Tuscany and nearby areas may be used.",
+		"sources": {
+			"links": [
+				{
+					"name": "Disciplinare di produzione Pecorino Toscano DOP (2014 amendment), ONAF",
+					"url": "https://www.onaf.it/uploads/public/formaggi/1904_5-mod-rich-1-disciplinare-pecorino-toscano-26.9.2014.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"temperature": {
+						"min": 33,
+						"max": 38
+					},
+					"seconds": {
+						"min": 1200,
+						"max": 1500
+					},
+					"note": "With calf or vegetable rennet."
+				},
+				{
+					"type": "custom",
+					"name": "break up",
+					"note": "Broken to hazelnut size for the fresco or maize-kernel size for the stagionato."
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"temperature": {
+						"min": 40,
+						"max": 42
+					},
+					"seconds": {
+						"min": 600,
+						"max": 900
+					},
+					"note": "Only the stagionato curd may be cooked."
+				},
+				{
+					"type": "custom",
+					"name": "mould",
+					"note": "In moulds, the whey drained by hand pressing or in a steam-heated room."
+				},
+				{
+					"type": "custom",
+					"name": "salt",
+					"note": "Dry or in 17–19 % brine (15–17 °Bé), at least 8 h per kg for the fresco or 12 h per kg for the stagionato."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "native, natural or selected lactic cultures",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"temperature": {
+						"min": 5,
+						"max": 15
+					},
+					"seconds": {
+						"min": 1728000
+					},
+					"humidity": {
+						"min": 75,
+						"max": 95
+					},
+					"note": "At least 20 days for the soft fresco or 4 months for the semi-hard stagionato."
+				}
+			],
+			"text": "Cultures are optional.",
+			"sources": {
+				"links": [
+					{
+						"name": "Disciplinare di produzione Pecorino Toscano DOP (2014 amendment), ONAF",
+						"url": "https://www.onaf.it/uploads/public/formaggi/1904_5-mod-rich-1-disciplinare-pecorino-toscano-26.9.2014.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Pecorino_Toscano"
+			}
+		],
+		"text": "fresco 20+ days, stagionato 4+ months"
+	},
+	"facts": [
+		{
+			"k": "Size",
+			"v": "Moulds 15–22 cm across, 7–11 cm high, 0.75–3.5 kg"
+		},
+		{
+			"k": "Rind",
+			"v": "Yellow to deep yellow; may be treated with an anti-mould agent"
+		}
+	]
+}

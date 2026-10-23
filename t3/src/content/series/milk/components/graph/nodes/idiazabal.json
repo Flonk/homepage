@@ -1,0 +1,117 @@
+{
+	"label": "Idiazabal",
+	"example": true,
+	"family": "hard",
+	"about": {
+		"text": "A Basque sheep-milk cheese from Latxa milk, ripened at least two months and sometimes smoked; DO since 1987.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Idiaz%C3%A1bal_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Idiazabal2.jpg",
+		"author": "Ardo Beltz",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Idiazabal2.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"ES"
+	],
+	"beasts": [
+		"sheep"
+	],
+	"firm": "hard",
+	"days": [
+		60,
+		365
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Basque Country",
+		"lat": 42.99,
+		"lon": -2.23,
+		"x": 0.49381,
+		"y": 0.22603,
+		"located": "knowledge"
+	},
+	"confidence": "high",
+	"how": {
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Idiazábal cheese",
+					"url": "https://en.wikipedia.org/wiki/Idiaz%C3%A1bal_cheese"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"temperature": {
+						"min": 25,
+						"max": 35
+					},
+					"note": "With lamb rennet."
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"temperature": {
+						"min": 34,
+						"max": 38
+					}
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"seconds": {
+						"min": 5184000
+					}
+				},
+				{
+					"type": "custom",
+					"name": "smoke",
+					"note": "Optional, with beech, birch, cherry or pine wood at the end."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Idiazábal cheese",
+						"url": "https://en.wikipedia.org/wiki/Idiaz%C3%A1bal_cheese"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Idiazabal_cheese"
+			}
+		],
+		"text": "often smoked; Latxa and Carranzana sheep"
+	},
+	"raw": true
+}

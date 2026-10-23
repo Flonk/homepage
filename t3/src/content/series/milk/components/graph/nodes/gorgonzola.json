@@ -1,0 +1,178 @@
+{
+	"label": "Gorgonzola",
+	"example": true,
+	"family": "blue",
+	"about": {
+		"text": "Gorgonzola is an Italian blue cheese made from unskimmed cow's milk, believed to have been created in the 9th century. Today the use of its name is controlled under the criteria of a protected designation of origin (PDO).",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Gorgonzola"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Gorgonzola and a pear.jpg",
+		"author": "Jon Sullivan",
+		"license": "Public domain",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Gorgonzola_and_a_pear.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "soft",
+	"days": [
+		50,
+		110
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Lombardy",
+		"lat": 45.53,
+		"lon": 9.38,
+		"x": 0.52606,
+		"y": 0.21618,
+		"located": "knowledge"
+	},
+	"confidence": "high",
+	"how": {
+		"text": "Gorgonzola is made from pasteurised cow's milk inoculated with Penicillium spores, then the paste is perforated during maturation so the mould can develop blue-green veins. Cold, very humid storage and a defined ripening window separate the soft, sweet dolce from the firmer, sharper piccante.",
+		"sources": {
+			"links": [
+				{
+					"name": "Gorgonzola DOP disciplinare summary (Qualigeo)",
+					"url": "https://www.qualigeo.eu/prodotto-qualigeo/gorgonzola-dop/"
+				},
+				{
+					"name": "Gorgonzola PDO amendment, OJ C 190 (2016)",
+					"url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52016XC0527(02)"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "pasteurise"
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic",
+						"mould",
+						"yeast"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "lactic acid bacteria",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Penicillium",
+								"kind": "mould"
+							},
+							{
+								"name": "selected yeasts",
+								"kind": "yeast"
+							}
+						],
+						"by": [
+							"starter"
+						]
+					}
+				},
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"temperature": {
+						"min": 28,
+						"max": 36
+					},
+					"note": "With calf rennet."
+				},
+				{
+					"type": "custom",
+					"name": "mould",
+					"seconds": {
+						"min": 86400,
+						"max": 86400
+					},
+					"note": "In perforated moulds (fasceruoli)."
+				},
+				{
+					"type": "custom",
+					"name": "salt",
+					"temperature": {
+						"min": 18,
+						"max": 24
+					},
+					"note": "Dry, for several days."
+				},
+				{
+					"type": "ferment",
+					"does": "pierce"
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"temperature": {
+						"min": -1,
+						"max": 7
+					},
+					"seconds": {
+						"min": 4320000,
+						"max": 23328000
+					},
+					"humidity": {
+						"min": 85,
+						"max": 100
+					},
+					"note": "Dolce ripens 50–150 d, piccante 80–270 d."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Gorgonzola DOP disciplinare summary (Qualigeo)",
+						"url": "https://www.qualigeo.eu/prodotto-qualigeo/gorgonzola-dop/"
+					},
+					{
+						"name": "Gorgonzola PDO amendment, OJ C 190 (2016)",
+						"url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52016XC0527(02)"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Gorgonzola"
+			}
+		],
+		"text": "Dolce min 50 days, piccante min 80"
+	}
+}

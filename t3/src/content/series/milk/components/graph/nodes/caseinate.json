@@ -1,0 +1,100 @@
+{
+	"label": "Caseinate",
+	"from": "acidCasein",
+	"step": "neutralise with alkali",
+	"niche": 1,
+	"about": {
+		"text": "The water-soluble form of casein. Acid casein curd is dissolved in a dilute alkali, usually sodium hydroxide (calcium, potassium and ammonium are also used), and the solution is spray-dried. Sodium caseinate is the most common form, valued as an emulsifier in processed meat, baking and dairy-based foods.",
+		"sources": {
+			"links": [
+				{
+					"name": "INFLIBNET (UGC, India): Technology of Milk and Milk Products",
+					"url": "https://ebooks.inflibnet.ac.in/ftp04/chapter/technology-of-dairy-byproducts-1-caseinates/"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"how": {
+		"text": "Acid casein will not dissolve in water. Adding alkali takes the pH back up from 4.6 to near neutral, the casein turns into a salt and dissolves, and the solution is dried to a soluble powder used as emulsifier and protein in foods.",
+		"sources": {
+			"links": [
+				{
+					"name": "Technology of dairy byproducts 1: Caseinates (e-PG Pathshala, INFLIBNET)",
+					"url": "https://ebooks.inflibnet.ac.in/ftp04/chapter/technology-of-dairy-byproducts-1-caseinates/"
+				},
+				{
+					"name": "US4075196A, Production of casein and caseinates",
+					"url": "https://patents.google.com/patent/US4075196A/en"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "mill",
+					"temperature": {
+						"max": 45
+					},
+					"note": "The curd, at 25–30 % solids, goes through a colloid mill to a slurry."
+				},
+				{
+					"type": "custom",
+					"name": "neutralise",
+					"note": "With NaOH 2.5 M (10 %), 1.7–2.2 % of casein solids, or Ca(OH)₂, KOH or ammonia, to a final pH of about 6.7."
+				},
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 60,
+						"max": 75
+					}
+				},
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 90,
+						"max": 95
+					},
+					"note": "Preheated before spray drying."
+				},
+				{
+					"type": "dry",
+					"note": "Spray dried from a feed of 20–22 % solids to a powder below 5 % moisture."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Technology of dairy byproducts 1: Caseinates (e-PG Pathshala, INFLIBNET)",
+						"url": "https://ebooks.inflibnet.ac.in/ftp04/chapter/technology-of-dairy-byproducts-1-caseinates/"
+					},
+					{
+						"name": "US4075196A, Production of casein and caseinates",
+						"url": "https://patents.google.com/patent/US4075196A/en"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"sodiumCaseinate",
+		"calciumCaseinate",
+		"potassiumCaseinate"
+	],
+	"facts": [
+		{
+			"k": "Raw material",
+			"v": "Fresh acid curd (blander than dried casein); calcium below 0.15 %, lactose below 0.2 % of dry matter"
+		},
+		{
+			"k": "Bulk density",
+			"v": "0.25–0.4 g/ml"
+		}
+	]
+}

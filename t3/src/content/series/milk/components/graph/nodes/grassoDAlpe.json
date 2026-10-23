@@ -1,0 +1,37 @@
+{
+	"label": "Grasso d'alpe",
+	"example": true,
+	"family": "semiHard",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		60,
+		180
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Piedmont",
+		"lat": 44.9,
+		"lon": 7.7,
+		"x": 0.52139,
+		"y": 0.21866,
+		"located": "hint"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Grasso_d'alpe"
+			}
+		],
+		"text": "Alpine pasture cheese; Wikipedia page was not retrievable, all values are typical-family estimates"
+	}
+}

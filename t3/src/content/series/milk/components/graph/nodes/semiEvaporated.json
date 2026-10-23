@@ -1,0 +1,119 @@
+{
+	"label": "Semi-skimmed\nevaporated milk",
+	"aka": [
+		"Teilentrahmte Kondensmilch"
+	],
+	"from": "semi",
+	"step": "evaporate, sterilise in can",
+	"about": {
+		"text": "Semi-skimmed milk with more than half its water evaporated off under low pressure, then canned and sterilised; in Germany it has between 1 and 7.5 % fat. Used in coffee and for cooking.",
+		"sources": {
+			"links": [
+				{
+					"name": "German Wikipedia: Kondensmilch",
+					"url": "https://de.wikipedia.org/wiki/Kondensmilch"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Dosenmilch.jpg",
+		"author": "HV",
+		"license": "Public domain",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Dosenmilch.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "Evaporated milk made from milk with part of its fat taken out first, so the can has less fat than ordinary evaporated milk but is still not fat-free.",
+		"sources": {
+			"links": [
+				{
+					"name": "Directive 2001/114/EC, Annex I (legislation.gov.uk)",
+					"url": "https://www.legislation.gov.uk/eudr/2001/114/annex/I"
+				},
+				{
+					"name": "Tetra Pak Dairy Processing Handbook: Condensed milk",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/condensed-milk"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "standardise",
+					"note": "The fat is set by standardising the milk before evaporation."
+				},
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 100,
+						"max": 120
+					},
+					"seconds": {
+						"min": 60,
+						"max": 180
+					},
+					"note": "Preheated, as for evaporated milk."
+				},
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 65,
+						"max": 70
+					},
+					"note": "Evaporated under vacuum, boiling at 65–70 °C."
+				},
+				{
+					"type": "homogenise"
+				},
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 110,
+						"max": 120
+					},
+					"seconds": {
+						"min": 900,
+						"max": 1200
+					},
+					"note": "Sterilised in the can, or by UHT."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Directive 2001/114/EC, Annex I (legislation.gov.uk)",
+						"url": "https://www.legislation.gov.uk/eudr/2001/114/annex/I"
+					},
+					{
+						"name": "Tetra Pak Dairy Processing Handbook: Condensed milk",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/condensed-milk"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 1,
+			"max": 7.5
+		},
+		"solids": {
+			"min": 20
+		}
+	}
+}

@@ -1,0 +1,85 @@
+{
+	"label": "Doce de leite",
+	"example": true,
+	"about": {
+		"text": "Brazil's dulce de leche: milk and sugar concentrated by heat until creamy and caramel brown, a colour that comes from the Maillard reaction.",
+		"sources": {
+			"links": [
+				{
+					"name": "Brazil, MAPA Portaria 354/1997 (doce de leite standard)",
+					"url": "https://vigilanciasanitaria.prefeitura.rio/wp-content/uploads/sites/84/2023/05/PORTARIA-No-354-Doce-de-Leite.pdf"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Doce de leite.jpg",
+		"author": "إيان",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Doce_de_leite.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"BR"
+	],
+	"how": {
+		"text": "Doce de leite is the Brazilian name for dulce de leche. It is made by boiling milk with sugar, or by cooking sweetened condensed milk, and comes either as a spreadable paste or as a firm block. The sources give no quantities or temperatures specific to Brazil.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Dulce de leche",
+					"url": "https://en.wikipedia.org/wiki/Dulce_de_leche"
+				},
+				{
+					"name": "Wikipedia (pt): Doce de leite",
+					"url": "https://pt.wikipedia.org/wiki/Doce_de_leite"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"seconds": {
+						"min": 5400,
+						"max": 7200
+					},
+					"note": "Milk and sugar are boiled down and stirred."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Dulce de leche",
+						"url": "https://en.wikipedia.org/wiki/Dulce_de_leche"
+					},
+					{
+						"name": "Wikipedia (pt): Doce de leite",
+						"url": "https://pt.wikipedia.org/wiki/Doce_de_leite"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Texture",
+			"v": "Pasty (spreadable) or solid (cut into bars)"
+		},
+		{
+			"k": "Name",
+			"v": "'Sweet of milk'; recorded in Minas Gerais in 1773"
+		}
+	]
+}

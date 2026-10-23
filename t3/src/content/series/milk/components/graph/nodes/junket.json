@@ -1,0 +1,87 @@
+{
+	"label": "Junket",
+	"aka": [
+		"Jonquet",
+		"Renneted milk"
+	],
+	"from": "pasteurised",
+	"step": "set with rennet",
+	"about": {
+		"text": "Junket is a milk-based dessert with a jelly texture, made with sweetened milk and rennet, the digestive enzyme that curdles milk. It is usually set in a mould and served cold.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Junket_(dessert)"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Sportsman, Seasalter, Kent (6477078261).jpg",
+		"author": "Ewan Munro",
+		"license": "CC BY-SA 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Sportsman,_Seasalter,_Kent_(6477078261).jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"GB"
+	],
+	"how": {
+		"text": "Warm sweetened milk is mixed with rennet and left undisturbed until it sets to a soft jelly. Amounts and setting time are not given in the source.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Junket (dessert)",
+					"url": "https://en.wikipedia.org/wiki/Junket_(dessert)"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "sweeten",
+					"note": "With sugar, often vanilla."
+				},
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 38,
+						"max": 38,
+						"about": true
+					}
+				},
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"note": "Rennet dissolved in water is stirred in, and the milk is left undisturbed until it sets to a soft jelly."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Junket (dessert)",
+						"url": "https://en.wikipedia.org/wiki/Junket_(dessert)"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"cuajada",
+		"chongosZamoranos",
+		"ostkaka"
+	]
+}

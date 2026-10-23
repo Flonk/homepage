@@ -1,0 +1,117 @@
+{
+	"label": "Red Leicester",
+	"example": true,
+	"family": "cheddared",
+	"about": {
+		"text": "Red Leicester is an English cheese similar to Cheddar cheese, but crumbly in texture. It is typically aged 6 to 12 months. The rind is reddish-orange with a powdery mould on it. Since the 18th century, it has been coloured orange by the addition of annatto extract during manufacture. It is a cow's milk cheese, and is named after the city of Leicester, or the ceremonial county it is located in, Leicestershire.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Red_Leicester"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "WikiCheese - Sparkenhoe Red Leicester 02.jpg",
+		"author": "Pierre-Yves Beaudouin",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:WikiCheese_-_Sparkenhoe_Red_Leicester_02.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"GB"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		90,
+		270
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Leicestershire",
+		"lat": 52.63,
+		"lon": -1.13,
+		"x": 0.49686,
+		"y": 0.186,
+		"located": "hint"
+	},
+	"confidence": "high",
+	"how": {
+		"label": "colour with annatto",
+		"text": "Annatto added during making turns the paste deep orange. Traditional wheels are firm, dry and friable, while block cheeses from creameries are moister and creamier.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Red Leicester",
+					"url": "https://en.wikipedia.org/wiki/Red_Leicester"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "add annatto",
+					"note": "It turns the paste deep orange, as it has since the 18th century."
+				},
+				{
+					"type": "custom",
+					"name": "cheddar"
+				},
+				{
+					"type": "custom",
+					"name": "press"
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"seconds": {
+						"min": 10368000,
+						"max": 23328000
+					},
+					"note": "Farmhouse wheels are clothbound."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Red Leicester",
+						"url": "https://en.wikipedia.org/wiki/Red_Leicester"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Red_Leicester"
+			}
+		],
+		"text": "Coloured with annatto"
+	},
+	"facts": [
+		{
+			"k": "Rind",
+			"v": "Reddish-orange, coloured with annatto since the 18th century"
+		}
+	]
+}

@@ -1,0 +1,152 @@
+{
+	"label": "Pecorino Sardo",
+	"example": true,
+	"aka": [
+		"Berveghinu sardu"
+	],
+	"note": "Two types: dolce (20–60 d) and maturo (over 2 months). The only Sardinian PDO set with calf rennet.",
+	"family": "hard",
+	"about": {
+		"text": "Pecorino Sardo is a firm cheese from Sardinia made from the milk of the local Sarda sheep. It has PDO status and comes as dolce, aged 20 to 60 days, and maturo, aged more than 2 months.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Pecorino_sardo"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Pecorino Sardo Sa Fortaleza.jpg",
+		"author": "Helge Høifødt",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Pecorino_Sardo_Sa_Fortaleza.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"sheep"
+	],
+	"firm": "semi-hard",
+	"days": [
+		20,
+		365
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Sardinia",
+		"lat": 40.1,
+		"lon": 9,
+		"x": 0.525,
+		"y": 0.23676,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"how": {
+		"label": "press, ripen",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia, Pecorino sardo",
+					"url": "https://en.wikipedia.org/wiki/Pecorino_sardo"
+				},
+				{
+					"name": "ONAF, Pecorino Sardo DOP disciplinare (found by search; heat-treatment figures seen in the search summary, not opened)",
+					"url": "https://www.onaf.it/uploads/public/formaggi/1855_1-dop-pecorino-sardo-disciplinare-iniziale.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "pasteurise",
+					"temperature": {
+						"min": 68,
+						"max": 72
+					},
+					"seconds": {
+						"max": 15
+					},
+					"note": "Dolce is pasteurised at 72 °C for 15 s, maturo thermised at 68 °C for at most 15 s."
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "lactic ferments of the production area",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"note": "Lactic ferments from the production area restore the flora killed by heating; the species are not named."
+				},
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"note": "With liquid calf rennet."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"seconds": {
+						"min": 1728000
+					}
+				}
+			],
+			"text": "Dolce ripens 20-60 d, maturo over 2 months.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia, Pecorino sardo",
+						"url": "https://en.wikipedia.org/wiki/Pecorino_sardo"
+					},
+					{
+						"name": "ONAF, Pecorino Sardo DOP disciplinare (found by search; heat-treatment figures seen in the search summary, not opened)",
+						"url": "https://www.onaf.it/uploads/public/formaggi/1855_1-dop-pecorino-sardo-disciplinare-iniziale.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Pecorino_Sardo"
+			}
+		],
+		"text": "dolce 20-60 days, maturo over 2 months"
+	},
+	"facts": [
+		{
+			"k": "Weight",
+			"v": "Dolce 1.0–2.3 kg, maturo 1.7–4.0 kg"
+		}
+	]
+}

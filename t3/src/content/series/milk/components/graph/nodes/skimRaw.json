@@ -1,0 +1,117 @@
+{
+	"label": "Skimmed raw milk",
+	"aka": [
+		"Fettarme bis magere Rohmilch"
+	],
+	"from": "raw",
+	"step": "the rest",
+	"light": true,
+	"about": {
+		"text": "Raw milk with some or all of its cream taken off, once by letting it rise and skimming it by hand, now by spinning it off in a centrifugal separator. What is left is the starting point for semi-skimmed and skimmed milk.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/centrifugal-separators-and-milk-standardization"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Skim milk poured into cereal bowl.jpg",
+		"author": "Kim Piper Werker from Vancouver, BC, Canada",
+		"license": "CC BY-SA 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Skim_milk_poured_into_cereal_bowl.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"share": {
+		"mt": 169,
+		"sources": {
+			"links": [
+				{
+					"name": "IDF, The World Dairy Situation 2024",
+					"url": "https://www.milksa.co.za/sites/default/files/2024-12/2024%20World%20Dairy%20Situation%20Report.pdf"
+				}
+			],
+			"text": "The rest of the 193 Mt separated: semi-skimmed and skimmed milk, skim milk powder, quark and casein."
+		}
+	},
+	"how": {
+		"text": "The skim milk is what is left of raw milk when the cream has been spun off: it is the other half of the same separating step and still raw until it is heat-treated.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook: Centrifugal separators and milk standardization",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/centrifugal-separators-and-milk-standardization"
+				},
+				{
+					"name": "Regulation (EU) No 1308/2013, Annex VII Part IV (UK retained copy)",
+					"url": "https://www.legislation.gov.uk/eur/2013/1308/annex/VII/part/IV/division/III"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 55,
+						"max": 65
+					}
+				},
+				{
+					"type": "custom",
+					"name": "separate",
+					"note": "In a centrifugal separator; in the hermetic type the bowl stays full of milk and cream leaves from the centre."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Tetra Pak Dairy Processing Handbook: Centrifugal separators and milk standardization",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/centrifugal-separators-and-milk-standardization"
+					},
+					{
+						"name": "Regulation (EU) No 1308/2013, Annex VII Part IV (UK retained copy)",
+						"url": "https://www.legislation.gov.uk/eur/2013/1308/annex/VII/part/IV/division/III"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 0.04,
+			"max": 0.07
+		}
+	},
+	"facts": [
+		{
+			"k": "Cream",
+			"v": "About 10 % of the throughput"
+		},
+		{
+			"k": "Cold separation",
+			"v": "Possible, but the fat then needs 10–12 h at low temperature to crystallise completely"
+		},
+		{
+			"k": "Law (EU)",
+			"v": "Skimmed milk is at most 0.50 % fat"
+		},
+		{
+			"k": "Slower is cleaner",
+			"v": "Skimming efficiency rises as throughput falls"
+		}
+	]
+}

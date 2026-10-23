@@ -1,0 +1,97 @@
+{
+	"label": "Leche flan",
+	"example": true,
+	"note": "Philippine caramel custard of condensed milk and egg yolks, usually steamed, rarely baked",
+	"about": {
+		"text": "The Philippine version of flan: a firm caramel-topped egg custard.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Leche_flan"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Leche flan (Philippines) 01.jpg",
+		"author": "Obsidian Soul",
+		"license": "CC0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Leche_flan_(Philippines)_01.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"PH"
+	],
+	"how": {
+		"text": "Caramel is set in the mould first (about 5 min), the custard poured on top, and the mould covered and steamed until just set. The egg proteins set gently in the steam, so the flan stays smooth; the caramel ends up on top when it is unmoulded. Quantities from one Filipino recipe site (6 servings).",
+		"sources": {
+			"links": [
+				{
+					"name": "Panlasang Pinoy: Leche flan",
+					"url": "https://panlasangpinoy.com/leche-flan/"
+				},
+				{
+					"name": "Wikipedia: Leche flan",
+					"url": "https://en.wikipedia.org/wiki/Leche_flan"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "caramelise",
+					"note": "1 cup sugar melted to light brown on low heat in the mould.",
+					"seconds": {
+						"min": 300,
+						"max": 300,
+						"about": true
+					}
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"seconds": {
+						"min": 1800,
+						"max": 2100
+					},
+					"note": "Steamed with the mould covered in foil."
+				},
+				{
+					"type": "heat",
+					"does": "cool",
+					"note": "Cooled, then refrigerated."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Panlasang Pinoy: Leche flan",
+						"url": "https://panlasangpinoy.com/leche-flan/"
+					},
+					{
+						"name": "Wikipedia: Leche flan",
+						"url": "https://en.wikipedia.org/wiki/Leche_flan"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Mould",
+			"v": "Oval tin llanera"
+		}
+	]
+}

@@ -1,0 +1,40 @@
+{
+	"label": "Feuille de Dreux",
+	"example": true,
+	"family": "bloomy",
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "soft",
+	"days": [
+		21,
+		28
+	],
+	"setting": "rennet-acid",
+	"rind": "bloomy",
+	"place": {
+		"region": "Centre-Val de Loire",
+		"lat": 48.73,
+		"lon": 1.37,
+		"x": 0.50381,
+		"y": 0.20311,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Feuille_de_Dreux"
+			},
+			{
+				"name": "androuet.com",
+				"url": "https://www.androuet.com/Feuille-de-Dreux-136.html"
+			}
+		],
+		"text": "Eure-et-Loir; two chestnut leaves on top; about 3 weeks"
+	}
+}

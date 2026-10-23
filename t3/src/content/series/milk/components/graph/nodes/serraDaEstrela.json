@@ -1,0 +1,91 @@
+{
+	"label": "Serra da Estrela",
+	"example": true,
+	"family": "plantCheese",
+	"about": {
+		"text": "A Portuguese sheep milk cheese from the Serra da Estrela mountains, curdled with thistle instead of rennet.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Serra_da_Estrela_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"regions": [
+		"PT"
+	],
+	"beasts": [
+		"sheep"
+	],
+	"firm": "soft",
+	"days": [
+		30,
+		60
+	],
+	"setting": "plant",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Centro",
+		"lat": 40.33,
+		"lon": -7.61,
+		"x": 0.47886,
+		"y": 0.23592,
+		"located": "hint"
+	},
+	"confidence": "high",
+	"how": {
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Serra da Estrela cheese",
+					"url": "https://en.wikipedia.org/wiki/Serra_da_Estrela_cheese"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "coagulate",
+					"by": "plant",
+					"note": "With local thistle instead of rennet."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"seconds": {
+						"min": 2592000
+					}
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Serra da Estrela cheese",
+						"url": "https://en.wikipedia.org/wiki/Serra_da_Estrela_cheese"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Queijo_Serra_da_Estrela"
+			}
+		],
+		"text": "thistle rennet"
+	},
+	"facts": [
+		{
+			"k": "Season",
+			"v": "Mostly made from November to March"
+		}
+	]
+}

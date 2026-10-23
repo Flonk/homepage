@@ -1,0 +1,73 @@
+{
+	"label": "Pastry cream",
+	"example": true,
+	"aka": [
+		"Crème pâtissière"
+	],
+	"note": "Custard thickened with cornstarch or flour as well, so it can be boiled; thick enough to fill éclairs",
+	"about": {
+		"text": "Thick custard stabilised with starch, used to fill éclairs, tarts and cakes.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Pastry_cream"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Pastry cream.jpg",
+		"author": "SKopp",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Pastry_cream.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"label": "thicken with starch, boil",
+		"text": "Starch lets the custard be boiled without curdling (Wikipedia, Custard: a little cornflour stabilises the mix).",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Pastry cream",
+					"url": "https://en.wikipedia.org/wiki/Pastry_cream"
+				},
+				{
+					"name": "Wikipedia: Custard",
+					"url": "https://en.wikipedia.org/wiki/Custard"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"note": "Brought to the boil and stirred."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Pastry cream",
+						"url": "https://en.wikipedia.org/wiki/Pastry_cream"
+					},
+					{
+						"name": "Wikipedia: Custard",
+						"url": "https://en.wikipedia.org/wiki/Custard"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	}
+}

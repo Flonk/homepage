@@ -1,0 +1,111 @@
+{
+	"label": "Fourme d'Ambert",
+	"example": true,
+	"family": "blue",
+	"about": {
+		"text": "A semi-hard French blue cheese from the Auvergne, made from cow milk in a narrow cylinder.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Fourme_d%27Ambert"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Fourme d'Ambert 04.jpg",
+		"author": "Coyau",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Fourme_d%27Ambert_04.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-soft",
+	"days": [
+		28,
+		60
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Auvergne",
+		"lat": 45.55,
+		"lon": 3.74,
+		"x": 0.51039,
+		"y": 0.2161,
+		"located": "knowledge"
+	},
+	"confidence": "high",
+	"how": {
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Fourme d'Ambert",
+					"url": "https://en.wikipedia.org/wiki/Fourme_d%27Ambert"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"kinds": [
+						"mould"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Penicillium roqueforti",
+								"kind": "mould",
+								"does": [
+									"ripening"
+								]
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"seconds": {
+						"min": 2419200
+					}
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Fourme d'Ambert",
+						"url": "https://en.wikipedia.org/wiki/Fourme_d%27Ambert"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Fourme_d'Ambert"
+			}
+		],
+		"text": "Its facts, from these."
+	}
+}

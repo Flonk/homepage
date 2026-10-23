@@ -1,0 +1,104 @@
+{
+	"label": "Sweet curd\ndesserts",
+	"aka": [
+		"Tvorozhnaya massa",
+		"Sweet curd mass"
+	],
+	"from": "quark",
+	"step": "press, sieve, sweeten, mould",
+	"note": "Paskha is a festive Easter dish of Eastern Orthodox countries: eaten at the end of Lent, so rich in the dairy foods given up. Cooked version is an egg custard with the curd; the uncooked keeps poorly, so batches are smaller.",
+	"about": {
+		"text": "Curd (tvorog or quark) pressed, sieved and mixed with sugar, butter, sour cream or egg, sometimes cooked, and set in a mould; the East Slavic Easter dish paskha is the classic.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Paskha"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Paskha2.jpg",
+		"author": "Mitrius",
+		"license": "Public domain",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Paskha2.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"RU",
+		"UA",
+		"FI"
+	],
+	"how": {
+		"text": "The press and the sieve make the curd smooth; the weight of the mould drains the rest of the whey.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Paskha",
+					"url": "https://en.wikipedia.org/wiki/Paskha"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "press",
+					"note": "The tvorog is pressed dry."
+				},
+				{
+					"type": "custom",
+					"name": "sieve",
+					"note": "Sieved twice."
+				},
+				{
+					"type": "custom",
+					"name": "mix",
+					"note": "Mixed with butter, sugar, sour cream, eggs, raisins, nuts and vanilla."
+				},
+				{
+					"type": "custom",
+					"name": "mould",
+					"note": "In a wooden pasochnitsa lined with cheesecloth, whose weight drains the rest of the whey."
+				},
+				{
+					"type": "heat",
+					"does": "cool",
+					"seconds": {
+						"min": 43200,
+						"max": 43200
+					},
+					"note": "Cold but not freezing."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Paskha",
+						"url": "https://en.wikipedia.org/wiki/Paskha"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"paskha"
+	],
+	"facts": [
+		{
+			"k": "Cooked version",
+			"v": "egg custard heated with the curd, cooled gradually in cold water"
+		}
+	]
+}

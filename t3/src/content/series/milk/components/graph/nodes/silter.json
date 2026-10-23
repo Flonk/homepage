@@ -1,0 +1,37 @@
+{
+	"label": "Silter",
+	"example": true,
+	"family": "semiHard",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		100,
+		365
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Lombardy",
+		"lat": 45.67,
+		"lon": 9.7,
+		"x": 0.52694,
+		"y": 0.21562,
+		"located": "hint"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Silter"
+			}
+		],
+		"text": "Val Camonica, Lombardy"
+	}
+}

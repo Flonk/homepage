@@ -1,0 +1,49 @@
+{
+	"label": "Chanco",
+	"example": true,
+	"family": "washedCurd",
+	"about": {
+		"text": "Cow's milk cheese originally from the Chanco farm in Maule Region. Now it is produced all over south-central Chile, and represents almost 50% of Chilean cheese consumption.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Chanco_cheese"
+				}
+			],
+			"text": "Chile's Gouda-like semi-hard cow cheese from the Maule region; Wikipedia gives no ripening time"
+		}
+	},
+	"regions": [
+		"CL"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		30,
+		60
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Maule",
+		"lat": -35.73,
+		"lon": -72.53,
+		"x": 0.29853,
+		"y": 0.46493,
+		"located": "hint"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Chanco_cheese"
+			}
+		],
+		"text": "Chile's Gouda-like semi-hard cow cheese from the Maule region; Wikipedia gives no ripening time"
+	}
+}

@@ -1,0 +1,90 @@
+{
+	"label": "Brick",
+	"example": true,
+	"about": {
+		"text": "An American cheese from Wisconsin, made since 1877, derived from white Cheddar but cultured at a slightly higher temperature, so softer and a bit fattier.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Brick_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Brickcheese.jpg",
+		"author": "Wonder al",
+		"license": "CC0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Brickcheese.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"US"
+	],
+	"how": {
+		"label": "wash the curd, smear the rind",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Brick cheese",
+					"url": "https://en.wikipedia.org/wiki/Brick_cheese"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "smear",
+					"kinds": [
+						"smear"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Brevibacterium linens",
+								"kind": "bacterium",
+								"does": [
+									"rind",
+									"ripening"
+								]
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"note": "The rind is washed with a whey-and-water mix on wooden shelves."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"seconds": {
+						"min": 1209600,
+						"max": 1209600,
+						"about": true
+					}
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Brick cheese",
+						"url": "https://en.wikipedia.org/wiki/Brick_cheese"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	}
+}

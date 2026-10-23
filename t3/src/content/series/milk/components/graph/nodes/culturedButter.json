@@ -1,0 +1,156 @@
+{
+	"label": "Cultured butter",
+	"aka": [
+		"Sauerrahmbutter"
+	],
+	"from": "cream",
+	"step": "the fat",
+	"alsoFrom": [
+		"soured"
+	],
+	"below": "butter",
+	"niche": 1,
+	"about": {
+		"text": "Butter churned from cream that has first been soured with lactic acid bacteria, giving it a fuller, slightly tangy taste and the aroma of diacetyl. Sold in Germany as Sauerrahmbutter.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/butter"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Antoine Vollon - Mound of Butter - National Gallery of Art.jpg",
+		"author": "Antoine Vollon",
+		"license": "Public domain",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Antoine_Vollon_-_Mound_of_Butter_-_National_Gallery_of_Art.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "The culture sours the cream while its fat crystallises in the ripening tank, and the aroma strains make diacetyl. That gives the butter its fuller, buttery smell, and the acid protects it against unwanted microbes.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 14 Butter",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/butter"
+				},
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 12 Cultures",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cultures-and-starter-manufacture"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 85,
+						"max": 85
+					},
+					"seconds": {
+						"min": 15
+					}
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Lactococcus lactis subsp. lactis",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Lactococcus lactis subsp. lactis biovar diacetylactis",
+								"kind": "bacterium",
+								"does": [
+									"aroma"
+								]
+							},
+							{
+								"name": "Leuconostoc mesenteroides",
+								"kind": "bacterium",
+								"does": [
+									"aroma"
+								]
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"temperature": {
+						"min": 8,
+						"max": 21
+					},
+					"seconds": {
+						"min": 43200,
+						"max": 54000
+					},
+					"note": "Soured during the ripening, in summer at 20 °C for about 5 h."
+				},
+				{
+					"type": "heat",
+					"does": "cool",
+					"note": "In the summer programme the cream is cooled at about 22 °SH."
+				},
+				{
+					"type": "churn",
+					"note": "Churned into grains and buttermilk."
+				},
+				{
+					"type": "custom",
+					"name": "work"
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Tetra Pak Dairy Processing Handbook, ch. 14 Butter",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/butter"
+					},
+					{
+						"name": "Tetra Pak Dairy Processing Handbook, ch. 12 Cultures",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cultures-and-starter-manufacture"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"makhan",
+		"kibe",
+		"zebda",
+		"yakButter",
+		"beurreRose",
+		"beurreDEchire"
+	],
+	"composition": {
+		"fat": {
+			"min": 80
+		},
+		"moisture": {
+			"max": 16
+		}
+	}
+}

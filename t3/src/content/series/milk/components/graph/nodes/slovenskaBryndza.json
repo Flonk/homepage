@@ -1,0 +1,180 @@
+{
+	"label": "Slovenská bryndza",
+	"example": true,
+	"note": "Slovak PGI: up to 50% cow lump cheese",
+	"about": {
+		"text": "Slovenská bryndza is a Slovak PGI cheese: ground sheep lump cheese, or sheep lump cheese mixed with up to 50% cow lump cheese, with salt (OJ C 232/2007).",
+		"sources": {
+			"links": [
+				{
+					"name": "Slovenská bryndza PGI summary, OJ C 232/2007",
+					"url": "https://epa.hu/00800/00877/01322/pdf/C_2007_232_0017_0022.pdf"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Termizovana bryndza.jpg",
+		"author": "Doronenko",
+		"license": "Public domain",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Termizovana_bryndza.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"SK"
+	],
+	"beasts": [
+		"sheep",
+		"cow"
+	],
+	"how": {
+		"text": "Slovak bryndza is not made from milk directly. Sheep lump cheese (hrudkový syr) is made in the hut, then ripened and ground with salt at the bryndza dairy. The PGI lets the sheep lump cheese be mixed with up to 50 % cow lump cheese. Its acid and flavour come from the wild lactic flora of the raw milk, not from a bought starter.",
+		"sources": {
+			"links": [
+				{
+					"name": "Kačániová et al. 2021, Open Life Sciences",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8005922"
+				},
+				{
+					"name": "Slovenská bryndza PGI summary, OJ C 232/2007",
+					"url": "https://www.infor.pl/download/site/pl/oj/2007/c_232/c_23220071004pl00170022.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"temperature": {
+						"min": 29,
+						"max": 31
+					},
+					"seconds": {
+						"min": 1800,
+						"max": 1800
+					},
+					"note": "With chymosin or chymosin-identical enzymes."
+				},
+				{
+					"type": "custom",
+					"name": "wash",
+					"note": "The lump cheese is sorted and washed with water."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"by": [
+							"wild"
+						],
+						"microbes": [
+							{
+								"name": "Lacticaseibacillus paracasei subsp. paracasei",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Lactiplantibacillus plantarum",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Lactococcus lactis subsp. lactis",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Enterococcus faecium",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Levilactobacillus brevis",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							}
+						]
+					},
+					"temperature": {
+						"min": 20,
+						"max": 20,
+						"about": true
+					},
+					"note": "Over 3,700 isolates in one study came from the raw milk and the dairy, not from a starter; they include L. paraplantarum, Enterococcus hirae, Enterococcus faecalis and Pediococcus acidilactici."
+				},
+				{
+					"type": "custom",
+					"name": "trim",
+					"note": "The rind is removed."
+				},
+				{
+					"type": "custom",
+					"name": "drain",
+					"note": "The whey is expelled."
+				},
+				{
+					"type": "custom",
+					"name": "crush",
+					"note": "The cheese is crushed."
+				},
+				{
+					"type": "custom",
+					"name": "salt",
+					"note": "The pulp is salted and spread on rollers."
+				}
+			],
+			"text": "The lump cheese is ripened before it is ground with salt; the flora comes from the raw milk and the dairy, not a starter.",
+			"sources": {
+				"links": [
+					{
+						"name": "Kačániová et al. 2021, Open Life Sciences",
+						"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8005922"
+					},
+					{
+						"name": "Slovenská bryndza PGI summary, OJ C 232/2007",
+						"url": "https://www.infor.pl/download/site/pl/oj/2007/c_232/c_23220071004pl00170022.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Mix",
+			"v": "Lump cheese is 100 % sheep, or mixed with up to 50 % cow"
+		},
+		{
+			"k": "Origin",
+			"v": "Sheep milk is 'sweetened' (set) at the mountain hut; the lump cheese is dried there and taken to the bryndziarna (bryndza dairy)"
+		},
+		{
+			"k": "Protection",
+			"v": "Slovak PGI; production area is the mountainous part of Slovakia"
+		}
+	],
+	"raw": true
+}

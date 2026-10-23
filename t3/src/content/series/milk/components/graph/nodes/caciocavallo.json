@@ -1,0 +1,139 @@
+{
+	"label": "Caciocavallo",
+	"example": true,
+	"about": {
+		"text": "Caciocavallo is a type of pasta filata ('stretched-curd') cheese made out of sheep's or cow's milk. It is produced throughout southern Italy, particularly in the Apennine Mountains and in the Gargano peninsula. Shaped like a teardrop, it is similar in taste to the aged southern Italian provolone cheese, with a hard edible rind.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Caciocavallo"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Caciocavallo.JPG",
+		"author": "Captain76",
+		"license": "Public domain",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Caciocavallo.JPG"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"IT"
+	],
+	"how": {
+		"label": "stretch, hang",
+		"text": "Caciocavallo Silano is a cow's-milk pasta filata moulded by hand into a closed, smooth pear or oval, then tied in pairs and hung over poles to ripen; it firms from elastic to flaky and develops a straw-yellow rind.",
+		"sources": {
+			"links": [
+				{
+					"name": "ONAF technical sheet, Caciocavallo Silano DOP",
+					"url": "https://www.onaf.it/uploads/public/16937_caciocavallo-silano.pdf"
+				},
+				{
+					"name": "Commission Reg. (EC) 1204/2003 amendment, OJ L 168 (2003)",
+					"url": "https://www.boe.es/doue/2003/168/L00010-00012.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 58,
+						"max": 58
+					},
+					"seconds": {
+						"min": 30,
+						"max": 30
+					},
+					"note": "The milk is raw or thermised."
+				},
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"temperature": {
+						"min": 36,
+						"max": 38
+					},
+					"note": "With calf rennet or kid rennet paste."
+				},
+				{
+					"type": "custom",
+					"name": "cut",
+					"note": "The curd is broken to hazelnut size."
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [],
+						"by": [
+							"starter"
+						]
+					},
+					"note": "Natural whey starter is permitted, and the curd is soured until it can be stretched."
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"temperature": {
+						"min": 80,
+						"max": 85
+					},
+					"note": "Stretched in hot water and closed by hand into an oval or cone of 1–2.5 kg."
+				},
+				{
+					"type": "custom",
+					"name": "brine",
+					"seconds": {
+						"min": 21600
+					},
+					"note": "In brine, the time set by the weight."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"seconds": {
+						"min": 2592000
+					},
+					"note": "Tied in pairs and hung on poles."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "ONAF technical sheet, Caciocavallo Silano DOP",
+						"url": "https://www.onaf.it/uploads/public/16937_caciocavallo-silano.pdf"
+					},
+					{
+						"name": "Commission Reg. (EC) 1204/2003 amendment, OJ L 168 (2003)",
+						"url": "https://www.boe.es/doue/2003/168/L00010-00012.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Rind",
+			"v": "Thin, smooth, straw-yellow, darkening with age"
+		}
+	]
+}

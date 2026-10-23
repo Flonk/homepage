@@ -1,0 +1,128 @@
+{
+	"label": "Chakka",
+	"example": true,
+	"note": "Strained dahi, so mesophilic lactococcal, not thermophilic yoghurt; Shrikhand is made from it",
+	"about": {
+		"text": "Indian yoghurt strained in muslin until it is thick and semi-solid. Sweetened and spiced with cardamom and saffron, it becomes shrikhand.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia, Strained yogurt",
+					"url": "https://en.wikipedia.org/wiki/Strained_yogurt"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"regions": [
+		"IN"
+	],
+	"how": {
+		"text": "Chakka is dahi, soured by mesophilic lactococci, that has been hung in muslin until most of the whey has run off, leaving a semi-solid mass. Chakka is the base for sweetened shrikhand.",
+		"sources": {
+			"links": [
+				{
+					"name": "Rasane et al., J. Pure Appl. Microbiol. (2017)",
+					"url": "https://doi.org/10.22207/JPAM.11.2.68"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "heat",
+					"note": "Heated near boiling."
+				},
+				{
+					"type": "heat",
+					"does": "cool",
+					"temperature": {
+						"min": 30,
+						"max": 35
+					}
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Lactococcus lactis subsp. lactis",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Lactococcus lactis subsp. cremoris",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Lactococcus lactis subsp. lactis biovar diacetylactis",
+								"kind": "bacterium",
+								"does": [
+									"aroma"
+								]
+							},
+							{
+								"name": "Leuconostoc",
+								"kind": "bacterium",
+								"does": [
+									"aroma"
+								]
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"temperature": {
+						"min": 30,
+						"max": 35
+					},
+					"seconds": {
+						"min": 18000,
+						"max": 25200
+					},
+					"acidity": {
+						"min": 0.8,
+						"max": 1
+					},
+					"note": "Traditionally 5–7 h, about 8 h industrially."
+				},
+				{
+					"type": "custom",
+					"name": "hang",
+					"seconds": {
+						"min": 36000,
+						"max": 43200
+					},
+					"note": "Hung in muslin overnight, industrially a basket centrifuge or quarg separator is used."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Rasane et al., J. Pure Appl. Microbiol. (2017)",
+						"url": "https://doi.org/10.22207/JPAM.11.2.68"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Often skim milk"
+		}
+	]
+}

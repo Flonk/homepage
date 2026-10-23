@@ -1,0 +1,109 @@
+{
+	"label": "Activia",
+	"example": true,
+	"about": {
+		"text": "Activia is a brand of yoghurt made by the French company Danone, fermented with the two yoghurt bacteria and its own strain of Bifidobacterium animalis.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Activia"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "2GBP (on special) for 8X125g = 1L of fruit Yogurt",
+		"author": "Kai Hendry",
+		"license": "CC BY 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Flickr",
+					"url": "https://www.flickr.com/photos/16105436@N00/7942685210"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "Activia is a fermented milk made with the two yoghurt starters plus Danone's own Bifidobacterium strain DN-173 010, which Danone developed to survive the acidity of yoghurt. Some markets' labels also list Lactococcus lactis; the trial paper names only the two starters and the bifidobacterium, so it is left out of the table. Fermentation temperature and time are not published.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tabbers et al. 2009, BMC Pediatrics (Activia, DN-173 010)",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2662858"
+				},
+				{
+					"name": "Wikipedia: Activia",
+					"url": "https://en.wikipedia.org/wiki/Activia"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Streptococcus thermophilus",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Lactobacillus delbrueckii subsp. bulgaricus",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Bifidobacterium animalis subsp. lactis DN-173 010",
+								"kind": "bacterium",
+								"does": [
+									"probiotic"
+								]
+							}
+						],
+						"by": [
+							"starter"
+						]
+					}
+				}
+			],
+			"text": "The bifidobacterium strain is deposited as CNCM I-2494 and sold as Bifidus ActiRegularis.",
+			"sources": {
+				"links": [
+					{
+						"name": "Tabbers et al. 2009, BMC Pediatrics (Activia, DN-173 010)",
+						"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2662858"
+					},
+					{
+						"name": "Wikipedia: Activia",
+						"url": "https://en.wikipedia.org/wiki/Activia"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Probiotic strain",
+			"v": "B. animalis subsp. lactis DN-173 010, deposited at the CNCM as I-2494, sold as Bifidus ActiRegularis"
+		},
+		{
+			"k": "Per 125 g pot",
+			"v": "At least 6 × 10⁹ cfu of the bifidobacterium and at least 1.2 × 10⁹ cfu of the yoghurt starters (as used in a children's constipation trial)"
+		}
+	]
+}

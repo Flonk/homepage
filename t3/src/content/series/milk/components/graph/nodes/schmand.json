@@ -1,0 +1,109 @@
+{
+	"label": "Schmand",
+	"from": "culturedCream",
+	"at": 24,
+	"niche": 1,
+	"about": {
+		"text": "Schmand is cream soured with lactic acid bacteria with at least 20 % fat: thicker and richer than sour cream, leaner than crème fraîche, and, unlike them, it may be heated again after souring, which helps it keep. Further east the same thing is smetana.",
+		"sources": {
+			"links": [
+				{
+					"name": "German MilchPQV, Anlage 8",
+					"url": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Smietana.JPG",
+		"author": "Dobromila",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Smietana.JPG"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"DE"
+	],
+	"how": {
+		"text": "Schmand, and smetana further east, is cream soured by lactococci, sometimes with thermophilic streptococci, into a thick, glossy cream: richer than sour cream, leaner than crème fraîche.",
+		"sources": {
+			"links": [
+				{
+					"name": "German MilchPQV, Anlage 8 (2025)",
+					"url": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html"
+				},
+				{
+					"name": "EAEU Technical Regulation TR TS 033/2013 (English translation)",
+					"url": "https://agriexchange.apeda.gov.in/ImportRegulations/CustomsUnionTechnicalRegulationonMilkandDairyProductsMoscowRussianFederation11182013.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Lactococcus",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "thermophilic lactic streptococci",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								],
+								"grows": "thermophilic"
+							}
+						],
+						"by": [
+							"starter"
+						]
+					}
+				}
+			],
+			"text": "Soured by lactococci, sometimes with thermophilic streptococci.",
+			"sources": {
+				"links": [
+					{
+						"name": "German MilchPQV, Anlage 8 (2025)",
+						"url": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html"
+					},
+					{
+						"name": "EAEU Technical Regulation TR TS 033/2013 (English translation)",
+						"url": "https://agriexchange.apeda.gov.in/ImportRegulations/CustomsUnionTechnicalRegulationonMilkandDairyProductsMoscowRussianFederation11182013.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 20
+		}
+	},
+	"facts": [
+		{
+			"k": "Texture",
+			"v": "Smooth mass with a glossy surface; a rendered-butter flavour is allowed"
+		}
+	]
+}

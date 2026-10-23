@@ -1,0 +1,40 @@
+{
+	"label": "Queso de Burgos",
+	"example": true,
+	"aka": [
+		"Burgos cheese"
+	],
+	"family": "freshCheese",
+	"regions": [
+		"ES"
+	],
+	"beasts": [
+		"sheep",
+		"cow"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		0
+	],
+	"setting": "rennet",
+	"rind": "none",
+	"place": {
+		"region": "Castile and León",
+		"lat": 42.34,
+		"lon": -3.7,
+		"x": 0.48972,
+		"y": 0.22849,
+		"located": "knowledge"
+	},
+	"confidence": "high",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Queso_de_Burgos"
+			}
+		],
+		"text": "fresh, unsalted-style white cheese; today mostly cow milk"
+	}
+}

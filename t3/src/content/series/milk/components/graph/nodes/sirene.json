@@ -1,0 +1,191 @@
+{
+	"label": "Sirene",
+	"example": true,
+	"aka": [
+		"Bulgarian white brined cheese"
+	],
+	"family": "brined",
+	"about": {
+		"text": "Sirene, also known as \"white brine sirene\", is a type of brined cheese originating from Bulgaria. It is made from the milk of goats, sheep, cows, buffalo or a mixture thereof. It is slightly crumbly, with at least 46–48% of dry matter containing 44–48% of fat. It is commonly produced in blocks, and has a slightly grainy texture. It is used as a table cheese, in salads, and in baking.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Sirene"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Bulgarischer Salzlakenkäse ist nicht immer Schafskäse.jpg",
+		"author": "Apostoloff",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Bulgarischer_Salzlakenk%C3%A4se_ist_nicht_immer_Schafsk%C3%A4se.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"BG"
+	],
+	"beasts": [
+		"cow",
+		"sheep",
+		"goat",
+		"buffalo"
+	],
+	"firm": "semi-soft",
+	"days": [
+		90,
+		120
+	],
+	"setting": "rennet",
+	"rind": "brine",
+	"protected": "PDO",
+	"confidence": "medium",
+	"how": {
+		"text": "Bulgarian white brined cheese is made with a starter containing Lactobacillus delbrueckii subsp. bulgaricus and ripened in brine for 45–60 days, which gives it its specific lactic-acid taste (pH 4.2–4.4) and moderately salty flavour.",
+		"sources": {
+			"links": [
+				{
+					"name": "Bulgarsko byalo salamureno sirene PDO specification (MAF)",
+					"url": "https://www.mzh.government.bg/media/filer_public/2022/06/03/specification_bulgarsko_byalo_salamureno_sirene.docx"
+				},
+				{
+					"name": "Bulgarsko byalo salamureno sirene single document (MAF, 2023)",
+					"url": "https://www.mzh.government.bg/media/filer_public/2023/07/31/edinen_dokument_bbss.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "pasteurise",
+					"temperature": {
+						"min": 68,
+						"max": 74
+					},
+					"seconds": {
+						"min": 1200,
+						"max": 1500
+					}
+				},
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"temperature": {
+						"min": 30,
+						"max": 34
+					},
+					"seconds": {
+						"min": 3000,
+						"max": 3600
+					},
+					"note": "With rennet and CaCl2."
+				},
+				{
+					"type": "custom",
+					"name": "cut",
+					"note": "Cut into 2 cm cubes and stirred."
+				},
+				{
+					"type": "custom",
+					"name": "press",
+					"note": "Pressed in cloth into blocks of 100–220 × 100–110 × 80–100 mm."
+				},
+				{
+					"type": "custom",
+					"name": "brine",
+					"temperature": {
+						"min": 14,
+						"max": 16
+					},
+					"seconds": {
+						"min": 43200,
+						"max": 54000
+					},
+					"note": "In 18–22 % brine, or dry-salted in layers instead."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Lactobacillus delbrueckii subsp. bulgaricus",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Streptococcus thermophilus",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"temperature": {
+						"min": 16,
+						"max": 16
+					},
+					"note": "Pre-ripening."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"temperature": {
+						"min": 12,
+						"max": 12
+					},
+					"seconds": {
+						"min": 3888000,
+						"max": 5184000
+					},
+					"pH": {
+						"min": 4.2,
+						"max": 4.4
+					},
+					"note": "Ripened in 6–10 % brine for 45 d (cow, goat) or 60 d."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Bulgarsko byalo salamureno sirene PDO specification (MAF)",
+						"url": "https://www.mzh.government.bg/media/filer_public/2022/06/03/specification_bulgarsko_byalo_salamureno_sirene.docx"
+					},
+					{
+						"name": "Bulgarsko byalo salamureno sirene single document (MAF, 2023)",
+						"url": "https://www.mzh.government.bg/media/filer_public/2023/07/31/edinen_dokument_bbss.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "en.wikipedia.org",
+				"url": "https://en.wikipedia.org/wiki/Sirene"
+			}
+		],
+		"text": "EU PDO registered 2023. English Wikipedia gives minimum ageing of 3 months; this conflicts with the earlier 45-day figure and I could not check the PDO spec itself. Max of 120 is an assumption. Milk may also include buffalo."
+	}
+}

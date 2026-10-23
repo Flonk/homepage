@@ -1,0 +1,159 @@
+{
+	"label": "Kumis / airag\n(mare's milk)",
+	"aka": [
+		"Kumis",
+		"Koumiss",
+		"Kymyz",
+		"Airag",
+		"Kumys"
+	],
+	"from": "raw",
+	"step": "ferment mare's milk",
+	"niche": 1,
+	"about": {
+		"text": "Kumis, alternatively spelled coumis or kumyz, also known as airag, is a traditional fermented dairy product made from mare milk. The drink is important to the peoples of the Central and East Asian steppes, of Turkic and Mongolic origin: Volga Tatars, Kazakhs, Bashkirs, Kalmyks, Kyrgyz, Siberian Tatars, Mongols, and Yakuts. Kumis was also historically consumed by the Magyars as well as the Khitans, Jurchens, and Han of northern China.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Kumis"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Kumys-bottle.jpg",
+		"author": "A.Savin",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Kumys-bottle.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"KZ",
+		"KG",
+		"MN"
+	],
+	"beasts": [
+		"horse"
+	],
+	"share": {
+		"mt": 0.5,
+		"sources": {
+			"unsourced": true,
+			"text": "Mare’s milk, mostly in Kazakhstan, Kyrgyzstan and Mongolia, nearly all of it drunk as kumis or airag. My own rough estimate."
+		}
+	},
+	"how": {
+		"text": "Mare's milk is rich in lactose, so lactic acid bacteria and lactose-fermenting yeasts together make lactic acid, alcohol and CO₂. Because the milk has little casein it never sets into a curd and stays a thin, fizzy drink; acetaldehyde is the key aroma.",
+		"sources": {
+			"links": [
+				{
+					"name": "Martuzzi et al., Foods 13:493 (2024)",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10855475/"
+				},
+				{
+					"name": "Codex Standard for Fermented Milks (CXS 243-2003)",
+					"url": "https://www.fao.org/input/download/standards/400/CXS_243e.pdf"
+				},
+				{
+					"name": "EAEU Technical Regulation TR TS 033/2013 (English translation)",
+					"url": "https://agriexchange.apeda.gov.in/ImportRegulations/CustomsUnionTechnicalRegulationonMilkandDairyProductsMoscowRussianFederation11182013.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic",
+						"yeast"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Lactobacillus delbrueckii subsp. bulgaricus",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Lactobacillus helveticus",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Kluyveromyces marxianus",
+								"kind": "yeast",
+								"does": [
+									"alcohol",
+									"gas"
+								]
+							},
+							{
+								"name": "Saccharomyces cerevisiae",
+								"kind": "yeast",
+								"does": [
+									"alcohol",
+									"gas"
+								]
+							}
+						],
+						"by": [
+							"backslop"
+						]
+					},
+					"pH": {
+						"min": 3.3,
+						"max": 5
+					},
+					"alcohol": {
+						"min": 0.7,
+						"max": 2.5
+					},
+					"note": "Seeded with old kumis, and the flora changes mostly in the first 36 h."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Martuzzi et al., Foods 13:493 (2024)",
+						"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10855475/"
+					},
+					{
+						"name": "Codex Standard for Fermented Milks (CXS 243-2003)",
+						"url": "https://www.fao.org/input/download/standards/400/CXS_243e.pdf"
+					},
+					{
+						"name": "EAEU Technical Regulation TR TS 033/2013 (English translation)",
+						"url": "https://agriexchange.apeda.gov.in/ImportRegulations/CustomsUnionTechnicalRegulationonMilkandDairyProductsMoscowRussianFederation11182013.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"chigee"
+	],
+	"facts": [
+		{
+			"k": "Texture",
+			"v": "Thin, fizzy and sour, with a yeasty smell"
+		}
+	],
+	"raw": true
+}

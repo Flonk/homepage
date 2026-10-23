@@ -1,0 +1,39 @@
+{
+	"label": "Oravský korbáčik",
+	"example": true,
+	"family": "steamedCheese",
+	"regions": [
+		"SK"
+	],
+	"beasts": [
+		"cow",
+		"sheep"
+	],
+	"firm": "semi-soft",
+	"days": [
+		0,
+		7
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "none",
+	"protected": "PGI",
+	"place": {
+		"region": "Žilina Region",
+		"lat": 49.3,
+		"lon": 19.4,
+		"x": 0.55389,
+		"y": 0.20069,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Oravsk%C3%BD_korb%C3%A1%C4%8Dik"
+			}
+		],
+		"text": "braided, steamed curd, often smoked; no English article found"
+	}
+}

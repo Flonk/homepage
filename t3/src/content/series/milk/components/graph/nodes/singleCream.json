@@ -1,0 +1,47 @@
+{
+	"label": "Single cream",
+	"from": "cream",
+	"at": 18,
+	"about": {
+		"text": "Britain’s pouring cream, with at least 18 % fat: too lean to whip, used in coffee and over puddings.",
+		"sources": {
+			"links": [
+				{
+					"name": "UK Food Labelling Regulations 1996, Schedule 8",
+					"url": "https://www.legislation.gov.uk/uksi/1996/1499/schedule/8/part/III/made"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"regions": [
+		"GB"
+	],
+	"how": {
+		"text": "Cream standardised to 18 % fat and pasteurised, not homogenised unless sold as extra-thick. Too lean to whip, it is poured.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Cream (UK grades, Food Labelling Regulations 1996)",
+					"url": "https://en.wikipedia.org/wiki/Cream"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 18
+		}
+	},
+	"facts": [
+		{
+			"k": "Extra-thick single",
+			"v": "Also 18 %, homogenised for a thicker body"
+		},
+		{
+			"k": "Other grades",
+			"v": "Sterilised cream 23 %; half cream 12 %"
+		}
+	]
+}

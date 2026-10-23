@@ -1,0 +1,136 @@
+{
+	"label": "Trahanas",
+	"example": true,
+	"aka": [
+		"Xinochondros"
+	],
+	"note": "Greek trahanas has only cracked wheat or a couscous-like paste and fermented milk; Turkish tarhana adds yoghurt and vegetables, and Armenian tarkhana adds eggs.",
+	"about": {
+		"text": "A dried food of cracked wheat or a couscous-like paste mixed with fermented milk, dried into coarse crumbs and made into a thick soup. It is acidic and dry, so it keeps long. In Cyprus it is a national speciality, often served with halloumi.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tarhana, Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Tarhana"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Trahana.jpg",
+		"author": "Pamporoff",
+		"license": "Public domain",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Trahana.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"GR",
+		"CY"
+	],
+	"how": {
+		"text": "The wheat is mixed with fermented milk and left to sour, then dried. The cultures are those listed in Table 2 of the review, which spells the names the old way; its \"Lb. lactis\" most likely means Lactobacillus delbrueckii subsp. lactis, so that one is left out here.",
+		"sources": {
+			"links": [
+				{
+					"name": "Bintsis & Papademas 2022, Table 2, Fermentation 8:679",
+					"url": "https://doi.org/10.3390/fermentation8120679"
+				},
+				{
+					"name": "Tarhana, Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Tarhana"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "mix",
+					"note": "The wheat is mixed with fermented milk."
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Lactococcus lactis subsp. lactis",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Lactococcus lactis biovar diacetylactis",
+								"kind": "bacterium",
+								"does": [
+									"aroma"
+								]
+							},
+							{
+								"name": "Leuconostoc mesenteroides subsp. cremoris",
+								"kind": "bacterium",
+								"does": [
+									"aroma"
+								]
+							},
+							{
+								"name": "Lacticaseibacillus casei",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Lactobacillus delbrueckii subsp. bulgaricus",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Lactobacillus acidophilus",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							}
+						],
+						"by": [
+							"starter"
+						]
+					}
+				},
+				{
+					"type": "dry"
+				}
+			],
+			"text": "Wheat is mixed with fermented milk and left to sour, then dried.",
+			"sources": {
+				"links": [
+					{
+						"name": "Bintsis & Papademas 2022, Table 2, Fermentation 8:679",
+						"url": "https://doi.org/10.3390/fermentation8120679"
+					},
+					{
+						"name": "Tarhana, Wikipedia",
+						"url": "https://en.wikipedia.org/wiki/Tarhana"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	}
+}

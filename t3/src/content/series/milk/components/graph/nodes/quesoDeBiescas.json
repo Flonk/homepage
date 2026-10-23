@@ -1,0 +1,43 @@
+{
+	"label": "Queso de Biescas",
+	"example": true,
+	"family": "semiHard",
+	"regions": [
+		"ES"
+	],
+	"beasts": [
+		"cow",
+		"sheep",
+		"goat"
+	],
+	"firm": "semi-hard",
+	"days": [
+		30,
+		90
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Aragon",
+		"lat": 42.62,
+		"lon": -0.33,
+		"x": 0.49908,
+		"y": 0.22743,
+		"located": "knowledge"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Queso_de_Biescas"
+			},
+			{
+				"name": "en.wikipedia.org",
+				"url": "https://en.wikipedia.org/wiki/List_of_Spanish_cheeses"
+			}
+		],
+		"text": "Aragon (Alto Gallego, Huesca); only listed by name, details estimated"
+	}
+}

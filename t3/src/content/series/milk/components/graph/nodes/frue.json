@@ -1,0 +1,37 @@
+{
+	"label": "Frue",
+	"example": true,
+	"family": "ricotta",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"sheep"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		3
+	],
+	"estimated": true,
+	"setting": "acid-heat",
+	"rind": "none",
+	"place": {
+		"region": "Sardinia",
+		"lat": 40.1,
+		"lon": 9,
+		"x": 0.525,
+		"y": 0.23676,
+		"located": "hint"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Frue"
+			}
+		],
+		"text": "Sardinian ricotta-type"
+	}
+}

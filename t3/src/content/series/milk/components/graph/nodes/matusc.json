@@ -1,0 +1,40 @@
+{
+	"label": "Matusc",
+	"example": true,
+	"family": "semiHard",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		30,
+		365
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Lombardy",
+		"lat": 45.6,
+		"lon": 9.9,
+		"x": 0.5275,
+		"y": 0.2159,
+		"located": "hint"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Matusc"
+			},
+			{
+				"name": "onaf.it",
+				"url": "https://www.onaf.it/uploads/public/formaggi/11992_matusc-reg-lombardia.pdf"
+			}
+		],
+		"text": "Valtellina (Sondrio) cheese from skimmed (creamed-off) cow milk; the peasants' cheese while Bitto was sold. Aged from over 30 days up to a year (ONAF Lombardy sheet)"
+	}
+}

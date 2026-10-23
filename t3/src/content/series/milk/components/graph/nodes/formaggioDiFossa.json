@@ -1,0 +1,135 @@
+{
+	"label": "Formaggio di fossa",
+	"example": true,
+	"aka": [
+		"Fossa di Sogliano"
+	],
+	"note": "Rarely buffalo milk too; matured 20-30 days before burying per Wikipedia (the PDO rules are reported as at least 80 days, sources differ)",
+	"about": {
+		"text": "Formaggio di fossa (pit cheese) comes from Sogliano al Rubicone in Emilia-Romagna, where cheese has been buried in pits dug in tufa since the 14th century. Cheese sold as fossa di Sogliano has had protected designation of origin status since 2009.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Formaggio_di_fossa"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Formaggio di fossa.jpg",
+		"author": "Zeugma fr (Antoine Fleury-Gobert)",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Formaggio_di_fossa.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"sheep",
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		80,
+		180
+	],
+	"how": {
+		"label": "bury in tufa pits",
+		"text": "The cheese is not made differently from other semi-hard cheeses; it is ripened in a sealed pit, and the pit itself is part of the recipe.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Formaggio di fossa",
+					"url": "https://en.wikipedia.org/wiki/Formaggio_di_fossa"
+				},
+				{
+					"name": "Commission Regulation (EC) 1183/2009 (PDO registration; pit details from search summaries only, PDF not opened)",
+					"url": "https://eur-lex.europa.eu/eli/reg/2009/1183/oj"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"seconds": {
+						"min": 1728000,
+						"max": 2592000
+					},
+					"note": "Matured 20-30 days before burying, though the PDO rules are reported as at least 80 days."
+				},
+				{
+					"type": "custom",
+					"name": "prepare pit",
+					"note": "Straw is burned in it to dry and sanitise it, and walls and floor are lined with straw, reeds and planks."
+				},
+				{
+					"type": "custom",
+					"name": "bag",
+					"note": "The wheels go into white cotton or linen bags, about ten per bag."
+				},
+				{
+					"type": "custom",
+					"name": "bury",
+					"note": "Buried in mid-to-late August and sealed in with plaster, wood and sand."
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"adds": {
+						"by": [
+							"place"
+						],
+						"microbes": [
+							{
+								"name": "bacterial colonies of the pit",
+								"kind": "bacterium"
+							}
+						]
+					},
+					"seconds": {
+						"min": 6912000,
+						"max": 8640000
+					},
+					"note": "Without air the fermentation is anaerobic, and the cheese softens and loses lactose, water and fat."
+				},
+				{
+					"type": "custom",
+					"name": "unearth",
+					"note": "On St Catherine (25 Nov) in Sogliano, St Martin (11 Nov) in Perticara."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Formaggio di fossa",
+						"url": "https://en.wikipedia.org/wiki/Formaggio_di_fossa"
+					},
+					{
+						"name": "Commission Regulation (EC) 1183/2009 (PDO registration; pit details from search summaries only, PDF not opened)",
+						"url": "https://eur-lex.europa.eu/eli/reg/2009/1183/oj"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Pit",
+			"v": "Flask-shaped, about 3 m deep, 2 m across at the base; at least ten years old so the right bacterial colonies live in it"
+		}
+	]
+}

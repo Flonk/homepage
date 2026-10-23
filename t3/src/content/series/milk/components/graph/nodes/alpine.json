@@ -1,0 +1,125 @@
+{
+	"label": "Alpine cheese",
+	"aka": [
+		"Bergkäse"
+	],
+	"from": "hard",
+	"step": "scald, ripen",
+	"mapped": true,
+	"niche": 1,
+	"about": {
+		"text": "Swiss-type cheeses, also known as Alpine cheeses, are a group of hard or semi-hard cheeses with a distinct character, whose origins lie in the Alps of Europe, although they are now eaten and imitated in most cheesemaking parts of the world. Their distinct character arose from the requirements of cheese made in the summer on high Alpine grasslands, and then transported with the cows down to the valleys in the winter, in the historic culture of Alpine transhumance. Traditionally the cheeses were made in large rounds or \"wheels\" with a hard rind, and were robust enough for both keeping and transporting.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Swiss-type_cheeses"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Emmental (fromage) 01.jpg",
+		"author": "Coyau",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Emmental_(fromage)_01.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "Alpine cheeses are scalded hot and ripened for months in large wheels. Emmental-type cheeses are also given propionic bacteria and a spell in a warm room, where the gas they make grows the eyes; Gruyère-type cheeses stay in a cool cellar and are smeared, and have few eyes or none.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+				},
+				{
+					"name": "Emmentaler AOP Pflichtenheft (BLW, rev. 2016)",
+					"url": "https://2021.aop-igp.ch/fileadmin/Dokumente/Pflichtenhefter/Emmentaler_Pflichtenheft.pdf"
+				},
+				{
+					"name": "Le Gruyère AOP Pflichtenheft (BLW)",
+					"url": "https://www.aop-igp.ch/fileadmin/Dokumente/kampagne2025/Pflichtenhefte/GRU/Pflichtenheft%20DE%20Gruyere%20AOP.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "heat",
+					"does": "cook",
+					"temperature": {
+						"min": 50,
+						"max": 56
+					}
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"kinds": [
+						"propionic",
+						"smear"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "propionic acid bacteria",
+								"kind": "bacterium",
+								"does": [
+									"gas"
+								]
+							}
+						]
+					},
+					"temperature": {
+						"min": 19,
+						"max": 24
+					}
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"seconds": {
+						"min": 7776000,
+						"about": true
+					}
+				}
+			],
+			"text": "Emmental-type cheeses get a spell in a warm room where the propionic bacteria grow the eyes; Gruyère-type cheeses stay in a cool cellar and are smeared, with few eyes or none.",
+			"sources": {
+				"links": [
+					{
+						"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+					},
+					{
+						"name": "Emmentaler AOP Pflichtenheft (BLW, rev. 2016)",
+						"url": "https://2021.aop-igp.ch/fileadmin/Dokumente/Pflichtenhefter/Emmentaler_Pflichtenheft.pdf"
+					},
+					{
+						"name": "Le Gruyère AOP Pflichtenheft (BLW)",
+						"url": "https://www.aop-igp.ch/fileadmin/Dokumente/kampagne2025/Pflichtenhefte/GRU/Pflichtenheft%20DE%20Gruyere%20AOP.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"emmentaler",
+		"gruyere",
+		"comte",
+		"beaufort",
+		"langtangYakCheese",
+		"jarlsberg"
+	]
+}

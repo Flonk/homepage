@@ -1,0 +1,152 @@
+{
+	"label": "Evaporated milk",
+	"aka": [
+		"Kondensmilch"
+	],
+	"comment": "Concentrated first and sterilised in its can after.",
+	"from": "pasteurised",
+	"step": "evaporate, sterilise in can",
+	"niche": 0,
+	"about": {
+		"text": "Evaporated milk, known in some countries as \"unsweetened condensed milk\", is a shelf-stable canned cow’s milk product, consisting of fresh milk from which approximately 60% of the water has been removed. French inventor Nicolas Appert, the \"father of food science\", perfected the process in the 1820s. It differs from sweetened condensed milk, which contains added sugar and requires less processing to preserve, as the added sugar inhibits bacterial growth. The production process involves the evaporation of 60% of the water from the milk, followed by homogenization, canning and heat sterilization.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Evaporated_milk"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "HK Filled Evaporated Milk Dutch Lady Friesland Foods 菲士蘭 s a.jpg",
+		"author": "Dboxes",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:HK_Filled_Evaporated_Milk_Dutch_Lady_Friesland_Foods_%E8%8F%B2%E5%A3%AB%E8%98%AD_s_a.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "Milk is standardised, heated to make it stable, boiled down under vacuum to about twice its solids, homogenised and given a phosphate stabiliser. It is then filled into cans and sterilised in them, or sterilised by UHT and packed aseptically.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook: Condensed milk",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/condensed-milk"
+				},
+				{
+					"name": "Wikipedia: Evaporated milk",
+					"url": "https://en.wikipedia.org/wiki/Evaporated_milk"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "standardise",
+					"note": "To double-concentrated milk: about 7.5 % fat, 17.5 % solids-not-fat, 25 % total solids."
+				},
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 100,
+						"max": 120
+					},
+					"seconds": {
+						"min": 60,
+						"max": 180
+					}
+				},
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 65,
+						"max": 70
+					},
+					"note": "Boiled down under vacuum in a multistage falling-film evaporator, the milk running through steam-heated tubes, to about twice the solids."
+				},
+				{
+					"type": "homogenise",
+					"bar": {
+						"min": 50,
+						"max": 250
+					},
+					"note": "At 5–25 MPa (50–250 bar); in-can lines use two stages at 12.5–25 MPa."
+				},
+				{
+					"type": "custom",
+					"name": "stabilise",
+					"note": "Disodium and sodium dihydrogen phosphate, the dose set by sterilisation trials on samples."
+				},
+				{
+					"type": "heat",
+					"does": "cool",
+					"temperature": {
+						"min": 5,
+						"max": 8
+					},
+					"seconds": {
+						"max": 57600
+					}
+				},
+				{
+					"type": "custom",
+					"name": "fill",
+					"note": "Into cans."
+				},
+				{
+					"type": "heat",
+					"does": "heat",
+					"temperature": {
+						"min": 110,
+						"max": 120
+					},
+					"seconds": {
+						"min": 900,
+						"max": 1200
+					},
+					"note": "In the cans, which are kept moving."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Tetra Pak Dairy Processing Handbook: Condensed milk",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/condensed-milk"
+					},
+					{
+						"name": "Wikipedia: Evaporated milk",
+						"url": "https://en.wikipedia.org/wiki/Evaporated_milk"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"vikingMelk",
+		"carnation",
+		"pet"
+	],
+	"facts": [
+		{
+			"k": "UHT route",
+			"v": "120–128 °C for 2–8 min, packed aseptically in paperboard"
+		},
+		{
+			"k": "Flavour",
+			"v": "The long heat browns it slightly (Maillard reaction)"
+		}
+	]
+}

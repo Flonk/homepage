@@ -1,0 +1,78 @@
+{
+	"label": "Milk protein isolate (MPI)",
+	"example": true,
+	"about": {
+		"text": "The most protein-rich milk protein powder: skim milk ultrafiltered and diafiltered until at least 89.5 % of the powder (ADPI definition; commonly sold as 90 % or more) is milk protein, with casein and whey proteins still in roughly their milk ratio. It cannot be made by mixing separately produced caseinate and whey protein. Used to fortify high-protein bars and heat-treated (UHT) drinks.",
+		"sources": {
+			"links": [
+				{
+					"name": "American Dairy Products Institute: Milk protein isolate (MPI)",
+					"url": "https://adpi.org/the-powerful-list-of-dairy-ingredients/mpi-milk-protein-isolate/"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"how": {
+		"text": "An MPI is made like an MPC but with much more diafiltration: the more water that washes through the membrane, the more of the lactose and minerals leave and the closer the protein comes to 90 %. Microfiltered variants exist whose casein:whey ratio is shifted (82:18 to 95:5), but those are not the standard MPI.",
+		"sources": {
+			"links": [
+				{
+					"name": "ADPI: Milk protein isolate (MPI)",
+					"url": "https://adpi.org/the-powerful-list-of-dairy-ingredients/mpi-milk-protein-isolate/"
+				},
+				{
+					"name": "ADPI glossary: milk protein isolate",
+					"url": "https://adpi.org/glossary/milk-protein-isolate-mpi"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "ultrafilter",
+					"note": "Skim milk is ultrafiltered."
+				},
+				{
+					"type": "custom",
+					"name": "diafilter",
+					"note": "Heavily, with water added to the retentate to wash lactose and minerals out."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "ADPI: Milk protein isolate (MPI)",
+						"url": "https://adpi.org/the-powerful-list-of-dairy-ingredients/mpi-milk-protein-isolate/"
+					},
+					{
+						"name": "ADPI glossary: milk protein isolate",
+						"url": "https://adpi.org/glossary/milk-protein-isolate-mpi"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"composition": {
+		"protein": {
+			"min": 89.5
+		}
+	},
+	"facts": [
+		{
+			"k": "Protein quality",
+			"v": "PDCAAS 1.00, DIAAS 1.18 (ADPI)"
+		},
+		{
+			"k": "Stays soluble",
+			"v": "Above pH 6.0; heat-stable enough for low-acid UHT drinks (ADPI)"
+		},
+		{
+			"k": "Law",
+			"v": "Mixing separately made casein or caseinate with whey protein is not allowed (ADPI definition)"
+		}
+	]
+}

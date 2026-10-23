@@ -1,0 +1,76 @@
+{
+	"label": "Milk tea",
+	"aka": [
+		"Milchtee"
+	],
+	"from": "fresh",
+	"step": "brew with tea",
+	"alsoFrom": [
+		"evaporated",
+		"condensed"
+	],
+	"note": "Either the leaves are boiled in the milk (masala chai, doodh pati) or strong tea is made first and milk added (Mongolian suutei tsai, which is salted). Hong Kong-style milk tea is finished with evaporated milk.",
+	"about": {
+		"text": "A family of drinks that combine tea and milk, hot or cold, often with spices or sweetener. Some are brewed in milk, others have milk added to strong tea.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Milk_tea"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Hong Kong-style Milk Tea.jpg",
+		"author": "WiNG",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Hong_Kong-style_Milk_Tea.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"how": {
+		"text": "Two ways: simmer tea leaves (and spices) in milk, or brew tea in water, boil it again and stir milk in; Mongolian and Tibetan grassland tea is salted, Hong Kong tea takes evaporated milk.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Milk tea",
+					"url": "https://en.wikipedia.org/wiki/Milk_tea"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "brew",
+					"note": "Tea leaves (and spices) are simmered in milk."
+				}
+			],
+			"text": "Or tea is brewed in water, boiled again and the milk stirred in.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Milk tea",
+						"url": "https://en.wikipedia.org/wiki/Milk_tea"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"hongKongStyleMilkTea",
+		"masalaChai",
+		"suuteiTsai",
+		"tehTarik"
+	]
+}

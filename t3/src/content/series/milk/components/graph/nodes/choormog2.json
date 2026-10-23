@@ -1,0 +1,114 @@
+{
+	"label": "Choormog",
+	"example": true,
+	"aka": [
+		"Khoormog"
+	],
+	"about": {
+		"text": "The Mongolian name (khoormog) for fermented camel's milk, left to sour naturally and made by camel-herding households, mostly in the Gobi, as airag is from mare's milk.",
+		"sources": {
+			"links": [
+				{
+					"name": "FAO, One Country One Priority Product: Mongolia",
+					"url": "https://www.fao.org/one-country-one-priority-product/asia-pacific/mongolia/en"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"regions": [
+		"MN"
+	],
+	"beasts": [
+		"camel"
+	],
+	"how": {
+		"text": "Mongolian khoormog is raw camel milk soured with leftover product. Lactobacillus dominates, chiefly L. kefiranofaciens, and yeasts give the drink a sour, slightly alcoholic taste.",
+		"sources": {
+			"links": [
+				{
+					"name": "Guo et al., Food Sci. Nutr. (2021)",
+					"url": "https://doi.org/10.1002/fsn3.2131"
+				},
+				{
+					"name": "Oki et al., Biosci. Microbiota Food Health (2014)",
+					"url": "https://doi.org/10.12938/bmfh.33.53"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "strain",
+					"note": "The raw milk is filtered, not heated."
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic",
+						"yeast"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Lactobacillus kefiranofaciens",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Lactobacillus plantarum",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "yeasts",
+								"kind": "yeast",
+								"does": [
+									"alcohol"
+								]
+							}
+						],
+						"by": [
+							"backslop"
+						]
+					},
+					"temperature": {
+						"min": 20,
+						"max": 25
+					},
+					"seconds": {
+						"min": 86400,
+						"max": 172800
+					}
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Guo et al., Food Sci. Nutr. (2021)",
+						"url": "https://doi.org/10.1002/fsn3.2131"
+					},
+					{
+						"name": "Oki et al., Biosci. Microbiota Food Health (2014)",
+						"url": "https://doi.org/10.12938/bmfh.33.53"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Flavour",
+			"v": "Sour and alcoholic"
+		}
+	],
+	"raw": true
+}

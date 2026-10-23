@@ -1,0 +1,96 @@
+{
+	"label": "Natillas",
+	"example": true,
+	"note": "In Spain a pouring custard of milk, sugar, vanilla, egg yolks and cinnamon, often with a María biscuit on top; in Colombia natilla has no eggs",
+	"about": {
+		"text": "A Spanish custard of milk and eggs, thinner than flan and without caramel.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Natillas"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Bowl of natillas at Madrid.jpg",
+		"author": "Ixfd64",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Bowl_of_natillas_at_Madrid.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"ES"
+	],
+	"how": {
+		"text": "The eggs are mixed with a little cool milk first and stirred slowly into the warm milk. The custard thickens as the yolk proteins set; a few degrees too much and it splits. A water bath lowers the heat but can set it too soon.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia (es): Natillas",
+					"url": "https://es.wikipedia.org/wiki/Natillas"
+				},
+				{
+					"name": "Wikipedia: Natillas",
+					"url": "https://en.wikipedia.org/wiki/Natillas"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "mix in",
+					"note": "Eggs are mixed with a little cool milk first, then stirred slowly into the warm milk."
+				},
+				{
+					"type": "heat",
+					"does": "heat",
+					"seconds": {
+						"min": 1800,
+						"max": 1800,
+						"about": true
+					},
+					"note": "About 30 min over low heat in a saucepan."
+				},
+				{
+					"type": "heat",
+					"does": "cool",
+					"seconds": {
+						"min": 7200
+					},
+					"note": "To room temperature, then in the fridge."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia (es): Natillas",
+						"url": "https://es.wikipedia.org/wiki/Natillas"
+					},
+					{
+						"name": "Wikipedia: Natillas",
+						"url": "https://en.wikipedia.org/wiki/Natillas"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Margin",
+			"v": "About 2 °C between done and curdled"
+		}
+	]
+}

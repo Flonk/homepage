@@ -1,0 +1,83 @@
+{
+	"label": "Lump cheese\n(hrudkový syr)",
+	"from": "rennetCurd",
+	"step": "drain, ripen",
+	"mapped": true,
+	"about": {
+		"text": "Lump cheese (hrudkový syr) is the matured, drained curd of sheep's milk, or sheep's milk with cow's milk, that is made in Slovak mountain huts and then ground with salt into bryndza.",
+		"sources": {
+			"links": [
+				{
+					"name": "Kačániová et al. 2021, Open Life Sciences",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8005922"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"beasts": [
+		"sheep",
+		"cow"
+	],
+	"how": {
+		"text": "Sheep milk is set with rennet and the curd is drained and left to mature, which gives lump cheese (hrudkový syr), the raw material of bryndza.",
+		"sources": {
+			"links": [
+				{
+					"name": "Kačániová et al. 2021, Open Life Sciences",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8005922"
+				},
+				{
+					"name": "Slovenská bryndza PGI summary, OJ C 232/2007",
+					"url": "https://epa.hu/00800/00877/01322/pdf/C_2007_232_0017_0022.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"temperature": {
+						"min": 29,
+						"max": 31
+					},
+					"seconds": {
+						"min": 1800,
+						"max": 1800
+					},
+					"note": "With rennet (chymosin)."
+				},
+				{
+					"type": "custom",
+					"name": "drain"
+				},
+				{
+					"type": "ferment",
+					"does": "ripen",
+					"temperature": {
+						"min": 20,
+						"max": 20,
+						"about": true
+					},
+					"note": "Matured in a cheese bath."
+				}
+			],
+			"text": "Sheep milk (or mixed with cow milk) is set with rennet at 29–31 °C for 30 min; the curd is drained and matured in a cheese bath.",
+			"sources": {
+				"links": [
+					{
+						"name": "Kačániová et al. 2021, Open Life Sciences",
+						"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8005922"
+					},
+					{
+						"name": "Slovenská bryndza PGI summary, OJ C 232/2007",
+						"url": "https://epa.hu/00800/00877/01322/pdf/C_2007_232_0017_0022.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	}
+}

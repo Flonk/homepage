@@ -1,0 +1,40 @@
+{
+	"label": "Glundner Käse",
+	"example": true,
+	"aka": [
+		"Gelundener Käse"
+	],
+	"family": "cookedCheese",
+	"regions": [
+		"AT"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "soft",
+	"days": [
+		3,
+		14
+	],
+	"estimated": true,
+	"setting": "acid",
+	"rind": "none",
+	"place": {
+		"region": "Carinthia",
+		"lat": 46.77,
+		"lon": 14.33,
+		"x": 0.53981,
+		"y": 0.21121,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "bmluk.gv.at",
+				"url": "https://www.bmluk.gv.at/themen/lebensmittel/trad-lebensmittel/kaese/glundner_kaese.html"
+			}
+		],
+		"text": "Almost certainly the Carinthian Glundner Käse: cooked sour-milk cheese from ripened low-fat quark, salt and caraway, creamy to sliceable. The quark ripens before cooking; the days are an estimate"
+	}
+}

@@ -1,0 +1,37 @@
+{
+	"label": "Tome d'Arles",
+	"example": true,
+	"family": "semiHard",
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"sheep"
+	],
+	"firm": "semi-hard",
+	"days": [
+		30,
+		90
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Provence-Alpes-Côte d'Azur",
+		"lat": 43.68,
+		"lon": 4.63,
+		"x": 0.51286,
+		"y": 0.2234,
+		"located": "knowledge"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Tome_d'Arles"
+			}
+		],
+		"text": "no article found; values are typicals"
+	}
+}

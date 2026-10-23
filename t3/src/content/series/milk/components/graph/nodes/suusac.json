@@ -1,0 +1,118 @@
+{
+	"label": "Suusac",
+	"example": true,
+	"about": {
+		"text": "Fermented camel milk from the pastoralist herds of northern Kenya, also spelled suusa. Raw camel milk is left to sour by itself, with no starter culture. Its containers are first fumigated with smoke from particular woods, which helps it keep and gives it a smoky taste. Women do the processing.",
+		"sources": {
+			"links": [
+				{
+					"name": "African Journal of Food, Agriculture, Nutrition and Development (2013)",
+					"url": "https://www.ajol.info/index.php/ajfand/article/view/84202"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"regions": [
+		"KE",
+		"SO"
+	],
+	"beasts": [
+		"camel"
+	],
+	"how": {
+		"label": "ferment in smoked gourd",
+		"text": "Kenyan and Somali suusac is raw camel milk left to sour in gourds smoked with acacia twigs. The smoke flavours and colours it, while wild lactic acid bacteria and yeasts make the acid.",
+		"sources": {
+			"links": [
+				{
+					"name": "Abaalkhail et al., Foods (2026)",
+					"url": "https://doi.org/10.3390/foods15111969"
+				},
+				{
+					"name": "Jans et al., Int. J. Food Microbiol. (2013)",
+					"url": "https://doi.org/10.1016/j.ijfoodmicro.2013.09.008"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic",
+						"yeast"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "Lactobacillus",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Lactococcus",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							},
+							{
+								"name": "Leuconostoc",
+								"kind": "bacterium",
+								"does": [
+									"aroma"
+								]
+							},
+							{
+								"name": "Candida",
+								"kind": "yeast"
+							},
+							{
+								"name": "Geotrichum",
+								"kind": "yeast"
+							}
+						],
+						"by": [
+							"wild",
+							"vessel"
+						],
+						"vessel": "gourd smoked with Acacia"
+					},
+					"seconds": {
+						"min": 172800,
+						"max": 345600
+					},
+					"pH": {
+						"min": 4.3,
+						"max": 5
+					}
+				},
+				{
+					"type": "custom",
+					"name": "skim",
+					"note": "The fatty top layer is removed."
+				}
+			],
+			"text": "The cultures are wild.",
+			"sources": {
+				"links": [
+					{
+						"name": "Abaalkhail et al., Foods (2026)",
+						"url": "https://doi.org/10.3390/foods15111969"
+					},
+					{
+						"name": "Jans et al., Int. J. Food Microbiol. (2013)",
+						"url": "https://doi.org/10.1016/j.ijfoodmicro.2013.09.008"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"raw": true
+}

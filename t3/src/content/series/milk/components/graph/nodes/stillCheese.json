@@ -1,0 +1,73 @@
+{
+	"label": "Still-residue\ncheese (shuurmg)",
+	"aka": [
+		"Bozo",
+		"Khurskh",
+		"Shuurmg",
+		"Arsa",
+		"Aadmg"
+	],
+	"comment": "Cheese made from what the still leaves behind.",
+	"from": "soured",
+	"step": "left in the still, dried",
+	"cheese": true,
+	"about": {
+		"text": "What is left in the pot after soured milk has been distilled into milk spirit. Kalmyks call it bozo and press it into a curd, aadmag, which is made into dried cakes, or use it to dress hides; Mongolian herders dry the mash into aaruul.",
+		"sources": {
+			"links": [
+				{
+					"name": "Stepnye Vesti (Kalmyk newspaper), 'O molochnoi pishche i napitkakh kalmykov'",
+					"url": "https://tegrk.ru/archives/224464"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"regions": [
+		"MN",
+		"RU"
+	],
+	"how": {
+		"text": "Nothing is added: the heated, soured milk curd stays in the pot while the alcohol leaves. It is pressed by hand or bagged, drained and dried in the sun.",
+		"sources": {
+			"links": [
+				{
+					"name": "Cambridge Kalmyk Cultural Heritage: Purvya Volod'kina, Milk Products and Vodka",
+					"url": "https://www.repository.cam.ac.uk/handle/1810/277951"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "press",
+					"note": "Pressed by hand or bagged."
+				},
+				{
+					"type": "dry",
+					"note": "Hung in cloth bags outside while the whey drips out, and the solids dry in the sun."
+				},
+				{
+					"type": "custom",
+					"name": "cut",
+					"note": "Cut into squares called khurskh."
+				},
+				{
+					"type": "dry",
+					"note": "Dried further into shuurmg, the dried cheese."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Cambridge Kalmyk Cultural Heritage: Purvya Volod'kina, Milk Products and Vodka",
+						"url": "https://www.repository.cam.ac.uk/handle/1810/277951"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	}
+}

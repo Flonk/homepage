@@ -1,0 +1,185 @@
+{
+	"label": "Queso Oaxaca",
+	"example": true,
+	"aka": [
+		"Quesillo"
+	],
+	"family": "pastaFilata",
+	"about": {
+		"text": "Oaxaca cheese, also called quesillo or queso de hebra, is a white, semi-hard Mexican cow's-milk cheese first made in the state of Oaxaca. It is a pasta filata cheese: the curd is stretched into long ribbons that are rolled up like a ball of yarn, and it is stringy like string cheese or mozzarella.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Oaxaca_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "01 Queso Mexicano Oaxaca.jpg",
+		"author": "Javier Lastras",
+		"license": "CC BY 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:01_Queso_Mexicano_Oaxaca.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"MX"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-soft",
+	"days": [
+		0,
+		14
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "none",
+	"place": {
+		"region": "Oaxaca",
+		"lat": 17.07,
+		"lon": -96.73,
+		"x": 0.23131,
+		"y": 0.31041,
+		"located": "hint"
+	},
+	"confidence": "high",
+	"how": {
+		"text": "Cultured, rennet-set curd is cooked, soured in its whey until it is ready, then kneaded in hot water until it stretches. The strand is pulled flat, cooled, salted and wound into a ball of twine, which is why Oaxaca cheese pulls apart in strings. The source gives no stretching-water temperature.",
+		"sources": {
+			"links": [
+				{
+					"name": "Van Hekken & Farkye, Hispanic Cheeses: The Quest for Queso, Food Technology (IFT)",
+					"url": "https://www.ift.org/food-technology-magazine/hispanic-cheeses-the-quest-for-queso"
+				},
+				{
+					"name": "Wikipedia: Oaxaca cheese",
+					"url": "https://en.wikipedia.org/wiki/Oaxaca_cheese"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "lactic acid bacteria",
+								"kind": "bacterium",
+								"does": [
+									"acid"
+								]
+							}
+						],
+						"by": [
+							"starter"
+						]
+					},
+					"temperature": {
+						"min": 30,
+						"max": 35
+					},
+					"note": "Cultures are added before the rennet."
+				},
+				{
+					"type": "coagulate",
+					"by": "rennet",
+					"note": "With rennet."
+				},
+				{
+					"type": "heat",
+					"does": "cook",
+					"temperature": {
+						"min": 40,
+						"max": 42
+					}
+				},
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"lactic"
+					],
+					"note": "The cooked curd is left in the whey until the target pH is reached."
+				},
+				{
+					"type": "custom",
+					"name": "stretch",
+					"note": "Kneaded and stretched in hot water like mozzarella, then pulled into a long flat strand."
+				},
+				{
+					"type": "heat",
+					"does": "cool",
+					"note": "In cold water."
+				},
+				{
+					"type": "custom",
+					"name": "salt",
+					"note": "Dry salt rubbed on both sides of the strand."
+				},
+				{
+					"type": "custom",
+					"name": "roll",
+					"note": "Rolled into a ball like twine."
+				}
+			],
+			"text": "The source gives no stretching-water temperature and no species for the starter.",
+			"sources": {
+				"links": [
+					{
+						"name": "Van Hekken & Farkye, Hispanic Cheeses: The Quest for Queso, Food Technology (IFT)",
+						"url": "https://www.ift.org/food-technology-magazine/hispanic-cheeses-the-quest-for-queso"
+					},
+					{
+						"name": "Wikipedia: Oaxaca cheese",
+						"url": "https://en.wikipedia.org/wiki/Oaxaca_cheese"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Oaxaca_cheese"
+			}
+		],
+		"text": "Its facts, from these."
+	},
+	"composition": {
+		"moisture": {
+			"min": 40,
+			"max": 46
+		},
+		"fat": {
+			"min": 23,
+			"max": 23
+		},
+		"protein": {
+			"min": 24,
+			"max": 24
+		},
+		"pH": {
+			"min": 5,
+			"max": 5.5
+		}
+	}
+}

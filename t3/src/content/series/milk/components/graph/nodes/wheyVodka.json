@@ -1,0 +1,93 @@
+{
+	"label": "Whey vodka",
+	"from": "sweetWhey",
+	"step": "ferment the lactose, distil",
+	"alsoFrom": [
+		"permeate"
+	],
+	"about": {
+		"text": "Vodka distilled from cheese whey. A yeast turns the lactose of the whey into alcohol, which is distilled, filtered and brought to 40 %. Black Cow in West Dorset has made it since 2012.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Black_Cow_Vodka"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"regions": [
+		"GB"
+	],
+	"how": {
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Black Cow Vodka",
+					"url": "https://en.wikipedia.org/wiki/Black_Cow_Vodka"
+				},
+				{
+					"name": "DTU: Production of bioethanol from organic whey using Kluyveromyces marxianus",
+					"url": "https://orbit.dtu.dk/en/publications/production-of-bioethanol-from-organic-whey-using-kluyveromyces-ma/"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "ferment",
+					"does": "incubate",
+					"kinds": [
+						"yeast"
+					],
+					"adds": {
+						"microbes": [
+							{
+								"name": "yeast",
+								"kind": "yeast",
+								"does": [
+									"alcohol"
+								]
+							}
+						]
+					},
+					"note": "Yeast ferments the lactose of whey; Black Cow does not name it, and research strains include Kluyveromyces marxianus."
+				},
+				{
+					"type": "custom",
+					"name": "distil",
+					"note": "Distilled to about 48 % ABV, then cut to 40 % ABV."
+				},
+				{
+					"type": "custom",
+					"name": "filter",
+					"note": "Filtered three times, once through coconut-husk carbon."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Black Cow Vodka",
+						"url": "https://en.wikipedia.org/wiki/Black_Cow_Vodka"
+					},
+					{
+						"name": "DTU: Production of bioethanol from organic whey using Kluyveromyces marxianus",
+						"url": "https://orbit.dtu.dk/en/publications/production-of-bioethanol-from-organic-whey-using-kluyveromyces-ma/"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"examples": [
+		"blackCow"
+	],
+	"facts": [
+		{
+			"k": "Yield in studies",
+			"v": "About 0.50 g ethanol per g lactose in batch (DTU, organic whey); 34.8 g/l from 109 g/l lactose in whey powder (Tebbouche); undiluted whey at 5 % lactose gives only a few % alcohol"
+		}
+	]
+}

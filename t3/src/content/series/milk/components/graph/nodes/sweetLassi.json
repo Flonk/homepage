@@ -1,0 +1,77 @@
+{
+	"label": "Sweet lassi",
+	"example": true,
+	"note": "Made from set dahi, with its mesophilic starter, not from thermophilic yoghurt; sugar is stirred in instead of salt",
+	"about": {
+		"text": "Sweet lassi is the sweet form of lassi, a drink of dahi stirred with water and sugar and served chilled, popular in Punjab and Haryana. Fruit such as mango is often blended in.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Lassi"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Lassi (Sweet).JPG",
+		"author": "Nivasdurai",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Lassi_(Sweet).JPG"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"IN",
+		"PK"
+	],
+	"how": {
+		"label": "dilute, sweeten",
+		"text": "Set dahi is beaten smooth with cold water and sugar; nothing is churned out of it, so the fat stays in (unlike chaas).",
+		"sources": {
+			"links": [
+				{
+					"name": "FAO: Traditional milk products of India (T0251E, ch. 4)",
+					"url": "https://www.fao.org/4/T0251E/T0251E04.htm"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		},
+		"processing": {
+			"steps": [
+				{
+					"type": "custom",
+					"name": "dilute",
+					"note": "Set dahi is beaten smooth with cold water."
+				},
+				{
+					"type": "custom",
+					"name": "sweeten",
+					"note": "Sugar is added."
+				}
+			],
+			"sources": {
+				"links": [
+					{
+						"name": "FAO: Traditional milk products of India (T0251E, ch. 4)",
+						"url": "https://www.fao.org/4/T0251E/T0251E04.htm"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	},
+	"facts": [
+		{
+			"k": "Variants",
+			"v": "A mahi-type drink uses about 5 times its volume of water; dahi sherbet 8-10 times, with 8-10 % sugar and lemon juice"
+		}
+	]
+}
