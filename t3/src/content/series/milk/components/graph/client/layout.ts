@@ -360,8 +360,8 @@ export function layout(data: Graph) {
 	/* Each a card no wider than so many of its letters: what it is, small,
 	   over what it says, broken where too long; under that, the microbes it
 	   adds in letters so small they run about as wide as what it says, there
-	   being zoom enough to read them; under those its sentence, as wide as
-	   the card may be. In its table's letters: each line's size, the room
+	   being zoom enough to read them; under those its sentence. Each card
+	   as wide as its widest words, no wider than the most. In its table's letters: each line's size, the room
 	   round them, the room for the arrow
 	   between two cards, the least and the most a card's words run. */
 	const CARD = { title: 0.55, said: 1, tiny: 0.36, note: 0.5, pad: 0.5, gap: 1.4, least: 5, most: 12 };
@@ -372,7 +372,13 @@ export function layout(data: Graph) {
 	const cardOf = (c: Chip, f: number): Card => {
 		const most = CARD.most * f;
 		const saidLines = c.said ? wrap(c.said, most / (CARD.said * f), '400', MONO()) : [];
-		const natural = Math.max(CARD.least * f, measure(c.title, CARD.title * f, '700', MONO()), ...saidLines.map((l) => measure(l, CARD.said * f, '400', MONO())));
+		const natural = Math.max(
+			CARD.least * f,
+			measure(c.title, CARD.title * f, '700', MONO()),
+			...saidLines.map((l) => measure(l, CARD.said * f, '400', MONO())),
+			c.note ? measure(c.note, CARD.note * f, '400') : 0,
+		);
+		// As wide as the widest of its words, up to the most a card may be.
 		const wide = Math.min(most, natural);
 		const lines: Said[] = [];
 		let y = CARD.pad * f;
@@ -386,12 +392,11 @@ export function layout(data: Graph) {
 			y += 0.15 * f;
 			for (const said of wrap(c.microbes, wide / (CARD.tiny * f), '400')) put(said, CARD.tiny, '400', false, true, 1.25);
 		}
-		const full = c.note ? most : wide;
 		if (c.note) {
 			y += 0.2 * f;
-			for (const said of wrap(c.note, most / (CARD.note * f), '400')) put(said, CARD.note, '400', false, false, 1.3);
+			for (const said of wrap(c.note, wide / (CARD.note * f), '400')) put(said, CARD.note, '400', false, false, 1.3);
 		}
-		return { x: 0, y: 0, w: Math.max(wide, full) + 2 * CARD.pad * f, h: y + CARD.pad * f, lines };
+		return { x: 0, y: 0, w: wide + 2 * CARD.pad * f, h: y + CARD.pad * f, lines };
 	};
 	// Laid along one line, however long, an arrow between each two, at the height of what they say.
 	const stripOf = (n: Node): Strip => {
