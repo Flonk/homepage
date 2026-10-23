@@ -393,7 +393,11 @@ export function layout(data: Graph) {
 	// A branch point turns at once: it has no pill to clear.
 	// Milk keeps a margin of half its own size, its radius, all round it.
 	const reach = (n: Node) => (GAP_X / 2) * Math.sqrt(size(n));
-	const toTrunk = (n: Node) => (n === root ? rootR : n.hub ? GAP_X / 4 : reach(n));
+	/* Out of a product, a straight run at least so much of its own height
+	   before its line bends, so a great pill's line leaves it plainly
+	   before it turns. */
+	const CLEAR = 0.3;
+	const toTrunk = (n: Node) => (n === root ? rootR : n.hub ? GAP_X / 4 : Math.max(reach(n), CLEAR * n.h));
 	/* Half as wide as the trunk out of a product, the line into the
 	   biggest of its children: kept clear of on both sides, so neither the
 	   parent nor a step's words beside it are under it. */
