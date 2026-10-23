@@ -22,7 +22,7 @@ export type Node = Pick<S.Product, 'label' | 'step' | 'scale' | 'at' | 'panel' |
 	regions?: string[];
 	// How the step into it is done, and the sources (see steps.json).
 	// A cheese on the map's sources are with its paragraph (see about); its holds as chips; a ferment only said to be one.
-	how?: Omit<S.How, 'sources' | 'ferment' | 'holds'> & { sources?: Sourcing; holds?: Chip[]; fermented?: boolean };
+	how?: Omit<S.How, 'sources' | 'processing'> & { sources?: Sourcing; holds?: Chip[]; fermented?: boolean };
 	// How much of the world's milk goes its way, in Mt a year and in percent, and how that was worked out (see SHARES).
 	shareMt?: number;
 	share?: number;

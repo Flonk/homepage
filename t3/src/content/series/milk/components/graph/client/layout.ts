@@ -379,7 +379,7 @@ export function layout(data: Graph) {
 		const strip: Strip = { w: 0, h: 0, chips: [], joins: [], names: [] };
 		let x = 0;
 		let y = 0;
-		holds(n).forEach((c, i) => {
+		holds(n).filter((c) => c.said).forEach((c, i) => {
 			const w = measure(c.said, CHIP_TEXT * f, '400', MONO()) + (2 * CHIP_PAD + (c.warmth === undefined ? 0 : CHIP_BAR + CHIP_PAD * 0.6)) * f;
 			if (i && x + CHIP_GAP * f + w > STRIP_WIDE * f) {
 				x = 0;
@@ -392,7 +392,7 @@ export function layout(data: Graph) {
 			x += w;
 			strip.w = Math.max(strip.w, x);
 		});
-		y += CHIP_H * f;
+		if (strip.chips.length) y += CHIP_H * f;
 		const bringing = holds(n).filter((c) => c.microbes);
 		for (const c of bringing)
 			for (const said of wrap(`${bringing.length > 1 ? `${c.done}: ` : ''}${c.microbes}`, STRIP_WIDE, 'italic 400')) {

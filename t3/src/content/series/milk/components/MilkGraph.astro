@@ -2086,13 +2086,13 @@ const { focus } = Astro.props;
 			const framed = el('div', 'milk-about-table');
 			if (holds.length) {
 				const strip = el('p', 'milk-about-holds');
-				holds.forEach((c, i) => {
+				holds.filter((c) => c.said).forEach((c, i) => {
 					if (i) strip.append(el('span', 'milk-about-then', '→'));
 					const chip = el('span', 'milk-about-hold', c.said);
 					if (c.warmth !== undefined) chip.style.setProperty('--warmth', warmthInk(c.warmth));
 					strip.append(chip);
 				});
-				framed.append(strip);
+				if (strip.childElementCount) framed.append(strip);
 				const bringing = holds.filter((c) => c.microbes);
 				for (const c of bringing) framed.append(el('p', 'milk-about-microbes', `${bringing.length > 1 ? `${c.done}: ` : ''}${c.microbes}`));
 			}

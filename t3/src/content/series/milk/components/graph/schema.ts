@@ -215,39 +215,53 @@ export const Inoculum = z.strictObject({
 	vessel: z.string().optional(),
 });
 
-/* One stretch of how a thing is made: held so warm, so long and so damp,
-   until it is so sour, with what is added at its start. Heating milk is
-   one (72 °C for 15 s, pasteurising it), cooking a curd is one, and so
-   is each stretch of a ferment: kefir is two (soured at 23 °C, then
-   ripened cool), a washed rind cheese three (soured with a starter;
-   smeared with B. linens; ripened damp), Calpis two (bacteria, then
-   yeast). A step's holds run in order, so a cheese's milk is soured,
-   its curd cooked, and then it is ripened. Temperatures in °C, times in
-   seconds, humidity and alcohol in percent, acidity as percent lactic
-   acid. */
-export const Hold = z.strictObject({
-	does: z.enum(['heat', 'cook', 'cool', 'incubate', 'ripen', 'dry', 'smear', 'pierce']),
-	adds: Inoculum.optional(),
+/* What a step of processing is held at: so warm, so long, so damp.
+   Temperatures in °C, times in seconds, humidity in percent. */
+const Held = {
 	temperature: Range.optional(),
 	seconds: Range.optional(),
 	humidity: Range.optional(),
-	// Where it stops, or must have reached by law.
+};
+/* Held hot or cold to change it: heated (72 °C for 15 s, pasteurising),
+   a curd cooked (52–54 °C), cooled or chilled. */
+export const HeatTreatment = z.strictObject({
+	type: z.literal('heat'),
+	does: z.enum(['heat', 'cook', 'cool']),
+	...Held,
+});
+/* Held for microbes to work: soured (incubated), ripened, its rind
+   smeared, pierced to let the air in; what is added at its start, and
+   where it stops, or must have reached by law: pH, acidity as percent
+   lactic acid, alcohol in percent. Its kinds, where said: lactic is the
+   souring of lactose into lactic acid, by bacteria alone (yoghurt, quark)
+   or with yeasts too, making alcohol and fizz (kefir, kumis); mould and
+   smear ripen a cheese from its surface or from within, propionic
+   bacteria make its eyes, animals (mites, larvae) eat their way through. */
+export const Ferment = z.strictObject({
+	type: z.literal('ferment'),
+	does: z.enum(['incubate', 'ripen', 'smear', 'pierce']),
+	kinds: z.array(z.enum(['lactic', 'yeast', 'mould', 'smear', 'propionic', 'animal'])).min(1).optional(),
+	adds: Inoculum.optional(),
+	...Held,
 	pH: Range.optional(),
 	acidity: Range.optional(),
 	alcohol: Range.optional(),
 });
-
-/* What makes a step a ferment, its holds aside: which kind of ferment;
-   in words what its holds do not hold, such as a second way it is made.
-   Lactic is the souring of lactose into lactic acid, by bacteria alone
-   (yoghurt, quark) or with yeasts too, making alcohol and fizz (kefir,
-   kumis); mould and smear ripen a cheese from its surface or from within,
-   propionic bacteria make its eyes, animals (mites, larvae) eat their way
-   through it. Its kinds left out where nothing says which. Its sources
-   are its step's, the same as for the step's rows, which say it in words. */
-export const Ferment = z.strictObject({
-	kinds: z.array(z.enum(['lactic', 'yeast', 'mould', 'smear', 'propionic', 'animal'])).min(1).optional(),
+// Held to dry: in the sun, in the air, in a spray drier.
+export const Drying = z.strictObject({
+	type: z.literal('dry'),
+	...Held,
+});
+/* How a thing is made from its parent, step by step, in order: heated,
+   soured, its curd cooked, ripened. Kefir is two ferments (soured at
+   23 °C, then ripened cool), a washed rind cheese three (soured with a
+   starter; smeared with B. linens; ripened damp), yoghurt a heat
+   treatment, a ferment and two coolings. In words what its steps do not
+   hold, such as a second way it is made; and where all of it is from. */
+export const Processing = z.strictObject({
+	steps: z.array(z.discriminatedUnion('type', [HeatTreatment, Ferment, Drying])).min(1),
 	text: z.string().optional(),
+	sources: Sourcing,
 });
 
 const Row = z.object({ k: z.string(), v: z.string() });
@@ -260,9 +274,8 @@ export const How = z.object({
 	facts: z.array(Row).optional(),
 	text: z.string().optional(),
 	sources: Sourcing,
-	// Each stretch it is held for, heated, cooled or fermented, in order; and, where it is fermented, what else makes it a ferment.
-	holds: z.array(Hold).min(1).optional(),
-	ferment: Ferment.optional(),
+	// How it is processed, heated, fermented, dried, step by step.
+	processing: Processing.optional(),
 });
 export const Steps = z.record(z.string(), How);
 
@@ -300,4 +313,6 @@ export type How = z.infer<typeof How>;
 export type Arrow = z.infer<typeof Arrow>;
 export type Ferment = z.infer<typeof Ferment>;
 export type Range = z.infer<typeof Range>;
-export type Hold = z.infer<typeof Hold>;
+export type Processing = z.infer<typeof Processing>;
+export type ProcessingStep = Processing['steps'][number];
+export type HeatTreatment = z.infer<typeof HeatTreatment>;
