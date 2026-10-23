@@ -20,7 +20,7 @@
  * while its phase is off stage, and under reduced motion it shows the finished
  * tuple and stays put.
  */
-import { vizHue } from '../lib/vizHue';
+import { vizHue } from '../../lib/vizHue';
 
 interface Props {
 	/** The parser's name, shown over what it claims. */
@@ -367,7 +367,7 @@ const tail = input.slice(cut);
 </style>
 
 <script>
-	import { eachPage } from '../lib/page';
+	import { eachPage } from '../../lib/page';
 
 	/* The line's path while seeking, in characters from the left edge of the
 	   string (the opening quote is 0 to 1): once across, and then back

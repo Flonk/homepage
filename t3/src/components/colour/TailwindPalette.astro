@@ -47,9 +47,9 @@
  * than sRGB holds, and what a reader should meet is what their own screen
  * does with them.
  */
-import Pill from './Pill.astro';
-import { fitChroma } from '../lib/oklch';
-import { TAILWIND, STEPS, oklch, type Family, type Shade } from '../lib/tailwind';
+import Pill from '../Pill.astro';
+import { fitChroma } from '../../lib/oklch';
+import { TAILWIND, STEPS, oklch, type Family, type Shade } from '../../lib/tailwind';
 
 interface Props {
 	/**
@@ -303,7 +303,7 @@ const label = Math.max(...shown.map((f) => f.name.length));
 </style>
 
 <script>
-	import { eachPage } from '../lib/page';
+	import { eachPage } from '../../lib/page';
 
 	function initPalette(root: HTMLElement, signal: AbortSignal) {
 		if (root.dataset.ready === 'true') return;

@@ -28,8 +28,8 @@
  * the rest of the series has to answer for. See GradientBand's `space` for the
  * same choice made about the band.
  */
-import { rgbCss, type Rgb } from '../lib/rgb';
-import VizTrack from './VizTrack.astro';
+import { rgbCss, type Rgb } from '../../lib/rgb';
+import VizTrack from '../VizTrack.astro';
 
 interface Props {
 	/** The colour at knob 0, as any CSS colour. */
@@ -203,8 +203,8 @@ const asRgb = (css: string) => {
 </style>
 
 <script>
-	import { rgbCss, type Rgb } from '../lib/rgb';
-	import { eachPage } from '../lib/page';
+	import { rgbCss, type Rgb } from '../../lib/rgb';
+	import { eachPage } from '../../lib/page';
 
 	type TrackEl = HTMLElement & {
 		track: { set(i: number, v: number): void; sweep(on: boolean): void };

@@ -1,5 +1,5 @@
 ---
-import { herd } from './milk/graph';
+import { herd } from './graph';
 
 /**
  * What milk becomes: every product as a node and every making-of as an arrow,
@@ -496,11 +496,11 @@ const { focus } = Astro.props;
 	import { select } from 'd3-selection';
 	import 'd3-transition';
 	import { zoom, zoomIdentity } from 'd3-zoom';
-	import type { Sourcing } from './milk/schema';
-	import { eachPage } from '../lib/page';
-	import { pixelRatio } from '../lib/canvas';
-	import { LINE, PAD_X, FONT, FOUND_HEIGHT, PICTURE_GAP, LINK_MARK, LINK_ROOM, MARGIN, MAX_ZOOM, MAP_PILL, SANS, MONO, SERIF, FACES, spacing, only, setSpacing, nextUid, corner, type Node, type Edge, type Graph } from './milk/client/base';
-	import { layout, type Pin, type Box } from './milk/client/layout';
+	import type { Sourcing } from './graph/schema';
+	import { eachPage } from '../../lib/page';
+	import { pixelRatio } from '../../lib/canvas';
+	import { LINE, PAD_X, FONT, FOUND_HEIGHT, PICTURE_GAP, LINK_MARK, LINK_ROOM, MARGIN, MAX_ZOOM, MAP_PILL, SANS, MONO, SERIF, FACES, spacing, only, setSpacing, nextUid, corner, type Node, type Edge, type Graph } from './graph/client/base';
+	import { layout, type Pin, type Box } from './graph/client/layout';
 
 
 	/* Drawn from the graph given, the whole of it or what a filter left of

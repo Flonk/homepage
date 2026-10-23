@@ -20,7 +20,7 @@
  * there and is showing the nearest thing it has instead. Every printed copy of
  * this diagram anywhere has the same problem.
  */
-import { GAMUTS, type GamutName } from '../lib/spectrum';
+import { GAMUTS, type GamutName } from '../../lib/spectrum';
 
 interface Props {
 	/** Which gamuts to outline, drawn in the order given. */
@@ -142,9 +142,9 @@ const {
 		insideGamut,
 		spectralXy,
 		type GamutName,
-	} from '../lib/spectrum';
-	import { eachPage } from '../lib/page';
-	import { pixelRatio } from '../lib/canvas';
+	} from '../../lib/spectrum';
+	import { eachPage } from '../../lib/page';
+	import { pixelRatio } from '../../lib/canvas';
 
 	/* Room for the horseshoe and no more. It reaches x = 0.735 at the red end
 	   and y = 0.834 at the top of the green, so this is those plus a margin. */

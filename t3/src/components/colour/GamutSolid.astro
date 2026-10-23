@@ -53,8 +53,8 @@
  * Raw WebGL, as with RgbCube and ColourSolid: a colour here is a position, and
  * an engine's tone mapping would quietly rewrite it on the way to the screen.
  */
-import { SPACE_LABEL, maxChroma, oklchCss, type Space } from '../lib/gamut';
-import VizTrack from './VizTrack.astro';
+import { SPACE_LABEL, maxChroma, oklchCss, type Space } from '../../lib/gamut';
+import VizTrack from '../VizTrack.astro';
 
 interface Props {
 	/** Which solids, left to right. One is a portrait; three are an argument. */
@@ -599,10 +599,10 @@ const gradId = `gamut-swatch-${Math.random().toString(36).slice(2, 9)}`;
 </style>
 
 <script>
-	import { contextFor } from '../lib/animate';
-	import { eachPage, releaseOnLeave } from '../lib/page';
-	import { setText } from '../lib/text';
-	import { pixelRatio } from '../lib/canvas';
+	import { contextFor } from '../../lib/animate';
+	import { eachPage, releaseOnLeave } from '../../lib/page';
+	import { setText } from '../../lib/text';
+	import { pixelRatio } from '../../lib/canvas';
 	import {
 		SPACE_LABEL,
 		decode,
@@ -611,7 +611,7 @@ const gradId = `gamut-swatch-${Math.random().toString(36).slice(2, 9)}`;
 		oklchCss,
 		toDisplay,
 		type Space,
-	} from '../lib/gamut';
+	} from '../../lib/gamut';
 
 	type GL = WebGLRenderingContext | WebGL2RenderingContext;
 	type Quat = [number, number, number, number];

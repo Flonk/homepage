@@ -2,7 +2,7 @@ import type * as S from '../schema';
 type Sourcing = S.Sourcing;
 
 /* A product, an example or a branch point, as the page is given it (see
-   milk/graph.ts) and as it is laid out: its own fields as the schema has
+   milk/graph/index.ts) and as it is laid out: its own fields as the schema has
    them, the rest worked out on the way. */
 export type Node = Pick<S.Product, 'label' | 'step' | 'scale' | 'at' | 'panel' | 'map' | 'below' | 'link' | 'note' | 'aka'> & {
 	id: string;

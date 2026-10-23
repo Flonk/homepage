@@ -73,8 +73,8 @@ interface Props {
 	probe?: boolean;
 }
 
-import { FILTER_SHORT_NM, FILTER_LONG_NM } from '../lib/cones';
-import VizTrack from './VizTrack.astro';
+import { FILTER_SHORT_NM, FILTER_LONG_NM } from '../../lib/cones';
+import VizTrack from '../VizTrack.astro';
 
 const {
 	wavelength = 550,
@@ -497,13 +497,13 @@ const markList = marks
 </style>
 
 <script>
-	import { dimRgb, metamerLine, mixCones, mixRgb, wavelengthRgb, type Vision } from '../lib/spectrum';
-	import { shuttleAt, shuttleEntry } from '../lib/shuttle';
-	import { setText } from '../lib/text';
-	import { lightenRgb } from '../lib/oklch';
-	import { rgbCss, type Rgb } from '../lib/rgb';
-	import { eachPage } from '../lib/page';
-	import { pixelRatio } from '../lib/canvas';
+	import { dimRgb, metamerLine, mixCones, mixRgb, wavelengthRgb, type Vision } from '../../lib/spectrum';
+	import { shuttleAt, shuttleEntry } from '../../lib/shuttle';
+	import { setText } from '../../lib/text';
+	import { lightenRgb } from '../../lib/oklch';
+	import { rgbCss, type Rgb } from '../../lib/rgb';
+	import { eachPage } from '../../lib/page';
+	import { pixelRatio } from '../../lib/canvas';
 	import {
 		CONE_FIRST_NM,
 		CONE_LAST_NM,
@@ -513,7 +513,7 @@ const markList = marks
 		filteredResponse,
 		filterPair,
 		mirroredStandIn,
-	} from '../lib/cones';
+	} from '../../lib/cones';
 
 	/* The plot runs the length of the measured range. Not the visible band:
 	   where the curves give out is itself the answer to where the visible band

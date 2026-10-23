@@ -32,10 +32,10 @@
  * round rather than a gamut boundary in disguise — that is the gamut post's
  * picture, not this one.
  */
-import Pill from './Pill.astro';
-import { decode, encode } from '../lib/gamut';
-import { oklchCss, oklchRgb } from '../lib/oklch';
-import { rgbCss, rgbaCss, type Rgb } from '../lib/rgb';
+import Pill from '../Pill.astro';
+import { decode, encode } from '../../lib/gamut';
+import { oklchCss, oklchRgb } from '../../lib/oklch';
+import { rgbCss, rgbaCss, type Rgb } from '../../lib/rgb';
 
 interface Props {
 	/** OKLCH L, 0 to 1. 0.72 is bright enough for every hue to be itself. */
@@ -221,8 +221,8 @@ const face = (wheel: string, edge: string) =>
 </style>
 
 <script>
-	import { contextFor, type Motion } from '../lib/animate';
-	import { eachPage } from '../lib/page';
+	import { contextFor, type Motion } from '../../lib/animate';
+	import { eachPage } from '../../lib/page';
 
 	/** How long each side of the switch is held before it flips. */
 	const EVERY = 3;

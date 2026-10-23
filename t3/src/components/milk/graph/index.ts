@@ -212,7 +212,7 @@ const map = S.WorldMap.parse(MAP);
 		map.sources,
 	];
 	const unsourced = said.filter((x) => 'unsourced' in x).length;
-	if (unsourced) console.warn(`MilkGraph: ${unsourced} of ${said.length} things said have no source yet (see Unsourced in milk/schema.ts)`);
+	if (unsourced) console.warn(`MilkGraph: ${unsourced} of ${said.length} things said have no source yet (see Unsourced in milk/graph/schema.ts)`);
 }
 
 // Every parent named must be a product, and no product its own ancestor.

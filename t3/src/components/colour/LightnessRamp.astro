@@ -24,7 +24,7 @@
  * finished grid that they now have to work out the direction of. It replays
  * whenever the card arrives, so nobody meets it half-built.
  */
-import { shades, oklchCss } from '../lib/oklch';
+import { shades, oklchCss } from '../../lib/oklch';
 import ShadeMatch from './ShadeMatch.astro';
 
 interface Props {
@@ -235,9 +235,9 @@ const inkFor = (l: number) => oklchCss(l > 0.55 ? 0.18 : 0.97, 0.03, hue);
 </style>
 
 <script>
-	import { shades, oklchCss } from '../lib/oklch';
-	import type { Rgb } from '../lib/rgb';
-	import { eachPage } from '../lib/page';
+	import { shades, oklchCss } from '../../lib/oklch';
+	import type { Rgb } from '../../lib/rgb';
+	import { eachPage } from '../../lib/page';
 
 	type Box = { x: number; y: number; w: number; h: number };
 	/** What ShadeMatch hangs on its own element. See ShadeMatch.astro. */
