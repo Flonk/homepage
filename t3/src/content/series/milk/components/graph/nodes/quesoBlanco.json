@@ -56,8 +56,13 @@
 					"note": "Hot milk, 85 °C or above."
 				},
 				{
-					"type": "custom",
-					"name": "acidify",
+					"type": "acidify",
+					"with": "an organic acid",
+					"pH": {
+						"min": 5.3,
+						"max": 5.3,
+						"about": true
+					},
 					"note": "With an organic acid to pH about 5.3; the acid, not rennet, precipitates the protein."
 				},
 				{

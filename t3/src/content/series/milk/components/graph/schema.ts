@@ -222,6 +222,8 @@ export const Mould = z.strictObject({ type: z.literal('mould'), ...Held });
 export const Separate = z.strictObject({ type: z.literal('separate'), by: z.enum(['gravity', 'centrifuge']).optional(), fat: Percent.optional(), ...Held });
 export const Evaporate = z.strictObject({ type: z.literal('evaporate'), under: z.enum(['open', 'vacuum']).optional(), solids: Percent.optional(), ...Held });
 export const Filter = z.strictObject({ type: z.literal('filter'), by: z.enum(['cloth', 'micro', 'ultra', 'nano', 'dia']).optional(), ...Held });
+// Acidified: soured by an acid put in, not by microbes (see Ferment), with what, to so low a pH.
+export const Acidify = z.strictObject({ type: z.literal('acidify'), with: z.string().min(1).optional(), pH: PH.optional(), ...Held });
 export const Add = z.strictObject({ type: z.literal('add'), what: z.string().min(1).optional(), share: Percent.optional(), ...Held });
 /* Any other step a thing is held at or put through, named in a word or
    two: stretched, smoked, frozen, washed; so warm and so long where that
@@ -238,7 +240,7 @@ export const CustomStep = z.strictObject({
    treatment, a ferment and two coolings. In words what its steps do not
    hold, such as a second way it is made; and where all of it is from. */
 export const Processing = z.strictObject({
-	steps: z.array(z.discriminatedUnion('type', [Pasteurise, Homogenise, Coagulate, Churn, Salt, Drain, Cut, Press, Mould, Separate, Evaporate, Filter, Add, HeatTreatment, Ferment, Drying, CustomStep])).min(1),
+	steps: z.array(z.discriminatedUnion('type', [Pasteurise, Homogenise, Coagulate, Churn, Salt, Drain, Cut, Press, Mould, Separate, Evaporate, Filter, Acidify, Add, HeatTreatment, Ferment, Drying, CustomStep])).min(1),
 	text: z.string().optional(),
 	sources: Sourcing,
 });

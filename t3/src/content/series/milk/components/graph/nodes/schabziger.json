@@ -77,8 +77,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "acidify",
+					"type": "acidify",
+					"with": "lactic, citric or acetic acid",
 					"temperature": {
 						"min": 32,
 						"max": 32,

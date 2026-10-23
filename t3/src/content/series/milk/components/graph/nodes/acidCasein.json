@@ -61,8 +61,12 @@
 					}
 				},
 				{
-					"type": "custom",
-					"name": "acidify",
+					"type": "acidify",
+					"with": "hydrochloric acid",
+					"pH": {
+						"min": 4.6,
+						"max": 4.6
+					},
 					"note": "With 10 % hydrochloric acid to pH 4.6, the isoelectric point of casein."
 				},
 				{
