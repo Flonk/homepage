@@ -29,7 +29,7 @@ export const Sourcing = z.union([Sources, Unsourced]);
 // A country, by its ISO 3166-1 alpha-2 code.
 export const Country = z.string().regex(/^[A-Z]{2}$/);
 
-// The animals milked: a product's or an example's (MILK_OF), and the map's cheeses' (milk-cheeses.json).
+// The animals milked: a product's or an example's (MILK_OF), and the map's cheeses' (cheeses.json).
 export const Beast = z.enum(['cow', 'sheep', 'goat', 'horse', 'donkey', 'buffalo', 'camel', 'yak', 'reindeer']);
 export const CheeseMilk = z.enum(['cow', 'sheep', 'goat', 'buffalo', 'yak', 'camel', 'reindeer', 'donkey', 'horse']);
 
@@ -41,14 +41,14 @@ export const Picture = z.object({
 	sources: Sourcing,
 });
 
-// What a product or an example is, said on its card (milk-about.json).
+// What a product or an example is, said on its card (about.json).
 export const About = z.object({ text: z.string(), sources: Sourcing });
 export const AboutFile = z.object({
 	products: z.record(z.string(), About),
 	examples: z.record(z.string(), About),
 });
 
-// The countries a product or an example is from (milk-regions.json).
+// The countries a product or an example is from (regions.json).
 export const Regions = z.object({ countries: z.array(Country).min(1), sources: Sourcing });
 export const RegionsFile = z.record(z.string(), Regions);
 
@@ -124,11 +124,11 @@ export const Example = z.object({
 	regions: Regions.optional(),
 	beasts: Beasts.optional(),
 	axes: Axes.optional(),
-	// How it is made from its product, where its step is its own (milk-steps.json).
+	// How it is made from its product, where its step is its own (steps.json).
 	how: z.lazy(() => How).optional(),
 });
 
-/* ---- Each cheese on the map (milk-cheeses.json) ---- */
+/* ---- Each cheese on the map (cheeses.json) ---- */
 
 export const Cheese = z.object({
 	name: z.string(),
@@ -161,7 +161,7 @@ export const Cheese = z.object({
 });
 export const Cheeses = z.array(Cheese);
 
-// The world's outline (milk-map.json): its height against a width of 1, and each country's name, label point and rings as flat x, y pairs.
+// The world's outline (map.json): its height against a width of 1, and each country's name, label point and rings as flat x, y pairs.
 export const WorldMap = z.object({
 	height: z.number(),
 	countries: z.record(
@@ -174,7 +174,7 @@ export const WorldMap = z.object({
 /* ---- Each arrow ---- */
 
 const Row = z.object({ k: z.string(), v: z.string() });
-/* How the product at an arrow's head is made (milk-steps.json): a table
+/* How the product at an arrow's head is made (steps.json): a table
    drawn on the arrow, facts and words told on its card, and their sources;
    an example's step its own words, there being no arrow to write them on. */
 export const How = z.object({
