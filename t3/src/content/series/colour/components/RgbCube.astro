@@ -63,7 +63,7 @@ interface Props {
 /* The two ends are told apart by shape rather than by hue: solid for the first,
    hollow for the second. Colouring them would be a lie in a picture whose whole
    subject is which colour is where. */
-import ColorSliders from '../ColorSliders.astro';
+import ColorSliders from '../../../../components/ColorSliders.astro';
 
 /* Only the starting values now: what a channel bar looks like is
    ColorSliders' business. In a deck these are also the parameters a card can
@@ -438,12 +438,12 @@ const {
 </style>
 
 <script>
-	import { contextFor } from '../../lib/animate';
-	import { approach } from '../../lib/easing';
-	import { rgbCss, type Rgb } from '../../lib/rgb';
-	import { setText } from '../../lib/text';
-	import { eachPage, releaseOnLeave } from '../../lib/page';
-	import { pixelRatio } from '../../lib/canvas';
+	import { contextFor } from '../../../../lib/animate';
+	import { approach } from '../../../../lib/easing';
+	import { rgbCss, type Rgb } from '../../../../lib/rgb';
+	import { setText } from '../../../../lib/text';
+	import { eachPage, releaseOnLeave } from '../../../../lib/page';
+	import { pixelRatio } from '../../../../lib/canvas';
 	type Quat = [number, number, number, number]; // x, y, z, w
 
 	const IDENTITY: Quat = [0, 0, 0, 1];

@@ -32,10 +32,10 @@
  * position, and every engine worth the name has a tone-mapping stage that
  * would quietly rewrite it on the way to the screen.
  */
-import Pill from '../Pill.astro';
-import { lighten, lightenRgb } from '../../lib/oklch';
-import { rgbCss, type Rgb } from '../../lib/rgb';
-import VizTrack from '../VizTrack.astro';
+import Pill from '../../../../components/Pill.astro';
+import { lighten, lightenRgb } from '../../../../lib/oklch';
+import { rgbCss, type Rgb } from '../../../../lib/rgb';
+import VizTrack from '../../../../components/VizTrack.astro';
 
 /* HSL to sRGB, for the two places that need the numbers rather than a string:
    the hue bar's lifted edge here, and the same trick per frame in the script.
@@ -1026,12 +1026,12 @@ const HSL = [
 </style>
 
 <script>
-	import { contextFor } from '../../lib/animate';
-	import { setText } from '../../lib/text';
-	import { eachPage, releaseOnLeave } from '../../lib/page';
-	import { lightenRgb } from '../../lib/oklch';
-	import { rgbCss, type Rgb } from '../../lib/rgb';
-	import { pixelRatio } from '../../lib/canvas';
+	import { contextFor } from '../../../../lib/animate';
+	import { setText } from '../../../../lib/text';
+	import { eachPage, releaseOnLeave } from '../../../../lib/page';
+	import { lightenRgb } from '../../../../lib/oklch';
+	import { rgbCss, type Rgb } from '../../../../lib/rgb';
+	import { pixelRatio } from '../../../../lib/canvas';
 
 	type Quat = [number, number, number, number];
 

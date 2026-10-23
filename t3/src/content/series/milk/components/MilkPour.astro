@@ -220,8 +220,8 @@ PARTS.sort((a, b) => b.share - a.share);
 <script>
 	import { b2BodyType, b2EdgeShape, b2World, type b2Fixture } from '@box2d/core';
 	import { b2ParticleFlag, b2ParticleSystemDef, type b2ParticleSystem } from '@box2d/particles';
-	import { eachPage } from '../../lib/page';
-	import { pixelRatio } from '../../lib/canvas';
+	import { eachPage } from '../../../../lib/page';
+	import { pixelRatio } from '../../../../lib/canvas';
 
 	type Part = { id: string; label: string; share: number };
 

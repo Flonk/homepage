@@ -295,8 +295,8 @@ const { stepMs = 900, holdMs = 3200 } = Astro.props;
 </style>
 
 <script>
-	import { eachPage } from '../../lib/page';
-	import { vizHue } from '../../lib/vizHue';
+	import { eachPage } from '../../../../lib/page';
+	import { vizHue } from '../../../../lib/vizHue';
 
 	type Step = { p: string; re: string; map?: 'number' | 'null'; repeat?: boolean };
 	type Group = { name?: string; as?: string; keys?: Record<string, number> };

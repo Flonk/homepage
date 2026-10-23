@@ -9,19 +9,19 @@ deckSplit: 33.3
 hn: "https://news.ycombinator.com/item?id=50139067"
 ---
 
-import CodeDefinition from "../../../components/parser-combinators/CodeDefinition.astro";
+import CodeDefinition from "./components/CodeDefinition.astro";
 import DeckCard from "../../../components/DeckCard.astro";
 import DeckViz from "../../../components/DeckViz.astro";
-import ParseArrow from "../../../components/parser-combinators/ParseArrow.astro";
-import ParserChain from "../../../components/parser-combinators/ParserChain.astro";
-import ParserTape from "../../../components/parser-combinators/ParserTape.astro";
-import ParserType from "../../../components/parser-combinators/ParserType.astro";
-import SeqType from "../../../components/parser-combinators/SeqType.astro";
-import UnfoldReduce from "../../../components/parser-combinators/UnfoldReduce.astro";
+import ParseArrow from "./components/ParseArrow.astro";
+import ParserChain from "./components/ParserChain.astro";
+import ParserTape from "./components/ParserTape.astro";
+import ParserType from "./components/ParserType.astro";
+import SeqType from "./components/SeqType.astro";
+import UnfoldReduce from "./components/UnfoldReduce.astro";
 import VizPhase from "../../../components/VizPhase.astro";
-import VizStack from "../../../components/parser-combinators/VizStack.astro";
+import VizStack from "./components/VizStack.astro";
 import VizStill from "../../../components/VizStill.astro";
-import VizText from "../../../components/parser-combinators/VizText.astro";
+import VizText from "./components/VizText.astro";
 
 {/* The ping output and the regexes the tape runs over it, kept up here so the
     cards below read as which parsers, not as escaped backslashes. Each regex is

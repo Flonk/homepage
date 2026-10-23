@@ -1,4 +1,4 @@
-import { graph } from '../components/milk/graph';
+import { graph } from '../content/series/milk/components/graph';
 
 /* The milk graph (see MilkGraph.astro), as a file of its own: the same for
    every page that draws it, so fetched once and kept by the browser rather

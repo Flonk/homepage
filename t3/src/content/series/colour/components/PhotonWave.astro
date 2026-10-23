@@ -91,7 +91,7 @@ interface Props {
 	idleResume?: number;
 }
 
-import VizTrack from '../VizTrack.astro';
+import VizTrack from '../../../../components/VizTrack.astro';
 
 const {
 	frequency = 545,
@@ -351,13 +351,13 @@ const {
 </style>
 
 <script>
-	import { C_NM_PER_S, wavelengthRgb } from '../../lib/spectrum';
-	import { shuttleAt, shuttleEntry } from '../../lib/shuttle';
-	import { lightenRgb } from '../../lib/oklch';
-	import { setText } from '../../lib/text';
-	import { parseHex, rgbCss, type Rgb } from '../../lib/rgb';
-	import { eachPage } from '../../lib/page';
-	import { pixelRatio } from '../../lib/canvas';
+	import { C_NM_PER_S, wavelengthRgb } from '../../../../lib/spectrum';
+	import { shuttleAt, shuttleEntry } from '../../../../lib/shuttle';
+	import { lightenRgb } from '../../../../lib/oklch';
+	import { setText } from '../../../../lib/text';
+	import { parseHex, rgbCss, type Rgb } from '../../../../lib/rgb';
+	import { eachPage } from '../../../../lib/page';
+	import { pixelRatio } from '../../../../lib/canvas';
 
 	/* ---- the two scales -------------------------------------------------
 	   Space: how many screen pixels stand for a nanometre. Time: how much

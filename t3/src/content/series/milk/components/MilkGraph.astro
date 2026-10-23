@@ -497,8 +497,8 @@ const { focus } = Astro.props;
 	import 'd3-transition';
 	import { zoom, zoomIdentity } from 'd3-zoom';
 	import type { Sourcing } from './graph/schema';
-	import { eachPage } from '../../lib/page';
-	import { pixelRatio } from '../../lib/canvas';
+	import { eachPage } from '../../../../lib/page';
+	import { pixelRatio } from '../../../../lib/canvas';
 	import { LINE, PAD_X, FONT, FOUND_HEIGHT, PICTURE_GAP, LINK_MARK, LINK_ROOM, MARGIN, MAX_ZOOM, MAP_PILL, SANS, MONO, SERIF, FACES, spacing, only, setSpacing, nextUid, corner, type Node, type Edge, type Graph } from './graph/client/base';
 	import { layout, type Pin, type Box } from './graph/client/layout';
 
