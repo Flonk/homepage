@@ -1166,16 +1166,40 @@ const { focus } = Astro.props;
 		type Part = { key: string; box: Box; draw: (g: Pen, s: number) => boolean | void };
 		// Too big to keep at a zoom, close in: drawn as it is.
 		const tooBig = (box: Box, level: number) => Math.max(box.x1 - box.x0, box.y1 - box.y0) * level * dpr > 2048;
+		// A canvas of its own, so many pixels, to draw the picture into from (x0, y0) at k pixels to its unit.
+		const canvasFor = (w: number, h: number, k: number, x0: number, y0: number) => {
+			const made = new OffscreenCanvas(Math.max(1, Math.ceil(w)), Math.max(1, Math.ceil(h)));
+			const g = made.getContext('2d')!;
+			g.setTransform(k, 0, 0, k, -x0 * k, -y0 * k);
+			g.letterSpacing = `${spacing}px`;
+			return { made, g };
+		};
+		/* Those kept at zooms far from this one, more than a doubling away,
+		   let go, so they do not pile up: the zoom each was kept at read off
+		   its key; those `spared` kept whatever the zoom. */
+		const letGo = <T,>(from: Map<string, T>, level: number, atOf: (key: string) => number, close: (t: T) => void, spared = (_: number) => false) => {
+			for (const [key, t] of from) {
+				const at = atOf(key);
+				if (!spared(at) && Math.abs(Math.log2(at / level)) > 1) {
+					close(t);
+					from.delete(key);
+				}
+			}
+		};
+		// Drawn as if nothing were lit or held, into an image all of it shares.
+		const unlitly = (draw: () => void) => {
+			unlit = true;
+			try {
+				draw();
+			} finally {
+				unlit = false;
+			}
+		};
 		/* A part drawn at a zoom and kept: as an image the screen holds on to,
 		   not one handed over at every stamp; and only drawn whole. */
 		const keep = ({ key, box, draw }: Part, level: number) => {
-			const made = new OffscreenCanvas(
-				Math.max(1, Math.ceil((box.x1 - box.x0) * level * dpr)),
-				Math.max(1, Math.ceil((box.y1 - box.y0) * level * dpr)),
-			);
-			const g = made.getContext('2d')!;
-			g.setTransform(level * dpr, 0, 0, level * dpr, -box.x0 * level * dpr, -box.y0 * level * dpr);
-			g.letterSpacing = `${spacing}px`;
+			const k = level * dpr;
+			const { made, g } = canvasFor((box.x1 - box.x0) * k, (box.y1 - box.y0) * k, k, box.x0, box.y0);
 			if (draw(g, level) === false) return made;
 			const bitmap = made.transferToImageBitmap();
 			kept.set(`${key}@${level}`, bitmap);
@@ -1241,23 +1265,23 @@ const { focus } = Astro.props;
 		const tiles = new Map<string, { bitmap: ImageBitmap; whole: boolean; tries: number }>();
 		const mapParts = new Map<Node, Part[]>();
 		const overlaps = (a: Box, b: Box) => a.x1 >= b.x0 && a.x0 <= b.x1 && a.y1 >= b.y0 && a.y0 <= b.y1;
+		// How much of the picture a tile covers at a zoom, and the name it is kept under.
+		const spanAt = (level: number) => TILE / (level * dpr);
+		const tileKey = (p: Node, level: number, tx: number, ty: number) => `${p.id}@${level}/${tx}/${ty}`;
 		// The zoom it is all in one tile at: drawn first, so there is always something to show.
 		const baseLevel = (p: Node) => levelOf(TILE / ((panelArea(p).x1 - panelArea(p).x0) * dpr)) / 2;
 		const drawTile = (p: Node, level: number, tx: number, ty: number) => {
 			const area = panelArea(p);
-			const span = TILE / (level * dpr);
+			const span = spanAt(level);
 			const t = { x0: area.x0 + tx * span, y0: area.y0 + ty * span, x1: area.x0 + (tx + 1) * span, y1: area.y0 + (ty + 1) * span };
-			const made = new OffscreenCanvas(TILE, TILE);
-			const g = made.getContext('2d')!;
-			g.setTransform(level * dpr, 0, 0, level * dpr, -t.x0 * level * dpr, -t.y0 * level * dpr);
-			g.letterSpacing = `${spacing}px`;
+			const { made, g } = canvasFor(TILE, TILE, level * dpr, t.x0, t.y0);
 			drawMap(g, p, p.x - p.w / 2, p.y + p.h / 2);
 			if (!mapParts.has(p)) mapParts.set(p, partsOf((paneled.get(p) ?? []).filter((k) => k.onMap)));
 			let whole = true;
-			unlit = true;
-			for (const part of mapParts.get(p)!) if (overlaps(part.box, t) && part.draw(g, level) === false) whole = false;
-			unlit = false;
-			const key = `${p.id}@${level}/${tx}/${ty}`;
+			unlitly(() => {
+				for (const part of mapParts.get(p)!) if (overlaps(part.box, t) && part.draw(g, level) === false) whole = false;
+			});
+			const key = tileKey(p, level, tx, ty);
 			const was = tiles.get(key);
 			was?.bitmap.close();
 			const tile = { bitmap: made.transferToImageBitmap(), whole, tries: (was?.tries ?? 0) + 1 };
@@ -1268,19 +1292,20 @@ const { focus } = Astro.props;
 			const area = panelArea(p);
 			const base = baseLevel(p);
 			const level = Math.max(base, levelOf(s));
-			const span = TILE / (level * dpr);
-			const last = (n: number) => Math.ceil(n / span) - 1;
+			const span = spanAt(level);
+			// The last tile across and down, at a zoom.
+			const last = (n: number, at = level) => Math.ceil(n / spanAt(at)) - 1;
 			const clamp = (v: number, hi: number) => Math.max(0, Math.min(hi, v));
 			const cols = last(area.x1 - area.x0);
 			const rows = last(area.y1 - area.y0);
 			// The zoom it is all in a tile or two at, always there to fall back on.
-			for (let ty = 0; ty <= Math.ceil((area.y1 - area.y0) / (TILE / (base * dpr))) - 1; ty++)
-				for (let tx = 0; tx <= Math.ceil((area.x1 - area.x0) / (TILE / (base * dpr))) - 1; tx++) if (!tiles.has(`${p.id}@${base}/${tx}/${ty}`)) drawTile(p, base, tx, ty);
+			for (let ty = 0; ty <= last(area.y1 - area.y0, base); ty++)
+				for (let tx = 0; tx <= last(area.x1 - area.x0, base); tx++) if (!tiles.has(tileKey(p, base, tx, ty))) drawTile(p, base, tx, ty);
 			for (let ty = clamp(Math.floor((a.y - area.y0) / span), rows); ty <= clamp(Math.floor((b.y - area.y0) / span), rows); ty++)
 				for (let tx = clamp(Math.floor((a.x - area.x0) / span), cols); tx <= clamp(Math.floor((b.x - area.x0) / span), cols); tx++) {
 					const x0 = area.x0 + tx * span;
 					const y0 = area.y0 + ty * span;
-					let tile = tiles.get(`${p.id}@${level}/${tx}/${ty}`);
+					let tile = tiles.get(tileKey(p, level, tx, ty));
 					// A photograph or flag not yet in when it was drawn: drawn again, once it may be.
 					if ((!tile || (!tile.whole && tile.tries < 4 && !moving)) && performance.now() < until) tile = drawTile(p, level, tx, ty);
 					if (tile) {
@@ -1289,32 +1314,26 @@ const { focus } = Astro.props;
 					}
 					unkept = true;
 					// The smaller ones of the zoom above, where they are all there.
-					const fine = [0, 1].flatMap((j) => [0, 1].map((i) => tiles.get(`${p.id}@${level * 2}/${tx * 2 + i}/${ty * 2 + j}`)));
+					const fine = [0, 1].flatMap((j) => [0, 1].map((i) => tiles.get(tileKey(p, level * 2, tx * 2 + i, ty * 2 + j))));
 					if (fine.every(Boolean) && pillsShown(level * 2) === pillsShown(level)) {
 						fine.forEach((f, k) => ctx.drawImage(f!.bitmap, x0 + (k % 2) * (span / 2), y0 + Math.floor(k / 2) * (span / 2), span / 2, span / 2));
 						continue;
 					}
 					// Or the part of a bigger one of the zooms below.
 					for (let up = level / 2; up >= base; up /= 2) {
-						const wide = TILE / (up * dpr);
+						const wide = spanAt(up);
 						const ux = Math.floor((x0 - area.x0) / wide);
 						const uy = Math.floor((y0 - area.y0) / wide);
-						const coarse = tiles.get(`${p.id}@${up}/${ux}/${uy}`);
+						const coarse = tiles.get(tileKey(p, up, ux, uy));
 						if (!coarse || pillsShown(up) !== pillsShown(level)) continue;
 						const k = up * dpr;
 						ctx.drawImage(coarse.bitmap, (x0 - area.x0 - ux * wide) * k, (y0 - area.y0 - uy * wide) * k, span * k, span * k, x0, y0, span, span);
 						break;
 					}
 				}
-			// Those at zooms far from this one let go, so they do not pile up.
+			// Those at zooms far from this one let go, all but the one to fall back on.
 			if (tiles.size > 400)
-				for (const [key, tile] of tiles) {
-					const at = Number(key.slice(key.indexOf('@') + 1, key.indexOf('/')));
-					if (at !== base && Math.abs(Math.log2(at / level)) > 1) {
-						tile.bitmap.close();
-						tiles.delete(key);
-					}
-				}
+				letGo(tiles, level, (key) => Number(key.slice(key.indexOf('@') + 1, key.indexOf('/'))), (tile) => tile.bitmap.close(), (at) => at === base);
 		};
 		/* Kept, when there is nothing else to do: everything at this zoom, the
 		   nearest first, then what is in sight at the zooms either side. */
@@ -1358,19 +1377,13 @@ const { focus } = Astro.props;
 			}
 			ctx.drawImage(bitmap, box.x0, box.y0, box.x1 - box.x0, box.y1 - box.y0);
 		};
-		// Those at zooms far from this one let go, so they do not pile up.
+		// Those kept at zooms far from this one let go, once the zoom has come to another doubling.
 		let forgotAt = 0;
 		const forget = (s: number) => {
 			const level = levelOf(s);
 			if (kept.size < 3000 || level === forgotAt) return;
 			forgotAt = level;
-			for (const key of kept.keys()) {
-				const at = Number(key.slice(key.lastIndexOf('@') + 1));
-				if (Math.abs(Math.log2(at / level)) > 1) {
-					kept.get(key)!.close();
-					kept.delete(key);
-				}
-			}
+			letGo(kept, level, (key) => Number(key.slice(key.lastIndexOf('@') + 1)), (bitmap) => bitmap.close());
 		};
 
 		/* The whole of it, drawn once into a single image, nothing lit, when there
@@ -1384,20 +1397,12 @@ const { focus } = Astro.props;
 		let building = 0;
 		const buildOverview = () => {
 			cancelIdleCallback(building);
-			const made = new OffscreenCanvas(Math.ceil(box.width * overviewAt), Math.ceil(box.height * overviewAt));
-			const g = made.getContext('2d')!;
-			g.setTransform(overviewAt, 0, 0, overviewAt, -box.x * overviewAt, -box.y * overviewAt);
-			g.letterSpacing = `${spacing}px`;
-			g.lineJoin = 'round';
+			const { made, g } = canvasFor(box.width * overviewAt, box.height * overviewAt, overviewAt, box.x, box.y);
 			let whole = true;
 			const todo: (() => void)[] = [
 				() => {
-					g.lineWidth = 1 / overviewAt;
-					g.fillStyle = g.strokeStyle = ink.line;
-					for (const e of edges) {
-						g.fill(edgeShape.get(e)!);
-						g.stroke(edgeShape.get(e)!);
-					}
+					edgeInk(g, overviewAt);
+					for (const e of edges) fillEdge(g, e, ink.line);
 				},
 				() => drawMilk(g, root, overviewAt / dpr),
 				// A map's land; its cheeses are not drawn so far out, and its pins are drawn over it, as big as the zoom has them.
@@ -1407,9 +1412,9 @@ const { focus } = Astro.props;
 				}),
 			].reverse();
 			const step = (deadline: IdleDeadline) => {
-				unlit = true;
-				while (todo.length && (deadline.timeRemaining() > 2 || deadline.didTimeout)) todo.pop()!();
-				unlit = false;
+				unlitly(() => {
+					while (todo.length && (deadline.timeRemaining() > 2 || deadline.didTimeout)) todo.pop()!();
+				});
 				if (todo.length) {
 					building = requestIdleCallback(step, { timeout: 1000 });
 					return;
@@ -1465,6 +1470,21 @@ const { focus } = Astro.props;
 		};
 		signal.addEventListener('abort', () => (mapCard.hidden = true));
 
+		// An arrow filled, and edged in a hairline of its own colour, at a zoom.
+		const edgeInk = (g: Pen, s: number) => {
+			g.lineJoin = 'round';
+			g.lineWidth = 1 / s;
+		};
+		const fillEdge = (g: Pen, e: Edge, colour: string) => {
+			const shape = edgeShape.get(e)!;
+			g.fillStyle = g.strokeStyle = colour;
+			g.fill(shape);
+			g.stroke(shape);
+		};
+		// One held, its pill and its marks, drawn over the rest.
+		const drawHeld = (s: number) => {
+			if (held && held !== root) for (const part of partsOf([held])) part.draw(ctx, s);
+		};
 		/* Drawing it all, of what is in sight: the arrows, the lit ones over the
 		   rest; the steps' words and tables; the pills; and the flags over them. */
 		const paint = () => {
@@ -1487,45 +1507,27 @@ const { focus } = Astro.props;
 				ctx.drawImage(overview, box.x, box.y, box.width, box.height);
 				until = performance.now() + 6;
 				for (const part of pinParts(s)) if (inSight(part.box)) stamp(part, s);
-				ctx.lineJoin = 'round';
-				ctx.lineWidth = 1 / s;
-				ctx.fillStyle = ctx.strokeStyle = ink.litLine;
-				for (const e of lit) {
-					ctx.fill(edgeShape.get(e)!);
-					ctx.stroke(edgeShape.get(e)!);
-				}
+				edgeInk(ctx, s);
+				for (const e of lit) fillEdge(ctx, e, ink.litLine);
 				if (stepShown) {
 					drawStep(ctx, stepShown, s);
 					if (rows(stepShown).length) drawTable(ctx, stepShown, s);
 				}
-				if (held && held !== root) {
-					drawPill(ctx, held, s);
-					if (held.regions?.length) drawFlags(ctx, held, s);
-					if (held.note || held.unsure) drawInfo(ctx, held, s);
-					if (held.protected) drawSeal(ctx, held, s);
-					if (held.beasts?.length) drawBeasts(ctx, held, s);
-				}
+				drawHeld(s);
 				return;
 			}
 
 			// The tree, set back until a product is looked at; its lines edged in a hairline of their own colour.
-			ctx.lineJoin = 'round';
-			ctx.lineWidth = 1 / s;
-			for (const on of [false, true])
-				for (const e of edges) {
-					if (lit.has(e) !== on || !inSight(edgeBox.get(e)!)) continue;
-					ctx.fillStyle = ctx.strokeStyle = on ? ink.litLine : ink.line;
-					ctx.fill(edgeShape.get(e)!);
-					ctx.stroke(edgeShape.get(e)!);
-				}
+			edgeInk(ctx, s);
+			for (const on of [false, true]) for (const e of edges) if (lit.has(e) === on && inSight(edgeBox.get(e)!)) fillEdge(ctx, e, on ? ink.litLine : ink.line);
 			// Milk under the rest, the flags over every pill, as one reaches over the next pill up.
 			if (inSight(pillBoxOf(root))) drawMilk(ctx, root, s);
 			until = performance.now() + 6;
 			for (const p of panels.keys()) if (p.map && inSight(panelArea(p))) drawTiles(p, s, a, b);
 			parts ??= everyPart();
-			for (const part of [...parts, ...pinParts(s)]) if (inSight(part.box)) stamp(part, s);
+			for (const list of [parts, pinParts(s)]) for (const part of list) if (inSight(part.box)) stamp(part, s);
 			// One held on a map, lit over its tile.
-			if (held?.onMap && pillsShown(s)) for (const part of partsOf([held])) part.draw(ctx, s);
+			if (held?.onMap && pillsShown(s)) drawHeld(s);
 
 			// Some not yet kept at this zoom: on with them in the next frame; all of them: the zooms either side.
 			if (moving) return;
