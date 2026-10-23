@@ -1,4 +1,4 @@
-import { ROOT, NODE_H, PAD_X, FONT, ROOT_WORD, GAP_X, STEP_FONT, STEP_PAD, RADIUS, PACKING, PICTURE_GAP, LINK_ROOM, APART, ROW_GAP, sizeOf, MILK, STRAND, headWidth, headLength, CORNER, MAP_PILL, RULE_PX, RULER_END, DROP, TIER_GAP, SIDE_GAP, MONO, measure, type Node, type Edge, type Graph } from './base';
+import { ROOT, NODE_H, PAD_X, FONT, ROOT_WORD, GAP_X, STEP_FONT, STEP_PAD, RADIUS, PACKING, PICTURE_GAP, LINK_ROOM, APART, ROW_GAP, sizeOf, MILK, STRAND, headWidth, headLength, CORNER, MAP_PILL, RULE_PX, RULER_END, DROP, TIER_GAP, SIDE_GAP, MONO, measure, type Node, type Edge, type Graph, type Chip } from './base';
 
 // A map's pin: a country's, or closer in a region's, where its cheeses are and how many.
 /* A map's pin: a region's cheeses, or those of a country whose region is
@@ -357,50 +357,66 @@ export function layout(data: Graph) {
 	   wrapped as wide as the chips run. Laid out in its table's letters,
 	   from its top left. */
 	const holds = (n: Node) => (hangsFrom(n) || panelOf(n) ? [] : (n.how?.holds ?? []));
-	// In its table's letters: a chip's height, the room round its words, its warmth's bar, the room for the arrow between two, its words' size.
-	const CHIP_H = 1.45;
-	const CHIP_PAD = 0.4;
-	const CHIP_BAR = 0.2;
-	const CHIP_GAP = 1.2;
-	const CHIP_TEXT = 0.85;
-	const STRIP_WIDE = KEY_WIDE + VALUE_WIDE + 2;
-	type Strip = {
-		w: number;
-		h: number;
-		chips: { x: number; y: number; w: number; said: string; warmth?: number }[];
-		joins: { x: number; y: number }[];
-		names: { y: number; said: string }[];
-	};
+	/* Each a card: what it is, small, over what it says; under that, the
+	   microbes it adds in letters so small they run about as wide as what it
+	   says, there being zoom enough to read them; under those its sentence.
+	   In its table's letters: each line's size, the room round them, the bar
+	   for how warm it is held, the room for the arrow between two cards. */
+	const CARD = { title: 0.55, said: 1, tiny: 0.36, note: 0.5, pad: 0.5, bar: 0.16, gap: 1.4, least: 5 };
+	const CARDS_WIDE = 44;
+	type Said = { said: string; y: number; size: number; face: string; mono: boolean; dim: boolean };
+	type Card = { x: number; y: number; w: number; h: number; warmth?: number; lines: Said[] };
+	type Strip = { w: number; h: number; cards: Card[]; joins: { x: number; y: number }[] };
 	const strips = new Map<Node, Strip>();
+	const cardOf = (c: Chip, f: number): Card => {
+		const inset = CARD.pad + (c.warmth === undefined ? 0 : CARD.bar + CARD.pad * 0.6);
+		const wide = Math.max(CARD.least * f, measure(c.title, CARD.title * f, '700', MONO()), c.said ? measure(c.said, CARD.said * f, '400', MONO()) : 0);
+		const lines: Said[] = [];
+		let y = CARD.pad * f;
+		const put = (said: string, size: number, face: string, mono: boolean, dim: boolean, leading = 1.25) => {
+			y += size * f * leading;
+			lines.push({ said, y: y - size * f * (leading - 1) - size * f * 0.18, size: size * f, face, mono, dim });
+		};
+		put(c.title, CARD.title, '700', true, true, 1.35);
+		if (c.said) put(c.said, CARD.said, '400', true, false, 1.3);
+		if (c.microbes) {
+			y += 0.15 * f;
+			for (const said of wrap(c.microbes, wide / (CARD.tiny * f), '400')) put(said, CARD.tiny, '400', false, true, 1.25);
+		}
+		if (c.note) {
+			y += 0.2 * f;
+			for (const said of wrap(c.note, Math.max(wide, 12 * f) / (CARD.note * f), '400')) put(said, CARD.note, '400', false, false, 1.3);
+		}
+		const w = Math.max(wide, ...lines.map((l) => measure(l.said, l.size, l.face, l.mono ? MONO() : undefined)));
+		return { x: 0, y: 0, w: w + (inset + CARD.pad) * f, h: y + CARD.pad * f, warmth: c.warmth, lines };
+	};
+	// Laid along in rows, broken where too wide for one, an arrow between two in a row; a row as tall as its tallest card.
 	const stripOf = (n: Node): Strip => {
 		const kept = strips.get(n);
 		if (kept) return kept;
 		const f = tableFont(n);
-		const strip: Strip = { w: 0, h: 0, chips: [], joins: [], names: [] };
+		const strip: Strip = { w: 0, h: 0, cards: [], joins: [] };
 		let x = 0;
-		let y = 0;
-		holds(n).filter((c) => c.said).forEach((c, i) => {
-			const w = measure(c.said, CHIP_TEXT * f, '400', MONO()) + (2 * CHIP_PAD + (c.warmth === undefined ? 0 : CHIP_BAR + CHIP_PAD * 0.6)) * f;
-			if (i && x + CHIP_GAP * f + w > STRIP_WIDE * f) {
+		let top = 0;
+		let tall = 0;
+		holds(n).forEach((c, i) => {
+			const card = cardOf(c, f);
+			if (i && x + CARD.gap * f + card.w > CARDS_WIDE * f) {
 				x = 0;
-				y += (CHIP_H + 0.4) * f;
+				top += tall + 0.6 * f;
+				tall = 0;
 			} else if (i) {
-				strip.joins.push({ x: x + (CHIP_GAP * f) / 2, y: y + (CHIP_H * f) / 2 });
-				x += CHIP_GAP * f;
+				strip.joins.push({ x: x + (CARD.gap * f) / 2, y: top + (CARD.pad + CARD.title * 1.35 + CARD.said * 0.65) * f });
+				x += CARD.gap * f;
 			}
-			strip.chips.push({ x, y, w, said: c.said, warmth: c.warmth });
-			x += w;
+			card.x = x;
+			card.y = top;
+			strip.cards.push(card);
+			x += card.w;
+			tall = Math.max(tall, card.h);
 			strip.w = Math.max(strip.w, x);
 		});
-		if (strip.chips.length) y += CHIP_H * f;
-		const bringing = holds(n).filter((c) => c.microbes);
-		for (const c of bringing)
-			for (const said of wrap(`${bringing.length > 1 ? `${c.done}: ` : ''}${c.microbes}`, STRIP_WIDE, 'italic 400')) {
-				y += ROW * f;
-				strip.names.push({ y, said });
-				strip.w = Math.max(strip.w, measure(said, f, 'italic 400'));
-			}
-		strip.h = y + (strip.names.length ? 0.35 * f : 0);
+		strip.h = top + tall;
 		strips.set(n, strip);
 		return strip;
 	};
@@ -1198,5 +1214,5 @@ export function layout(data: Graph) {
 		width: Math.max(...all.map((b) => b.x1)) - Math.min(...all.map((b) => b.x0)),
 		height: Math.max(...all.map((b) => b.y1)) - Math.min(...all.map((b) => b.y0)),
 	};
-	return { root, treeParent, nodes, children, size, paneled, panelOf, rootR, picture, radius, shown, countryName, stepFont, stepped, ROW, rows, keyLines, rowLines, tabled, pad, tableWidth, rowHeight, PANEL_PAD, panels, MAP_W, PIN, PIN_GROWS, PIN_FRAMED, pillsShown, rim, panelArea, rootWord, rootFont, grains, edges, inside, stepX, told, hittable, edgeShape, edgeLine, edgeBox, stepLines, stepBox, tableOf, pillBoxOf, bounds, tickX, CHIP_H, CHIP_PAD, CHIP_BAR, CHIP_TEXT };
+	return { root, treeParent, nodes, children, size, paneled, panelOf, rootR, picture, radius, shown, countryName, stepFont, stepped, ROW, rows, keyLines, rowLines, tabled, pad, tableWidth, rowHeight, PANEL_PAD, panels, MAP_W, PIN, PIN_GROWS, PIN_FRAMED, pillsShown, rim, panelArea, rootWord, rootFont, grains, edges, inside, stepX, told, hittable, edgeShape, edgeLine, edgeBox, stepLines, stepBox, tableOf, pillBoxOf, bounds, tickX, CARD };
 }

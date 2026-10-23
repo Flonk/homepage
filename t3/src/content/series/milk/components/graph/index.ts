@@ -64,12 +64,22 @@ mustAll(Object.keys(regions), isKnown, 'region for unknown');
  */
 const steps: Record<string, How> = S.Steps.parse(STEPS);
 mustAll(Object.keys(steps), isKnown, 'how is made unknown');
-/* A step's holds as the page draws them, a chip each: for how long, how
-   warm and how damp, "~5min @ 90–95°C", or what is done where it says none
-   of that; how warm it is, to tint it by; and the microbes added at it. */
-const DONE: Record<S.HeatTreatment['does'] | S.Ferment['does'], string> = { heat: 'heated', cook: 'cooked', cool: 'cooled', incubate: 'soured', ripen: 'ripened', smear: 'smeared', pierce: 'pierced' };
-const doneOf = (h: S.ProcessingStep) => (h.type === 'dry' ? 'dried' : DONE[h.does]);
-/* A measure as it is said, tight: "~18°C", "2–4°C", "≥85%", "6h–4d"; each
+/* A step of a step's processing as the page draws it, a card each: what
+   it is, "🦠 FERMENT"; for how long, how warm and how damp, "2 weeks @
+   20–30°C"; how warm, to mark it by; the microbes it adds; and its note. */
+const TITLE: Record<S.HeatTreatment['does'] | S.Ferment['does'] | 'dry', string> = {
+	heat: '🔥 HEAT',
+	cook: '🔥 COOK',
+	cool: '❄️ COOL',
+	incubate: '🦠 FERMENT',
+	ripen: '🦠 RIPEN',
+	smear: '🦠 SMEAR',
+	pierce: '🦠 PIERCE',
+	dry: '☀️ DRY',
+};
+const DONE: Record<keyof typeof TITLE, string> = { heat: 'heated', cook: 'cooked', cool: 'cooled', incubate: 'soured', ripen: 'ripened', smear: 'smeared', pierce: 'pierced', dry: 'dried' };
+const doesOf = (h: S.ProcessingStep) => (h.type === 'dry' ? 'dry' : h.does);
+/* A measure as it is said: "~18°C", "2–4°C", "≥85%", "6 h–4 days"; each
    end in the unit that suits it, the unit said once where both share it. */
 const spanOf = ({ min, max, about }: S.Range, unitOf: (x: number) => [number, string]) => {
 	const say = (x: number) => {
@@ -85,32 +95,29 @@ const spanOf = ({ min, max, about }: S.Range, unitOf: (x: number) => [number, st
 	return `${about ? '~' : ''}${min === max ? `${a}${ua}` : ua === ub ? `${a}–${b}${ua}` : `${a}${ua}–${b}${ub}`}`;
 };
 const inUnit = (unit: string) => (x: number): [number, string] => [x, unit];
-// Seconds in the unit that reads best, as a recipe would say it.
-const inTime = (s: number): [number, string] =>
-	s < 120 ? [s, 's'] : s < 7200 ? [s / 60, 'min'] : s < 172800 ? [s / 3600, 'h'] : s < 7776000 ? [s / 86400, 'd'] : s < 63072000 ? [s / 2592000, 'mo'] : [s / 31536000, 'yr'];
+// Seconds in the unit that reads best, as a recipe would say it, and in words where there is room.
+const inTime = (s: number): [number, string] => {
+	const [v, unit] = s < 120 ? [s, 's'] : s < 7200 ? [s / 60, 'min'] : s < 172800 ? [s / 3600, 'h'] : s < 1814400 ? [s / 86400, 'day'] : s < 7776000 ? [s / 604800, 'week'] : s < 63072000 ? [s / 2592000, 'month'] : [s / 31536000, 'year'];
+	return [v, ` ${unit}${unit.length > 3 && +v.toPrecision(2) !== 1 ? 's' : ''}`];
+};
 const chipOf = (h: S.ProcessingStep) => {
 	const warm = [h.seconds && spanOf(h.seconds, inTime), h.temperature && spanOf(h.temperature, inUnit('°C'))].filter(Boolean).join(' @ ');
-	const said = [warm, h.humidity && `${spanOf(h.humidity, inUnit('%'))} RH`].filter(Boolean).join(', ');
 	const t = h.temperature;
 	return {
-		said: said || doneOf(h),
-		done: doneOf(h),
+		title: TITLE[doesOf(h)],
+		said: [warm, h.humidity && `${spanOf(h.humidity, inUnit('%'))} RH`].filter(Boolean).join(', '),
+		done: DONE[doesOf(h)],
 		...(t && { warmth: ((t.min ?? t.max)! + (t.max ?? t.min)!) / 2 }),
 		...(h.type === 'ferment' && h.adds?.microbes.length && { microbes: h.adds.microbes.map((m) => m.name).join(', ') }),
+		...(h.note && { note: h.note }),
 	};
 };
-/* A step as the page has it: its processing as chips, and whether any of
-   it ferments, which marks it; not the processing itself.
-   Holds that say only what is done, none of them how warm or how long,
-   are no chips, "soured" alone saying no more than its microbe does:
-   only what they bring is kept. */
+// A step as the page has it: its processing as cards, and whether any of it ferments, which marks it; not the processing itself.
 const stepOf = (key: string) => {
 	if (!steps[key]) return undefined;
 	const { processing, ...rest } = steps[key];
 	const holds = processing?.steps;
-	const told = holds?.some((h) => h.temperature || h.seconds || h.humidity);
-	const chips = holds?.map(chipOf).filter((c) => told || c.microbes).map((c) => (told ? c : { ...c, said: '' }));
-	return { ...rest, ...(chips?.length && { holds: chips }), ...(holds?.some((h) => h.type === 'ferment') && { fermented: true }) };
+	return { ...rest, ...(holds && { holds: holds.map(chipOf) }), ...(holds?.some((h) => h.type === 'ferment') && { fermented: true }) };
 };
 
 /**

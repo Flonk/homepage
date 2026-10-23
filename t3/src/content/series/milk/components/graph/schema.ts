@@ -216,11 +216,17 @@ export const Inoculum = z.strictObject({
 });
 
 /* What a step of processing is held at: so warm, so long, so damp.
-   Temperatures in °C, times in seconds, humidity in percent. */
+   Temperatures in °C, times in seconds, humidity in percent. And one
+   sentence on it, drawn under it, for what these do not say: why, or how. */
+const Sentence = z
+	.string()
+	.min(1)
+	.refine((s) => !/[.!?]\s+\S/.test(s.trim()), 'one sentence');
 const Held = {
 	temperature: Range.optional(),
 	seconds: Range.optional(),
 	humidity: Range.optional(),
+	note: Sentence.optional(),
 };
 /* Held hot or cold to change it: heated (72 °C for 15 s, pasteurising),
    a curd cooked (52–54 °C), cooled or chilled. */

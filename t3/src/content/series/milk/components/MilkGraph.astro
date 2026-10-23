@@ -467,7 +467,6 @@ const { focus } = Astro.props;
 	.milk-about :global(.milk-about-microbes) {
 		margin: 0 0 0.35rem;
 		font-size: 0.8em;
-		font-style: italic;
 		color: var(--deck-ink-dim);
 	}
 	.milk-about :global(.milk-about-table > :last-child) {
@@ -594,7 +593,7 @@ const { focus } = Astro.props;
 	function draw(figure: HTMLElement, signal: AbortSignal, data: Graph, whole = false) {
 		// As the words in it have it (see measure).
 		setSpacing(parseFloat(getComputedStyle(figure).letterSpacing) || 0);
-		const { root, treeParent, nodes, children, size, paneled, panelOf, rootR, picture, radius, shown, countryName, stepFont, stepped, ROW, rows, keyLines, rowLines, tabled, pad, tableWidth, rowHeight, PANEL_PAD, panels, MAP_W, PIN, PIN_GROWS, PIN_FRAMED, pillsShown, rim, panelArea, rootWord, rootFont, grains, edges, inside, stepX, told, hittable, edgeShape, edgeLine, edgeBox, stepLines, stepBox, tableOf, pillBoxOf, bounds, tickX, CHIP_H, CHIP_PAD, CHIP_BAR, CHIP_TEXT } = layout(data);
+		const { root, treeParent, nodes, children, size, paneled, panelOf, rootR, picture, radius, shown, countryName, stepFont, stepped, ROW, rows, keyLines, rowLines, tabled, pad, tableWidth, rowHeight, PANEL_PAD, panels, MAP_W, PIN, PIN_GROWS, PIN_FRAMED, pillsShown, rim, panelArea, rootWord, rootFont, grains, edges, inside, stepX, told, hittable, edgeShape, edgeLine, edgeBox, stepLines, stepBox, tableOf, pillBoxOf, bounds, tickX, CARD } = layout(data);
 		// Those whose step has a table under it: its holds, its rows, or both.
 		const hasTable = new Set(tabled);
 		// The search's list named for it alone, as another graph on the page would name its own the same.
@@ -746,56 +745,54 @@ const { focus } = Astro.props;
 			const t = tableOf(n);
 			return { x: t.left, y: t.top + t.height, r: t.font * 0.75 };
 		};
-		/* A step's holds: each a chip as the table's cells are, on the pills'
-		   white, framed, its words in the pills' type, a bar at its edge for
-		   how warm it is held; an arrow to the next, and the microbes each
-		   brings under them. */
-		const drawStrip = (g: Pen, n: Node, on: boolean) => {
+		/* A step's processing: each step a card as the table's cells are, on
+		   the pills' white, framed, a bar down its edge for how warm it is
+		   held; its words each drawn once big enough to read, the microbes'
+		   only zoomed well in; an arrow to the next. */
+		const drawStrip = (g: Pen, n: Node, on: boolean, s: number) => {
 			const t = tableOf(n);
 			const strip = t.strip!;
 			const f = t.font;
-			const h = CHIP_H * f;
 			const r = f * (4 / 16) * 1.5;
 			g.lineWidth = f * 0.08;
-			g.textBaseline = 'middle';
 			g.textAlign = 'left';
-			g.font = font(CHIP_TEXT * f, '400', MONO());
-			for (const c of strip.chips) {
-				const x = t.left + c.x;
-				const y = t.top + c.y;
-				roundRect(g, x, y, c.w, h, r);
+			g.textBaseline = 'alphabetic';
+			for (const card of strip.cards) {
+				const x = t.left + card.x;
+				const y = t.top + card.y;
+				roundRect(g, x, y, card.w, card.h, r);
 				g.fillStyle = ink.pill;
 				g.fill();
 				g.strokeStyle = on ? ink.lit : ink.dim;
 				g.globalAlpha = on ? 1 : 0.5;
 				g.stroke();
 				g.globalAlpha = 1;
-				let at = x + CHIP_PAD * f;
-				if (c.warmth !== undefined) {
-					roundRect(g, at, y + h * 0.22, CHIP_BAR * f, h * 0.56, (CHIP_BAR * f) / 2);
-					g.fillStyle = warmthInk(c.warmth);
+				let at = x + CARD.pad * f;
+				if (card.warmth !== undefined) {
+					roundRect(g, at, y + CARD.pad * f, CARD.bar * f, card.h - 2 * CARD.pad * f, (CARD.bar * f) / 2);
+					g.fillStyle = warmthInk(card.warmth);
 					g.fill();
-					at += (CHIP_BAR + CHIP_PAD * 0.6) * f;
+					at += (CARD.bar + CARD.pad * 0.6) * f;
 				}
-				g.fillStyle = on ? ink.lit : ink.dim;
-				g.fillText(c.said, at, y + h / 2);
+				for (const l of card.lines) {
+					if (!legible(l.size, s)) continue;
+					g.font = font(l.size, l.face, l.mono ? MONO() : SANS());
+					g.fillStyle = on ? ink.lit : l.dim ? ink.dim : ink.text;
+					g.fillText(l.said, at, y + l.y);
+				}
 			}
 			g.textAlign = 'center';
+			g.textBaseline = 'middle';
 			g.fillStyle = ink.dim;
-			g.font = font(CHIP_TEXT * f, '700', MONO());
+			g.font = font(CARD.said * f, '700', MONO());
 			for (const j of strip.joins) g.fillText('→', t.left + j.x, t.top + j.y);
-			g.textAlign = 'left';
-			g.textBaseline = 'alphabetic';
-			g.font = font(f * 0.95, 'italic 400');
-			g.fillStyle = on ? ink.lit : ink.dim;
-			for (const { y, said } of strip.names) g.fillText(said, t.left, t.top + y);
 		};
 		// A step's table: its holds, then its rows on the pills' white, the names' column a shade darker, ruled, framed.
 		const drawTable = (g: Pen, n: Node, s: number) => {
 			const t = tableOf(n);
 			if (!legible(t.font, s)) return true;
 			const on = !unlit && n === stepShown;
-			if (t.strip) drawStrip(g, n, on);
+			if (t.strip) drawStrip(g, n, on, s);
 			if (t.rowsHeight) drawRows(g, n, on);
 			if (n.how?.fermented) {
 				const m = microbeOf(n);

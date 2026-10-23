@@ -4,9 +4,10 @@ type Sourcing = S.Sourcing;
 /* A product, an example or a branch point, as the page is given it (see
    milk/graph/index.ts) and as it is laid out: its own fields as the schema has
    them, the rest worked out on the way. */
-/* A hold as a chip: what it says ("72 °C · 15 s"), what is done, how warm it is, to
-   tint it by, and the microbes added at it. */
-export type Chip = { said: string; done: string; warmth?: number; microbes?: string };
+/* A step of processing as a card: what it is ("🦠 FERMENT"), what it
+   says ("2 weeks @ 20–30°C"), what is done, how warm it is, to mark it
+   by, the microbes added at it, and a sentence on it. */
+export type Chip = { title: string; said: string; done: string; warmth?: number; microbes?: string; note?: string };
 
 export type Node = Pick<S.Product, 'label' | 'step' | 'scale' | 'at' | 'panel' | 'map' | 'below' | 'link' | 'note' | 'aka'> & {
 	id: string;
