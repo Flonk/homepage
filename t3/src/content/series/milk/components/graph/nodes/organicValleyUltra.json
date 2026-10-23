@@ -35,8 +35,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "filter",
-					"by": "ultra",
+					"type": "ultrafilter",
 					"note": "A membrane keeps protein and calcium and lets water and part of the lactose through."
 				},
 				{

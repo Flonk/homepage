@@ -31,6 +31,8 @@ type Own = Exclude<Step['type'], 'custom' | 'heat' | 'ferment' | 'dry'>;
 const OWN: Record<Own, [string, string]> = {
 	pasteurise: ['🔥 PASTEURISE', 'pasteurised'],
 	homogenise: ['🌀 HOMOGENISE', 'homogenised'],
+	specialPasteurise: ['🔥 PASTEURISE', 'pasteurised'],
+	specialHomogenise: ['🌀 HOMOGENISE', 'homogenised'],
 	coagulate: ['🧀 COAGULATE', 'set'],
 	churn: ['🧈 CHURN', 'churned'],
 	salt: ['🧂 SALT', 'salted'],
@@ -41,11 +43,15 @@ const OWN: Record<Own, [string, string]> = {
 	separate: ['🫗 SEPARATE', 'separated'],
 	evaporate: ['♨️ EVAPORATE', 'boiled down'],
 	filter: ['🧪 FILTER', 'filtered'],
+	microfilter: ['🧪 MICROFILTER', 'microfiltered'],
+	ultrafilter: ['🧪 ULTRAFILTER', 'ultrafiltered'],
+	nanofilter: ['🧪 NANOFILTER', 'nanofiltered'],
+	diafilter: ['🧪 DIAFILTER', 'diafiltered'],
 	add: ['➕ ADD', 'added to'],
 	acidify: ['🍋 ACIDIFY', 'acidified'],
 };
 // What a step of its own says before how long and how warm: in a brine so strong, by hanging, to grains so big, what is added.
-const HOW: Partial<Record<string, string>> = { dry: 'dry', brine: 'in brine', milk: 'into the milk', hang: 'hung', cloth: 'in cloth', mould: 'in moulds', sieve: 'through a sieve', mill: 'milled', grind: 'ground', crumble: 'crumbled', shred: 'shredded', gravity: 'risen and skimmed', centrifuge: 'spun off', open: 'in the open', vacuum: 'under vacuum', micro: 'micro', ultra: 'ultra', nano: 'nano', dia: 'washed through' };
+const HOW: Partial<Record<string, string>> = { dry: 'dry', brine: 'in brine', milk: 'into the milk', hang: 'hung', cloth: 'in cloth', mould: 'in moulds', sieve: 'through a sieve', mill: 'milled', grind: 'ground', crumble: 'crumbled', shred: 'shredded', gravity: 'risen and skimmed', centrifuge: 'spun off', open: 'in the open', vacuum: 'under vacuum' };
 const ownSaid = (h: Step): (string | undefined)[] => {
 	const pc = (r?: S.Range) => r && span(r, inUnit('%'));
 	switch (h.type) {
@@ -60,7 +66,7 @@ const ownSaid = (h: Step): (string | undefined)[] => {
 		case 'evaporate':
 			return [h.under && HOW[h.under], h.solids && `to ${pc(h.solids)} solids`];
 		case 'filter':
-			return [h.by && HOW[h.by]];
+			return [h.by && 'through cloth'];
 		case 'acidify':
 			return [h.with && `with ${h.with}`, h.pH && `to pH ${span(h.pH, inUnit(''))}`];
 		case 'add':
@@ -76,8 +82,12 @@ const titleOf = (h: Step): [string, string] => {
 	return TITLE[plain.type === 'dry' ? 'dry' : plain.does];
 };
 
+/* Pasteurised and homogenised are said by name alone, but where they are
+   explained (see SpecialPasteurise): done as everywhere, nothing to add. */
+const plain = (h: Step) => h.type === 'pasteurise' || h.type === 'homogenise';
 export const chip = (h: Step): Chip => {
-	const held = [h.type === 'homogenise' && h.bar && span(h.bar, inUnit(' bar')), h.seconds && span(h.seconds, inTime), h.temperature && span(h.temperature, inUnit('°C'))]
+	if (plain(h)) return { title: titleOf(h)[0], said: '', done: titleOf(h)[1] };
+	const held = [h.type === 'specialHomogenise' && h.bar && span(h.bar, inUnit(' bar')), h.seconds && span(h.seconds, inTime), h.temperature && span(h.temperature, inUnit('°C'))]
 		.filter(Boolean)
 		.join(' @ ');
 	const [title, done] = titleOf(h);
@@ -149,5 +159,5 @@ export const drawCard = (g: Pen, c: Card, x: number, y: number, f: number, { ink
 
 /* ---- On a card ---- */
 
-// A chip: what it says, framed, in the pills' type.
-export const html = (c: Chip) => el('span', 'milk-about-hold', c.said);
+// A chip: what it says, framed, in the pills' type; what it is, where it says nothing more.
+export const html = (c: Chip) => el('span', 'milk-about-hold', c.said || c.title);

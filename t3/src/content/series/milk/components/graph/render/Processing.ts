@@ -56,7 +56,7 @@ export const html = (chips: Chip[]) => {
 	const parts: HTMLElement[] = [];
 	const row = el('p', 'milk-about-holds');
 	chips
-		.filter((c) => c.said)
+		.filter((c) => c.said || c.title)
 		.forEach((c, i) => {
 			if (i) row.append(el('span', 'milk-about-then', '→'));
 			row.append(chipHtml(c));

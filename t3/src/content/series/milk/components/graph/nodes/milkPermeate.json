@@ -29,8 +29,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "filter",
-					"by": "ultra",
+					"type": "ultrafilter",
 					"note": "Pasteurised skim milk is ultrafiltered, and the permeate is what passes through."
 				},
 				{

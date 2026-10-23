@@ -28,8 +28,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "filter",
-					"by": "ultra",
+					"type": "ultrafilter",
 					"note": "Ultrafiltration plus diafiltration, with water added to the retentate to wash lactose and minerals out."
 				}
 			],

@@ -198,6 +198,11 @@ export const Drying = z.strictObject({
    Churned: cream or soured milk beaten until its fat clumps into butter. */
 export const Pasteurise = z.strictObject({ type: z.literal('pasteurise'), ...Held });
 export const Homogenise = z.strictObject({ type: z.literal('homogenise'), bar: Bar.optional(), ...Held });
+/* Pasteurised and homogenised as an explainer: on the arrows into
+   pasteurised and homogenised milk, where how it is done is told in full.
+   Everywhere else they are said by name alone, being done as there. */
+export const SpecialPasteurise = Pasteurise.extend({ type: z.literal('specialPasteurise') });
+export const SpecialHomogenise = Homogenise.extend({ type: z.literal('specialHomogenise') });
 export const Coagulate = z.strictObject({
 	type: z.literal('coagulate'),
 	by: Setting.optional(),
@@ -212,8 +217,7 @@ export const Churn = z.strictObject({ type: z.literal('churn'), ...Held });
    ground, crumbled, shredded. Pressed. Moulded: put into its moulds, shaped.
    Separated: its cream off, risen and skimmed or spun off, so much fat left.
    Evaporated: boiled down, in the open or under vacuum, to so much solids.
-   Filtered: through a cloth, or a membrane fine or finer (micro, ultra,
-   nano), or washed through it (dia). Something added to it, so much of it. */
+   Filtered: through a cloth (and through membranes, see Microfilter). Something added to it, so much of it. */
 export const Salt = z.strictObject({ type: z.literal('salt'), how: z.enum(['dry', 'brine', 'milk']).optional(), strength: Percent.optional(), ...Held });
 export const Drain = z.strictObject({ type: z.literal('drain'), by: z.enum(['hang', 'cloth', 'mould', 'sieve']).optional(), ...Held });
 export const Cut = z.strictObject({ type: z.literal('cut'), how: z.enum(['cut', 'mill', 'grind', 'crumble', 'shred']).optional(), size: Millimetres.optional(), ...Held });
@@ -221,7 +225,12 @@ export const Press = z.strictObject({ type: z.literal('press'), ...Held });
 export const Mould = z.strictObject({ type: z.literal('mould'), ...Held });
 export const Separate = z.strictObject({ type: z.literal('separate'), by: z.enum(['gravity', 'centrifuge']).optional(), fat: Percent.optional(), ...Held });
 export const Evaporate = z.strictObject({ type: z.literal('evaporate'), under: z.enum(['open', 'vacuum']).optional(), solids: Percent.optional(), ...Held });
-export const Filter = z.strictObject({ type: z.literal('filter'), by: z.enum(['cloth', 'micro', 'ultra', 'nano', 'dia']).optional(), ...Held });
+export const Filter = z.strictObject({ type: z.literal('filter'), by: z.literal('cloth').optional(), ...Held });
+// Filtered through a membrane: finer and finer, micro, ultra, nano; or washed through one, dia.
+export const Microfilter = z.strictObject({ type: z.literal('microfilter'), ...Held });
+export const Ultrafilter = z.strictObject({ type: z.literal('ultrafilter'), ...Held });
+export const Nanofilter = z.strictObject({ type: z.literal('nanofilter'), ...Held });
+export const Diafilter = z.strictObject({ type: z.literal('diafilter'), ...Held });
 // Acidified: soured by an acid put in, not by microbes (see Ferment), with what, to so low a pH.
 export const Acidify = z.strictObject({ type: z.literal('acidify'), with: z.string().min(1).optional(), pH: PH.optional(), ...Held });
 export const Add = z.strictObject({ type: z.literal('add'), what: z.string().min(1).optional(), share: Percent.optional(), ...Held });
@@ -240,7 +249,7 @@ export const CustomStep = z.strictObject({
    treatment, a ferment and two coolings. In words what its steps do not
    hold, such as a second way it is made; and where all of it is from. */
 export const Processing = z.strictObject({
-	steps: z.array(z.discriminatedUnion('type', [Pasteurise, Homogenise, Coagulate, Churn, Salt, Drain, Cut, Press, Mould, Separate, Evaporate, Filter, Acidify, Add, HeatTreatment, Ferment, Drying, CustomStep])).min(1),
+	steps: z.array(z.discriminatedUnion('type', [Pasteurise, Homogenise, SpecialPasteurise, SpecialHomogenise, Coagulate, Churn, Salt, Drain, Cut, Press, Mould, Separate, Evaporate, Filter, Microfilter, Ultrafilter, Nanofilter, Diafilter, Acidify, Add, HeatTreatment, Ferment, Drying, CustomStep])).min(1),
 	text: z.string().optional(),
 	sources: Sourcing,
 });

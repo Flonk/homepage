@@ -51,13 +51,11 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "filter",
-					"by": "micro",
+					"type": "microfilter",
 					"note": "Along a ceramic membrane of about 0.1 µm (one study): whey proteins, lactose and minerals go through and the casein micelles stay."
 				},
 				{
-					"type": "filter",
-					"by": "dia",
+					"type": "diafilter",
 					"note": "In 3 stages with water at 200 % of feed, removing over 95 % of serum proteins."
 				}
 			],

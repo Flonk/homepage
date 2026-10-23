@@ -40,13 +40,11 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "filter",
-					"by": "ultra",
+					"type": "ultrafilter",
 					"note": "Pasteurised skim milk on a membrane that keeps the casein and whey proteins and lets lactose, minerals and water through."
 				},
 				{
-					"type": "filter",
-					"by": "dia",
+					"type": "diafilter",
 					"note": "Water is added and filtered out again to wash out lactose, needed above about 70 % protein."
 				},
 				{
