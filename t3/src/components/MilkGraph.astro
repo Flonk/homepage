@@ -722,6 +722,33 @@ const { focus } = Astro.props;
 		};
 
 		// A pill: its shadow, its white, its photograph, its words, its edge, and a kind's ruler.
+		// A straight line, so wide, in a colour.
+		const stroke = (g: Pen, x0: number, y0: number, x1: number, y1: number, width: number, colour: string) => {
+			g.beginPath();
+			g.moveTo(x0, y0);
+			g.lineTo(x1, y1);
+			g.lineWidth = width;
+			g.strokeStyle = colour;
+			g.stroke();
+		};
+		// Words in spaced small capitals, as a heading in a margin is.
+		const caption = (g: Pen, said: string, x: number, y: number) => {
+			const spaced = g.letterSpacing;
+			g.letterSpacing = '0.14em';
+			g.font = font(11, '600');
+			g.fillStyle = ink.text;
+			g.fillText(said.toUpperCase(), x, y);
+			g.letterSpacing = spaced;
+		};
+		/* A ruler along a pill's bottom edge, a kind's of fat or a panel's of
+		   time: a groove at each mark, deeper and darker for a major one, and
+		   its words over it. */
+		const groove = (g: Pen, x: number, edge: number, major: boolean) => stroke(g, x, edge - (major ? 8 : 4), x, edge, major ? 1.5 : 1, major ? ink.text : ink.dim);
+		const over = (g: Pen, said: string, x: number, edge: number) => {
+			g.font = font(10);
+			g.fillStyle = ink.dim;
+			g.fillText(said, x, edge - 12);
+		};
 		const drawPill = (g: Pen, d: Node, s: number) => {
 			// A map's cheese only once it can be read; a pin for its country till then (see drawPins).
 			if (d.onMap && !pillsShown(s)) return true;
@@ -734,7 +761,9 @@ const { focus } = Astro.props;
 			   A canvas blurs in the screen's pixels whatever it is scaled by, so
 			   the shadow is sized for the zoom it is drawn at. */
 			const px = s * dpr;
-			roundRect(g, x, y, d.w, d.h, d.panel || d.map ? [r, r, 0, 0] : r);
+			// Square along the bottom where a panel or a map hangs from it.
+			const outline = () => roundRect(g, x, y, d.w, d.h, d.panel || d.map ? [r, r, 0, 0] : r);
+			outline();
 			g.fillStyle = ink.pill;
 			// Too small to see a shadow under, and a thousand of them on a map: none.
 			g.shadowColor = d.h * px < 16 ? 'transparent' : 'rgb(0 0 0 / 0.12)';
@@ -766,7 +795,6 @@ const { focus } = Astro.props;
 				const said = d.label.split('\n');
 				const mark = d.link ? LINK_ROOM * size(d) : 0;
 				said.forEach((l, i) => g.fillText(l, d.x + (room - mark) / 2, d.y + (i - (said.length - 1) / 2) * LINE * size(d)));
-				g.globalAlpha = 1;
 				// Two links of a chain, slanted, before its right end.
 				if (d.link) {
 					const u = LINK_MARK * size(d);
@@ -782,65 +810,38 @@ const { focus } = Astro.props;
 					g.restore();
 				}
 			}
-			roundRect(g, x, y, d.w, d.h, d.panel || d.map ? [r, r, 0, 0] : r);
+			outline();
 			g.lineWidth = (!unlit && d === held ? 2 : 1.2) * rim(d);
 			g.strokeStyle = !unlit && d === held ? ink.lit : ink.rim;
 			g.stroke();
-			// A panel's ruler of time: its bottom edge grooved at each time, the time over it.
+			const edge = d.y + d.h / 2;
+			g.lineCap = 'round';
+			g.textBaseline = 'alphabetic';
+			g.textAlign = 'center';
+			// A panel's ruler of time: a groove at each time, the time over it.
 			if (d.panel && panels.has(d) && legible(10, s)) {
 				const P = panels.get(d)!;
-				const edge = d.y + d.h / 2;
-				g.textBaseline = 'alphabetic';
-				g.textAlign = 'center';
 				for (const [days, said] of P.times) {
 					const x = d.x - d.w / 2 + P.xOf(days);
-					g.beginPath();
-					g.moveTo(x, edge - 8);
-					g.lineTo(x, edge);
-					g.lineWidth = 1.5;
-					g.strokeStyle = ink.text;
-					g.stroke();
-					g.font = font(10);
-					g.fillStyle = ink.dim;
-					g.fillText(said, x, edge - 12);
+					groove(g, x, edge, true);
+					over(g, said, x, edge);
 				}
 			}
-			// A kind's ruler: its bottom edge grooved every unit, deeper every step, the value over each.
+			// A kind's ruler: a groove every unit, deeper every step, the value over each.
 			if (d.scale && legible(10, s)) {
 				const { to, every, unit, name: measures } = d.scale;
-				const edge = d.y + d.h / 2;
 				const tick = (v: number) => d.x + (v - to / 2) * RULE_PX;
-				g.lineCap = 'round';
-				g.textBaseline = 'alphabetic';
 				for (let v = 0; v <= to; v++) {
 					const major = v % every === 0;
-					g.beginPath();
-					g.moveTo(tick(v), edge - (major ? 8 : 4));
-					g.lineTo(tick(v), edge);
-					g.lineWidth = major ? 1.5 : 1;
-					g.strokeStyle = major ? ink.text : ink.dim;
-					g.stroke();
-					if (!major) continue;
-					g.font = font(10);
-					g.fillStyle = ink.dim;
-					if (v) {
-						g.textAlign = 'center';
-						g.fillText(`${v} ${unit}`, tick(v), edge - 12);
-						continue;
-					}
-					// What it measures, before its nought, ending over the groove.
-					g.textAlign = 'right';
-					g.fillText(' 0', tick(0) + 3, edge - 12);
-					const zero = g.measureText(' 0').width;
-					g.font = font(11, '600');
-					const spaced = g.letterSpacing;
-					g.letterSpacing = '0.14em';
-					g.fillStyle = ink.text;
-					g.fillText(measures.toUpperCase(), tick(0) + 3 - zero, edge - 12);
-					g.letterSpacing = spaced;
+					groove(g, tick(v), edge, major);
+					if (major && v) over(g, `${v} ${unit}`, tick(v), edge);
 				}
-				g.lineCap = 'butt';
+				// What it measures, before its nought, ending over the groove.
+				g.textAlign = 'right';
+				over(g, ' 0', tick(0) + 3, edge);
+				caption(g, measures, tick(0) + 3 - g.measureText(' 0').width, edge - 12);
 			}
+			g.lineCap = 'butt';
 			return whole;
 		};
 
@@ -996,36 +997,15 @@ const { focus } = Astro.props;
 			g.stroke();
 			// A map's land and cheeses are drawn in tiles of their own (see drawTiles).
 			if (P.kind === 'map') return true;
-			for (const [d] of P.times) {
-				const x = left + P.xOf(d);
-				g.beginPath();
-				g.moveTo(x, top);
-				g.lineTo(x, top + P.h);
-				g.lineWidth = 0.75;
-				g.strokeStyle = ink.grid;
-				g.stroke();
-			}
+			for (const [d] of P.times) stroke(g, left + P.xOf(d), top, left + P.xOf(d), top + P.h, 0.75, ink.grid);
 			if (legible(11, s)) {
 				g.textBaseline = 'middle';
 				g.textAlign = 'right';
-				g.font = font(11, '600');
-				const spaced = g.letterSpacing;
-				g.letterSpacing = '0.14em';
-				g.fillStyle = ink.text;
-				for (const { firm, y, h } of P.rows) g.fillText(firm.toUpperCase(), left + picture(p), top + y + h / 2);
-				g.letterSpacing = spaced;
+				for (const { firm, y, h } of P.rows) caption(g, firm, left + picture(p), top + y + h / 2);
 			}
 			g.lineCap = 'round';
-			for (const [k] of P.at) {
-				// A guess has no span to show.
-				if (k.unsure) continue;
-				g.beginPath();
-				g.moveTo(left + P.xOf(k.axes!.days[0]), k.y);
-				g.lineTo(left + P.xOf(k.axes!.days[1]), k.y);
-				g.lineWidth = 3;
-				g.strokeStyle = ink.line;
-				g.stroke();
-			}
+			// A guess has no span to show.
+			for (const [k] of P.at) if (!k.unsure) stroke(g, left + P.xOf(k.axes!.days[0]), k.y, left + P.xOf(k.axes!.days[1]), k.y, 3, ink.line);
 			g.lineCap = 'butt';
 			return true;
 		};
