@@ -400,7 +400,8 @@ export const Nodes = z.record(ProductId, Node);
 /* ---- The page: what the graph is given (see index.ts, and render/ for how each is made) ---- */
 
 // A step of processing as a card: what it is ("🦠 FERMENT"), what it says ("2 weeks @ 20–30°C"), what is done ("soured"), the microbes it adds, its sentence.
-export const Chip = z.strictObject({ title: z.string(), said: z.string(), done: z.string(), microbes: z.string().optional(), note: z.string().optional() });
+// One that says little, said on one line with what it is, "🍋 ACIDIFY · 10% hydrochloric acid · pH 4.6".
+export const Chip = z.strictObject({ title: z.string(), said: z.string(), done: z.string(), microbes: z.string().optional(), note: z.string().optional(), inline: z.literal(true).optional() });
 // A photograph where it is, and its credit.
 export const PicturePage = z.strictObject({ src: z.string(), credit: z.string(), author: z.string(), license: z.string(), source: z.string() });
 export const RowPage = z.strictObject({ k: z.string(), v: z.string() });

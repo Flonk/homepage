@@ -68,7 +68,7 @@ const ownSaid = (h: Step): (string | undefined)[] => {
 		case 'filter':
 			return [h.by && 'through cloth'];
 		case 'acidify':
-			return [h.with && `with ${h.with}`, h.pH && `to pH ${span(h.pH, inUnit(''))}`];
+			return [h.with, h.pH && `pH ${span(h.pH, inUnit(''))}`];
 		case 'add':
 			return [h.what, pc(h.share)];
 		default:
@@ -87,6 +87,11 @@ const titleOf = (h: Step): [string, string] => {
 const plain = (h: Step) => h.type === 'pasteurise' || h.type === 'homogenise';
 export const chip = (h: Step): Chip => {
 	if (plain(h)) return { title: titleOf(h)[0], said: '', done: titleOf(h)[1] };
+	// Acidifying says what with and to what pH, on one line with its name.
+	if (h.type === 'acidify') {
+		const [title, done] = titleOf(h);
+		return { title, said: ownSaid(h).filter(Boolean).join(' · '), done, inline: true, ...(h.note && { note: h.note }) };
+	}
 	const held = [h.type === 'specialHomogenise' && h.bar && span(h.bar, inUnit(' bar')), h.seconds && span(h.seconds, inTime), h.temperature && span(h.temperature, inUnit('°C'))]
 		.filter(Boolean)
 		.join(' @ ');
@@ -110,12 +115,23 @@ export const chip = (h: Step): Chip => {
    the room round them, the room for the arrow between two cards, the least
    and the most a card's words run. */
 export const CARD = { title: 0.55, said: 1, tiny: 0.36, note: 0.5, pad: 0.5, gap: 1.4, least: 5, most: 12 };
-type Line = { said: string; y: number; size: number; face: string; mono: boolean; dim: boolean };
+// A line of a card, and what it is said after on it, in bold, where it is a one-liner's.
+type Line = { said: string; y: number; size: number; face: string; mono: boolean; dim: boolean; lead?: string };
 export type Card = { x: number; y: number; w: number; h: number; lines: Line[] };
 
 // Laid out at its table's letter size, from its own top left.
 export const card = (c: Chip, f: number): Card => {
 	const most = CARD.most * f;
+	// A one-liner: what it is and what it says on one line, at the size it says it.
+	if (c.inline && c.said) {
+		const lead = `${c.title} · `;
+		const w = measure(lead, CARD.said * f, '700', MONO()) + measure(c.said, CARD.said * f, '400', MONO());
+		const line = { said: c.said, lead, y: CARD.pad * f + CARD.said * f * 0.82, size: CARD.said * f, face: '400', mono: true, dim: false };
+		let h = CARD.pad * f + CARD.said * f * 1.1;
+		const lines: Line[] = [line];
+		if (c.note) for (const said of wrap(c.note, Math.max(w, CARD.least * f), CARD.note * f, '400')) lines.push({ said, y: (h += CARD.note * f * 1.3) - CARD.note * f * 0.48, size: CARD.note * f, face: '400', mono: false, dim: false });
+		return { x: 0, y: 0, w: w + 2 * CARD.pad * f, h: h + CARD.pad * f, lines };
+	}
 	const saidLines = c.said ? wrap(c.said, most, CARD.said * f, '400', MONO()) : [];
 	const natural = Math.max(
 		CARD.least * f,
@@ -151,9 +167,16 @@ export const drawCard = (g: Pen, c: Card, x: number, y: number, f: number, { ink
 	g.textBaseline = 'alphabetic';
 	for (const l of c.lines) {
 		if (!legible(l.size, s)) continue;
+		let at = x + CARD.pad * f;
+		if (l.lead) {
+			g.font = font(l.size, '700', MONO());
+			g.fillStyle = on ? ink.lit : ink.dim;
+			g.fillText(l.lead, at, y + l.y);
+			at += measure(l.lead, l.size, '700', MONO());
+		}
 		g.font = font(l.size, l.face, l.mono ? MONO() : SANS());
 		g.fillStyle = on ? ink.lit : l.dim ? ink.dim : ink.text;
-		g.fillText(l.said, x + CARD.pad * f, y + l.y);
+		g.fillText(l.said, at, y + l.y);
 	}
 };
 
