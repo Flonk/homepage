@@ -1,5 +1,6 @@
 ---
 import { herd } from './graph';
+import { MARK, titled } from './graph/render/Beasts';
 
 /**
  * What milk becomes: every product as a node and every making-of as an arrow,
@@ -51,9 +52,9 @@ const { focus } = Astro.props;
 		/>
 		<div class="milk-beasts" role="group" aria-label="Only what is made from the milk of">
 			{
-				herd.map(({ mark, milk }) => (
-					<button type="button" aria-pressed="false" data-milk={milk} title={`${milk[0].toUpperCase()}${milk.slice(1)} milk`}>
-						{mark}
+				herd.map((b) => (
+					<button type="button" aria-pressed="false" data-milk={b} title={titled(b)}>
+						{MARK[b]}
 					</button>
 				))
 			}
@@ -586,8 +587,9 @@ const { focus } = Astro.props;
 	import { html as axesHtml } from './graph/render/Axes';
 	import { credit } from './graph/render/Picture';
 	import { said as regionsSaid, nameOf } from './graph/render/Regions';
-	import { said as beastsSaid } from './graph/render/Beasts';
+	import { said as beastsSaid, MARK as BEAST_MARK } from './graph/render/Beasts';
 	import { SEAL } from './graph/render/Cheese';
+	import type { Beast } from './graph/schema';
 
 
 	/* Drawn from the graph given, the whole of it or what a filter left of
@@ -1099,7 +1101,7 @@ const { focus } = Astro.props;
 		/* The animals whose milk it is, on the bottom left corner, as the
 		   flags are on the top right: bare, bigger than a flag, with a soft
 		   shadow under each, each a little in from the one before. */
-		const beastsAt = (d: Node) => corner(d, d.beasts!.length, false, true, 0.3, 1.5).map((at, i) => ({ ...at, ...d.beasts![i] }));
+		const beastsAt = (d: Node) => corner(d, d.beasts!.length, false, true, 0.3, 1.5).map((at, i) => ({ ...at, mark: BEAST_MARK[d.beasts![i]] }));
 		const drawBeasts = (g: Pen, d: Node, s: number) => {
 			for (const { mark, r, x, y } of beastsAt(d)) {
 				if (!legible(r * 2, s)) continue;
@@ -2119,7 +2121,7 @@ const { focus } = Astro.props;
 							'click',
 							() => {
 								chip.setAttribute('aria-pressed', String(chip.getAttribute('aria-pressed') !== 'true'));
-								const milks = new Set(chips.filter((c) => c.getAttribute('aria-pressed') === 'true').map((c) => c.dataset.milk!));
+								const milks = new Set(chips.filter((c) => c.getAttribute('aria-pressed') === 'true').map((c) => c.dataset.milk as Beast));
 								redraw(only(data, milks), milks.size > 0);
 							},
 							{ signal },

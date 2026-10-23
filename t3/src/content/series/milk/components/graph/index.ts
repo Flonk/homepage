@@ -8,7 +8,7 @@ import * as S from './schema';
 import { NODES, type Product } from './products';
 import { IMAGES, EXAMPLE_IMAGES } from './pictures';
 import { EXAMPLE_AKA, EXAMPLE_NOTES, EXAMPLE_AXES } from './examples';
-import { BEASTS, MILK_OF } from './animals';
+import { MILK_OF } from './animals';
 import { GROUPS, KINDS, SPLITS, TREATED, LIGHT, STAPLE, KNOWN } from './families';
 import { WORLD_MILK, SHARES } from './shares';
 import { page as howPage } from './render/How';
@@ -45,6 +45,7 @@ mustAll(Object.keys(examplePictures), (k) => named.has(k), 'picture for unknown 
 mustAll(Object.keys(EXAMPLE_AKA), (k) => named.has(k), 'other names for unknown example');
 mustAll(Object.keys(EXAMPLE_NOTES), (k) => named.has(k), 'note for unknown example');
 mustAll(Object.keys(EXAMPLE_AXES), (k) => named.has(k), 'axes for unknown example');
+z.record(z.string(), S.Beasts).parse(MILK_OF);
 mustAll(Object.keys(MILK_OF), isKnown, 'milk of unknown');
 
 /**
@@ -146,9 +147,9 @@ for (const n of Object.values(NODES)) {
 	}
 }
 
-const beastsOf = (key: string) => MILK_OF[key]?.map((b) => BEASTS[b]);
+const beastsOf = (key: string): S.Beasts | undefined => MILK_OF[key];
 // The animals to filter by: those any product is marked with, the cow first.
-export const herd = Object.values(BEASTS).filter((b) => b.milk === 'cow' || Object.values(MILK_OF).some((of) => of.some((k) => BEASTS[k] === b)));
+export const herd = S.Beast.options.filter((b) => b === 'cow' || Object.values(MILK_OF).some((of) => of.includes(b)));
 
 const exampleFile = (name: string) =>
 	`ex-${name.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`;
@@ -233,7 +234,7 @@ const factsOf = (label: string) => {
 		regions: regions[label] ?? (c?.countries.length ? c.countries.slice(0, S.MOST_COUNTRIES) : undefined),
 		aka: EXAMPLE_AKA[label],
 		note: EXAMPLE_NOTES[label],
-		beasts: beastsOf(label) ?? (c && c.milk.length && c.milk.join() !== 'cow' ? c.milk.map((m) => BEASTS[m]) : undefined),
+		beasts: beastsOf(label) ?? (c && c.milk.length && c.milk.join() !== 'cow' ? c.milk : undefined),
 		axes: EXAMPLE_AXES[label] ?? (c?.firm && c.days ? { firm: c.firm, days: c.days } : undefined),
 		protected: c?.protected,
 		unsure: UNSURE.has(label) ? UNSURE_SAID : undefined,

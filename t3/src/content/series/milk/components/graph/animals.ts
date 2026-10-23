@@ -1,22 +1,11 @@
 import type { Beast } from './schema';
 
-/* The animals whose milk it is made from, where that is not only a cow's: a
-   mark for each on its bottom left corner, the biggest share first, and the
-   cow among them where it is made from hers as well, or as often. Marked
-   only where the other milk is what it is made from, by law or as it
-   usually is, not where it only may be: kefir can be made of goat's milk,
-   but is not marked. By product id or example name. */
-export const BEASTS: Record<Beast, { mark: string; milk: string }> = {
-	cow: { mark: '🐄', milk: 'cow' },
-	sheep: { mark: '🐑', milk: 'sheep' },
-	goat: { mark: '🐐', milk: 'goat' },
-	horse: { mark: '🐎', milk: 'mare' },
-	donkey: { mark: '🫏', milk: 'donkey' },
-	buffalo: { mark: '🐃', milk: 'buffalo' },
-	camel: { mark: '🐪', milk: 'camel' },
-	yak: { mark: '🦬', milk: 'yak' },
-	reindeer: { mark: '🦌', milk: 'reindeer' },
-};
+/* The animals whose milk it is made from, where that is not only a cow's
+   (see Beasts): a mark for each on its bottom left corner, the biggest
+   share first, and the cow among them where it is made from hers as well,
+   or as often. Marked only where the other milk is what it is made from,
+   by law or as it usually is, not where it only may be: kefir can be made
+   of goat's milk, but is not marked. By product id or example name. */
 export const MILK_OF: Record<string, Beast[]> = {
 	'Afyon kaymagi': ['buffalo'],
 	Dondurma: ['goat'],

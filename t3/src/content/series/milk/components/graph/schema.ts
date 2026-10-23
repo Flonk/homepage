@@ -59,8 +59,11 @@ export const AboutFile = z.object({
 export const Regions = z.object({ countries: Countries, sources: Sourcing });
 export const RegionsFile = z.record(z.string(), Regions);
 
-// The animals whose milk a product or an example is made from, where not only cows' (MILK_OF).
-export const Beasts = z.object({ beasts: z.array(Beast).min(1), sources: Sourcing });
+// The animals whose milk a thing is made from, the biggest share first, each once (MILK_OF, cheeses.json).
+export const Beasts = z
+	.array(Beast)
+	.min(1)
+	.refine((bs) => new Set(bs).size === bs.length, 'each animal once');
 
 /* ---- Each node: a product ---- */
 
@@ -144,7 +147,7 @@ export const Cheese = z.object({
 	family: z.string(),
 	secondary: z.string().optional(),
 	countries: z.array(Country),
-	milk: z.array(Beast),
+	milk: z.union([Beasts, z.array(Beast).length(0)]),
 	firm: Firm.nullable(),
 	days: z.tuple([z.number(), z.number()]).nullable(),
 	// The days not found in a source, but its family's usual.
@@ -337,6 +340,7 @@ export const Arrow = z.object({
 
 export type Sources = z.infer<typeof Sources>;
 export type Beast = z.infer<typeof Beast>;
+export type Beasts = z.infer<typeof Beasts>;
 export type Firm = z.infer<typeof Firm>;
 export type Sourcing = z.infer<typeof Sourcing>;
 export type Picture = z.infer<typeof Picture>;

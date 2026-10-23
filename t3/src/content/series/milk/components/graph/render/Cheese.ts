@@ -1,5 +1,5 @@
 import type { Cheese, About, How } from '../schema';
-import { BEASTS } from '../animals';
+import { MILK } from './Beasts';
 import { nameOf } from './Regions';
 
 /*
@@ -7,7 +7,7 @@ import { nameOf } from './Regions';
  * told in: what it is, from the list it was found in or else from its
  * facts; how it is made; and what its seal stands for.
  */
-const milkOf = (c: Cheese, and: string) => c.milk.map((m) => BEASTS[m].milk).join(and);
+const milkOf = (c: Cheese, and: string) => c.milk.map((m) => MILK[m]).join(and);
 export const about = (c: Cheese): About => {
 	const milk = milkOf(c, ' and ');
 	const from = c.countries.map(nameOf).join(', ');

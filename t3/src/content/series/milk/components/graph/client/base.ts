@@ -40,7 +40,7 @@ export type Node = Pick<S.Product, 'label' | 'step' | 'scale' | 'at' | 'panel' |
 	protected?: string;
 	unsure?: string;
 	// The animals it is made from the milk of, if not a cow (see MILK_OF).
-	beasts?: { mark: string; milk: string }[];
+	beasts?: S.Beasts;
 	// Which family's slice it is held in; milk, in the middle, is in none.
 	group: number;
 	// 0 a staple, 1 well known, 2 niche (see STAPLE and KNOWN).
@@ -173,10 +173,10 @@ export type Graph = {
 /* Only what is made from the milk of the animals chosen, and what that
    is made from, so the tree still reads down to it. A product with no
    animal marked is a cow's; one drawn again goes as the one it is of. */
-export const only = (data: Graph, milks: Set<string>): Graph => {
+export const only = (data: Graph, milks: Set<S.Beast>): Graph => {
 	if (!milks.size) return data;
 	const byId = new Map(data.nodes.map((n) => [n.id, n]));
-	const fits = (n: Node) => ((n.link && byId.get(n.link)) || n).beasts?.map((b) => b.milk) ?? ['cow'];
+	const fits = (n: Node): S.Beast[] => ((n.link && byId.get(n.link)) || n).beasts ?? ['cow'];
 	const parent = new Map(data.links.map((l) => [l.target, l.source]));
 	const kept = new Set([ROOT]);
 	for (const n of data.nodes)
