@@ -221,7 +221,7 @@ export const Inoculum = z.strictObject({
 const Sentence = z
 	.string()
 	.min(1)
-	.refine((s) => !/[.!?]\s+\S/.test(s.trim()), 'one sentence');
+	.refine((s) => !/[.!?]\s+[A-Z][a-z]+\s/.test(s.trim()), 'one sentence');
 const Held = {
 	temperature: Range.optional(),
 	seconds: Range.optional(),
