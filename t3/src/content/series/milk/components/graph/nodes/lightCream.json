@@ -49,9 +49,11 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "standardise",
-					"note": "To 18 to under 30 % milkfat."
+					"type": "standardise",
+					"fat": {
+						"min": 18,
+						"max": 30
+					}
 				},
 				{
 					"type": "pasteurise",

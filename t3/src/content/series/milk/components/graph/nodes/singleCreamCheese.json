@@ -26,9 +26,11 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "standardise",
-					"note": "Fat in the initial mix is 4.5–5 %."
+					"type": "standardise",
+					"fat": {
+						"min": 4.5,
+						"max": 5
+					}
 				}
 			],
 			"sources": {

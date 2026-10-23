@@ -26,9 +26,11 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "standardise",
-					"note": "Fat in the mix is 9–11 %."
+					"type": "standardise",
+					"fat": {
+						"min": 9,
+						"max": 11
+					}
 				}
 			],
 			"sources": {

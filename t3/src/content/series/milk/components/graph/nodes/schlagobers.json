@@ -48,9 +48,10 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "standardise",
-					"note": "To the whipping grade."
+					"type": "standardise",
+					"fat": {
+						"min": 30
+					}
 				},
 				{
 					"type": "add",

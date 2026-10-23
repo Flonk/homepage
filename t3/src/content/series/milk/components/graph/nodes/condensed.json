@@ -48,8 +48,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "standardise"
+					"type": "standardise"
 				},
 				{
 					"type": "heat",

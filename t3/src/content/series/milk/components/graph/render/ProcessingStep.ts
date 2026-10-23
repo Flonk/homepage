@@ -50,6 +50,7 @@ const OWN: Record<Own, [string, string]> = {
 	add: ['➕ ADD', 'added to'],
 	acidify: ['🍋 ACIDIFY', 'acidified'],
 	washCurd: ['🚿 WASH CURD', 'washed'],
+	standardise: ['⚖️ STANDARDISE FAT', 'standardised'],
 	wash: ['🚿 WASH', 'washed'],
 };
 // What a step of its own says before how long and how warm: in a brine so strong, by hanging, to grains so big, what is added.
@@ -71,6 +72,8 @@ const ownSaid = (h: Step): (string | undefined)[] => {
 			return [h.by && 'through cloth'];
 		case 'acidify':
 			return [h.with, h.pH && `pH ${span(h.pH, inUnit(''))}`];
+		case 'standardise':
+			return [pc(h.fat)];
 		case 'washCurd':
 			return [h.share && `${span(h.share, inUnit('%'))} of the whey`];
 		case 'wash':
