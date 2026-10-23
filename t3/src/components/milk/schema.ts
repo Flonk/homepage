@@ -31,7 +31,9 @@ export const Country = z.string().regex(/^[A-Z]{2}$/);
 
 // The animals milked: a product's or an example's (MILK_OF), and the map's cheeses' (cheeses.json).
 export const Beast = z.enum(['cow', 'sheep', 'goat', 'horse', 'donkey', 'buffalo', 'camel', 'yak', 'reindeer']);
-export const CheeseMilk = z.enum(['cow', 'sheep', 'goat', 'buffalo', 'yak', 'camel', 'reindeer', 'donkey', 'horse']);
+// A regional product's countries, each drawn as its flag: made in more than four, it is not regional.
+export const MOST_COUNTRIES = 4;
+export const Countries = z.array(Country).min(1).max(MOST_COUNTRIES);
 
 // A photograph, and its credit (IMAGES, EXAMPLE_IMAGES): its sources its page on Wikimedia Commons.
 export const Picture = z.object({
@@ -49,7 +51,7 @@ export const AboutFile = z.object({
 });
 
 // The countries a product or an example is from (regions.json).
-export const Regions = z.object({ countries: z.array(Country).min(1), sources: Sourcing });
+export const Regions = z.object({ countries: Countries, sources: Sourcing });
 export const RegionsFile = z.record(z.string(), Regions);
 
 // The animals whose milk a product or an example is made from, where not only cows' (MILK_OF).
@@ -137,7 +139,7 @@ export const Cheese = z.object({
 	family: z.string(),
 	secondary: z.string().optional(),
 	countries: z.array(Country),
-	milk: z.array(CheeseMilk),
+	milk: z.array(Beast),
 	firm: Firm.nullable(),
 	days: z.tuple([z.number(), z.number()]).nullable(),
 	// The days not found in a source, but its family's usual.
@@ -206,6 +208,8 @@ export const Arrow = z.object({
 });
 
 export type Sources = z.infer<typeof Sources>;
+export type Beast = z.infer<typeof Beast>;
+export type Firm = z.infer<typeof Firm>;
 export type Sourcing = z.infer<typeof Sourcing>;
 export type Picture = z.infer<typeof Picture>;
 export type About = z.infer<typeof About>;

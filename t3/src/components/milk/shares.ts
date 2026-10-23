@@ -9,25 +9,11 @@ import * as S from './schema';
  * cheese's own weight and a little whey. What is left, about 175 Mt, is
  * drunk raw or boiled, or fed to calves, and goes nowhere in the tree.
  *
- * Sources (each share links to its own, below):
- * - IDF, The World Dairy Situation 2024: milk, cheese, butter and powder
- *   output in 2023; cow's milk delivered to dairies 59%.
- *   https://www.milksa.co.za/sites/default/files/2024-12/2024%20World%20Dairy%20Situation%20Report.pdf
- * - India, where milk goes: about 20% to co-operatives and private dairies,
- *   32% sold loose, 48% kept at home (Dept. of Animal Husbandry and
- *   Dairying, FY19, via CARE Ratings); liquid milk about 46%, ghee and
- *   butter about a third, khoa, paneer and dahi most of the rest.
- *   https://www.careratings.com/upload/NewsFiles/SplAnalysis/Indian%20Dairy%20%20Dairy%20Products%20Industry%20-%20June%202020.pdf
- *   https://epgp.inflibnet.ac.in/epgpdata/uploads/epgp_content/S000015FT/P000357/M002906/ET/1462433257P-7_1ET.pdf
- * - FAO: over 80% of the milk marketed in developing countries is handled
- *   informally, most of it boiled at home.
- *   https://www.fao.org/dairy-production-products/socio-economics/markets-and-trade/en
- * - Cream for direct consumption by country, 2023 (Eurostat apro_mk_cola,
- *   via Reportlinker): Germany 522 kt, France 470, the UK 315, Belgium 270,
- *   Poland 265, Italy 152, Spain 137.
- *   https://www.allthatstats.com/en/statistics/apro_mk_cola/cows-milk-collection-and-products-obtained-annual-data/?page=2
- * - Camel milk, about 4 Mt in 2022 (FAOSTAT, via DairyNews).
- *   https://dairynews.today/news/camel_milk_industry_expands_with_increased_global_demand_6003217.html
+ * Each links to its own sources (below): IDF's World Dairy Situation for
+ * the world's milk, cheese, butter and powders; India's dairy department
+ * (via CARE Ratings) and a course on its milk's uses for where India's
+ * goes; the FAO for how much is sold informally; FAOSTAT for camel milk;
+ * Eurostat for cream sold as cream.
  */
 export const WORLD_MILK = 964;
 export const IDF = { name: 'IDF, The World Dairy Situation 2024', url: 'https://www.milksa.co.za/sites/default/files/2024-12/2024%20World%20Dairy%20Situation%20Report.pdf' };

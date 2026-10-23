@@ -681,6 +681,8 @@ const { focus } = Astro.props;
 	let drawn = 0;
 	type Graph = {
 		light: number;
+		// How firm a cheese can be, softest first (see S.Firm).
+		firms: string[];
 		groups: { name: string; hub: string | null }[];
 		splits: { from: string; step: string; ids: string[] }[];
 		kinds: { step: string; ids: string[]; how: Node['how'] }[];
@@ -1220,7 +1222,7 @@ const { focus } = Astro.props;
 		   Hung straight under its family, its pill as wide as the panel: the
 		   pill's bottom edge is the panel's ruler of time, as a kind's is of
 		   fat, and the column under its photograph holds the rows' names. */
-		const FIRM_ORDER = ['fresh', 'soft', 'semi-soft', 'semi-hard', 'hard', 'extra-hard'];
+		const FIRM_ORDER: string[] = data.firms;
 		const PANEL_DECADE = 10 * NODE_H;
 		const PANEL_PAD = 18;
 		const TIMES: [number, string][] = [

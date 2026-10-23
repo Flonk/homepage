@@ -1,3 +1,5 @@
+import type * as S from './schema';
+
 /**
  * A product: the name drawn on its node, a line break where it wraps, and
  * every other name it goes by, here or elsewhere in the world. The other
@@ -25,30 +27,7 @@
  * ripened across and how firm it is down (see EXAMPLE_AXES); what is made
  * from it branches off to its right as from any other.
  */
-export type Product = {
-	label: string;
-	aka?: string[];
-	examples?: string[];
-	from?: string;
-	alsoFrom?: string[];
-	step?: string;
-	scale?: { name: string; unit: string; to: number; every: number };
-	at?: number;
-	panel?: boolean;
-	// Drawn as the header of a map of the world's cheeses, each where it is made (see WORLD).
-	map?: boolean;
-	/* A family of cheeses drawn only as its cheeses, on the map: not a
-	   product of its own in the tree, nor its examples under it. Its name
-	   finds the map. */
-	mapped?: boolean;
-	// Drawn just below the branch of this sibling, as its kin, whatever their sizes.
-	below?: string;
-	// A remark worth having at a glance, behind an info mark on its pill's bottom right corner.
-	note?: string;
-	// Not a product of its own but another drawn again where it is also made, with a link
-	// mark on it: pressed, the graph goes to that one. Its names and its card are that one's.
-	link?: string;
-};
+export type Product = Omit<S.Product, 'sources'>;
 
 /** Every product, by a short id. */
 export const NODES: Record<string, Product> = {
@@ -546,11 +525,11 @@ export const NODES: Record<string, Product> = {
 	freshCheese: { mapped: true, label: 'Fresh cheese', aka: ['Frischkäse'], examples: ['Queso fresco', 'Queso blanco', 'Panela', 'Stracchino', 'Robiola', 'Tomino', 'Mató', 'Jben', 'Queijo Minas frescal', 'Kesong puti', 'Renost'], from: 'rennetCurd', alsoFrom: ['lacticCheese'], step: 'drain fresh' },
 	lacticCheese: { label: 'Lactic-set cheese', aka: ['Fromage lactique', 'Lactic cheese'], examples: ['Sainte-Maure de Touraine', 'Crottin de Chavignol', 'Selles-sur-Cher', 'Valençay', 'Chabichou du Poitou', 'Pouligny-Saint-Pierre', 'Chaource', "Afuega'l pitu", 'Katiki Domokou', 'Picodon', 'Bouhezza', 'Crowdie'], from: 'raw', alsoFrom: ['pasteurised'], step: 'set slowly with acid, ladle unpressed' },
 	soft: { mapped: true, label: 'Soft cheese', aka: ['Weichkäse'], examples: ['Bel Paese', 'Cuartirolo', 'Pule', 'Montebore'], from: 'rennetCurd', step: 'drain unpressed' },
-	semiHard: { mapped: true, label: 'Semi-hard cheese', aka: ['Schnittkäse'], examples: ['Manchego', 'Tilsiter', 'Appenzeller', 'Butterkäse', 'Morbier', 'Havarti', 'Saint-Paulin', 'Mahón', 'Oscypek', 'Idiazabal', 'Asiago', 'Montasio', 'Pecorino Toscano', 'Queijo Canastra', 'Queso Chihuahua', 'Ossau-Iraty', 'Pecorino Sardo', 'Majorero', 'Formaggio di fossa', 'Roncal', 'Fiore Sardo', 'Raclette du Valais', 'Tête de Moine', 'Fontina', 'Lancashire', 'Cantal'], from: 'rennetCurd', step: 'press, brine', panel: true },
+	semiHard: { mapped: true, label: 'Semi-hard cheese', aka: ['Schnittkäse'], examples: ['Manchego', 'Tilsiter', 'Appenzeller', 'Butterkäse', 'Morbier', 'Havarti', 'Saint-Paulin', 'Mahón', 'Oscypek', 'Idiazabal', 'Asiago', 'Montasio', 'Pecorino Toscano', 'Queijo Canastra', 'Queso Chihuahua', 'Ossau-Iraty', 'Pecorino Sardo', 'Majorero', 'Formaggio di fossa', 'Roncal', 'Fiore Sardo', 'Raclette du Valais', 'Tête de Moine', 'Fontina', 'Lancashire', 'Cantal'], from: 'rennetCurd', step: 'press, brine' },
 	hard: { mapped: true, label: 'Hard cheese', aka: ['Hartkäse'], examples: ['Parmigiano Reggiano', 'Grana Padano', 'Pecorino Romano', 'Sbrinz', 'Kefalotyri', 'Cotija', 'Rumi', 'Reggianito', 'Graviera Kritis', 'Ladotyri Mytilinis'], from: 'rennetCurd', step: 'scald, press' },
 	bloomy: { mapped: true, label: 'Bloomy-rind cheese', aka: ['Weißschimmelkäse'], examples: ['Brie de Meaux', 'Camembert de Normandie', 'Coulommiers', 'Brillat-Savarin', 'Neufchâtel', 'Caravane'], from: 'soft', step: 'grow white mould' },
 	blue: { mapped: true, label: 'Blue cheese', aka: ['Blauschimmelkäse'], examples: ['Roquefort', 'Gorgonzola', 'Stilton', 'Danish Blue', 'Cabrales', "Fourme d'Ambert"], from: 'rennetCurd', step: 'pierce, grow blue' },
-	washed: { mapped: true, label: 'Washed-rind cheese', aka: ['Smear-ripened cheese', 'Rotschmierkäse'], examples: ['Époisses', 'Munster', 'Limburger', 'Taleggio', 'Herve', 'Reblochon', 'Maroilles', 'Livarot', "Pont-l'Évêque", "Vacherin Mont d'Or"], from: 'soft', step: 'smear the rind', panel: true },
+	washed: { mapped: true, label: 'Washed-rind cheese', aka: ['Smear-ripened cheese', 'Rotschmierkäse'], examples: ['Époisses', 'Munster', 'Limburger', 'Taleggio', 'Herve', 'Reblochon', 'Maroilles', 'Livarot', "Pont-l'Évêque", "Vacherin Mont d'Or"], from: 'soft', step: 'smear the rind' },
 	alpine: { mapped: true, label: 'Alpine cheese', aka: ['Bergkäse'], examples: ['Emmentaler', 'Gruyère', 'Comté', 'Beaufort', 'Langtang yak cheese', 'Jarlsberg'], from: 'hard', step: 'scald, ripen' },
 	cheddared: { mapped: true, label: 'Cheddared cheese', examples: ['Cheddar', 'Red Leicester', 'Dunlop', 'Double Gloucester', 'Cheese curds'], from: 'rennetCurd', step: 'cheddar' },
 	washedCurd: { mapped: true, label: 'Washed-curd cheese', examples: ['Gouda', 'Edam', 'Colby', 'Monterey Jack', 'Leyden', 'Maasdam', 'Brick'], from: 'semiHard', step: 'wash the curd' },

@@ -1,3 +1,5 @@
+import type { Firm } from './schema';
+
 // What an example goes by besides, as a product's `aka`: found by the search and said on its card.
 export const EXAMPLE_AKA: Record<string, string[]> = {
 	'Bogurar doi': ['Bogra doi', 'Bograr doi', 'Bogura yogurt'],
@@ -382,8 +384,7 @@ export const EXAMPLE_NOTES: Record<string, string> = {
    eaten, by the Codex classes of its moisture in the cheese without its
    fat, and the days it is ripened, the least and the most usual. Estimated
    for now, until the inventory has them. */
-export const FIRMS = ['fresh', 'soft', 'semi-soft', 'semi-hard', 'hard', 'extra-hard'] as const;
-export const EXAMPLE_AXES: Record<string, { firm: (typeof FIRMS)[number]; days: [number, number] }> = {
+export const EXAMPLE_AXES: Record<string, { firm: Firm; days: [number, number] }> = {
 	Époisses: { firm: 'soft', days: [28, 56] },
 	Munster: { firm: 'soft', days: [21, 90] },
 	Limburger: { firm: 'semi-soft', days: [42, 90] },
