@@ -20,11 +20,35 @@ export const page = (p: Processing) => ({ holds: p.steps.map(chip), ...(p.steps.
 /* Its cards along one line, however long, each centred on it, and an
    arrow between each two on its middle; laid out from its own top left. */
 export type Strip = { w: number; h: number; cards: Card[]; joins: { x: number; y: number }[] };
+// A step said in one line and nothing more: its name, or its name and what it says, with no sentence under it.
+const oneLine = (c: Chip) => !c.note && !c.microbes && (!!c.inline || !c.said);
+/* Steps said in one line one after another are one card, a line each
+   under the one before: laid out as
+   cards each, then stacked inside one, the room round each but the
+   first and last taken up by the gap between them. */
+const stacked = (cards: Card[], f: number): Card => {
+	const pad = CARD.pad * f;
+	const gap = 0.35 * f;
+	let y = pad;
+	const lines: Card['lines'] = [];
+	for (const one of cards) {
+		for (const l of one.lines) lines.push({ ...l, y: y + l.y - pad });
+		y += one.h - 2 * pad + gap;
+	}
+	return { x: 0, y: 0, w: Math.max(...cards.map((c) => c.w)), h: y - gap + pad, lines };
+};
 export const strip = (chips: Chip[], f: number): Strip => {
 	const laid: Strip = { w: 0, h: 0, cards: [], joins: [] };
+	// Runs of one-liners each one card, any other step a card of its own.
+	const runs: Chip[][] = [];
+	for (const c of chips) {
+		const last = runs.at(-1);
+		if (last && oneLine(c) && oneLine(last.at(-1)!)) last.push(c);
+		else runs.push([c]);
+	}
 	let x = 0;
-	chips.forEach((c, i) => {
-		const one = card(c, f);
+	runs.forEach((run, i) => {
+		const one = run.length > 1 ? stacked(run.map((c) => card(c, f)), f) : card(run[0], f);
 		if (i) {
 			laid.joins.push({ x: x + (CARD.gap * f) / 2, y: 0 });
 			x += CARD.gap * f;
