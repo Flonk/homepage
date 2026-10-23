@@ -510,6 +510,7 @@ const { focus } = Astro.props;
 	import { zoom, zoomIdentity } from 'd3-zoom';
 	import type { Sourcing } from './milk/schema';
 	import { eachPage } from '../lib/page';
+	import { pixelRatio } from '../lib/canvas';
 	import { LINE, PAD_X, FONT, FOUND_HEIGHT, PICTURE_GAP, LINK_MARK, LINK_ROOM, MARGIN, MAX_ZOOM, MAP_PILL, RULE_PX, SANS, MONO, SERIF, FACES, spacing, only, setSpacing, nextUid, corner, type Node, type Edge, type Graph } from './milk/client/base';
 	import { layout, type Pin, type Box } from './milk/client/layout';
 
@@ -557,6 +558,16 @@ const { focus } = Astro.props;
 			x: ((sx - shownAt.x) / shownAt.k - offX) / fit,
 			y: ((sy - shownAt.y) / shownAt.k - offY) / fit,
 		});
+		// How big the picture is on the screen; where a point of it is there; and the view with a point of it at (cx, cy), the pane's middle unless said.
+		const scale = () => shownAt.k * fit;
+		const toScreen = (x: number, y: number) => {
+			const [px, py] = toPane(x, y);
+			return [px * shownAt.k + shownAt.x, py * shownAt.k + shownAt.y] as const;
+		};
+		const centred = (x: number, y: number, k: number, cx = paneW / 2, cy = paneH / 2) => {
+			const [px, py] = toPane(x, y);
+			return zoomIdentity.translate(cx - k * px, cy - k * py).scale(k);
+		};
 
 		/* The graph's colours, as the page has them, worked out to what a
 		   canvas can take: a colour asked of a hidden element of its own. */
@@ -1445,12 +1456,8 @@ const { focus } = Astro.props;
 		const placeCard = () => {
 			if (!mapped) return void (mapCard.hidden = true);
 			const area = panelArea(mapped);
-			const [x0, y0] = toPane(area.x0, area.y0);
-			const [x1, y1] = toPane(area.x1, area.y1);
-			const left = x0 * shownAt.k + shownAt.x;
-			const top = y0 * shownAt.k + shownAt.y;
-			const right = x1 * shownAt.k + shownAt.x;
-			const bottom = y1 * shownAt.k + shownAt.y;
+			const [left, top] = toScreen(area.x0, area.y0);
+			const [right, bottom] = toScreen(area.x1, area.y1);
 			const inset = 12;
 			// Three of its 15rem across, at the least; hidden, it has no width of its own to go by.
 			const hide = right - left < 720;
@@ -1490,8 +1497,9 @@ const { focus } = Astro.props;
 		const paint = () => {
 			ctx.setTransform(1, 0, 0, 1, 0, 0);
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
-			const s = shownAt.k * fit;
-			ctx.setTransform(dpr * s, 0, 0, dpr * s, dpr * (shownAt.k * offX + shownAt.x), dpr * (shownAt.k * offY + shownAt.y));
+			const s = scale();
+			const [ox, oy] = toScreen(0, 0);
+			ctx.setTransform(dpr * s, 0, 0, dpr * s, dpr * ox, dpr * oy);
 			ctx.letterSpacing = `${spacing}px`;
 			ctx.imageSmoothingQuality = 'high';
 			const a = fromScreen(0, 0);
@@ -1551,7 +1559,7 @@ const { focus } = Astro.props;
 			const w = canvas.clientWidth;
 			const h = canvas.clientHeight;
 			const was = dpr;
-			dpr = Math.min(window.devicePixelRatio || 1, 2);
+			dpr = pixelRatio();
 			// Tiles and parts are drawn in the screen's pixels: on a screen with more to them, drawn again.
 			if (dpr !== was) {
 				for (const tile of tiles.values()) tile.bitmap.close();
@@ -1570,9 +1578,7 @@ const { focus } = Astro.props;
 			paneW = w;
 			paneH = h;
 			fitTo();
-			const [px, py] = toPane(middleWas.x, middleWas.y);
-			const k = shownAt.k;
-			surface.call(zoomer.transform, zoomIdentity.translate(w / 2 - k * px, h / 2 - k * py).scale(k));
+			surface.call(zoomer.transform, centred(middleWas.x, middleWas.y, shownAt.k));
 			paint();
 		};
 		const sizing = new ResizeObserver(sizeTo);
@@ -1617,21 +1623,18 @@ const { focus } = Astro.props;
 			let hint = '';
 			/* Only those near the pointer, their marks reaching a little past
 			   their edges; a map's cheeses only once they are drawn. */
-			const zoom = shownAt.k * fit;
-			const near = shown.filter((d) => d === root || ((!d.onMap || pillsShown(zoom)) && Math.abs(x - d.x) <= d.w / 2 + d.h && Math.abs(y - d.y) <= d.h * 1.5));
-			for (const d of near)
-				if (d.regions?.length)
-					for (const f of flagsOf(d)) if (Math.hypot(x - f.x, y - f.y) <= f.r) hint = d.regions.map((c) => countryName.of(c)).join(', ');
-			for (const d of near)
-				if (d.beasts?.length)
-					for (const b of beastsAt(d)) if (Math.hypot(x - b.x, y - b.y) <= b.r) hint = `From ${d.beasts.map((m) => m.milk).join(' and ')} milk`;
-			for (const d of near)
-				if (d.protected) {
-					const seal = sealOf(d);
-					if (Math.hypot(x - seal.x, y - seal.y) <= seal.r) hint = SEAL_SAID[d.protected] ?? d.protected;
-				}
+			const s = scale();
+			// Within a round mark, or so much further out.
+			const hit = (m: { x: number; y: number; r: number }, slack = 1) => Math.hypot(x - m.x, y - m.y) <= m.r * slack;
+			const near = shown.filter((d) => d === root || ((!d.onMap || pillsShown(s)) && Math.abs(x - d.x) <= d.w / 2 + d.h && Math.abs(y - d.y) <= d.h * 1.5));
+			// The last said wins: a seal over animals over flags.
+			for (const d of near) {
+				if (d.regions?.length && flagsOf(d).some((f) => hit(f))) hint = d.regions.map((c) => countryName.of(c)).join(', ');
+				if (d.beasts?.length && beastsAt(d).some((b) => hit(b))) hint = `From ${d.beasts.map((m) => m.milk).join(' and ')} milk`;
+				if (d.protected && hit(sealOf(d))) hint = SEAL_SAID[d.protected] ?? d.protected;
+			}
 			// A little more than the mark itself, to be tapped.
-			const info = near.flatMap((d) => (d.note || d.unsure ? marksOf(d) : [])).find((m) => Math.hypot(x - m.x, y - m.y) <= m.r * 1.3) ?? null;
+			const info = near.flatMap((d) => (d.note || d.unsure ? marksOf(d) : [])).find((m) => hit(m, 1.3)) ?? null;
 			let pill: Node | null = null;
 			for (let i = near.length - 1; i >= 0 && !pill && !info; i--) {
 				const d = near[i];
@@ -1647,18 +1650,17 @@ const { focus } = Astro.props;
 					stepped.find((n) => told(n) && !rows(n).length && within(stepBox(n), x, y)) ??
 					null;
 				if (!step) {
-					const s = shownAt.k * fit;
-					ctx.setTransform(s, 0, 0, s, shownAt.k * offX + shownAt.x, shownAt.k * offY + shownAt.y);
+					const [ox, oy] = toScreen(0, 0);
+					ctx.setTransform(s, 0, 0, s, ox, oy);
 					ctx.lineWidth = 14;
 					step = hittable.find((e) => ctx.isPointInStroke(edgeLine.get(e)!, sx, sy))?.target ?? null;
 				}
 			}
-			const s = shownAt.k * fit;
 			// The one drawn last, over the rest, of those shown at this zoom.
 			const pin =
 				[...panels.keys()].flatMap((p) => (pillsShown(s) ? [] : pinsAt(p, s))).findLast((p) => {
 					const { r, head } = pinAt(p, s);
-					return Math.hypot(x - p.x, y - head) <= r * 1.1;
+					return hit({ x: p.x, y: head, r }, 1.1);
 				}) ?? null;
 			if (pin) {
 				hint = `${pin.name}: ${pin.n} ${pin.n === 1 ? 'cheese' : 'cheeses'}`;
@@ -1677,10 +1679,9 @@ const { focus } = Astro.props;
 			tip.hidden = !m;
 			if (!m) return;
 			tip.textContent = m.said;
-			const { x, y, r } = m;
-			const s = shownAt.k * fit;
-			tip.style.left = `${canvas.offsetLeft + (x * fit + offX) * shownAt.k + shownAt.x}px`;
-			tip.style.top = `${canvas.offsetTop + (y * fit + offY) * shownAt.k + shownAt.y + r * s}px`;
+			const [x, y] = toScreen(m.x, m.y);
+			tip.style.left = `${canvas.offsetLeft + x}px`;
+			tip.style.top = `${canvas.offsetTop + y + m.r * scale()}px`;
 		};
 		let pointing: { pill: Node | null; step: Node | null } = { pill: null, step: null };
 		canvas.addEventListener(
@@ -1716,7 +1717,6 @@ const { focus } = Astro.props;
 				// A remark's mark only says it, held.
 				if (info) return showTip(sameMark(tipped, info) && tipHeld ? null : info, true);
 				showTip(null);
-				// The "…" for the many more tells of the product they are examples of.
 				// One drawn again only goes to the product it is, lit, not told of.
 				if (pill?.link) go(pill, true);
 				else if (pill) tell(pill);
@@ -1733,6 +1733,19 @@ const { focus } = Astro.props;
 			clearTimeout(stilled);
 			cancelIdleCallback(warming);
 		});
+		// Glided to a view, or there at once.
+		const GLIDE = 750;
+		const glideTo = (view: ReturnType<typeof centred>, glide = true) => surface.transition().duration(glide ? GLIDE : 0).call(zoomer.transform, view);
+		/* So many framed, with a margin, in what the pane has; zoomed in at
+		   least as far as `least`. */
+		const frame = (ds: Node[], least: number) => {
+			const x0 = Math.min(...ds.map((d) => d.x - d.w / 2));
+			const x1 = Math.max(...ds.map((d) => d.x + d.w / 2));
+			const y0 = Math.min(...ds.map((d) => d.y - d.h / 2));
+			const y1 = Math.max(...ds.map((d) => d.y + d.h / 2));
+			const fits = Math.min((0.9 * paneW) / (fit * (x1 - x0)), (0.9 * paneH) / (fit * (y1 - y0)));
+			return centred((x0 + x1) / 2, (y0 + y1) / 2, Math.min(MAX_ZOOM, Math.max(least, fits)));
+		};
 		const zoomer = zoom<HTMLCanvasElement, unknown>()
 			.scaleExtent([0.5, MAX_ZOOM])
 			.on('zoom', (e) => {
@@ -1757,6 +1770,13 @@ const { focus } = Astro.props;
 		   glided to and zoomed into until it reads, and held looked at, as a
 		   tap holds it. An example too far down the list to be drawn finds
 		   the product it is an example of. */
+		// An element made, its class and its words.
+		const el = <K extends keyof HTMLElementTagNameMap>(tag: K, cls?: string, text?: string) => {
+			const e = document.createElement(tag);
+			if (cls) e.className = cls;
+			if (text !== undefined) e.textContent = text;
+			return e;
+		};
 		const plain = (t: string) => t.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase();
 		const name = (n: Node) => n.label.replace(/\n/g, ' ');
 		const index: { said: string; plain: string; to: Node; hint: string }[] = [];
@@ -1769,8 +1789,7 @@ const { focus } = Astro.props;
 		}
 		// In the figure, or already moved up into a sidebar deck's column of
 		// tools (data-deck-tool, see DeckPost), which it works the same from.
-		const search = (figure.querySelector<HTMLDivElement>('.milk-search') ??
-			document.querySelector<HTMLDivElement>('[data-deck-tools] .milk-search'))!;
+		const search = searchOf(figure)!;
 		const field = search.querySelector('input')!;
 		const list = search.querySelector('ul')!;
 		let found: typeof index = [];
@@ -1787,16 +1806,11 @@ const { focus } = Astro.props;
 		const show = () => {
 			list.replaceChildren(
 				...found.map((r, i) => {
-					const li = document.createElement('li');
+					const li = el('li', '', r.said);
 					li.id = `${list.id}-${i}`;
 					li.setAttribute('role', 'option');
 					li.setAttribute('aria-selected', String(i === chosen));
-					li.textContent = r.said;
-					if (r.hint) {
-						const hint = document.createElement('small');
-						hint.textContent = r.hint;
-						li.append(hint);
-					}
+					if (r.hint) li.append(el('small', '', r.hint));
 					li.addEventListener('mousedown', (e) => {
 						e.preventDefault();
 						go(r.to);
@@ -1854,7 +1868,7 @@ const { focus } = Astro.props;
 				held = n;
 				look(n);
 			} else tell(n);
-			surface.transition().duration(750).call(zoomer.transform, zoomInto(n));
+			glideTo(zoomInto(n));
 		};
 		/* Zoomed until its pill is about this tall on the screen, and into
 		   the middle of what the card leaves of the picture, as if that were
@@ -1865,8 +1879,7 @@ const { focus } = Astro.props;
 			const left = card.classList.contains('is-open') ? card.offsetWidth : 0;
 			const free = paneW - left;
 			const k = Math.max(0.5, Math.min(MAX_ZOOM, n.scale ? Infinity : FOUND_HEIGHT / (n.h * fit), (0.8 * free) / (n.w * fit)));
-			const [px, py] = toPane(n.x, n.y);
-			return zoomIdentity.translate(left + free / 2 - k * px, paneH / 2 - k * py).scale(k);
+			return centred(n.x, n.y, k, left + free / 2);
 		};
 
 		/* Telling of a product, or an example, in a card over the picture:
@@ -1874,12 +1887,25 @@ const { focus } = Astro.props;
 		   where it sits in the tree, each product named there a way to it. */
 		const card = figure.querySelector<HTMLElement>('.milk-about')!;
 		const cardBody = card.querySelector<HTMLElement>('.milk-about-body')!;
-		const el = <K extends keyof HTMLElementTagNameMap>(tag: K, cls?: string, text?: string) => {
-			const e = document.createElement(tag);
-			if (cls) e.className = cls;
-			if (text !== undefined) e.textContent = text;
-			return e;
+		// Open, said to be what it tells of, with these in it; or shut.
+		const setCard = (label: string | null, parts: HTMLElement[] = []) => {
+			card.classList.toggle('is-open', label !== null);
+			card.inert = label === null;
+			if (label === null) return;
+			card.setAttribute('aria-label', label);
+			cardBody.replaceChildren(...parts);
+			cardBody.scrollTop = 0;
 		};
+		// A link out of the page, in a tab of its own.
+		const out = (text: string, href: string) => {
+			const a = el('a', '', text);
+			a.href = href;
+			a.target = '_blank';
+			a.rel = 'noopener';
+			return a;
+		};
+		// So many, a comma between each.
+		const commas = <T,>(items: T[]) => items.flatMap((x, i) => (i ? [', ', x] : [x]));
 		/* Where what is said is from: Wikipedia, read more on; its other
 		   sources, named; or that it has none yet. */
 		const sourcesOf = (said: Sourcing) => {
@@ -1887,17 +1913,11 @@ const { focus } = Astro.props;
 			const [only] = said.links;
 			const wiki = said.links.length === 1 && /wikipedia\.org$/.test(new URL(only.url).hostname);
 			const from = el('p', 'milk-about-source', wiki ? '' : said.links.length > 1 ? 'Sources: ' : 'Source: ');
-			said.links.forEach(({ name, url }, i) => {
-				if (i) from.append(', ');
-				const a = el('a', '', wiki ? 'Read more on Wikipedia' : name);
-				a.href = url;
-				a.target = '_blank';
-				a.rel = 'noopener';
-				from.append(a);
-			});
+			from.append(...commas(said.links.map(({ name, url }) => out(wiki ? 'Read more on Wikipedia' : name, url))));
 			return from;
 		};
-		const to = (n: Node) => {
+		// A product named on the card, pressed: gone to.
+		const goTo = (n: Node) => {
 			const b = el('button', 'milk-about-to', name(n));
 			b.type = 'button';
 			b.addEventListener('click', () => go(n));
@@ -1916,29 +1936,19 @@ const { focus } = Astro.props;
 			const b = Math.round(most / per);
 			return a === b ? `${a} ${unit}` : `${a}–${b} ${unit}`;
 		};
-		const fact = (term: string, ...parts: (Node | string | Node[])[]) => {
+		const fact = (term: string, ...parts: (Node | string | (Node | string)[])[]) => {
 			const row = el('div', 'milk-about-fact');
 			row.append(el('dt', '', term));
 			const dd = el('dd');
-			for (const part of parts) {
-				if (typeof part === 'string') dd.append(part);
-				else if (Array.isArray(part))
-					part.forEach((k, i) => {
-						if (i) dd.append(', ');
-						dd.append(to(k));
-					});
-				else dd.append(to(part));
-			}
+			const said = (x: Node | string) => (typeof x === 'string' ? x : goTo(x));
+			for (const part of parts) dd.append(...(Array.isArray(part) ? commas(part.map(said)) : [said(part)]));
 			row.append(dd);
 			return row;
 		};
 		const tell = (n: Node | null) => {
 			held = n;
 			look(n);
-			card.classList.toggle('is-open', !!n);
-			card.inert = !n;
-			if (!n) return;
-			card.setAttribute('aria-label', name(n));
+			if (!n) return setCard(null);
 			const top = el('header');
 			if (n.image) {
 				const img = el('img');
@@ -1956,7 +1966,7 @@ const { focus } = Astro.props;
 			}
 			else if (n.example && p) {
 				const kind = el('p', 'milk-about-kind', 'Example of ');
-				kind.append(to(p));
+				kind.append(goTo(p));
 				title.append(kind);
 			}
 			title.append(el('h3', '', name(n)));
@@ -1990,27 +2000,15 @@ const { focus } = Astro.props;
 			const facts = el('dl');
 			if (n.named?.length) {
 				const drawn = new Map([...(children.get(n) ?? []), ...(paneled.get(n) ?? [])].filter((k) => k.example).map((k) => [k.label, k]));
-				const row = fact('Examples');
-				const dd = row.querySelector('dd')!;
-				n.named.forEach((x, i) => {
-					if (i) dd.append(', ');
-					const k = drawn.get(x);
-					dd.append(k ? to(k) : x);
-				});
-				facts.append(row);
+				facts.append(fact('Examples', n.named.map((x) => drawn.get(x) ?? x)));
 			}
 			if (facts.childElementCount) parts.push(facts);
 			if (n.image) {
 				const credit = el('p', 'milk-about-credit', 'Photo: ');
-				const a = el('a', '', n.image.author);
-				a.href = n.image.source;
-				a.target = '_blank';
-				a.rel = 'noopener';
-				credit.append(a, `, ${n.image.license}`);
+				credit.append(out(n.image.author, n.image.source), `, ${n.image.license}`);
 				parts.push(credit);
 			}
-			cardBody.replaceChildren(...parts);
-			cardBody.scrollTop = 0;
+			setCard(name(n), parts);
 		};
 		/* Telling of a step, the arrow into a product: what it is made from
 		   and how, the facts of it, and where they come from. */
@@ -2027,16 +2025,12 @@ const { focus } = Astro.props;
 			look(n);
 			heldStep = n;
 			showStep(n);
-			card.classList.add('is-open');
-			card.inert = false;
-			card.setAttribute('aria-label', n.step ?? name(n));
 			const top = el('header');
 			const title = el('div');
 			const kind = el('p', 'milk-about-kind');
-			kind.append(to(p.hub ? treeParent.get(p)! : p), ' → ');
 			// A branch point has no name: what its arrow leads to, then.
 			const into = n.hub ? (children.get(n) ?? []).filter((k) => !k.hub && !k.example) : [n];
-			into.forEach((k, i) => kind.append(...(i ? [', '] : []), to(k)));
+			kind.append(goTo(p.hub ? treeParent.get(p)! : p), ' → ', ...commas(into.map(goTo)));
 			// Under a ruler, its value along it.
 			title.append(kind, el('h3', '', n.step ?? (p.scale && n.at != null ? `${n.at} ${p.scale.unit} ${p.scale.name}` : '')));
 			top.append(title);
@@ -2047,18 +2041,17 @@ const { focus } = Astro.props;
 			for (const { k, v } of how?.facts ?? []) facts.append(fact(k, v));
 			if (facts.childElementCount) parts.push(facts);
 			if (how?.sources) parts.push(sourcesOf(how.sources));
-			cardBody.replaceChildren(...parts);
-			cardBody.scrollTop = 0;
+			setCard(n.step ?? name(n), parts);
 		};
 		card.querySelector('.milk-about-close')!.addEventListener('click', shut, { signal });
 		// A product named in the words beside it, pressed (see MilkLink).
 		document.addEventListener(
 			'milk:go',
 			(e) => {
-				const to = (e as CustomEvent<string>).detail;
-				const n = nodes.find((n) => (n.example ? n.label === to : n.id === to));
+				const id = (e as CustomEvent<string>).detail;
+				const n = nodes.find((n) => (n.example ? n.label === id : n.id === id));
 				if (n) go(n, true);
-				else console.warn(`MilkGraph: no product or drawn example ${to}`);
+				else console.warn(`MilkGraph: no product or drawn example ${id}`);
 			},
 			{ signal },
 		);
@@ -2072,7 +2065,7 @@ const { focus } = Astro.props;
 			if (!n) {
 				held = null;
 				look(null);
-				surface.transition().duration(glide ? 750 : 0).call(zoomer.transform, zoomIdentity);
+				glideTo(zoomIdentity, glide);
 				return;
 			}
 			const family = new Set([n]);
@@ -2087,46 +2080,36 @@ const { focus } = Astro.props;
 			held = n;
 			look(n);
 			// Nothing made from it: into it alone, as a link to it goes.
-			if (family.size === 1) {
-				surface.transition().duration(glide ? 750 : 0).call(zoomer.transform, zoomInto(n));
-				return;
-			}
-			const all = [...family];
-			const x0 = Math.min(...all.map((d) => d.x - d.w / 2));
-			const x1 = Math.max(...all.map((d) => d.x + d.w / 2));
-			const y0 = Math.min(...all.map((d) => d.y - d.h / 2));
-			const y1 = Math.max(...all.map((d) => d.y + d.h / 2));
-			const k = Math.max(0.5, Math.min(MAX_ZOOM, (0.9 * paneW) / (fit * (x1 - x0)), (0.9 * paneH) / (fit * (y1 - y0))));
-			const [px, py] = toPane((x0 + x1) / 2, (y0 + y1) / 2);
-			const to = zoomIdentity.translate(paneW / 2 - k * px, paneH / 2 - k * py).scale(k);
-			surface.transition().duration(glide ? 750 : 0).call(zoomer.transform, to);
+			glideTo(family.size === 1 ? zoomInto(n) : frame([...family], 0.5), glide);
 		};
 		/* Into a country on the map: framed round its cheeses, at least as
 		   far in as they can be read. */
 		// Into a pin's cheeses: those of its country in its regions, or with none known if it stands for those.
 		const intoCountry = (pin: Pin) => {
 			const mine = [...paneled.values()].flat().filter((k) => k.onMap && k.place === pin.iso && pin.areas.includes(k.area));
-			if (!mine.length) return;
-			const x0 = Math.min(...mine.map((d) => d.x - d.w / 2));
-			const x1 = Math.max(...mine.map((d) => d.x + d.w / 2));
-			const y0 = Math.min(...mine.map((d) => d.y - d.h / 2));
-			const y1 = Math.max(...mine.map((d) => d.y + d.h / 2));
-			const read = 5 / (FONT * MAP_PILL * fit);
-			const k = Math.min(MAX_ZOOM, Math.max(read, Math.min((0.9 * paneW) / (fit * (x1 - x0)), (0.9 * paneH) / (fit * (y1 - y0)))));
-			const [px, py] = toPane((x0 + x1) / 2, (y0 + y1) / 2);
-			surface.transition().duration(750).call(zoomer.transform, zoomIdentity.translate(paneW / 2 - k * px, paneH / 2 - k * py).scale(k));
+			// As far in as they can be read, at the least.
+			if (mine.length) glideTo(frame(mine, 5 / (FONT * MAP_PILL * fit)));
 		};
 		if (figure.dataset.focus && !whole) focusOn(figure.dataset.focus, false);
 		const host = figure.closest<HTMLElement>('[data-viz-phase]') ?? figure.closest<HTMLElement>('[data-viz-stage]');
 		host?.addEventListener(
 			'viz:props',
 			(e) => {
-				const p = (e as CustomEvent).detail ?? {};
-				if ('focus' in p) focusOn(typeof p.focus === 'string' ? p.focus : null, true);
+				const focus = focusOf(e);
+				if (focus !== undefined) focusOn(focus, true);
 			},
 			{ signal },
 		);
 	}
+
+	// In the figure, or already moved up into a sidebar deck's column of tools (data-deck-tool, see DeckPost), which it works the same from.
+	const searchOf = (figure: HTMLElement) =>
+		figure.querySelector<HTMLDivElement>('.milk-search') ?? document.querySelector<HTMLDivElement>('[data-deck-tools] .milk-search');
+	// What a card has asked it to focus on: a product's id, null for the whole, or nothing said.
+	const focusOf = (e: Event): string | null | undefined => {
+		const p = (e as CustomEvent).detail ?? {};
+		return 'focus' in p ? (typeof p.focus === 'string' ? p.focus : null) : undefined;
+	};
 
 	/* The graph, from its own file (see pages/milk-graph.json.ts), fetched
 	   once a page and kept as text: each drawing lays out a copy of its own. */
@@ -2147,8 +2130,8 @@ const { focus } = Astro.props;
 			host?.addEventListener(
 				'viz:props',
 				(e) => {
-					const p = (e as CustomEvent).detail ?? {};
-					if ('focus' in p) figure.dataset.focus = typeof p.focus === 'string' ? p.focus : '';
+					const focus = focusOf(e);
+					if (focus !== undefined) figure.dataset.focus = focus ?? '';
 				},
 				{ signal },
 			);
@@ -2170,19 +2153,21 @@ const { focus } = Astro.props;
 					   drawing before let go of. */
 					let drawing = new AbortController();
 					signal.addEventListener('abort', () => drawing.abort());
-					draw(figure, AbortSignal.any([signal, drawing.signal]), data);
-					// Under the search, wherever that is (see draw).
-					const search = figure.querySelector('.milk-search') ?? document.querySelector('[data-deck-tools] .milk-search');
-					const chips = [...(search?.querySelectorAll<HTMLButtonElement>('.milk-beasts button') ?? [])];
+					const redraw = (shown: Graph, filtered = false) => {
+						drawing.abort();
+						drawing = new AbortController();
+						draw(figure, AbortSignal.any([signal, drawing.signal]), shown, filtered);
+					};
+					redraw(data);
+					// Under the search, wherever that is.
+					const chips = [...(searchOf(figure)?.querySelectorAll<HTMLButtonElement>('.milk-beasts button') ?? [])];
 					for (const chip of chips)
 						chip.addEventListener(
 							'click',
 							() => {
 								chip.setAttribute('aria-pressed', String(chip.getAttribute('aria-pressed') !== 'true'));
 								const milks = new Set(chips.filter((c) => c.getAttribute('aria-pressed') === 'true').map((c) => c.dataset.milk!));
-								drawing.abort();
-								drawing = new AbortController();
-								draw(figure, AbortSignal.any([signal, drawing.signal]), only(data, milks), milks.size > 0);
+								redraw(only(data, milks), milks.size > 0);
 							},
 							{ signal },
 						);
