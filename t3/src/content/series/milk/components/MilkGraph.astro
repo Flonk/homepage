@@ -684,6 +684,13 @@ const { focus } = Astro.props;
 			return true;
 		};
 
+		// A ferment's microbe, round its table's bottom left corner (its area reaches down to hold it), and what it says when pointed at.
+		const FERMENT_MARK = '🦠';
+		const FERMENT_SAID = 'Fermented';
+		const microbeOf = (n: Node) => {
+			const t = tableOf(n);
+			return { x: t.left, y: t.top + t.height, r: t.font * 0.75 };
+		};
 		// A step's table: on the pills' white, the names' column a shade darker, ruled, framed.
 		const drawTable = (g: Pen, n: Node, s: number) => {
 			const t = tableOf(n);
@@ -729,12 +736,12 @@ const { focus } = Astro.props;
 				rowLines(v).forEach((said, j) => g.fillText(said, t.split + p, baseline + j * ROW * t.font));
 				y += rowHeight(n, { k, v });
 			}
-			// A ferment's, a microbe on its bottom left corner (its area reaches down to hold it).
 			if (n.how?.fermented) {
-				g.font = font(t.font * 1.5);
+				const m = microbeOf(n);
+				g.font = font(m.r * 2);
 				g.textAlign = 'center';
 				g.textBaseline = 'middle';
-				g.fillText('🦠', t.left, t.top + t.height);
+				g.fillText(FERMENT_MARK, m.x, m.y);
 			}
 			return true;
 		};
@@ -1665,6 +1672,7 @@ const { focus } = Astro.props;
 					tabled.find((n) => told(n) && within(tableOf(n).area, x, y)) ??
 					stepped.find((n) => told(n) && !rows(n).length && within(stepBox(n), x, y)) ??
 					null;
+				if (step?.how?.fermented && rows(step).length && hit(microbeOf(step))) hint = FERMENT_SAID;
 				if (!step) {
 					const [ox, oy] = toScreen(0, 0);
 					ctx.setTransform(s, 0, 0, s, ox, oy);
@@ -1975,7 +1983,11 @@ const { focus } = Astro.props;
 				table.append(row);
 			}
 			framed.append(table);
-			if (how.fermented) framed.append(el('span', 'milk-about-ferment', '🦠'));
+			if (how.fermented) {
+				const mark = el('span', 'milk-about-ferment', FERMENT_MARK);
+				mark.title = FERMENT_SAID;
+				framed.append(mark);
+			}
 			return [framed];
 		};
 		const tell = (n: Node | null) => {
