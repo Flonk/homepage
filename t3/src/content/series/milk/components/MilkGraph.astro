@@ -1969,11 +1969,11 @@ const { focus } = Astro.props;
 			row.append(dd);
 			return row;
 		};
-		/* A step's table on a card, drawn as on its arrow, with the facts the
-		   arrow has no room for as rows of it too; a ferment's microbe on its
-		   bottom left corner. */
+		/* A step's table on a card, the same as on its arrow; its facts
+		   instead where it has no table, they being the table said at length.
+		   A ferment's microbe on its bottom left corner. */
 		const tableFor = (how: NonNullable<Node['how']>) => {
-			const rows = [...(how.table ?? []), ...(how.facts ?? [])];
+			const rows = how.table?.length ? how.table : (how.facts ?? []);
 			if (!rows.length) return [];
 			const framed = el('div', 'milk-about-table');
 			const table = el('table');
