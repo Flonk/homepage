@@ -72,12 +72,11 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "pasteurise",
-					"note": "The milk is pasteurised."
+					"type": "pasteurise"
 				},
 				{
 					"type": "press",
-					"note": "The curd is pressed in hoops into rectangular blocks."
+					"note": "Into rectangular blocks."
 				},
 				{
 					"type": "salt",
@@ -86,7 +85,7 @@
 						"min": 10,
 						"max": 12
 					},
-					"note": "In a pasteurised brine, 10–12 % salt in commercial practice."
+					"note": "In a pasteurised brine."
 				}
 			],
 			"sources": {

@@ -78,21 +78,18 @@
 				},
 				{
 					"type": "churn",
-					"note": "Today it is churned continuously."
+					"note": "Continuously, today."
 				},
 				{
-					"type": "separate",
-					"note": "The buttermilk is drawn off."
+					"type": "separate"
+				},
+				{
+					"type": "wash",
+					"what": "butter"
 				},
 				{
 					"type": "custom",
-					"name": "wash",
-					"note": "The butter grains are washed."
-				},
-				{
-					"type": "custom",
-					"name": "knead",
-					"note": "The butter is worked."
+					"name": "knead"
 				}
 			],
 			"text": "The cream is ripened biologically under a controlled temperature profile before churning; the pH is that of the finished butter. Strains and figures are not given.",

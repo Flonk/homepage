@@ -70,18 +70,20 @@
 					"temperature": {
 						"min": 30,
 						"max": 40
-					},
-					"note": "With rennet."
+					}
 				},
 				{
 					"type": "cut",
 					"how": "cut",
-					"note": "Into large cubes, 1 in in the traditional make."
+					"size": {
+						"min": 25.4,
+						"max": 25.4,
+						"about": true
+					}
 				},
 				{
 					"type": "heat",
-					"does": "cook",
-					"note": "With gentle stirring."
+					"does": "cook"
 				},
 				{
 					"type": "drain",
@@ -90,11 +92,11 @@
 				{
 					"type": "salt",
 					"how": "brine",
-					"note": "Dry salt or concentrated brine is added to the curd."
+					"note": "Dry salt or concentrated brine."
 				},
 				{
 					"type": "mould",
-					"note": "The wet curd drains overnight in basket-weave moulds."
+					"note": "Drains overnight in basket-weave moulds."
 				}
 			],
 			"sources": {

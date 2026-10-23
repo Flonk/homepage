@@ -63,7 +63,7 @@
 			"steps": [
 				{
 					"type": "add",
-					"note": "The ingredients are dissolved in skim milk or water."
+					"note": "Dissolved in skim milk or water."
 				},
 				{
 					"type": "heat",
@@ -74,7 +74,12 @@
 				},
 				{
 					"type": "evaporate",
-					"note": "Evaporated to about 55 % solids in a pilot study."
+					"note": "In a pilot study.",
+					"solids": {
+						"min": 55,
+						"max": 55,
+						"about": true
+					}
 				},
 				{
 					"type": "dry",

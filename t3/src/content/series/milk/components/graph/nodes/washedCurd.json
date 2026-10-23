@@ -44,9 +44,12 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "wash",
-					"note": "30–50 % of the batch is drained as whey and replaced by water, which sets the scald temperature."
+					"type": "washCurd",
+					"share": {
+						"min": 30,
+						"max": 50
+					},
+					"note": "Replaced by water, which sets the scald temperature and makes the curd milder."
 				},
 				{
 					"type": "salt",
@@ -54,8 +57,7 @@
 					"strength": {
 						"min": 1.5,
 						"max": 2.2
-					},
-					"note": "In brine; Gouda ends at 1.5–2.2 % salt."
+					}
 				},
 				{
 					"type": "ferment",

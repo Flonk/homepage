@@ -73,7 +73,7 @@
 						"min": 15,
 						"max": 15
 					},
-					"note": "Milk up to 6 kg is pasteurised, larger batches are thermised at up to 55 °C."
+					"note": "Up to 6 kg is pasteurised, larger batches thermised at up to 55 °C."
 				},
 				{
 					"type": "coagulate",
@@ -92,7 +92,7 @@
 						"max": 51,
 						"about": true
 					},
-					"note": "The curd is cooked in two steps."
+					"note": "In two steps."
 				},
 				{
 					"type": "ferment",
@@ -123,7 +123,7 @@
 						"min": 80,
 						"max": 85
 					},
-					"note": "The curd is stretched in water and moulded into shapes from 0.5 kg to over 100 kg."
+					"note": "Stretched in water, moulded in shapes from 0.5 kg to over 100 kg."
 				},
 				{
 					"type": "salt",
@@ -131,8 +131,7 @@
 					"seconds": {
 						"min": 1036800,
 						"max": 2160000
-					},
-					"note": "The time in brine depends on the size."
+					}
 				},
 				{
 					"type": "ferment",

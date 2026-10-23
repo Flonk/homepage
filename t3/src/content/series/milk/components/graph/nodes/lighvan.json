@@ -78,13 +78,12 @@
 			"steps": [
 				{
 					"type": "coagulate",
-					"by": "rennet",
-					"note": "With rennet tablets."
+					"by": "rennet"
 				},
 				{
 					"type": "drain",
 					"by": "cloth",
-					"note": "The curd is packed in triangular cloth bags."
+					"note": "Packed in triangular cloth bags."
 				},
 				{
 					"type": "salt",
@@ -92,7 +91,8 @@
 						"min": 172800,
 						"max": 172800
 					},
-					"note": "Blocks about 20 cm thick are covered with salt in earthenware pots."
+					"note": "Blocks about 20 cm thick, covered with salt in earthenware pots.",
+					"how": "dry"
 				},
 				{
 					"type": "salt",
@@ -100,8 +100,7 @@
 					"strength": {
 						"min": 10,
 						"max": 12
-					},
-					"note": "In a 10–12 % salt brine."
+					}
 				},
 				{
 					"type": "ferment",

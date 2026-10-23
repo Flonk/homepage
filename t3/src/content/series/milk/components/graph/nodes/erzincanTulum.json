@@ -61,23 +61,21 @@
 			"steps": [
 				{
 					"type": "drain",
-					"by": "cloth",
-					"note": "The curd is strained in cloth."
+					"by": "cloth"
 				},
 				{
 					"type": "custom",
 					"name": "rest",
-					"note": "Rests overnight."
+					"note": "Overnight."
 				},
 				{
 					"type": "cut",
 					"how": "crumble",
-					"note": "Crumbled in a copper vessel."
+					"note": "In a copper vessel."
 				},
 				{
 					"type": "salt",
-					"how": "dry",
-					"note": "Dry-salted."
+					"how": "dry"
 				},
 				{
 					"type": "press",
@@ -85,13 +83,12 @@
 						"min": 864000,
 						"max": 1036800,
 						"about": true
-					},
-					"note": "Pressed and drained about 10 days, in the traditional run 10-12 days."
+					}
 				},
 				{
 					"type": "custom",
 					"name": "pack",
-					"note": "Packed into a cleaned goatskin that is sewn shut."
+					"note": "Into a cleaned goatskin, sewn shut."
 				},
 				{
 					"type": "ferment",
@@ -128,7 +125,7 @@
 				{
 					"type": "coagulate",
 					"by": "rennet",
-					"note": "With rennet; commercial liquid rennet in the Akkaraman sheep-milk studies."
+					"note": "Commercial liquid rennet in the Akkaraman sheep-milk studies."
 				}
 			],
 			"text": "Ripened in a goatskin at altitude. A quick method adds 0.5 % starter (Streptococcus salivarius subsp. thermophilus and Lactobacillus delbrueckii subsp. bulgaricus 1:1) to pasteurised ewe's milk and cuts making from 10-12 days to about 2.",

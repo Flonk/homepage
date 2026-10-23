@@ -52,8 +52,7 @@
 			"steps": [
 				{
 					"type": "custom",
-					"name": "heparin affinity",
-					"note": "Chromatography on heparin."
+					"name": "heparin affinity"
 				},
 				{
 					"type": "custom",
@@ -61,8 +60,7 @@
 				},
 				{
 					"type": "custom",
-					"name": "hydrophobic",
-					"note": "Hydrophobic interaction chromatography."
+					"name": "hydrophobic"
 				},
 				{
 					"type": "nanofilter"
@@ -75,7 +73,7 @@
 				{
 					"type": "custom",
 					"name": "fill",
-					"note": "Tested and filled as an ordinary injectable drug."
+					"note": "Tested and filled like any injectable drug."
 				}
 			],
 			"sources": {

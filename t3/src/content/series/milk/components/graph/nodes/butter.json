@@ -68,7 +68,7 @@
 						"min": 43200,
 						"max": 54000
 					},
-					"note": "Cooled by a temperature programme set to the fat's iodine value (for example 8-21-16 °C for iodine value 28-29; 6-17-11 °C for 35-37), as in a study aged 10 °C for 17 h."
+					"note": "By a temperature programme set to the fat's iodine value (for example 8-21-16 °C for iodine value 28-29; 6-17-11 °C for 35-37), as in a study aged 10 °C for 17 h."
 				},
 				{
 					"type": "churn",
@@ -85,8 +85,7 @@
 					"note": "The fat globule membranes break and the fat clumps into grains."
 				},
 				{
-					"type": "drain",
-					"note": "The buttermilk is drained."
+					"type": "drain"
 				},
 				{
 					"type": "salt",
@@ -96,7 +95,7 @@
 				{
 					"type": "custom",
 					"name": "work",
-					"note": "The grains are worked until no water droplets are visible, the salt worked in."
+					"note": "Until no water droplets are visible."
 				}
 			],
 			"sources": {

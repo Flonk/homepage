@@ -56,12 +56,13 @@
 			"steps": [
 				{
 					"type": "add",
-					"note": "Semolina is stirred smooth in a little cold milk, then into the rest."
+					"note": "Smoothed in a little cold milk first.",
+					"what": "semolina"
 				},
 				{
 					"type": "heat",
 					"does": "cook",
-					"note": "In the microwave at 800 W (BDA recipe), then stirred.",
+					"note": "In the microwave at 800 W.",
 					"seconds": {
 						"min": 240,
 						"max": 240

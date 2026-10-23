@@ -41,16 +41,15 @@
 				{
 					"type": "custom",
 					"name": "vaccinate",
-					"note": "Cows are vaccinated during pregnancy, before calving, with antigens from 13 human-derived ETEC strains."
+					"note": "Cows are vaccinated during pregnancy with antigens from 13 human-derived ETEC strains."
 				},
 				{
 					"type": "dry",
-					"note": "Freeze-dried to a powder."
+					"note": "Freeze-dried."
 				},
 				{
-					"type": "custom",
-					"name": "tablet",
-					"note": "The powder is pressed into tablets."
+					"type": "press",
+					"note": "Into tablets."
 				}
 			],
 			"sources": {

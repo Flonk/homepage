@@ -50,11 +50,10 @@
 			"steps": [
 				{
 					"type": "custom",
-					"name": "standardise",
-					"note": "The fat is set by standardising the milk before evaporation."
+					"name": "standardise"
 				},
 				{
-					"type": "evaporate",
+					"type": "heat",
 					"temperature": {
 						"min": 100,
 						"max": 120
@@ -63,7 +62,7 @@
 						"min": 60,
 						"max": 180
 					},
-					"note": "Preheated, as for evaporated milk."
+					"does": "heat"
 				},
 				{
 					"type": "evaporate",
@@ -71,8 +70,7 @@
 					"temperature": {
 						"min": 65,
 						"max": 70
-					},
-					"note": "Evaporated under vacuum, boiling at 65–70 °C."
+					}
 				},
 				{
 					"type": "homogenise"
@@ -88,7 +86,7 @@
 						"min": 900,
 						"max": 1200
 					},
-					"note": "Sterilised in the can, or by UHT."
+					"note": "In the can, or by UHT."
 				}
 			],
 			"sources": {

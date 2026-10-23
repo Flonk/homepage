@@ -55,7 +55,7 @@
 				{
 					"type": "drain",
 					"by": "sieve",
-					"note": "The sheep milk is strained through herbs."
+					"note": "Through herbs."
 				},
 				{
 					"type": "coagulate",
@@ -64,21 +64,21 @@
 						"min": 3600,
 						"max": 3600
 					},
-					"note": "With rennet, covered in felt to keep the milk warm."
+					"note": "Covered in felt to keep the milk warm."
 				},
 				{
 					"type": "drain",
 					"by": "cloth",
-					"note": "The curds are stirred, the whey drained and the curd squeezed in a linen bag."
+					"note": "Squeezed in a linen bag."
 				},
 				{
 					"type": "salt",
-					"note": "Wheels are packed in a wineskin with salt between layers, the air pressed out and the skin tied."
+					"note": "Packed in a wineskin with salt between layers, air pressed out."
 				},
 				{
 					"type": "custom",
 					"name": "turn",
-					"note": "The skin is turned 3 times daily for the first days."
+					"note": "Three times daily for the first days."
 				},
 				{
 					"type": "ferment",

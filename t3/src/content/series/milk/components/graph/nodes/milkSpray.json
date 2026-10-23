@@ -41,8 +41,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "dilute",
+					"type": "add",
+					"what": "water",
 					"note": "Tested at 5, 10, 20, 30, 40 and 50 % milk in water."
 				},
 				{

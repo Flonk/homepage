@@ -48,9 +48,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "dilute",
-					"note": "The yoghurt is mixed with water."
+					"type": "add",
+					"what": "water"
 				},
 				{
 					"type": "salt"

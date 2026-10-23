@@ -34,7 +34,7 @@ const OWN: Record<Own, [string, string]> = {
 	specialPasteurise: ['🔥 PASTEURISE', 'pasteurised'],
 	specialHomogenise: ['🌀 HOMOGENISE', 'homogenised'],
 	coagulate: ['🧀 COAGULATE', 'set'],
-	churn: ['🧈 CHURN', 'churned'],
+	churn: ['🧈 CHURN BUTTER', 'churned'],
 	salt: ['🧂 SALT', 'salted'],
 	drain: ['💧 DRAIN', 'drained'],
 	cut: ['🔪 CUT', 'cut'],
@@ -49,6 +49,8 @@ const OWN: Record<Own, [string, string]> = {
 	diafilter: ['🧪 DIAFILTER', 'diafiltered'],
 	add: ['➕ ADD', 'added to'],
 	acidify: ['🍋 ACIDIFY', 'acidified'],
+	washCurd: ['🚿 WASH CURD', 'washed'],
+	wash: ['🚿 WASH', 'washed'],
 };
 // What a step of its own says before how long and how warm: in a brine so strong, by hanging, to grains so big, what is added.
 const HOW: Partial<Record<string, string>> = { dry: 'dry', brine: 'in brine', milk: 'into the milk', hang: 'hung', cloth: 'in cloth', mould: 'in moulds', sieve: 'through a sieve', mill: 'milled', grind: 'ground', crumble: 'crumbled', shred: 'shredded', gravity: 'risen and skimmed', centrifuge: 'spun off', open: 'in the open', vacuum: 'under vacuum' };
@@ -69,6 +71,10 @@ const ownSaid = (h: Step): (string | undefined)[] => {
 			return [h.by && 'through cloth'];
 		case 'acidify':
 			return [h.with, h.pH && `pH ${span(h.pH, inUnit(''))}`];
+		case 'washCurd':
+			return [h.share && `${span(h.share, inUnit('%'))} of the whey`];
+		case 'wash':
+			return [h.what, h.in];
 		case 'add':
 			return [h.what, pc(h.share)];
 		default:

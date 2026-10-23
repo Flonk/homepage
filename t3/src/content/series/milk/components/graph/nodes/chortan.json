@@ -49,9 +49,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "dilute",
-					"note": "The yoghurt is diluted into tan."
+					"type": "add",
+					"what": "water"
 				},
 				{
 					"type": "heat",

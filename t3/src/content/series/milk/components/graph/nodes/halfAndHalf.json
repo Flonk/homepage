@@ -46,11 +46,12 @@
 			"steps": [
 				{
 					"type": "add",
-					"note": "Milk and cream are blended to the fat grade, 10.5 to under 18 % milkfat."
+					"note": "Blended to 10.5 to under 18 % milkfat.",
+					"what": "milk and cream"
 				},
 				{
 					"type": "pasteurise",
-					"note": "Pasteurised or ultra-pasteurised."
+					"note": "Or ultra-pasteurised."
 				},
 				{
 					"type": "homogenise",
@@ -58,7 +59,8 @@
 				},
 				{
 					"type": "add",
-					"note": "Optional emulsifiers, stabilisers, nutritive sweeteners and flavourings."
+					"note": "Optional.",
+					"what": "emulsifiers, stabilisers, nutritive sweeteners and flavourings"
 				}
 			],
 			"sources": {

@@ -48,7 +48,10 @@
 				},
 				{
 					"type": "acidify",
-					"note": "The pH is adjusted with acid and the protein precipitates within 60 s."
+					"note": "So the protein precipitates.",
+					"seconds": {
+						"max": 60
+					}
 				},
 				{
 					"type": "heat",

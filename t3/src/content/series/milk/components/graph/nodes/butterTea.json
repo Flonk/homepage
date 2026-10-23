@@ -61,7 +61,12 @@
 				{
 					"type": "heat",
 					"does": "heat",
-					"note": "Brick or pu-erh tea is boiled long."
+					"note": "Brick or pu-erh tea.",
+					"temperature": {
+						"min": 100,
+						"max": 100,
+						"about": true
+					}
 				},
 				{
 					"type": "drain",
@@ -71,8 +76,9 @@
 					"type": "salt"
 				},
 				{
-					"type": "churn",
-					"note": "The butter is churned straight into the hot salted tea until the two emulsify, in a wooden churn (mdong mo) or now a blender."
+					"type": "add",
+					"what": "butter",
+					"note": "Churned into the hot tea until it emulsifies, in a mdong mo."
 				}
 			],
 			"sources": {

@@ -49,9 +49,14 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "boil",
-					"note": "White chicken breast is boiled."
+					"type": "heat",
+					"note": "White chicken breast.",
+					"does": "heat",
+					"temperature": {
+						"min": 100,
+						"max": 100,
+						"about": true
+					}
 				},
 				{
 					"type": "cut",
@@ -60,7 +65,7 @@
 				},
 				{
 					"type": "add",
-					"note": "Mixed with milk, sugar, cracked rice or other thickeners."
+					"what": "milk, sugar, cracked rice or other thickeners"
 				}
 			],
 			"sources": {

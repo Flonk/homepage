@@ -69,7 +69,7 @@
 						"min": 300,
 						"max": 900
 					},
-					"note": "Skimmed milk is pasteurised, in older plants at about 73 °C."
+					"note": "Skimmed milk; older plants at about 73 °C."
 				},
 				{
 					"type": "ferment",
@@ -120,8 +120,7 @@
 				},
 				{
 					"type": "custom",
-					"name": "stir",
-					"note": "The gel is stirred."
+					"name": "stir"
 				},
 				{
 					"type": "heat",
@@ -133,7 +132,7 @@
 					"seconds": {
 						"max": 180
 					},
-					"note": "Thermisation; the Guelph home-style recipe instead heats to 52 °C and holds about 1.5 h."
+					"note": "Thermisation; the Guelph home recipe holds 52 °C for about 1.5 h."
 				},
 				{
 					"type": "heat",
@@ -141,13 +140,12 @@
 					"temperature": {
 						"min": 38,
 						"max": 45
-					},
-					"note": "Before separation."
+					}
 				},
 				{
 					"type": "separate",
 					"by": "centrifuge",
-					"note": "Whey off in a nozzle centrifuge (feed about 27 °C) or by ultrafiltration today, in cloth bags traditionally."
+					"note": "Nozzle centrifuge (feed about 27 °C) or ultrafiltration today, cloth bags traditionally."
 				},
 				{
 					"type": "heat",
@@ -155,8 +153,7 @@
 					"temperature": {
 						"min": 10,
 						"max": 12
-					},
-					"note": "After separation."
+					}
 				}
 			],
 			"sources": {

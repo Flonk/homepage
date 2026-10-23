@@ -52,9 +52,14 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "boil",
-					"note": "200 g round (bomba) rice boiled in 200 ml water with salt first."
+					"type": "heat",
+					"note": "200 g round (bomba) rice in 200 ml water with salt.",
+					"does": "heat",
+					"temperature": {
+						"min": 100,
+						"max": 100,
+						"about": true
+					}
 				},
 				{
 					"type": "custom",
@@ -74,12 +79,12 @@
 						"max": 7200,
 						"about": true
 					},
-					"note": "Over very low heat, stirred, with more milk added after about 30 min; roughly 2 h in all."
+					"note": "Over very low heat, with more milk added after about 30 min."
 				},
 				{
 					"type": "add",
 					"what": "sugar",
-					"note": "150 g sugar, stirred in once creamy."
+					"note": "150 g, once creamy."
 				},
 				{
 					"type": "custom",

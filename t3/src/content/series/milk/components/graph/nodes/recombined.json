@@ -44,7 +44,7 @@
 						"max": 1200,
 						"about": true
 					},
-					"note": "Skim milk powder is mixed in at up to 35–40 % solids at 48 °C, then held no longer than 48–55 °C for up to 3 h before heating."
+					"note": "Skim milk powder at up to 35–40 % solids, then held no longer than 48–55 °C for up to 3 h before heating."
 				},
 				{
 					"type": "custom",
@@ -57,7 +57,7 @@
 						"min": 7200,
 						"max": 10800
 					},
-					"note": "Cans of anhydrous milk fat stand in 80 °C water."
+					"note": "Cans of anhydrous milk fat stand in water."
 				},
 				{
 					"type": "add",
@@ -65,7 +65,8 @@
 						"min": 55,
 						"max": 60
 					},
-					"note": "The melted fat is mixed into the 45–50 °C base."
+					"note": "Mixed into the 45–50 °C base.",
+					"what": "melted milk fat"
 				},
 				{
 					"type": "homogenise"

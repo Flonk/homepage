@@ -50,7 +50,8 @@
 			"steps": [
 				{
 					"type": "add",
-					"note": "Eggs are mixed with a little cool milk first, then stirred slowly into the warm milk."
+					"note": "First mixed with a little cool milk.",
+					"what": "eggs"
 				},
 				{
 					"type": "heat",
@@ -59,8 +60,7 @@
 						"min": 1800,
 						"max": 1800,
 						"about": true
-					},
-					"note": "About 30 min over low heat in a saucepan."
+					}
 				},
 				{
 					"type": "heat",

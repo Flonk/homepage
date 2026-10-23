@@ -74,12 +74,15 @@
 				{
 					"type": "coagulate",
 					"by": "rennet",
-					"note": "With rennet of animal origin only."
+					"note": "Animal rennet only."
 				},
 				{
 					"type": "salt",
 					"how": "dry",
-					"note": "Dry salt on top for 12 h or more, then the cheese is turned and the other side salted for 12 h or more."
+					"note": "Each side in turn.",
+					"seconds": {
+						"min": 43200
+					}
 				},
 				{
 					"type": "dry",
@@ -87,8 +90,7 @@
 						"min": 1296000,
 						"max": 1296000,
 						"about": true
-					},
-					"note": "Aired first."
+					}
 				},
 				{
 					"type": "ferment",

@@ -74,13 +74,12 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "dilute",
-					"note": "Buffalo milk of 7-8 % fat is stretched with skim milk or skim milk powder and water to 3 % fat (toned) or 1.5 % (double-toned), restoring non-fat solids to 8.5 % or 9.0 %."
+					"type": "add",
+					"note": "Buffalo milk of 7–8 % fat is stretched to 3 % fat (toned) or 1.5 % (double-toned), restoring non-fat solids to 8.5 % or 9.0 %.",
+					"what": "skim milk or skim milk powder, and water"
 				},
 				{
-					"type": "pasteurise",
-					"note": "Always pasteurised."
+					"type": "pasteurise"
 				}
 			],
 			"sources": {

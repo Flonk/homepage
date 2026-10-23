@@ -66,7 +66,7 @@
 			"steps": [
 				{
 					"type": "separate",
-					"note": "The cream is skimmed after the milk has stood."
+					"by": "gravity"
 				},
 				{
 					"type": "custom",
@@ -74,8 +74,7 @@
 					"seconds": {
 						"min": 86400,
 						"max": 86400
-					},
-					"note": "The milk is rested."
+					}
 				},
 				{
 					"type": "custom",
@@ -83,12 +82,11 @@
 					"seconds": {
 						"max": 1500
 					},
-					"note": "Stretched and folded while dipped in hot whey."
+					"note": "Folded while dipped in hot whey."
 				},
 				{
 					"type": "heat",
-					"does": "cool",
-					"note": "Dipped in cold water."
+					"does": "cool"
 				},
 				{
 					"type": "salt",
@@ -96,7 +94,7 @@
 						"min": 900,
 						"max": 900
 					},
-					"note": "In salted water."
+					"how": "brine"
 				},
 				{
 					"type": "drain",
@@ -104,8 +102,7 @@
 					"seconds": {
 						"min": 36000,
 						"max": 36000
-					},
-					"note": "Hung to drain."
+					}
 				},
 				{
 					"type": "cut",
@@ -117,13 +114,12 @@
 					"seconds": {
 						"min": 86400,
 						"max": 172800
-					},
-					"note": "Left under a cloth."
+					}
 				},
 				{
 					"type": "custom",
 					"name": "coat",
-					"note": "Coated with the skimmed cream."
+					"note": "With the skimmed cream."
 				},
 				{
 					"type": "ferment",

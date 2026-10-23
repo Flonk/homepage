@@ -62,7 +62,11 @@
 				{
 					"type": "heat",
 					"does": "heat",
-					"note": "Boiled, then left to cool without stirring."
+					"temperature": {
+						"min": 100,
+						"max": 100,
+						"about": true
+					}
 				},
 				{
 					"type": "heat",
@@ -72,7 +76,7 @@
 						"max": 43200,
 						"about": true
 					},
-					"note": "Left outdoors overnight, traditionally in the dew, 4-5 h in the Wikipedia recipe."
+					"note": "Outdoors overnight, traditionally in the dew."
 				},
 				{
 					"type": "custom",
@@ -81,13 +85,12 @@
 						"min": 10800,
 						"max": 10800,
 						"about": true
-					},
-					"note": "Churned or whisked by hand in the morning."
+					}
 				},
 				{
 					"type": "add",
-					"what": "sugar",
-					"note": "Sugar, saffron, cardamom, rose water; nuts and silver leaf on top."
+					"what": "sugar, saffron, cardamom, rose water",
+					"note": "Nuts and silver leaf on top."
 				}
 			],
 			"sources": {

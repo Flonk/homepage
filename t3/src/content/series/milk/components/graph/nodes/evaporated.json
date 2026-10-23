@@ -74,7 +74,7 @@
 						"min": 65,
 						"max": 70
 					},
-					"note": "Boiled down under vacuum in a multistage falling-film evaporator, the milk running through steam-heated tubes, to about twice the solids."
+					"note": "In a multistage falling-film evaporator, to about twice the solids."
 				},
 				{
 					"type": "homogenise",
@@ -82,12 +82,12 @@
 						"min": 50,
 						"max": 250
 					},
-					"note": "At 5–25 MPa (50–250 bar); in-can lines use two stages at 12.5–25 MPa."
+					"note": "In-can lines use two stages at 12.5–25 MPa."
 				},
 				{
-					"type": "custom",
-					"name": "stabilise",
-					"note": "Disodium and sodium dihydrogen phosphate, the dose set by sterilisation trials on samples."
+					"type": "add",
+					"what": "disodium and sodium dihydrogen phosphate",
+					"note": "Dose set by sterilisation trials on samples."
 				},
 				{
 					"type": "heat",
@@ -102,8 +102,7 @@
 				},
 				{
 					"type": "custom",
-					"name": "fill",
-					"note": "Into cans."
+					"name": "fill"
 				},
 				{
 					"type": "heat",
@@ -116,7 +115,7 @@
 						"min": 900,
 						"max": 1200
 					},
-					"note": "In the cans, which are kept moving."
+					"note": "In the cans, kept moving."
 				}
 			],
 			"sources": {

@@ -66,9 +66,7 @@
 					"note": "With chymosin or chymosin-identical enzymes."
 				},
 				{
-					"type": "custom",
-					"name": "wash",
-					"note": "The lump cheese is sorted and washed with water."
+					"type": "wash"
 				},
 				{
 					"type": "ferment",
@@ -127,21 +125,18 @@
 				},
 				{
 					"type": "custom",
-					"name": "trim",
-					"note": "The rind is removed."
+					"name": "trim"
 				},
 				{
-					"type": "drain",
-					"note": "The whey is expelled."
+					"type": "drain"
 				},
 				{
 					"type": "cut",
-					"how": "grind",
-					"note": "The cheese is crushed."
+					"how": "grind"
 				},
 				{
 					"type": "salt",
-					"note": "The pulp is salted and spread on rollers."
+					"note": "The pulp is spread on rollers."
 				}
 			],
 			"text": "The lump cheese is ripened before it is ground with salt; the flora comes from the raw milk and the dairy, not a starter.",

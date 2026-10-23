@@ -67,8 +67,7 @@
 				},
 				{
 					"type": "cut",
-					"how": "cut",
-					"note": "Small."
+					"how": "cut"
 				},
 				{
 					"type": "drain",
@@ -77,8 +76,7 @@
 						"min": 28800,
 						"max": 28800,
 						"about": true
-					},
-					"note": "In a cloth."
+					}
 				},
 				{
 					"type": "press"
@@ -99,7 +97,7 @@
 				{
 					"type": "salt",
 					"how": "brine",
-					"note": "Brined, plus salt on top in the skin."
+					"note": "Plus salt on top in the skin."
 				},
 				{
 					"type": "ferment",

@@ -85,12 +85,14 @@
 						"min": 43200,
 						"max": 43200,
 						"about": true
-					},
-					"note": "In cloth bags."
+					}
 				},
 				{
 					"type": "salt",
-					"note": "2-4 %, kneaded in."
+					"strength": {
+						"min": 2,
+						"max": 4
+					}
 				},
 				{
 					"type": "mould",
@@ -98,7 +100,7 @@
 				},
 				{
 					"type": "dry",
-					"note": "Several days in a warm room away from sun."
+					"note": "In a warm room, out of the sun."
 				},
 				{
 					"type": "ferment",

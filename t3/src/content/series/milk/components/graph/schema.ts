@@ -231,6 +231,11 @@ export const Microfilter = z.strictObject({ type: z.literal('microfilter'), ...H
 export const Ultrafilter = z.strictObject({ type: z.literal('ultrafilter'), ...Held });
 export const Nanofilter = z.strictObject({ type: z.literal('nanofilter'), ...Held });
 export const Diafilter = z.strictObject({ type: z.literal('diafilter'), ...Held });
+/* A curd washed: so much of its whey drawn off and replaced by water,
+   so it is milder and more elastic (Gouda, cottage cheese). Anything else
+   washed: what (a rind, butter, a cheese) and in what. */
+export const WashCurd = z.strictObject({ type: z.literal('washCurd'), share: Percent.optional(), ...Held });
+export const Wash = z.strictObject({ type: z.literal('wash'), what: z.string().min(1).optional(), in: z.string().min(1).optional(), ...Held });
 // Acidified: soured by an acid put in, not by microbes (see Ferment), with what, to so low a pH.
 export const Acidify = z.strictObject({ type: z.literal('acidify'), with: z.string().min(1).optional(), pH: PH.optional(), ...Held });
 export const Add = z.strictObject({ type: z.literal('add'), what: z.string().min(1).optional(), share: Percent.optional(), ...Held });
@@ -249,7 +254,7 @@ export const CustomStep = z.strictObject({
    treatment, a ferment and two coolings. In words what its steps do not
    hold, such as a second way it is made; and where all of it is from. */
 export const Processing = z.strictObject({
-	steps: z.array(z.discriminatedUnion('type', [Pasteurise, Homogenise, SpecialPasteurise, SpecialHomogenise, Coagulate, Churn, Salt, Drain, Cut, Press, Mould, Separate, Evaporate, Filter, Microfilter, Ultrafilter, Nanofilter, Diafilter, Acidify, Add, HeatTreatment, Ferment, Drying, CustomStep])).min(1),
+	steps: z.array(z.discriminatedUnion('type', [Pasteurise, Homogenise, SpecialPasteurise, SpecialHomogenise, Coagulate, Churn, Salt, Drain, Cut, Press, Mould, Separate, Evaporate, Filter, Microfilter, Ultrafilter, Nanofilter, Diafilter, Acidify, WashCurd, Wash, Add, HeatTreatment, Ferment, Drying, CustomStep])).min(1),
 	text: z.string().optional(),
 	sources: Sourcing,
 });

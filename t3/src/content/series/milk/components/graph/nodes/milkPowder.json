@@ -70,11 +70,14 @@
 				{
 					"type": "evaporate",
 					"under": "vacuum",
-					"note": "Under vacuum to 50–52 % total solids."
+					"solids": {
+						"min": 50,
+						"max": 52
+					}
 				},
 				{
 					"type": "homogenise",
-					"note": "Between evaporation and drying, to cut the free fat in the powder."
+					"note": "To cut the free fat in the powder."
 				},
 				{
 					"type": "heat",
@@ -83,7 +86,7 @@
 						"min": 10,
 						"max": 80
 					},
-					"note": "Preheated from 10 to 80 °C to set its viscosity before it is atomised."
+					"note": "To set its viscosity before it is atomised."
 				},
 				{
 					"type": "dry",

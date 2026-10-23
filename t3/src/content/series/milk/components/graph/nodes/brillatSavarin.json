@@ -72,7 +72,7 @@
 				{
 					"type": "add",
 					"what": "cream",
-					"note": "Cow's cream is added to the milk before it sets."
+					"note": "Cow's cream, before the milk sets."
 				},
 				{
 					"type": "ferment",
@@ -116,7 +116,10 @@
 				},
 				{
 					"type": "salt",
-					"note": "Optional, on one face, below 2 % salt."
+					"note": "Optional, on one face.",
+					"strength": {
+						"max": 2
+					}
 				},
 				{
 					"type": "ferment",

@@ -50,13 +50,15 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "dilute",
-					"note": "With water, to a protein above 1.6 %."
+					"type": "add",
+					"note": "To a protein above 1.6 %.",
+					"what": "water"
 				},
 				{
 					"type": "salt",
-					"note": "To a salt content below 1.1 %."
+					"strength": {
+						"max": 1.1
+					}
 				}
 			],
 			"sources": {

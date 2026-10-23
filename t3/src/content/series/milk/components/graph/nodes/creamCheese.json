@@ -151,7 +151,7 @@
 				{
 					"type": "drain",
 					"by": "cloth",
-					"note": "The gel is stirred and heated to 50–70 °C, then drained: cloth bags overnight (75–90 °C, traditional), a centrifugal separator at 70–85 °C, or ultrafiltration at 50–55 °C."
+					"note": "Stirred and heated to 50–70 °C, then drained: cloth bags overnight at 75–90 °C, a centrifugal separator at 70–85 °C, or ultrafiltration at 50–55 °C."
 				},
 				{
 					"type": "heat",
@@ -163,7 +163,11 @@
 				},
 				{
 					"type": "salt",
-					"note": "Salt 0.5–1 % and a stabiliser under 0.5 % (locust bean, guar, xanthan, alginate, carrageenan)."
+					"note": "With a stabiliser under 0.5 % (locust bean, guar, xanthan, alginate, carrageenan).",
+					"strength": {
+						"min": 0.5,
+						"max": 1
+					}
 				}
 			],
 			"text": "Mesophilic starter, O-type (acid only) or DL-type (with the two aroma organisms). A faster set is 31 °C for about 5 h with 5 % starter.",

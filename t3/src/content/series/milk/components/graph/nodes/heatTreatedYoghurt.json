@@ -43,7 +43,12 @@
 						"min": 60,
 						"max": 70
 					},
-					"note": "Ambient yoghurt is heated harder, 75–110 °C for 5–20 s, and filled aseptically, or the yoghurt is heated in the pot afterwards at 60–70 °C for about 30 min."
+					"note": "Ambient yoghurt is instead heated harder, 75–110 °C for 5–20 s, and filled aseptically.",
+					"seconds": {
+						"min": 1800,
+						"max": 1800,
+						"about": true
+					}
 				}
 			],
 			"sources": {

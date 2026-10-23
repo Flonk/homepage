@@ -42,17 +42,16 @@
 					"temperature": {
 						"max": 140
 					},
-					"note": "Run through an extruder under mechanical stress, from room temperature up to 140 °C (patent range)."
+					"note": "Under mechanical stress."
 				},
 				{
 					"type": "custom",
-					"name": "spin",
-					"note": "Spun through a jet."
+					"name": "spin"
 				},
 				{
 					"type": "cut",
 					"how": "cut",
-					"note": "The fibre is cut to staple or kept as filament."
+					"note": "Cut to staple or kept as filament."
 				}
 			],
 			"sources": {

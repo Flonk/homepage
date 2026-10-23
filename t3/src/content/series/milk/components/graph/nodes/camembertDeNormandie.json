@@ -71,7 +71,7 @@
 					"temperature": {
 						"max": 40
 					},
-					"note": "The milk is never heated above this."
+					"note": "Never above this."
 				},
 				{
 					"type": "coagulate",
@@ -79,7 +79,7 @@
 					"temperature": {
 						"max": 37
 					},
-					"note": "With animal rennet."
+					"note": "Animal rennet."
 				},
 				{
 					"type": "cut",
@@ -88,7 +88,7 @@
 						"min": 25,
 						"max": 25
 					},
-					"note": "Lightly, with the blades at least 2.5 cm apart, and moulded at once."
+					"note": "Lightly, then moulded at once."
 				},
 				{
 					"type": "mould",
@@ -99,8 +99,7 @@
 				},
 				{
 					"type": "salt",
-					"how": "dry",
-					"note": "Dry salt."
+					"how": "dry"
 				},
 				{
 					"type": "ferment",

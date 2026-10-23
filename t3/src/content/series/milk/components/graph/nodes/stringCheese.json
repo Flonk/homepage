@@ -79,8 +79,7 @@
 				},
 				{
 					"type": "coagulate",
-					"by": "rennet",
-					"note": "With the lactic culture and clotting enzymes (rennet)."
+					"by": "rennet"
 				},
 				{
 					"type": "cut",
@@ -97,22 +96,20 @@
 						"max": 60,
 						"about": true
 					},
-					"note": "Immersed in hot water or heated with steam."
+					"note": "In hot water or with steam."
 				},
 				{
 					"type": "custom",
 					"name": "stretch",
-					"note": "Kneaded and stretched until smooth and free of lumps, which lines the proteins up in parallel so strips peel off."
+					"note": "Until smooth and free of lumps, lining the proteins up in parallel so strips peel off."
 				},
 				{
 					"type": "heat",
-					"does": "cool",
-					"note": "Firmed in cold water."
+					"does": "cool"
 				},
 				{
 					"type": "cut",
-					"how": "cut",
-					"note": "Cut to snack-size sticks."
+					"how": "cut"
 				}
 			],
 			"text": "Little or no ripening.",

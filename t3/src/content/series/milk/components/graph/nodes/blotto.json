@@ -49,9 +49,13 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "dissolve",
-					"note": "Nonfat dry milk is stirred into buffer at 5 % (some protocols 10 %)."
+					"type": "add",
+					"note": "Into buffer; some protocols use 10 %.",
+					"what": "nonfat dry milk",
+					"share": {
+						"min": 5,
+						"max": 5
+					}
 				}
 			],
 			"sources": {

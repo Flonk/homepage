@@ -47,20 +47,18 @@
 			"steps": [
 				{
 					"type": "coagulate",
-					"by": "rennet-acid",
-					"note": "With acid, with rennet, or with both."
+					"by": "rennet-acid"
 				},
 				{
 					"type": "drain"
 				},
 				{
-					"type": "custom",
-					"name": "wash"
+					"type": "washCurd"
 				},
 				{
 					"type": "heat",
 					"does": "heat",
-					"note": "Melted with added cream, butter or milkfat, and citrate or phosphate salts are allowed."
+					"note": "Melted with cream, butter or milkfat; citrate or phosphate salts are allowed."
 				}
 			],
 			"sources": {

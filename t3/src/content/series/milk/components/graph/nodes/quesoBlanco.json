@@ -52,8 +52,7 @@
 					"does": "heat",
 					"temperature": {
 						"min": 85
-					},
-					"note": "Hot milk, 85 °C or above."
+					}
 				},
 				{
 					"type": "acidify",
@@ -63,7 +62,7 @@
 						"max": 5.3,
 						"about": true
 					},
-					"note": "With an organic acid to pH about 5.3; the acid, not rennet, precipitates the protein."
+					"note": "The acid, not rennet, precipitates the protein."
 				},
 				{
 					"type": "drain"
@@ -72,8 +71,7 @@
 					"type": "salt"
 				},
 				{
-					"type": "press",
-					"note": "In hoops, to remove excess whey."
+					"type": "press"
 				}
 			],
 			"sources": {

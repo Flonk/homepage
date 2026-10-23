@@ -57,7 +57,12 @@
 				{
 					"type": "heat",
 					"does": "heat",
-					"note": "Yak (dri) milk is boiled."
+					"note": "Yak (dri) milk.",
+					"temperature": {
+						"min": 100,
+						"max": 100,
+						"about": true
+					}
 				},
 				{
 					"type": "heat",

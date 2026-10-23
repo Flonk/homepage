@@ -51,7 +51,12 @@
 				{
 					"type": "heat",
 					"does": "heat",
-					"note": "Boiled with eggs or maize starch (maizena), sugar and vanilla."
+					"note": "With eggs or maize starch (maizena), sugar and vanilla.",
+					"temperature": {
+						"min": 100,
+						"max": 100,
+						"about": true
+					}
 				},
 				{
 					"type": "heat",

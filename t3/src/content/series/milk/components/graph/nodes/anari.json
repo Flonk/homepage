@@ -67,7 +67,10 @@
 						"max": 65,
 						"about": true
 					},
-					"note": "Goat or sheep milk, 5-10 %."
+					"share": {
+						"min": 5,
+						"max": 10
+					}
 				},
 				{
 					"type": "heat",
@@ -81,19 +84,17 @@
 						"max": 3600,
 						"about": true
 					},
-					"note": "Small crumbly curds appear under stirring."
+					"note": "Until small crumbly curds appear."
 				},
 				{
-					"type": "separate",
-					"note": "Skimmed off with a slotted spoon."
+					"type": "separate"
 				},
 				{
 					"type": "drain"
 				},
 				{
 					"type": "cut",
-					"how": "cut",
-					"note": "Cut in blocks."
+					"how": "cut"
 				},
 				{
 					"type": "salt",

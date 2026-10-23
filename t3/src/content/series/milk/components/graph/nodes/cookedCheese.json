@@ -54,7 +54,8 @@
 			"steps": [
 				{
 					"type": "add",
-					"note": "With sodium bicarbonate (Natron), which takes up acid."
+					"note": "Takes up acid.",
+					"what": "sodium bicarbonate (Natron)"
 				},
 				{
 					"type": "custom",
@@ -62,7 +63,7 @@
 					"seconds": {
 						"min": 3600
 					},
-					"note": "From about 1 h to several days, until glassy and yellowish."
+					"note": "Up to several days, until glassy and yellowish."
 				},
 				{
 					"type": "heat",
@@ -70,12 +71,12 @@
 					"temperature": {
 						"max": 42
 					},
-					"note": "Warmed while stirring until it runs."
+					"note": "Until it runs."
 				},
 				{
 					"type": "custom",
 					"name": "season",
-					"note": "Enriched with butter and seasoned with salt and caraway."
+					"note": "With butter, salt and caraway."
 				}
 			],
 			"sources": {

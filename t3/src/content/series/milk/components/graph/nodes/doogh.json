@@ -52,13 +52,17 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "dilute",
-					"note": "With water, to about 40 % yoghurt."
+					"type": "add",
+					"what": "water",
+					"note": "To about 40 % yoghurt."
 				},
 				{
 					"type": "salt",
-					"note": "To about 0.7 % salt."
+					"strength": {
+						"min": 0.7,
+						"max": 0.7,
+						"about": true
+					}
 				}
 			],
 			"text": "Flavoured or carbonated variants exist.",

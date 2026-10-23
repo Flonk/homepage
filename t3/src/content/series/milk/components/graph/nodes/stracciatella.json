@@ -69,8 +69,7 @@
 					},
 					"seconds": {
 						"max": 600
-					},
-					"note": "With rennet, for a few minutes."
+					}
 				},
 				{
 					"type": "custom",
@@ -80,21 +79,20 @@
 				{
 					"type": "custom",
 					"name": "tear",
-					"note": "Part of the curd is torn by hand into strips."
+					"note": "Part of the curd is torn into strips."
 				},
 				{
 					"type": "heat",
-					"does": "cool",
-					"note": "In water."
+					"does": "cool"
 				},
 				{
 					"type": "salt",
 					"how": "brine",
-					"note": "In brine after cooling, or the cream or stretching water is salted."
+					"note": "Or the cream or stretching water is salted."
 				},
 				{
 					"type": "add",
-					"note": "The strips are mixed with cream."
+					"what": "cream"
 				},
 				{
 					"type": "custom",
@@ -108,7 +106,7 @@
 						"min": 2,
 						"max": 6
 					},
-					"note": "Kept at 4 ± 2 °C, with no ripening."
+					"note": "With no ripening."
 				}
 			],
 			"sources": {

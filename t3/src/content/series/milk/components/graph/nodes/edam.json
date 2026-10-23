@@ -74,8 +74,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "separate",
-					"note": "The milk is partially skimmed."
+					"type": "separate"
 				},
 				{
 					"type": "pasteurise"
@@ -114,12 +113,11 @@
 				},
 				{
 					"type": "mould",
-					"note": "The Noord-Hollandse Edammer is a sphere with flat ends, 1.7–1.9 kg."
+					"note": "A sphere with flat ends, 1.7–1.9 kg."
 				},
 				{
 					"type": "salt",
-					"how": "brine",
-					"note": "For a few days."
+					"how": "brine"
 				},
 				{
 					"type": "ferment",

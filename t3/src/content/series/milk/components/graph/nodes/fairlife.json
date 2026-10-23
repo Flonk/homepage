@@ -46,12 +46,11 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "separate",
-					"note": "The cream is separated first."
+					"type": "separate"
 				},
 				{
 					"type": "ultrafilter",
-					"note": "Through soft membranes, with no protein powder added."
+					"note": "Soft membranes, no protein powder added."
 				},
 				{
 					"type": "add",
@@ -61,7 +60,7 @@
 				{
 					"type": "heat",
 					"does": "heat",
-					"note": "At a higher temperature for a few seconds than ordinary milk; no figures given."
+					"note": "Hotter than ordinary milk, for a few seconds; no figures given."
 				},
 				{
 					"type": "homogenise"

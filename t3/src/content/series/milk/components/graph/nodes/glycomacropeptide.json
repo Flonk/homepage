@@ -41,7 +41,7 @@
 						"min": 60,
 						"max": 60
 					},
-					"note": "Ultrafiltration and diafiltration with a 3 kDa membrane."
+					"note": "With diafiltration, 3 kDa membrane."
 				},
 				{
 					"type": "dry",
@@ -49,11 +49,12 @@
 						"min": 172800,
 						"max": 172800
 					},
-					"note": "Freeze-drying."
+					"note": "Freeze-dried."
 				},
 				{
 					"type": "add",
-					"note": "Histidine, tryptophan, tyrosine, arginine and cysteine are added, as GMP lacks them, for a complete PKU food."
+					"what": "histidine, tryptophan, tyrosine, arginine and cysteine",
+					"note": "As GMP lacks them, for a complete PKU food."
 				}
 			],
 			"sources": {

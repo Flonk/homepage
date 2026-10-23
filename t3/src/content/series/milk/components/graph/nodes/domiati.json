@@ -59,12 +59,15 @@
 			"steps": [
 				{
 					"type": "salt",
-					"note": "The milk is salted with 5–14 % NaCl before renneting."
+					"how": "milk",
+					"strength": {
+						"min": 5,
+						"max": 14
+					}
 				},
 				{
 					"type": "coagulate",
-					"by": "rennet",
-					"note": "Rennet is added to the salted milk."
+					"by": "rennet"
 				},
 				{
 					"type": "ferment",

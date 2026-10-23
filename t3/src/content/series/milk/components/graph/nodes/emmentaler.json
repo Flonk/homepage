@@ -74,7 +74,7 @@
 					"temperature": {
 						"max": 40
 					},
-					"note": "The raw milk is never heated above this, and is used within 24 h."
+					"note": "Raw milk, never heated above this, used within 24 h."
 				},
 				{
 					"type": "ferment",
@@ -112,7 +112,7 @@
 						"min": 2100,
 						"max": 2700
 					},
-					"note": "With rennet, in a copper vat."
+					"note": "In a copper vat."
 				},
 				{
 					"type": "heat",
@@ -138,7 +138,7 @@
 					"seconds": {
 						"max": 72000
 					},
-					"note": "Into wheels of 80–100 cm and 75–120 kg."
+					"note": "Wheels of 80–100 cm, 75–120 kg."
 				},
 				{
 					"type": "salt",
@@ -162,9 +162,9 @@
 					}
 				},
 				{
-					"type": "custom",
-					"name": "wash",
-					"note": "The wheels are washed when they move to the cool cellar."
+					"type": "wash",
+					"what": "wheels",
+					"note": "When they move to the cool cellar."
 				},
 				{
 					"type": "ferment",

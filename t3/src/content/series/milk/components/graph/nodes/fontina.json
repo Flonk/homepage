@@ -79,15 +79,14 @@
 				{
 					"type": "heat",
 					"does": "heat",
-					"note": "Raw milk is not heated above this before coagulation.",
+					"note": "Raw milk, not heated above this before coagulation.",
 					"temperature": {
 						"max": 36
 					}
 				},
 				{
 					"type": "heat",
-					"does": "cook",
-					"note": "The paste is semi-cooked."
+					"does": "cook"
 				},
 				{
 					"type": "ferment",

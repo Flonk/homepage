@@ -75,7 +75,12 @@
 			"steps": [
 				{
 					"type": "salt",
-					"note": "Salted to about 1.5 %, which helps it keep."
+					"note": "Helps it keep.",
+					"strength": {
+						"min": 1.5,
+						"max": 1.5,
+						"about": true
+					}
 				},
 				{
 					"type": "drain",
@@ -83,8 +88,7 @@
 					"seconds": {
 						"min": 36000,
 						"max": 50400
-					},
-					"note": "In a cloth bag or cheesecloth, overnight."
+					}
 				}
 			],
 			"text": "Industrially it is centrifuged or ultrafiltered instead.",

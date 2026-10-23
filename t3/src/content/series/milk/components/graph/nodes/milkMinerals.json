@@ -41,12 +41,15 @@
 			"steps": [
 				{
 					"type": "evaporate",
-					"note": "In the patent route to 20-60 % total solids."
+					"solids": {
+						"min": 20,
+						"max": 60
+					}
 				},
 				{
 					"type": "custom",
 					"name": "raise pH",
-					"note": "The pH is raised to about 6.5-9.0 to help precipitation."
+					"note": "To about 6.5–9.0, to help precipitation."
 				},
 				{
 					"type": "heat",

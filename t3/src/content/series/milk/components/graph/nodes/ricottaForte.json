@@ -54,12 +54,15 @@
 			"steps": [
 				{
 					"type": "salt",
-					"note": "About 20 g per kg is mixed in right after the ricotta is lifted out."
+					"strength": {
+						"min": 2,
+						"max": 2,
+						"about": true
+					}
 				},
 				{
 					"type": "custom",
-					"name": "stir",
-					"note": "Stirred smooth with a long wooden spoon."
+					"name": "stir"
 				},
 				{
 					"type": "ferment",

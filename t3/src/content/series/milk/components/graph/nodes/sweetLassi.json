@@ -47,14 +47,12 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "dilute",
-					"note": "Set dahi is beaten smooth with cold water."
+					"type": "add",
+					"what": "water"
 				},
 				{
 					"type": "add",
-					"what": "sugar",
-					"note": "Sugar is added."
+					"what": "sugar"
 				}
 			],
 			"sources": {

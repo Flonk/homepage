@@ -51,21 +51,21 @@
 			"steps": [
 				{
 					"type": "add",
-					"note": "Dry casein powder is mixed with colourants."
+					"what": "colourants",
+					"note": "Into dry casein powder."
 				},
 				{
 					"type": "heat",
 					"does": "heat",
-					"note": "Heated until it agglomerates."
+					"note": "Until it agglomerates."
 				},
 				{
 					"type": "press",
-					"note": "Pressed into bars and re-extruded, then the bars are pressed into blocks."
+					"note": "Into bars, re-extruded, then pressed into blocks."
 				},
 				{
 					"type": "cut",
-					"how": "cut",
-					"note": "Cut to sheets."
+					"how": "cut"
 				},
 				{
 					"type": "custom",
@@ -73,7 +73,7 @@
 					"seconds": {
 						"max": 31536000
 					},
-					"note": "In a formaldehyde bath of about 5 % (formalin), weeks to months and up to a year for 25 mm thickness."
+					"note": "In about 5 % formalin, weeks to months and up to a year for 25 mm thickness."
 				},
 				{
 					"type": "dry",

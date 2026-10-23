@@ -45,7 +45,7 @@
 						"max": 71,
 						"about": true
 					},
-					"note": "In a large vat, or in cans in a hot-water bath over a wood fire to about 71 °C at Chandanbari (Cheese Professor)."
+					"note": "In cans in a hot-water bath over a wood fire."
 				},
 				{
 					"type": "coagulate",
@@ -53,8 +53,7 @@
 					"seconds": {
 						"min": 900,
 						"max": 2100
-					},
-					"note": "With a cheese culture or rennet, species not named in any source."
+					}
 				},
 				{
 					"type": "cut",
@@ -63,15 +62,14 @@
 						"min": 5400,
 						"max": 5400
 					},
-					"note": "Curd cut and stirred for 1.5 h, with and without fire."
+					"note": "With and without fire."
 				},
 				{
 					"type": "salt",
 					"how": "brine",
 					"seconds": {
 						"max": 172800
-					},
-					"note": "In salt water so the rind is salty."
+					}
 				},
 				{
 					"type": "ferment",

@@ -39,7 +39,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "evaporate",
+					"type": "heat",
 					"temperature": {
 						"min": 100,
 						"max": 120
@@ -48,7 +48,7 @@
 						"min": 60,
 						"max": 180
 					},
-					"note": "Preheated, as for whole evaporated milk."
+					"does": "heat"
 				},
 				{
 					"type": "evaporate",
@@ -56,8 +56,7 @@
 					"temperature": {
 						"min": 65,
 						"max": 70
-					},
-					"note": "Evaporated under vacuum, boiling at 65–70 °C."
+					}
 				},
 				{
 					"type": "add",
@@ -75,7 +74,7 @@
 						"min": 900,
 						"max": 1200
 					},
-					"note": "Sterilised in the can."
+					"note": "In the can."
 				}
 			],
 			"sources": {

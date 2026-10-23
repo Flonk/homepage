@@ -99,7 +99,7 @@
 				{
 					"type": "coagulate",
 					"by": "rennet",
-					"note": "With animal rennet, 0.04–0.25 mL per litre."
+					"note": "Animal rennet, 0.04–0.25 mL per litre."
 				},
 				{
 					"type": "add",
@@ -111,14 +111,14 @@
 					"how": "cut"
 				},
 				{
-					"type": "custom",
-					"name": "wash",
-					"note": "The curd grains are washed, with up to 30 % water."
+					"type": "washCurd",
+					"share": {
+						"max": 30
+					}
 				},
 				{
 					"type": "heat",
-					"does": "cook",
-					"note": "Reheated in the vat."
+					"does": "cook"
 				},
 				{
 					"type": "press",

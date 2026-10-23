@@ -61,11 +61,15 @@
 					"seconds": {
 						"max": 1800
 					},
-					"note": "By indirect heat, since direct steam makes a cloudy emulsion."
+					"note": "By indirect heat, as direct steam clouds the emulsion."
 				},
 				{
 					"type": "separate",
-					"note": "To about 99.5 % fat."
+					"fat": {
+						"min": 99.5,
+						"max": 99.5,
+						"about": true
+					}
 				},
 				{
 					"type": "heat",
@@ -74,7 +78,7 @@
 						"min": 90,
 						"max": 95
 					},
-					"note": "The oil is vacuum dried to 0.1 % moisture or less (95–98 °C on the cream route)."
+					"note": "Vacuum dried to 0.1 % moisture or less (95–98 °C on the cream route)."
 				},
 				{
 					"type": "heat",

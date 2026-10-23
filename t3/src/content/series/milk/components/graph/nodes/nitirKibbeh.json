@@ -60,8 +60,7 @@
 					"seconds": {
 						"min": 120,
 						"max": 180
-					},
-					"note": "In one recipe the spices are toasted dry first."
+					}
 				},
 				{
 					"type": "heat",
@@ -70,12 +69,11 @@
 						"min": 2700,
 						"max": 3600
 					},
-					"note": "Simmered with the spices and, in one recipe, onion, garlic and ginger, on very low heat and stirred often, until the milk solids brown; burnt solids spoil it."
+					"note": "Simmered with the spices until the milk solids brown."
 				},
 				{
 					"type": "drain",
-					"by": "cloth",
-					"note": "Through a fine sieve lined with cheesecloth."
+					"by": "cloth"
 				}
 			],
 			"sources": {

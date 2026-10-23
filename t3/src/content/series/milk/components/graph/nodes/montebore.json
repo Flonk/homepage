@@ -78,8 +78,7 @@
 					"temperature": {
 						"min": 30,
 						"max": 36
-					},
-					"note": "With liquid bovine rennet."
+					}
 				},
 				{
 					"type": "cut",
@@ -98,18 +97,18 @@
 					"seconds": {
 						"min": 14400,
 						"max": 18000
-					},
-					"note": "Dry-salted."
+					}
 				},
 				{
-					"type": "custom",
-					"name": "wash",
-					"note": "After 10-12 h washed in hot salted water."
+					"type": "wash",
+					"what": "cheese",
+					"in": "hot salted water",
+					"note": "After 10–12 h."
 				},
 				{
 					"type": "custom",
 					"name": "stack",
-					"note": "Stacked into the tower."
+					"note": "Into the tower."
 				},
 				{
 					"type": "ferment",

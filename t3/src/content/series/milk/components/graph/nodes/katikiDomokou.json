@@ -51,18 +51,16 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "pasteurise",
-					"note": "The goat and sheep milk is pasteurised."
+					"type": "pasteurise"
 				},
 				{
 					"type": "coagulate",
-					"note": "Curdles without rennet; the cultures are not named.",
+					"note": "Without rennet; cultures not named.",
 					"by": "acid"
 				},
 				{
 					"type": "drain",
-					"by": "cloth",
-					"note": "In cloth bags."
+					"by": "cloth"
 				}
 			],
 			"sources": {

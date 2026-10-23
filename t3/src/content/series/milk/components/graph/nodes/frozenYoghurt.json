@@ -55,7 +55,8 @@
 			"steps": [
 				{
 					"type": "add",
-					"note": "Milk, sugar and a stabiliser (gelatin, guar gum or carrageenan) hold back ice crystals."
+					"what": "milk, sugar and a stabiliser",
+					"note": "Stabiliser (gelatin, guar gum or carrageenan) holds back ice crystals."
 				},
 				{
 					"type": "homogenise"
@@ -116,7 +117,7 @@
 						"min": -6,
 						"max": -2
 					},
-					"note": "Air is whipped in while it freezes."
+					"note": "With air whipped in."
 				}
 			],
 			"text": "Held until set. Some mixes blend finished yoghurt into the cold mix instead.",

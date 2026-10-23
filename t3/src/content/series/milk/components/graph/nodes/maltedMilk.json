@@ -56,21 +56,21 @@
 				{
 					"type": "custom",
 					"name": "mash",
-					"note": "Wheat flour and ground barley malt are mashed, the malt amylases turning starch into maltose and dextrins."
+					"note": "The malt amylases turn starch into maltose and dextrins."
 				},
 				{
 					"type": "add",
-					"note": "The mash extract is mixed with milk or milk powder."
+					"what": "mash extract"
 				},
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "evaporate",
+					"under": "vacuum",
 					"temperature": {
 						"min": 57,
 						"max": 57,
 						"about": true
 					},
-					"note": "Concentrated in a vacuum pan to a heavy syrup."
+					"note": "To a heavy syrup."
 				},
 				{
 					"type": "dry",
@@ -79,7 +79,7 @@
 						"max": 96,
 						"about": true
 					},
-					"note": "Dried under vacuum on shelves, to about 3 % moisture or less."
+					"note": "Under vacuum on shelves, to about 3 % moisture."
 				}
 			],
 			"sources": {

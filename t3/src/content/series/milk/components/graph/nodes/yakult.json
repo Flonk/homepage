@@ -49,14 +49,13 @@
 			"steps": [
 				{
 					"type": "add",
-					"note": "Skim milk powder, sugar and dextrose in water."
+					"what": "skim milk powder, sugar and dextrose in water"
 				},
 				{
 					"type": "pasteurise",
 					"temperature": {
 						"min": 100
-					},
-					"note": "Heated HTST."
+					}
 				},
 				{
 					"type": "ferment",
@@ -94,12 +93,11 @@
 				},
 				{
 					"type": "add",
-					"note": "Blended with sugar syrup and flavour."
+					"what": "sugar syrup and flavour"
 				},
 				{
-					"type": "custom",
-					"name": "dilute",
-					"note": "Diluted with water."
+					"type": "add",
+					"what": "water"
 				}
 			],
 			"sources": {

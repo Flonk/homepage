@@ -101,18 +101,15 @@
 					"note": "Set at room temperature overnight with a spoonful of the previous day's dahi or chhach, best for churning at 0.9–1.1 % acidity and up to 2 % when uncontrolled."
 				},
 				{
-					"type": "custom",
-					"name": "dilute",
-					"note": "The dahi is diluted with water."
+					"type": "add",
+					"what": "water"
 				},
 				{
-					"type": "churn",
-					"note": "Churned with a wooden beater in the morning."
+					"type": "churn"
 				},
 				{
-					"type": "custom",
-					"name": "wash",
-					"note": "The fat is washed."
+					"type": "wash",
+					"what": "butter"
 				}
 			],
 			"sources": {

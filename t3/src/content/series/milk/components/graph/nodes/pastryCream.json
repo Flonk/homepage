@@ -52,7 +52,11 @@
 				{
 					"type": "heat",
 					"does": "heat",
-					"note": "Brought to the boil and stirred."
+					"temperature": {
+						"min": 100,
+						"max": 100,
+						"about": true
+					}
 				}
 			],
 			"sources": {

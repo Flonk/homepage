@@ -66,7 +66,10 @@
 				},
 				{
 					"type": "separate",
-					"note": "Skim milk keeps 0.04–0.07 % fat."
+					"fat": {
+						"min": 0.04,
+						"max": 0.07
+					}
 				},
 				{
 					"type": "homogenise",
@@ -75,7 +78,7 @@
 				{
 					"type": "custom",
 					"name": "standardise",
-					"note": "In line, a ratio controller remixes cream into the skim to the target fat."
+					"note": "In line, a ratio controller remixes cream into the skim."
 				},
 				{
 					"type": "pasteurise"

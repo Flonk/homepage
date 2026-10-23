@@ -67,7 +67,7 @@
 						"min": 4.6,
 						"max": 4.6
 					},
-					"note": "With 10 % hydrochloric acid to pH 4.6, the isoelectric point of casein."
+					"note": "To the isoelectric point of casein."
 				},
 				{
 					"type": "heat",
@@ -76,20 +76,18 @@
 						"min": 20,
 						"max": 20,
 						"about": true
-					},
-					"note": "The curd is cooled to about 20 °C."
+					}
 				},
 				{
 					"type": "separate"
 				},
 				{
-					"type": "custom",
-					"name": "wash",
+					"type": "washCurd",
 					"temperature": {
 						"min": 45,
 						"max": 50
 					},
-					"note": "With up to 1 l of water per l of milk."
+					"note": "Up to 1 l of water per l of milk."
 				},
 				{
 					"type": "dry",

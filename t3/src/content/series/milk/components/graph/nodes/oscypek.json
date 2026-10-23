@@ -69,13 +69,12 @@
 			"steps": [
 				{
 					"type": "salt",
-					"how": "milk",
-					"note": "Salt is added to the milk."
+					"how": "milk"
 				},
 				{
 					"type": "custom",
 					"name": "rinse",
-					"note": "The curd is rinsed with boiling water."
+					"note": "With boiling water."
 				},
 				{
 					"type": "custom",
@@ -83,7 +82,7 @@
 				},
 				{
 					"type": "press",
-					"note": "Into wooden spindle-shaped moulds."
+					"note": "In wooden spindle-shaped moulds."
 				},
 				{
 					"type": "salt",
@@ -96,7 +95,7 @@
 					"seconds": {
 						"max": 1209600
 					},
-					"note": "Hot-smoked for up to 14 d."
+					"note": "Hot-smoked."
 				}
 			],
 			"sources": {

@@ -87,8 +87,7 @@
 				},
 				{
 					"type": "cut",
-					"how": "cut",
-					"note": "Finely."
+					"how": "cut"
 				},
 				{
 					"type": "heat",
@@ -100,8 +99,7 @@
 					"seconds": {
 						"min": 900,
 						"max": 2700
-					},
-					"note": "Stirred while it is reheated."
+					}
 				},
 				{
 					"type": "press",
@@ -118,7 +116,7 @@
 						"min": 10800,
 						"max": 172800
 					},
-					"note": "In brine, dry, or both, and the brining takes 3–48 h."
+					"note": "In brine, dry, or both."
 				},
 				{
 					"type": "ferment",

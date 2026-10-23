@@ -86,13 +86,12 @@
 				},
 				{
 					"type": "cut",
-					"how": "cut",
-					"note": "The curd is broken up."
+					"how": "cut"
 				},
 				{
-					"type": "custom",
-					"name": "season",
-					"note": "Salt and spices such as cumin are added after fermentation."
+					"type": "add",
+					"note": "After fermentation.",
+					"what": "salt and spices such as cumin"
 				}
 			],
 			"sources": {

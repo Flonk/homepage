@@ -61,7 +61,7 @@
 						"max": 80,
 						"about": true
 					},
-					"note": "Preheated to about 75 °C in an indirect plant, or about 80 °C in a direct plant."
+					"note": "About 75 °C in an indirect plant, about 80 °C in a direct one."
 				},
 				{
 					"type": "homogenise",
@@ -69,7 +69,7 @@
 						"min": 180,
 						"max": 250
 					},
-					"note": "Before UHT at 180–250 bar in indirect plants, or aseptically after."
+					"note": "In indirect plants before UHT, or aseptically after."
 				},
 				{
 					"type": "heat",
@@ -82,12 +82,12 @@
 						"min": 4,
 						"max": 6
 					},
-					"note": "Held in continuous flow; an indirect plant holds about 4 s at about 138 °C, a direct plant steam-injects to 140–150 °C and flash-cools in vacuum."
+					"note": "Continuous flow; an indirect plant holds about 4 s at about 138 °C, a direct plant steam-injects to 140–150 °C and flash-cools in vacuum."
 				},
 				{
 					"type": "custom",
 					"name": "fill",
-					"note": "Aseptic, into sterilised cartons."
+					"note": "Aseptically, into sterilised cartons."
 				}
 			],
 			"sources": {

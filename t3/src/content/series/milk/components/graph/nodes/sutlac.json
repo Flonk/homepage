@@ -49,9 +49,14 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "boil",
-					"note": "Rice, 1/2 tea glass, boiled first in 1.5 cups water."
+					"type": "heat",
+					"note": "Rice, 1/2 tea glass, in 1.5 cups water.",
+					"does": "heat",
+					"temperature": {
+						"min": 100,
+						"max": 100,
+						"about": true
+					}
 				},
 				{
 					"type": "heat",
@@ -60,12 +65,12 @@
 						"min": 600,
 						"max": 600
 					},
-					"note": "1 l of milk is added with the sugar and cooked."
+					"note": "1 l of milk is added with the sugar."
 				},
 				{
 					"type": "custom",
 					"name": "thicken",
-					"note": "1.5 tbsp cornstarch whisked with lukewarm water and 1 egg yolk."
+					"note": "1.5 tbsp cornstarch whisked with lukewarm water, and 1 egg yolk."
 				},
 				{
 					"type": "heat",

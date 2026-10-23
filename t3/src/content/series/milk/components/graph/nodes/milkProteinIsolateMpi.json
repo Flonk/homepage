@@ -31,12 +31,11 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "ultrafilter",
-					"note": "Skim milk is ultrafiltered."
+					"type": "ultrafilter"
 				},
 				{
 					"type": "diafilter",
-					"note": "Heavily, with water added to the retentate to wash lactose and minerals out."
+					"note": "Heavily, to wash lactose and minerals out."
 				}
 			],
 			"sources": {

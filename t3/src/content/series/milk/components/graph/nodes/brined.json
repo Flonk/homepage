@@ -67,7 +67,12 @@
 				{
 					"type": "salt",
 					"how": "dry",
-					"note": "The curd is dry-salted to about 3 %, ending at 3.5–7 % salt in the finished cheese."
+					"note": "Ending at 3.5–7 % salt in the finished cheese.",
+					"strength": {
+						"min": 3,
+						"max": 3,
+						"about": true
+					}
 				},
 				{
 					"type": "ferment",

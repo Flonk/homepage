@@ -52,13 +52,13 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "dilute",
-					"note": "The dahi is diluted with about equal water."
+					"type": "add",
+					"what": "water",
+					"note": "About as much as the dahi."
 				},
 				{
 					"type": "churn",
-					"note": "Churned, and the makkhan is lifted off."
+					"note": "The makkhan is lifted off."
 				}
 			],
 			"sources": {

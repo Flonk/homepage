@@ -48,11 +48,12 @@
 						"min": 3,
 						"max": 3
 					},
-					"note": "The mix is held at this temperature, unfrozen, in the machine."
+					"note": "Held unfrozen in the machine."
 				},
 				{
-					"type": "churn",
-					"note": "Drawn into the freezing chamber with air worked in, 0–60 % overrun, ideal 33–45 %."
+					"type": "custom",
+					"name": "aerate",
+					"note": "Air worked in: 0–60 % overrun, ideal 33–45 %."
 				},
 				{
 					"type": "custom",

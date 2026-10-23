@@ -54,25 +54,21 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "pasteurise",
-					"note": "Gently pasteurised."
+					"type": "pasteurise"
 				},
 				{
 					"type": "coagulate",
-					"by": "rennet",
-					"note": "With rennet."
+					"by": "rennet"
 				},
 				{
 					"type": "drain",
-					"by": "mould",
-					"note": "The curds are strained, then packed in moulds, much as for a young rindless chèvre."
+					"by": "mould"
 				},
 				{
 					"type": "mould",
 					"seconds": {
 						"max": 259200
-					},
-					"note": "Up to 3 days in the mould."
+					}
 				},
 				{
 					"type": "ferment",

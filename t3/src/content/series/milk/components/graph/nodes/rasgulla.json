@@ -45,9 +45,14 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "boil",
-					"note": "The chhena balls are boiled in light sugar syrup, where they swell."
+					"type": "heat",
+					"note": "In light sugar syrup, where the chhena balls swell.",
+					"does": "heat",
+					"temperature": {
+						"min": 100,
+						"max": 100,
+						"about": true
+					}
 				}
 			],
 			"sources": {

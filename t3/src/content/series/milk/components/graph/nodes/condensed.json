@@ -66,12 +66,17 @@
 				{
 					"type": "add",
 					"what": "sugar",
-					"note": "Sugar and evaporated milk 9 : 11, about 45 % sugar."
+					"note": "Sugar and evaporated milk 9 : 11.",
+					"share": {
+						"min": 45,
+						"max": 45,
+						"about": true
+					}
 				},
 				{
 					"type": "heat",
 					"does": "cool",
-					"note": "Cooled while lactose crystallisation is induced to keep the texture smooth."
+					"note": "Lactose crystallisation is induced to keep it smooth."
 				}
 			],
 			"sources": {

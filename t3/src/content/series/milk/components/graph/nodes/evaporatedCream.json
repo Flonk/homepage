@@ -53,16 +53,16 @@
 				},
 				{
 					"type": "evaporate",
-					"note": "About half of the milk's weight in water is removed (evaporated milk is boiled down to roughly twice its solids)."
+					"note": "About half the milk's weight in water is removed."
 				},
 				{
 					"type": "add",
-					"note": "With stabilisers, disodium phosphate (stops coagulation) and carrageenan (stops settling)."
+					"what": "stabilisers",
+					"note": "Disodium phosphate stops coagulation, carrageenan stops settling."
 				},
 				{
 					"type": "custom",
-					"name": "fill",
-					"note": "Into cans or bottles."
+					"name": "fill"
 				},
 				{
 					"type": "heat",

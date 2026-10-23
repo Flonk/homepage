@@ -73,13 +73,11 @@
 			"steps": [
 				{
 					"type": "heat",
-					"does": "heat",
-					"note": "The milk is heated before the rennet goes in."
+					"does": "heat"
 				},
 				{
 					"type": "coagulate",
-					"by": "rennet",
-					"note": "With rennet."
+					"by": "rennet"
 				},
 				{
 					"type": "press"
@@ -95,7 +93,12 @@
 				{
 					"type": "heat",
 					"does": "cook",
-					"note": "The curd is boiled in brine, with mastic and mahleb in the boiling brine."
+					"note": "In brine with mastic and mahleb.",
+					"temperature": {
+						"min": 100,
+						"max": 100,
+						"about": true
+					}
 				},
 				{
 					"type": "salt",

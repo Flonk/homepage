@@ -78,16 +78,16 @@
 				},
 				{
 					"type": "churn",
-					"note": "The ergo is shaken in a clay-pot churn."
+					"note": "Shaken in a clay-pot churn."
 				},
 				{
 					"type": "custom",
 					"name": "knead"
 				},
 				{
-					"type": "custom",
-					"name": "wash",
-					"note": "The butter is washed in cold water."
+					"type": "wash",
+					"what": "butter",
+					"in": "cold water"
 				}
 			],
 			"sources": {

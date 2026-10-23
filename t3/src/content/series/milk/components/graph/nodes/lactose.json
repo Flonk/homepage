@@ -52,7 +52,11 @@
 			"steps": [
 				{
 					"type": "evaporate",
-					"note": "The permeate is evaporated to about 60 % dry matter."
+					"solids": {
+						"min": 60,
+						"max": 60,
+						"about": true
+					}
 				},
 				{
 					"type": "heat",

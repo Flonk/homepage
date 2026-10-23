@@ -37,17 +37,21 @@
 			"steps": [
 				{
 					"type": "evaporate",
-					"note": "Evaporated to 60-62 % dry matter (whey) or 65 % (nanofiltered permeate)."
+					"solids": {
+						"min": 60,
+						"max": 62
+					},
+					"note": "65 % if nanofiltered permeate."
 				},
 				{
 					"type": "heat",
 					"does": "cool",
-					"note": "Seeded, then cooled slowly in crystallisers; crystals over 0.2 mm separate best."
+					"note": "Seeded, cooled slowly; crystals over 0.2 mm separate best."
 				},
 				{
 					"type": "separate",
 					"by": "centrifuge",
-					"note": "Spun off in two decanter centrifuges in series, leaving a lactose cake under 9 % moisture and about 99 % dry solids."
+					"note": "Two decanter centrifuges in series leave a lactose cake under 9 % moisture, about 99 % dry solids."
 				}
 			],
 			"sources": {

@@ -50,12 +50,17 @@
 				{
 					"type": "heat",
 					"does": "heat",
-					"note": "Milk and sugar, 300–500 g per litre, are brought to the boil."
+					"note": "Sugar, 300–500 g per litre.",
+					"temperature": {
+						"min": 100,
+						"max": 100,
+						"about": true
+					}
 				},
 				{
 					"type": "heat",
 					"does": "cook",
-					"note": "Then cooked on very low heat until thick and caramel-coloured."
+					"note": "Until thick and caramel-coloured."
 				}
 			],
 			"sources": {

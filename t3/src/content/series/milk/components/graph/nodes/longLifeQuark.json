@@ -28,14 +28,14 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "stabilise",
-					"note": "Stabilisers are added in the buffer tank."
+					"type": "add",
+					"what": "stabilisers",
+					"note": "In the buffer tank."
 				},
 				{
 					"type": "heat",
 					"does": "heat",
-					"note": "In a plate, tubular or scraped-surface heat exchanger after separation, to inactivate all microorganisms."
+					"note": "To inactivate all microorganisms."
 				}
 			],
 			"sources": {

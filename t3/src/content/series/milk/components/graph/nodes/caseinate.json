@@ -38,12 +38,12 @@
 					"temperature": {
 						"max": 45
 					},
-					"note": "The curd, at 25–30 % solids, goes through a colloid mill to a slurry."
+					"note": "The curd at 25–30 % solids is milled to a slurry."
 				},
 				{
 					"type": "custom",
 					"name": "neutralise",
-					"note": "With NaOH 2.5 M (10 %), 1.7–2.2 % of casein solids, or Ca(OH)₂, KOH or ammonia, to a final pH of about 6.7."
+					"note": "With NaOH 2.5 M (10 %), 1.7–2.2 % of casein solids, or Ca(OH)₂, KOH or ammonia, to pH about 6.7."
 				},
 				{
 					"type": "heat",
@@ -59,8 +59,7 @@
 					"temperature": {
 						"min": 90,
 						"max": 95
-					},
-					"note": "Preheated before spray drying."
+					}
 				},
 				{
 					"type": "dry",

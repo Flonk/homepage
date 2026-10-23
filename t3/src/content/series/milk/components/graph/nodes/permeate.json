@@ -33,7 +33,10 @@
 			"steps": [
 				{
 					"type": "evaporate",
-					"note": "To 60–62 % dry matter."
+					"solids": {
+						"min": 60,
+						"max": 62
+					}
 				},
 				{
 					"type": "custom",
@@ -42,11 +45,11 @@
 						"min": 14400,
 						"max": 21600
 					},
-					"note": "The concentrate is crystallised, over 75 % of it, before the spray-dryer."
+					"note": "Over 75 % of it crystallises before spray-drying."
 				},
 				{
 					"type": "dry",
-					"note": "Spray-dried whole as permeate powder."
+					"note": "Spray-dried."
 				}
 			],
 			"sources": {

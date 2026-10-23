@@ -70,22 +70,21 @@
 			"steps": [
 				{
 					"type": "coagulate",
-					"by": "rennet",
-					"note": "With rennet, as for pecorino."
+					"by": "rennet"
 				},
 				{
 					"type": "press",
-					"note": "Lightly, into cylinders of mostly 2–4 kg."
+					"note": "Into cylinders of mostly 2–4 kg."
 				},
 				{
 					"type": "salt",
 					"how": "brine",
-					"note": "Shortened, so the salt does not deter the fly."
+					"note": "Short, so the salt does not deter the fly."
 				},
 				{
-					"type": "custom",
-					"name": "pierce",
-					"note": "Small holes with a drop of oil are made in the rind, so the fly lays its eggs inside."
+					"type": "ferment",
+					"does": "pierce",
+					"note": "Holes with a drop of oil, so the fly lays its eggs inside."
 				},
 				{
 					"type": "ferment",

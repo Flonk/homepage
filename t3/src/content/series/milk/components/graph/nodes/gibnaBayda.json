@@ -51,7 +51,11 @@
 			"steps": [
 				{
 					"type": "salt",
-					"note": "8–12 % salt goes into the milk before renneting."
+					"how": "milk",
+					"strength": {
+						"min": 8,
+						"max": 12
+					}
 				},
 				{
 					"type": "coagulate",
@@ -69,11 +73,11 @@
 				{
 					"type": "drain",
 					"by": "cloth",
-					"note": "Ladled into cloth in a wooden frame and drained to about half its volume."
+					"note": "In a wooden frame, to about half its volume."
 				},
 				{
 					"type": "press",
-					"note": "Pressed overnight."
+					"note": "Overnight."
 				},
 				{
 					"type": "cut",
@@ -81,8 +85,7 @@
 					"size": {
 						"min": 50,
 						"max": 80
-					},
-					"note": "Cut into 5–8 cm blocks."
+					}
 				},
 				{
 					"type": "ferment",

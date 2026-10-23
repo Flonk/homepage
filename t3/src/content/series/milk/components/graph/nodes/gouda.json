@@ -104,26 +104,22 @@
 						"min": 30,
 						"max": 30,
 						"about": true
-					},
-					"note": "With rennet."
+					}
 				},
 				{
-					"type": "drain",
-					"note": "The whey is separated from the curd."
+					"type": "drain"
 				},
 				{
-					"type": "custom",
-					"name": "wash",
+					"type": "washCurd",
 					"note": "To set the moisture and pH."
 				},
 				{
 					"type": "press",
-					"note": "In moulds, as a flattened cylinder or a block of 2.5–20 kg."
+					"note": "Flattened cylinder or block of 2.5–20 kg."
 				},
 				{
 					"type": "salt",
-					"how": "brine",
-					"note": "Immersed in a brine bath."
+					"how": "brine"
 				},
 				{
 					"type": "ferment",

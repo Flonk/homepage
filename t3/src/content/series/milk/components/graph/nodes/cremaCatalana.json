@@ -54,7 +54,12 @@
 				{
 					"type": "heat",
 					"does": "heat",
-					"note": "Milk with lemon zest and cinnamon is brought to the boil."
+					"note": "With lemon zest and cinnamon.",
+					"temperature": {
+						"min": 100,
+						"max": 100,
+						"about": true
+					}
 				},
 				{
 					"type": "custom",
@@ -68,17 +73,17 @@
 				{
 					"type": "heat",
 					"does": "cook",
-					"note": "Over medium heat, whisked, until it boils and thickens (the foam disappears)."
+					"note": "Until it boils and thickens, the foam gone."
 				},
 				{
 					"type": "heat",
 					"does": "cool",
-					"note": "To room temperature, then in the fridge, not frozen."
+					"note": "To room temperature, then the fridge, not frozen."
 				},
 				{
 					"type": "custom",
 					"name": "burn",
-					"note": "About 1/2 tbsp sugar per portion, burnt with a torch just before serving."
+					"note": "Sugar, about 1/2 tbsp per portion, burnt with a torch."
 				}
 			],
 			"sources": {
