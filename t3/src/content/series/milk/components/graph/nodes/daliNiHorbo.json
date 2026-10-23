@@ -74,7 +74,11 @@
 						"max": 600,
 						"about": true
 					},
-					"note": "Buffalo milk is boiled."
+					"temperature": {
+						"min": 100,
+						"max": 100,
+						"about": true
+					}
 				},
 				{
 					"type": "coagulate",

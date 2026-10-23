@@ -70,8 +70,7 @@
 			"steps": [
 				{
 					"type": "heat",
-					"does": "heat",
-					"note": "The milk is weakly heated."
+					"does": "heat"
 				},
 				{
 					"type": "ferment",
@@ -92,8 +91,7 @@
 				},
 				{
 					"type": "heat",
-					"does": "heat",
-					"note": "The buttermilk is heated."
+					"does": "heat"
 				},
 				{
 					"type": "drain",

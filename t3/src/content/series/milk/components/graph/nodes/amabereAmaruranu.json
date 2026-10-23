@@ -36,7 +36,11 @@
 						"min": 600,
 						"max": 600
 					},
-					"note": "Heated and held at boiling."
+					"temperature": {
+						"min": 100,
+						"max": 100,
+						"about": true
+					}
 				},
 				{
 					"type": "heat",

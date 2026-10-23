@@ -50,7 +50,11 @@
 				{
 					"type": "heat",
 					"does": "heat",
-					"note": "The milk is boiled."
+					"temperature": {
+						"min": 100,
+						"max": 100,
+						"about": true
+					}
 				},
 				{
 					"type": "coagulate",

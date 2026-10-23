@@ -59,7 +59,11 @@
 						"min": 1500,
 						"max": 1800
 					},
-					"note": "The defatted drink is boiled."
+					"temperature": {
+						"min": 100,
+						"max": 100,
+						"about": true
+					}
 				},
 				{
 					"type": "drain",

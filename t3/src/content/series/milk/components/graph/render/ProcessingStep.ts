@@ -85,23 +85,35 @@ const titleOf = (h: Step): [string, string] => {
 /* Pasteurised and homogenised are said by name alone, but where they are
    explained (see SpecialPasteurise): done as everywhere, nothing to add. */
 const plain = (h: Step) => h.type === 'pasteurise' || h.type === 'homogenise';
+/* A step that says little is said on one line with its name, its parts
+   between middle dots, "🔥 HEAT · ~5 min · 90–95°C", its sentence under it:
+   one with no microbes whose line is short, and acidifying. Any other says
+   how long and how warm, "~5 min @ 90–95°C", under its name. */
+const ONE_LINE = 48;
 export const chip = (h: Step): Chip => {
-	if (plain(h)) return { title: titleOf(h)[0], said: '', done: titleOf(h)[1] };
-	// Acidifying says what with and to what pH, on one line with its name.
-	if (h.type === 'acidify') {
-		const [title, done] = titleOf(h);
-		return { title, said: ownSaid(h).filter(Boolean).join(' · '), done, inline: true, ...(h.note && { note: h.note }) };
-	}
-	const held = [h.type === 'specialHomogenise' && h.bar && span(h.bar, inUnit(' bar')), h.seconds && span(h.seconds, inTime), h.temperature && span(h.temperature, inUnit('°C'))]
-		.filter(Boolean)
-		.join(' @ ');
 	const [title, done] = titleOf(h);
+	if (plain(h)) return { title, said: '', done };
+	const time = h.seconds && span(h.seconds, inTime);
+	const warm = h.temperature && span(h.temperature, inUnit('°C'));
+	const parts = [
+		h.type === 'coagulate' && h.by && `by ${SET[h.by]}`,
+		h.type === 'specialHomogenise' && h.bar && span(h.bar, inUnit(' bar')),
+		...ownSaid(h),
+		time,
+		warm,
+		h.humidity && `${span(h.humidity, inUnit('%'))} RH`,
+	].filter((x): x is string => !!x);
+	const microbes = h.type === 'ferment' && h.adds?.microbes.length ? h.adds.microbes.map((m) => m.name).join(', ') : undefined;
+	const inline = h.type === 'acidify' || (!microbes && parts.length > 0 && `${title} · ${parts.join(' · ')}`.length <= ONE_LINE);
+	const held = [h.type === 'specialHomogenise' && h.bar && span(h.bar, inUnit(' bar')), time, warm].filter(Boolean).join(' @ ');
+	const rest = [h.type === 'coagulate' && h.by && `by ${SET[h.by]}`, ...ownSaid(h), held, h.humidity && `${span(h.humidity, inUnit('%'))} RH`].filter(Boolean).join(', ');
 	return {
 		title,
-		said: [h.type === 'coagulate' && h.by && `by ${SET[h.by]}`, ...ownSaid(h), held, h.humidity && `${span(h.humidity, inUnit('%'))} RH`].filter(Boolean).join(', '),
+		said: inline ? parts.join(' · ') : rest,
 		done,
-		...(h.type === 'ferment' && h.adds?.microbes.length && { microbes: h.adds.microbes.map((m) => m.name).join(', ') }),
+		...(microbes && { microbes }),
 		...(h.note && { note: h.note }),
+		...(inline && { inline: true as const }),
 	};
 };
 
