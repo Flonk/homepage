@@ -296,3 +296,5 @@ export type Cheese = z.infer<typeof Cheese>;
 export type How = z.infer<typeof How>;
 export type Arrow = z.infer<typeof Arrow>;
 export type Ferment = z.infer<typeof Ferment>;
+export type Range = z.infer<typeof Range>;
+export type Stretch = z.infer<typeof Stretch>;
