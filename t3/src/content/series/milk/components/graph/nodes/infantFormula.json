@@ -62,8 +62,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "mix",
+					"type": "add",
 					"note": "The ingredients are dissolved in skim milk or water."
 				},
 				{
@@ -74,8 +73,7 @@
 					"type": "homogenise"
 				},
 				{
-					"type": "custom",
-					"name": "evaporate",
+					"type": "evaporate",
 					"note": "Evaporated to about 55 % solids in a pilot study."
 				},
 				{

@@ -66,8 +66,12 @@
 					"note": "With rennet, for at least 30–40 min."
 				},
 				{
-					"type": "custom",
-					"name": "cut",
+					"type": "cut",
+					"how": "cut",
+					"size": {
+						"min": 10,
+						"max": 10
+					},
 					"note": "To grains of about 1 cm."
 				},
 				{
@@ -85,8 +89,7 @@
 					"note": "The grains are kept warm."
 				},
 				{
-					"type": "custom",
-					"name": "press",
+					"type": "press",
 					"seconds": {
 						"min": 36000,
 						"max": 36000,
@@ -95,8 +98,8 @@
 					"note": "Tied in a square cotton cloth (fogasser), 0.6–4 kg."
 				},
 				{
-					"type": "custom",
-					"name": "brine",
+					"type": "salt",
+					"how": "brine",
 					"seconds": {
 						"max": 172800
 					},

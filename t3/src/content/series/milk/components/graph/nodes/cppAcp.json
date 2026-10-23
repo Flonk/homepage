@@ -64,13 +64,13 @@
 					"note": "Acidified to pH 4.6 and the precipitate removed by centrifuge or microfilter, or microfiltered at pH 8.0 instead."
 				},
 				{
-					"type": "custom",
-					"name": "add calcium",
+					"type": "add",
+					"what": "calcium",
 					"note": "The supernatant is taken to pH 9.0, then CaCl₂ (1.6 M) and Na₂HPO₄ (1 M) are added slowly while stirring."
 				},
 				{
-					"type": "custom",
-					"name": "microfilter",
+					"type": "filter",
+					"by": "micro",
 					"note": "Microfiltration/diafiltration keeps only the peptide-calcium phosphate complexes."
 				}
 			],

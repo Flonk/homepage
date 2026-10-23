@@ -69,8 +69,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "skim",
+					"type": "separate",
 					"note": "Skimmed cow milk; sheep and goat mixes are also used."
 				},
 				{
@@ -119,8 +118,12 @@
 					"note": "The curd is gathered, kneaded, stretched and tied into skeins."
 				},
 				{
-					"type": "custom",
-					"name": "brine",
+					"type": "salt",
+					"how": "brine",
+					"strength": {
+						"min": 16,
+						"max": 19
+					},
 					"note": "In a 16–19 % brine."
 				}
 			],

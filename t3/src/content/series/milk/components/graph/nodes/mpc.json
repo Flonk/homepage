@@ -40,18 +40,17 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "ultrafilter",
+					"type": "filter",
+					"by": "ultra",
 					"note": "Pasteurised skim milk on a membrane that keeps the casein and whey proteins and lets lactose, minerals and water through."
 				},
 				{
-					"type": "custom",
-					"name": "diafilter",
+					"type": "filter",
+					"by": "dia",
 					"note": "Water is added and filtered out again to wash out lactose, needed above about 70 % protein."
 				},
 				{
-					"type": "custom",
-					"name": "evaporate",
+					"type": "evaporate",
 					"note": "The retentate is evaporated to 12–18 % solids before drying (MPC85/MCC85)."
 				},
 				{

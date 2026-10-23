@@ -61,8 +61,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "add calcium chloride"
+					"type": "add",
+					"what": "calcium chloride"
 				},
 				{
 					"type": "coagulate",
@@ -74,8 +74,8 @@
 					"note": "With rennet."
 				},
 				{
-					"type": "custom",
-					"name": "cut",
+					"type": "cut",
+					"how": "cut",
 					"note": "Into large cubes, 1 in in the traditional make."
 				},
 				{
@@ -84,18 +84,16 @@
 					"note": "With gentle stirring."
 				},
 				{
-					"type": "custom",
-					"name": "drain",
+					"type": "drain",
 					"note": "Half the whey is drained."
 				},
 				{
-					"type": "custom",
-					"name": "salt",
+					"type": "salt",
+					"how": "brine",
 					"note": "Dry salt or concentrated brine is added to the curd."
 				},
 				{
-					"type": "custom",
-					"name": "mould",
+					"type": "mould",
 					"note": "The wet curd drains overnight in basket-weave moulds."
 				}
 			],

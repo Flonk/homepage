@@ -54,8 +54,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "strain",
+					"type": "drain",
+					"by": "hang",
 					"seconds": {
 						"min": 14400,
 						"max": 28800
@@ -63,8 +63,7 @@
 					"note": "Dahi is hung in muslin to lose its whey."
 				},
 				{
-					"type": "custom",
-					"name": "mix",
+					"type": "add",
 					"note": "Chakka is mixed with sugar and flavourings."
 				}
 			],

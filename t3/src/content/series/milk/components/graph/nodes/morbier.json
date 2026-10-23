@@ -103,18 +103,21 @@
 					"note": "With rennet only."
 				},
 				{
-					"type": "custom",
-					"name": "cut",
+					"type": "cut",
+					"how": "cut",
+					"size": {
+						"min": 10,
+						"max": 10
+					},
 					"note": "To grains of about 1 cm."
 				},
 				{
-					"type": "custom",
-					"name": "add charcoal",
+					"type": "add",
+					"what": "charcoal",
 					"note": "On half a cake, leaving the horizontal black line."
 				},
 				{
-					"type": "custom",
-					"name": "press",
+					"type": "press",
 					"note": "Lightly, into cakes of 5–8 kg and 30–40 cm."
 				},
 				{

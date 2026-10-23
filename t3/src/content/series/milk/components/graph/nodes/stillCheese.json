@@ -41,8 +41,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "press",
+					"type": "press",
 					"note": "Pressed by hand or bagged."
 				},
 				{
@@ -50,8 +49,8 @@
 					"note": "Hung in cloth bags outside while the whey drips out, and the solids dry in the sun."
 				},
 				{
-					"type": "custom",
-					"name": "cut",
+					"type": "cut",
+					"how": "cut",
 					"note": "Cut into squares called khurskh."
 				},
 				{

@@ -55,8 +55,8 @@
 					"note": "With added proteases, e.g. trypsin, chymotrypsin, pancreatic enzymes."
 				},
 				{
-					"type": "custom",
-					"name": "ultrafilter",
+					"type": "filter",
+					"by": "ultra",
 					"note": "Removes the enzyme and leftover large protein."
 				}
 			],

@@ -45,8 +45,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "skim",
+					"type": "separate",
 					"note": "Fat skimmed for butter, from buffalo or cow milk."
 				},
 				{
@@ -70,13 +69,12 @@
 					"note": "The milk is soured to laban rayeb."
 				},
 				{
-					"type": "custom",
-					"name": "drain",
+					"type": "drain",
 					"note": "On a reed mat, spread and squeezed from time to time."
 				},
 				{
-					"type": "custom",
-					"name": "hang",
+					"type": "drain",
+					"by": "hang",
 					"seconds": {
 						"min": 172800,
 						"max": 259200
@@ -84,13 +82,13 @@
 					"note": "Hung 2–3 days."
 				},
 				{
-					"type": "custom",
-					"name": "salt",
+					"type": "salt",
+					"how": "dry",
 					"note": "Dry salt near the end."
 				},
 				{
-					"type": "custom",
-					"name": "hang",
+					"type": "drain",
+					"by": "hang",
 					"note": "A few more hours."
 				}
 			],

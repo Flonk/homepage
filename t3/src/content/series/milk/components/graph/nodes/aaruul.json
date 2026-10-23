@@ -91,18 +91,17 @@
 					}
 				},
 				{
-					"type": "custom",
-					"name": "drain",
+					"type": "drain",
+					"by": "cloth",
 					"note": "In cloth."
 				},
 				{
-					"type": "custom",
-					"name": "press",
+					"type": "press",
 					"note": "To about 60 % moisture."
 				},
 				{
-					"type": "custom",
-					"name": "cut"
+					"type": "cut",
+					"how": "cut"
 				},
 				{
 					"type": "dry",

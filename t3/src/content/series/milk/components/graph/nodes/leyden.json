@@ -92,8 +92,8 @@
 					"note": "With rennet."
 				},
 				{
-					"type": "custom",
-					"name": "cut",
+					"type": "cut",
+					"how": "cut",
 					"note": "Chopped."
 				},
 				{
@@ -102,18 +102,17 @@
 					"note": "By adding hot water to the curds and whey."
 				},
 				{
-					"type": "custom",
-					"name": "add cumin",
+					"type": "add",
+					"what": "cumin",
 					"note": "About 75 g per 100 L of milk, with plain curd kept for the white bottoms."
 				},
 				{
-					"type": "custom",
-					"name": "press",
+					"type": "press",
 					"note": "In two stages."
 				},
 				{
-					"type": "custom",
-					"name": "brine",
+					"type": "salt",
+					"how": "brine",
 					"seconds": {
 						"min": 432000,
 						"max": 518400

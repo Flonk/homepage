@@ -71,8 +71,8 @@
 					"note": "With calf rennet or kid rennet paste."
 				},
 				{
-					"type": "custom",
-					"name": "cut",
+					"type": "cut",
+					"how": "cut",
 					"note": "The curd is broken to hazelnut size."
 				},
 				{
@@ -99,8 +99,8 @@
 					"note": "Stretched in hot water and closed by hand into an oval or cone of 1–2.5 kg."
 				},
 				{
-					"type": "custom",
-					"name": "brine",
+					"type": "salt",
+					"how": "brine",
 					"seconds": {
 						"min": 21600
 					},

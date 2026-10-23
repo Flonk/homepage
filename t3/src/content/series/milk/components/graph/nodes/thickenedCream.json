@@ -35,8 +35,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "add thickener",
+					"type": "add",
+					"what": "thickener",
 					"note": "Gelatine or another thickener is stirred in."
 				}
 			],

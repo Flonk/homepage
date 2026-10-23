@@ -46,8 +46,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "add lactase",
+					"type": "add",
+					"what": "lactase",
 					"note": "Lactase splits the lactose into glucose and galactose."
 				},
 				{

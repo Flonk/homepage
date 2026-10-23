@@ -99,8 +99,7 @@
 					"note": "Then 30 % of the whey is removed."
 				},
 				{
-					"type": "custom",
-					"name": "press",
+					"type": "press",
 					"seconds": {
 						"min": 10800,
 						"max": 14400
@@ -108,8 +107,8 @@
 					"note": "Self-pressing in forms."
 				},
 				{
-					"type": "custom",
-					"name": "brine",
+					"type": "salt",
+					"how": "brine",
 					"temperature": {
 						"min": 8,
 						"max": 12

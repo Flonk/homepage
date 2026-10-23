@@ -74,8 +74,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "add milk and salt",
+					"type": "add",
+					"what": "milk and salt",
 					"temperature": {
 						"min": 40,
 						"max": 40,
@@ -94,8 +94,7 @@
 					"note": "The proteins flocculate at about 90 °C, and the liquid is never allowed to boil."
 				},
 				{
-					"type": "custom",
-					"name": "mould",
+					"type": "mould",
 					"note": "Skimmed into rush moulds (fattoghje, casgiaghji), or plastic moulds for sale."
 				},
 				{

@@ -74,8 +74,8 @@
 					"note": "Whole milk set with rennet and lipase."
 				},
 				{
-					"type": "custom",
-					"name": "cut",
+					"type": "cut",
+					"how": "cut",
 					"note": "The curd is cut nut-sized."
 				},
 				{
@@ -83,8 +83,7 @@
 					"does": "cook"
 				},
 				{
-					"type": "custom",
-					"name": "press",
+					"type": "press",
 					"seconds": {
 						"min": 14400,
 						"max": 14400,
@@ -93,8 +92,8 @@
 					"note": "In perforated moulds."
 				},
 				{
-					"type": "custom",
-					"name": "brine",
+					"type": "salt",
+					"how": "brine",
 					"seconds": {
 						"min": 172800,
 						"max": 172800

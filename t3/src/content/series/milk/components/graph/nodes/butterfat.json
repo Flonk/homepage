@@ -78,8 +78,7 @@
 					"note": "Butter melted so the protein, fat and buttermilk layers form (the desi route makes the butter from dahi first)."
 				},
 				{
-					"type": "custom",
-					"name": "drain",
+					"type": "drain",
 					"note": "The buttermilk is drained."
 				},
 				{
@@ -93,8 +92,8 @@
 					"note": "Heated until the frothing stops, the moisture is driven off and the curd particles turn golden yellow to brown."
 				},
 				{
-					"type": "custom",
-					"name": "strain",
+					"type": "drain",
+					"by": "sieve",
 					"note": "Filtered or centrifuged and packed at 40-42 °C."
 				}
 			],

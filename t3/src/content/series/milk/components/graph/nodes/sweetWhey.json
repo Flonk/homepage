@@ -72,12 +72,11 @@
 					"note": "Rennet (calf, microbial or plant) cuts casein at the kappa-casein bond."
 				},
 				{
-					"type": "custom",
-					"name": "cut"
+					"type": "cut",
+					"how": "cut"
 				},
 				{
-					"type": "custom",
-					"name": "drain"
+					"type": "drain"
 				}
 			],
 			"sources": {

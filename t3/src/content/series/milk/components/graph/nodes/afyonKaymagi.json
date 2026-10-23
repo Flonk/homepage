@@ -42,8 +42,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "strain",
+					"type": "drain",
+					"by": "cloth",
 					"note": "Strained twice through cheesecloth into copper containers."
 				},
 				{
@@ -64,8 +64,7 @@
 					"note": "Left at room temperature overnight."
 				},
 				{
-					"type": "custom",
-					"name": "skim",
+					"type": "separate",
 					"note": "Next morning, the cream layer is removed."
 				}
 			],

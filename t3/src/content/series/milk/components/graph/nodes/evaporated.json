@@ -68,8 +68,8 @@
 					}
 				},
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "evaporate",
+					"under": "vacuum",
 					"temperature": {
 						"min": 65,
 						"max": 70

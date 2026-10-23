@@ -71,8 +71,8 @@
 					"note": "With rennet."
 				},
 				{
-					"type": "custom",
-					"name": "cut"
+					"type": "cut",
+					"how": "cut"
 				},
 				{
 					"type": "heat",
@@ -80,23 +80,21 @@
 					"note": "Cooked to the desired firmness."
 				},
 				{
-					"type": "custom",
-					"name": "drain",
+					"type": "drain",
 					"note": "The whey is drained."
 				},
 				{
-					"type": "custom",
-					"name": "mill",
+					"type": "cut",
+					"how": "mill",
 					"note": "Finely."
 				},
 				{
-					"type": "custom",
-					"name": "salt",
+					"type": "salt",
+					"how": "dry",
 					"note": "Dry-salted after milling."
 				},
 				{
-					"type": "custom",
-					"name": "mould",
+					"type": "mould",
 					"note": "The milled curd is stuffed into moulds of various shapes and sizes."
 				}
 			],

@@ -101,8 +101,7 @@
 					"note": "Set mostly lactic, with animal rennet."
 				},
 				{
-					"type": "custom",
-					"name": "mould",
+					"type": "mould",
 					"temperature": {
 						"min": 20,
 						"max": 30
@@ -110,8 +109,8 @@
 					"note": "At pH 4.75 or less, in tall moulds of 110–115 mm (450–700 g) or 85–90 mm (250–380 g), and it drains on its own."
 				},
 				{
-					"type": "custom",
-					"name": "salt",
+					"type": "salt",
+					"how": "dry",
 					"note": "Dry salt on the surface."
 				},
 				{

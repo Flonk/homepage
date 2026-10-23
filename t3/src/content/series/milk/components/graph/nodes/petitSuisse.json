@@ -45,8 +45,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "add cream",
+					"type": "add",
+					"what": "cream",
 					"note": "Cow milk is enriched with cream."
 				},
 				{
@@ -54,8 +54,7 @@
 					"name": "smooth"
 				},
 				{
-					"type": "custom",
-					"name": "drain",
+					"type": "drain",
 					"note": "In a centrifuge."
 				}
 			],

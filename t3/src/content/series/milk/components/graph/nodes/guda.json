@@ -53,8 +53,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "strain",
+					"type": "drain",
+					"by": "sieve",
 					"note": "The sheep milk is strained through herbs."
 				},
 				{
@@ -67,13 +67,12 @@
 					"note": "With rennet, covered in felt to keep the milk warm."
 				},
 				{
-					"type": "custom",
-					"name": "drain",
+					"type": "drain",
+					"by": "cloth",
 					"note": "The curds are stirred, the whey drained and the curd squeezed in a linen bag."
 				},
 				{
-					"type": "custom",
-					"name": "salt",
+					"type": "salt",
 					"note": "Wheels are packed in a wineskin with salt between layers, the air pressed out and the skin tied."
 				},
 				{

@@ -55,13 +55,16 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "press",
+					"type": "press",
 					"note": "In 3–10 steps at about 50–450 g/cm²."
 				},
 				{
-					"type": "custom",
-					"name": "brine",
+					"type": "salt",
+					"how": "brine",
+					"strength": {
+						"min": 18,
+						"max": 23
+					},
 					"temperature": {
 						"min": 10,
 						"max": 16

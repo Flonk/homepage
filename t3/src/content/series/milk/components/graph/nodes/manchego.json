@@ -86,8 +86,8 @@
 					"note": "With natural rennet or authorised enzymes."
 				},
 				{
-					"type": "custom",
-					"name": "cut",
+					"type": "cut",
+					"how": "cut",
 					"note": "Finely."
 				},
 				{
@@ -104,8 +104,7 @@
 					"note": "Stirred while it is reheated."
 				},
 				{
-					"type": "custom",
-					"name": "press",
+					"type": "press",
 					"seconds": {
 						"min": 3600,
 						"max": 43200
@@ -113,8 +112,8 @@
 					"note": "In flor and pleita moulds up to 12 cm tall and 22 cm wide, 0.4–4 kg."
 				},
 				{
-					"type": "custom",
-					"name": "salt",
+					"type": "salt",
+					"how": "brine",
 					"seconds": {
 						"min": 10800,
 						"max": 172800

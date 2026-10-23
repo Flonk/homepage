@@ -100,8 +100,8 @@
 					"note": "In the acid-rennet kind rennet (chymosin) or pepsin is added with the starter."
 				},
 				{
-					"type": "custom",
-					"name": "cut",
+					"type": "cut",
+					"how": "cut",
 					"note": "The curd block is cut."
 				},
 				{
@@ -113,13 +113,12 @@
 					}
 				},
 				{
-					"type": "custom",
-					"name": "drain",
+					"type": "drain",
+					"by": "hang",
 					"note": "Traditionally in free-hanging bags; industrially the curd block is cut with strings, then squeezed, cooled and packed."
 				},
 				{
-					"type": "custom",
-					"name": "press"
+					"type": "press"
 				}
 			],
 			"text": "Species are not named. The acid-rennet kind adds rennet or pepsin with the starter; the curd is then cut, warmed to 40-45 °C and drained.",

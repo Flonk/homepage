@@ -74,8 +74,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "skim",
+					"type": "separate",
 					"note": "The milk is partially skimmed."
 				},
 				{
@@ -114,13 +113,12 @@
 					"note": "With calf rennet."
 				},
 				{
-					"type": "custom",
-					"name": "mould",
+					"type": "mould",
 					"note": "The Noord-Hollandse Edammer is a sphere with flat ends, 1.7–1.9 kg."
 				},
 				{
-					"type": "custom",
-					"name": "brine",
+					"type": "salt",
+					"how": "brine",
 					"note": "For a few days."
 				},
 				{

@@ -1,4 +1,5 @@
 import type { ProcessingStep as Step, HeatTreatment, Ferment, Drying, Chip } from '../schema';
+import type * as S from '../schema';
 import { MONO, SANS, measure } from '../client/base';
 import { said as span, inUnit, inTime } from './Range';
 import { font, legible, pillBody, wrap, type Paint, type Pen } from './canvas';
@@ -25,12 +26,45 @@ const TITLE: Record<HeatTreatment['does'] | Ferment['does'] | 'dry', [string, st
 	pierce: ['🦠 PIERCE', 'pierced'],
 	dry: ['☀️ DRY', 'dried'],
 };
-// The steps done to milk above all others, each titled for itself; any other by its own name.
-const OWN: Record<'pasteurise' | 'homogenise' | 'coagulate' | 'churn', [string, string]> = {
+// The steps of their own, each titled for itself; any other by its own name.
+type Own = Exclude<Step['type'], 'custom' | 'heat' | 'ferment' | 'dry'>;
+const OWN: Record<Own, [string, string]> = {
 	pasteurise: ['🔥 PASTEURISE', 'pasteurised'],
 	homogenise: ['🌀 HOMOGENISE', 'homogenised'],
 	coagulate: ['🧀 COAGULATE', 'set'],
 	churn: ['🧈 CHURN', 'churned'],
+	salt: ['🧂 SALT', 'salted'],
+	drain: ['💧 DRAIN', 'drained'],
+	cut: ['🔪 CUT', 'cut'],
+	press: ['🗜️ PRESS', 'pressed'],
+	mould: ['🫙 MOULD', 'moulded'],
+	separate: ['🫗 SEPARATE', 'separated'],
+	evaporate: ['♨️ EVAPORATE', 'boiled down'],
+	filter: ['🧪 FILTER', 'filtered'],
+	add: ['➕ ADD', 'added to'],
+};
+// What a step of its own says before how long and how warm: in a brine so strong, by hanging, to grains so big, what is added.
+const HOW: Partial<Record<string, string>> = { dry: 'dry', brine: 'in brine', milk: 'into the milk', hang: 'hung', cloth: 'in cloth', mould: 'in moulds', sieve: 'through a sieve', mill: 'milled', grind: 'ground', crumble: 'crumbled', shred: 'shredded', gravity: 'risen and skimmed', centrifuge: 'spun off', open: 'in the open', vacuum: 'under vacuum', micro: 'micro', ultra: 'ultra', nano: 'nano', dia: 'washed through' };
+const ownSaid = (h: Step): (string | undefined)[] => {
+	const pc = (r?: S.Range) => r && span(r, inUnit('%'));
+	switch (h.type) {
+		case 'salt':
+			return [h.how && HOW[h.how], pc(h.strength)];
+		case 'drain':
+			return [h.by && HOW[h.by]];
+		case 'cut':
+			return [h.how && h.how !== 'cut' ? HOW[h.how] : undefined, h.size && span(h.size, inUnit(' mm'))];
+		case 'separate':
+			return [h.by && HOW[h.by], h.fat && `${pc(h.fat)} fat left`];
+		case 'evaporate':
+			return [h.under && HOW[h.under], h.solids && `to ${pc(h.solids)} solids`];
+		case 'filter':
+			return [h.by && HOW[h.by]];
+		case 'add':
+			return [h.what, pc(h.share)];
+		default:
+			return [];
+	}
 };
 const titleOf = (h: Step): [string, string] => {
 	if (h.type === 'custom') return [`⚙️ ${h.name.toUpperCase()}`, h.name];
@@ -46,7 +80,7 @@ export const chip = (h: Step): Chip => {
 	const [title, done] = titleOf(h);
 	return {
 		title,
-		said: [h.type === 'coagulate' && h.by && `by ${SET[h.by]}`, held, h.humidity && `${span(h.humidity, inUnit('%'))} RH`].filter(Boolean).join(', '),
+		said: [h.type === 'coagulate' && h.by && `by ${SET[h.by]}`, ...ownSaid(h), held, h.humidity && `${span(h.humidity, inUnit('%'))} RH`].filter(Boolean).join(', '),
 		done,
 		...(h.type === 'ferment' && h.adds?.microbes.length && { microbes: h.adds.microbes.map((m) => m.name).join(', ') }),
 		...(h.note && { note: h.note }),

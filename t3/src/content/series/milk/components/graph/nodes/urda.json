@@ -79,13 +79,12 @@
 					"note": "Stirred constantly with a wooden spoon."
 				},
 				{
-					"type": "custom",
-					"name": "skim",
+					"type": "separate",
+					"by": "gravity",
 					"note": "The small curds rise and are skimmed off with a spoon."
 				},
 				{
-					"type": "custom",
-					"name": "drain",
+					"type": "drain",
 					"seconds": {
 						"min": 36000,
 						"max": 43200

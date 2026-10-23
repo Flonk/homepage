@@ -48,8 +48,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "mix",
+					"type": "add",
 					"note": "Skim milk powder, sugar and dextrose in water."
 				},
 				{
@@ -94,8 +93,7 @@
 					"type": "homogenise"
 				},
 				{
-					"type": "custom",
-					"name": "blend",
+					"type": "add",
 					"note": "Blended with sugar syrup and flavour."
 				},
 				{

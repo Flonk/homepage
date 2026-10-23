@@ -95,8 +95,8 @@
 					"note": "Set mostly by acid, with a small dose of liquid rennet."
 				},
 				{
-					"type": "custom",
-					"name": "drain",
+					"type": "drain",
+					"by": "mould",
 					"seconds": {
 						"min": 43200,
 						"max": 86400

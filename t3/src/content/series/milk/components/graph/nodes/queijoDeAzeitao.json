@@ -73,8 +73,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "filter",
+					"type": "filter",
 					"note": "The milk is filtered after milking."
 				},
 				{
@@ -91,13 +90,11 @@
 					"note": "Set with dried cardoon flower (Cynara cardunculus), about 0.5 g per kg of milk, with salt added to the milk."
 				},
 				{
-					"type": "custom",
-					"name": "drain",
+					"type": "drain",
 					"note": "The whey is drained by hand."
 				},
 				{
-					"type": "custom",
-					"name": "press"
+					"type": "press"
 				},
 				{
 					"type": "dry",

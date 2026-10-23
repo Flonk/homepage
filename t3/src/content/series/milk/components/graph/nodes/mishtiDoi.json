@@ -58,13 +58,12 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "evaporate",
+					"type": "evaporate",
 					"note": "The milk is boiled down by about 20 %."
 				},
 				{
-					"type": "custom",
-					"name": "sweeten",
+					"type": "add",
+					"what": "sugar",
 					"note": "With sugar, gur or date molasses."
 				},
 				{

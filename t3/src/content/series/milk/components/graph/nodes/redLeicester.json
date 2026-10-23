@@ -66,8 +66,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "add annatto",
+					"type": "add",
+					"what": "annatto",
 					"note": "It turns the paste deep orange, as it has since the 18th century."
 				},
 				{
@@ -75,8 +75,7 @@
 					"name": "cheddar"
 				},
 				{
-					"type": "custom",
-					"name": "press"
+					"type": "press"
 				},
 				{
 					"type": "ferment",

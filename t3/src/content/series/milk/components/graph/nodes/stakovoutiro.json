@@ -48,8 +48,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "add flour and salt",
+					"type": "add",
+					"what": "flour and salt",
 					"note": "Salt and a little wheat flour or starch are added."
 				},
 				{

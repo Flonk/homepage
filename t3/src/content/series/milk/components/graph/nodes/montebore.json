@@ -82,20 +82,19 @@
 					"note": "With liquid bovine rennet."
 				},
 				{
-					"type": "custom",
-					"name": "cut",
+					"type": "cut",
+					"how": "cut",
 					"note": "Cut twice to hazelnut size."
 				},
 				{
-					"type": "custom",
-					"name": "mould",
+					"type": "mould",
 					"seconds": {
 						"min": 36000
 					}
 				},
 				{
-					"type": "custom",
-					"name": "salt",
+					"type": "salt",
+					"how": "dry",
 					"seconds": {
 						"min": 14400,
 						"max": 18000

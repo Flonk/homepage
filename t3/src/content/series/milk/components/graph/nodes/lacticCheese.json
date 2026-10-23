@@ -103,16 +103,15 @@
 					"note": "By hand into perforated truncated moulds in several passes, no pressing."
 				},
 				{
-					"type": "custom",
-					"name": "drain",
+					"type": "drain",
 					"seconds": {
 						"min": 64800
 					},
 					"note": "Spontaneous, under its own weight."
 				},
 				{
-					"type": "custom",
-					"name": "salt",
+					"type": "salt",
+					"how": "dry",
 					"note": "Dry salt and charcoal ash on the surface."
 				},
 				{

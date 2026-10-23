@@ -56,8 +56,8 @@
 					"note": "To a chosen class: low-heat 75 °C for 15 s, medium-heat 90–100 °C for 20 s, high-heat 120 °C for 120 s, heat-stable high-heat 125 °C for 180 s."
 				},
 				{
-					"type": "custom",
-					"name": "evaporate",
+					"type": "evaporate",
+					"under": "vacuum",
 					"note": "Under vacuum to 48–51 % total solids, the lower the hotter the heat class."
 				},
 				{

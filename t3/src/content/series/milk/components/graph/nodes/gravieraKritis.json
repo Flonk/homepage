@@ -70,8 +70,8 @@
 					}
 				},
 				{
-					"type": "custom",
-					"name": "cut"
+					"type": "cut",
+					"how": "cut"
 				},
 				{
 					"type": "heat",
@@ -84,8 +84,7 @@
 					"note": "Stirred while the curd is heated."
 				},
 				{
-					"type": "custom",
-					"name": "press",
+					"type": "press",
 					"note": "Pressed for some hours."
 				},
 				{
@@ -101,8 +100,8 @@
 					}
 				},
 				{
-					"type": "custom",
-					"name": "brine",
+					"type": "salt",
+					"how": "brine",
 					"seconds": {
 						"min": 172800,
 						"max": 432000

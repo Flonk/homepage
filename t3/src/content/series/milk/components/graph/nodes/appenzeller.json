@@ -71,8 +71,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "skim",
+					"type": "separate",
 					"note": "The milk is partly skimmed."
 				},
 				{
@@ -107,8 +106,8 @@
 					"note": "Set with rennet together with the lactic bacteria."
 				},
 				{
-					"type": "custom",
-					"name": "cut",
+					"type": "cut",
+					"how": "cut",
 					"note": "To maize-grain size."
 				},
 				{
@@ -121,8 +120,7 @@
 					"note": "The curd is lifted from the vat at that temperature."
 				},
 				{
-					"type": "custom",
-					"name": "press",
+					"type": "press",
 					"seconds": {
 						"min": 900,
 						"max": 900,
@@ -131,8 +129,8 @@
 					"note": "Twice, in round moulds, 6–8 kg and about 30 cm."
 				},
 				{
-					"type": "custom",
-					"name": "brine",
+					"type": "salt",
+					"how": "brine",
 					"seconds": {
 						"min": 172800,
 						"max": 172800,

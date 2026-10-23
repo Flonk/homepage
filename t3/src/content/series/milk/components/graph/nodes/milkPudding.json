@@ -42,8 +42,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "sweeten"
+					"type": "add",
+					"what": "sugar"
 				},
 				{
 					"type": "custom",

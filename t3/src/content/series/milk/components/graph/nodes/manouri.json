@@ -72,18 +72,17 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "filter",
+					"type": "filter",
 					"note": "Filtered or centrifuged to remove curd grains."
 				},
 				{
-					"type": "custom",
-					"name": "add cream",
+					"type": "add",
+					"what": "cream",
 					"note": "Sheep or goat cream brings the fat to at least 2.5 %."
 				},
 				{
-					"type": "custom",
-					"name": "add salt and milk",
+					"type": "add",
+					"what": "salt and milk",
 					"temperature": {
 						"min": 70,
 						"max": 75
@@ -104,8 +103,8 @@
 					"note": "The first flakes form near 80 °C; stirring is then slowed and stopped."
 				},
 				{
-					"type": "custom",
-					"name": "drain",
+					"type": "drain",
+					"by": "cloth",
 					"seconds": {
 						"min": 14400,
 						"max": 18000

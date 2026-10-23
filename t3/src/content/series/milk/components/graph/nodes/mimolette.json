@@ -102,13 +102,13 @@
 					"note": "With animal rennet, 0.04–0.25 mL per litre."
 				},
 				{
-					"type": "custom",
-					"name": "add annatto",
+					"type": "add",
+					"what": "annatto",
 					"note": "Up to 0.35 mL per litre, for the orange colour."
 				},
 				{
-					"type": "custom",
-					"name": "cut"
+					"type": "cut",
+					"how": "cut"
 				},
 				{
 					"type": "custom",
@@ -121,13 +121,12 @@
 					"note": "Reheated in the vat."
 				},
 				{
-					"type": "custom",
-					"name": "press",
+					"type": "press",
 					"note": "Into a sphere flattened at the poles, 2–4 kg."
 				},
 				{
-					"type": "custom",
-					"name": "brine",
+					"type": "salt",
+					"how": "brine",
 					"temperature": {
 						"min": 10,
 						"max": 15

@@ -131,22 +131,21 @@
 					}
 				},
 				{
-					"type": "custom",
-					"name": "press",
-					"note": "Turned at least twice.",
+					"type": "press",
 					"seconds": {
 						"min": 3600,
 						"max": 3600
-					}
+					},
+					"note": "Turned at least twice."
 				},
 				{
-					"type": "custom",
-					"name": "brine",
-					"note": "18–22 °Bé, or dry-salted instead.",
+					"type": "salt",
+					"how": "brine",
 					"temperature": {
 						"min": 8,
 						"max": 15
-					}
+					},
+					"note": "18–22 °Bé, or dry-salted instead."
 				},
 				{
 					"type": "ferment",

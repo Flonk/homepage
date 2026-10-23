@@ -71,18 +71,16 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "salt",
+					"type": "salt",
 					"note": "The milk is salted before fermentation."
 				},
 				{
-					"type": "custom",
-					"name": "mill",
+					"type": "cut",
+					"how": "mill",
 					"note": "The curd is milled into small pieces."
 				},
 				{
-					"type": "custom",
-					"name": "press"
+					"type": "press"
 				},
 				{
 					"type": "ferment",

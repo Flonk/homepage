@@ -96,8 +96,12 @@
 					"note": "With rennet or enzymes, after the lactic acidification."
 				},
 				{
-					"type": "custom",
-					"name": "cut",
+					"type": "cut",
+					"how": "cut",
+					"size": {
+						"min": 20,
+						"max": 30
+					},
 					"note": "To cubes of 2–3 cm."
 				},
 				{
@@ -109,18 +113,20 @@
 					"note": "The cut curd is warmed."
 				},
 				{
-					"type": "custom",
-					"name": "mould",
+					"type": "mould",
 					"note": "Into a block or flat cylinder of 2–5 kg."
 				},
 				{
-					"type": "custom",
-					"name": "press",
+					"type": "press",
 					"note": "Lightly."
 				},
 				{
-					"type": "custom",
-					"name": "brine",
+					"type": "salt",
+					"how": "brine",
+					"strength": {
+						"min": 25,
+						"max": 28
+					},
 					"temperature": {
 						"min": 2,
 						"max": 4

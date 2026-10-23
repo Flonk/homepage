@@ -94,8 +94,8 @@
 					"note": "With calf rennet after the natural whey starter, and lysozyme up to 2.5 g per 100 kg."
 				},
 				{
-					"type": "custom",
-					"name": "cut",
+					"type": "cut",
+					"how": "cut",
 					"note": "To fine granules."
 				},
 				{
@@ -110,16 +110,15 @@
 					"note": "Under the whey."
 				},
 				{
-					"type": "custom",
-					"name": "mould",
+					"type": "mould",
 					"seconds": {
 						"min": 129600
 					},
 					"note": "In moulds 35–45 cm across, 24–40 kg."
 				},
 				{
-					"type": "custom",
-					"name": "brine",
+					"type": "salt",
+					"how": "brine",
 					"seconds": {
 						"min": 1209600,
 						"max": 2592000

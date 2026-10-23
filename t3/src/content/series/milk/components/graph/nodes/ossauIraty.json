@@ -106,8 +106,8 @@
 					"note": "With under 3 cm³ of rennet per 10 L."
 				},
 				{
-					"type": "custom",
-					"name": "cut and stir",
+					"type": "cut",
+					"how": "cut",
 					"seconds": {
 						"min": 3600,
 						"max": 3600,
@@ -123,8 +123,7 @@
 					"note": "Heating below 44 °C is allowed."
 				},
 				{
-					"type": "custom",
-					"name": "press",
+					"type": "press",
 					"note": "In perforated moulds, pressed and turned, and demoulded when the pH is below 5.5."
 				},
 				{

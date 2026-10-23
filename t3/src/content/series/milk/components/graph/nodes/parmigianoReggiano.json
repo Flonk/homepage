@@ -75,8 +75,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "skim",
+					"type": "separate",
 					"note": "The evening milk is skimmed by natural creaming."
 				},
 				{
@@ -99,8 +98,8 @@
 					"note": "With calf rennet only, in copper vats."
 				},
 				{
-					"type": "custom",
-					"name": "break",
+					"type": "cut",
+					"how": "cut",
 					"note": "Into granules."
 				},
 				{
@@ -109,13 +108,12 @@
 					"note": "The granules are cooked and settle into one mass in the vat."
 				},
 				{
-					"type": "custom",
-					"name": "mould",
+					"type": "mould",
 					"note": "In moulds marking the origin, 35–45 cm across and at least 30 kg."
 				},
 				{
-					"type": "custom",
-					"name": "brine",
+					"type": "salt",
+					"how": "brine",
 					"note": "In saturated brine, a few days after moulding."
 				},
 				{

@@ -39,8 +39,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "evaporate",
 					"temperature": {
 						"min": 100,
 						"max": 120
@@ -52,8 +51,8 @@
 					"note": "Preheated, as for whole evaporated milk."
 				},
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "evaporate",
+					"under": "vacuum",
 					"temperature": {
 						"min": 65,
 						"max": 70
@@ -61,8 +60,8 @@
 					"note": "Evaporated under vacuum, boiling at 65–70 °C."
 				},
 				{
-					"type": "custom",
-					"name": "add stabiliser",
+					"type": "add",
+					"what": "stabiliser",
 					"note": "Sodium phosphates, the dose set by sterilisation trials."
 				},
 				{

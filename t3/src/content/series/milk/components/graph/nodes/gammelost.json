@@ -69,8 +69,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "skim"
+					"type": "separate"
 				},
 				{
 					"type": "ferment",
@@ -101,8 +100,7 @@
 					"note": "The curd is heated slowly, or boiled in the whey for several hours, which kills the starter bacteria and leaves the field clear for the mould."
 				},
 				{
-					"type": "custom",
-					"name": "press",
+					"type": "press",
 					"note": "Pressed into forms."
 				},
 				{

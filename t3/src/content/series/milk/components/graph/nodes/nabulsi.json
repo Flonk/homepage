@@ -82,16 +82,15 @@
 					"note": "With rennet."
 				},
 				{
-					"type": "custom",
-					"name": "press"
+					"type": "press"
 				},
 				{
 					"type": "heat",
 					"does": "cool"
 				},
 				{
-					"type": "custom",
-					"name": "cut"
+					"type": "cut",
+					"how": "cut"
 				},
 				{
 					"type": "heat",
@@ -99,8 +98,8 @@
 					"note": "The curd is boiled in brine, with mastic and mahleb in the boiling brine."
 				},
 				{
-					"type": "custom",
-					"name": "brine",
+					"type": "salt",
+					"how": "brine",
 					"note": "Stored in brine."
 				}
 			],

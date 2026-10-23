@@ -127,24 +127,22 @@
 					}
 				},
 				{
-					"type": "custom",
-					"name": "mould",
+					"type": "mould",
 					"temperature": {
 						"min": 49,
 						"max": 52
 					}
 				},
 				{
-					"type": "custom",
-					"name": "press",
+					"type": "press",
 					"seconds": {
 						"max": 72000
 					},
 					"note": "Into wheels of 80–100 cm and 75–120 kg."
 				},
 				{
-					"type": "custom",
-					"name": "brine",
+					"type": "salt",
+					"how": "brine",
 					"seconds": {
 						"min": 86400,
 						"max": 259200

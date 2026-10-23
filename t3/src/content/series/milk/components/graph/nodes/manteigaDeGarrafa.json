@@ -52,8 +52,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "evaporate",
 					"temperature": {
 						"min": 110,
 						"max": 120
@@ -66,8 +65,7 @@
 					"note": "The clear oily layer is decanted at room temperature."
 				},
 				{
-					"type": "custom",
-					"name": "filter"
+					"type": "filter"
 				},
 				{
 					"type": "custom",

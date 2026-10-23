@@ -94,8 +94,8 @@
 					"note": "With rennet, in copper vats."
 				},
 				{
-					"type": "custom",
-					"name": "cut",
+					"type": "cut",
+					"how": "cut",
 					"note": "With a harp."
 				},
 				{
@@ -107,16 +107,15 @@
 					}
 				},
 				{
-					"type": "custom",
-					"name": "press",
+					"type": "press",
 					"seconds": {
 						"min": 36000
 					},
 					"note": "Under up to 1200 kg, into wheels of 50–62 cm and 35–48 kg."
 				},
 				{
-					"type": "custom",
-					"name": "brine",
+					"type": "salt",
+					"how": "brine",
 					"temperature": {
 						"min": 10,
 						"max": 15

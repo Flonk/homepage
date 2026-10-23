@@ -60,8 +60,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "add milk",
+					"type": "add",
+					"what": "milk",
 					"temperature": {
 						"min": 65,
 						"max": 65,
@@ -84,22 +84,19 @@
 					"note": "Small crumbly curds appear under stirring."
 				},
 				{
-					"type": "custom",
-					"name": "skim",
+					"type": "separate",
 					"note": "Skimmed off with a slotted spoon."
 				},
 				{
-					"type": "custom",
-					"name": "drain"
+					"type": "drain"
 				},
 				{
-					"type": "custom",
-					"name": "cut",
+					"type": "cut",
+					"how": "cut",
 					"note": "Cut in blocks."
 				},
 				{
-					"type": "custom",
-					"name": "salt",
+					"type": "salt",
 					"note": "Often added."
 				},
 				{

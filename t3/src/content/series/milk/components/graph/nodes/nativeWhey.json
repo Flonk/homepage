@@ -37,8 +37,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "microfilter",
+					"type": "filter",
+					"by": "micro",
 					"temperature": {
 						"min": 50,
 						"max": 50

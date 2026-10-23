@@ -63,13 +63,12 @@
 					"note": "With rennet."
 				},
 				{
-					"type": "custom",
-					"name": "drain",
+					"type": "drain",
+					"by": "mould",
 					"note": "The curds are strained, then packed in moulds, much as for a young rindless chèvre."
 				},
 				{
-					"type": "custom",
-					"name": "mould",
+					"type": "mould",
 					"seconds": {
 						"max": 259200
 					},

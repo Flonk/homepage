@@ -68,8 +68,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "salt milk",
+					"type": "salt",
+					"how": "milk",
 					"note": "Salt is added to the milk."
 				},
 				{
@@ -82,13 +82,12 @@
 					"name": "squeeze"
 				},
 				{
-					"type": "custom",
-					"name": "press",
+					"type": "press",
 					"note": "Into wooden spindle-shaped moulds."
 				},
 				{
-					"type": "custom",
-					"name": "brine",
+					"type": "salt",
+					"how": "brine",
 					"note": "Soaked a night or two."
 				},
 				{

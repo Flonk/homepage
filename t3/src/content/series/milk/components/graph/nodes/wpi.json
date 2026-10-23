@@ -50,8 +50,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "ultrafilter",
+					"type": "filter",
+					"by": "ultra",
 					"note": "With diafiltration to wash out lactose and minerals, often after microfiltration."
 				}
 			],

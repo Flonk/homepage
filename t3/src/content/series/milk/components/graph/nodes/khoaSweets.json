@@ -48,13 +48,12 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "sweeten",
+					"type": "add",
+					"what": "sugar",
 					"note": "The khoa is worked with sugar."
 				},
 				{
-					"type": "custom",
-					"name": "shape"
+					"type": "mould"
 				}
 			],
 			"sources": {

@@ -96,21 +96,19 @@
 					"note": "With animal rennet (kid rennet formerly)."
 				},
 				{
-					"type": "custom",
-					"name": "cut"
+					"type": "cut",
+					"how": "cut"
 				},
 				{
-					"type": "custom",
-					"name": "drain"
+					"type": "drain"
 				},
 				{
-					"type": "custom",
-					"name": "press",
+					"type": "press",
 					"note": "Pressed in beech moulds."
 				},
 				{
-					"type": "custom",
-					"name": "brine",
+					"type": "salt",
+					"how": "brine",
 					"seconds": {
 						"min": 108000,
 						"max": 108000

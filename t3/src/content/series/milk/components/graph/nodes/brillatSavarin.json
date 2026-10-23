@@ -70,8 +70,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "add cream",
+					"type": "add",
+					"what": "cream",
 					"note": "Cow's cream is added to the milk before it sets."
 				},
 				{
@@ -108,16 +108,14 @@
 					"note": "Set mostly lactic, with calf rennet of up to 20 ml per 100 L."
 				},
 				{
-					"type": "custom",
-					"name": "mould",
+					"type": "mould",
 					"seconds": {
 						"min": 72000
 					},
 					"note": "At pH 4.9 or less, drained by gravity without pressing, as cylinders of 100–250 g or 500 g and more."
 				},
 				{
-					"type": "custom",
-					"name": "salt",
+					"type": "salt",
 					"note": "Optional, on one face, below 2 % salt."
 				},
 				{

@@ -76,13 +76,16 @@
 					"note": "The milk is pasteurised."
 				},
 				{
-					"type": "custom",
-					"name": "press",
+					"type": "press",
 					"note": "The curd is pressed in hoops into rectangular blocks."
 				},
 				{
-					"type": "custom",
-					"name": "brine",
+					"type": "salt",
+					"how": "brine",
+					"strength": {
+						"min": 10,
+						"max": 12
+					},
 					"note": "In a pasteurised brine, 10–12 % salt in commercial practice."
 				}
 			],

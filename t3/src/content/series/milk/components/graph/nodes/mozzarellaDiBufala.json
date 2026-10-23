@@ -56,8 +56,12 @@
 					"note": "With liquid calf rennet."
 				},
 				{
-					"type": "custom",
-					"name": "cut",
+					"type": "cut",
+					"how": "cut",
+					"size": {
+						"min": 30,
+						"max": 60
+					},
 					"note": "The curd is broken to walnut size, 3–6 cm."
 				},
 				{
@@ -85,8 +89,12 @@
 					"note": "Stretched in boiling water and torn off by hand into pieces of 10–800 g, plaits up to 3 kg."
 				},
 				{
-					"type": "custom",
-					"name": "brine",
+					"type": "salt",
+					"how": "brine",
+					"strength": {
+						"min": 10,
+						"max": 18
+					},
 					"note": "In a brine of typically 10–18 %."
 				}
 			],

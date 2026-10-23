@@ -57,12 +57,10 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "salt"
+					"type": "salt"
 				},
 				{
-					"type": "custom",
-					"name": "shape",
+					"type": "mould",
 					"note": "Rolled into balls of about 6 cm."
 				},
 				{

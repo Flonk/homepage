@@ -128,8 +128,12 @@
 					"note": "A little rennet, 50 IMCU per 100 kg, is added about 90 min after the culture."
 				},
 				{
-					"type": "custom",
-					"name": "cut",
+					"type": "cut",
+					"how": "cut",
+					"size": {
+						"min": 12,
+						"max": 12
+					},
 					"note": "With 1.2 cm knives at pH about 4.8, then rested 15–20 min."
 				},
 				{
@@ -146,8 +150,7 @@
 					"note": "Raised 0.5 °C per 5 min for the first 30 min, faster later, over about 2 h, then held, and the heat also stops the culture."
 				},
 				{
-					"type": "custom",
-					"name": "drain"
+					"type": "drain"
 				},
 				{
 					"type": "custom",

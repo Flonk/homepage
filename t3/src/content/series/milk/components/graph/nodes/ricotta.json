@@ -87,8 +87,8 @@
 					"note": "Heated to near boiling, hotter than for the first cheese; proteins start to coagulate at about 70 °C and a thick layer forms up to 90 °C."
 				},
 				{
-					"type": "custom",
-					"name": "skim",
+					"type": "separate",
+					"by": "gravity",
 					"note": "The curd floats and is skimmed into forms; acid to pH about 5.9 gives a second, coarser rise."
 				},
 				{
@@ -96,8 +96,8 @@
 					"does": "cool"
 				},
 				{
-					"type": "custom",
-					"name": "strain",
+					"type": "drain",
+					"by": "cloth",
 					"note": "Through a fine cloth."
 				}
 			],

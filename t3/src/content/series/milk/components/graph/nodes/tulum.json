@@ -66,13 +66,13 @@
 					}
 				},
 				{
-					"type": "custom",
-					"name": "cut",
+					"type": "cut",
+					"how": "cut",
 					"note": "Small."
 				},
 				{
-					"type": "custom",
-					"name": "hang",
+					"type": "drain",
+					"by": "hang",
 					"seconds": {
 						"min": 28800,
 						"max": 28800,
@@ -81,12 +81,11 @@
 					"note": "In a cloth."
 				},
 				{
-					"type": "custom",
-					"name": "press"
+					"type": "press"
 				},
 				{
-					"type": "custom",
-					"name": "crumble"
+					"type": "cut",
+					"how": "crumble"
 				},
 				{
 					"type": "custom",
@@ -98,8 +97,8 @@
 					"note": "Into a salted goatskin (tulum)."
 				},
 				{
-					"type": "custom",
-					"name": "salt",
+					"type": "salt",
+					"how": "brine",
 					"note": "Brined, plus salt on top in the skin."
 				},
 				{

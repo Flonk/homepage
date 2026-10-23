@@ -58,13 +58,13 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "drain",
+					"type": "drain",
+					"by": "mould",
 					"note": "The curd drains naturally in moulds."
 				},
 				{
-					"type": "custom",
-					"name": "salt",
+					"type": "salt",
+					"how": "dry",
 					"note": "The surface is dry-salted."
 				},
 				{

@@ -82,21 +82,24 @@
 					"note": "With animal rennet."
 				},
 				{
-					"type": "custom",
-					"name": "cut",
+					"type": "cut",
+					"how": "cut",
+					"size": {
+						"min": 25,
+						"max": 25
+					},
 					"note": "Lightly, with the blades at least 2.5 cm apart, and moulded at once."
 				},
 				{
-					"type": "custom",
-					"name": "mould",
+					"type": "mould",
 					"seconds": {
 						"min": 64800
 					},
 					"note": "Ladled in at least 5 passes 40 min apart, into moulds of 10.5–11 cm, at least 250 g."
 				},
 				{
-					"type": "custom",
-					"name": "salt",
+					"type": "salt",
+					"how": "dry",
 					"note": "Dry salt."
 				},
 				{

@@ -46,18 +46,17 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "separate",
+					"type": "separate",
 					"note": "The cream is separated first."
 				},
 				{
-					"type": "custom",
-					"name": "ultrafilter",
+					"type": "filter",
+					"by": "ultra",
 					"note": "Through soft membranes, with no protein powder added."
 				},
 				{
-					"type": "custom",
-					"name": "add lactase",
+					"type": "add",
+					"what": "lactase",
 					"note": "Makes the milk lactose-free."
 				},
 				{

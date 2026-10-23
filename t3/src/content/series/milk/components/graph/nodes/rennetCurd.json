@@ -98,8 +98,12 @@
 					"note": "With rennet; the milk is still in 5–7 min and is cut after about 30 min."
 				},
 				{
-					"type": "custom",
-					"name": "cut",
+					"type": "cut",
+					"how": "cut",
+					"size": {
+						"min": 1,
+						"max": 15
+					},
 					"note": "Into grains of 1–15 mm, depending on the cheese type."
 				}
 			],

@@ -75,8 +75,8 @@
 					"note": "With rennet from calf stomachs."
 				},
 				{
-					"type": "custom",
-					"name": "cut",
+					"type": "cut",
+					"how": "cut",
 					"note": "Small."
 				},
 				{
@@ -85,8 +85,7 @@
 					"note": "Scalded and stirred."
 				},
 				{
-					"type": "custom",
-					"name": "press",
+					"type": "press",
 					"seconds": {
 						"min": 72000,
 						"max": 72000,
@@ -95,12 +94,11 @@
 					"note": "In a linen cloth inside a wooden hoop, which gives the concave heel; 20–70 kg."
 				},
 				{
-					"type": "custom",
-					"name": "brine"
+					"type": "salt",
+					"how": "brine"
 				},
 				{
-					"type": "custom",
-					"name": "salt",
+					"type": "salt",
 					"note": "On the surface."
 				},
 				{

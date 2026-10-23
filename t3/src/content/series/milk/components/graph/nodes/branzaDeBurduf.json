@@ -70,13 +70,12 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "cut",
+					"type": "cut",
+					"how": "cut",
 					"note": "The matured curd (caş dospit, an Emmental-like cheese) is cut in small pieces."
 				},
 				{
-					"type": "custom",
-					"name": "salt",
+					"type": "salt",
 					"note": "Salted and mixed by hand in a large wooden bowl."
 				},
 				{

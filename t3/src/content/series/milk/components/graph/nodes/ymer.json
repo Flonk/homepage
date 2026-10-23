@@ -102,8 +102,8 @@
 					}
 				},
 				{
-					"type": "custom",
-					"name": "cut"
+					"type": "cut",
+					"how": "cut"
 				},
 				{
 					"type": "heat",
@@ -115,21 +115,18 @@
 					}
 				},
 				{
-					"type": "custom",
-					"name": "drain",
+					"type": "drain",
 					"note": "About half the volume is drained off as whey."
 				},
 				{
-					"type": "custom",
-					"name": "blend",
+					"type": "add",
 					"temperature": {
 						"min": 35
 					},
 					"note": "Kept above 35 °C while it is blended smooth."
 				},
 				{
-					"type": "custom",
-					"name": "mix",
+					"type": "add",
 					"note": "Cream is added afterwards, to about 3.5 % fat."
 				}
 			],

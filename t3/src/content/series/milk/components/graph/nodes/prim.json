@@ -48,13 +48,12 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "evaporate",
+					"type": "evaporate",
 					"note": "Whey and cream are boiled down."
 				},
 				{
-					"type": "custom",
-					"name": "sweeten",
+					"type": "add",
+					"what": "sugar",
 					"note": "Sugar is added."
 				}
 			],

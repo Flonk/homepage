@@ -51,8 +51,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "skim",
+					"type": "separate",
 					"note": "Buffalo or cow milk is skimmed."
 				},
 				{
@@ -69,8 +68,7 @@
 					"note": "Gently, until the curd separates."
 				},
 				{
-					"type": "custom",
-					"name": "drain"
+					"type": "drain"
 				}
 			],
 			"sources": {

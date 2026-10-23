@@ -98,22 +98,21 @@
 					"note": "With animal or non-animal rennet."
 				},
 				{
-					"type": "custom",
-					"name": "cut"
+					"type": "cut",
+					"how": "cut"
 				},
 				{
-					"type": "custom",
-					"name": "mill",
+					"type": "cut",
+					"how": "mill",
 					"note": "The next day, to walnut-sized pieces."
 				},
 				{
-					"type": "custom",
-					"name": "salt",
+					"type": "salt",
+					"how": "dry",
 					"note": "Dry salt is mixed into the milled curd."
 				},
 				{
-					"type": "custom",
-					"name": "mould",
+					"type": "mould",
 					"seconds": {
 						"max": 604800
 					},

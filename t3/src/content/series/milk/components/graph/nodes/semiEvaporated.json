@@ -54,8 +54,7 @@
 					"note": "The fat is set by standardising the milk before evaporation."
 				},
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "evaporate",
 					"temperature": {
 						"min": 100,
 						"max": 120
@@ -67,8 +66,8 @@
 					"note": "Preheated, as for evaporated milk."
 				},
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "evaporate",
+					"under": "vacuum",
 					"temperature": {
 						"min": 65,
 						"max": 70

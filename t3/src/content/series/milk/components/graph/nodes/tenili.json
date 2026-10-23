@@ -65,8 +65,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "skim",
+					"type": "separate",
 					"note": "The cream is skimmed after the milk has stood."
 				},
 				{
@@ -92,8 +91,7 @@
 					"note": "Dipped in cold water."
 				},
 				{
-					"type": "custom",
-					"name": "salt",
+					"type": "salt",
 					"seconds": {
 						"min": 900,
 						"max": 900
@@ -101,8 +99,8 @@
 					"note": "In salted water."
 				},
 				{
-					"type": "custom",
-					"name": "drain",
+					"type": "drain",
+					"by": "hang",
 					"seconds": {
 						"min": 36000,
 						"max": 36000
@@ -110,8 +108,8 @@
 					"note": "Hung to drain."
 				},
 				{
-					"type": "custom",
-					"name": "cut"
+					"type": "cut",
+					"how": "cut"
 				},
 				{
 					"type": "custom",

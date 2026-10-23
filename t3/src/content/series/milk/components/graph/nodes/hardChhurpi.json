@@ -56,8 +56,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "press",
+					"type": "press",
 					"note": "Soft chhurpi wrapped in a jute bag and pressed hard to remove water."
 				},
 				{
@@ -65,8 +64,8 @@
 					"note": "Pieces hung over a fire (smoke-dried)."
 				},
 				{
-					"type": "custom",
-					"name": "cut",
+					"type": "cut",
+					"how": "cut",
 					"note": "Into small cuboid pieces after drying."
 				}
 			],

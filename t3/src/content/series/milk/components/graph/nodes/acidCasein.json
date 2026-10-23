@@ -76,8 +76,7 @@
 					"note": "The curd is cooled to about 20 °C."
 				},
 				{
-					"type": "custom",
-					"name": "separate"
+					"type": "separate"
 				},
 				{
 					"type": "custom",
@@ -93,8 +92,8 @@
 					"note": "In a fluid bed, from about 45 % to about 90 % dry matter."
 				},
 				{
-					"type": "custom",
-					"name": "grind"
+					"type": "cut",
+					"how": "grind"
 				}
 			],
 			"sources": {

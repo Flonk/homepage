@@ -57,8 +57,8 @@
 					"note": "With a cheese culture or rennet, species not named in any source."
 				},
 				{
-					"type": "custom",
-					"name": "cut and stir",
+					"type": "cut",
+					"how": "cut",
 					"seconds": {
 						"min": 5400,
 						"max": 5400
@@ -66,8 +66,8 @@
 					"note": "Curd cut and stirred for 1.5 h, with and without fire."
 				},
 				{
-					"type": "custom",
-					"name": "brine",
+					"type": "salt",
+					"how": "brine",
 					"seconds": {
 						"max": 172800
 					},

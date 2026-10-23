@@ -62,16 +62,15 @@
 					"note": "With rennet or other suitable coagulating enzymes, optionally with selected lactic bacteria."
 				},
 				{
-					"type": "custom",
-					"name": "cut"
+					"type": "cut",
+					"how": "cut"
 				},
 				{
 					"type": "custom",
 					"name": "stir"
 				},
 				{
-					"type": "custom",
-					"name": "draw off whey",
+					"type": "drain",
 					"note": "Part of the whey is drawn off."
 				},
 				{
@@ -83,12 +82,10 @@
 					"note": "The curd is heated with hot water or indirect steam."
 				},
 				{
-					"type": "custom",
-					"name": "salt"
+					"type": "salt"
 				},
 				{
-					"type": "custom",
-					"name": "press"
+					"type": "press"
 				},
 				{
 					"type": "dry"

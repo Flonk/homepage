@@ -86,8 +86,8 @@
 					"note": "The curd is cheddared in the whey."
 				},
 				{
-					"type": "custom",
-					"name": "dice"
+					"type": "cut",
+					"how": "cut"
 				},
 				{
 					"type": "heat",
@@ -99,8 +99,8 @@
 					"note": "Heated in a rotating mixer, kneaded and shaped by hand."
 				},
 				{
-					"type": "custom",
-					"name": "brine",
+					"type": "salt",
+					"how": "brine",
 					"seconds": {
 						"min": 21600,
 						"max": 172800

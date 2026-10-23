@@ -49,13 +49,13 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "add bicarbonate",
+					"type": "add",
+					"what": "bicarbonate",
 					"note": "A pinch neutralises lactic acid so the milk does not curdle while it is concentrated, and promotes browning."
 				},
 				{
-					"type": "custom",
-					"name": "evaporate",
+					"type": "evaporate",
+					"under": "vacuum",
 					"note": "Under vacuum to 45–50 °Brix."
 				},
 				{

@@ -82,13 +82,12 @@
 					"note": "With rennet tablets."
 				},
 				{
-					"type": "custom",
-					"name": "drain",
+					"type": "drain",
+					"by": "cloth",
 					"note": "The curd is packed in triangular cloth bags."
 				},
 				{
-					"type": "custom",
-					"name": "salt",
+					"type": "salt",
 					"seconds": {
 						"min": 172800,
 						"max": 172800
@@ -96,8 +95,12 @@
 					"note": "Blocks about 20 cm thick are covered with salt in earthenware pots."
 				},
 				{
-					"type": "custom",
-					"name": "brine",
+					"type": "salt",
+					"how": "brine",
+					"strength": {
+						"min": 10,
+						"max": 12
+					},
 					"note": "In a 10–12 % salt brine."
 				},
 				{

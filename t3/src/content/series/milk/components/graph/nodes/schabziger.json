@@ -105,17 +105,15 @@
 					"note": "The Ziger is ripened in perforated vats or cloth bags under stones."
 				},
 				{
-					"type": "custom",
-					"name": "grind",
+					"type": "cut",
+					"how": "grind",
 					"note": "Ground with the blue fenugreek (Trigonella caerulea) at the grinder."
 				},
 				{
-					"type": "custom",
-					"name": "salt"
+					"type": "salt"
 				},
 				{
-					"type": "custom",
-					"name": "press",
+					"type": "press",
 					"seconds": {
 						"min": 518400,
 						"max": 691200

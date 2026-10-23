@@ -45,8 +45,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "blend",
+					"type": "add",
 					"note": "Milk and cream are blended to the fat grade, 10.5 to under 18 % milkfat."
 				},
 				{
@@ -58,8 +57,7 @@
 					"note": "Optional."
 				},
 				{
-					"type": "custom",
-					"name": "add",
+					"type": "add",
 					"note": "Optional emulsifiers, stabilisers, nutritive sweeteners and flavourings."
 				}
 			],

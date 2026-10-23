@@ -95,16 +95,15 @@
 					}
 				},
 				{
-					"type": "custom",
-					"name": "press",
+					"type": "press",
 					"seconds": {
 						"min": 57600
 					},
 					"note": "Into wheels of 55–65 cm and 25–40 kg."
 				},
 				{
-					"type": "custom",
-					"name": "brine",
+					"type": "salt",
+					"how": "brine",
 					"temperature": {
 						"min": 12,
 						"max": 20

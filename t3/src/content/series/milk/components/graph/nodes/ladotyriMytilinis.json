@@ -66,8 +66,8 @@
 					"note": "With rennet."
 				},
 				{
-					"type": "custom",
-					"name": "break up"
+					"type": "cut",
+					"how": "cut"
 				},
 				{
 					"type": "heat",
@@ -79,27 +79,23 @@
 					"note": "Reheated after the curd is broken up."
 				},
 				{
-					"type": "custom",
-					"name": "drain"
+					"type": "drain"
 				},
 				{
-					"type": "custom",
-					"name": "press",
+					"type": "press",
 					"note": "Pressed in the vat into a mass."
 				},
 				{
-					"type": "custom",
-					"name": "cut",
+					"type": "cut",
+					"how": "cut",
 					"note": "Into pieces of 5–7 kg, then to final size."
 				},
 				{
-					"type": "custom",
-					"name": "mould",
+					"type": "mould",
 					"note": "Firmly pressed by hand in the moulds."
 				},
 				{
-					"type": "custom",
-					"name": "salt"
+					"type": "salt"
 				},
 				{
 					"type": "ferment",

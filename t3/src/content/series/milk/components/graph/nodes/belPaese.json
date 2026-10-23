@@ -92,8 +92,12 @@
 					"note": "With liquid calf rennet."
 				},
 				{
-					"type": "custom",
-					"name": "cut",
+					"type": "cut",
+					"how": "cut",
+					"size": {
+						"min": 20,
+						"max": 30
+					},
 					"note": "To 2–3 cm, then to hazelnut size, and not cooked."
 				},
 				{
@@ -133,8 +137,12 @@
 					"note": "Stewed in perforated moulds, in wheels of about 2 kg."
 				},
 				{
-					"type": "custom",
-					"name": "brine",
+					"type": "salt",
+					"how": "brine",
+					"strength": {
+						"min": 18,
+						"max": 20
+					},
 					"temperature": {
 						"min": 10,
 						"max": 12

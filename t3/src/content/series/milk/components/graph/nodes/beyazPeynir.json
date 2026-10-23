@@ -66,25 +66,24 @@
 					"note": "With animal rennet, traditionally calf or lamb abomasum, or microbial rennet in industrial dairies."
 				},
 				{
-					"type": "custom",
-					"name": "press"
+					"type": "press"
 				},
 				{
-					"type": "custom",
-					"name": "chop"
+					"type": "cut",
+					"how": "cut"
 				},
 				{
-					"type": "custom",
-					"name": "strain"
+					"type": "drain",
+					"by": "sieve"
 				},
 				{
-					"type": "custom",
-					"name": "cut",
+					"type": "cut",
+					"how": "cut",
 					"note": "Into blocks."
 				},
 				{
-					"type": "custom",
-					"name": "brine",
+					"type": "salt",
+					"how": "brine",
 					"note": "Salted and put in brine."
 				},
 				{

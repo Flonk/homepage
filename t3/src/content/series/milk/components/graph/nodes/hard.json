@@ -86,13 +86,16 @@
 					"note": "The thermophilic cultures survive the scald, as in Emmental, Gruyère, Parmesan and Grana."
 				},
 				{
-					"type": "custom",
-					"name": "press",
+					"type": "press",
 					"note": "Pressed in moulds."
 				},
 				{
-					"type": "custom",
-					"name": "brine",
+					"type": "salt",
+					"how": "brine",
+					"strength": {
+						"min": 0.4,
+						"max": 1.2
+					},
 					"note": "In brine; Emmental ends at 0.4–1.2 % salt."
 				},
 				{

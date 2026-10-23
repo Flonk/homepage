@@ -54,8 +54,7 @@
 					"note": "A food-grade organic acid (lactic, citric or acetic) is added directly to the milk, with no rennet and no culture."
 				},
 				{
-					"type": "custom",
-					"name": "draw off whey",
+					"type": "drain",
 					"note": "Part of the whey is drawn off."
 				},
 				{
@@ -69,13 +68,12 @@
 					"note": "The curd is melted."
 				},
 				{
-					"type": "custom",
-					"name": "add fat",
+					"type": "add",
+					"what": "fat",
 					"note": "Only manteiga da terra or manteiga de garrafa, and salt."
 				},
 				{
-					"type": "custom",
-					"name": "mould",
+					"type": "mould",
 					"note": "Poured into moulds."
 				},
 				{

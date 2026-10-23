@@ -64,18 +64,16 @@
 					"note": "With rennet."
 				},
 				{
-					"type": "custom",
-					"name": "mix",
+					"type": "add",
 					"note": "Alliums, thyme, Silene vulgaris, Chaerophyllum and others are mixed into the curd; the herbs are antimicrobial and lengthen shelf life."
 				},
 				{
-					"type": "custom",
-					"name": "press",
+					"type": "press",
 					"note": "The curd with herbs is drained and pressed."
 				},
 				{
-					"type": "custom",
-					"name": "brine"
+					"type": "salt",
+					"how": "brine"
 				},
 				{
 					"type": "ferment",

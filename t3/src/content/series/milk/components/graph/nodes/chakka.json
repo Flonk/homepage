@@ -99,8 +99,8 @@
 					"note": "Traditionally 5–7 h, about 8 h industrially."
 				},
 				{
-					"type": "custom",
-					"name": "hang",
+					"type": "drain",
+					"by": "hang",
 					"seconds": {
 						"min": 36000,
 						"max": 43200

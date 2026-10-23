@@ -62,8 +62,8 @@
 					"note": "The defatted drink is boiled."
 				},
 				{
-					"type": "custom",
-					"name": "strain",
+					"type": "drain",
+					"by": "cloth",
 					"seconds": {
 						"min": 86400,
 						"max": 172800
@@ -71,12 +71,10 @@
 					"note": "Drained in linen bags."
 				},
 				{
-					"type": "custom",
-					"name": "salt"
+					"type": "salt"
 				},
 				{
-					"type": "custom",
-					"name": "shape",
+					"type": "mould",
 					"note": "Into balls of 20–50 g."
 				},
 				{

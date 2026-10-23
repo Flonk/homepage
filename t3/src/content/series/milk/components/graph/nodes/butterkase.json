@@ -104,8 +104,7 @@
 					"note": "With a large dose of rennet."
 				},
 				{
-					"type": "custom",
-					"name": "mould",
+					"type": "mould",
 					"temperature": {
 						"min": 38,
 						"max": 40
@@ -113,8 +112,8 @@
 					"note": "Mostly round loaves kept warm, from 250 g to 20 kg."
 				},
 				{
-					"type": "custom",
-					"name": "brine"
+					"type": "salt",
+					"how": "brine"
 				},
 				{
 					"type": "ferment",

@@ -61,8 +61,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "centrifuge",
+					"type": "separate",
+					"by": "centrifuge",
 					"note": "To remove spores."
 				},
 				{
@@ -100,8 +100,7 @@
 					"note": "The curd grains are washed with water, to lower the lactose and the final pH."
 				},
 				{
-					"type": "custom",
-					"name": "press",
+					"type": "press",
 					"note": "Drained and pre-pressed under the whey, which gives a closed, round-eyed body."
 				},
 				{

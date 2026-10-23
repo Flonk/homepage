@@ -65,13 +65,12 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "shred",
+					"type": "cut",
+					"how": "shred",
 					"note": "The stretched curd of buffalo mozzarella is shredded."
 				},
 				{
-					"type": "custom",
-					"name": "mix",
+					"type": "add",
 					"note": "Mixed with cream."
 				}
 			],

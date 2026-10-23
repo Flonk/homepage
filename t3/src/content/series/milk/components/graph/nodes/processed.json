@@ -53,8 +53,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "grind",
+					"type": "cut",
+					"how": "grind",
 					"note": "One or more natural cheeses."
 				},
 				{

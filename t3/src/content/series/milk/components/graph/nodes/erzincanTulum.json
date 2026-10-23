@@ -60,8 +60,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "drain",
+					"type": "drain",
+					"by": "cloth",
 					"note": "The curd is strained in cloth."
 				},
 				{
@@ -70,18 +70,17 @@
 					"note": "Rests overnight."
 				},
 				{
-					"type": "custom",
-					"name": "crumble",
+					"type": "cut",
+					"how": "crumble",
 					"note": "Crumbled in a copper vessel."
 				},
 				{
-					"type": "custom",
-					"name": "salt",
+					"type": "salt",
+					"how": "dry",
 					"note": "Dry-salted."
 				},
 				{
-					"type": "custom",
-					"name": "press",
+					"type": "press",
 					"seconds": {
 						"min": 864000,
 						"max": 1036800,

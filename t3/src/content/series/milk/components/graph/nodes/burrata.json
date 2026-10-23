@@ -68,18 +68,17 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "shred",
+					"type": "cut",
+					"how": "shred",
 					"note": "The stretched curd is shredded for the filling."
 				},
 				{
-					"type": "custom",
-					"name": "mix in cream",
+					"type": "add",
+					"what": "cream",
 					"note": "The shredded curd is mixed with cream into stracciatella."
 				},
 				{
-					"type": "custom",
-					"name": "form",
+					"type": "mould",
 					"note": "The stretched curd is formed into a pouch."
 				},
 				{

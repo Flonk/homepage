@@ -63,6 +63,7 @@ export const Celsius = within(-60, 300, '°C');
 export const Percent = within(0, 100, 'percent');
 export const PH = within(0, 14, 'pH');
 export const Bar = within(0, 2000, 'bar');
+export const Millimetres = within(0, 1000, 'mm');
 
 // An animal milked.
 export const Beast = z.enum(['cow', 'sheep', 'goat', 'horse', 'donkey', 'buffalo', 'camel', 'yak', 'reindeer']);
@@ -204,9 +205,27 @@ export const Coagulate = z.strictObject({
 	...Held,
 });
 export const Churn = z.strictObject({ type: z.literal('churn'), ...Held });
+/* The steps a curd and much else is put through, each its own. Salted:
+   dry, rubbed or sprinkled on; in a brine, so strong; or into the milk or
+   the curd. Drained: of its whey, hung in a cloth, in a cloth, in its
+   moulds, through a sieve. Cut: into grains so many mm across, or milled,
+   ground, crumbled, shredded. Pressed. Moulded: put into its moulds, shaped.
+   Separated: its cream off, risen and skimmed or spun off, so much fat left.
+   Evaporated: boiled down, in the open or under vacuum, to so much solids.
+   Filtered: through a cloth, or a membrane fine or finer (micro, ultra,
+   nano), or washed through it (dia). Something added to it, so much of it. */
+export const Salt = z.strictObject({ type: z.literal('salt'), how: z.enum(['dry', 'brine', 'milk']).optional(), strength: Percent.optional(), ...Held });
+export const Drain = z.strictObject({ type: z.literal('drain'), by: z.enum(['hang', 'cloth', 'mould', 'sieve']).optional(), ...Held });
+export const Cut = z.strictObject({ type: z.literal('cut'), how: z.enum(['cut', 'mill', 'grind', 'crumble', 'shred']).optional(), size: Millimetres.optional(), ...Held });
+export const Press = z.strictObject({ type: z.literal('press'), ...Held });
+export const Mould = z.strictObject({ type: z.literal('mould'), ...Held });
+export const Separate = z.strictObject({ type: z.literal('separate'), by: z.enum(['gravity', 'centrifuge']).optional(), fat: Percent.optional(), ...Held });
+export const Evaporate = z.strictObject({ type: z.literal('evaporate'), under: z.enum(['open', 'vacuum']).optional(), solids: Percent.optional(), ...Held });
+export const Filter = z.strictObject({ type: z.literal('filter'), by: z.enum(['cloth', 'micro', 'ultra', 'nano', 'dia']).optional(), ...Held });
+export const Add = z.strictObject({ type: z.literal('add'), what: z.string().min(1).optional(), share: Percent.optional(), ...Held });
 /* Any other step a thing is held at or put through, named in a word or
-   two: cut, pressed, salted, brined, stretched, smoked, frozen; so warm
-   and so long where that is said. */
+   two: stretched, smoked, frozen, washed; so warm and so long where that
+   is said. */
 export const CustomStep = z.strictObject({
 	type: z.literal('custom'),
 	name: z.string().min(1).max(20),
@@ -219,7 +238,7 @@ export const CustomStep = z.strictObject({
    treatment, a ferment and two coolings. In words what its steps do not
    hold, such as a second way it is made; and where all of it is from. */
 export const Processing = z.strictObject({
-	steps: z.array(z.discriminatedUnion('type', [Pasteurise, Homogenise, Coagulate, Churn, HeatTreatment, Ferment, Drying, CustomStep])).min(1),
+	steps: z.array(z.discriminatedUnion('type', [Pasteurise, Homogenise, Coagulate, Churn, Salt, Drain, Cut, Press, Mould, Separate, Evaporate, Filter, Add, HeatTreatment, Ferment, Drying, CustomStep])).min(1),
 	text: z.string().optional(),
 	sources: Sourcing,
 });

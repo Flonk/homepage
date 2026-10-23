@@ -43,8 +43,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "add cream",
+					"type": "add",
+					"what": "cream",
 					"note": "The pasteurised milk is enriched with cream to at least 10 % fat."
 				},
 				{

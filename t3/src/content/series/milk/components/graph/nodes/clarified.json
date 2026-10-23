@@ -53,18 +53,15 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "heat",
-					"does": "heat",
+					"type": "evaporate",
 					"note": "Butter is melted so the components separate by density: water evaporates, whey proteins float and casein sinks."
 				},
 				{
-					"type": "custom",
-					"name": "skim",
+					"type": "separate",
 					"note": "The foam of whey protein is skimmed off."
 				},
 				{
-					"type": "custom",
-					"name": "pour off",
+					"type": "drain",
 					"note": "The clear butterfat is poured off the top, leaving the solids behind."
 				}
 			],

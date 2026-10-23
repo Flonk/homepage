@@ -131,18 +131,16 @@
 					"note": "The rind is removed."
 				},
 				{
-					"type": "custom",
-					"name": "drain",
+					"type": "drain",
 					"note": "The whey is expelled."
 				},
 				{
-					"type": "custom",
-					"name": "crush",
+					"type": "cut",
+					"how": "grind",
 					"note": "The cheese is crushed."
 				},
 				{
-					"type": "custom",
-					"name": "salt",
+					"type": "salt",
 					"note": "The pulp is salted and spread on rollers."
 				}
 			],

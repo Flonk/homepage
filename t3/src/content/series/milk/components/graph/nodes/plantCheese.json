@@ -72,8 +72,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "filter"
+					"type": "filter"
 				},
 				{
 					"type": "heat",
@@ -103,8 +102,7 @@
 					"note": "To expel whey and kill the enzyme."
 				},
 				{
-					"type": "custom",
-					"name": "mould",
+					"type": "mould",
 					"note": "Scooped into baskets and shaped."
 				}
 			],

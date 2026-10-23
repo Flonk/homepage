@@ -50,8 +50,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "skim",
+					"type": "separate",
 					"note": "Skimmed milk, kept warm by the fire or range."
 				},
 				{
@@ -76,8 +75,8 @@
 					}
 				},
 				{
-					"type": "custom",
-					"name": "break up"
+					"type": "cut",
+					"how": "cut"
 				},
 				{
 					"type": "heat",
@@ -85,13 +84,12 @@
 					"note": "Gently heated."
 				},
 				{
-					"type": "custom",
-					"name": "drain",
+					"type": "drain",
+					"by": "hang",
 					"note": "Hung in muslin to drain."
 				},
 				{
-					"type": "custom",
-					"name": "salt"
+					"type": "salt"
 				}
 			],
 			"text": "Raw skimmed milk kept warm by the fire sours by its own flora, no starter; today pasteurised milk is acidified with lactic acid instead.",

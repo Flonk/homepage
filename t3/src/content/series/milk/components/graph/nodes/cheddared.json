@@ -53,8 +53,7 @@
 					"note": "Heated by 0.2–0.5 °C per min."
 				},
 				{
-					"type": "custom",
-					"name": "drain",
+					"type": "drain",
 					"note": "At pH 6.0–6.1, about 2 h after the rennet."
 				},
 				{
@@ -63,18 +62,17 @@
 					"note": "The curd mats and fuses into slabs."
 				},
 				{
-					"type": "custom",
-					"name": "mill",
+					"type": "cut",
+					"how": "mill",
 					"note": "Into chips."
 				},
 				{
-					"type": "custom",
-					"name": "salt",
+					"type": "salt",
+					"how": "dry",
 					"note": "Dry salt on the milled chips, to 1.75–1.95 % salt."
 				},
 				{
-					"type": "custom",
-					"name": "press",
+					"type": "press",
 					"note": "Into blocks of 18–20 kg."
 				},
 				{

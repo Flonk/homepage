@@ -76,8 +76,12 @@
 					"note": "With rennet."
 				},
 				{
-					"type": "custom",
-					"name": "salt",
+					"type": "salt",
+					"how": "brine",
+					"strength": {
+						"min": 3.5,
+						"max": 7
+					},
 					"note": "Dry or brine salted, to about 3.5–7 % salt in the cheese."
 				},
 				{

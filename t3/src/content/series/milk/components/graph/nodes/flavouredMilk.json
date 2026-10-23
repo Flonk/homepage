@@ -55,13 +55,12 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "mix",
+					"type": "add",
 					"note": "Sugar, cocoa or flavouring, and colour are added."
 				},
 				{
-					"type": "custom",
-					"name": "add stabiliser",
+					"type": "add",
+					"what": "stabiliser",
 					"note": "Kappa-carrageenan or microcrystalline cellulose."
 				}
 			],

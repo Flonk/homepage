@@ -40,8 +40,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "strain",
+					"type": "drain",
+					"by": "sieve",
 					"note": "The raw milk is filtered, not heated."
 				},
 				{

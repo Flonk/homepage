@@ -46,18 +46,18 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "drain",
-					"note": "Plain yoghurt hung in muslin.",
+					"type": "drain",
+					"by": "hang",
 					"seconds": {
 						"min": 7200,
 						"max": 7200,
 						"about": true
-					}
+					},
+					"note": "Plain yoghurt hung in muslin."
 				},
 				{
-					"type": "custom",
-					"name": "sweeten",
+					"type": "add",
+					"what": "sugar",
 					"note": "With sweetened condensed milk (or sugar, or nolen gur)."
 				},
 				{

@@ -74,8 +74,8 @@
 					"note": "With rennet."
 				},
 				{
-					"type": "custom",
-					"name": "cut"
+					"type": "cut",
+					"how": "cut"
 				},
 				{
 					"type": "heat",
@@ -86,12 +86,11 @@
 					}
 				},
 				{
-					"type": "custom",
-					"name": "drain"
+					"type": "drain"
 				},
 				{
-					"type": "custom",
-					"name": "grind",
+					"type": "cut",
+					"how": "grind",
 					"note": "By hand."
 				},
 				{
@@ -114,8 +113,7 @@
 					"note": "Sliced, dipped in the hot water and kneaded until it stretches to a thread of 1 m."
 				},
 				{
-					"type": "custom",
-					"name": "salt",
+					"type": "salt",
 					"seconds": {
 						"min": 172800,
 						"max": 259200

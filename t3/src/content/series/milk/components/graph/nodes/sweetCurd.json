@@ -52,8 +52,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "press",
+					"type": "press",
 					"note": "The tvorog is pressed dry."
 				},
 				{
@@ -62,13 +61,11 @@
 					"note": "Sieved twice."
 				},
 				{
-					"type": "custom",
-					"name": "mix",
+					"type": "add",
 					"note": "Mixed with butter, sugar, sour cream, eggs, raisins, nuts and vanilla."
 				},
 				{
-					"type": "custom",
-					"name": "mould",
+					"type": "mould",
 					"note": "In a wooden pasochnitsa lined with cheesecloth, whose weight drains the rest of the whey."
 				},
 				{

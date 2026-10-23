@@ -78,8 +78,8 @@
 					"note": "With calf or vegetable rennet."
 				},
 				{
-					"type": "custom",
-					"name": "break up",
+					"type": "cut",
+					"how": "cut",
 					"note": "Broken to hazelnut size for the fresco or maize-kernel size for the stagionato."
 				},
 				{
@@ -96,13 +96,16 @@
 					"note": "Only the stagionato curd may be cooked."
 				},
 				{
-					"type": "custom",
-					"name": "mould",
+					"type": "mould",
 					"note": "In moulds, the whey drained by hand pressing or in a steam-heated room."
 				},
 				{
-					"type": "custom",
-					"name": "salt",
+					"type": "salt",
+					"how": "brine",
+					"strength": {
+						"min": 17,
+						"max": 19
+					},
 					"note": "Dry or in 17–19 % brine (15–17 °Bé), at least 8 h per kg for the fresco or 12 h per kg for the stagionato."
 				},
 				{

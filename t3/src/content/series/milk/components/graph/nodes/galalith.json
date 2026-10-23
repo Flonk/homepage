@@ -50,8 +50,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "mix",
+					"type": "add",
 					"note": "Dry casein powder is mixed with colourants."
 				},
 				{
@@ -60,13 +59,12 @@
 					"note": "Heated until it agglomerates."
 				},
 				{
-					"type": "custom",
-					"name": "press",
+					"type": "press",
 					"note": "Pressed into bars and re-extruded, then the bars are pressed into blocks."
 				},
 				{
-					"type": "custom",
-					"name": "cut",
+					"type": "cut",
+					"how": "cut",
 					"note": "Cut to sheets."
 				},
 				{

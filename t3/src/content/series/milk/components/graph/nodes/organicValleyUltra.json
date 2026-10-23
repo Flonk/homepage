@@ -35,18 +35,18 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "ultrafilter",
+					"type": "filter",
+					"by": "ultra",
 					"note": "A membrane keeps protein and calcium and lets water and part of the lactose through."
 				},
 				{
-					"type": "custom",
-					"name": "add lactase",
+					"type": "add",
+					"what": "lactase",
 					"note": "Added after filtering, which makes the milk lactose-free."
 				},
 				{
-					"type": "custom",
-					"name": "add fat back",
+					"type": "add",
+					"what": "fat back",
 					"note": "Fat is added back to the filtered skim milk to make 1 %, 2 % or whole (a single source, less certain)."
 				}
 			],

@@ -47,8 +47,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "hang",
+					"type": "drain",
+					"by": "hang",
 					"note": "The katyk (yoghurt) is hung in a cloth bag to drain the whey."
 				}
 			],

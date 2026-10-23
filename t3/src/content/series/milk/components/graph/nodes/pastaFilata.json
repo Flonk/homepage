@@ -79,16 +79,15 @@
 					"note": "The curd is kneaded and stretched in the hot water."
 				},
 				{
-					"type": "custom",
-					"name": "mould",
+					"type": "mould",
 					"temperature": {
 						"min": 55,
 						"max": 65
 					}
 				},
 				{
-					"type": "custom",
-					"name": "brine",
+					"type": "salt",
+					"how": "brine",
 					"seconds": {
 						"min": 28800,
 						"max": 28800,

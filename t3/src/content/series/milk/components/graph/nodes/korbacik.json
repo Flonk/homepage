@@ -78,8 +78,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "grate",
+					"type": "cut",
+					"how": "shred",
 					"note": "The lump cheese is cut small and grated."
 				},
 				{

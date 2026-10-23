@@ -74,13 +74,12 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "salt",
+					"type": "salt",
 					"note": "Salted to about 1.5 %, which helps it keep."
 				},
 				{
-					"type": "custom",
-					"name": "strain",
+					"type": "drain",
+					"by": "cloth",
 					"seconds": {
 						"min": 36000,
 						"max": 50400

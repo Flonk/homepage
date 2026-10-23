@@ -66,8 +66,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "skim",
+					"type": "separate",
 					"temperature": {
 						"max": 40
 					},
@@ -108,18 +107,21 @@
 					"note": "With calf rennet."
 				},
 				{
-					"type": "custom",
-					"name": "cut",
+					"type": "cut",
+					"how": "cut",
+					"size": {
+						"min": 10,
+						"max": 10
+					},
 					"note": "Vertically, at least 1 cm, with no stirring."
 				},
 				{
-					"type": "custom",
-					"name": "mould",
+					"type": "mould",
 					"note": "In thin layers by the pelle à brie into moulds 36–37 cm across, 2.6–3.3 kg."
 				},
 				{
-					"type": "custom",
-					"name": "salt",
+					"type": "salt",
+					"how": "dry",
 					"note": "Dry salt only."
 				},
 				{

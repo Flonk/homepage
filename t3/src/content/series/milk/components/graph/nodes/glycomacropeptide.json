@@ -36,8 +36,8 @@
 					"note": "At pH 4, where the GMP runs through."
 				},
 				{
-					"type": "custom",
-					"name": "ultrafilter",
+					"type": "filter",
+					"by": "ultra",
 					"temperature": {
 						"min": 60,
 						"max": 60
@@ -53,8 +53,7 @@
 					"note": "Freeze-drying."
 				},
 				{
-					"type": "custom",
-					"name": "supplement",
+					"type": "add",
 					"note": "Histidine, tryptophan, tyrosine, arginine and cysteine are added, as GMP lacks them, for a complete PKU food."
 				}
 			],

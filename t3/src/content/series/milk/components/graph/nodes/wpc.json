@@ -50,18 +50,17 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "separate",
+					"type": "separate",
 					"note": "Whey is defatted and clarified, fat and casein fines removed; microfiltration is an option."
 				},
 				{
-					"type": "custom",
-					"name": "ultrafilter",
+					"type": "filter",
+					"by": "ultra",
 					"note": "The membrane holds back the protein."
 				},
 				{
-					"type": "custom",
-					"name": "diafilter",
+					"type": "filter",
+					"by": "dia",
 					"note": "Water added during UF to wash out more lactose and minerals."
 				},
 				{

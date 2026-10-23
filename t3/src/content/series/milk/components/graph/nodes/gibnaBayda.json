@@ -50,8 +50,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "salt",
+					"type": "salt",
 					"note": "8–12 % salt goes into the milk before renneting."
 				},
 				{
@@ -68,18 +67,21 @@
 					"note": "With one rennet tablet in 1 L water per 100 L milk, or Solanum dubium fruit extract (25 ml per 50 L in one trial)."
 				},
 				{
-					"type": "custom",
-					"name": "drain",
+					"type": "drain",
+					"by": "cloth",
 					"note": "Ladled into cloth in a wooden frame and drained to about half its volume."
 				},
 				{
-					"type": "custom",
-					"name": "press",
+					"type": "press",
 					"note": "Pressed overnight."
 				},
 				{
-					"type": "custom",
-					"name": "cut",
+					"type": "cut",
+					"how": "cut",
+					"size": {
+						"min": 50,
+						"max": 80
+					},
 					"note": "Cut into 5–8 cm blocks."
 				},
 				{

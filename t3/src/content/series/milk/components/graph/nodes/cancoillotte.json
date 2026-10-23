@@ -73,8 +73,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "skim"
+					"type": "separate"
 				},
 				{
 					"type": "ferment",
@@ -82,13 +81,12 @@
 					"note": "Inoculated and coagulated at a controlled temperature."
 				},
 				{
-					"type": "custom",
-					"name": "press",
+					"type": "press",
 					"note": "Into metton loaves."
 				},
 				{
-					"type": "custom",
-					"name": "crumble"
+					"type": "cut",
+					"how": "crumble"
 				},
 				{
 					"type": "ferment",

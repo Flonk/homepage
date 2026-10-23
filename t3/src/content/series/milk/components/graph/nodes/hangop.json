@@ -45,8 +45,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "drain",
+					"type": "drain",
+					"by": "hang",
 					"note": "Poured into a clean tea towel and left to drip for one night, hung or over a dish."
 				}
 			],

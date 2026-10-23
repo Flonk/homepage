@@ -51,8 +51,7 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "custom",
-					"name": "evaporate",
+					"type": "evaporate",
 					"note": "The permeate is evaporated to about 60 % dry matter."
 				},
 				{
@@ -70,8 +69,8 @@
 					"note": "Slowly, about 3 °C/h from 60 to 30 °C, then about 1.5 °C/h to 15 °C, so the lactose crystallises out."
 				},
 				{
-					"type": "custom",
-					"name": "separate",
+					"type": "separate",
+					"by": "centrifuge",
 					"note": "The crystals go through a decanter, then a sieve centrifuge, and are washed."
 				},
 				{
