@@ -21,7 +21,7 @@ export const GROUPS: { name: string; hub?: string; ids: string[] }[] = [
 	},
 	{
 		name: 'Creams',
-		ids: ['rawCream', 'cream', 'clotted', 'creamGrades', 'coffeeCream', 'kaffeeobers', 'cremeDeLeite', 'halfAndHalf', 'cremeLegere', 'kaffeerahm', 'singleCream', 'lightCream', 'namaKurimu', 'mediaCrema', 'pannaDaCucina', 'schlagsahne', 'schlagobers', 'cremeFluide', 'vollrahm', 'thickenedCream', 'whipping', 'heavyCream', 'cremeDouble', 'vispgradde', 'doppelrahm', 'double', 'evaporatedCream', 'whippedCream', 'culturedCream', 'saureSahne', 'graddfil', 'sauerrahm', 'saurerHalbrahm', 'smetana', 'sourCream', 'tejfol', 'schmand', 'cremeFraiche', 'romme', 'cremaMexicana', 'mascarpone', 'posset', 'pannaCotta', 'rommegrot'],
+		ids: ['rawCream', 'cream', 'clotted', 'coffeeCream', 'kaffeeobers', 'cremeDeLeite', 'halfAndHalf', 'cremeLegere', 'kaffeerahm', 'singleCream', 'lightCream', 'namaKurimu', 'mediaCrema', 'pannaDaCucina', 'schlagsahne', 'schlagobers', 'cremeFluide', 'vollrahm', 'thickenedCream', 'whipping', 'heavyCream', 'cremeDouble', 'vispgradde', 'doppelrahm', 'double', 'evaporatedCream', 'whippedCream', 'culturedCream', 'saureSahne', 'graddfil', 'sauerrahm', 'saurerHalbrahm', 'smetana', 'sourCream', 'tejfol', 'schmand', 'cremeFraiche', 'romme', 'cremaMexicana', 'mascarpone', 'posset', 'pannaCotta', 'rommegrot'],
 	},
 	{
 		name: 'Butter & fat',

@@ -12178,6 +12178,22 @@
 	"cream": {
 		"facts": [
 			{
+				"k": "Separation",
+				"v": "Centrifuge leaves skimmed milk with 0.03-0.06 % fat"
+			},
+			{
+				"k": "Standardising",
+				"v": "Cream and skimmed milk are mixed back to the fat of the grade"
+			},
+			{
+				"k": "Germany",
+				"v": "Sahne (Kaffeesahne) at least 10 % fat; Schlagsahne at least 30 %; no protein added"
+			},
+			{
+				"k": "Heat",
+				"v": "Fresh cream is always pasteurised; UHT for shelf-stable packs (see Cream)"
+			},
+			{
 				"k": "Batch (vat)",
 				"v": "63 °C (145 °F) for 30 min"
 			},
@@ -12194,7 +12210,7 @@
 				"v": "At least 138 °C (280 °F) for at least 2 s, before or after packing; keeps longer in the fridge"
 			}
 		],
-		"text": "Cream is heated like milk, but because fat shields bacteria it is held a little hotter once it reaches 10 % fat. Equivalent time-temperature pairs are allowed; the figures are the US legal definitions (21 CFR 131.3).",
+		"text": "The cream spun out of the milk is far richer than any grade sold, so the dairy blends it back with skimmed milk until the fat hits the legal figure, then heats it. Grades differ by country and by use: coffee, whipping, double. Cream is heated like milk, but because fat shields bacteria it is held a little hotter once it reaches 10 % fat. Equivalent time-temperature pairs are allowed; the figures are the US legal definitions (21 CFR 131.3).",
 		"sources": {
 			"links": [
 				{
@@ -12204,9 +12220,17 @@
 				{
 					"name": "Wikipedia: Cream",
 					"url": "https://en.wikipedia.org/wiki/Cream"
+				},
+				{
+					"name": "German MilchPQV, Anlage 8 (Sahneerzeugnisse, Gruppe V)",
+					"url": "https://gesetze.legal/bund/milchpqv/anlage_8"
+				},
+				{
+					"name": "German Wikipedia: Rahm",
+					"url": "https://dewiki.de/Lexikon/Rahm"
 				}
 			],
-			"text": "The table, the facts and the words on how it is made, from these."
+			"text": "How cream is standardised to its grade and heated, from these."
 		}
 	},
 	"rawCream": {
@@ -17467,40 +17491,6 @@
 				{
 					"name": "US 21 CFR 131.155 Light cream",
 					"url": "https://www.law.cornell.edu/cfr/text/21/131.155"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		}
-	},
-	"creamGrades": {
-		"facts": [
-			{
-				"k": "Separation",
-				"v": "Centrifuge leaves skimmed milk with 0.03-0.06 % fat"
-			},
-			{
-				"k": "Standardising",
-				"v": "Cream and skimmed milk are mixed back to the fat of the grade"
-			},
-			{
-				"k": "Germany",
-				"v": "Sahne (Kaffeesahne) at least 10 % fat; Schlagsahne at least 30 %; no protein added"
-			},
-			{
-				"k": "Heat",
-				"v": "Fresh cream is always pasteurised; UHT for shelf-stable packs (see Cream)"
-			}
-		],
-		"text": "The cream spun out of the milk is far richer than any grade sold, so the dairy blends it back with skimmed milk until the fat hits the legal figure, then heats it. Grades differ by country and by use: coffee, whipping, double.",
-		"sources": {
-			"links": [
-				{
-					"name": "German MilchPQV, Anlage 8 (Sahneerzeugnisse, Gruppe V)",
-					"url": "https://gesetze.legal/bund/milchpqv/anlage_8"
-				},
-				{
-					"name": "German Wikipedia: Rahm",
-					"url": "https://dewiki.de/Lexikon/Rahm"
 				}
 			],
 			"text": "The table, the facts and the words on how it is made, from these."

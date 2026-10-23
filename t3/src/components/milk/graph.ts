@@ -185,10 +185,11 @@ for (const id of Object.keys(SHARES)) if (!(id in NODES)) throw new Error(`MilkG
 
 // Every parent named must be a product, and no product its own ancestor.
 for (const [id, { from, alsoFrom = [] }] of Object.entries(NODES)) {
-	// Under a ruler the arrow in has its value, not a step.
-	const ruled = from !== undefined && !!NODES[from]?.scale;
+	/* Hung under a ruler, the arrow in has its value, not a step; anything
+	   else made from a product with a ruler branches off as from any other. */
+	const ruled = NODES[id].at !== undefined;
+	if (ruled && !NODES[from!]?.scale) throw new Error(`MilkGraph: ${id} has a value on a ruler, but ${from} has none`);
 	if (from !== undefined && !ruled && !NODES[id].step) throw new Error(`MilkGraph: ${id} has no step`);
-	if (ruled !== (NODES[id].at !== undefined)) throw new Error(`MilkGraph: ${id} must have a value on a ruler if and only if it hangs from one`);
 	/* Two at one value share its arrow; two nearly at one would hang one's
 	   arrow down beside the other's. */
 	const gap = (n: Product) => Math.abs(n.at! - NODES[id].at!);

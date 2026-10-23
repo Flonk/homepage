@@ -208,38 +208,38 @@ export const NODES: Record<string, Product> = {
 	},
 
 	rawCream: { label: 'Raw cream', aka: ['Rahm'], from: 'raw', step: 'the fat' },
-	cream: { label: 'Cream', aka: ['Sahne', 'Crème liquide'], from: 'rawCream', step: 'pasteurise' },
-	// Kaymak and malai also skim off heated whole milk as it cools.
-	clotted: { label: 'Clotted cream\n(kaymak)', examples: ['Cornish clotted cream', 'Devon clotted cream', 'Kaymak', 'Afyon kaymagi', 'Malai', 'Urum'], from: 'fresh', alsoFrom: ['cream'], step: 'heat slowly, skim the crust' },
-	rabri: { label: 'Rabri', aka: ['Rabdi', 'Layered milk skins'], examples: ['Basundi', 'Khurchan'], from: 'fresh', step: 'reduce, layer the skins' },
 	/* Cream as it is sold, its fat set to a grade and heated: each country
 	   names its own grades, hung under the ruler at the least fat the name
-	   allows (or, where it sets none, what it usually has). */
-	creamGrades: {
-		label: 'Cream grades',
-		aka: ['Sahne', 'Rahm', 'Obers'],
+	   allows (or, where it sets none, what it usually has); what is made
+	   from it branches off to its right. */
+	cream: {
+		label: 'Cream',
+		aka: ['Sahne', 'Rahm', 'Obers', 'Crème liquide'],
 		from: 'rawCream',
 		step: 'standardise, pasteurise',
 		scale: { name: 'fat', unit: '%', to: 50, every: 10 },
 	},
-	coffeeCream: { label: 'Kaffeesahne', from: 'creamGrades', at: 10 },
-	kaffeeobers: { label: 'Kaffeeobers', from: 'creamGrades', at: 10 },
-	cremeDeLeite: { label: 'Creme de leite', from: 'creamGrades', at: 10 },
-	halfAndHalf: { label: 'Half-and-half', from: 'creamGrades', at: 12 },
-	cremeLegere: { label: 'Crème légère', from: 'creamGrades', at: 12 },
-	kaffeerahm: { label: 'Kaffeerahm', from: 'creamGrades', at: 15 },
-	singleCream: { label: 'Single cream', from: 'creamGrades', at: 18 },
-	lightCream: { label: 'Light cream', aka: ['Coffee cream', 'Table cream'], from: 'creamGrades', at: 18 },
-	namaKurimu: { label: 'Nama kurīmu', aka: ['生クリーム', 'Fresh cream'], from: 'creamGrades', at: 18 },
-	mediaCrema: { label: 'Media crema', aka: ['Table cream'], from: 'creamGrades', at: 20 },
-	pannaDaCucina: { label: 'Panna da cucina', aka: ['Cooking cream'], from: 'creamGrades', at: 20 },
-	schlagsahne: { label: 'Schlagsahne', from: 'creamGrades', at: 30 },
-	schlagobers: { label: 'Schlagobers', aka: ['Schlagrahm'], from: 'creamGrades', at: 30 },
-	cremeFluide: { label: 'Crème fluide', aka: ['Crème fraîche fluide', 'Crème entière'], from: 'creamGrades', at: 30 },
-	vollrahm: { label: 'Vollrahm', aka: ['Schlagrahm'], from: 'creamGrades', at: 35 },
-	thickenedCream: { label: 'Thickened cream', from: 'creamGrades', at: 35 },
-	whipping: { label: 'Whipping cream', from: 'creamGrades', at: 35 },
-	heavyCream: { label: 'Heavy cream', aka: ['Heavy whipping cream'], from: 'creamGrades', at: 36 },
+	// Kaymak and malai also skim off heated whole milk as it cools.
+	clotted: { label: 'Clotted cream\n(kaymak)', examples: ['Cornish clotted cream', 'Devon clotted cream', 'Kaymak', 'Afyon kaymagi', 'Malai', 'Urum'], from: 'fresh', alsoFrom: ['cream'], step: 'heat slowly, skim the crust' },
+	rabri: { label: 'Rabri', aka: ['Rabdi', 'Layered milk skins'], examples: ['Basundi', 'Khurchan'], from: 'fresh', step: 'reduce, layer the skins' },
+	coffeeCream: { label: 'Kaffeesahne', from: 'cream', at: 10 },
+	kaffeeobers: { label: 'Kaffeeobers', from: 'cream', at: 10 },
+	cremeDeLeite: { label: 'Creme de leite', from: 'cream', at: 10 },
+	halfAndHalf: { label: 'Half-and-half', from: 'cream', at: 12 },
+	cremeLegere: { label: 'Crème légère', from: 'cream', at: 12 },
+	kaffeerahm: { label: 'Kaffeerahm', from: 'cream', at: 15 },
+	singleCream: { label: 'Single cream', from: 'cream', at: 18 },
+	lightCream: { label: 'Light cream', aka: ['Coffee cream', 'Table cream'], from: 'cream', at: 18 },
+	namaKurimu: { label: 'Nama kurīmu', aka: ['生クリーム', 'Fresh cream'], from: 'cream', at: 18 },
+	mediaCrema: { label: 'Media crema', aka: ['Table cream'], from: 'cream', at: 20 },
+	pannaDaCucina: { label: 'Panna da cucina', aka: ['Cooking cream'], from: 'cream', at: 20 },
+	schlagsahne: { label: 'Schlagsahne', from: 'cream', at: 30 },
+	schlagobers: { label: 'Schlagobers', aka: ['Schlagrahm'], from: 'cream', at: 30 },
+	cremeFluide: { label: 'Crème fluide', aka: ['Crème fraîche fluide', 'Crème entière'], from: 'cream', at: 30 },
+	vollrahm: { label: 'Vollrahm', aka: ['Schlagrahm'], from: 'cream', at: 35 },
+	thickenedCream: { label: 'Thickened cream', from: 'cream', at: 35 },
+	whipping: { label: 'Whipping cream', from: 'cream', at: 35 },
+	heavyCream: { label: 'Heavy cream', aka: ['Heavy whipping cream'], from: 'cream', at: 36 },
 	whippedCream: {
 		label: 'Whipped cream',
 		note: 'Cream is beaten until air bubbles are held by clumped fat globules; beat too long and the fat clumps into butter. It collapses after about 1-2 h.',
@@ -247,16 +247,16 @@ export const NODES: Record<string, Product> = {
 		from: 'cream',
 		step: 'whip in air',
 	},
-	cremeDouble: { label: 'Crème double', from: 'creamGrades', at: 40 },
-	vispgradde: { label: 'Vispgrädde', from: 'creamGrades', at: 40 },
-	doppelrahm: { label: 'Doppelrahm', note: 'In Switzerland, Crème double de la Gruyère is a cream of about 45 % fat, listed in the Culinary Heritage of Switzerland', from: 'creamGrades', at: 45 },
-	double: { label: 'Double cream', from: 'creamGrades', at: 48 },
+	cremeDouble: { label: 'Crème double', from: 'cream', at: 40 },
+	vispgradde: { label: 'Vispgrädde', from: 'cream', at: 40 },
+	doppelrahm: { label: 'Doppelrahm', note: 'In Switzerland, Crème double de la Gruyère is a cream of about 45 % fat, listed in the Culinary Heritage of Switzerland', from: 'cream', at: 45 },
+	double: { label: 'Double cream', from: 'cream', at: 48 },
 	evaporatedCream: { label: 'Evaporated cream', aka: ['Kondenssahne'], from: 'cream', step: 'evaporate, sterilise in can' },
 	/* Cream soured once, by the same lactic cultures, into what is one product
 	   under many names, told apart by little more than how much fat it has:
 	   each hung under the ruler at what it typically has. */
 	culturedCream: {
-		label: 'Cultured cream grades',
+		label: 'Cultured cream',
 		aka: ['Soured cream', 'Sauerrahmerzeugnisse'],
 		from: 'cream',
 		step: 'culture, ferment',

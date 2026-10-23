@@ -947,14 +947,17 @@ const { focus } = Astro.props;
 			for (const k of kids) apportion(k);
 		};
 		apportion(root);
-		/* What hangs under a ruler is laid out there, not out to the right as
-		   a branch is: taken out of the tree's layout once it has counted
-		   towards the sizes and lines above. */
+		/* What hangs under a ruler, by its value on it, is laid out there, not
+		   out to the right as a branch is: taken out of the tree's layout once
+		   it has counted towards the sizes and lines above. Anything else made
+		   from it branches off as from any product. */
 		const hanging = new Map<Node, Node[]>();
-		for (const [p, kids] of children)
+		for (const [p, kids] of [...children])
 			if (p.scale) {
-				hanging.set(p, kids);
-				children.delete(p);
+				hanging.set(p, kids.filter((k) => k.at != null));
+				const rest = kids.filter((k) => k.at == null);
+				if (rest.length) children.set(p, rest);
+				else children.delete(p);
 			}
 		// A panel's cheeses are laid out in it, not as leaves of the tree (see Product); its products stay.
 		const paneled = new Map<Node, Node[]>();
@@ -977,7 +980,7 @@ const { focus } = Astro.props;
 		};
 		const hangsFrom = (n: Node) => {
 			const p = treeParent.get(n);
-			return p && hanging.has(p) ? p : null;
+			return p && n.at != null && hanging.has(p) ? p : null;
 		};
 		// The line into a product, and how long its arrowhead is.
 		const line = (n: Node) => STRAND * carried.get(n)!;
@@ -1472,7 +1475,8 @@ const { focus } = Astro.props;
 				own: true,
 			}));
 			const kids = children.get(n) ?? [];
-			if (hanging.has(n)) return [...own, ...hangBoxes(n).map((b) => ({ ...b, own: false }))];
+			// What hangs under its ruler, below it; what is made from it besides branches off as from any product.
+			if (hanging.has(n)) own.push(...hangBoxes(n).map((b) => ({ ...b, own: false })));
 			// A panel under its family, as much the family's own as its pill.
 			if (paneled.has(n)) own.push({ ...panelBox(n), own: true });
 			if (!kids.length) return own;
@@ -1715,7 +1719,7 @@ const { focus } = Astro.props;
 		};
 		// Off a ruler, straight down from the product's value into its top.
 		const pointsOf = (s: Node, t: Node): [number, number][] => {
-			if (!hanging.has(s)) return elbowPoints(s, t);
+			if (t.at == null || !hanging.has(s)) return elbowPoints(s, t);
 			// Into the top of its list, which one at a value alone is.
 			const x = tickX(s, t.at!);
 			return [
