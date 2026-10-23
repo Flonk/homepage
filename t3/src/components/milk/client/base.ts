@@ -1,41 +1,31 @@
-import type { Sourcing } from '../schema';
+import type * as S from '../schema';
+type Sourcing = S.Sourcing;
 
-export type Node = {
+/* A product, an example or a branch point, as the page is given it (see
+   milk/graph.ts) and as it is laid out: its own fields as the schema has
+   them, the rest worked out on the way. */
+export type Node = Pick<S.Product, 'label' | 'step' | 'scale' | 'at' | 'panel' | 'map' | 'below' | 'link' | 'note' | 'aka'> & {
 	id: string;
 	x: number;
 	y: number;
-	label: string;
-	// How it is made from what it hangs from, written on the arrow into it.
-	step?: string;
 	// Its photograph, if it has one, and whose it is.
 	image?: { src: string; credit: string; author: string; license: string; source: string };
 	// What it is, said when it is clicked, and where that was said first.
-	about?: { text: string; sources: Sourcing };
+	about?: S.About;
 	// All a product's examples, the drawn and the rest.
 	named?: string[];
 	// The countries it comes from, if it is regional.
 	regions?: string[];
 	// How the step into it is done, and the sources (see steps.json).
-	how?: {
-		label?: string;
-		table?: { k: string; v: string }[];
-		facts?: { k: string; v: string }[];
-		text?: string;
-		// A cheese on the map's are with its paragraph (see about).
-		sources?: Sourcing;
-	};
+	// A cheese on the map's sources are with its paragraph (see about).
+	how?: Omit<S.How, 'sources'> & { sources?: Sourcing };
 	// How much of the world's milk goes its way, in Mt a year and in percent, and how that was worked out (see SHARES).
 	shareMt?: number;
 	share?: number;
 	shareSources?: Sourcing;
-	// A kind measured along a ruler, and where on its parent's ruler a product hangs (see Product).
-	scale?: { name: string; unit: string; to: number; every: number };
-	at?: number;
-	// A family drawn as a panel, and where a cheese goes in one (see Product and EXAMPLE_AXES).
-	panel?: boolean;
-	axes?: { firm: string; days: [number, number] };
-	// A map's header, and a cheese on it, with the country it is put in (see WORLD).
-	map?: boolean;
+	// Where a cheese goes in a panel (see EXAMPLE_AXES).
+	axes?: { firm: S.Firm; days: [number, number] };
+	// A cheese on the map, with the country it is put in (see WORLD).
 	onMap?: boolean;
 	place?: string;
 	// The region of its country it is from, where on the map that is, and whether that is a guess.
@@ -47,11 +37,6 @@ export type Node = {
 	// A protected name (PDO, PGI or TSG), and why its place is a guess, if it is.
 	protected?: string;
 	unsure?: string;
-	below?: string;
-	// The product this one is drawn again of (see Product).
-	link?: string;
-	// Its remark, behind the info mark (see Product).
-	note?: string;
 	// The animals it is made from the milk of, if not a cow (see MILK_OF).
 	beasts?: { mark: string; milk: string }[];
 	// Which family's slice it is held in; milk, in the middle, is in none.
@@ -59,8 +44,6 @@ export type Node = {
 	// 0 a staple, 1 well known, 2 niche (see STAPLE and KNOWN).
 	niche: number;
 	hub?: boolean;
-	// Found by the search, though not drawn.
-	aka?: string[];
 	// An example of its parent, not made from it, kept in the order they are listed.
 	example?: boolean;
 	rank?: number;
