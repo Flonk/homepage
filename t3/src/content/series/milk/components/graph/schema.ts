@@ -175,6 +175,74 @@ export const WorldMap = z.object({
 
 /* ---- Each arrow ---- */
 
+/* A measure that is seldom one number: between a least and a most, or
+   only one of them ("above 40 °C", "up to 6 days"), and whether either is
+   only about so ("about 23 °C", "overnight"). */
+export const Range = z
+	.object({ min: z.number().optional(), max: z.number().optional(), about: z.boolean().optional() })
+	.refine((r) => r.min !== undefined || r.max !== undefined, 'a range needs a least or a most')
+	.refine((r) => r.min === undefined || r.max === undefined || r.min <= r.max, 'a range runs from its least to its most');
+
+/* A living thing at work in a ferment, by its name today, with the names
+   it is still found under; or, where no species is named, the group it is
+   of ("thermophilic lactic acid bacteria"). An animal is one too: the mites
+   and the larvae some cheeses are ripened by. */
+export const Microbe = z.object({
+	name: z.string(),
+	formerly: z.array(z.string()).optional(),
+	kind: z.enum(['bacterium', 'yeast', 'mould', 'animal']),
+	// What it is there for: the acid, the aroma (diacetyl), the gas (eyes, fizz), the slime of a ropy milk, the alcohol, a rind, a claim of health.
+	does: z.array(z.enum(['acid', 'aroma', 'gas', 'slime', 'alcohol', 'rind', 'ripening', 'probiotic'])).min(1),
+	// At what temperatures it grows best, where the source groups it so rather than naming a species.
+	grows: z.enum(['mesophilic', 'thermophilic']).optional(),
+	// Found rather than added: its share of the isolates in a survey of the traditional product, in percent.
+	isolates: z.number().min(0).max(100).optional(),
+});
+
+/* How the microbes get into the milk: a starter of known cultures; a
+   little of the last batch (back-slopping); kefir grains; the milk's own
+   flora, left to itself; the vessel it sours in (a gourd, a smoked pot, a
+   bamboo tube, a bag kept from last year); or the air of the place it
+   ripens in (Roquefort's caves). */
+export const Inoculum = z.object({
+	by: z.enum(['starter', 'backslop', 'grains', 'wild', 'vessel', 'air']),
+	// How much is put in, as a share of the milk, in percent.
+	dose: Range.optional(),
+	// What it sours in, where that matters: the gourd, the pot, how it is smoked.
+	vessel: z.string().optional(),
+});
+
+/* One stretch of a ferment: held so warm, so long, and so damp, until it
+   is so sour. Most ferments are one stretch; kefir is two (soured at
+   23 °C, then ripened cool), and a mould cheese three (soured, dried,
+   ripened). Temperatures in °C, times in hours, humidity and alcohol in
+   percent, acidity as percent lactic acid. */
+export const Stretch = z.object({
+	does: z.enum(['incubate', 'ripen', 'dry', 'smear', 'pierce']),
+	temperature: Range.optional(),
+	hours: Range.optional(),
+	humidity: Range.optional(),
+	// Where it stops, or must have reached by law.
+	pH: Range.optional(),
+	acidity: Range.optional(),
+	alcohol: Range.optional(),
+});
+
+/* Everything needed to say how milk, cream, whey or a curd is fermented:
+   what by, how they got there, and how it is held until it is done; in
+   words what none of these hold. Lactic is the souring of lactose into
+   lactic acid, by bacteria alone (yoghurt, quark) or with yeasts too,
+   making alcohol and fizz (kefir, kumis); mould and smear ripen a cheese
+   from its surface or from within. */
+export const Ferment = z.object({
+	kinds: z.array(z.enum(['lactic', 'yeast', 'mould', 'smear', 'propionic'])).min(1),
+	microbes: z.array(Microbe),
+	inoculum: Inoculum,
+	stretches: z.array(Stretch).min(1),
+	text: z.string().optional(),
+	sources: Sourcing,
+});
+
 const Row = z.object({ k: z.string(), v: z.string() });
 /* How the product at an arrow's head is made (steps.json): a table
    drawn on the arrow, facts and words told on its card, and their sources;
@@ -185,6 +253,8 @@ export const How = z.object({
 	facts: z.array(Row).optional(),
 	text: z.string().optional(),
 	sources: Sourcing,
+	// How it is fermented, where it is: not yet filled in from the table's and the facts' rows.
+	ferment: Ferment.optional(),
 });
 export const Steps = z.record(z.string(), How);
 
@@ -220,3 +290,4 @@ export type Example = z.infer<typeof Example>;
 export type Cheese = z.infer<typeof Cheese>;
 export type How = z.infer<typeof How>;
 export type Arrow = z.infer<typeof Arrow>;
+export type Ferment = z.infer<typeof Ferment>;
