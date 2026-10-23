@@ -395,6 +395,47 @@ const { focus } = Astro.props;
 		padding-top: 0.6rem;
 		border-top: 1px solid var(--pill-rim);
 	}
+	/* A step's table, as on its arrow: on the pills' white, the names'
+	   column a shade darker, ruled and framed; a ferment's microbe over its
+	   bottom left corner. */
+	.milk-about :global(.milk-about-table) {
+		position: relative;
+		margin: 0.8rem 0 1.1rem;
+	}
+	.milk-about :global(.milk-about-table table) {
+		--rule: color-mix(in oklab, var(--deck-ink-dim) 50%, transparent);
+		width: 100%;
+		border: 1px solid var(--rule);
+		border-radius: 0.375rem;
+		border-spacing: 0;
+		background: var(--pill);
+		font-size: 0.85em;
+		line-height: 1.35;
+		overflow: hidden;
+	}
+	.milk-about :global(.milk-about-table :is(th, td)) {
+		padding: 0.35rem 0.55rem;
+		vertical-align: top;
+		white-space: pre-line;
+	}
+	.milk-about :global(.milk-about-table tr + tr :is(th, td)) {
+		border-top: 1px solid var(--rule);
+	}
+	.milk-about :global(.milk-about-table th) {
+		width: 32%;
+		font-weight: 600;
+		text-align: right;
+		background: color-mix(in oklab, var(--deck-ink) 6%, var(--pill));
+		border-right: 1px solid var(--rule);
+	}
+	.milk-about :global(.milk-about-ferment) {
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		font-size: 1.4em;
+		line-height: 1;
+		transform: translate(-40%, 45%);
+	}
 	.milk-about :global(.milk-about-fact) {
 		display: grid;
 		grid-template-columns: 6.5rem 1fr;
@@ -1920,6 +1961,23 @@ const { focus } = Astro.props;
 			row.append(dd);
 			return row;
 		};
+		/* A step's table on a card, drawn as on its arrow, with the facts the
+		   arrow has no room for as rows of it too; a ferment's microbe on its
+		   bottom left corner. */
+		const tableFor = (how: NonNullable<Node['how']>) => {
+			const rows = [...(how.table ?? []), ...(how.facts ?? [])];
+			if (!rows.length) return [];
+			const framed = el('div', 'milk-about-table');
+			const table = el('table');
+			for (const { k, v } of rows) {
+				const row = el('tr');
+				row.append(el('th', '', k), el('td', '', v));
+				table.append(row);
+			}
+			framed.append(table);
+			if (how.fermented) framed.append(el('span', 'milk-about-ferment', '🦠'));
+			return [framed];
+		};
 		const tell = (n: Node | null) => {
 			held = n;
 			look(n);
@@ -1963,10 +2021,12 @@ const { focus } = Astro.props;
 			   made and where that is from. */
 			if ((n.axes && panelOf(n)) || n.onMap) {
 				const how = n.how;
-				const made = el('dl');
-				if (n.axes) made.append(fact('Firmness', n.axes.firm), fact('Ripened', lasting(n.axes.days)));
-				for (const { k, v } of [...(how?.table ?? []), ...(how?.facts ?? [])]) made.append(fact(k, v.split('\n').join(', ')));
-				parts.push(made);
+				if (n.axes) {
+					const placed = el('dl');
+					placed.append(fact('Firmness', n.axes.firm), fact('Ripened', lasting(n.axes.days)));
+					parts.push(placed);
+				}
+				if (how) parts.push(...tableFor(how));
 				if (how?.text) parts.push(el('p', 'milk-about-text', how.text));
 				if (how?.sources) parts.push(sourcesOf(how.sources));
 			}
@@ -2012,9 +2072,7 @@ const { focus } = Astro.props;
 			const parts: HTMLElement[] = [top];
 			const how = n.how;
 			if (how?.text) parts.push(el('p', 'milk-about-text', how.text));
-			const facts = el('dl');
-			for (const { k, v } of how?.facts ?? []) facts.append(fact(k, v));
-			if (facts.childElementCount) parts.push(facts);
+			if (how) parts.push(...tableFor(how));
 			if (how?.sources) parts.push(sourcesOf(how.sources));
 			setCard(n.step ?? name(n), parts);
 		};
