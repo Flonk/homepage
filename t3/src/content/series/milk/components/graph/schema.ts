@@ -223,7 +223,17 @@ export const Drain = z.strictObject({ type: z.literal('drain'), by: z.enum(['han
 export const Cut = z.strictObject({ type: z.literal('cut'), how: z.enum(['cut', 'mill', 'grind', 'crumble', 'shred']).optional(), size: Millimetres.optional(), ...Held });
 export const Press = z.strictObject({ type: z.literal('press'), ...Held });
 export const Mould = z.strictObject({ type: z.literal('mould'), ...Held });
-export const Separate = z.strictObject({ type: z.literal('separate'), by: z.enum(['gravity', 'centrifuge']).optional(), fat: Percent.optional(), ...Held });
+/* Separated: what comes off, the cream off milk, a curd that floats, the
+   skin that forms, whey spun out of a curd, solids or crystals, spores; or
+   the fat drawn apart from the rest; by gravity or a centrifuge, so much
+   fat left. */
+export const Separate = z.strictObject({
+	type: z.literal('separate'),
+	off: z.enum(['cream', 'fat', 'curd', 'skin', 'whey', 'solids', 'spores']).optional(),
+	by: z.enum(['gravity', 'centrifuge']).optional(),
+	fat: Percent.optional(),
+	...Held,
+});
 export const Evaporate = z.strictObject({ type: z.literal('evaporate'), under: z.enum(['open', 'vacuum']).optional(), solids: Percent.optional(), ...Held });
 export const Filter = z.strictObject({ type: z.literal('filter'), by: z.literal('cloth').optional(), ...Held });
 // Filtered through a membrane: finer and finer, micro, ultra, nano; or washed through one, dia.
@@ -512,3 +522,4 @@ export type SharePage = z.infer<typeof SharePage>;
 export type Payload = z.infer<typeof Payload>;
 export type Composition = z.infer<typeof Composition>;
 export type Fact = z.infer<typeof Fact>;
+export type Separate = z.infer<typeof Separate>;

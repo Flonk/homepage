@@ -53,7 +53,7 @@ const OWN: Record<Own, [string, string]> = {
 	wash: ['🚿 WASH', 'washed'],
 };
 // What a step of its own says before how long and how warm: in a brine so strong, by hanging, to grains so big, what is added.
-const HOW: Partial<Record<string, string>> = { dry: 'dry', brine: 'in brine', milk: 'into the milk', hang: 'hung', cloth: 'in cloth', mould: 'in moulds', sieve: 'through a sieve', mill: 'milled', grind: 'ground', crumble: 'crumbled', shred: 'shredded', gravity: 'risen and skimmed', centrifuge: 'spun off', open: 'in the open', vacuum: 'under vacuum' };
+const HOW: Partial<Record<string, string>> = { dry: 'dry', brine: 'in brine', milk: 'into the milk', hang: 'hung', cloth: 'in cloth', mould: 'in moulds', sieve: 'through a sieve', mill: 'milled', grind: 'ground', crumble: 'crumbled', shred: 'shredded', gravity: 'by gravity', centrifuge: 'by centrifuge', open: 'in the open', vacuum: 'under vacuum' };
 const ownSaid = (h: Step): (string | undefined)[] => {
 	const pc = (r?: S.Range) => r && span(r, inUnit('%'));
 	switch (h.type) {
@@ -81,8 +81,19 @@ const ownSaid = (h: Step): (string | undefined)[] => {
 			return [];
 	}
 };
+// A separation by what comes off.
+const OFF: Record<NonNullable<S.Separate['off']>, [string, string]> = {
+	cream: ['🫗 SKIM OFF CREAM', 'skimmed'],
+	fat: ['🫗 SEPARATE FAT', 'separated'],
+	curd: ['🫗 SKIM OFF CURD', 'skimmed'],
+	skin: ['🫗 LIFT OFF SKIN', 'lifted off'],
+	whey: ['🫗 SPIN OFF WHEY', 'spun off'],
+	solids: ['🫗 SPIN OFF SOLIDS', 'spun off'],
+	spores: ['🫗 SPIN OFF SPORES', 'spun off'],
+};
 const titleOf = (h: Step): [string, string] => {
 	if (h.type === 'custom') return [`⚙️ ${h.name.toUpperCase()}`, h.name];
+	if (h.type === 'separate' && h.off) return OFF[h.off];
 	if (h.type in OWN) return OWN[h.type as keyof typeof OWN];
 	const plain = h as HeatTreatment | Ferment | Drying;
 	return TITLE[plain.type === 'dry' ? 'dry' : plain.does];

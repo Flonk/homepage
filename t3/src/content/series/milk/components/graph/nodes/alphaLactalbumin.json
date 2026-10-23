@@ -39,7 +39,8 @@
 		"processing": {
 			"steps": [
 				{
-					"type": "separate",
+					"type": "custom",
+					"name": "fractionate",
 					"note": "By chromatography, selective precipitation, enzymatic hydrolysis of beta-lactoglobulin or filtration."
 				}
 			],
