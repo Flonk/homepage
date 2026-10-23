@@ -1,5 +1,6 @@
 import { ROOT, NODE_H, PAD_X, FONT, ROOT_WORD, GAP_X, STEP_FONT, STEP_PAD, RADIUS, PACKING, PICTURE_GAP, LINK_ROOM, APART, ROW_GAP, sizeOf, MILK, STRAND, headWidth, headLength, CORNER, MAP_PILL, RULE_PX, RULER_END, DROP, TIER_GAP, SIDE_GAP, MONO, measure, type Node, type Edge, type Graph } from './base';
 import { strip, type Strip } from '../render/Processing';
+import { CARD } from '../render/ProcessingStep';
 
 // A map's pin: a country's, or closer in a region's, where its cheeses are and how many.
 /* A map's pin: a region's cheeses, or those of a country whose region is
@@ -156,6 +157,8 @@ export function layout(data: Graph) {
 		n.link ? linked(n, grown) : sizeOf(made.get(n)! + (drawnAgain.get(n) ?? 0)) * (n === root ? MILK : 1);
 	// A cheese on the map small on it; any other as big as what is made from it.
 	const size = (n: Node): number => (n.onMap ? MAP_PILL : grown(n));
+	// A step's chain, at a size of its own: an example's a little bigger, its pill and arrow being small, so it reads zoomed out as far as a product's.
+	const tableFont = (n: Node) => STEP_FONT * size(n) * (n.example ? 0.5 : 0.35);
 	/* How much a line into each carries: itself, and all made from it
 	   (a branch point is no product, so only what it splits into). */
 	const carried = new Map<Node, number>();
@@ -202,6 +205,22 @@ export function layout(data: Graph) {
 		for (const k of kids) apportion(k);
 	};
 	apportion(root);
+	/* A line with a chain on it at least as thick as the arrows between its
+	   cards are tall, so they read as cut out of it (see drawStrip); and
+	   each line then at least as thick as all the strands it splits into. */
+	const JOIN = 1.1;
+	const floor = (n: Node) => (n.how?.holds && n.how.holds.length > 1 && !n.onMap ? (JOIN * CARD.said * tableFont(n)) / STRAND : 0);
+	const settle = (n: Node): number => {
+		let grew = kidsOf(n).reduce((t, k) => t + settle(k), 0);
+		let v = carried.get(n)! + grew;
+		if (v < floor(n)) {
+			grew += floor(n) - v;
+			v = floor(n);
+		}
+		carried.set(n, v);
+		return grew;
+	};
+	settle(root);
 	/* Siblings by size, as they are drawn: the biggest branch at the top and
 	   the small ones gathered at the bottom, milk's own as any product's.
 	   Branches as big as each other keep the order above; examples stay
@@ -320,8 +339,6 @@ export function layout(data: Graph) {
 	   own and have no step written on them. An example's arrow may have no
 	   words and still its chain. */
 	const holds = (n: Node) => (hangsFrom(n) || panelOf(n) ? [] : (n.how?.holds ?? []));
-	// An example's a little bigger, its pill and arrow being small, so it reads zoomed out as far as a product's.
-	const tableFont = (n: Node) => STEP_FONT * size(n) * (n.example ? 0.5 : 0.35);
 	const strips = new Map<Node, Strip>();
 	const stripOf = (n: Node) => {
 		let laid = strips.get(n);
@@ -332,14 +349,13 @@ export function layout(data: Graph) {
 	const tableWidth = (n: Node) => (holds(n).length ? stripOf(n).w : 0);
 	// How tall its chain is, with a little air under it.
 	const tableHeight = (n: Node) => (holds(n).length ? stripOf(n).h + tableFont(n) * 0.6 : 0);
-	// Inside its arrow, centred on it, where the arrow is that thick.
-	const tableInside = (n: Node) => line(n) >= tableHeight(n) + tableFont(n);
-	/* Where it begins, from the middle of its arrow: in the arrow, or just
-	   under the step's words, laid over it. */
-	const tableTop = (n: Node) =>
-		tableInside(n) ? -(tableHeight(n) - tableFont(n) * 0.6) / 2 : -line(n) / 2 - stepFont(n) * 0.45 + stepFont(n) * 0.3;
+	// Centred on the middle of its arrow, how far either way it reaches; and where it begins.
+	const chainHalf = (n: Node) => (tableHeight(n) ? (tableHeight(n) - tableFont(n) * 0.6) / 2 : 0);
+	const tableTop = (n: Node) => -chainHalf(n);
 	// How far under the middle of its arrow it reaches, laid over the arrow.
-	const tableBottom = (n: Node) => (tableHeight(n) ? tableTop(n) + tableHeight(n) : 0);
+	const tableBottom = (n: Node) => chainHalf(n);
+	// How far over the middle of its arrow its words must go: past the arrow, or past its chain.
+	const over = (n: Node) => Math.max(line(n) / 2, chainHalf(n));
 
 	/* Across: each product just past the edge of what it is made from,
 	   by a gap as wide as that parent wants, the bigger the wider; not in
@@ -642,7 +658,7 @@ export function layout(data: Graph) {
 		const t = trunkX(p);
 		const edge = n.x - n.w / 2;
 		// Over the arrow, which is as thick as it carries.
-		const words = n.step ? stepFont(n) * 1.7 + extra(n) + line(n) / 2 : 0;
+		const words = n.step ? stepFont(n) * 1.7 + extra(n) + over(n) : 0;
 		/* The arrow itself, both halves of it: into a branch point, which has
 		   no pill to be as tall as, it may be far thicker than anything at its end. */
 		const half = line(n) / 2;
@@ -766,7 +782,7 @@ export function layout(data: Graph) {
 			boxes.push({ x0: t - 3, x1: t + 3, y0: r.y + axisY(r), y1: r.y + listTop.get(n)! });
 		} else if (p) {
 			const words = n.step ? stepFont(n) * 1.3 + extra(n) : 0;
-			const reach = Math.max(n.h / 2, line(n) / 2);
+			const reach = Math.max(n.h / 2, over(n));
 			boxes.push({ x0: trunkAt(p) - halfTrunk(p), x1: n.x - n.w / 2, y0: n.y - reach - words, y1: n.y + Math.max(reach, tableBottom(n)) });
 		}
 		const kids = kidsOf(n);
@@ -1020,7 +1036,7 @@ export function layout(data: Graph) {
 	// Not with a table to go under it.
 	const inside = (n: Node) => !tableHeight(n) && line(n) >= stepFont(n) * 1.3 + extra(n);
 	const stepY = (n: Node) =>
-		inside(n) ? leg(n) + stepFont(n) * 0.35 : leg(n) - line(n) / 2 - stepFont(n) * 0.45;
+		inside(n) ? leg(n) + stepFont(n) * 0.35 : leg(n) - over(n) - stepFont(n) * 0.45;
 	const stepX = (n: Node) => {
 		const p = treeParent.get(n)!;
 		// From the trunk's far side.

@@ -17,8 +17,8 @@ export const page = (p: Processing) => ({ holds: p.steps.map(chip), ...(p.steps.
 
 /* ---- On the canvas ---- */
 
-/* Its cards along one line, however long, an arrow between each two, at
-   the height of what they say; laid out from its own top left. */
+/* Its cards along one line, however long, each centred on it, and an
+   arrow between each two on its middle; laid out from its own top left. */
 export type Strip = { w: number; h: number; cards: Card[]; joins: { x: number; y: number }[] };
 export const strip = (chips: Chip[], f: number): Strip => {
 	const laid: Strip = { w: 0, h: 0, cards: [], joins: [] };
@@ -26,7 +26,7 @@ export const strip = (chips: Chip[], f: number): Strip => {
 	chips.forEach((c, i) => {
 		const one = card(c, f);
 		if (i) {
-			laid.joins.push({ x: x + (CARD.gap * f) / 2, y: (CARD.pad + CARD.title * 1.35 + CARD.said * 0.65) * f });
+			laid.joins.push({ x: x + (CARD.gap * f) / 2, y: 0 });
 			x += CARD.gap * f;
 		}
 		one.x = x;
@@ -35,13 +35,16 @@ export const strip = (chips: Chip[], f: number): Strip => {
 		laid.h = Math.max(laid.h, one.h);
 	});
 	laid.w = x;
+	for (const c of laid.cards) c.y = (laid.h - c.h) / 2;
+	for (const j of laid.joins) j.y = laid.h / 2;
 	return laid;
 };
 export const drawStrip = (g: Pen, laid: Strip, left: number, top: number, f: number, paint: Paint) => {
 	for (const c of laid.cards) drawCard(g, c, left + c.x, top + c.y, f, paint);
+	// In the ground's colour, as if cut out of the line they are on (see JOIN in layout).
 	g.textAlign = 'center';
 	g.textBaseline = 'middle';
-	g.fillStyle = paint.ink.dim;
+	g.fillStyle = paint.ink.ground;
 	g.font = font(CARD.said * f, '700', MONO());
 	for (const j of laid.joins) g.fillText('→', left + j.x, top + j.y);
 };

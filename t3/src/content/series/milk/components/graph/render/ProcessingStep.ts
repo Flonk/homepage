@@ -1,7 +1,7 @@
 import type { ProcessingStep as Step, HeatTreatment, Ferment, Drying, Chip } from '../schema';
 import { MONO, SANS, measure } from '../client/base';
 import { said as span, inUnit, inTime } from './Range';
-import { font, legible, roundRect, wrap, type Paint, type Pen } from './canvas';
+import { font, legible, pillBody, wrap, type Paint, type Pen } from './canvas';
 import { el } from './dom';
 import { SAID as SET } from './Setting';
 
@@ -69,7 +69,7 @@ export type Card = { x: number; y: number; w: number; h: number; lines: Line[] }
 // Laid out at its table's letter size, from its own top left.
 export const card = (c: Chip, f: number): Card => {
 	const most = CARD.most * f;
-	const saidLines = c.said ? wrap(c.said, most / (CARD.said * f), '400', MONO()) : [];
+	const saidLines = c.said ? wrap(c.said, most, CARD.said * f, '400', MONO()) : [];
 	const natural = Math.max(
 		CARD.least * f,
 		measure(c.title, CARD.title * f, '700', MONO()),
@@ -87,26 +87,19 @@ export const card = (c: Chip, f: number): Card => {
 	for (const said of saidLines) put(said, CARD.said, '400', true, false, 1.3);
 	if (c.microbes) {
 		y += 0.15 * f;
-		for (const said of wrap(c.microbes, wide / (CARD.tiny * f), '400')) put(said, CARD.tiny, '400', false, true, 1.25);
+		for (const said of wrap(c.microbes, wide, CARD.tiny * f, '400')) put(said, CARD.tiny, '400', false, true, 1.25);
 	}
 	if (c.note) {
 		y += 0.2 * f;
-		for (const said of wrap(c.note, wide / (CARD.note * f), '400')) put(said, CARD.note, '400', false, false, 1.3);
+		for (const said of wrap(c.note, wide, CARD.note * f, '400')) put(said, CARD.note, '400', false, false, 1.3);
 	}
 	return { x: 0, y: 0, w: wide + 2 * CARD.pad * f, h: y + CARD.pad * f, lines };
 };
 
-/* Drawn as the table's cells are, on the pills' white, framed; its words
-   each drawn once big enough to read, the microbes' only zoomed well in. */
-export const drawCard = (g: Pen, c: Card, x: number, y: number, f: number, { ink, s, on }: Paint) => {
-	roundRect(g, x, y, c.w, c.h, f * (4 / 16) * 1.5);
-	g.fillStyle = ink.pill;
-	g.fill();
-	g.lineWidth = f * 0.08;
-	g.strokeStyle = on ? ink.lit : ink.dim;
-	g.globalAlpha = on ? 1 : 0.5;
-	g.stroke();
-	g.globalAlpha = 1;
+/* Drawn as a product's pill is (see pillBody); its words each drawn once
+   big enough to read, the microbes' only zoomed well in. */
+export const drawCard = (g: Pen, c: Card, x: number, y: number, f: number, { ink, s, px, on }: Paint) => {
+	pillBody(g, x, y, c.w, c.h, f * 0.25, ink, px);
 	g.textAlign = 'left';
 	g.textBaseline = 'alphabetic';
 	for (const l of c.lines) {

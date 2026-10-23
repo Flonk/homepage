@@ -584,7 +584,7 @@ const { focus } = Astro.props;
 	import { pixelRatio } from '../../../../lib/canvas';
 	import { LINE, PAD_X, FONT, FOUND_HEIGHT, PICTURE_GAP, LINK_MARK, LINK_ROOM, MARGIN, MAX_ZOOM, MAP_PILL, SANS, MONO, SERIF, FACES, spacing, only, setSpacing, nextUid, corner, type Node, type Edge, type Graph } from './graph/client/base';
 	import { layout, type Pin, type Box } from './graph/client/layout';
-	import { font, roundRect, legible, type Pen } from './graph/render/canvas';
+	import { font, roundRect, legible, pillBody, type Pen } from './graph/render/canvas';
 	import { el, commas, fact } from './graph/render/dom';
 	import { drawStrip } from './graph/render/Processing';
 	import { html as howHtml } from './graph/render/How';
@@ -739,7 +739,7 @@ const { focus } = Astro.props;
 		const drawTable = (g: Pen, n: Node, s: number) => {
 			const t = tableOf(n);
 			if (!legible(t.font, s)) return true;
-			const paint = { ink, s, on: !unlit && n === stepShown };
+			const paint = { ink, s, px: s * dpr, on: !unlit && n === stepShown };
 			if (t.strip) drawStrip(g, t.strip, t.left, t.top, t.font, paint);
 			return true;
 		};
@@ -816,14 +816,7 @@ const { focus } = Astro.props;
 			const px = s * dpr;
 			// Square along the bottom where a panel or a map hangs from it.
 			const outline = () => roundRect(g, x, y, d.w, d.h, d.panel || d.map ? [r, r, 0, 0] : r);
-			outline();
-			g.fillStyle = ink.pill;
-			// Too small to see a shadow under, and a thousand of them on a map: none.
-			g.shadowColor = d.h * px < 16 ? 'transparent' : 'rgb(0 0 0 / 0.12)';
-			g.shadowBlur = d.h * 0.1 * px;
-			g.shadowOffsetY = d.h * 0.04 * px;
-			g.fill();
-			g.shadowColor = 'transparent';
+			pillBody(g, x, y, d.w, d.h, d.panel || d.map ? [r, r, 0, 0] : r, ink, px);
 			// The photograph filling its left end, edge to edge, its outer corners rounded as the pill's are.
 			let room = 0;
 			if (d.image) {
