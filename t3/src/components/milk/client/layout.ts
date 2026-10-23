@@ -676,7 +676,10 @@ export function layout(data: Graph) {
 		const edge = n.x - n.w / 2;
 		// Over the arrow, which is as thick as it carries.
 		const words = n.step ? stepFont(n) * 1.7 + extra(n) + line(n) / 2 : 0;
-		return { x0: Math.min(t, edge), x1: Math.max(t, edge), y0: -Math.max(words, n.h / 2), y1: Math.max(n.h / 2, tableBottom(n)) };
+		/* The arrow itself, both halves of it: into a branch point, which has
+		   no pill to be as tall as, it may be far thicker than anything at its end. */
+		const half = line(n) / 2;
+		return { x0: Math.min(t, edge), x1: Math.max(t, edge), y0: -Math.max(words, n.h / 2, half), y1: Math.max(n.h / 2, half, tableBottom(n)) };
 	};
 	const moved = (b: Box, dy: number): Box => ({ ...b, y0: b.y0 + dy, y1: b.y1 + dy });
 	// All that hangs under a ruler, with the arrows down to it, its kind at 0.
