@@ -1,20 +1,17 @@
 import type * as S from '../schema';
+import type { Page as HowPage } from '../render/How';
+import type { Page as PicturePage } from '../render/Picture';
 type Sourcing = S.Sourcing;
 
 /* A product, an example or a branch point, as the page is given it (see
    milk/graph/index.ts) and as it is laid out: its own fields as the schema has
    them, the rest worked out on the way. */
-/* A step of processing as a card: what it is ("🦠 FERMENT"), what it
-   says ("2 weeks @ 20–30°C"), what is done, the microbes added at it,
-   and a sentence on it. */
-export type Chip = { title: string; said: string; done: string; microbes?: string; note?: string };
-
 export type Node = Pick<S.Product, 'label' | 'step' | 'scale' | 'at' | 'panel' | 'map' | 'below' | 'link' | 'note' | 'aka'> & {
 	id: string;
 	x: number;
 	y: number;
 	// Its photograph, if it has one, and whose it is.
-	image?: { src: string; credit: string; author: string; license: string; source: string };
+	image?: PicturePage;
 	// What it is, said when it is clicked, and where that was said first.
 	about?: S.About;
 	// All a product's examples, the drawn and the rest.
@@ -22,8 +19,8 @@ export type Node = Pick<S.Product, 'label' | 'step' | 'scale' | 'at' | 'panel' |
 	// The countries it comes from, if it is regional.
 	regions?: string[];
 	// How the step into it is done, and the sources (see steps.json).
-	// A cheese on the map's sources are with its paragraph (see about); its holds as chips; a ferment only said to be one.
-	how?: Omit<S.How, 'sources' | 'processing'> & { sources?: Sourcing; holds?: Chip[]; fermented?: boolean };
+	// A cheese on the map's sources are with its paragraph (see about).
+	how?: Omit<HowPage, 'sources'> & { sources?: Sourcing };
 	// How much of the world's milk goes its way, in Mt a year and in percent, and how that was worked out (see SHARES).
 	shareMt?: number;
 	share?: number;
@@ -138,19 +135,21 @@ export const MONO = () => (mono ||= getComputedStyle(document.documentElement).g
 export let serif = '';
 export const SERIF = () => (serif ||= getComputedStyle(document.documentElement).getPropertyValue('--font-prose').trim() || 'serif');
 export const FACES = ['400', 'italic 400', '600'];
-export const ruler = document.createElement('canvas').getContext('2d')!;
-export let rulerFont = '';
+// Made when first measured with, so the words' renderers can be loaded where there is no page (see render/).
+let ruler: CanvasRenderingContext2D | null = null;
+let rulerFont = '';
 export const measure = (said: string, px: number, face = '400', family = SANS()) => {
 	/* At a size where it measures true, and scaled to the one it is drawn
 	   at: words a few pixels high, as a step's table's are, measure wide
 	   of what they are drawn, as their widths are rounded at that size.
 	   The font set only when it changes, as setting it is not free. */
 	const font = `${face} 100px ${family}`;
+	ruler ??= document.createElement('canvas').getContext('2d')!;
 	if (font !== rulerFont) ruler.font = rulerFont = font;
 	/* And the page's letter spacing, which the words inherit as so many
 	   pixels a letter whatever their size, and which on the smallest of
 	   them is a good part of their width. */
-	return Math.max(...said.split('\n').map((l) => (ruler.measureText(l).width * px) / 100 + spacing * [...l].length));
+	return Math.max(...said.split('\n').map((l) => (ruler!.measureText(l).width * px) / 100 + spacing * [...l].length));
 };
 export let spacing = 0;
 export const setSpacing = (to: number) => {

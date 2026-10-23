@@ -1,4 +1,6 @@
-import { ROOT, NODE_H, PAD_X, FONT, ROOT_WORD, GAP_X, STEP_FONT, STEP_PAD, RADIUS, PACKING, PICTURE_GAP, LINK_ROOM, APART, ROW_GAP, sizeOf, MILK, STRAND, headWidth, headLength, CORNER, MAP_PILL, RULE_PX, RULER_END, DROP, TIER_GAP, SIDE_GAP, MONO, measure, type Node, type Edge, type Graph, type Chip } from './base';
+import { ROOT, NODE_H, PAD_X, FONT, ROOT_WORD, GAP_X, STEP_FONT, STEP_PAD, RADIUS, PACKING, PICTURE_GAP, LINK_ROOM, APART, ROW_GAP, sizeOf, MILK, STRAND, headWidth, headLength, CORNER, MAP_PILL, RULE_PX, RULER_END, DROP, TIER_GAP, SIDE_GAP, MONO, measure, type Node, type Edge, type Graph } from './base';
+import { strip, type Strip } from '../render/Processing';
+import { columns as rowColumns, pad as rowPad, rowHeight as rowHeightOf } from '../render/Row';
 
 // A map's pin: a country's, or closer in a region's, where its cheeses are and how many.
 /* A map's pin: a region's cheeses, or those of a country whose region is
@@ -287,7 +289,6 @@ export function layout(data: Graph) {
 			const wide = Math.max(...ks.map((k) => k.w));
 			for (const k of ks) k.w = wide;
 		}
-	const countryName = new Intl.DisplayNames(['en'], { type: 'region' });
 
 	/* Laid out as a tree on a grid, as a diagram on paper is: milk at the
 	   left and its branches off to the right of it; each step of making a
@@ -314,127 +315,30 @@ export function layout(data: Graph) {
 	const extra = (n: Node) => (n.step ? (lines(n).length - 1) * LEADING * stepFont(n) : 0);
 	const stepWidth = new Map<Node, number>();
 	for (const n of stepped) stepWidth.set(n, measure(n.step!, stepFont(n), 'italic 400'));
-	/* A step's table, under the step's name and laid over its arrow: a row a
-	   fact, what it is on the left and its value on the right, a value in
-	   as many lines as it is written in; small, a footnote to the name. */
-	const ROW = 1.3;
-	/* None under a ruler, where the arrows in are its own and have no step
-	   written on them. An example's arrow may have no words and still its
-	   table, of what it is fermented with, say. */
+	/* A step's table, under the step's name and laid over its arrow: its
+	   processing's chain of cards (see render/Processing) over its rows (see
+	   render/Row); small, a footnote to the name. None under a ruler, where
+	   the arrows in are its own and have no step written on them. An
+	   example's arrow may have no words and still its table. */
 	const rows = (n: Node) => (hangsFrom(n) || panelOf(n) ? [] : (n.how?.table ?? []));
+	const holds = (n: Node) => (hangsFrom(n) || panelOf(n) ? [] : (n.how?.holds ?? []));
 	// An example's a little bigger, its pill and arrow being small, so it reads zoomed out as far as a product's.
 	const tableFont = (n: Node) => STEP_FONT * size(n) * (n.example ? 0.5 : 0.35);
-	/* Its words broken onto lines no wider than so many of its letters
-	   high, a key narrower than a value, so a long list of cultures reads
-	   down the table and not off across the graph. Kept, as measuring is
-	   not free and the size does not change what breaks where. */
-	const KEY_WIDE = 9;
-	const VALUE_WIDE = 18;
-	const broken = new Map<string, string[]>();
-	const wrap = (said: string, wide: number, face: string, family?: string) => {
-		const kept = broken.get(`${family}${face}${wide}${said}`);
-		if (kept) return kept;
-		const out: string[] = [];
-		for (const given of said.split('\n')) {
-			let at = '';
-			for (const word of given.split(' ')) {
-				const tried = at ? `${at} ${word}` : word;
-				if (at && measure(tried, 100, face, family) / 100 > wide) {
-					out.push(at);
-					at = word;
-				} else at = tried;
-			}
-			out.push(at);
-		}
-		broken.set(`${family}${face}${wide}${said}`, out);
-		return out;
-	};
-	const keyLines = (k: string) => wrap(k, KEY_WIDE, '600');
-	const rowLines = (v: string) => wrap(v, VALUE_WIDE, '400');
-	/* Its holds, a chip each (see Chip), along a line of their own over its
-	   rows, broken onto more where too many for one, an arrow between each
-	   two on a line; under them the microbes each brings, a line of names
-	   wrapped as wide as the chips run. Laid out in its table's letters,
-	   from its top left. */
-	const holds = (n: Node) => (hangsFrom(n) || panelOf(n) ? [] : (n.how?.holds ?? []));
-	/* Each a card no wider than so many of its letters: what it is, small,
-	   over what it says, broken where too long; under that, the microbes it
-	   adds in letters so small they run about as wide as what it says, there
-	   being zoom enough to read them; under those its sentence. Each card
-	   as wide as its widest words, no wider than the most. In its table's letters: each line's size, the room
-	   round them, the room for the arrow
-	   between two cards, the least and the most a card's words run. */
-	const CARD = { title: 0.55, said: 1, tiny: 0.36, note: 0.5, pad: 0.5, gap: 1.4, least: 5, most: 12 };
-	type Said = { said: string; y: number; size: number; face: string; mono: boolean; dim: boolean };
-	type Card = { x: number; y: number; w: number; h: number; lines: Said[] };
-	type Strip = { w: number; h: number; cards: Card[]; joins: { x: number; y: number }[] };
 	const strips = new Map<Node, Strip>();
-	const cardOf = (c: Chip, f: number): Card => {
-		const most = CARD.most * f;
-		const saidLines = c.said ? wrap(c.said, most / (CARD.said * f), '400', MONO()) : [];
-		const natural = Math.max(
-			CARD.least * f,
-			measure(c.title, CARD.title * f, '700', MONO()),
-			...saidLines.map((l) => measure(l, CARD.said * f, '400', MONO())),
-			c.note ? measure(c.note, CARD.note * f, '400') : 0,
-		);
-		// As wide as the widest of its words, up to the most a card may be.
-		const wide = Math.min(most, natural);
-		const lines: Said[] = [];
-		let y = CARD.pad * f;
-		const put = (said: string, size: number, face: string, mono: boolean, dim: boolean, leading = 1.25) => {
-			y += size * f * leading;
-			lines.push({ said, y: y - size * f * (leading - 1) - size * f * 0.18, size: size * f, face, mono, dim });
-		};
-		put(c.title, CARD.title, '700', true, true, 1.35);
-		for (const said of saidLines) put(said, CARD.said, '400', true, false, 1.3);
-		if (c.microbes) {
-			y += 0.15 * f;
-			for (const said of wrap(c.microbes, wide / (CARD.tiny * f), '400')) put(said, CARD.tiny, '400', false, true, 1.25);
-		}
-		if (c.note) {
-			y += 0.2 * f;
-			for (const said of wrap(c.note, wide / (CARD.note * f), '400')) put(said, CARD.note, '400', false, false, 1.3);
-		}
-		return { x: 0, y: 0, w: wide + 2 * CARD.pad * f, h: y + CARD.pad * f, lines };
-	};
-	// Laid along one line, however long, an arrow between each two, at the height of what they say.
-	const stripOf = (n: Node): Strip => {
-		const kept = strips.get(n);
-		if (kept) return kept;
-		const f = tableFont(n);
-		const strip: Strip = { w: 0, h: 0, cards: [], joins: [] };
-		let x = 0;
-		holds(n).forEach((c, i) => {
-			const card = cardOf(c, f);
-			if (i) {
-				strip.joins.push({ x: x + (CARD.gap * f) / 2, y: (CARD.pad + CARD.title * 1.35 + CARD.said * 0.65) * f });
-				x += CARD.gap * f;
-			}
-			card.x = x;
-			strip.cards.push(card);
-			x += card.w;
-			strip.h = Math.max(strip.h, card.h);
-		});
-		strip.w = x;
-		strips.set(n, strip);
-		return strip;
+	const stripOf = (n: Node) => {
+		let laid = strips.get(n);
+		if (!laid) strips.set(n, (laid = strip(holds(n), tableFont(n))));
+		return laid;
 	};
 	const tabled = nodes.filter((n) => rows(n).length > 0 || holds(n).length > 0);
 	const columns = new Map<Node, { key: number; value: number }>();
-	for (const n of tabled.filter((n) => rows(n).length)) {
-		const widest = (said: string[], face: string) => Math.max(...said.map((t) => measure(t, tableFont(n), face)));
-		columns.set(n, { key: widest(rows(n).flatMap(({ k }) => keyLines(k)), '600'), value: widest(rows(n).flatMap(({ v }) => rowLines(v)), '400') });
-	}
-	// The room in a cell round its words.
-	const pad = (n: Node) => tableFont(n) * 0.6;
+	for (const n of tabled.filter((n) => rows(n).length)) columns.set(n, rowColumns(rows(n), tableFont(n)));
+	const pad = (n: Node) => rowPad(tableFont(n));
 	const tableWidth = (n: Node) => {
 		const c = columns.get(n);
 		return Math.max(c ? c.key + c.value + 4 * pad(n) : 0, holds(n).length ? stripOf(n).w : 0);
 	};
-	// A row as tall as its key's lines or its value's, and its padding.
-	const rowHeight = (n: Node, { k, v }: { k: string; v: string }) =>
-		Math.max(keyLines(k).length, rowLines(v).length) * ROW * tableFont(n) + pad(n);
+	const rowHeight = (n: Node, row: { k: string; v: string }) => rowHeightOf(row, tableFont(n));
 	// Its rows, and its holds over them with a little air between; how tall it is, with a little air under it.
 	const rowsHeight = (n: Node) => rows(n).reduce((sum, row) => sum + rowHeight(n, row), 0);
 	const stripHeight = (n: Node) => (holds(n).length ? stripOf(n).h + (rows(n).length ? tableFont(n) * 0.5 : 0) : 0);
@@ -1214,5 +1118,5 @@ export function layout(data: Graph) {
 		width: Math.max(...all.map((b) => b.x1)) - Math.min(...all.map((b) => b.x0)),
 		height: Math.max(...all.map((b) => b.y1)) - Math.min(...all.map((b) => b.y0)),
 	};
-	return { root, treeParent, nodes, children, size, paneled, panelOf, rootR, picture, radius, shown, countryName, stepFont, stepped, ROW, rows, keyLines, rowLines, tabled, pad, tableWidth, rowHeight, PANEL_PAD, panels, MAP_W, PIN, PIN_GROWS, PIN_FRAMED, pillsShown, rim, panelArea, rootWord, rootFont, grains, edges, inside, stepX, told, hittable, edgeShape, edgeLine, edgeBox, stepLines, stepBox, tableOf, pillBoxOf, bounds, tickX, CARD };
+	return { root, treeParent, nodes, children, size, paneled, panelOf, rootR, picture, radius, shown, stepFont, stepped, rows, tabled, tableWidth, PANEL_PAD, panels, MAP_W, PIN, PIN_GROWS, PIN_FRAMED, pillsShown, rim, panelArea, rootWord, rootFont, grains, edges, inside, stepX, told, hittable, edgeShape, edgeLine, edgeBox, stepLines, stepBox, tableOf, pillBoxOf, bounds, tickX };
 }

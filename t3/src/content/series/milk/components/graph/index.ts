@@ -6,11 +6,14 @@ import CHEESES from './cheeses.json';
 import MAP from './map.json';
 import * as S from './schema';
 import { NODES, type Product } from './products';
-import { IMAGES, EXAMPLE_IMAGES, type Picture } from './pictures';
+import { IMAGES, EXAMPLE_IMAGES } from './pictures';
 import { EXAMPLE_AKA, EXAMPLE_NOTES, EXAMPLE_AXES } from './examples';
 import { BEASTS, MILK_OF } from './animals';
 import { GROUPS, KINDS, SPLITS, TREATED, LIGHT, STAPLE, KNOWN } from './families';
 import { WORLD_MILK, SHARES } from './shares';
+import { page as howPage } from './render/How';
+import { page as picturePage } from './render/Picture';
+import { about as cheeseAbout, how as cheeseHow } from './render/Cheese';
 
 /*
  * The graph handed to the page (see MilkGraph.astro and
@@ -23,7 +26,6 @@ import { WORLD_MILK, SHARES } from './shares';
 
 type Cheese = S.Cheese;
 type How = S.How;
-type About = S.About;
 
 // The examples every product names, by name; and whether a key is a product's id, or that or an example's name.
 const named = new Set(Object.values(NODES).flatMap(({ examples = [] }) => examples));
@@ -64,78 +66,8 @@ mustAll(Object.keys(regions), isKnown, 'region for unknown');
  */
 const steps: Record<string, How> = S.Steps.parse(STEPS);
 mustAll(Object.keys(steps), isKnown, 'how is made unknown');
-/* A step of a step's processing as the page draws it, a card each: what
-   it is, "🦠 FERMENT"; for how long, how warm and how damp, "2 weeks @
-   20–30°C"; the microbes it adds; and its note. */
-const TITLE: Record<S.HeatTreatment['does'] | S.Ferment['does'] | 'dry', string> = {
-	heat: '🔥 HEAT',
-	cook: '🔥 COOK',
-	cool: '❄️ COOL',
-	incubate: '🦠 FERMENT',
-	ripen: '🦠 RIPEN',
-	smear: '🦠 SMEAR',
-	pierce: '🦠 PIERCE',
-	dry: '☀️ DRY',
-};
-const DONE: Record<keyof typeof TITLE, string> = { heat: 'heated', cook: 'cooked', cool: 'cooled', incubate: 'soured', ripen: 'ripened', smear: 'smeared', pierce: 'pierced', dry: 'dried' };
-const doesOf = (h: S.HeatTreatment | S.Ferment | S.Drying) => (h.type === 'dry' ? 'dry' : h.does);
-// The steps done to milk above all others, each titled for itself; any other by its own name.
-const OWN: Record<'pasteurise' | 'homogenise' | 'coagulate' | 'churn', [string, string]> = {
-	pasteurise: ['🔥 PASTEURISE', 'pasteurised'],
-	homogenise: ['🌀 HOMOGENISE', 'homogenised'],
-	coagulate: ['🧀 COAGULATE', 'set'],
-	churn: ['🧈 CHURN', 'churned'],
-};
-const titleOf = (h: S.ProcessingStep): [string, string] =>
-	h.type === 'custom' ? [`⚙️ ${h.name.toUpperCase()}`, h.name] : h.type in OWN ? OWN[h.type as keyof typeof OWN] : [TITLE[doesOf(h as S.HeatTreatment)], DONE[doesOf(h as S.HeatTreatment)]];
-const BY: Record<NonNullable<S.Coagulate['by']>, string> = { rennet: 'rennet', 'rennet-acid': 'acid and rennet', acid: 'acid', 'acid-heat': 'acid and heat', plant: 'plant enzymes', heat: 'heat' };
-/* A measure as it is said: "~18°C", "2–4°C", "≥85%", "6 h–4 days"; each
-   end in the unit that suits it, the unit said once where both share it. */
-const spanOf = ({ min, max, about }: S.Range, unitOf: (x: number) => [number, string]) => {
-	const say = (x: number) => {
-		const [v, unit] = unitOf(x);
-		return [`${+v.toPrecision(2)}`.replace('-', '−'), unit];
-	};
-	if (min === undefined || max === undefined) {
-		const [v, unit] = say((min ?? max)!);
-		return `${min === undefined ? '≤' : '≥'}${v}${unit}`;
-	}
-	const [a, ua] = say(min);
-	const [b, ub] = say(max);
-	return `${about ? '~' : ''}${min === max ? `${a}${ua}` : ua === ub ? `${a}–${b}${ua}` : `${a}${ua}–${b}${ub}`}`;
-};
-const inUnit = (unit: string) => (x: number): [number, string] => [x, unit];
-// Seconds in the unit that reads best, as a recipe would say it, and in words where there is room.
-const inTime = (s: number): [number, string] => {
-	const [v, unit] = s < 120 ? [s, 's'] : s < 7200 ? [s / 60, 'min'] : s < 172800 ? [s / 3600, 'h'] : s < 1814400 ? [s / 86400, 'day'] : s < 7776000 ? [s / 604800, 'week'] : s < 63072000 ? [s / 2592000, 'month'] : [s / 31536000, 'year'];
-	return [v, ` ${unit}${['day', 'week', 'month', 'year'].includes(unit) && +v.toPrecision(2) !== 1 ? 's' : ''}`];
-};
-const chipOf = (h: S.ProcessingStep) => {
-	const warm = [
-		h.type === 'homogenise' && h.bar && spanOf(h.bar, inUnit(' bar')),
-		h.seconds && spanOf(h.seconds, inTime),
-		h.temperature && spanOf(h.temperature, inUnit('°C')),
-	]
-		.filter(Boolean)
-		.join(' @ ');
-	const [title, done] = titleOf(h);
-	return {
-		title,
-		said: [h.type === 'coagulate' && h.by && `by ${BY[h.by]}`, warm, h.humidity && `${spanOf(h.humidity, inUnit('%'))} RH`].filter(Boolean).join(', '),
-		done,
-		...(h.type === 'ferment' && h.adds?.microbes.length && { microbes: h.adds.microbes.map((m) => m.name).join(', ') }),
-		...(h.note && { note: h.note }),
-	};
-};
-// A step as the page has it: its processing as cards, and whether any of it ferments, which marks it; not the processing itself.
-const stepOf = (key: string) => {
-	if (!steps[key]) return undefined;
-	const { processing, table, facts, ...rest } = steps[key];
-	const holds = processing?.steps;
-	// Its rows as said, their own sources left with the graph's records.
-	const said = (rows?: S.How['table']) => rows?.map(({ k, v }) => ({ k, v }));
-	return { ...rest, ...(table && { table: said(table) }), ...(facts && { facts: said(facts) }), ...(holds && { holds: holds.map(chipOf) }), ...(holds?.some((h) => h.type === 'ferment') && { fermented: true }) };
-};
+// A step as the page has it (see render/How).
+const stepOf = (key: string) => steps[key] && howPage(steps[key]);
 
 /**
  * What each product and each example drawn is, shown when it is clicked: the
@@ -214,41 +146,12 @@ for (const n of Object.values(NODES)) {
 	}
 }
 
-/* What the inventory says of a cheese the graph has nothing else on: what
-   it is, from the list it was found in or else from its facts, and how it
-   is made, for its card. */
-const regionName = new Intl.DisplayNames(['en'], { type: 'region' });
-const milkOf = (c: Cheese, and: string) => c.milk.map((m) => BEASTS[m].milk).join(and);
-const cheeseAbout = (c: Cheese): About => {
-	const milk = milkOf(c, ' and ');
-	const from = c.countries.map((k) => regionName.of(k)).join(', ');
-	const text = c.desc ?? `A ${c.firm ? `${c.firm} ` : ''}cheese${milk ? ` of ${milk} milk` : ''}${from ? ` from ${from}` : ''}.`;
-	return { text, sources: c.sources };
-};
-const SET_WORD: Record<string, string> = { rennet: 'rennet', acid: 'lactic acid', 'rennet-acid': 'lactic acid and a little rennet', 'acid-heat': 'heat and acid', plant: 'a plant coagulant', heat: 'boiled down', none: 'melted' };
-const cheeseHow = (c: Cheese): Omit<How, 'sources'> => ({
-	table: [
-		...(c.milk.length ? [{ k: 'Milk', v: milkOf(c, ', ') }] : []),
-		...(c.coagulation ? [{ k: 'Set with', v: SET_WORD[c.coagulation] ?? c.coagulation }] : []),
-		...(c.rind ? [{ k: 'Rind', v: c.rind }] : []),
-		...(c.protected ? [{ k: 'Protected', v: c.protected }] : []),
-	],
-	// What its sources were, and what in it is not checked; the links themselves are with its paragraph.
-	text: c.sources.text,
-});
 const beastsOf = (key: string) => MILK_OF[key]?.map((b) => BEASTS[b]);
 // The animals to filter by: those any product is marked with, the cow first.
 export const herd = Object.values(BEASTS).filter((b) => b.milk === 'cow' || Object.values(MILK_OF).some((of) => of.some((k) => BEASTS[k] === b)));
 
 const exampleFile = (name: string) =>
 	`ex-${name.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`;
-const pictured = (file: string, { file: what, author, license, sources }: Picture) => ({
-	src: `/assets/milk/${file}.webp`,
-	credit: `${what} · ${author} · ${license}`,
-	author,
-	license,
-	source: 'links' in sources ? sources.links[0].url : '',
-});
 
 // Each product, or example, of exactly one of the lists: by its place in them.
 const placed = (lists: { ids: string[] }[], what: string) => {
@@ -325,7 +228,7 @@ for (const [id, { from, alsoFrom = [], at, step, link, mapped }] of Object.entri
 const factsOf = (label: string) => {
 	const c = CHEESE[label];
 	return {
-		image: examplePictures[label] && pictured(exampleFile(label), examplePictures[label]),
+		image: examplePictures[label] && picturePage(exampleFile(label), examplePictures[label]),
 		about: about.examples[label] ?? (c && cheeseAbout(c)),
 		regions: regions[label] ?? (c?.countries.length ? c.countries.slice(0, S.MOST_COUNTRIES) : undefined),
 		aka: EXAMPLE_AKA[label],
@@ -390,7 +293,7 @@ export const graph = {
 				label,
 				// Not drawn, but found by the search: its other names; a map's, the names of the families on it.
 				aka: map ? [...aka, ...onTheMap] : aka,
-				image: pictures[own] && pictured(own, pictures[own]),
+				image: pictures[own] && picturePage(own, pictures[own]),
 				about: about.products[own],
 				regions: regions[own],
 				how: stepOf(id),

@@ -436,7 +436,7 @@ const { focus } = Astro.props;
 		margin: 0 0 0.35rem;
 		font-size: 0.85em;
 	}
-	// A hold: as a cell of the table is, on the pills' white, framed, in the pills' type.
+	/* A hold: as a cell of the table is, on the pills' white, framed, in the pills' type. */
 	.milk-about :global(.milk-about-hold) {
 		display: inline-flex;
 		align-items: center;
@@ -572,11 +572,22 @@ const { focus } = Astro.props;
 	import { select } from 'd3-selection';
 	import 'd3-transition';
 	import { zoom, zoomIdentity } from 'd3-zoom';
-	import type { Sourcing } from './graph/schema';
 	import { eachPage } from '../../../../lib/page';
 	import { pixelRatio } from '../../../../lib/canvas';
 	import { LINE, PAD_X, FONT, FOUND_HEIGHT, PICTURE_GAP, LINK_MARK, LINK_ROOM, MARGIN, MAX_ZOOM, MAP_PILL, SANS, MONO, SERIF, FACES, spacing, only, setSpacing, nextUid, corner, type Node, type Edge, type Graph } from './graph/client/base';
 	import { layout, type Pin, type Box } from './graph/client/layout';
+	import { font, roundRect, legible, type Pen } from './graph/render/canvas';
+	import { el, commas, fact } from './graph/render/dom';
+	import { drawStrip } from './graph/render/Processing';
+	import { draw as drawRowsOf } from './graph/render/Row';
+	import { html as howHtml } from './graph/render/How';
+	import { html as sourcesHtml } from './graph/render/Sourcing';
+	import { html as shareHtml } from './graph/render/Share';
+	import { html as axesHtml } from './graph/render/Axes';
+	import { credit } from './graph/render/Picture';
+	import { said as regionsSaid, nameOf } from './graph/render/Regions';
+	import { said as beastsSaid } from './graph/render/Beasts';
+	import { SEAL } from './graph/render/Cheese';
 
 
 	/* Drawn from the graph given, the whole of it or what a filter left of
@@ -584,7 +595,7 @@ const { focus } = Astro.props;
 	function draw(figure: HTMLElement, signal: AbortSignal, data: Graph, whole = false) {
 		// As the words in it have it (see measure).
 		setSpacing(parseFloat(getComputedStyle(figure).letterSpacing) || 0);
-		const { root, treeParent, nodes, children, size, paneled, panelOf, rootR, picture, radius, shown, countryName, stepFont, stepped, ROW, rows, keyLines, rowLines, tabled, pad, tableWidth, rowHeight, PANEL_PAD, panels, MAP_W, PIN, PIN_GROWS, PIN_FRAMED, pillsShown, rim, panelArea, rootWord, rootFont, grains, edges, inside, stepX, told, hittable, edgeShape, edgeLine, edgeBox, stepLines, stepBox, tableOf, pillBoxOf, bounds, tickX, CARD } = layout(data);
+		const { root, treeParent, nodes, children, size, paneled, panelOf, rootR, picture, radius, shown, stepFont, stepped, rows, tabled, tableWidth, PANEL_PAD, panels, MAP_W, PIN, PIN_GROWS, PIN_FRAMED, pillsShown, rim, panelArea, rootWord, rootFont, grains, edges, inside, stepX, told, hittable, edgeShape, edgeLine, edgeBox, stepLines, stepBox, tableOf, pillBoxOf, bounds, tickX } = layout(data);
 		// Those whose step has a table under it: its holds, its rows, or both.
 		const hasTable = new Set(tabled);
 		// The search's list named for it alone, as another graph on the page would name its own the same.
@@ -696,19 +707,12 @@ const { focus } = Astro.props;
 			return p;
 		};
 
-		const font = (px: number, face = '400', family = SANS()) => `${face} ${px}px ${family}`;
 		// Drawing for the overview (see below): plain, with nothing lit or held.
 		let unlit = false;
 		/* How each part is drawn, onto the picture's canvas or one of its own,
 		   in the picture's units at a scale of so many of the screen's pixels
 		   to a unit: words too small to read there left out. Each says whether
 		   it was drawn whole, as a photograph not yet fetched leaves it not. */
-		type Pen = CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D;
-		const roundRect = (g: Pen, x: number, y: number, w: number, h: number, r: number | number[]) => {
-			g.beginPath();
-			g.roundRect(x, y, w, h, r);
-		};
-		const legible = (px: number, s: number) => px * s >= 2.5;
 
 		// The steps' words, on their arrows; white inside one, the ink when looked at.
 		const drawStep = (g: Pen, n: Node, s: number) => {
@@ -721,97 +725,15 @@ const { focus } = Astro.props;
 			return true;
 		};
 
-		// A ferment's microbe, on the bottom left corner of its table on a card, and what it says when pointed at.
-		const FERMENT_MARK = '🦠';
-		const FERMENT_SAID = 'Fermented';
-		/* A step's processing: each step a card as the table's cells are, on
-		   the pills' white, framed; its words each drawn once big enough to read, the microbes'
-		   only zoomed well in; an arrow to the next. */
-		const drawStrip = (g: Pen, n: Node, on: boolean, s: number) => {
-			const t = tableOf(n);
-			const strip = t.strip!;
-			const f = t.font;
-			const r = f * (4 / 16) * 1.5;
-			g.lineWidth = f * 0.08;
-			g.textAlign = 'left';
-			g.textBaseline = 'alphabetic';
-			for (const card of strip.cards) {
-				const x = t.left + card.x;
-				const y = t.top + card.y;
-				roundRect(g, x, y, card.w, card.h, r);
-				g.fillStyle = ink.pill;
-				g.fill();
-				g.strokeStyle = on ? ink.lit : ink.dim;
-				g.globalAlpha = on ? 1 : 0.5;
-				g.stroke();
-				g.globalAlpha = 1;
-				const at = x + CARD.pad * f;
-				for (const l of card.lines) {
-					if (!legible(l.size, s)) continue;
-					g.font = font(l.size, l.face, l.mono ? MONO() : SANS());
-					g.fillStyle = on ? ink.lit : l.dim ? ink.dim : ink.text;
-					g.fillText(l.said, at, y + l.y);
-				}
-			}
-			g.textAlign = 'center';
-			g.textBaseline = 'middle';
-			g.fillStyle = ink.dim;
-			g.font = font(CARD.said * f, '700', MONO());
-			for (const j of strip.joins) g.fillText('→', t.left + j.x, t.top + j.y);
-		};
-		// A step's table: its holds, then its rows on the pills' white, the names' column a shade darker, ruled, framed.
+		/* A step's table: its processing's chain of cards over its rows (see
+		   render/Processing and render/Row). */
 		const drawTable = (g: Pen, n: Node, s: number) => {
 			const t = tableOf(n);
 			if (!legible(t.font, s)) return true;
-			const on = !unlit && n === stepShown;
-			if (t.strip) drawStrip(g, n, on, s);
-			if (t.rowsHeight) drawRows(g, n, on);
+			const paint = { ink, s, on: !unlit && n === stepShown };
+			if (t.strip) drawStrip(g, t.strip, t.left, t.top, t.font, paint);
+			if (t.rowsHeight) drawRowsOf(g, rows(n), { left: t.left, top: t.rowsTop, split: t.split, w: tableWidth(n), h: t.rowsHeight }, t.font, paint);
 			return true;
-		};
-		const drawRows = (g: Pen, n: Node, on: boolean) => {
-			const t = { ...tableOf(n) };
-			t.top = t.rowsTop;
-			t.height = t.rowsHeight;
-			const w = tableWidth(n);
-			const r = t.font * (4 / 16) * 1.5;
-			roundRect(g, t.left, t.top, w, t.height, r);
-			g.fillStyle = ink.pill;
-			g.fill();
-			roundRect(g, t.left, t.top, t.split - t.left, t.height, [r, 0, 0, r]);
-			g.fillStyle = ink.names;
-			g.fill();
-			g.lineWidth = t.font * 0.08;
-			g.strokeStyle = on ? ink.lit : ink.dim;
-			g.globalAlpha = on ? 1 : 0.5;
-			g.beginPath();
-			g.moveTo(t.split, t.top);
-			g.lineTo(t.split, t.top + t.height);
-			let y = t.top;
-			rows(n).forEach((row, i) => {
-				if (i) {
-					g.moveTo(t.left, y);
-					g.lineTo(t.left + w, y);
-				}
-				y += rowHeight(n, row);
-			});
-			g.stroke();
-			roundRect(g, t.left, t.top, w, t.height, r);
-			g.stroke();
-			g.globalAlpha = 1;
-			const p = pad(n);
-			g.fillStyle = on ? ink.lit : ink.dim;
-			g.textBaseline = 'alphabetic';
-			y = t.top;
-			for (const { k, v } of rows(n)) {
-				const baseline = y + p / 2 + t.font * 0.95;
-				g.font = font(t.font, '600');
-				g.textAlign = 'right';
-				keyLines(k).forEach((said, j) => g.fillText(said, t.split - p, baseline + j * ROW * t.font));
-				g.font = font(t.font);
-				g.textAlign = 'left';
-				rowLines(v).forEach((said, j) => g.fillText(said, t.split + p, baseline + j * ROW * t.font));
-				y += rowHeight(n, { k, v });
-			}
 		};
 
 		// Milk: whiter than the pills, edged as they are, in the chrome's grain, its word across it.
@@ -1231,11 +1153,6 @@ const { focus } = Astro.props;
 		/* A protected name's seal on the top left corner, as the flags are on
 		   the top right: red ringed in gold for a PDO, blue for a PGI, as the
 		   EU's are, with a gold star; said on hover. */
-		const SEAL_SAID: Record<string, string> = {
-			PDO: 'Protected designation of origin (PDO)',
-			PGI: 'Protected geographical indication (PGI)',
-			TSG: 'Traditional speciality guaranteed (TSG)',
-		};
 		const sealOf = (d: Node) => corner(d, 1, false, false)[0];
 		const drawSeal = (g: Pen, d: Node, s: number) => {
 			const { r, x, y } = sealOf(d);
@@ -1720,9 +1637,9 @@ const { focus } = Astro.props;
 			const near = shown.filter((d) => d === root || ((!d.onMap || pillsShown(s)) && Math.abs(x - d.x) <= d.w / 2 + d.h && Math.abs(y - d.y) <= d.h * 1.5));
 			// The last said wins: a seal over animals over flags.
 			for (const d of near) {
-				if (d.regions?.length && flagsOf(d).some((f) => hit(f))) hint = d.regions.map((c) => countryName.of(c)).join(', ');
-				if (d.beasts?.length && beastsAt(d).some((b) => hit(b))) hint = `From ${d.beasts.map((m) => m.milk).join(' and ')} milk`;
-				if (d.protected && hit(sealOf(d))) hint = SEAL_SAID[d.protected] ?? d.protected;
+				if (d.regions?.length && flagsOf(d).some((f) => hit(f))) hint = regionsSaid(d.regions);
+				if (d.beasts?.length && beastsAt(d).some((b) => hit(b))) hint = beastsSaid(d.beasts);
+				if (d.protected && hit(sealOf(d))) hint = SEAL[d.protected] ?? d.protected;
 			}
 			// A little more than the mark itself, to be tapped.
 			const info = near.flatMap((d) => (d.note || d.unsure ? marksOf(d) : [])).find((m) => hit(m, 1.3)) ?? null;
@@ -1862,12 +1779,6 @@ const { focus } = Astro.props;
 		   tap holds it. An example too far down the list to be drawn finds
 		   the product it is an example of. */
 		// An element made, its class and its words.
-		const el = <K extends keyof HTMLElementTagNameMap>(tag: K, cls?: string, text?: string) => {
-			const e = document.createElement(tag);
-			if (cls) e.className = cls;
-			if (text !== undefined) e.textContent = text;
-			return e;
-		};
 		const plain = (t: string) => t.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase();
 		const name = (n: Node) => n.label.replace(/\n/g, ' ');
 		const index: { said: string; plain: string; to: Node; hint: string }[] = [];
@@ -1987,26 +1898,6 @@ const { focus } = Astro.props;
 			cardBody.replaceChildren(...parts);
 			cardBody.scrollTop = 0;
 		};
-		// A link out of the page, in a tab of its own.
-		const out = (text: string, href: string) => {
-			const a = el('a', '', text);
-			a.href = href;
-			a.target = '_blank';
-			a.rel = 'noopener';
-			return a;
-		};
-		// So many, a comma between each.
-		const commas = <T,>(items: T[]) => items.flatMap((x, i) => (i ? [', ', x] : [x]));
-		/* Where what is said is from: Wikipedia, read more on; its other
-		   sources, named; or that it has none yet. */
-		const sourcesOf = (said: Sourcing) => {
-			if ('unsourced' in said) return el('p', 'milk-about-source', 'No source yet');
-			const [only] = said.links;
-			const wiki = said.links.length === 1 && /wikipedia\.org$/.test(new URL(only.url).hostname);
-			const from = el('p', 'milk-about-source', wiki ? '' : said.links.length > 1 ? 'Sources: ' : 'Source: ');
-			from.append(...commas(said.links.map(({ name, url }) => out(wiki ? 'Read more on Wikipedia' : name, url))));
-			return from;
-		};
 		// A product named on the card, pressed: gone to.
 		const goTo = (n: Node) => {
 			const b = el('button', 'milk-about-to', name(n));
@@ -2018,59 +1909,6 @@ const { focus } = Astro.props;
 		const parentOf = (n: Node) => {
 			const p = treeParent.get(n);
 			return p?.hub ? treeParent.get(p) : p;
-		};
-		// A row of the card's facts: what it says, and the things it names.
-		// A span of days as it is said: days, weeks, months or years.
-		const lasting = ([least, most]: [number, number]) => {
-			const [per, unit] = most < 14 ? [1, 'days'] : most < 90 ? [7, 'weeks'] : most < 730 ? [30, 'months'] : [365, 'years'];
-			const a = Math.round(least / per);
-			const b = Math.round(most / per);
-			return a === b ? `${a} ${unit}` : `${a}–${b} ${unit}`;
-		};
-		const fact = (term: string, ...parts: (Node | string | (Node | string)[])[]) => {
-			const row = el('div', 'milk-about-fact');
-			row.append(el('dt', '', term));
-			const dd = el('dd');
-			const said = (x: Node | string) => (typeof x === 'string' ? x : goTo(x));
-			for (const part of parts) dd.append(...(Array.isArray(part) ? commas(part.map(said)) : [said(part)]));
-			row.append(dd);
-			return row;
-		};
-		/* A step's table on a card, the same as on its arrow: its holds as
-		   chips, the microbes each brings, and its rows, or its facts where it
-		   has no rows, they being the rows said at length. A ferment's
-		   microbe on its bottom left corner. */
-		const tableFor = (how: NonNullable<Node['how']>) => {
-			const rows = how.table?.length ? how.table : (how.facts ?? []);
-			const holds = how.holds ?? [];
-			if (!rows.length && !holds.length) return [];
-			const framed = el('div', 'milk-about-table');
-			if (holds.length) {
-				const strip = el('p', 'milk-about-holds');
-				holds.filter((c) => c.said).forEach((c, i) => {
-					if (i) strip.append(el('span', 'milk-about-then', '→'));
-					const chip = el('span', 'milk-about-hold', c.said);
-					strip.append(chip);
-				});
-				if (strip.childElementCount) framed.append(strip);
-				const bringing = holds.filter((c) => c.microbes);
-				for (const c of bringing) framed.append(el('p', 'milk-about-microbes', `${bringing.length > 1 ? `${c.done}: ` : ''}${c.microbes}`));
-			}
-			if (rows.length) {
-				const table = el('table');
-				for (const { k, v } of rows) {
-					const row = el('tr');
-					row.append(el('th', '', k), el('td', '', v));
-					table.append(row);
-				}
-				framed.append(table);
-			}
-			if (how.fermented) {
-				const mark = el('span', 'milk-about-ferment', FERMENT_MARK);
-				mark.title = FERMENT_SAID;
-				framed.append(mark);
-			}
-			return [framed];
 		};
 		const tell = (n: Node | null) => {
 			held = n;
@@ -2086,7 +1924,7 @@ const { focus } = Astro.props;
 			const title = el('div');
 			const p = parentOf(n);
 			if (n.onMap) {
-				const where = (n.regions ?? []).map((c) => countryName.of(c));
+				const where = (n.regions ?? []).map(nameOf);
 				if (n.area) where[0] = `${n.area}, ${where[0]}`;
 				const place = where.join('; ') + (n.guessed ? ' (place estimated)' : '');
 				title.append(el('p', 'milk-about-kind', n.family ? `${n.family} · ${place}` : place));
@@ -2098,45 +1936,33 @@ const { focus } = Astro.props;
 			}
 			title.append(el('h3', '', name(n)));
 			if (n.aka?.length) title.append(el('p', 'milk-about-aka', `Also known as ${n.aka.join(', ')}`));
-			if (n.share !== undefined) {
-				const pct = n.share >= 1 ? `${Math.round(n.share)}%` : n.share >= 0.1 ? `${n.share.toFixed(1)}%` : 'under 0.1%';
-				const mt = n.shareMt! >= 1 ? `${Math.round(n.shareMt!)} Mt` : `${+(n.shareMt! * 1000).toPrecision(2)} thousand t`;
-				title.append(el('p', 'milk-about-aka', `About ${mt} a year, ${pct} of the world’s milk by weight: an estimate. ${n.shareSources?.text ?? ''}`), sourcesOf(n.shareSources!));
-			}
+			if (n.share !== undefined) title.append(...shareHtml(n.shareMt!, n.share, n.shareSources!));
 			top.append(title);
 			top.classList.toggle('has-image', !!n.image);
 			const parts: HTMLElement[] = [top];
 			if (n.about) {
 				parts.push(el('p', 'milk-about-text', n.about.text));
-				parts.push(sourcesOf(n.about.sources));
+				parts.push(sourcesHtml(n.about.sources));
 			}
 			/* A cheese in a panel has no arrow to write its table on: told here
 			   instead, after where the panel puts it, with the rest of how it is
 			   made and where that is from. */
 			if ((n.axes && panelOf(n)) || n.onMap) {
 				const how = n.how;
-				if (n.axes) {
-					const placed = el('dl');
-					placed.append(fact('Firmness', n.axes.firm), fact('Ripened', lasting(n.axes.days)));
-					parts.push(placed);
-				}
-				if (how) parts.push(...tableFor(how));
+				if (n.axes) parts.push(axesHtml(n.axes));
+				if (how) parts.push(...howHtml(how));
 				if (how?.text) parts.push(el('p', 'milk-about-text', how.text));
-				if (how?.sources) parts.push(sourcesOf(how.sources));
+				if (how?.sources) parts.push(sourcesHtml(how.sources));
 			}
 			// What it is made from and into the picture shows
 			// round it already; the card says only what the picture does not.
 			const facts = el('dl');
 			if (n.named?.length) {
 				const drawn = new Map([...(children.get(n) ?? []), ...(paneled.get(n) ?? [])].filter((k) => k.example).map((k) => [k.label, k]));
-				facts.append(fact('Examples', n.named.map((x) => drawn.get(x) ?? x)));
+				facts.append(fact('Examples', n.named.map((x) => { const k = drawn.get(x); return k ? goTo(k) : x; })));
 			}
 			if (facts.childElementCount) parts.push(facts);
-			if (n.image) {
-				const credit = el('p', 'milk-about-credit', 'Photo: ');
-				credit.append(out(n.image.author, n.image.source), `, ${n.image.license}`);
-				parts.push(credit);
-			}
+			if (n.image) parts.push(credit(n.image));
 			setCard(name(n), parts);
 		};
 		/* Telling of a step, the arrow into a product: what it is made from
@@ -2166,8 +1992,8 @@ const { focus } = Astro.props;
 			const parts: HTMLElement[] = [top];
 			const how = n.how;
 			if (how?.text) parts.push(el('p', 'milk-about-text', how.text));
-			if (how) parts.push(...tableFor(how));
-			if (how?.sources) parts.push(sourcesOf(how.sources));
+			if (how) parts.push(...howHtml(how));
+			if (how?.sources) parts.push(sourcesHtml(how.sources));
 			setCard(n.step ?? name(n), parts);
 		};
 		card.querySelector('.milk-about-close')!.addEventListener('click', shut, { signal });

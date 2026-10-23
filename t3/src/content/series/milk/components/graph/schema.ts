@@ -355,3 +355,4 @@ export type ProcessingStep = Processing['steps'][number];
 export type HeatTreatment = z.infer<typeof HeatTreatment>;
 export type Coagulate = z.infer<typeof Coagulate>;
 export type Drying = z.infer<typeof Drying>;
+export type Axes = z.infer<typeof Axes>;
