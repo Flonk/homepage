@@ -853,12 +853,13 @@ export function layout(data: Graph) {
 	const rootFont = (FONT * size(root) * ROOT_WORD * 2 * rootR) / measure(rootWord, FONT * size(root), '700');
 	const grains = ['dots', ...Array.from({ length: Number(document.documentElement.dataset.grain ?? 1) }, () => 'noise')];
 
-	/* The tree's edges, with an arrowhead into every product; the arrow
-	   into a branch point has none, its head is on the arrows it splits into. */
+	/* The tree's edges, with an arrowhead into every node, an example's as
+	   a product's; the arrow into a branch point has none, its head is on
+	   the arrows it splits into. */
 	const edges: Edge[] = [...treeParent].filter(([n]) => !panelOf(n)).map(([n, p]) => ({
 		source: p,
 		target: n,
-		made: !n.hub && (!n.example || !!n.step),
+		made: !n.hub,
 	}));
 
 	/* Every line runs straight across or straight up and down, never

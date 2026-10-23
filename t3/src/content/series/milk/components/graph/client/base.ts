@@ -58,9 +58,9 @@ export const MILK = 2;
    as a river does, each strand as thick as its own branch (see draw). */
 export const STRAND = 1.5;
 /* An arrowhead: the line's own end, tapering to a point, as wide as the
-   line, or as a small head's width where the line is thinner than that. */
-export const headWidth = (line: number) => Math.max(line, 7);
-export const headLength = (line: number) => 0.8 * headWidth(line) + 4;
+   line, however thin; and long enough, a thin line's too, to be seen to. */
+export const headWidth = (line: number) => line;
+export const headLength = (line: number) => 0.8 * Math.max(line, 7) + 4;
 // How round a line's corners are.
 export const CORNER = 8;
 // The room round the whole, framed, in pixels on the screen.
