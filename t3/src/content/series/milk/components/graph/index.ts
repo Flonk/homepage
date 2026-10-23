@@ -64,15 +64,12 @@ mustAll(Object.keys(regions), isKnown, 'region for unknown');
  */
 const steps: Record<string, How> = S.Steps.parse(STEPS);
 mustAll(Object.keys(steps), isKnown, 'how is made unknown');
-/* A ferment's stretches, as rows of its table: one for each thing done
-   (souring, ripening…), a line for each stretch of it, how long, how warm
-   and how damp, each after its mark. They stand in for the rows written
-   out by hand that said only that, which go. */
-type Row = { k: string; v: string };
-const DONE: Record<S.Stretch['does'], string> = { incubate: 'Fermented', ripen: 'Ripened', dry: 'Dried', smear: 'Smeared', pierce: 'Pierced', cool: 'Cooled' };
-const SAID_BY_HAND = new Set(['Ripening time', 'Ripening temperature', 'Fermentation time', 'Fermentation temperature', 'Inoculation temperature', 'Fermented at', 'Incubation', 'First ripening', 'Second ripening']);
-/* A measure as it is said, "~18 °C", "2–4 °C", "≥85 % RH": each end in
-   the unit that suits it, the unit said once where both ends share it. */
+/* A step's holds as the page draws them, a chip each: for how long, how
+   warm and how damp, "~5min @ 90–95°C", or what is done where it says none
+   of that; how warm it is, to tint it by; and the microbes added at it. */
+const DONE: Record<S.Hold['does'], string> = { heat: 'heated', cook: 'cooked', cool: 'cooled', incubate: 'soured', ripen: 'ripened', dry: 'dried', smear: 'smeared', pierce: 'pierced' };
+/* A measure as it is said, tight: "~18°C", "2–4°C", "≥85%", "6h–4d"; each
+   end in the unit that suits it, the unit said once where both share it. */
 const spanOf = ({ min, max, about }: S.Range, unitOf: (x: number) => [number, string]) => {
 	const say = (x: number) => {
 		const [v, unit] = unitOf(x);
@@ -80,44 +77,33 @@ const spanOf = ({ min, max, about }: S.Range, unitOf: (x: number) => [number, st
 	};
 	if (min === undefined || max === undefined) {
 		const [v, unit] = say((min ?? max)!);
-		return `${min === undefined ? '≤' : '≥'}${v} ${unit}`;
+		return `${min === undefined ? '≤' : '≥'}${v}${unit}`;
 	}
 	const [a, ua] = say(min);
 	const [b, ub] = say(max);
-	return `${about ? '~' : ''}${min === max ? `${a} ${ua}` : ua === ub ? `${a}–${b} ${ua}` : `${a} ${ua}–${b} ${ub}`}`;
+	return `${about ? '~' : ''}${min === max ? `${a}${ua}` : ua === ub ? `${a}–${b}${ua}` : `${a}${ua}–${b}${ub}`}`;
 };
 const inUnit = (unit: string) => (x: number): [number, string] => [x, unit];
-// Hours in the unit that reads best, as a recipe would say it: hours, days, months or years.
-const inTime = (h: number): [number, string] => (h < 48 ? [h, 'h'] : h < 24 * 60 ? [h / 24, 'd'] : h < 24 * 730 ? [h / 720, 'mo'] : [h / 8760, 'yr']);
-const lineOf = (s: S.Stretch) =>
-	[s.hours && `⏳ ${spanOf(s.hours, inTime)}`, s.temperature && `🌡️ ${spanOf(s.temperature, inUnit('°C'))}`, s.humidity && `💧 ${spanOf(s.humidity, inUnit('% RH'))}`].filter(Boolean).join(' ');
-const fermentRows = (f: S.Ferment): Row[] => {
-	const rows: Row[] = [];
-	for (const s of f.stretches) {
-		const line = lineOf(s);
-		if (!line) continue;
-		const last = rows.at(-1);
-		if (last?.k === DONE[s.does]) last.v += `\n${line}`;
-		else rows.push({ k: DONE[s.does], v: line });
-	}
-	return rows;
+// Seconds in the unit that reads best, as a recipe would say it.
+const inTime = (s: number): [number, string] =>
+	s < 120 ? [s, 's'] : s < 7200 ? [s / 60, 'min'] : s < 172800 ? [s / 3600, 'h'] : s < 7776000 ? [s / 86400, 'd'] : s < 63072000 ? [s / 2592000, 'mo'] : [s / 31536000, 'yr'];
+const chipOf = (h: S.Hold) => {
+	const warm = [h.seconds && spanOf(h.seconds, inTime), h.temperature && spanOf(h.temperature, inUnit('°C'))].filter(Boolean).join(' @ ');
+	const said = [warm, h.humidity && `${spanOf(h.humidity, inUnit('%'))} RH`].filter(Boolean).join(', ');
+	const t = h.temperature;
+	return {
+		said: said || DONE[h.does],
+		done: DONE[h.does],
+		...(t && { warmth: ((t.min ?? t.max)! + (t.max ?? t.min)!) / 2 }),
+		...(h.adds?.microbes.length && { microbes: h.adds.microbes.map((m) => m.name).join(', ') }),
+	};
 };
-// Its rows with the ferment's in place of those that said it by hand, where the first of those was.
-const withFerment = (rows: Row[], made: Row[]) => {
-	const at = rows.findIndex((r) => SAID_BY_HAND.has(r.k));
-	const kept = rows.filter((r) => !SAID_BY_HAND.has(r.k));
-	return at < 0 ? [...made, ...kept] : [...kept.slice(0, at), ...made, ...kept.slice(at)];
-};
-/* A step as the page has it: whether it is a ferment, which marks its
-   table, and the ferment's rows in its table, or in its facts where it
-   has no table; not the ferment itself. */
+/* A step as the page has it: its holds as chips, and whether it is a
+   ferment, which marks it; not the holds or the ferment themselves. */
 const stepOf = (key: string) => {
 	if (!steps[key]) return undefined;
-	const { ferment, ...rest } = steps[key];
-	if (!ferment) return rest;
-	const made = fermentRows(ferment);
-	const into = rest.table?.length ? 'table' : 'facts';
-	return { ...rest, ...(made.length && { [into]: withFerment(rest[into] ?? [], made) }), fermented: true };
+	const { holds, ferment, ...rest } = steps[key];
+	return { ...rest, ...(holds && { holds: holds.map(chipOf) }), ...(ferment && { fermented: true }) };
 };
 
 /**

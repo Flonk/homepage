@@ -4,6 +4,10 @@ type Sourcing = S.Sourcing;
 /* A product, an example or a branch point, as the page is given it (see
    milk/graph/index.ts) and as it is laid out: its own fields as the schema has
    them, the rest worked out on the way. */
+/* A hold as a chip: what it says ("72 °C · 15 s"), what is done, how warm it is, to
+   tint it by, and the microbes added at it. */
+export type Chip = { said: string; done: string; warmth?: number; microbes?: string };
+
 export type Node = Pick<S.Product, 'label' | 'step' | 'scale' | 'at' | 'panel' | 'map' | 'below' | 'link' | 'note' | 'aka'> & {
 	id: string;
 	x: number;
@@ -17,8 +21,8 @@ export type Node = Pick<S.Product, 'label' | 'step' | 'scale' | 'at' | 'panel' |
 	// The countries it comes from, if it is regional.
 	regions?: string[];
 	// How the step into it is done, and the sources (see steps.json).
-	// A cheese on the map's sources are with its paragraph (see about); a ferment is only said to be one.
-	how?: Omit<S.How, 'sources' | 'ferment'> & { sources?: Sourcing; fermented?: boolean };
+	// A cheese on the map's sources are with its paragraph (see about); its holds as chips; a ferment only said to be one.
+	how?: Omit<S.How, 'sources' | 'ferment' | 'holds'> & { sources?: Sourcing; holds?: Chip[]; fermented?: boolean };
 	// How much of the world's milk goes its way, in Mt a year and in percent, and how that was worked out (see SHARES).
 	shareMt?: number;
 	share?: number;

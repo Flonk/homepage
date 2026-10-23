@@ -303,7 +303,7 @@ export function layout(data: Graph) {
 	// At the same scale as the product the arrow makes, as its own words are.
 	/* Larger on an arrow whose step is told of in full, a title, whether or
 	   not it has a table under it, so siblings read alike. */
-	const stepFont = (n: Node) => STEP_FONT * size(n) * (n.how?.facts?.length || n.how?.table?.length ? 1.6 : 1);
+	const stepFont = (n: Node) => STEP_FONT * size(n) * (n.how?.facts?.length || n.how?.table?.length || n.how?.holds?.length ? 1.6 : 1);
 	const stepped = nodes.filter((n) => n.step && n !== root && !panelOf(n));
 	/* A step in as many lines as it is written in, the last just over its
 	   arrow and the rest stacked up from there; inside an arrow, all of
@@ -351,9 +351,59 @@ export function layout(data: Graph) {
 	};
 	const keyLines = (k: string) => wrap(k, KEY_WIDE, '600');
 	const rowLines = (v: string) => wrap(v, VALUE_WIDE, '400');
-	const tabled = nodes.filter((n) => rows(n).length > 0);
+	/* Its holds, a chip each (see Chip), along a line of their own over its
+	   rows, broken onto more where too many for one, an arrow between each
+	   two on a line; under them the microbes each brings, a line of names
+	   wrapped as wide as the chips run. Laid out in its table's letters,
+	   from its top left. */
+	const holds = (n: Node) => (hangsFrom(n) || panelOf(n) ? [] : (n.how?.holds ?? []));
+	const CHIP_H = 1.5;
+	const CHIP_PAD = 0.45;
+	const CHIP_GAP = 1.3;
+	const STRIP_WIDE = KEY_WIDE + VALUE_WIDE + 2;
+	type Strip = {
+		w: number;
+		h: number;
+		chips: { x: number; y: number; w: number; said: string; warmth?: number }[];
+		joins: { x: number; y: number }[];
+		names: { y: number; said: string }[];
+	};
+	const strips = new Map<Node, Strip>();
+	const stripOf = (n: Node): Strip => {
+		const kept = strips.get(n);
+		if (kept) return kept;
+		const f = tableFont(n);
+		const strip: Strip = { w: 0, h: 0, chips: [], joins: [], names: [] };
+		let x = 0;
+		let y = 0;
+		holds(n).forEach((c, i) => {
+			const w = measure(c.said, f, '500') + 2 * CHIP_PAD * f;
+			if (i && x + CHIP_GAP * f + w > STRIP_WIDE * f) {
+				x = 0;
+				y += (CHIP_H + 0.4) * f;
+			} else if (i) {
+				strip.joins.push({ x: x + (CHIP_GAP * f) / 2, y: y + (CHIP_H * f) / 2 });
+				x += CHIP_GAP * f;
+			}
+			strip.chips.push({ x, y, w, said: c.said, warmth: c.warmth });
+			x += w;
+			strip.w = Math.max(strip.w, x);
+		});
+		y += CHIP_H * f;
+		const bringing = holds(n).filter((c) => c.microbes);
+		for (const c of bringing)
+			for (const said of wrap(`${bringing.length > 1 ? `${c.done}: ` : ''}${c.microbes}`, STRIP_WIDE, 'italic 400')) {
+				y += ROW * f;
+				strip.names.push({ y, said });
+				strip.w = Math.max(strip.w, measure(said, f, 'italic 400'));
+			}
+		strip.h = y + (strip.names.length ? 0.35 * f : 0);
+		strips.set(n, strip);
+		return strip;
+	};
+	const tabled = nodes.filter((n) => rows(n).length > 0 || holds(n).length > 0);
 	const columns = new Map<Node, { key: number; value: number }>();
-	for (const n of tabled) {
+	for (const n of tabled.filter((n) => rows(n).length)) {
 		const widest = (said: string[], face: string) => Math.max(...said.map((t) => measure(t, tableFont(n), face)));
 		columns.set(n, { key: widest(rows(n).flatMap(({ k }) => keyLines(k)), '600'), value: widest(rows(n).flatMap(({ v }) => rowLines(v)), '400') });
 	}
@@ -361,14 +411,18 @@ export function layout(data: Graph) {
 	const pad = (n: Node) => tableFont(n) * 0.6;
 	const tableWidth = (n: Node) => {
 		const c = columns.get(n);
-		return c ? c.key + c.value + 4 * pad(n) : 0;
+		return Math.max(c ? c.key + c.value + 4 * pad(n) : 0, holds(n).length ? stripOf(n).w : 0);
 	};
 	// A row as tall as its key's lines or its value's, and its padding.
 	const rowHeight = (n: Node, { k, v }: { k: string; v: string }) =>
 		Math.max(keyLines(k).length, rowLines(v).length) * ROW * tableFont(n) + pad(n);
-	// How tall it is, with a little air under it.
-	const tableHeight = (n: Node) =>
-		rows(n).length ? rows(n).reduce((sum, row) => sum + rowHeight(n, row), 0) + tableFont(n) * 0.6 : 0;
+	// Its rows, and its holds over them with a little air between; how tall it is, with a little air under it.
+	const rowsHeight = (n: Node) => rows(n).reduce((sum, row) => sum + rowHeight(n, row), 0);
+	const stripHeight = (n: Node) => (holds(n).length ? stripOf(n).h + (rows(n).length ? tableFont(n) * 0.5 : 0) : 0);
+	const tableHeight = (n: Node) => {
+		const tall = stripHeight(n) + rowsHeight(n);
+		return tall ? tall + tableFont(n) * 0.6 : 0;
+	};
 	// Inside its arrow, centred on it, where the arrow is that thick.
 	const tableInside = (n: Node) => line(n) >= tableHeight(n) + tableFont(n);
 	/* Where it begins, from the middle of its arrow: in the arrow, or just
@@ -376,7 +430,7 @@ export function layout(data: Graph) {
 	const tableTop = (n: Node) =>
 		tableInside(n) ? -(tableHeight(n) - tableFont(n) * 0.6) / 2 : -line(n) / 2 - stepFont(n) * 0.45 + stepFont(n) * 0.3;
 	// How far under the middle of its arrow it reaches, laid over the arrow.
-	const tableBottom = (n: Node) => (rows(n).length ? tableTop(n) + tableHeight(n) : 0);
+	const tableBottom = (n: Node) => (tableHeight(n) ? tableTop(n) + tableHeight(n) : 0);
 
 	/* Across: each product just past the edge of what it is made from,
 	   by a gap as wide as that parent wants, the bigger the wider; not in
@@ -1054,7 +1108,7 @@ export function layout(data: Graph) {
 		return strand && level(n, n.y - strand.at) ? strand.at : n.y;
 	};
 	// Not with a table to go under it.
-	const inside = (n: Node) => !rows(n).length && line(n) >= stepFont(n) * 1.3 + extra(n);
+	const inside = (n: Node) => !tableHeight(n) && line(n) >= stepFont(n) * 1.3 + extra(n);
 	const stepY = (n: Node) =>
 		inside(n) ? leg(n) + stepFont(n) * 0.35 : leg(n) - line(n) / 2 - stepFont(n) * 0.45;
 	const stepX = (n: Node) => {
@@ -1098,9 +1152,9 @@ export function layout(data: Graph) {
 		const w = stepWidth.get(n)! / 2;
 		return { x0: stepX(n) - w, x1: stepX(n) + w, y0: at[0].y - stepFont(n), y1: at.at(-1)!.y + stepFont(n) * 0.3 };
 	};
-	// A step's table: where it is, its rows, and the area round it and the step's name, to point at.
+	// A step's table: where it is, its holds and its rows, and the area round it and the step's name, to point at.
 	const tableOf = (n: Node) => {
-		const { key } = columns.get(n)!;
+		const key = columns.get(n)?.key ?? 0;
 		const font = tableFont(n);
 		const left = stepX(n) - tableWidth(n) / 2;
 		const top = leg(n) + tableTop(n);
@@ -1113,6 +1167,9 @@ export function layout(data: Graph) {
 			top,
 			split: left + key + 2 * pad(n),
 			height: tableHeight(n) - font * 0.6,
+			strip: holds(n).length ? stripOf(n) : null,
+			rowsTop: top + stripHeight(n),
+			rowsHeight: rowsHeight(n),
 			area: { x0: stepX(n) - wide / 2, x1: stepX(n) + wide / 2, y0: named, y1: top + tableHeight(n) + (n.how?.fermented ? font : 0) } as Box,
 		};
 	};
@@ -1138,5 +1195,5 @@ export function layout(data: Graph) {
 		width: Math.max(...all.map((b) => b.x1)) - Math.min(...all.map((b) => b.x0)),
 		height: Math.max(...all.map((b) => b.y1)) - Math.min(...all.map((b) => b.y0)),
 	};
-	return { root, treeParent, nodes, children, size, paneled, panelOf, rootR, picture, radius, shown, countryName, stepFont, stepped, ROW, rows, keyLines, rowLines, tabled, pad, tableWidth, rowHeight, PANEL_PAD, panels, MAP_W, PIN, PIN_GROWS, PIN_FRAMED, pillsShown, rim, panelArea, rootWord, rootFont, grains, edges, inside, stepX, told, hittable, edgeShape, edgeLine, edgeBox, stepLines, stepBox, tableOf, pillBoxOf, bounds, tickX };
+	return { root, treeParent, nodes, children, size, paneled, panelOf, rootR, picture, radius, shown, countryName, stepFont, stepped, ROW, rows, keyLines, rowLines, tabled, pad, tableWidth, rowHeight, PANEL_PAD, panels, MAP_W, PIN, PIN_GROWS, PIN_FRAMED, pillsShown, rim, panelArea, rootWord, rootFont, grains, edges, inside, stepX, told, hittable, edgeShape, edgeLine, edgeBox, stepLines, stepBox, tableOf, pillBoxOf, bounds, tickX, CHIP_H, CHIP_PAD };
 }

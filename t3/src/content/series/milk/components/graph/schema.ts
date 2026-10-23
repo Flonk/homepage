@@ -215,17 +215,21 @@ export const Inoculum = z.strictObject({
 	vessel: z.string().optional(),
 });
 
-/* One stretch of a ferment: what is added at its start, then held so
-   warm, so long, and so damp, until it is so sour. Most ferments are one
-   stretch; kefir is two (soured at 23 °C, then ripened cool), a washed
-   rind cheese three (soured with a starter; smeared with B. linens; ripened
-   damp), Calpis two (bacteria, then yeast). Temperatures in °C, times in
-   hours, humidity and alcohol in percent, acidity as percent lactic acid. */
-export const Stretch = z.strictObject({
-	does: z.enum(['incubate', 'ripen', 'dry', 'smear', 'pierce', 'cool']),
+/* One stretch of how a thing is made: held so warm, so long and so damp,
+   until it is so sour, with what is added at its start. Heating milk is
+   one (72 °C for 15 s, pasteurising it), cooking a curd is one, and so
+   is each stretch of a ferment: kefir is two (soured at 23 °C, then
+   ripened cool), a washed rind cheese three (soured with a starter;
+   smeared with B. linens; ripened damp), Calpis two (bacteria, then
+   yeast). A step's holds run in order, so a cheese's milk is soured,
+   its curd cooked, and then it is ripened. Temperatures in °C, times in
+   seconds, humidity and alcohol in percent, acidity as percent lactic
+   acid. */
+export const Hold = z.strictObject({
+	does: z.enum(['heat', 'cook', 'cool', 'incubate', 'ripen', 'dry', 'smear', 'pierce']),
 	adds: Inoculum.optional(),
 	temperature: Range.optional(),
-	hours: Range.optional(),
+	seconds: Range.optional(),
 	humidity: Range.optional(),
 	// Where it stops, or must have reached by law.
 	pH: Range.optional(),
@@ -233,18 +237,16 @@ export const Stretch = z.strictObject({
 	alcohol: Range.optional(),
 });
 
-/* Everything needed to say how milk, cream, whey or a curd is fermented:
-   each stretch it is held for, and what comes in at each; in words what
-   none of these hold, such as a second way it is made. Lactic is the
-   souring of lactose into lactic acid, by bacteria alone (yoghurt, quark)
-   or with yeasts too, making alcohol and fizz (kefir, kumis); mould and
-   smear ripen a cheese from its surface or from within, propionic bacteria
-   make its eyes, animals (mites, larvae) eat their way through it. Its
-   kinds left out where nothing says which. Its sources are its step's,
-   the same as for the step's rows, which say it in words. */
+/* What makes a step a ferment, its holds aside: which kind of ferment;
+   in words what its holds do not hold, such as a second way it is made.
+   Lactic is the souring of lactose into lactic acid, by bacteria alone
+   (yoghurt, quark) or with yeasts too, making alcohol and fizz (kefir,
+   kumis); mould and smear ripen a cheese from its surface or from within,
+   propionic bacteria make its eyes, animals (mites, larvae) eat their way
+   through it. Its kinds left out where nothing says which. Its sources
+   are its step's, the same as for the step's rows, which say it in words. */
 export const Ferment = z.strictObject({
 	kinds: z.array(z.enum(['lactic', 'yeast', 'mould', 'smear', 'propionic', 'animal'])).min(1).optional(),
-	stretches: z.array(Stretch).min(1),
 	text: z.string().optional(),
 });
 
@@ -258,7 +260,8 @@ export const How = z.object({
 	facts: z.array(Row).optional(),
 	text: z.string().optional(),
 	sources: Sourcing,
-	// How it is fermented, where it is: what its rows say of that, as data.
+	// Each stretch it is held for, heated, cooled or fermented, in order; and, where it is fermented, what else makes it a ferment.
+	holds: z.array(Hold).min(1).optional(),
 	ferment: Ferment.optional(),
 });
 export const Steps = z.record(z.string(), How);
@@ -297,4 +300,4 @@ export type How = z.infer<typeof How>;
 export type Arrow = z.infer<typeof Arrow>;
 export type Ferment = z.infer<typeof Ferment>;
 export type Range = z.infer<typeof Range>;
-export type Stretch = z.infer<typeof Stretch>;
+export type Hold = z.infer<typeof Hold>;
