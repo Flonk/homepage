@@ -25,6 +25,11 @@ export const Sources = z.object({
    it does not have; in words what is missing, or what it rests on. */
 export const Unsourced = z.object({ unsourced: z.literal(true), text: z.string().min(1) });
 export const Sourcing = z.union([Sources, Unsourced]);
+/* Sources of its own, on anything said inside a record that has its
+   sources: a step of a processing, a row of a table, a microbe; where it
+   is from somewhere other than the rest. Where it has none, what holds it
+   vouches for it: a step its processing's, a row its step's. */
+const Own = { sources: Sourcing.optional() };
 
 // A country, by its ISO 3166-1 alpha-2 code.
 export const Country = z.string().regex(/^[A-Z]{2}$/);
@@ -197,6 +202,7 @@ export const Microbe = z.strictObject({
 	grows: z.enum(['mesophilic', 'thermophilic']).optional(),
 	// Found rather than added: its share of the isolates in a survey of the traditional product, in percent.
 	isolates: z.number().min(0).max(100).optional(),
+	...Own,
 });
 
 /* What comes in at the start of a stretch, and how: a starter of known
@@ -227,6 +233,7 @@ const Held = {
 	seconds: Range.optional(),
 	humidity: Range.optional(),
 	note: Sentence.optional(),
+	...Own,
 };
 /* Held hot or cold to change it: heated (72 °C for 15 s, pasteurising),
    a curd cooked (52–54 °C), cooled or chilled. */
@@ -294,7 +301,7 @@ export const Processing = z.strictObject({
 	sources: Sourcing,
 });
 
-const Row = z.object({ k: z.string(), v: z.string() });
+const Row = z.object({ k: z.string(), v: z.string(), ...Own });
 /* How the product at an arrow's head is made (steps.json): a table
    drawn on the arrow, facts and words told on its card, and their sources;
    an example's step its own words, there being no arrow to write them on. */

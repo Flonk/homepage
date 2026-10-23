@@ -132,9 +132,11 @@ const chipOf = (h: S.ProcessingStep) => {
 // A step as the page has it: its processing as cards, and whether any of it ferments, which marks it; not the processing itself.
 const stepOf = (key: string) => {
 	if (!steps[key]) return undefined;
-	const { processing, ...rest } = steps[key];
+	const { processing, table, facts, ...rest } = steps[key];
 	const holds = processing?.steps;
-	return { ...rest, ...(holds && { holds: holds.map(chipOf) }), ...(holds?.some((h) => h.type === 'ferment') && { fermented: true }) };
+	// Its rows as said, their own sources left with the graph's records.
+	const said = (rows?: S.How['table']) => rows?.map(({ k, v }) => ({ k, v }));
+	return { ...rest, ...(table && { table: said(table) }), ...(facts && { facts: said(facts) }), ...(holds && { holds: holds.map(chipOf) }), ...(holds?.some((h) => h.type === 'ferment') && { fermented: true }) };
 };
 
 /**
@@ -276,7 +278,13 @@ const map = S.WorldMap.parse(MAP);
 {
 	const said: S.Sourcing[] = [
 		...[...Object.values(about.products), ...Object.values(about.examples)].map((a) => a.sources),
-		...Object.values(steps).flatMap((h) => [h.sources, ...(h.processing ? [h.processing.sources] : [])]),
+		...Object.values(steps).flatMap((h) => [
+			h.sources,
+			...(h.processing ? [h.processing.sources] : []),
+			// Sources of their own, inside it: a step's, a microbe's, a row's.
+			...(h.processing?.steps ?? []).flatMap((x) => [x.sources, ...(x.type === 'ferment' ? (x.adds?.microbes ?? []).map((m) => m.sources) : [])]),
+			...[...(h.table ?? []), ...(h.facts ?? [])].map((r) => r.sources),
+		]).filter((x) => x !== undefined),
 		...KINDS.map((k) => k.how.sources),
 		...[...Object.values(pictures), ...Object.values(examplePictures)].map((x) => x.sources),
 		...Object.values(shares).map((x) => x.sources),

@@ -331,22 +331,22 @@ export function layout(data: Graph) {
 	const KEY_WIDE = 9;
 	const VALUE_WIDE = 18;
 	const broken = new Map<string, string[]>();
-	const wrap = (said: string, wide: number, face: string) => {
-		const kept = broken.get(`${face}${wide}${said}`);
+	const wrap = (said: string, wide: number, face: string, family?: string) => {
+		const kept = broken.get(`${family}${face}${wide}${said}`);
 		if (kept) return kept;
 		const out: string[] = [];
 		for (const given of said.split('\n')) {
 			let at = '';
 			for (const word of given.split(' ')) {
 				const tried = at ? `${at} ${word}` : word;
-				if (at && measure(tried, 100, face) / 100 > wide) {
+				if (at && measure(tried, 100, face, family) / 100 > wide) {
 					out.push(at);
 					at = word;
 				} else at = tried;
 			}
 			out.push(at);
 		}
-		broken.set(`${face}${wide}${said}`, out);
+		broken.set(`${family}${face}${wide}${said}`, out);
 		return out;
 	};
 	const keyLines = (k: string) => wrap(k, KEY_WIDE, '600');
@@ -357,20 +357,24 @@ export function layout(data: Graph) {
 	   wrapped as wide as the chips run. Laid out in its table's letters,
 	   from its top left. */
 	const holds = (n: Node) => (hangsFrom(n) || panelOf(n) ? [] : (n.how?.holds ?? []));
-	/* Each a card: what it is, small, over what it says; under that, the
-	   microbes it adds in letters so small they run about as wide as what it
-	   says, there being zoom enough to read them; under those its sentence.
-	   In its table's letters: each line's size, the room round them, the bar
-	   for how warm it is held, the room for the arrow between two cards. */
-	const CARD = { title: 0.55, said: 1, tiny: 0.36, note: 0.5, pad: 0.5, bar: 0.16, gap: 1.4, least: 5 };
-	const CARDS_WIDE = 44;
+	/* Each a card no wider than so many of its letters: what it is, small,
+	   over what it says, broken where too long; under that, the microbes it
+	   adds in letters so small they run about as wide as what it says, there
+	   being zoom enough to read them; under those its sentence, as wide as
+	   the card may be. In its table's letters: each line's size, the room
+	   round them, the bar for how warm it is held, the room for the arrow
+	   between two cards, the least and the most a card's words run. */
+	const CARD = { title: 0.55, said: 1, tiny: 0.36, note: 0.5, pad: 0.5, bar: 0.16, gap: 1.4, least: 5, most: 12 };
 	type Said = { said: string; y: number; size: number; face: string; mono: boolean; dim: boolean };
 	type Card = { x: number; y: number; w: number; h: number; warmth?: number; lines: Said[] };
 	type Strip = { w: number; h: number; cards: Card[]; joins: { x: number; y: number }[] };
 	const strips = new Map<Node, Strip>();
 	const cardOf = (c: Chip, f: number): Card => {
 		const inset = CARD.pad + (c.warmth === undefined ? 0 : CARD.bar + CARD.pad * 0.6);
-		const wide = Math.max(CARD.least * f, measure(c.title, CARD.title * f, '700', MONO()), c.said ? measure(c.said, CARD.said * f, '400', MONO()) : 0);
+		const most = CARD.most * f;
+		const saidLines = c.said ? wrap(c.said, most / (CARD.said * f), '400', MONO()) : [];
+		const natural = Math.max(CARD.least * f, measure(c.title, CARD.title * f, '700', MONO()), ...saidLines.map((l) => measure(l, CARD.said * f, '400', MONO())));
+		const wide = Math.min(most, natural);
 		const lines: Said[] = [];
 		let y = CARD.pad * f;
 		const put = (said: string, size: number, face: string, mono: boolean, dim: boolean, leading = 1.25) => {
@@ -378,45 +382,37 @@ export function layout(data: Graph) {
 			lines.push({ said, y: y - size * f * (leading - 1) - size * f * 0.18, size: size * f, face, mono, dim });
 		};
 		put(c.title, CARD.title, '700', true, true, 1.35);
-		if (c.said) put(c.said, CARD.said, '400', true, false, 1.3);
+		for (const said of saidLines) put(said, CARD.said, '400', true, false, 1.3);
 		if (c.microbes) {
 			y += 0.15 * f;
 			for (const said of wrap(c.microbes, wide / (CARD.tiny * f), '400')) put(said, CARD.tiny, '400', false, true, 1.25);
 		}
+		const full = c.note ? most : wide;
 		if (c.note) {
 			y += 0.2 * f;
-			for (const said of wrap(c.note, Math.max(wide, 12 * f) / (CARD.note * f), '400')) put(said, CARD.note, '400', false, false, 1.3);
+			for (const said of wrap(c.note, most / (CARD.note * f), '400')) put(said, CARD.note, '400', false, false, 1.3);
 		}
-		const w = Math.max(wide, ...lines.map((l) => measure(l.said, l.size, l.face, l.mono ? MONO() : undefined)));
-		return { x: 0, y: 0, w: w + (inset + CARD.pad) * f, h: y + CARD.pad * f, warmth: c.warmth, lines };
+		return { x: 0, y: 0, w: Math.max(wide, full) + (inset + CARD.pad) * f, h: y + CARD.pad * f, warmth: c.warmth, lines };
 	};
-	// Laid along in rows, broken where too wide for one, an arrow between two in a row; a row as tall as its tallest card.
+	// Laid along one line, however long, an arrow between each two, at the height of what they say.
 	const stripOf = (n: Node): Strip => {
 		const kept = strips.get(n);
 		if (kept) return kept;
 		const f = tableFont(n);
 		const strip: Strip = { w: 0, h: 0, cards: [], joins: [] };
 		let x = 0;
-		let top = 0;
-		let tall = 0;
 		holds(n).forEach((c, i) => {
 			const card = cardOf(c, f);
-			if (i && x + CARD.gap * f + card.w > CARDS_WIDE * f) {
-				x = 0;
-				top += tall + 0.6 * f;
-				tall = 0;
-			} else if (i) {
-				strip.joins.push({ x: x + (CARD.gap * f) / 2, y: top + (CARD.pad + CARD.title * 1.35 + CARD.said * 0.65) * f });
+			if (i) {
+				strip.joins.push({ x: x + (CARD.gap * f) / 2, y: (CARD.pad + CARD.title * 1.35 + CARD.said * 0.65) * f });
 				x += CARD.gap * f;
 			}
 			card.x = x;
-			card.y = top;
 			strip.cards.push(card);
 			x += card.w;
-			tall = Math.max(tall, card.h);
-			strip.w = Math.max(strip.w, x);
+			strip.h = Math.max(strip.h, card.h);
 		});
-		strip.h = top + tall;
+		strip.w = x;
 		strips.set(n, strip);
 		return strip;
 	};
