@@ -1,4 +1,4 @@
-import type { Firm } from './schema';
+import type { Axes } from './schema';
 
 // What an example goes by besides, as a product's `aka`: found by the search and said on its card.
 export const EXAMPLE_AKA: Record<string, string[]> = {
@@ -384,7 +384,7 @@ export const EXAMPLE_NOTES: Record<string, string> = {
    eaten, by the Codex classes of its moisture in the cheese without its
    fat, and the days it is ripened, the least and the most usual. Estimated
    for now, until the inventory has them. */
-export const EXAMPLE_AXES: Record<string, { firm: Firm; days: [number, number] }> = {
+export const EXAMPLE_AXES: Record<string, Axes> = {
 	Époisses: { firm: 'soft', days: [28, 56] },
 	Munster: { firm: 'soft', days: [21, 90] },
 	Limburger: { firm: 'semi-soft', days: [42, 90] },

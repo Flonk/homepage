@@ -38,6 +38,13 @@ const mustAll = (keys: Iterable<string>, ok: (key: string) => boolean, said: str
 const flat = (label: string) => label.replace(/\n/g, ' ');
 
 // Each record against its schema, and against the products and examples there are.
+z.record(S.ProductId, S.Product).parse(NODES);
+z.array(S.Group).parse(GROUPS);
+z.array(S.Kind).parse(KINDS);
+z.array(S.Split).parse(SPLITS);
+z.record(z.string(), z.array(z.string().min(1)).min(1)).parse(EXAMPLE_AKA);
+z.record(z.string(), z.string().min(1)).parse(EXAMPLE_NOTES);
+z.record(z.string(), S.Axes).parse(EXAMPLE_AXES);
 const pictures = z.record(z.string(), S.Picture).parse(IMAGES);
 const examplePictures = z.record(z.string(), S.Picture).parse(EXAMPLE_IMAGES);
 mustAll(Object.keys(pictures), isProduct, 'picture for unknown');
@@ -95,13 +102,19 @@ const CHEESY = [
 	...['lacticCheese', 'sourMilkCheese', 'plantCheese', 'steamedCheese', 'quark', 'cottageCheese', 'creamCheese', 'mascarpone', 'paneer', 'chhena', 'ricotta', 'wheyCheese', 'processed', 'byaslag', 'eezgii', 'buttermilkCheese', 'hardChhurpi', 'stillCheese', 'cookedCheese', 'mish'],
 ];
 mustAll(CHEESY, isProduct, 'cheese family unknown');
+const cheeses = S.Cheeses.parse(CHEESES);
+mustAll(
+	cheeses.flatMap((c) => [c.family, ...(c.secondary ? [c.secondary] : [])]),
+	isProduct,
+	'cheese of unknown family',
+);
 const CHEESE: Record<string, Cheese> = {};
 const WORLD: string[] = [];
 {
 	const had = new Map<string, string>();
 	for (const x of named) had.set(plainName(x), x);
 	const onMap = new Set<string>();
-	for (const c of S.Cheeses.parse(CHEESES)) {
+	for (const c of cheeses) {
 		const same = [c.name, ...c.aka].map(plainName).map((n) => had.get(n)).find(Boolean) ?? c.name;
 		if (onMap.has(same)) continue;
 		onMap.add(same);
@@ -172,9 +185,17 @@ for (const { from, ids } of SPLITS) mustAll(ids, (id) => NODES[id]?.from === fro
 // The step is written once, on the arrow before it splits; each part says only what it is.
 for (const { step, ids } of SPLITS) mustAll(ids, (id) => !NODES[id].step?.startsWith(step), `repeats the step "${step}" it is split off by:`);
 mustAll([...STAPLE, ...KNOWN], isProduct, 'significance names unknown');
+mustAll(STAPLE, (id) => !KNOWN.has(id), 'both a staple and well known:');
+mustAll(TREATED, isProduct, 'treated names unknown');
 const shares = z.record(z.string(), S.Share).parse(SHARES);
 mustAll(Object.keys(shares), isProduct, 'share for unknown');
 const map = S.WorldMap.parse(MAP);
+// Every country named, one on the map, with its flag.
+mustAll(
+	[...Object.values(regions).flat(), ...cheeses.flatMap((c) => c.countries)],
+	(c) => c in map.countries,
+	'not a country on the map:',
+);
 
 // How much of what is said has no source yet, told once.
 {
@@ -236,7 +257,7 @@ const factsOf = (label: string) => {
 		note: EXAMPLE_NOTES[label],
 		beasts: beastsOf(label) ?? (c && c.milk.length && c.milk.join() !== 'cow' ? c.milk : undefined),
 		axes: EXAMPLE_AXES[label] ?? (c?.firm && c.days ? { firm: c.firm, days: c.days } : undefined),
-		protected: c?.protected,
+		protected: c?.protected ?? undefined,
 		unsure: UNSURE.has(label) ? UNSURE_SAID : undefined,
 		step: steps[label]?.label,
 		// A cheese's sources once: with its paragraph where that is its own, else with how it is made.
@@ -279,11 +300,11 @@ const leaves = [...examples, ...atlas];
 // The names of the families only on the map, and their other names: found by the search, as the map.
 const onTheMap = Object.values(NODES).flatMap((n) => (n.mapped ? [flat(n.label), ...(n.aka ?? [])] : []));
 
-export const graph = {
+export const graph = S.Payload.parse({
 	light: LIGHT,
 	groups: GROUPS.map(({ name, hub }) => ({ name, hub: hub ?? null })),
 	splits: SPLITS,
-	kinds: KINDS,
+	kinds: KINDS.map(({ step, ids, how }) => ({ step, ids, how: howPage(how) })),
 	// How firm a cheese can be, softest first: a panel's rows.
 	firms: S.Firm.options,
 	nodes: [
@@ -313,9 +334,7 @@ export const graph = {
 				// 0 a staple, 1 well known, 2 niche.
 				niche: STAPLE.has(id) ? 0 : KNOWN.has(id) ? 1 : 2,
 				// How much of the world's milk goes its way, in Mt a year and in percent, and how that was worked out (see SHARES).
-				shareMt: shares[id]?.mt,
-				share: shares[id] && (shares[id].mt / WORLD_MILK) * 100,
-				shareSources: shares[id]?.sources,
+				share: shares[id] && { mt: shares[id].mt, percent: (shares[id].mt / WORLD_MILK) * 100, sources: shares[id].sources },
 			};
 		}),
 		...leaves.map(({ kind, ...x }) => x),
@@ -326,4 +345,4 @@ export const graph = {
 	],
 	// The world's outline, for the map under cheese (see map.json); where it is from stays here.
 	map: { height: map.height, countries: map.countries },
-};
+});

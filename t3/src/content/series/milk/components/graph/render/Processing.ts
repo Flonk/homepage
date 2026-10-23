@@ -1,6 +1,6 @@
-import type { Processing } from '../schema';
+import type { Processing, Chip } from '../schema';
 import { MONO } from '../client/base';
-import { chip, card, drawCard, html as chipHtml, CARD, type Chip, type Card } from './ProcessingStep';
+import { chip, card, drawCard, html as chipHtml, CARD, type Card } from './ProcessingStep';
 import { font, type Paint, type Pen } from './canvas';
 import { el } from './dom';
 

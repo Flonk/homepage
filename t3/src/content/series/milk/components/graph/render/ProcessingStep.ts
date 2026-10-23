@@ -1,8 +1,9 @@
-import type { ProcessingStep as Step, HeatTreatment, Ferment, Drying, Coagulate } from '../schema';
+import type { ProcessingStep as Step, HeatTreatment, Ferment, Drying, Chip } from '../schema';
 import { MONO, SANS, measure } from '../client/base';
 import { said as span, inUnit, inTime } from './Range';
 import { font, legible, roundRect, wrap, type Paint, type Pen } from './canvas';
 import { el } from './dom';
+import { SAID as SET } from './Setting';
 
 /*
  * A step of processing, in each of the forms it is drawn in: as the page
@@ -12,9 +13,7 @@ import { el } from './dom';
 
 /* ---- As the page is given it ---- */
 
-/* A Chip: what it is, "🦠 FERMENT"; what it says, "2 weeks @ 20–30°C";
-   what is done, "soured"; the microbes it adds; and its sentence. */
-export type Chip = { title: string; said: string; done: string; microbes?: string; note?: string };
+// As a Chip (see the schema): what it is, what it says, what is done, the microbes it adds, its sentence.
 
 const TITLE: Record<HeatTreatment['does'] | Ferment['does'] | 'dry', [string, string]> = {
 	heat: ['🔥 HEAT', 'heated'],
@@ -39,7 +38,6 @@ const titleOf = (h: Step): [string, string] => {
 	const plain = h as HeatTreatment | Ferment | Drying;
 	return TITLE[plain.type === 'dry' ? 'dry' : plain.does];
 };
-const BY: Record<NonNullable<Coagulate['by']>, string> = { rennet: 'rennet', 'rennet-acid': 'acid and rennet', acid: 'acid', 'acid-heat': 'acid and heat', plant: 'plant enzymes', heat: 'heat' };
 
 export const chip = (h: Step): Chip => {
 	const held = [h.type === 'homogenise' && h.bar && span(h.bar, inUnit(' bar')), h.seconds && span(h.seconds, inTime), h.temperature && span(h.temperature, inUnit('°C'))]
@@ -48,7 +46,7 @@ export const chip = (h: Step): Chip => {
 	const [title, done] = titleOf(h);
 	return {
 		title,
-		said: [h.type === 'coagulate' && h.by && `by ${BY[h.by]}`, held, h.humidity && `${span(h.humidity, inUnit('%'))} RH`].filter(Boolean).join(', '),
+		said: [h.type === 'coagulate' && h.by && `by ${SET[h.by]}`, held, h.humidity && `${span(h.humidity, inUnit('%'))} RH`].filter(Boolean).join(', '),
 		done,
 		...(h.type === 'ferment' && h.adds?.microbes.length && { microbes: h.adds.microbes.map((m) => m.name).join(', ') }),
 		...(h.note && { note: h.note }),

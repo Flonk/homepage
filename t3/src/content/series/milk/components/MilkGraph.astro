@@ -1938,7 +1938,7 @@ const { focus } = Astro.props;
 			}
 			title.append(el('h3', '', name(n)));
 			if (n.aka?.length) title.append(el('p', 'milk-about-aka', `Also known as ${n.aka.join(', ')}`));
-			if (n.share !== undefined) title.append(...shareHtml(n.shareMt!, n.share, n.shareSources!));
+			if (n.share) title.append(...shareHtml(n.share));
 			top.append(title);
 			top.classList.toggle('has-image', !!n.image);
 			const parts: HTMLElement[] = [top];

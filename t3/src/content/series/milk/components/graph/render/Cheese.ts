@@ -1,5 +1,6 @@
-import type { Cheese, About, How } from '../schema';
+import type { Cheese, About, How, Protected } from '../schema';
 import { MILK } from './Beasts';
+import { SAID as SET } from './Setting';
 import { nameOf } from './Regions';
 
 /*
@@ -14,11 +15,10 @@ export const about = (c: Cheese): About => {
 	const text = c.desc ?? `A ${c.firm ? `${c.firm} ` : ''}cheese${milk ? ` of ${milk} milk` : ''}${from ? ` from ${from}` : ''}.`;
 	return { text, sources: c.sources };
 };
-const SET_WORD: Record<string, string> = { rennet: 'rennet', acid: 'lactic acid', 'rennet-acid': 'lactic acid and a little rennet', 'acid-heat': 'heat and acid', plant: 'a plant coagulant', heat: 'boiled down', none: 'melted' };
 export const how = (c: Cheese): Omit<How, 'sources'> => ({
 	table: [
 		...(c.milk.length ? [{ k: 'Milk', v: milkOf(c, ', ') }] : []),
-		...(c.coagulation ? [{ k: 'Set with', v: SET_WORD[c.coagulation] ?? c.coagulation }] : []),
+		...(c.coagulation ? [{ k: 'Set by', v: SET[c.coagulation] }] : []),
 		...(c.rind ? [{ k: 'Rind', v: c.rind }] : []),
 		...(c.protected ? [{ k: 'Protected', v: c.protected }] : []),
 	],
@@ -26,7 +26,7 @@ export const how = (c: Cheese): Omit<How, 'sources'> => ({
 	text: c.sources.text,
 });
 // Its seal, as pointing at it says it.
-export const SEAL: Record<string, string> = {
+export const SEAL: Record<Protected, string> = {
 	PDO: 'Protected designation of origin (PDO)',
 	PGI: 'Protected geographical indication (PGI)',
 	TSG: 'Traditional speciality guaranteed (TSG)',

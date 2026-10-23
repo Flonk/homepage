@@ -1,4 +1,4 @@
-import type { Sourcing } from '../schema';
+import type { SharePage } from '../schema';
 import { html as sourcesHtml } from './Sourcing';
 import { el } from './dom';
 
@@ -9,4 +9,4 @@ export const said = (mt: number, percent: number) => {
 	const mass = mt >= 1 ? `${Math.round(mt)} Mt` : `${+(mt * 1000).toPrecision(2)} thousand t`;
 	return `About ${mass} a year, ${pct} of the world’s milk by weight: an estimate.`;
 };
-export const html = (mt: number, percent: number, sources: Sourcing) => [el('p', 'milk-about-aka', `${said(mt, percent)} ${sources.text ?? ''}`), sourcesHtml(sources)];
+export const html = ({ mt, percent, sources }: SharePage) => [el('p', 'milk-about-aka', `${said(mt, percent)} ${sources.text}`), sourcesHtml(sources)];

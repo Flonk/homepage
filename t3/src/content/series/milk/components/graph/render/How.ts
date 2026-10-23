@@ -1,5 +1,4 @@
-import type { How } from '../schema';
-import type { Chip } from './ProcessingStep';
+import type { How, HowPage } from '../schema';
 import { page as processingPage, html as processingHtml } from './Processing';
 import { page as rowsPage, html as rowsHtml } from './Row';
 import { el } from './dom';
@@ -13,13 +12,12 @@ import { el } from './dom';
 /* ---- As the page is given it ---- */
 
 // Its processing as chips and whether any of it ferments; its rows as said; not the processing itself.
-export const page = ({ processing, table, facts, ...rest }: How) => ({
+export const page = ({ processing, table, facts, ...rest }: How): HowPage => ({
 	...rest,
 	...(table && { table: rowsPage(table) }),
 	...(facts && { facts: rowsPage(facts) }),
 	...(processing && processingPage(processing)),
 });
-export type Page = Omit<How, 'sources' | 'processing'> & { holds?: Chip[]; fermented?: boolean };
 
 /* ---- On a card ---- */
 
@@ -30,7 +28,7 @@ export const FERMENT_SAID = 'Fermented';
 /* Its table, the same as on its arrow: its processing's chips and the
    microbes each brings, and its rows, or its facts where it has no rows,
    they being the rows said at length. */
-export const html = (how: Page) => {
+export const html = (how: HowPage) => {
 	const rows = how.table?.length ? how.table : (how.facts ?? []);
 	const holds = how.holds ?? [];
 	if (!rows.length && !holds.length) return [];

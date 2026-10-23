@@ -179,7 +179,7 @@ export function layout(data: Graph) {
 	   by how much goes each way, not by how much is made of it. A step
 	   that splits, or a branch point, has the shares of what it leads to. */
 	const shareOf = (n: Node): number | undefined => {
-		if (!n.hub) return n.share;
+		if (!n.hub) return n.share?.percent;
 		const shares = productsOf(n).map(shareOf);
 		return shares.every((v) => v !== undefined) ? shares.reduce((t, v) => t! + v!, 0) : undefined;
 	};
@@ -193,7 +193,7 @@ export function layout(data: Graph) {
 		const kids = productsOf(p);
 		if (kids.length && kids.every((k) => shareOf(k) !== undefined)) {
 			const shareTo = (k: Node) => {
-				if (!k.hub) return scaleBy(k, ((k.share! / 100) * allMilk) / carried.get(k)!);
+				if (!k.hub) return scaleBy(k, ((k.share!.percent / 100) * allMilk) / carried.get(k)!);
 				const theirs = productsOf(k);
 				theirs.forEach(shareTo);
 				carried.set(k, theirs.reduce((t, g) => t + carried.get(g)!, 0));

@@ -27,7 +27,7 @@ import type * as S from './schema';
  * ripened across and how firm it is down (see EXAMPLE_AXES); what is made
  * from it branches off to its right as from any other.
  */
-export type Product = Omit<S.Product, 'sources'>;
+export type Product = S.Product;
 
 /** Every product, by a short id. */
 export const NODES: Record<string, Product> = {

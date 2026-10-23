@@ -1,4 +1,4 @@
-import type { How } from '../schema';
+import type { How, RowPage } from '../schema';
 import { measure } from '../client/base';
 import { font, roundRect, wrap, type Paint, type Pen } from './canvas';
 import { el } from './dom';
@@ -9,11 +9,12 @@ import { el } from './dom';
  * on a card.
  */
 type Row = NonNullable<How['table']>[number];
+type Said = RowPage;
 
 /* ---- As the page is given them ---- */
 
 // What they say, their own sources left with the graph's records.
-export const page = (rows?: Row[]) => rows?.map(({ k, v }) => ({ k, v }));
+export const page = (rows?: Row[]): Said[] | undefined => rows?.map(({ k, v }) => ({ k, v }));
 
 /* ---- On the canvas ---- */
 
@@ -28,16 +29,16 @@ export const keyLines = (k: string) => wrap(k, KEY_WIDE, '600');
 export const rowLines = (v: string) => wrap(v, VALUE_WIDE, '400');
 // The room in a cell round its words.
 export const pad = (f: number) => f * 0.6;
-export const columns = (rows: { k: string; v: string }[], f: number) => {
+export const columns = (rows: Said[], f: number) => {
 	const widest = (said: string[], face: string) => Math.max(...said.map((t) => measure(t, f, face)));
 	return { key: widest(rows.flatMap(({ k }) => keyLines(k)), '600'), value: widest(rows.flatMap(({ v }) => rowLines(v)), '400') };
 };
-export const rowHeight = ({ k, v }: { k: string; v: string }, f: number) => Math.max(keyLines(k).length, rowLines(v).length) * ROW * f + pad(f);
+export const rowHeight = ({ k, v }: Said, f: number) => Math.max(keyLines(k).length, rowLines(v).length) * ROW * f + pad(f);
 
 /* On the pills' white, the names' column a shade darker, ruled, framed;
    where it is, its column's edge, how wide and how tall. */
 export type At = { left: number; top: number; split: number; w: number; h: number };
-export const draw = (g: Pen, rows: { k: string; v: string }[], { left, top, split, w, h }: At, f: number, { ink, on }: Paint) => {
+export const draw = (g: Pen, rows: Said[], { left, top, split, w, h }: At, f: number, { ink, on }: Paint) => {
 	const r = f * (4 / 16) * 1.5;
 	roundRect(g, left, top, w, h, r);
 	g.fillStyle = ink.pill;
@@ -81,7 +82,7 @@ export const draw = (g: Pen, rows: { k: string; v: string }[], { left, top, spli
 
 /* ---- On a card ---- */
 
-export const html = (rows: { k: string; v: string }[]) => {
+export const html = (rows: Said[]) => {
 	const table = el('table');
 	for (const { k, v } of rows) {
 		const row = el('tr');

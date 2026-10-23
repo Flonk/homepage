@@ -31,8 +31,38 @@ export const Sourcing = z.union([Sources, Unsourced]);
    vouches for it: a step its processing's, a row its step's. */
 const Own = { sources: Sourcing.optional() };
 
-// A country, by its ISO 3166-1 alpha-2 code.
+/* ---- What a bare string or number stands for ---- */
+
+// A country, by its ISO 3166-1 alpha-2 code; that it is one on the map, the graph checks as it builds.
 export const Country = z.string().regex(/^[A-Z]{2}$/);
+// A product, by its id: what it is made from, drawn below, drawn again (which ids there are, the graph checks as it builds).
+export const ProductId = z.string().regex(/^[a-z][A-Za-z0-9]*$/);
+// How firm a cheese is, where a panel puts it.
+export const Firm = z.enum(['fresh', 'soft', 'semi-soft', 'semi-hard', 'hard', 'extra-hard']);
+// A protected name: a designation of origin, a geographical indication, a traditional speciality.
+export const Protected = z.enum(['PDO', 'PGI', 'TSG']);
+// A cheese's rind.
+export const Rind = z.enum(['washed', 'none', 'natural', 'bloomy', 'brine', 'other', 'waxed']);
+// What sets a milk into a curd: rennet, acid and a little rennet, acid, acid and heat, a plant's enzymes, heat alone.
+export const Setting = z.enum(['rennet', 'rennet-acid', 'acid', 'acid-heat', 'plant', 'heat']);
+// A span of days, the least and the most, from none up.
+export const Days = z.tuple([z.number().min(0), z.number().min(0)]).refine(([a, b]) => a <= b, 'from the least to the most');
+
+/* A measure that is seldom one number: between a least and a most, or
+   only one of them ("above 40 °C", "up to 6 days"), and whether either is
+   only about so ("about 23 °C", "overnight"). */
+export const Range = z
+	.strictObject({ min: z.number().optional(), max: z.number().optional(), about: z.boolean().optional() })
+	.refine((r) => r.min !== undefined || r.max !== undefined, 'a range needs a least or a most')
+	.refine((r) => r.min === undefined || r.max === undefined || r.min <= r.max, 'a range runs from its least to its most');
+// A Range in a unit, each end within what the unit can be.
+const within = (lo: number, hi: number, unit: string) =>
+	Range.refine((r) => [r.min, r.max].every((x) => x === undefined || (x >= lo && x <= hi)), `${unit} from ${lo} to ${hi}`);
+export const Seconds = within(0, 3.2e9, 'seconds');
+export const Celsius = within(-60, 300, '°C');
+export const Percent = within(0, 100, 'percent');
+export const PH = within(0, 14, 'pH');
+export const Bar = within(0, 2000, 'bar');
 
 // The animals milked: a product's or an example's (MILK_OF), and the map's cheeses' (cheeses.json).
 export const Beast = z.enum(['cow', 'sheep', 'goat', 'horse', 'donkey', 'buffalo', 'camel', 'yak', 'reindeer']);
@@ -55,10 +85,6 @@ export const AboutFile = z.object({
 	examples: z.record(z.string(), About),
 });
 
-// The countries a product or an example is from (regions.json).
-export const Regions = z.object({ countries: Countries, sources: Sourcing });
-export const RegionsFile = z.record(z.string(), Regions);
-
 // The animals whose milk a thing is made from, the biggest share first, each once (MILK_OF, cheeses.json).
 export const Beasts = z
 	.array(Beast)
@@ -76,13 +102,15 @@ export const Product = z.object({
 	// Drawn as leaves under it, or in its panel.
 	examples: z.array(z.string()).optional(),
 	// What it is made from, and how, written on the arrow in; the other ways it is made, not drawn.
-	from: z.string().optional(),
+	from: ProductId.optional(),
 	step: z.string().optional(),
-	alsoFrom: z.array(z.string()).optional(),
+	alsoFrom: z.array(ProductId).optional(),
 	// A remark behind an info mark on its pill.
 	note: z.string().optional(),
-	// For all of the above: its names, its examples being of it, what it is made from and how, its remark.
-	sources: Sourcing,
+	/* For all of the above: its names, its examples being of it, what it is
+	   made from and how, its remark. Not yet given for most: those without
+	   are counted as the graph is built. */
+	...Own,
 	// How it is drawn, needing no sources: a kind with a ruler under it, and where on its parent's ruler one hangs.
 	scale: z.object({ name: z.string(), unit: z.string(), to: z.number(), every: z.number() }).optional(),
 	at: z.number().optional(),
@@ -91,52 +119,21 @@ export const Product = z.object({
 	map: z.boolean().optional(),
 	mapped: z.boolean().optional(),
 	// Drawn just below the branch of this sibling.
-	below: z.string().optional(),
+	below: ProductId.optional(),
 	// Not a product of its own but this one drawn again.
-	link: z.string().optional(),
+	link: ProductId.optional(),
 });
-export const Products = z.record(z.string(), Product);
 
 // The families the products are in, in order; one with a hub drawn as one branch where a parent has two or more of it (GROUPS).
-export const Group = z.object({ name: z.string(), hub: z.string().optional(), ids: z.array(z.string()), sources: Sourcing });
-
-// How much a product matters to how people eat and live: 0 a staple, 1 well known, 2 niche (STAPLE, KNOWN).
-export const Significance = z.object({ niche: z.union([z.literal(0), z.literal(1), z.literal(2)]), sources: Sourcing });
+export const Group = z.strictObject({ name: z.string().min(1), hub: z.string().optional(), ids: z.array(ProductId).min(1), ...Own });
 
 // How much of it is made, as its mass in million tonnes a year (SHARES).
 export const Share = z.object({ mt: z.number().nonnegative(), sources: Sourcing });
 
-// Everything kept of a product, gathered from all its records.
-export const Node = Product.extend({
-	id: z.string(),
-	about: About,
-	image: Picture.optional(),
-	regions: Regions.optional(),
-	beasts: Beasts.optional(),
-	group: z.string(),
-	significance: Significance,
-	share: Share.optional(),
-});
-
 /* ---- Each example ---- */
 
-export const Firm = z.enum(['fresh', 'soft', 'semi-soft', 'semi-hard', 'hard', 'extra-hard']);
 // Where a cheese goes in a panel: how firm, and the least and most days it is ripened (EXAMPLE_AXES).
-export const Axes = z.object({ firm: Firm, days: z.tuple([z.number(), z.number()]), sources: Sourcing });
-
-export const Example = z.object({
-	name: z.string(),
-	about: About.optional(),
-	image: Picture.optional(),
-	// Its other names (EXAMPLE_AKA), and a remark on it (EXAMPLE_NOTES).
-	aka: z.object({ names: z.array(z.string()).min(1), sources: Sourcing }).optional(),
-	note: z.object({ text: z.string(), sources: Sourcing }).optional(),
-	regions: Regions.optional(),
-	beasts: Beasts.optional(),
-	axes: Axes.optional(),
-	// How it is made from its product, where its step is its own (steps.json).
-	how: z.lazy(() => How).optional(),
-});
+export const Axes = z.strictObject({ firm: Firm, days: Days, ...Own });
 
 /* ---- Each cheese on the map (cheeses.json) ---- */
 
@@ -144,17 +141,18 @@ export const Cheese = z.object({
 	name: z.string(),
 	aka: z.array(z.string()),
 	// The id of its family, and of a second one it is of too.
-	family: z.string(),
-	secondary: z.string().optional(),
-	countries: z.array(Country),
+	family: ProductId,
+	secondary: ProductId.optional(),
+	countries: z.array(Country).min(1),
 	milk: z.union([Beasts, z.array(Beast).length(0)]),
 	firm: Firm.nullable(),
-	days: z.tuple([z.number(), z.number()]).nullable(),
+	days: Days.nullable(),
 	// The days not found in a source, but its family's usual.
 	estimated: z.boolean(),
-	coagulation: z.enum(['rennet', 'rennet-acid', 'acid', 'acid-heat', 'plant', 'heat', 'none']).optional(),
-	rind: z.enum(['washed', 'none', 'natural', 'bloomy', 'brine', 'other', 'waxed']).nullable().optional(),
-	protected: z.enum(['PDO', 'PGI', 'TSG']).nullable().optional(),
+	// What sets it, or none, a cheese only melted.
+	coagulation: z.union([Setting, z.literal('none')]).optional(),
+	rind: Rind.nullable().optional(),
+	protected: Protected.nullable().optional(),
 	desc: z.string().optional(),
 	/* Where in its first country it is made: the region, the place as
 	   latitude and longitude and as x and y on the map, and whether that
@@ -176,20 +174,16 @@ export const WorldMap = z.object({
 	height: z.number(),
 	countries: z.record(
 		Country,
-		z.object({ name: z.string(), label: z.tuple([z.number(), z.number()]), rings: z.array(z.array(z.number())) }),
+		z.object({
+			name: z.string(),
+			label: z.tuple([z.number(), z.number()]),
+			rings: z.array(z.array(z.number()).refine((r) => r.length % 2 === 0, 'x, y pairs')),
+		}),
 	),
 	sources: Sourcing,
 });
 
 /* ---- Each arrow ---- */
-
-/* A measure that is seldom one number: between a least and a most, or
-   only one of them ("above 40 °C", "up to 6 days"), and whether either is
-   only about so ("about 23 °C", "overnight"). */
-export const Range = z
-	.strictObject({ min: z.number().optional(), max: z.number().optional(), about: z.boolean().optional() })
-	.refine((r) => r.min !== undefined || r.max !== undefined, 'a range needs a least or a most')
-	.refine((r) => r.min === undefined || r.max === undefined || r.min <= r.max, 'a range runs from its least to its most');
 
 /* A living thing at work in a ferment, by its name today, with the names
    it is still found under; or, where no species is named, the group it is
@@ -219,7 +213,7 @@ export const Inoculum = z.strictObject({
 	microbes: z.array(Microbe),
 	by: z.array(z.enum(['starter', 'backslop', 'grains', 'wild', 'vessel', 'place'])).min(1).optional(),
 	// How much is put in, as a share of the milk, in percent.
-	dose: Range.optional(),
+	dose: Percent.optional(),
 	// What it sours in, where that matters: the gourd, the pot, how it is smoked.
 	vessel: z.string().optional(),
 });
@@ -232,9 +226,9 @@ const Sentence = z
 	.min(1)
 	.refine((s) => !/[.!?]\s+[A-Z][a-z]+\s/.test(s.trim()), 'one sentence');
 const Held = {
-	temperature: Range.optional(),
-	seconds: Range.optional(),
-	humidity: Range.optional(),
+	temperature: Celsius.optional(),
+	seconds: Seconds.optional(),
+	humidity: Percent.optional(),
 	note: Sentence.optional(),
 	...Own,
 };
@@ -259,9 +253,9 @@ export const Ferment = z.strictObject({
 	kinds: z.array(z.enum(['lactic', 'yeast', 'mould', 'smear', 'propionic', 'animal'])).min(1).optional(),
 	adds: Inoculum.optional(),
 	...Held,
-	pH: Range.optional(),
-	acidity: Range.optional(),
-	alcohol: Range.optional(),
+	pH: PH.optional(),
+	acidity: Percent.optional(),
+	alcohol: Percent.optional(),
 });
 // Held to dry: in the sun, in the air, in a spray drier.
 export const Drying = z.strictObject({
@@ -276,11 +270,11 @@ export const Drying = z.strictObject({
    plant's enzymes (thistle, fig), by heat alone, until it is so sour.
    Churned: cream or soured milk beaten until its fat clumps into butter. */
 export const Pasteurise = z.strictObject({ type: z.literal('pasteurise'), ...Held });
-export const Homogenise = z.strictObject({ type: z.literal('homogenise'), bar: Range.optional(), ...Held });
+export const Homogenise = z.strictObject({ type: z.literal('homogenise'), bar: Bar.optional(), ...Held });
 export const Coagulate = z.strictObject({
 	type: z.literal('coagulate'),
-	by: z.enum(['rennet', 'rennet-acid', 'acid', 'acid-heat', 'plant', 'heat']).optional(),
-	pH: Range.optional(),
+	by: Setting.optional(),
+	pH: PH.optional(),
 	...Held,
 });
 export const Churn = z.strictObject({ type: z.literal('churn'), ...Held });
@@ -320,22 +314,84 @@ export const How = z.object({
 export const Steps = z.record(z.string(), How);
 
 // Products made together by one step, from one parent: one arrow, split (SPLITS).
-export const Split = z.object({ from: z.string(), step: z.string(), ids: z.array(z.string()).min(2), sources: Sourcing });
+export const Split = z.strictObject({ from: ProductId, step: z.string().min(1), ids: z.array(ProductId).min(2), ...Own });
 
 // Kinds of a family's step: one branch off the family's hub, named, before each splits off (KINDS).
-export const Kind = z.object({ step: z.string(), ids: z.array(z.string()), how: How });
+export const Kind = z.strictObject({ step: z.string().min(1), ids: z.array(ProductId).min(1), how: How });
 
-// Everything kept of an arrow, from its parent to the product at its head.
-export const Arrow = z.object({
-	from: z.string(),
-	to: z.string(),
-	// Its words: the product's step, or the split's or the kind's it is part of; their sources are theirs.
-	step: z.string(),
-	how: How.optional(),
-	split: Split.optional(),
-	kind: Kind.shape.step.optional(),
-	// How near its product sits, needing no sources: a light step (TREATED, LIGHT) counts for 0.4, any other for 1.
-	weight: z.union([z.literal(1), z.literal(0.4)]),
+/* ---- The page: what the graph is given (see index.ts, and render/ for how each is made) ---- */
+
+// A step of processing as a card: what it is ("🦠 FERMENT"), what it says ("2 weeks @ 20–30°C"), what is done ("soured"), the microbes it adds, its sentence.
+export const Chip = z.strictObject({ title: z.string(), said: z.string(), done: z.string(), microbes: z.string().optional(), note: z.string().optional() });
+// A photograph where it is, and its credit.
+export const PicturePage = z.strictObject({ src: z.string(), credit: z.string(), author: z.string(), license: z.string(), source: z.string() });
+export const RowPage = z.strictObject({ k: z.string(), v: z.string() });
+/* How it is made: its rows, its processing as chips and whether any of it
+   ferments; its sources, but for a cheese on the map, whose are with its
+   paragraph. */
+export const HowPage = z.strictObject({
+	label: z.string().optional(),
+	table: z.array(RowPage).optional(),
+	facts: z.array(RowPage).optional(),
+	text: z.string().optional(),
+	sources: Sourcing.optional(),
+	holds: z.array(Chip).optional(),
+	fermented: z.literal(true).optional(),
+});
+// How much of the world's milk goes its way: in Mt a year, in percent, and how that was worked out.
+export const SharePage = z.strictObject({ mt: z.number().nonnegative(), percent: z.number().min(0).max(100), sources: Sourcing });
+/* A product or an example as the page is given it. A product's place in
+   the tree and how it is drawn (see Product); an example's or a map
+   cheese's own: its rank among its kind's, its axes in a panel, where on
+   the map it is put. */
+export const PageNode = z.strictObject({
+	id: z.string(),
+	label: z.string(),
+	aka: z.array(z.string()).optional(),
+	note: z.string().optional(),
+	image: PicturePage.optional(),
+	about: About.optional(),
+	named: z.array(z.string()).optional(),
+	regions: z.array(Country).min(1).optional(),
+	how: HowPage.optional(),
+	step: z.string().optional(),
+	scale: Product.shape.scale,
+	at: z.number().optional(),
+	panel: z.boolean().optional(),
+	map: z.boolean().optional(),
+	below: ProductId.optional(),
+	link: ProductId.optional(),
+	beasts: Beasts.optional(),
+	// Which family's slice it is held in; milk, in the middle, in none (−1).
+	group: z.number().int(),
+	// 0 a staple, 1 well known, 2 niche (see STAPLE and KNOWN).
+	niche: z.union([z.literal(0), z.literal(1), z.literal(2)]),
+	share: SharePage.optional(),
+	example: z.literal(true).optional(),
+	rank: z.number().int().optional(),
+	axes: Axes.optional(),
+	protected: Protected.optional(),
+	// Why its place is a guess, where it is.
+	unsure: z.string().optional(),
+	// A cheese on the map: the country it is put in, the region there, where on the map, whether that is a guess, its family's name.
+	onMap: z.literal(true).optional(),
+	place: Country.optional(),
+	area: z.string().optional(),
+	spot: z.tuple([z.number(), z.number()]).optional(),
+	guessed: z.boolean().optional(),
+	family: z.string().optional(),
+});
+export const Payload = z.strictObject({
+	// How near a light step puts a product, against 1 for any other (see TREATED).
+	light: z.number().gt(0).lt(1),
+	groups: z.array(z.strictObject({ name: z.string(), hub: z.string().nullable() })),
+	splits: z.array(Split),
+	kinds: z.array(z.strictObject({ step: z.string(), ids: z.array(ProductId), how: HowPage })),
+	// How firm a cheese can be, softest first: a panel's rows.
+	firms: z.array(Firm),
+	nodes: z.array(PageNode),
+	links: z.array(z.strictObject({ source: z.string(), target: z.string(), weight: z.number() })),
+	map: WorldMap.pick({ height: true, countries: true }),
 });
 
 export type Sources = z.infer<typeof Sources>;
@@ -347,11 +403,13 @@ export type Picture = z.infer<typeof Picture>;
 export type About = z.infer<typeof About>;
 export type Share = z.infer<typeof Share>;
 export type Product = z.infer<typeof Product>;
-export type Node = z.infer<typeof Node>;
-export type Example = z.infer<typeof Example>;
 export type Cheese = z.infer<typeof Cheese>;
 export type How = z.infer<typeof How>;
-export type Arrow = z.infer<typeof Arrow>;
+export type Protected = z.infer<typeof Protected>;
+export type Setting = z.infer<typeof Setting>;
+export type Group = z.infer<typeof Group>;
+export type Split = z.infer<typeof Split>;
+export type Kind = z.infer<typeof Kind>;
 export type Ferment = z.infer<typeof Ferment>;
 export type Range = z.infer<typeof Range>;
 export type Processing = z.infer<typeof Processing>;
@@ -360,3 +418,10 @@ export type HeatTreatment = z.infer<typeof HeatTreatment>;
 export type Coagulate = z.infer<typeof Coagulate>;
 export type Drying = z.infer<typeof Drying>;
 export type Axes = z.infer<typeof Axes>;
+export type Chip = z.infer<typeof Chip>;
+export type PicturePage = z.infer<typeof PicturePage>;
+export type RowPage = z.infer<typeof RowPage>;
+export type HowPage = z.infer<typeof HowPage>;
+export type PageNode = z.infer<typeof PageNode>;
+export type SharePage = z.infer<typeof SharePage>;
+export type Payload = z.infer<typeof Payload>;

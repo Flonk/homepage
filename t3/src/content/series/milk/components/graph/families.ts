@@ -1,4 +1,4 @@
-import type { How } from './schema';
+import type * as S from './schema';
 
 /**
  * The families, each given its own slice of the circle round milk, in the
@@ -14,7 +14,7 @@ import type { How } from './schema';
  * "ferment", then soured milk, kefir, yoghurt). A family without one already
  * starts at a product of its own (cream at raw cream, cheese at rennet curd).
  */
-export const GROUPS: { name: string; hub?: string; ids: string[] }[] = [
+export const GROUPS: S.Group[] = [
 	{
 		name: 'Milks',
 		ids: ['certified', 'homogenised', 'pasteurised', 'fresh', 'esl', 'uht', 'thermised', 'sterilised', 'evaporated', 'milkPowder', 'maltedMilk', 'flavouredMilk', 'milkTea', 'lactoseFree', 'tonedMilk', 'bakedMilk', 'skimRaw', 'semi', 'semiUht', 'semiEvaporated', 'skimmed', 'ultrafilteredMilk', 'skimmedEvaporated', 'skimmedPowder', 'calfReplacer', 'recombined', 'reconstituted', 'infantFormula'],
@@ -80,7 +80,7 @@ export const GROUPS: { name: string; hub?: string; ids: string[] }[] = [
  * here, so its own step says so.) `how` is told of when the kind's arrow is
  * clicked, as a product's step is (see steps.json).
  */
-export const KINDS: { step: string; ids: string[]; how: How }[] = [
+export const KINDS: S.Kind[] = [
 	{
 		step: 'mesophilic, 20–30 °C',
 		ids: ['soured', 'dickmilch', 'filmjolk', 'dahi', 'ymer', 'cultureButtermilk', 'piima', 'ropy'],
@@ -111,7 +111,7 @@ export const KINDS: { step: string; ids: string[]; how: How }[] = [
 	},
 ];
 
-export const SPLITS: { from: string; step: string; ids: string[] }[] = [
+export const SPLITS: S.Split[] = [
 	{ from: 'raw', step: 'separate', ids: ['rawCream', 'skimRaw'] },
 	{ from: 'cream', step: 'churn', ids: ['butter', 'churn'] },
 	{ from: 'cream', step: 'cook with flour, stir', ids: ['staka', 'stakovoutiro'] },

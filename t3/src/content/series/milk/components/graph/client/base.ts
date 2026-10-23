@@ -1,60 +1,18 @@
 import type * as S from '../schema';
-import type { Page as HowPage } from '../render/How';
-import type { Page as PicturePage } from '../render/Picture';
-type Sourcing = S.Sourcing;
 
-/* A product, an example or a branch point, as the page is given it (see
-   milk/graph/index.ts) and as it is laid out: its own fields as the schema has
-   them, the rest worked out on the way. */
-export type Node = Pick<S.Product, 'label' | 'step' | 'scale' | 'at' | 'panel' | 'map' | 'below' | 'link' | 'note' | 'aka'> & {
-	id: string;
+/* A product, an example or a branch point: as the page is given it (see
+   PageNode), and as it is laid out here, where it is, how big, how many
+   steps from milk; a branch point is one the layout adds. */
+export type Node = S.PageNode & {
 	x: number;
 	y: number;
-	// Its photograph, if it has one, and whose it is.
-	image?: PicturePage;
-	// What it is, said when it is clicked, and where that was said first.
-	about?: S.About;
-	// All a product's examples, the drawn and the rest.
-	named?: string[];
-	// The countries it comes from, if it is regional.
-	regions?: string[];
-	// How the step into it is done, and the sources (see steps.json).
-	// A cheese on the map's sources are with its paragraph (see about).
-	how?: Omit<HowPage, 'sources'> & { sources?: Sourcing };
-	// How much of the world's milk goes its way, in Mt a year and in percent, and how that was worked out (see SHARES).
-	shareMt?: number;
-	share?: number;
-	shareSources?: Sourcing;
-	// Where a cheese goes in a panel (see EXAMPLE_AXES).
-	axes?: { firm: S.Firm; days: [number, number] };
-	// A cheese on the map, with the country it is put in (see WORLD).
-	onMap?: boolean;
-	place?: string;
-	// The region of its country it is from, where on the map that is, and whether that is a guess.
-	area?: string;
-	spot?: [number, number];
-	guessed?: boolean;
-	// The family of cheese it is of, the family itself drawn only as the map (see mapped).
-	family?: string;
-	// A protected name (PDO, PGI or TSG), and why its place is a guess, if it is.
-	protected?: string;
-	unsure?: string;
-	// The animals it is made from the milk of, if not a cow (see MILK_OF).
-	beasts?: S.Beasts;
-	// Which family's slice it is held in; milk, in the middle, is in none.
-	group: number;
-	// 0 a staple, 1 well known, 2 niche (see STAPLE and KNOWN).
-	niche: number;
-	hub?: boolean;
-	// An example of its parent, not made from it, kept in the order they are listed.
-	example?: boolean;
-	rank?: number;
-	// Steps of making from milk, a treatment counting light (see TREATED).
-	dist: number;
 	w: number;
 	h: number;
+	// Steps of making from milk, a treatment counting light (see TREATED).
+	dist: number;
+	hub?: true;
 };
-export type Made = { source: string; target: string; weight: number };
+export type Made = S.Payload['links'][number];
 export type Edge = { source: Node; target: Node; made: boolean };
 
 export const ROOT = 'raw';
@@ -159,17 +117,8 @@ export const setSpacing = (to: number) => {
 // How many have been drawn, to name each one's own parts apart.
 let drawn = 0;
 export const nextUid = () => `milk-${++drawn}`;
-export type Graph = {
-	light: number;
-	// How firm a cheese can be, softest first (see S.Firm).
-	firms: string[];
-	groups: { name: string; hub: string | null }[];
-	splits: { from: string; step: string; ids: string[] }[];
-	kinds: { step: string; ids: string[]; how: Node['how'] }[];
-	nodes: Node[];
-	links: Made[];
-	map: { height: number; countries: Record<string, { name: string; label: [number, number]; rings: number[][] }> };
-};
+// The page's graph, its products and examples laid out (see Node).
+export type Graph = Omit<S.Payload, 'nodes'> & { nodes: Node[] };
 /* Only what is made from the milk of the animals chosen, and what that
    is made from, so the tree still reads down to it. A product with no
    animal marked is a cow's; one drawn again goes as the one it is of. */
