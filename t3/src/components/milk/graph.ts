@@ -193,6 +193,8 @@ placed(KINDS, 'kind');
 // Milk is in none; nor is a family only on the map, which is not drawn.
 mustAll(Object.keys(NODES), (id) => id === 'raw' || !!NODES[id].mapped || groupOf.has(id), 'in no group:');
 for (const { from, ids } of SPLITS) mustAll(ids, (id) => NODES[id]?.from === from, `split off ${from} but not made from it:`);
+// The step is written once, on the arrow before it splits; each part says only what it is.
+for (const { step, ids } of SPLITS) mustAll(ids, (id) => !NODES[id].step?.startsWith(step), `repeats the step "${step}" it is split off by:`);
 mustAll([...STAPLE, ...KNOWN], isProduct, 'significance names unknown');
 const shares = z.record(z.string(), S.Share).parse(SHARES);
 mustAll(Object.keys(shares), isProduct, 'share for unknown');

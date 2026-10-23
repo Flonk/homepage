@@ -398,7 +398,7 @@ export const NODES: Record<string, Product> = {
 		examples: ['Ylette'],
 		from: 'skimmed',
 		alsoFrom: ['cream'],
-		step: 'ferment, drain, add cream',
+		step: 'the curd, with cream',
 		note: 'Danish ymer is soured skimmed milk that is drained of about half its volume as whey, then blended and topped up with cream to about 3.5 % fat.',
 	},
 	// Skimmed or low-fat milk soured with cultures, not what churning butter leaves (see buttermilk).
@@ -520,7 +520,7 @@ export const NODES: Record<string, Product> = {
 	},
 
 	// Set by rennet: the enzyme from a calf's stomach, or a microbial one.
-	rennetCurd: { label: 'Rennet curd', aka: ['Bruch', 'Käsebruch'], from: 'raw', alsoFrom: ['pasteurised'], step: 'set with rennet' },
+	rennetCurd: { label: 'Rennet curd', aka: ['Bruch', 'Käsebruch'], from: 'raw', alsoFrom: ['pasteurised'], step: 'the curd' },
 	cheese: { label: 'Cheese', aka: ['Käse'], from: 'rennetCurd', step: 'make cheese', map: true },
 	freshCheese: { mapped: true, label: 'Fresh cheese', aka: ['Frischkäse'], examples: ['Queso fresco', 'Queso blanco', 'Panela', 'Stracchino', 'Robiola', 'Tomino', 'Mató', 'Jben', 'Queijo Minas frescal', 'Kesong puti', 'Renost'], from: 'rennetCurd', alsoFrom: ['lacticCheese'], step: 'drain fresh' },
 	lacticCheese: { label: 'Lactic-set cheese', aka: ['Fromage lactique', 'Lactic cheese'], examples: ['Sainte-Maure de Touraine', 'Crottin de Chavignol', 'Selles-sur-Cher', 'Valençay', 'Chabichou du Poitou', 'Pouligny-Saint-Pierre', 'Chaource', "Afuega'l pitu", 'Katiki Domokou', 'Picodon', 'Bouhezza', 'Crowdie'], from: 'raw', alsoFrom: ['pasteurised'], step: 'set slowly with acid, ladle unpressed' },
@@ -621,7 +621,7 @@ export const NODES: Record<string, Product> = {
 		note: 'Same casein as in milk, still in micelles, unlike caseinate; dried it goes into cheese milk and high-protein drinks.',
 	},
 	mfgm: { label: 'MFGM concentrate\n(milk phospholipids)', aka: ['Milk fat globule membrane', 'Phospholipid concentrate'], from: 'buttermilk', step: 'remove casein, microfilter', note: 'The globule membrane is about the size of casein micelles, so casein has to be got out first; it can not just be filtered off.' },
-	lactose: { label: 'Lactose', aka: ['Milk sugar', 'Milchzucker'], from: 'permeate', step: 'crystallise' },
+	lactose: { label: 'Lactose', aka: ['Milk sugar', 'Milchzucker'], from: 'permeate', step: 'the crystals' },
 	lactoseDerivatives: { label: 'GOS', aka: ['Galacto-oligosaccharides'], examples: ['Vivinal GOS'], from: 'lactose', step: 'join with an enzyme' },
 	lactitol: {
 		label: 'Lactitol',

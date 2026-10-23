@@ -499,7 +499,7 @@ const { focus } = Astro.props;
 	import type { Sourcing } from './milk/schema';
 	import { eachPage } from '../lib/page';
 	import { pixelRatio } from '../lib/canvas';
-	import { LINE, PAD_X, FONT, FOUND_HEIGHT, PICTURE_GAP, LINK_MARK, LINK_ROOM, MARGIN, MAX_ZOOM, MAP_PILL, RULE_PX, SANS, MONO, SERIF, FACES, spacing, only, setSpacing, nextUid, corner, type Node, type Edge, type Graph } from './milk/client/base';
+	import { LINE, PAD_X, FONT, FOUND_HEIGHT, PICTURE_GAP, LINK_MARK, LINK_ROOM, MARGIN, MAX_ZOOM, MAP_PILL, SANS, MONO, SERIF, FACES, spacing, only, setSpacing, nextUid, corner, type Node, type Edge, type Graph } from './milk/client/base';
 	import { layout, type Pin, type Box } from './milk/client/layout';
 
 
@@ -508,7 +508,7 @@ const { focus } = Astro.props;
 	function draw(figure: HTMLElement, signal: AbortSignal, data: Graph, whole = false) {
 		// As the words in it have it (see measure).
 		setSpacing(parseFloat(getComputedStyle(figure).letterSpacing) || 0);
-		const { root, treeParent, nodes, children, size, paneled, panelOf, rootR, picture, radius, shown, countryName, stepFont, stepped, ROW, rows, keyLines, rowLines, tabled, pad, tableWidth, rowHeight, PANEL_PAD, panels, MAP_W, PIN, PIN_GROWS, PIN_FRAMED, pillsShown, rim, panelArea, rootWord, rootFont, grains, edges, inside, stepX, told, hittable, edgeShape, edgeLine, edgeBox, stepLines, stepBox, tableOf, pillBoxOf, bounds } = layout(data);
+		const { root, treeParent, nodes, children, size, paneled, panelOf, rootR, picture, radius, shown, countryName, stepFont, stepped, ROW, rows, keyLines, rowLines, tabled, pad, tableWidth, rowHeight, PANEL_PAD, panels, MAP_W, PIN, PIN_GROWS, PIN_FRAMED, pillsShown, rim, panelArea, rootWord, rootFont, grains, edges, inside, stepX, told, hittable, edgeShape, edgeLine, edgeBox, stepLines, stepBox, tableOf, pillBoxOf, bounds, tickX } = layout(data);
 		// The search's list named for it alone, as another graph on the page would name its own the same.
 		const uid = nextUid();
 
@@ -830,7 +830,7 @@ const { focus } = Astro.props;
 			// A kind's ruler: a groove every unit, deeper every step, the value over each.
 			if (d.scale && legible(10, s)) {
 				const { to, every, unit, name: measures } = d.scale;
-				const tick = (v: number) => d.x + (v - to / 2) * RULE_PX;
+				const tick = (v: number) => tickX(d, v);
 				for (let v = 0; v <= to; v++) {
 					const major = v % every === 0;
 					groove(g, tick(v), edge, major);

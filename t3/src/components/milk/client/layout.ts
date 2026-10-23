@@ -261,6 +261,8 @@ export function layout(data: Graph) {
 
 	// A photograph is square, as tall as its pill.
 	const picture = (d: Node) => NODE_H * size(d);
+	// The room it takes at the pill's left, and its gap: what the words and a ruler are centred beside.
+	const pictureRoom = (d: Node) => (d.image ? picture(d) + PICTURE_GAP * size(d) : 0);
 	const radius = (d: Node) => RADIUS * size(d);
 
 	/* Each pill measured round its own words, with room at its left for
@@ -274,9 +276,10 @@ export function layout(data: Graph) {
 		}
 		d.w = measure(d.label, FONT * size(d), '400', MONO()) + 2 * PAD_X * size(d);
 		d.h = NODE_H * size(d);
-		if (d.image) d.w += picture(d) + PICTURE_GAP * size(d);
+		d.w += pictureRoom(d);
 		if (d.link) d.w += LINK_ROOM * size(d);
-		if (d.scale) d.w = Math.max(d.w, d.scale.to * RULE_PX + RULER_END);
+		// A ruler clear of the photograph, under the rest of the pill.
+		if (d.scale) d.w = Math.max(d.w, pictureRoom(d) + d.scale.to * RULE_PX + RULER_END);
 	}
 	// A list under a ruler as wide as the widest in it.
 	for (const r of hanging.keys())
@@ -410,7 +413,7 @@ export function layout(data: Graph) {
 	   far under its middle, each where its value is along the ruler, which
 	   is centred in the pill. */
 	const axisY = (r: Node) => r.h / 2;
-	const tickX = (r: Node, v: number) => r.x + (v - r.scale!.to / 2) * RULE_PX;
+	const tickX = (r: Node, v: number) => r.x + pictureRoom(r) / 2 + (v - r.scale!.to / 2) * RULE_PX;
 	/* Each product centred straight under its value, its arrow straight
 	   down into its middle; those at one value as one list, stacked one on
 	   another as wide as each other, the arrow into the top of it. In rows, no two values' lists meeting in one: of every way to put them
@@ -1128,5 +1131,5 @@ export function layout(data: Graph) {
 		width: Math.max(...all.map((b) => b.x1)) - Math.min(...all.map((b) => b.x0)),
 		height: Math.max(...all.map((b) => b.y1)) - Math.min(...all.map((b) => b.y0)),
 	};
-	return { root, treeParent, nodes, children, size, paneled, panelOf, rootR, picture, radius, shown, countryName, stepFont, stepped, ROW, rows, keyLines, rowLines, tabled, pad, tableWidth, rowHeight, PANEL_PAD, panels, MAP_W, PIN, PIN_GROWS, PIN_FRAMED, pillsShown, rim, panelArea, rootWord, rootFont, grains, edges, inside, stepX, told, hittable, edgeShape, edgeLine, edgeBox, stepLines, stepBox, tableOf, pillBoxOf, bounds };
+	return { root, treeParent, nodes, children, size, paneled, panelOf, rootR, picture, radius, shown, countryName, stepFont, stepped, ROW, rows, keyLines, rowLines, tabled, pad, tableWidth, rowHeight, PANEL_PAD, panels, MAP_W, PIN, PIN_GROWS, PIN_FRAMED, pillsShown, rim, panelArea, rootWord, rootFont, grains, edges, inside, stepX, told, hittable, edgeShape, edgeLine, edgeBox, stepLines, stepBox, tableOf, pillBoxOf, bounds, tickX };
 }
