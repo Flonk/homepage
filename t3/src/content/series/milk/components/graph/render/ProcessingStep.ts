@@ -115,22 +115,28 @@ export const chip = (h: Step): Chip => {
    the room round them, the room for the arrow between two cards, the least
    and the most a card's words run. */
 export const CARD = { title: 0.55, said: 1, tiny: 0.36, note: 0.5, pad: 0.5, gap: 1.4, least: 5, most: 12 };
-// A line of a card, and what it is said after on it, in bold, where it is a one-liner's.
-type Line = { said: string; y: number; size: number; face: string; mono: boolean; dim: boolean; lead?: string };
+type Line = { said: string; y: number; size: number; face: string; mono: boolean; dim: boolean };
 export type Card = { x: number; y: number; w: number; h: number; lines: Line[] };
 
 // Laid out at its table's letter size, from its own top left.
 export const card = (c: Chip, f: number): Card => {
 	const most = CARD.most * f;
-	// A one-liner: what it is and what it says on one line, at the size it says it.
+	// A one-liner: what it is and what it says on one line, in the type its name is in as any other's.
+	const lines: Line[] = [];
+	let y = CARD.pad * f;
+	const put = (said: string, size: number, face: string, mono: boolean, dim: boolean, leading = 1.25) => {
+		y += size * f * leading;
+		lines.push({ said, y: y - size * f * (leading - 1) - size * f * 0.18, size: size * f, face, mono, dim });
+	};
 	if (c.inline && c.said) {
-		const lead = `${c.title} · `;
-		const w = measure(lead, CARD.said * f, '700', MONO()) + measure(c.said, CARD.said * f, '400', MONO());
-		const line = { said: c.said, lead, y: CARD.pad * f + CARD.said * f * 0.82, size: CARD.said * f, face: '400', mono: true, dim: false };
-		let h = CARD.pad * f + CARD.said * f * 1.1;
-		const lines: Line[] = [line];
-		if (c.note) for (const said of wrap(c.note, Math.max(w, CARD.least * f), CARD.note * f, '400')) lines.push({ said, y: (h += CARD.note * f * 1.3) - CARD.note * f * 0.48, size: CARD.note * f, face: '400', mono: false, dim: false });
-		return { x: 0, y: 0, w: w + 2 * CARD.pad * f, h: h + CARD.pad * f, lines };
+		const said = `${c.title} · ${c.said}`;
+		const wide = measure(said, CARD.title * f, '700', MONO());
+		put(said, CARD.title, '700', true, true, 1.35);
+		if (c.note) {
+			y += 0.2 * f;
+			for (const l of wrap(c.note, Math.max(wide, CARD.least * f), CARD.note * f, '400')) put(l, CARD.note, '400', false, false, 1.3);
+		}
+		return { x: 0, y: 0, w: Math.max(wide, CARD.least * f) + 2 * CARD.pad * f, h: y + CARD.pad * f, lines };
 	}
 	const saidLines = c.said ? wrap(c.said, most, CARD.said * f, '400', MONO()) : [];
 	const natural = Math.max(
@@ -140,12 +146,6 @@ export const card = (c: Chip, f: number): Card => {
 		c.note ? measure(c.note, CARD.note * f, '400') : 0,
 	);
 	const wide = Math.min(most, natural);
-	const lines: Line[] = [];
-	let y = CARD.pad * f;
-	const put = (said: string, size: number, face: string, mono: boolean, dim: boolean, leading = 1.25) => {
-		y += size * f * leading;
-		lines.push({ said, y: y - size * f * (leading - 1) - size * f * 0.18, size: size * f, face, mono, dim });
-	};
 	put(c.title, CARD.title, '700', true, true, 1.35);
 	for (const said of saidLines) put(said, CARD.said, '400', true, false, 1.3);
 	if (c.microbes) {
@@ -167,16 +167,9 @@ export const drawCard = (g: Pen, c: Card, x: number, y: number, f: number, { ink
 	g.textBaseline = 'alphabetic';
 	for (const l of c.lines) {
 		if (!legible(l.size, s)) continue;
-		let at = x + CARD.pad * f;
-		if (l.lead) {
-			g.font = font(l.size, '700', MONO());
-			g.fillStyle = on ? ink.lit : ink.dim;
-			g.fillText(l.lead, at, y + l.y);
-			at += measure(l.lead, l.size, '700', MONO());
-		}
 		g.font = font(l.size, l.face, l.mono ? MONO() : SANS());
 		g.fillStyle = on ? ink.lit : l.dim ? ink.dim : ink.text;
-		g.fillText(l.said, at, y + l.y);
+		g.fillText(l.said, x + CARD.pad * f, y + l.y);
 	}
 };
 
