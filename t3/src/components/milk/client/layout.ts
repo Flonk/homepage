@@ -1,10 +1,10 @@
 import { ROOT, NODE_H, PAD_X, FONT, ROOT_WORD, GAP_X, STEP_FONT, STEP_PAD, RADIUS, PACKING, PICTURE_GAP, LINK_ROOM, APART, ROW_GAP, sizeOf, MILK, STRAND, headWidth, headLength, CORNER, MAP_PILL, RULE_PX, RULER_END, DROP, TIER_GAP, SIDE_GAP, MONO, measure, type Node, type Edge, type Graph } from './base';
 
-export // A map's pin: a country's, or closer in a region's, where its cheeses are and how many.
+// A map's pin: a country's, or closer in a region's, where its cheeses are and how many.
 /* A map's pin: a region's cheeses, or those of a country whose region is
    not known, where they are and how many; zoomed out, the pins of a
    country near each other made one (see pinsAt). */
-type Pin = { iso: string; areas: (string | undefined)[]; name: string; x: number; y: number; r: number; n: number };
+export type Pin = { iso: string; areas: (string | undefined)[]; name: string; x: number; y: number; r: number; n: number };
 export type Panel = {
 	kind: 'grid' | 'map';
 	pins?: Pin[];
@@ -15,7 +15,7 @@ export type Panel = {
 	xOf: (days: number) => number;
 	at: Map<Node, { x: number; y: number }>;
 };
-export /* Down: each branch packed as close to the one before as their outlines
+/* Down: each branch packed as close to the one before as their outlines
    let them, not their bands: a branch is the boxes its pills, its lines
    and its steps' words take up, and the next one comes down only as far
    as it must to clear them, wherever they are side by side. So a small
@@ -24,18 +24,24 @@ export /* Down: each branch packed as close to the one before as their outlines
    level with the middle of its first and last child. Worked out within
    each branch, then milk's branches stacked down and centred on it. */
 // `own`: the box is a sibling's own pill or arrow, not something further down its branch.
-type Box = { x0: number; x1: number; y0: number; y1: number; own?: boolean };
-export /* An arrow drawn as one shape, filled: both edges of a line as wide as
+export type Box = { x0: number; x1: number; y0: number; y1: number; own?: boolean };
+/* An arrow drawn as one shape, filled: both edges of a line as wide as
    the product it leads to is big, round its corners, and, for a product
    made, in to a point at the product's edge. Not a stroked line with a
    head put on its end, which shows a hairline seam between the two. */
-type Pt = [number, number];
+export type Pt = [number, number];
 
 /* The graph laid out: from the data, how big each is and where, and the
    shape of every arrow, before anything is drawn (see MilkGraph.astro). The
    same for a filtered copy of the data as for the whole. */
 export function layout(data: Graph) {
 	const { light, groups, links } = data;
+	// Each value added to the list under its key.
+	const group = <K, V>(into: Map<K, V[]>, key: K, value: V) => {
+		const list = into.get(key);
+		if (list) list.push(value);
+		else into.set(key, [value]);
+	};
 	const products = data.nodes;
 	const byId = new Map(products.map((n) => [n.id, n]));
 
@@ -71,93 +77,51 @@ export function layout(data: Graph) {
 	for (const { source, target } of links) treeParent.set(byId.get(target)!, byId.get(source)!);
 	for (const n of products) if (n !== root && !treeParent.has(n)) treeParent.set(n, root);
 	const hubs: Node[] = [];
+	/* A branch point between a parent and some of its children: not a
+	   product, a point where one arrow splits, its words on that arrow; a
+	   little further out than its parent, nearer than any of its own. */
+	const branchPoint = (p: Node, kids: Node[], id: string, step: string, how?: Node['how']) => {
+		const h: Node = { id, label: '', step, how, group: kids[0].group, niche: 0, hub: true, dist: p.dist + 0.3, x: 0, y: 0, w: 0, h: 0 };
+		hubs.push(h);
+		treeParent.set(h, p);
+		for (const k of kids) treeParent.set(k, h);
+	};
 	const under = new Map<Node, Node[]>();
-	for (const [n, p] of treeParent) under.set(p, [...(under.get(p) ?? []), n]);
+	for (const [n, p] of treeParent) group(under, p, n);
 	// Those made together by one step count as one, being one branch already (see SPLITS).
 	const splitOf = new Map(data.splits.flatMap(({ from, ids }) => ids.map((id) => [id, `${from}:${ids}`])));
 	for (const [p, kids] of under) {
 		groups.forEach(({ hub }, g) => {
 			const family = kids.filter((k) => k.group === g);
 			if (!hub || p.group === g || new Set(family.map((k) => splitOf.get(k.id) ?? k.id)).size < 2) return;
-			const h: Node = {
-				id: `hub:${p.id}:${g}`,
-				label: '',
-				// Not a product: a point where one arrow splits, its name on that arrow.
-				step: hub,
-				group: g,
-				niche: 0,
-				hub: true,
-				// A little further out than its parent, nearer than any of its own.
-				dist: p.dist + 0.3,
-				x: 0,
-				y: 0,
-				w: 0,
-				h: 0,
-			};
-			hubs.push(h);
-			treeParent.set(h, p);
-			for (const k of family) treeParent.set(k, h);
+			branchPoint(p, family, `hub:${p.id}:${g}`, hub);
 		});
 	}
 	/* And under each parent, or hub, those of one kind as a branch of
 	   their own, if there are two or more of it there (see KINDS). */
 	data.kinds.forEach(({ step, ids, how }, i) => {
 		const by = new Map<Node, Node[]>();
-		for (const id of ids) {
-			const n = byId.get(id)!;
-			const p = treeParent.get(n)!;
-			by.set(p, [...(by.get(p) ?? []), n]);
-		}
-		for (const [p, kind] of by) {
-			if (kind.length < 2) continue;
-			const h: Node = {
-				id: `kind:${p.id}:${i}`,
-				label: '',
-				step,
-				how,
-				group: kind[0].group,
-				niche: 0,
-				hub: true,
-				dist: p.dist + 0.3,
-				x: 0,
-				y: 0,
-				w: 0,
-				h: 0,
-			};
-			hubs.push(h);
-			treeParent.set(h, p);
-			for (const k of kind) treeParent.set(k, h);
-		}
+		for (const id of ids) group(by, treeParent.get(byId.get(id)!)!, byId.get(id)!);
+		for (const [p, kind] of by) if (kind.length >= 2) branchPoint(p, kind, `kind:${p.id}:${i}`, step, how);
 	});
 	/* And a step making several at once, as separating milk does (see
 	   SPLITS): from the hub they would be under, if their family has one
 	   there, so it keeps them as one branch with the rest of it. */
 	for (const { from, step, ids } of data.splits) {
 		const made = ids.map((id) => byId.get(id)!);
-		const p = treeParent.get(made[0])!;
-		const h: Node = {
-			id: `split:${from}:${ids.join(':')}`,
-			label: '',
-			step,
-			group: made[0].group,
-			niche: 0,
-			hub: true,
-			dist: p.dist + 0.3,
-			x: 0,
-			y: 0,
-			w: 0,
-			h: 0,
-		};
-		hubs.push(h);
-		treeParent.set(h, p);
-		for (const k of made) treeParent.set(k, h);
+		branchPoint(treeParent.get(made[0])!, made, `split:${from}:${ids.join(':')}`, step);
 	}
 	const nodes = [...products, ...hubs];
 
 	/* Who hangs from whom: the families in the order they are listed,
 	   and within a family the more everyday first, then the nearer milk. */
 	const children = new Map<Node, Node[]>();
-	for (const [n, p] of treeParent) children.set(p, [...(children.get(p) ?? []), n]);
+	for (const [n, p] of treeParent) group(children, p, n);
+	// What hangs from a product in the tree, looked up each time, as some are taken out of it below; and of those, the products.
+	const kidsOf = (n: Node) => children.get(n) ?? [];
+	const productsOf = (n: Node) => kidsOf(n).filter((k) => !k.example);
+	// Whether it is a product, or a branch point leading to it, as the split that makes raw cream does.
+	const leads = (n: Node, id: string): boolean => n.id === id || (!!n.hub && kidsOf(n).some((k) => leads(k, id)));
 	for (const kids of children.values())
 		kids.sort(
 			(a, b) =>
@@ -174,53 +138,23 @@ export function layout(data: Graph) {
 	   so the great branch points stand out without swamping the rest. */
 	const made = new Map<Node, number>();
 	const tally = (n: Node): number => {
-		const v = (children.get(n) ?? []).reduce((s, k) => s + (k.hub ? 0 : 1) + tally(k), 0);
+		const v = kidsOf(n).reduce((s, k) => s + (k.hub ? 0 : 1) + tally(k), 0);
 		made.set(n, v);
 		return v;
 	};
 	tally(root);
 
-	/* Siblings by size, the biggest branch at the top and the small ones
-	   gathered at the bottom. Branches as big as each other keep the order
-	   above; examples stay together after the products. Milk's own are
-	   left as they are, and ordered when they are placed. A kind with a
-	   ruler goes last, below the rest, as all it hangs reaches down. */
-	for (const [p, kids] of children) {
-		if (p === root) continue;
-		const products = kids.filter((k) => !k.example);
-		const examples = kids.filter((k) => k.example);
-		const biggest = [...products].sort((a, b) => Number(!!a.scale) - Number(!!b.scale) || made.get(b)! - made.get(a)!);
-		kids.splice(0, kids.length, ...biggest, ...examples);
-		// One drawn below a sibling moved there, after that sibling's branch, a split's included.
-		for (const k of [...kids].filter((k) => k.below)) {
-			const leads = (n: Node): boolean => n.id === k.below || (!!n.hub && (children.get(n) ?? []).some(leads));
-			const kin = kids.find((n) => n !== k && leads(n));
-			if (!kin) continue;
-			kids.splice(kids.indexOf(k), 1);
-			kids.splice(kids.indexOf(kin) + 1, 0, k);
-		}
-	}
 	// Each drawing of it again counts as one more thing made from it.
 	const drawnAgain = new Map<Node, number>();
 	for (const n of nodes) if (n.link) drawnAgain.set(byId.get(n.link)!, (drawnAgain.get(byId.get(n.link)!) ?? 0) + 1);
 	/* One drawn again is as big as the product it is, but no bigger than
 	   the biggest beside it, so it does not swamp what it is drawn with. */
-	const beside = (n: Node) => (children.get(treeParent.get(n)!) ?? []).filter((k) => k !== n && !k.example && !k.link);
+	const beside = (n: Node) => productsOf(treeParent.get(n)!).filter((k) => k !== n && !k.link);
 	const linked = (n: Node, of: (n: Node) => number) => Math.min(of(byId.get(n.link!)!), Math.max(...beside(n).map(of), 0) || Infinity);
 	const grown = (n: Node): number =>
 		n.link ? linked(n, grown) : sizeOf(made.get(n)! + (drawnAgain.get(n) ?? 0)) * (n === root ? MILK : 1);
-	/* A kind with a ruler no bigger than the products beside it with any
-	   of their own are, middling among them: it is as wide as its ruler
-	   already, and what hangs under it is drawn at its own size. */
-	const size = (n: Node): number => {
-		if (n.onMap) return MAP_PILL;
-		if (!n.scale) return grown(n);
-		const beside = (children.get(treeParent.get(n)!) ?? [])
-			.filter((k) => !k.scale && !k.example && made.get(k)! > 0)
-			.map(grown)
-			.sort((a, b) => a - b);
-		return beside.length ? Math.min(grown(n), beside[Math.floor(beside.length / 2)]) : grown(n);
-	};
+	// A cheese on the map small on it; any other as big as what is made from it.
+	const size = (n: Node): number => (n.onMap ? MAP_PILL : grown(n));
 	/* How much a line into each carries: itself, and all made from it
 	   (a branch point is no product, so only what it splits into). */
 	const carried = new Map<Node, number>();
@@ -231,7 +165,7 @@ export function layout(data: Graph) {
 			carried.set(n, v);
 			return v;
 		}
-		const v = (n.hub ? 0 : 1) + (children.get(n) ?? []).reduce((sum, k) => sum + carry(k), 0);
+		const v = (n.hub ? 0 : 1) + kidsOf(n).reduce((sum, k) => sum + carry(k), 0);
 		carried.set(n, v);
 		return v;
 	};
@@ -244,21 +178,21 @@ export function layout(data: Graph) {
 	   that splits, or a branch point, has the shares of what it leads to. */
 	const shareOf = (n: Node): number | undefined => {
 		if (!n.hub) return n.share;
-		const shares = (children.get(n) ?? []).filter((k) => !k.example).map(shareOf);
+		const shares = productsOf(n).map(shareOf);
 		return shares.every((v) => v !== undefined) ? shares.reduce((t, v) => t! + v!, 0) : undefined;
 	};
 	const scaleBy = (n: Node, f: number) => {
 		carried.set(n, carried.get(n)! * f);
 		made.set(n, made.get(n)! * f);
-		for (const k of children.get(n) ?? []) scaleBy(k, f);
+		for (const k of kidsOf(n)) scaleBy(k, f);
 	};
 	const allMilk = carried.get(root)!;
 	const apportion = (p: Node) => {
-		const kids = (children.get(p) ?? []).filter((k) => !k.example);
+		const kids = productsOf(p);
 		if (kids.length && kids.every((k) => shareOf(k) !== undefined)) {
 			const shareTo = (k: Node) => {
 				if (!k.hub) return scaleBy(k, ((k.share! / 100) * allMilk) / carried.get(k)!);
-				const theirs = (children.get(k) ?? []).filter((g) => !g.example);
+				const theirs = productsOf(k);
 				theirs.forEach(shareTo);
 				carried.set(k, theirs.reduce((t, g) => t + carried.get(g)!, 0));
 			};
@@ -267,6 +201,23 @@ export function layout(data: Graph) {
 		for (const k of kids) apportion(k);
 	};
 	apportion(root);
+	/* Siblings by size, as they are drawn: the biggest branch at the top and
+	   the small ones gathered at the bottom, milk's own as any product's.
+	   Branches as big as each other keep the order above; examples stay
+	   together after the products. */
+	for (const kids of children.values()) {
+		const products = kids.filter((k) => !k.example);
+		const examples = kids.filter((k) => k.example);
+		// By how much their lines carry: a branch point's what all it splits into does.
+		kids.splice(0, kids.length, ...[...products].sort((a, b) => carried.get(b)! - carried.get(a)!), ...examples);
+		// One drawn below a sibling moved there, after that sibling's branch, a split's included.
+		for (const k of [...kids].filter((k) => k.below)) {
+			const kin = kids.find((n) => n !== k && leads(n, k.below!));
+			if (!kin) continue;
+			kids.splice(kids.indexOf(k), 1);
+			kids.splice(kids.indexOf(kin) + 1, 0, k);
+		}
+	}
 	/* What hangs under a ruler, by its value on it, is laid out there, not
 	   out to the right as a branch is: taken out of the tree's layout once
 	   it has counted towards the sizes and lines above. Anything else made
@@ -295,7 +246,7 @@ export function layout(data: Graph) {
 	// What hangs under a ruler, by value: those at one value are one list.
 	const listsOf = (r: Node) => {
 		const at = new Map<number, Node[]>();
-		for (const k of hanging.get(r)!) at.set(k.at!, [...(at.get(k.at!) ?? []), k]);
+		for (const k of hanging.get(r)!) group(at, k.at!, k);
 		return at;
 	};
 	const hangsFrom = (n: Node) => {
@@ -447,14 +398,15 @@ export function layout(data: Graph) {
 	   so they cannot meet. */
 	// A branch point turns at once: it has no pill to clear.
 	// Milk keeps a margin of half its own size, its radius, all round it.
-	const toTrunk = (n: Node) => (n === root ? rootR : n.hub ? GAP_X / 4 : (GAP_X / 2) * Math.sqrt(size(n)));
+	const reach = (n: Node) => (GAP_X / 2) * Math.sqrt(size(n));
+	const toTrunk = (n: Node) => (n === root ? rootR : n.hub ? GAP_X / 4 : reach(n));
 	/* Half as wide as the trunk out of a product, the line into the
 	   biggest of its children: kept clear of on both sides, so neither the
 	   parent nor a step's words beside it are under it. */
-	const halfTrunk = (n: Node) => (children.get(n) ?? []).reduce((sum, k) => sum + line(k), 0) / 2;
+	const halfTrunk = (n: Node) => kidsOf(n).reduce((sum, k) => sum + line(k), 0) / 2;
 	const needs = (k: Node) =>
 		Math.max(
-			(GAP_X / 2) * Math.sqrt(size(k)),
+			reach(k),
 			Math.max(stepWidth.get(k) ?? 0, tableWidth(k)) + 2 * STEP_PAD * size(k) + arrow(k),
 		);
 	const key = (k: Node) => `${treeParent.get(k)!.id} ${size(k)}`;
@@ -637,7 +589,7 @@ export function layout(data: Graph) {
 		const GAP = 0.6;
 		const free = (b: Box) =>
 			cellsOf(b).every((key) => (cells.get(key) ?? []).every((o) => b.x1 + GAP <= o.x0 || o.x1 + GAP <= b.x0 || b.y1 + GAP <= o.y0 || o.y1 + GAP <= b.y0));
-		const take = (b: Box) => cellsOf(b).forEach((key) => cells.set(key, [...(cells.get(key) ?? []), b]));
+		const take = (b: Box) => cellsOf(b).forEach((key) => group(cells, key, b));
 		const widths = ks.map((k) => k.w).sort((a, b) => a - b);
 		const dx = widths[Math.floor(widths.length / 2)] / 2;
 		const dy = ks[0]?.h * 1.15;
@@ -647,7 +599,7 @@ export function layout(data: Graph) {
 		NEAR.sort(([a, b], [c, d]) => Math.hypot(a * dx, b * dy) - Math.hypot(c * dx, d * dy));
 		const byPlace = new Map<string, Node[]>();
 		const spotOf = (k: Node, lx: number, ly: number) => (k.spot ? [k.spot[0] * MAP_W, top + k.spot[1] * MAP_W] : [lx, ly]);
-		for (const k of ks) byPlace.set(k.place!, [...(byPlace.get(k.place!) ?? []), k]);
+		for (const k of ks) group(byPlace, k.place!, k);
 		const order = [...byPlace].sort((a, b) => b[1].length - a[1].length);
 		for (const [iso, list] of order) {
 			const country = data.map.countries[iso];
@@ -686,7 +638,7 @@ export function layout(data: Graph) {
 			const pin = (area: string | undefined, ks: Node[], x: number, y: number) =>
 				pins.push({ iso, areas: [area], name: area ? `${area}, ${country.name}` : country.name, x, y, r: PIN + PIN_GROWS * Math.sqrt(ks.length), n: ks.length });
 			const areas = new Map<string | undefined, Node[]>();
-			for (const k of list) areas.set(k.area, [...(areas.get(k.area) ?? []), k]);
+			for (const k of list) group(areas, k.area, k);
 			for (const [area, ks] of areas) {
 				const at = ks.map((k) => spotOf(k, lx, ly));
 				const placed = area ? at : [[lx, ly]];
@@ -710,7 +662,7 @@ export function layout(data: Graph) {
 	const across = (n: Node) => {
 		if (hanging.has(n)) hang(n);
 		for (const k of paneled.get(n) ?? []) k.x = n.x - n.w / 2 + panels.get(n)!.at.get(k)!.x;
-		for (const k of children.get(n) ?? []) {
+		for (const k of kidsOf(n)) {
 			k.x = outer(n) + toTrunk(n) + 2 * halfTrunk(n) + fromTrunk(k) + k.w / 2;
 			across(k);
 		}
@@ -768,24 +720,13 @@ export function layout(data: Graph) {
 			...b,
 			own: true,
 		}));
-		const kids = children.get(n) ?? [];
+		const kids = kidsOf(n);
 		// What hangs under its ruler, below it; what is made from it besides branches off as from any product.
 		if (hanging.has(n)) own.push(...hangBoxes(n).map((b) => ({ ...b, own: false })));
 		// A panel under its family, as much the family's own as its pill.
 		if (paneled.has(n)) own.push({ ...panelBox(n), own: true });
 		if (!kids.length) return own;
-		let packed: Box[] = [];
-		const at = new Map<Node, number>();
-		// Never above the sibling before it, so the order reads down.
-		let last = 0;
-		for (const k of kids) {
-			const branch = shape(k);
-			const dy = packed.length ? Math.max(clear(packed, branch, !!k.example), last) : 0;
-			last = dy;
-			at.set(k, dy);
-			packed = packed.concat(branch.map((b) => moved(b, dy)));
-		}
-		const mid = (at.get(kids[0])! + at.get(kids.at(-1)!)!) / 2;
+		const { at, packed, mid } = stack(kids);
 		for (const k of kids) rel.set(k, at.get(k)! - mid);
 		const t = trunkX(n);
 		// As wide as the line out is: its strands turn down anywhere across it.
@@ -794,31 +735,36 @@ export function layout(data: Graph) {
 		// siblings; all that hangs from it is no sibling of theirs.
 		return [...own, { ...trunk, own: false }, ...packed.map((b) => ({ ...moved(b, -mid), own: false }))];
 	};
+	/* Branches stacked down, each as close under the one before as clears
+	   it, an example's closest, and never above the one before, so the
+	   order reads down; their middle the first's and the last's. */
+	const stack = (kids: Node[]) => {
+		let packed: Box[] = [];
+		const at = new Map<Node, number>();
+		let last = 0;
+		for (const k of kids) {
+			const branch = shape(k);
+			const dy = packed.length ? Math.max(clear(packed, branch, !!k.example), last) : 0;
+			last = dy;
+			at.set(k, dy);
+			packed = packed.concat(branch.map((b) => moved(b, dy)));
+		}
+		const mid = kids.length ? (at.get(kids[0])! + at.get(kids.at(-1)!)!) / 2 : 0;
+		return { at, packed, mid };
+	};
 	const place = (n: Node, y: number) => {
 		n.y = y;
-		for (const k of children.get(n) ?? []) place(k, y + rel.get(k)!);
+		for (const k of kidsOf(n)) place(k, y + rel.get(k)!);
 		for (const k of hanging.get(n) ?? []) k.y = y + hangY.get(k)!;
 		const P = panels.get(n);
 		for (const k of paneled.get(n) ?? []) k.y = y + n.h / 2 + P!.at.get(k)!.y;
 	};
-	/* Milk's branches, cheese at the top and cream at the bottom, the
-	   rest between from the biggest down, centred on milk. */
-	// Whatever leads to them, as the split that makes raw cream does.
-	const leads = (n: Node, id: string): boolean => n.id === id || (!!n.hub && (children.get(n) ?? []).some((k) => leads(k, id)));
-	const pinned = (n: Node) => (leads(n, 'rennetCurd') ? -1 : leads(n, 'rawCream') ? 1 : 0);
-	const tops = [...(children.get(root) ?? [])].sort((a, b) => pinned(a) - pinned(b) || made.get(b)! - made.get(a)!);
-	let packed: Box[] = [];
-	const at = new Map<Node, number>();
-	let last = 0;
-	for (const k of tops) {
-		const branch = shape(k);
-		const dy = packed.length ? Math.max(clear(packed, branch, false), last) : 0;
-		last = dy;
-		at.set(k, dy);
-		packed = packed.concat(branch.map((b) => moved(b, dy)));
+	// Milk's branches stacked as any product's are, centred on milk.
+	{
+		const tops = kidsOf(root);
+		const { at, mid } = stack(tops);
+		for (const k of tops) place(k, at.get(k)! - mid);
 	}
-	const mid = tops.length ? (at.get(tops[0])! + at.get(tops.at(-1)!)!) / 2 : 0;
-	for (const k of tops) place(k, at.get(k)! - mid);
 
 	/* A jog too short for a strand to turn down and back with two corners
 	   and a clear stretch between, rather than a kink; and one so short
@@ -828,11 +774,11 @@ export function layout(data: Graph) {
 	/* Where each child's strand is in the line out of its parent: the line
 	   as thick as all of theirs together, on the parent's middle, and
 	   theirs side by side in it in the order they go down. */
+	const byY = (p: Node) => [...kidsOf(p)].sort((a, b) => a.y - b.y);
 	const slots = (p: Node) => {
 		let edge = p.y - halfTrunk(p);
 		return new Map(
-			[...(children.get(p) ?? [])]
-				.sort((a, b) => a.y - b.y)
+			byY(p)
 				.map((k) => {
 					edge += line(k);
 					return [k, edge - line(k) / 2] as const;
@@ -842,7 +788,7 @@ export function layout(data: Graph) {
 	/* What a product takes up where it is: its pill, the line into it with
 	   its step's words over it, and the line out of it to its trunk and
 	   down the trunk; or the line down into it from a ruler. */
-	const family = (n: Node): Node[] => [n, ...[...(children.get(n) ?? []), ...(hanging.get(n) ?? []), ...(paneled.get(n) ?? [])].flatMap(family)];
+	const family = (n: Node): Node[] => [n, ...[...kidsOf(n), ...(hanging.get(n) ?? []), ...(paneled.get(n) ?? [])].flatMap(family)];
 	const room = (n: Node, own = true): Box[] => {
 		const boxes: Box[] = [moved(pillBox(n), n.y)];
 		// In a panel, only its pill; the panel is its family's.
@@ -859,7 +805,7 @@ export function layout(data: Graph) {
 			const reach = Math.max(n.h / 2, line(n) / 2);
 			boxes.push({ x0: trunkAt(p) - halfTrunk(p), x1: n.x - n.w / 2, y0: n.y - reach - words, y1: n.y + Math.max(reach, tableBottom(n)) });
 		}
-		const kids = children.get(n) ?? [];
+		const kids = kidsOf(n);
 		if (kids.length && own) {
 			const ys = kids.map((k) => k.y);
 			const t = trunkAt(n);
@@ -879,7 +825,7 @@ export function layout(data: Graph) {
 		const rest = nodes
 			.filter((n) => !mine.includes(n))
 			.flatMap((n) => room(n, n !== p).filter((_, i) => !(i === 1 && mine.includes(treeParent.get(n)!))));
-		const order = () => [...(children.get(p!) ?? [])].sort((a, b) => a.y - b.y).join();
+		const order = () => byY(p!).join();
 		const was = order();
 		const before = mine.flatMap((n) => room(n));
 		for (const n of mine) n.y += by;
@@ -919,7 +865,7 @@ export function layout(data: Graph) {
 				squared.add(k);
 			}
 		}
-		for (const k of children.get(p) ?? []) square(k);
+		for (const k of kidsOf(p)) square(k);
 	};
 	square(root);
 	/* Milk's word as big as fits across it; and the chrome's grain over
@@ -1128,7 +1074,7 @@ export function layout(data: Graph) {
 	strands.clear();
 	const down = (p: Node) => {
 		split(p);
-		for (const k of children.get(p) ?? []) down(k);
+		for (const k of kidsOf(p)) down(k);
 	};
 	down(root);
 	const edgeShape = new Map(edges.map((e) => [e, new Path2D(arrowShape(e.source, e.target, e.made))]));
