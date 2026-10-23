@@ -20,10 +20,11 @@ import { MARK, titled } from './graph/render/Beasts';
  *
  * Laid out in the browser as a tree on a grid, worked out once so that no
  * two nodes overlap, each arrow saying how the one is made from the other.
- * The data is in milk/: the products a plain list in products.ts, each
- * saying what it is made from, and graph.ts putting it all together and
- * checking it; a product left out by deleting its line is reported at build
- * time by anything still made from it.
+ * The data is in graph/nodes.json: every product and example a node, each
+ * a record of everything said of it, a product saying what it is made from
+ * (see Node in graph/schema.ts); graph/index.ts puts them together and
+ * checks them, so a product deleted is reported at build time by anything
+ * still made from it.
  */
 
 interface Props {

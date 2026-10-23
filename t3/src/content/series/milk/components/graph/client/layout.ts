@@ -173,7 +173,7 @@ export function layout(data: Graph) {
 	};
 	carry(root);
 	/* Where how much of the world's milk goes is known for every one of a
-	   product's children (see SHARES), they are as big, and their lines
+	   product's children (see share in the schema's Node), they are as big, and their lines
 	   as thick, as that share of all milk carries, and all they make
 	   with them, each as big against the others as it was: milk's own
 	   by how much goes each way, not by how much is made of it. A step

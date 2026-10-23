@@ -1,4 +1,4 @@
-import type { Axes } from '../schema';
+import type { PageNode } from '../schema';
 import { el, fact } from './dom';
 
 // A span of days as it is said: days, weeks, months or years.
@@ -9,7 +9,7 @@ export const lasting = ([least, most]: [number, number]) => {
 	return a === b ? `${a} ${unit}` : `${a}–${b} ${unit}`;
 };
 // Axes on a card: how firm, and how long ripened, where a panel puts it.
-export const html = ({ firm, days }: Pick<Axes, 'firm' | 'days'>) => {
+export const html = ({ firm, days }: NonNullable<PageNode['axes']>) => {
 	const placed = el('dl');
 	placed.append(fact('Firmness', firm), fact('Ripened', lasting(days)));
 	return placed;

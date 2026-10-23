@@ -78,7 +78,7 @@ export const GROUPS: S.Group[] = [
  * and how warm, after Robinson and Tamime: lactococci at room temperature,
  * yoghurt's bacteria warm. (Kefir, with yeasts besides, is alone in its kind
  * here, so its own step says so.) `how` is told of when the kind's arrow is
- * clicked, as a product's step is (see steps.json).
+ * clicked, as a product's step is (see How in the schema).
  */
 export const KINDS: S.Kind[] = [
 	{
@@ -133,42 +133,5 @@ export const SPLITS: S.Split[] = [
 	{ from: 'soured', step: 'distil', ids: ['arkhi', 'stillCheese'] },
 ];
 
-/**
- * How close a product is to milk: the steps of making it, but a step that
- * only treats milk (heating it, homogenising it, skimming it, separating its
- * cream off) counts for less than one that turns it into something else. So
- * pasteurised milk sits nearer than yoghurt, and yoghurt nearer than the
- * cheese made from its curd. These are the products made by such a step; an
- * arrow into one of them is a light one.
- */
-export const TREATED = new Set([
-	'certified', 'homogenised', 'pasteurised', 'fresh', 'esl', 'uht', 'sterilised',
-	'skimRaw', 'semi', 'semiUht', 'skimmed', 'rawCream', 'cream',
-]);
-// What a light step counts for, against 1 for any other.
+// What a light step counts for, against 1 for any other (see light in the schema's Node).
 export const LIGHT = 0.4;
-
-/**
- * How much a product matters to how people eat and live, as a second pull
- * on how far out it sits: the everyday staples in close, the well known a
- * little further, and everything else, the regional and the curious, out
- * past them. A product in neither list is niche.
- */
-export const STAPLE = new Set([
-	'pasteurised', 'homogenised', 'fresh', 'uht', 'semi', 'skimmed', 'milkPowder', 'skimmedPowder', 'evaporated', 'condensed',
-	'rawCream', 'cream', 'whipping', 'culturedCream', 'sourCream', 'butter', 'butterfat', 'buttermilk',
-	'soured', 'yoghurt', 'greek', 'kefir', 'iceCream',
-	'curd', 'quark', 'paneer', 'rennetCurd', 'cheese', 'freshCheese', 'soft', 'semiHard', 'hard', 'pastaFilata', 'processed',
-	'sweetWhey', 'wheyPowder', 'wpc', 'lactose',
-]);
-export const KNOWN = new Set([
-	'lacticCheese',
-	'certified', 'esl', 'sterilised', 'colostrum', 'lactoseFree',
-	'coffeeCream', 'double', 'clotted', 'saureSahne', 'schmand', 'cremeFraiche', 'mascarpone',
-	'culturedButter', 'clarified', 'amf',
-	'filmjolk', 'mildYoghurt', 'probioticYoghurt', 'probioticDrink', 'creamYoghurt', 'skyr', 'ayran', 'driedYoghurt', 'ryazhenka', 'fermButter', 'fermButtermilk', 'choormog', 'kumis',
-	'chhena', 'chhenaSweets', 'cottageCheese', 'creamCheese', 'khoa', 'khoaSweets', 'dulce', 'kulfi', 'rabri', 'custard', 'milkChocolate',
-	'bloomy', 'blue', 'washed', 'alpine', 'cheddared', 'washedCurd', 'brined', 'grilling', 'stracciatella',
-	'acidWhey', 'ricotta', 'wheyCheese', 'wpi', 'acidCasein', 'caseinate',
-	'lactulose', 'inhalers',
-]);

@@ -8,7 +8,7 @@ export type Node = S.PageNode & {
 	y: number;
 	w: number;
 	h: number;
-	// Steps of making from milk, a treatment counting light (see TREATED).
+	// Steps of making from milk, a treatment counting light (see light in the schema's Node).
 	dist: number;
 	hub?: true;
 };
