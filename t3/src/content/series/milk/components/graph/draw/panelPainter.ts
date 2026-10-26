@@ -12,14 +12,16 @@ export const makePanelPainter = (G: Drawing): PanelPainter => {
 	// Each country's outline as a path, made once where the map is.
 	const countryPaths = new Map<Node, Path2D[]>();
 	const drawMapLand = (g: Pen, family: Node, left: number, top: number) => {
+		const panel = layout.panels.get(family)!;
+		const origin = panel.origin ?? { x: 0, y: 0 };
 		if (!countryPaths.has(family))
 			countryPaths.set(
 				family,
 				Object.values(G.data.map.countries).map(({ rings }) => {
 					const path = new Path2D();
 					for (const r of rings) {
-						path.moveTo(left + r[0] * MAP_WIDTH, top + PANEL_PADDING + r[1] * MAP_WIDTH);
-						for (let i = 2; i < r.length; i += 2) path.lineTo(left + r[i] * MAP_WIDTH, top + PANEL_PADDING + r[i + 1] * MAP_WIDTH);
+						path.moveTo(left + origin.x + r[0] * MAP_WIDTH, top + origin.y + PANEL_PADDING + r[1] * MAP_WIDTH);
+						for (let i = 2; i < r.length; i += 2) path.lineTo(left + origin.x + r[i] * MAP_WIDTH, top + origin.y + PANEL_PADDING + r[i + 1] * MAP_WIDTH);
 						path.closePath();
 					}
 					return path;
@@ -29,10 +31,16 @@ export const makePanelPainter = (G: Drawing): PanelPainter => {
 		g.strokeStyle = colours.grid;
 		g.lineWidth = 0.6;
 		g.lineJoin = 'round';
+		// Only within its panel: the world goes on past the cut.
+		g.save();
+		g.beginPath();
+		g.rect(left, top, panel.w, panel.h);
+		g.clip();
 		for (const path of countryPaths.get(family)!) {
 			g.fill(path);
 			g.stroke(path);
 		}
+		g.restore();
 	};
 
 	// Its pins, where they are in the picture.
@@ -144,11 +152,26 @@ export const makePanelPainter = (G: Drawing): PanelPainter => {
 	   faint line down from each time on its family's scale; each row's
 	   firmness right-aligned under the photograph; and behind each cheese a
 	   line from the least of its ripening to the most. */
+	// How far in from the band's edge the rows' names end.
+	const ROW_NAME_INSET = 8;
 	const drawPanel = (g: Pen, family: Node, s: number) => {
 		const panel = layout.panels.get(family)!;
 		const top = family.y + family.h / 2;
 		const left = family.x - family.w / 2;
 		const r = layout.pillCornerRadius(family);
+		// A grid's rows' names on the land's grey, a band as wide as the photograph over it, rounded at the bottom as the panel is.
+		const band = layout.photoSize(family);
+		if (panel.kind === 'grid') {
+			g.beginPath();
+			g.moveTo(left, top);
+			g.lineTo(left, top + panel.h - r);
+			g.arcTo(left, top + panel.h, left + r, top + panel.h, r);
+			g.lineTo(left + band, top + panel.h);
+			g.lineTo(left + band, top);
+			g.closePath();
+			g.fillStyle = colours.land;
+			g.fill();
+		}
 		g.beginPath();
 		g.moveTo(left, top);
 		g.lineTo(left, top + panel.h - r);
@@ -157,20 +180,22 @@ export const makePanelPainter = (G: Drawing): PanelPainter => {
 		g.arcTo(left + panel.w, top + panel.h, left + panel.w, top + panel.h - r, r);
 		g.lineTo(left + panel.w, top);
 		g.lineWidth = 1.2;
-		g.strokeStyle = colours.rim;
+		g.strokeStyle = panel.kind === 'grid' ? colours.tableEdge : colours.rim;
 		g.stroke();
 		// A map's land and cheeses are drawn in tiles of their own (see drawMapTiles).
 		if (panel.kind === 'map') return true;
 		for (const [days] of panel.times) pillPainter.drawLine(g, left + panel.xOf(days), top, left + panel.xOf(days), top + panel.h, 0.75, colours.grid);
+		// A line across between each row and the next, from the band of names to the far edge, half way through the gap between them.
+		for (const { y, h } of panel.rows.slice(0, -1)) pillPainter.drawLine(g, left + band, top + y + h + PANEL_PADDING / 2, left + panel.w, top + y + h + PANEL_PADDING / 2, 0.75, colours.grid);
 		if (legible(11, s)) {
 			g.textBaseline = 'middle';
 			g.textAlign = 'right';
-			for (const { firm, y, h } of panel.rows) pillPainter.drawCaption(g, firm, left + layout.photoSize(family), top + y + h / 2);
+			for (const { firm, y, h } of panel.rows) pillPainter.drawCaption(g, firm, left + band - ROW_NAME_INSET, top + y + h / 2);
 		}
 		g.lineCap = 'round';
-		// A guess has no span to show.
+		// A cheese with no time known has no span to show; nor has one in a column.
 		for (const [k] of panel.at)
-			if (!k.unsure) pillPainter.drawLine(g, left + panel.xOf(k.axes!.days[0]), k.y, left + panel.xOf(k.axes!.days[1]), k.y, 3, colours.line);
+			if (!k.axes!.timeless && !panel.columns) pillPainter.drawLine(g, left + panel.xOf(k.axes!.days[0]), k.y, left + panel.xOf(k.axes!.days[1]), k.y, 3, colours.line);
 		g.lineCap = 'butt';
 		return true;
 	};

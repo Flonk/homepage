@@ -1,0 +1,31 @@
+{
+	"label": "Pecorino umbro",
+	"example": true,
+	"family": "hard",
+	"regions": [
+		"IT"
+	],
+	"about": {
+		"text": "A semi-hard pecorino of ewe’s milk, made by small farms in Umbria and ripened 40 to 60 days in cool storage. Its curd is set with calf rennet.",
+		"sources": {
+			"links": [
+				{
+					"name": "On-farm pecorino and goat cheese in Umbria",
+					"url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9272083/fullTextXML"
+				},
+				{
+					"name": "Pecorino Umbro challenge test",
+					"url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC5076641/fullTextXML"
+				}
+			],
+			"text": "The on-farm process and its ripening from the first paper; the manufacturer’s process and its 40 days at 12 °C from the second."
+		}
+	},
+	"estimated": true,
+	"firm": "semi-hard",
+	"days": [
+		40,
+		60
+	],
+	"setting": "rennet"
+}

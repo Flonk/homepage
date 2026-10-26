@@ -1,0 +1,101 @@
+{
+	"from": [
+		"washed"
+	],
+	"to": [
+		"tilsiter"
+	],
+	"variant": true,
+	"step": "smear the rind",
+	"text": "During ripening the rind is repeatedly worked with a smear of Brevibacterium linens, which forms a thin yellow-brown rind. The flavour runs from mild to strong and spicy depending on age. The paste is supple, with the irregular shiny eyes and cracks typical of Tilsiter.",
+	"sources": {
+		"links": [
+			{
+				"name": "Codex Standard for Tilsiter (CXS 270-1968)",
+				"url": "https://www.fao.org/3/i2085e/i2085e00.pdf"
+			},
+			{
+				"name": "Holsteiner Tilsiter PGI single document (OJ C 288, 2012)",
+				"url": "https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=CELEX%3A52012XC0925%2804%29"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic",
+					"smear"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "lactic acid bacteria",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						}
+					],
+					"by": [
+						"starter"
+					]
+				}
+			},
+			{
+				"type": "coagulate",
+				"by": "rennet"
+			},
+			{
+				"type": "mould",
+				"note": "As a wheel or loaf, the Holsteiner loaf or box 3.5–5.0 kg."
+			},
+			{
+				"type": "ferment",
+				"does": "smear",
+				"adds": {
+					"microbes": [
+						{
+							"name": "Brevibacterium linens",
+							"kind": "bacterium",
+							"does": [
+								"rind"
+							]
+						}
+					],
+					"by": [
+						"starter"
+					]
+				}
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"temperature": {
+					"min": 10,
+					"max": 16
+				},
+				"seconds": {
+					"min": 1814400
+				},
+				"note": "The Codex asks for 3 wk, the Holsteiner for at least 5 wk."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Codex Standard for Tilsiter (CXS 270-1968)",
+					"url": "https://www.fao.org/3/i2085e/i2085e00.pdf"
+				},
+				{
+					"name": "Holsteiner Tilsiter PGI single document (OJ C 288, 2012)",
+					"url": "https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=CELEX%3A52012XC0925%2804%29"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

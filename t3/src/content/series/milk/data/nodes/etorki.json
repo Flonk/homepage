@@ -1,0 +1,51 @@
+{
+	"label": "Etorki",
+	"example": true,
+	"family": "washed",
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"sheep"
+	],
+	"firm": "semi-hard",
+	"days": [
+		90,
+		150
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Basque Country",
+		"lat": 43.2,
+		"lon": -1.2,
+		"x": 0.49667,
+		"y": 0.22523,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Etorki"
+			},
+			{
+				"name": "fr.wikipedia, Etorki",
+				"url": "https://fr.wikipedia.org/wiki/Etorki"
+			}
+		],
+		"text": "Basque Pyrenees, Ossau-Iraty style, pasteurised industrial brand"
+	},
+	"facts": [
+		{
+			"k": "Maker",
+			"v": "Fromagerie des Chaumes, Mauléon-Licharre (Basque Country), a Savencia subsidiary; sold year-round"
+		},
+		{
+			"k": "Protection",
+			"v": "Not a protected name, unlike Ossau-Iraty"
+		}
+	]
+}

@@ -1,5 +1,5 @@
 import type { Node } from '../client/base';
-import type { NodeSizes, StepLabelSizes, ParentToChildGaps, TrunkStrands, ArrowPaths, StepLabelPlacement, Box } from './types';
+import type { NodeSizes, StepLabelSizes, ParentToChildGaps, TrunkStrands, ArrowPaths, StepLabelPlacement, Box, RulerAndPanelContents } from './types';
 import { LABEL_LEADING } from './stepLabels';
 
 export interface LabelPlacementInputs {
@@ -10,20 +10,26 @@ export interface LabelPlacementInputs {
 	arrows: ArrowPaths;
 	// How far each child came in from past its parent's trunk (see placeNodes).
 	comeInBy: Map<Node, number>;
+	contents: RulerAndPanelContents;
 }
 
 /* Each step label in the middle of its arrow's last straight stretch,
-   just above it; its card chain laid over the arrow under it. */
-export const placeStepLabels = ({ sizes, labels, gaps, strands, arrows, comeInBy }: LabelPlacementInputs): StepLabelPlacement => {
+   just above it; its card chain laid over the arrow under it. Off a bus,
+   beside the drop into its table, just over the table's top. */
+export const placeStepLabels = ({ sizes, labels, gaps, strands, arrows, comeInBy, contents }: LabelPlacementInputs): StepLabelPlacement => {
 	const { cardChainFont } = sizes;
 	const { isLevel } = strands;
 	const { stepLabelFont, labelTextLines, stepLabelWidth, cardsOf, cardChainLayout, cardChainWidth, cardChainHeight, cardChainTop, labelClearance } = labels;
 	const lastLegY = (n: Node) => {
+		if (contents.busAbove(n)) return n.y - n.h / 2;
 		const strand = arrows.strands.get(n);
 		return strand && isLevel(n.y - strand.y) ? strand.y : n.y;
 	};
 	const labelBaseline = (n: Node) => lastLegY(n) - labelClearance(n) - stepLabelFont(n) * 0.45;
-	const stepLabelX = (n: Node) => gaps.labelCentreX(n, comeInBy.get(n) ?? 0);
+	const stepLabelX = (n: Node) =>
+		contents.busAbove(n)
+			? n.x + sizes.lineWidth(n) / 2 + stepLabelFont(n) * 0.5 + (stepLabelWidth.get(n) ?? 0) / 2
+			: gaps.labelCentreX(n, comeInBy.get(n) ?? 0);
 	const stepLabelLines = (n: Node) => {
 		const font = stepLabelFont(n);
 		const first = -(labelTextLines(n).length - 1) * LABEL_LEADING;

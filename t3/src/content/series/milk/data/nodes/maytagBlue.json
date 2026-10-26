@@ -1,0 +1,42 @@
+{
+	"label": "Maytag Blue",
+	"example": true,
+	"family": "blue",
+	"regions": [
+		"US"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-soft",
+	"days": [
+		180,
+		210
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Iowa",
+		"lat": 41.7,
+		"lon": -93.05,
+		"x": 0.24153,
+		"y": 0.23088,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Maytag_Blue_cheese"
+			}
+		],
+		"text": "Brand name that is also a distinct variety; aged in Iowa caves"
+	},
+	"facts": [
+		{
+			"k": "Shaping",
+			"v": "Rounds shaped by hand, then aged in humid, cool caves"
+		}
+	]
+}

@@ -1,0 +1,28 @@
+{
+	"label": "Camel-milk feta-type cheese",
+	"example": true,
+	"family": "brined",
+	"regions": [
+		"AE"
+	],
+	"beasts": [
+		"cow",
+		"camel"
+	],
+	"about": {
+		"text": "A low-fat feta-type cheese made from cow milk with 15% or 30% camel milk blended in, from a UAE laboratory study. The 30% camel blend held more moisture after 14 days of ripening than the cow-milk cheese, and it is not confirmed as sold in the UAE.",
+		"sources": {
+			"links": [
+				{
+					"name": "Ali et al. 2026, J Dairy Sci (abstract)",
+					"url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:42114740%20AND%20SRC:MED&resultType=core&format=json"
+				}
+			],
+			"text": "The abstract of the study, from this."
+		}
+	},
+	"days": [
+		14,
+		90
+	]
+}

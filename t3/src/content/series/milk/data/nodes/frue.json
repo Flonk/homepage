@@ -1,0 +1,55 @@
+{
+	"label": "Frue",
+	"example": true,
+	"aka": [
+		"Frughe",
+		"Fiscidu"
+	],
+	"family": "ricotta",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"sheep"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		3
+	],
+	"estimated": true,
+	"setting": "acid-heat",
+	"rind": "none",
+	"place": {
+		"region": "Sardinia",
+		"lat": 40.1,
+		"lon": 9,
+		"x": 0.525,
+		"y": 0.23676,
+		"located": "hint"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Frue"
+			},
+			{
+				"name": "Wikipedia (Italian): Cucina sarda",
+				"url": "https://it.wikipedia.org/wiki/Cucina_sarda"
+			},
+			{
+				"name": "Wikipedia (Italian): Formaggi sardi",
+				"url": "https://it.wikipedia.org/wiki/Formaggi_sardi"
+			}
+		],
+		"text": "Sardinian ricotta-type"
+	},
+	"facts": [
+		{
+			"k": "Serving",
+			"v": "Curdled sheep's milk served at Sardinian meals, with Irgoli salami inland, and added at the end to the minestra de merca soup"
+		}
+	]
+}

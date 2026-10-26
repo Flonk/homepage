@@ -1,0 +1,45 @@
+{
+	"label": "Demineralised whey",
+	"aka": [
+		"Demin whey",
+		"Entmineralisierte Molke"
+	],
+	"about": {
+		"text": "Sweet whey with most of its mineral salts removed, then evaporated and spray-dried. Heavily demineralised grades (about 90 %) are a main ingredient of infant formula, because they give whey protein and lactose without the mineral load of whey or milk.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 18 Milk and whey fractionation",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"examples": [
+		"demin90D90",
+		"partlyDemineralisedWhey"
+	],
+	"facts": [
+		{
+			"k": "Partial demineralisation",
+			"v": "25-30 % of the ash removed (nanofiltration: about 30 % at 22 % dry matter, 4x concentration, 21 °C, 2.5 MPa; chloride falls 67 %, sodium 33 %, potassium 31 %, calcium only 3 %)"
+		},
+		{
+			"k": "High demineralisation",
+			"v": "90-95 %, for infant formula"
+		},
+		{
+			"k": "Electrodialysis",
+			"v": "Best below 70 %; batch of 2-3 h for 90 % at 10-15 °C; whey first concentrated to 20-30 % dry matter"
+		},
+		{
+			"k": "Ion exchange",
+			"v": "Cation and anion resin; a cycle of about 6 h, 4 h of it regenerating the resin"
+		},
+		{
+			"k": "Cost",
+			"v": "Going from 50 % to 90 % demineralised makes the cost per kg of solids about four times higher (Tetra Pak)"
+		}
+	]
+}

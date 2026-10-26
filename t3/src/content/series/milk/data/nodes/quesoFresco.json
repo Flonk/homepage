@@ -1,0 +1,92 @@
+{
+	"label": "Queso fresco",
+	"example": true,
+	"aka": [
+		"Queso blanco fresco",
+		"Queso blanco",
+		"Queso sierra",
+		"Queso enchilada",
+		"Fresh white cheese"
+	],
+	"family": "freshCheese",
+	"about": {
+		"text": "Mexico's most popular fresh cheese, also widely eaten in the United States. Skimmed or partly skimmed milk is set with rennet at about 38 °C, and the curd is finely milled before salting, which makes the cheese crumbly. It is pressed only by its own weight, is not ripened and has a short shelf life.",
+		"sources": {
+			"links": [
+				{
+					"name": "Temas Selectos de Ingeniería de Alimentos (2012)",
+					"url": "https://www.udlap.mx/TSIA/assets/files/volumen6-2/TSIA-Vol6-No2-Ramirez-Lopez-et-al-2012.pdf"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Queso Fresco Mexicano.jpg",
+		"author": "Nsaum75",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Queso_Fresco_Mexicano.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"MX",
+		"PE",
+		"SV"
+	],
+	"beasts": [
+		"cow",
+		"goat"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		0
+	],
+	"setting": "rennet",
+	"rind": "none",
+	"confidence": "high",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Queso_Fresco"
+			},
+			{
+				"name": "Peña-Rodas et al. 2022",
+				"url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9742973/fullTextXML"
+			},
+			{
+				"name": "faolex.fao.org",
+				"url": "https://faolex.fao.org/docs/pdf/els85074.pdf"
+			}
+		],
+		"text": "Its facts, from these."
+	},
+	"composition": {
+		"moisture": {
+			"min": 46,
+			"max": 57
+		}
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Whole or part-skim; pasteurised in industry, raw traditionally"
+		},
+		{
+			"k": "Making",
+			"v": "Heated milk curdled with an acid such as lime juice or vinegar, drained in cloth for 3 to 5 hours (queso blanco)"
+		},
+		{
+			"k": "El Salvador",
+			"v": "Made fresh and unripened by artisanal and industrial dairies, moulded by partly draining the whey"
+		}
+	]
+}

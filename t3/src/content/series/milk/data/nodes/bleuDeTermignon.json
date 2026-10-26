@@ -1,0 +1,53 @@
+{
+	"label": "Bleu de Termignon",
+	"example": true,
+	"family": "blue",
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"cow",
+		"goat",
+		"sheep"
+	],
+	"firm": "semi-hard",
+	"days": [
+		90,
+		180
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Savoie",
+		"lat": 45.28,
+		"lon": 6.82,
+		"x": 0.51894,
+		"y": 0.21717,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Bleu_de_Termignon"
+			},
+			{
+				"name": "fr.wikipedia.org",
+				"url": "https://fr.wikipedia.org/wiki/Bleu_de_Termignon"
+			}
+		],
+		"text": "Naturally blued in Savoie alpine caves, no inoculation; English Wikipedia has no page under this title; ripening unsourced"
+	},
+	"facts": [
+		{
+			"k": "Season",
+			"v": "Made only June to September at about 2,000 m in Termignon (Haute-Maurienne) by four or five farms"
+		},
+		{
+			"k": "Fat",
+			"v": "About 50% fat"
+		}
+	]
+}

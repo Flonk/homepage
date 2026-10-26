@@ -1,0 +1,77 @@
+{
+	"label": "Mató",
+	"example": true,
+	"aka": [
+		"Brossat",
+		"Brull"
+	],
+	"family": "freshCheese",
+	"about": {
+		"text": "A fresh Catalan cheese of cow's or goat's milk, set with a little rennet or acid and drained in a mould; mild, soft and eaten with honey.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Mat%C3%B3"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Mató.jpg",
+		"author": "Eabayar",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Mat%C3%B3.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"ES"
+	],
+	"beasts": [
+		"goat",
+		"cow"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		3
+	],
+	"setting": "rennet-acid",
+	"rind": "none",
+	"place": {
+		"region": "Catalonia",
+		"lat": 41.8,
+		"lon": 1.5,
+		"x": 0.50417,
+		"y": 0.23051,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Mat%C3%B3"
+			},
+			{
+				"name": "Catalan Wikipedia: Brull",
+				"url": "https://ca.wikipedia.org/wiki/Brull"
+			}
+		],
+		"text": "Catalan fresh curd cheese, eaten with honey"
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Traditionally goat's; cow's or a cow-goat blend is common now, sheep's occasionally"
+		}
+	]
+}

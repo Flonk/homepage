@@ -1,0 +1,59 @@
+{
+	"label": "Extra-hard cheese",
+	"aka": [
+		"Extrahartkäse",
+		"Grana",
+		"Grating cheese"
+	],
+	"niche": 0,
+	"about": {
+		"text": "Hard cheese ripened a year or more, until it is dry enough to break into grains and to grate rather than slice: under 51 % water in the cheese without its fat, as the Codex standard has it. Parmigiano Reggiano, Grana Padano, Sbrinz and Pecorino Romano are among them.",
+		"sources": {
+			"links": [
+				{
+					"name": "Codex General Standard for Cheese (CXS 283-1978)",
+					"url": "https://www.fao.org/input/download/standards/175/CXS_283e.pdf"
+				},
+				{
+					"name": "Wikipedia: Grana (cheese)",
+					"url": "https://en.wikipedia.org/wiki/Grana_(cheese)"
+				}
+			],
+			"text": "Written from these."
+		}
+	},
+	"examples": [
+		"granaPadano",
+		"kefalotyri",
+		"parmigianoReggiano",
+		"pecorinoRomano",
+		"reggianito",
+		"sbrinz"
+	],
+	"table": {
+		"across": "days",
+		"down": "beast",
+		"picks": [
+			{
+				"id": "parmigianoReggiano",
+				"why": "The archetype of extra-hard grana cheese, a PDO made in Emilia-Romagna since the Middle Ages and copied worldwide."
+			},
+			{
+				"id": "granaPadano",
+				"why": "Italy's most produced PDO cheese and the other defining grana of the Po Valley."
+			},
+			{
+				"id": "pecorinoRomano",
+				"why": "The oldest of Italy's great grating cheeses, a salty sheep's-milk PDO from Lazio and Sardinia, exported widely."
+			},
+			{
+				"id": "sbrinz",
+				"why": "Switzerland's extra-hard PDO cheese, aged up to thirty months and grated or shaved in Swiss cooking."
+			},
+			{
+				"id": "reggianito",
+				"why": "Argentina's well-known answer to Parmigiano, made by Italian immigrants and the leading extra-hard cheese outside Europe."
+			}
+		]
+	}
+}

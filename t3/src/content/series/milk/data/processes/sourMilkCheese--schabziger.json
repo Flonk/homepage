@@ -1,0 +1,92 @@
+{
+	"from": [
+		"sourMilkCheese"
+	],
+	"to": [
+		"schabziger"
+	],
+	"variant": true,
+	"step": "ripen the Ziger, add blue fenugreek, press into cones",
+	"text": "The sources disagree on the order and timing (Wikipedia: heat milk with fenugreek sap, acidify, curdle the whey at 90 °C, press, dry; Swiss press: long ripening of the Ziger before grinding).",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Schabziger",
+				"url": "https://en.wikipedia.org/wiki/Schabziger"
+			},
+			{
+				"name": "Beobachter: Spezialität, was für ein Käse (found via search, page returned 403 on fetch)",
+				"url": "https://www.beobachter.ch/lebensmittel-ernahrung/spezialitat-was-fur-ein-kase"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "acidify",
+				"with": "lactic, citric or acetic acid",
+				"temperature": {
+					"min": 32,
+					"max": 32,
+					"about": true
+				}
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 90,
+					"max": 90
+				},
+				"note": "The whey is curdled, giving the Ziger."
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"seconds": {
+					"min": 2419200,
+					"max": 7257600
+				},
+				"note": "The Ziger is ripened in perforated vats or cloth bags under stones."
+			},
+			{
+				"type": "cut",
+				"how": "grind",
+				"note": "With blue fenugreek (Trigonella caerulea)."
+			},
+			{
+				"type": "salt"
+			},
+			{
+				"type": "press",
+				"seconds": {
+					"min": 518400,
+					"max": 691200
+				}
+			},
+			{
+				"type": "dry",
+				"seconds": {
+					"min": 5184000,
+					"max": 15552000
+				},
+				"note": "Stored 3–8 months after grinding, per the Swiss press sources."
+			}
+		],
+		"text": "The Ziger is ripened 4-12 weeks (Swiss press sources), then ground with fenugreek, salted and stored; Wikipedia gives pressing 6-8 days and drying 2-6 months instead, and the sources disagree on the order.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Schabziger",
+					"url": "https://en.wikipedia.org/wiki/Schabziger"
+				},
+				{
+					"name": "Beobachter: Spezialität, was für ein Käse (found via search, page returned 403 on fetch)",
+					"url": "https://www.beobachter.ch/lebensmittel-ernahrung/spezialitat-was-fur-ein-kase"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

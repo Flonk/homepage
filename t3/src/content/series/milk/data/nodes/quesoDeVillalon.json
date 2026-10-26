@@ -1,0 +1,55 @@
+{
+	"label": "Queso de Villalón",
+	"example": true,
+	"aka": [
+		"Villalón de Campos",
+		"Tierra de Campos"
+	],
+	"family": "freshCheese",
+	"regions": [
+		"ES"
+	],
+	"beasts": [
+		"sheep"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		15
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "none",
+	"place": {
+		"region": "Castile and León",
+		"lat": 41.99,
+		"lon": -4.93,
+		"x": 0.48631,
+		"y": 0.2298,
+		"located": "knowledge"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Queso_de_Villal%C3%B3n"
+			},
+			{
+				"name": "es.wikipedia.org",
+				"url": "https://es.wikipedia.org/wiki/Queso_de_Villal%C3%B3n"
+			}
+		],
+		"text": "Valladolid fresh sheep cheese; unverified"
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Mainly sheep's milk; sometimes sheep and cow mixed, or cow alone"
+		},
+		{
+			"k": "Freshness",
+			"v": "Sold on the day it is made and not kept beyond two days"
+		}
+	]
+}

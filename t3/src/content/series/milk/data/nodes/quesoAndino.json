@@ -1,0 +1,62 @@
+{
+	"label": "Queso Andino",
+	"example": true,
+	"family": "semiHard",
+	"about": {
+		"text": "Smooth texture and mild flavor.",
+		"sources": {
+			"unsourced": true,
+			"text": "Peruvian Andean (Cajamarca) cow cheese; no article found, details estimated"
+		}
+	},
+	"regions": [
+		"PE"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-soft",
+	"days": [
+		15,
+		45
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Cajamarca",
+		"lat": -6.8,
+		"lon": -78.5,
+		"x": 0.28194,
+		"y": 0.37748,
+		"located": "hint"
+	},
+	"confidence": "low",
+	"facts": [
+		{
+			"k": "Made in",
+			"v": "Ayacucho and Cusco, according to Peruvian news reports"
+		},
+		{
+			"k": "Paste",
+			"v": "Soft, buttery paste of pale yellowish colour, with a thin, firm rind"
+		}
+	],
+	"sources": {
+		"links": [
+			{
+				"name": "Agraria: Andino cheese, Ayacucho and Cusco",
+				"url": "https://agraria.pe/noticias/conozca-las-mas-de-50-variedades-de-quesos-que-se-presentan--32812"
+			},
+			{
+				"name": "Agraria: Montefino of Ayacucho",
+				"url": "https://agraria.pe/noticias/distingue-a-montefino-de-ayacucho-como-el-mejor-queso-del-pe-23117"
+			},
+			{
+				"name": "Agraria: NTP 105.004:2024 requirements",
+				"url": "https://agraria.pe/noticias/inacal-define-requisitos-de-calidad-para-los-quesos-regional-40574"
+			}
+		],
+		"text": "Peruvian news on the Andino cheese: its origin in Ayacucho and Cusco, and the national quality standard, from these."
+	}
+}

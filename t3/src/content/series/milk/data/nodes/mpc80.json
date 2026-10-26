@@ -1,0 +1,44 @@
+{
+	"label": "MPC80",
+	"at": 80,
+	"about": {
+		"text": "A milk protein concentrate named for its protein: at least 79.5 % of the powder is milk protein, the rest mostly lactose (under 9 %), ash (under 8 %) and fat (under 2.5 %). Casein and whey proteins stay at about 80:20, as in milk. Mostly used in beverages and bars, and as a replacement for skim milk powder or caseinate where more protein is needed.",
+		"sources": {
+			"links": [
+				{
+					"name": "U.S. Dairy Export Council: Milk protein concentrate (MPC 80)",
+					"url": "https://thinkusadairy.org/products/milk-proteins/milk-protein-categories/milk-protein-concentrate"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"composition": {
+		"protein": {
+			"min": 79.5
+		},
+		"lactose": {
+			"max": 9
+		},
+		"fat": {
+			"max": 2.5
+		},
+		"moisture": {
+			"max": 6
+		}
+	},
+	"facts": [
+		{
+			"k": "Casein : whey protein",
+			"v": "About 80 : 20"
+		},
+		{
+			"k": "Ash",
+			"v": "8.0 % maximum"
+		},
+		{
+			"k": "Lactose",
+			"v": "The same source's text says 5-6 %"
+		}
+	]
+}

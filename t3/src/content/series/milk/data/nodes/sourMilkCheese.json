@@ -1,0 +1,82 @@
+{
+	"label": "Sour milk cheese",
+	"aka": [
+		"Sauermilchkäse"
+	],
+	"cheese": true,
+	"ripened": true,
+	"about": {
+		"text": "Acid-set or sour milk cheese is cheese that has been curdled (coagulated) by natural souring, often from lactic acid bacteria, or by the addition of acid. This type of cheese is technologically simple to produce.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Acid-set_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Harzer Käse.jpg",
+		"author": "Markus Hagenlocher",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Harzer_K%C3%A4se.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"DE",
+		"AT",
+		"CZ"
+	],
+	"examples": [
+		"harzer",
+		"olmutzerQuargel",
+		"tirolerGraukase",
+		"handkase",
+		"mainzer",
+		"milbenkase",
+		"gammelost",
+		"pultost",
+		"schabziger"
+	],
+	"facts": [
+		{
+			"k": "Mould type",
+			"v": "For white or blue mould sorts the quark is salted less and neutralised less, with no sweating; ripened 6–7 days at 17–19 °C"
+		}
+	],
+	"table": {
+		"across": "days",
+		"down": "beast",
+		"picks": [
+			{
+				"id": "olomouckeTvaruzky",
+				"why": "Czechia's famous ripened curd cheese, protected as a PGI and the type's best-known export."
+			},
+			{
+				"id": "handkase",
+				"why": "Frankfurt and Hesse's signature sour milk cheese, protected as a PGI and eaten widely as Handkäse mit Musik."
+			},
+			{
+				"id": "harzer",
+				"why": "Germany's best-selling sour milk cheese, the low-fat Harz roller known across the country."
+			},
+			{
+				"id": "schabziger",
+				"why": "Glarus's green herb cheese, a PDO made since the Middle Ages and exported worldwide."
+			},
+			{
+				"id": "gammelost",
+				"why": "Norway's historic staple sour milk cheese, once a preserved food of the whole country."
+			}
+		]
+	}
+}

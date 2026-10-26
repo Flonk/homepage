@@ -28,7 +28,8 @@ export const PageNode = z.strictObject({
 	id: z.string(),
 	label: z.string(),
 	aka: z.array(z.string()).optional(),
-	note: z.string().optional(),
+	// A cheese type's cheeses too many to show on its table, by their names: found by the search, under it.
+	offTable: z.array(z.string()).optional(),
 	image: PicturePage.optional(),
 	about: About.optional(),
 	named: z.array(z.string()).optional(),
@@ -38,6 +39,8 @@ export const PageNode = z.strictObject({
 	scale: Node.shape.scale,
 	at: z.number().optional(),
 	panel: z.boolean().optional(),
+	// A cheese type's table (see table in Node): its rows down, top first, and its columns, where it is not set out by time.
+	table: z.strictObject({ down: z.enum(['firm', 'beast']), rows: z.array(z.string()), columns: z.array(z.string()).optional() }).optional(),
 	map: z.boolean().optional(),
 	below: ProductId.optional(),
 	link: ProductId.optional(),
@@ -56,8 +59,15 @@ export const PageNode = z.strictObject({
 	sources: Sourcing.optional(),
 	example: z.literal(true).optional(),
 	rank: z.number().int().optional(),
-	axes: z.strictObject({ firm: Firm, days: Days }).optional(),
+	// Where it is in a panel: its firmness and ripening (its family's usual, where none is known), and in a type's table, its row and column there.
+	axes: z
+		.strictObject({ firm: Firm, days: Days, timeless: z.literal(true).optional(), row: z.string().optional(), column: z.string().optional() })
+		.optional(),
 	protected: Protected.optional(),
+	// One of the world's most made and best known cheeses; or on a type's table, among its most significant, or there as an outlier (see build/tables.ts).
+	standing: z.enum(['famous', 'pick', 'outlier']).optional(),
+	// Its rank among the world's most made and best known cheeses (see famous-cheeses.json).
+	fame: z.number().int().positive().optional(),
 	// Why its place is a guess, where it is.
 	unsure: z.string().optional(),
 	// For dev mode: what is still to be done on the way it is drawn along (see devOf in build.ts).

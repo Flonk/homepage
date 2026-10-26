@@ -1,0 +1,137 @@
+{
+	"label": "Cottage cheese",
+	"aka": [
+		"Hüttenkäse",
+		"Hytteost",
+		"Kodujuust",
+		"Kotasæla",
+		"Biezpiens",
+		"Keso",
+		"Chekize"
+	],
+	"comment": "Granular, cooked and washed, then dressed with cream: its own route to a fresh cheese.",
+	"niche": 1,
+	"cheese": true,
+	"about": {
+		"text": "A soft, unripened, rindless cheese of separate, near-white curd grains about 3–12 mm across, made from skimmed milk that is soured, cut and cooked, then usually mixed with a cream dressing.",
+		"sources": {
+			"links": [
+				{
+					"name": "Codex Standard for Cottage Cheese, CXS 273-1968",
+					"url": "https://www.fao.org/input/download/standards/201/CXS_273e.pdf"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Cottage Cheese.jpg",
+		"author": "Stu Spivack (via Flickr)",
+		"license": "CC BY-SA 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Cottage_Cheese.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"US",
+		"GB",
+		"DE"
+	],
+	"examples": [
+		"dryCurdCottageCheese"
+	],
+	"composition": {
+		"moisture": {
+			"min": 79,
+			"max": 79,
+			"about": true
+		},
+		"fat": {
+			"min": 2.5,
+			"max": 5
+		}
+	},
+	"facts": [
+		{
+			"k": "Grain",
+			"v": "Codex 3–12 mm; small curd under 4 mm, large curd over 8 mm (Wikipedia)"
+		},
+		{
+			"k": "Direct-acid method",
+			"v": "Cold skim milk is acidified with vinegar, citric or lactic acid, which roughly halves the time (Wikipedia)"
+		},
+		{
+			"k": "Latvia",
+			"v": "Biezpiens, the everyday fresh cheese, is eaten with sour cream and herbs, or at lunch with boiled potatoes and lightly salted herring"
+		}
+	],
+	"beasts": [
+		"cow",
+		"buffalo"
+	],
+	"sources": {
+		"links": [
+			{
+				"name": "Danish Wikipedia: Ost",
+				"url": "https://da.wikipedia.org/wiki/Ost"
+			},
+			{
+				"name": "Kodujuust, Estonian Wikipedia",
+				"url": "https://et.wikipedia.org/wiki/Kodujuust"
+			},
+			{
+				"name": "Kotasæla, Icelandic Wikipedia",
+				"url": "https://is.wikipedia.org/wiki/Kotasæla"
+			},
+			{
+				"name": "Biezpiens, Latvian Wikipedia",
+				"url": "https://lv.wikipedia.org/wiki/Biezpiens"
+			},
+			{
+				"name": "Latvian cuisine, Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Latvian_cuisine"
+			},
+			{
+				"name": "Keso, Swedish Wikipedia",
+				"url": "https://sv.wikipedia.org/wiki/Keso"
+			},
+			{
+				"name": "Europe PMC study on chekize",
+				"url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12608619/fullTextXML"
+			}
+		],
+		"text": "Its names and facts, from these."
+	},
+	"table": {
+		"across": "setting",
+		"down": "beast",
+		"picks": [
+			{
+				"id": "cottageCheese2",
+				"why": "The US cottage cheese is the type's global archetype, a mass-produced fresh curd eaten worldwide."
+			},
+			{
+				"id": "dryCurdCottageCheese",
+				"why": "The washed, cream-free curd base of American cottage cheese, defined by a legal US standard of identity."
+			},
+			{
+				"id": "raejuusto",
+				"why": "Finland's everyday cottage cheese, widely sold across the Nordic countries as a staple fresh cheese."
+			},
+			{
+				"id": "metataAyib",
+				"why": "A spiced version of Ethiopia's ayib, a central cottage-type cheese of Ethiopian cuisine."
+			},
+			{
+				"id": "zagorjeCottageCheese",
+				"why": "Croatia's Zagorje cottage cheese, eaten with cream and used in the region's celebrated štrukli."
+			}
+		]
+	}
+}

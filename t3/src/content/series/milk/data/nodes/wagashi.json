@@ -1,0 +1,96 @@
+{
+	"label": "Wagashi",
+	"example": true,
+	"aka": [
+		"Wara",
+		"Gassirè",
+		"Wagasi",
+		"Amo",
+		"Gasaru",
+		"Warakashi",
+		"Wagashie",
+		"Waagashie"
+	],
+	"family": "plantCheese",
+	"about": {
+		"text": "A soft cheese from northern Benin, made by women and mostly by the Peulh (Fulani). Fresh whole cow's milk is heated and curdled with an extract of the Sodom apple plant (Calotropis procera), whose enzyme does the work of rennet. The curd drains in small colanders. Some cheeses are dyed red with sorghum.",
+		"sources": {
+			"links": [
+				{
+					"name": "PMC research article (2022)",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9489737"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Waagashi.jpg",
+		"author": "Noahalorwu",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Waagashi.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"BJ",
+		"NG"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		3
+	],
+	"estimated": true,
+	"setting": "plant",
+	"rind": "none",
+	"place": {
+		"region": "Borgou",
+		"lat": 9.35,
+		"lon": 2.63,
+		"x": 0.50731,
+		"y": 0.33246,
+		"located": "hint"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Wagasi"
+			},
+			{
+				"name": "Ghana wagashi, Ho Municipality (Toxicology Reports, 2024)",
+				"url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10837644/fullTextXML"
+			},
+			{
+				"name": "Ghanaian cuisine (Wikipedia)",
+				"url": "https://en.wikipedia.org/wiki/Ghanaian_cuisine"
+			},
+			{
+				"name": "Thesis on dairy cattle in the Maritime Region, Togo",
+				"url": "https://www.memoireonline.com/09/22/13123/m_Etat-des-lieux-de-l-levage-des-bovins-laitiers-dans-la-rgion-maritime-au-Togo9.html"
+			}
+		],
+		"text": "Fulani cheese set with leaf extract (Calotropis procera; Wikipedia names Bombax ceiba); soft, mild, wheels dipped in red leaf wax to keep"
+	},
+	"facts": [
+		{
+			"k": "Ghana",
+			"v": "Eaten fried or raw, sold in markets and at waakye stalls, mostly in the north and Volta regions"
+		},
+		{
+			"k": "Togo",
+			"v": "Made by Peul women in the north, where it is counted a luxury food"
+		}
+	]
+}

@@ -1,0 +1,50 @@
+{
+	"label": "Mont des Cats",
+	"example": true,
+	"family": "washed",
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-soft",
+	"days": [
+		60,
+		90
+	],
+	"setting": "rennet",
+	"rind": "washed",
+	"place": {
+		"region": "Hauts-de-France",
+		"lat": 50.79,
+		"lon": 2.59,
+		"x": 0.50719,
+		"y": 0.19425,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Mont_des_Cats_cheese"
+			},
+			{
+				"name": "fr.wikipedia.org",
+				"url": "https://fr.wikipedia.org/wiki/Mont_des_Cats"
+			},
+			{
+				"name": "fr.wikipedia.org (fromage)",
+				"url": "https://fr.wikipedia.org/wiki/Mont_des_Cats_(fromage)"
+			}
+		],
+		"text": "Trappist abbey cheese from Godewaersvelde; rind washed with annatto-dyed brine; aged at least two months (minimum sourced, max estimated)"
+	},
+	"facts": [
+		{
+			"k": "Trademark",
+			"v": "Made by the Trappist monks of the Abbaye du Mont-des-Cats near Godewaersvelde in French Flanders; a trademark with no appellation"
+		}
+	]
+}

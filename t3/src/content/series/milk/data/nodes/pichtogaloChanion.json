@@ -1,0 +1,39 @@
+{
+	"label": "Pichtogalo Chanion",
+	"example": true,
+	"aka": [
+		"Πηχτόγαλο Χανίων",
+		"Πηχτόγαλο"
+	],
+	"family": "lacticCheese",
+	"regions": [
+		"GR"
+	],
+	"beasts": [
+		"sheep",
+		"goat"
+	],
+	"about": {
+		"text": "A soft, fresh cheese from Chania in Crete, made from unpasteurised sheep's milk, or from a mix of sheep and goat milk. It has a yoghurt-like texture and a slightly sour taste, and is used in pies or eaten as it is.",
+		"sources": {
+			"links": [
+				{
+					"name": "Greek Wikipedia, Cretan cheese",
+					"url": "https://el.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=1&titles=Κρητικό_τυρί"
+				},
+				{
+					"name": "PDO status (PMC8747277)",
+					"url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC8747277/fullTextXML"
+				}
+			],
+			"text": "The milk, texture, taste and uses, and the PDO status, from these."
+		}
+	},
+	"estimated": true,
+	"firm": "fresh",
+	"days": [
+		0,
+		0
+	],
+	"protected": "PDO"
+}

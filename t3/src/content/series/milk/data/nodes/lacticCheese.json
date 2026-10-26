@@ -1,0 +1,98 @@
+{
+	"label": "Lactic-set cheese",
+	"aka": [
+		"Fromage lactique",
+		"Lactic cheese"
+	],
+	"niche": 1,
+	"cheese": true,
+	"ripened": true,
+	"about": {
+		"text": "Cheese whose milk is set mainly by lactic acid after a day or more at cool room temperature, with only a trace of rennet; the curd is ladled into moulds, drains by itself and is often ash-coated and mould-ripened for a few weeks.",
+		"sources": {
+			"links": [
+				{
+					"name": "Sainte-Maure de Touraine AOP cahier des charges (INAO)",
+					"url": "https://extranet.inao.gouv.fr/fichier/CDCPNOSainteMauredeTouraine.pdf"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Sainte-maure-de-touraine cheese.jpg",
+		"author": "Tangopaso",
+		"license": "Public domain",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Sainte-maure-de-touraine_cheese.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"FR"
+	],
+	"share": {
+		"mt": 1.2,
+		"sources": {
+			"unsourced": true,
+			"text": "Mostly French goat’s cheeses: a few hundred thousand tonnes of cheese, at about 6 kg of milk a kilo. My own rough estimate."
+		}
+	},
+	"examples": [
+		"sainteMaureDeTouraine",
+		"crottinDeChavignol",
+		"sellesSurCher",
+		"valencay",
+		"chabichouDuPoitou",
+		"poulignySaintPierre",
+		"afuegaLPitu",
+		"katikiDomokou",
+		"picodon",
+		"jben",
+		"bouhezza",
+		"galotyri"
+	],
+	"composition": {
+		"moisture": {
+			"min": 60,
+			"max": 70
+		}
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Whole raw goat’s milk in Sainte-Maure de Touraine AOP"
+		}
+	],
+	"table": {
+		"across": "days",
+		"down": "beast",
+		"picks": [
+			{
+				"id": "sainteMaureDeTouraine",
+				"why": "Iconic Loire goat-cheese log with a rye straw, PDO-protected and among France's best-known chèvres."
+			},
+			{
+				"id": "crottinDeChavignol",
+				"why": "Famous Loire goat cheese from Sancerre country, PDO since 1976 and eaten young or aged."
+			},
+			{
+				"id": "saintMarcellin",
+				"why": "Dauphiné's creamy cow's-milk cheese, PGI-protected and one of France's best-loved ripened lactic cheeses."
+			},
+			{
+				"id": "valencay",
+				"why": "Distinctive ash-dusted truncated pyramid from Berry, PDO since 1998 and a symbol of French goat cheese."
+			},
+			{
+				"id": "picodon",
+				"why": "Spicy PDO goat cheese of the Drôme and Ardèche, a defining cheese of the Rhône hills."
+			}
+		]
+	}
+}

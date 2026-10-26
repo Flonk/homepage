@@ -77,9 +77,9 @@ export type Colours = {
 	accent: string;
 	names: string;
 	milk: string;
-	info: string;
 	unsure: string;
 	land: string;
+	tableEdge: string;
 	panel: string;
 	grid: string;
 };
@@ -130,7 +130,7 @@ export interface PillPainter {
 
 /* A round mark on a pill's corner that says something when pointed at:
    a remark, a guess, or (in dev mode) something still to be done. */
-export type Remark = { node: Node; kind: 'note' | 'unsure' | 'unsourced' | 'unranked'; text: string; r: number; x: number; y: number };
+export type Remark = { node: Node; kind: 'unsure' | 'unsourced' | 'unranked'; text: string; r: number; x: number; y: number };
 // Where a round mark is, and how big.
 export type Spot = { r: number; x: number; y: number };
 

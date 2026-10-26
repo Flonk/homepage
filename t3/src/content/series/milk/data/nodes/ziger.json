@@ -1,0 +1,91 @@
+{
+	"label": "Ziger",
+	"example": true,
+	"aka": [
+		"Zieger",
+		"Schottenziger",
+		"Zigerkäse",
+		"Sérac",
+		"Ricotta"
+	],
+	"family": "ricotta",
+	"about": {
+		"text": "Ziger (Zieger in Germany and Austria) is a Swiss whey cheese: the whey protein is precipitated with acid, alone or with some skimmed milk or buttermilk. It is not aged, and is sold fresh or smoked.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia (de)",
+					"url": "https://de.wikipedia.org/wiki/Ziger"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Ziger und Mutschli, Ballenberg.jpg",
+		"author": "Sandstein",
+		"license": "CC BY 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Ziger_und_Mutschli,_Ballenberg.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"CH"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		1
+	],
+	"setting": "acid-heat",
+	"rind": "none",
+	"place": {
+		"region": "Glarus",
+		"lat": 47.04,
+		"lon": 9.07,
+		"x": 0.52519,
+		"y": 0.21011,
+		"located": "knowledge"
+	},
+	"confidence": "high",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Ziger"
+			}
+		],
+		"text": "whey (from Gruyère/Emmental-type cheeses) heated to about 90 C and acidified; curd sold the next day"
+	},
+	"composition": {
+		"moisture": {
+			"min": 75,
+			"max": 75,
+			"about": true
+		},
+		"protein": {
+			"min": 11,
+			"max": 11,
+			"about": true
+		},
+		"fat": {
+			"min": 8,
+			"max": 8,
+			"about": true
+		},
+		"lactose": {
+			"min": 3.5,
+			"max": 3.5,
+			"about": true
+		}
+	}
+}

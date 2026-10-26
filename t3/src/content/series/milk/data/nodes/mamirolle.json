@@ -1,0 +1,51 @@
+{
+	"label": "Mamirolle",
+	"example": true,
+	"family": "washed",
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "soft",
+	"days": [
+		21,
+		42
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "washed",
+	"place": {
+		"region": "Franche-Comté",
+		"lat": 47.1,
+		"lon": 6.15,
+		"x": 0.51708,
+		"y": 0.20986,
+		"located": "knowledge"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Mamirolle_cheese"
+			},
+			{
+				"name": "French Wikipedia: Mamirolle",
+				"url": "https://fr.wikipedia.org/wiki/Mamirolle_(fromage)"
+			}
+		],
+		"text": "Doubs; unverified"
+	},
+	"facts": [
+		{
+			"k": "Origin",
+			"v": "Developed in 1935 by the dairy school at Mamirolle, Doubs"
+		},
+		{
+			"k": "Making",
+			"v": "Curd pressed, not cooked; ripened 4 to 5 weeks on white pine boards, rind coloured with annatto"
+		}
+	]
+}

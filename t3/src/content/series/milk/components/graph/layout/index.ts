@@ -37,13 +37,13 @@ export function layout(data: Graph): GraphLayout {
 	const contents = takeOutRulerAndPanelContents(tree);
 	const pills = measurePills(tree, sizes, contents);
 	const labels = measureStepLabels(tree, sizes, contents);
-	const gaps = measureParentToChildGaps(tree, sizes, labels);
+	const gaps = measureParentToChildGaps(tree, sizes, labels, contents);
 	const strands = trunkStrands(tree, sizes, gaps);
 	const rulers = hangUnderRulers(sizes, contents);
 	const panels = layCheesePanels(data, sizes, contents);
 	const comeInBy = placeNodes({ tree, sizes, labels, gaps, strands, contents, rulers, panels });
-	const arrows = routeArrows({ tree, sizes, gaps, strands, contents, rulers });
-	const placed = placeStepLabels({ sizes, labels, gaps, strands, arrows, comeInBy });
+	const arrows = routeArrows({ tree, sizes, labels, gaps, strands, contents, rulers });
+	const placed = placeStepLabels({ sizes, labels, gaps, strands, arrows, comeInBy, contents });
 
 	const stepLabelled = new Set(labels.nodesWithStepLabel);
 	const cardChained = new Set(labels.nodesWithCardChain);
@@ -71,6 +71,7 @@ export function layout(data: Graph): GraphLayout {
 		milkRadius: sizes.milkRadius,
 		scaleOf: sizes.scaleOf,
 		photoSize: sizes.photoSize,
+		thickness: sizes.thickness,
 		pillCornerRadius: sizes.pillCornerRadius,
 		pillRimWidth: sizes.pillRimWidth,
 		pillShadowBox,

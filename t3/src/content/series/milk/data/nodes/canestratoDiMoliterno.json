@@ -1,0 +1,57 @@
+{
+	"label": "Canestrato di Moliterno",
+	"example": true,
+	"family": "hard",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"sheep",
+		"goat"
+	],
+	"firm": "hard",
+	"days": [
+		60,
+		365
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PGI",
+	"place": {
+		"region": "Basilicata",
+		"lat": 40.24,
+		"lon": 15.81,
+		"x": 0.54392,
+		"y": 0.23625,
+		"located": "knowledge"
+	},
+	"confidence": "high",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Canestrato_di_Moliterno"
+			},
+			{
+				"name": "onaf.it",
+				"url": "https://www.onaf.it/uploads/public/formaggi/1449_1-igp-rich-canestrato-di-moliterno-c-23520090930it00280031.pdf"
+			},
+			{
+				"name": "Wikipedia (Italian)",
+				"url": "https://it.wikipedia.org/wiki/Canestrato_di_Moliterno"
+			}
+		],
+		"text": "PGI spec: 70-90% sheep, 10-30% goat milk; at least 60 days; 2-5.5 kg; rind marked by basket, may be oiled or treated; upper limit of ripening not confirmed"
+	},
+	"facts": [
+		{
+			"k": "Name",
+			"v": "From the Latin mulcternum, a place where milk was milked and coagulated"
+		},
+		{
+			"k": "Pasture",
+			"v": "Made from free-range flocks; summer milk from flocks near the sea is fattier, winter mountain-pasture milk less fatty but more aromatic"
+		}
+	]
+}

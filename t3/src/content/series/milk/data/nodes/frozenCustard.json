@@ -1,0 +1,52 @@
+{
+	"label": "Frozen custard",
+	"example": true,
+	"about": {
+		"text": "Frozen custard is a frozen dessert that is a type of ice cream made with egg yolks in addition to cream and sweetener, and an additional flavoring such as cocoa, vanilla, or fruit such as strawberries or peaches. It is usually kept at a warmer temperature compared to ice cream, and typically has a denser and thicker consistency.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Frozen_custard"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "FrozenCustard.jpg",
+		"author": "stu_spivack",
+		"license": "CC BY-SA 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:FrozenCustard.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"US"
+	],
+	"composition": {
+		"fat": {
+			"min": 10
+		}
+	},
+	"facts": [
+		{
+			"k": "Law",
+			"v": "Egg yolk solids at least 1.4 % (US FDA); with less it is ice cream"
+		},
+		{
+			"k": "Served at",
+			"v": "About −8 °C (ice cream about −12 °C)"
+		},
+		{
+			"k": "Soft serve",
+			"v": "Can reach up to 100 % overrun"
+		}
+	]
+}

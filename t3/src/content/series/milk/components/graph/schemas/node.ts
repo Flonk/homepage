@@ -44,16 +44,29 @@ export const Node = z
 		aka: z.array(z.string().min(1)).optional(),
 		// An example of a product, not a product of its own.
 		example: z.literal(true).optional(),
+		// An example not drawn, its product naming too many to draw: found by the search, under it.
+		hidden: z.literal('HIDDEN_DUE_TO_OVERLOAD').optional(),
+		// A brand or one company's product, rather than a kind of product: drawn only if it has a place in a food culture, and why or why not.
+		branded: z.strictObject({ significant: z.boolean(), why: z.string().min(1) }).optional(),
 		// Why it is drawn as it is, for whoever keeps the graph; not shown.
 		comment: z.string().optional(),
-		// A remark behind an info mark on its pill.
-		note: z.string().optional(),
-		// How it is drawn: a kind's ruler, where on its parent's one it hangs, its examples in a panel, the map under it, a family only on the map, drawn below this sibling, this product drawn again.
-		scale: z.strictObject({ name: z.string(), unit: z.string(), to: z.number(), every: z.number() }).optional(),
+		// How it is drawn: a kind's ruler, where on its parent's one it hangs, its examples in a panel (a family with enough cheeses where they are made has a map under it instead, worked out at build time), drawn below this sibling, this product drawn again.
+		// A ruler: what it measures (a line break stacks it), its unit, up to what, a mark every so many; and how wide a unit is drawn, where not the usual (see RULE_PX).
+		scale: z.strictObject({ name: z.string(), unit: z.string(), to: z.number(), every: z.number(), px: z.number().positive().optional() }).optional(),
 		at: z.number().optional(),
 		panel: z.boolean().optional(),
-		map: z.boolean().optional(),
-		mapped: z.boolean().optional(),
+		/* A cheese type's table, in its panel: what its cheeses are set out by,
+		   across (how long they ripen, or what sets them) and down (how firm,
+		   or whose milk); and its most significant cheeses, each with why. Those
+		   and the outliers on each axis are shown; the rest, too many to show,
+		   are only found by the search, under the type. */
+		table: z
+			.strictObject({
+				across: z.enum(['days', 'setting']),
+				down: z.enum(['firm', 'beast']),
+				picks: z.array(z.strictObject({ id: ProductId, why: z.string().min(1) })).min(1).max(5),
+			})
+			.optional(),
 		below: ProductId.optional(),
 		link: ProductId.optional(),
 		/* How much it matters to how people eat and live, as a second pull on
@@ -117,7 +130,7 @@ export const Node = z
 		   those without are counted as the graph is built. */
 		...Own,
 	})
-	.refine((n) => !n.example || [n.scale, n.at, n.examples, n.panel, n.map, n.mapped].every((x) => x === undefined), 'an example has no ruler, no place on one, and no examples of its own');
+	.refine((n) => !n.example || [n.scale, n.at, n.examples, n.panel, n.table].every((x) => x === undefined), 'an example has no ruler, no place on one, and no examples of its own');
 export const Nodes = z.record(ProductId, Node);
 export type Node = z.infer<typeof Node>;
 export type Composition = z.infer<typeof Composition>;

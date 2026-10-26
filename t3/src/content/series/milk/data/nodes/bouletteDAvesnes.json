@@ -1,0 +1,51 @@
+{
+	"label": "Boulette d'Avesnes",
+	"example": true,
+	"family": "sourMilkCheese",
+	"also": "washed",
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "soft",
+	"days": [
+		60,
+		90
+	],
+	"setting": "rennet-acid",
+	"rind": "washed",
+	"place": {
+		"region": "Hauts-de-France",
+		"lat": 50.12,
+		"lon": 3.92,
+		"x": 0.51089,
+		"y": 0.19717,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Boulette_d'Avesnes"
+			},
+			{
+				"name": "cheese.com",
+				"url": "https://cheese.com/boulette-davesnes/"
+			},
+			{
+				"name": "fr.wikipedia.org",
+				"url": "https://fr.wikipedia.org/wiki/Boulette_d'Avesnes"
+			}
+		],
+		"text": "Hand-shaped cone of Maroilles-type/buttermilk curd with parsley, tarragon, pepper, cloves; rind washed and coloured with paprika; sold fresh within about 30 days or matured 2-3 months in a humid cellar (sources differ)"
+	},
+	"facts": [
+		{
+			"k": "Made from",
+			"v": "Fresh white Maroilles scraps and downgraded Maroilles"
+		}
+	]
+}

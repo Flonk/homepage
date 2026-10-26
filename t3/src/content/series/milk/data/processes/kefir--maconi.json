@@ -1,0 +1,60 @@
+{
+	"from": [
+		"kefir"
+	],
+	"to": [
+		"maconi"
+	],
+	"variant": true,
+	"text": "Fermented spontaneously, without kefir grains, by mesophilic lactic acid bacteria and yeasts; the review names no species (Table 2 only).",
+	"sources": {
+		"links": [
+			{
+				"name": "Bintsis & Papademas 2022, Table 2, Fermentation 8:679",
+				"url": "https://doi.org/10.3390/fermentation8120679"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic",
+					"yeast"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "mesophilic lactic acid bacteria",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							],
+							"grows": "mesophilic"
+						},
+						{
+							"name": "yeasts",
+							"kind": "yeast"
+						}
+					],
+					"by": [
+						"wild"
+					]
+				}
+			}
+		],
+		"text": "Fermented spontaneously, without kefir grains; no species are named.",
+		"sources": {
+			"links": [
+				{
+					"name": "Bintsis & Papademas 2022, Table 2, Fermentation 8:679",
+					"url": "https://doi.org/10.3390/fermentation8120679"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

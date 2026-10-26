@@ -1,0 +1,71 @@
+{
+	"label": "Caciotta",
+	"example": true,
+	"aka": [
+		"Caciotta del Fermano",
+		"Caciotta del Montefeltro",
+		"Caciotta al tartufo"
+	],
+	"family": "semiHard",
+	"about": {
+		"text": "a range of types of cheese produced especially in the central regions of Italy from the milk of cows, sheep, goats or water buffalo",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Caciotta"
+				}
+			],
+			"text": "generic Central Italian type, soft yellow rind, short ripening; a dozen-plus regional variants"
+		}
+	},
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"cow",
+		"sheep",
+		"goat",
+		"buffalo"
+	],
+	"firm": "semi-soft",
+	"days": [
+		20,
+		60
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Umbria",
+		"lat": 42.8,
+		"lon": 12.6,
+		"x": 0.535,
+		"y": 0.22675,
+		"located": "hint"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Caciotta"
+			},
+			{
+				"name": "Regione Marche technical sheet",
+				"url": "https://www.onaf.it/uploads/public/formaggi/7354_caciotta-scheda-regione-marche.pdf"
+			}
+		],
+		"text": "generic Central Italian type, soft yellow rind, short ripening; a dozen-plus regional variants"
+	},
+	"facts": [
+		{
+			"k": "Styles",
+			"v": "The Fermano style is eaten young and slightly sweet-sour; the Montefeltro style is aged 2–6 months and more savoury"
+		},
+		{
+			"k": "Walnut leaves",
+			"v": "Aged Montefeltro caciotte (at least 40 days) are stored in barrels, crates or jars lined with walnut leaves"
+		}
+	]
+}

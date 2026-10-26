@@ -1,0 +1,59 @@
+{
+	"label": "Berner Alpkäse",
+	"example": true,
+	"aka": [
+		"Berner Hobelkäse",
+		"Coeur des Alpes"
+	],
+	"family": "alpine",
+	"regions": [
+		"CH"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "hard",
+	"days": [
+		150,
+		730
+	],
+	"setting": "rennet",
+	"rind": "washed",
+	"protected": "PDO",
+	"place": {
+		"region": "Bern",
+		"lat": 46.7,
+		"lon": 7.6,
+		"x": 0.52111,
+		"y": 0.21149,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Berner_Alpk%C3%A4se"
+			},
+			{
+				"name": "de.wikipedia.org, Berner Hobelkäse",
+				"url": "https://de.wikipedia.org/wiki/Berner_Hobelk%C3%A4se"
+			},
+			{
+				"name": "plattformj.ch, Berner Alpkäse",
+				"url": "https://www.plattformj.ch/artikel/213723/"
+			}
+		],
+		"text": "made in copper kettle over fire on alps"
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Raw milk only, made in recognised alp dairies during the alp season, from about mid-May to the end of September"
+		},
+		{
+			"k": "Hobelkäse",
+			"v": "Alpkäse aged at least 18 months to two years, then planed into shavings; the most widely available form"
+		}
+	]
+}

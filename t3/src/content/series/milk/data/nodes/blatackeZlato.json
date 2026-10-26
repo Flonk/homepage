@@ -1,0 +1,62 @@
+{
+	"label": "Blaťácké zlato",
+	"example": true,
+	"family": "semiHard",
+	"about": {
+		"text": "A traditional Czech soft cheese made from cow milk, similar Bel Paese.",
+		"sources": {
+			"unsourced": true,
+			"text": "Bel Paese style (list description); no article found"
+		}
+	},
+	"regions": [
+		"CZ"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-soft",
+	"days": [
+		21,
+		42
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "South Bohemia",
+		"lat": 49,
+		"lon": 14.8,
+		"x": 0.54111,
+		"y": 0.20197,
+		"located": "hint"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "cs.wikipedia.org",
+				"url": "https://cs.wikipedia.org/wiki/Bla%C5%A5%C3%A1ck%C3%A9_zlato"
+			},
+			{
+				"name": "Europe PMC PMC12057542",
+				"url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12057542/fullTextXML"
+			},
+			{
+				"name": "Europe PMC PMC12249010",
+				"url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12249010/fullTextXML"
+			}
+		],
+		"text": "Its names and facts, from these."
+	},
+	"facts": [
+		{
+			"k": "Rind",
+			"v": "Golden-orange, annatto-coloured rind; now heat-shrink wrapped at about 20 days, then ripened 4–6 weeks"
+		},
+		{
+			"k": "Flavour",
+			"v": "Mild and milky with nutty notes; springy, elastic paste"
+		}
+	]
+}

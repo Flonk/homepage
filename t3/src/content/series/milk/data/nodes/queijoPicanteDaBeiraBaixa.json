@@ -1,0 +1,59 @@
+{
+	"label": "Queijo Picante da Beira Baixa",
+	"example": true,
+	"aka": [
+		"Queijo Cabreiro"
+	],
+	"family": "plantCheese",
+	"regions": [
+		"PT"
+	],
+	"beasts": [
+		"goat",
+		"sheep"
+	],
+	"firm": "hard",
+	"days": [
+		90,
+		180
+	],
+	"setting": "plant",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Castelo Branco District",
+		"lat": 39.9,
+		"lon": -7.5,
+		"x": 0.47917,
+		"y": 0.23749,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"facts": [
+		{
+			"k": "Coagulant",
+			"v": "Cardoon crude extract, per a review of Portuguese PDO cheeses"
+		}
+	],
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Queijo_Picante_da_Beira_Baixa"
+			},
+			{
+				"name": "en.wikipedia.org",
+				"url": "https://en.wikipedia.org/wiki/Queijos_da_Beira_Baixa"
+			},
+			{
+				"name": "Wikipedia (pt): Lista de queijos",
+				"url": "https://pt.wikipedia.org/wiki/Lista_de_queijos"
+			},
+			{
+				"name": "Europe PMC: PMC13362316",
+				"url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13362316/fullTextXML"
+			}
+		],
+		"text": "Its facts, from these."
+	}
+}

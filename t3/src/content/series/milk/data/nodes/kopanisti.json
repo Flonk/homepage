@@ -1,0 +1,56 @@
+{
+	"label": "Kopanisti",
+	"example": true,
+	"aka": [
+		"Kopanisti Mykonou",
+		"Kopanisti of Mykonos",
+		"Κοπανιστή",
+		"Κοπανιστή Ικαρίας"
+	],
+	"family": "soft",
+	"regions": [
+		"GR"
+	],
+	"beasts": [
+		"cow",
+		"sheep",
+		"goat"
+	],
+	"firm": "soft",
+	"days": [
+		30,
+		60
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "none",
+	"protected": "PDO",
+	"place": {
+		"region": "South Aegean",
+		"lat": 37.1,
+		"lon": 25.3,
+		"x": 0.57028,
+		"y": 0.24743,
+		"located": "hint"
+	},
+	"confidence": "medium",
+	"facts": [
+		{
+			"k": "PDO",
+			"v": "Cyclades-wide, covering Mykonos, Tinos, Andros, Syros and Naxos, not only Mykonos"
+		},
+		{
+			"k": "Ikaria",
+			"v": "A kopanisti from Ikaria is also on the Greek list; no details on how it is made"
+		}
+	],
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Kopanisti"
+			}
+		],
+		"text": "PDO, Cyclades (1994); raw or lightly thermised milk of cow, sheep, goat or mixes, no starters; peppery, kneaded and ripened in jars. Sources disagree (30-40 vs 45-60 days); the PDO minimum was not found"
+	}
+}

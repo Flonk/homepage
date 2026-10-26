@@ -131,12 +131,23 @@ export const makeFramePainter = (G: Drawing): FramePainter => {
 	   map's far edges push it out. Hidden while the map is too small on
 	   the screen to hold it. */
 	const mapCard = figure.querySelector<HTMLElement>('.milk-map-card')!;
-	const worldMap = [...layout.panels.keys()].find((p) => p.map);
+	const maps = [...layout.panels.keys()].filter((p) => p.map);
+	const mapTitle = mapCard.querySelector('strong')!;
 	// Its size and the search's foot, measured as it is first shown and as the pane changes size, not each frame.
 	let mapCardSize: { w: number; h: number; top: number } | null = null;
 	let mapCardTransform = '';
 	const placeMapCard = () => {
+		// The map most on the screen, its family named.
+		const onScreen = (p: Node) => {
+			const b = layout.panelBox(p);
+			const [l, t] = viewport.pictureToScreen(b.x0, b.y0);
+			const [r, d] = viewport.pictureToScreen(b.x1, b.y1);
+			return Math.max(0, Math.min(r, viewport.paneWidth) - Math.max(l, 0)) * Math.max(0, Math.min(d, viewport.paneHeight) - Math.max(t, 0));
+		};
+		const worldMap = maps.reduce<Node | null>((best, p) => (onScreen(p) > (best ? onScreen(best) : 0) ? p : best), null);
 		if (!worldMap) return void (mapCard.hidden = true);
+		const title = worldMap.label.replace(/\n/g, ' ');
+		if (mapTitle.textContent !== title) mapTitle.textContent = title;
 		const area = layout.panelBox(worldMap);
 		const [left, top] = viewport.pictureToScreen(area.x0, area.y0);
 		const [right, bottom] = viewport.pictureToScreen(area.x1, area.y1);

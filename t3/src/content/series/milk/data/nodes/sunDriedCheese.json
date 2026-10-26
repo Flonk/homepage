@@ -1,0 +1,48 @@
+{
+	"label": "Sun-dried cheese",
+	"about": {
+		"text": "Cheese set with rennet and dried hard in the sun instead of being pressed and ripened, so it keeps through the dry season. Best documented is tchoukou of Niger, made by Fulani, Hausa and Tuareg women from raw cow's or goat's milk.",
+		"sources": {
+			"links": [
+				{
+					"name": "Oumarou et al. 2025, AJFAND 25(8)",
+					"url": "https://ajfand.net/Volume25/No8/Oumarou25240.pdf"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"regions": [
+		"NE",
+		"BF",
+		"ML"
+	],
+	"beasts": [
+		"cow",
+		"goat"
+	],
+	"examples": [
+		"tchoukou"
+	],
+	"composition": {
+		"protein": {
+			"min": 25.6,
+			"max": 27
+		},
+		"fat": {
+			"min": 31.5,
+			"max": 40
+		}
+	},
+	"facts": [
+		{
+			"k": "Minerals",
+			"v": "Calcium 898–1168 mg/100 g, zinc 2.9–5.2 mg/100 g (7 samples)"
+		},
+		{
+			"k": "Hygiene",
+			"v": "13 market samples: 2 satisfactory, 6 acceptable, 5 unsatisfactory (faecal contamination in some)"
+		}
+	],
+	"raw": true
+}

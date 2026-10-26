@@ -1,4 +1,4 @@
-import { NODE_H, PAD_X, FONT, LINK_ROOM, RULE_PX, RULER_END, MONO, ROOT_WORD, measure, rulerLead } from '../client/base';
+import { NODE_H, PAD_X, FONT, LINK_ROOM, unitPx, RULER_END, MONO, ROOT_WORD, measure, rulerLead } from '../client/base';
 import type { ProductTree, NodeSizes, RulerAndPanelContents, PillMeasures } from './types';
 
 /* Each pill's width and height: round its label, with room at its left
@@ -6,7 +6,7 @@ import type { ProductTree, NodeSizes, RulerAndPanelContents, PillMeasures } from
    A ruler's pill is as wide as the ruler and a margin either end. */
 export const measurePills = (
 	{ root, nodes }: ProductTree,
-	{ scaleOf, milkRadius, photoRoom }: NodeSizes,
+	{ scaleOf, milkRadius, photoRoom, pillHeight, thickness }: NodeSizes,
 	{ hungUnderRuler, listsByValue }: RulerAndPanelContents,
 ): PillMeasures => {
 	const nodesWithPills = nodes.filter((n) => !n.hub);
@@ -15,12 +15,12 @@ export const measurePills = (
 			d.w = d.h = milkRadius * 2;
 			continue;
 		}
-		d.w = measure(d.label, FONT * scaleOf(d), '400', MONO()) + 2 * PAD_X * scaleOf(d);
-		d.h = NODE_H * scaleOf(d);
+		d.w = (measure(d.label, FONT * scaleOf(d), '400', MONO()) + 2 * PAD_X * scaleOf(d)) * thickness(d);
+		d.h = pillHeight(d);
 		d.w += photoRoom(d);
 		if (d.link) d.w += LINK_ROOM * scaleOf(d);
 		// A ruler clear of the photograph, under the rest of the pill.
-		if (d.scale) d.w = Math.max(d.w, photoRoom(d) + d.scale.to * RULE_PX + RULER_END, photoRoom(d) + rulerLead(d.scale) + d.scale.to * RULE_PX + RULER_END / 2);
+		if (d.scale) d.w = Math.max(d.w, photoRoom(d) + d.scale.to * unitPx(d.scale) + RULER_END, photoRoom(d) + rulerLead(d.scale) + d.scale.to * unitPx(d.scale) + RULER_END / 2);
 	}
 	// A list under a ruler as wide as the widest in it.
 	for (const ruler of hungUnderRuler.keys())

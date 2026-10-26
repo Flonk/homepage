@@ -1,0 +1,50 @@
+{
+	"label": "Tandil",
+	"aka": [
+		"Queso Tandil"
+	],
+	"example": true,
+	"family": "washedCurd",
+	"regions": [
+		"AR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		30,
+		60
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "waxed",
+	"place": {
+		"region": "Buenos Aires Province",
+		"lat": -37.32,
+		"lon": -59.13,
+		"x": 0.33575,
+		"y": 0.47043,
+		"located": "knowledge"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Tandil_cheese"
+			},
+			{
+				"name": "Argentine Food Code, ch. VIII (dairy)",
+				"url": "https://www.argentina.gob.ar/sites/default/files/capitulo_viii_lacteosactualiz_2025-10.pdf"
+			}
+		],
+		"text": "Dutch (Gouda/Edam)-style Argentine semi-hard cheese from Tandil, Buenos Aires province; ripening not verified"
+	},
+	"facts": [
+		{
+			"k": "Food Code",
+			"v": "Defined in the Argentine Food Code as a matured, medium-moisture, fatty cheese; the Code also allows the name 'Queso Tandil de uso industrial'"
+		}
+	]
+}

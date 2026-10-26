@@ -44,7 +44,7 @@ export const makePointer = (G: Drawing): Pointer => {
 		// Dev mode's marks are on arrows, so looked for on every node; then remarks on the pills near. A little past the mark, to be tapped.
 		const remark =
 			(G.devMarks.enabled() ? layout.nodesWithPills.flatMap((d) => G.devMarks.marksOf(d)).find((m) => hit(m, 1.3)) : undefined) ??
-			near.flatMap((d) => (d.note || d.unsure ? markPainter.remarksOf(d) : [])).find((m) => hit(m, 1.3)) ??
+			near.flatMap((d) => (d.unsure ? markPainter.remarksOf(d) : [])).find((m) => hit(m, 1.3)) ??
 			null;
 		let pill: Node | null = null;
 		for (let i = near.length - 1; i >= 0 && !pill && !remark; i--) {

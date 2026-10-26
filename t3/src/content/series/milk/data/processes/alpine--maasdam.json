@@ -1,0 +1,103 @@
+{
+	"from": [
+		"alpine"
+	],
+	"to": [
+		"maasdam"
+	],
+	"variant": true,
+	"step": "grow eyes",
+	"text": "Maasdam is a washed-curd Dutch cheese to which propionic acid bacteria are added; during a warm-room stage they multiply and ferment lactate to CO2, propionate and acetate, giving large round eyes and a sweet, nutty taste. Its low salt, high moisture and warm ripening make it prone to butyric spoilage, so the milk is often centrifuged to remove spores.",
+	"sources": {
+		"links": [
+			{
+				"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
+				"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+			},
+			{
+				"name": "Lamichhane et al., J. Dairy Sci. 101:5738 (2018)",
+				"url": "https://doi.org/10.3168/jds.2017-14180"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "separate",
+				"off": "spores",
+				"by": "centrifuge",
+				"note": "To remove spores."
+			},
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic",
+					"propionic"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "Lactococcus",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						},
+						{
+							"name": "Lactobacillus helveticus",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						}
+					],
+					"by": [
+						"starter"
+					]
+				}
+			},
+			{
+				"type": "washCurd",
+				"note": "To lower the lactose and the final pH."
+			},
+			{
+				"type": "press",
+				"note": "Under the whey, for a closed, round-eyed body."
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"adds": {
+					"microbes": [
+						{
+							"name": "Propionibacterium",
+							"kind": "bacterium",
+							"does": [
+								"gas"
+							]
+						}
+					],
+					"by": [
+						"starter"
+					]
+				},
+				"note": "In a warm-room stage the propionic bacteria multiply and ferment lactate to CO2, propionate and acetate, making large round eyes."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+				},
+				{
+					"name": "Lamichhane et al., J. Dairy Sci. 101:5738 (2018)",
+					"url": "https://doi.org/10.3168/jds.2017-14180"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

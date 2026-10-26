@@ -1,0 +1,51 @@
+{
+	"label": "Tomme de Lévéjac",
+	"example": true,
+	"family": "semiHard",
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"goat"
+	],
+	"firm": "semi-hard",
+	"days": [
+		30,
+		90
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Occitanie",
+		"lat": 44.5,
+		"lon": 3.5,
+		"x": 0.50972,
+		"y": 0.22023,
+		"located": "guess"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Tomme_de_L%C3%A9v%C3%A9jac"
+			},
+			{
+				"name": "fr.wikipedia",
+				"url": "https://fr.wikipedia.org/wiki/L%C3%A9v%C3%A9jac_(fromage)"
+			}
+		],
+		"text": "no article found; values are typicals"
+	},
+	"facts": [
+		{
+			"k": "Making",
+			"v": "Raw milk, reheated, then delayed renneting; the pressed cheese is hydraulically pressed and ripened three months in an electric hâloir"
+		},
+		{
+			"k": "Farm",
+			"v": "Farm cheese range of the GAEC Le Lévéjac at Saint-Georges-de-Lévéjac, Lozère; not a protected cheese"
+		}
+	]
+}

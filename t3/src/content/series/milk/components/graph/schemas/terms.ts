@@ -89,3 +89,13 @@ export type Protected = z.infer<typeof Protected>;
 export type Setting = z.infer<typeof Setting>;
 export type Group = z.infer<typeof Group>;
 export type Range = z.infer<typeof Range>;
+
+/* The world's most made and best known cheeses, ranked (see
+   famous-cheeses.json): each by the node that is it, how much of it
+   is made where that is known, and what its place rests on; and the
+   sources, each with what it measures. Drawn the biggest of all cheeses. */
+export const FamousCheeses = z.strictObject({
+	about: z.string().min(1),
+	sources: z.array(z.strictObject({ name: z.string().min(1), url: z.url(), measures: z.string().min(1) })).min(1),
+	cheeses: z.array(z.strictObject({ rank: z.number().int().positive(), id: z.string().nullable(), name: z.string().min(1), tonnes: z.number().positive().nullable(), basis: z.string().min(1) })),
+});

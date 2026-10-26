@@ -1,0 +1,85 @@
+{
+	"label": "Montasio",
+	"aka": [
+		"Montasio DOP",
+		"Montâs"
+	],
+	"example": true,
+	"family": "alpine",
+	"about": {
+		"text": "A cow-milk cheese from Friuli-Venezia Giulia and the Veneto, aged at least two months and sometimes a year or more; PDO since 1986.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Montasio"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Montasio 01.jpg",
+		"author": "Shabicht",
+		"license": "CC0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Montasio_01.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		60,
+		540
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Friuli-Venezia Giulia",
+		"lat": 46.1,
+		"lon": 13,
+		"x": 0.53611,
+		"y": 0.21391,
+		"located": "hint"
+	},
+	"confidence": "high",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Montasio"
+			},
+			{
+				"name": "it.wikipedia.org",
+				"url": "https://it.wikipedia.org/wiki/Montasio"
+			},
+			{
+				"name": "Europe PMC",
+				"url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11675318/fullTextXML"
+			}
+		],
+		"text": "Fresco 60 days, mezzano 4-10 months, stagionato 10+ months"
+	},
+	"facts": [
+		{
+			"k": "Ages",
+			"v": "Sold fresh, medium and aged: fresh is mild, soft and white with eyes; aged is firm, crumbly and more aromatic"
+		},
+		{
+			"k": "Monks",
+			"v": "Said to have been first made by Benedictine monks of the Abbazia di Moggio, from 1200"
+		}
+	]
+}

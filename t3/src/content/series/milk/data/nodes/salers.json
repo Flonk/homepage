@@ -1,0 +1,50 @@
+{
+	"label": "Salers",
+	"example": true,
+	"aka": [
+		"Fromage de Salers"
+	],
+	"family": "semiHard",
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		90,
+		270
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Auvergne",
+		"lat": 45.14,
+		"lon": 2.5,
+		"x": 0.50694,
+		"y": 0.21772,
+		"located": "knowledge"
+	},
+	"confidence": "high",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Salers_cheese"
+			},
+			{
+				"name": "French Wikipedia, Salers (fromage)",
+				"url": "https://fr.wikipedia.org/wiki/Salers_(fromage)"
+			}
+		],
+		"text": "Cantal-type, summer mountain milk"
+	},
+	"facts": [
+		{
+			"k": "Season",
+			"v": "Made from 15 April to 15 November on pastures, each farm its own"
+		}
+	]
+}

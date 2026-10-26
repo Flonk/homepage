@@ -1,0 +1,76 @@
+{
+	"from": [
+		"gourdMilk"
+	],
+	"to": [
+		"kivuguto"
+	],
+	"variant": true,
+	"text": "Kivuguto is spontaneously acidified by flora from the utensils and the cattle environment; modern dairies in Rwanda use imported strains instead. In consistency and flavour it is closest to Swedish filmjölk.",
+	"sources": {
+		"links": [
+			{
+				"name": "Karenzi et al. 2013, Biotechnol. Agron. Soc. Environ. 17(2)",
+				"url": "https://popups.uliege.be/1780-4507/index.php?id=9985"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "Lactococcus lactis",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						},
+						{
+							"name": "Leuconostoc pseudomesenteroides",
+							"kind": "bacterium",
+							"does": [
+								"acid",
+								"aroma"
+							]
+						},
+						{
+							"name": "Leuconostoc mesenteroides subsp. mesenteroides",
+							"kind": "bacterium"
+						}
+					],
+					"by": [
+						"wild",
+						"vessel"
+					],
+					"vessel": "wooden jar (icyansi) or calabash, smoked with dried grass stems and Combretum molle; not airtight"
+				},
+				"seconds": {
+					"min": 172800,
+					"max": 259200
+				},
+				"pH": {
+					"min": 4.6,
+					"max": 4.6
+				}
+			}
+		],
+		"text": "Traditionally soured spontaneously by flora from the utensils and the cattle environment (about 36 h in smoked jars); some makers back-slop or boil and cool the milk first, and modern Rwandan dairies use imported strains. A starter trial reached pH 4.6 in 8 h at 30 °C with L. lactis.",
+		"sources": {
+			"links": [
+				{
+					"name": "Karenzi et al. 2013, Biotechnol. Agron. Soc. Environ. 17(2)",
+					"url": "https://popups.uliege.be/1780-4507/index.php?id=9985"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

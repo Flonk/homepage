@@ -1,0 +1,62 @@
+{
+	"label": "Queso Payoyo",
+	"example": true,
+	"aka": [
+		"Payoyo",
+		"Queso payoyo de Grazalema",
+		"Cabra payoya",
+		"Queso de cabra payoyo"
+	],
+	"family": "semiHard",
+	"regions": [
+		"ES"
+	],
+	"beasts": [
+		"goat",
+		"sheep"
+	],
+	"firm": "semi-hard",
+	"days": [
+		30,
+		180
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Andalusia",
+		"lat": 36.73,
+		"lon": -5.37,
+		"x": 0.48508,
+		"y": 0.24871,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Queso_payoyo"
+			},
+			{
+				"name": "es.wikipedia.org",
+				"url": "https://es.wikipedia.org/wiki/Queso_payoyo"
+			},
+			{
+				"name": "Europe PMC, PMC7601069",
+				"url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7601069/fullTextXML"
+			}
+		],
+		"text": "Sierra de Cadiz; Payoya goat; fresh, semi-cured and cured versions; unverified"
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Artisanal ones are made from raw Payoya goat milk, curdled with animal or cardoon rennet"
+		},
+		{
+			"k": "Versions",
+			"v": "Fresh, semi-cured or cured, and also in lard, rosemary-flavoured, bran-coated or paprika-seasoned versions"
+		}
+	]
+}

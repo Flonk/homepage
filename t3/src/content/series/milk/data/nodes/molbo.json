@@ -1,0 +1,67 @@
+{
+	"label": "Molbo",
+	"aka": [
+		"Molbo cheese",
+		"Danish Edam"
+	],
+	"example": true,
+	"family": "washedCurd",
+	"about": {
+		"text": "A semi-hard cow's milk cheese made in the region of Mols. It is very similar to Edam, with a delicate, light flavour that is slightly tangy and salty. It has small, regular holes and is covered in a red wax coating.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Molbo_cheese"
+				}
+			],
+			"text": "Edam-like, red wax; Wikipedia gives no ripening time"
+		}
+	},
+	"regions": [
+		"DK"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		42,
+		90
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "waxed",
+	"place": {
+		"region": "Central Jutland",
+		"lat": 56.25,
+		"lon": 10.75,
+		"x": 0.52986,
+		"y": 0.16869,
+		"located": "hint"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Molbo_cheese"
+			},
+			{
+				"name": "scandification.com",
+				"url": "https://scandification.com/best-danish-cheese/"
+			}
+		],
+		"text": "Edam-like, red wax; Wikipedia gives no ripening time"
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Said to be made from unpasteurised cow's milk"
+		},
+		{
+			"k": "Fat",
+			"v": "About 40% fat, in wheels of 1 to 2 kg"
+		}
+	]
+}

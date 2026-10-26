@@ -1,0 +1,57 @@
+{
+	"label": "Queso de Benabarre",
+	"example": true,
+	"family": "semiHard",
+	"regions": [
+		"ES"
+	],
+	"beasts": [
+		"goat",
+		"sheep",
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		30,
+		90
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Aragon",
+		"lat": 42.07,
+		"lon": 0.44,
+		"x": 0.50122,
+		"y": 0.2295,
+		"located": "knowledge"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Queso_de_Benabarre"
+			},
+			{
+				"name": "en.wikipedia.org",
+				"url": "https://en.wikipedia.org/wiki/List_of_Spanish_cheeses"
+			},
+			{
+				"name": "Academia Aragonesa de Gastronomía",
+				"url": "https://academiaaragonesadegastronomia.com/wp-content/uploads/2024/09/LIBRO-GUIA-DE-LOS-QUESOS-DE-ARAGON_DIGITALpdf.pdf"
+			}
+		],
+		"text": "Aragon (Huesca); only listed by name, details estimated"
+	},
+	"facts": [
+		{
+			"k": "Versions",
+			"v": "Semicured, and cured with an edible mould rind"
+		},
+		{
+			"k": "Makers",
+			"v": "Made on a family farm at Benabarre (Huesca) that began cheese-making in the 1990s"
+		}
+	]
+}

@@ -1,0 +1,103 @@
+{
+	"from": [
+		"rennetCurd"
+	],
+	"to": [
+		"extraHard"
+	],
+	"step": "scald, press, age a year or more",
+	"text": "Left to ripen for a year and often two or three, the cheese dries and its proteins break down into the crunchy crystals of free amino acids such cheeses are known for.",
+	"sources": {
+		"links": [
+			{
+				"name": "Codex General Standard for Cheese (CXS 283-1978)",
+				"url": "https://www.fao.org/input/download/standards/175/CXS_283e.pdf"
+			},
+			{
+				"name": "Wikipedia: Grana (cheese)",
+				"url": "https://en.wikipedia.org/wiki/Grana_(cheese)"
+			},
+			{
+				"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
+				"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+			},
+			{
+				"name": "Käseverordnung § 6 (Germany)",
+				"url": "https://lxgesetze.de/käsev/6"
+			}
+		],
+		"text": "The words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "thermophilic lactic acid bacteria",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							],
+							"grows": "thermophilic"
+						}
+					],
+					"by": [
+						"starter"
+					]
+				}
+			},
+			{
+				"type": "heat",
+				"does": "cook",
+				"temperature": {
+					"min": 50,
+					"max": 56
+				},
+				"note": "The thermophilic cultures survive the scald."
+			},
+			{
+				"type": "press"
+			},
+			{
+				"type": "salt",
+				"how": "brine",
+				"strength": {
+					"min": 0.4,
+					"max": 1.2
+				},
+				"note": "Emmental ends at 0.4–1.2 % salt."
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"seconds": {
+					"min": 7776000,
+					"about": true
+				}
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+				},
+				{
+					"name": "Codex General Standard for Cheese (CXS 283-1978)",
+					"url": "https://www.fao.org/input/download/standards/175/CXS_283e.pdf"
+				},
+				{
+					"name": "Käseverordnung § 6 (Germany)",
+					"url": "https://lxgesetze.de/käsev/6"
+				}
+			],
+			"text": "The steps, from these: first as for hard, then its own."
+		}
+	}
+}

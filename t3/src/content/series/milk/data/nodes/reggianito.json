@@ -1,0 +1,74 @@
+{
+	"label": "Reggianito",
+	"example": true,
+	"aka": [
+		"Reggianito argentino"
+	],
+	"family": "extraHard",
+	"about": {
+		"text": "An Argentine hard cheese made in 6.8 kg wheels by Italian immigrants as a local answer to Parmigiano Reggiano, ripened about six months and grated over pasta.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Reggianito"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Reggianito.jpg",
+		"author": "Veltrain",
+		"license": "Public domain",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Reggianito.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"AR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "extra-hard",
+	"days": [
+		180,
+		365
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"confidence": "high",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Reggianito"
+			}
+		],
+		"text": "Argentine Grana-type, usually 5-6 months"
+	},
+	"composition": {
+		"fat": {
+			"min": 30,
+			"max": 30,
+			"about": true
+		}
+	},
+	"facts": [
+		{
+			"k": "Size",
+			"v": "Wheels of about 6.8 kg, smaller than Parmigiano Reggiano"
+		},
+		{
+			"k": "Origin",
+			"v": "Italian immigrants to Argentina wanting a Parmigiano-like cheese; the name is the diminutive of Reggio"
+		}
+	]
+}

@@ -1,0 +1,45 @@
+{
+	"label": "Vieux-Boulogne",
+	"example": true,
+	"aka": [
+		"Sablé du Boulonnais"
+	],
+	"family": "washed",
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "soft",
+	"days": [
+		42,
+		56
+	],
+	"setting": "rennet",
+	"rind": "washed",
+	"place": {
+		"region": "Hauts-de-France",
+		"lat": 50.72,
+		"lon": 1.61,
+		"x": 0.50447,
+		"y": 0.19455,
+		"located": "guess"
+	},
+	"confidence": "medium",
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Made from unpasteurised cow's milk, unpressed and washed in beer during production"
+		}
+	],
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Vieux-Boulogne"
+			}
+		],
+		"text": "washed in beer"
+	}
+}

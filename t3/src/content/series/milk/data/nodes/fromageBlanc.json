@@ -1,0 +1,69 @@
+{
+	"label": "Fromage blanc",
+	"example": true,
+	"aka": [
+		"Maquée",
+		"Fresh white cheese"
+	],
+	"family": "quark",
+	"regions": [
+		"FR",
+		"JP",
+		"YE",
+		"NC"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		0
+	],
+	"setting": "rennet-acid",
+	"rind": "none",
+	"confidence": "high",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Fromage_blanc"
+			},
+			{
+				"name": "Wikipedia (Arabic): Yemeni cuisine",
+				"url": "https://ar.wikipedia.org/wiki/مطبخ_يمني"
+			},
+			{
+				"name": "French Guiana agriculture fact sheet",
+				"url": "https://daaf.guyane.agriculture.gouv.fr/IMG/pdf/ficheiaa-guyane-v9-bd_cle44136c.pdf"
+			},
+			{
+				"name": "Hokkaido Labo",
+				"url": "https://hokkaido-labo.com/en/hokkaido-cheese-17494"
+			},
+			{
+				"name": "New Caledonia 2019 import release",
+				"url": "https://gouv.nc/sites/default/files/atoms/files/2019.08.20_cp_quota_importation_yaourts.pdf"
+			}
+		],
+		"text": "Lactic-set fresh curd, quark-like"
+	},
+	"facts": [
+		{
+			"k": "Yemen",
+			"v": "A fresh white cheese, not named in the source, added at the end of making sahawiq sauce"
+		},
+		{
+			"k": "French Guiana",
+			"v": "A fresh white cheese from the Ferme de lait-Quateur dairy farm, widely sold in small and large retail"
+		},
+		{
+			"k": "New Caledonia",
+			"v": "Made locally by three producers, sold plain, sweetened or with fruit; the petit-suisse is a smoother, richer version"
+		},
+		{
+			"k": "Definition",
+			"v": "A 2019 New Caledonian release defines it as a non-ripened smooth fresh cheese with 4% fat or less and 20% or less dry matter"
+		}
+	]
+}

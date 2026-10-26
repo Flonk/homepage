@@ -1,0 +1,98 @@
+{
+	"label": "Graviera",
+	"example": true,
+	"aka": [
+		"Γραβιέρα",
+		"Graviera Kritis",
+		"Graviera Agrafon",
+		"Graviera Naxou",
+		"Γραβιέρα Νάξου",
+		"Graviera Tinou",
+		"Γραβιέρα Τήνου"
+	],
+	"family": "alpine",
+	"about": {
+		"text": "Graviera is a type of Greek hard yellow cheese. It is made exclusively from sheep or goat milk.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Graviera"
+				}
+			],
+			"text": "PDO for Graviera Kritis, Agrafon and Naxou; Naxos version includes cow milk"
+		}
+	},
+	"regions": [
+		"GR"
+	],
+	"beasts": [
+		"sheep",
+		"goat",
+		"cow"
+	],
+	"firm": "hard",
+	"days": [
+		90,
+		365
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Crete",
+		"lat": 35.24,
+		"lon": 24.81,
+		"x": 0.56892,
+		"y": 0.25383,
+		"located": "hint"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Graviera"
+			},
+			{
+				"name": "Europe PMC (PMC6412278)",
+				"url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC6412278/fullTextXML"
+			},
+			{
+				"name": "Europe PMC (PMC7435398)",
+				"url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7435398/fullTextXML"
+			},
+			{
+				"name": "Greek Gastronomy Guide: Naxou",
+				"url": "https://www.greekgastronomyguide.gr/en/?p=13601"
+			},
+			{
+				"name": "travel.gr: Naxos cheeses",
+				"url": "https://www.travel.gr/en/food-and-drink-en/food-culture-food-and-drink-en/quality-local-foods-on-the-cycladic-island-of-naxos/"
+			},
+			{
+				"name": "travel.gr: Dodecanese cheeses",
+				"url": "https://www.travel.gr/en/how-to-travel-en/advertorial/how-the-cheeses-of-the-dodecanese-introduce-us-to-the-flavours-of-the-south-aegean/"
+			}
+		],
+		"text": "PDO for Graviera Kritis, Agrafon and Naxou; Naxos version includes cow milk"
+	},
+	"facts": [
+		{
+			"k": "Origin study",
+			"v": "A 105-sample study of graviera from nine regions, Thessaly and Peloponnese among them; the Thessaly samples came from Trikala and Larisa dairies"
+		},
+		{
+			"k": "Naxou milk",
+			"v": "At least 80% cow's milk, with up to 20% sheep and/or goat milk; aged at least three months, usually in 9 kg wheels"
+		},
+		{
+			"k": "Naxou taste",
+			"v": "Firm and yellow, with a butter-like aroma that strengthens with age"
+		},
+		{
+			"k": "Tinos",
+			"v": "A hard graviera made on the island of Tinos, in the Cyclades"
+		}
+	]
+}

@@ -1,0 +1,78 @@
+{
+	"from": [
+		"freshCheese"
+	],
+	"to": [
+		"imeruli"
+	],
+	"variant": true,
+	"step": "self-press, brine",
+	"text": "Georgian GI no. 15 (2012): taste of a cultured milk product, moderately salty, a little soft and elastic; holes optional.",
+	"sources": {
+		"links": [
+			{
+				"name": "Imeruli Kveli, Georgian GI product specification (GOV.UK)",
+				"url": "https://assets.publishing.service.gov.uk/media/6414615e8fa8f5556c6a12ea/Imeruli_Kveli.pdf"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "coagulate",
+				"temperature": {
+					"min": 32,
+					"max": 34
+				}
+			},
+			{
+				"type": "heat",
+				"does": "cook",
+				"temperature": {
+					"min": 37,
+					"max": 41
+				},
+				"seconds": {
+					"min": 600,
+					"max": 900
+				}
+			},
+			{
+				"type": "custom",
+				"name": "stir",
+				"seconds": {
+					"min": 1200,
+					"max": 1500
+				},
+				"note": "Then 30 % of the whey is removed."
+			},
+			{
+				"type": "press",
+				"seconds": {
+					"min": 10800,
+					"max": 14400
+				},
+				"note": "Self-pressing."
+			},
+			{
+				"type": "salt",
+				"how": "brine",
+				"temperature": {
+					"min": 8,
+					"max": 12
+				},
+				"note": "In 16 Baumé brine."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Imeruli Kveli, Georgian GI product specification (GOV.UK)",
+					"url": "https://assets.publishing.service.gov.uk/media/6414615e8fa8f5556c6a12ea/Imeruli_Kveli.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

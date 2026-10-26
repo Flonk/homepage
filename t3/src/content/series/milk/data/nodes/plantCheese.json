@@ -1,0 +1,123 @@
+{
+	"label": "Plant-set cheese",
+	"comment": "Set by an enzyme from a plant: a third way, after rennet and acid.",
+	"cheese": true,
+	"ripened": true,
+	"about": {
+		"text": "Cheese set not by rennet from a calf's stomach or by acid but by an enzyme from a plant: cardoon thistle flowers in the cheeses of Portugal and Spain, Calotropis in West Africa's wagashi, papaya latex in Indonesia's dangke, ginger juice in southern China's ginger milk curd.",
+		"sources": {
+			"links": [
+				{
+					"name": "Heliyon (2022), Processing and preservation methods of Wagashi Gassirè",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9489737"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Ginger Milk Pudding.jpg",
+		"author": "Chika",
+		"license": "CC BY 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Ginger_Milk_Pudding.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"share": {
+		"mt": 0.1,
+		"sources": {
+			"unsourced": true,
+			"text": "A few cheeses of Portugal, Spain and West Africa set with thistle or other plants. My own rough estimate."
+		}
+	},
+	"examples": [
+		"wagashi",
+		"dangke",
+		"tortaDelCasar",
+		"serraDaEstrela",
+		"queijoDeAzeitao",
+		"daliNiHorbo",
+		"litsusu",
+		"cologanti",
+		"gingerMilkCurd",
+		"plantClottedMilk"
+	],
+	"facts": [
+		{
+			"k": "Cardoon",
+			"v": "Flower pistils, soaked and used as the coagulant; aspartic proteinases: cardosins A–H plus cyprosin"
+		},
+		{
+			"k": "Iberian thistle cheeses",
+			"v": "Sheep or goat milk set at about 30 °C with cardoon or thistle; curd not cooked, pressed and ripened for weeks to months (Azeitão about 20 d, Serra da Estrela at least 30 d, Torta del Casar at least 60 d)"
+		},
+		{
+			"k": "Wagashi, one study",
+			"v": "Milk heated to 59 °C for 20 min; coagulum then cooked at about 91 °C for 34 min"
+		},
+		{
+			"k": "Papaya (dangke, Indonesia)",
+			"v": "Sliced papaya leaves, stems or unripe fruit boiled with the milk"
+		},
+		{
+			"k": "Countries",
+			"v": "Benin (wagashi, gassirè), Nigeria (wara, warankasi), Ghana, Burkina Faso, Niger, Togo"
+		},
+		{
+			"k": "Enzymes",
+			"v": "Almost all plant milk coagulants are aspartic proteases; cysteine and serine proteases can also clot milk"
+		},
+		{
+			"k": "Cardoon cardosins",
+			"v": "Cardosin A attacks κ-casein and gives softer textures; cardosin B is less specific and linked to firmness defects"
+		},
+		{
+			"k": "Drawback",
+			"v": "Strong proteolysis gives lower yields, bitterness and texture defects, so plant coagulants are used on a small or semi-industrial scale"
+		},
+		{
+			"k": "Cardoon cheeses",
+			"v": "Torta del Casar, Torta de la Serena (Spain); Nisa (Portugal)"
+		},
+		{
+			"k": "Wagashi yield",
+			"v": "27–32 % of the milk; moulded in colanders"
+		},
+		{
+			"k": "Dangke",
+			"v": "Brined overnight, wrapped in banana leaves that mask the papaya bitterness; no temperature given"
+		}
+	],
+	"table": {
+		"across": "days",
+		"down": "beast",
+		"picks": [
+			{
+				"id": "tortaDelCasar",
+				"why": "Extremadura's famed PDO sheep's cheese, curdled with cardoon and the best-known plant-set cheese in the world."
+			},
+			{
+				"id": "serraDaEstrela",
+				"why": "Portugal's most celebrated PDO cheese, a thistle-curdled sheep's cheese made in the Serra da Estrela mountains for centuries."
+			},
+			{
+				"id": "queijoDeAzeitao",
+				"why": "Creamy PDO sheep's cheese from the Arrábida hills near Setúbal, a classic of cardoon-set Portuguese cheesemaking."
+			},
+			{
+				"id": "quesoDeLaSerena",
+				"why": "Extremadura PDO cheese from Merino sheep's milk, set with cardoon and sold young as torta or aged."
+			},
+			{
+				"id": "wagashi",
+				"why": "West Africa's best-known plant-set cheese, made by Fulani women in Benin and eaten across the region."
+			}
+		]
+	}
+}

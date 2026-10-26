@@ -1,0 +1,52 @@
+{
+	"label": "Formatge Mallorquí",
+	"example": true,
+	"aka": [
+		"Mallorca cheese",
+		"Queso Mallorquín",
+		"Formatge de Mallorca"
+	],
+	"family": "semiHard",
+	"regions": [
+		"ES"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		20,
+		120
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Balearic Islands",
+		"lat": 39.6,
+		"lon": 2.95,
+		"x": 0.50819,
+		"y": 0.23857,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Mallorca_cheese"
+			},
+			{
+				"name": "es.wikipedia, Queso mallorquín",
+				"url": "https://es.wikipedia.org/wiki/Queso_mallorquín"
+			}
+		],
+		"text": "tierno 20 d, semicurado 2 mo, curado 4 mo"
+	},
+	"facts": [
+		{
+			"k": "Ageing",
+			"v": "Older cheeses are firmer; eaten sliced with wine or beer, or with fruit and nuts"
+		}
+	]
+}

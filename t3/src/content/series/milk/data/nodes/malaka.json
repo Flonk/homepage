@@ -1,0 +1,59 @@
+{
+	"label": "Malaka",
+	"example": true,
+	"aka": [
+		"Tiromalama",
+		"Μαλάκα"
+	],
+	"family": "freshCheese",
+	"about": {
+		"text": "Also known as Tiromalama. Made from Graviera curd.",
+		"sources": {
+			"unsourced": true,
+			"text": "made from Graviera curd; unverified"
+		}
+	},
+	"regions": [
+		"GR"
+	],
+	"beasts": [
+		"sheep",
+		"goat"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		7
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "none",
+	"place": {
+		"region": "Crete",
+		"lat": 35.24,
+		"lon": 24.81,
+		"x": 0.56892,
+		"y": 0.25383,
+		"located": "hint"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Greek Wikipedia: Cretan cheese",
+				"url": "https://el.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=1&titles=Κρητικό_τυρί"
+			}
+		],
+		"text": "Its names and facts, from these."
+	},
+	"facts": [
+		{
+			"k": "Use",
+			"v": "Used only in pies and in the Chania tourta, with four cheeses, lamb and dittany"
+		},
+		{
+			"k": "Status",
+			"v": "Not sold as a finished cheese; the curd of the first step of graviera making"
+		}
+	]
+}

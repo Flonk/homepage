@@ -1,0 +1,51 @@
+{
+	"label": "Rocamadour",
+	"example": true,
+	"family": "lacticCheese",
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"goat"
+	],
+	"firm": "soft",
+	"days": [
+		12,
+		28
+	],
+	"setting": "rennet-acid",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Lot",
+		"lat": 44.8,
+		"lon": 1.62,
+		"x": 0.5045,
+		"y": 0.21905,
+		"located": "hint"
+	},
+	"confidence": "high",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Rocamadour_cheese"
+			},
+			{
+				"name": "French Wikipedia, Rocamadour (fromage)",
+				"url": "https://fr.wikipedia.org/wiki/Rocamadour_(fromage)"
+			}
+		],
+		"text": "Its facts, from these."
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Raw goat milk from the last four milkings, collected every two days"
+		},
+		{
+			"k": "Area",
+			"v": "Made mainly in Lot, with communes in Aveyron, Corrèze, Dordogne and Tarn-et-Garonne"
+		}
+	]
+}

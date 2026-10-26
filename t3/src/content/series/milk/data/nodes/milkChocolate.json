@@ -1,0 +1,51 @@
+{
+	"label": "Milk chocolate",
+	"aka": [
+		"Milchschokolade"
+	],
+	"niche": 1,
+	"about": {
+		"text": "Solid chocolate made of cocoa products, sugar and milk or milk products. In the EU it must hold at least 25 % cocoa solids and 14 % dry milk solids.",
+		"sources": {
+			"links": [
+				{
+					"name": "Directive 2000/36/EC, Annex I (legislation.gov.uk copy)",
+					"url": "https://www.legislation.gov.uk/eudr/2000/36/annexes/data.htm"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Hershey-bar-open.JPG",
+		"author": "Evan-Amos",
+		"license": "Public domain",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Hershey-bar-open.JPG"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"examples": [
+		"galaPeter",
+		"cadburyDairyMilk",
+		"hersheyBar"
+	],
+	"composition": {
+		"sugar": {
+			"min": 45,
+			"max": 50,
+			"about": true
+		}
+	},
+	"facts": [
+		{
+			"k": "Law (EU)",
+			"v": "At least 25 % cocoa solids (2.5 % dry non-fat) and 14 % dry milk solids, 3.5 % of it milk fat"
+		}
+	]
+}

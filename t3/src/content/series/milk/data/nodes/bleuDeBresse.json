@@ -1,0 +1,48 @@
+{
+	"label": "Bleu de Bresse",
+	"example": true,
+	"family": "bloomy",
+	"also": "blue",
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "soft",
+	"days": [
+		14,
+		28
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "bloomy",
+	"place": {
+		"region": "Auvergne-Rhône-Alpes",
+		"lat": 46.3,
+		"lon": 5.2,
+		"x": 0.51444,
+		"y": 0.2131,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Bleu_de_Bresse"
+			}
+		],
+		"text": "curd inoculated with P. roqueforti, rind of P. camemberti; created 1951 near Servas; Brie-like creamy interior; ripening not stated"
+	},
+	"facts": [
+		{
+			"k": "History",
+			"v": "First made in Bresse after World War II"
+		},
+		{
+			"k": "Making",
+			"v": "Curd inoculated with Penicillium roqueforti; the outer coat is powdered Penicillium camemberti; creamy, Brie-like interior with blue patches"
+		}
+	]
+}

@@ -1,0 +1,43 @@
+{
+	"label": "Queso de Sahún",
+	"example": true,
+	"family": "semiHard",
+	"regions": [
+		"ES"
+	],
+	"beasts": [
+		"cow",
+		"sheep",
+		"goat"
+	],
+	"firm": "semi-hard",
+	"days": [
+		30,
+		60
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Aragon",
+		"lat": 42.65,
+		"lon": 0.49,
+		"x": 0.50136,
+		"y": 0.22732,
+		"located": "knowledge"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Queso_de_Sah%C3%BAn"
+			},
+			{
+				"name": "Academia Aragonesa de Gastronomía",
+				"url": "https://academiaaragonesadegastronomia.com/wp-content/uploads/2024/09/LIBRO-GUIA-DE-LOS-QUESOS-DE-ARAGON_DIGITALpdf.pdf"
+			}
+		],
+		"text": "Benasque valley, Aragon; unverified"
+	}
+}

@@ -12,7 +12,9 @@
 		"textures": "node scripts/chrome-textures.mjs",
 		"test": "vitest run",
 		"milk:graph": "tsx scripts/milk-graph.ts",
-		"milk:canon": "tsx scripts/milk-canon.ts"
+		"milk:canon": "tsx scripts/milk-canon.ts",
+		"milk:units": "tsx scripts/milk-units.ts",
+		"milk:attach": "tsx scripts/milk-attach.ts"
 	},
 	"dependencies": {
 		"@astrojs/markdown-remark": "^7.2.4",

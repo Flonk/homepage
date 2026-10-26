@@ -1,0 +1,158 @@
+{
+	"from": [
+		"rennetCurd"
+	],
+	"to": [
+		"steamedCheese"
+	],
+	"step": "steam in hot water, pull",
+	"text": "The lump cheese is already soured by its day of fermentation, so it stretches in hot water without any extra acid, the way pasta filata curd does.",
+	"sources": {
+		"links": [
+			{
+				"name": "Slow Food Ark of Taste, Parenica",
+				"url": "https://www.fondazioneslowfood.com/en/ark-of-taste-slow-food/parenica-2/"
+			},
+			{
+				"name": "Čubon et al., traditional Slovak sheep cheeses, J Microbiol Biotechnol Food Sci: raw-milk sheep lump cheese is the base material of parenica, korbáčik, oštiepok; parenica and korbáčik are lump cheese steamed in hot water and pulled",
+				"url": "https://doi.org/10.55251/jmbfs.12714"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "cut",
+				"how": "cut",
+				"size": {
+					"min": 1,
+					"max": 15
+				},
+				"note": "The gel is cut into grains, finer for a drier cheese, at the price of more fat and protein lost to the whey."
+			},
+			{
+				"type": "heat",
+				"does": "cook",
+				"note": "How far the grains are heated depends on the cheese, from not at all to a scald of 50–56 °C for Emmental, Gruyère and Parmesan."
+			},
+			{
+				"type": "drain",
+				"note": "Whey is drawn off, typically 30–50 % of the batch volume at a time, and for Gouda-type cheeses replaced in part by wash water."
+			},
+			{
+				"type": "mould",
+				"seconds": {
+					"min": 3600,
+					"max": 6000
+				},
+				"note": "The curd stays in the moulds for about 60–100 minutes, while it acidifies."
+			},
+			{
+				"type": "press",
+				"note": "Pressing runs in 3 to 10 steps of rising pressure, about 50–450 g/cm² depending on the cheese."
+			},
+			{
+				"type": "salt",
+				"how": "brine",
+				"strength": {
+					"min": 18,
+					"max": 23,
+					"about": true
+				},
+				"temperature": {
+					"min": 10,
+					"max": 16
+				},
+				"note": "Cheese ends up with 0.5–2 % salt, and semi-hard cheese is usually brined, with a longer time for larger cheeses."
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"note": "Ripening varies most, from none for fresh cheese to months, for Gouda 2–12 months at 12–15 °C."
+			},
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "lactic acid bacteria",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						}
+					],
+					"by": [
+						"starter"
+					]
+				},
+				"temperature": {
+					"min": 20,
+					"max": 23
+				},
+				"seconds": {
+					"min": 86400,
+					"max": 86400,
+					"about": true
+				}
+			},
+			{
+				"type": "heat",
+				"does": "cook",
+				"temperature": {
+					"min": 60,
+					"max": 70
+				},
+				"note": "Pieces of about 500 g, in a wooden vessel."
+			},
+			{
+				"type": "custom",
+				"name": "pull",
+				"note": "Into a ribbon about 4–6 m long and 6 cm wide."
+			},
+			{
+				"type": "salt",
+				"how": "brine"
+			},
+			{
+				"type": "custom",
+				"name": "spiral"
+			},
+			{
+				"type": "dry"
+			},
+			{
+				"type": "custom",
+				"name": "smoke",
+				"seconds": {
+					"min": 7200,
+					"max": 7200,
+					"about": true
+				},
+				"note": "An unsmoked version exists."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+				},
+				{
+					"name": "Slow Food Ark of Taste, Parenica",
+					"url": "https://www.fondazioneslowfood.com/en/ark-of-taste-slow-food/parenica-2/"
+				},
+				{
+					"name": "Čubon et al., traditional Slovak sheep cheeses, J Microbiol Biotechnol Food Sci: raw-milk sheep lump cheese is the base material of parenica, korbáčik, oštiepok; parenica and korbáčik are lump cheese steamed in hot water and pulled",
+					"url": "https://doi.org/10.55251/jmbfs.12714"
+				}
+			],
+			"text": "The steps, from these: first as for cheese, then its own."
+		}
+	}
+}

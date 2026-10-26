@@ -1,0 +1,45 @@
+{
+	"label": "Tyrozouli",
+	"example": true,
+	"family": "ricotta",
+	"about": {
+		"text": "Made from Myzithra by adding salt, causing dehydration, and allowing maturation.",
+		"sources": {
+			"unsourced": true,
+			"text": "Cretan; salted and matured myzithra; unverified"
+		}
+	},
+	"regions": [
+		"GR"
+	],
+	"beasts": [
+		"sheep",
+		"goat"
+	],
+	"firm": "semi-soft",
+	"days": [
+		30,
+		90
+	],
+	"estimated": true,
+	"setting": "acid-heat",
+	"rind": "none",
+	"place": {
+		"region": "Crete",
+		"lat": 35.25,
+		"lon": 24.9,
+		"x": 0.56917,
+		"y": 0.25379,
+		"located": "hint"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Greek Wikipedia: Κρητικό τυρί",
+				"url": "https://el.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=1&titles=%CE%9A%CF%81%CE%B7%CF%84%CE%B9%CE%BA%CF%8C_%CF%84%CF%85%CF%81%CE%AF"
+			}
+		],
+		"text": "Its origin on Crete with the home-kept goat and sheep flock, from this page. The Myzithra account is unverified."
+	}
+}

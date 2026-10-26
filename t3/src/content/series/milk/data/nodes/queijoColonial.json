@@ -1,0 +1,62 @@
+{
+	"label": "Queijo colonial",
+	"example": true,
+	"aka": [
+		"Queijo de Colônia"
+	],
+	"family": "semiHard",
+	"about": {
+		"text": "or Colony cheese.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Colony_cheese"
+				}
+			],
+			"text": "Brazilian colonist cheese; the earlier source and the 'Colony cheese' alias are the Uruguayan Queso Colonia (Emmental-like, 4+ months), a different cheese"
+		}
+	},
+	"regions": [
+		"BR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		20,
+		60
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"confidence": "low",
+	"facts": [
+		{
+			"k": "Making",
+			"v": "Made by hand on German and Italian settler farms in southern Brazil: milk with salt and dairy starter, the curd not heated, then pressed"
+		},
+		{
+			"k": "Name",
+			"v": "Named after the colonial farming system of the settler families (colonos), not the Portuguese colonial period"
+		}
+	],
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Colony_cheese"
+			},
+			{
+				"name": "Wikipedia (pt): Queijo de Colônia",
+				"url": "https://pt.wikipedia.org/wiki/Queijo_de_Col%C3%B4nia"
+			},
+			{
+				"name": "Europe PMC: PMC8307891",
+				"url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC8307891/fullTextXML"
+			}
+		],
+		"text": "Brazilian colonist cheese; the earlier source and the 'Colony cheese' alias are the Uruguayan Queso Colonia (Emmental-like, 4+ months), a different cheese"
+	}
+}

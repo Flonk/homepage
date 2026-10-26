@@ -4,6 +4,7 @@ import { group } from './util';
 
 // How siblings go down: the biggest branch first, or shuffled, stably, to try another look.
 const SIBLING_ORDER: 'biggest' | 'shuffled' = 'shuffled';
+// Siblings with a table (cheese types with their panels) first; where there are many, they go off a bus instead (see bus.ts).
 
 /* Siblings ordered top to bottom: the biggest branch first, but those
    made alike side by side, as one bunch as big as all of it, as they are
@@ -28,7 +29,9 @@ export const orderSiblings = ({ children, splitKeyOf, sharedStepPrefix, isOrLead
 		const examples = kids.filter((k) => k.example);
 		const units = new Map<string, Node[]>();
 		for (const k of products) group(units, splitKeyOf.get(k.id) ?? k.id, k);
-		kids.splice(0, kids.length, ...orderBunches([...units.values()], 0).flat(), ...examples);
+		const ordered = orderBunches([...units.values()], 0).flat();
+		const first = ordered.filter((k) => k.table);
+		kids.splice(0, kids.length, ...first, ...ordered.filter((k) => !first.includes(k)), ...examples);
 		// One drawn below a sibling (its `below`) moved there, after that sibling's branch.
 		for (const k of [...kids].filter((k) => k.below)) {
 			const sibling = kids.find((n) => n !== k && isOrLeadsTo(n, k.below!));

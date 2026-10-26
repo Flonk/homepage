@@ -8,12 +8,15 @@ export const LABEL_LEADING = 1.15;
 /* Each step label and card chain measured, so each parent leaves room
    enough across for its children's. A branch point's arrow has none. */
 export const measureStepLabels = (
-	{ root, nodes }: ProductTree,
+	{ root, nodes, parent, childrenOf }: ProductTree,
 	{ scaleOf, lineWidth, cardChainFont }: NodeSizes,
-	{ panelContaining, rulerAbove }: RulerAndPanelContents,
+	{ panelContaining, rulerAbove, busAbove }: RulerAndPanelContents,
 ): StepLabelSizes => {
-	// At the scale of the product the arrow makes; larger where the step has a card chain, so siblings read alike.
-	const stepLabelFont = (n: Node) => STEP_FONT * scaleOf(n) * (n.how?.holds?.length ? 1.6 : 1);
+	/* At the scale of the product the arrow makes; larger where its step,
+	   or a sibling's, has a card chain, so siblings read alike: the curd's
+	   beside the whey's. */
+	const carded = (n: Node) => !!n.how?.holds?.length;
+	const stepLabelFont = (n: Node) => STEP_FONT * scaleOf(n) * (carded(n) || (parent.has(n) && childrenOf(parent.get(n)!).some(carded)) ? 1.6 : 1);
 	const nodesWithStepLabel = nodes.filter((n) => n.step && n !== root && !panelContaining(n));
 	/* In as many lines as it is written in, the last just over its arrow
 	   and the rest stacked up from there. */
@@ -24,9 +27,9 @@ export const measureStepLabels = (
 
 	/* The card chain, under the label and laid over the arrow: the step's
 	   processing, card by card (see render/Processing); small, a footnote
-	   to the label. None under a ruler or in a panel. An example's arrow
+	   to the label. None under a ruler, in a panel, or off a bus, whose drops are too short for one. An example's arrow
 	   may have a chain and no label. */
-	const cardsOf = (n: Node) => (rulerAbove(n) || panelContaining(n) ? [] : (n.how?.holds ?? []));
+	const cardsOf = (n: Node) => (rulerAbove(n) || panelContaining(n) || busAbove(n) ? [] : (n.how?.holds ?? []));
 	const layouts = new Map<Node, Strip>();
 	const cardChainLayout = (n: Node) => {
 		let laid = layouts.get(n);

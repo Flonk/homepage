@@ -91,7 +91,8 @@ export const buildProductTree = (data: Graph): ProductTree => {
 	for (const [p, kids] of siblings) {
 		const units = new Map<string, Node[]>();
 		for (const k of kids) group(units, splitKeyOf.get(k.id) ?? k.id, k);
-		groupBySharedSteps(p, [...units.values()], 0);
+		// Not a cheese type with a table: those go in rows of their own (see tableRows in order.ts), each with its own arrow.
+		groupBySharedSteps(p, [...units.values()].filter((u) => !u.some((k) => k.table)), 0);
 		madeTogether.push(...[...units.values()].filter((u) => u.length > 1));
 	}
 	/* Those made together by one process, held together before all else:

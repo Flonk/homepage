@@ -1,0 +1,51 @@
+{
+	"label": "Fourme de Montbrison",
+	"example": true,
+	"family": "blue",
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-soft",
+	"days": [
+		28,
+		60
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Auvergne",
+		"lat": 45.61,
+		"lon": 4.05,
+		"x": 0.51125,
+		"y": 0.21586,
+		"located": "hint"
+	},
+	"confidence": "high",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Fourme_de_Montbrison"
+			},
+			{
+				"name": "fr.wikipedia, Fourme de Montbrison",
+				"url": "https://fr.wikipedia.org/wiki/Fourme_de_Montbrison"
+			}
+		],
+		"text": "Its facts, from these."
+	},
+	"facts": [
+		{
+			"k": "Area",
+			"v": "Monts du Forez: 27 communes in Loire and 5 in Puy-de-Dôme; made in Rhône-Alpes and Auvergne"
+		},
+		{
+			"k": "Protection",
+			"v": "AOC 1972, AOP 2009"
+		}
+	]
+}

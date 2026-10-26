@@ -1,0 +1,56 @@
+{
+	"label": "Bitto",
+	"example": true,
+	"aka": [
+		"Bitto Valtellina",
+		"Bitto DOP"
+	],
+	"family": "alpine",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"cow",
+		"goat"
+	],
+	"firm": "semi-hard",
+	"days": [
+		70,
+		365
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Lombardy",
+		"lat": 46.1,
+		"lon": 9.6,
+		"x": 0.52667,
+		"y": 0.21391,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "en.wikipedia.org",
+				"url": "https://en.wikipedia.org/wiki/Bitto_(cheese)"
+			},
+			{
+				"name": "it.wikipedia.org",
+				"url": "https://it.wikipedia.org/wiki/Bitto_(formaggio)"
+			}
+		],
+		"text": "Valtellina; up to 10 years for old wheels"
+	},
+	"facts": [
+		{
+			"k": "Valley",
+			"v": "Valle del Bitto in the Orobie Alps; the DOP covers valleys in the Sondrio, Bergamo and Lecco provinces"
+		},
+		{
+			"k": "Making",
+			"v": "Raw cow's milk worked on site after milking, calf rennet, curd cooked at 48–52 °C and broken into rice-sized grains"
+		}
+	]
+}

@@ -2,8 +2,12 @@ import { FONT, MAP_PILL, PANEL_PADDING, type Node, type Graph } from '../client/
 import type { Box, Panel, Pin } from './types';
 import { group } from './util';
 
-// The world map's width in the picture; its height is as its projection has it.
+/* The world map's width in the picture; its height is as its projection
+   has it. A family's map is cut from it to where its cheeses are, a
+   margin round them, and no narrower than MAP_LEAST_WIDTH. */
 export const MAP_WIDTH = 9000;
+const MAP_MARGIN = 300;
+const MAP_LEAST_WIDTH = 1600;
 /* A pin's head, round with the count in it, its point on the country's
    middle: bigger the more cheeses it has. Shown zoomed out, until the
    cheeses themselves can be read. */
@@ -91,7 +95,6 @@ export const layWorldMap = (family: Node, cheeses: Node[], map: Graph['map']): P
 			at.set(k, (rings.length ? nearestFree(true) : null) ?? nearestFree(false) ?? { x: sx, y: sy });
 		}
 	}
-	family.w = Math.max(family.w, MAP_WIDTH);
 	/* A pin for each region, at the middle of its cheeses' places, and one
 	   at the country's middle for those whose region is not known. */
 	const pins: Pin[] = [];
@@ -114,5 +117,19 @@ export const layWorldMap = (family: Node, cheeses: Node[], map: Graph['map']): P
 			});
 		}
 	}
-	return { kind: 'map', w: family.w, h, rows: [], times: [], xOf: () => 0, at, pins };
+	// Cut to them: their boxes and pins, with a margin, as wide as the family's pill at the least, and within the world.
+	const boxes = [...[...at].map(([k, { x, y }]) => ({ x0: x - k.w / 2, x1: x + k.w / 2, y0: y - k.h / 2, y1: y + k.h / 2 })), ...pins.map(({ x, y, r }) => ({ x0: x - r, x1: x + r, y0: y - r, y1: y + r }))];
+	const cut = {
+		x0: Math.min(...boxes.map((b) => b.x0)) - MAP_MARGIN,
+		x1: Math.max(...boxes.map((b) => b.x1)) + MAP_MARGIN,
+		y0: Math.max(0, Math.min(...boxes.map((b) => b.y0)) - MAP_MARGIN),
+		y1: Math.min(h, Math.max(...boxes.map((b) => b.y1)) + MAP_MARGIN),
+	};
+	const wide = Math.min(MAP_WIDTH, Math.max(cut.x1 - cut.x0, family.w, MAP_LEAST_WIDTH));
+	const middle = Math.min(Math.max((cut.x0 + cut.x1) / 2, wide / 2), MAP_WIDTH - wide / 2);
+	const origin = { x: wide / 2 - middle, y: -cut.y0 };
+	family.w = Math.max(family.w, wide);
+	for (const [k, { x, y }] of at) at.set(k, { x: x + origin.x, y: y + origin.y });
+	for (const pin of pins) Object.assign(pin, { x: pin.x + origin.x, y: pin.y + origin.y });
+	return { kind: 'map', w: family.w, h: cut.y1 - cut.y0, rows: [], times: [], xOf: () => 0, at, pins, origin };
 };

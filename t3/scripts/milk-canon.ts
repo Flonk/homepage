@@ -12,7 +12,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const GRAPH = path.resolve('src/content/series/milk/components/graph');
+const GRAPH = path.resolve('src/content/series/milk/data');
 const RESEARCH = path.join(GRAPH, 'research');
 
 type Entry = { file: string; heading: string; place: string; kind: 'dairy' | 'cheese'; what: string };

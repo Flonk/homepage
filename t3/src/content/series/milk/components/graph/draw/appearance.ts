@@ -27,15 +27,15 @@ export const makeAppearance = (G: Drawing): Appearance => {
 		accent: colourOf('var(--ink-accent)'),
 		names: colourOf('color-mix(in oklab, var(--deck-ink) 6%, var(--pill))'),
 		milk: colourOf('color-mix(in oklab, var(--pill), white 70%)'),
-		// An info mark's blue, half way to the ground.
-		info: colourOf('color-mix(in oklab, #2f6fdb 50%, var(--deck-ground))'),
-		// A guess's amber, as far towards the ground.
+		// A guess's amber, about half way to the ground.
 		unsure: colourOf('color-mix(in oklab, #d98a10 55%, var(--deck-ground))'),
 		// The map's land, a shade off the ground.
 		land: colourOf('color-mix(in oklab, var(--deck-ink) 7%, var(--deck-ground))'),
 		// A panel's ground, a shade off the graph's, and its lines of time fainter than the arrows.
 		panel: colourOf('color-mix(in oklab, var(--deck-ink) 4%, var(--deck-ground))'),
 		grid: colourOf('color-mix(in oklab, var(--line) 35%, var(--deck-ground))'),
+		// A table's edge, its header's and its panel's, darker than a pill's rim, so the table reads as one.
+		tableEdge: colourOf('color-mix(in oklab, var(--line) 75%, var(--deck-ink))'),
 	};
 
 	const images = new Map<string, HTMLImageElement>();

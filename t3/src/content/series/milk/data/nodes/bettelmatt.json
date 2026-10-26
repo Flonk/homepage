@@ -1,0 +1,59 @@
+{
+	"label": "Bettelmatt",
+	"example": true,
+	"aka": [
+		"Bettelmat"
+	],
+	"family": "alpine",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"cow",
+		"goat"
+	],
+	"firm": "semi-hard",
+	"days": [
+		60,
+		180
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Piedmont",
+		"lat": 46.4,
+		"lon": 8.4,
+		"x": 0.52333,
+		"y": 0.2127,
+		"located": "hint"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Bettelmatt"
+			},
+			{
+				"name": "onaf.it",
+				"url": "https://www.onaf.it/uploads/public/8211_bettelmatt.pdf"
+			},
+			{
+				"name": "it.wikipedia.org",
+				"url": "https://it.wikipedia.org/wiki/Bettelmatt"
+			}
+		],
+		"text": "semi-cooked raw-milk summer alpine cheese from Val Formazza (Ossola) pastures above 1500 m; branded after at least 60 days; PAT, not DOP; ONAF sheet mentions cow milk only, goat share minor/unconfirmed; max estimated"
+	},
+	"facts": [
+		{
+			"k": "Pastures",
+			"v": "High summer alpine pastures above 1,800 m in Ossola (upper Val Formazza, Antigorio and Devero valleys)"
+		},
+		{
+			"k": "Making",
+			"v": "Whole milk heated on the pasture, pressed under stones, salted, then aged at least two months in stone huts called Speicher"
+		}
+	]
+}

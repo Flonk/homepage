@@ -1,0 +1,55 @@
+{
+	"label": "Queso de Murcia",
+	"example": true,
+	"aka": [
+		"Murcian cheese"
+	],
+	"family": "freshCheese",
+	"also": "semiHard",
+	"regions": [
+		"ES"
+	],
+	"beasts": [
+		"goat"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		60
+	],
+	"setting": "rennet",
+	"rind": "none",
+	"protected": "PDO",
+	"place": {
+		"region": "Murcia",
+		"lat": 38,
+		"lon": -1.5,
+		"x": 0.49583,
+		"y": 0.24427,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Queso_de_Murcia"
+			},
+			{
+				"name": "es.wikipedia.org",
+				"url": "https://es.wikipedia.org/wiki/Queso_de_Murcia"
+			}
+		],
+		"text": "PDO covers fresh (brined, not ripened, almost no rind) and a cured version (at least 2 months, thin smooth rind); Murciano-Granadina goat"
+	},
+	"facts": [
+		{
+			"k": "Herds",
+			"v": "Milk only from registered herds of the Murciano-Granadina goat breed, grazing scrub and coarse pasture"
+		},
+		{
+			"k": "Uses",
+			"v": "Fresh type grilled or used in desserts and salads; cured type sliced as a snack or served with a meal"
+		}
+	]
+}

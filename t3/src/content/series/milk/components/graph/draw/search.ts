@@ -28,6 +28,7 @@ export const makeSearch = (G: Drawing): Search => {
 		const parent = layout.parent.get(n);
 		entries.push({ label: displayName(n), normalised: normalise(displayName(n)), node: n, hint: n.example && parent ? `example of ${displayName(parent)}` : '' });
 		for (const a of n.aka ?? []) entries.push({ label: a, normalised: normalise(a), node: n, hint: `= ${displayName(n)}` });
+		for (const a of n.offTable ?? []) entries.push({ label: a, normalised: normalise(a), node: n, hint: `a ${displayName(n)}` });
 	}
 	// In the figure, or moved up into a sidebar deck's column of tools, which it works the same from.
 	const box = searchOf(G.figure)!;

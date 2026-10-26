@@ -1,0 +1,78 @@
+{
+	"from": [
+		"ricePudding"
+	],
+	"to": [
+		"sutlac"
+	],
+	"variant": true,
+	"text": "Cooked sütlaç is poured into bowls and baked only to brown the skin, which is what makes the fırın version. Amounts are for 6 servings from yemek.com; the Hamsiköy version cooks rice in boiled milk with butter for about 15 min before the sugar goes in.",
+	"sources": {
+		"links": [
+			{
+				"name": "Yemek.com: Fırında sütlaç",
+				"url": "https://yemek.com/tarif/firinda-sutlac/"
+			},
+			{
+				"name": "Wikipedia (tr): Sütlaç",
+				"url": "https://tr.wikipedia.org/wiki/S%C3%BCtla%C3%A7"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"note": "Rice, 1/2 tea glass, in 1.5 cups water.",
+				"does": "heat",
+				"temperature": {
+					"min": 100,
+					"max": 100,
+					"about": true
+				}
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"seconds": {
+					"min": 600,
+					"max": 600
+				},
+				"note": "1 l of milk is added with the sugar."
+			},
+			{
+				"type": "custom",
+				"name": "thicken",
+				"note": "1.5 tbsp cornstarch whisked with lukewarm water, and 1 egg yolk."
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"note": "Boiled a couple of times, then vanilla is added."
+			},
+			{
+				"type": "heat",
+				"does": "cook",
+				"temperature": {
+					"min": 200,
+					"max": 200
+				},
+				"note": "In a water bath until the tops brown."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Yemek.com: Fırında sütlaç",
+					"url": "https://yemek.com/tarif/firinda-sutlac/"
+				},
+				{
+					"name": "Wikipedia (tr): Sütlaç",
+					"url": "https://tr.wikipedia.org/wiki/S%C3%BCtla%C3%A7"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

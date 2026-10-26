@@ -1,0 +1,108 @@
+{
+	"from": [
+		"extraHard"
+	],
+	"to": [
+		"reggianito"
+	],
+	"variant": true,
+	"step": "cook the curd, brine",
+	"text": "Process figures are from Spanish Wikipedia only; the whey-starter comparison comes from research abstracts (UCC, CONICET).",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia (es): Queso Reggianito",
+				"url": "https://es.wikipedia.org/wiki/Queso_Reggianito"
+			},
+			{
+				"name": "Influence of defined and natural wild thermophilic cultures on proteolysis (UCC)",
+				"url": "https://research.ucc.ie/en/publications/influence-of-defined-and-natural-wild-thermophilic-cultures-on-pr-3/"
+			},
+			{
+				"name": "Grasas y Aceites",
+				"url": "https://grasasyaceites.revistas.csic.es/index.php/grasasyaceites/article/view/504"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "pasteurise"
+			},
+			{
+				"type": "coagulate",
+				"by": "rennet",
+				"note": "Mostly recombinant bovine chymosin."
+			},
+			{
+				"type": "heat",
+				"does": "cook",
+				"temperature": {
+					"max": 51
+				}
+			},
+			{
+				"type": "salt",
+				"how": "brine",
+				"seconds": {
+					"min": 691200,
+					"max": 777600
+				}
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "thermophilic lactobacilli",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							],
+							"grows": "thermophilic"
+						}
+					],
+					"by": [
+						"backslop"
+					]
+				},
+				"temperature": {
+					"min": 10,
+					"max": 15
+				},
+				"seconds": {
+					"min": 15552000,
+					"max": 15552000,
+					"about": true
+				},
+				"humidity": {
+					"min": 82,
+					"max": 85
+				}
+			}
+		],
+		"text": "Usually a natural whey starter from the previous batch; research compares it with defined Lactobacillus helveticus strains.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia (es): Queso Reggianito",
+					"url": "https://es.wikipedia.org/wiki/Queso_Reggianito"
+				},
+				{
+					"name": "Influence of defined and natural wild thermophilic cultures on proteolysis (UCC)",
+					"url": "https://research.ucc.ie/en/publications/influence-of-defined-and-natural-wild-thermophilic-cultures-on-pr-3/"
+				},
+				{
+					"name": "Grasas y Aceites",
+					"url": "https://grasasyaceites.revistas.csic.es/index.php/grasasyaceites/article/view/504"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

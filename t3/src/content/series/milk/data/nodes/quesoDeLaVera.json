@@ -1,0 +1,51 @@
+{
+	"label": "Queso de la Vera",
+	"example": true,
+	"aka": [
+		"Queso de cabra de La Vera",
+		"Goat cheese of La Vera"
+	],
+	"family": "semiHard",
+	"regions": [
+		"ES"
+	],
+	"beasts": [
+		"goat"
+	],
+	"firm": "semi-hard",
+	"days": [
+		30,
+		90
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Extremadura",
+		"lat": 40.15,
+		"lon": -5.75,
+		"x": 0.48403,
+		"y": 0.23658,
+		"located": "knowledge"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Queso_de_la_Vera"
+			},
+			{
+				"name": "spain.info",
+				"url": "https://www.spain.info/es/descubrir-espana/extremadura-quesos/"
+			}
+		],
+		"text": "Extremadura goat cheese; lookup failed (wiki titles 404), values unverified"
+	},
+	"facts": [
+		{
+			"k": "Coating",
+			"v": "Goat's-milk cheese coated in smoked paprika (pimentón de La Vera)"
+		}
+	]
+}

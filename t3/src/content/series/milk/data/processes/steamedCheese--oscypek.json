@@ -1,0 +1,62 @@
+{
+	"from": [
+		"steamedCheese"
+	],
+	"to": [
+		"oscypek"
+	],
+	"variant": true,
+	"step": "press in a wooden mould, smoke",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Oscypek",
+				"url": "https://en.wikipedia.org/wiki/Oscypek"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "salt",
+				"how": "milk"
+			},
+			{
+				"type": "custom",
+				"name": "rinse",
+				"note": "With boiling water."
+			},
+			{
+				"type": "custom",
+				"name": "squeeze"
+			},
+			{
+				"type": "press",
+				"note": "In wooden spindle-shaped moulds."
+			},
+			{
+				"type": "salt",
+				"how": "brine",
+				"note": "Soaked a night or two."
+			},
+			{
+				"type": "custom",
+				"name": "smoke",
+				"seconds": {
+					"max": 1209600
+				},
+				"note": "Hot-smoked."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Oscypek",
+					"url": "https://en.wikipedia.org/wiki/Oscypek"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

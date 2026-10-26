@@ -1,0 +1,31 @@
+{
+	"from": [
+		"fresh"
+	],
+	"to": [
+		"milkCoffee"
+	],
+	"step": "add coffee",
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "coffee",
+				"note": "Espresso or brewed coffee, with hot milk or milk foam making up most of the cup; a galão is about a quarter coffee, three quarters milk foam."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia (Portuguese): Galão",
+					"url": "https://pt.wikipedia.org/wiki/Galão_(café)"
+				},
+				{
+					"name": "Wikipedia: Milk coffee",
+					"url": "https://en.wikipedia.org/wiki/Milk_coffee"
+				}
+			],
+			"text": "That coffee is added to milk, and the galão's proportions, from these."
+		}
+	}
+}

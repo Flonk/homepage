@@ -1,0 +1,60 @@
+{
+	"label": "Primo sale",
+	"example": true,
+	"aka": [
+		"Primosale"
+	],
+	"family": "semiHard",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"sheep",
+		"cow",
+		"goat"
+	],
+	"firm": "semi-soft",
+	"days": [
+		15,
+		30
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Sicily",
+		"lat": 37.6,
+		"lon": 14,
+		"x": 0.53889,
+		"y": 0.24568,
+		"located": "hint"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Primo_sale"
+			},
+			{
+				"name": "Italian Wikipedia: Primosale",
+				"url": "https://it.wikipedia.org/wiki/Primosale"
+			},
+			{
+				"name": "Italian Wikipedia: Formaggi italiani",
+				"url": "https://it.wikipedia.org/wiki/Formaggi_italiani"
+			}
+		],
+		"text": "Sicilian, lightly salted young pressed cheese; Wikipedia URL did not resolve"
+	},
+	"facts": [
+		{
+			"k": "Lazio",
+			"v": "Also made in Lazio as primo sale di latte ovino, a PAT traditional product"
+		},
+		{
+			"k": "Making",
+			"v": "Unsalted fresh curd is tuma; salted right away it becomes primosale after about a month"
+		}
+	]
+}

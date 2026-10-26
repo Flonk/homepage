@@ -1,0 +1,51 @@
+{
+	"label": "Bündner Bergkäse",
+	"example": true,
+	"aka": [
+		"Bergkäse",
+		"Alpkäse"
+	],
+	"family": "alpine",
+	"regions": [
+		"CH"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "hard",
+	"days": [
+		90,
+		180
+	],
+	"setting": "rennet",
+	"rind": "washed",
+	"protected": "PGI",
+	"place": {
+		"region": "Graubünden",
+		"lat": 46.7,
+		"lon": 9.6,
+		"x": 0.52667,
+		"y": 0.21149,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/B%C3%BCndner_Bergk%C3%A4se"
+			},
+			{
+				"name": "German Wikipedia: Bergkäse",
+				"url": "https://de.wikipedia.org/wiki/Bergk%C3%A4se"
+			}
+		],
+		"text": "Its facts, from these."
+	},
+	"facts": [
+		{
+			"k": "Making",
+			"v": "made only in village dairies above 1000 m"
+		}
+	]
+}

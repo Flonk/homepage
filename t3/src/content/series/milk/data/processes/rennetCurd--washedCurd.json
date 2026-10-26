@@ -1,0 +1,103 @@
+{
+	"from": [
+		"rennetCurd"
+	],
+	"to": [
+		"washedCurd"
+	],
+	"step": "wash the curd, press",
+	"text": "Replacing whey with water washes out lactose, so less lactic acid forms later and the cheese avoids a sour, brittle texture. This gives the smooth, supple body of Gouda- and Havarti-type cheeses.",
+	"sources": {
+		"links": [
+			{
+				"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
+				"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+			},
+			{
+				"name": "Codex General Standard for Cheese (CXS 283-1978)",
+				"url": "https://www.fao.org/input/download/standards/175/CXS_283e.pdf"
+			},
+			{
+				"name": "Käseverordnung § 6 (Germany)",
+				"url": "https://lxgesetze.de/käsev/6"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "press",
+				"note": "In 3–10 steps at about 50–450 g/cm²."
+			},
+			{
+				"type": "salt",
+				"how": "brine",
+				"strength": {
+					"min": 18,
+					"max": 23
+				},
+				"temperature": {
+					"min": 10,
+					"max": 16
+				}
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"seconds": {
+					"min": 2592000,
+					"max": 7776000
+				},
+				"note": "Weeks to months by type, and the Gouda line ripens at 12–15 °C and 75–80 % RH."
+			},
+			{
+				"type": "washCurd",
+				"share": {
+					"min": 30,
+					"max": 50
+				},
+				"note": "Replaced by water, which sets the scald temperature and makes the curd milder."
+			},
+			{
+				"type": "salt",
+				"how": "brine",
+				"strength": {
+					"min": 1.5,
+					"max": 2.2
+				}
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"temperature": {
+					"min": 12
+				},
+				"seconds": {
+					"min": 2419200
+				},
+				"humidity": {
+					"min": 75,
+					"max": 80
+				}
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Codex General Standard for Cheese (CXS 283-1978)",
+					"url": "https://www.fao.org/input/download/standards/175/CXS_283e.pdf"
+				},
+				{
+					"name": "Käseverordnung § 6 (Germany)",
+					"url": "https://lxgesetze.de/käsev/6"
+				},
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+				}
+			],
+			"text": "The steps, from these: first as for semiHard, then its own."
+		}
+	}
+}

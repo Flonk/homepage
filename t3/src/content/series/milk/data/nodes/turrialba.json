@@ -1,0 +1,72 @@
+{
+	"label": "Turrialba",
+	"example": true,
+	"aka": [
+		"queso Turrialba",
+		"Turrialba cheese",
+		"Turrialba type"
+	],
+	"family": "freshCheese",
+	"about": {
+		"text": "A salty young cheese made of cow's milk",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Turrialba_cheese"
+				}
+			],
+			"text": "salty young cheese"
+		}
+	},
+	"regions": [
+		"CR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		14
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "none",
+	"place": {
+		"region": "Cartago",
+		"lat": 9.9,
+		"lon": -83.68,
+		"x": 0.26756,
+		"y": 0.33091,
+		"located": "hint"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Turrialba_cheese"
+			},
+			{
+				"name": "es.wikipedia",
+				"url": "https://es.wikipedia.org/wiki/Queso_Turrialba"
+			},
+			{
+				"name": "Europe PMC, fresh Turrialba",
+				"url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC8391814/fullTextXML"
+			}
+		],
+		"text": "salty young cheese"
+	},
+	"facts": [
+		{
+			"k": "Protection",
+			"v": "Protected origin (denominación de origen) since 2012, for the Turrialba canton of Cartago province"
+		},
+		{
+			"k": "Making",
+			"v": "Cow's milk cultured and set with rennet, the curd cut and pressed; unripened, with a shelf life of 7 to 18 days"
+		}
+	]
+}

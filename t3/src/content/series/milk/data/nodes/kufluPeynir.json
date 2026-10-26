@@ -1,0 +1,52 @@
+{
+	"label": "Küflü Peynir",
+	"example": true,
+	"aka": [
+		"Ardahan küflü peynir",
+		"Kuflu"
+	],
+	"family": "blue",
+	"regions": [
+		"TR"
+	],
+	"beasts": [
+		"sheep",
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		60,
+		180
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Konya",
+		"lat": 37.87,
+		"lon": 32.49,
+		"x": 0.59025,
+		"y": 0.24473,
+		"located": "hint"
+	},
+	"confidence": "low",
+	"facts": [
+		{
+			"k": "Ripening",
+			"v": "No starter and no added mould; the blue-green surface mould grows on its own over 3–4 months"
+		},
+		{
+			"k": "Where",
+			"v": "Konya and Karaman provinces of Central Anatolia"
+		}
+	],
+	"sources": {
+		"links": [
+			{
+				"name": "Europe PMC: Küflü peynir study (PMC11097025)",
+				"url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11097025/fullTextXML"
+			}
+		],
+		"text": "Its names and facts, from these."
+	}
+}

@@ -1,0 +1,51 @@
+{
+	"label": "Frachet",
+	"example": true,
+	"family": "soft",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "soft",
+	"days": [
+		15,
+		30
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Piedmont",
+		"lat": 45.07,
+		"lon": 7.68,
+		"x": 0.52133,
+		"y": 0.21799,
+		"located": "hint"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Frachet"
+			},
+			{
+				"name": "Wikipedia (Italian)",
+				"url": "https://it.wikipedia.org/wiki/Frachet"
+			}
+		],
+		"text": "no English article; details unverified"
+	},
+	"facts": [
+		{
+			"k": "Made from",
+			"v": "Scraps of cheese or ricotta, kneaded by hand with aromatic herbs (rosemary, wild cumin), salt and pepper"
+		},
+		{
+			"k": "Ripening",
+			"v": "Wrapped in hemp cloths and hung to ripen for up to about a month"
+		}
+	]
+}

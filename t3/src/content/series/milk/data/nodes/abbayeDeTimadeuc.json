@@ -1,0 +1,54 @@
+{
+	"label": "Abbaye de Timadeuc",
+	"example": true,
+	"aka": [
+		"Timadeuc"
+	],
+	"family": "washed",
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-soft",
+	"days": [
+		30,
+		60
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "washed",
+	"place": {
+		"region": "Brittany",
+		"lat": 47.9,
+		"lon": -2.6,
+		"x": 0.49278,
+		"y": 0.20657,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Abbaye_de_Timadeuc_Cheese"
+			},
+			{
+				"name": "Wikipedia (fr): Trappe de Timadeuc",
+				"url": "https://fr.wikipedia.org/wiki/Trappe_de_Timadeuc"
+			}
+		],
+		"text": "Trappist cheese from Brittany; ripening not verified"
+	},
+	"facts": [
+		{
+			"k": "Making",
+			"v": "Industrial curd from pasteurised cow's milk, made at the Triballat Noyal plant (Ille-et-Vilaine); the abbey ripens and packs it"
+		},
+		{
+			"k": "Rind",
+			"v": "Fine straw-yellow rind; ivory, fairly elastic paste"
+		}
+	]
+}

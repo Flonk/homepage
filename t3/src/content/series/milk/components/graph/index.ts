@@ -1,4 +1,4 @@
-import built from './built/graph.json';
+import built from '../../data/built/graph.json';
 import type * as S from './schema';
 
 /*

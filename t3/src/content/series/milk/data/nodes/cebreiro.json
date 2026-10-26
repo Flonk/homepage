@@ -1,0 +1,58 @@
+{
+	"label": "Cebreiro",
+	"example": true,
+	"aka": [
+		"Queixo do Cebreiro"
+	],
+	"family": "freshCheese",
+	"regions": [
+		"ES"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		45
+	],
+	"setting": "rennet",
+	"rind": "none",
+	"protected": "PDO",
+	"place": {
+		"region": "Galicia",
+		"lat": 42.71,
+		"lon": -7.04,
+		"x": 0.48044,
+		"y": 0.22709,
+		"located": "knowledge"
+	},
+	"confidence": "high",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Cebreiro"
+			},
+			{
+				"name": "agacal.xunta.gal",
+				"url": "https://agacal.xunta.gal/sites/default/files/Ficha%20t%C3%A9cnica%20DOP%20Cebreiro%202025.pdf"
+			},
+			{
+				"name": "Wikipedia (Galician)",
+				"url": "https://gl.wikipedia.org/wiki/Queixo_do_Cebreiro"
+			}
+		],
+		"text": "Mushroom-shaped Galician PDO, pasteurised cow milk; sold fresh or cured (cured minimum 45 days)"
+	},
+	"facts": [
+		{
+			"k": "Municipalities",
+			"v": "Made in the mountain municipalities around O Cebreiro: Baralla, Becerreá, Folgoso do Courel, Cervantes, Navia de Suarna, As Nogais, Triacastela and Pedrafita do Cebreiro"
+		},
+		{
+			"k": "Goat's milk",
+			"v": "Goat's milk may be added, up to 40%"
+		}
+	]
+}

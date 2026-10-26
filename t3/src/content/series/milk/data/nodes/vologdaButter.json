@@ -1,0 +1,55 @@
+{
+	"label": "Vologda butter",
+	"example": true,
+	"hidden": "HIDDEN_DUE_TO_OVERLOAD",
+	"about": {
+		"text": "Butter from the Vologda region of Russia, known for a sweet, creamy, nutty flavour. Invented by Nikolai Vereshchagin, who won a gold medal at Paris in 1878 with it as \"Parisian butter\"; Russia's first protected designation of origin (2010).",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Vologda_butter"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Vologda butter 6.jpg",
+		"author": "Sergeev Pavel",
+		"license": "Public domain",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Vologda_butter_6.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"RU"
+	],
+	"composition": {
+		"fat": {
+			"min": 82.5
+		},
+		"moisture": {
+			"max": 16
+		},
+		"pH": {
+			"min": 6.21
+		}
+	},
+	"facts": [
+		{
+			"k": "Acidity",
+			"v": "At most 22 °T, or plasma pH at least 6.21"
+		},
+		{
+			"k": "Cream",
+			"v": "Pasteurised, fresh first-grade cream (acidity limit and pH show it is sweet cream, not soured)"
+		}
+	]
+}

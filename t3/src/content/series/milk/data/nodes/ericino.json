@@ -1,0 +1,47 @@
+{
+	"label": "Ericino",
+	"example": true,
+	"family": "semiHard",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"sheep"
+	],
+	"firm": "semi-hard",
+	"days": [
+		60,
+		180
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Sicily",
+		"lat": 38.04,
+		"lon": 12.59,
+		"x": 0.53497,
+		"y": 0.24413,
+		"located": "knowledge"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Ericino"
+			},
+			{
+				"name": "it.wikipedia, Ericino",
+				"url": "https://it.wikipedia.org/wiki/Ericino"
+			}
+		],
+		"text": "Sicilian pecorino from Erice"
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Mixed milk, the share of each of the two milks varying"
+		}
+	]
+}

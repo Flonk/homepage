@@ -1,0 +1,52 @@
+{
+	"label": "Saint-Nectaire",
+	"example": true,
+	"family": "washed",
+	"also": "washed",
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-soft",
+	"days": [
+		28,
+		56
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Puy-de-Dôme",
+		"lat": 45.61,
+		"lon": 2.94,
+		"x": 0.50817,
+		"y": 0.21586,
+		"located": "hint"
+	},
+	"confidence": "high",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Saint-Nectaire"
+			},
+			{
+				"name": "French Wikipedia, Saint-nectaire",
+				"url": "https://fr.wikipedia.org/wiki/Saint-nectaire"
+			}
+		],
+		"text": "Its facts, from these."
+	},
+	"facts": [
+		{
+			"k": "Size",
+			"v": "A cylinder of 20–24 cm, or a petit format of 12–14 cm"
+		},
+		{
+			"k": "Rye",
+			"v": "Once called 'rye cheese' because it was matured on rye straw; made in the Auvergne since at least the 17th century"
+		}
+	]
+}

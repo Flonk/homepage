@@ -1,0 +1,51 @@
+{
+	"label": "Drugs from\ntransgenic milk",
+	"about": {
+		"text": "Human proteins made in the milk of genetically modified animals and purified from it as medicines. The first approved was ATryn, an anticoagulant from goats' milk (2006); Ruconest, for hereditary angioedema, is made in rabbits' milk. Ruconest is made by the Dutch company Pharming.",
+		"sources": {
+			"links": [
+				{
+					"name": "Acta Naturae (2013)",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3612824/"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"beasts": [
+		"goat"
+	],
+	"share": {
+		"mt": 0.0001,
+		"sources": {
+			"unsourced": true,
+			"text": "The milk of a few herds of transgenic goats and rabbits. My own rough estimate."
+		}
+	},
+	"examples": [
+		"atryn",
+		"ruconest"
+	],
+	"facts": [
+		{
+			"k": "Host",
+			"v": "ATryn (antithrombin alfa): transgenic goats. Ruconest (conestat alfa): transgenic rabbits"
+		},
+		{
+			"k": "How",
+			"v": "A human gene is joined to a milk-protein promoter, so the animal makes the human protein only in its mammary gland and secretes it into the milk"
+		},
+		{
+			"k": "Why not bacteria",
+			"v": "E. coli cannot add the sugar chains (glycosylation) C1-inhibitor needs; without them it clears from the blood quickly"
+		},
+		{
+			"k": "Traces",
+			"v": "Ruconest contains traces of rabbit protein; rabbit allergy is a contraindication"
+		},
+		{
+			"k": "Status",
+			"v": "ATryn approved by FDA (2009); its EU authorisation has lapsed. Ruconest treats acute hereditary angioedema attacks"
+		}
+	]
+}

@@ -1,0 +1,55 @@
+{
+	"label": "Queso Casín",
+	"example": true,
+	"family": "semiHard",
+	"regions": [
+		"ES"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		60,
+		120
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Asturias",
+		"lat": 43.35,
+		"lon": -5.85,
+		"x": 0.48375,
+		"y": 0.22466,
+		"located": "guess"
+	},
+	"confidence": "medium",
+	"facts": [
+		{
+			"k": "Villages",
+			"v": "Made by hand in the Asturian villages of Caso, Sobrescobio and Piloña, shaped without a mould and stamped with a wooden stamp"
+		},
+		{
+			"k": "Rennet",
+			"v": "Rennet from a pig's stomach (butiellu) filled with milk from a recently calved cow; the curd drains in a cloth for three to six days"
+		}
+	],
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Queso_Cas%C3%ADn"
+			},
+			{
+				"name": "Wikipedia (es): Queso Casín",
+				"url": "https://es.wikipedia.org/wiki/Queso_Casín"
+			},
+			{
+				"name": "Europe PMC: PMC12748158",
+				"url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12748158/fullTextXML"
+			}
+		],
+		"text": "Asturias; kneaded paste"
+	}
+}

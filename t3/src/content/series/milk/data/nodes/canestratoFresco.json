@@ -1,0 +1,27 @@
+{
+	"label": "Canestrato Fresco",
+	"example": true,
+	"family": "freshCheese",
+	"regions": [
+		"IT"
+	],
+	"about": {
+		"text": "A historic Sicilian cheese, documented from the early 15th century, now made by factories and small dairies in Ragusa province. Cylindrical, 1 to 2 kg and ivory-white, it is made from cow's milk with animal rennet, pressed, then soaked for about an hour in hot whey before being sold after 15 to 20 days of ripening.",
+		"sources": {
+			"links": [
+				{
+					"name": "Europe PMC: PMC12427870 (full text)",
+					"url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12427870/fullTextXML"
+				}
+			],
+			"text": "The words on what it is and how it is made, from these."
+		}
+	},
+	"estimated": true,
+	"firm": "fresh",
+	"days": [
+		15,
+		20
+	],
+	"setting": "rennet"
+}

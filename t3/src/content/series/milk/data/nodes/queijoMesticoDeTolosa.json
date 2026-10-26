@@ -1,0 +1,53 @@
+{
+	"label": "Queijo mestiço de Tolosa",
+	"example": true,
+	"family": "semiHard",
+	"regions": [
+		"PT"
+	],
+	"beasts": [
+		"sheep",
+		"goat"
+	],
+	"firm": "semi-hard",
+	"days": [
+		30,
+		60
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PGI",
+	"place": {
+		"region": "Portalegre District",
+		"lat": 39.5,
+		"lon": -7.66,
+		"x": 0.47872,
+		"y": 0.23893,
+		"located": "guess"
+	},
+	"confidence": "low",
+	"facts": [
+		{
+			"k": "Place",
+			"v": "Made in the parish of Tolosa, in the municipality of Nisa"
+		},
+		{
+			"k": "Coagulant",
+			"v": "Animal rennet or cardoon, with the curd drained slowly"
+		}
+	],
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Queijo_mesti%C3%A7o_de_Tolosa"
+			},
+			{
+				"name": "Wikipedia (pt): Queijo mestiço de Tolosa",
+				"url": "https://pt.wikipedia.org/wiki/Queijo_mesti%C3%A7o_de_Tolosa"
+			}
+		],
+		"text": "Portuguese PGI; the specification was not checked, so milk mix and ripening are unconfirmed"
+	}
+}

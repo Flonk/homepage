@@ -1,0 +1,47 @@
+{
+	"label": "Frozen yoghurt",
+	"aka": [
+		"Frozen yogurt"
+	],
+	"comment": "The mix is fermented with the yoghurt culture, or yoghurt is blended in, then frozen like ice cream.",
+	"about": {
+		"text": "A frozen dessert made from yoghurt, sweetened and stabilised, then whipped and frozen like ice cream. Invented in New England, USA, in the 1970s.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Frozen_yogurt"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "A bowl of frozen yogurt.jpg",
+		"author": "JacquesDemien",
+		"license": "CC0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:A_bowl_of_frozen_yogurt.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"examples": [
+		"pinkberry"
+	],
+	"composition": {
+		"solids": {
+			"min": 8,
+			"max": 14
+		},
+		"sugar": {
+			"min": 15,
+			"max": 17,
+			"about": true
+		}
+	}
+}

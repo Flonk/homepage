@@ -1,0 +1,51 @@
+{
+	"label": "Milk permeate",
+	"about": {
+		"text": "What passes through the membrane when skimmed milk is ultrafiltered to make milk protein: water, lactose and minerals, with no protein to speak of. It is dried or concentrated and used as a lactose and mineral ingredient.",
+		"sources": {
+			"links": [
+				{
+					"name": "ADPI: Dairy milk permeate; Tetra Pak Dairy Processing Handbook, ch. Milk and whey fractionation",
+					"url": "https://adpi.org/ingredient-resources/dairy-milk-permeate/"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"composition": {
+		"lactose": {
+			"min": 78,
+			"max": 88
+		},
+		"protein": {
+			"min": 3,
+			"max": 5
+		},
+		"fat": {
+			"min": 0,
+			"max": 1
+		},
+		"moisture": {
+			"min": 3,
+			"max": 4.5
+		},
+		"pH": {
+			"min": 5.5,
+			"max": 6.6
+		}
+	},
+	"facts": [
+		{
+			"k": "Ash",
+			"v": "8–11 % in the powder; lactose at least 76 %"
+		},
+		{
+			"k": "Also called",
+			"v": "Dairy product solids"
+		},
+		{
+			"k": "Co-product of",
+			"v": "Milk protein concentrate (MPC) and milk protein isolate (MPI) made by ultrafiltration"
+		}
+	]
+}

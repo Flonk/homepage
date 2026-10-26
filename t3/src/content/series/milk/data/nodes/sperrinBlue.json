@@ -1,0 +1,44 @@
+{
+	"label": "Sperrin Blue",
+	"example": true,
+	"family": "blue",
+	"regions": [
+		"IE",
+		"GB"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-soft",
+	"days": [
+		42,
+		84
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "List of Irish cheeses (Wikipedia)",
+				"url": "https://en.wikipedia.org/wiki/List_of_Irish_cheeses"
+			},
+			{
+				"name": "Dart Mountain Cheese",
+				"url": "https://www.dartmountaincheese.com"
+			}
+		],
+		"text": "Its names and facts, from these."
+	},
+	"facts": [
+		{
+			"k": "Maker",
+			"v": "Dart Mountain Cheese, Park, County Londonderry"
+		},
+		{
+			"k": "Milk",
+			"v": "Pasteurised cow's milk, with vegetarian rennet (per the Irish cheese list)"
+		}
+	]
+}

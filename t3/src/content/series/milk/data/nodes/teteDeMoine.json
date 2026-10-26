@@ -1,0 +1,107 @@
+{
+	"label": "Tête de Moine",
+	"example": true,
+	"aka": [
+		"Fromage de Bellelay",
+		"Bellelay",
+		"Mönch-kopf",
+		"Tête de Moine AOP"
+	],
+	"family": "alpine",
+	"also": "washed",
+	"about": {
+		"text": "Tête de Moine is a semi-hard Swiss cheese from raw cow milk, made in the Bernese Jura and Canton of Jura and pared into rosettes rather than cut.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/T%C3%AAte_de_Moine"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Tête de Moine.jpg",
+		"author": "Mr Thinktank",
+		"license": "CC BY 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:T%C3%AAte_de_Moine.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"CH"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		75,
+		180
+	],
+	"setting": "rennet",
+	"rind": "washed",
+	"protected": "PDO",
+	"place": {
+		"region": "Bern",
+		"lat": 47.25,
+		"lon": 7.23,
+		"x": 0.52008,
+		"y": 0.20925,
+		"located": "knowledge"
+	},
+	"confidence": "high",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/T%C3%AAte_de_Moine"
+			},
+			{
+				"name": "tetedemoine.ch",
+				"url": "https://www.tetedemoine.ch/en/infos/specifications"
+			}
+		],
+		"text": "shaved into rosettes with a girolle"
+	},
+	"composition": {
+		"fatInDryMatter": {
+			"min": 51,
+			"max": 54
+		}
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Processed in copper vats, within 24 h of the oldest milking"
+		},
+		{
+			"k": "Rind",
+			"v": "Firm, moist, brown-red, smeared (emmorgée)"
+		},
+		{
+			"k": "Feed",
+			"v": "At least 120 days of green feeding; no silage"
+		},
+		{
+			"k": "Salt",
+			"v": "At most 25 g/kg"
+		},
+		{
+			"k": "Origin",
+			"v": "Invented by the canons of Bellelay Abbey; first recorded in the 12th century and named from 1790"
+		},
+		{
+			"k": "Size",
+			"v": "Cylinder 10–15 cm across, about 850 g on average (up to 2.5 kg)"
+		}
+	],
+	"raw": true
+}

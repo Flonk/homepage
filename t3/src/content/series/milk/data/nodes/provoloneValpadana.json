@@ -1,0 +1,55 @@
+{
+	"label": "Provolone Valpadana",
+	"example": true,
+	"family": "pastaFilata",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		10,
+		180
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Lombardy",
+		"lat": 45.13,
+		"lon": 10.02,
+		"x": 0.52783,
+		"y": 0.21776,
+		"located": "knowledge"
+	},
+	"confidence": "high",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Provolone_Valpadana"
+			},
+			{
+				"name": "Italian Wikipedia: Provolone Valpadana",
+				"url": "https://it.wikipedia.org/wiki/Provolone_Valpadana"
+			},
+			{
+				"name": "PMC11675318",
+				"url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11675318/"
+			}
+		],
+		"text": "Its facts, from these."
+	},
+	"facts": [
+		{
+			"k": "Versions",
+			"v": "Sweet and sharp (piccante) versions; the sharp one, made with kid rennet, ripens at least 16 months"
+		},
+		{
+			"k": "Where",
+			"v": "Po Valley: Lombardy, Veneto, Emilia-Romagna and parts of Trento"
+		}
+	]
+}

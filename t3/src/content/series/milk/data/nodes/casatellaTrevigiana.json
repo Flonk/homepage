@@ -1,0 +1,56 @@
+{
+	"label": "Casatella Trevigiana",
+	"example": true,
+	"family": "freshCheese",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		10
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "none",
+	"protected": "PDO",
+	"place": {
+		"region": "Veneto",
+		"lat": 45.67,
+		"lon": 12.24,
+		"x": 0.534,
+		"y": 0.21562,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Casatella_Trevigiana"
+			},
+			{
+				"name": "onaf.it",
+				"url": "https://www.onaf.it/uploads/public/15163_casatella-trevigiana.pdf"
+			},
+			{
+				"name": "Wikipedia (Italian)",
+				"url": "https://it.wikipedia.org/wiki/Casatella_trevigiana"
+			}
+		],
+		"text": "PDO, Province of Treviso; sold 'freschissimo' (eaten fresh from the dairy), no or barely perceptible rind; exact day count not in spec found"
+	},
+	"facts": [
+		{
+			"k": "Winter",
+			"v": "Traditionally made by farm housewives in winter, with the richest milk"
+		},
+		{
+			"k": "Making",
+			"v": "Pasteurised milk is acidified and coagulated with calf rennet; the curd is moulded, left to acidify in a warm room, then salted in a pan or in brine"
+		}
+	]
+}

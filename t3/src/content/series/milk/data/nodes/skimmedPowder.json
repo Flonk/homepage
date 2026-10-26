@@ -1,0 +1,68 @@
+{
+	"label": "Skimmed milk powder",
+	"scale": {
+		"name": "undenatured whey protein\nWPNI (mg/g)",
+		"unit": "",
+		"to": 8,
+		"every": 1,
+		"px": 80
+	},
+	"aka": [
+		"Nonfat dry milk",
+		"Magermilchpulver"
+	],
+	"niche": 0,
+	"about": {
+		"text": "Skimmed milk dried, mostly by spraying it into hot air, to a fine powder with no more than 1.5 % fat, which keeps for up to three years if stored cool and dry. Used in bread and cakes, confectionery and infant formula, and mixed back with water as milk where fresh milk is scarce. Used in chocolate and infant formula, shipped as UN food aid, and even stood in for cocaine on film sets.",
+		"sources": {
+			"links": [
+				{
+					"name": "Canadian Dairy Commission",
+					"url": "https://cdc-ccl.ca/en/node/798"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Milk powder cropped.jpg",
+		"author": "ProjectManhattan",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Milk_powder_cropped.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"examples": [
+		"instantSkimMilkPowder",
+		"filmSetCocaine"
+	],
+	"composition": {
+		"moisture": {
+			"min": 3.5,
+			"max": 4
+		},
+		"fat": {
+			"max": 1.5
+		}
+	},
+	"facts": [
+		{
+			"k": "Moisture limit",
+			"v": "At most 5 % (Codex)"
+		},
+		{
+			"k": "Bulk density (tapped)",
+			"v": "0.65–0.75 g/ml"
+		},
+		{
+			"k": "Agglomerated",
+			"v": "Instant grade, used as a coffee whitener"
+		}
+	]
+}

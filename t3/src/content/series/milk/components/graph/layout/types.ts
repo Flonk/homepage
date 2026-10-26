@@ -59,6 +59,9 @@ export interface NodeSizes {
 	milkRadius: number;
 	// A pill's photograph, square, as tall as the pill; and the room it and its gap take at the pill's left.
 	photoSize(n: Node): number;
+	// How tall its pill is, and how many times as thick as its scale has it, its label as many times as big.
+	pillHeight(n: Node): number;
+	thickness(n: Node): number;
 	photoRoom(n: Node): number;
 	pillCornerRadius(n: Node): number;
 	pillRimWidth(n: Node): number;
@@ -70,6 +73,9 @@ export interface NodeSizes {
 export interface RulerAndPanelContents {
 	hungUnderRuler: Map<Node, Node[]>;
 	panelContents: Map<Node, Node[]>;
+	// A parent's tables in a row off a bus, softest first (see bus.ts); and the parent a table hangs off so.
+	busUnder: Map<Node, Node[]>;
+	busAbove(n: Node): Node | null;
 	panelContaining(n: Node): Node | null;
 	rulerAbove(n: Node): Node | null;
 	// A ruler's products by their value on it: those at one value are stacked as one list.
@@ -117,7 +123,11 @@ export interface ParentToChildGaps {
 	// A product's margin to its right: the bigger the pill, the wider.
 	marginX(n: Node): number;
 	pillToTrunk(n: Node): number;
+	// How far a line runs straight out of its pill before it may turn.
+	straightRun(n: Node): number;
 	trunkHalfWidth(n: Node): number;
+	// How wide its bus is, if it has one (see bus.ts): out of its pill below its trunk, so the two together are centred on it.
+	busWidth(n: Node): number;
 	trunkToChild(n: Node): number;
 	rightEdge(n: Node): number;
 	trunkX(n: Node): number;
@@ -169,7 +179,13 @@ export type Panel = {
 	rows: { firm: string; y: number; h: number }[];
 	times: [number, string][];
 	xOf: (days: number) => number;
+	// Set out across by column, not by time: its times are the columns' numbers and names.
+	columns?: boolean;
+	// What is set out across.
+	named?: string;
 	at: Map<Node, { x: number; y: number }>;
+	// A map's: where the world's top left is in the panel, the world being cut to the family's cheeses.
+	origin?: { x: number; y: number };
 };
 export interface CheesePanels {
 	panels: Map<Node, Panel>;
@@ -232,6 +248,7 @@ export interface GraphLayout {
 	milkRadius: number;
 	scaleOf(n: Node): number;
 	photoSize(n: Node): number;
+	thickness(n: Node): number;
 	pillCornerRadius(n: Node): number;
 	pillRimWidth(n: Node): number;
 	// A pill and its shadow, which reaches a quarter of its height round it.

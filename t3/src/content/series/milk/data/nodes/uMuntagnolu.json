@@ -1,0 +1,48 @@
+{
+	"label": "U Muntagnolu",
+	"example": true,
+	"family": "soft",
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"sheep",
+		"goat"
+	],
+	"firm": "soft",
+	"days": [
+		20,
+		60
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Corsica",
+		"lat": 42.04,
+		"lon": 9,
+		"x": 0.525,
+		"y": 0.22961,
+		"located": "guess"
+	},
+	"confidence": "low",
+	"facts": [
+		{
+			"k": "Place",
+			"v": "Haute-Corse, on Corsica, per the French list of cheeses"
+		}
+	],
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/U_Muntagnolu"
+			},
+			{
+				"name": "French Wikipedia: List of French cheeses",
+				"url": "https://fr.wikipedia.org/wiki/Liste_de_fromages_fran%C3%A7ais"
+			}
+		],
+		"text": "Corsican; unverified"
+	}
+}

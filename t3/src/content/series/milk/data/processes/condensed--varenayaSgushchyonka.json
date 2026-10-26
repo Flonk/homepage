@@ -1,0 +1,55 @@
+{
+	"from": [
+		"condensed"
+	],
+	"to": [
+		"varenayaSgushchyonka"
+	],
+	"variant": true,
+	"step": "boil the sealed tin for hours",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia (ru): Варёная сгущёнка",
+				"url": "https://ru.wikipedia.org/wiki/Варёная_сгущёнка"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "cook",
+				"temperature": {
+					"min": 100,
+					"max": 100,
+					"about": true
+				},
+				"seconds": {
+					"min": 9000,
+					"max": 10800
+				},
+				"note": "The unopened tin of sweetened condensed milk is simmered fully under water, topped up as it drops."
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"note": "The tin cools completely before it is opened, as it can burst while hot."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia (ru): Варёная сгущёнка",
+					"url": "https://ru.wikipedia.org/wiki/Варёная_сгущёнка"
+				},
+				{
+					"name": "Recipes Are Simple: Dulce de leche from sweetened condensed milk",
+					"url": "https://recipesaresimple.com/how-to-make-dulce-de-leche-from-sweetened-condensed-milk/"
+				}
+			],
+			"text": "That the sealed tin of sweetened condensed milk is boiled, and that industry heats it in autoclaves or reactors instead, from the first; the time of 2.5-3 hours and the keeping of the tin under water from the second."
+		}
+	}
+}

@@ -74,6 +74,8 @@ export const MAP_PILL = 0.06;
    long a unit, room either end for what it measures; its products this far under it and their rows this far apart, and products
    side by side this far apart. */
 export const RULE_PX = 20;
+// How wide a unit of a ruler is drawn: its own, else the usual.
+export const unitPx = (scale: { px?: number }) => scale.px ?? RULE_PX;
 export const RULER_END = 4 * PAD_X + 48;
 export const DROP = 36;
 export const TIER_GAP = 28;
@@ -144,6 +146,9 @@ export const only = (data: Graph, milks: Set<S.Beast>): Graph => {
    flags, a remark's, animals, a seal. So many in a row from the corner
    inwards, each `step` of its own size from the one before, the corner's
    `inset` in; where each one's middle is, and how big. */
+// How far a corner mark stands out past its pill's edge, top and bottom together, in its height: its radius, 0.2 of the height, less its inset.
+export const MARK_OVERHANG = 2 * 0.2 * (1 - 0.35);
+
 export const corner = (d: Node, n: number, right: boolean, bottom: boolean, inset = 0.35, step = 1.4) => {
 	const r = d.h * 0.2;
 	const x = (i: number) => (right ? d.x + d.w / 2 - r * inset - (n - 1 - i) * r * step : d.x - d.w / 2 + r * inset + i * r * step);
@@ -155,4 +160,4 @@ export const corner = (d: Node, n: number, right: boolean, bottom: boolean, inse
    small capitals (see drawCaption), and the nought itself, with a margin
    before them; so a long name does not run into the pill's photograph. */
 export const rulerLead = ({ name }: { name: string }) =>
-	measure(name.toUpperCase(), 11, '600') + 0.14 * 11 * name.length + measure(' 0', 10) + PAD_X;
+	Math.max(...name.split('\n').map((line) => measure(line.toUpperCase(), 11, '600') + 0.14 * 11 * line.length)) + measure(' 0', 10) + PAD_X;

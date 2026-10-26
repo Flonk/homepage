@@ -1,0 +1,32 @@
+{
+	"from": [
+		"choormog"
+	],
+	"to": [
+		"agaran"
+	],
+	"step": "skim off the fat",
+	"processing": {
+		"steps": [
+			{
+				"type": "separate",
+				"off": "fat",
+				"by": "gravity",
+				"note": "Collected from the surface of the soured camel milk while shubat or chal is made."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Shubat",
+					"url": "https://en.wikipedia.org/wiki/Shubat"
+				},
+				{
+					"name": "Wikipedia: Turkmen cuisine",
+					"url": "https://en.wikipedia.org/wiki/Turkmen_cuisine"
+				}
+			],
+			"text": "That it is skimmed from the surface of the fermenting milk, from these."
+		}
+	}
+}

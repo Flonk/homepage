@@ -1,0 +1,27 @@
+{
+	"from": [
+		"raw"
+	],
+	"to": [
+		"lactoperoxidaseMilk"
+	],
+	"step": "switch on its lactoperoxidase",
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "thiocyanate and hydrogen peroxide",
+				"note": "Enough to reactivate the milk's own lactoperoxidase, which then inhibits bacterial growth at ambient temperature."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Europe PMC: lactoperoxidase system in raw milk, Mali (PMC7285323)",
+					"url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7285323/fullTextXML"
+				}
+			],
+			"text": "What is added and why, from this paper; no amounts given."
+		}
+	}
+}

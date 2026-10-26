@@ -1,0 +1,85 @@
+{
+	"label": "Anari",
+	"example": true,
+	"aka": [
+		"Anari cheese",
+		"Αναρί"
+	],
+	"family": "ricotta",
+	"about": {
+		"text": "A soft, chalk-white Cypriot whey cheese, usually made from the whey left over from halloumi or kefalotyri with a little goat or sheep milk added. Eaten fresh with carob syrup or honey, or salted and dried hard for grating.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Anari_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Anari Limassol.jpg",
+		"author": "Zlerman",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Anari_Limassol.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"CY"
+	],
+	"beasts": [
+		"goat",
+		"sheep"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		7
+	],
+	"setting": "acid-heat",
+	"rind": "none",
+	"confidence": "high",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Anari_cheese"
+			}
+		],
+		"text": "Whey usually from halloumi or kefalotyri; also sold dried and salted"
+	},
+	"composition": {
+		"fat": {
+			"min": 15,
+			"max": 15,
+			"about": true
+		},
+		"protein": {
+			"min": 11,
+			"max": 11,
+			"about": true
+		}
+	},
+	"facts": [
+		{
+			"k": "Fresh",
+			"v": "chalk-white, very soft"
+		},
+		{
+			"k": "Dried",
+			"v": "gently heated or traditionally sun-dried and matured until too hard to cut; grated for pasta, sauces, flaounes"
+		},
+		{
+			"k": "Where",
+			"v": "Made islandwide in Cyprus"
+		}
+	]
+}

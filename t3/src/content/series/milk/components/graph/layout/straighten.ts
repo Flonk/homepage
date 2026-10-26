@@ -14,7 +14,7 @@ type Footprint = Box & { arrowIn?: true };
    so the strand meets it square on. */
 export const strandStraightener = ({ tree, sizes, labels, gaps, strands, contents, rulers, panels }: PlacementInputs, comeInBy: Map<Node, number>) => {
 	const { root, nodes, parent, childrenOf } = tree;
-	const { hungUnderRuler, panelContents, panelContaining, rulerAbove } = contents;
+	const { hungUnderRuler, panelContents, panelContaining, rulerAbove, busUnder, busAbove } = contents;
 	const { trunkHalfWidth, rightEdge, trunkX } = gaps;
 	const { lineWidth } = sizes;
 	const { strandYs, strandSides, jogTooShort, jogNegligible } = strands;
@@ -23,7 +23,7 @@ export const strandStraightener = ({ tree, sizes, labels, gaps, strands, content
 	// It and all laid out under it: its branch, its ruler's lists, its panel.
 	const withAllUnder = (n: Node): Node[] => [
 		n,
-		...[...childrenOf(n), ...(hungUnderRuler.get(n) ?? []), ...(panelContents.get(n) ?? [])].flatMap(withAllUnder),
+		...[...childrenOf(n), ...(hungUnderRuler.get(n) ?? []), ...(panelContents.get(n) ?? []), ...(busUnder.get(n) ?? [])].flatMap(withAllUnder),
 	];
 	/* What a product takes up where it is: its pill, the arrow into it with
 	   its label over it, and (`withTrunk`) the line out of it to its trunk
@@ -35,9 +35,11 @@ export const strandStraightener = ({ tree, sizes, labels, gaps, strands, content
 		if (panelContents.has(n)) boxes.push(moved(panels.panelBoxRelative(n), n.y));
 		const p = parent.get(n);
 		const r = rulerAbove(n);
-		if (r) {
+		// Off a bus, the drop into it from the bus over the row.
+		if (busAbove(n)) boxes.push({ x0: n.x - lineWidth(n), x1: n.x + lineWidth(n), y0: n.y - n.h / 2 - 2 * lineWidth(n), y1: n.y - n.h / 2 });
+		else if (r) {
 			const t = rulers.rulerTickX(r, n.at!);
-			boxes.push({ x0: t - 3, x1: t + 3, y0: r.y + rulers.rulerBottom(r), y1: r.y + rulers.listTopY.get(n)! });
+			boxes.push({ x0: Math.min(t, n.x) - 3, x1: Math.max(t, n.x) + 3, y0: r.y + rulers.rulerBottom(r), y1: r.y + rulers.listTopY.get(n)! });
 		} else if (p) {
 			const label = n.step ? labels.stepLabelFont(n) * 1.3 + labels.extraLabelHeight(n) + labels.labelClearance(n) : 0;
 			boxes.push(...footprintOfArrow(n, trunkX(p) - trunkHalfWidth(p), label).map((b) => ({ ...moved(b, n.y), arrowIn: true as const })));

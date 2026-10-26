@@ -10,7 +10,10 @@ import * as S from './schema';
  * build step and the command line, in Node (see scripts/milk-graph.ts).
  */
 
-export const DIR = path.dirname(fileURLToPath(import.meta.url));
+// The data, apart from the code that reads it: series/milk/data.
+export const DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../data');
+// The graph's code, rebuilt with when it changes (see watch in scripts/milk-graph.ts).
+export const CODE = path.dirname(fileURLToPath(import.meta.url));
 export const FOLDERS = ['nodes', 'processes', 'rankings'] as const;
 
 const read = (folder: string) => {

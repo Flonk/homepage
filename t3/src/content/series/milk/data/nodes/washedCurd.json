@@ -1,0 +1,65 @@
+{
+	"label": "Washed-curd cheese",
+	"niche": 1,
+	"about": {
+		"text": "Cheese whose curd has part of its whey drawn off and replaced with water while it is being made, diluting its milk sugar so that less lactic acid forms: the cheese ends up less acidic and smooth in texture. Gouda, Edam, Havarti and Tilsiter are made this way.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Edamer.JPG",
+		"author": "DrMItos",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Edamer.JPG"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"examples": [
+		"gouda",
+		"edam",
+		"colby",
+		"montereyJack",
+		"leyden",
+		"brick",
+		"havarti"
+	],
+	"table": {
+		"across": "days",
+		"down": "beast",
+		"picks": [
+			{
+				"id": "gouda",
+				"why": "The world's best-known Dutch cheese, a PGI name and archetype that defines the whole washed-curd family."
+			},
+			{
+				"id": "edam",
+				"why": "Famous red-waxed Dutch cheese named for its North Holland town, a PGI product exported worldwide for centuries."
+			},
+			{
+				"id": "montereyJack",
+				"why": "California's defining mild white cheese, hugely popular across the United States and the base of many variants."
+			},
+			{
+				"id": "havarti",
+				"why": "Denmark's best-known export cheese, a creamy semi-soft slicing cheese made and eaten across many countries."
+			},
+			{
+				"id": "leyden",
+				"why": "Cumin-spiced Dutch cheese from Leiden with a protected PDO name and a long history."
+			}
+		]
+	}
+}

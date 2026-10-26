@@ -1,0 +1,25 @@
+{
+	"label": "Half-fat butter",
+	"example": true,
+	"aka": [
+		"Halbfettbutter"
+	],
+	"about": {
+		"text": "An EU legal category of butter with 39-41 % milk fat. Butter itself must have at least 80 % and under 90 %; anything between the categories is a dairy spread.",
+		"sources": {
+			"links": [
+				{
+					"name": "EU Regulation 1308/2013, Annex VII",
+					"url": "https://www.legislation.gov.uk/eur/2013/1308/annex/VII"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 39,
+			"max": 41
+		}
+	}
+}

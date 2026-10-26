@@ -1,0 +1,51 @@
+{
+	"label": "Bleu du Vercors-Sassenage",
+	"example": true,
+	"family": "blue",
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-soft",
+	"days": [
+		28,
+		60
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Auvergne-Rhône-Alpes",
+		"lat": 45.1,
+		"lon": 5.5,
+		"x": 0.51528,
+		"y": 0.21788,
+		"located": "hint"
+	},
+	"confidence": "high",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Bleu_du_Vercors-Sassenage"
+			},
+			{
+				"name": "fr.wikipedia.org",
+				"url": "https://fr.wikipedia.org/wiki/Bleu_du_Vercors-Sassenage"
+			}
+		],
+		"text": "Its facts, from these."
+	},
+	"facts": [
+		{
+			"k": "History",
+			"v": "Originally made by monks in the Rhône-Alpes region in the 14th century"
+		},
+		{
+			"k": "Making",
+			"v": "Mild and blue-veined; pasteurised milk per the English page, raw milk also allowed per the French"
+		}
+	]
+}

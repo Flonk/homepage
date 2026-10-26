@@ -1,5 +1,5 @@
 import { GAP_X, STEP_PAD, CORNER, type Node } from '../client/base';
-import type { ProductTree, NodeSizes, StepLabelSizes, ParentToChildGaps, TrunkStrands } from './types';
+import type { ProductTree, NodeSizes, StepLabelSizes, ParentToChildGaps, TrunkStrands, RulerAndPanelContents } from './types';
 
 /* Out of a product, a straight run at least so much of its own height
    before its arrows bend, so a great pill's arrows plainly leave it
@@ -16,10 +16,15 @@ export const measureParentToChildGaps = (
 	{ root, nodes, parent, childrenOf }: ProductTree,
 	{ scaleOf, lineWidth, arrowheadLength, milkRadius }: NodeSizes,
 	{ stepLabelWidth, cardChainWidth }: StepLabelSizes,
+	{ busUnder }: RulerAndPanelContents,
 ): ParentToChildGaps => {
+	const busWidth = (n: Node) => (busUnder.get(n) ?? []).reduce((sum, k) => sum + lineWidth(k), 0);
 	const marginX = (n: Node) => (GAP_X / 2) * Math.sqrt(scaleOf(n));
 	// Milk's arrows leave from its middle; a branch point's turn at once, as it has no pill to clear.
-	const pillToTrunk = (n: Node) => (n === root ? milkRadius : n.hub ? GAP_X / 4 : Math.max(marginX(n), LEAST_STRAIGHT_RUN * n.h));
+	// How far a line runs straight out of a pill before it may turn.
+	const straightRun = (n: Node) => (n === root ? milkRadius : n.hub ? GAP_X / 4 : Math.max(marginX(n), LEAST_STRAIGHT_RUN * n.h));
+	// A bus turns down before the trunk, after its own straight run, and runs down right beside it (see bus.ts), so with one there is room for it too.
+	const pillToTrunk = (n: Node) => straightRun(n) + (busUnder.has(n) ? busWidth(n) + CORNER : 0);
 	// The trunk as thick as all its children's arrows together.
 	const trunkHalfWidth = (n: Node) => childrenOf(n).reduce((sum, k) => sum + lineWidth(k), 0) / 2;
 	const roomForLabel = (k: Node) =>
@@ -32,7 +37,9 @@ export const measureParentToChildGaps = (
 	return {
 		marginX,
 		pillToTrunk,
+		straightRun,
 		trunkHalfWidth,
+		busWidth,
 		trunkToChild: (k) => widestOfClass.get(sizeClass(k))!,
 		rightEdge,
 		trunkX,
@@ -54,9 +61,10 @@ export const measureParentToChildGaps = (
    turn, with none before it, as tightly as any line bends. */
 export const nestedBend = (inner: number, before: number, width: number) => inner + (before + width) / 2;
 
-export const trunkStrands = ({ childrenOf }: ProductTree, { lineWidth }: NodeSizes, { trunkHalfWidth }: ParentToChildGaps): TrunkStrands => {
+export const trunkStrands = ({ childrenOf }: ProductTree, { lineWidth }: NodeSizes, { trunkHalfWidth, busWidth }: ParentToChildGaps): TrunkStrands => {
 	const strandYs = (p: Node) => {
-		let edge = p.y - trunkHalfWidth(p);
+		// Above its bus, if it has one, the two centred on it together.
+		let edge = p.y - trunkHalfWidth(p) - busWidth(p) / 2;
 		return new Map(
 			[...childrenOf(p)]
 				.sort((a, b) => a.y - b.y)

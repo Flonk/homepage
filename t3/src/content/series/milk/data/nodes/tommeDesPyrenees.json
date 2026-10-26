@@ -1,0 +1,51 @@
+{
+	"label": "Tomme des Pyrénées",
+	"example": true,
+	"family": "semiHard",
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		21,
+		90
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PGI",
+	"place": {
+		"region": "Midi-Pyrénées",
+		"lat": 43.6,
+		"lon": 1.4,
+		"x": 0.50389,
+		"y": 0.2237,
+		"located": "hint"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Tomme_des_Pyr%C3%A9n%C3%A9es"
+			},
+			{
+				"name": "fr.wikipedia",
+				"url": "https://fr.wikipedia.org/wiki/Tomme_des_Pyr%C3%A9n%C3%A9es"
+			}
+		],
+		"text": "Its facts, from these."
+	},
+	"facts": [
+		{
+			"k": "Places",
+			"v": "Made in six departments: Pyrénées-Atlantiques (Nouvelle-Aquitaine), and Ariège, Hautes-Pyrénées, Haute-Garonne, Aude and Pyrénées-Orientales (Occitanie)"
+		},
+		{
+			"k": "Making",
+			"v": "Raw, thermised or pasteurised milk depending on the variety; rennet at about 32 °C for raw milk; curd cut and warmed to 35–40 °C, never over 45 °C; salted in brine or dry; ripened about 21 to 90 days"
+		}
+	]
+}

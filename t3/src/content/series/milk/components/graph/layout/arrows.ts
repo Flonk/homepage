@@ -2,6 +2,7 @@ import { CORNER, headWidth, type Node, type Arrow } from '../client/base';
 import type {
 	ProductTree,
 	NodeSizes,
+	StepLabelSizes,
 	ParentToChildGaps,
 	TrunkStrands,
 	RulerAndPanelContents,
@@ -14,10 +15,12 @@ import type {
 } from './types';
 import { offsetRoute, arrowOutlinePath, centreLinePath } from './arrowShape';
 import { nestedBend } from './gaps';
+import { busGeometry, labelRoom } from './bus';
 
 export interface ArrowInputs {
 	tree: ProductTree;
 	sizes: NodeSizes;
+	labels: StepLabelSizes;
 	gaps: ParentToChildGaps;
 	strands: TrunkStrands;
 	contents: RulerAndPanelContents;
@@ -28,7 +31,8 @@ export interface ArrowInputs {
    across or straight up and down, never slantwise: out of the parent's
    side, along its strand in the parent's trunk, round a corner, up or
    down to the child's row, and round again into it. */
-export const routeArrows = ({ tree, sizes, gaps, strands: trunk, contents, rulers }: ArrowInputs): ArrowPaths => {
+export const routeArrows = ({ tree, sizes, labels, gaps, strands: trunk, contents, rulers }: ArrowInputs): ArrowPaths => {
+	const labelHeight = labelRoom(labels);
 	const { root, parent, childrenOf } = tree;
 	const { lineWidth, arrowheadLength, milkRadius } = sizes;
 	const { trunkHalfWidth, trunkX } = gaps;
@@ -55,9 +59,12 @@ export const routeArrows = ({ tree, sizes, gaps, strands: trunk, contents, ruler
 		const start = trunkX(p) - trunkHalfWidth(p);
 		for (const side of [up, down]) {
 			let past = 0;
-			// The bend of the one before, as it was drawn, how thick it is, and how far it turned.
-			let inner = CORNER;
-			let before = 0;
+			/* The bend of the one before, as it was drawn, how thick it is, and how
+			   far it turned. Going down past a bus, the bus is the one before: it
+			   turns down just under and before them all (see busRoute). */
+			const bus = side === down ? gaps.busWidth(p) : 0;
+			let inner = bus ? CORNER + bus / 2 : CORNER;
+			let before = bus;
 			let angleBefore = Math.PI / 2;
 			for (const k of side) {
 				const turnX = start + past + lineWidth(k) / 2;
@@ -95,7 +102,9 @@ export const routeArrows = ({ tree, sizes, gaps, strands: trunk, contents, ruler
 		const x1 = s === root ? s.x + Math.sqrt(Math.max(0, milkRadius ** 2 - trunkHalfWidth(s) ** 2)) - 1 : s.x + (s.w - 2) / 2;
 		// Into a product, to its edge; into a branch point, just past it, where the strands out of it begin.
 		const x2 = t.hub ? t.x + 1 : t.x - t.w / 2;
-		const { y, turnX, peelX } = strands.get(t)!;
+		const strand = strands.get(t);
+		if (!strand) throw new Error(`MilkGraph: no strand for ${t.id} under ${s.id}`);
+		const { y, turnX, peelX } = strand;
 		// Its strand level with it already: straight on.
 		if (trunk.isLevel(t.y - y))
 			return [
@@ -109,13 +118,36 @@ export const routeArrows = ({ tree, sizes, gaps, strands: trunk, contents, ruler
 			[x2, t.y],
 		];
 	};
-	// Off a ruler, straight down from the product's value into the top of its list.
+	/* Off a bus (see bus.ts): out of the parent's right side below its
+	   trunk and down, at its own strand; round into its row's bus, along to
+	   over its table, and down into its top. Each turn is round one middle
+	   with the strands it turns with, the outermost the roundest. */
+	const busRoute = (s: Node, t: Node): ArrowRoute => {
+		const bus = busGeometry(s, contents.busUnder.get(s)!, lineWidth, labelHeight, gaps.straightRun(s));
+		const row = bus.rowOf(t);
+		const by = bus.offset.get(t)!;
+		const across = bus.rowOffset.get(t)!;
+		const out = s.y + trunkHalfWidth(s) + by;
+		const down = bus.x - by;
+		const along = bus.middleY(row) + across;
+		return {
+			points: [
+				[s.x + (s.w - 2) / 2, out],
+				[down, out],
+				[down, along],
+				[t.x, along],
+				[t.x, t.y - t.h / 2],
+			],
+			bends: [0, CORNER + bus.width / 2 - by, CORNER + bus.widthOf(row) / 2 + across, CORNER + lineWidth(t) / 2, 0],
+		};
+	};
+	/* Off a ruler, one straight line from the product's value to the top of
+	   its pill, slanting where it is set aside to make room. */
 	const cornerPoints = (s: Node, t: Node): Point[] => {
 		if (t.at == null || !contents.hungUnderRuler.has(s)) return elbowPoints(s, t);
-		const x = rulers.rulerTickX(s, t.at!);
 		return [
-			[x, s.y + rulers.rulerBottom(s)],
-			[x, s.y + rulers.listTopY.get(t)!],
+			[rulers.rulerTickX(s, t.at!), s.y + rulers.rulerBottom(s)],
+			[t.x, t.y - t.h / 2],
 		];
 	};
 	/* The whole way from the product it is made from: through any branch
@@ -125,6 +157,7 @@ export const routeArrows = ({ tree, sizes, gaps, strands: trunk, contents, ruler
 	   that splits. */
 	const routeOf = (t: Node): ArrowRoute => {
 		const p = parent.get(t)!;
+		if (contents.busAbove(t)) return busRoute(p, t);
 		const points = cornerPoints(p, t);
 		const strand = strands.get(t);
 		const own = { points, bends: points.map((_, i) => strand?.bends[i] ?? CORNER) };
@@ -140,7 +173,7 @@ export const routeArrows = ({ tree, sizes, gaps, strands: trunk, contents, ruler
 	// Down from milk, so a line in is turned before the lines out of it.
 	const turnAllStrands = (p: Node) => {
 		turnStrandsOf(p);
-		for (const k of childrenOf(p)) turnAllStrands(k);
+		for (const k of [...childrenOf(p), ...(contents.busUnder.get(p) ?? [])]) turnAllStrands(k);
 	};
 	turnAllStrands(root);
 

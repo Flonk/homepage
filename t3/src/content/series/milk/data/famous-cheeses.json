@@ -1,0 +1,822 @@
+{
+	"about": "Every cheese with a production figure first, most tonnes first (mostly 2024 US NASS, and national, consortium and interprofession figures for single cheeses, some from 2014 to 2023), then those known only by fame (TasteAtlas ratings, consumption surveys), loosely in the order those put them. The figures are not like for like: some are US-only, some one country or one protected name, so cheeses made worldwide (mozzarella, cheddar, feta, cream cheese) are understated, and no world total by variety exists.",
+	"sources": [
+		{
+			"name": "USDA NASS, Dairy Products 2024 Summary (April 2025)",
+			"url": "https://esmis.nal.usda.gov/sites/default/release-files/jm214p131/r781zd41r/4b29d481c/daryan25.pdf",
+			"measures": "US cheese production by variety in 2024, 1,000 lb (converted here to tonnes at 0.4536 t per 1,000 lb): mozzarella 4,788,499; cheddar 3,785,308; cream and Neufchatel 1,156,546; Parmesan 447,731; Hispanic 434,897; provolone 387,243; Swiss 360,264; ricotta 242,208; Muenster 210,313; feta 154,954; blue and Gorgonzola 87,052; Gouda 79,479; cottage cheese curd, creamed and lowfat 1,258,578 together. Colby and Monterey Jack are only reported inside 'other American' (1,791,235)."
+		},
+		{
+			"name": "Grana Padano consortium, results 2024 (via granapadano.it and efanews.eu)",
+			"url": "https://www.granapadano.it/en-en/the-consortium/results-production-and-consumption",
+			"measures": "Grana Padano PDO 2024: 5,635,153 wheels, 219,259 tonnes; exports about 2.69 million wheels."
+		},
+		{
+			"name": "Parmigiano Reggiano consortium 2024 results (Perishable News, Deli Market News)",
+			"url": "https://perishablenews.com/deli/parmigiano-reggiano-consortium-reported-its-2024-performance-results/",
+			"measures": "Parmigiano Reggiano 2024: 4.079 million wheels; Deli Market News gives over 163,000 tons (not confirmed on a consortium page)."
+		},
+		{
+			"name": "Assolatte via QDS (2024 Italian dairy)",
+			"url": "https://qds.it/assolatte-in-2024-mercato-interno-stabile-export-record-107/",
+			"measures": "Italian production 2024: Gorgonzola about 63,000 t, Pecorino Romano about 39,000 t, Provolone Valpadana about 7,000 t."
+		},
+		{
+			"name": "Mozzarella di Bufala Campana consortium (via Il Sole 24 Ore, AGI)",
+			"url": "https://en.ilsole24ore.com/art/mozzarella-bufala-2025-l-obiettivo-e-rafforzarsi-europa-contro-dazi-usa-AG1t9seC",
+			"measures": "Certified PDO output 2024: 55,718 tonnes."
+		},
+		{
+			"name": "INAO / CNAOL, Chiffres cles produits laitiers AOP 2024",
+			"url": "https://www.inao.gouv.fr/sites/default/files/2025-09/CNAOL_CHIFFRESCLES2024_VF.pdf",
+			"measures": "French AOP cheese tonnes marketed in 2024: Comte 65,251; Reblochon 15,775; Roquefort 13,990; Saint-Nectaire 13,803; Cantal 10,840; Morbier 10,796; Brie de Meaux 6,489; Munster 5,590; Fourme d'Ambert 5,464; Camembert de Normandie 5,340; Beaufort 5,211."
+		},
+		{
+			"name": "Statista, production volume of Gouda and Edam in the Netherlands (citing ZuivelNL)",
+			"url": "https://www.statista.com/statistics/1097857/production-volume-of-gouda-cheese-in-the-netherlands/",
+			"measures": "Dutch Gouda about 600 million kg in 2020; Edam just under 115 million kg in 2020 (figures read from Statista summary text; the page values are paywalled)."
+		},
+		{
+			"name": "Swiss cheese production 2024 (diegruene.ch)",
+			"url": "https://www.diegruene.ch/themen/gruyere",
+			"measures": "Le Gruyere AOP 30,311 t and Emmentaler AOP 12,395 t in 2024 (secondary source)."
+		},
+		{
+			"name": "DairyReporter, Everything you wanted to know about Feta",
+			"url": "https://dairyreporter.com/Article/2020/01/03/Everything-you-wanted-to-know-about-Feta",
+			"measures": "Greek feta production, more than 123,000 tonnes a year (other estimates 100,000 to 127,000)."
+		},
+		{
+			"name": "CySTAT via Cyprus Mail / Fast Forward (Cyprus industrial sales 2023)",
+			"url": "https://fastforward.com.cy/business/sales-cypriot-industrial-products-73-2023",
+			"measures": "Halloumi sales of 41.9 thousand tons in 2023; exports 39,078 t in 2023."
+		},
+		{
+			"name": "Manchego DOP (Castilla-La Mancha / interempresas.net)",
+			"url": "https://www.interempresas.net/ovino/396853-Liderazgo-manchego.html",
+			"measures": "Manchego DOP about 17 million kg of cheese a year."
+		},
+		{
+			"name": "Oaxaca cheese (Wikipedia, citing CANILEC / Statista)",
+			"url": "https://en.wikipedia.org/wiki/Oaxaca_cheese",
+			"measures": "Mexican Oaxaca cheese just under 30,000 t in 2020 (Statista: 28.8 thousand t)."
+		},
+		{
+			"name": "TasteAtlas 100 Best Rated Cheeses (as reported by The Local and Connexion France, Feb 2023)",
+			"url": "https://www.thelocal.it/20230217/are-these-italian-cheeses-really-the-best-in-the-world",
+			"measures": "Fame by user rating: Parmigiano Reggiano 1, Gorgonzola piccante 2, burrata 3, Oaxaca 5, Serra da Estrela 8, Reblochon 13, Comte 14, Manchego curado 22, Gruyere 29, Camembert 91. Ratings, not volume. The site itself returned 403."
+		},
+		{
+			"name": "Tetra Pak consumer behaviour research, 2021",
+			"url": "https://www.tetrapak.com/about-tetra-pak/news-and-events/newsarchive/state-of-the-art-lines-cheese-manufacturers/consumer-behaviour-research",
+			"measures": "Nine-country survey: mozzarella and cheddar are the most popular cheeses, half of consumption between them."
+		},
+		{
+			"name": "Eurostat, Production of cheese (tag00040) and 2019 news item",
+			"url": "https://ec.europa.eu/eurostat/web/products-eurostat-news/-/edn-20190119-1",
+			"measures": "EU cheese by country and by moisture class only (EU about 10.4 million t in 2022), no variety lines."
+		},
+		{
+			"name": "Consorzio Tutela Taleggio, 2024 (via Beverfood)",
+			"url": "https://www.beverfood.com/export-taleggio-dop-crescita-mercato-2024/amp",
+			"measures": "Taleggio PDO production 2024: 8,693,815 kg."
+		},
+		{
+			"name": "CSQA press release on Montasio PDO (Ismea-Qualivita report 2025)",
+			"url": "https://www.csqa.it/en-us/press/montasio-dop-una-filiera-da-95-milioni-al-consumo-e-767-operatori",
+			"measures": "Montasio PDO about 6,000 t certified (an older CSQA release says 6,500 t)."
+		},
+		{
+			"name": "Appenzeller Switzerland, general assembly 2024 press release",
+			"url": "https://cms.appenzeller.ch/fileadmin/data/user_upload/Medienmitteilung_Appenzeller_K%C3%A4se_GV_2024_Deutsch.pdf",
+			"measures": "Appenzeller 8,194 t in business year 2023, down 3.2% (also: Swiss cheese total 204,326 t in 2024)."
+		},
+		{
+			"name": "CIHEAM, Greek PDO cheeses table (year and units not stated in the snippet)",
+			"url": "https://ressources.ciheam.org/ressources/om/pdf/b39/02600043.pdf",
+			"measures": "Greek PDO cheese output, apparently tonnes: Kasseri 3,759; Kefalotiri 3,580; Kefalograviera 2,189."
+		},
+		{
+			"name": "Euronews, Naxos graviera production falters (2026)",
+			"url": "https://www.euronews.com/2026/09/29/hard-cheese-tough-times-for-greeces-naxos-graviera-cheese-as-production-falters",
+			"measures": "Graviera Naxou about 1,200 to 1,250 t a year."
+		},
+		{
+			"name": "Mercasa, Las denominaciones de origen marcan tendencia (figures for 2014)",
+			"url": "https://www.mercasa.es/wp-content/uploads/2023/02/02_Las-denominaciones-de-origen-marcan-tendencia-en-los-mercados-internacionales.pdf",
+			"measures": "Spanish PDO cheese, 2014: Tetilla about 1.4 million kg; Idiazabal about 1 million kg; Cabrales, Roncal under 0.5 million kg."
+		},
+		{
+			"name": "Agencia Minas / Emater-MG (Minas Gerais family agroindustry 2025)",
+			"url": "https://www.agenciaminas.mg.gov.br/noticia/dia-mundial-do-queijo-em-minas-agroindustrias-familiares-produziram-43-mil-toneladas-em-2025",
+			"measures": "Queijo Minas Artesanal about 18,400 t in 2025 (all artisanal Minas cheeses together, Canastra among them)."
+		},
+		{
+			"name": "9colonne, TasteAtlas best cheeses report (Parmigiano Reggiano, buffalo mozzarella, stracchino)",
+			"url": "https://www.9colonne.it/442478/parmigiano-reggiano-buffalo-mozzarella-and-stracchino-best-cheeses-in-the-world",
+			"measures": "Fame: stracchino named among the best-rated cheeses in the TasteAtlas list."
+		}
+	],
+	"cheeses": [
+		{
+			"rank": 1,
+			"id": "mozzarella",
+			"name": "Mozzarella",
+			"tonnes": 2170000,
+			"basis": "US 2024 only: 4.79 billion lb (USDA NASS Dairy Products 2024 Summary)"
+		},
+		{
+			"rank": 2,
+			"id": "cheddar",
+			"name": "Cheddar",
+			"tonnes": 1720000,
+			"basis": "US 2024 only: 3.79 billion lb (USDA NASS); UK, Ireland, Canada, Australia, NZ not counted"
+		},
+		{
+			"rank": 3,
+			"id": "gouda",
+			"name": "Gouda",
+			"tonnes": 600000,
+			"basis": "Dutch production about 600 million kg in 2020 (Statista citing ZuivelNL); US adds about 36,000 t in 2024 (NASS)"
+		},
+		{
+			"rank": 4,
+			"id": "cottageCheese2",
+			"name": "Cottage cheese",
+			"tonnes": 571000,
+			"basis": "US 2024, curd, creamed and lowfat lines of USDA NASS summed (1.26 billion lb)"
+		},
+		{
+			"rank": 5,
+			"id": "creamCheese2",
+			"name": "Cream cheese",
+			"tonnes": 525000,
+			"basis": "US 2024, cream and Neufchatel: 1.16 billion lb (USDA NASS)"
+		},
+		{
+			"rank": 6,
+			"id": "granaPadano",
+			"name": "Grana Padano",
+			"tonnes": 219000,
+			"basis": "2024 output 219,259 t, 5.64 million wheels (Grana Padano consortium)"
+		},
+		{
+			"rank": 7,
+			"id": null,
+			"name": "Parmesan (US-made)",
+			"tonnes": 203000,
+			"basis": "US 2024: 448 million lb (USDA NASS); the generic US Parmesan-style cheese, not Parmigiano Reggiano"
+		},
+		{
+			"rank": 8,
+			"id": "quesoFresco",
+			"name": "Queso fresco (Hispanic-type cheeses)",
+			"tonnes": 197000,
+			"basis": "US 2024 'Hispanic' category, 435 million lb (USDA NASS); the category covers queso fresco and similar, not queso fresco alone"
+		},
+		{
+			"rank": 9,
+			"id": "feta",
+			"name": "Feta",
+			"tonnes": 190000,
+			"basis": "Greece about 120,000 t a year (DairyReporter, estimates 100,000 to 127,000) plus US 2024 70,000 t (USDA NASS), summed"
+		},
+		{
+			"rank": 10,
+			"id": "provolone",
+			"name": "Provolone",
+			"tonnes": 176000,
+			"basis": "US 2024: 387 million lb (USDA NASS); Italy about 28,000 t (Assolatte via QDS) on top"
+		},
+		{
+			"rank": 11,
+			"id": "emmentaler",
+			"name": "Emmental / Swiss cheese",
+			"tonnes": 163000,
+			"basis": "US 2024 'Swiss': 360 million lb (USDA NASS); Swiss Emmentaler AOP only 12,395 t in 2024 (diegruene.ch)"
+		},
+		{
+			"rank": 12,
+			"id": "parmigianoReggiano",
+			"name": "Parmigiano Reggiano",
+			"tonnes": 163000,
+			"basis": "2024: 4.079 million wheels, over 163,000 t (consortium results via Perishable News; tonnage from Deli Market News); TasteAtlas rank 1"
+		},
+		{
+			"rank": 13,
+			"id": "edam",
+			"name": "Edam",
+			"tonnes": 115000,
+			"basis": "Dutch production just under 115 million kg in 2020 (Statista citing ZuivelNL)"
+		},
+		{
+			"rank": 14,
+			"id": "ricotta2",
+			"name": "Ricotta",
+			"tonnes": 110000,
+			"basis": "US 2024: 242 million lb (USDA NASS)"
+		},
+		{
+			"rank": 15,
+			"id": "muenster",
+			"name": "Muenster",
+			"tonnes": 95000,
+			"basis": "US 2024: 210 million lb (USDA NASS)"
+		},
+		{
+			"rank": 16,
+			"id": "comte",
+			"name": "Comte",
+			"tonnes": 65000,
+			"basis": "65,251 t marketed in 2024 (INAO/CNAOL Chiffres cles 2024); TasteAtlas rank 14"
+		},
+		{
+			"rank": 17,
+			"id": "gorgonzola",
+			"name": "Gorgonzola",
+			"tonnes": 63000,
+			"basis": "Italy about 63,000 t in 2024 (Assolatte via QDS); TasteAtlas rank 2 for Gorgonzola piccante"
+		},
+		{
+			"rank": 18,
+			"id": "mozzarellaDiBufalaCampana",
+			"name": "Mozzarella di Bufala Campana",
+			"tonnes": 56000,
+			"basis": "55,718 t certified in 2024 (PDO consortium)"
+		},
+		{
+			"rank": 19,
+			"id": "halloumi",
+			"name": "Halloumi",
+			"tonnes": 40000,
+			"basis": "Cyprus industrial sales 41.9 thousand t in 2023, exports 39,078 t (CySTAT via Cyprus press)"
+		},
+		{
+			"rank": 20,
+			"id": "blue",
+			"name": "Blue cheese (US blue and Gorgonzola-type)",
+			"tonnes": 39500,
+			"basis": "US 2024 blue and Gorgonzola: 87 million lb (USDA NASS); Roquefort, Stilton, Gorgonzola counted separately"
+		},
+		{
+			"rank": 21,
+			"id": "pecorinoRomano",
+			"name": "Pecorino Romano",
+			"tonnes": 39000,
+			"basis": "Italy about 39,000 t in 2024 (Assolatte via QDS)"
+		},
+		{
+			"rank": 22,
+			"id": "gruyere",
+			"name": "Gruyere",
+			"tonnes": 30300,
+			"basis": "Le Gruyere AOP 30,311 t in 2024 (diegruene.ch); TasteAtlas rank 29"
+		},
+		{
+			"rank": 23,
+			"id": "quesoOaxaca",
+			"name": "Oaxaca cheese",
+			"tonnes": 29000,
+			"basis": "Mexico about 28,800 to 30,000 t in 2020 (Statista citing CANILEC; Wikipedia); TasteAtlas rank 5"
+		},
+		{
+			"rank": 24,
+			"id": null,
+			"name": "Romano (US-made)",
+			"tonnes": 27000,
+			"basis": "US 2024: 60 million lb of Romano (USDA NASS Dairy Products 2024 Summary); the US Romano-style cheese, not Pecorino Romano"
+		},
+		{
+			"rank": 25,
+			"id": "manchego",
+			"name": "Manchego",
+			"tonnes": 17000,
+			"basis": "DOP about 17 million kg a year (interempresas.net); TasteAtlas rank 22"
+		},
+		{
+			"rank": 26,
+			"id": "reblochon",
+			"name": "Reblochon",
+			"tonnes": 15800,
+			"basis": "15,775 t marketed in 2024 (INAO/CNAOL); TasteAtlas rank 13"
+		},
+		{
+			"rank": 27,
+			"id": "roquefort",
+			"name": "Roquefort",
+			"tonnes": 14000,
+			"basis": "13,990 t marketed in 2024 (INAO/CNAOL)"
+		},
+		{
+			"rank": 28,
+			"id": "saintNectaire",
+			"name": "Saint-Nectaire",
+			"tonnes": 13800,
+			"basis": "13,803 t marketed in 2024 (INAO/CNAOL)"
+		},
+		{
+			"rank": 29,
+			"id": "cantal",
+			"name": "Cantal",
+			"tonnes": 10800,
+			"basis": "10,840 t marketed in 2024 (INAO/CNAOL)"
+		},
+		{
+			"rank": 30,
+			"id": "morbier",
+			"name": "Morbier",
+			"tonnes": 10800,
+			"basis": "10,796 t marketed in 2024 (INAO/CNAOL)"
+		},
+		{
+			"rank": 31,
+			"id": "taleggio",
+			"name": "Taleggio",
+			"tonnes": 8700,
+			"basis": "8,693,815 kg in 2024 (Consorzio Tutela Taleggio via Beverfood)"
+		},
+		{
+			"rank": 32,
+			"id": "appenzeller",
+			"name": "Appenzeller",
+			"tonnes": 8200,
+			"basis": "8,194 t in business year 2023 (Appenzeller general assembly release)"
+		},
+		{
+			"rank": 33,
+			"id": "brieDeMeaux",
+			"name": "Brie de Meaux",
+			"tonnes": 6500,
+			"basis": "6,489 t marketed in 2024 (INAO/CNAOL); the AOP only, generic brie is far larger (rank 35)"
+		},
+		{
+			"rank": 34,
+			"id": "montasio",
+			"name": "Montasio",
+			"tonnes": 6000,
+			"basis": "About 6,000 t certified (CSQA citing the Ismea-Qualivita report 2025; an older release says 6,500 t)"
+		},
+		{
+			"rank": 35,
+			"id": "munster",
+			"name": "Munster",
+			"tonnes": 5600,
+			"basis": "5,590 t marketed in 2024 (INAO/CNAOL)"
+		},
+		{
+			"rank": 36,
+			"id": "fourmeDAmbert",
+			"name": "Fourme d'Ambert",
+			"tonnes": 5500,
+			"basis": "5,464 t marketed in 2024 (INAO/CNAOL)"
+		},
+		{
+			"rank": 37,
+			"id": "vacherinMontDOr",
+			"name": "Mont d'Or / Vacherin du Haut-Doubs",
+			"tonnes": 5500,
+			"basis": "Mont d'Or AOP 5,471 t marketed in 2024 (INAO/CNAOL Chiffres cles 2024)"
+		},
+		{
+			"rank": 38,
+			"id": "bleuDAuvergne",
+			"name": "Bleu d'Auvergne",
+			"tonnes": 5400,
+			"basis": "5,398 t marketed in 2024 (INAO/CNAOL Chiffres cles 2024)"
+		},
+		{
+			"rank": 39,
+			"id": "camembertDeNormandie",
+			"name": "Camembert de Normandie",
+			"tonnes": 5300,
+			"basis": "5,340 t marketed in 2024 (INAO/CNAOL); the AOP only, generic camembert is far larger (rank 36)"
+		},
+		{
+			"rank": 40,
+			"id": "beaufort",
+			"name": "Beaufort",
+			"tonnes": 5200,
+			"basis": "5,211 t marketed in 2024 (INAO/CNAOL)"
+		},
+		{
+			"rank": 41,
+			"id": "maroilles",
+			"name": "Maroilles",
+			"tonnes": 4500,
+			"basis": "4,543 t marketed in 2024 (INAO/CNAOL Chiffres cles 2024)"
+		},
+		{
+			"rank": 42,
+			"id": "ossauIraty",
+			"name": "Ossau-Iraty",
+			"tonnes": 4500,
+			"basis": "4,499 t marketed in 2024 (INAO/CNAOL Chiffres cles 2024)"
+		},
+		{
+			"rank": 43,
+			"id": "kasseri",
+			"name": "Kasseri",
+			"tonnes": 3800,
+			"basis": "3,759 t, year not stated (CIHEAM table of Greek PDO cheeses)"
+		},
+		{
+			"rank": 44,
+			"id": "abondance",
+			"name": "Abondance",
+			"tonnes": 3600,
+			"basis": "3,624 t marketed in 2024 (INAO/CNAOL Chiffres cles 2024)"
+		},
+		{
+			"rank": 45,
+			"id": "kefalotyri",
+			"name": "Kefalotyri",
+			"tonnes": 3600,
+			"basis": "3,580 t, year not stated (CIHEAM table of Greek PDO cheeses)"
+		},
+		{
+			"rank": 46,
+			"id": "vacherinFribourgeois",
+			"name": "Vacherin fribourgeois",
+			"tonnes": 3100,
+			"basis": "3,137 t in 2024 (La Tele report on Vacherin fribourgeois AOP exports, seen in a search result)"
+		},
+		{
+			"rank": 47,
+			"id": "chaource",
+			"name": "Chaource",
+			"tonnes": 2400,
+			"basis": "2,445 t marketed in 2024 (INAO/CNAOL Chiffres cles 2024)"
+		},
+		{
+			"rank": 48,
+			"id": "kefalograviera",
+			"name": "Kefalograviera",
+			"tonnes": 2200,
+			"basis": "2,189 t, year not stated (CIHEAM table of Greek PDO cheeses)"
+		},
+		{
+			"rank": 49,
+			"id": "pontLEveque",
+			"name": "Pont-l'Eveque",
+			"tonnes": 2100,
+			"basis": "2,127 t marketed in 2024 (INAO/CNAOL Chiffres cles 2024)"
+		},
+		{
+			"rank": 50,
+			"id": "sainteMaureDeTouraine",
+			"name": "Sainte-Maure de Touraine",
+			"tonnes": 1800,
+			"basis": "1,829 t marketed in 2024 (INAO/CNAOL Chiffres cles 2024)"
+		},
+		{
+			"rank": 51,
+			"id": "neufchatel",
+			"name": "Neufchatel",
+			"tonnes": 1600,
+			"basis": "1,575 t marketed in 2024 (INAO/CNAOL Chiffres cles 2024)"
+		},
+		{
+			"rank": 52,
+			"id": "epoisses",
+			"name": "Epoisses",
+			"tonnes": 1500,
+			"basis": "1,457 t marketed in 2024 (INAO/CNAOL Chiffres cles 2024)"
+		},
+		{
+			"rank": 53,
+			"id": "tetilla",
+			"name": "Tetilla",
+			"tonnes": 1400,
+			"basis": "About 1.4 million kg in 2014 (Mercasa)"
+		},
+		{
+			"rank": 54,
+			"id": "idiazabal",
+			"name": "Idiazabal",
+			"tonnes": 1300,
+			"basis": "About 1.34 million kg of protected cheese, year not confirmed (interempresas.net sheep-cheese table)"
+		},
+		{
+			"rank": 55,
+			"id": "rocamadour",
+			"name": "Rocamadour",
+			"tonnes": 1300,
+			"basis": "1,261 t marketed in 2024 (INAO/CNAOL Chiffres cles 2024)"
+		},
+		{
+			"rank": 56,
+			"id": "graviera",
+			"name": "Graviera Naxou",
+			"tonnes": 1200,
+			"basis": "About 1,200 to 1,250 t a year (Euronews, 2026); node is the generic Graviera"
+		},
+		{
+			"rank": 57,
+			"id": "salers",
+			"name": "Salers",
+			"tonnes": 1050,
+			"basis": "1,050 t marketed in 2024 (INAO/CNAOL Chiffres cles 2024)"
+		},
+		{
+			"rank": 58,
+			"id": "sellesSurCher",
+			"name": "Selles-sur-Cher",
+			"tonnes": 1000,
+			"basis": "1,017 t marketed in 2024 (INAO/CNAOL Chiffres cles 2024)"
+		},
+		{
+			"rank": 59,
+			"id": "brie",
+			"name": "Brie",
+			"tonnes": null,
+			"basis": "No volume figure for generic brie found; a famous, widely made soft cheese (Brie de Meaux AOP alone 6,489 t, INAO/CNAOL)"
+		},
+		{
+			"rank": 60,
+			"id": "camembert",
+			"name": "Camembert",
+			"tonnes": null,
+			"basis": "No volume figure for generic camembert; widely known, TasteAtlas rank 91 (AOP alone 5,340 t, INAO/CNAOL)"
+		},
+		{
+			"rank": 61,
+			"id": "burrata",
+			"name": "Burrata",
+			"tonnes": null,
+			"basis": "No volume figure found; TasteAtlas top 3 by user rating"
+		},
+		{
+			"rank": 62,
+			"id": "mascarpone2",
+			"name": "Mascarpone",
+			"tonnes": null,
+			"basis": "No volume figure found; fame as the cream cheese of tiramisu"
+		},
+		{
+			"rank": 63,
+			"id": "paneer2",
+			"name": "Paneer",
+			"tonnes": null,
+			"basis": "No current national tonnage found; India's most common fresh cheese, grows about 20% a year, 90 to 94% made by unorganised producers (Milky Mist via DairyNews)"
+		},
+		{
+			"rank": 64,
+			"id": "stilton",
+			"name": "Stilton",
+			"tonnes": null,
+			"basis": "No volume figure found; fame as the best-known British blue"
+		},
+		{
+			"rank": 65,
+			"id": "raclette",
+			"name": "Raclette",
+			"tonnes": null,
+			"basis": "No volume figure found; fame as the Alpine melting cheese"
+		},
+		{
+			"rank": 66,
+			"id": "havarti",
+			"name": "Havarti",
+			"tonnes": null,
+			"basis": "No volume figure found; fame as the best-known Danish cheese"
+		},
+		{
+			"rank": 67,
+			"id": "jarlsberg",
+			"name": "Jarlsberg",
+			"tonnes": null,
+			"basis": "No volume figure found; fame as the best-known Norwegian cheese"
+		},
+		{
+			"rank": 68,
+			"id": "serraDaEstrela",
+			"name": "Serra da Estrela",
+			"tonnes": null,
+			"basis": "No volume figure found; TasteAtlas rank 8"
+		},
+		{
+			"rank": 69,
+			"id": "quark",
+			"name": "Quark",
+			"tonnes": null,
+			"basis": "No volume figure found; staple fresh cheese of Germany and Central Europe (Eurostat: fresh cheese is 34% of EU cheese, 3.5 million t, not split by type)"
+		},
+		{
+			"rank": 70,
+			"id": "colby",
+			"name": "Colby",
+			"tonnes": null,
+			"basis": "Not reported on its own; inside USDA NASS 'other American' (1.79 billion lb in 2024 with Monterey Jack and others)"
+		},
+		{
+			"rank": 71,
+			"id": "montereyJack",
+			"name": "Monterey Jack",
+			"tonnes": null,
+			"basis": "Not reported on its own; inside USDA NASS 'other American' (1.79 billion lb in 2024 with Colby and others)"
+		},
+		{
+			"rank": 72,
+			"id": "maasdam",
+			"name": "Maasdam / Leerdammer",
+			"tonnes": null,
+			"basis": "No tonnage found; an expat guide calls it the second most produced Dutch cheese, about 15% (low-reliability source)"
+		},
+		{
+			"rank": 73,
+			"id": "labneh",
+			"name": "Labneh",
+			"tonnes": null,
+			"basis": "No volume figure found; fame as the strained yogurt cheese of the Levant"
+		},
+		{
+			"rank": 74,
+			"id": "quesoChihuahua",
+			"name": "Queso Chihuahua",
+			"tonnes": null,
+			"basis": "No volume figure found; Mexico's cheese output is mostly fresh cheese, then crema, Chihuahua and panela (BM Editores)"
+		},
+		{
+			"rank": 75,
+			"id": "stilton",
+			"name": "Stilton",
+			"tonnes": null,
+			"basis": "No volume figure found; fame as the English blue. Only old single-dairy figures exist (Tuxford and Tebbutt about 2,300 t a year, a 2013 trade article)"
+		},
+		{
+			"rank": 76,
+			"id": "stracchino",
+			"name": "Stracchino",
+			"tonnes": null,
+			"basis": "No volume figure found; named among the best-rated cheeses in TasteAtlas (via 9colonne)"
+		},
+		{
+			"rank": 77,
+			"id": "asiago",
+			"name": "Asiago",
+			"tonnes": null,
+			"basis": "No volume figure found; major Italian PDO; the Ismea-Qualivita report gives only a 2.8% drop in value in 2024, no tonnes"
+		},
+		{
+			"rank": 78,
+			"id": "fontina",
+			"name": "Fontina",
+			"tonnes": null,
+			"basis": "No volume figure found; major Italian PDO of the Aosta valley"
+		},
+		{
+			"rank": 79,
+			"id": "teteDeMoine",
+			"name": "Tete de Moine",
+			"tonnes": null,
+			"basis": "No volume figure found; famous Swiss AOP; Swiss Milk gives only milk input (34 million kg in 2024)"
+		},
+		{
+			"rank": 80,
+			"id": "sbrinz",
+			"name": "Sbrinz",
+			"tonnes": null,
+			"basis": "No volume figure found; old Swiss extra-hard AOP"
+		},
+		{
+			"rank": 81,
+			"id": "mimolette",
+			"name": "Mimolette",
+			"tonnes": null,
+			"basis": "No volume figure found; well-known French orange cheese"
+		},
+		{
+			"rank": 82,
+			"id": "tilsiter",
+			"name": "Tilsiter",
+			"tonnes": null,
+			"basis": "No volume figure found; classic washed-rind cheese of Switzerland and Germany"
+		},
+		{
+			"rank": 83,
+			"id": "boursin",
+			"name": "Boursin",
+			"tonnes": null,
+			"basis": "No volume figure found; best-known flavoured fresh cheese brand of France"
+		},
+		{
+			"rank": 84,
+			"id": "portSalut",
+			"name": "Port Salut",
+			"tonnes": null,
+			"basis": "No volume figure found; widely sold French washed-rind cheese"
+		},
+		{
+			"rank": 85,
+			"id": "saintAndre",
+			"name": "Saint-Andre",
+			"tonnes": null,
+			"basis": "No volume figure found; widely sold French triple-cream cheese"
+		},
+		{
+			"rank": 86,
+			"id": "brillatSavarin",
+			"name": "Brillat-Savarin",
+			"tonnes": null,
+			"basis": "No volume figure found; best-known French triple cream"
+		},
+		{
+			"rank": 87,
+			"id": "cheshire",
+			"name": "Cheshire",
+			"tonnes": null,
+			"basis": "No volume figure found; oldest named British cheese"
+		},
+		{
+			"rank": 88,
+			"id": "lancashire",
+			"name": "Lancashire",
+			"tonnes": null,
+			"basis": "No volume figure found; classic British cheese"
+		},
+		{
+			"rank": 89,
+			"id": "wensleydale",
+			"name": "Wensleydale",
+			"tonnes": null,
+			"basis": "No volume figure found; well-known British cheese"
+		},
+		{
+			"rank": 90,
+			"id": "cotija",
+			"name": "Cotija",
+			"tonnes": null,
+			"basis": "No volume figure found; Mexican grating cheese, widely exported"
+		},
+		{
+			"rank": 91,
+			"id": "panela",
+			"name": "Panela",
+			"tonnes": null,
+			"basis": "No volume figure found; Mexican fresh cheese; Mexican cheese is mostly fresh types, then crema, Chihuahua and panela (BM Editores)"
+		},
+		{
+			"rank": 92,
+			"id": "kashkaval",
+			"name": "Kashkaval",
+			"tonnes": null,
+			"basis": "No volume figure found; staple of Bulgaria and the Balkans"
+		},
+		{
+			"rank": 93,
+			"id": "requeijao",
+			"name": "Requeijao",
+			"tonnes": null,
+			"basis": "No volume figure found; one of the main Brazilian cheese types by consumption, with mussarela, prato and minas frescal; no per-type tonnage found"
+		},
+		{
+			"rank": 94,
+			"id": "queijoCanastra",
+			"name": "Queijo Canastra",
+			"tonnes": null,
+			"basis": "No volume figure found; flagship Brazilian artisanal cheese; Queijo Minas Artesanal as a whole was about 18,400 t in 2025 (Emater-MG via Agencia Minas)"
+		},
+		{
+			"rank": 95,
+			"id": "cabrales",
+			"name": "Cabrales",
+			"tonnes": null,
+			"basis": "No volume figure found; Spanish blue; under 0.5 million kg in 2014 (Mercasa)"
+		},
+		{
+			"rank": 96,
+			"id": "mahon",
+			"name": "Mahon",
+			"tonnes": null,
+			"basis": "No volume figure found; Menorcan PDO"
+		},
+		{
+			"rank": 97,
+			"id": "pecorinoSardo",
+			"name": "Pecorino Sardo",
+			"tonnes": null,
+			"basis": "No volume figure found; Sardinian PDO; TasteAtlas has a Sardinian pecorino in its top 10"
+		},
+		{
+			"rank": 98,
+			"id": "scamorza",
+			"name": "Scamorza",
+			"tonnes": null,
+			"basis": "No volume figure found; common Italian pasta filata cheese"
+		},
+		{
+			"rank": 99,
+			"id": "caciocavallo",
+			"name": "Caciocavallo",
+			"tonnes": null,
+			"basis": "No volume figure found; classic southern Italian pasta filata cheese"
+		},
+		{
+			"rank": 100,
+			"id": "piave",
+			"name": "Piave",
+			"tonnes": null,
+			"basis": "No volume figure found; Veneto PDO, a leading Italian hard cheese"
+		}
+	]
+}

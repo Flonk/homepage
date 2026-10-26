@@ -1,0 +1,119 @@
+{
+	"label": "Sweet whey",
+	"aka": [
+		"Rennet whey",
+		"Labmolke",
+		"Süßmolke",
+		"Lactosérum",
+		"Wei",
+		"Sirotka",
+		"Surutka",
+		"Sirutka",
+		"Suero lácteo"
+	],
+	"niche": 0,
+	"about": {
+		"text": "The whey that drains from curd set with rennet, in making most cheeses and rennet casein: only mildly acidic, at pH 5.9 to 6.6, and carrying the milk's sugar, its whey proteins and its minerals. About half of processed whey solids now go into whey protein concentrates, isolates, lactose and permeate.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. Whey processing",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/whey-processing"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Soured milk whey.avrs-56.jpg",
+		"author": "AVRS",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Soured_milk_whey.avrs-56.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"share": {
+		"mt": 196,
+		"sources": {
+			"links": [
+				{
+					"name": "IDF, The World Dairy Situation 2024",
+					"url": "https://www.milksa.co.za/sites/default/files/2024-12/2024%20World%20Dairy%20Situation%20Report.pdf"
+				}
+			],
+			"text": "The rest of the 222 Mt of cheese milk; most of the world’s whey comes from cheese."
+		}
+	},
+	"composition": {
+		"pH": {
+			"min": 5.9,
+			"max": 6.6
+		},
+		"solids": {
+			"min": 6,
+			"max": 6,
+			"about": true
+		},
+		"lactose": {
+			"min": 4.5,
+			"max": 4.5
+		},
+		"protein": {
+			"min": 0.6,
+			"max": 0.6
+		},
+		"fat": {
+			"min": 0.05,
+			"max": 0.05
+		}
+	},
+	"facts": [
+		{
+			"k": "Ash",
+			"v": "About 0.5 %"
+		},
+		{
+			"k": "Drink",
+			"v": "A common refreshing or medicinal drink in the Alpine countries; in Slovenia mostly used as feed, in baking and in protein supplements"
+		}
+	],
+	"sources": {
+		"links": [
+			{
+				"name": "Lactosérum (French Wikipedia)",
+				"url": "https://fr.wikipedia.org/wiki/Lactos%C3%A9rum"
+			},
+			{
+				"name": "Wei (Dutch Wikipedia)",
+				"url": "https://nl.wikipedia.org/wiki/Wei_(zuivel)"
+			},
+			{
+				"name": "Sirotka (Slovenian Wikipedia)",
+				"url": "https://sl.wikipedia.org/wiki/Sirotka"
+			},
+			{
+				"name": "Сурутка (Serbian Wikipedia)",
+				"url": "https://sr.wikipedia.org/wiki/%D0%A1%D1%83%D1%80%D1%83%D1%82%D0%BA%D0%B0"
+			},
+			{
+				"name": "Sirutka (Croatian Wikipedia)",
+				"url": "https://hr.wikipedia.org/wiki/Sirutka"
+			},
+			{
+				"name": "Whey study, Peru (LACCEI)",
+				"url": "https://proceedings.laccei.org/index.php/laccei/article/view/5089"
+			}
+		],
+		"text": "Its names and facts, from these."
+	},
+	"examples": [
+		"kumeshti",
+		"wheySourdough"
+	]
+}

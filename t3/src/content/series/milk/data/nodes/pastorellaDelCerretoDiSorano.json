@@ -1,0 +1,47 @@
+{
+	"label": "Pastorella del Cerreto di Sorano",
+	"example": true,
+	"family": "semiHard",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"sheep"
+	],
+	"firm": "semi-hard",
+	"days": [
+		30,
+		90
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Tuscany",
+		"lat": 42.69,
+		"lon": 11.69,
+		"x": 0.53247,
+		"y": 0.22717,
+		"located": "knowledge"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Pastorella_del_Cerreto_di_Sorano"
+			},
+			{
+				"name": "it.wikipedia.org",
+				"url": "https://it.wikipedia.org/wiki/Formaggi_italiani"
+			}
+		],
+		"text": "no article found in English or Italian Wikipedia; all values guessed"
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Mixed cow and sheep milk"
+		}
+	]
+}

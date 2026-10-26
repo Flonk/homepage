@@ -1,0 +1,70 @@
+{
+	"label": "Petit-suisse",
+	"example": true,
+	"about": {
+		"text": "A Normandy fresh cheese, unripened and unsalted, of cow milk enriched with cream, smoothed and drained in a centrifuge.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Petit-suisse"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Petit-suisse assiette.jpg",
+		"author": "Chtfn",
+		"license": "CC BY 2.5",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Petit-suisse_assiette.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"FR",
+		"MR"
+	],
+	"composition": {
+		"fatInDryMatter": {
+			"min": 40,
+			"max": 40,
+			"about": true
+		},
+		"fat": {
+			"min": 10,
+			"max": 10,
+			"about": true
+		}
+	},
+	"facts": [
+		{
+			"k": "Brand",
+			"v": "Sold in Mauritania as Tiviski, plain and with dates"
+		}
+	],
+	"sources": {
+		"links": [
+			{
+				"name": "Tiviski product list",
+				"url": "http://www.tiviski.com/productdetail.php?id=17"
+			},
+			{
+				"name": "Wikipedia (en): Petit suisse",
+				"url": "https://en.wikipedia.org/wiki/Petit_suisse"
+			}
+		],
+		"text": "Its names and facts, from these. How long it is ripened and how firm it is, from Wikipedia (en): Petit suisse."
+	},
+	"days": [
+		0,
+		0
+	],
+	"firm": "fresh"
+}

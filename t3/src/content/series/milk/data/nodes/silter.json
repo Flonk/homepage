@@ -1,0 +1,47 @@
+{
+	"label": "Silter",
+	"example": true,
+	"family": "semiHard",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		100,
+		365
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"protected": "PDO",
+	"place": {
+		"region": "Lombardy",
+		"lat": 45.67,
+		"lon": 9.7,
+		"x": 0.52694,
+		"y": 0.21562,
+		"located": "hint"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Silter"
+			},
+			{
+				"name": "Milanofree guide",
+				"url": "https://www.milanofree.it/milano/cucina/formaggi-lombardi-guida-completa-ai-dop-gorgonzola-alpeggio-e-pat.html"
+			}
+		],
+		"text": "Val Camonica, Lombardy"
+	},
+	"facts": [
+		{
+			"k": "Making",
+			"v": "Made in summer at high alpine pastures (malghe) from unpasteurised cow's milk, brined and then aged"
+		}
+	]
+}

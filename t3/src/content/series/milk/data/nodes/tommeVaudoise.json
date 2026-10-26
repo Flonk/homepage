@@ -1,0 +1,58 @@
+{
+	"label": "Tomme Vaudoise",
+	"example": true,
+	"aka": [
+		"Tomme"
+	],
+	"family": "bloomy",
+	"regions": [
+		"CH"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "soft",
+	"days": [
+		14,
+		56
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "bloomy",
+	"place": {
+		"region": "Vaud",
+		"lat": 46.65,
+		"lon": 6.6,
+		"x": 0.51833,
+		"y": 0.21169,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Tomme_Vaudoise"
+			},
+			{
+				"name": "fr.wikipedia",
+				"url": "https://fr.wikipedia.org/wiki/Tomme_vaudoise"
+			},
+			{
+				"name": "Swissmilk leaflet",
+				"url": "https://api.swissmilk.ch/wp-content/uploads/2020/11/ecole-affiche-en-visite-chez-les-fromagers-130643-fr.pdf"
+			}
+		],
+		"text": "unpasteurised cow, soft, aged up to eight weeks (source); min is estimated"
+	},
+	"facts": [
+		{
+			"k": "Places",
+			"v": "Made in the cantons of Vaud and Genève; it spread from alpine chalets near Lac de Joux to the Vaud plains and Geneva"
+		},
+		{
+			"k": "Size",
+			"v": "About 75 to 125 g a cheese, with a fine white-downed rind"
+		}
+	]
+}

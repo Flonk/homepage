@@ -70,6 +70,8 @@ export const makePillPainter = (G: Drawing): PillPainter => {
 		g.strokeStyle = colour;
 		g.stroke();
 	};
+	// Between the lines of a caption.
+	const CAPTION_LINE = 13;
 	const drawCaption = (g: Pen, text: string, x: number, y: number) => {
 		const spaced = g.letterSpacing;
 		g.letterSpacing = '0.14em';
@@ -123,12 +125,13 @@ export const makePillPainter = (G: Drawing): PillPainter => {
 		}
 		g.textAlign = 'center';
 		g.textBaseline = 'middle';
-		if (legible(FONT * scale, s)) {
-			g.font = `400 ${FONT * scale}px ${MONO()}`;
-			g.fillStyle = d.example ? colours.dim : colours.text;
+		const big = scale * layout.thickness(d);
+		if (legible(FONT * big, s)) {
+			g.font = `400 ${FONT * big}px ${MONO()}`;
+			g.fillStyle = d.example && d.standing !== 'pick' && d.standing !== 'famous' ? colours.dim : colours.text;
 			const lines = d.label.split('\n');
 			const linkRoom = d.link ? LINK_ROOM * scale : 0;
-			lines.forEach((l, i) => g.fillText(l, d.x + (photoRoom - linkRoom) / 2, d.y + (i - (lines.length - 1) / 2) * LINE * scale));
+			lines.forEach((l, i) => g.fillText(l, d.x + (photoRoom - linkRoom) / 2, d.y + (i - (lines.length - 1) / 2) * LINE * big));
 			// A link's mark: two links of a chain, slanted, before its right end.
 			if (d.link) {
 				const u = LINK_MARK * scale;
@@ -146,7 +149,7 @@ export const makePillPainter = (G: Drawing): PillPainter => {
 		}
 		roundRect(g, x, y, d.w, d.h, corners);
 		g.lineWidth = (isSelected(d) ? 2 : 1.2) * layout.pillRimWidth(d);
-		g.strokeStyle = isSelected(d) ? colours.lit : colours.rim;
+		g.strokeStyle = isSelected(d) ? colours.lit : d.panel ? colours.tableEdge : colours.rim;
 		g.stroke();
 		const edge = d.y + d.h / 2;
 		g.lineCap = 'round';
@@ -160,6 +163,12 @@ export const makePillPainter = (G: Drawing): PillPainter => {
 				drawTick(g, tx, edge, true);
 				drawTickLabel(g, label, tx, edge);
 			}
+			// What is set out across, just past the photograph, before its first mark, near the edge, as it has no tick under it.
+			if (panel.named) {
+				g.textAlign = 'left';
+				drawCaption(g, panel.named, d.x - d.w / 2 + layout.photoSize(d) + 8, edge - 6);
+				g.textAlign = 'center';
+			}
 		}
 		// A ruler: a tick every unit, deeper every step, the value over each.
 		if (d.scale && legible(10, s)) {
@@ -170,10 +179,11 @@ export const makePillPainter = (G: Drawing): PillPainter => {
 				drawTick(g, tickX(v), edge, major);
 				if (major && v) drawTickLabel(g, `${v} ${unit}`, tickX(v), edge);
 			}
-			// What it measures, before its nought, ending over the tick.
+			// What it measures, before its nought, ending over the tick; a line break in it stacks its lines upwards.
 			g.textAlign = 'right';
 			drawTickLabel(g, ' 0', tickX(0) + 3, edge);
-			drawCaption(g, measures, tickX(0) + 3 - g.measureText(' 0').width, edge - 12);
+			const right = tickX(0) + 3 - g.measureText(' 0').width;
+			measures.split('\n').reverse().forEach((line, i) => drawCaption(g, line, right, edge - 12 - i * CAPTION_LINE));
 		}
 		g.lineCap = 'butt';
 		return whole;

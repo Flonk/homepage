@@ -1,0 +1,116 @@
+{
+	"label": "Paneer",
+	"aka": [
+		"Panir",
+		"Ponir",
+		"Pinir",
+		"Punjabi cottage cheese"
+	],
+	"niche": 0,
+	"cheese": true,
+	"about": {
+		"text": "Paneer is a fresh acid-set cheese, common in South Asian cuisine, made from cow milk or buffalo milk. It is a non-aged, non-melting soft cheese made by curdling milk with an acid, such as lemon juice or citric acid. Paneer is predominantly used in north Indian dishes and is commonly used throughout South Asia, especially India, due to its versatility as an ingredient in diverse dishes.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Paneer"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Homemade Paneer cut into pieces for cooking Cheese Fromage India.jpg",
+		"author": "Ian Brown",
+		"license": "CC BY 2.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Homemade_Paneer_cut_into_pieces_for_cooking_Cheese_Fromage_India.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"IN",
+		"PK",
+		"BD",
+		"NP"
+	],
+	"beasts": [
+		"cow",
+		"buffalo"
+	],
+	"examples": [
+		"rubing",
+		"kalari"
+	],
+	"composition": {
+		"moisture": {
+			"max": 70
+		},
+		"fatInDryMatter": {
+			"min": 50
+		}
+	},
+	"facts": [
+		{
+			"k": "Acid",
+			"v": "Lemon juice, vinegar, citric acid or dahi"
+		},
+		{
+			"k": "Law",
+			"v": "FSSA: at most 70 % moisture, at least 50 % fat in dry matter; the older BIS limit was 60 % moisture"
+		},
+		{
+			"k": "Variants",
+			"v": "Surti paneer (buffalo milk) is drained and ripened in whey"
+		}
+	],
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Paneer"
+			},
+			{
+				"name": "tg.wikipedia.org",
+				"url": "https://tg.wikipedia.org/wiki/%D0%9F%D0%B0%D0%BD%D0%B8%D1%80"
+			},
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Punjabi_cuisine"
+			}
+		],
+		"text": "Its names, from these."
+	},
+	"table": {
+		"across": "setting",
+		"down": "beast",
+		"picks": [
+			{
+				"id": "paneer2",
+				"why": "The archetypal paneer, a staple of South Asian cooking eaten across India and beyond."
+			},
+			{
+				"id": "kalari",
+				"why": "A traditional Dogra cheese of Jammu, widely known in India and among the best documented of its kind."
+			},
+			{
+				"id": "dhakaPaneer",
+				"why": "Bangladesh's traditional paneer, named for Dhaka and made from raw milk set with rennet."
+			},
+			{
+				"id": "lassiPaneer",
+				"why": "The Punjabi acid-set curd taken from lassi, eaten fresh and cooked across Pakistan."
+			},
+			{
+				"id": "rubing",
+				"why": "The firm, non-melting goat cheese of Yunnan, made by the Bai and Sani peoples."
+			}
+		]
+	}
+}

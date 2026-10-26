@@ -1,0 +1,55 @@
+{
+	"label": "Ubriaco",
+	"example": true,
+	"aka": [
+		"Drunken cheese",
+		"Cacio ubriaco"
+	],
+	"family": "semiHard",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		60,
+		180
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "other",
+	"place": {
+		"region": "Veneto",
+		"lat": 45.65,
+		"lon": 11.95,
+		"x": 0.53319,
+		"y": 0.2157,
+		"located": "hint"
+	},
+	"confidence": "low",
+	"facts": [
+		{
+			"k": "Tuscany",
+			"v": "Named as cacio ubriaco in Tuscany, with no method given"
+		},
+		{
+			"k": "Goat version",
+			"v": "A goat's-milk version is also made with Traminer grape marc"
+		}
+	],
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Ubriaco"
+			},
+			{
+				"name": "Wikipedia: List of Italian cheeses",
+				"url": "https://en.wikipedia.org/wiki/List_of_Italian_cheeses"
+			}
+		],
+		"text": "rind soaked in wine or pomace; Veneto"
+	}
+}

@@ -1,0 +1,38 @@
+{
+	"label": "Qudam",
+	"example": true,
+	"family": "freshCheese",
+	"regions": [
+		"IN"
+	],
+	"beasts": [
+		"cow",
+		"buffalo"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		7
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "none",
+	"place": {
+		"region": "Jammu and Kashmir",
+		"lat": 34.08,
+		"lon": 74.8,
+		"x": 0.70778,
+		"y": 0.25774,
+		"located": "hint"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: List of cheeses",
+				"url": "https://en.wikipedia.org/wiki/List_of_cheeses"
+			}
+		],
+		"text": "Named in the India section of the list of cheeses, as the cheese of the Gujjar tribes of Kashmir."
+	}
+}

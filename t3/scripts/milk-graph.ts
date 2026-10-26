@@ -1,11 +1,11 @@
 /*
  * The milk graph's command line: `npm run milk:graph -- <command>`.
  *
- *   build                       the tree from the data, into graph/built/graph.json
+ *   build                       the tree from the data, into series/milk/data/built/graph.json
  *   watch                       build, and again on every change to the data
  *   in <node>                   the arrows into a node, best ranked first (an id, or a pattern on ids and labels)
  *   out <node>                  the arrows out of it
- *   check <process id>...       those processes alone against the schema, writing nothing
+ *   check <id or file>...       those processes, or nodes (nodes/<id>), alone against the schema, writing nothing
  *   rate <node> <way> <share>   how much of a node is made one way, in percent ("-" unrates);
  *                               the way by its process id or what it is made from
  *     --why <text>                     the reasoning from the sources to the figure (needed)
@@ -16,7 +16,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { spawn } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import { DIR, FOLDERS, load, write } from '../src/content/series/milk/components/graph/source';
+import { DIR, CODE, FOLDERS, load, write } from '../src/content/series/milk/components/graph/source';
 import { waysOf } from '../src/content/series/milk/components/graph/ways';
 import * as S from '../src/content/series/milk/components/graph/schema';
 
@@ -70,20 +70,21 @@ const watch = () => {
 	};
 	/* Each folder watched, not each file: a file saved by replacing it, as
 	   editors and sed -i do, is a new file, which a watch on the old one
-	   never hears of. A folder made since (rankings/) watched once it is. */
+	   never hears of. A folder made since (rankings/) watched once it is.
+	   The data and the graph's code both, but not what the build writes. */
 	const watched = new Set<string>();
-	const watchAll = () => {
-		const dirs = [DIR, ...fs.readdirSync(DIR, { recursive: true, withFileTypes: true }).filter((d) => d.isDirectory()).map((d) => path.join(d.parentPath, d.name))];
+	const watchAll = (root: string) => {
+		const dirs = [root, ...fs.readdirSync(root, { recursive: true, withFileTypes: true }).filter((d) => d.isDirectory()).map((d) => path.join(d.parentPath, d.name))];
 		for (const dir of dirs.filter((d) => !watched.has(d) && !path.relative(DIR, d).startsWith('built'))) {
 			watched.add(dir);
 			fs.watch(dir, (_, file) => {
-				if (dir === DIR) watchAll();
+				if (dir === root) watchAll(root);
 				changed(file);
 			});
 		}
 	};
-	watchAll();
-	console.log(dim(`watching ${path.relative(process.cwd(), DIR)}`));
+	for (const root of [DIR, CODE]) watchAll(root);
+	console.log(dim(`watching ${path.relative(process.cwd(), DIR)} and ${path.relative(process.cwd(), CODE)}`));
 	run();
 };
 
@@ -137,13 +138,28 @@ const look = (direction: 'in' | 'out') => {
    from and to nodes that are there: for one working on a few while others
    work on the rest, whose files may be half written. */
 const check = () => {
-	if (!args.length) fail('which processes? their ids, or their files');
+	if (!args.length) fail('which processes or nodes? their ids, or their files');
 	const nodes = new Set(fs.readdirSync(path.join(DIR, 'nodes')).map((f) => f.slice(0, -'.json'.length)));
 	let wrong = 0;
 	for (const arg of args) {
 		const id = path.basename(arg).replace(/\.json$/, '');
 		const before = wrong;
 		const said = (why: string) => (wrong++, console.log(red(`${id}: ${why}`)));
+		// A node: against its schema, and every node it names there.
+		if (/(^|\/)nodes\//.test(arg)) {
+			let node: unknown;
+			try {
+				node = JSON.parse(fs.readFileSync(path.join(DIR, 'nodes', `${id}.json`), 'utf8'));
+			} catch (e) {
+				said((e as Error).message);
+				continue;
+			}
+			const n = S.Node.safeParse(node);
+			if (!n.success) for (const x of n.error.issues) said(`at ${x.path.join('.') || 'top'}: ${x.message}`);
+			else for (const x of [n.data.family, n.data.also, n.data.link, n.data.below, ...(n.data.examples ?? [])]) if (x && !nodes.has(x)) said(`names ${x}, which is no node`);
+			if (wrong === before) console.log(`${id}: ok`);
+			continue;
+		}
 		let raw: unknown;
 		try {
 			raw = JSON.parse(fs.readFileSync(path.join(DIR, 'processes', `${id}.json`), 'utf8'));

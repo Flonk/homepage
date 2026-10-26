@@ -1,0 +1,52 @@
+{
+	"label": "Blue Cheshire",
+	"example": true,
+	"family": "blue",
+	"regions": [
+		"GB",
+		"AU"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		60,
+		120
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Cheshire",
+		"lat": 53.2,
+		"lon": -2.6,
+		"x": 0.49278,
+		"y": 0.18337,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Blue_Cheshire"
+			},
+			{
+				"name": "en.wikipedia.org",
+				"url": "https://en.wikipedia.org/wiki/Cheshire_cheese"
+			},
+			{
+				"name": "King Island Dairy",
+				"url": "https://en.wikipedia.org/wiki/King_Island_Dairy"
+			}
+		],
+		"text": "blue variant of dense crumbly Cheshire; ripening not found"
+	},
+	"facts": [
+		{
+			"k": "Australia",
+			"v": "Made by King Island Dairy on King Island, Tasmania, under the name Blue Cheshire"
+		}
+	]
+}

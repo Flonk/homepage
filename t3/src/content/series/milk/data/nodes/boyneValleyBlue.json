@@ -1,0 +1,47 @@
+{
+	"label": "Boyne Valley Blue",
+	"example": true,
+	"family": "blue",
+	"regions": [
+		"IE"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-soft",
+	"days": [
+		60,
+		90
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Meath",
+		"lat": 53.7,
+		"lon": -6.5,
+		"x": 0.48194,
+		"y": 0.18104,
+		"located": "knowledge"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "en.wikipedia.org",
+				"url": "https://en.wikipedia.org/wiki/Boyne_Valley_Blue"
+			},
+			{
+				"name": "List of Irish cheeses",
+				"url": "https://en.wikipedia.org/wiki/List_of_Irish_cheeses"
+			}
+		],
+		"text": "Raw cow milk; article gives no ageing time"
+	},
+	"facts": [
+		{
+			"k": "Made by",
+			"v": "Glyde Farm Produce, County Louth, from unpasteurised cow's milk with vegetarian rennet"
+		}
+	]
+}

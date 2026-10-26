@@ -1,0 +1,78 @@
+{
+	"from": [
+		"cheddared"
+	],
+	"to": [
+		"quesoChihuahua"
+	],
+	"variant": true,
+	"text": "No source opened gives the coagulant, cultures, cooking or pressing; only the composition limits are known.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Chihuahua cheese",
+				"url": "https://en.wikipedia.org/wiki/Chihuahua_cheese"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"note": "Cow's milk, sometimes with goat's milk, is warmed first."
+			},
+			{
+				"type": "coagulate",
+				"by": "rennet",
+				"note": "Starter cultures and rennet go in together."
+			},
+			{
+				"type": "cut",
+				"how": "cut",
+				"note": "The curd is cut small."
+			},
+			{
+				"type": "heat",
+				"does": "cook",
+				"note": "It is heated and stirred to firm it and drive out whey."
+			},
+			{
+				"type": "custom",
+				"name": "cheddar the curd",
+				"note": "The curd is kept warm and turned several times as it knits, draining more whey, much as Cheddar is made."
+			},
+			{
+				"type": "cut",
+				"how": "cut",
+				"note": "It is cut again into smaller pieces."
+			},
+			{
+				"type": "salt",
+				"how": "dry"
+			},
+			{
+				"type": "press"
+			},
+			{
+				"type": "mould",
+				"note": "Shaped into wheels."
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"note": "It ages only briefly, long enough to develop flavour and texture."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wisconsin Cheese: Queso Chihuahua cheese",
+					"url": "https://wisconsincheese.com/about-cheese/queso-chihuahua-cheese"
+				}
+			],
+			"text": "The order of the steps, from this page, which gives no temperatures, times or ageing length."
+		}
+	}
+}

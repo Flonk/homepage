@@ -17,7 +17,7 @@ export const panelsOf = (nodes: Record<string, S.Node>, ofProduct: Map<string, s
 		return [...count].sort((a, b) => b[1] - a[1])[0]?.[0];
 	};
 	const unsure = new Set<string>();
-	const axesOf = new Map<string, { firm: S.Firm; days: [number, number] }>();
+	const axesOf = new Map<string, { firm: S.Firm; days: [number, number]; timeless?: true }>();
 	for (const [id, n] of all) {
 		// Drawn under its product, placed by a guess; on the map, it is where it is made.
 		if (ofProduct.has(id) && (n.estimated || n.confidence === 'low')) unsure.add(id);
@@ -38,7 +38,7 @@ export const panelsOf = (nodes: Record<string, S.Node>, ofProduct: Map<string, s
 		};
 		for (const x of names) {
 			if (nodes[x].confidence === undefined || nodes[x].estimated) unsure.add(x);
-			if (!axesOf.has(x)) axesOf.set(x, usual);
+			if (!axesOf.has(x)) axesOf.set(x, { ...usual, timeless: true as const });
 		}
 	}
 	return { panelled, unsure, axesOf, UNSURE_SAID };

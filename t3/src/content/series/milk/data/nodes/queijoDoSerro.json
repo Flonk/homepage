@@ -1,0 +1,58 @@
+{
+	"label": "Queijo do Serro",
+	"example": true,
+	"aka": [
+		"Queijo Minas Artesanal do Serro",
+		"Serro Minas"
+	],
+	"family": "semiHard",
+	"regions": [
+		"BR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		22,
+		60
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Minas Gerais",
+		"lat": -18.6,
+		"lon": -43.38,
+		"x": 0.3795,
+		"y": 0.41114,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"facts": [
+		{
+			"k": "Size",
+			"v": "Cylindrical, about 0.7–1.25 kg, with a white, fine, homogeneous paste"
+		},
+		{
+			"k": "Making",
+			"v": "Hand-moulded and pressed with repeated turnings; a natural starter from salted fermented whey (pingo) is used"
+		}
+	],
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Queijo_do_Serro"
+			},
+			{
+				"name": "Wikipedia (pt): Queijo do Serro",
+				"url": "https://pt.wikipedia.org/wiki/Queijo_do_Serro"
+			},
+			{
+				"name": "Europe PMC: PMC8307891",
+				"url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC8307891/fullTextXML"
+			}
+		],
+		"text": "raw milk, Minas Gerais GI"
+	}
+}

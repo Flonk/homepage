@@ -1,0 +1,66 @@
+{
+	"label": "Branzi",
+	"example": true,
+	"family": "alpine",
+	"about": {
+		"text": "Val Brembana, Lombardy, a similar cheese to Formai del Mut",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Branzi_(cheese)"
+				},
+				{
+					"name": "onaf.it",
+					"url": "https://www.onaf.it/uploads/public/formaggi/10547_branzi-reg-lombardia.pdf"
+				}
+			],
+			"text": "Bergamo Alps (Valle Brembana), similar to Formai de Mut; Lombardy regional specification gives 60-day minimum, PAT but no PDO found; max estimated"
+		}
+	},
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		60,
+		180
+	],
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Lombardy",
+		"lat": 46,
+		"lon": 9.7,
+		"x": 0.52694,
+		"y": 0.21431,
+		"located": "hint"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Branzi_(cheese)"
+			},
+			{
+				"name": "onaf.it",
+				"url": "https://www.onaf.it/uploads/public/formaggi/10547_branzi-reg-lombardia.pdf"
+			},
+			{
+				"name": "milanofree.it",
+				"url": "https://www.milanofree.it/milano/cucina/formaggi-tipici-della-lombardia-le-schede-di-formaggella-nostrano-storico-ribelle-e-altri.html"
+			}
+		],
+		"text": "Bergamo Alps (Valle Brembana), similar to Formai de Mut; Lombardy regional specification gives 60-day minimum, PAT but no PDO found; max estimated"
+	},
+	"facts": [
+		{
+			"k": "Fresh and aged",
+			"v": "The fresh version is eaten young; the aged one is grated"
+		}
+	]
+}

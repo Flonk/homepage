@@ -1,0 +1,55 @@
+{
+	"label": "Carlow Cheese",
+	"example": true,
+	"aka": [
+		"Carlow Farmhouse",
+		"Carlow Farmhouse Cheese"
+	],
+	"family": "semiHard",
+	"regions": [
+		"IE"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		60,
+		180
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Carlow",
+		"lat": 52.84,
+		"lon": -6.93,
+		"x": 0.48075,
+		"y": 0.18503,
+		"located": "knowledge"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "en.wikipedia.org",
+				"url": "https://en.wikipedia.org/wiki/List_of_Irish_cheeses"
+			},
+			{
+				"name": "Carlow Tourism",
+				"url": "https://carlowtourism.com/food-drink/carlow-farmhouse-cheese/"
+			}
+		],
+		"text": "Possibly the same producer as Carlow Sheep Cheddar (Carlow Farmhouse Cheese, Fennagh); milk and type unverified"
+	},
+	"facts": [
+		{
+			"k": "Making",
+			"v": "Hand-made from pasteurised cow's milk bought from a neighbouring farmer, per the producer's page; Edam-style washed curd, some flavoured"
+		},
+		{
+			"k": "Farm",
+			"v": "Made since 2005 by Elizabeth Bradley at Carlow Farmhouse Cheese, Ballybrommell, Fennagh, Co. Carlow"
+		}
+	]
+}

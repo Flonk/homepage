@@ -1,0 +1,33 @@
+{
+	"label": "Cocido",
+	"example": true,
+	"aka": [
+		"raw-milk cocido cheese"
+	],
+	"family": "freshCheese",
+	"regions": [
+		"MX"
+	],
+	"beasts": [
+		"cow",
+		"goat"
+	],
+	"about": {
+		"text": "A fresh raw-milk cheese from Sonora, made by family makers with a cooked curd. The milk is acidified with fermented whey or citric acid and set with commercial rennet, and the curd is cooked at 50 to 60 °C for 20 minutes before draining.",
+		"sources": {
+			"links": [
+				{
+					"name": "Europe PMC study",
+					"url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12926036/fullTextXML"
+				}
+			],
+			"text": "How it is made, from this study."
+		}
+	},
+	"firm": "fresh",
+	"days": [
+		0,
+		0
+	],
+	"setting": "rennet-acid"
+}

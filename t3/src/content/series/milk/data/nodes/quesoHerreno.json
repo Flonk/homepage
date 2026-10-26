@@ -1,0 +1,62 @@
+{
+	"label": "Queso herreño",
+	"example": true,
+	"aka": [
+		"Queso del Hierro",
+		"Herreño",
+		"El Hierro"
+	],
+	"family": "semiHard",
+	"regions": [
+		"ES"
+	],
+	"beasts": [
+		"cow",
+		"sheep",
+		"goat"
+	],
+	"firm": "semi-hard",
+	"days": [
+		20,
+		90
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Canary Islands",
+		"lat": 27.75,
+		"lon": -18,
+		"x": 0.45,
+		"y": 0.27826,
+		"located": "knowledge"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Queso_herre%C3%B1o"
+			},
+			{
+				"name": "es.wikipedia.org",
+				"url": "https://es.wikipedia.org/wiki/Queso_herre%C3%B1o"
+			},
+			{
+				"name": "Palencia et al. 2014",
+				"url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC6271211/fullTextXML"
+			}
+		],
+		"text": "El Hierro, Canary Islands; often smoked; unverified"
+	},
+	"facts": [
+		{
+			"k": "Smoke",
+			"v": "Smoked over prickly pear pads, fig-tree trunk and dried jara shrub, after a humid drying stage"
+		},
+		{
+			"k": "Milk",
+			"v": "Mixed goat, cow and sheep milk of Canary breeds; sources disagree on whether it is raw or pasteurised"
+		}
+	]
+}

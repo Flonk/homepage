@@ -1,0 +1,63 @@
+{
+	"label": "Acid whey",
+	"aka": [
+		"Sauermolke"
+	],
+	"niche": 1,
+	"about": {
+		"text": "The whey left after milk is curdled with acid instead of rennet, from fresh cheeses such as cottage cheese and quark, from Greek-style yogurt, or from acid casein. It has a pH of about 4.3–5, against roughly 6 for sweet whey, and is rich in calcium phosphate and lactic acid, which make it hard to dry.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Soured milk whey.avrs-56.jpg",
+		"author": "AVRS",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Soured_milk_whey.avrs-56.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"examples": [
+		"syra",
+		"mabisiWheyAndInstantMabisi",
+		"savoAndZsendice",
+		"sueroDeLecheAgria"
+	],
+	"composition": {
+		"pH": {
+			"min": 4.3,
+			"max": 5
+		},
+		"solids": {
+			"min": 6.4,
+			"max": 6.4
+		},
+		"lactose": {
+			"min": 4.1,
+			"max": 4.6
+		},
+		"protein": {
+			"min": 0.6,
+			"max": 0.9
+		}
+	},
+	"facts": [
+		{
+			"k": "Ash",
+			"v": "0.7–0.8 %, against 0.5 % in sweet whey"
+		}
+	]
+}

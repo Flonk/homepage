@@ -36,7 +36,7 @@ for (const c of [...countries].sort((a, b) => (a.common_name ?? a.name).localeCo
 }
 
 const out = Regions.parse({ source: `ISO 3166-1 and ISO 3166-2, from the iso-codes package (${version})`, regions });
-const file = path.join(import.meta.dirname, '../src/content/series/milk/components/graph/research/regions.json');
+const file = path.join(import.meta.dirname, '../src/content/series/milk/data/research/regions.json');
 fs.mkdirSync(path.dirname(file), { recursive: true });
 fs.writeFileSync(file, JSON.stringify(out, null, '\t') + '\n');
 console.log(`${regions.length} regions: ${countries.length} countries and ${parts.length} parts of them`);

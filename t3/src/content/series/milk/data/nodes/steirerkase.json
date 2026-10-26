@@ -1,0 +1,51 @@
+{
+	"label": "Steirerkäse",
+	"example": true,
+	"aka": [
+		"Steirakas",
+		"Ennstaler Steirerkäse"
+	],
+	"family": "sourMilkCheese",
+	"regions": [
+		"AT"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "soft",
+	"days": [
+		14,
+		28
+	],
+	"estimated": true,
+	"setting": "acid",
+	"rind": "none",
+	"place": {
+		"region": "Styria",
+		"lat": 47.07,
+		"lon": 15.44,
+		"x": 0.54289,
+		"y": 0.20999,
+		"located": "knowledge"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Steirerkäse (German Wikipedia)",
+				"url": "https://de.wikipedia.org/wiki/Steirerk%C3%A4se"
+			}
+		],
+		"text": "Its names and facts, from these."
+	},
+	"facts": [
+		{
+			"k": "Protection",
+			"v": "Ennstaler Steirerkäse is a protected trademark with g.U. status in the EU since May 2021"
+		},
+		{
+			"k": "Ennstal variety",
+			"v": "Not melted: quark crumbled by hand, aired, mashed and packed in jars, on the Murtaler base"
+		}
+	]
+}

@@ -1,0 +1,51 @@
+{
+	"label": "Bernardo",
+	"example": true,
+	"family": "freshCheese",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		30,
+		90
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Lombardy",
+		"lat": 45.6,
+		"lon": 9.6,
+		"x": 0.52667,
+		"y": 0.2159,
+		"located": "hint"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Bernardo_(cheesse)"
+			},
+			{
+				"name": "milanofree.it, Bernardo (PAT)",
+				"url": "https://www.milanofree.it/milano/cucina/formaggi-tipici-della-lombardia-le-schede-di-formaggella-nostrano-storico-ribelle-e-altri.html"
+			}
+		],
+		"text": "no article found (source URL in input has a typo); values are guesses"
+	},
+	"facts": [
+		{
+			"k": "Area",
+			"v": "Valle Seriana, Province of Bergamo"
+		},
+		{
+			"k": "Paste",
+			"v": "Soft, fat and rindless, with a compact yellow or orange paste"
+		}
+	]
+}

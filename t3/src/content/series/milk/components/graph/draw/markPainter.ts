@@ -80,37 +80,31 @@ export const makeMarkPainter = (G: Drawing): MarkPainter => {
 		return true;
 	};
 
-	// Its remarks, on the bottom right corner: a guess about it, then a note.
+	// Its remarks, on the bottom right corner, before its seal: a guess about it, then a note.
 	const remarksOf = (n: Node): Remark[] => {
-		const said = [
-			...(n.unsure ? [{ kind: 'unsure' as const, text: n.unsure }] : []),
-			...(n.note ? [{ kind: 'note' as const, text: n.note }] : []),
-		];
-		return corner(n, said.length, true, true).map((at, i) => ({ ...said[i], ...at, node: n }));
+		const said = n.unsure ? [{ kind: 'unsure' as const, text: n.unsure }] : [];
+		// Left of the seal, where there is one.
+		return corner(n, said.length + (n.protected ? 1 : 0), true, true)
+			.slice(0, said.length)
+			.map((at, i) => ({ ...said[i], ...at, node: n }));
 	};
-	// A note blue, as an info mark is, with a white italic i; a guess amber, with a ?. Edged as a flag is.
+	// A guess amber, with a ?. Edged as a flag is.
 	const drawRemarks = (g: Pen, n: Node, s: number) => {
-		for (const { kind, r, x, y } of remarksOf(n)) {
-			drawDisc(g, x, y, r, kind === 'note' ? colours.info : colours.unsure, s);
+		for (const { r, x, y } of remarksOf(n)) {
+			drawDisc(g, x, y, r, colours.unsure, s);
 			drawDiscRim(g, n, x, y, r);
 			if (!legible(r * 1.4, s)) continue;
 			g.textAlign = 'center';
 			g.textBaseline = 'middle';
 			g.fillStyle = '#fff';
-			if (kind === 'note') {
-				g.font = `italic 600 ${r * 1.4}px ${SERIF()}`;
-				// A little low of the middle, as an italic i sits; 1 px at the pill's own size.
-				g.fillText('i', x, y + r * 0.05 + layout.scaleOf(n));
-			} else {
-				g.font = `600 ${r * 1.3}px ${SERIF()}`;
-				g.fillText('?', x, y + r * 0.08);
-			}
+			g.font = `600 ${r * 1.3}px ${SERIF()}`;
+			g.fillText('?', x, y + r * 0.08);
 		}
 		return true;
 	};
 
-	// A protected name's seal on the top left corner: red ringed in gold for a PDO, blue for a PGI, with a gold star.
-	const sealSpot = (n: Node) => corner(n, 1, false, false)[0];
+	// A protected name's seal on the bottom right corner: red ringed in gold for a PDO, blue for a PGI, with a gold star.
+	const sealSpot = (n: Node) => corner(n, 1, true, true)[0];
 	const drawSeal = (g: Pen, n: Node, s: number) => {
 		const { r, x, y } = sealSpot(n);
 		drawDisc(g, x, y, r, SEAL_COLOUR[n.protected!] ?? '#c08a00', s);

@@ -52,7 +52,7 @@ export const makeSpriteCache = (G: Drawing): SpriteCache => {
 	const PILL_SPRITES: [string, (n: Node) => unknown, (n: Node) => Box, Painter][] = [
 		['p', (n) => n !== layout.root, layout.pillShadowBox, pillPainter.drawPill],
 		['f', (n) => n.regions?.length, (n) => markPainter.markRowBox(markPainter.flagSpots(n), 1.65), markPainter.drawFlags],
-		['i', (n) => n.note || n.unsure, (n) => markPainter.markRowBox(markPainter.remarksOf(n), 1.6), markPainter.drawRemarks],
+		['i', (n) => n.unsure, (n) => markPainter.markRowBox(markPainter.remarksOf(n), 1.6), markPainter.drawRemarks],
 		['b', (n) => n.beasts?.length, (n) => markPainter.markRowBox(markPainter.animalSpots(n), 1.8), markPainter.drawAnimals],
 		['seal', (n) => n.protected, (n) => markPainter.markRowBox([markPainter.sealSpot(n)], 1.6), markPainter.drawSeal],
 	];

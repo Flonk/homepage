@@ -1,0 +1,51 @@
+{
+	"label": "Saint-Marcellin",
+	"example": true,
+	"family": "lacticCheese",
+	"regions": [
+		"FR"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "soft",
+	"days": [
+		10,
+		10
+	],
+	"setting": "rennet-acid",
+	"rind": "natural",
+	"protected": "PGI",
+	"place": {
+		"region": "Isère",
+		"lat": 45.16,
+		"lon": 5.31,
+		"x": 0.51475,
+		"y": 0.21764,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Saint-Marcellin"
+			},
+			{
+				"name": "French Wikipedia, Saint-marcellin",
+				"url": "https://fr.wikipedia.org/wiki/Saint-marcellin"
+			}
+		],
+		"text": "IGP since 2013; stages sec, cremeux, bleu; rind goes blue then yellow within 2-3 weeks; legal minimum not found How long it is ripened and how firm it is, from Wikipedia (fr): Saint-marcellin."
+	},
+	"facts": [
+		{
+			"k": "Size",
+			"v": "A small cheese of about 80 g"
+		},
+		{
+			"k": "Milk",
+			"v": "Cow's milk since the 1980s; earlier a mix of goat and cow"
+		}
+	]
+}

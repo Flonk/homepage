@@ -1,0 +1,135 @@
+{
+	"label": "Milk powder",
+	"aka": [
+		"Dried milk",
+		"Whole milk powder",
+		"Milchpulver",
+		"Leche en polvo",
+		"Leite em pó",
+		"Mleko w proszku",
+		"Mælkepulver",
+		"奶粉",
+		"сухое молоко",
+		"Lait en poudre",
+		"Susu bubuk"
+	],
+	"comment": "Dried from a concentrate, not from evaporated milk.",
+	"niche": 0,
+	"about": {
+		"text": "Powdered milk, also called milk powder, dried milk, dry milk, or milk solids, is a manufactured dairy product made by evaporating milk to a state of dryness. One purpose of drying milk is to preserve it; milk powder has a far longer shelf life than liquid milk and does not need to be refrigerated, due to its low moisture content. Another purpose is to reduce its bulk for the economy of transportation. Powdered milk and dairy products include such items as dry whole milk, nonfat (skimmed) dry milk, dry buttermilk, dry whey products and dry dairy blends. Many exported dairy products conform to standards laid out in Codex Alimentarius.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Powdered_milk"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "PowderedMilk.jpg",
+		"author": "Lorian",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:PowderedMilk.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"composition": {
+		"moisture": {
+			"min": 2.8,
+			"max": 3.5
+		},
+		"fat": {
+			"min": 26,
+			"max": 40
+		}
+	},
+	"facts": [
+		{
+			"k": "Fat limits",
+			"v": "Codex: from 26 % up to under 42 % milkfat"
+		},
+		{
+			"k": "Moisture limit",
+			"v": "At most 5 % (Codex)"
+		},
+		{
+			"k": "Bulk density (tapped)",
+			"v": "0.50–0.60 g/ml"
+		},
+		{
+			"k": "Instant powder",
+			"v": "Fines returned to the spray zone to agglomerate; lecithin 0.2–0.5 % added in the fluid bed"
+		},
+		{
+			"k": "Drum drying",
+			"v": "Older route: a thin film on a hot drum, more cooked flavour"
+		},
+		{
+			"k": "Yield",
+			"v": "About 6 to 7 litres of fresh milk make 1 kg of powder"
+		},
+		{
+			"k": "Spray drying",
+			"v": "Concentrated to about 50 % solids by evaporation, then spray-dried in a hot-air tower"
+		}
+	],
+	"sources": {
+		"links": [
+			{
+				"name": "Portuguese Wikipedia: Leite em pó",
+				"url": "https://pt.wikipedia.org/wiki/Leite_em_pó"
+			},
+			{
+				"name": "CAA: Argentine food code, chapter VIII",
+				"url": "https://www.argentina.gob.ar/sites/default/files/capitulo_viii_lacteosactualiz_2025-10.pdf"
+			},
+			{
+				"name": "Polish Wikipedia: Mleko w proszku",
+				"url": "https://pl.wikipedia.org/wiki/Mleko_w_proszku"
+			},
+			{
+				"name": "Danish Wikipedia: Mælk",
+				"url": "https://da.wikipedia.org/wiki/M%C3%A6lk"
+			},
+			{
+				"name": "Chinese Wikipedia: 奶粉",
+				"url": "https://zh.wikipedia.org/wiki/奶粉"
+			},
+			{
+				"name": "Russian Wikipedia: Сухое молоко",
+				"url": "https://ru.wikipedia.org/wiki/Сухое_молоко"
+			},
+			{
+				"name": "French Wikipedia: Produit laitier",
+				"url": "https://fr.wikipedia.org/wiki/Produit_laitier"
+			},
+			{
+				"name": "Indonesian Wikipedia: Susu",
+				"url": "https://id.wikipedia.org/wiki/Susu"
+			},
+			{
+				"name": "Swedish Wikipedia: Torrmjölk",
+				"url": "https://sv.wikipedia.org/wiki/Torrmj%C3%B6lk"
+			},
+			{
+				"name": "Dutch Wikipedia: Melkpoeder",
+				"url": "https://nl.wikipedia.org/wiki/Melkpoeder"
+			}
+		],
+		"text": "Its names and facts, from these."
+	},
+	"examples": [
+		"camelMilkPowder",
+		"driedCamelMilkPowder",
+		"milkTabletsSolidMilk",
+		"ricaPowderedWholeMilkAndMilkkids"
+	]
+}

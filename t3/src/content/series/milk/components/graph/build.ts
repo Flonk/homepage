@@ -1,13 +1,17 @@
-import MAP from './map.json';
+import MAP from '../../data/map.json';
+import FAMOUS_CHEESES from '../../data/famous-cheeses.json';
 import * as S from './schema';
-import { GROUPS, LIGHT } from './families';
+import { GROUPS, LIGHT } from '../../data/families';
 import { load } from './source';
 import { waysOf } from './ways';
-import { WORLD_MILK } from './world';
+import { WORLD_MILK } from '../../data/world';
 import { page as howPage, type Told } from './render/How';
 import { sourcingOf, tellUnsourced } from './build/sources';
 import { panelsOf } from './build/panels';
 import { mustAll, placed } from './build/must';
+import { withoutMinorBrands } from './build/brands';
+import { mapsOf } from './build/maps';
+import { tablesOf } from './build/tables';
 import { page as picturePage } from './render/Picture';
 import { about as cheeseAbout, facts as cheeseFacts } from './render/Cheese';
 
@@ -24,7 +28,7 @@ import { about as cheeseAbout, facts as cheeseFacts } from './render/Cheese';
 
 type Node = S.Node;
 
-const { nodes, processes, rankings } = load();
+const { nodes, processes, rankings } = withoutMinorBrands(load());
 // Each list of the families against its schema.
 S.Group.array().parse(GROUPS);
 const all = Object.entries(nodes);
@@ -66,12 +70,7 @@ const wayIn = (id: string): (Told & { step?: string }) | undefined => {
 	const leg = p.legs?.[id] ?? {};
 	const steps = leg.processing?.steps ?? [];
 	const vouched = leg.processing?.sources ?? p.processing?.sources;
-	return {
-		step: leg.step,
-		text: leg.text,
-		sources: leg.sources ?? p.sources,
-		processing: steps.length && vouched ? { steps, sources: vouched } : undefined,
-	};
+	return { step: leg.step, text: leg.text, sources: leg.sources ?? p.sources, processing: steps.length && vouched ? { steps, sources: vouched } : undefined };
 };
 const told = ({ text, sources, processing }: Told) => (text || sources || processing ? howPage({ text, sources, processing }) : undefined);
 /* For the page's dev mode, of the way a node is drawn along: that it has
@@ -90,7 +89,7 @@ const devOf = (id: string) => {
 const flat = (label: string) => label.replace(/\n/g, ' ');
 
 /* Each example is named by at most one product, which it is drawn under;
-   one no product names is a cheese of the world's, on the map only. */
+   a cheese no product names is of its family. */
 const ofProduct = new Map<string, string>();
 for (const [id, n] of products) {
 	mustAll(n.examples ?? [], isExample, `${id} names as its example what is no example:`);
@@ -109,41 +108,37 @@ for (const [id, n] of all) {
 }
 
 // Every parent named must be a product, and no product its own ancestor.
-for (const [id, { at, link, mapped, below }] of products) {
+for (const [id, { at, link, below }] of products) {
 	const from = fromOf(id);
 	const step = wayIn(id)?.step;
 	/* Hung under a ruler, the arrow in has its value, not a step; anything
-	   else made from a product with a ruler branches off as from any other.
-	   A family only on the map has no arrow at all. */
+	   else made from a product with a ruler branches off as from any other. */
 	const ruled = at !== undefined;
 	if (ruled && !nodes[from!]?.scale) throw new Error(`MilkGraph: ${id} has a value on a ruler, but ${from} has none`);
 	// One made with others by a split has its step on the split, and may have none of its own.
 	const split = (drawnWay.get(id)?.to.length ?? 0) > 1;
-	if (from !== undefined && !ruled && !mapped && !step && !split) throw new Error(`MilkGraph: ${id} has no step`);
-	if (from && nodes[from]?.mapped && !mapped) throw new Error(`MilkGraph: ${id} hangs from ${from}, which is only on the map`);
+	if (from !== undefined && !ruled && !step && !split) throw new Error(`MilkGraph: ${id} has no step`);
 	/* Two at one value share its arrow; two nearly at one would hang one's
 	   arrow down beside the other's. */
 	const gap = (n: Node) => Math.abs(n.at! - at!);
-	if (ruled && products.some(([o, n]) => o !== id && fromOf(o) === from && gap(n) > 0 && gap(n) < 1))
-		throw new Error(`MilkGraph: ${id} is too near another on its ruler`);
+	if (ruled && products.some(([o, n]) => o !== id && fromOf(o) === from && gap(n) > 0 && gap(n) < 1)) throw new Error(`MilkGraph: ${id} is too near another on its ruler`);
 	if (link !== undefined && (!isProduct(link) || nodes[link].link)) throw new Error(`MilkGraph: ${id} links to ${link}, which is not a product`);
+	// Drawn again, or hung under a ruler, it has no examples of its own.
+	if (link !== undefined && nodes[id].examples?.length) throw new Error(`MilkGraph: ${id} links to ${link}, so its examples belong there`);
+	if (ruled && nodes[id].examples?.length) throw new Error(`MilkGraph: ${id} hangs under a ruler, which leaves no room for examples`);
 	if (below !== undefined && fromOf(below) !== from) throw new Error(`MilkGraph: ${id} is drawn below ${below}, which is no sibling of it`);
 	mustAll((waysInto.get(id) ?? []).flatMap((w) => processes[w].from), isProduct, `${id} is made from what is no product:`);
 	for (let up = from, seen = new Set([id]); up !== undefined; up = fromOf(up)) {
 		if (seen.has(up)) throw new Error(`MilkGraph: ${id} is made from itself`);
 		seen.add(up);
 	}
-	// What a product is, said on its card; a family only on the map has no card of its own.
-	if (!mapped && !nodes[link ?? id].about) throw new Error(`MilkGraph: nothing said about ${id}`);
+	// What a product is, said on its card.
+	if (!nodes[link ?? id].about) throw new Error(`MilkGraph: nothing said about ${id}`);
 }
 
 const groupOf = placed(GROUPS, 'group', isProduct);
-// Milk is in none; nor is a family only on the map, which is not drawn.
-mustAll(
-	products.map(([id]) => id),
-	(id) => id === 'raw' || !!nodes[id].mapped || groupOf.has(id),
-	'in no group:',
-);
+// Milk is in none.
+mustAll(products.map(([id]) => id), (id) => id === 'raw' || groupOf.has(id), 'in no group:');
 /* A process making several products at once, each drawn with an arrow of
    its own, side by side out of one double arrow, which carries its step
    and what is done before they part; each part says only what it is
@@ -158,29 +153,33 @@ const splits: S.SplitPage[] = Object.entries(processes).flatMap(([id, p]) => {
 
 const map = S.WorldMap.parse(MAP);
 // Every country named, one on the map, with its flag.
-mustAll(
-	all.flatMap(([, n]) => n.regions ?? []),
-	(c) => c in map.countries,
-	'not a country on the map:',
-);
+mustAll(all.flatMap(([, n]) => n.regions ?? []), (c) => c in map.countries, 'not a country on the map:');
 
 tellUnsourced(nodes, processes, rankings, map);
 
-/* The world's cheeses on the map under cheese: every example that is a
-   cheese, those the inventory of the world's cheeses has first (each with
-   its family), then the cheese families' own the inventory does not. */
-const cheesy = (id: string) => !!nodes[id].mapped || !!nodes[id].cheese;
-const world = all.filter(([id, n]) => n.example && (n.family !== undefined || cheesy(ofProduct.get(id) ?? '')));
+const cheesy = (id: string) => !!nodes[id].cheese || GROUPS[groupOf.get(id) ?? -1]?.name === 'Cheese';
+const { world, ownerOf, maps, onMap, unmapped, unlisted } = mapsOf(nodes, ofProduct, cheesy);
+// A type with a table shows a few of its cheeses there, and has no map (see build/tables.ts).
+// The world's most made and best known cheeses, each one there is a node for.
+const fame = new Map(S.FamousCheeses.parse(FAMOUS_CHEESES).cheeses.flatMap((c) => (c.id ? [[c.id, c.rank] as const] : [])));
+const famous = new Set(fame.keys());
+mustAll(famous, (id) => id in nodes, 'famous-cheeses.json names what is no node:');
+const tables = tablesOf(nodes, (type) => world.map(([id]) => id).filter((id) => ownerOf(id) === type), famous);
+for (const type of tables.shown.keys()) maps.delete(type);
 
 const { panelled, unsure, axesOf, UNSURE_SAID } = panelsOf(nodes, ofProduct);
-
 
 // The animals to filter by: those any node is marked with, the cow first.
 const marked = (n: Node) => (n.beasts && n.beasts.join() !== 'cow' ? n.beasts : undefined);
 export const herd = S.Beast.options.filter((b) => b === 'cow' || all.some(([, n]) => marked(n)?.includes(b)));
 
 const exampleFile = (name: string) =>
-	`ex-${name.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`;
+	`ex-${name
+		.normalize('NFD')
+		.replace(/\p{M}/gu, '')
+		.toLowerCase()
+		.replace(/[^a-z0-9]+/g, '-')
+		.replace(/^-|-$/g, '')}`;
 
 /**
  * An example as the page has it: drawn as a leaf under its product, in its
@@ -197,9 +196,10 @@ const exampleOf = (id: string) => {
 		about: n.about ?? (cheese ? cheeseAbout(n) : undefined),
 		regions: n.regions?.slice(0, S.MOST_COUNTRIES),
 		aka: n.aka,
-		note: n.note,
 		beasts: marked(n),
-		axes: axesOf.get(id),
+		axes: tables.axesOf.get(id) ?? axesOf.get(id),
+		standing: tables.standing.get(id) ?? (famous.has(id) ? ('famous' as const) : undefined),
+		fame: fame.get(id),
 		protected: n.protected,
 		composition: n.composition,
 		facts: [...(cheese ? cheeseFacts(n) : []), ...(n.facts ?? []).map(({ k, v }) => ({ k, v }))],
@@ -207,7 +207,7 @@ const exampleOf = (id: string) => {
 		live: n.live,
 		// Its sources, where they are not with its paragraph.
 		sources: n.sources && JSON.stringify(n.sources) !== JSON.stringify(n.about?.sources) ? n.sources : undefined,
-		unsure: unsure.has(id) ? UNSURE_SAID : undefined,
+		unsure: unsure.has(id) || tables.unsure.has(id) ? UNSURE_SAID : undefined,
 		step: wayIn(id)?.step,
 		how: wayIn(id) && told(wayIn(id)!),
 		dev: devOf(id),
@@ -215,36 +215,41 @@ const exampleOf = (id: string) => {
 		niche: 2 as const,
 	};
 };
-const drawn = products.filter(([, { mapped }]) => !mapped);
-const leaves = drawn.flatMap(([kind, { examples = [] }]) =>
-	examples.map((id, rank) => ({ ...exampleOf(id), id, kind, rank, group: groupOf.get(kind) ?? -1 })),
+// Drawn under its product: those on its table; else the examples it names, but those on its map, and the cheeses of a family with no map.
+// Of the examples it names, those not hidden for there being too many (see hidden in Node).
+const drawnOf = (examples: string[]) => examples.filter((x) => !nodes[x].hidden);
+const leaves = products.flatMap(([kind, { examples = [] }]) =>
+	(tables.shown.get(kind) ?? [...drawnOf(examples).filter((id) => !onMap(id)), ...unmapped.filter((id) => ownerOf(id) === kind)]).map((id, rank) => ({
+		...exampleOf(id),
+		id,
+		kind,
+		rank,
+		group: groupOf.get(kind) ?? -1,
+	})),
 );
-/* The map's cheeses: each where it is made, the first of its countries;
+/* A map's cheeses: each where it is made, the first of its countries;
    one with none known is left off. No step on its line, which is not
-   drawn: the map is under cheese, as the panels are under their families. */
+   drawn: the map is under its product, as the panels are under theirs. */
 const atlas = world
-	.filter(([, n]) => n.regions?.length)
+	.filter(([id]) => onMap(id))
 	.map(([id, n], rank) => {
-		const of = ofProduct.get(id);
-		const family = of && nodes[of].mapped ? nodes[of].label : n.family && nodes[n.family].label;
+		const family = nodes[ownerOf(id)].label;
 		return {
 			...exampleOf(id),
 			id: `atlas:${id}`,
-			kind: 'cheese',
+			kind: ownerOf(id),
 			onMap: true as const,
 			place: n.regions![0],
 			area: n.place?.region,
 			spot: n.place?.x !== undefined ? ([n.place.x, n.place.y!] as [number, number]) : undefined,
 			guessed: n.place?.located === 'guess',
-			family: family && flat(family),
+			family: flat(family),
 			rank,
-			group: groupOf.get('cheese') ?? -1,
+			group: groupOf.get(ownerOf(id)) ?? -1,
 			step: undefined,
 		};
 	});
 const examples = [...leaves, ...atlas];
-// The names of the families only on the map, and their other names: found by the search, as the map.
-const onTheMap = products.flatMap(([, n]) => (n.mapped ? [flat(n.label), ...(n.aka ?? [])] : []));
 
 export const graph = S.Payload.parse({
 	light: LIGHT,
@@ -253,13 +258,14 @@ export const graph = S.Payload.parse({
 	// How firm a cheese can be, softest first: a panel's rows.
 	firms: S.Firm.options,
 	nodes: [
-		...drawn.map(([id, { label, scale, at, map, below, link, note, aka = [], examples: named = [], niche }]) => {
+		...products.map(([id, { label, scale, at, below, link, aka = [], examples: named = [], niche }]) => {
 			const own = nodes[link ?? id];
 			return {
 				id,
 				label,
-				// Not drawn, but found by the search: its other names; a map's, the names of the families on it.
-				aka: map ? [...aka, ...onTheMap] : aka,
+				// Not drawn, but found by the search: its other names; and, not said on its card, those of its cheeses left off its table.
+				aka,
+				offTable: [...(tables.hidden.get(id) ?? unlisted(id)), ...(nodes[id].examples ?? []).filter((x) => nodes[x].hidden)].flatMap((x) => [flat(nodes[x].label), ...(nodes[x].aka ?? [])]),
 				image: own.picture && picturePage(link ?? id, own.picture),
 				about: own.about,
 				regions: own.regions,
@@ -270,11 +276,11 @@ export const graph = S.Payload.parse({
 				step: wayIn(id)?.step,
 				scale,
 				at,
-				panel: panelled(id) || undefined,
-				map,
+				panel: tables.pages.has(id) || (!maps.has(id) && panelled(id)) || undefined,
+				table: tables.pages.get(id),
+				map: maps.has(id) || undefined,
 				below,
 				link,
-				note,
 				beasts: marked(own),
 				composition: own.composition,
 				facts: own.facts?.map(({ k, v }) => ({ k, v })),
@@ -289,9 +295,9 @@ export const graph = S.Payload.parse({
 		...examples.map(({ kind, ...x }) => x),
 	],
 	links: [
-		...drawn.filter(([id]) => fromOf(id) !== undefined).map(([target]) => ({ source: fromOf(target)!, target, weight: nodes[target].light ? LIGHT : 1 })),
+		...products.filter(([id]) => fromOf(id) !== undefined).map(([target]) => ({ source: fromOf(target)!, target, weight: nodes[target].light ? LIGHT : 1 })),
 		...examples.map(({ id, kind }) => ({ source: kind, target: id, weight: 1 })),
 	],
-	// The world's outline, for the map under cheese (see map.json); where it is from stays here.
+	// The world's outline, for the maps (see map.json); where it is from stays here.
 	map: { height: map.height, countries: map.countries },
 });

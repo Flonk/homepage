@@ -1,0 +1,89 @@
+{
+	"label": "Edam",
+	"example": true,
+	"family": "washedCurd",
+	"about": {
+		"text": "Edam is a semi-hard cheese that originated in the Netherlands, and is named after the town of Edam in the province of North Holland. Edam is traditionally sold in flat-ended spheres with a pale yellow interior and a coat, or rind, of red paraffin wax. Edam ages and travels well and hardens, instead of spoiling, for an extended period. These qualities made it the world's most popular cheese between the 14th and 18th centuries, both at sea and in remote colonies.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Edam_cheese"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "SmallEdamCheese.jpg",
+		"author": "Yvwv",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:SmallEdamCheese.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"NL"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		28,
+		365
+	],
+	"setting": "rennet",
+	"rind": "waxed",
+	"protected": "PGI",
+	"place": {
+		"region": "North Holland",
+		"lat": 52.51,
+		"lon": 5.05,
+		"x": 0.51403,
+		"y": 0.18655,
+		"located": "hint"
+	},
+	"confidence": "high",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Edam_cheese"
+			},
+			{
+				"name": "Wikipedia (Dutch): Edammer kaas",
+				"url": "https://nl.wikipedia.org/wiki/Edammer_kaas"
+			},
+			{
+				"name": "Wikipedia: Gibraltarian cuisine",
+				"url": "https://en.wikipedia.org/wiki/Gibraltarian_cuisine"
+			},
+			{
+				"name": "Wikipedia: Queso de bola",
+				"url": "https://en.wikipedia.org/wiki/Queso_de_bola"
+			},
+			{
+				"name": "Tchakayiti: Tête de Maure",
+				"url": "https://tchakayiti.com/home/tete-de-maure-aged-edam-haitian-cuisine"
+			}
+		],
+		"text": "Edam Holland is PGI"
+	},
+	"facts": [
+		{
+			"k": "Gibraltar",
+			"v": "Called queso bola there, the name for the Edam ball, grated over rosto, a penne dish"
+		},
+		{
+			"k": "Haiti",
+			"v": "Said to be aged Edam; sold and used there as Tête de Maure in baked macaroni, gratins and onion pie"
+		}
+	]
+}

@@ -1,4 +1,4 @@
-import { RULE_PX, DROP, TIER_GAP, SIDE_GAP, rulerLead, type Node } from '../client/base';
+import { unitPx, DROP, TIER_GAP, SIDE_GAP, rulerLead, type Node } from '../client/base';
 import type { NodeSizes, RulerAndPanelContents, RulerLists } from './types';
 
 // Of the ways to put a ruler's lists in rows, the most rows tried.
@@ -12,8 +12,8 @@ export const hangUnderRulers = ({ photoRoom }: NodeSizes, { listsByValue }: Rule
 	const rulerBottom = (r: Node) => r.h / 2;
 	// Centred in the pill beside its photograph, unless that leaves too little room for what it measures before its nought.
 	const rulerTickX = (r: Node, v: number) => {
-		const nought = Math.max(r.x + photoRoom(r) / 2 - (r.scale!.to / 2) * RULE_PX, r.x - r.w / 2 + photoRoom(r) + rulerLead(r.scale!));
-		return nought + v * RULE_PX;
+		const nought = Math.max(r.x + photoRoom(r) / 2 - (r.scale!.to / 2) * unitPx(r.scale!), r.x - r.w / 2 + photoRoom(r) + rulerLead(r.scale!));
+		return nought + v * unitPx(r.scale!);
 	};
 	const hungY = new Map<Node, number>();
 	const listTopY = new Map<Node, number>();

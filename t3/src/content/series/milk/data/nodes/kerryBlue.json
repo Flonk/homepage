@@ -1,0 +1,43 @@
+{
+	"label": "Kerry Blue",
+	"example": true,
+	"family": "blue",
+	"regions": [
+		"IE"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-soft",
+	"days": [
+		60,
+		90
+	],
+	"estimated": true,
+	"setting": "rennet",
+	"rind": "natural",
+	"place": {
+		"region": "Kerry",
+		"lat": 52.27,
+		"lon": -9.7,
+		"x": 0.47306,
+		"y": 0.18764,
+		"located": "guess"
+	},
+	"confidence": "low",
+	"sources": {
+		"links": [
+			{
+				"name": "List of Irish cheeses",
+				"url": "https://en.wikipedia.org/wiki/List_of_Irish_cheeses"
+			}
+		],
+		"text": "Its names and facts, from these."
+	},
+	"facts": [
+		{
+			"k": "Maker",
+			"v": "Knockatee Cheese, Co. Kerry; traditional Stilton-style blue from raw cow's milk"
+		}
+	]
+}

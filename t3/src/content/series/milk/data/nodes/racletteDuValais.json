@@ -1,0 +1,90 @@
+{
+	"label": "Raclette du Valais",
+	"example": true,
+	"aka": [
+		"Walliser Raclette",
+		"Raclette valaisanne"
+	],
+	"family": "alpine",
+	"also": "washed",
+	"about": {
+		"text": "Raclette du Valais is a semi-hard Swiss cow cheese from the canton of Valais, protected as an AOP, made to be melted and scraped onto plates.",
+		"sources": {
+			"links": [
+				{
+					"name": "Cahier des charges Raclette du Valais AOP",
+					"url": "https://www.aop-igp.ch/fileadmin/Dokumente/kampagne2025/Pflichtenhefte/RAC/Pflichtenheft%20FR%20Raclette%20du%20Valais%20AOP.pdf"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"picture": {
+		"file": "Raclette 012.jpg",
+		"author": "Arnaud 25",
+		"license": "CC BY-SA 4.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Raclette_012.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"CH"
+	],
+	"beasts": [
+		"cow"
+	],
+	"firm": "semi-hard",
+	"days": [
+		60,
+		180
+	],
+	"setting": "rennet",
+	"rind": "washed",
+	"protected": "PDO",
+	"place": {
+		"region": "Valais",
+		"lat": 46.23,
+		"lon": 7.36,
+		"x": 0.52044,
+		"y": 0.21338,
+		"located": "knowledge"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Raclette_du_Valais"
+			},
+			{
+				"name": "de.wikipedia.org",
+				"url": "https://de.wikipedia.org/wiki/Walliser_Raclette"
+			},
+			{
+				"name": "fr.wikipedia.org",
+				"url": "https://fr.wikipedia.org/wiki/Raclette"
+			}
+		],
+		"text": "AOP since 2003, raw cow milk, ~6 kg wheels; ripening not stated in source"
+	},
+	"facts": [
+		{
+			"k": "Feed",
+			"v": "No silage"
+		},
+		{
+			"k": "Paste",
+			"v": "Ivory-coloured, smooth, with few small holes"
+		},
+		{
+			"k": "Shape",
+			"v": "Flat round or flat rectangular loaves"
+		}
+	]
+}

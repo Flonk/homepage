@@ -1,0 +1,50 @@
+{
+	"label": "Double-toned milk",
+	"example": true,
+	"about": {
+		"text": "Toned milk taken one step further: the fat is brought down to a minimum of 1.5 % and the non-fat solids raised to at least 9 %, by blending buffalo or cow milk with skim milk or skim milk powder and water. Sold in India as a cheap low-fat pasteurised milk, for example in pouches.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Toned_milk"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Mother Dairy Double Toned Milk.PNG",
+		"author": "Vineetmbbs",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Mother_Dairy_Double_Toned_Milk.PNG"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 1.5
+		},
+		"protein": {
+			"min": 3.3,
+			"max": 3.3,
+			"about": true
+		}
+	},
+	"facts": [
+		{
+			"k": "Legal basis",
+			"v": "Indian packaged-milk classes (FSSAI); minimums as given in Consumer Affairs test reports and secondary guides, not checked against the FSS Regulations text"
+		},
+		{
+			"k": "Pouch",
+			"v": "Mother Dairy pouch: 48 kcal, 3.3 g protein, 1.6 g fat per 100 ml"
+		}
+	]
+}

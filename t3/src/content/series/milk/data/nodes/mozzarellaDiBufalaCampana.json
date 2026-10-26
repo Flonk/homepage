@@ -1,0 +1,55 @@
+{
+	"label": "Mozzarella di Bufala Campana",
+	"example": true,
+	"family": "pastaFilata",
+	"regions": [
+		"IT"
+	],
+	"beasts": [
+		"buffalo"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		7
+	],
+	"setting": "rennet",
+	"rind": "none",
+	"protected": "PDO",
+	"place": {
+		"region": "Campania",
+		"lat": 40.8,
+		"lon": 14.6,
+		"x": 0.54056,
+		"y": 0.23421,
+		"located": "knowledge"
+	},
+	"confidence": "high",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Mozzarella_di_Bufala_Campana"
+			},
+			{
+				"name": "it.wikipedia.org",
+				"url": "https://it.wikipedia.org/wiki/Mozzarella_di_bufala_campana"
+			},
+			{
+				"name": "regione.lazio.it",
+				"url": "https://regione.lazio.it/sites/default/files/2022-02/AllegatoB-Elenco-prodotti.pdf"
+			}
+		],
+		"text": "Its facts, from these."
+	},
+	"facts": [
+		{
+			"k": "Zone",
+			"v": "Made in Campania, Lazio, Molise and Puglia; in Molise only in the comune of Venafro, and in Lazio in the provinces of Latina and Frosinone"
+		},
+		{
+			"k": "Making",
+			"v": "Whole buffalo milk heated to 33–39 °C and acidified with a whey starter, set with natural calf rennet, then stretched in water at about 95 °C"
+		}
+	]
+}

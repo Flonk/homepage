@@ -1,0 +1,58 @@
+{
+	"label": "Surti paneer",
+	"example": true,
+	"family": "paneer",
+	"about": {
+		"text": "a soft cheese associated with Surat in India, it is a type of paneer prepared from buffalo milk which is coagulated using rennet.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Surti_paneer"
+				}
+			],
+			"text": "rennet-set, unlike ordinary acid paneer"
+		}
+	},
+	"regions": [
+		"IN"
+	],
+	"beasts": [
+		"buffalo"
+	],
+	"firm": "fresh",
+	"days": [
+		0,
+		0
+	],
+	"setting": "rennet",
+	"rind": "none",
+	"place": {
+		"region": "Gujarat",
+		"lat": 21.17,
+		"lon": 72.83,
+		"x": 0.70231,
+		"y": 0.29835,
+		"located": "hint"
+	},
+	"confidence": "medium",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Surti_paneer"
+			},
+			{
+				"name": "Paneer (Wikipedia)",
+				"url": "https://en.wikipedia.org/wiki/Paneer"
+			}
+		],
+		"text": "rennet-set, unlike ordinary acid paneer"
+	},
+	"facts": [
+		{
+			"k": "Ripening",
+			"v": "Drained, then ripened in whey"
+		}
+	]
+}

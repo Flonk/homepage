@@ -1,0 +1,88 @@
+{
+	"label": "Manouri",
+	"example": true,
+	"family": "ricotta",
+	"about": {
+		"text": "Manouri is a Greek semi-soft, fresh white mixed milk-whey cheese made from goat or sheep milk as a by-product following the production of feta. It is produced primarily in Thessalia and Macedonia in central and northern Greece.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Manouri"
+				}
+			],
+			"text": "The first paragraph of its article, shortened."
+		}
+	},
+	"picture": {
+		"file": "Manouri.jpg",
+		"author": "Antonio Fajardo i López",
+		"license": "CC BY-SA 3.0",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikimedia Commons",
+					"url": "https://commons.wikimedia.org/wiki/File:Manouri.jpg"
+				}
+			],
+			"text": "The photograph, its author and its licence, from its page."
+		}
+	},
+	"regions": [
+		"GR"
+	],
+	"beasts": [
+		"goat",
+		"sheep"
+	],
+	"firm": "semi-soft",
+	"days": [
+		60,
+		60
+	],
+	"setting": "acid-heat",
+	"rind": "none",
+	"protected": "PDO",
+	"place": {
+		"region": "Thessaly",
+		"lat": 39.64,
+		"lon": 22.42,
+		"x": 0.56228,
+		"y": 0.23843,
+		"located": "hint"
+	},
+	"confidence": "high",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Manouri"
+			}
+		],
+		"text": "Its facts, from these. How long it is ripened and how firm it is, from Wikipedia (en): Manouri."
+	},
+	"composition": {
+		"fat": {
+			"min": 36,
+			"max": 38
+		},
+		"fatInDryMatter": {
+			"min": 70
+		},
+		"moisture": {
+			"min": 52,
+			"max": 52,
+			"about": true
+		},
+		"pH": {
+			"min": 5.9,
+			"max": 5.9
+		}
+	},
+	"facts": [
+		{
+			"k": "Salt",
+			"v": "About 0.8 % in the finished cheese"
+		}
+	]
+}

@@ -1,0 +1,35 @@
+{
+	"label": "Milk protein isolate (MPI)",
+	"at": 90,
+	"about": {
+		"text": "The most protein-rich milk protein powder: skim milk ultrafiltered and diafiltered until at least 89.5 % of the powder (ADPI definition; commonly sold as 90 % or more) is milk protein, with casein and whey proteins still in roughly their milk ratio. It cannot be made by mixing separately produced caseinate and whey protein. Used to fortify high-protein bars and heat-treated (UHT) drinks.",
+		"sources": {
+			"links": [
+				{
+					"name": "American Dairy Products Institute: Milk protein isolate (MPI)",
+					"url": "https://adpi.org/the-powerful-list-of-dairy-ingredients/mpi-milk-protein-isolate/"
+				}
+			],
+			"text": "Written from this source."
+		}
+	},
+	"composition": {
+		"protein": {
+			"min": 89.5
+		}
+	},
+	"facts": [
+		{
+			"k": "Protein quality",
+			"v": "PDCAAS 1.00, DIAAS 1.18 (ADPI)"
+		},
+		{
+			"k": "Stays soluble",
+			"v": "Above pH 6.0; heat-stable enough for low-acid UHT drinks (ADPI)"
+		},
+		{
+			"k": "Law",
+			"v": "Mixing separately made casein or caseinate with whey protein is not allowed (ADPI definition)"
+		}
+	]
+}
