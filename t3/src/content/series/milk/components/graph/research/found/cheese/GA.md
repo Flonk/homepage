@@ -1,0 +1,15 @@
+# Gabon (GA) — cheese
+Searched: WebSearch was not usable: this session's web search budget was exhausted before any query ran (0 results). No search-engine, Europe PMC, government, or food-writing searches were made, so the checklist kinds (fresh, brined, stretched, bloomy, blue, pressed, smoked, dried curd, plant coagulant, PDO/PGI, per-animal searches) were NOT searched by name.
+Searched: en.wikipedia.org/wiki/Cuisine_of_Gabon — read in full (2 pages of fetch); names no cheese or curd; only dairy item is sour cream served with baked bananas, no local name or milk source.
+Searched: en.wikipedia.org/wiki/List_of_cheeses — read in full (all three fetch windows); no cheese attributed to Gabon, Cameroon, Congo or Equatorial Guinea; only African entries are Areesh (Egypt) and a Nigerian cheese cited only in a reference title.
+Searched: fr.wikipedia.org/wiki/Cuisine_gabonaise — read; mentions no cheese, curd, fromage, lait caillé or other dairy product; animal foods are poultry, fish, game and bush meat.
+Searched: en.wikipedia.org/wiki/Gabon — read in full (all fetch windows); no mention of dairy, cattle, sheep, milk, cheese or curd; cuisine described as influenced by indigenous Central African and French cuisine, national dish palm-nut chicken.
+Searched: no fresh/pastoral dairy sources found; no goat, sheep, cattle or Mbororo dairy references opened.
+Second pass: Europe PMC queries for Gabon with cheese, curd, fromage, lait and pastoral/Mbororo/Fulani terms returned no Gabon cheese or curd paper; WebSearch then reported its budget as exhausted, so the cheese-specific web searches were not run.
+Second pass: opened dairy-products-from-france.com/?p=20446 (a Gabonese chef's account): "We don't make cheese in Gabon." The cheeses she knew at home were cream-cheese spread cubes; she describes imported spread and pasteurised Camembert, no local cheese. This is not a cheese entry, only a statement that Gabon does not make cheese locally.
+Second pass: opened Sagaci Gabon dairy page (?p=42314): it lists Cheese as a category name only; no Gabon cheese sales or brands given, so no entry.
+
+## Unconfirmed leads
+- None. Second pass found no local cheese or curd in Gabon; the only cheese-related source is the chef's statement that Gabon does not make cheese.
+Retry: WebSearch still unavailable; searched with WebFetch only. fr.wikipedia search "fromage Gabon" (107 hits): no Gabonese cheese or curd; Dègué article (West African, Bambara origin, not Gabonese) and Candia brand (sold in Gabon, a Sodiaal brand, not local) are not entries. en.wikipedia search "Gabon cheese/dairy/milk" (267 hits): no Gabonese cheese; Gorgonzola and Candia only. fr.wikipedia search "élevage bovin Gabon lait" (24 hits): no cattle, dairy or herder article for Gabon. Europe PMC "Gabon cheese" (85 hits): no cheese or curd paper; closest is a Libreville allergy study (PMID 37780101), not relevant.
+Retry: opened fr.wikipedia.org/wiki/Dègué (West African dessert, no Gabon link). Nothing else confirmed.

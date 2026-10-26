@@ -1,0 +1,43 @@
+# Guam (GU) — dairy
+Searched:
+- WebSearch "Guam traditional dairy products milk Chamorro": returned Wikipedia/visitguam/Guampedia pages; only coconut milk found, no animal-milk dairy.
+- WebSearch "Guam carabao milk", "Guam goat milk dairy farm", "Chamorro cuisine Wikipedia Cuisine of Guam": not performed, the session's web search budget was exhausted (200 per session).
+- Fetched en.wikipedia.org/wiki/Latiya_(dessert): custard dessert (sponge cake, vanilla custard, cinnamon); no milk or cream listed in recipe; article says milk, sugar and cinnamon were not in the original Chamorro diet (Spanish influence). Yielded no entry.
+- Fetched en.wikipedia.org/wiki/Kalamai_(dessert): corn and coconut pudding, no animal dairy; only coconut milk. Yielded no entry.
+- Fetched guampedia.com/ancient-chamorro-food-and-diet/: no animal milk; notes goats, cattle and carabao introduced in the Spanish period (1668-1898), no mention of their milk being used. Yielded lead only.
+- Fetched visitguam.com/chamoru-culture/food/: only coconut milk; no animal dairy.
+- Fetched en.wikipedia.org/wiki/Culture_of_Guam: no dairy, milk, butter, cheese or animal milk mentioned in food section.
+- Fetched en.wikipedia.org/wiki/Carabao: Guam carabao described as farm/cart animals and sometimes eaten; milk discussed only for the Philippines. Yielded lead only.
+- Fetched en.wikipedia.org/wiki/List_of_dairy_products (first ~100k of 207k chars): no Guam or Mariana Islands product listed.
+- Fetched en.wikipedia.org/wiki/Guam (first 100k of 296k chars): no livestock or dairy terms in visible text; Economy section truncated.
+- Fetched guampedia.com/kelaguen/: venison dish, no dairy.
+- Fetch en.wikipedia.org/wiki/Agriculture_in_Guam: 404. micor.agriculture.gov.au Guam page: timed out.
+- Not searched: ice cream, milk tea, infant formula, donor milk, ghee, yoghurt, butter, condensed milk, and the Chamorro/Chamoru-language terms for milk and dairy (search budget exhausted).
+- Second pass: WebSearch "Guam carabao milk dairy" (the only search that ran; the budget was exhausted for the rest): results were Philippine carabao dairy pages and one listing that names Guam only as a carabao range; no Guam carabao milk source.
+- Second pass: WebSearch for Chamorro milk terms, Guam ice cream and Guam cheese: not run, the search budget was exhausted. Not attempted by other means.
+- Second pass: fetched en.wikipedia.org/wiki/Economy_of_Guam: the Trade section lists "Agricultural products: fruits, copra, vegetables, eggs, pork, poultry, beef"; no milk, cheese or ice cream listed as local production.
+- Second pass: Europe PMC full text for PMC12045745 (Availability of Locally Produced Foods ..., 2025) returned HTTP 500; read the same study at https://pmc.ncbi.nlm.nih.gov/articles/PMC12045745/ instead: its Table 2 counts 2 locally produced dairy items available on Guam, 0 chosen as best option. The products are not named.
+- Second pass: fetched guampedia.com/ancient-chamorro-food-and-diet/ again: the only livestock sentence is "goats, cattle and carabao were introduced to Guam during the Spanish period (1668-1898)"; no milk use.
+- Second pass: fetched en.wikipedia.org/wiki/Latiya_(dessert) again: the custard is "vanilla custard" and "may or may not contain eggs"; no milk, cream or base is named. The article says the traditional diet did not originally include milk.
+- Second pass: Europe PMC keyword searches (Guam dairy or milk production; Mariana Islands goat milk; Micronesia local dairy production; Guam ice cream; Guam carabao cheese): no Guam dairy paper beyond PMC12045745.
+- Second pass: micor.agriculture.gov.au Guam page timed out again; not read.
+- Retry: WebSearch not available. Wikipedia (en) full-text search "Guam milk OR dairy OR carabao OR goat OR butter OR ice cream": 20 hits, none a Guam dairy article; Carabao is the only Guam-linked hit.
+- Retry: en.wikipedia.org/wiki/Cuisine_of_Guam opened: no milk, dairy, butter, cream, ice cream, carabao, goat, cattle or custard; historical diet given as fish, fowl, rice, breadfruit, taro, yams, bananas, coconuts. Yielded nothing.
+- Retry: en.wikipedia.org/wiki/Carabao opened: carabaos introduced to Guam in the 17th century, culturally significant to Chamorros; no sentence says carabao milk was drunk or made into products on Guam. Milk uses (kesong puti, pastillas, tibok-tibok) are all Philippine. Lead stays unconfirmed.
+- Retry: Chamorro-language Wikipedia full-text search "gatas leche lechi kalda": 0 hits. ch.wikipedia.org/wiki/Guam opened: no milk, dairy, carabao, goat, cattle, cheese or butter terms.
+- Retry: Spanish Wikipedia search "Guam leche queso mantequilla": only hit naming Guam is Buñuelo ("En Guam, son un plato tradicional"), a fritter with cheese (cheese excluded). No dairy entry.
+- Retry: en.wikipedia.org/wiki/Buñuelo opened: Guam appears only in the category list, no Guam recipe.
+- Retry: en.wikipedia.org/wiki/Roskette opened: Chamorro cornstarch cookie; recipe lists "milk or cream" and "butter or shortening" as ingredients. Milk is a minor ingredient of a baked good, not a dairy product: not written up, kept as lead.
+- Retry: en.wikipedia.org/wiki/Latiya_(dessert) reopened: custard base not named; traditional Chamorro diet "did not originally include milk"; custard linked to Spanish natillas. No entry.
+- Retry: pmc.ncbi.nlm.nih.gov/articles/PMC12045745/ reopened: supplementary basket lists whole milk, 1% milk, evaporated milk, cheddar, cottage cheese, mozzarella, ice milk; prices quoted are for CNMI, and the text does not show these as Guam-made. Kept as lead.
+- Retry: Wikidata search "Guam dairy": no results. Guampedia /carabao/ and /search/?q=milk returned 404.
+- Retry: result: 0 entries; no product confirmed in any opened page.
+
+## Unconfirmed leads
+- Carabao milk on Guam — carabao kept on Guam since the Spanish period (Carabao article, Guampedia) — no source found saying the milk was used — en.wikipedia.org/wiki/Carabao; www.guampedia.com/ancient-chamorro-food-and-diet/ — second pass: one Guam-specific search and the Carabao article gave no milk use; still unconfirmed.
+- Goat and cattle milk on Guam — goats and cattle introduced in the Spanish period (Guampedia) — no source found on milk use or dairy production — https://www.guampedia.com/ancient-chamorro-food-and-diet/ — second pass: Guampedia re-read gives no milk use; still unconfirmed.
+- Latiya custard — custard may be egg and milk based, but the Wikipedia article lists no milk ingredient — https://en.wikipedia.org/wiki/Latiya_(dessert) — second pass: the article does not name the custard base; still unconfirmed.
+- Commercial dairy or ice cream on Guam, and imported UHT or powdered milk in local use — mentioned only as a US-era food influence in visitguam.com — https://www.visitguam.com/chamorro-culture/food/ — second pass: PMC12045745 (https://pmc.ncbi.nlm.nih.gov/articles/PMC12045745/) confirms that Guam had 2 locally produced dairy items in a 2025 food survey, but does not name them; Economy of Guam lists no dairy among agricultural products. Still unconfirmed as a product.
+- Roskette (Chamorro cornstarch cookie) — recipe lists milk or cream and butter as ingredients; milk is a minor ingredient, not a dairy product — https://en.wikipedia.org/wiki/Roskette
+- Buñuelo on Guam — es.wikipedia search snippet says it is a traditional Guam dish, made with cheese (cheese excluded) — https://es.wikipedia.org/w/api.php?action=query&list=search&srsearch=Guam+leche+queso+mantequilla — search snippet only, page not opened.
+- Milk, evaporated milk and ice milk in a Guam food survey basket — named in a supplementary table, with prices for CNMI; not shown as Guam-made — https://pmc.ncbi.nlm.nih.gov/articles/PMC12045745/ — retail basket, not a product of Guam.

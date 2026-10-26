@@ -1,0 +1,36 @@
+# Niger (NE) — cheese
+Searched:
+- English Wikipedia "Nigerien cuisine" (WebFetch): no cheese named; only yogurt. Its navigation links to "List of cheeses" and "Brined cheese", not used further.
+- English Wikipedia "List of cheeses" (WebFetch): no entry for Niger; only Wagasi (Benin) with a Fulani attribution.
+- English Wikipedia "Wagasi" (WebFetch): describes the cheese and its names in Zarma-Songhai and Dendi; does not mention Niger as a place of making.
+- English Wikipedia "Wodaabe" (WebFetch): mentions milk and yogurt in the diet and zebu herds in Niger and Chad; no cheese named.
+- English Wikipedia "Gassire" (WebFetch): 404, page not present.
+- Europe PMC full-text search, "(cheese OR curd) AND (Niger OR Nigerien OR Fulani OR Wodaabe OR Tuareg OR Hausa)" (curl): broad results, mostly off-topic; no Niger cheese paper in the top results.
+- Europe PMC "Niger AND cheese", "Nigerien AND (milk OR dairy OR cheese)", "Niger AND (fromage OR cheese making OR curd)", "traditional cheese AND Niger", "Wagashi AND Niger", "Wagashi AND Benin AND Niger", "Gassire", "Peulh AND cheese", "Calotropis AND cheese", "Bororo AND (milk OR cheese)", "Tuareg AND (milk OR cheese OR curd)", "Zarma AND (milk OR cheese)", "Niger AND camel milk", "Agadez AND (milk OR cheese)", "Niger AND fermented milk AND Fulani", "Niger AND (yogurt OR yoghurt) AND (Fulani OR Peul OR pastoralist)": the relevant hits were PMC6456676, PMC12497476, PMC9489737 (Benin only), PMC10598763 (not opened).
+- Full text of PMC6456676 (Benin and Niger indigenous dairy yeast study), read via fullTextXML: Wagashi and fermented milk named; sampling in Niger was of fermented milk only.
+- Full text of PMC12497476 (West African soft cheese review), read via fullTextXML: Niger named among the countries where West African soft cheese is found; Fulani women make the cheese; method ranges and coagulants summarised.
+- Full text of PMC4784724, PMC6693199, PMC13564609: no Niger cheese found (cheese mentioned only in general terms, or Nigerian wara).
+- Peulh/Fulani and Tuareg/Wodaabe dairy: only general statements on milk, yogurt and herding, no named cheese.
+- WebSearch: NOT performed. The session's web search budget was exhausted before the first query ran (see the error on the first WebSearch call). Native-language (French, Hausa, Zarma, Fulfulde, Tamasheq) searches and the search-based checklist kinds were therefore not run; the checklist is incomplete.
+- Not opened (search-based only): government, dairy-board, GI register, cheese-shop and food-writing sources for Niger.
+- Second pass: PMC12497476 re-read for Niger, Peulh and Fulani lines: Figure 1 map and the text list Niger among the countries with documented West African soft cheese production; the reference list gives "Fresh Cheese 'Peulh Type'" (Advances in Dairy Research, 2016), not opened.
+- Second pass: Europe PMC searches "Niger AND (cheese OR soft cheese OR goat milk OR camel milk OR fresh cheese)" and the butter/ghee/yoghurt variant: no Niger cheese paper among the hits (only West African and Tunisian/Algerian/Ethiopian items).
+- Second pass: Wikipedia "Fula people" (food section, fetched in three parts): cheese named only as a processed form of milk and as goat cheese in the eghajira drink; no Niger cheese. Wikipedia "Hausa cuisine" and "Zarma people": no cheese.
+- Second pass: WebSearch budget exhausted (limit error on every call), so the French, Hausa, Zarma, Fulfulde and Tamasheq searches and the industrial and protected-cheese checks did not run.
+
+## Wagashi (Gassire in Fulfulde; wagasi in Zarma-Songhai; wagashi/wara/warankashi elsewhere in West Africa)
+- Animal(s): cow (zebu cattle in the Sahel; the paper's samples were cow milk)
+- Kind: soft fresh cheese (white, mild, unripened); a West African soft cheese (WASC)
+- What it is: A soft, mild West African cheese made from cow milk, eaten fried or boiled, or in sauces and stews as a meat or fish substitute. The Niger-Benin paper calls it the most appreciated dairy product in Benin and Niger alongside fermented milk.
+- How it is made: Milk is heated and coagulated with plant coagulant (leaf extract of Calotropis procera, a cysteine protease; in Benin the cheese is sometimes pink from soaking in a millet-leaf brine). After coagulation the heating stops, the curd is separated from the whey, drained, and moulded without pressing, then left at room temperature. The review notes that studies report preheating from 32 to 100 C (median around 57 C) and cooking 72.5 to 100 C for 10–65 min, and that most do not give these parameters fully. Shelf life at ambient temperature does not exceed about three days.
+- Texture / ripening: soft and mild; unripened.
+- Where / who: Made and sold across the West African savanna. The Niger paper and the review both link the cheese with Fulani (Fulbe) herders and women, who supply the milk and sell the cheese at markets and roadside stalls. Samples in the paper came from markets in Benin; no Niger-made cheese was sampled. Protected status: none found.
+- Sources: https://www.ebi.ac.uk/europepmc/webservices/rest/PMC6456676/fullTextXML — Wagashi cheese described as a soft fresh cow-milk cheese, Calotropis coagulation, drained and moulded, consumed in Benin and Niger; Niger sampled fermented milk only; https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12497476/fullTextXML (review, PMC12497476) — West African soft cheese, Fulani production, Niger named among WASC countries (citing O'Connor 1993), processing ranges and coagulants; https://en.wikipedia.org/wiki/Wagasi — description of the cheese and its names in Zarma-Songhai and Dendi, Fulani attribution; second pass: PMC12497476 Figure 1 map — Niger shown among the countries with documented West African soft cheese production (the map and text, not the cited O'Connor 1993 alone).
+- Unsure: Niger as a place of making is inferred, not shown by a source that describes Nigerien cheese production. The Niger paper sampled Wagashi only in Benin, and it says Wagashi is "appreciated by people from Benin, Niger". The Wikipedia Wagasi page does not name Niger. Treat the Niger listing as probable but unconfirmed. The review's WASC list naming Niger traces back to O'Connor (1993), which was not opened.
+
+## Unconfirmed leads
+- Fermented milk of Niger (the "naturally fermented milk" sampled at Fulani camps in Niamey, Tillaberi and Dosso) — PMC6456676 (opened, not cheese: spontaneously fermented milk, so not an entry).
+- Souroundou / dègue (couscous from millet with yogurt or curdled milk; a Zarma-Songhai dish, mentioned in passing) — PMC6693199 (opened; a dish, not a cheese; not an entry).
+- Local cheese of Niger under the WASC / "Fulani cheese" names, e.g. "Peulh type" fresh cheese — named only in a reference title in PMC12497476 (reference list, not opened) — second pass: the title is in the reference list, but the article itself was not opened and it is not shown as Niger-made.
+- Hausa and Zarma local names for fresh or whey cheese — no source found — second pass: WebSearch budget exhausted; no page opened.
+- Niger goat, sheep, camel or mare cheese — no source found — second pass: Europe PMC camel and goat cheese queries returned no Niger paper; not searched further.
