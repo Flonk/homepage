@@ -1,0 +1,31 @@
+{
+	"from": [
+		"skimmed"
+	],
+	"to": [
+		"milkSpray"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "water, to over 10 % milk by volume",
+				"note": "Above 30 % milk, harmless mould grew on the upper leaves."
+			},
+			{
+				"type": "custom",
+				"name": "spray the leaves",
+				"note": "Twice a week from the first signs of mildew at 10 % or more, or once a week at 20-50 %."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Vegalab: Milk spray, what doesn't work",
+					"url": "https://www.vegalab.com/crop-science/knowledge/myths/milk-spray"
+				}
+			],
+			"text": "The dilution and spraying of the 1999 Brazilian greenhouse tests on zucchini, as summarised there; fresh cow's milk was used, not skimmed, and the page gives no mixing or spray volumes."
+		}
+	}
+}

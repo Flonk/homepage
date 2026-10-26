@@ -1,0 +1,45 @@
+{
+	"from": [
+		"tulum"
+	],
+	"to": [
+		"branzaDeBurduf"
+	],
+	"variant": true,
+	"step": "knead with salt, pack in bark or stomach",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia, Brânză de burduf",
+				"url": "https://en.wikipedia.org/wiki/Br%C3%A2nz%C4%83_de_burduf"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "cut",
+				"how": "cut",
+				"note": "The matured curd (caş dospit, an Emmental-like cheese) in small pieces."
+			},
+			{
+				"type": "salt"
+			},
+			{
+				"type": "custom",
+				"name": "pack",
+				"note": "Into a sheep stomach, a cleaned sheep skin, or a pine/fir bark tube."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia, Brânză de burduf",
+					"url": "https://en.wikipedia.org/wiki/Br%C3%A2nz%C4%83_de_burduf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

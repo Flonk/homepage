@@ -1,0 +1,51 @@
+{
+	"from": [
+		"yoghurt"
+	],
+	"to": [
+		"ayran"
+	],
+	"step": "dilute, salt",
+	"text": "Ayran is yoghurt thinned with water and lightly salted after fermentation, so it keeps the yoghurt cultures' acidity and flavour in a thin, drinkable form.",
+	"sources": {
+		"links": [
+			{
+				"name": "German MilchPQV, Anlage 8 (2025)",
+				"url": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html"
+			},
+			{
+				"name": "Codex Standard for Fermented Milks (CXS 243-2003)",
+				"url": "https://www.fao.org/input/download/standards/400/CXS_243e.pdf"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"note": "To a protein above 1.6 %.",
+				"what": "water"
+			},
+			{
+				"type": "salt",
+				"strength": {
+					"max": 1.1
+				}
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "German MilchPQV, Anlage 8 (2025)",
+					"url": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html"
+				},
+				{
+					"name": "Codex Standard for Fermented Milks (CXS 243-2003)",
+					"url": "https://www.fao.org/input/download/standards/400/CXS_243e.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

@@ -1,0 +1,69 @@
+{
+	"from": [
+		"rennetCurd"
+	],
+	"to": [
+		"freshCheese"
+	],
+	"step": "drain fresh",
+	"text": "Fresh cheese is drained and eaten straight away, without ripening, so it stays moist (more than 73 % water in the fat-free mass under German law) and mild.",
+	"sources": {
+		"links": [
+			{
+				"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
+				"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+			},
+			{
+				"name": "Käseverordnung § 6 (Germany)",
+				"url": "https://lxgesetze.de/käsev/6"
+			},
+			{
+				"name": "Codex General Standard for Cheese (CXS 283-1978)",
+				"url": "https://www.fao.org/input/download/standards/175/CXS_283e.pdf"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"temperature": {
+					"min": 22,
+					"max": 32
+				},
+				"seconds": {
+					"min": 18000,
+					"max": 57600
+				},
+				"pH": {
+					"min": 4.6,
+					"max": 4.7
+				},
+				"note": "Mostly acid-set, with a little rennet."
+			}
+		],
+		"text": "Only the lactic kind is soured; the rennet-set kind (queso fresco, Mató, Stracchino) is not. No ripening.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+				},
+				{
+					"name": "Käseverordnung § 6 (Germany)",
+					"url": "https://lxgesetze.de/käsev/6"
+				},
+				{
+					"name": "Codex General Standard for Cheese (CXS 283-1978)",
+					"url": "https://www.fao.org/input/download/standards/175/CXS_283e.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

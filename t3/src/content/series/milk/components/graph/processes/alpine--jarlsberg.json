@@ -1,0 +1,57 @@
+{
+	"from": [
+		"alpine"
+	],
+	"to": [
+		"jarlsberg"
+	],
+	"variant": true,
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Jarlsberg cheese",
+				"url": "https://en.wikipedia.org/wiki/Jarlsberg_cheese"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"kinds": [
+					"propionic"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "Propionibacterium freudenreichii",
+							"kind": "bacterium",
+							"does": [
+								"gas"
+							]
+						}
+					],
+					"by": [
+						"starter"
+					]
+				},
+				"seconds": {
+					"min": 7776000
+				},
+				"note": "Its formula is a trade secret and the starter cultures are Tine's; carbon dioxide from the bacterium forms the characteristic eyes."
+			}
+		],
+		"text": "Formula is a trade secret; also made aged 9, 12 and 15 months.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Jarlsberg cheese",
+					"url": "https://en.wikipedia.org/wiki/Jarlsberg_cheese"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

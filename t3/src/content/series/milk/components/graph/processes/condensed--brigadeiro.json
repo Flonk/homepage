@@ -1,0 +1,50 @@
+{
+	"from": [
+		"condensed"
+	],
+	"to": [
+		"brigadeiro"
+	],
+	"step": "cook with cocoa and butter, roll",
+	"text": "The condensed milk mix is cooked, stirred, until it pulls from the pan, cooled, rolled into balls and coated so they do not stick.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Brigadeiro",
+				"url": "https://en.wikipedia.org/wiki/Brigadeiro"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "cook",
+				"note": "To the soft-ball stage, until it pulls from the pan."
+			},
+			{
+				"type": "heat",
+				"does": "cool"
+			},
+			{
+				"type": "custom",
+				"name": "roll"
+			},
+			{
+				"type": "custom",
+				"name": "coat",
+				"note": "In chocolate sprinkles."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Brigadeiro",
+					"url": "https://en.wikipedia.org/wiki/Brigadeiro"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

@@ -1,7 +1,5 @@
 {
 	"label": "Re-distilled arkhi\n(artz, khorz)",
-	"from": "arkhi",
-	"step": "distil again",
 	"about": {
 		"text": "Arkhi distilled again to make it stronger. In Mongolian the grades have their own names: arz is arkhi distilled a second time and khorz is arz distilled once more, and a proverb warns that distilling khorz again gives khor, poison.",
 		"sources": {
@@ -17,36 +15,6 @@
 	"regions": [
 		"MN"
 	],
-	"how": {
-		"text": "The arkhi is run through the still again. In the Mongolian heritage description, distilling fermented milk makes arz and distilling zar again makes khorz, a strong spirit. No temperatures or strengths were found in an opened source, so no table.",
-		"sources": {
-			"links": [
-				{
-					"name": "National Center for Cultural Heritage (Mongolia): The traditional technique of distilling milk alcohol (Shimiin arkhi)",
-					"url": "https://www.irci.jp/rdb/item/13428"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "custom",
-					"name": "distil",
-					"note": "Run through the still again."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "National Center for Cultural Heritage (Mongolia): The traditional technique of distilling milk alcohol (Shimiin arkhi)",
-						"url": "https://www.irci.jp/rdb/item/13428"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"examples": [
 		"artz",
 		"khorz"

@@ -1,0 +1,124 @@
+{
+	"from": [
+		"alpine"
+	],
+	"to": [
+		"gruyere"
+	],
+	"variant": true,
+	"step": "smear the rind",
+	"text": "Instead of a warm propionic room, Gruyère goes straight into cool, humid cellars where the wheels are rubbed with salt water to grow a smear. The smear drives flavour and aroma, and holes are welcome but not required.",
+	"sources": {
+		"links": [
+			{
+				"name": "Le Gruyère AOP Pflichtenheft (BLW)",
+				"url": "https://www.aop-igp.ch/fileadmin/Dokumente/kampagne2025/Pflichtenhefte/GRU/Pflichtenheft%20DE%20Gruyere%20AOP.pdf"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"min": 12,
+					"max": 18
+				}
+			},
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic",
+					"smear"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "whey (Sirten) cultures",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						}
+					]
+				},
+				"note": "Optionally with RMK milk cultures."
+			},
+			{
+				"type": "coagulate",
+				"by": "rennet",
+				"temperature": {
+					"min": 31,
+					"max": 31,
+					"about": true
+				},
+				"seconds": {
+					"min": 1800,
+					"max": 3000
+				},
+				"note": "In an open copper vat."
+			},
+			{
+				"type": "heat",
+				"does": "cook",
+				"temperature": {
+					"min": 54,
+					"max": 59
+				}
+			},
+			{
+				"type": "press",
+				"seconds": {
+					"min": 57600
+				},
+				"note": "Wheels of 55–65 cm, 25–40 kg."
+			},
+			{
+				"type": "salt",
+				"how": "brine",
+				"temperature": {
+					"min": 12,
+					"max": 20
+				},
+				"note": "In a brine of over 20 °Bé."
+			},
+			{
+				"type": "ferment",
+				"does": "smear",
+				"seconds": {
+					"min": 691200,
+					"max": 1036800
+				},
+				"note": "Rubbed daily with salt water, which starts the smear."
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"temperature": {
+					"min": 12,
+					"max": 18
+				},
+				"seconds": {
+					"min": 12960000
+				},
+				"humidity": {
+					"min": 92,
+					"max": 92,
+					"about": true
+				}
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Le Gruyère AOP Pflichtenheft (BLW)",
+					"url": "https://www.aop-igp.ch/fileadmin/Dokumente/kampagne2025/Pflichtenhefte/GRU/Pflichtenheft%20DE%20Gruyere%20AOP.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

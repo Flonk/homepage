@@ -1,0 +1,43 @@
+{
+	"from": [
+		"lacticCheese"
+	],
+	"to": [
+		"katikiDomokou"
+	],
+	"variant": true,
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia, Katiki Domokou",
+				"url": "https://en.wikipedia.org/wiki/Katiki_Domokou"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "pasteurise"
+			},
+			{
+				"type": "coagulate",
+				"note": "Without rennet; cultures not named.",
+				"by": "acid"
+			},
+			{
+				"type": "drain",
+				"by": "cloth"
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia, Katiki Domokou",
+					"url": "https://en.wikipedia.org/wiki/Katiki_Domokou"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

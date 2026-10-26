@@ -1,0 +1,93 @@
+{
+	"from": [
+		"blue"
+	],
+	"to": [
+		"danishBlue"
+	],
+	"variant": true,
+	"text": "Homogenising the cheese milk, a Danish practice since 1927, gives Danablu its sharp, piquant flavour and cuttable, slightly crumbly texture. Needle piercing after salting spreads the blue mould through holes and cracks while the rind stays almost clean.",
+	"sources": {
+		"links": [
+			{
+				"name": "Danablu PGI amendment and single document, OJ C 151 (2012)",
+				"url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52012XC0526(02)"
+			},
+			{
+				"name": "Danablu summary sheet (eAmbrosia)",
+				"url": "https://webgate.ec.europa.eu/eambrosia-api/api/v1/attachments/71390"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "standardise"
+			},
+			{
+				"type": "homogenise"
+			},
+			{
+				"type": "pasteurise",
+				"note": "Thermised or pasteurised."
+			},
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic",
+					"mould"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "blue mould",
+							"kind": "mould"
+						}
+					],
+					"by": [
+						"starter"
+					]
+				},
+				"note": "An acid starter goes in together with the blue mould."
+			},
+			{
+				"type": "coagulate",
+				"by": "rennet"
+			},
+			{
+				"type": "mould",
+				"note": "A flat cylinder of about 3 kg or a block of about 4 kg."
+			},
+			{
+				"type": "salt"
+			},
+			{
+				"type": "ferment",
+				"does": "pierce",
+				"note": "With needles."
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"seconds": {
+					"min": 3024000
+				}
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Danablu PGI amendment and single document, OJ C 151 (2012)",
+					"url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52012XC0526(02)"
+				},
+				{
+					"name": "Danablu summary sheet (eAmbrosia)",
+					"url": "https://webgate.ec.europa.eu/eambrosia-api/api/v1/attachments/71390"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

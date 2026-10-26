@@ -1,0 +1,100 @@
+{
+	"from": [
+		"pastaFilata"
+	],
+	"to": [
+		"tenili"
+	],
+	"variant": true,
+	"step": "braid in hot whey, pack in clay pot",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Tenili",
+				"url": "https://en.wikipedia.org/wiki/Tenili"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "separate",
+				"off": "cream",
+				"by": "gravity"
+			},
+			{
+				"type": "custom",
+				"name": "rest",
+				"seconds": {
+					"min": 86400,
+					"max": 86400
+				}
+			},
+			{
+				"type": "custom",
+				"name": "stretch",
+				"seconds": {
+					"max": 1500
+				},
+				"note": "Folded while dipped in hot whey."
+			},
+			{
+				"type": "heat",
+				"does": "cool"
+			},
+			{
+				"type": "salt",
+				"seconds": {
+					"min": 900,
+					"max": 900
+				},
+				"how": "brine"
+			},
+			{
+				"type": "drain",
+				"by": "hang",
+				"seconds": {
+					"min": 36000,
+					"max": 36000
+				}
+			},
+			{
+				"type": "cut",
+				"how": "cut"
+			},
+			{
+				"type": "custom",
+				"name": "rest",
+				"seconds": {
+					"min": 86400,
+					"max": 172800
+				}
+			},
+			{
+				"type": "custom",
+				"name": "coat",
+				"note": "With the skimmed cream."
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"seconds": {
+					"min": 5184000,
+					"max": 5184000,
+					"about": true
+				},
+				"note": "Stuffed into a clay pot stood upside down on ash."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Tenili",
+					"url": "https://en.wikipedia.org/wiki/Tenili"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

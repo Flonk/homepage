@@ -52,65 +52,6 @@
 		"located": "hint"
 	},
 	"confidence": "high",
-	"how": {
-		"text": "Milk is scalded, cooled a little and acidified with vinegar, the same heat-and-acid set as chhena.",
-		"sources": {
-			"links": [
-				{
-					"name": "French Wikipedia: Brousse du Rove",
-					"url": "https://fr.wikipedia.org/wiki/Brousse_du_Rove"
-				},
-				{
-					"name": "Commission Implementing Regulation (EU) 2020/708 (PDO)",
-					"url": "https://eur-lex.europa.eu/eli/reg_impl/2020/708/oj"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "heat",
-					"does": "heat",
-					"temperature": {
-						"min": 90,
-						"max": 90,
-						"about": true
-					}
-				},
-				{
-					"type": "heat",
-					"does": "cool",
-					"temperature": {
-						"min": 70,
-						"max": 70,
-						"about": true
-					}
-				},
-				{
-					"type": "acidify",
-					"with": "alcohol vinegar"
-				},
-				{
-					"type": "mould",
-					"note": "Into conical moulds about 12 cm long."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "French Wikipedia: Brousse du Rove",
-						"url": "https://fr.wikipedia.org/wiki/Brousse_du_Rove"
-					},
-					{
-						"name": "Commission Implementing Regulation (EU) 2020/708 (PDO)",
-						"url": "https://eur-lex.europa.eu/eli/reg_impl/2020/708/oj"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"sources": {
 		"links": [
 			{

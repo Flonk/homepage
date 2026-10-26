@@ -1,0 +1,130 @@
+{
+	"from": [
+		"raw"
+	],
+	"to": [
+		"rennetCurd",
+		"sweetWhey"
+	],
+	"step": "set with rennet",
+	"processing": {
+		"steps": [
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [],
+					"by": [
+						"starter"
+					]
+				},
+				"seconds": {
+					"min": 1800,
+					"max": 3600
+				},
+				"note": "The starter is pre-ripened before the rennet goes in."
+			},
+			{
+				"type": "coagulate",
+				"by": "rennet",
+				"temperature": {
+					"min": 31,
+					"max": 33
+				},
+				"seconds": {
+					"min": 300,
+					"max": 420
+				},
+				"note": "Rennet (calf, microbial or plant) cuts casein at the kappa-casein bond; cut after about 30 min."
+			},
+			{
+				"type": "cut",
+				"how": "cut",
+				"size": {
+					"min": 1,
+					"max": 15
+				}
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+				},
+				{
+					"name": "Codex General Standard for Cheese (CXS 283-1978)",
+					"url": "https://www.fao.org/input/download/standards/175/CXS_283e.pdf"
+				},
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 18 Milk and whey fractionation",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
+				},
+				{
+					"name": "Wikipedia: Whey",
+					"url": "https://en.wikipedia.org/wiki/Whey"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	},
+	"legs": {
+		"rennetCurd": {
+			"step": "the curd",
+			"text": "Rennet makes the casein clot into a gel. Cutting the gel into grains lets the whey run out, and this whey is the sweet whey; cheese curd and sweet whey come from the one draining. The finer the cut, the drier the finished cheese.",
+			"sources": {
+				"links": [
+					{
+						"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+					},
+					{
+						"name": "Codex General Standard for Cheese (CXS 283-1978)",
+						"url": "https://www.fao.org/input/download/standards/175/CXS_283e.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		},
+		"sweetWhey": {
+			"step": "the whey",
+			"text": "Rennet sets the casein but leaves the whey proteins in solution, so the liquid that drains off keeps nearly all the milk's lactose and whey protein and is only mildly acidic. Little acid has formed, so the whey proteins and the caseinomacropeptide stay intact, which is why this whey is the starting point for most whey products.",
+			"sources": {
+				"links": [
+					{
+						"name": "Tetra Pak Dairy Processing Handbook, ch. 18 Milk and whey fractionation",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
+					},
+					{
+						"name": "Wikipedia: Whey",
+						"url": "https://en.wikipedia.org/wiki/Whey"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			},
+			"processing": {
+				"steps": [
+					{
+						"type": "drain"
+					}
+				],
+				"sources": {
+					"links": [
+						{
+							"name": "Tetra Pak Dairy Processing Handbook, ch. 18 Milk and whey fractionation",
+							"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
+						},
+						{
+							"name": "Wikipedia: Whey",
+							"url": "https://en.wikipedia.org/wiki/Whey"
+						}
+					],
+					"text": "The table, the facts and the words on how it is made, from these."
+				}
+			}
+		}
+	}
+}

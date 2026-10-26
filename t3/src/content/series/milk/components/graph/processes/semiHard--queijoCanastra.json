@@ -1,0 +1,86 @@
+{
+	"from": [
+		"semiHard"
+	],
+	"to": [
+		"queijoCanastra"
+	],
+	"variant": true,
+	"step": "add pingo, press by hand",
+	"text": "Raw cow's milk is set with commercial rennet and the pingo, the drained whey of yesterday's cheeses, which carries the dairy's own lactic flora from batch to batch. The curd is pressed in the mould and the cheese is turned, salted and ripened for a few days to weeks.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Queijo Canastra",
+				"url": "https://en.wikipedia.org/wiki/Queijo_Canastra"
+			},
+			{
+				"name": "Nero et al. 2017 (UFV)",
+				"url": "https://locus.ufv.br/items/c274daa4-f4f0-461d-8b13-333169999471"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "coagulate",
+				"by": "rennet",
+				"note": "With coalho and the pingo, the previous day's drained whey."
+			},
+			{
+				"type": "press"
+			},
+			{
+				"type": "custom",
+				"name": "turn"
+			},
+			{
+				"type": "salt"
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"kinds": [
+					"lactic",
+					"yeast"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "lactic acid bacteria",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						},
+						{
+							"name": "yeasts",
+							"kind": "yeast"
+						}
+					],
+					"by": [
+						"backslop"
+					]
+				},
+				"seconds": {
+					"min": 1209600
+				}
+			}
+		],
+		"text": "The pingo is whey drained from the previous day's cheeses. Some makers use rala, scraped from a 3-5 day old cheese. A survey of artisanal Minas cheeses found mostly Lactobacillus, with Lactococcus, Enterococcus and Weissella.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Queijo Canastra",
+					"url": "https://en.wikipedia.org/wiki/Queijo_Canastra"
+				},
+				{
+					"name": "Nero et al. 2017 (UFV)",
+					"url": "https://locus.ufv.br/items/c274daa4-f4f0-461d-8b13-333169999471"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

@@ -1,0 +1,44 @@
+{
+	"from": [
+		"culturedButter"
+	],
+	"to": [
+		"butterSculpture"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"min": 1.7,
+					"max": 4.4
+				},
+				"note": "The butter is worked in a chilled case or room, about 35-40 °F, and has to feel like cold cream."
+			},
+			{
+				"type": "custom",
+				"name": "build on frame",
+				"note": "Butter is plastered onto a frame of wood and wire (or steel) that holds it up."
+			},
+			{
+				"type": "custom",
+				"name": "carve in layers",
+				"note": "Large amounts set the general shape, then smaller ones refine it layer by layer."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Butter sculpture",
+					"url": "https://en.wikipedia.org/wiki/Butter_sculpture"
+				},
+				{
+					"name": "Boston Globe: how butter sculptures are made for the state fairs",
+					"url": "https://www.bostonglobe.com/2023/09/12/lifestyle/butter-sculptures-how-made-state-fair"
+				}
+			],
+			"text": "The cold work space of 35-40 °F, the butter that feels like cold cream, the wire and wood frame, and the layering from broad shape to detail, from these."
+		}
+	}
+}

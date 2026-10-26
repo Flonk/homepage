@@ -1,0 +1,88 @@
+{
+	"from": [
+		"hard"
+	],
+	"to": [
+		"alpine"
+	],
+	"step": "scald, ripen",
+	"text": "Alpine cheeses are scalded hot and ripened for months in large wheels. Emmental-type cheeses are also given propionic bacteria and a spell in a warm room, where the gas they make grows the eyes; Gruyère-type cheeses stay in a cool cellar and are smeared, and have few eyes or none.",
+	"sources": {
+		"links": [
+			{
+				"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
+				"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+			},
+			{
+				"name": "Emmentaler AOP Pflichtenheft (BLW, rev. 2016)",
+				"url": "https://2021.aop-igp.ch/fileadmin/Dokumente/Pflichtenhefter/Emmentaler_Pflichtenheft.pdf"
+			},
+			{
+				"name": "Le Gruyère AOP Pflichtenheft (BLW)",
+				"url": "https://www.aop-igp.ch/fileadmin/Dokumente/kampagne2025/Pflichtenhefte/GRU/Pflichtenheft%20DE%20Gruyere%20AOP.pdf"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "cook",
+				"temperature": {
+					"min": 50,
+					"max": 56
+				}
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"kinds": [
+					"propionic",
+					"smear"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "propionic acid bacteria",
+							"kind": "bacterium",
+							"does": [
+								"gas"
+							]
+						}
+					]
+				},
+				"temperature": {
+					"min": 19,
+					"max": 24
+				}
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"seconds": {
+					"min": 7776000,
+					"about": true
+				}
+			}
+		],
+		"text": "Emmental-type cheeses get a spell in a warm room where the propionic bacteria grow the eyes; Gruyère-type cheeses stay in a cool cellar and are smeared, with few eyes or none.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+				},
+				{
+					"name": "Emmentaler AOP Pflichtenheft (BLW, rev. 2016)",
+					"url": "https://2021.aop-igp.ch/fileadmin/Dokumente/Pflichtenhefter/Emmentaler_Pflichtenheft.pdf"
+				},
+				{
+					"name": "Le Gruyère AOP Pflichtenheft (BLW)",
+					"url": "https://www.aop-igp.ch/fileadmin/Dokumente/kampagne2025/Pflichtenhefte/GRU/Pflichtenheft%20DE%20Gruyere%20AOP.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

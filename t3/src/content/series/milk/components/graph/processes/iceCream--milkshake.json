@@ -1,0 +1,36 @@
+{
+	"from": [
+		"iceCream"
+	],
+	"to": [
+		"milkshake"
+	],
+	"step": "blend with milk",
+	"text": "Ice cream and milk are blended with the flavouring in a milkshake machine or blender; very thick versions are called concrete, a shake with malted milk powder is a malt.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Milkshake",
+				"url": "https://en.wikipedia.org/wiki/Milkshake"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "ice cream and flavouring"
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Milkshake",
+					"url": "https://en.wikipedia.org/wiki/Milkshake"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

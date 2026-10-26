@@ -1,0 +1,65 @@
+{
+	"from": [
+		"skimmedPowder"
+	],
+	"to": [
+		"tonedMilk"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 38,
+					"max": 43
+				},
+				"note": "Water is warmed in the pasteurising vat first."
+			},
+			{
+				"type": "add",
+				"what": "skim milk powder"
+			},
+			{
+				"type": "add",
+				"what": "whole buffalo milk"
+			},
+			{
+				"type": "filter"
+			},
+			{
+				"type": "pasteurise",
+				"temperature": {
+					"min": 63,
+					"max": 63
+				},
+				"seconds": {
+					"min": 1800,
+					"max": 1800
+				}
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"min": 5,
+					"max": 5
+				}
+			}
+		],
+		"text": "The milk is to reach at least 3.0 % fat and 8.5 % solids-not-fat.",
+		"sources": {
+			"links": [
+				{
+					"name": "Special types of milk (lecture slides), SlideShare",
+					"url": "https://www.slideshare.net/slideshow/special-types-of-milk/12334502"
+				},
+				{
+					"name": "Toned milk, Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Toned_milk"
+				}
+			],
+			"text": "The flowsheet and its temperatures from the slides, a teaching source; the fat and solids targets from both."
+		}
+	}
+}

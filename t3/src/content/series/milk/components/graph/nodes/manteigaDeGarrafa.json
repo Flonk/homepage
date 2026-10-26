@@ -37,51 +37,6 @@
 	"regions": [
 		"BR"
 	],
-	"how": {
-		"label": "cook the cream down",
-		"text": "Cream is boiled down at 110-120 °C until nearly all the water has gone and the milk solids brown and sink. The golden fat is poured off, filtered and sold in a bottle, so it is closer to ghee made straight from cream than to clarified butter.",
-		"sources": {
-			"links": [
-				{
-					"name": "MAPA IN 30/2001, Anexo I",
-					"url": "https://wikisda.agricultura.gov.br/dipoa_baselegal/in_30-2001_rt_manteiga_garrafa_queijo_coalho_queijo_manteiga.pdf"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "evaporate",
-					"temperature": {
-						"min": 110,
-						"max": 120
-					},
-					"note": "Until bubbling stops and the non-fat solids settle as coffee-brown dregs (borra)."
-				},
-				{
-					"type": "custom",
-					"name": "decant"
-				},
-				{
-					"type": "filter"
-				},
-				{
-					"type": "custom",
-					"name": "bottle"
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "MAPA IN 30/2001, Anexo I",
-						"url": "https://wikisda.agricultura.gov.br/dipoa_baselegal/in_30-2001_rt_manteiga_garrafa_queijo_coalho_queijo_manteiga.pdf"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"composition": {
 		"fat": {
 			"min": 98.5

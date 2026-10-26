@@ -1,0 +1,70 @@
+{
+	"from": [
+		"skimmed"
+	],
+	"to": [
+		"ultrafilteredMilk"
+	],
+	"step": "ultrafilter, blend the cream back",
+	"text": "The milk is separated, the skim part is pushed through a membrane that holds back the proteins, and the cream and the minerals that went through are put back, so the milk keeps its fat and gets denser in protein.",
+	"sources": {
+		"links": [
+			{
+				"name": "SDSU Extension, What is an ultra-filtered milk product?",
+				"url": "https://extension.sdstate.edu/what-ultra-filtered-milk-product"
+			},
+			{
+				"name": "Wikipedia: fairlife",
+				"url": "https://en.wikipedia.org/wiki/Fairlife"
+			},
+			{
+				"name": "fairlife: FAQ",
+				"url": "https://fairlife.com/frequently-asked-questions"
+			},
+			{
+				"name": "DairyReporter: The rise of ultrafiltration (2026)",
+				"url": "https://www.dairyreporter.com/Article/2026/03/13/how-ultrafiltered-milk-is-made-benefits-protein-process/"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "ultrafilter",
+				"note": "Cold, through a membrane that holds back the proteins (80 % casein, 20 % whey) and fat and passes water, lactose and some minerals."
+			},
+			{
+				"type": "custom",
+				"name": "return minerals",
+				"note": "The lactose-rich stream is split again by nanofiltration and reverse osmosis, and the minerals go back."
+			},
+			{
+				"type": "add",
+				"what": "lactase",
+				"note": "For the lactose left over; it is on the label."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "SDSU Extension, What is an ultra-filtered milk product?",
+					"url": "https://extension.sdstate.edu/what-ultra-filtered-milk-product"
+				},
+				{
+					"name": "Wikipedia: fairlife",
+					"url": "https://en.wikipedia.org/wiki/Fairlife"
+				},
+				{
+					"name": "fairlife: FAQ",
+					"url": "https://fairlife.com/frequently-asked-questions"
+				},
+				{
+					"name": "DairyReporter: The rise of ultrafiltration (2026)",
+					"url": "https://www.dairyreporter.com/Article/2026/03/13/how-ultrafiltered-milk-is-made-benefits-protein-process/"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

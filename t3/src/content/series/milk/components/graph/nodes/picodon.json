@@ -56,65 +56,6 @@
 		"located": "hint"
 	},
 	"confidence": "high",
-	"how": {
-		"sources": {
-			"links": [
-				{
-					"name": "INAO single document, Picodon AOP (Reg. 510/2006)",
-					"url": "https://extranet.inao.gouv.fr/fichier/PNODUPicodon.pdf"
-				},
-				{
-					"name": "Wikipedia, Picodon",
-					"url": "https://en.wikipedia.org/wiki/Picodon"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "coagulate",
-					"by": "rennet-acid"
-				},
-				{
-					"type": "ferment",
-					"does": "ripen",
-					"kinds": [
-						"lactic",
-						"mould"
-					],
-					"adds": {
-						"microbes": [
-							{
-								"name": "moulds on the rind",
-								"kind": "mould",
-								"does": [
-									"rind"
-								]
-							}
-						]
-					},
-					"seconds": {
-						"min": 1036800
-					}
-				}
-			],
-			"text": "Unwashed may be sold after 12 d, washed (Dieulefit) after at least 30 d. White, ivory, blue, grey or brown moulds depending on age.",
-			"sources": {
-				"links": [
-					{
-						"name": "INAO single document, Picodon AOP (Reg. 510/2006)",
-						"url": "https://extranet.inao.gouv.fr/fichier/PNODUPicodon.pdf"
-					},
-					{
-						"name": "Wikipedia, Picodon",
-						"url": "https://en.wikipedia.org/wiki/Picodon"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"sources": {
 		"links": [
 			{

@@ -1,0 +1,68 @@
+{
+	"from": [
+		"dahi"
+	],
+	"to": [
+		"sho"
+	],
+	"variant": true,
+	"text": "Whole yak milk has nearly twice the fat of cow milk, so the set yoghurt is rich enough to be churned into butter.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Yak butter",
+				"url": "https://en.wikipedia.org/wiki/Yak_butter"
+			},
+			{
+				"name": "Oxford Companion to Food via ckbk",
+				"url": "https://app.ckbk.com/reference/food77337c24s001e003"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"note": "Yak (dri) milk.",
+				"temperature": {
+					"min": 100,
+					"max": 100,
+					"about": true
+				}
+			},
+			{
+				"type": "heat",
+				"does": "cool"
+			},
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"seconds": {
+					"min": 28800,
+					"max": 43200,
+					"about": true
+				},
+				"note": "Overnight or, in some accounts, several hours, until thick."
+			}
+		],
+		"text": "Yak milk, boiled and cooled, sets overnight or in several hours; the sources do not state the cultures.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Yak butter",
+					"url": "https://en.wikipedia.org/wiki/Yak_butter"
+				},
+				{
+					"name": "Oxford Companion to Food via ckbk",
+					"url": "https://app.ckbk.com/reference/food77337c24s001e003"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

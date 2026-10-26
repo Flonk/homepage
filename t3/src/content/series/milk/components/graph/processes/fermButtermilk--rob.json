@@ -1,0 +1,63 @@
+{
+	"from": [
+		"fermButtermilk"
+	],
+	"to": [
+		"rob"
+	],
+	"variant": true,
+	"text": "Spare milk is seeded with the previous day's ferment, left overnight and churned at dawn; rob is the sour liquid left after the butter is taken off. Laban rayeb is the same ferment left unchurned.",
+	"sources": {
+		"links": [
+			{
+				"name": "Ahmed & El Owni 2015, U. of K. J Vet Med Anim Prod",
+				"url": "https://onlinejournals.uofk.edu/index.php/vet/article/download/460/305/310"
+			},
+			{
+				"name": "Abdelgadir et al. 2001, Int Dairy J (Rob microbiota)",
+				"url": "https://doi.org/10.1016/S0958-6946(01)00042-5"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [],
+					"by": [
+						"backslop"
+					]
+				},
+				"seconds": {
+					"min": 28800,
+					"max": 43200,
+					"about": true
+				},
+				"note": "Seeded with the previous day's ferment and left overnight."
+			},
+			{
+				"type": "churn",
+				"note": "To remove the butter."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Ahmed & El Owni 2015, U. of K. J Vet Med Anim Prod",
+					"url": "https://onlinejournals.uofk.edu/index.php/vet/article/download/460/305/310"
+				},
+				{
+					"name": "Abdelgadir et al. 2001, Int Dairy J (Rob microbiota)",
+					"url": "https://doi.org/10.1016/S0958-6946(01)00042-5"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

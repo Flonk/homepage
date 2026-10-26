@@ -1,0 +1,50 @@
+{
+	"from": [
+		"driedYoghurt"
+	],
+	"to": [
+		"aqit"
+	],
+	"variant": true,
+	"step": "churn, heat, dry",
+	"text": "Milk churned in a goatskin (qirba), butter taken off, the buttermilk heated until it thickens, then shaped into discs and dried on cloth in the shade.",
+	"sources": {
+		"links": [
+			{
+				"name": "Saudipedia: Aqit",
+				"url": "https://saudipedia.com/%D8%A7%D9%84%D8%A3%D9%82%D8%B7"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "churn",
+				"note": "In a goatskin (qirba)."
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"note": "Until it thickens."
+			},
+			{
+				"type": "mould",
+				"note": "Into discs."
+			},
+			{
+				"type": "dry",
+				"note": "On cloth in the shade."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Saudipedia: Aqit",
+					"url": "https://saudipedia.com/%D8%A7%D9%84%D8%A3%D9%82%D8%B7"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

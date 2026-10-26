@@ -44,68 +44,6 @@
 	"rind": "brine",
 	"protected": "PDO",
 	"confidence": "high",
-	"how": {
-		"text": "Feta is drained, dry-salted and then ripened in 7% brine in barrels or tins, first briefly warm and then cold for at least two months, which keeps it white, rindless and salty with a firm, crumbly texture.",
-		"sources": {
-			"links": [
-				{
-					"name": "Feta PDO registration file (Greek MD 313025/1994), eAmbrosia",
-					"url": "https://ec.europa.eu/geographical-indications-register/eambrosia-public-api/api/v1/attachments/73143"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "drain",
-					"by": "mould"
-				},
-				{
-					"type": "salt",
-					"how": "dry"
-				},
-				{
-					"type": "ferment",
-					"does": "ripen",
-					"temperature": {
-						"min": 18,
-						"max": 18,
-						"about": true
-					},
-					"seconds": {
-						"min": 1296000,
-						"max": 1296000,
-						"about": true
-					},
-					"humidity": {
-						"min": 85
-					},
-					"note": "Packed in barrels or tins in a brine of 7 % NaCl."
-				},
-				{
-					"type": "ferment",
-					"does": "ripen",
-					"temperature": {
-						"min": 2,
-						"max": 4
-					},
-					"seconds": {
-						"min": 5184000
-					}
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Feta PDO registration file (Greek MD 313025/1994), eAmbrosia",
-						"url": "https://ec.europa.eu/geographical-indications-register/eambrosia-public-api/api/v1/attachments/73143"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"sources": {
 		"links": [
 			{

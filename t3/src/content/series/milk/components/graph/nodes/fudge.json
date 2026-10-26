@@ -30,53 +30,5 @@
 	},
 	"regions": [
 		"US"
-	],
-	"how": {
-		"label": "cook to soft ball, beat",
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Fudge",
-					"url": "https://en.wikipedia.org/wiki/Fudge"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "heat",
-					"does": "cook",
-					"temperature": {
-						"min": 112,
-						"max": 118
-					},
-					"note": "Below 116 °C it will not set normally."
-				},
-				{
-					"type": "heat",
-					"does": "cool",
-					"temperature": {
-						"min": 48,
-						"max": 49,
-						"about": true
-					}
-				},
-				{
-					"type": "custom",
-					"name": "beat",
-					"note": "Until thick, creamy and less glossy, so the sugar crystallises small."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia: Fudge",
-						"url": "https://en.wikipedia.org/wiki/Fudge"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	}
+	]
 }

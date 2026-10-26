@@ -4,12 +4,6 @@
 		"Desi ghee"
 	],
 	"comment": "Desi ghee is boiled from butter churned from dahi.",
-	"from": "butter",
-	"step": "the fat",
-	"alsoFrom": [
-		"culturedButter",
-		"cream"
-	],
 	"niche": 0,
 	"about": {
 		"text": "Ghee is a type of clarified butter, originating in the Indian Subcontinent. It is a widely used butter for cooking especially in Indian cuisines and in Hindu religious rituals. Typically made from cow butter or buffalo butter, ghee is favoured for its nutty flavour and high smoke point allowing it to be heated at high temperatures without burning.",
@@ -43,78 +37,6 @@
 		"NP",
 		"BD"
 	],
-	"how": {
-		"text": "Not one recipe but four routes; they differ in what is boiled (milk butter, butter, cream) and in how much residue and caramel flavour result.",
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia, Ghee",
-					"url": "https://en.wikipedia.org/wiki/Ghee"
-				},
-				{
-					"name": "FAO: Traditional milk products of India (T0251E, ch. 4)",
-					"url": "https://www.fao.org/4/T0251E/T0251E04.htm"
-				},
-				{
-					"name": "Technology of ghee making (InfLibNet e-PG Pathshala)",
-					"url": "https://ebooks.inflibnet.ac.in/ftp04/chapter/technology-of-ghee-making-direct-cream-creamery-butter-continuous-method/"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "heat",
-					"does": "heat",
-					"temperature": {
-						"min": 80,
-						"max": 85
-					},
-					"seconds": {
-						"min": 1800,
-						"max": 1800
-					},
-					"note": "Melted so protein, fat and buttermilk form layers."
-				},
-				{
-					"type": "drain"
-				},
-				{
-					"type": "heat",
-					"does": "heat",
-					"temperature": {
-						"min": 110,
-						"max": 120,
-						"about": true
-					},
-					"note": "Until the frothing stops and the curd particles turn golden to brown."
-				},
-				{
-					"type": "drain",
-					"by": "sieve",
-					"note": "Filtered or centrifuged, packed at 40–42 °C."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia, Ghee",
-						"url": "https://en.wikipedia.org/wiki/Ghee"
-					},
-					{
-						"name": "FAO: Traditional milk products of India (T0251E, ch. 4)",
-						"url": "https://www.fao.org/4/T0251E/T0251E04.htm"
-					},
-					{
-						"name": "Technology of ghee making (InfLibNet e-PG Pathshala)",
-						"url": "https://ebooks.inflibnet.ac.in/ftp04/chapter/technology-of-ghee-making-direct-cream-creamery-butter-continuous-method/"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"examples": [
 		"manteigaDeGarrafa"
 	],

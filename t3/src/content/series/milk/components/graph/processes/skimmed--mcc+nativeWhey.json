@@ -1,0 +1,83 @@
+{
+	"from": [
+		"skimmed"
+	],
+	"to": [
+		"mcc",
+		"nativeWhey"
+	],
+	"step": "microfilter",
+	"processing": {
+		"steps": [
+			{
+				"type": "microfilter",
+				"temperature": {
+					"min": 50,
+					"max": 50
+				},
+				"note": "Whey proteins, lactose and minerals go through a ceramic membrane of about 0.1 µm and the casein micelles stay, concentrated 3×."
+			},
+			{
+				"type": "diafilter",
+				"note": "In 3 stages with water at 200 % of feed, removing over 95 % of serum proteins."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook: Milk and whey fractionation",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
+				},
+				{
+					"name": "1997 microfiltration study (search abstract only, not opened)",
+					"url": "https://acnpsearch.tweb-dev.unibo.it/singlejournalindex/10965175"
+				},
+				{
+					"name": "ADSA 2018 abstract #16 (ceramic MF at 50 °C, opened)",
+					"url": "https://m.adsa.org/2018/abs/t/73713"
+				},
+				{
+					"name": "Pilot-scale ceramic membrane filtration of skim milk (UCC; search summary only, not opened)",
+					"url": "https://research.ucc.ie/en/publications/pilot-scale-ceramic-membrane-filtration-of-skim-milk-for-the-prod/"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	},
+	"legs": {
+		"mcc": {
+			"step": "what the filter holds",
+			"text": "Skim milk flows along a fine ceramic membrane: the whey proteins, lactose and minerals go through, the casein micelles stay, and water is added and filtered out again to wash the whey proteins out.",
+			"sources": {
+				"links": [
+					{
+						"name": "Tetra Pak Dairy Processing Handbook: Milk and whey fractionation",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
+					},
+					{
+						"name": "1997 microfiltration study (search abstract only, not opened)",
+						"url": "https://acnpsearch.tweb-dev.unibo.it/singlejournalindex/10965175"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		},
+		"nativeWhey": {
+			"step": "what passes the filter",
+			"text": "Skim milk is pushed along a fine ceramic membrane that lets the small whey proteins through and holds back the casein micelles, then washed with water in several stages so more serum protein follows. No rennet or acid is used, so the result is whey without glycomacropeptide.",
+			"sources": {
+				"links": [
+					{
+						"name": "ADSA 2018 abstract #16 (ceramic MF at 50 °C, opened)",
+						"url": "https://m.adsa.org/2018/abs/t/73713"
+					},
+					{
+						"name": "Pilot-scale ceramic membrane filtration of skim milk (UCC; search summary only, not opened)",
+						"url": "https://research.ucc.ie/en/publications/pilot-scale-ceramic-membrane-filtration-of-skim-milk-for-the-prod/"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	}
+}

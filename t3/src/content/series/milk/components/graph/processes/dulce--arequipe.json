@@ -1,0 +1,55 @@
+{
+	"from": [
+		"dulce"
+	],
+	"to": [
+		"arequipe"
+	],
+	"variant": true,
+	"text": "Arequipe is the Colombian and Venezuelan name for dulce de leche in its fluid, brown form. In Colombia it grew out of the colonial manjar blanco into a creamier, caramel-coloured product; Buga is noted for artisanal production.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia (es): Arequipe",
+				"url": "https://es.wikipedia.org/wiki/Arequipe"
+			},
+			{
+				"name": "Wikipedia: Dulce de leche",
+				"url": "https://en.wikipedia.org/wiki/Dulce_de_leche"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "bicarbonate",
+				"note": "A pinch, so the milk does not curdle while it is concentrated; it also promotes browning."
+			},
+			{
+				"type": "evaporate",
+				"under": "vacuum",
+				"note": "To 45–50 °Brix."
+			},
+			{
+				"type": "heat",
+				"does": "cook",
+				"note": "Industrially to about 68 °Brix."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia (es): Arequipe",
+					"url": "https://es.wikipedia.org/wiki/Arequipe"
+				},
+				{
+					"name": "Wikipedia: Dulce de leche",
+					"url": "https://en.wikipedia.org/wiki/Dulce_de_leche"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

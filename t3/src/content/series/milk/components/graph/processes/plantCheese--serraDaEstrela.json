@@ -1,0 +1,43 @@
+{
+	"from": [
+		"plantCheese"
+	],
+	"to": [
+		"serraDaEstrela"
+	],
+	"variant": true,
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Serra da Estrela cheese",
+				"url": "https://en.wikipedia.org/wiki/Serra_da_Estrela_cheese"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "coagulate",
+				"by": "plant",
+				"note": "Local thistle, no rennet."
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"seconds": {
+					"min": 2592000
+				}
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Serra da Estrela cheese",
+					"url": "https://en.wikipedia.org/wiki/Serra_da_Estrela_cheese"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

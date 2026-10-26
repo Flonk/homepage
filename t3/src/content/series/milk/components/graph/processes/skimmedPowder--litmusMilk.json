@@ -1,0 +1,69 @@
+{
+	"from": [
+		"skimmedPowder"
+	],
+	"to": [
+		"litmusMilk"
+	],
+	"step": "add litmus, sterilise",
+	"sources": {
+		"links": [
+			{
+				"name": "HiMedia, Litmus SM Broth datasheet",
+				"url": "https://www.himedialabs.com/media/TD/M609S.pdf"
+			},
+			{
+				"name": "Biology Notes Online, Litmus milk test",
+				"url": "https://biologynotesonline.com/litmus-milk-test-principle-procedure/"
+			},
+			{
+				"name": "Wikipedia: Litmus milk",
+				"url": "https://en.wikipedia.org/wiki/Litmus_milk"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"note": "Skim milk powder about 100 g/L with litmus at 0.5–5 g/L, some adding 0.5 g/L sodium sulphite.",
+				"what": "skim milk powder and litmus"
+			},
+			{
+				"type": "custom",
+				"name": "fill",
+				"note": "10 ml in 15 x 150 mm tubes."
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 121,
+					"max": 121
+				},
+				"seconds": {
+					"min": 300,
+					"max": 300
+				}
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "HiMedia, Litmus SM Broth datasheet",
+					"url": "https://www.himedialabs.com/media/TD/M609S.pdf"
+				},
+				{
+					"name": "Biology Notes Online, Litmus milk test",
+					"url": "https://biologynotesonline.com/litmus-milk-test-principle-procedure/"
+				},
+				{
+					"name": "Wikipedia: Litmus milk",
+					"url": "https://en.wikipedia.org/wiki/Litmus_milk"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

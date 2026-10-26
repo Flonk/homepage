@@ -47,65 +47,6 @@
 	"setting": "acid-heat",
 	"rind": "none",
 	"confidence": "medium",
-	"how": {
-		"text": "The whey proteins that rennet left behind coagulate in the heat and rise as small curds, which are skimmed off with a spoon and left to drain. The Romanian page mentions no added acid or milk; the English page only says urdă follows the same process as fresh ricotta.",
-		"sources": {
-			"links": [
-				{
-					"name": "Romanian Wikipedia: Urdă",
-					"url": "https://ro.wikipedia.org/wiki/Urd%C4%83"
-				},
-				{
-					"name": "Wikipedia: Urdă",
-					"url": "https://en.wikipedia.org/wiki/Urd%C4%83"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "heat",
-					"does": "heat",
-					"temperature": {
-						"min": 85,
-						"max": 90
-					},
-					"seconds": {
-						"min": 3600,
-						"max": 3600,
-						"about": true
-					}
-				},
-				{
-					"type": "separate",
-					"off": "curd",
-					"by": "gravity",
-					"note": "The small curds rise and are skimmed off."
-				},
-				{
-					"type": "drain",
-					"seconds": {
-						"min": 36000,
-						"max": 43200
-					}
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Romanian Wikipedia: Urdă",
-						"url": "https://ro.wikipedia.org/wiki/Urd%C4%83"
-					},
-					{
-						"name": "Wikipedia: Urdă",
-						"url": "https://en.wikipedia.org/wiki/Urd%C4%83"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"sources": {
 		"links": [
 			{

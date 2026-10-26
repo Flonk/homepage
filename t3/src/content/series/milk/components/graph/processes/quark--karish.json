@@ -1,0 +1,87 @@
+{
+	"from": [
+		"quark"
+	],
+	"to": [
+		"karish"
+	],
+	"variant": true,
+	"step": "drain on a mat, hang",
+	"text": "Where Areesh is warmed so the curd separates, Karish is simply drained: the soured skimmed milk sits on a reed mat and loses its whey by gravity and squeezing.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Laban rayeb",
+				"url": "https://en.wikipedia.org/wiki/Laban_rayeb"
+			},
+			{
+				"name": "Hammam et al. 2020, IJCMAS 9(6) (abstract)",
+				"url": "https://doi.org/10.20546/ijcmas.2020.906.397"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "separate",
+				"off": "cream",
+				"note": "Skimmed for butter, from buffalo or cow milk."
+			},
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"temperature": {
+					"min": 20,
+					"max": 25
+				},
+				"seconds": {
+					"min": 86400,
+					"max": 345600
+				},
+				"adds": {
+					"microbes": [],
+					"by": [
+						"vessel"
+					],
+					"vessel": "earthenware pots (matared)"
+				},
+				"note": "The milk is soured to laban rayeb."
+			},
+			{
+				"type": "drain",
+				"note": "On a reed mat, squeezed from time to time."
+			},
+			{
+				"type": "drain",
+				"by": "hang",
+				"seconds": {
+					"min": 172800,
+					"max": 259200
+				}
+			},
+			{
+				"type": "salt",
+				"how": "dry"
+			},
+			{
+				"type": "drain",
+				"by": "hang",
+				"note": "A few more hours."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Laban rayeb",
+					"url": "https://en.wikipedia.org/wiki/Laban_rayeb"
+				},
+				{
+					"name": "Hammam et al. 2020, IJCMAS 9(6) (abstract)",
+					"url": "https://doi.org/10.20546/ijcmas.2020.906.397"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

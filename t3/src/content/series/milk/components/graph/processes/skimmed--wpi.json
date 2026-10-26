@@ -1,0 +1,47 @@
+{
+	"from": [
+		"skimmed"
+	],
+	"to": [
+		"wpi"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "microfilter",
+				"note": "The casein is held back and the native whey passes through."
+			},
+			{
+				"type": "ultrafilter",
+				"note": "Concentrates the whey proteins."
+			},
+			{
+				"type": "diafilter",
+				"note": "Washed until the protein is over 90 % of the dry matter."
+			},
+			{
+				"type": "custom",
+				"name": "concentrate",
+				"note": "The retentate is brought to 36–37 % dry matter."
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"note": "Preheated to set the functional properties of the protein."
+			},
+			{
+				"type": "dry",
+				"note": "Spray-dried to no more than 4 % moisture."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 18 Milk and whey fractionation",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
+				}
+			],
+			"text": "The route from skim milk to isolate, its protein figure and its last steps; the handbook gives no temperatures for it."
+		}
+	}
+}

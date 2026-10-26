@@ -35,63 +35,6 @@
 	"regions": [
 		"BR"
 	],
-	"how": {
-		"label": "wash, melt the curd with bottled butterfat",
-		"sources": {
-			"links": [
-				{
-					"name": "MAPA IN 30/2001, Anexo III",
-					"url": "https://wikisda.agricultura.gov.br/dipoa_baselegal/in_30-2001_rt_manteiga_garrafa_queijo_coalho_queijo_manteiga.pdf"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "acidify",
-					"with": "lactic, citric or acetic acid",
-					"note": "Added directly to the milk, with no rennet and no culture."
-				},
-				{
-					"type": "drain"
-				},
-				{
-					"type": "washCurd",
-					"note": "With hot water or hot milk."
-				},
-				{
-					"type": "custom",
-					"name": "melt"
-				},
-				{
-					"type": "add",
-					"what": "fat",
-					"note": "Only manteiga da terra or manteiga de garrafa, and salt."
-				},
-				{
-					"type": "mould"
-				},
-				{
-					"type": "heat",
-					"does": "cool"
-				},
-				{
-					"type": "custom",
-					"name": "pack"
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "MAPA IN 30/2001, Anexo III",
-						"url": "https://wikisda.agricultura.gov.br/dipoa_baselegal/in_30-2001_rt_manteiga_garrafa_queijo_coalho_queijo_manteiga.pdf"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"composition": {
 		"fatInDryMatter": {
 			"min": 25,

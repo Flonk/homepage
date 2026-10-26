@@ -1,0 +1,66 @@
+{
+	"from": [
+		"nativeWhey"
+	],
+	"to": [
+		"alphaLactalbumin"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "ultrafilter",
+				"temperature": {
+					"min": 10,
+					"max": 25
+				},
+				"note": "Native whey is concentrated about 27-fold over a 10 kDa and then a 5 kDa membrane, kept cold."
+			},
+			{
+				"type": "acidify",
+				"with": "hydrochloric acid",
+				"pH": {
+					"min": 4.6,
+					"max": 4.6
+				},
+				"note": "This step is optional; at the whey's own pH of about 6.5 the purity is far lower."
+			},
+			{
+				"type": "custom",
+				"name": "high pressure",
+				"temperature": {
+					"min": 23,
+					"max": 23
+				},
+				"seconds": {
+					"min": 240,
+					"max": 240
+				},
+				"note": "Held at 600 MPa, which makes beta-lactoglobulin aggregate and fall out while alpha-lactalbumin stays dissolved."
+			},
+			{
+				"type": "separate",
+				"off": "solids",
+				"by": "centrifuge",
+				"temperature": {
+					"min": 4,
+					"max": 4
+				},
+				"seconds": {
+					"min": 1200,
+					"max": 1200
+				},
+				"note": "The clear supernatant is the alpha-lactalbumin fraction and the pellet holds the precipitated beta-lactoglobulin."
+			}
+		],
+		"text": "These are the conditions of one pilot-scale study, which reached 46 % yield and 80 % purity of alpha-lactalbumin in the supernatant; commercial routes may differ.",
+		"sources": {
+			"links": [
+				{
+					"name": "Romo et al., Foods 2023: Separation of alpha-Lactalbumin Enriched Fraction from Bovine Native Whey Concentrate",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9914712"
+				}
+			],
+			"text": "The steps, pressure, pH and yields are from this study, which separates the fraction from native whey concentrate."
+		}
+	}
+}

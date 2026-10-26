@@ -1,0 +1,60 @@
+{
+	"from": [
+		"permeate"
+	],
+	"to": [
+		"milkSerumDrink"
+	],
+	"step": "acidify, add fruit extract and flavour",
+	"sources": {
+		"links": [
+			{
+				"name": "Swissmilk: Fachinformation Milchserum",
+				"url": "https://api.swissmilk.ch/wp-content/uploads/2019/05/fachinformation-milchserum-ernaehrungswissenschaft-de.pdf"
+			},
+			{
+				"name": "SRF Kassensturz Espresso: Was ist eigentlich Milchserum?",
+				"url": "https://www.srf.ch/sendungen/kassensturz-espresso/was-ist-eigentlich-milchserum"
+			},
+			{
+				"name": "Wikipedia: Rivella",
+				"url": "https://en.wikipedia.org/wiki/Rivella"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "acidify",
+				"with": "lactic acid",
+				"note": "L(+)-lactic acid, made by lactic bacteria such as Lactobacillus delbrueckii fermenting the lactose of whey."
+			},
+			{
+				"type": "add",
+				"what": "flavour",
+				"note": "Fruit extracts, aromas, herb extracts and sugar or sweetener."
+			},
+			{
+				"type": "pasteurise"
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Swissmilk: Fachinformation Milchserum",
+					"url": "https://api.swissmilk.ch/wp-content/uploads/2019/05/fachinformation-milchserum-ernaehrungswissenschaft-de.pdf"
+				},
+				{
+					"name": "SRF Kassensturz Espresso: Was ist eigentlich Milchserum?",
+					"url": "https://www.srf.ch/sendungen/kassensturz-espresso/was-ist-eigentlich-milchserum"
+				},
+				{
+					"name": "Wikipedia: Rivella",
+					"url": "https://en.wikipedia.org/wiki/Rivella"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

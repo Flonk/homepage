@@ -1,0 +1,318 @@
+{
+	"from": [
+		"pasteurised"
+	],
+	"to": [
+		"kefir"
+	],
+	"step": "yeast-lactic, with grains",
+	"text": "The bacteria in the grains make lactic acid, while lactose-fermenting yeasts make a little alcohol and CO₂, which gives kefir its fizz. During the cool ripening stage the yeasts break down some protein, and this gives the typical yeasty aroma.",
+	"sources": {
+		"links": [
+			{
+				"name": "Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products",
+				"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products"
+			},
+			{
+				"name": "Codex Standard for Fermented Milks (CXS 243-2003)",
+				"url": "https://www.fao.org/input/download/standards/400/CXS_243e.pdf"
+			},
+			{
+				"name": "German MilchPQV, Anlage 8 (2025)",
+				"url": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html"
+			},
+			{
+				"name": "Bintsis & Papademas 2022, Table 2, Fermentation 8:679",
+				"url": "https://doi.org/10.3390/fermentation8120679"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 90,
+					"max": 95
+				},
+				"seconds": {
+					"min": 300,
+					"max": 300
+				}
+			},
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic",
+					"yeast"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "Lactococcus lactis subsp. lactis",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						},
+						{
+							"name": "Lactococcus lactis subsp. lactis biovar diacetylactis",
+							"kind": "bacterium",
+							"does": [
+								"aroma",
+								"gas"
+							]
+						},
+						{
+							"name": "Lactococcus lactis subsp. cremoris",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						},
+						{
+							"name": "Lactobacillus kefiranofaciens",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						},
+						{
+							"name": "Lentilactobacillus kefiri",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						},
+						{
+							"name": "Lentilactobacillus parakefiri",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						},
+						{
+							"name": "Lactobacillus helveticus",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						},
+						{
+							"name": "Lactobacillus delbrueckii",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						},
+						{
+							"name": "Levilactobacillus brevis",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						},
+						{
+							"name": "Lacticaseibacillus paracasei",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						},
+						{
+							"name": "Lactiplantibacillus plantarum",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						},
+						{
+							"name": "Leuconostoc mesenteroides",
+							"kind": "bacterium",
+							"does": [
+								"aroma",
+								"gas"
+							]
+						},
+						{
+							"name": "Leuconostoc citreum",
+							"kind": "bacterium",
+							"does": [
+								"aroma",
+								"gas"
+							]
+						},
+						{
+							"name": "Acetobacter pasteurianus",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						},
+						{
+							"name": "Acetobacter lovaniensis",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						},
+						{
+							"name": "Kluyveromyces marxianus",
+							"kind": "yeast",
+							"does": [
+								"alcohol",
+								"gas"
+							]
+						},
+						{
+							"name": "Saccharomyces cerevisiae",
+							"kind": "yeast",
+							"does": [
+								"alcohol",
+								"gas"
+							]
+						},
+						{
+							"name": "Torulaspora delbrueckii",
+							"kind": "yeast",
+							"does": [
+								"alcohol",
+								"gas"
+							]
+						},
+						{
+							"name": "Candida kefyr",
+							"kind": "yeast",
+							"does": [
+								"alcohol",
+								"gas"
+							]
+						},
+						{
+							"name": "Saccharomyces unisporus",
+							"kind": "yeast",
+							"does": [
+								"alcohol",
+								"gas"
+							]
+						},
+						{
+							"name": "Pichia fermentans",
+							"kind": "yeast",
+							"does": [
+								"alcohol",
+								"gas"
+							]
+						},
+						{
+							"name": "Yarrowia lipolytica",
+							"kind": "yeast",
+							"does": [
+								"alcohol",
+								"gas"
+							]
+						},
+						{
+							"name": "Kazachstania",
+							"kind": "yeast",
+							"does": [
+								"alcohol",
+								"gas"
+							]
+						},
+						{
+							"name": "Galactomyces",
+							"kind": "yeast",
+							"does": [
+								"alcohol",
+								"gas"
+							]
+						},
+						{
+							"name": "Issatchenkia",
+							"kind": "yeast",
+							"does": [
+								"alcohol",
+								"gas"
+							]
+						}
+					],
+					"by": [
+						"grains"
+					],
+					"dose": {
+						"min": 2,
+						"max": 3
+					}
+				},
+				"temperature": {
+					"min": 23,
+					"max": 23,
+					"about": true
+				},
+				"seconds": {
+					"min": 43200,
+					"max": 43200,
+					"about": true
+				},
+				"pH": {
+					"max": 4.5
+				}
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"temperature": {
+					"min": 14,
+					"max": 16
+				},
+				"seconds": {
+					"min": 43200,
+					"max": 50400
+				},
+				"pH": {
+					"min": 4.4,
+					"max": 4.4,
+					"about": true
+				},
+				"alcohol": {
+					"min": 0.05
+				},
+				"note": "Ends at 110–120 °Th with at least 0.05 % ethanol, as German law asks."
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"min": 5,
+					"max": 8
+				},
+				"note": "Cooled quickly."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products"
+				},
+				{
+					"name": "Codex Standard for Fermented Milks (CXS 243-2003)",
+					"url": "https://www.fao.org/input/download/standards/400/CXS_243e.pdf"
+				},
+				{
+					"name": "German MilchPQV, Anlage 8 (2025)",
+					"url": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html"
+				},
+				{
+					"name": "Bintsis & Papademas 2022, Table 2, Fermentation 8:679",
+					"url": "https://doi.org/10.3390/fermentation8120679"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

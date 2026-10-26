@@ -1,0 +1,64 @@
+{
+	"from": [
+		"brigadeiro"
+	],
+	"to": [
+		"beijinho"
+	],
+	"variant": true,
+	"step": "cook with coconut, roll in sugar",
+	"sources": {
+		"unsourced": true,
+		"text": "No source recorded for how it is made yet."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "butter and grated coconut, to sweetened condensed milk"
+			},
+			{
+				"type": "heat",
+				"does": "cook",
+				"temperature": {
+					"min": 99,
+					"max": 104
+				},
+				"seconds": {
+					"min": 600,
+					"max": 600,
+					"about": true
+				},
+				"note": "It is stirred all the time on the stove until it pulls away from the side of the pan, the soft-ball stage."
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"seconds": {
+					"min": 3600,
+					"max": 3600,
+					"about": true
+				},
+				"note": "It is spread on a greased plate and chilled until firm enough to shape."
+			},
+			{
+				"type": "custom",
+				"name": "roll in sugar",
+				"note": "Small balls are rolled by greased hands and coated in sugar, or in desiccated coconut in some recipes."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Brigadeiro",
+					"url": "https://en.wikipedia.org/wiki/Brigadeiro"
+				},
+				{
+					"name": "The Cinnamon Jar: Beijinhos (Brazilian coconut kisses)",
+					"url": "https://thecinnamonjar.com/beijinhos-brazilian-coconut-kisses/"
+				}
+			],
+			"text": "The soft-ball stage, shaping and coating from Wikipedia; the temperature, cooking and chilling times from one recipe, so they are one cook's, not a standard."
+		}
+	}
+}

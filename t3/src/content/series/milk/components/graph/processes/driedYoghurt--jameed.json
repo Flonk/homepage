@@ -1,0 +1,89 @@
+{
+	"from": [
+		"driedYoghurt"
+	],
+	"to": [
+		"jameed"
+	],
+	"variant": true,
+	"step": "churn, boil, dry",
+	"text": "Jameed is the curd of churned sour yoghurt, strained, heavily salted and dried in the sun. Low moisture, low pH and high salt together let it keep for up to two years.",
+	"sources": {
+		"links": [
+			{
+				"name": "Hamad et al., J. Food Technology Research 3(2) (2016)",
+				"url": "https://archive.conscientiabeam.com/index.php/58/article/download/361/493"
+			},
+			{
+				"name": "Hilali et al., ICARDA (2018)",
+				"url": "https://repo.mel.cgiar.org/items/2f635dc9-fe83-4b8b-a5ae-f2c06885475b/full"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat"
+			},
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [],
+					"by": [
+						"wild"
+					]
+				},
+				"note": "Soured by its own flora."
+			},
+			{
+				"type": "churn"
+			},
+			{
+				"type": "heat",
+				"does": "heat"
+			},
+			{
+				"type": "drain",
+				"by": "cloth"
+			},
+			{
+				"type": "custom",
+				"name": "knead",
+				"note": "With salt."
+			},
+			{
+				"type": "mould",
+				"note": "Into balls."
+			},
+			{
+				"type": "dry",
+				"seconds": {
+					"min": 1296000,
+					"max": 1296000,
+					"about": true
+				},
+				"note": "In the sun, to about 20 % moisture."
+			}
+		],
+		"text": "Mostly sheep milk, weakly heated and soured by its own flora, then churned; the heated buttermilk curd is strained, salted and sun-dried.",
+		"sources": {
+			"links": [
+				{
+					"name": "Hamad et al., J. Food Technology Research 3(2) (2016)",
+					"url": "https://archive.conscientiabeam.com/index.php/58/article/download/361/493"
+				},
+				{
+					"name": "Hilali et al., ICARDA (2018)",
+					"url": "https://repo.mel.cgiar.org/items/2f635dc9-fe83-4b8b-a5ae-f2c06885475b/full"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

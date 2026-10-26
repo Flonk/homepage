@@ -1,8 +1,6 @@
 {
 	"label": "Probiotic\nmilk drink",
 	"comment": "Not yoghurt: one probiotic strain on its own, without the yoghurt cultures.",
-	"from": "skimmed",
-	"step": "ferment",
 	"niche": 1,
 	"about": {
 		"text": "Milk fermented with a single strain of probiotic bacteria rather than with yoghurt cultures, such as acidophilus milk, made with Lactobacillus acidophilus, or Yakult, a small sweetened drink of skimmed milk fermented with Lactobacillus casei Shirota since 1935.",
@@ -28,90 +26,6 @@
 				}
 			],
 			"text": "The photograph, its author and its licence, from its page."
-		}
-	},
-	"how": {
-		"text": "One probiotic strain, not the usual yoghurt pair, sours skimmed milk at about body temperature. Which strain and how long differs: see the examples, Yakult (L. paracasei Shirota, days) and acidophilus milk (L. acidophilus, about 36 h).",
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Yakult",
-					"url": "https://en.wikipedia.org/wiki/Yakult"
-				},
-				{
-					"name": "Tetra Pak Dairy Processing Handbook, ch. 12 Cultures",
-					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cultures-and-starter-manufacture"
-				},
-				{
-					"name": "Codex Standard for Fermented Milks (CXS 243-2003)",
-					"url": "https://www.fao.org/input/download/standards/400/CXS_243e.pdf"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "heat",
-					"does": "heat"
-				},
-				{
-					"type": "ferment",
-					"does": "incubate",
-					"kinds": [
-						"lactic"
-					],
-					"adds": {
-						"microbes": [
-							{
-								"name": "Lacticaseibacillus paracasei Shirota",
-								"kind": "bacterium",
-								"does": [
-									"acid",
-									"probiotic"
-								]
-							},
-							{
-								"name": "Lactobacillus acidophilus",
-								"kind": "bacterium",
-								"does": [
-									"acid",
-									"probiotic"
-								]
-							}
-						],
-						"by": [
-							"starter"
-						]
-					},
-					"temperature": {
-						"min": 37,
-						"max": 38
-					},
-					"seconds": {
-						"min": 129600,
-						"about": true
-					},
-					"note": "Yakult takes days, acidophilus milk about 1.5 d."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia: Yakult",
-						"url": "https://en.wikipedia.org/wiki/Yakult"
-					},
-					{
-						"name": "Tetra Pak Dairy Processing Handbook, ch. 12 Cultures",
-						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cultures-and-starter-manufacture"
-					},
-					{
-						"name": "Codex Standard for Fermented Milks (CXS 243-2003)",
-						"url": "https://www.fao.org/input/download/standards/400/CXS_243e.pdf"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	},
 	"examples": [

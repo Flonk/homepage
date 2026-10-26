@@ -1,0 +1,63 @@
+{
+	"from": [
+		"cream"
+	],
+	"to": [
+		"kaffeeobers"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "standardise",
+				"fat": {
+					"min": 10,
+					"max": 10
+				},
+				"note": "Coffee cream of 10 to 18 % fat is made by mixing 40 % cream with skim milk to the wanted fat."
+			},
+			{
+				"type": "homogenise",
+				"bar": {
+					"min": 100,
+					"max": 200
+				},
+				"temperature": {
+					"min": 35,
+					"max": 65
+				},
+				"note": "Cream is homogenised at 10 to 20 MPa while the fat is still liquid, above 35 °C, so it does not feather in coffee."
+			},
+			{
+				"type": "pasteurise",
+				"temperature": {
+					"min": 85,
+					"max": 95
+				},
+				"seconds": {
+					"min": 15,
+					"max": 20
+				},
+				"note": "Coffee cream is heated to 85 to 95 °C for up to 15 to 20 seconds."
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"min": 5,
+					"max": 5,
+					"about": true
+				},
+				"note": "It is then cooled to about 5 °C."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 9 Pasteurized and ESL dairy products",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/pasteurized-and-esl-dairy-products"
+				}
+			],
+			"text": "Handbook section on half or coffee cream: mixing with skim milk, homogenising pressure and temperature, heating and cooling. Kaffeeobers is Austrian coffee cream; its 10 % minimum is the one cited on its product."
+		}
+	}
+}

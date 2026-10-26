@@ -1,0 +1,60 @@
+{
+	"from": [
+		"cream"
+	],
+	"to": [
+		"doppelrahm"
+	],
+	"text": "Doppelrahm is cream standardised to at least 45 % fat, so much fat that it is spooned rather than whipped. Traditionally the cream rises on whole milk left standing after milking, being the lightest part; the Fribourg Gruyère-region double cream is made this way from Gruyère-region milk.",
+	"sources": {
+		"links": [
+			{
+				"name": "Swissmilk: Crème fraîche, Kaffeerahm und Co.",
+				"url": "https://www.swissmilk.ch/de/nachhaltigkeit/milchprodukte/creme-fraiche-kaffeerahm-und-co/"
+			},
+			{
+				"name": "Terroir Fribourg: Double crème",
+				"url": "https://fribourg.ch/fr/terroir-fribourg/produits/double-creme/"
+			},
+			{
+				"name": "Wikipedia: Gruyère cream",
+				"url": "https://en.wikipedia.org/wiki/Gruy%C3%A8re_cream"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "standardise",
+				"fat": {
+					"min": 45,
+					"max": 45
+				},
+				"note": "Doppelrahm is cream brought to at least 45 % fat."
+			},
+			{
+				"type": "pasteurise",
+				"note": "Its heat treatment is not given in the sources, so no temperature is stated."
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"note": "It is cooled after heating to keep it fresh."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Swissmilk: Crème fraîche, Kaffeerahm und Co.",
+					"url": "https://www.swissmilk.ch/de/nachhaltigkeit/milchprodukte/creme-fraiche-kaffeerahm-und-co/"
+				},
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 9 Pasteurized and ESL dairy products",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/pasteurized-and-esl-dairy-products"
+				}
+			],
+			"text": "Swissmilk for the 45 % fat minimum; the handbook for the general heating and cooling of cream. The exact heat treatment of Doppelrahm is not stated in either."
+		}
+	}
+}

@@ -1,0 +1,53 @@
+{
+	"from": [
+		"butterfat"
+	],
+	"to": [
+		"ghrita"
+	],
+	"step": "cook with herb paste and water",
+	"text": "Liquids other than water can serve as drava: herb juice, decoction, cow milk or cow urine (IJCPR Sneha Kalpana review).",
+	"sources": {
+		"links": [
+			{
+				"name": "PMC7527999: Polyherbal Bhallatakadi ghrita",
+				"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7527999"
+			},
+			{
+				"name": "IJCPR: Sneha Kalpana review",
+				"url": "https://journals.innovareacademics.in/index.php/ijcpr/article/download/48318/28149"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"note": "1 part herb paste (kalka), 4 parts ghee (sneha) and 16 parts water or decoction (drava)."
+			},
+			{
+				"type": "heat",
+				"does": "cook",
+				"note": "Until a wick rolled from the paste burns without crackling and the froth has gone (sneha siddhi)."
+			},
+			{
+				"type": "drain",
+				"by": "cloth"
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "PMC7527999: Polyherbal Bhallatakadi ghrita",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7527999"
+				},
+				{
+					"name": "IJCPR: Sneha Kalpana review",
+					"url": "https://journals.innovareacademics.in/index.php/ijcpr/article/download/48318/28149"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

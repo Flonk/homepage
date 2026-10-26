@@ -1,0 +1,58 @@
+{
+	"from": [
+		"homogenised"
+	],
+	"to": [
+		"sterilised"
+	],
+	"step": "sterilise in bottle",
+	"text": "The milk is filled and sealed first, then the whole bottle is heated for many minutes. That long heat makes it keep for about a year, but destroys more of the vitamins.",
+	"sources": {
+		"links": [
+			{
+				"name": "Tetra Pak Dairy Processing Handbook: Long-life dairy products",
+				"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/long-life-dairy-products"
+			},
+			{
+				"name": "Verbraucherzentrale Niedersachsen: Milch – was verrät das Etikett?",
+				"url": "https://www.verbraucherzentrale-niedersachsen.de/node/120393"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "fill",
+				"note": "Sealed in the bottle first."
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 110,
+					"max": 125
+				},
+				"seconds": {
+					"min": 180,
+					"max": 2400
+				},
+				"note": "In a batch autoclave, bottle and all."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook: Long-life dairy products",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/long-life-dairy-products"
+				},
+				{
+					"name": "Verbraucherzentrale Niedersachsen: Milch – was verrät das Etikett?",
+					"url": "https://www.verbraucherzentrale-niedersachsen.de/node/120393"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

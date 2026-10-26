@@ -1,0 +1,44 @@
+{
+	"from": [
+		"junket"
+	],
+	"to": [
+		"cuajada"
+	],
+	"variant": true,
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Cuajada",
+				"url": "https://en.wikipedia.org/wiki/Cuajada"
+			},
+			{
+				"name": "Wikipedia (es): Cuajada",
+				"url": "https://es.wikipedia.org/wiki/Cuajada"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "coagulate",
+				"by": "rennet",
+				"note": "With animal rennet or a plant extract."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Cuajada",
+					"url": "https://en.wikipedia.org/wiki/Cuajada"
+				},
+				{
+					"name": "Wikipedia (es): Cuajada",
+					"url": "https://es.wikipedia.org/wiki/Cuajada"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

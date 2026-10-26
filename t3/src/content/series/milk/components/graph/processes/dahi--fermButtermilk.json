@@ -1,0 +1,40 @@
+{
+	"from": [
+		"dahi"
+	],
+	"to": [
+		"fermButtermilk"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "water",
+				"note": "Water about equal to the dahi in volume is added in stages, warm or cold to keep the churning temperature."
+			},
+			{
+				"type": "churn",
+				"temperature": {
+					"min": 11,
+					"max": 19
+				},
+				"note": "The dahi is churned with a wooden or motor-driven beater."
+			},
+			{
+				"type": "separate",
+				"off": "fat",
+				"by": "gravity",
+				"note": "The fat floats up in lumps and is lifted off, leaving the buttermilk (chhach or lassi)."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Makkhan (Indian cultured butter): a review, J Food Sci Technol (2020)",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8021505/"
+				}
+			],
+			"text": "The household churning of dahi with water added, the temperatures, and the buttermilk (chhach, lassi) left when the fat is gathered, from this review."
+		}
+	}
+}

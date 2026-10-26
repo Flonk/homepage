@@ -1,0 +1,36 @@
+{
+	"from": [
+		"lactose"
+	],
+	"to": [
+		"lactitol"
+	],
+	"step": "hydrogenate",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Lactitol",
+				"url": "https://en.wikipedia.org/wiki/Lactitol"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "hydrogenate",
+				"note": "With Raney nickel as catalyst, hydrogen turns the glucose half of lactose into sorbitol."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Lactitol",
+					"url": "https://en.wikipedia.org/wiki/Lactitol"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

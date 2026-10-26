@@ -1,0 +1,104 @@
+{
+	"from": [
+		"kumis"
+	],
+	"to": [
+		"chigee"
+	],
+	"variant": true,
+	"text": "The lactic acid bacteria mostly acidify; the yeasts add some acetic acid and the alcohol. Lactobacillus species for chigee itself were not found in the abstracts opened, and fermentation time and temperature were not found.",
+	"sources": {
+		"links": [
+			{
+				"name": "Chigee in Xilin Gol, Food Sci. Nutr. (2020)",
+				"url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6977523/"
+			},
+			{
+				"name": "Fermentation 8:679 (2022)",
+				"url": "https://doi.org/10.3390/fermentation8120679"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic",
+					"yeast"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "lactic acid bacteria",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						},
+						{
+							"name": "Candida kefyr",
+							"kind": "yeast",
+							"does": [
+								"alcohol"
+							]
+						},
+						{
+							"name": "Kluyveromyces marxianus var. lactis",
+							"kind": "yeast",
+							"does": [
+								"alcohol"
+							]
+						},
+						{
+							"name": "Candida krusei",
+							"kind": "yeast",
+							"does": [
+								"alcohol"
+							]
+						},
+						{
+							"name": "Saccharomyces cerevisiae",
+							"kind": "yeast",
+							"does": [
+								"alcohol"
+							]
+						},
+						{
+							"name": "Saccharomyces servazzii",
+							"kind": "yeast",
+							"does": [
+								"alcohol"
+							]
+						}
+					],
+					"by": [
+						"vessel"
+					],
+					"vessel": "cloth bag (hurunge) with last year's microbes"
+				},
+				"alcohol": {
+					"min": 1.2,
+					"max": 1.2,
+					"about": true
+				}
+			}
+		],
+		"text": "Candida kefyr is the most common yeast.",
+		"sources": {
+			"links": [
+				{
+					"name": "Chigee in Xilin Gol, Food Sci. Nutr. (2020)",
+					"url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6977523/"
+				},
+				{
+					"name": "Fermentation 8:679 (2022)",
+					"url": "https://doi.org/10.3390/fermentation8120679"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

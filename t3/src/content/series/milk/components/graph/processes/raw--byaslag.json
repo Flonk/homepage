@@ -1,0 +1,76 @@
+{
+	"from": [
+		"raw"
+	],
+	"to": [
+		"byaslag"
+	],
+	"step": "heat to foam, add fermented milk, press",
+	"text": "No species or temperatures are given by the source. IRCI calls byaslag the soft cheese and eezgii the dried one.",
+	"sources": {
+		"links": [
+			{
+				"name": "Mongolian Tour Guide: dairy products",
+				"url": "https://www.mongoliantour.guide/post/short-information-about-mongolian-dairy-products"
+			},
+			{
+				"name": "IRCI: Mongolian dairy",
+				"url": "https://www.irci.jp/rdb/item/13427"
+			},
+			{
+				"name": "Wikipedia: Byaslag",
+				"url": "https://en.wikipedia.org/wiki/Byaslag"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"note": "The milk is ladled to foam."
+			},
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [],
+					"by": [
+						"backslop"
+					]
+				},
+				"note": "A fermented milk of the tarag type is added to the foaming milk."
+			},
+			{
+				"type": "drain",
+				"by": "cloth"
+			},
+			{
+				"type": "press",
+				"note": "Pressed under a stone."
+			}
+		],
+		"text": "A fermented milk (tarag-type) is added to gently heated, foaming milk; the curds are then strained and pressed. No species or temperatures are given.",
+		"sources": {
+			"links": [
+				{
+					"name": "Mongolian Tour Guide: dairy products",
+					"url": "https://www.mongoliantour.guide/post/short-information-about-mongolian-dairy-products"
+				},
+				{
+					"name": "IRCI: Mongolian dairy",
+					"url": "https://www.irci.jp/rdb/item/13427"
+				},
+				{
+					"name": "Wikipedia: Byaslag",
+					"url": "https://en.wikipedia.org/wiki/Byaslag"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

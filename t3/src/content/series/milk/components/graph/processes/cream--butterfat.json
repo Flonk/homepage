@@ -1,0 +1,48 @@
+{
+	"from": [
+		"cream"
+	],
+	"to": [
+		"butterfat"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "cook",
+				"temperature": {
+					"min": 110,
+					"max": 120
+				},
+				"note": "Boiled in a steam-jacketed ghee boiler with constant stirring, hotter (120–140 °C) in southern India, until frothing stops and the curd particles turn golden to brown."
+			},
+			{
+				"type": "separate",
+				"off": "solids",
+				"note": "The browned residue is removed by stack or pressure filters or by a centrifuge."
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"min": 40,
+					"max": 42
+				},
+				"note": "Cooled before it is packed."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Technology of ghee making: direct cream, creamery butter, continuous method (e-PG Pathshala / INFLIBNET)",
+					"url": "https://ebooks.inflibnet.ac.in/ftp04/chapter/technology-of-ghee-making-direct-cream-creamery-butter-continuous-method/"
+				},
+				{
+					"name": "Wikipedia: Ghee",
+					"url": "https://en.wikipedia.org/wiki/Ghee"
+				}
+			],
+			"text": "The direct-cream method, with the temperatures, the end point and the clearing of the residue, from the first; the second says that cream can be taken straight to ghee, slowly, with a caramelised taste. The first prefers cream of 60–75 % fat."
+		}
+	}
+}

@@ -3,8 +3,6 @@
 	"aka": [
 		"Kondenssahne"
 	],
-	"from": "cream",
-	"step": "evaporate, sterilise in can",
 	"about": {
 		"text": "Milk or cream concentrated by evaporation to at least 15 % fat and sterilised in the can or bottle, so that it keeps without cooling; the richest grade of condensed milk, sold in Germany for coffee as Kondenssahne or kondensierte Kaffeesahne.",
 		"sources": {
@@ -29,68 +27,6 @@
 				}
 			],
 			"text": "The photograph, its author and its licence, from its page."
-		}
-	},
-	"how": {
-		"text": "The milk or cream is homogenised, boiled down under vacuum, filled into cans or bottles and sterilised there, so it keeps without cooling. Figures come from evaporated milk; this product follows the same route at a higher fat.",
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Evaporated milk",
-					"url": "https://en.wikipedia.org/wiki/Evaporated_milk"
-				},
-				{
-					"name": "US 21 CFR 131.130 Evaporated milk",
-					"url": "https://www.law.cornell.edu/cfr/text/21/131.130"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "homogenise"
-				},
-				{
-					"type": "evaporate",
-					"note": "About half the milk's weight in water is removed."
-				},
-				{
-					"type": "add",
-					"what": "stabilisers",
-					"note": "Disodium phosphate stops coagulation, carrageenan stops settling."
-				},
-				{
-					"type": "custom",
-					"name": "fill"
-				},
-				{
-					"type": "heat",
-					"does": "heat",
-					"temperature": {
-						"min": 116,
-						"max": 118
-					},
-					"seconds": {
-						"min": 900,
-						"max": 900
-					},
-					"note": "Sterilised in the can or bottle."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia: Evaporated milk",
-						"url": "https://en.wikipedia.org/wiki/Evaporated_milk"
-					},
-					{
-						"name": "US 21 CFR 131.130 Evaporated milk",
-						"url": "https://www.law.cornell.edu/cfr/text/21/131.130"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	},
 	"composition": {

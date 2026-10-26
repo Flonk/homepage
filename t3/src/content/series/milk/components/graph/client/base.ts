@@ -13,7 +13,7 @@ export type Node = S.PageNode & {
 	hub?: true;
 };
 export type Made = S.Payload['links'][number];
-export type Edge = { source: Node; target: Node; made: boolean };
+export type Arrow = { source: Node; target: Node; made: boolean };
 
 export const ROOT = 'raw';
 export const NODE_H = 40;
@@ -47,15 +47,15 @@ export const APART = 40;
 export const ROW_GAP = 8;
 /* A product is drawn the bigger the more is made from it, all the way
    down: as a little more than the square root of one more than that, so
-   a product with nothing under it is 1×, three under it about 2.7×,
-   fifteen 7.4×. Milk is twice what that makes it. The picture is meant to be zoomed into: the great
+   a product with nothing under it is 1×, three under it about 2.1×,
+   fifteen 4.6×. Milk is twice what that makes it. The picture is meant to be zoomed into: the great
    branch points read from afar, the ends of the branches close up. */
-export const sizeOf = (made: number) => (1 + made) ** 0.72;
+export const sizeOf = (made: number) => (1 + made) ** 0.55;
 export const MILK = 2;
 /* How thick a line is for each thing at the end of it: a line carries
    everything made down its branch, so it is this many times as thick as
    that is many, and a line out of a product splits into its children's
-   as a river does, each strand as thick as its own branch (see draw). */
+   as a river does, each strand as thick as its own branch (see layout/arrows.ts). */
 export const STRAND = 1.5;
 /* An arrowhead: the line's own end, tapering to a point, as wide as the
    line, however thin; and long enough, a thin line's too, to be seen to. */
@@ -68,7 +68,7 @@ export const MARGIN = 16;
 /* How far in it can be zoomed: until the smallest words, a step's table
    on a thin arrow, read. */
 export const MAX_ZOOM = 2000;
-// How big a cheese is drawn on the map (see layMap), against a product's least.
+// How big a cheese is drawn on the map (see layWorldMap), against a product's least.
 export const MAP_PILL = 0.06;
 /* A ruler in a kind (see Product), along the bottom of its pill: this
    long a unit, room either end for what it measures; its products this far under it and their rows this far apart, and products
@@ -78,6 +78,8 @@ export const RULER_END = 4 * PAD_X + 48;
 export const DROP = 36;
 export const TIER_GAP = 28;
 export const SIDE_GAP = 10;
+// Inside a cheese panel, round its edge and between its rows (see layout/panels.ts).
+export const PANEL_PADDING = 18;
 
 /* Words measured on a canvas, in the graph's own font, rather than asked
    of the SVG, which lays the whole page out again for every one asked: a
@@ -135,7 +137,6 @@ export const only = (data: Graph, milks: Set<S.Beast>): Graph => {
 		nodes: data.nodes.filter((n) => kept.has(n.id)),
 		links: data.links.filter((l) => kept.has(l.source) && kept.has(l.target)),
 		splits: data.splits.map((p) => ({ ...p, ids: p.ids.filter((id) => kept.has(id)) })).filter((p) => p.ids.length > 1),
-		kinds: data.kinds.map((k) => ({ ...k, ids: k.ids.filter((id) => kept.has(id)) })).filter((k) => k.ids.length),
 	};
 };
 
@@ -149,3 +150,9 @@ export const corner = (d: Node, n: number, right: boolean, bottom: boolean, inse
 	const y = bottom ? d.y + d.h / 2 - r * inset : d.y - d.h / 2 + r * inset;
 	return Array.from({ length: n }, (_, i) => ({ r, x: x(i), y }));
 };
+
+/* The room a ruler needs left of its nought: what it measures, in spaced
+   small capitals (see drawCaption), and the nought itself, with a margin
+   before them; so a long name does not run into the pill's photograph. */
+export const rulerLead = ({ name }: { name: string }) =>
+	measure(name.toUpperCase(), 11, '600') + 0.14 * 11 * name.length + measure(' 0', 10) + PAD_X;

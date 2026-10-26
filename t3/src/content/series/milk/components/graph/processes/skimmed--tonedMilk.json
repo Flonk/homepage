@@ -1,0 +1,67 @@
+{
+	"from": [
+		"skimmed"
+	],
+	"to": [
+		"tonedMilk"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 38,
+					"max": 43
+				},
+				"note": "Water is warmed first in the pasteurising vat."
+			},
+			{
+				"type": "add",
+				"what": "skim milk powder",
+				"note": "Mixed into the warm water."
+			},
+			{
+				"type": "add",
+				"what": "whole buffalo milk",
+				"note": "Brings the milk to about 3 % fat with non-fat solids restored to their old level (at least 8.5 %)."
+			},
+			{
+				"type": "filter"
+			},
+			{
+				"type": "pasteurise",
+				"temperature": {
+					"min": 63,
+					"max": 63
+				},
+				"seconds": {
+					"min": 1800,
+					"max": 1800
+				}
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"min": 5,
+					"max": 5
+				}
+			}
+		],
+		"text": "Single toned milk is not always pasteurised; double-toned milk always is.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Toned milk",
+					"url": "https://en.wikipedia.org/wiki/Toned_milk"
+				},
+				{
+					"name": "Special types of milk (slides), flowsheet of toned milk manufacture",
+					"url": "https://www.slideshare.net/slideshow/special-types-of-milk/12334502"
+				}
+			],
+			"text": "Wikipedia for what is mixed and the fat and solids targets; the slides, a student presentation and so a weaker source, for the order, the vat pasteurising and the cooling."
+		}
+	}
+}

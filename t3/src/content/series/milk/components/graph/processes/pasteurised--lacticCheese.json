@@ -1,0 +1,69 @@
+{
+	"from": [
+		"pasteurised"
+	],
+	"to": [
+		"lacticCheese"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "coagulate",
+				"by": "rennet-acid",
+				"temperature": {
+					"min": 17,
+					"max": 20
+				},
+				"seconds": {
+					"min": 86400,
+					"max": 86400,
+					"about": true
+				},
+				"note": "The milk is warmed a little and left to set for about 24 hours."
+			},
+			{
+				"type": "mould",
+				"note": "The soft curd is ladled into long moulds."
+			},
+			{
+				"type": "drain",
+				"by": "mould",
+				"note": "It drains by itself in the moulds."
+			},
+			{
+				"type": "salt",
+				"how": "dry",
+				"note": "The unmoulded cheese is coated with salted, powdered charcoal."
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"temperature": {
+					"min": 10,
+					"max": 15
+				},
+				"humidity": {
+					"min": 90,
+					"max": 90,
+					"about": true
+				},
+				"seconds": {
+					"min": 864000,
+					"max": 864000,
+					"about": true
+				},
+				"note": "It is turned daily in a cool, damp cellar for about 10 days."
+			}
+		],
+		"text": "This is the way of Sainte-Maure de Touraine, a goat's cheese; the 24 hours, the cellar and the 10 days are as given there.",
+		"sources": {
+			"links": [
+				{
+					"name": "culture: Sainte-Maure de Touraine",
+					"url": "https://culturecheesemag.com/cheese-library/Sainte-Maure-de-Touraine"
+				}
+			],
+			"text": "The setting for 24 hours, ladling, salted charcoal and ripening in the cellar are from this page; it does not say how much rennet is used."
+		}
+	}
+}

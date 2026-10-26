@@ -1,0 +1,49 @@
+{
+	"from": [
+		"cream"
+	],
+	"to": [
+		"creamLiqueur"
+	],
+	"step": "blend with spirit, homogenise",
+	"text": "Reported: cream and spirit are homogenised into one emulsion with the help of an emulsifier so the alcohol does not curdle the cream or separate in storage.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Baileys Irish Cream",
+				"url": "https://en.wikipedia.org/wiki/Baileys_Irish_Cream"
+			},
+			{
+				"name": "Wikipedia: Cream liqueur",
+				"url": "https://en.wikipedia.org/wiki/Cream_liqueur"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"note": "About 17 % alcohol by volume in Baileys.",
+				"what": "spirit"
+			},
+			{
+				"type": "homogenise",
+				"note": "With an emulsifier, so the alcohol does not curdle the cream or separate in storage."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Baileys Irish Cream",
+					"url": "https://en.wikipedia.org/wiki/Baileys_Irish_Cream"
+				},
+				{
+					"name": "Wikipedia: Cream liqueur",
+					"url": "https://en.wikipedia.org/wiki/Cream_liqueur"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

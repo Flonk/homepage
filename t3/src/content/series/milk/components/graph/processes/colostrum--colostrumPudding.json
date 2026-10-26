@@ -1,0 +1,31 @@
+{
+	"from": [
+		"colostrum"
+	],
+	"to": [
+		"colostrumPudding"
+	],
+	"step": "bake or steam until set",
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "sugar, salt and spices such as cinnamon or cardamom"
+			},
+			{
+				"type": "heat",
+				"does": "cook",
+				"note": "It is baked in a water bath in the oven until it sets to a creamy consistency."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Swedish Wikipedia: Kalvdans",
+					"url": "https://sv.wikipedia.org/wiki/Kalvdans"
+				}
+			],
+			"text": "The seasoning and the water bath baking from this article, which gives no amounts, oven temperature or time."
+		}
+	}
+}

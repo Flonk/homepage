@@ -1,0 +1,51 @@
+{
+	"from": [
+		"condensed"
+	],
+	"to": [
+		"milkCaramel"
+	],
+	"step": "cook with sugar and fat to a set stage",
+	"text": "Cream and butter are stirred into hot sugar syrup, which is cooked again to the firm-ball stage; vanilla and salt go in last (vanilla earlier would burn off, salt earlier would invert the sugar).",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Caramel",
+				"url": "https://en.wikipedia.org/wiki/Caramel"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "cook",
+				"temperature": {
+					"min": 130,
+					"max": 130
+				},
+				"note": "Sugar and glucose first, then cream and butter."
+			},
+			{
+				"type": "heat",
+				"does": "cook",
+				"temperature": {
+					"min": 120,
+					"max": 120,
+					"about": true
+				},
+				"note": "Until the firm-ball stage; vanilla and salt go in last."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Caramel",
+					"url": "https://en.wikipedia.org/wiki/Caramel"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

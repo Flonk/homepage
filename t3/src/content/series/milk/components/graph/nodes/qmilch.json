@@ -14,61 +14,6 @@
 			"text": "Written from this source."
 		}
 	},
-	"how": {
-		"text": "Casein powder and water are pushed through an extruder and spun through a jet, then cut or wound. This is melt-style spinning of a plasticised protein, unlike the wet spinning of Lanital.",
-		"sources": {
-			"links": [
-				{
-					"name": "Nonwovens News, The magic of milk (2013)",
-					"url": "https://www.nonwovensnews.com/2013/06/13/the-magic-of-milk/"
-				},
-				{
-					"name": "Patent application: Process for Producing Milk Protein Fibers (QMILCH IP GMBH)",
-					"url": "https://patents.justia.com/patent/20130256942"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "custom",
-					"name": "plasticise",
-					"note": "With water (the patent also names glycerol)."
-				},
-				{
-					"type": "custom",
-					"name": "extrude",
-					"temperature": {
-						"max": 140
-					},
-					"note": "Under mechanical stress."
-				},
-				{
-					"type": "custom",
-					"name": "spin"
-				},
-				{
-					"type": "cut",
-					"how": "cut",
-					"note": "Cut to staple or kept as filament."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Nonwovens News, The magic of milk (2013)",
-						"url": "https://www.nonwovensnews.com/2013/06/13/the-magic-of-milk/"
-					},
-					{
-						"name": "Patent application: Process for Producing Milk Protein Fibers (QMILCH IP GMBH)",
-						"url": "https://patents.justia.com/patent/20130256942"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"facts": [
 		{
 			"k": "Difference to Lanital",

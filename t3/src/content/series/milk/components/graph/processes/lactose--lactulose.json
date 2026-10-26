@@ -1,0 +1,66 @@
+{
+	"from": [
+		"lactose"
+	],
+	"to": [
+		"lactulose"
+	],
+	"step": "rearrange",
+	"text": "Lactulose is not in milk: it is made from lactose, often from whey lactose, by warming a lactose solution with an alkaline catalyst until part of it rearranges. The syrup is then purified; a crystalline product is made by crystallising it.",
+	"sources": {
+		"links": [
+			{
+				"name": "Karim & Aider 2020, ACS Omega 5(14), 8380–8392",
+				"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7161209"
+			},
+			{
+				"name": "Wikipedia: Lactulose",
+				"url": "https://en.wikipedia.org/wiki/Lactulose"
+			},
+			{
+				"name": "US 6214124, lactulose syrup by lactose isomerisation (sodium aluminate)",
+				"url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/6214124"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "rearrange",
+				"temperature": {
+					"min": 50,
+					"max": 130
+				},
+				"note": "Warmed with an alkaline catalyst (NaOH, Na₂CO₃, (NH₄)₂CO₃ or sodium aluminate, borate also used) for minutes to a few hours, so the glucose half of lactose becomes fructose."
+			},
+			{
+				"type": "custom",
+				"name": "purify"
+			},
+			{
+				"type": "custom",
+				"name": "crystallise",
+				"note": "For the crystalline product."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Karim & Aider 2020, ACS Omega 5(14), 8380–8392",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7161209"
+				},
+				{
+					"name": "Wikipedia: Lactulose",
+					"url": "https://en.wikipedia.org/wiki/Lactulose"
+				},
+				{
+					"name": "US 6214124, lactulose syrup by lactose isomerisation (sodium aluminate)",
+					"url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/6214124"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

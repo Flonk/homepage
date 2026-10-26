@@ -1,0 +1,46 @@
+{
+	"from": [
+		"cream"
+	],
+	"to": [
+		"mediaCrema"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "standardise",
+				"fat": {
+					"min": 20,
+					"max": 20,
+					"about": true
+				},
+				"note": "The can lists cream of 20 % butterfat."
+			},
+			{
+				"type": "add",
+				"what": "carrageenan, sodium alginate, soy lecithin, phosphate and citrate",
+				"note": "These stabilisers and salts are on the ingredient list."
+			},
+			{
+				"type": "pasteurise"
+			},
+			{
+				"type": "homogenise"
+			},
+			{
+				"type": "custom",
+				"name": "sterilise",
+				"note": "The label says the cream is also sterilised, which is why it keeps unopened without a fridge."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Open Food Facts: Nestlé Media Crema 225 g",
+					"url": "https://world.openfoodfacts.org/product/7501001600426"
+				}
+			],
+			"text": "The Open Food Facts entry for Nestlé Media Crema: its common name, 'pasteurizada, homogenizada y esterilizada', and its ingredient list. No temperatures are given; the entry's fat figures disagree (20 % butterfat against 16.7 g per 100 g)."
+		}
+	}
+}

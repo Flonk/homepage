@@ -1,0 +1,84 @@
+{
+	"from": [
+		"semi"
+	],
+	"to": [
+		"semiUht"
+	],
+	"step": "heat to ≥135 °C",
+	"text": "Semi-skimmed milk, with its fat set to 1.5 %, goes through the same ultra-high heat as whole UHT milk and is filled into sterile cartons, so it keeps for months without cooling.",
+	"sources": {
+		"links": [
+			{
+				"name": "Tetra Pak Dairy Processing Handbook: Long-life dairy products",
+				"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/long-life-dairy-products"
+			},
+			{
+				"name": "Regulation (EC) No 853/2004, Annex III, Section IX, Ch. II",
+				"url": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:02004R0853-20230215"
+			},
+			{
+				"name": "Regulation (EU) No 1308/2013, Annex VII Part IV (UK retained copy)",
+				"url": "https://www.legislation.gov.uk/eur/2013/1308/annex/VII/part/IV/division/III"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 75,
+					"max": 80,
+					"about": true
+				},
+				"note": "About 75 °C in an indirect plant, about 80 °C in a direct one."
+			},
+			{
+				"type": "homogenise",
+				"bar": {
+					"min": 180,
+					"max": 250
+				},
+				"note": "In indirect plants before UHT, or aseptically after."
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 137,
+					"max": 142
+				},
+				"seconds": {
+					"min": 4,
+					"max": 6
+				},
+				"note": "Continuous flow; an indirect plant holds about 4 s at about 138 °C, a direct plant steam-injects to 140–150 °C and flash-cools in vacuum."
+			},
+			{
+				"type": "custom",
+				"name": "fill",
+				"note": "Aseptically, into sterilised cartons."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook: Long-life dairy products",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/long-life-dairy-products"
+				},
+				{
+					"name": "Regulation (EC) No 853/2004, Annex III, Section IX, Ch. II",
+					"url": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:02004R0853-20230215"
+				},
+				{
+					"name": "Regulation (EU) No 1308/2013, Annex VII Part IV (UK retained copy)",
+					"url": "https://www.legislation.gov.uk/eur/2013/1308/annex/VII/part/IV/division/III"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

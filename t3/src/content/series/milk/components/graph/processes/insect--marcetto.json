@@ -1,0 +1,77 @@
+{
+	"from": [
+		"insect"
+	],
+	"to": [
+		"marcetto"
+	],
+	"variant": true,
+	"step": "let larvae soften",
+	"text": "Pecorino wheels that are still moist with whey or have cracked rinds are colonised by cheese-fly larvae, whose activity breaks down the proteins until the whole wheel turns creamy and very piquant. The paste is then scraped out and kept refrigerated in terracotta or glass jars as a spreadable cream.",
+	"sources": {
+		"links": [
+			{
+				"name": "Regione Abruzzo PAT sheet 'Cacio marcetto' (via ONAF)",
+				"url": "https://www.onaf.it/uploads/public/formaggi/6614_cacio-marcetto-scheda-reg-abruzzo.pdf"
+			},
+			{
+				"name": "ONAF, Cacio marcetto technical sheet",
+				"url": "https://www.onaf.it/uploads/public/6613_cacio-marcetto.pdf"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "coagulate",
+				"by": "rennet"
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"kinds": [
+					"animal"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "Piophila casei",
+							"kind": "animal",
+							"does": [
+								"ripening"
+							]
+						}
+					]
+				},
+				"temperature": {
+					"min": 10,
+					"max": 14
+				},
+				"humidity": {
+					"min": 85,
+					"max": 90
+				},
+				"note": "The larvae colonise young or cracked wheels and break down the proteins."
+			},
+			{
+				"type": "custom",
+				"name": "scrape",
+				"note": "Once the wheel is creamy, into terracotta or glass jars."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Regione Abruzzo PAT sheet 'Cacio marcetto' (via ONAF)",
+					"url": "https://www.onaf.it/uploads/public/formaggi/6614_cacio-marcetto-scheda-reg-abruzzo.pdf"
+				},
+				{
+					"name": "ONAF, Cacio marcetto technical sheet",
+					"url": "https://www.onaf.it/uploads/public/6613_cacio-marcetto.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

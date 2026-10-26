@@ -1,0 +1,70 @@
+{
+	"from": [
+		"semiHard"
+	],
+	"to": [
+		"asiago"
+	],
+	"variant": true,
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Asiago cheese",
+				"url": "https://en.wikipedia.org/wiki/Asiago_cheese"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "coagulate",
+				"by": "rennet",
+				"note": "Whole milk, with rennet and lipase."
+			},
+			{
+				"type": "cut",
+				"how": "cut",
+				"note": "To nut size."
+			},
+			{
+				"type": "heat",
+				"does": "cook"
+			},
+			{
+				"type": "press",
+				"seconds": {
+					"min": 14400,
+					"max": 14400,
+					"about": true
+				}
+			},
+			{
+				"type": "salt",
+				"how": "brine",
+				"seconds": {
+					"min": 172800,
+					"max": 172800
+				}
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"seconds": {
+					"min": 1728000,
+					"max": 3456000
+				}
+			}
+		],
+		"text": "Pressato is rested 20-40 d; d'Allevo is aged at least 60 d (Mezzano 4-6 mo, Vecchio 10-16 mo, Stravecchio 15+ mo).",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Asiago cheese",
+					"url": "https://en.wikipedia.org/wiki/Asiago_cheese"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

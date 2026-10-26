@@ -5,8 +5,6 @@
 		"Sauerrahmerzeugnisse"
 	],
 	"comment": "Cream soured once, by the same lactic cultures, into what is one product under many names, told apart by little more than how much fat it has: each hung under the ruler at what it typically has.",
-	"from": "cream",
-	"step": "culture, ferment",
 	"scale": {
 		"name": "fat",
 		"unit": "%",
@@ -38,119 +36,6 @@
 				}
 			],
 			"text": "The photograph, its author and its licence, from its page."
-		}
-	},
-	"how": {
-		"text": "Mesophilic lactococci sour the cream slowly at room temperature, and the aroma strains add diacetyl and CO₂. Acid sets the protein around the fat globules, so the cream thickens, more so the higher its fat. The same culture makes all of these creams; what tells them apart is mostly how much fat the cream has.",
-		"sources": {
-			"links": [
-				{
-					"name": "Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products",
-					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products"
-				},
-				{
-					"name": "Tetra Pak Dairy Processing Handbook, ch. 12 Cultures",
-					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cultures-and-starter-manufacture"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "heat",
-					"does": "heat",
-					"temperature": {
-						"min": 90,
-						"max": 90
-					},
-					"seconds": {
-						"min": 300,
-						"max": 300
-					}
-				},
-				{
-					"type": "homogenise"
-				},
-				{
-					"type": "ferment",
-					"does": "incubate",
-					"kinds": [
-						"lactic"
-					],
-					"adds": {
-						"microbes": [
-							{
-								"name": "Lactococcus lactis subsp. lactis",
-								"kind": "bacterium",
-								"does": [
-									"acid"
-								]
-							},
-							{
-								"name": "Lactococcus lactis subsp. cremoris",
-								"kind": "bacterium",
-								"does": [
-									"acid"
-								]
-							},
-							{
-								"name": "Lactococcus lactis subsp. lactis biovar diacetylactis",
-								"kind": "bacterium",
-								"does": [
-									"aroma",
-									"gas"
-								]
-							},
-							{
-								"name": "Leuconostoc mesenteroides",
-								"kind": "bacterium",
-								"does": [
-									"aroma",
-									"gas"
-								]
-							}
-						],
-						"by": [
-							"starter"
-						]
-					},
-					"temperature": {
-						"min": 18,
-						"max": 21
-					},
-					"seconds": {
-						"min": 64800,
-						"max": 72000
-					},
-					"note": "In the pot at 20 °C for 16–18 h."
-				},
-				{
-					"type": "heat",
-					"does": "cool",
-					"temperature": {
-						"min": 6,
-						"max": 6,
-						"about": true
-					},
-					"seconds": {
-						"min": 86400
-					}
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products",
-						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products"
-					},
-					{
-						"name": "Tetra Pak Dairy Processing Handbook, ch. 12 Cultures",
-						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cultures-and-starter-manufacture"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	},
 	"facts": [

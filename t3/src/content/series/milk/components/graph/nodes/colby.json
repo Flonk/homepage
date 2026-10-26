@@ -55,61 +55,6 @@
 		"located": "hint"
 	},
 	"confidence": "high",
-	"how": {
-		"label": "cool the curd",
-		"text": "Adding water to cool the stirred curd stops the pieces from matting together into slabs, the step that defines cheddaring. The pieces are then drained, salted and pressed, giving a cheese with up to 40% moisture.",
-		"sources": {
-			"links": [
-				{
-					"name": "21 CFR 133.118 Colby cheese (US standard of identity)",
-					"url": "https://www.law.cornell.edu/cfr/text/21/133.118"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "heat",
-					"does": "cool",
-					"note": "By adding water, so the pieces do not mat."
-				},
-				{
-					"type": "drain"
-				},
-				{
-					"type": "salt"
-				},
-				{
-					"type": "custom",
-					"name": "stir"
-				},
-				{
-					"type": "press"
-				},
-				{
-					"type": "ferment",
-					"does": "ripen",
-					"temperature": {
-						"min": 1.7
-					},
-					"seconds": {
-						"min": 5184000
-					},
-					"note": "Cured this long only if made from raw milk."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "21 CFR 133.118 Colby cheese (US standard of identity)",
-						"url": "https://www.law.cornell.edu/cfr/text/21/133.118"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"sources": {
 		"links": [
 			{

@@ -1,0 +1,150 @@
+{
+	"from": [
+		"cream"
+	],
+	"to": [
+		"culturedButter",
+		"culturedButtermilk"
+	],
+	"step": "culture, ripen, churn",
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 85,
+					"max": 85
+				},
+				"seconds": {
+					"min": 15
+				}
+			},
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "Lactococcus lactis subsp. lactis",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						},
+						{
+							"name": "Lactococcus lactis subsp. lactis biovar diacetylactis",
+							"kind": "bacterium",
+							"does": [
+								"aroma"
+							]
+						},
+						{
+							"name": "Leuconostoc mesenteroides",
+							"kind": "bacterium",
+							"does": [
+								"aroma"
+							]
+						}
+					],
+					"by": [
+						"starter"
+					]
+				},
+				"temperature": {
+					"min": 8,
+					"max": 21
+				},
+				"seconds": {
+					"min": 43200,
+					"max": 54000
+				},
+				"note": "Soured during the ripening, in summer at 20 °C for about 5 h."
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"note": "In summer, cooled at about 22 °SH."
+			},
+			{
+				"type": "churn"
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 14 Butter",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/butter"
+				},
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 12 Cultures",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cultures-and-starter-manufacture"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	},
+	"legs": {
+		"culturedButter": {
+			"step": "the fat",
+			"text": "The culture sours the cream while its fat crystallises in the ripening tank, and the aroma strains make diacetyl. That gives the butter its fuller, buttery smell, and the acid protects it against unwanted microbes.",
+			"sources": {
+				"links": [
+					{
+						"name": "Tetra Pak Dairy Processing Handbook, ch. 14 Butter",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/butter"
+					},
+					{
+						"name": "Tetra Pak Dairy Processing Handbook, ch. 12 Cultures",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cultures-and-starter-manufacture"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			},
+			"processing": {
+				"steps": [
+					{
+						"type": "custom",
+						"name": "work"
+					}
+				],
+				"sources": {
+					"links": [
+						{
+							"name": "Tetra Pak Dairy Processing Handbook, ch. 14 Butter",
+							"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/butter"
+						},
+						{
+							"name": "Tetra Pak Dairy Processing Handbook, ch. 12 Cultures",
+							"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cultures-and-starter-manufacture"
+						}
+					],
+					"text": "The table, the facts and the words on how it is made, from these."
+				}
+			}
+		},
+		"culturedButtermilk": {
+			"step": "the rest",
+			"processing": {
+				"steps": [
+					{
+						"type": "drain",
+						"note": "Drained off once the butter grains reach the right size, and collected on its own."
+					}
+				],
+				"sources": {
+					"links": [
+						{
+							"name": "Tetra Pak Dairy Processing Handbook, ch. 14 Butter",
+							"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/butter"
+						}
+					],
+					"text": "The draining of the buttermilk, from this chapter; cultured-butter buttermilk is much more acid than sweet-cream buttermilk."
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,66 @@
+{
+	"from": [
+		"buttermilk"
+	],
+	"to": [
+		"mfgm"
+	],
+	"step": "remove casein, microfilter",
+	"text": "Washing the cream before churning lowers the dry matter of the buttermilk and so raises the phospholipid share.",
+	"sources": {
+		"links": [
+			{
+				"name": "Frontiers in Nutrition 2021: Wang & Mu",
+				"url": "https://www.frontiersin.org/journals/nutrition/articles/10.3389/fnut.2021.807284/pdf"
+			},
+			{
+				"name": "Euroserum patent US20210386083",
+				"url": "https://patents.justia.com/patent/20210386083"
+			},
+			{
+				"name": "Teagasc: characterisation and enrichment of buttermilk MFGM",
+				"url": "https://teagasc.ie/wp-content/uploads/media/website/publications/2009/Characterisation-and-enrichment-of-buttermilk-fat-globule-membrane-using-novel-technologies_5552.pdf"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "remove casein",
+				"note": "Casein is removed first, as MFGM fragments are about as big as casein micelles."
+			},
+			{
+				"type": "microfilter",
+				"note": "Ceramic cross-flow membrane of 0.8 µm."
+			},
+			{
+				"type": "custom",
+				"name": "polish",
+				"note": "Supercritical CO2 removes non-polar lipid and lifts the share of polar lipids."
+			},
+			{
+				"type": "dry",
+				"note": "Spray-drying cut phospholipid content by 38–41 % in one study."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Frontiers in Nutrition 2021: Wang & Mu",
+					"url": "https://www.frontiersin.org/journals/nutrition/articles/10.3389/fnut.2021.807284/pdf"
+				},
+				{
+					"name": "Euroserum patent US20210386083",
+					"url": "https://patents.justia.com/patent/20210386083"
+				},
+				{
+					"name": "Teagasc: characterisation and enrichment of buttermilk MFGM",
+					"url": "https://teagasc.ie/wp-content/uploads/media/website/publications/2009/Characterisation-and-enrichment-of-buttermilk-fat-globule-membrane-using-novel-technologies_5552.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

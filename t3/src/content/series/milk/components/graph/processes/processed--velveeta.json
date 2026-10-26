@@ -1,0 +1,54 @@
+{
+	"from": [
+		"processed"
+	],
+	"to": [
+		"velveeta"
+	],
+	"variant": true,
+	"step": "emulsify",
+	"text": "Velveeta is built from milk, whey and milk protein concentrate with emulsifying phosphates and citrates rather than mainly from ripened cheese, which gives its soft, velvety melt. Because milk protein concentrate is not a permitted ingredient under the US process-cheese standards, it is labelled a 'pasteurized prepared cheese product'.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Velveeta (Kraft ingredient list)",
+				"url": "https://en.wikipedia.org/wiki/Velveeta"
+			},
+			{
+				"name": "Farm and Dairy (2002), FDA warns Kraft about MPCs",
+				"url": "https://www.farmanddairy.com/?p=123"
+			},
+			{
+				"name": "21 CFR 133.179 Pasteurized process cheese spread",
+				"url": "https://www.law.cornell.edu/cfr/text/21/133.179"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "emulsify",
+				"note": "Milk, whey, milk protein concentrate and fat are emulsified with sodium phosphate and sodium citrate."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Velveeta (Kraft ingredient list)",
+					"url": "https://en.wikipedia.org/wiki/Velveeta"
+				},
+				{
+					"name": "Farm and Dairy (2002), FDA warns Kraft about MPCs",
+					"url": "https://www.farmanddairy.com/?p=123"
+				},
+				{
+					"name": "21 CFR 133.179 Pasteurized process cheese spread",
+					"url": "https://www.law.cornell.edu/cfr/text/21/133.179"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

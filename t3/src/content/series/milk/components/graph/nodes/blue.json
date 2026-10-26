@@ -3,8 +3,6 @@
 	"aka": [
 		"Blauschimmelkäse"
 	],
-	"from": "rennetCurd",
-	"step": "pierce, grow blue",
 	"mapped": true,
 	"niche": 1,
 	"about": {
@@ -31,82 +29,6 @@
 				}
 			],
 			"text": "The photograph, its author and its licence, from its page."
-		}
-	},
-	"how": {
-		"text": "Piercing lets air into the cheese, and the blue mould needs that oxygen to grow along the needle channels.",
-		"sources": {
-			"links": [
-				{
-					"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
-					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
-				},
-				{
-					"name": "Codex General Standard for Cheese (CXS 283-1978)",
-					"url": "https://www.fao.org/input/download/standards/175/CXS_283e.pdf"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "ferment",
-					"does": "incubate",
-					"kinds": [
-						"lactic",
-						"mould"
-					],
-					"adds": {
-						"microbes": [
-							{
-								"name": "Penicillium roqueforti",
-								"kind": "mould"
-							}
-						],
-						"by": [
-							"starter"
-						]
-					},
-					"note": "The mould is added to the milk or curd, or settles from the cave air."
-				},
-				{
-					"type": "coagulate",
-					"by": "rennet"
-				},
-				{
-					"type": "salt",
-					"how": "brine",
-					"strength": {
-						"min": 3.5,
-						"max": 7
-					},
-					"note": "Dry or brine salted."
-				},
-				{
-					"type": "ferment",
-					"does": "pierce",
-					"note": "With needles, to let air in."
-				},
-				{
-					"type": "ferment",
-					"does": "ripen",
-					"note": "Time, temperature and humidity vary by cheese."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
-						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
-					},
-					{
-						"name": "Codex General Standard for Cheese (CXS 283-1978)",
-						"url": "https://www.fao.org/input/download/standards/175/CXS_283e.pdf"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	},
 	"examples": [

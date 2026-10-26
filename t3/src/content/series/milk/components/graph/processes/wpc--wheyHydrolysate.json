@@ -1,0 +1,60 @@
+{
+	"from": [
+		"wpc"
+	],
+	"to": [
+		"wheyHydrolysate"
+	],
+	"step": "break down with enzymes",
+	"sources": {
+		"links": [
+			{
+				"name": "Tatua: protein hydrolysates",
+				"url": "https://www.tatua.com/protein-hydrolysates"
+			},
+			{
+				"name": "US patent 5405637",
+				"url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/5405637"
+			},
+			{
+				"name": "US patent 4981704",
+				"url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/4981704"
+			},
+			{
+				"name": "Wikipedia: Whey protein",
+				"url": "https://en.wikipedia.org/wiki/Whey_protein"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "hydrolyse",
+				"note": "With a porcine trypsin and chymotrypsin mix (activity ratio 0.33–0.66 in a patent); other proteases are also used."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Tatua: protein hydrolysates",
+					"url": "https://www.tatua.com/protein-hydrolysates"
+				},
+				{
+					"name": "US patent 5405637",
+					"url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/5405637"
+				},
+				{
+					"name": "US patent 4981704",
+					"url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/4981704"
+				},
+				{
+					"name": "Wikipedia: Whey protein",
+					"url": "https://en.wikipedia.org/wiki/Whey_protein"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

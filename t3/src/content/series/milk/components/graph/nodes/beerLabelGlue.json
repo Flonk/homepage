@@ -3,11 +3,6 @@
 	"aka": [
 		"Casein label adhesive"
 	],
-	"from": "caseinate",
-	"step": "add additives",
-	"alsoFrom": [
-		"acidCasein"
-	],
 	"about": {
 		"text": "A casein-based adhesive long established for labelling glass bottles: it holds the label through condensation and chilling, yet comes off cleanly in the hot caustic wash, so that returnable bottles can be cleaned and refilled.",
 		"sources": {
@@ -32,57 +27,6 @@
 				}
 			],
 			"text": "The photograph, its author and its licence, from its page."
-		}
-	},
-	"how": {
-		"text": "The casein is already dissolved in alkali as a thick paste; the arrow adds what makes a label adhesive: extenders, resin, alcohol and additives that tune tack and viscosity.",
-		"sources": {
-			"links": [
-				{
-					"name": "US patent 5,455,066, Water-containing adhesive based on casein",
-					"url": "https://patents.google.com/patent/US5455066A/en"
-				},
-				{
-					"name": "Henkel technical article (2013), Optal XP",
-					"url": "https://www.henkel.com/resource/blob/144170/b0efc7b91c35e9259f2472a4f008bee1/data/technical-article-optal-xp.pdf"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "heat",
-					"does": "heat",
-					"temperature": {
-						"min": 50,
-						"max": 95
-					},
-					"seconds": {
-						"min": 600,
-						"max": 1800
-					},
-					"note": "Casein and a base in water, heated until clear."
-				},
-				{
-					"type": "add",
-					"what": "additives",
-					"note": "Water-soluble extenders, resin derivatives, an alcohol; often urea, borax, antifoam, preservative."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "US patent 5,455,066, Water-containing adhesive based on casein",
-						"url": "https://patents.google.com/patent/US5455066A/en"
-					},
-					{
-						"name": "Henkel technical article (2013), Optal XP",
-						"url": "https://www.henkel.com/resource/blob/144170/b0efc7b91c35e9259f2472a4f008bee1/data/technical-article-optal-xp.pdf"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	},
 	"facts": [

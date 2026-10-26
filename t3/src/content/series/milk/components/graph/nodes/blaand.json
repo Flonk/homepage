@@ -3,11 +3,6 @@
 	"aka": [
 		"Fermented whey drink"
 	],
-	"from": "sweetWhey",
-	"step": "ferment",
-	"alsoFrom": [
-		"acidWhey"
-	],
 	"note": "Made by mixing soured whey with water, or by souring whey that has been diluted. The undiluted soured whey is Icelandic sýra, which is listed under acid whey.",
 	"about": {
 		"text": "Blaand, or bland is a fermented milk product made from whey. It is acidic and has very low alcohol content.",
@@ -38,50 +33,6 @@
 	"regions": [
 		"GB"
 	],
-	"how": {
-		"text": "Nothing is added; the whey sours by itself, either before or after it is mixed with water. No souring time, temperature, dilution ratio or species is given in the sources opened, so there is no table. Made for own use in Scotland, Iceland, the Faroes and Norway, never commercial, ended in the mid-20th century.",
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Blaand",
-					"url": "https://en.wikipedia.org/wiki/Blaand"
-				},
-				{
-					"name": "Matarauður Íslands: Whey, Ale & more",
-					"url": "https://mataraudur.is/en/?p=2811"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "ferment",
-					"does": "incubate",
-					"adds": {
-						"microbes": [],
-						"by": [
-							"wild"
-						]
-					}
-				}
-			],
-			"text": "Whey is left to sour by itself, before or after being diluted with water; it turns slightly alcoholic.",
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia: Blaand",
-						"url": "https://en.wikipedia.org/wiki/Blaand"
-					},
-					{
-						"name": "Matarauður Íslands: Whey, Ale & more",
-						"url": "https://mataraudur.is/en/?p=2811"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"facts": [
 		{
 			"k": "Way 1",

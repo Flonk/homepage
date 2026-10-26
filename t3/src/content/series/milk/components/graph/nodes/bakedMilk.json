@@ -4,8 +4,6 @@
 		"Toplyonoye moloko",
 		"Топлёное молоко"
 	],
-	"from": "pasteurised",
-	"step": "hold hot for hours",
 	"about": {
 		"text": "Baked milk is a variety of boiled milk that has been particularly popular in Russia, Ukraine and Belarus. It is made by simmering milk on low heat for eight hours or longer.",
 		"sources": {
@@ -37,61 +35,6 @@
 		"UA",
 		"BY"
 	],
-	"how": {
-		"text": "Milk is kept hot for hours, far longer than for pasteurising, so it browns and boils down a little without being cooked to a skin. Traditionally it stood in a Russian stove; dairies now hold it in closed, stirred tanks.",
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Baked milk",
-					"url": "https://en.wikipedia.org/wiki/Baked_milk"
-				},
-				{
-					"name": "Russian Wikipedia: Топлёное молоко",
-					"url": "https://ru.wikipedia.org/wiki/Топлёное_молоко"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "heat",
-					"does": "heat",
-					"temperature": {
-						"min": 85,
-						"max": 99
-					},
-					"seconds": {
-						"min": 10800,
-						"max": 10800
-					},
-					"note": "Stirred so no fat layer or protein clumps form on top."
-				},
-				{
-					"type": "heat",
-					"does": "cool",
-					"temperature": {
-						"min": 40,
-						"max": 40,
-						"about": true
-					}
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia: Baked milk",
-						"url": "https://en.wikipedia.org/wiki/Baked_milk"
-					},
-					{
-						"name": "Russian Wikipedia: Топлёное молоко",
-						"url": "https://ru.wikipedia.org/wiki/Топлёное_молоко"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"facts": [
 		{
 			"k": "Traditional",

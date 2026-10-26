@@ -24,60 +24,6 @@
 		"cow",
 		"buffalo"
 	],
-	"how": {
-		"text": "Skimming makes it the base of areesh and karish.",
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Laban rayeb",
-					"url": "https://en.wikipedia.org/wiki/Laban_rayeb"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "ferment",
-					"does": "incubate",
-					"kinds": [
-						"lactic"
-					],
-					"adds": {
-						"microbes": [],
-						"by": [
-							"wild"
-						],
-						"vessel": "earthenware pot (matared), sealed with oil or an egg-white and oil coat"
-					},
-					"temperature": {
-						"min": 20,
-						"max": 25
-					},
-					"seconds": {
-						"min": 86400,
-						"max": 345600
-					}
-				},
-				{
-					"type": "separate",
-					"off": "cream",
-					"by": "gravity",
-					"note": "Skimmed off for butter."
-				}
-			],
-			"text": "Raw cow or buffalo milk soured by its own flora; the fat that rises is skimmed off for butter.",
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia: Laban rayeb",
-						"url": "https://en.wikipedia.org/wiki/Laban_rayeb"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"facts": [
 		{
 			"k": "Flavour",

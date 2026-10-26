@@ -1,0 +1,51 @@
+{
+	"from": [
+		"creamCheese"
+	],
+	"to": [
+		"caboc"
+	],
+	"variant": true,
+	"step": "mature the cream, roll in oatmeal",
+	"text": "Instead of churning the cream into butter it is matured in barrels (maker). Whether cultures are added is not stated; no temperatures given.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Caboc",
+				"url": "https://en.wikipedia.org/wiki/Caboc"
+			},
+			{
+				"name": "Highland Fine Cheeses: our story",
+				"url": "https://hf-cheeses.com/our-story"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "ferment",
+				"does": "ripen"
+			},
+			{
+				"type": "custom",
+				"name": "coat",
+				"note": "In toasted pinhead oatmeal."
+			}
+		],
+		"text": "The maker says the cream is matured in barrels; whether cultures are added is not stated.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Caboc",
+					"url": "https://en.wikipedia.org/wiki/Caboc"
+				},
+				{
+					"name": "Highland Fine Cheeses: our story",
+					"url": "https://hf-cheeses.com/our-story"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

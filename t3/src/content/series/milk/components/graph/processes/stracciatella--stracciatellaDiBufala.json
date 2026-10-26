@@ -1,0 +1,41 @@
+{
+	"from": [
+		"stracciatella"
+	],
+	"to": [
+		"stracciatellaDiBufala"
+	],
+	"variant": true,
+	"text": "The buffalo version is the same pulled-curd cheese as stracciatella, made from the curd of buffalo mozzarella: the stretched curd is shredded and mixed with cream. Buffalo herds and their cheeses are much more common west of the Apennines, in Lazio and Campania. No buffalo-specific temperatures or fat figures were found.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Stracciatella di bufala",
+				"url": "https://en.wikipedia.org/wiki/Stracciatella_di_bufala"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "cut",
+				"how": "shred",
+				"note": "The stretched curd of buffalo mozzarella."
+			},
+			{
+				"type": "add",
+				"what": "cream"
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Stracciatella di bufala",
+					"url": "https://en.wikipedia.org/wiki/Stracciatella_di_bufala"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

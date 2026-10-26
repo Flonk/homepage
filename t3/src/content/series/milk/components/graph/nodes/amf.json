@@ -6,11 +6,6 @@
 		"Butterreinfett",
 		"Butterschmalz"
 	],
-	"from": "butter",
-	"step": "remove water and solids",
-	"alsoFrom": [
-		"cream"
-	],
 	"note": "In German law Butterreinfett, Butterschmalz and wasserfreies Milchfett are one product (MilchPQV Anlage 8): at least 99.8 % fat, at most 0.1 % water. The Butterschmalz sold in shops is the same idea as clarified butter. Codex also has plain butter oil, a looser grade at 99.6 % fat with no water limit (like ghee), which is not the same as AMF.",
 	"niche": 1,
 	"about": {
@@ -37,65 +32,6 @@
 				}
 			],
 			"text": "The photograph, its author and its licence, from its page."
-		}
-	},
-	"how": {
-		"text": "Butter is melted, or cream concentrated, and the fat is centrifuged away from the water and milk solids, then dried under vacuum. The heavy phase goes back into the process.",
-		"sources": {
-			"links": [
-				{
-					"name": "Tetra Pak Dairy Processing Handbook, ch. 15 Anhydrous milk fat and butter oil",
-					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/anhydrous-milk-fat-amf-and-butter-oil"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "heat",
-					"does": "heat",
-					"temperature": {
-						"min": 60
-					},
-					"seconds": {
-						"max": 1800
-					},
-					"note": "By indirect heat, as direct steam clouds the emulsion."
-				},
-				{
-					"type": "separate",
-					"off": "fat"
-				},
-				{
-					"type": "heat",
-					"does": "heat",
-					"temperature": {
-						"min": 90,
-						"max": 95
-					},
-					"note": "Vacuum dried to 0.1 % moisture or less (95–98 °C on the cream route)."
-				},
-				{
-					"type": "heat",
-					"does": "cool",
-					"temperature": {
-						"min": 40,
-						"max": 40,
-						"about": true
-					},
-					"note": "Packed in 200 L drums under nitrogen."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Tetra Pak Dairy Processing Handbook, ch. 15 Anhydrous milk fat and butter oil",
-						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/anhydrous-milk-fat-amf-and-butter-oil"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	},
 	"facts": [

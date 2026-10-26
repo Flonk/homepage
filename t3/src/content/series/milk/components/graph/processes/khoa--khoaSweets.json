@@ -1,0 +1,39 @@
+{
+	"from": [
+		"khoa"
+	],
+	"to": [
+		"khoaSweets"
+	],
+	"step": "sweeten, shape",
+	"text": "Which khoa goes into a sweet depends on how dry the sweet must be; the khoa is then worked with sugar and shaped (or, for gulab jamun, kneaded, fried and soaked in syrup).",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Khoa",
+				"url": "https://en.wikipedia.org/wiki/Khoa"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "sugar"
+			},
+			{
+				"type": "mould"
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Khoa",
+					"url": "https://en.wikipedia.org/wiki/Khoa"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

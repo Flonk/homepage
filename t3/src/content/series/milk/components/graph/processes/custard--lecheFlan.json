@@ -1,0 +1,64 @@
+{
+	"from": [
+		"custard"
+	],
+	"to": [
+		"lecheFlan"
+	],
+	"variant": true,
+	"text": "Caramel is set in the mould first (about 5 min), the custard poured on top, and the mould covered and steamed until just set. The egg proteins set gently in the steam, so the flan stays smooth; the caramel ends up on top when it is unmoulded. Quantities from one Filipino recipe site (6 servings).",
+	"sources": {
+		"links": [
+			{
+				"name": "Panlasang Pinoy: Leche flan",
+				"url": "https://panlasangpinoy.com/leche-flan/"
+			},
+			{
+				"name": "Wikipedia: Leche flan",
+				"url": "https://en.wikipedia.org/wiki/Leche_flan"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "caramelise",
+				"note": "1 cup sugar melted to light brown in the mould.",
+				"seconds": {
+					"min": 300,
+					"max": 300,
+					"about": true
+				}
+			},
+			{
+				"type": "heat",
+				"does": "cook",
+				"seconds": {
+					"min": 1800,
+					"max": 2100
+				},
+				"note": "Steamed, covered with foil."
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"note": "Then refrigerated."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Panlasang Pinoy: Leche flan",
+					"url": "https://panlasangpinoy.com/leche-flan/"
+				},
+				{
+					"name": "Wikipedia: Leche flan",
+					"url": "https://en.wikipedia.org/wiki/Leche_flan"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

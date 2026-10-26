@@ -1,0 +1,38 @@
+{
+	"from": [
+		"fresh"
+	],
+	"to": [
+		"milkTea"
+	],
+	"step": "brew with tea",
+	"text": "Two ways: simmer tea leaves (and spices) in milk, or brew tea in water, boil it again and stir milk in; Mongolian and Tibetan grassland tea is salted, Hong Kong tea takes evaporated milk.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Milk tea",
+				"url": "https://en.wikipedia.org/wiki/Milk_tea"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "brew",
+				"note": "Tea leaves (and spices) simmered in milk."
+			}
+		],
+		"text": "Or tea is brewed in water, boiled again and the milk stirred in.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Milk tea",
+					"url": "https://en.wikipedia.org/wiki/Milk_tea"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

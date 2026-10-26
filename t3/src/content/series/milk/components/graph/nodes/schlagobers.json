@@ -3,7 +3,6 @@
 	"aka": [
 		"Schlagrahm"
 	],
-	"from": "cream",
 	"at": 30,
 	"about": {
 		"text": "Austria’s whipping cream: at least 30 % fat, or 36 % sold as “extra schlagfähig”, extra whippable.",
@@ -34,45 +33,6 @@
 	"regions": [
 		"AT"
 	],
-	"how": {
-		"text": "Cream standardised to the whipping grade and pasteurised; nothing is cultured. A lexicon gives 36 % as the minimum for pasteurised Schlagobers, which differs from the Codex figure in the about text.",
-		"sources": {
-			"links": [
-				{
-					"name": "German Wikipedia: Rahm (Austria, Schlagobers)",
-					"url": "https://dewiki.de/Lexikon/Rahm"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "standardise",
-					"fat": {
-						"min": 30
-					}
-				},
-				{
-					"type": "add",
-					"note": "Permitted, to stop creaming.",
-					"what": "carrageenan (E407)"
-				},
-				{
-					"type": "pasteurise"
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "German Wikipedia: Rahm (Austria, Schlagobers)",
-						"url": "https://dewiki.de/Lexikon/Rahm"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"composition": {
 		"fat": {
 			"min": 30

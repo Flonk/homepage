@@ -1,0 +1,73 @@
+{
+	"from": [
+		"cottageCheese"
+	],
+	"to": [
+		"dryCurdCottageCheese"
+	],
+	"variant": true,
+	"text": "Made like cottage cheese, but the washed curd is sold as it is, undressed. The standard names no culture species.",
+	"sources": {
+		"links": [
+			{
+				"name": "21 CFR 133.129",
+				"url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-133/subpart-B/section-133.129"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "pasteurise",
+				"note": "Of sweet skim milk, concentrated skim milk or nonfat dry milk, with calcium chloride up to 0.02 %."
+			},
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "lactic acid bacteria",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						}
+					],
+					"by": [
+						"starter"
+					]
+				},
+				"note": "Lactic acid bacteria are added and the milk held until it coagulates."
+			},
+			{
+				"type": "cut",
+				"how": "cut"
+			},
+			{
+				"type": "heat",
+				"does": "heat"
+			},
+			{
+				"type": "drain"
+			},
+			{
+				"type": "washCurd"
+			}
+		],
+		"text": "Route 1 of the standard: culture added, held until it coagulates, then cut, warmed, stirred, drained and washed. Two other routes set the curd with food acid, or acid and GDL (pH 4.5-4.8), instead; species are not named.",
+		"sources": {
+			"links": [
+				{
+					"name": "21 CFR 133.129",
+					"url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-133/subpart-B/section-133.129"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

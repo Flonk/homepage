@@ -36,66 +36,6 @@
 	"setting": "rennet",
 	"rind": "none",
 	"confidence": "medium",
-	"how": {
-		"text": "Pure donkey milk set with calf rennet only under extreme conditions in a University of Bari trial (5.9 % yield, soft curd); 15–30 % goat milk improved coagulation, which is why pule is blended.",
-		"sources": {
-			"links": [
-				{
-					"name": "The Cheese Atlas, Pule",
-					"url": "https://thecheeseatlas.com/cheese-profiles/pule/"
-				},
-				{
-					"name": "Technological attempts at producing cheese from donkey milk, J Dairy Res (abstract, Bari)",
-					"url": "https://www.cambridge.org/core/journals/journal-of-dairy-research/article/abs/technological-attempts-at-producing-cheese-from-donkey-milk/8F2E052D1CAFABA8719118528B1DBF88"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "pasteurise"
-				},
-				{
-					"type": "coagulate",
-					"by": "rennet"
-				},
-				{
-					"type": "drain",
-					"by": "mould"
-				},
-				{
-					"type": "mould",
-					"seconds": {
-						"max": 259200
-					}
-				},
-				{
-					"type": "ferment",
-					"does": "ripen",
-					"seconds": {
-						"min": 2592000,
-						"max": 2592000,
-						"about": true
-					},
-					"note": "In a maturation room."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "The Cheese Atlas, Pule",
-						"url": "https://thecheeseatlas.com/cheese-profiles/pule/"
-					},
-					{
-						"name": "Technological attempts at producing cheese from donkey milk, J Dairy Res (abstract, Bari)",
-						"url": "https://www.cambridge.org/core/journals/journal-of-dairy-research/article/abs/technological-attempts-at-producing-cheese-from-donkey-milk/8F2E052D1CAFABA8719118528B1DBF88"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"sources": {
 		"links": [
 			{

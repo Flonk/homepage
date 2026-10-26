@@ -1,0 +1,101 @@
+{
+	"from": [
+		"hard"
+	],
+	"to": [
+		"kefalotyri"
+	],
+	"variant": true,
+	"text": "Kefalotyri is a cooked hard cheese of sheep's or goat's milk. It has no protected name or single legal recipe; the cultures listed are those of a 2025 semi-industrial Epirus study of a Kefalotyri-type cheese, not a rule for every maker.",
+	"sources": {
+		"links": [
+			{
+				"name": "Bosnea et al. 2025, Fermentation 11(12):673",
+				"url": "https://doi.org/10.3390/fermentation11120673"
+			},
+			{
+				"name": "Wikipedia: Kefalotyri",
+				"url": "https://en.wikipedia.org/wiki/Kefalotyri"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 65,
+					"max": 65
+				},
+				"seconds": {
+					"min": 30,
+					"max": 30
+				}
+			},
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"by": [
+						"starter"
+					],
+					"microbes": [
+						{
+							"name": "Streptococcus thermophilus ST1",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							],
+							"grows": "thermophilic"
+						},
+						{
+							"name": "Lactococcus lactis",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						},
+						{
+							"name": "Lactiplantibacillus plantarum H25",
+							"kind": "bacterium"
+						},
+						{
+							"name": "Leuconostoc mesenteroides KFM7",
+							"kind": "bacterium"
+						},
+						{
+							"name": "Leuconostoc mesenteroides KFM9",
+							"kind": "bacterium"
+						}
+					]
+				}
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"seconds": {
+					"min": 7776000
+				}
+			}
+		],
+		"text": "Cultures are those of a 2025 Epirus study cheese ripened 90 d; the L. plantarum and Leuconostoc strains are adjuncts of the study, and one L. lactis strain makes nisin A. Native S. thermophilus and L. lactis grow best in the first 24 h; later mesophilic lactic bacteria and the L. plantarum adjunct dominate.",
+		"sources": {
+			"links": [
+				{
+					"name": "Bosnea et al. 2025, Fermentation 11(12):673",
+					"url": "https://doi.org/10.3390/fermentation11120673"
+				},
+				{
+					"name": "Wikipedia: Kefalotyri",
+					"url": "https://en.wikipedia.org/wiki/Kefalotyri"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

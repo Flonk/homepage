@@ -1,12 +1,5 @@
 {
 	"label": "Cheese powder",
-	"from": "cheese",
-	"step": "melt with water and salts, spray-dry",
-	"alsoFrom": [
-		"semiHard",
-		"hard",
-		"creamCheese"
-	],
 	"about": {
 		"text": "Cheese melted with water and emulsifying salts into a smooth liquid and spray-dried to a powder. It goes into sauces, biscuits, dressings, snack seasonings and the packet in boxed macaroni and cheese; one cheese or several can be used, and the mix sets how much fat and protein it has.",
 		"sources": {
@@ -31,60 +24,6 @@
 				}
 			],
 			"text": "The photograph, its author and its licence, from its page."
-		}
-	},
-	"how": {
-		"text": "Cheese is minced, melted with water and emulsifying salts (usually phosphates) into a uniform \"cheese feed\", heated, often homogenised, and sprayed into hot air. Without the salts the hot cheese parts into fat and water, and the powder comes out coarse, dark and lumpy.",
-		"sources": {
-			"links": [
-				{
-					"name": "Felix da Silva et al., Powder Technology 378 (2021) 227–236",
-					"url": "https://doi.org/10.1016/j.powtec.2020.10.004"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "cut",
-					"how": "grind"
-				},
-				{
-					"type": "custom",
-					"name": "melt",
-					"note": "With water and emulsifying salts, usually phosphates (about 3.5 %), into a uniform cheese feed of about 38 % dry matter."
-				},
-				{
-					"type": "heat",
-					"does": "heat",
-					"temperature": {
-						"min": 80,
-						"max": 80
-					},
-					"seconds": {
-						"min": 300,
-						"max": 300
-					}
-				},
-				{
-					"type": "dry",
-					"temperature": {
-						"min": 60,
-						"max": 190
-					},
-					"note": "Sprayed into hot air, 190 °C in and 60 °C out."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Felix da Silva et al., Powder Technology 378 (2021) 227–236",
-						"url": "https://doi.org/10.1016/j.powtec.2020.10.004"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	},
 	"examples": [

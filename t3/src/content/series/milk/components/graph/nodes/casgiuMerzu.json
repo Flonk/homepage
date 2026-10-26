@@ -33,58 +33,5 @@
 	"beasts": [
 		"sheep",
 		"goat"
-	],
-	"how": {
-		"label": "lure the fly",
-		"text": "A whole Corsican sheep's- or goat's-milk tomme is left where cheese flies can lay their eggs; the larvae feeding inside break the paste down into a very soft, tunnelled mass that weeps a liquid called 'lagrima'.",
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipédia (fr): Casgiu merzu",
-					"url": "https://fr.wikipedia.org/wiki/Casgiu_merzu"
-				},
-				{
-					"name": "Wikipedia: Casgiu merzu",
-					"url": "https://en.wikipedia.org/wiki/Casgiu_merzu"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "ferment",
-					"does": "ripen",
-					"kinds": [
-						"animal"
-					],
-					"adds": {
-						"microbes": [
-							{
-								"name": "Piophila casei",
-								"kind": "animal",
-								"does": [
-									"ripening"
-								]
-							}
-						]
-					},
-					"note": "Matured in an airy place open to flies, which lay eggs on the tomme."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipédia (fr): Casgiu merzu",
-						"url": "https://fr.wikipedia.org/wiki/Casgiu_merzu"
-					},
-					{
-						"name": "Wikipedia: Casgiu merzu",
-						"url": "https://en.wikipedia.org/wiki/Casgiu_merzu"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	}
+	]
 }

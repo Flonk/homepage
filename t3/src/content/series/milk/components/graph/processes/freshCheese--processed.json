@@ -1,0 +1,43 @@
+{
+	"from": [
+		"freshCheese"
+	],
+	"to": [
+		"processed"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "emulsifying salts, then cream or butter",
+				"note": "The salts melt the fresh curd into a smooth mass, in the Brazilian requeijão cremoso made from a fresh curd."
+			},
+			{
+				"type": "heat",
+				"does": "cook",
+				"temperature": {
+					"min": 85,
+					"max": 95
+				},
+				"seconds": {
+					"min": 120,
+					"max": 420
+				},
+				"note": "The mass is cooked, stirred, until it is molten and smooth."
+			},
+			{
+				"type": "mould",
+				"note": "It is filled hot into plastic or glass jars."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Journal of Food Science 77(8) 2012: Effect of the type of emulsifying salt on \"requeijão cremoso\" (da Cunha, Alcântara, Viotto)",
+					"url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/951742/1/Effectofthetypeofemulsifying.pdf"
+				}
+			],
+			"text": "The introduction describes how requeijão cremoso is made from fresh curd: fusion with emulsifying salts, cream or butter, cooking at 85-95 °C for 2-7 min and hot filling. Other processed cheeses from fresh curd (cancoillotte) are not covered."
+		}
+	}
+}

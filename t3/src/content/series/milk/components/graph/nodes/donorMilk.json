@@ -5,9 +5,10 @@
 		"Milk-bank milk",
 		"Lactarium milk"
 	],
+	"beasts": [
+		"human"
+	],
 	"comment": "Human milk, not cow's: only the pasteurising is the same idea.",
-	"from": "raw",
-	"step": "screen donors, Holder-pasteurise",
 	"note": "Human milk, not cow's: the node only records the one process (Holder pasteurisation) that is the same idea as pasteurising cow milk, only slower and colder.",
 	"about": {
 		"text": "Milk given by screened mothers to a milk bank, heated gently and handed out on prescription to babies, mostly premature ones, whose own mothers cannot supply enough. The first milk bank is credited to Vienna in 1909 and the first American one to the Boston Floating Hospital the year after.",
@@ -26,67 +27,6 @@
 		"sources": {
 			"unsourced": true,
 			"text": "Human milk, given by mothers to milk banks: not part of the world’s farmed milk. My own rough estimate."
-		}
-	},
-	"how": {
-		"text": "Holder pasteurisation of donated milk also inactivates SARS-CoV-2 (CMAJ 2020).",
-		"sources": {
-			"links": [
-				{
-					"name": "EMBA: Processing of Donor Human Milk, Frontiers in Pediatrics 2019",
-					"url": "https://www.frontiersin.org/journals/pediatrics/articles/10.3389/fped.2019.00049/full"
-				},
-				{
-					"name": "Wikipedia: Milk bank",
-					"url": "https://en.wikipedia.org/wiki/Milk_bank"
-				},
-				{
-					"name": "CMAJ 2020",
-					"url": "https://www.cmaj.ca/content/192/31/E871"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "pasteurise",
-					"temperature": {
-						"min": 62.5,
-						"max": 62.5
-					},
-					"seconds": {
-						"min": 1800,
-						"max": 1800
-					},
-					"note": "Below 64 °C and under 35 min."
-				},
-				{
-					"type": "heat",
-					"does": "cool",
-					"temperature": {
-						"min": 4,
-						"max": 4
-					}
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "EMBA: Processing of Donor Human Milk, Frontiers in Pediatrics 2019",
-						"url": "https://www.frontiersin.org/journals/pediatrics/articles/10.3389/fped.2019.00049/full"
-					},
-					{
-						"name": "Wikipedia: Milk bank",
-						"url": "https://en.wikipedia.org/wiki/Milk_bank"
-					},
-					{
-						"name": "CMAJ 2020",
-						"url": "https://www.cmaj.ca/content/192/31/E871"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	},
 	"facts": [

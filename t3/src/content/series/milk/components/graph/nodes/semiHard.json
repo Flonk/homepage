@@ -3,8 +3,6 @@
 	"aka": [
 		"Schnittkäse"
 	],
-	"from": "rennetCurd",
-	"step": "press, brine",
 	"mapped": true,
 	"niche": 0,
 	"about": {
@@ -31,72 +29,6 @@
 				}
 			],
 			"text": "The photograph, its author and its licence, from its page."
-		}
-	},
-	"how": {
-		"text": "Pressing pushes out more whey than in soft cheese, leaving 54–69 % moisture in the fat-free mass (Codex 'firm/semi-hard'), so the cheese can be sliced. Weeks to months of ripening then build flavour.",
-		"sources": {
-			"links": [
-				{
-					"name": "Codex General Standard for Cheese (CXS 283-1978)",
-					"url": "https://www.fao.org/input/download/standards/175/CXS_283e.pdf"
-				},
-				{
-					"name": "Käseverordnung § 6 (Germany)",
-					"url": "https://lxgesetze.de/käsev/6"
-				},
-				{
-					"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
-					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "press",
-					"note": "In 3–10 steps at about 50–450 g/cm²."
-				},
-				{
-					"type": "salt",
-					"how": "brine",
-					"strength": {
-						"min": 18,
-						"max": 23
-					},
-					"temperature": {
-						"min": 10,
-						"max": 16
-					}
-				},
-				{
-					"type": "ferment",
-					"does": "ripen",
-					"seconds": {
-						"min": 2592000,
-						"max": 7776000
-					},
-					"note": "Weeks to months by type, and the Gouda line ripens at 12–15 °C and 75–80 % RH."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Codex General Standard for Cheese (CXS 283-1978)",
-						"url": "https://www.fao.org/input/download/standards/175/CXS_283e.pdf"
-					},
-					{
-						"name": "Käseverordnung § 6 (Germany)",
-						"url": "https://lxgesetze.de/käsev/6"
-					},
-					{
-						"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
-						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	},
 	"examples": [

@@ -1,0 +1,41 @@
+{
+	"from": [
+		"uht"
+	],
+	"to": [
+		"lactoseFree"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "lactase",
+				"note": "Dosed aseptically after the UHT treatment, 0.2–0.6 g per litre through a 0.2 µm sterile filter."
+			},
+			{
+				"type": "custom",
+				"name": "hydrolyse",
+				"temperature": {
+					"min": 20,
+					"max": 20,
+					"about": true
+				},
+				"note": "Lactose is split into glucose and galactose in the package during ambient storage."
+			}
+		],
+		"text": "For a more neutral taste part of the lactose is first taken out by ultrafiltration; no heat step follows the lactase.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook: Lactose-free dairy products",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/lactose-free-dairy-products"
+				},
+				{
+					"name": "Tetra Pak: Lactose-free milk and milk drinks production",
+					"url": "https://www.tetrapak.com/solutions/categories/dairy/white-milk/lactose-free-milk-drinks"
+				}
+			],
+			"text": "Where lactase goes in, its dose, and hydrolysis in the package; the handbook gives no time for it."
+		}
+	}
+}

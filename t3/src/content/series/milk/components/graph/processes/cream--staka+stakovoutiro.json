@@ -1,0 +1,85 @@
+{
+	"from": [
+		"cream"
+	],
+	"to": [
+		"staka",
+		"stakovoutiro"
+	],
+	"step": "cook with flour, stir",
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "flour and salt",
+				"note": "A little wheat flour or starch."
+			},
+			{
+				"type": "heat",
+				"does": "cook",
+				"note": "Until the protein and the fat part ways."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Roux (Cretan staka)",
+					"url": "https://en.wikipedia.org/wiki/Roux"
+				},
+				{
+					"name": "Greek Gastronomy Guide: Cheeses of Crete, Cretan dairy products",
+					"url": "https://www.greekgastronomyguide.gr/en/item/cheeses-crete-cretan-dairy-products/"
+				},
+				{
+					"name": "Table Journey: Staka (Heraklion), search summary",
+					"url": "https://tablejourney.com/greece/heraklion/dish/staka/"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	},
+	"legs": {
+		"staka": {
+			"step": "the protein",
+			"text": "Cream is cooked slowly with flour until the protein and the fat part ways.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Roux (Cretan staka)",
+						"url": "https://en.wikipedia.org/wiki/Roux"
+					},
+					{
+						"name": "Greek Gastronomy Guide: Cheeses of Crete, Cretan dairy products",
+						"url": "https://www.greekgastronomyguide.gr/en/item/cheeses-crete-cretan-dairy-products/"
+					},
+					{
+						"name": "Table Journey: Staka (Heraklion), search summary",
+						"url": "https://tablejourney.com/greece/heraklion/dish/staka/"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		},
+		"stakovoutiro": {
+			"step": "the fat",
+			"text": "Cream is cooked slowly with flour until the protein and the fat part ways.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Roux (Cretan staka)",
+						"url": "https://en.wikipedia.org/wiki/Roux"
+					},
+					{
+						"name": "Greek Gastronomy Guide: Cheeses of Crete, Cretan dairy products",
+						"url": "https://www.greekgastronomyguide.gr/en/item/cheeses-crete-cretan-dairy-products/"
+					},
+					{
+						"name": "Table Journey: Staka (Heraklion), search summary",
+						"url": "https://tablejourney.com/greece/heraklion/dish/staka/"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	}
+}

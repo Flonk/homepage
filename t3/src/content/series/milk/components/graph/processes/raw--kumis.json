@@ -1,0 +1,102 @@
+{
+	"from": [
+		"raw"
+	],
+	"to": [
+		"kumis"
+	],
+	"step": "ferment mare's milk",
+	"text": "Mare's milk is rich in lactose, so lactic acid bacteria and lactose-fermenting yeasts together make lactic acid, alcohol and CO₂. Because the milk has little casein it never sets into a curd and stays a thin, fizzy drink; acetaldehyde is the key aroma.",
+	"sources": {
+		"links": [
+			{
+				"name": "Martuzzi et al., Foods 13:493 (2024)",
+				"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10855475/"
+			},
+			{
+				"name": "Codex Standard for Fermented Milks (CXS 243-2003)",
+				"url": "https://www.fao.org/input/download/standards/400/CXS_243e.pdf"
+			},
+			{
+				"name": "EAEU Technical Regulation TR TS 033/2013 (English translation)",
+				"url": "https://agriexchange.apeda.gov.in/ImportRegulations/CustomsUnionTechnicalRegulationonMilkandDairyProductsMoscowRussianFederation11182013.pdf"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic",
+					"yeast"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "Lactobacillus delbrueckii subsp. bulgaricus",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						},
+						{
+							"name": "Lactobacillus helveticus",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						},
+						{
+							"name": "Kluyveromyces marxianus",
+							"kind": "yeast",
+							"does": [
+								"alcohol",
+								"gas"
+							]
+						},
+						{
+							"name": "Saccharomyces cerevisiae",
+							"kind": "yeast",
+							"does": [
+								"alcohol",
+								"gas"
+							]
+						}
+					],
+					"by": [
+						"backslop"
+					]
+				},
+				"pH": {
+					"min": 3.3,
+					"max": 5
+				},
+				"alcohol": {
+					"min": 0.7,
+					"max": 2.5
+				},
+				"note": "Seeded with old kumis, and the flora changes mostly in the first 36 h."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Martuzzi et al., Foods 13:493 (2024)",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10855475/"
+				},
+				{
+					"name": "Codex Standard for Fermented Milks (CXS 243-2003)",
+					"url": "https://www.fao.org/input/download/standards/400/CXS_243e.pdf"
+				},
+				{
+					"name": "EAEU Technical Regulation TR TS 033/2013 (English translation)",
+					"url": "https://agriexchange.apeda.gov.in/ImportRegulations/CustomsUnionTechnicalRegulationonMilkandDairyProductsMoscowRussianFederation11182013.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

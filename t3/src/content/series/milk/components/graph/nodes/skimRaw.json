@@ -3,8 +3,6 @@
 	"aka": [
 		"Fettarme bis magere Rohmilch"
 	],
-	"from": "raw",
-	"step": "the rest",
 	"light": true,
 	"about": {
 		"text": "Raw milk with some or all of its cream taken off, once by letting it rise and skimming it by hand, now by spinning it off in a centrifugal separator. What is left is the starting point for semi-skimmed and skimmed milk.",
@@ -42,53 +40,6 @@
 				}
 			],
 			"text": "The rest of the 193 Mt separated: semi-skimmed and skimmed milk, skim milk powder, quark and casein."
-		}
-	},
-	"how": {
-		"text": "The skim milk is what is left of raw milk when the cream has been spun off: it is the other half of the same separating step and still raw until it is heat-treated.",
-		"sources": {
-			"links": [
-				{
-					"name": "Tetra Pak Dairy Processing Handbook: Centrifugal separators and milk standardization",
-					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/centrifugal-separators-and-milk-standardization"
-				},
-				{
-					"name": "Regulation (EU) No 1308/2013, Annex VII Part IV (UK retained copy)",
-					"url": "https://www.legislation.gov.uk/eur/2013/1308/annex/VII/part/IV/division/III"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "heat",
-					"does": "heat",
-					"temperature": {
-						"min": 55,
-						"max": 65
-					}
-				},
-				{
-					"type": "separate",
-					"off": "cream",
-					"by": "centrifuge",
-					"note": "In the hermetic type the bowl stays full of milk and cream leaves from the centre."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Tetra Pak Dairy Processing Handbook: Centrifugal separators and milk standardization",
-						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/centrifugal-separators-and-milk-standardization"
-					},
-					{
-						"name": "Regulation (EU) No 1308/2013, Annex VII Part IV (UK retained copy)",
-						"url": "https://www.legislation.gov.uk/eur/2013/1308/annex/VII/part/IV/division/III"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	},
 	"composition": {

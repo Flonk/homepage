@@ -1,7 +1,5 @@
 {
 	"label": "Butter",
-	"from": "cream",
-	"step": "the fat",
 	"niche": 0,
 	"about": {
 		"text": "Butter is a dairy product made from the fat and protein components of churned cream. It is a semi-solid emulsion at room temperature, consisting of approximately 81% butterfat. It is used at room temperature as a spread, melted as a condiment, and used as a fat in baking, sauce-making, pan frying, and other cooking procedures.",
@@ -27,94 +25,6 @@
 				}
 			],
 			"text": "The photograph, its author and its licence, from its page."
-		}
-	},
-	"how": {
-		"text": "Pasteurise hot, ripen cold for the right fat crystals, churn, drain, work, salt.",
-		"sources": {
-			"links": [
-				{
-					"name": "Tetra Pak Dairy Processing Handbook, ch. 14 Butter",
-					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/butter"
-				},
-				{
-					"name": "Kalla et al. 2016, J Food Sci Technol 53(5)",
-					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4921067"
-				},
-				{
-					"name": "Milchindustrie-Verband, Milkipedia: Butter",
-					"url": "https://milchindustrie.de/milkipedia/butter/"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "heat",
-					"does": "heat",
-					"temperature": {
-						"min": 85
-					},
-					"seconds": {
-						"min": 15
-					},
-					"note": "Negative peroxidase test."
-				},
-				{
-					"type": "heat",
-					"does": "cool",
-					"seconds": {
-						"min": 43200,
-						"max": 54000
-					},
-					"note": "By a temperature programme set to the fat's iodine value (for example 8-21-16 °C for iodine value 28-29; 6-17-11 °C for 35-37), as in a study aged 10 °C for 17 h."
-				},
-				{
-					"type": "churn",
-					"temperature": {
-						"min": 10,
-						"max": 10,
-						"about": true
-					},
-					"seconds": {
-						"min": 2400,
-						"max": 2400,
-						"about": true
-					},
-					"note": "The fat globule membranes break and the fat clumps into grains."
-				},
-				{
-					"type": "drain"
-				},
-				{
-					"type": "salt",
-					"how": "dry",
-					"note": "Unsalted, salted or extra salted; sprinkled on in a batch churn, added as a slurry in a continuous buttermaker."
-				},
-				{
-					"type": "custom",
-					"name": "work",
-					"note": "Until no water droplets are visible."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Tetra Pak Dairy Processing Handbook, ch. 14 Butter",
-						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/butter"
-					},
-					{
-						"name": "Kalla et al. 2016, J Food Sci Technol 53(5)",
-						"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4921067"
-					},
-					{
-						"name": "Milchindustrie-Verband, Milkipedia: Butter",
-						"url": "https://milchindustrie.de/milkipedia/butter/"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	},
 	"examples": [

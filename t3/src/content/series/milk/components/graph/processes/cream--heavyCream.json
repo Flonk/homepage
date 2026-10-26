@@ -1,0 +1,52 @@
+{
+	"from": [
+		"cream"
+	],
+	"to": [
+		"heavyCream"
+	],
+	"text": "Cream standardised to at least 36 % milkfat and heat-treated; US law allows stabilisers, which is why some cartons contain them.",
+	"sources": {
+		"links": [
+			{
+				"name": "US 21 CFR 131.150 Heavy cream",
+				"url": "https://www.law.cornell.edu/cfr/text/21/131.150"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "standardise",
+				"fat": {
+					"min": 36,
+					"max": 36
+				},
+				"note": "US heavy cream must hold not less than 36 % milkfat."
+			},
+			{
+				"type": "homogenise",
+				"note": "The regulation allows heavy cream to be homogenised, but does not require it."
+			},
+			{
+				"type": "pasteurise",
+				"note": "The regulation allows either pasteurisation or ultra-pasteurisation and gives no temperature."
+			},
+			{
+				"type": "add",
+				"what": "stabilisers or emulsifiers (optional)",
+				"note": "US law allows these optional ingredients, so some cartons contain them."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "US 21 CFR 131.150 Heavy cream",
+					"url": "https://www.law.cornell.edu/cfr/text/21/131.150"
+				}
+			],
+			"text": "The US regulation for the 36 % minimum, pasteurised or ultra-pasteurised, optional homogenising and optional stabilisers."
+		}
+	}
+}

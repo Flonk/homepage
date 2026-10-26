@@ -1,0 +1,81 @@
+{
+	"from": [
+		"uht"
+	],
+	"to": [
+		"flavouredMilk"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "sugar, cocoa powder and carrageenan",
+				"note": "Dispersed in the milk with a high-speed mixer, in one recipe 5 % sugar, 1.5 % cocoa and 0.025 % carrageenan."
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 65,
+					"max": 65
+				}
+			},
+			{
+				"type": "homogenise",
+				"bar": {
+					"min": 200,
+					"max": 200
+				},
+				"note": "In two stages, 200 bar then 50 bar."
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 90,
+					"max": 90
+				},
+				"seconds": {
+					"min": 120,
+					"max": 120
+				}
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 140,
+					"max": 140
+				},
+				"seconds": {
+					"min": 4,
+					"max": 4
+				},
+				"note": "Ultra-high temperature treatment."
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"min": 15,
+					"max": 15
+				},
+				"note": "Filled aseptically."
+			}
+		],
+		"text": "Another recipe, with milk powders, goes straight to 141 °C for 5 s after homogenising at 200 bar and 70 °C.",
+		"sources": {
+			"links": [
+				{
+					"name": "Ingredion UK, Indulgent chocolate milk",
+					"url": "https://ingredion.com/emea/en-uk/solving-a-challenge/resource-library/indulgent-chocolate-milk.html"
+				},
+				{
+					"name": "Ingredion APAC, Chocolate milk drink",
+					"url": "https://www.ingredion.com/apac/en-sg/solving-a-challenge/resource-library/chocolate-milk-drink"
+				}
+			],
+			"text": "Two supplier recipes for UHT chocolate milk; indicative rather than plant settings."
+		}
+	}
+}

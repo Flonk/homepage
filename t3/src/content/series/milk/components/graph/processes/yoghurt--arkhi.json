@@ -1,0 +1,44 @@
+{
+	"from": [
+		"yoghurt"
+	],
+	"to": [
+		"arkhi"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic",
+					"yeast"
+				],
+				"seconds": {
+					"min": 86400,
+					"max": 86400,
+					"about": true
+				},
+				"note": "Soured milk worked with Lactobacillus and yeast turns lactose into carbon dioxide and alcohol in about a day."
+			},
+			{
+				"type": "custom",
+				"name": "distil",
+				"note": "Herders distil the fermented milk in a simple pot still and collect the spirit, which is up to about 10 % alcohol by volume."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Arkhi",
+					"url": "https://en.wikipedia.org/wiki/Arkhi"
+				},
+				{
+					"name": "Wikipedia: Isgelen tarag",
+					"url": "https://en.wikipedia.org/wiki/Isgelen_tarag"
+				}
+			],
+			"text": "That arkhi is distilled from fermented milk, its strength, and how isgelen tarag is soured with bacteria and yeast; neither page gives the still or its temperatures."
+		}
+	}
+}

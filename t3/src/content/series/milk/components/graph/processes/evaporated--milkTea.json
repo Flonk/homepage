@@ -1,0 +1,35 @@
+{
+	"from": [
+		"evaporated"
+	],
+	"to": [
+		"milkTea"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "brew tea",
+				"temperature": {
+					"min": 90,
+					"max": 96
+				},
+				"note": "Ceylon black tea is steeped in a cloth filter or fine strainer, then poured back through the leaves and left covered, in one recipe."
+			},
+			{
+				"type": "add",
+				"what": "evaporated milk and sugar",
+				"note": "The milk and sugar go into the cups first and the tea is poured over them, in the same recipe."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Cooklang recipes: Hong Kong Milk Tea",
+					"url": "https://recipes.cooklang.org/recipes/7749"
+				}
+			],
+			"text": "One home recipe for Hong Kong-style milk tea; it also says that Hong Kong's heritage listing knows no standard recipe, so shops differ."
+		}
+	}
+}

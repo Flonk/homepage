@@ -5,11 +5,6 @@
 		"Käsebruch"
 	],
 	"comment": "Set by rennet: the enzyme from a calf's stomach, or a microbial one.",
-	"from": "raw",
-	"step": "the curd",
-	"alsoFrom": [
-		"pasteurised"
-	],
 	"niche": 0,
 	"about": {
 		"text": "Milk set into a soft gel by rennet, an extract of calves' stomachs whose working enzyme is chymosin, or by a substitute enzyme: it turns casein into paracasein, which links into a network that traps the fat. Cut, stirred, heated, drained and pressed to different degrees, it becomes most cheeses.",
@@ -47,78 +42,6 @@
 				}
 			],
 			"text": "About 26 Mt of natural cheese (23.8 Mt of it from cows’ milk in 2023) from about 222 Mt of milk, at about 9 kg of milk a kilo: the curd weighs about what the cheese does."
-		}
-	},
-	"how": {
-		"text": "Rennet makes the casein clot into a gel. Cutting the gel into grains lets the whey run out, and this whey is the sweet whey; cheese curd and sweet whey come from the one draining. The finer the cut, the drier the finished cheese.",
-		"sources": {
-			"links": [
-				{
-					"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
-					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
-				},
-				{
-					"name": "Codex General Standard for Cheese (CXS 283-1978)",
-					"url": "https://www.fao.org/input/download/standards/175/CXS_283e.pdf"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "ferment",
-					"does": "incubate",
-					"kinds": [
-						"lactic"
-					],
-					"adds": {
-						"microbes": [],
-						"by": [
-							"starter"
-						]
-					},
-					"seconds": {
-						"min": 1800,
-						"max": 3600
-					},
-					"note": "The starter is pre-ripened before the rennet goes in."
-				},
-				{
-					"type": "coagulate",
-					"by": "rennet",
-					"temperature": {
-						"min": 31,
-						"max": 33
-					},
-					"seconds": {
-						"min": 300,
-						"max": 420
-					},
-					"note": "Cut after about 30 min."
-				},
-				{
-					"type": "cut",
-					"how": "cut",
-					"size": {
-						"min": 1,
-						"max": 15
-					}
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
-						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
-					},
-					{
-						"name": "Codex General Standard for Cheese (CXS 283-1978)",
-						"url": "https://www.fao.org/input/download/standards/175/CXS_283e.pdf"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	}
 }

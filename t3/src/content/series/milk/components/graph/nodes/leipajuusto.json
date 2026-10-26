@@ -59,64 +59,6 @@
 		"located": "hint"
 	},
 	"confidence": "high",
-	"how": {
-		"label": "bake",
-		"text": "A fresh rennet curd is spread into a thin sheet and baked on both sides until dark-spotted; the heat firms the squeaky curd and browns its surface, and the cheese is ready to eat straight after baking.",
-		"sources": {
-			"links": [
-				{
-					"name": "Kainuun juustoleipä PGI application (Ruokavirasto)",
-					"url": "https://www.ruokavirasto.fi/globalassets/elintarvikkeet/elintarvikeala/ainesosat-ja-sisalto/nimisuojatut-tuotteet/hakemus_kainuun_juustoleipa.pdf"
-				},
-				{
-					"name": "Wikipedia (fi): Leipäjuusto",
-					"url": "https://fi.wikipedia.org/wiki/Leipäjuusto"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "pasteurise"
-				},
-				{
-					"type": "coagulate",
-					"by": "rennet",
-					"note": "With salt added to the milk."
-				},
-				{
-					"type": "cut",
-					"how": "cut"
-				},
-				{
-					"type": "drain"
-				},
-				{
-					"type": "press",
-					"note": "Into a flat sheet 0.5–3 cm thick."
-				},
-				{
-					"type": "custom",
-					"name": "bake",
-					"note": "On both sides, in an oven, under a grill or by open fire."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Kainuun juustoleipä PGI application (Ruokavirasto)",
-						"url": "https://www.ruokavirasto.fi/globalassets/elintarvikkeet/elintarvikeala/ainesosat-ja-sisalto/nimisuojatut-tuotteet/hakemus_kainuun_juustoleipa.pdf"
-					},
-					{
-						"name": "Wikipedia (fi): Leipäjuusto",
-						"url": "https://fi.wikipedia.org/wiki/Leipäjuusto"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"sources": {
 		"links": [
 			{

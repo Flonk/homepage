@@ -1,0 +1,54 @@
+{
+	"from": [
+		"raw"
+	],
+	"to": [
+		"eezgii"
+	],
+	"step": "boil, curdle, cook in its whey till brown",
+	"text": "Milk is boiled and curdled, and the curds are then boiled in their own whey until it is soaked up, which browns them. They are dried on a rack and kept for the winter.",
+	"sources": {
+		"links": [
+			{
+				"name": "ICH Links (ICHCAP): Making of Eezgii",
+				"url": "https://ichlinks.com/archive/elements/elementsV.do?elementsUid=13829896144068001146"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 100,
+					"max": 100,
+					"about": true
+				}
+			},
+			{
+				"type": "coagulate",
+				"note": "The source names no agent."
+			},
+			{
+				"type": "heat",
+				"does": "cook",
+				"note": "Boiled in the whey until it is absorbed."
+			},
+			{
+				"type": "dry",
+				"note": "On a rack, then stored for winter."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "ICH Links (ICHCAP): Making of Eezgii",
+					"url": "https://ichlinks.com/archive/elements/elementsV.do?elementsUid=13829896144068001146"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

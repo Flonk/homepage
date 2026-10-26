@@ -1,0 +1,49 @@
+{
+	"from": [
+		"dulce"
+	],
+	"to": [
+		"manjar"
+	],
+	"variant": true,
+	"text": "Manjar is the Chilean name for dulce de leche. The sources give no Chile-specific quantities, temperatures or times; the method is that of dulce de leche. Note that 'manjar blanco' elsewhere (Colombia, Peru) can be a different, rice-thickened sweet.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Dulce de leche",
+				"url": "https://en.wikipedia.org/wiki/Dulce_de_leche"
+			},
+			{
+				"name": "Wikipedia (es): Arequipe",
+				"url": "https://es.wikipedia.org/wiki/Arequipe"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"seconds": {
+					"min": 5400,
+					"max": 7200
+				},
+				"note": "Milk and sugar are simmered."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Dulce de leche",
+					"url": "https://en.wikipedia.org/wiki/Dulce_de_leche"
+				},
+				{
+					"name": "Wikipedia (es): Arequipe",
+					"url": "https://es.wikipedia.org/wiki/Arequipe"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

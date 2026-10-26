@@ -1,0 +1,57 @@
+{
+	"from": [
+		"caseinate"
+	],
+	"to": [
+		"wineFiningCasein"
+	],
+	"step": "stir into wine, settle",
+	"text": "Fining also runs the other way: protein fining agents tame tannin in red wine.",
+	"sources": {
+		"links": [
+			{
+				"name": "AWRI, Fining agents",
+				"url": "https://nggw.org/wp-content/uploads/2021/03/fining-agents.pdf"
+			},
+			{
+				"name": "Douro white-wine fining study",
+				"url": "https://repositorio.utad.pt/handle/10348/8897"
+			},
+			{
+				"name": "Wikipedia: Fining (wine)",
+				"url": "https://en.wikipedia.org/wiki/Fining_(wine)"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"note": "At 50–250 mg/L for white wine (AWRI fining table), about 5–25 g/hL.",
+				"what": "casein"
+			},
+			{
+				"type": "custom",
+				"name": "settle"
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "AWRI, Fining agents",
+					"url": "https://nggw.org/wp-content/uploads/2021/03/fining-agents.pdf"
+				},
+				{
+					"name": "Douro white-wine fining study",
+					"url": "https://repositorio.utad.pt/handle/10348/8897"
+				},
+				{
+					"name": "Wikipedia: Fining (wine)",
+					"url": "https://en.wikipedia.org/wiki/Fining_(wine)"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

@@ -4,11 +4,6 @@
 		"Frozen yogurt"
 	],
 	"comment": "The mix is fermented with the yoghurt culture, or yoghurt is blended in, then frozen like ice cream.",
-	"from": "fresh",
-	"step": "ferment or blend yoghurt in, freeze with air",
-	"alsoFrom": [
-		"yoghurt"
-	],
 	"note": "Many shops sell frozen yoghurt made from a heat-treated yoghurt base, so it may no longer hold live cultures.",
 	"about": {
 		"text": "A frozen dessert made from yoghurt, sweetened and stabilised, then whipped and frozen like ice cream. Invented in New England, USA, in the 1970s.",
@@ -34,106 +29,6 @@
 				}
 			],
 			"text": "The photograph, its author and its licence, from its page."
-		}
-	},
-	"how": {
-		"text": "The mix of milk, sugar and stabiliser (gelatin, guar gum or carrageenan, which hold back ice crystals) is homogenised, set with the yoghurt culture (or blended with yoghurt), chilled, aged and then frozen with air whipped in, like ice cream.",
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Frozen yogurt",
-					"url": "https://en.wikipedia.org/wiki/Frozen_yogurt"
-				},
-				{
-					"name": "Bintsis & Papademas 2022, Fermentation (Table 2)",
-					"url": "https://doi.org/10.3390/fermentation8120679"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "add",
-					"what": "milk, sugar and a stabiliser",
-					"note": "Stabiliser (gelatin, guar gum or carrageenan) holds back ice crystals."
-				},
-				{
-					"type": "homogenise"
-				},
-				{
-					"type": "ferment",
-					"does": "incubate",
-					"kinds": [
-						"lactic"
-					],
-					"adds": {
-						"microbes": [
-							{
-								"name": "Streptococcus thermophilus",
-								"kind": "bacterium",
-								"does": [
-									"acid"
-								],
-								"grows": "thermophilic"
-							},
-							{
-								"name": "Lactobacillus delbrueckii subsp. bulgaricus",
-								"kind": "bacterium",
-								"does": [
-									"acid"
-								],
-								"grows": "thermophilic"
-							}
-						],
-						"by": [
-							"starter"
-						]
-					},
-					"temperature": {
-						"min": 40,
-						"max": 45
-					}
-				},
-				{
-					"type": "heat",
-					"does": "cool",
-					"temperature": {
-						"min": 0,
-						"max": 4
-					},
-					"seconds": {
-						"max": 14400
-					}
-				},
-				{
-					"type": "custom",
-					"name": "age"
-				},
-				{
-					"type": "custom",
-					"name": "freeze",
-					"temperature": {
-						"min": -6,
-						"max": -2
-					},
-					"note": "With air whipped in."
-				}
-			],
-			"text": "Held until set. Some mixes blend finished yoghurt into the cold mix instead.",
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia: Frozen yogurt",
-						"url": "https://en.wikipedia.org/wiki/Frozen_yogurt"
-					},
-					{
-						"name": "Bintsis & Papademas 2022, Fermentation (Table 2)",
-						"url": "https://doi.org/10.3390/fermentation8120679"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	},
 	"examples": [

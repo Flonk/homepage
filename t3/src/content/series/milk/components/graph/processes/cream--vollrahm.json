@@ -1,0 +1,69 @@
+{
+	"from": [
+		"cream"
+	],
+	"to": [
+		"vollrahm"
+	],
+	"text": "Cream standardised to 35 % fat and heat-treated; in Switzerland it is the cream for whipping.",
+	"sources": {
+		"links": [
+			{
+				"name": "German Wikipedia: Rahm",
+				"url": "https://de.wikipedia.org/wiki/Rahm"
+			},
+			{
+				"name": "Swissmilk: Crème fraîche, Kaffeerahm und Co.",
+				"url": "https://www.swissmilk.ch/de/nachhaltigkeit/milchprodukte/creme-fraiche-kaffeerahm-und-co/"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "standardise",
+				"fat": {
+					"min": 35,
+					"max": 35
+				},
+				"note": "Vollrahm is set to 35 % fat, a Swiss grade that suits whipping."
+			},
+			{
+				"type": "pasteurise",
+				"temperature": {
+					"min": 82,
+					"max": 85,
+					"about": true
+				},
+				"seconds": {
+					"min": 15,
+					"max": 15
+				},
+				"note": "Whipping cream is heated above roughly 82 to 85 °C for 15 seconds, hot enough to keep it whippable."
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"min": 4,
+					"max": 6
+				},
+				"note": "It is cooled and held at 4 to 6 °C so the fat crystallises, which is what lets it whip later."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 9 Pasteurized and ESL dairy products",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/pasteurized-and-esl-dairy-products"
+				},
+				{
+					"name": "Swissmilk: Crème fraîche, Kaffeerahm und Co.",
+					"url": "https://www.swissmilk.ch/de/nachhaltigkeit/milchprodukte/creme-fraiche-kaffeerahm-und-co/"
+				}
+			],
+			"text": "Pasteurising and cooling of whipping cream from the handbook; Swissmilk for pasteurised Vollrahm at 35 g fat per 100 g."
+		}
+	}
+}

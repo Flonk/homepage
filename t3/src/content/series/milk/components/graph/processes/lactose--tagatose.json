@@ -1,0 +1,62 @@
+{
+	"from": [
+		"lactose"
+	],
+	"to": [
+		"tagatose"
+	],
+	"step": "split, then isomerise the galactose",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Tagatose",
+				"url": "https://en.wikipedia.org/wiki/Tagatose"
+			},
+			{
+				"name": "US patent 6991923",
+				"url": "https://patents.google.com/patent/US6991923"
+			},
+			{
+				"name": "US patent 5002612",
+				"url": "https://patents.google.com/patent/US5002612"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "hydrolyse",
+				"note": "Immobilised lactase splits lactose into equal glucose and galactose."
+			},
+			{
+				"type": "custom",
+				"name": "isomerise",
+				"note": "By L-arabinose isomerase (thermophile) or alkaline calcium hydroxide; about 30 % converts in an example."
+			},
+			{
+				"type": "custom",
+				"name": "fractionate",
+				"note": "By chromatography, or by fermenting the glucose away."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Tagatose",
+					"url": "https://en.wikipedia.org/wiki/Tagatose"
+				},
+				{
+					"name": "US patent 6991923",
+					"url": "https://patents.google.com/patent/US6991923"
+				},
+				{
+					"name": "US patent 5002612",
+					"url": "https://patents.google.com/patent/US5002612"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

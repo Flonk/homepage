@@ -1,0 +1,88 @@
+{
+	"from": [
+		"churn"
+	],
+	"to": [
+		"buttermilk"
+	],
+	"step": "sour",
+	"text": "In the EU, lactic acid bacteria sour the low-fat liquid left from churning sweet cream, thickening it slightly and giving it a fresh tang. Its high content of fat-globule membrane (lecithin) makes the flavour change quickly, so it has a short shelf life. In the US and Canada, buttermilk is usually cultured buttermilk: skim or low-fat milk is soured with a mesophilic aroma culture and never churned.",
+	"sources": {
+		"links": [
+			{
+				"name": "Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products",
+				"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products"
+			},
+			{
+				"name": "German MilchPQV, Anlage 8 (2025)",
+				"url": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html"
+			},
+			{
+				"name": "Wikipedia, Buttermilk",
+				"url": "https://en.wikipedia.org/wiki/Buttermilk"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 90,
+					"max": 95
+				},
+				"seconds": {
+					"min": 300,
+					"max": 300,
+					"about": true
+				}
+			},
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "mesophilic lactic acid bacteria",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							],
+							"grows": "mesophilic"
+						}
+					],
+					"by": [
+						"starter"
+					]
+				}
+			},
+			{
+				"type": "add",
+				"note": "Up to 10 % water and 15 % skim milk may be added."
+			}
+		],
+		"text": "EU buttermilk is the low-fat liquid left from churning sweet cream, soured; US and Canadian cultured buttermilk is skim or low-fat milk soured with a mesophilic aroma culture, never churned.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products"
+				},
+				{
+					"name": "German MilchPQV, Anlage 8 (2025)",
+					"url": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html"
+				},
+				{
+					"name": "Wikipedia, Buttermilk",
+					"url": "https://en.wikipedia.org/wiki/Buttermilk"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

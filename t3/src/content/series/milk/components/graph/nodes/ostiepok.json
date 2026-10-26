@@ -49,57 +49,6 @@
 	"rind": "natural",
 	"protected": "PGI",
 	"confidence": "medium",
-	"how": {
-		"sources": {
-			"links": [
-				{
-					"name": "Slovak PGI specification, Slovenský oštiepok (Úrad priemyselného vlastníctva SR)",
-					"url": "https://www.indprop.gov.sk/swift_data/source/pdf/specifikacie_op_oz/slovensky_ostiepok.pdf"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "ferment",
-					"does": "incubate",
-					"kinds": [
-						"lactic"
-					],
-					"adds": {
-						"microbes": [
-							{
-								"name": "Lactococcus",
-								"kind": "bacterium",
-								"does": [
-									"acid"
-								]
-							}
-						],
-						"by": [
-							"starter"
-						]
-					},
-					"note": "An original Lactococcus culture isolated from raw ewe milk and ewe cheese on Slovak salaše, species not named in the specification."
-				},
-				{
-					"type": "heat",
-					"does": "cook",
-					"note": "Optionally steamed."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Slovak PGI specification, Slovenský oštiepok (Úrad priemyselného vlastníctva SR)",
-						"url": "https://www.indprop.gov.sk/swift_data/source/pdf/specifikacie_op_oz/slovensky_ostiepok.pdf"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"sources": {
 		"links": [
 			{

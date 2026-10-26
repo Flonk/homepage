@@ -1,0 +1,58 @@
+{
+	"from": [
+		"quark"
+	],
+	"to": [
+		"mish"
+	],
+	"step": "pickle for years",
+	"text": "Salted fresh cheese is packed into a jar and covered with a sour pickle; fermentation runs for a year or more, giving a very salty, sharp, soft cheese.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Mish",
+				"url": "https://en.wikipedia.org/wiki/Mish"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "drain",
+				"note": "Areesh, in some sources Karish."
+			},
+			{
+				"type": "wash"
+			},
+			{
+				"type": "salt",
+				"note": "Layered with salt."
+			},
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"adds": {
+					"microbes": [],
+					"by": [
+						"backslop"
+					]
+				},
+				"seconds": {
+					"min": 31536000
+				},
+				"note": "Sealed in an earthenware jar under a pickle of buttermilk, sour skimmed milk, whey and red and green peppers, with a little older mish as starter."
+			}
+		],
+		"text": "The jar is topped up as cheese is taken out and fresh added, so there is no fixed age.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Mish",
+					"url": "https://en.wikipedia.org/wiki/Mish"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

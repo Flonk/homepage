@@ -1,0 +1,53 @@
+{
+	"from": [
+		"cream"
+	],
+	"to": [
+		"clotted"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "separate",
+				"off": "cream",
+				"fat": {
+					"min": 55
+				},
+				"note": "Milk is warmed to bring the cream up, which must have at least 55 % fat."
+			},
+			{
+				"type": "heat",
+				"does": "cook",
+				"temperature": {
+					"min": 70,
+					"max": 80
+				},
+				"seconds": {
+					"min": 3600
+				},
+				"note": "Scalded without boiling, for at least an hour, while a thick crust forms."
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"max": 5
+				},
+				"note": "The crust hardens and the cream beneath it thickens."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Cornish Clotted Cream, product specification (UK government, Defra)",
+					"url": "https://assets.publishing.service.gov.uk/media/5fd34e4ee90e076637bb5a3b/pfn-clotted-cream-spec.pdf"
+				},
+				{
+					"name": "Wikipedia: Clotted cream",
+					"url": "https://en.wikipedia.org/wiki/Clotted_cream"
+				}
+			],
+			"text": "The scalding, cooling and fat figures are from the Cornish PDO specification; the article adds the traditional pan and water-bath methods."
+		}
+	}
+}

@@ -1,0 +1,123 @@
+{
+	"from": [
+		"pasteurised"
+	],
+	"to": [
+		"yoghurt"
+	],
+	"step": "with both yoghurt bacteria",
+	"text": "The two bacteria help each other, so together they acidify faster and make far more acetaldehyde, yoghurt's key flavour, than either does alone. Heating the milk first denatures 70–80 % of the whey protein, which binds to the casein, so the acid sets the milk into a firm gel that holds its whey.",
+	"sources": {
+		"links": [
+			{
+				"name": "Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products",
+				"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products"
+			},
+			{
+				"name": "Codex Standard for Fermented Milks (CXS 243-2003)",
+				"url": "https://www.fao.org/input/download/standards/400/CXS_243e.pdf"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "raise solids"
+			},
+			{
+				"type": "homogenise"
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 90,
+					"max": 95
+				},
+				"seconds": {
+					"min": 300,
+					"max": 300,
+					"about": true
+				}
+			},
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "Streptococcus thermophilus",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						},
+						{
+							"name": "Lactobacillus delbrueckii subsp. bulgaricus",
+							"kind": "bacterium",
+							"does": [
+								"acid",
+								"aroma"
+							]
+						}
+					],
+					"by": [
+						"starter"
+					]
+				},
+				"temperature": {
+					"min": 42,
+					"max": 43
+				},
+				"seconds": {
+					"min": 10800,
+					"max": 18000
+				},
+				"pH": {
+					"min": 4.2,
+					"max": 4.5
+				},
+				"acidity": {
+					"min": 0.6
+				},
+				"note": "Set 3–3.5 h in the pot, or stirred 4–5 h."
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"min": 15,
+					"max": 22
+				},
+				"note": "Set yoghurt to 18–20 °C."
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"min": 5,
+					"max": 5,
+					"about": true
+				}
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products"
+				},
+				{
+					"name": "Codex Standard for Fermented Milks (CXS 243-2003)",
+					"url": "https://www.fao.org/input/download/standards/400/CXS_243e.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

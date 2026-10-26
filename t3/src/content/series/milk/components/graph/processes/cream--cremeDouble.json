@@ -1,0 +1,43 @@
+{
+	"from": [
+		"cream"
+	],
+	"to": [
+		"cremeDouble"
+	],
+	"text": "The cream is standardised to a very high fat, so it is thick enough to spoon and survives cooking without splitting. Heat treatment and any thickening are not described in the source opened.",
+	"sources": {
+		"links": [
+			{
+				"name": "German Wikipedia: Crème double",
+				"url": "https://de.wikipedia.org/wiki/Cr%C3%A8me_double"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "standardise",
+				"fat": {
+					"min": 40,
+					"max": 55
+				},
+				"note": "Fat of 40–55 %; the Swiss minimum is 45 %."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "German Wikipedia: Crème double",
+					"url": "https://de.wikipedia.org/wiki/Cr%C3%A8me_double"
+				},
+				{
+					"name": "Tetra Pak Dairy Processing Handbook: Centrifugal separators and milk standardization",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/centrifugal-separators-and-milk-standardization"
+				}
+			],
+			"text": "The fat range from the article, which does not say how it is made; the handbook says that hermetic separators can spin cream above 72 % fat, so such a cream can be made by centrifuge."
+		}
+	}
+}

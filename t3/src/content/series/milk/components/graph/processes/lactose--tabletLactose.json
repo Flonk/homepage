@@ -1,0 +1,75 @@
+{
+	"from": [
+		"lactose"
+	],
+	"to": [
+		"tabletLactose"
+	],
+	"step": "spray-dry, agglomerate or dehydrate",
+	"text": "Lactose itself comes from whey permeate: evaporated to 60-65 % solids and crystallised on cooling (Wikipedia: Lactose). Grade details are from supplier literature (Meggle), which is low authority.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Lactose",
+				"url": "https://en.wikipedia.org/wiki/Lactose"
+			},
+			{
+				"name": "CPHI: FlowLac",
+				"url": "https://www.cphi-online.com/product/flowlac/"
+			},
+			{
+				"name": "CPHI: Tablettose",
+				"url": "https://www.cphi-online.com/product/tablettose/"
+			},
+			{
+				"name": "Meggle brochure: FlowLac",
+				"url": "https://dl1.cuni.cz/pluginfile.php/1159357/mod_resource/content/1/MEGGLE_brochure_FlowLac_20140327_EN_Office.pdf"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "evaporate",
+				"solids": {
+					"min": 60,
+					"max": 65
+				},
+				"note": "Whey permeate is concentrated by evaporation; this is how the lactose itself is made."
+			},
+			{
+				"type": "custom",
+				"name": "crystallise",
+				"note": "The lactose crystallises as the concentrate cools, which also purifies it."
+			},
+			{
+				"type": "cut",
+				"how": "mill",
+				"note": "For the spray-dried grade, the crystals of alpha-lactose monohydrate are milled finely."
+			},
+			{
+				"type": "add",
+				"what": "water",
+				"note": "The milled lactose is suspended in water."
+			},
+			{
+				"type": "dry",
+				"note": "The suspension is spray-dried to spherical grains of crystalline lactose in a matrix of amorphous lactose."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Lactose",
+					"url": "https://en.wikipedia.org/wiki/Lactose"
+				},
+				{
+					"name": "Brenntag: Lactopharm SD",
+					"url": "https://www.brenntag.com/en-br/products/lactopharm-sd.html"
+				}
+			],
+			"text": "Wikipedia for lactose from whey permeate evaporated to 60-65 % solids and crystallised on cooling; a supplier's page for the spray-dried grade. The agglomerated and anhydrous grades are not drawn, for lack of an openable source."
+		}
+	}
+}

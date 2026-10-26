@@ -1,0 +1,37 @@
+{
+	"from": [
+		"cream"
+	],
+	"to": [
+		"iceCream"
+	],
+	"step": "sweeten, churn, freeze",
+	"text": "The mix is cooled below the freezing point of water and stirred, which whips in air and keeps the ice crystals too small to feel.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Ice cream",
+				"url": "https://en.wikipedia.org/wiki/Ice_cream"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "freeze",
+				"note": "Stirred while freezing, which whips in air and keeps the ice crystals small."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Ice cream",
+					"url": "https://en.wikipedia.org/wiki/Ice_cream"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

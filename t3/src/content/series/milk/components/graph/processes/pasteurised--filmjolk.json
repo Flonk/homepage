@@ -1,0 +1,92 @@
+{
+	"from": [
+		"pasteurised"
+	],
+	"to": [
+		"filmjolk"
+	],
+	"step": "with aroma cultures",
+	"text": "The lactococci make lactic acid while the diacetylactis strains and Leuconostoc ferment citrate to diacetyl and CO₂, which gives filmjölk its buttery, mildly sour taste.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Filmjölk",
+				"url": "https://en.wikipedia.org/wiki/Filmj%C3%B6lk"
+			},
+			{
+				"name": "Tetra Pak Dairy Processing Handbook: Cultures",
+				"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cultures-and-starter-manufacture"
+			},
+			{
+				"name": "Carlsson & Bratthall 1985, Acta Odontol Scand",
+				"url": "https://pubmed.ncbi.nlm.nih.gov/3933276/"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "Lactococcus lactis subsp. lactis",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						},
+						{
+							"name": "Lactococcus lactis subsp. cremoris",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						},
+						{
+							"name": "Lactococcus lactis subsp. lactis biovar diacetylactis",
+							"kind": "bacterium",
+							"does": [
+								"aroma",
+								"gas"
+							]
+						},
+						{
+							"name": "Leuconostoc mesenteroides subsp. cremoris",
+							"kind": "bacterium",
+							"does": [
+								"aroma",
+								"gas"
+							]
+						}
+					],
+					"by": [
+						"starter"
+					]
+				}
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Filmjölk",
+					"url": "https://en.wikipedia.org/wiki/Filmj%C3%B6lk"
+				},
+				{
+					"name": "Tetra Pak Dairy Processing Handbook: Cultures",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cultures-and-starter-manufacture"
+				},
+				{
+					"name": "Carlsson & Bratthall 1985, Acta Odontol Scand",
+					"url": "https://pubmed.ncbi.nlm.nih.gov/3933276/"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

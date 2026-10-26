@@ -1,0 +1,70 @@
+{
+	"from": [
+		"insect"
+	],
+	"to": [
+		"casuMarzu"
+	],
+	"variant": true,
+	"step": "lure the fly",
+	"text": "Pecorino is deliberately made attractive to the cheese fly: it is lightly pressed, briefly brined and its rind pierced and oiled, so that Piophila casei lays its eggs inside. The larvae break down the paste, which turns soft to spreadably creamy with a strong, penetrating, piquant taste.",
+	"sources": {
+		"links": [
+			{
+				"name": "Regione Sardegna/ERSAT, PAT sheet 'Casu frazigu' (2006)",
+				"url": "http://www.sardegnaagricoltura.it/documenti/14_43_20070607153029.pdf"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "coagulate",
+				"by": "rennet"
+			},
+			{
+				"type": "press",
+				"note": "Into cylinders of mostly 2–4 kg."
+			},
+			{
+				"type": "salt",
+				"how": "brine",
+				"note": "Short, so the salt does not deter the fly."
+			},
+			{
+				"type": "ferment",
+				"does": "pierce",
+				"note": "Holes with a drop of oil, so the fly lays its eggs inside."
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"kinds": [
+					"animal"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "Piophila casei",
+							"kind": "animal",
+							"does": [
+								"ripening"
+							]
+						}
+					]
+				},
+				"note": "The larvae break the paste down, with few turnings, from late spring to autumn."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Regione Sardegna/ERSAT, PAT sheet 'Casu frazigu' (2006)",
+					"url": "http://www.sardegnaagricoltura.it/documenti/14_43_20070607153029.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

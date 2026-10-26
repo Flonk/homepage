@@ -1,0 +1,67 @@
+{
+	"from": [
+		"caseinate"
+	],
+	"to": [
+		"cppAcp"
+	],
+	"step": "digest, bind calcium",
+	"text": "The phosphopeptides keep calcium and phosphate dissolved as tiny amorphous particles, which in a paste can top up the enamel surface. Lab-scale conditions from the Reynolds patent; the commercial process may differ.",
+	"sources": {
+		"links": [
+			{
+				"name": "US 7312193, Calcium phosphopeptide complexes (Reynolds)",
+				"url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/7312193"
+			},
+			{
+				"name": "Cross, Huq & Reynolds 2007, Curr Pharm Des",
+				"url": "https://www.doi.org/10.2174/138161207780363086"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "digest",
+				"temperature": {
+					"min": 50,
+					"max": 50
+				},
+				"seconds": {
+					"min": 7200,
+					"max": 7200
+				},
+				"note": "Trypsin at 0.2 % of the casein weight, in a 10 % casein solution, pH held at 8.0 with NaOH."
+			},
+			{
+				"type": "custom",
+				"name": "clarify",
+				"note": "Acidified to pH 4.6 and the precipitate removed by centrifuge or microfilter, or microfiltered at pH 8.0 instead."
+			},
+			{
+				"type": "add",
+				"what": "calcium",
+				"note": "The supernatant is taken to pH 9.0, then CaCl₂ (1.6 M) and Na₂HPO₄ (1 M) are added slowly."
+			},
+			{
+				"type": "microfilter",
+				"note": "Keeps only the peptide–calcium phosphate complexes, by microfiltration and diafiltration."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "US 7312193, Calcium phosphopeptide complexes (Reynolds)",
+					"url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/7312193"
+				},
+				{
+					"name": "Cross, Huq & Reynolds 2007, Curr Pharm Des",
+					"url": "https://www.doi.org/10.2174/138161207780363086"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

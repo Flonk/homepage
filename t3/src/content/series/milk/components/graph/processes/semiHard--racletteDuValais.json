@@ -1,0 +1,139 @@
+{
+	"from": [
+		"semiHard"
+	],
+	"to": [
+		"racletteDuValais"
+	],
+	"variant": true,
+	"sources": {
+		"links": [
+			{
+				"name": "Cahier des charges Raclette du Valais AOP (2024 text), articles 8-12",
+				"url": "https://www.aop-igp.ch/fileadmin/Dokumente/kampagne2025/Pflichtenhefte/RAC/Pflichtenheft%20FR%20Raclette%20du%20Valais%20AOP.pdf"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"max": 8
+				},
+				"seconds": {
+					"max": 7200
+				}
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 32,
+					"max": 32
+				}
+			},
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic",
+					"smear"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "lactic acid bacteria",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						}
+					],
+					"by": [
+						"starter"
+					]
+				},
+				"temperature": {
+					"min": 30,
+					"max": 33
+				},
+				"seconds": {
+					"min": 1800,
+					"max": 3600
+				}
+			},
+			{
+				"type": "coagulate",
+				"by": "rennet",
+				"note": "With calf rennet only."
+			},
+			{
+				"type": "heat",
+				"does": "cook",
+				"temperature": {
+					"min": 36,
+					"max": 45
+				}
+			},
+			{
+				"type": "press",
+				"seconds": {
+					"min": 3600,
+					"max": 3600
+				}
+			},
+			{
+				"type": "salt",
+				"how": "brine",
+				"temperature": {
+					"min": 8,
+					"max": 15
+				},
+				"note": "18–22 °Bé, or dry-salted instead."
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"adds": {
+					"microbes": [
+						{
+							"name": "resident smear flora (morge)",
+							"kind": "bacterium",
+							"does": [
+								"rind"
+							]
+						}
+					],
+					"by": [
+						"place"
+					]
+				},
+				"temperature": {
+					"min": 7,
+					"max": 14
+				},
+				"seconds": {
+					"min": 7776000
+				},
+				"humidity": {
+					"min": 88,
+					"max": 96
+				},
+				"note": "Cheeses are turned and brushed daily to day 10, 3 times a week to day 30, then twice a week, on raw spruce boards."
+			}
+		],
+		"text": "Starter from the producers' approved list; the rind smear comes from the dairy's own flora, cheeses turned and brushed on raw spruce boards. Pre-incubation of 30-60 min at 32 °C is shown under the set temperature.",
+		"sources": {
+			"links": [
+				{
+					"name": "Cahier des charges Raclette du Valais AOP (2024 text), articles 8-12",
+					"url": "https://www.aop-igp.ch/fileadmin/Dokumente/kampagne2025/Pflichtenhefte/RAC/Pflichtenheft%20FR%20Raclette%20du%20Valais%20AOP.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

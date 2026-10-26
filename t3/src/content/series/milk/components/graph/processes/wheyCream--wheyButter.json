@@ -1,0 +1,70 @@
+{
+	"from": [
+		"wheyCream"
+	],
+	"to": [
+		"wheyButter"
+	],
+	"step": "churn",
+	"text": "Churned like any cream, but the whey cream is thinner and saltier, so the butter has its own flavour. No churning temperatures were found in a source I opened.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Whey",
+				"url": "https://en.wikipedia.org/wiki/Whey"
+			},
+			{
+				"name": "Tetra Pak Dairy Processing Handbook, ch. 18 Milk and whey fractionation",
+				"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "pasteurise",
+				"note": "Pasteurised at anything from 63 °C for 30 min to 110 °C for a few seconds, depending on the cream."
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"min": 4,
+					"max": 8
+				},
+				"note": "Cooled and held for several hours before churning."
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 18,
+					"max": 22
+				},
+				"note": "Warmed for at least 2 to 4 hours, then cooled gradually to 6–8 °C, to set the fat."
+			},
+			{
+				"type": "churn",
+				"temperature": {
+					"min": 10,
+					"max": 13
+				},
+				"note": "Whey cream from copper vats oxidises faster, so its butter keeps for a shorter time."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Agroscope: Buttermaking cream",
+					"url": "https://www.agroscope.admin.ch/en/buttermaking-cream"
+				},
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 18 Milk and whey fractionation",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
+				}
+			],
+			"text": "The cream-to-butter steps and the whey-cream remark are from Agroscope; the whey cream (25–30 % fat) and its use for butter from Tetra Pak. Neither gives parameters for whey cream alone, so those are the general ones for butter cream."
+		}
+	}
+}

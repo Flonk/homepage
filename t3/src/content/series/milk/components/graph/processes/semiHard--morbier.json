@@ -1,0 +1,102 @@
+{
+	"from": [
+		"semiHard"
+	],
+	"to": [
+		"morbier"
+	],
+	"variant": true,
+	"step": "charcoal line",
+	"text": "A face of the curd is coated with vegetable charcoal before pressing, which leaves the horizontal black line through the uncooked, pressed paste. The rind is built up solely by rubbing the wheels with salt water during at least 45 days of ripening.",
+	"sources": {
+		"links": [
+			{
+				"name": "Commission Reg. (EC) 1027/2009 (Morbier PDO)",
+				"url": "https://www.legislation.gov.uk/eur/2009/1027/data.htm?view=plain"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"max": 40
+				}
+			},
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "lactic acid bacteria",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						}
+					],
+					"by": [
+						"starter"
+					]
+				}
+			},
+			{
+				"type": "coagulate",
+				"by": "rennet",
+				"temperature": {
+					"max": 40
+				}
+			},
+			{
+				"type": "cut",
+				"how": "cut",
+				"size": {
+					"min": 10,
+					"max": 10
+				},
+				"note": "To grains of about 1 cm."
+			},
+			{
+				"type": "add",
+				"what": "charcoal",
+				"note": "On half a cake, leaving the horizontal black line."
+			},
+			{
+				"type": "press",
+				"note": "Lightly, into cakes of 5–8 kg and 30–40 cm."
+			},
+			{
+				"type": "custom",
+				"name": "rub",
+				"note": "With salt water, which may carry lactic starters; no colourings are used."
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"temperature": {
+					"min": 7,
+					"max": 15
+				},
+				"seconds": {
+					"min": 3888000
+				}
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Commission Reg. (EC) 1027/2009 (Morbier PDO)",
+					"url": "https://www.legislation.gov.uk/eur/2009/1027/data.htm?view=plain"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

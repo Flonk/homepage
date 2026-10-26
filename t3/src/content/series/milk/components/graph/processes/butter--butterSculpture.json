@@ -1,0 +1,45 @@
+{
+	"from": [
+		"butter"
+	],
+	"to": [
+		"butterSculpture"
+	],
+	"step": "model cold on a frame",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Butter sculpture",
+				"url": "https://en.wikipedia.org/wiki/Butter_sculpture"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"min": 2,
+					"max": 4
+				},
+				"note": "Worked in a refrigerated case."
+			},
+			{
+				"type": "custom",
+				"name": "model",
+				"note": "On a wooden-and-wire armature, big masses first."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Butter sculpture",
+					"url": "https://en.wikipedia.org/wiki/Butter_sculpture"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

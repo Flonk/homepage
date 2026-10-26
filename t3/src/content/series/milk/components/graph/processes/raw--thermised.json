@@ -1,0 +1,52 @@
+{
+	"from": [
+		"raw"
+	],
+	"to": [
+		"thermised"
+	],
+	"step": "warm to 57–68 °C",
+	"text": "A short, mild heat: not enough to count as pasteurisation, enough to hold the milk until it is made into cheese.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Thermization",
+				"url": "https://en.wikipedia.org/wiki/Thermization"
+			},
+			{
+				"name": "Agroscope: thermisation (publication 49728)",
+				"url": "https://ira.agroscope.ch/en-US/publication/49728"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 57,
+					"max": 68
+				},
+				"seconds": {
+					"min": 10,
+					"max": 20
+				}
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Thermization",
+					"url": "https://en.wikipedia.org/wiki/Thermization"
+				},
+				{
+					"name": "Agroscope: thermisation (publication 49728)",
+					"url": "https://ira.agroscope.ch/en-US/publication/49728"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

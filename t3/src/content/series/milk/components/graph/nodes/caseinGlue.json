@@ -4,8 +4,6 @@
 		"Kaseinleim",
 		"Cold-water glue"
 	],
-	"from": "acidCasein",
-	"step": "mix with lime",
 	"about": {
 		"text": "Glue made from casein mixed with water, hydrated lime and often caustic soda; with enough lime it resists water. Used in crude form for woodwork since the Middle Ages, made as an industry from the 19th century, and in wide demand for military aircraft from 1916–17.",
 		"sources": {
@@ -30,50 +28,6 @@
 				}
 			],
 			"text": "The photograph, its author and its licence, from its page."
-		}
-	},
-	"how": {
-		"text": "The lime does the work: it dissolves the casein into a glue and, as it reacts, makes the dried film resist water. Adjusting the balance of sodium hydroxide and lime trades water resistance against pot life. Alkali dissolves the casein, so no cooking is needed.",
-		"sources": {
-			"links": [
-				{
-					"name": "USDA Forest Products Laboratory, Report 280 'Casein Glues' (1961)",
-					"url": "https://ir.library.oregonstate.edu/jspui/bitstream/1957/882/1/FPL_280ocr_rev.pdf"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "custom",
-					"name": "soak",
-					"seconds": {
-						"min": 900,
-						"max": 1800
-					},
-					"note": "100 parts casein, ground to pass a 20-mesh sieve, in 150 parts water."
-				},
-				{
-					"type": "add",
-					"what": "soda",
-					"note": "Sodium hydroxide, 11 parts in 50 parts water."
-				},
-				{
-					"type": "add",
-					"what": "lime",
-					"note": "Hydrated lime, 20 parts in 50 parts water."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "USDA Forest Products Laboratory, Report 280 'Casein Glues' (1961)",
-						"url": "https://ir.library.oregonstate.edu/jspui/bitstream/1957/882/1/FPL_280ocr_rev.pdf"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	},
 	"examples": [

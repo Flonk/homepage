@@ -1,0 +1,42 @@
+{
+	"from": [
+		"fresh"
+	],
+	"to": [
+		"khoa"
+	],
+	"step": "boil down to a solid",
+	"text": "Milk is simmered and stirred for hours until only a stiff, sticky mass is left. A shortcut mixes full-fat milk powder into skimmed milk, which may not match traditional khoa.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Khoa",
+				"url": "https://en.wikipedia.org/wiki/Khoa"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 80,
+					"max": 80,
+					"about": true
+				},
+				"note": "Simmered for hours until about one fifth of the volume is left."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Khoa",
+					"url": "https://en.wikipedia.org/wiki/Khoa"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

@@ -1,0 +1,45 @@
+{
+	"from": [
+		"cream"
+	],
+	"to": [
+		"cremeDeLeite"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "standardise",
+				"fat": {
+					"min": 10
+				},
+				"note": "The decree sets at least 10 % fat for creme de leite."
+			},
+			{
+				"type": "homogenise",
+				"note": "Required before sterilising."
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 130,
+					"max": 150
+				},
+				"seconds": {
+					"min": 2,
+					"max": 4
+				},
+				"note": "The UHT treatment the decree describes for milk, in continuous flow, before aseptic packing; sterilised cream is packed in suitable containers."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Brazilian Decree 1.812/1996",
+					"url": "https://www.planalto.gov.br/ccivil_03/decreto/1996/d1812.htm"
+				}
+			],
+			"text": "The fat minimum, the homogenising before sterilising and the UHT figures, which the decree gives for milk; the decree has since been replaced by Decree 9.013/2017."
+		}
+	}
+}

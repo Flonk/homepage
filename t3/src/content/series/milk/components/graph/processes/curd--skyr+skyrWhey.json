@@ -1,0 +1,69 @@
+{
+	"from": [
+		"curd"
+	],
+	"to": [
+		"skyr",
+		"skyrWhey"
+	],
+	"step": "strain",
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"min": 18,
+					"max": 18
+				}
+			},
+			{
+				"type": "drain",
+				"note": "Strained through a sieve or fabric until the protein is at least 8 %, and the liquid that runs off is the whey."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "German MilchPQV, Anlage 8 (2025)",
+					"url": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html"
+				},
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products"
+				},
+				{
+					"name": "Wikipedia: Skyr (cites the Vísindavefurinn production account)",
+					"url": "https://en.wikipedia.org/wiki/Skyr"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	},
+	"legs": {
+		"skyr": {
+			"step": "what is left when the whey goes",
+			"text": "Skimmed milk is set by lactic acid bacteria, sometimes helped by a little rennet, and then strained hard, so the result is a fat-free but very high-protein, thick curd.",
+			"sources": {
+				"links": [
+					{
+						"name": "German MilchPQV, Anlage 8 (2025)",
+						"url": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html"
+					},
+					{
+						"name": "Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products"
+					},
+					{
+						"name": "Wikipedia: Skyr (cites the Vísindavefurinn production account)",
+						"url": "https://en.wikipedia.org/wiki/Skyr"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		},
+		"skyrWhey": {
+			"step": "the whey"
+		}
+	}
+}

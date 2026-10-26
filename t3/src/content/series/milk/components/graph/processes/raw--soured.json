@@ -1,0 +1,57 @@
+{
+	"from": [
+		"raw"
+	],
+	"to": [
+		"soured"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "mesophilic lactic acid bacteria",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							],
+							"grows": "mesophilic"
+						}
+					],
+					"by": [
+						"wild"
+					]
+				},
+				"temperature": {
+					"min": 10,
+					"max": 30,
+					"about": true
+				},
+				"seconds": {
+					"min": 86400,
+					"max": 259200
+				},
+				"note": "The raw milk is sieved, covered and left to sour on its own flora until it thickens, which takes a day or two longer in the cold months."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Soured milk",
+					"url": "https://en.wikipedia.org/wiki/Soured_milk"
+				},
+				{
+					"name": "Moonga et al. (2019), The art of mabisi production: a traditional fermented milk, PLoS One",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6417723/"
+				}
+			],
+			"text": "Wikipedia for milk soured by its indigenous bacteria without a starter; the figures are from a survey of mabisi makers in Zambia, one traditional spontaneously soured raw milk, and are not meant for all of them."
+		}
+	}
+}

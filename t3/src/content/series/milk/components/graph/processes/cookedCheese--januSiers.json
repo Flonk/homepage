@@ -1,0 +1,80 @@
+{
+	"from": [
+		"cookedCheese"
+	],
+	"to": [
+		"januSiers"
+	],
+	"variant": true,
+	"step": "cook curd with egg, butter, caraway",
+	"text": "Whole milk is heated and curd added; the mass is cooked until curds separate from clear whey, then stirred with egg, butter, salt and caraway into a firm ball. The temperature and size figures come from Wikipedia, not from the TSG regulation.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Jāņi cheese",
+				"url": "https://en.wikipedia.org/wiki/J%C4%81%C5%86i_cheese"
+			},
+			{
+				"name": "Commission Implementing Regulation (EU) 2015/2045 (TSG; PDF text not extractable here, detail via search summary)",
+				"url": "https://eur-lex.europa.eu/eli/reg_impl/2015/2045/oj/eng"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "lactic acid bacteria",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						}
+					]
+				},
+				"note": "Lactic acid bacteria only, no rennet; no species named."
+			},
+			{
+				"type": "heat",
+				"does": "cook",
+				"temperature": {
+					"min": 72,
+					"max": 77
+				},
+				"note": "Until the curds separate from the clear whey, which is drawn off."
+			},
+			{
+				"type": "add",
+				"note": "Into a firm ball.",
+				"what": "egg, butter or cream, salt and caraway seeds"
+			},
+			{
+				"type": "custom",
+				"name": "rest",
+				"note": "In cheesecloth, often pressed, for a few days."
+			}
+		],
+		"text": "Lactic acid bacteria only, no rennet; no species named. The soured-milk curd is then cooked.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Jāņi cheese",
+					"url": "https://en.wikipedia.org/wiki/J%C4%81%C5%86i_cheese"
+				},
+				{
+					"name": "Commission Implementing Regulation (EU) 2015/2045 (TSG; PDF text not extractable here, detail via search summary)",
+					"url": "https://eur-lex.europa.eu/eli/reg_impl/2015/2045/oj/eng"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

@@ -1,0 +1,55 @@
+{
+	"from": [
+		"sweetWhey"
+	],
+	"to": [
+		"demineralisedWhey"
+	],
+	"step": "take the salts out",
+	"text": "The whey is run through membranes or resins that pull out the salts but leave the lactose and proteins; then evaporated and dried.",
+	"sources": {
+		"links": [
+			{
+				"name": "Tetra Pak Dairy Processing Handbook, ch. 18 Milk and whey fractionation",
+				"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
+			},
+			{
+				"name": "NZMP: SureStart Demineralised Whey Powder 90 %",
+				"url": "https://www.nzmp.com/global/en/ingredients/powders-concentrates/paediatric-grade-powders/surestart-demineralised-whey-powder-90.html"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "demineralise",
+				"temperature": {
+					"min": 21,
+					"max": 21
+				},
+				"note": "By nanofiltration (about 30 % of the ash at 22 % dry matter, 4x, 2.5 MPa), electrodialysis, ion exchange or a mix."
+			},
+			{
+				"type": "evaporate"
+			},
+			{
+				"type": "dry"
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 18 Milk and whey fractionation",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
+				},
+				{
+					"name": "NZMP: SureStart Demineralised Whey Powder 90 %",
+					"url": "https://www.nzmp.com/global/en/ingredients/powders-concentrates/paediatric-grade-powders/surestart-demineralised-whey-powder-90.html"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

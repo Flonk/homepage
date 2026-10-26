@@ -1,0 +1,53 @@
+{
+	"from": [
+		"grilling"
+	],
+	"to": [
+		"quesoParaFreir"
+	],
+	"variant": true,
+	"text": "Queso para freír is a firm, salty fresh white pressed cheese from the Dominican Republic and Puerto Rico that softens but keeps its shape when fried, turning crisp and golden outside and soft inside.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Queso blanco (Dominican/Puerto Rican sections)",
+				"url": "https://en.wikipedia.org/wiki/Queso_blanco"
+			},
+			{
+				"name": "Tropical Cheese, Queso de Freír product page",
+				"url": "https://tropicalcheese.com/products/deli/frying-cheese"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "coagulate",
+				"by": "rennet",
+				"note": "Cow's milk is curdled with rennet."
+			},
+			{
+				"type": "press",
+				"note": "The curds are pressed to take out moisture."
+			},
+			{
+				"type": "mould",
+				"note": "The curd is shaped into blocks."
+			},
+			{
+				"type": "salt",
+				"note": "It is lightly salted and aged only briefly, so it stays firm enough to fry without melting."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Cheese Place: Queso de Freír, the Dominican Republic's iconic frying cheese",
+					"url": "https://cheeseplace.org/queso-de-freir-dominican-republic-frying-cheese/"
+				}
+			],
+			"text": "The outline of rennet, pressing, shaping, light salting and brief ageing, from a cheese blog (low authority) that gives no temperatures, times or amounts."
+		}
+	}
+}

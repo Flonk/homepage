@@ -8,8 +8,6 @@
 		"Aadmg"
 	],
 	"comment": "Cheese made from what the still leaves behind.",
-	"from": "soured",
-	"step": "left in the still, dried",
 	"cheese": true,
 	"about": {
 		"text": "What is left in the pot after soured milk has been distilled into milk spirit. Kalmyks call it bozo and press it into a curd, aadmag, which is made into dried cakes, or use it to dress hides; Mongolian herders dry the mash into aaruul.",
@@ -26,46 +24,5 @@
 	"regions": [
 		"MN",
 		"RU"
-	],
-	"how": {
-		"text": "Nothing is added: the heated, soured milk curd stays in the pot while the alcohol leaves. It is pressed by hand or bagged, drained and dried in the sun.",
-		"sources": {
-			"links": [
-				{
-					"name": "Cambridge Kalmyk Cultural Heritage: Purvya Volod'kina, Milk Products and Vodka",
-					"url": "https://www.repository.cam.ac.uk/handle/1810/277951"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "press"
-				},
-				{
-					"type": "dry",
-					"note": "Hung in cloth bags outside, the solids drying in the sun."
-				},
-				{
-					"type": "cut",
-					"how": "cut",
-					"note": "Squares called khurskh."
-				},
-				{
-					"type": "dry",
-					"note": "Into shuurmg."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Cambridge Kalmyk Cultural Heritage: Purvya Volod'kina, Milk Products and Vodka",
-						"url": "https://www.repository.cam.ac.uk/handle/1810/277951"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	}
+	]
 }

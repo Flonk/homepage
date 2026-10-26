@@ -1,0 +1,41 @@
+{
+	"from": [
+		"creamCheese"
+	],
+	"to": [
+		"cheesecake"
+	],
+	"step": "mix with sugar and eggs, bake",
+	"text": "Eggs set the cheese mix as it bakes; unbaked cakes get their body from cream and gelatin.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Cheesecake",
+				"url": "https://en.wikipedia.org/wiki/Cheesecake"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"note": "Mixed with eggs and sugar."
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"note": "Eggs set the cheese mix as it bakes."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Cheesecake",
+					"url": "https://en.wikipedia.org/wiki/Cheesecake"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

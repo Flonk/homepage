@@ -1,0 +1,90 @@
+{
+	"from": [
+		"semiHard"
+	],
+	"to": [
+		"formaggioDiFossa"
+	],
+	"variant": true,
+	"step": "bury in tufa pits",
+	"text": "The cheese is not made differently from other semi-hard cheeses; it is ripened in a sealed pit, and the pit itself is part of the recipe.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Formaggio di fossa",
+				"url": "https://en.wikipedia.org/wiki/Formaggio_di_fossa"
+			},
+			{
+				"name": "Commission Regulation (EC) 1183/2009 (PDO registration; pit details from search summaries only, PDF not opened)",
+				"url": "https://eur-lex.europa.eu/eli/reg/2009/1183/oj"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"seconds": {
+					"min": 1728000,
+					"max": 2592000
+				},
+				"note": "Matured 20-30 days before burying, though the PDO rules are reported as at least 80 days."
+			},
+			{
+				"type": "custom",
+				"name": "prepare pit",
+				"note": "Straw is burned in it to dry and sanitise it, then it is lined with straw, reeds and planks."
+			},
+			{
+				"type": "custom",
+				"name": "bag",
+				"note": "White cotton or linen bags, about ten wheels each."
+			},
+			{
+				"type": "custom",
+				"name": "bury",
+				"note": "In mid-to-late August, sealed with plaster, wood and sand."
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"adds": {
+					"by": [
+						"place"
+					],
+					"microbes": [
+						{
+							"name": "bacterial colonies of the pit",
+							"kind": "bacterium"
+						}
+					]
+				},
+				"seconds": {
+					"min": 6912000,
+					"max": 8640000
+				},
+				"note": "Without air the fermentation is anaerobic, and the cheese softens and loses lactose, water and fat."
+			},
+			{
+				"type": "custom",
+				"name": "unearth",
+				"note": "On St Catherine (25 Nov) in Sogliano, St Martin (11 Nov) in Perticara."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Formaggio di fossa",
+					"url": "https://en.wikipedia.org/wiki/Formaggio_di_fossa"
+				},
+				{
+					"name": "Commission Regulation (EC) 1183/2009 (PDO registration; pit details from search summaries only, PDF not opened)",
+					"url": "https://eur-lex.europa.eu/eli/reg/2009/1183/oj"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

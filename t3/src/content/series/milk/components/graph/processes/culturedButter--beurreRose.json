@@ -1,0 +1,84 @@
+{
+	"from": [
+		"culturedButter"
+	],
+	"to": [
+		"beurreRose"
+	],
+	"variant": true,
+	"text": "The aroma comes from ripening the cream with a mesophilic starter before churning; today it is churned continuously.",
+	"sources": {
+		"links": [
+			{
+				"name": "Document unique, IGP Beurre ROSE (version of 27-07-2026), Luxembourg ministry of agriculture",
+				"url": "https://agriculture.public.lu/dam-assets/ernaehrung/normen-label-eu-qualitaetskennzeichen/document-unique-igp-beurre-rose.pdf"
+			},
+			{
+				"name": "Wikipedia: Beurre Rose",
+				"url": "https://en.wikipedia.org/wiki/Beurre_Rose"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "mesophilic lactic acid bacteria",
+							"kind": "bacterium",
+							"does": [
+								"acid",
+								"aroma"
+							],
+							"grows": "mesophilic"
+						}
+					],
+					"by": [
+						"starter"
+					]
+				},
+				"pH": {
+					"min": 4.4,
+					"max": 4.8
+				},
+				"note": "Ripened biologically under a strictly controlled temperature profile, no figures given."
+			},
+			{
+				"type": "churn",
+				"note": "Continuously, today."
+			},
+			{
+				"type": "separate",
+				"off": "cream"
+			},
+			{
+				"type": "wash"
+			},
+			{
+				"type": "custom",
+				"name": "knead"
+			}
+		],
+		"text": "The cream is ripened biologically under a controlled temperature profile before churning; the pH is that of the finished butter. Strains and figures are not given.",
+		"sources": {
+			"links": [
+				{
+					"name": "Document unique, IGP Beurre ROSE (version of 27-07-2026), Luxembourg ministry of agriculture",
+					"url": "https://agriculture.public.lu/dam-assets/ernaehrung/normen-label-eu-qualitaetskennzeichen/document-unique-igp-beurre-rose.pdf"
+				},
+				{
+					"name": "Wikipedia: Beurre Rose",
+					"url": "https://en.wikipedia.org/wiki/Beurre_Rose"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

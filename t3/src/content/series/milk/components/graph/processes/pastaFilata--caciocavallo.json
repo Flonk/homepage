@@ -1,0 +1,107 @@
+{
+	"from": [
+		"pastaFilata"
+	],
+	"to": [
+		"caciocavallo"
+	],
+	"variant": true,
+	"step": "stretch, hang",
+	"text": "Caciocavallo Silano is a cow's-milk pasta filata moulded by hand into a closed, smooth pear or oval, then tied in pairs and hung over poles to ripen; it firms from elastic to flaky and develops a straw-yellow rind.",
+	"sources": {
+		"links": [
+			{
+				"name": "ONAF technical sheet, Caciocavallo Silano DOP",
+				"url": "https://www.onaf.it/uploads/public/16937_caciocavallo-silano.pdf"
+			},
+			{
+				"name": "Commission Reg. (EC) 1204/2003 amendment, OJ L 168 (2003)",
+				"url": "https://www.boe.es/doue/2003/168/L00010-00012.pdf"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 58,
+					"max": 58
+				},
+				"seconds": {
+					"min": 30,
+					"max": 30
+				},
+				"note": "The milk is raw or thermised."
+			},
+			{
+				"type": "coagulate",
+				"by": "rennet",
+				"temperature": {
+					"min": 36,
+					"max": 38
+				},
+				"note": "With calf rennet or kid rennet paste."
+			},
+			{
+				"type": "cut",
+				"how": "cut",
+				"note": "Broken to hazelnut size."
+			},
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [],
+					"by": [
+						"starter"
+					]
+				},
+				"note": "Natural whey starter is permitted, and the curd is soured until it can be stretched."
+			},
+			{
+				"type": "custom",
+				"name": "stretch",
+				"temperature": {
+					"min": 80,
+					"max": 85
+				},
+				"note": "In hot water, closed by hand into an oval or cone of 1–2.5 kg."
+			},
+			{
+				"type": "salt",
+				"how": "brine",
+				"seconds": {
+					"min": 21600
+				},
+				"note": "The time is set by the weight."
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"seconds": {
+					"min": 2592000
+				},
+				"note": "Tied in pairs and hung on poles."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "ONAF technical sheet, Caciocavallo Silano DOP",
+					"url": "https://www.onaf.it/uploads/public/16937_caciocavallo-silano.pdf"
+				},
+				{
+					"name": "Commission Reg. (EC) 1204/2003 amendment, OJ L 168 (2003)",
+					"url": "https://www.boe.es/doue/2003/168/L00010-00012.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

@@ -1,0 +1,51 @@
+{
+	"from": [
+		"cream"
+	],
+	"to": [
+		"coffeeCream"
+	],
+	"text": "Cream standardised to the fat of a coffee cream, then heat-treated; how hot decides how long it keeps, and the heat treatment must be named on the pack. Do not confuse it with Kondensmilch, which is sometimes colloquially called Kaffeesahne but is made from leaner milk and may not be sold as Sahne.",
+	"sources": {
+		"links": [
+			{
+				"name": "German Wikipedia: Rahm",
+				"url": "https://de.wikipedia.org/wiki/Rahm"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "standardise",
+				"fat": {
+					"min": 10
+				},
+				"note": "Cream and skim milk are blended to at least 10 % fat."
+			},
+			{
+				"type": "homogenise",
+				"note": "Breaks up the fat globules so that they cream and flocculate less."
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"note": "Pasteurised, UHT-treated or sterilised, which sets how long it keeps."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "German Wikipedia: Rahm",
+					"url": "https://de.wikipedia.org/wiki/Rahm"
+				},
+				{
+					"name": "German MilchPQV, Anlage 8",
+					"url": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html"
+				}
+			],
+			"text": "The fat minimum from the ordinance and the standardising, homogenising and heat-treating from the article; neither gives temperatures, times or pressures."
+		}
+	}
+}

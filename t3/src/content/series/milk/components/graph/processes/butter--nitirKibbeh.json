@@ -1,0 +1,61 @@
+{
+	"from": [
+		"butter"
+	],
+	"to": [
+		"nitirKibbeh"
+	],
+	"step": "simmer with spices",
+	"text": "Made like ghee, but the butter is simmered with spices and aromatics before it is strained, so the fat carries their scent. Times vary by recipe.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia, Niter kibbeh",
+				"url": "https://en.wikipedia.org/wiki/Niter_kibbeh"
+			},
+			{
+				"name": "Culinary Medicine recipe, Niter Kibbeh",
+				"url": "https://mds.culinarymedicine.org/recipes/niter-kibbeh/"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "toast spices",
+				"seconds": {
+					"min": 120,
+					"max": 180
+				}
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"seconds": {
+					"min": 2700,
+					"max": 3600
+				},
+				"note": "Simmered with the spices until the milk solids brown."
+			},
+			{
+				"type": "drain",
+				"by": "cloth"
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia, Niter kibbeh",
+					"url": "https://en.wikipedia.org/wiki/Niter_kibbeh"
+				},
+				{
+					"name": "Culinary Medicine recipe, Niter Kibbeh",
+					"url": "https://mds.culinarymedicine.org/recipes/niter-kibbeh/"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

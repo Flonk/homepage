@@ -1,0 +1,38 @@
+{
+	"from": [
+		"sweetWhey"
+	],
+	"to": [
+		"milkSerumDrink"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "ultrafilter",
+				"note": "Takes out the proteins and fat, leaving a clear liquid with lactose, minerals and organic acids."
+			},
+			{
+				"type": "acidify",
+				"with": "L(+)-lactic acid"
+			},
+			{
+				"type": "add",
+				"what": "fruit extracts, herb extracts, flavourings and sugar or sweeteners",
+				"note": "The serum is about 35 % of the drink."
+			},
+			{
+				"type": "pasteurise",
+				"note": "Pasteurising keeps the drink."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Swissmilk: Fachinformation Milchserum",
+					"url": "https://api.swissmilk.ch/wp-content/uploads/2019/05/fachinformation-milchserum-ernaehrungswissenschaft-de.pdf"
+				}
+			],
+			"text": "Serum, its souring, additions and pasteurising, from the Swissmilk fact sheet, which gives no temperatures."
+		}
+	}
+}

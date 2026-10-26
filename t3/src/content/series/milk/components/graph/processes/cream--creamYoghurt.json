@@ -1,0 +1,107 @@
+{
+	"from": [
+		"cream"
+	],
+	"to": [
+		"creamYoghurt"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "standardise",
+				"fat": {
+					"min": 10
+				},
+				"note": "Cream is added to the milk to bring it to at least 10 % fat."
+			},
+			{
+				"type": "homogenise",
+				"bar": {
+					"min": 200,
+					"max": 250
+				},
+				"temperature": {
+					"min": 65,
+					"max": 70
+				}
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 90,
+					"max": 95
+				},
+				"seconds": {
+					"min": 300,
+					"max": 300,
+					"about": true
+				}
+			},
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "Streptococcus thermophilus",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						},
+						{
+							"name": "Lactobacillus delbrueckii subsp. bulgaricus",
+							"kind": "bacterium",
+							"does": [
+								"acid",
+								"aroma"
+							]
+						}
+					],
+					"by": [
+						"starter"
+					]
+				},
+				"temperature": {
+					"min": 42,
+					"max": 43
+				},
+				"seconds": {
+					"min": 14400,
+					"max": 18000
+				},
+				"pH": {
+					"min": 4.2,
+					"max": 4.5
+				},
+				"note": "Stirred yoghurt takes 4–5 h; set yoghurt about 3–3.5 h in its pots."
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"min": 15,
+					"max": 22
+				},
+				"note": "Stirred yoghurt is cooled at this pH and is not heated again afterwards."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "German MilchPQV, Anlage 8",
+					"url": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html"
+				},
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products"
+				}
+			],
+			"text": "The 10 % fat minimum, the thermophilic cultures and no heating after fermenting, from the ordinance; the homogenising, heating, incubating and cooling are the handbook’s ordinary yoghurt, which does not treat cream yoghurt on its own."
+		}
+	}
+}

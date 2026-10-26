@@ -1,0 +1,56 @@
+{
+	"from": [
+		"hard"
+	],
+	"to": [
+		"processed"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "cut",
+				"how": "shred",
+				"note": "Natural cheeses of different types and ages are shredded and blended."
+			},
+			{
+				"type": "add",
+				"what": "emulsifying salts, water, salt and milk fat",
+				"share": {
+					"min": 1.5,
+					"max": 4
+				},
+				"note": "The emulsifying salts, which bind calcium so the casein can hold the fat, are usually used at no more than 3-4 %."
+			},
+			{
+				"type": "heat",
+				"does": "cook",
+				"temperature": {
+					"min": 80,
+					"max": 95
+				},
+				"seconds": {
+					"min": 240,
+					"max": 480
+				},
+				"note": "The blend is heated with constant stirring until it is homogeneous; one source gives 80-85 °C for 4-8 min."
+			},
+			{
+				"type": "mould",
+				"note": "It is packaged hot, then cooled and stored at 5-10 °C."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "NPTEL/e-PG Pathshala: Emulsifying salts for the dairy and food industry",
+					"url": "https://ebooks.inflibnet.ac.in/ftp03/chapter/emulsifying-salts-for-the-dairy-and-food-industry/"
+				},
+				{
+					"name": "US patent 5,234,707: Processed cheese preparations and method of making",
+					"url": "https://patents.google.com/patent/US5234707A/show.php"
+				}
+			],
+			"text": "The main stages, 80-85 °C for 4-8 min and the salt dose from the chapter; the 80-95 °C range for conventional cooking, and the patent's own 1.5-3 % salt, from the patent's background."
+		}
+	}
+}

@@ -15,6 +15,7 @@ export const MARK: Record<Beast, string> = {
 	camel: '🐪',
 	yak: '🦬',
 	reindeer: '🦌',
+	human: '🤱',
 };
 export const MILK: Record<Beast, string> = {
 	cow: 'cow',
@@ -26,6 +27,7 @@ export const MILK: Record<Beast, string> = {
 	camel: 'camel',
 	yak: 'yak',
 	reindeer: 'reindeer',
+	human: 'human',
 };
 export const said = (beasts: Beast[]) => `From ${beasts.map((b) => MILK[b]).join(' and ')} milk`;
 // Its filter button's title, "Mare milk".

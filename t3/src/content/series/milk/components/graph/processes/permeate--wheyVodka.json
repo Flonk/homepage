@@ -1,0 +1,70 @@
+{
+	"from": [
+		"permeate"
+	],
+	"to": [
+		"wheyVodka"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"yeast"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "Kluyveromyces marxianus",
+							"kind": "yeast",
+							"does": [
+								"alcohol"
+							]
+						}
+					],
+					"by": [
+						"starter"
+					]
+				},
+				"temperature": {
+					"min": 33.3,
+					"max": 38.5
+				},
+				"pH": {
+					"min": 4.7,
+					"max": 5.7
+				},
+				"note": "The yeast turns the lactose, at 50-108 g/l in the study, into alcohol without added enzymes."
+			},
+			{
+				"type": "custom",
+				"name": "distil",
+				"note": "The spirit comes off the still at 48 % alcohol."
+			},
+			{
+				"type": "filter",
+				"note": "It is filtered three times, once through coconut-husk carbon."
+			},
+			{
+				"type": "add",
+				"what": "water",
+				"note": "It is brought down to 40 % alcohol for bottling."
+			}
+		],
+		"text": "The fermentation figures come from a study on whey permeate; Black Cow names only a yeast that works on lactose, not which one.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Black Cow Vodka",
+					"url": "https://en.wikipedia.org/wiki/Black_Cow_Vodka"
+				},
+				{
+					"name": "Optimizing ethanol from cheese whey permeate by Kluyveromyces marxianus UFV-3",
+					"url": "https://locus.ufv.br/items/2b46b021-d4d1-45bc-899f-67ec5f89550e/full"
+				}
+			],
+			"text": "The distilling, filtering and strengths are from the Black Cow article, and the fermentation temperature, pH and lactose range from the study abstract."
+		}
+	}
+}

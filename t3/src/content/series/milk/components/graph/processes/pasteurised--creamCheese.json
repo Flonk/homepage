@@ -1,0 +1,78 @@
+{
+	"from": [
+		"pasteurised"
+	],
+	"to": [
+		"creamCheese"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "standardise",
+				"note": "Cream is added to bring the fat up; US law asks for at least 33 % milk fat in the cheese."
+			},
+			{
+				"type": "homogenise"
+			},
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "lactic acid bacteria",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						}
+					],
+					"by": [
+						"starter"
+					]
+				},
+				"temperature": {
+					"min": 22,
+					"max": 22,
+					"about": true
+				},
+				"pH": {
+					"min": 4.4,
+					"max": 4.9
+				},
+				"note": "The acid makes the proteins lose their charge and the milk coagulates into a curd."
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"note": "It is heated to stop the culture once the curd has formed."
+			},
+			{
+				"type": "separate",
+				"off": "whey",
+				"note": "The whey is removed and the curd formed into a mass."
+			},
+			{
+				"type": "add",
+				"what": "guar or carob gum",
+				"share": {
+					"min": 0,
+					"max": 0.5
+				},
+				"note": "Gums keep water from separating and extend shelf life."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Cream cheese",
+					"url": "https://en.wikipedia.org/wiki/Cream_cheese"
+				}
+			],
+			"text": "The order of cream, homogenising, souring at about 22 °C, heating, whey removal and gums is from this article; its heating range is uncited there, so none is given."
+		}
+	}
+}

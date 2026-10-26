@@ -1,0 +1,67 @@
+{
+	"from": [
+		"sweetWhey"
+	],
+	"to": [
+		"wheyVodka"
+	],
+	"step": "ferment the lactose, distil",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Black Cow Vodka",
+				"url": "https://en.wikipedia.org/wiki/Black_Cow_Vodka"
+			},
+			{
+				"name": "DTU: Production of bioethanol from organic whey using Kluyveromyces marxianus",
+				"url": "https://orbit.dtu.dk/en/publications/production-of-bioethanol-from-organic-whey-using-kluyveromyces-ma/"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"yeast"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "yeast",
+							"kind": "yeast",
+							"does": [
+								"alcohol"
+							]
+						}
+					]
+				},
+				"note": "Yeast ferments the lactose of whey; Black Cow does not name it, and research strains include Kluyveromyces marxianus."
+			},
+			{
+				"type": "custom",
+				"name": "distil",
+				"note": "Distilled to about 48 % ABV, then cut to 40 % ABV."
+			},
+			{
+				"type": "filter",
+				"note": "Three times, once through coconut-husk carbon."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Black Cow Vodka",
+					"url": "https://en.wikipedia.org/wiki/Black_Cow_Vodka"
+				},
+				{
+					"name": "DTU: Production of bioethanol from organic whey using Kluyveromyces marxianus",
+					"url": "https://orbit.dtu.dk/en/publications/production-of-bioethanol-from-organic-whey-using-kluyveromyces-ma/"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

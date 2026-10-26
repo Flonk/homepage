@@ -1,0 +1,75 @@
+{
+	"from": [
+		"semiHard"
+	],
+	"to": [
+		"insect"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "pasteurise"
+			},
+			{
+				"type": "coagulate",
+				"by": "rennet",
+				"note": "Lactic and maturation ferments, annatto for colour and rennet go into the vat, with at least two hours of ripening before the rennet."
+			},
+			{
+				"type": "cut",
+				"how": "cut",
+				"note": "The curd is cut, washed and stirred."
+			},
+			{
+				"type": "mould",
+				"note": "The curd is cut into blocks and put into moulds."
+			},
+			{
+				"type": "press"
+			},
+			{
+				"type": "salt",
+				"how": "brine"
+			},
+			{
+				"type": "dry",
+				"note": "The wheels are dried to take the moisture off their surface."
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"kinds": [
+					"animal"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "Acarus siro",
+							"kind": "animal",
+							"does": [
+								"ripening",
+								"rind"
+							]
+						}
+					],
+					"by": [
+						"place"
+					]
+				},
+				"seconds": {
+					"min": 7776000
+				},
+				"note": "The wheels are turned and brushed through months of ageing while mites feed on the rind, pitting it so that air reaches the paste."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "The Cheese Scientist: Mimolette, a story of cheese mites and Jack O'Lanterns",
+					"url": "https://cheesescientist.com/trivia/mimolette/"
+				}
+			],
+			"text": "The steps of Mimolette, a pressed uncooked cheese ripened with Acarus siro mites; the page gives no temperatures or humidity and does not say how the mites are introduced."
+		}
+	}
+}

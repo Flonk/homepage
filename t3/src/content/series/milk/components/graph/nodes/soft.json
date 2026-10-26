@@ -3,8 +3,6 @@
 	"aka": [
 		"Weichkäse"
 	],
-	"from": "rennetCurd",
-	"step": "drain unpressed",
 	"mapped": true,
 	"niche": 0,
 	"about": {
@@ -31,56 +29,6 @@
 				}
 			],
 			"text": "The photograph, its author and its licence, from its page."
-		}
-	},
-	"how": {
-		"text": "The curd drains under its own weight instead of being pressed, so it keeps a lot of water: soft cheese has more than 67 % moisture in the fat-free mass under both Codex and German law. That moist paste ripens quickly and stays spoonable or spreadable.",
-		"sources": {
-			"links": [
-				{
-					"name": "Codex General Standard for Cheese (CXS 283-1978)",
-					"url": "https://www.fao.org/input/download/standards/175/CXS_283e.pdf"
-				},
-				{
-					"name": "Käseverordnung § 6 (Germany)",
-					"url": "https://lxgesetze.de/käsev/6"
-				},
-				{
-					"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
-					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "drain",
-					"note": "Under its own weight, unpressed."
-				},
-				{
-					"type": "ferment",
-					"does": "ripen"
-				}
-			],
-			"text": "The moist paste ripens quickly.",
-			"sources": {
-				"links": [
-					{
-						"name": "Codex General Standard for Cheese (CXS 283-1978)",
-						"url": "https://www.fao.org/input/download/standards/175/CXS_283e.pdf"
-					},
-					{
-						"name": "Käseverordnung § 6 (Germany)",
-						"url": "https://lxgesetze.de/käsev/6"
-					},
-					{
-						"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
-						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	},
 	"examples": [

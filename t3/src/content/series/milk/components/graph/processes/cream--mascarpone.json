@@ -1,0 +1,60 @@
+{
+	"from": [
+		"cream"
+	],
+	"to": [
+		"mascarpone"
+	],
+	"step": "heat with acid",
+	"text": "Tartaric acid dissolved in a little hot water is stirred into the hot cream; after about five minutes it thickens, is cooled and drained in cloth, and sets firm in the fridge. Quantities are from a Wikipedia recipe; commercial dairies use other acids.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Mascarpone",
+				"url": "https://en.wikipedia.org/wiki/Mascarpone"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "pasteurise",
+				"temperature": {
+					"min": 77,
+					"max": 87
+				},
+				"seconds": {
+					"min": 300,
+					"max": 300
+				}
+			},
+			{
+				"type": "acidify",
+				"with": "tartaric acid",
+				"note": "2.4 g per 1 kg cream, dissolved in a little hot water."
+			},
+			{
+				"type": "drain",
+				"by": "cloth"
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"seconds": {
+					"min": 21600
+				},
+				"note": "Sets firm in the fridge."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Mascarpone",
+					"url": "https://en.wikipedia.org/wiki/Mascarpone"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

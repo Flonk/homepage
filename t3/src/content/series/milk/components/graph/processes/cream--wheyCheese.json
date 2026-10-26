@@ -1,0 +1,36 @@
+{
+	"from": [
+		"cream"
+	],
+	"to": [
+		"wheyCheese"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "cream to the whey",
+				"note": "Cream added to whey makes the firmer, fattier fløtemysost."
+			},
+			{
+				"type": "evaporate",
+				"under": "open",
+				"note": "It is boiled for several hours until the water has gone and the milk sugar caramelises."
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"note": "The brown mass is packed and refrigerated."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Brunost",
+					"url": "https://en.wikipedia.org/wiki/Brunost"
+				}
+			],
+			"text": "Wikipedia for whey with cream boiled down for hours, the browning of milk sugar and the original fløtemysost that was boiled to under 80 % of its liquid. It gives no temperatures or fat figures."
+		}
+	}
+}

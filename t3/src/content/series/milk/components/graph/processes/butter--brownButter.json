@@ -1,0 +1,41 @@
+{
+	"from": [
+		"butter"
+	],
+	"to": [
+		"brownButter"
+	],
+	"step": "heat until the solids brown",
+	"text": "Cooked until the colour says stop; the source gives visual cues only, no temperature or time.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Brown butter",
+				"url": "https://en.wikipedia.org/wiki/Brown_butter"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat"
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"note": "Until hazelnut brown."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Brown butter",
+					"url": "https://en.wikipedia.org/wiki/Brown_butter"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

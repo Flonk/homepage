@@ -1,0 +1,80 @@
+{
+	"from": [
+		"rennetCurd"
+	],
+	"to": [
+		"brined"
+	],
+	"step": "brine",
+	"text": "The cheese ripens and is sold under brine, so it never forms a rind and ends up salty and white. Salting swaps calcium for sodium in the casein, which improves its consistency.",
+	"sources": {
+		"links": [
+			{
+				"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
+				"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+			},
+			{
+				"name": "FAO AGROVOC: cheeses in brine (after Codex CXS 208)",
+				"url": "https://agrovoc.fao.org/browse/agrovoc/en/page/c_8a6611ba"
+			},
+			{
+				"name": "Wikipedia: Feta",
+				"url": "https://en.wikipedia.org/wiki/Feta"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "coagulate",
+				"by": "rennet",
+				"temperature": {
+					"min": 35,
+					"max": 35,
+					"about": true
+				}
+			},
+			{
+				"type": "salt",
+				"how": "dry",
+				"note": "Ending at 3.5–7 % salt in the finished cheese.",
+				"strength": {
+					"min": 3,
+					"max": 3,
+					"about": true
+				}
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"note": "In a brine of about 7 %, for weeks at room temperature."
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"seconds": {
+					"min": 5184000
+				},
+				"note": "Then chilled."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+				},
+				{
+					"name": "FAO AGROVOC: cheeses in brine (after Codex CXS 208)",
+					"url": "https://agrovoc.fao.org/browse/agrovoc/en/page/c_8a6611ba"
+				},
+				{
+					"name": "Wikipedia: Feta",
+					"url": "https://en.wikipedia.org/wiki/Feta"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

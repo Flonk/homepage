@@ -1,0 +1,49 @@
+{
+	"from": [
+		"lactulose"
+	],
+	"to": [
+		"kristalose"
+	],
+	"variant": true,
+	"text": "Lactulose that has been crystallised out of the reaction liquid and purified, so it is sold as a dry powder instead of a syrup, with almost none of the other sugars left.",
+	"sources": {
+		"links": [
+			{
+				"name": "Kristalose prescribing information, Drugs.com",
+				"url": "https://drugs.com/pro/kristalose.html"
+			},
+			{
+				"name": "Kristalose, RxList",
+				"url": "https://www.rxlist.com/kristalose-drug.htm"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "crystallise",
+				"note": "Out of the reaction liquid."
+			},
+			{
+				"type": "custom",
+				"name": "purify"
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Kristalose prescribing information, Drugs.com",
+					"url": "https://drugs.com/pro/kristalose.html"
+				},
+				{
+					"name": "Kristalose, RxList",
+					"url": "https://www.rxlist.com/kristalose-drug.htm"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

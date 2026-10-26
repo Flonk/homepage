@@ -1,0 +1,90 @@
+{
+	"from": [
+		"cheddared"
+	],
+	"to": [
+		"cheddar"
+	],
+	"variant": true,
+	"text": "Turning and stacking the curd slabs by hand (cheddaring) comes before milling, salting and mechanical pressing. At least nine months of natural maturing gives a nutty, full, rounded flavour with a hint of sharpness.",
+	"sources": {
+		"links": [
+			{
+				"name": "West Country Farmhouse Cheddar PDO summary (eAmbrosia)",
+				"url": "https://webgate.ec.europa.eu/eambrosia-api/api/v1/attachments/62991"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [],
+					"by": [
+						"starter"
+					]
+				}
+			},
+			{
+				"type": "coagulate",
+				"by": "rennet"
+			},
+			{
+				"type": "cut",
+				"how": "cut"
+			},
+			{
+				"type": "heat",
+				"does": "cook",
+				"temperature": {
+					"min": 39,
+					"max": 41,
+					"about": true
+				}
+			},
+			{
+				"type": "custom",
+				"name": "cheddar",
+				"note": "Slabs of curd turned and stacked."
+			},
+			{
+				"type": "cut",
+				"how": "mill"
+			},
+			{
+				"type": "salt",
+				"note": "Mixed into the milled curd."
+			},
+			{
+				"type": "press"
+			},
+			{
+				"type": "custom",
+				"name": "wrap"
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"seconds": {
+					"min": 23328000
+				},
+				"note": "In the area where it is made."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "West Country Farmhouse Cheddar PDO summary (eAmbrosia)",
+					"url": "https://webgate.ec.europa.eu/eambrosia-api/api/v1/attachments/62991"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

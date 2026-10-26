@@ -44,56 +44,6 @@
 	"setting": "rennet",
 	"rind": "washed",
 	"confidence": "medium",
-	"how": {
-		"label": "brine, ripen",
-		"text": "A short, cool ripening gives a firm but flexible body that is generally free of gas holes, under a dry to slightly moist rind that gives under the thumb.",
-		"sources": {
-			"links": [
-				{
-					"name": "Codex Standard for Saint-Paulin (CXS 271-1968)",
-					"url": "https://www.fao.org/3/i2085e/i2085e00.pdf"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "coagulate",
-					"by": "rennet",
-					"note": "Rennet or other enzymes, while microbes develop the acid."
-				},
-				{
-					"type": "mould",
-					"note": "Flat cylinders of about 20 cm and at least 1.3 kg."
-				},
-				{
-					"type": "salt",
-					"how": "brine"
-				},
-				{
-					"type": "ferment",
-					"does": "ripen",
-					"temperature": {
-						"min": 10,
-						"max": 17
-					},
-					"seconds": {
-						"min": 604800
-					}
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Codex Standard for Saint-Paulin (CXS 271-1968)",
-						"url": "https://www.fao.org/3/i2085e/i2085e00.pdf"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"sources": {
 		"links": [
 			{

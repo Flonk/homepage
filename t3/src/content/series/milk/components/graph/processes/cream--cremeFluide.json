@@ -1,0 +1,40 @@
+{
+	"from": [
+		"cream"
+	],
+	"to": [
+		"cremeFluide"
+	],
+	"text": "Crème fluide is whole cream left liquid: separated, standardised to 30 % or more and heated. Lactic ferments are what make the thick kind (crème épaisse); thickness and fat are separate properties.",
+	"sources": {
+		"links": [
+			{
+				"name": "French Wikipedia: Crème (produit laitier)",
+				"url": "https://fr.wikipedia.org/wiki/Cr%C3%A8me_(produit_laitier)"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 65,
+					"max": 85
+				},
+				"note": "Pasteurised at this heat, or UHT at 150 °C, or sterilised (non-UHT) at 115 °C."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "French Wikipedia: Crème (produit laitier)",
+					"url": "https://fr.wikipedia.org/wiki/Cr%C3%A8me_(produit_laitier)"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

@@ -1,0 +1,73 @@
+{
+	"from": [
+		"acidCasein"
+	],
+	"to": [
+		"caseinate"
+	],
+	"step": "neutralise with alkali",
+	"text": "Acid casein will not dissolve in water. Adding alkali takes the pH back up from 4.6 to near neutral, the casein turns into a salt and dissolves, and the solution is dried to a soluble powder used as emulsifier and protein in foods.",
+	"sources": {
+		"links": [
+			{
+				"name": "Technology of dairy byproducts 1: Caseinates (e-PG Pathshala, INFLIBNET)",
+				"url": "https://ebooks.inflibnet.ac.in/ftp04/chapter/technology-of-dairy-byproducts-1-caseinates/"
+			},
+			{
+				"name": "US4075196A, Production of casein and caseinates",
+				"url": "https://patents.google.com/patent/US4075196A/en"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "cut",
+				"how": "mill",
+				"temperature": {
+					"max": 45
+				},
+				"note": "The curd at 25–30 % solids is milled to a slurry."
+			},
+			{
+				"type": "custom",
+				"name": "neutralise",
+				"note": "With NaOH 2.5 M (10 %), 1.7–2.2 % of casein solids, or Ca(OH)₂, KOH or ammonia, to pH about 6.7."
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 60,
+					"max": 75
+				}
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 90,
+					"max": 95
+				}
+			},
+			{
+				"type": "dry",
+				"note": "Spray dried from a feed of 20–22 % solids to a powder below 5 % moisture."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Technology of dairy byproducts 1: Caseinates (e-PG Pathshala, INFLIBNET)",
+					"url": "https://ebooks.inflibnet.ac.in/ftp04/chapter/technology-of-dairy-byproducts-1-caseinates/"
+				},
+				{
+					"name": "US4075196A, Production of casein and caseinates",
+					"url": "https://patents.google.com/patent/US4075196A/en"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

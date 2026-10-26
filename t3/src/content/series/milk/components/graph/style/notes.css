@@ -1,0 +1,48 @@
+/* A remark, under its mark and centred on it: small, as a footnote is. */
+.milk-note {
+	position: absolute;
+	z-index: 2;
+	transform: translateX(-50%);
+	margin-top: 0.3rem;
+	padding: 0.25rem 0.55rem;
+	max-width: 16rem;
+	color: var(--deck-ink);
+	box-shadow: var(--pill-shadow);
+	font-family: var(--font-sans);
+	font-size: 0.8rem;
+	line-height: 1.4;
+	pointer-events: none;
+}
+/* The map's card: in its top left, over the far north of the Americas,
+   and kept in the pane's top left once that corner is out of sight, as
+   long as any of the map is in it (see placeCard). Under the search. */
+.milk-map-card {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	box-sizing: border-box;
+	width: 15rem;
+	padding: 0.6rem 0.75rem;
+	color: var(--deck-ink);
+	box-shadow: var(--pill-shadow);
+	/* Moved each frame the picture is: on a layer of its own. No blur
+	   behind it, its ground being opaque: a blur over a canvas drawn
+	   anew each frame is worked out anew each frame. */
+	will-change: transform;
+	font-family: var(--font-mono);
+	font-size: 0.8rem;
+	line-height: 1.4;
+}
+/* In the ink, not the accent the site gives a strong word. */
+.milk-map-card strong {
+	display: block;
+	margin: 0 0 0.35rem;
+	font: inherit;
+	font-weight: 600;
+	color: var(--deck-ink);
+}
+.milk-map-card p {
+	margin: 0;
+	color: var(--deck-ink-dim);
+}

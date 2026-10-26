@@ -1,0 +1,74 @@
+{
+	"from": [
+		"paneer"
+	],
+	"to": [
+		"kalari"
+	],
+	"variant": true,
+	"step": "curdle with sour whey, sun-dry",
+	"text": "Milk is warmed, curdled with the sour whey from an earlier batch, drained, pressed by hand into discs and dried. No temperature is given in any source.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Kalari cheese",
+				"url": "https://en.wikipedia.org/wiki/Kalari_cheese"
+			},
+			{
+				"name": "30 Stades: Kalari doubles incomes for women in Udhampur",
+				"url": "https://30stades.com/2022/07/04/jammu-kashmir-indigenous-cheese-kalari-doubles-incomes-for-women-in-udhampur"
+			},
+			{
+				"name": "Homegrown: Kalari",
+				"url": "https://homegrown.co.in/homegrown-explore/kalari-a-homegrown-cheese-from-jammu-is-one-of-indias-best-kept-culinary-secrets"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"note": "Raw full-fat milk."
+			},
+			{
+				"type": "coagulate",
+				"by": "acid",
+				"note": "Sour whey (matthar) from earlier batches, or sour milk."
+			},
+			{
+				"type": "drain"
+			},
+			{
+				"type": "press",
+				"note": "Into discs."
+			},
+			{
+				"type": "dry",
+				"seconds": {
+					"min": 86400,
+					"max": 172800
+				},
+				"note": "In strong sun in pine-leaf bowls (donas)."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Kalari cheese",
+					"url": "https://en.wikipedia.org/wiki/Kalari_cheese"
+				},
+				{
+					"name": "30 Stades: Kalari doubles incomes for women in Udhampur",
+					"url": "https://30stades.com/2022/07/04/jammu-kashmir-indigenous-cheese-kalari-doubles-incomes-for-women-in-udhampur"
+				},
+				{
+					"name": "Homegrown: Kalari",
+					"url": "https://homegrown.co.in/homegrown-explore/kalari-a-homegrown-cheese-from-jammu-is-one-of-indias-best-kept-culinary-secrets"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

@@ -1,0 +1,50 @@
+{
+	"from": [
+		"pastaFilata"
+	],
+	"to": [
+		"provoleta"
+	],
+	"variant": true,
+	"step": "spin the curd",
+	"text": "Provoleta is an Argentine provolone-type spun-curd cheese sold in small thick discs; the spun curd is dense enough to hold its shape when grilled whole at an asado.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Provoleta",
+				"url": "https://en.wikipedia.org/wiki/Provoleta"
+			},
+			{
+				"name": "Código Alimentario Argentino, cap. VIII (archived)",
+				"url": "https://web.archive.org/web/20101031072855/http://www.alimentosargentinos.gov.ar/programa_calidad/Marco_Regulatorio/CAA/CAPITULOVIII.htm"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "spin",
+				"note": "As for provolone."
+			},
+			{
+				"type": "mould",
+				"note": "Discs 10–15 cm across, 1–1.5 cm thick."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Provoleta",
+					"url": "https://en.wikipedia.org/wiki/Provoleta"
+				},
+				{
+					"name": "Código Alimentario Argentino, cap. VIII (archived)",
+					"url": "https://web.archive.org/web/20101031072855/http://www.alimentosargentinos.gov.ar/programa_calidad/Marco_Regulatorio/CAA/CAPITULOVIII.htm"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

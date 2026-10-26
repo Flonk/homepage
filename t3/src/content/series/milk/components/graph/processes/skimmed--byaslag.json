@@ -1,0 +1,43 @@
+{
+	"from": [
+		"skimmed"
+	],
+	"to": [
+		"byaslag"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"note": "Milk is heated over a gentle flame until it foams."
+			},
+			{
+				"type": "add",
+				"what": "fermented milk",
+				"note": "Stirred into the foaming milk."
+			},
+			{
+				"type": "coagulate",
+				"note": "The milk curdles."
+			},
+			{
+				"type": "drain",
+				"by": "cloth"
+			},
+			{
+				"type": "press",
+				"note": "The curds are wrapped and pressed under a stone."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Mongolian Tour Guide: short information about Mongolian dairy products",
+					"url": "https://www.mongoliantour.guide/post/short-information-about-mongolian-dairy-products"
+				}
+			],
+			"text": "The four steps, from this page, which gives no temperatures, amounts or times; it says fresh milk, or milk left over from making oerom, so skimmed milk is only one of its starting points."
+		}
+	}
+}

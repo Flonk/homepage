@@ -5,8 +5,6 @@
 		"Browned butter",
 		"Braune Butter"
 	],
-	"from": "butter",
-	"step": "heat until the solids brown",
 	"note": "Unlike ghee and clarified butter, the browned milk solids stay in the butter.",
 	"about": {
 		"text": "Butter melted and heated until the milk solids that sink to the bottom turn a deep, toasty hazelnut brown, which gives it a nutty smell and flavour. Used in French pastry (madeleines, financiers) and over fish, pasta and vegetables.",
@@ -37,40 +35,6 @@
 	"regions": [
 		"FR"
 	],
-	"how": {
-		"text": "Cooked until the colour says stop; the source gives visual cues only, no temperature or time.",
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Brown butter",
-					"url": "https://en.wikipedia.org/wiki/Brown_butter"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "heat",
-					"does": "heat"
-				},
-				{
-					"type": "heat",
-					"does": "heat",
-					"note": "Until hazelnut brown."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia: Brown butter",
-						"url": "https://en.wikipedia.org/wiki/Brown_butter"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"examples": [
 		"beurreNoir"
 	]

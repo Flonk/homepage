@@ -1,0 +1,63 @@
+{
+	"from": [
+		"sweetWhey"
+	],
+	"to": [
+		"lactoperoxidase"
+	],
+	"step": "ion exchange",
+	"text": "The Codex Guidelines for the preservation of raw milk by the lactoperoxidase system (CAC/GL 13-1991) give the exact thiocyanate and peroxide doses; they were not opened here, so no numbers are given.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Lactoperoxidase",
+				"url": "https://en.wikipedia.org/wiki/Lactoperoxidase"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "microfilter",
+				"note": "Crossflow filtration at 1.4 µm gives a whey free of particles."
+			},
+			{
+				"type": "custom",
+				"name": "ion exchange",
+				"note": "Lactoperoxidase and lactoferrin bind to a cation-exchange resin at pH 6.2–6.6."
+			},
+			{
+				"type": "custom",
+				"name": "elute",
+				"note": "Salt solutions wash them off, concentrating them about 500 times in about 1 % protein."
+			},
+			{
+				"type": "ultrafilter",
+				"note": "The eluate is concentrated."
+			},
+			{
+				"type": "diafilter",
+				"note": "Washed to about 95 % purity."
+			},
+			{
+				"type": "microfilter",
+				"note": "Sterile-filtered through 0.1–0.2 µm membranes."
+			},
+			{
+				"type": "dry",
+				"note": "Freeze-dried or spray-dried."
+			}
+		],
+		"text": "The enzyme comes out together with lactoferrin, which is then separated from it.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 18 Milk and whey fractionation",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
+				}
+			],
+			"text": "The ion-exchange route for lactoperoxidase and lactoferrin and its figures, from the handbook."
+		}
+	}
+}

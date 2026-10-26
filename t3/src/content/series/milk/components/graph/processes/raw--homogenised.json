@@ -1,0 +1,49 @@
+{
+	"from": [
+		"raw"
+	],
+	"to": [
+		"homogenised"
+	],
+	"step": "homogenise",
+	"text": "Warm milk is pumped at high pressure through a narrow gap, which tears the fat globules into droplets under 1 µm. Droplets that small stay suspended, so no cream layer forms on top.",
+	"sources": {
+		"links": [
+			{
+				"name": "Tetra Pak Dairy Processing Handbook: Homogenizers",
+				"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/homogenizers"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 55,
+					"max": 80
+				},
+				"note": "Below 40 °C the fat is broken up poorly."
+			},
+			{
+				"type": "homogenise",
+				"explain": true,
+				"bar": {
+					"min": 100,
+					"max": 250
+				}
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook: Homogenizers",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/homogenizers"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

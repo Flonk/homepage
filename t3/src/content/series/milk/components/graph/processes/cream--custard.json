@@ -1,0 +1,35 @@
+{
+	"from": [
+		"cream"
+	],
+	"to": [
+		"custard"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "egg yolk and sugar",
+				"note": "Milk or cream is cooked with egg yolks, sugar and vanilla."
+			},
+			{
+				"type": "heat",
+				"does": "cook",
+				"temperature": {
+					"min": 70,
+					"max": 80
+				},
+				"note": "Custard begins to set near 70 °C and should not pass 80 °C, or it curdles."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Custard",
+					"url": "https://en.wikipedia.org/wiki/Custard"
+				}
+			],
+			"text": "The ingredients of custard and the temperature at which its egg proteins set; the article gives no times and no cream-specific recipe."
+		}
+	}
+}

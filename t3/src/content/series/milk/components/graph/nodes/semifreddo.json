@@ -30,39 +30,5 @@
 	},
 	"regions": [
 		"IT"
-	],
-	"how": {
-		"label": "whip, freeze in a mould, no churning",
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Semifreddo",
-					"url": "https://en.wikipedia.org/wiki/Semifreddo"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "custom",
-					"name": "whip"
-				},
-				{
-					"type": "custom",
-					"name": "freeze",
-					"note": "In moulds, not churned."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia: Semifreddo",
-						"url": "https://en.wikipedia.org/wiki/Semifreddo"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	}
+	]
 }

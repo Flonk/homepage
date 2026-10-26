@@ -1,0 +1,53 @@
+{
+	"from": [
+		"buttermilkCheese"
+	],
+	"to": [
+		"hardChhurpi"
+	],
+	"step": "press, smoke-dry",
+	"text": "Soft chhurpi is pressed, cut and hung over the fire until it is among the hardest cheeses in the world. No durations are given in the sources.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Chhurpi (pressing and hanging statements uncited there)",
+				"url": "https://en.wikipedia.org/wiki/Chhurpi"
+			},
+			{
+				"name": "Frontiers in Microbiology 2017, Arunachal Pradesh and Sikkim",
+				"url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5784140/"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "press",
+				"note": "In a jute bag."
+			},
+			{
+				"type": "dry",
+				"note": "Smoke-dried, hung over a fire."
+			},
+			{
+				"type": "cut",
+				"how": "cut",
+				"note": "Into small cuboids."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Chhurpi (pressing and hanging statements uncited there)",
+					"url": "https://en.wikipedia.org/wiki/Chhurpi"
+				},
+				{
+					"name": "Frontiers in Microbiology 2017, Arunachal Pradesh and Sikkim",
+					"url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5784140/"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

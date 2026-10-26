@@ -1,0 +1,58 @@
+{
+	"from": [
+		"freshCheese"
+	],
+	"to": [
+		"quesoBlanco"
+	],
+	"variant": true,
+	"text": "Queso blanco is made like paneer or chhena: heating the milk to at least 85 °C and adding food acid makes the protein clot without rennet or starter. The curd is drained, salted and lightly pressed in hoops, so it is firm but moist and, because it is acid-set, does not melt when heated.",
+	"sources": {
+		"links": [
+			{
+				"name": "Van Hekken & Farkye, Hispanic Cheeses: The Quest for Queso, Food Technology (IFT)",
+				"url": "https://www.ift.org/food-technology-magazine/hispanic-cheeses-the-quest-for-queso"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 85
+				}
+			},
+			{
+				"type": "acidify",
+				"with": "an organic acid",
+				"pH": {
+					"min": 5.3,
+					"max": 5.3,
+					"about": true
+				},
+				"note": "The acid, not rennet, precipitates the protein."
+			},
+			{
+				"type": "drain"
+			},
+			{
+				"type": "salt"
+			},
+			{
+				"type": "press"
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Van Hekken & Farkye, Hispanic Cheeses: The Quest for Queso, Food Technology (IFT)",
+					"url": "https://www.ift.org/food-technology-magazine/hispanic-cheeses-the-quest-for-queso"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

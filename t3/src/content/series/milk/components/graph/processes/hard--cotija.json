@@ -1,0 +1,51 @@
+{
+	"from": [
+		"hard"
+	],
+	"to": [
+		"cotija"
+	],
+	"variant": true,
+	"step": "salt the milk, mill the curd",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Cotija cheese",
+				"url": "https://en.wikipedia.org/wiki/Cotija_cheese"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "salt",
+				"note": "The milk is salted before fermenting."
+			},
+			{
+				"type": "cut",
+				"how": "mill"
+			},
+			{
+				"type": "press"
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"seconds": {
+					"min": 8640000,
+					"max": 31536000
+				}
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Cotija cheese",
+					"url": "https://en.wikipedia.org/wiki/Cotija_cheese"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

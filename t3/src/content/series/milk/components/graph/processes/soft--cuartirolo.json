@@ -1,0 +1,129 @@
+{
+	"from": [
+		"soft"
+	],
+	"to": [
+		"cuartirolo"
+	],
+	"variant": true,
+	"step": "cold brine",
+	"text": "Large curd cubes, a light pressing and a short brining keep this cheese high in moisture. A brief cold ripening of three to four weeks leaves a soft, closed, slightly elastic paste with no eyes and a mildly acidic taste.",
+	"sources": {
+		"links": [
+			{
+				"name": "Fusé, Queso Cuartirolo thesis (UNLP), citing Código Alimentario Argentino",
+				"url": "https://lipa.agro.unlp.edu.ar/wp-content/uploads/sites/29/2020/04/Trabajo-Final-Juan-Fuse.pdf"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "pasteurise",
+				"temperature": {
+					"min": 73,
+					"max": 73
+				},
+				"seconds": {
+					"min": 15,
+					"max": 15
+				}
+			},
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "lactic acid bacteria",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						}
+					],
+					"by": [
+						"starter"
+					]
+				},
+				"note": "A thermophilic starter was used in the trial."
+			},
+			{
+				"type": "coagulate",
+				"by": "rennet",
+				"temperature": {
+					"min": 35,
+					"max": 35,
+					"about": true
+				},
+				"seconds": {
+					"min": 1200,
+					"max": 1200,
+					"about": true
+				}
+			},
+			{
+				"type": "cut",
+				"how": "cut",
+				"size": {
+					"min": 20,
+					"max": 30
+				}
+			},
+			{
+				"type": "heat",
+				"does": "cook",
+				"temperature": {
+					"max": 42
+				}
+			},
+			{
+				"type": "mould",
+				"note": "Into a block or flat cylinder of 2–5 kg."
+			},
+			{
+				"type": "press"
+			},
+			{
+				"type": "salt",
+				"how": "brine",
+				"strength": {
+					"min": 25,
+					"max": 28
+				},
+				"temperature": {
+					"min": 2,
+					"max": 4
+				},
+				"seconds": {
+					"min": 10800,
+					"max": 14400
+				}
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"temperature": {
+					"max": 8
+				},
+				"seconds": {
+					"min": 1728000
+				},
+				"note": "At least 20 d for up to 2.5 kg, 30 d for 2.5–5 kg."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Fusé, Queso Cuartirolo thesis (UNLP), citing Código Alimentario Argentino",
+					"url": "https://lipa.agro.unlp.edu.ar/wp-content/uploads/sites/29/2020/04/Trabajo-Final-Juan-Fuse.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

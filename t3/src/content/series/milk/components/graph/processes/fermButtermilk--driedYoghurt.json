@@ -1,0 +1,47 @@
+{
+	"from": [
+		"fermButtermilk"
+	],
+	"to": [
+		"driedYoghurt"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "cook",
+				"note": "The soured buttermilk is boiled to firm up its curd."
+			},
+			{
+				"type": "drain",
+				"by": "cloth",
+				"note": "The curd is strained in a cloth to take off the whey."
+			},
+			{
+				"type": "salt",
+				"note": "Salt is mixed into the drained curd."
+			},
+			{
+				"type": "mould",
+				"note": "The curd is formed into small balls, strips or chunks."
+			},
+			{
+				"type": "dry",
+				"note": "The shaped curd is dried in the sun and wind, in the traditional way over a period of weeks."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Qurt",
+					"url": "https://en.wikipedia.org/wiki/Qurt"
+				},
+				{
+					"name": "Eternal Landscapes: Mongolia's traditional dairy products",
+					"url": "https://eternal-landscapes.co.uk/tsagaan-idee-discovering-mongolias-traditional-dairy-products/"
+				}
+			],
+			"text": "The steps of boiling the buttermilk, straining, salting, shaping and sun-drying are from the Wikipedia article on qurt; the pressing and cutting of Mongolian aaruul from the travel site, which is low authority. Temperatures and times are not given."
+		}
+	}
+}

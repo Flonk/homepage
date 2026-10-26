@@ -4,11 +4,6 @@
 		"Sauermilch"
 	],
 	"comment": "Pasteurising kills the milk's own lactic bacteria, so it is soured with a culture added back; traditionally, raw milk was left to sour by itself.",
-	"from": "pasteurised",
-	"step": "with lactococci",
-	"alsoFrom": [
-		"raw"
-	],
 	"note": "Industrial soured milk is made from pasteurised milk with a starter culture. The traditional, natural kind needs raw milk, which sours by itself on its own lactic flora; pasteurised milk has lost that flora and will not sour the same way.",
 	"niche": 0,
 	"about": {
@@ -35,99 +30,6 @@
 				}
 			],
 			"text": "The photograph, its author and its licence, from its page."
-		}
-	},
-	"how": {
-		"text": "Mesophilic lactococci turn part of the lactose into lactic acid, and the falling pH makes the casein clump into a soft gel. The diacetylactis strains and Leuconostoc add CO₂ and diacetyl, which give the buttery, fresh aroma. Raw milk left to sour by itself does the same with its own wild lactic bacteria, and no culture is added.",
-		"sources": {
-			"links": [
-				{
-					"name": "German MilchPQV, Anlage 8 (2025)",
-					"url": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html"
-				},
-				{
-					"name": "Tetra Pak Dairy Processing Handbook, ch. 12 Cultures",
-					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cultures-and-starter-manufacture"
-				},
-				{
-					"name": "Codex Standard for Fermented Milks (CXS 243-2003)",
-					"url": "https://www.fao.org/input/download/standards/400/CXS_243e.pdf"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "ferment",
-					"does": "incubate",
-					"kinds": [
-						"lactic"
-					],
-					"adds": {
-						"microbes": [
-							{
-								"name": "Lactococcus lactis subsp. lactis",
-								"kind": "bacterium",
-								"does": [
-									"acid"
-								]
-							},
-							{
-								"name": "Lactococcus lactis subsp. cremoris",
-								"kind": "bacterium",
-								"does": [
-									"acid"
-								]
-							},
-							{
-								"name": "Lactococcus lactis subsp. lactis biovar diacetylactis",
-								"kind": "bacterium",
-								"does": [
-									"aroma",
-									"gas"
-								]
-							},
-							{
-								"name": "Leuconostoc mesenteroides subsp. cremoris",
-								"kind": "bacterium",
-								"does": [
-									"aroma",
-									"gas"
-								]
-							}
-						],
-						"by": [
-							"starter"
-						]
-					},
-					"temperature": {
-						"min": 20,
-						"max": 30
-					},
-					"acidity": {
-						"min": 0.3
-					}
-				}
-			],
-			"text": "Industrially soured with a mesophilic starter; traditionally raw milk sours by itself on its own wild lactic flora, with no culture added.",
-			"sources": {
-				"links": [
-					{
-						"name": "German MilchPQV, Anlage 8 (2025)",
-						"url": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html"
-					},
-					{
-						"name": "Tetra Pak Dairy Processing Handbook, ch. 12 Cultures",
-						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cultures-and-starter-manufacture"
-					},
-					{
-						"name": "Codex Standard for Fermented Milks (CXS 243-2003)",
-						"url": "https://www.fao.org/input/download/standards/400/CXS_243e.pdf"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	},
 	"examples": [

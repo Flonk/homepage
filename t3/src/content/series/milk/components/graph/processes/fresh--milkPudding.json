@@ -1,0 +1,45 @@
+{
+	"from": [
+		"fresh"
+	],
+	"to": [
+		"milkPudding"
+	],
+	"step": "thicken with starch, sweeten",
+	"text": "Milk is sweetened and thickened with starch, flour, egg or gelatin until it sets on cooling.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Pudding",
+				"url": "https://en.wikipedia.org/wiki/Pudding"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "sugar"
+			},
+			{
+				"type": "custom",
+				"name": "thicken",
+				"note": "With starch, flour, egg or gelatin."
+			},
+			{
+				"type": "heat",
+				"does": "cool"
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Pudding",
+					"url": "https://en.wikipedia.org/wiki/Pudding"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

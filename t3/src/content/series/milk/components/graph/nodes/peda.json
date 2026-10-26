@@ -30,61 +30,6 @@
 	"regions": [
 		"IN"
 	],
-	"how": {
-		"text": "Khoa is warmed with sugar and cardamom, stirred until it comes together, then kneaded while still warm and pressed into round balls. Proportions vary by region and maker.",
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Peda (2023 copy with the process figures)",
-					"url": "https://kaweah.freedombox.rocks/kiwix/wikipedia_en_all_maxi_2023-10/Peda"
-				},
-				{
-					"name": "Wikipedia: Peda",
-					"url": "https://en.wikipedia.org/wiki/Peda"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "heat",
-					"does": "heat",
-					"temperature": {
-						"min": 80,
-						"max": 80,
-						"about": true
-					},
-					"note": "With sugar (about 30 g per 100 g khoa) and cardamom (about 0.1 g), until it comes together."
-				},
-				{
-					"type": "custom",
-					"name": "knead",
-					"temperature": {
-						"min": 50,
-						"max": 50,
-						"about": true
-					}
-				},
-				{
-					"type": "mould"
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia: Peda (2023 copy with the process figures)",
-						"url": "https://kaweah.freedombox.rocks/kiwix/wikipedia_en_all_maxi_2023-10/Peda"
-					},
-					{
-						"name": "Wikipedia: Peda",
-						"url": "https://en.wikipedia.org/wiki/Peda"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"facts": [
 		{
 			"k": "Variants",

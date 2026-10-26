@@ -43,44 +43,6 @@
 	"setting": "rennet",
 	"rind": "none",
 	"confidence": "high",
-	"how": {
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Scamorza",
-					"url": "https://en.wikipedia.org/wiki/Scamorza"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "ferment",
-					"does": "incubate",
-					"note": "The curd rests in its own whey for hours to acidify."
-				},
-				{
-					"type": "custom",
-					"name": "stretch"
-				},
-				{
-					"type": "drain",
-					"by": "hang",
-					"note": "Tied by a string, which makes it pear-shaped."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia: Scamorza",
-						"url": "https://en.wikipedia.org/wiki/Scamorza"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"sources": {
 		"links": [
 			{

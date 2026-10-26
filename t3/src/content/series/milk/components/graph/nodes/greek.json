@@ -5,8 +5,6 @@
 		"Griechischer Joghurt",
 		"Stragisto"
 	],
-	"from": "yoghurt",
-	"step": "what is left when the whey goes",
 	"note": "Much supermarket Greek-style yoghurt is not strained in a cloth but concentrated by separator or membrane, or made from protein-fortified milk.",
 	"niche": 0,
 	"about": {
@@ -33,49 +31,6 @@
 				}
 			],
 			"text": "The photograph, its author and its licence, from its page."
-		}
-	},
-	"how": {
-		"text": "Taking whey out after fermentation concentrates the casein gel, so the protein at least doubles and the yoghurt becomes spoonably thick. Made industrially by nozzle separator or ultrafiltration; the cloth is the household route for labneh, sack yoghurt and süzme.",
-		"sources": {
-			"links": [
-				{
-					"name": "Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products",
-					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products"
-				},
-				{
-					"name": "Codex Standard for Fermented Milks (CXS 243-2003)",
-					"url": "https://www.fao.org/input/download/standards/400/CXS_243e.pdf"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "custom",
-					"name": "stir"
-				},
-				{
-					"type": "separate",
-					"off": "whey",
-					"by": "centrifuge",
-					"note": "By nozzle separator."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products",
-						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products"
-					},
-					{
-						"name": "Codex Standard for Fermented Milks (CXS 243-2003)",
-						"url": "https://www.fao.org/input/download/standards/400/CXS_243e.pdf"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	},
 	"examples": [

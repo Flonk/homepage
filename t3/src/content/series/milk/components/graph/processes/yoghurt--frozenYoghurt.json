@@ -1,0 +1,46 @@
+{
+	"from": [
+		"yoghurt"
+	],
+	"to": [
+		"frozenYoghurt"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "sweetener and stabiliser"
+			},
+			{
+				"type": "homogenise",
+				"bar": {
+					"min": 120,
+					"max": 140
+				},
+				"note": "Preferred pressure; the patent allows 40–200 bar."
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"max": 10
+				},
+				"note": "Cooled to 10 °C or below before freezing."
+			},
+			{
+				"type": "custom",
+				"name": "freeze",
+				"note": "Whipped and frozen in an ice-cream freezer to 30–60 % overrun, then optionally hardened."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "US patent 10,117,445 B2 (Google Patents), frozen yogurt process",
+					"url": "https://patents.google.com/patent/US10117445B2/en"
+				}
+			],
+			"text": "One patented process, in which the yoghurt mix is cultured, cooled and frozen; other makers blend finished yoghurt into the mix instead."
+		}
+	}
+}

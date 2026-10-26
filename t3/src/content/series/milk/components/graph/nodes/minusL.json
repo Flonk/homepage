@@ -28,52 +28,6 @@
 			"text": "The photograph, its author and its licence, from its page."
 		}
 	},
-	"how": {
-		"text": "Lactase splits the milk sugar into glucose and galactose; the milk is UHT-treated and packed.",
-		"sources": {
-			"links": [
-				{
-					"name": "Dairy Industries International: Milk aimed at the lactose intolerant (2001)",
-					"url": "https://www.dairyindustries.com/?p=3449"
-				},
-				{
-					"name": "REWE: MinusL H-Milch laktosefrei 1,5 %",
-					"url": "https://www.rewe.de/shop/p/minusl-h-milch-laktosefrei-1-5-1l/2531020"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "add",
-					"what": "lactase",
-					"note": "Lactase splits the lactose into glucose and galactose."
-				},
-				{
-					"type": "heat",
-					"does": "heat",
-					"note": "UHT-treated."
-				},
-				{
-					"type": "homogenise"
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Dairy Industries International: Milk aimed at the lactose intolerant (2001)",
-						"url": "https://www.dairyindustries.com/?p=3449"
-					},
-					{
-						"name": "REWE: MinusL H-Milch laktosefrei 1,5 %",
-						"url": "https://www.rewe.de/shop/p/minusl-h-milch-laktosefrei-1-5-1l/2531020"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"composition": {
 		"lactose": {
 			"max": 0.1

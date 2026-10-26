@@ -1,0 +1,67 @@
+{
+	"from": [
+		"quark"
+	],
+	"to": [
+		"cheesecake"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "sugar and eggs",
+				"note": "Eggs set a baked cheesecake, while an unbaked one is set with cream or gelatin."
+			},
+			{
+				"type": "mould",
+				"note": "The filling goes onto a crumb or pastry base in the pan."
+			},
+			{
+				"type": "custom",
+				"name": "bake",
+				"temperature": {
+					"min": 163,
+					"max": 163,
+					"about": true
+				},
+				"seconds": {
+					"min": 3600,
+					"max": 3600,
+					"about": true
+				},
+				"note": "Baked in a water bath until the edge is set and the middle still wobbles, at about 65 °C inside."
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"seconds": {
+					"min": 1800,
+					"max": 3600
+				},
+				"note": "It cools in the switched-off oven with the door ajar, so it does not crack."
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"seconds": {
+					"min": 21600
+				},
+				"note": "It is chilled for at least 6 hours."
+			}
+		],
+		"text": "The baking figures are from a cream cheese recipe, as no quark recipe was opened; Wikipedia lists quark among the cheeses used.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Cheesecake",
+					"url": "https://en.wikipedia.org/wiki/Cheesecake"
+				},
+				{
+					"name": "Handle the Heat: cheesecake recipe",
+					"url": "https://handletheheat.com/wprm_print/34868"
+				}
+			],
+			"text": "The filling, base and baked or unbaked styles are from Wikipedia, and the oven, water bath, doneness and chilling from the recipe."
+		}
+	}
+}

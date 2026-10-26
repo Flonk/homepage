@@ -1,0 +1,42 @@
+{
+	"from": [
+		"arkhi"
+	],
+	"to": [
+		"araka"
+	],
+	"variant": true,
+	"text": "Nothing is added in the still. Vapour of the heated airan rises to the cooling pot, condenses to drops and runs down the trough into a jug. No temperatures are given in the source.",
+	"sources": {
+		"links": [
+			{
+				"name": "Butanaev V. Ya., Torbostaev K. M.: Araka (Khakas encyclopedia article, citing Butanaev, Natsionalnye blyuda khakasov, Abakan 1994)",
+				"url": "https://nbdrx.ru/pdf/staty/ax0000027_19.pdf"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "distil",
+				"note": "The vapour condenses on the cooling pot and runs down the trough into a jug."
+			},
+			{
+				"type": "custom",
+				"name": "distil again",
+				"note": "A second run (khorachyn) gives a stronger drink."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Butanaev V. Ya., Torbostaev K. M.: Araka (Khakas encyclopedia article, citing Butanaev, Natsionalnye blyuda khakasov, Abakan 1994)",
+					"url": "https://nbdrx.ru/pdf/staty/ax0000027_19.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

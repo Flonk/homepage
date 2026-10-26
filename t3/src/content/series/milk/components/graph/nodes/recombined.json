@@ -1,11 +1,6 @@
 {
 	"label": "Recombined milk",
 	"comment": "The fat comes from anhydrous milk fat; the single drawn parent is the powder.",
-	"from": "skimmedPowder",
-	"step": "add water and milk fat",
-	"alsoFrom": [
-		"amf"
-	],
 	"note": "Used where there is little or no milk: the powder and the butter oil travel and keep for months, the milk is made at the dairy and then pasteurised or UHT-treated.",
 	"about": {
 		"text": "Milk made again from its dried parts: skimmed milk powder dissolved in water and anhydrous milk fat emulsified into it. Dairies in countries with little milk of their own make it, then pasteurise or UHT it like fresh milk.",
@@ -17,89 +12,6 @@
 				}
 			],
 			"text": "Written from this source."
-		}
-	},
-	"how": {
-		"text": "The powder is dissolved in warm water, the melted milk fat is mixed in, and the emulsion is homogenised and heated like any milk.",
-		"sources": {
-			"links": [
-				{
-					"name": "Tetra Pak Dairy Processing Handbook: Recombined milk products",
-					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/recombined-milk-products"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "custom",
-					"name": "hydrate",
-					"temperature": {
-						"min": 40,
-						"max": 50
-					},
-					"seconds": {
-						"min": 1200,
-						"max": 1200,
-						"about": true
-					},
-					"note": "Skim milk powder at up to 35–40 % solids, then held no longer than 48–55 °C for up to 3 h before heating."
-				},
-				{
-					"type": "custom",
-					"name": "melt",
-					"temperature": {
-						"min": 80,
-						"max": 80
-					},
-					"seconds": {
-						"min": 7200,
-						"max": 10800
-					},
-					"note": "Cans of anhydrous milk fat stand in water."
-				},
-				{
-					"type": "add",
-					"temperature": {
-						"min": 55,
-						"max": 60
-					},
-					"note": "Mixed into the 45–50 °C base.",
-					"what": "melted milk fat"
-				},
-				{
-					"type": "homogenise"
-				},
-				{
-					"type": "heat",
-					"does": "heat",
-					"temperature": {
-						"min": 72
-					},
-					"seconds": {
-						"min": 15,
-						"max": 15
-					},
-					"note": "Or UHT-treated at 138–140 °C for 4 s."
-				},
-				{
-					"type": "heat",
-					"does": "cool",
-					"temperature": {
-						"max": 4
-					}
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Tetra Pak Dairy Processing Handbook: Recombined milk products",
-						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/recombined-milk-products"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	},
 	"facts": [

@@ -15,44 +15,5 @@
 	},
 	"regions": [
 		"ET"
-	],
-	"how": {
-		"label": "add flour and spices, ferment",
-		"text": "Because the buttermilk is already sour, hazo is a second, spiced fermentation of the leftover.",
-		"sources": {
-			"links": [
-				{
-					"name": "Karssa et al. 2024, Insights on the microbiology of Ethiopian fermented milk products",
-					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11521749/"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "ferment",
-					"does": "incubate",
-					"kinds": [
-						"lactic"
-					],
-					"seconds": {
-						"min": 172800,
-						"max": 259200
-					},
-					"note": "Arrera, the already sour defatted buttermilk of ergo, is fermented again with pulse or cereal flour, pepper and garlic."
-				}
-			],
-			"text": "A second, spiced fermentation of arrera, the already sour defatted buttermilk of ergo, with pulse or cereal flour, pepper and garlic. The cultures are not specified; adding a little new hazo weekly keeps it up to about a month.",
-			"sources": {
-				"links": [
-					{
-						"name": "Karssa et al. 2024, Insights on the microbiology of Ethiopian fermented milk products",
-						"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11521749/"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	}
+	]
 }

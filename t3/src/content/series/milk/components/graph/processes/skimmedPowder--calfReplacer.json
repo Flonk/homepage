@@ -1,0 +1,60 @@
+{
+	"from": [
+		"skimmedPowder"
+	],
+	"to": [
+		"calfReplacer"
+	],
+	"step": "blend with whey, fat and vitamins, dry",
+	"text": "Severely heat-treated skim milk does not clot in the calf's abomasum and gives diarrhoea, so skim for replacers is dried gently (low-heat powder).",
+	"sources": {
+		"links": [
+			{
+				"name": "USDA BAMN, A Guide to Calf Milk Replacers (2018)",
+				"url": "https://www.aphis.usda.gov/sites/default/files/bamn18_guidemilkrepl.pdf"
+			},
+			{
+				"name": "Idaho extension",
+				"url": "https://objects.lib.uidaho.edu/uiext/uiext20215.pdf"
+			},
+			{
+				"name": "Milk Specialties",
+				"url": "https://www.milkspecialties.com/?p=5979"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "dried whey and whey protein concentrate",
+				"note": "Whey powders supply much of the protein besides the skim milk powder."
+			},
+			{
+				"type": "add",
+				"what": "animal and vegetable fat with lecithin",
+				"note": "One maker makes its fat concentrates by pasteurising, homogenising and spray-drying them."
+			},
+			{
+				"type": "add",
+				"what": "vitamins A, D and E, minerals and amino acids",
+				"note": "Lysine and methionine are added for the calf’s growth."
+			}
+		],
+		"text": "No temperatures or times were found for blending; the skim powder is not said to be low-heat in these sources.",
+		"sources": {
+			"links": [
+				{
+					"name": "USDA APHIS BAMN, A Guide to Calf Milk Replacers",
+					"url": "https://www.aphis.usda.gov/sites/default/files/bamn18_guidemilkrepl.pdf"
+				},
+				{
+					"name": "Trouw Nutrition, Introduction to calf milk replacer (Sprayfo)",
+					"url": "https://www.trouwnutrition.com/en/solution/brands/sprayfo/introduction-to-calf-milk-replacer"
+				}
+			],
+			"text": "What goes into a replacer, from the USDA guide, and how one maker prepares its fat and whey concentrates."
+		}
+	}
+}

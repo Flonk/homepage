@@ -1,0 +1,65 @@
+{
+	"from": [
+		"cream"
+	],
+	"to": [
+		"singleCream"
+	],
+	"text": "Cream standardised to 18 % fat and pasteurised, not homogenised unless sold as extra-thick. Too lean to whip, it is poured.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Cream (UK grades, Food Labelling Regulations 1996)",
+				"url": "https://en.wikipedia.org/wiki/Cream"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "standardise",
+				"fat": {
+					"min": 18,
+					"max": 18
+				},
+				"note": "Single cream is set to 18 % fat, too lean to whip."
+			},
+			{
+				"type": "pasteurise",
+				"temperature": {
+					"min": 85,
+					"max": 95
+				},
+				"seconds": {
+					"min": 15,
+					"max": 20
+				},
+				"note": "At this fat the handbook's coffee-cream heating of 85 to 95 °C for up to 15 to 20 seconds applies."
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"min": 5,
+					"max": 5,
+					"about": true
+				},
+				"note": "It is cooled to about 5 °C straight after heating."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 9 Pasteurized and ESL dairy products",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/pasteurized-and-esl-dairy-products"
+				},
+				{
+					"name": "Wikipedia: Cream",
+					"url": "https://en.wikipedia.org/wiki/Cream"
+				}
+			],
+			"text": "The handbook for heating and cooling of cream of 10 to 18 % fat; Wikipedia for the UK 18 % grade, which is not sterilised. The handbook's step of homogenising is left out because plain single cream is not homogenised."
+		}
+	}
+}

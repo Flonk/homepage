@@ -1,0 +1,42 @@
+{
+	"from": [
+		"acidCasein"
+	],
+	"to": [
+		"caseinPaint"
+	],
+	"step": "dissolve in alkali, add pigment",
+	"text": "Made-up paint is mixed from dried casein powder, which an alkali has to dissolve before it binds. Which alkali decides how long the paint keeps and which pigments survive it. At home the same job is done with fresh strained curd.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia, Casein paint",
+				"url": "https://en.wikipedia.org/wiki/Casein_paint"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "dissolve",
+				"note": "In hydrated lime, borax or ammonium carbonate."
+			},
+			{
+				"type": "add",
+				"what": "whiting (chalk)",
+				"note": "As filler for wall paint."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia, Casein paint",
+					"url": "https://en.wikipedia.org/wiki/Casein_paint"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

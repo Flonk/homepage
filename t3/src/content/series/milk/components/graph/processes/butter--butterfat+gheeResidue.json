@@ -1,0 +1,106 @@
+{
+	"from": [
+		"butter"
+	],
+	"to": [
+		"butterfat",
+		"gheeResidue"
+	],
+	"step": "simmer until brown",
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 80,
+					"max": 85
+				},
+				"seconds": {
+					"min": 1800,
+					"max": 1800
+				},
+				"note": "Melted so protein, fat and buttermilk form layers."
+			},
+			{
+				"type": "drain"
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 110,
+					"max": 120,
+					"about": true
+				},
+				"note": "Until the frothing stops and the curd particles turn golden to brown, where the solids form."
+			},
+			{
+				"type": "drain",
+				"by": "sieve",
+				"note": "Filtered or centrifuged, by stack filters, pressure filters or centrifugal separators, and the ghee packed at 40–42 °C."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia, Ghee",
+					"url": "https://en.wikipedia.org/wiki/Ghee"
+				},
+				{
+					"name": "FAO: Traditional milk products of India (T0251E, ch. 4)",
+					"url": "https://www.fao.org/4/T0251E/T0251E04.htm"
+				},
+				{
+					"name": "Technology of ghee making (InfLibNet e-PG Pathshala)",
+					"url": "https://ebooks.inflibnet.ac.in/ftp04/chapter/technology-of-ghee-making-direct-cream-creamery-butter-continuous-method/"
+				},
+				{
+					"name": "Janghu et al. 2014",
+					"url": "https://epubs.icar.org.in/index.php/IJDS/article/view/34943"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	},
+	"legs": {
+		"butterfat": {
+			"step": "the fat",
+			"text": "Not one recipe but four routes; they differ in what is boiled (milk butter, butter, cream) and in how much residue and caramel flavour result.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia, Ghee",
+						"url": "https://en.wikipedia.org/wiki/Ghee"
+					},
+					{
+						"name": "FAO: Traditional milk products of India (T0251E, ch. 4)",
+						"url": "https://www.fao.org/4/T0251E/T0251E04.htm"
+					},
+					{
+						"name": "Technology of ghee making (InfLibNet e-PG Pathshala)",
+						"url": "https://ebooks.inflibnet.ac.in/ftp04/chapter/technology-of-ghee-making-direct-cream-creamery-butter-continuous-method/"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		},
+		"gheeResidue": {
+			"step": "the solids",
+			"text": "It is the solids-not-fat of the cream or butter, coagulated and browned by the heat.",
+			"sources": {
+				"links": [
+					{
+						"name": "InfLibNet: Technology of ghee making",
+						"url": "https://ebooks.inflibnet.ac.in/ftp04/chapter/technology-of-ghee-making-direct-cream-creamery-butter-continuous-method/"
+					},
+					{
+						"name": "Janghu et al. 2014",
+						"url": "https://epubs.icar.org.in/index.php/IJDS/article/view/34943"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	}
+}

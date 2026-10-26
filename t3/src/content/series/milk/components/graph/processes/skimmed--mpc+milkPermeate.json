@@ -1,0 +1,135 @@
+{
+	"from": [
+		"skimmed"
+	],
+	"to": [
+		"mpc",
+		"milkPermeate"
+	],
+	"step": "ultrafilter",
+	"processing": {
+		"steps": [
+			{
+				"type": "ultrafilter",
+				"note": "Of pasteurised skim milk, on a membrane that keeps the casein and whey proteins and lets lactose, minerals and water through."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook: Milk and whey fractionation",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
+				},
+				{
+					"name": "Wikipedia: Milk protein concentrate",
+					"url": "https://en.wikipedia.org/wiki/Milk_protein_concentrate"
+				},
+				{
+					"name": "PMC5603002 (MPC65 by UF, MPC80 by UF + diafiltration, pasteurised skim milk; seen in search, not opened)",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5603002"
+				},
+				{
+					"name": "ADPI: Dairy milk permeate (typical values and standard limits)",
+					"url": "https://adpi.org/ingredient-resources/dairy-milk-permeate/"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	},
+	"legs": {
+		"mpc": {
+			"step": "what the filter holds, dried",
+			"text": "Skim milk is concentrated on an ultrafiltration membrane that keeps the casein and whey proteins and lets lactose, minerals and water through; for the higher grades water is added and filtered out again (diafiltration), then the retentate is evaporated and spray-dried.",
+			"sources": {
+				"links": [
+					{
+						"name": "Tetra Pak Dairy Processing Handbook: Milk and whey fractionation",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
+					},
+					{
+						"name": "Wikipedia: Milk protein concentrate",
+						"url": "https://en.wikipedia.org/wiki/Milk_protein_concentrate"
+					},
+					{
+						"name": "PMC5603002 (MPC65 by UF, MPC80 by UF + diafiltration, pasteurised skim milk; seen in search, not opened)",
+						"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5603002"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			},
+			"processing": {
+				"steps": [
+					{
+						"type": "diafilter",
+						"note": "Needed above about 70 % protein."
+					},
+					{
+						"type": "evaporate",
+						"note": "Before drying (MPC85/MCC85).",
+						"solids": {
+							"min": 12,
+							"max": 18
+						}
+					},
+					{
+						"type": "dry"
+					}
+				],
+				"sources": {
+					"links": [
+						{
+							"name": "Tetra Pak Dairy Processing Handbook: Milk and whey fractionation",
+							"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
+						},
+						{
+							"name": "Wikipedia: Milk protein concentrate",
+							"url": "https://en.wikipedia.org/wiki/Milk_protein_concentrate"
+						},
+						{
+							"name": "PMC5603002 (MPC65 by UF, MPC80 by UF + diafiltration, pasteurised skim milk; seen in search, not opened)",
+							"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5603002"
+						}
+					],
+					"text": "The table, the facts and the words on how it is made, from these."
+				}
+			}
+		},
+		"milkPermeate": {
+			"step": "what passes the filter",
+			"text": "The membrane holds back the proteins and lets water, lactose, minerals and small nitrogen compounds through. That liquid is then concentrated and dried, often with a controlled crystallisation step first, into a powder of roughly 80 % lactose, 3 % protein and 8.5 % ash. It stands in for other dairy solids, sugar or corn syrup in bakery, pizza dough and confectionery, and is a lactose and mineral supply in animal feed.",
+			"sources": {
+				"links": [
+					{
+						"name": "ADPI: Dairy milk permeate (typical values and standard limits)",
+						"url": "https://adpi.org/ingredient-resources/dairy-milk-permeate/"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			},
+			"processing": {
+				"steps": [
+					{
+						"type": "evaporate"
+					},
+					{
+						"type": "custom",
+						"name": "crystallise",
+						"note": "Controlled, often before drying."
+					},
+					{
+						"type": "dry"
+					}
+				],
+				"sources": {
+					"links": [
+						{
+							"name": "ADPI: Dairy milk permeate (typical values and standard limits)",
+							"url": "https://adpi.org/ingredient-resources/dairy-milk-permeate/"
+						}
+					],
+					"text": "The table, the facts and the words on how it is made, from these."
+				}
+			}
+		}
+	}
+}

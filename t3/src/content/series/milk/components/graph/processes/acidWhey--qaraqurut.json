@@ -1,0 +1,46 @@
+{
+	"from": [
+		"acidWhey"
+	],
+	"to": [
+		"qaraqurut"
+	],
+	"step": "boil, dry",
+	"text": "Boiling down the sour, lactic-acid-rich whey concentrates its acid and sugars until the mass darkens, and drying then leaves a black, brittle, very sour block.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Qaraqorut",
+				"url": "https://en.wikipedia.org/wiki/Qaraqorut"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "milk",
+				"note": "To the sour whey left from straining kashk."
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"note": "Boiled until it thickens."
+			},
+			{
+				"type": "dry",
+				"note": "Until brittle."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Qaraqorut",
+					"url": "https://en.wikipedia.org/wiki/Qaraqorut"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

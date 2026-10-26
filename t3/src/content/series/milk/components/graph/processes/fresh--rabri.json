@@ -1,0 +1,51 @@
+{
+	"from": [
+		"fresh"
+	],
+	"to": [
+		"rabri"
+	],
+	"step": "reduce, layer the skins",
+	"text": "Milk is boiled down slowly until thick and pale yellow; the skins that form are collected and mixed back in, giving rabri its layered texture.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Rabri",
+				"url": "https://en.wikipedia.org/wiki/Rabri"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"note": "Kept low for a long time."
+			},
+			{
+				"type": "separate",
+				"off": "skin",
+				"note": "The cream layer is lifted off as it forms."
+			},
+			{
+				"type": "add",
+				"what": "sugar",
+				"note": "Or jaggery, often with cardamom."
+			},
+			{
+				"type": "add",
+				"what": "cream layer (lachha)"
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Rabri",
+					"url": "https://en.wikipedia.org/wiki/Rabri"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

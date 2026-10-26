@@ -1,0 +1,86 @@
+{
+	"from": [
+		"soft"
+	],
+	"to": [
+		"montebore"
+	],
+	"variant": true,
+	"text": "Sources: dairyscience.info (opened) for rennet, curd, salting and ripening; Slow Food and shop pages (search summaries) for the milk split.",
+	"sources": {
+		"links": [
+			{
+				"name": "dairyscience.info: Montebore",
+				"url": "https://dairyscience.info/cheese-dairy/italian-cheeses/79-montebore.html"
+			},
+			{
+				"name": "Italian Wikipedia: Montébore",
+				"url": "https://it.wikipedia.org/wiki/Montébore"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "coagulate",
+				"by": "rennet",
+				"temperature": {
+					"min": 30,
+					"max": 36
+				}
+			},
+			{
+				"type": "cut",
+				"how": "cut",
+				"note": "Cut twice to hazelnut size."
+			},
+			{
+				"type": "mould",
+				"seconds": {
+					"min": 36000
+				}
+			},
+			{
+				"type": "salt",
+				"how": "dry",
+				"seconds": {
+					"min": 14400,
+					"max": 18000
+				}
+			},
+			{
+				"type": "wash",
+				"what": "cheese",
+				"in": "hot salted water",
+				"note": "After 10–12 h."
+			},
+			{
+				"type": "custom",
+				"name": "stack",
+				"note": "Into the tower."
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"seconds": {
+					"min": 518400,
+					"max": 5184000
+				}
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "dairyscience.info: Montebore",
+					"url": "https://dairyscience.info/cheese-dairy/italian-cheeses/79-montebore.html"
+				},
+				{
+					"name": "Italian Wikipedia: Montébore",
+					"url": "https://it.wikipedia.org/wiki/Montébore"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

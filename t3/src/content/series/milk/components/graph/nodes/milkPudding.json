@@ -1,7 +1,5 @@
 {
 	"label": "Milk pudding",
-	"from": "fresh",
-	"step": "thicken with starch, sweeten",
 	"about": {
 		"text": "Milk set or thickened into a soft sweet dessert with starch, flour, egg or gelatin: blancmange, rice pudding, muhallebi and double-skin milk are all milk puddings.",
 		"sources": {
@@ -26,44 +24,6 @@
 				}
 			],
 			"text": "The photograph, its author and its licence, from its page."
-		}
-	},
-	"how": {
-		"text": "Milk is sweetened and thickened with starch, flour, egg or gelatin until it sets on cooling.",
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Pudding",
-					"url": "https://en.wikipedia.org/wiki/Pudding"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "add",
-					"what": "sugar"
-				},
-				{
-					"type": "custom",
-					"name": "thicken",
-					"note": "With starch, flour, egg or gelatin."
-				},
-				{
-					"type": "heat",
-					"does": "cool"
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia: Pudding",
-						"url": "https://en.wikipedia.org/wiki/Pudding"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	},
 	"examples": [

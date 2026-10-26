@@ -1,0 +1,45 @@
+{
+	"from": [
+		"fresh"
+	],
+	"to": [
+		"kulfi"
+	],
+	"step": "reduce, freeze in moulds",
+	"text": "Reduced, browned milk is frozen still in sealed moulds, not whipped.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Kulfi",
+				"url": "https://en.wikipedia.org/wiki/Kulfi"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "evaporate",
+				"note": "Sweetened, flavoured milk."
+			},
+			{
+				"type": "mould",
+				"note": "Often in small clay cups (kulhar), sealed."
+			},
+			{
+				"type": "custom",
+				"name": "freeze",
+				"note": "In a matka of ice and salt, not churned."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Kulfi",
+					"url": "https://en.wikipedia.org/wiki/Kulfi"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

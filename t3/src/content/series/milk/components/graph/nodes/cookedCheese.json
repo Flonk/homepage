@@ -3,8 +3,6 @@
 	"aka": [
 		"Kochkäse"
 	],
-	"from": "quark",
-	"step": "cook",
 	"cheese": true,
 	"about": {
 		"text": "A spreadable German cheese made from drained quark. Baking soda is mixed in and left to work until the curd turns glassy, and the curd is then gently heated and stirred until it melts. Butter, salt and often caraway are added. Industrial versions use melting salts. It is closely related to French cancoillotte.",
@@ -35,65 +33,6 @@
 	"regions": [
 		"DE"
 	],
-	"how": {
-		"text": "Drained quark is mixed with Natron, which takes up acid, and left to turn glassy. It is then warmed while stirring until it runs, enriched with butter and seasoned with salt and caraway.",
-		"sources": {
-			"links": [
-				{
-					"name": "de.Wikipedia: Kochkäse",
-					"url": "https://de.wikipedia.org/wiki/Kochk%C3%A4se"
-				},
-				{
-					"name": "de.Wikipedia: Sauermilchkäse",
-					"url": "https://de.wikipedia.org/wiki/Sauermilchk%C3%A4se"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "add",
-					"note": "Takes up acid.",
-					"what": "sodium bicarbonate (Natron)"
-				},
-				{
-					"type": "custom",
-					"name": "rest",
-					"seconds": {
-						"min": 3600
-					},
-					"note": "Up to several days, until glassy and yellowish."
-				},
-				{
-					"type": "heat",
-					"does": "heat",
-					"temperature": {
-						"max": 42
-					},
-					"note": "Until it runs."
-				},
-				{
-					"type": "custom",
-					"name": "season",
-					"note": "With butter, salt and caraway."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "de.Wikipedia: Kochkäse",
-						"url": "https://de.wikipedia.org/wiki/Kochk%C3%A4se"
-					},
-					{
-						"name": "de.Wikipedia: Sauermilchkäse",
-						"url": "https://de.wikipedia.org/wiki/Sauermilchk%C3%A4se"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"examples": [
 		"januSiers"
 	],

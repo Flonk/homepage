@@ -1,0 +1,144 @@
+{
+	"from": [
+		"skimmed"
+	],
+	"to": [
+		"ymer",
+		"ymerWhey"
+	],
+	"step": "ferment, drain",
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 90,
+					"max": 95
+				}
+			},
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "Lactococcus lactis subsp. lactis biovar diacetylactis",
+							"kind": "bacterium",
+							"does": [
+								"aroma"
+							],
+							"grows": "mesophilic"
+						},
+						{
+							"name": "Leuconostoc mesenteroides subsp. cremoris",
+							"kind": "bacterium",
+							"does": [
+								"aroma"
+							],
+							"grows": "mesophilic"
+						}
+					],
+					"by": [
+						"starter"
+					]
+				},
+				"temperature": {
+					"min": 18,
+					"max": 18
+				},
+				"seconds": {
+					"min": 57600
+				},
+				"pH": {
+					"max": 4.6
+				}
+			},
+			{
+				"type": "cut",
+				"how": "cut"
+			},
+			{
+				"type": "heat",
+				"does": "cook",
+				"temperature": {
+					"min": 45,
+					"max": 45,
+					"about": true
+				}
+			},
+			{
+				"type": "drain",
+				"note": "About half the volume runs off as whey."
+			}
+		],
+		"text": "Inoculated at 19–23 °C.",
+		"sources": {
+			"links": [
+				{
+					"name": "Ymer (dairy product), Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Ymer_(dairy_product)"
+				},
+				{
+					"name": "Bintsis & Papademas 2022, Table 2, Fermentation 8:679",
+					"url": "https://doi.org/10.3390/fermentation8120679"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	},
+	"legs": {
+		"ymer": {
+			"step": "the curd, with cream",
+			"text": "The curd is cut and warmed so it gives up its whey by syneresis; it is then kept above 35 °C while it is blended smooth, and cream is added afterwards. The temperatures and times come from Wikipedia alone.",
+			"sources": {
+				"links": [
+					{
+						"name": "Ymer (dairy product), Wikipedia",
+						"url": "https://en.wikipedia.org/wiki/Ymer_(dairy_product)"
+					},
+					{
+						"name": "Bintsis & Papademas 2022, Table 2, Fermentation 8:679",
+						"url": "https://doi.org/10.3390/fermentation8120679"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			},
+			"processing": {
+				"steps": [
+					{
+						"type": "add",
+						"temperature": {
+							"min": 35
+						},
+						"note": "While it is blended smooth."
+					},
+					{
+						"type": "add",
+						"note": "To about 3.5 % fat.",
+						"what": "cream"
+					}
+				],
+				"sources": {
+					"links": [
+						{
+							"name": "Ymer (dairy product), Wikipedia",
+							"url": "https://en.wikipedia.org/wiki/Ymer_(dairy_product)"
+						},
+						{
+							"name": "Bintsis & Papademas 2022, Table 2, Fermentation 8:679",
+							"url": "https://doi.org/10.3390/fermentation8120679"
+						}
+					],
+					"text": "The table, the facts and the words on how it is made, from these."
+				}
+			}
+		},
+		"ymerWhey": {
+			"step": "the whey"
+		}
+	}
+}

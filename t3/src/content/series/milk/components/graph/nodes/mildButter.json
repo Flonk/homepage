@@ -3,8 +3,6 @@
 	"aka": [
 		"Mildgesäuerte Butter"
 	],
-	"from": "butter",
-	"step": "work in culture",
 	"about": {
 		"text": "Butter churned from sweet cream, with an aromatic culture and a concentrate of lactic acid worked into it afterwards. This Dutch method, from the dairy institute NIZO, gives a cultured aroma without souring the cream and leaves a sweet buttermilk. Sold in Germany as mildgesäuerte Butter.",
 		"sources": {
@@ -34,60 +32,6 @@
 	"regions": [
 		"NL"
 	],
-	"how": {
-		"text": "The cream is churned sweet, so the buttermilk stays sweet. Aroma starter and a lactic acid concentrate are then worked into the grains, which gives a cultured taste without ripening the cream. The Tetra Pak page gives no amounts or pH.",
-		"sources": {
-			"links": [
-				{
-					"name": "Tetra Pak Dairy Processing Handbook, ch. 14 Butter (NIZO method)",
-					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/butter"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "ferment",
-					"does": "incubate",
-					"kinds": [
-						"lactic"
-					],
-					"adds": {
-						"microbes": [
-							{
-								"name": "mesophilic aroma bacteria",
-								"kind": "bacterium",
-								"grows": "mesophilic",
-								"does": [
-									"aroma"
-								]
-							}
-						],
-						"by": [
-							"starter"
-						]
-					},
-					"note": "Starter and permeate are mixed into the sweet butter grains."
-				},
-				{
-					"type": "custom",
-					"name": "aerate",
-					"note": "To stimulate diacetyl formation."
-				}
-			],
-			"text": "The cream is churned sweet; highly aromatic starter and a lactic acid concentrate (from whey fermented with Lactobacillus helveticus) are worked into the grains, which are aerated to stimulate diacetyl.",
-			"sources": {
-				"links": [
-					{
-						"name": "Tetra Pak Dairy Processing Handbook, ch. 14 Butter (NIZO method)",
-						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/butter"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"facts": [
 		{
 			"k": "Starter",

@@ -1,0 +1,44 @@
+{
+	"from": [
+		"tulum"
+	],
+	"to": [
+		"izmirTulum"
+	],
+	"variant": true,
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Tulum cheese",
+				"url": "https://en.wikipedia.org/wiki/Tulum_cheese"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 60,
+					"max": 65
+				}
+			},
+			{
+				"type": "ferment",
+				"does": "ripen"
+			}
+		],
+		"text": "Ripened in an animal skin (tulum).",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Tulum cheese",
+					"url": "https://en.wikipedia.org/wiki/Tulum_cheese"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

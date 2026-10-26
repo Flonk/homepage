@@ -1,0 +1,127 @@
+{
+	"from": [
+		"bryndza"
+	],
+	"to": [
+		"slovenskaBryndza"
+	],
+	"variant": true,
+	"text": "Slovak bryndza is not made from milk directly. Sheep lump cheese (hrudkový syr) is made in the hut, then ripened and ground with salt at the bryndza dairy. The PGI lets the sheep lump cheese be mixed with up to 50 % cow lump cheese. Its acid and flavour come from the wild lactic flora of the raw milk, not from a bought starter.",
+	"sources": {
+		"links": [
+			{
+				"name": "Kačániová et al. 2021, Open Life Sciences",
+				"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8005922"
+			},
+			{
+				"name": "Slovenská bryndza PGI summary, OJ C 232/2007",
+				"url": "https://www.infor.pl/download/site/pl/oj/2007/c_232/c_23220071004pl00170022.pdf"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "coagulate",
+				"by": "rennet",
+				"temperature": {
+					"min": 29,
+					"max": 31
+				},
+				"seconds": {
+					"min": 1800,
+					"max": 1800
+				},
+				"note": "With chymosin or chymosin-identical enzymes."
+			},
+			{
+				"type": "wash"
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"by": [
+						"wild"
+					],
+					"microbes": [
+						{
+							"name": "Lacticaseibacillus paracasei subsp. paracasei",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						},
+						{
+							"name": "Lactiplantibacillus plantarum",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						},
+						{
+							"name": "Lactococcus lactis subsp. lactis",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						},
+						{
+							"name": "Enterococcus faecium",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						},
+						{
+							"name": "Levilactobacillus brevis",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						}
+					]
+				},
+				"temperature": {
+					"min": 20,
+					"max": 20,
+					"about": true
+				},
+				"note": "Over 3,700 isolates in one study came from the raw milk and the dairy, not from a starter; they include L. paraplantarum, Enterococcus hirae, Enterococcus faecalis and Pediococcus acidilactici."
+			},
+			{
+				"type": "custom",
+				"name": "trim"
+			},
+			{
+				"type": "drain"
+			},
+			{
+				"type": "cut",
+				"how": "grind"
+			},
+			{
+				"type": "salt",
+				"note": "The pulp is spread on rollers."
+			}
+		],
+		"text": "The lump cheese is ripened before it is ground with salt; the flora comes from the raw milk and the dairy, not a starter.",
+		"sources": {
+			"links": [
+				{
+					"name": "Kačániová et al. 2021, Open Life Sciences",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8005922"
+				},
+				{
+					"name": "Slovenská bryndza PGI summary, OJ C 232/2007",
+					"url": "https://www.infor.pl/download/site/pl/oj/2007/c_232/c_23220071004pl00170022.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

@@ -1,0 +1,38 @@
+{
+	"from": [
+		"dahi"
+	],
+	"to": [
+		"ayran"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "chilled water"
+			},
+			{
+				"type": "add",
+				"what": "salt"
+			},
+			{
+				"type": "custom",
+				"name": "mix",
+				"note": "The yoghurt is mixed or churned with the water until it is smooth and thin, and is served cold."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Ayran",
+					"url": "https://en.wikipedia.org/wiki/Ayran"
+				},
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products"
+				}
+			],
+			"text": "That ayran is yoghurt mixed with chilled water and salt, and that a drinking yoghurt is made thinner by dilution with water and by mixing, from these; neither gives the amounts for ayran."
+		}
+	}
+}

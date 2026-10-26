@@ -1,0 +1,140 @@
+{
+	"from": [
+		"alpine"
+	],
+	"to": [
+		"emmentaler"
+	],
+	"variant": true,
+	"step": "grow eyes",
+	"text": "Weeks in the warm fermentation cellar drive the propionic acid fermentation that gives Emmentaler its regular, mostly 2–4 cm holes and its sweet, slightly tangy, mildly spicy taste. The wheels are then washed and moved to a cool cellar to mature.",
+	"sources": {
+		"links": [
+			{
+				"name": "Emmentaler AOP Pflichtenheft (BLW, rev. 2016)",
+				"url": "https://2021.aop-igp.ch/fileadmin/Dokumente/Pflichtenhefter/Emmentaler_Pflichtenheft.pdf"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"max": 40
+				},
+				"note": "Raw milk, never heated above this, used within 24 h."
+			},
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic",
+					"propionic"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "lactic cultures",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						},
+						{
+							"name": "propionic acid bacteria",
+							"kind": "bacterium",
+							"does": [
+								"gas"
+							]
+						}
+					],
+					"by": [
+						"starter"
+					]
+				}
+			},
+			{
+				"type": "coagulate",
+				"by": "rennet",
+				"seconds": {
+					"min": 2100,
+					"max": 2700
+				},
+				"note": "In a copper vat."
+			},
+			{
+				"type": "heat",
+				"does": "cook",
+				"temperature": {
+					"min": 52,
+					"max": 54
+				},
+				"seconds": {
+					"min": 1800,
+					"max": 3600
+				}
+			},
+			{
+				"type": "mould",
+				"temperature": {
+					"min": 49,
+					"max": 52
+				}
+			},
+			{
+				"type": "press",
+				"seconds": {
+					"max": 72000
+				},
+				"note": "Wheels of 80–100 cm, 75–120 kg."
+			},
+			{
+				"type": "salt",
+				"how": "brine",
+				"seconds": {
+					"min": 86400,
+					"max": 259200
+				},
+				"note": "In a brine of 20–22 °Bé."
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"temperature": {
+					"min": 19,
+					"max": 24
+				},
+				"seconds": {
+					"min": 2592000,
+					"max": 6048000
+				}
+			},
+			{
+				"type": "wash",
+				"what": "wheels",
+				"note": "When they move to the cool cellar."
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"temperature": {
+					"min": 11,
+					"max": 14
+				},
+				"note": "At least 4 mo in all for the classic grade, 8 mo or more for the Réserve."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Emmentaler AOP Pflichtenheft (BLW, rev. 2016)",
+					"url": "https://2021.aop-igp.ch/fileadmin/Dokumente/Pflichtenhefter/Emmentaler_Pflichtenheft.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

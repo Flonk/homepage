@@ -1,7 +1,5 @@
 {
 	"label": "Fermented\ncamel milk",
-	"from": "raw",
-	"step": "ferment camel milk",
 	"niche": 1,
 	"about": {
 		"text": "Camel's milk soured into a slightly acidic, sometimes fizzy and faintly alcoholic drink wherever camels are herded: shubat in Kazakhstan, chal in Turkmenistan, khoormog in Mongolia, gariss in Sudan and suusac in northern Kenya.",
@@ -42,96 +40,6 @@
 				}
 			],
 			"text": "Some of the world’s 4 Mt of camel milk is drunk fermented."
-		}
-	},
-	"how": {
-		"text": "Lactobacilli make the acid and lactose-fermenting yeasts such as Kluyveromyces marxianus add a little alcohol and CO₂, so the drink is sour, slightly fizzy and faintly alcoholic. Fresh milk is added to the fermenting batch at each milking, which keeps it going.",
-		"sources": {
-			"links": [
-				{
-					"name": "Foods (2024), review of shubat",
-					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11240983/"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "heat",
-					"does": "heat",
-					"temperature": {
-						"min": 63,
-						"max": 90
-					}
-				},
-				{
-					"type": "ferment",
-					"does": "incubate",
-					"kinds": [
-						"lactic",
-						"yeast"
-					],
-					"adds": {
-						"microbes": [
-							{
-								"name": "Lactobacillus helveticus",
-								"kind": "bacterium",
-								"does": [
-									"acid"
-								]
-							},
-							{
-								"name": "Lactobacillus delbrueckii",
-								"kind": "bacterium",
-								"does": [
-									"acid"
-								]
-							},
-							{
-								"name": "Lactobacillus kefiri",
-								"kind": "bacterium",
-								"does": [
-									"acid"
-								]
-							},
-							{
-								"name": "Kluyveromyces marxianus",
-								"kind": "yeast",
-								"does": [
-									"alcohol",
-									"gas"
-								]
-							}
-						],
-						"by": [
-							"backslop"
-						]
-					},
-					"seconds": {
-						"min": 86400,
-						"max": 172800
-					},
-					"pH": {
-						"min": 3.55,
-						"max": 4.72
-					},
-					"alcohol": {
-						"min": 0.5,
-						"max": 1.2
-					},
-					"note": "Fresh milk is added to the fermenting batch at each milking, and industrially it runs at 20–25 °C for 3–4 h and then 10–20 h."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Foods (2024), review of shubat",
-						"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11240983/"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	},
 	"examples": [

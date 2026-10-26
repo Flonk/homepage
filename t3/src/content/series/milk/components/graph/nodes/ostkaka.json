@@ -31,51 +31,6 @@
 	"regions": [
 		"SE"
 	],
-	"how": {
-		"label": "set with rennet and flour, drain, bake",
-		"text": "No temperature or times in the source.",
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Ostkaka",
-					"url": "https://en.wikipedia.org/wiki/Ostkaka"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "coagulate",
-					"by": "rennet",
-					"note": "In warm raw milk with a little flour."
-				},
-				{
-					"type": "drain",
-					"by": "sieve",
-					"note": "Strained (Småland) or press-strained (Hälsingland)."
-				},
-				{
-					"type": "add",
-					"what": "cream, sugar, eggs and almonds"
-				},
-				{
-					"type": "custom",
-					"name": "bake",
-					"note": "Until set, in Småland to a scrambled-egg consistency."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia: Ostkaka",
-						"url": "https://en.wikipedia.org/wiki/Ostkaka"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"facts": [
 		{
 			"k": "Hälsingland",

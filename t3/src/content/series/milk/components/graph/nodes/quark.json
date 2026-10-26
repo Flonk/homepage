@@ -1,11 +1,14 @@
 {
 	"label": "Quark",
+	"scale": {
+		"name": "fat in dry matter",
+		"unit": "%",
+		"to": 60,
+		"every": 10
+	},
 	"aka": [
 		"Topfen"
 	],
-	"from": "curd",
-	"step": "the curd",
-	"note": "German grades by fat in dry matter: Magerstufe under 10 %, Viertelfettstufe 10 %, Halbfettstufe 20 %, Dreiviertelfettstufe 30 %, Fettstufe 40 %, Vollfettstufe 45 %, Rahmstufe 50 %, Doppelrahmstufe 60–87 %. Under German cheese law, quark must hold at least 73 % water in the fat-free mass.",
 	"niche": 0,
 	"cheese": true,
 	"about": {
@@ -34,159 +37,8 @@
 			"text": "The photograph, its author and its licence, from its page."
 		}
 	},
-	"how": {
-		"text": "Skimmed milk is soured by mesophilic lactococci with a trace of rennet until it gels at about pH 4.6; the gel is stirred, warmed briefly and the curd is separated from the whey in a centrifuge. Fat is set by adding cream.",
-		"sources": {
-			"links": [
-				{
-					"name": "Tetra Pak Dairy Processing Handbook: Cheese",
-					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
-				},
-				{
-					"name": "Hill & Ferrer, Cheese Making Technology (Univ. of Guelph), 8.6 Fresh cheese, acid-coagulated cheese",
-					"url": "https://books.lib.uoguelph.ca/cheesemakingtechnologyebook/chapter/8-6-fresh-cheese-acid-coagulated-cheese/"
-				},
-				{
-					"name": "Wikipedia (de): Quark (Lebensmittel)",
-					"url": "https://de.wikipedia.org/wiki/Quark_(Lebensmittel)"
-				},
-				{
-					"name": "Wikipedia: Quark (dairy product)",
-					"url": "https://en.wikipedia.org/wiki/Quark_(dairy_product)"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "pasteurise",
-					"temperature": {
-						"min": 85,
-						"max": 95
-					},
-					"seconds": {
-						"min": 300,
-						"max": 900
-					},
-					"note": "Skimmed milk; older plants at about 73 °C."
-				},
-				{
-					"type": "ferment",
-					"does": "incubate",
-					"kinds": [
-						"lactic"
-					],
-					"adds": {
-						"microbes": [
-							{
-								"name": "Lactococcus lactis subsp. lactis",
-								"kind": "bacterium",
-								"does": [
-									"acid"
-								],
-								"grows": "mesophilic"
-							},
-							{
-								"name": "Lactococcus lactis subsp. cremoris",
-								"kind": "bacterium",
-								"does": [
-									"acid"
-								],
-								"grows": "mesophilic"
-							}
-						],
-						"by": [
-							"starter"
-						],
-						"dose": {
-							"min": 1,
-							"max": 2
-						}
-					},
-					"temperature": {
-						"min": 20,
-						"max": 30
-					},
-					"seconds": {
-						"min": 21600,
-						"max": 57600
-					},
-					"note": "Set with a little rennet, about 1 ml liquid rennet per 100 kg milk, a tenth of the cheese-making dose.",
-					"pH": {
-						"min": 4.5,
-						"max": 4.7
-					}
-				},
-				{
-					"type": "custom",
-					"name": "stir"
-				},
-				{
-					"type": "heat",
-					"does": "heat",
-					"temperature": {
-						"min": 58,
-						"max": 60
-					},
-					"seconds": {
-						"max": 180
-					},
-					"note": "Thermisation; the Guelph home recipe holds 52 °C for about 1.5 h."
-				},
-				{
-					"type": "heat",
-					"does": "cool",
-					"temperature": {
-						"min": 38,
-						"max": 45
-					}
-				},
-				{
-					"type": "separate",
-					"off": "whey",
-					"by": "centrifuge",
-					"note": "Nozzle centrifuge (feed about 27 °C) or ultrafiltration today, cloth bags traditionally."
-				},
-				{
-					"type": "heat",
-					"does": "cool",
-					"temperature": {
-						"min": 10,
-						"max": 12
-					}
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Tetra Pak Dairy Processing Handbook: Cheese",
-						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
-					},
-					{
-						"name": "Hill & Ferrer, Cheese Making Technology (Univ. of Guelph), 8.6 Fresh cheese, acid-coagulated cheese",
-						"url": "https://books.lib.uoguelph.ca/cheesemakingtechnologyebook/chapter/8-6-fresh-cheese-acid-coagulated-cheese/"
-					},
-					{
-						"name": "Wikipedia (de): Quark (Lebensmittel)",
-						"url": "https://de.wikipedia.org/wiki/Quark_(Lebensmittel)"
-					},
-					{
-						"name": "Wikipedia: Quark (dairy product)",
-						"url": "https://en.wikipedia.org/wiki/Quark_(dairy_product)"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"examples": [
 		"tvorog",
-		"magerquark",
-		"speisequark20",
-		"sahnequark",
-		"rahmquark",
-		"doppelrahmquark",
 		"longLifeQuark",
 		"areesh",
 		"karish",
@@ -196,6 +48,10 @@
 		{
 			"k": "Whey off",
 			"v": "Baker's-type smooth curd is broken at pH 4.4–4.5 with no cooking"
+		},
+		{
+			"k": "Grades (Germany)",
+			"v": "By fat in dry matter: Magerstufe under 10 %, Viertelfettstufe 10 %, Halbfettstufe 20 %, Dreiviertelfettstufe 30 %, Fettstufe 40 %, Vollfettstufe 45 %, Rahmstufe 50 %, Doppelrahmstufe 60–87 %"
 		},
 		{
 			"k": "Fat grades",

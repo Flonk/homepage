@@ -1,0 +1,36 @@
+{
+	"from": [
+		"butter"
+	],
+	"to": [
+		"sweetCreamButter"
+	],
+	"variant": true,
+	"text": "Cream is churned without any culture or ripening for flavour, so the butter tastes clean and creamy rather than tangy, and the buttermilk stays sweet.",
+	"sources": {
+		"links": [
+			{
+				"name": "Milchindustrie-Verband, Milkipedia: Butter",
+				"url": "https://milchindustrie.de/milkipedia/butter/"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "churn",
+				"note": "Cream that is not soured and has no culture added."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Milchindustrie-Verband, Milkipedia: Butter",
+					"url": "https://milchindustrie.de/milkipedia/butter/"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

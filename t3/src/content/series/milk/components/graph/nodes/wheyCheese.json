@@ -5,11 +5,6 @@
 		"Braunkäse"
 	],
 	"comment": "Whey boiled down until its sugar browns; ricotta is the other way, the whey's proteins set out of it by heat and acid.",
-	"from": "sweetWhey",
-	"step": "boil down till brown",
-	"alsoFrom": [
-		"cream"
-	],
 	"niche": 1,
 	"cheese": true,
 	"about": {
@@ -41,43 +36,6 @@
 	"regions": [
 		"NO"
 	],
-	"how": {
-		"text": "Nothing is coagulated here: the whey is only concentrated, so the lactose is what is left to caramelise. Milk or cream added to the whey adds fat and protein. Wikipedia gives no temperatures or finished-product percentages.",
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Brunost",
-					"url": "https://en.wikipedia.org/wiki/Brunost"
-				},
-				{
-					"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
-					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "evaporate",
-					"note": "For hours, until most of the water is gone."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia: Brunost",
-						"url": "https://en.wikipedia.org/wiki/Brunost"
-					},
-					{
-						"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
-						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"examples": [
 		"gjetost",
 		"gudbrandsdalsost",

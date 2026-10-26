@@ -1,0 +1,64 @@
+{
+	"from": [
+		"sweetWhey"
+	],
+	"to": [
+		"heatWheyProtein"
+	],
+	"step": "heat and acidify, collect the flocs",
+	"sources": {
+		"links": [
+			{
+				"name": "Tetra Pak Dairy Processing Handbook, ch. 18 Milk and whey fractionation",
+				"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 90,
+					"max": 95
+				},
+				"seconds": {
+					"min": 180,
+					"max": 240
+				}
+			},
+			{
+				"type": "acidify",
+				"note": "So the protein precipitates.",
+				"seconds": {
+					"max": 60
+				}
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"min": 40,
+					"max": 40,
+					"about": true
+				}
+			},
+			{
+				"type": "separate",
+				"off": "solids",
+				"note": "A solids-ejecting clarifier discharges about every 3 min."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 18 Milk and whey fractionation",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

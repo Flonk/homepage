@@ -6,13 +6,6 @@
 		"Säuglingsmilch",
 		"Anfangsnahrung"
 	],
-	"from": "skimmed",
-	"step": "blend with whey, lactose and oils, spray-dry",
-	"alsoFrom": [
-		"demineralisedWhey",
-		"lactose",
-		"wpc"
-	],
 	"note": "Skim milk has too much protein and mineral for a baby, so lactose and demineralised whey are added to bring the casein : whey ratio from milk's roughly 80 : 20 towards human milk's 40 : 60 (the ratio is not controlled in Europe).",
 	"about": {
 		"text": "A manufactured food that replaces breast milk for babies under 12 months. Cow-milk formula starts from skim milk, which is re-balanced with demineralised whey, lactose and vegetable oils, then vitamins and minerals, and is mostly sold as a spray-dried powder.",
@@ -38,71 +31,6 @@
 				}
 			],
 			"text": "The photograph, its author and its licence, from its page."
-		}
-	},
-	"how": {
-		"text": "Wet mixing is the most used route because it gives control of composition and microbial safety.",
-		"sources": {
-			"links": [
-				{
-					"name": "Murphy 2015, infant formula manufacture (Teagasc/UCC thesis)",
-					"url": "https://cora.ucc.ie/server/api/core/bitstreams/d714f4fc-a941-4744-8650-fc050287f509/content"
-				},
-				{
-					"name": "Wikipedia: Infant formula",
-					"url": "https://en.wikipedia.org/wiki/Infant_formula"
-				},
-				{
-					"name": "Vaisala: Infant formula production, wet mixing process",
-					"url": "https://www.vaisala.com/en/application-note/infant-formula-production-wet-mixing-process"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "add",
-					"note": "Dissolved in skim milk or water."
-				},
-				{
-					"type": "heat",
-					"does": "heat"
-				},
-				{
-					"type": "homogenise"
-				},
-				{
-					"type": "evaporate",
-					"note": "In a pilot study.",
-					"solids": {
-						"min": 55,
-						"max": 55,
-						"about": true
-					}
-				},
-				{
-					"type": "dry",
-					"note": "Spray-dried with air in at 187 °C and out at 85 °C in a pilot study (industry 150-220 °C in)."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Murphy 2015, infant formula manufacture (Teagasc/UCC thesis)",
-						"url": "https://cora.ucc.ie/server/api/core/bitstreams/d714f4fc-a941-4744-8650-fc050287f509/content"
-					},
-					{
-						"name": "Wikipedia: Infant formula",
-						"url": "https://en.wikipedia.org/wiki/Infant_formula"
-					},
-					{
-						"name": "Vaisala: Infant formula production, wet mixing process",
-						"url": "https://www.vaisala.com/en/application-note/infant-formula-production-wet-mixing-process"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	},
 	"examples": [

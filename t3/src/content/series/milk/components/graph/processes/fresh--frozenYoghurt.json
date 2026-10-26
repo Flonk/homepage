@@ -1,0 +1,107 @@
+{
+	"from": [
+		"fresh"
+	],
+	"to": [
+		"frozenYoghurt"
+	],
+	"step": "ferment or blend yoghurt in, freeze with air",
+	"text": "The mix of milk, sugar and stabiliser (gelatin, guar gum or carrageenan, which hold back ice crystals) is homogenised, set with the yoghurt culture (or blended with yoghurt), chilled, aged and then frozen with air whipped in, like ice cream.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Frozen yogurt",
+				"url": "https://en.wikipedia.org/wiki/Frozen_yogurt"
+			},
+			{
+				"name": "Bintsis & Papademas 2022, Fermentation (Table 2)",
+				"url": "https://doi.org/10.3390/fermentation8120679"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "milk, sugar and a stabiliser",
+				"note": "Stabiliser (gelatin, guar gum or carrageenan) holds back ice crystals."
+			},
+			{
+				"type": "homogenise"
+			},
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "Streptococcus thermophilus",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							],
+							"grows": "thermophilic"
+						},
+						{
+							"name": "Lactobacillus delbrueckii subsp. bulgaricus",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							],
+							"grows": "thermophilic"
+						}
+					],
+					"by": [
+						"starter"
+					]
+				},
+				"temperature": {
+					"min": 40,
+					"max": 45
+				}
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"min": 0,
+					"max": 4
+				},
+				"seconds": {
+					"max": 14400
+				}
+			},
+			{
+				"type": "custom",
+				"name": "age"
+			},
+			{
+				"type": "custom",
+				"name": "freeze",
+				"temperature": {
+					"min": -6,
+					"max": -2
+				},
+				"note": "With air whipped in."
+			}
+		],
+		"text": "Held until set. Some mixes blend finished yoghurt into the cold mix instead.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Frozen yogurt",
+					"url": "https://en.wikipedia.org/wiki/Frozen_yogurt"
+				},
+				{
+					"name": "Bintsis & Papademas 2022, Fermentation (Table 2)",
+					"url": "https://doi.org/10.3390/fermentation8120679"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

@@ -5,8 +5,6 @@
 		"Chena"
 	],
 	"comment": "Set by heat and acid together, straight from hot milk.",
-	"from": "pasteurised",
-	"step": "the curd",
 	"niche": 1,
 	"cheese": true,
 	"about": {
@@ -43,61 +41,6 @@
 		"cow",
 		"buffalo"
 	],
-	"how": {
-		"text": "Milk is boiled, cooled slightly to 75–80 °C, and a food acid is stirred in. The curd separates at once from the greenish whey and is drained in a cloth.",
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Chhena",
-					"url": "https://en.wikipedia.org/wiki/Chhena"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "heat",
-					"does": "heat",
-					"seconds": {
-						"min": 600,
-						"max": 600
-					}
-				},
-				{
-					"type": "heat",
-					"does": "cool",
-					"temperature": {
-						"min": 75,
-						"max": 80
-					}
-				},
-				{
-					"type": "acidify",
-					"with": "lemon juice",
-					"temperature": {
-						"min": 75,
-						"max": 80
-					},
-					"note": "Or citric or lactic acid, calcium lactate, old acid whey."
-				},
-				{
-					"type": "drain",
-					"by": "cloth",
-					"note": "Longer draining gives firmer chhena."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia: Chhena",
-						"url": "https://en.wikipedia.org/wiki/Chhena"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"examples": [
 		"bandelCheese",
 		"adygheCheese",

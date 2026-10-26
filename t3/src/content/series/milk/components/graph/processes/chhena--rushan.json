@@ -1,0 +1,41 @@
+{
+	"from": [
+		"chhena"
+	],
+	"to": [
+		"rushan"
+	],
+	"step": "stretch into sheets, dry",
+	"text": "Fresh curd is pulled into thin sheets, wrapped on long bamboo sticks and hung to dry. The acid or coagulant used was not found in any opened source, so none is named.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Rushan cheese (process text marked citation needed)",
+				"url": "https://en.wikipedia.org/wiki/Rushan_cheese"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "stretch",
+				"note": "Into thin sheets."
+			},
+			{
+				"type": "dry",
+				"note": "Wrapped round bamboo sticks and hung until yellow and leather-dry."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Rushan cheese (process text marked citation needed)",
+					"url": "https://en.wikipedia.org/wiki/Rushan_cheese"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

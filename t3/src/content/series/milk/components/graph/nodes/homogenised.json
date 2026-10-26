@@ -3,8 +3,6 @@
 	"aka": [
 		"Homogenisierte Milch"
 	],
-	"from": "raw",
-	"step": "homogenise",
 	"niche": 0,
 	"light": true,
 	"about": {
@@ -55,48 +53,6 @@
 				}
 			],
 			"text": "All made from whole milk: packaged milk, yoghurt and dahi, whole milk powder, khoa, paneer, and the ghee churned from dahi at home. What is left once the rest is counted."
-		}
-	},
-	"how": {
-		"text": "Warm milk is pumped at high pressure through a narrow gap, which tears the fat globules into droplets under 1 µm. Droplets that small stay suspended, so no cream layer forms on top.",
-		"sources": {
-			"links": [
-				{
-					"name": "Tetra Pak Dairy Processing Handbook: Homogenizers",
-					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/homogenizers"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "heat",
-					"does": "heat",
-					"temperature": {
-						"min": 55,
-						"max": 80
-					},
-					"note": "Below 40 °C the fat is broken up poorly."
-				},
-				{
-					"type": "specialHomogenise",
-					"bar": {
-						"min": 100,
-						"max": 250
-					},
-					"note": "For example 200 bar, then a second stage at about 30 bar back-pressure."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Tetra Pak Dairy Processing Handbook: Homogenizers",
-						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/homogenizers"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	},
 	"facts": [

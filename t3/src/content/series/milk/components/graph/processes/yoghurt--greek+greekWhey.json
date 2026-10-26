@@ -1,0 +1,63 @@
+{
+	"from": [
+		"yoghurt"
+	],
+	"to": [
+		"greek",
+		"greekWhey"
+	],
+	"step": "strain",
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "stir"
+			},
+			{
+				"type": "separate",
+				"off": "whey",
+				"by": "centrifuge",
+				"note": "By nozzle separator, or as the permeate of ultrafiltration."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products"
+				},
+				{
+					"name": "Codex Standard for Fermented Milks (CXS 243-2003)",
+					"url": "https://www.fao.org/input/download/standards/400/CXS_243e.pdf"
+				},
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 18 Milk and whey fractionation",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	},
+	"legs": {
+		"greek": {
+			"step": "what is left when the whey goes",
+			"text": "Taking whey out after fermentation concentrates the casein gel, so the protein at least doubles and the yoghurt becomes spoonably thick. Made industrially by nozzle separator or ultrafiltration; the cloth is the household route for labneh, sack yoghurt and süzme.",
+			"sources": {
+				"links": [
+					{
+						"name": "Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products"
+					},
+					{
+						"name": "Codex Standard for Fermented Milks (CXS 243-2003)",
+						"url": "https://www.fao.org/input/download/standards/400/CXS_243e.pdf"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		},
+		"greekWhey": {
+			"step": "the whey"
+		}
+	}
+}

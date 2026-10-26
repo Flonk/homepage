@@ -1,0 +1,49 @@
+{
+	"from": [
+		"cream"
+	],
+	"to": [
+		"milkCaramel"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "sugar, glucose syrup and butter to the cream",
+				"note": "Cream, sugar, glucose syrup and butter are cooked together."
+			},
+			{
+				"type": "heat",
+				"does": "cook",
+				"temperature": {
+					"min": 116,
+					"max": 120
+				},
+				"note": "The mix is cooked to the firm-ball stage, too cool to caramelise the sugar, so the milk browns instead."
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"note": "It is spread thin on a water-cooled wheel and set."
+			},
+			{
+				"type": "cut",
+				"how": "cut",
+				"note": "Caramels are cut from a rope, not moulded, and wrapped one by one."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Caramel",
+					"url": "https://en.wikipedia.org/wiki/Caramel"
+				},
+				{
+					"name": "Technology of caramel, toffee and fudge (e-PG Pathshala module)",
+					"url": "https://ebooks.inflibnet.ac.in/ftp5/chapter/paper-no-09-paper-title-bakery-and-confectionery-technology-module-no-28-module-title-technology-of-caramel-toffee-and-fudge-1-caramel-1-1-history-initially-candies-of-fruits-and-nuts-d/"
+				}
+			],
+			"text": "Wikipedia for the ingredients and the 120 °C firm-ball finish; the module for the leaving temperature of about 116 °C, cooling as a film and cutting from a rope."
+		}
+	}
+}

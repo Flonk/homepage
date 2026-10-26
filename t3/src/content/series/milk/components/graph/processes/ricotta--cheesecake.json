@@ -1,0 +1,54 @@
+{
+	"from": [
+		"ricotta"
+	],
+	"to": [
+		"cheesecake"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "drain",
+				"by": "sieve",
+				"note": "The ricotta is left to drip in a sieve in the fridge overnight."
+			},
+			{
+				"type": "add",
+				"what": "eggs, sugar and flavouring",
+				"note": "Eggs set the baked filling, where an unbaked one uses cream."
+			},
+			{
+				"type": "custom",
+				"name": "bake",
+				"temperature": {
+					"min": 160,
+					"max": 160
+				},
+				"seconds": {
+					"min": 4500,
+					"max": 4500,
+					"about": true
+				},
+				"note": "The filling bakes on a crumb crust in a water bath for about an hour and a quarter, until the centre is set."
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"note": "It is cooled on a rack and then chilled for about four hours before serving."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Foodland Ontario: Italian Ricotta Cake",
+					"url": "https://www.ontario.ca/foodland/recipes/italian-ricotta-cake"
+				},
+				{
+					"name": "Wikipedia: Cheesecake",
+					"url": "https://en.wikipedia.org/wiki/Cheesecake"
+				}
+			],
+			"text": "One tested recipe for the draining, baking and chilling figures, and Wikipedia for ricotta as a cheesecake cheese and for eggs in baked versus cream in unbaked ones; recipes differ."
+		}
+	}
+}

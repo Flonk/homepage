@@ -1,0 +1,236 @@
+{
+	"from": [
+		"skimmed"
+	],
+	"to": [
+		"curd"
+	],
+	"step": "ferment, a little rennet",
+	"text": "Lactic acid bacteria lower the pH to 4.6–4.7, the isoelectric point at which casein micelles stop repelling each other and clump into a curd. The whey is then drained or pressed off.",
+	"sources": {
+		"links": [
+			{
+				"name": "Tetra Pak Dairy Processing Handbook, ch. 16 Cheese",
+				"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+			},
+			{
+				"name": "EAEU Technical Regulation TR TS 033/2013 (English translation)",
+				"url": "https://agriexchange.apeda.gov.in/ImportRegulations/CustomsUnionTechnicalRegulationonMilkandDairyProductsMoscowRussianFederation11182013.pdf"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "pasteurise",
+				"temperature": {
+					"min": 85,
+					"max": 95
+				},
+				"seconds": {
+					"min": 300,
+					"max": 900
+				},
+				"note": "Skimmed milk; older plants at about 73 °C.",
+				"sources": {
+					"links": [
+						{
+							"name": "Tetra Pak Dairy Processing Handbook: Cheese",
+							"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+						},
+						{
+							"name": "Hill & Ferrer, Cheese Making Technology (Univ. of Guelph), 8.6 Fresh cheese, acid-coagulated cheese",
+							"url": "https://books.lib.uoguelph.ca/cheesemakingtechnologyebook/chapter/8-6-fresh-cheese-acid-coagulated-cheese/"
+						},
+						{
+							"name": "Wikipedia (de): Quark (Lebensmittel)",
+							"url": "https://de.wikipedia.org/wiki/Quark_(Lebensmittel)"
+						},
+						{
+							"name": "Wikipedia: Quark (dairy product)",
+							"url": "https://en.wikipedia.org/wiki/Quark_(dairy_product)"
+						}
+					],
+					"text": "The table, the facts and the words on how it is made, from these."
+				}
+			},
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "Lactococcus lactis subsp. lactis",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							],
+							"grows": "mesophilic",
+							"sources": {
+								"links": [
+									{
+										"name": "Tetra Pak Dairy Processing Handbook: Cheese",
+										"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+									},
+									{
+										"name": "Hill & Ferrer, Cheese Making Technology (Univ. of Guelph), 8.6 Fresh cheese, acid-coagulated cheese",
+										"url": "https://books.lib.uoguelph.ca/cheesemakingtechnologyebook/chapter/8-6-fresh-cheese-acid-coagulated-cheese/"
+									},
+									{
+										"name": "Wikipedia (de): Quark (Lebensmittel)",
+										"url": "https://de.wikipedia.org/wiki/Quark_(Lebensmittel)"
+									},
+									{
+										"name": "Wikipedia: Quark (dairy product)",
+										"url": "https://en.wikipedia.org/wiki/Quark_(dairy_product)"
+									}
+								],
+								"text": "The table, the facts and the words on how it is made, from these."
+							}
+						},
+						{
+							"name": "Lactococcus lactis subsp. cremoris",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							],
+							"grows": "mesophilic",
+							"sources": {
+								"links": [
+									{
+										"name": "Tetra Pak Dairy Processing Handbook: Cheese",
+										"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+									},
+									{
+										"name": "Hill & Ferrer, Cheese Making Technology (Univ. of Guelph), 8.6 Fresh cheese, acid-coagulated cheese",
+										"url": "https://books.lib.uoguelph.ca/cheesemakingtechnologyebook/chapter/8-6-fresh-cheese-acid-coagulated-cheese/"
+									},
+									{
+										"name": "Wikipedia (de): Quark (Lebensmittel)",
+										"url": "https://de.wikipedia.org/wiki/Quark_(Lebensmittel)"
+									},
+									{
+										"name": "Wikipedia: Quark (dairy product)",
+										"url": "https://en.wikipedia.org/wiki/Quark_(dairy_product)"
+									}
+								],
+								"text": "The table, the facts and the words on how it is made, from these."
+							}
+						},
+						{
+							"name": "Streptococcus thermophilus",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							],
+							"sources": {
+								"links": [
+									{
+										"name": "German MilchPQV, Anlage 8 (2025)",
+										"url": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html"
+									},
+									{
+										"name": "Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products",
+										"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products"
+									},
+									{
+										"name": "Wikipedia: Skyr (cites the Vísindavefurinn production account)",
+										"url": "https://en.wikipedia.org/wiki/Skyr"
+									}
+								],
+								"text": "The table, the facts and the words on how it is made, from these."
+							}
+						},
+						{
+							"name": "Lactobacillus delbrueckii subsp. bulgaricus",
+							"kind": "bacterium",
+							"does": [
+								"acid",
+								"aroma"
+							],
+							"sources": {
+								"links": [
+									{
+										"name": "German MilchPQV, Anlage 8 (2025)",
+										"url": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html"
+									},
+									{
+										"name": "Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products",
+										"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products"
+									},
+									{
+										"name": "Wikipedia: Skyr (cites the Vísindavefurinn production account)",
+										"url": "https://en.wikipedia.org/wiki/Skyr"
+									}
+								],
+								"text": "The table, the facts and the words on how it is made, from these."
+							}
+						}
+					],
+					"by": [
+						"starter",
+						"backslop"
+					]
+				},
+				"temperature": {
+					"min": 20,
+					"max": 37
+				},
+				"seconds": {
+					"min": 18000,
+					"max": 57600
+				},
+				"pH": {
+					"min": 4.5,
+					"max": 4.7
+				},
+				"note": "Often with a little rennet: for quark 1–2 % mesophilic starter at 20–30 °C for 6–16 h and about 1 ml liquid rennet per 100 kg milk, a tenth of the cheese-making dose; for skyr yoghurt cultures at 37 °C for about 5 h, with a yeast active at low temperature."
+			},
+			{
+				"type": "drain",
+				"note": "By self-pressing, pressing, separator or ultrafiltration."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 16 Cheese",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+				},
+				{
+					"name": "EAEU Technical Regulation TR TS 033/2013 (English translation)",
+					"url": "https://agriexchange.apeda.gov.in/ImportRegulations/CustomsUnionTechnicalRegulationonMilkandDairyProductsMoscowRussianFederation11182013.pdf"
+				},
+				{
+					"name": "Hill & Ferrer, Cheese Making Technology (Univ. of Guelph), 8.6 Fresh cheese, acid-coagulated cheese",
+					"url": "https://books.lib.uoguelph.ca/cheesemakingtechnologyebook/chapter/8-6-fresh-cheese-acid-coagulated-cheese/"
+				},
+				{
+					"name": "Wikipedia (de): Quark (Lebensmittel)",
+					"url": "https://de.wikipedia.org/wiki/Quark_(Lebensmittel)"
+				},
+				{
+					"name": "Wikipedia: Quark (dairy product)",
+					"url": "https://en.wikipedia.org/wiki/Quark_(dairy_product)"
+				},
+				{
+					"name": "German MilchPQV, Anlage 8 (2025)",
+					"url": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html"
+				},
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products"
+				},
+				{
+					"name": "Wikipedia: Skyr (cites the Vísindavefurinn production account)",
+					"url": "https://en.wikipedia.org/wiki/Skyr"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

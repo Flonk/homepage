@@ -31,8 +31,6 @@ type Own = Exclude<Step['type'], 'custom' | 'heat' | 'ferment' | 'dry'>;
 const OWN: Record<Own, [string, string]> = {
 	pasteurise: ['🔥 PASTEURISE', 'pasteurised'],
 	homogenise: ['🌀 HOMOGENISE', 'homogenised'],
-	specialPasteurise: ['🔥 PASTEURISE', 'pasteurised'],
-	specialHomogenise: ['🌀 HOMOGENISE', 'homogenised'],
 	coagulate: ['🧀 COAGULATE', 'set'],
 	churn: ['🧈 CHURN BUTTER', 'churned'],
 	salt: ['🧂 SALT', 'salted'],
@@ -65,7 +63,8 @@ const ownSaid = (h: Step): (string | undefined)[] => {
 		case 'cut':
 			return [h.how && h.how !== 'cut' ? HOW[h.how] : undefined, h.size && span(h.size, inUnit(' mm'))];
 		case 'separate':
-			return [h.by && HOW[h.by], h.fat && `${pc(h.fat)} fat left`];
+			// Spun in a centrifuge, it is named for it alone (see titleOf).
+			return [h.by && h.by !== 'centrifuge' ? HOW[h.by] : undefined, h.fat && `${pc(h.fat)} fat left`];
 		case 'evaporate':
 			return [h.under && HOW[h.under], h.solids && `to ${pc(h.solids)} solids`];
 		case 'filter':
@@ -96,6 +95,7 @@ const OFF: Record<NonNullable<S.Separate['off']>, [string, string]> = {
 };
 const titleOf = (h: Step): [string, string] => {
 	if (h.type === 'custom') return [`⚙️ ${h.name.toUpperCase()}`, h.name];
+	if (h.type === 'separate' && h.by === 'centrifuge') return ['🌀 CENTRIFUGE', 'centrifuged'];
 	if (h.type === 'separate' && h.off) return OFF[h.off];
 	if (h.type in OWN) return OWN[h.type as keyof typeof OWN];
 	const plain = h as HeatTreatment | Ferment | Drying;
@@ -103,90 +103,63 @@ const titleOf = (h: Step): [string, string] => {
 };
 
 /* Pasteurised and homogenised are said by name alone, but where they are
-   explained (see SpecialPasteurise): done as everywhere, nothing to add. */
-const plain = (h: Step) => h.type === 'pasteurise' || h.type === 'homogenise';
-/* A step that says little is said on one line with its name, its parts
-   between middle dots, "🔥 HEAT · ~5 min · 90–95°C", its sentence under it:
-   one with no microbes whose line is short, and acidifying. Any other says
-   how long and how warm, "~5 min @ 90–95°C", under its name. */
-const ONE_LINE = 48;
+   explained (see Pasteurise): done as everywhere, nothing to add. */
+const plain = (h: Step) => (h.type === 'pasteurise' || h.type === 'homogenise') && !h.explain;
+// Where they are explained, what they are for, before whatever else is said of them.
+const EXPLAINED: Partial<Record<Step['type'], string>> = {
+	pasteurise: 'The milk undergoes heat treatment to kill harmful bacteria like Listeria, Salmonella and E. coli.',
+	homogenise: "The milk is forced through a micrometer gap to break up fat globules into smaller ones. The tiny globules won't float to the surface as cream.",
+};
+/* Every step said the same way: its name and its parts between middle
+   dots, "🔥 HEAT · ~5 min · 90–95°C", the microbes it adds and its
+   sentence under them (see card). */
 export const chip = (h: Step): Chip => {
 	const [title, done] = titleOf(h);
 	if (plain(h)) return { title, said: '', done };
-	const time = h.seconds && span(h.seconds, inTime);
-	const warm = h.temperature && span(h.temperature, inUnit('°C'));
 	const parts = [
 		h.type === 'coagulate' && h.by && `by ${SET[h.by]}`,
-		h.type === 'specialHomogenise' && h.bar && span(h.bar, inUnit(' bar')),
+		h.type === 'homogenise' && h.bar && span(h.bar, inUnit(' bar')),
 		...ownSaid(h),
-		time,
-		warm,
+		h.seconds && span(h.seconds, inTime),
+		h.temperature && span(h.temperature, inUnit('°C')),
 		h.humidity && `${span(h.humidity, inUnit('%'))} RH`,
 	].filter((x): x is string => !!x);
 	const microbes = h.type === 'ferment' && h.adds?.microbes.length ? h.adds.microbes.map((m) => m.name).join(', ') : undefined;
-	const inline = h.type === 'acidify' || (!microbes && parts.length > 0 && `${title} · ${parts.join(' · ')}`.length <= ONE_LINE);
-	const held = [h.type === 'specialHomogenise' && h.bar && span(h.bar, inUnit(' bar')), time, warm].filter(Boolean).join(' @ ');
-	const rest = [h.type === 'coagulate' && h.by && `by ${SET[h.by]}`, ...ownSaid(h), held, h.humidity && `${span(h.humidity, inUnit('%'))} RH`].filter(Boolean).join(', ');
-	return {
-		title,
-		said: inline ? parts.join(' · ') : rest,
-		done,
-		...(microbes && { microbes }),
-		...(h.note && { note: h.note }),
-		...(inline && { inline: true as const }),
-	};
+	const note = ['explain' in h && h.explain && EXPLAINED[h.type], h.note].filter(Boolean).join(' ');
+	return { title, said: parts.join(' · '), done, ...(microbes && { microbes }), ...(note && { note }) };
 };
 
 /* ---- On the canvas ---- */
 
-/* A card no wider than so many of its letters: what it is, small, over what
-   it says, broken where too long; under that, the microbes it adds in
-   letters so small they run about as wide as what it says, there being
-   zoom enough to read them; under those its sentence. As wide as its widest
-   words, no wider than the most. In its table's letters: each line's size,
-   the room round them, the room for the arrow between two cards, the least
-   and the most a card's words run. */
-export const CARD = { title: 0.55, said: 1, tiny: 0.36, note: 0.5, pad: 0.5, gap: 1.4, least: 5, most: 12 };
+/* A card: its name and what it says on one line, broken where longer than
+   so many letters; under that, the microbes it adds in letters so small
+   they run about as wide, there being zoom enough to read them; under
+   those its sentence. As wide as its widest line. In its table's letters:
+   each line's size, the room round them, the room for the arrow between
+   two cards, the least a card's words run, and the most letters on a line. */
+export const CARD = { title: 0.55, said: 1, tiny: 0.36, note: 0.5, pad: 0.5, gap: 1.4, least: 5, letters: 48 };
 type Line = { said: string; y: number; size: number; face: string; mono: boolean; dim: boolean };
 export type Card = { x: number; y: number; w: number; h: number; lines: Line[] };
 
 // Laid out at its table's letter size, from its own top left.
 export const card = (c: Chip, f: number): Card => {
-	const most = CARD.most * f;
-	// A one-liner: what it is and what it says on one line, in the type its name is in as any other's.
 	const lines: Line[] = [];
 	let y = CARD.pad * f;
 	const put = (said: string, size: number, face: string, mono: boolean, dim: boolean, leading = 1.25) => {
 		y += size * f * leading;
 		lines.push({ said, y: y - size * f * (leading - 1) - size * f * 0.18, size: size * f, face, mono, dim });
 	};
-	if (c.inline && c.said) {
-		const said = `${c.title} · ${c.said}`;
-		const wide = measure(said, CARD.title * f, '700', MONO());
-		put(said, CARD.title, '700', true, true, 1.35);
-		if (c.note) {
-			y += 0.2 * f;
-			for (const l of wrap(c.note, Math.max(wide, CARD.least * f), CARD.note * f, '400')) put(l, CARD.note, '400', false, false, 1.3);
-		}
-		return { x: 0, y: 0, w: Math.max(wide, CARD.least * f) + 2 * CARD.pad * f, h: y + CARD.pad * f, lines };
-	}
-	const saidLines = c.said ? wrap(c.said, most, CARD.said * f, '400', MONO()) : [];
-	const natural = Math.max(
-		CARD.least * f,
-		measure(c.title, CARD.title * f, '700', MONO()),
-		...saidLines.map((l) => measure(l, CARD.said * f, '400', MONO())),
-		c.note ? measure(c.note, CARD.note * f, '400') : 0,
-	);
-	const wide = Math.min(most, natural);
-	put(c.title, CARD.title, '700', true, true, 1.35);
-	for (const said of saidLines) put(said, CARD.said, '400', true, false, 1.3);
+	const size = CARD.title * f;
+	const heads = wrap(c.said ? `${c.title} · ${c.said}` : c.title, measure('0'.repeat(CARD.letters), size, '700', MONO()), size, '700', MONO());
+	const wide = Math.max(CARD.least * f, ...heads.map((l) => measure(l, size, '700', MONO())));
+	for (const l of heads) put(l, CARD.title, '700', true, true, 1.35);
 	if (c.microbes) {
 		y += 0.15 * f;
-		for (const said of wrap(c.microbes, wide, CARD.tiny * f, '400')) put(said, CARD.tiny, '400', false, true, 1.25);
+		for (const l of wrap(c.microbes, wide, CARD.tiny * f, '400')) put(l, CARD.tiny, '400', false, true, 1.25);
 	}
 	if (c.note) {
 		y += 0.2 * f;
-		for (const said of wrap(c.note, wide, CARD.note * f, '400')) put(said, CARD.note, '400', false, false, 1.3);
+		for (const l of wrap(c.note, wide, CARD.note * f, '400')) put(l, CARD.note, '400', false, false, 1.3);
 	}
 	return { x: 0, y: 0, w: wide + 2 * CARD.pad * f, h: y + CARD.pad * f, lines };
 };

@@ -1,0 +1,68 @@
+{
+	"from": [
+		"caseinate"
+	],
+	"to": [
+		"calciumCaseinate"
+	],
+	"variant": true,
+	"text": "Made like sodium caseinate, but with lime. The result is a calcium-rich protein that does not dissolve as freely.",
+	"sources": {
+		"links": [
+			{
+				"name": "US4075196A, Production of casein and caseinates (Example 7)",
+				"url": "https://patents.google.com/patent/US4075196A/en"
+			},
+			{
+				"name": "Technology of dairy byproducts 1: Caseinates (INFLIBNET)",
+				"url": "https://ebooks.inflibnet.ac.in/ftp04/chapter/technology-of-dairy-byproducts-1-caseinates/"
+			},
+			{
+				"name": "Wikipedia, Casein",
+				"url": "https://en.wikipedia.org/wiki/Casein"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "neutralise",
+				"note": "With calcium hydroxide (5 % solution), or ammonia first, then Ca(OH)₂ with sucrose."
+			},
+			{
+				"type": "pasteurise",
+				"temperature": {
+					"min": 80,
+					"max": 80
+				},
+				"seconds": {
+					"min": 20,
+					"max": 20
+				}
+			},
+			{
+				"type": "dry",
+				"note": "To about 4 % moisture."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "US4075196A, Production of casein and caseinates (Example 7)",
+					"url": "https://patents.google.com/patent/US4075196A/en"
+				},
+				{
+					"name": "Technology of dairy byproducts 1: Caseinates (INFLIBNET)",
+					"url": "https://ebooks.inflibnet.ac.in/ftp04/chapter/technology-of-dairy-byproducts-1-caseinates/"
+				},
+				{
+					"name": "Wikipedia, Casein",
+					"url": "https://en.wikipedia.org/wiki/Casein"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

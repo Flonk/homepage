@@ -1,0 +1,41 @@
+{
+	"from": [
+		"raw"
+	],
+	"to": [
+		"milkSpray"
+	],
+	"step": "dilute with water, spray",
+	"sources": {
+		"links": [
+			{
+				"name": "ECHO, milk as a fungicide",
+				"url": "https://echocommunity.org/resources/3e8e70b3-685e-4edc-93c5-a5c489382a54"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "water",
+				"note": "Tested at 5, 10, 20, 30, 40 and 50 % milk in water."
+			},
+			{
+				"type": "custom",
+				"name": "spray",
+				"note": "Once or twice a week until run-off."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "ECHO, milk as a fungicide",
+					"url": "https://echocommunity.org/resources/3e8e70b3-685e-4edc-93c5-a5c489382a54"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

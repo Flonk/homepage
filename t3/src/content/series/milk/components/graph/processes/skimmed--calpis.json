@@ -1,0 +1,80 @@
+{
+	"from": [
+		"skimmed"
+	],
+	"to": [
+		"calpis"
+	],
+	"step": "ferment with bacteria, then yeast",
+	"sources": {
+		"links": [
+			{
+				"name": "Nikkan Kogyo / Newswitch, 2015-04-10",
+				"url": "https://newswitch.jp/p/197"
+			},
+			{
+				"name": "Wikipedia: Calpis",
+				"url": "https://en.wikipedia.org/wiki/Calpis"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic",
+					"yeast"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "lactic acid bacteria",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						}
+					]
+				},
+				"note": "Skimmed milk is fermented with lactic acid bacteria; species are not published."
+			},
+			{
+				"type": "add",
+				"what": "sugar"
+			},
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"adds": {
+					"microbes": [
+						{
+							"name": "yeast",
+							"kind": "yeast",
+							"does": [
+								"aroma"
+							]
+						}
+					]
+				},
+				"note": "Fermented with yeast, which gives the sweetness and fruit-like aroma; species are not published."
+			}
+		],
+		"text": "Skimmed milk is fermented with lactic acid bacteria; then sugar is added and yeast ferments it, which gives the sweetness and fruit-like aroma. Species are not published.",
+		"sources": {
+			"links": [
+				{
+					"name": "Nikkan Kogyo / Newswitch, 2015-04-10",
+					"url": "https://newswitch.jp/p/197"
+				},
+				{
+					"name": "Wikipedia: Calpis",
+					"url": "https://en.wikipedia.org/wiki/Calpis"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

@@ -1,0 +1,50 @@
+{
+	"from": [
+		"fresh"
+	],
+	"to": [
+		"custard"
+	],
+	"step": "cook with egg yolks and sugar",
+	"text": "Egg proteins coagulate as the milk warms and hold the water in a soft gel. A rise of only 3–6 °C past the setting point overcooks and curdles it, so custard is cooked in a water bath or stirred over low heat; a little cornflour makes it more forgiving. Baked custards (crème caramel) set in the oven in a bain-marie.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Custard",
+				"url": "https://en.wikipedia.org/wiki/Custard"
+			},
+			{
+				"name": "Wikipedia: Crème anglaise",
+				"url": "https://en.wikipedia.org/wiki/Cr%C3%A8me_anglaise"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "cook",
+				"note": "Starts to set at about 70 °C and curdles past about 80 °C.",
+				"temperature": {
+					"min": 70,
+					"max": 80,
+					"about": true
+				}
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Custard",
+					"url": "https://en.wikipedia.org/wiki/Custard"
+				},
+				{
+					"name": "Wikipedia: Crème anglaise",
+					"url": "https://en.wikipedia.org/wiki/Cr%C3%A8me_anglaise"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

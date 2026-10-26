@@ -1,7 +1,5 @@
 {
 	"label": "Ricotta",
-	"from": "sweetWhey",
-	"step": "heat with acid",
 	"note": "Industry runs the same step as heat-precipitated whey protein.",
 	"niche": 1,
 	"cheese": true,
@@ -34,93 +32,6 @@
 	"regions": [
 		"IT"
 	],
-	"how": {
-		"text": "Rennet cheese leaves the whey proteins behind, so ricotta ('re-cooked') recovers them: acid and near-boiling heat together make the albumins and globulins clot. No starter culture is added; the acid comes from the whey's own lactic fermentation or from added acid.",
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Ricotta",
-					"url": "https://en.wikipedia.org/wiki/Ricotta"
-				},
-				{
-					"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
-					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
-				},
-				{
-					"name": "Guelph, Cheese making technology, 8.5 Heat-acid precipitated cheese",
-					"url": "https://books.lib.uoguelph.ca/cheesemakingtechnologyebook/chapter/8-5-heat-acid-precipitated-cheese/"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "ferment",
-					"does": "incubate",
-					"kinds": [
-						"lactic"
-					],
-					"adds": {
-						"microbes": [],
-						"by": [
-							"wild"
-						]
-					},
-					"seconds": {
-						"min": 43200,
-						"max": 86400
-					},
-					"note": "Or acid is added instead."
-				},
-				{
-					"type": "heat",
-					"does": "heat",
-					"temperature": {
-						"min": 90,
-						"max": 90
-					},
-					"seconds": {
-						"min": 600,
-						"max": 1200
-					},
-					"note": "Hotter than for the first cheese, so the whey proteins coagulate."
-				},
-				{
-					"type": "separate",
-					"off": "curd",
-					"by": "gravity",
-					"note": "Skimmed once the curd floats; acid to pH about 5.9 gives a second, coarser rise."
-				},
-				{
-					"type": "heat",
-					"does": "cool"
-				},
-				{
-					"type": "drain",
-					"by": "cloth"
-				}
-			],
-			"text": "Whey is left to ferment 12-24 h at room temperature for its acid, or acid is added instead. No starter is added.",
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia: Ricotta",
-						"url": "https://en.wikipedia.org/wiki/Ricotta"
-					},
-					{
-						"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
-						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
-					},
-					{
-						"name": "Guelph, Cheese making technology, 8.5 Heat-acid precipitated cheese",
-						"url": "https://books.lib.uoguelph.ca/cheesemakingtechnologyebook/chapter/8-5-heat-acid-precipitated-cheese/"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"examples": [
 		"requeson",
 		"urda",

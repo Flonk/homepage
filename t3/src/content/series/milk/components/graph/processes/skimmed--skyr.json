@@ -1,0 +1,102 @@
+{
+	"from": [
+		"skimmed"
+	],
+	"to": [
+		"skyr"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "pasteurise",
+				"temperature": {
+					"min": 72,
+					"max": 75
+				},
+				"seconds": {
+					"min": 15,
+					"max": 20
+				}
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"min": 37,
+					"max": 37
+				}
+			},
+			{
+				"type": "coagulate",
+				"by": "rennet",
+				"note": "A little rennet goes in beside the culture."
+			},
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "Streptococcus thermophilus",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						},
+						{
+							"name": "Lactobacillus delbrueckii subsp. bulgaricus",
+							"kind": "bacterium",
+							"does": [
+								"acid",
+								"aroma"
+							]
+						}
+					],
+					"by": [
+						"backslop"
+					]
+				},
+				"temperature": {
+					"min": 37,
+					"max": 37
+				},
+				"seconds": {
+					"min": 18000,
+					"max": 18000,
+					"about": true
+				},
+				"note": "A little of the last batch of skyr is the culture."
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"min": 18,
+					"max": 18
+				}
+			},
+			{
+				"type": "drain",
+				"by": "cloth",
+				"note": "The whey is strained off through cloth."
+			}
+		],
+		"text": "A dairy may strain the soured milk by ultrafiltration instead, after thermising it at about 55 degrees C for 3 min, as it does concentrated yoghurt.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Skyr",
+					"url": "https://en.wikipedia.org/wiki/Skyr"
+				},
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products"
+				}
+			],
+			"text": "Wikipedia for the steps and figures of the traditional method; Tetra Pak for the industrial way of concentrating yoghurt, which it says is also called skyr."
+		}
+	}
+}

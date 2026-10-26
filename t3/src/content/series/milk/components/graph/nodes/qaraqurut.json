@@ -1,7 +1,5 @@
 {
 	"label": "Qaraqurut",
-	"from": "acidWhey",
-	"step": "boil, dry",
 	"about": {
 		"text": "A black, highly acidic dairy product of Iran, Afghanistan and Central Asia, made by boiling down the sour whey left from making kashk, or qurut, until it thickens, then drying it until brittle.",
 		"sources": {
@@ -20,45 +18,6 @@
 		"TJ",
 		"UZ"
 	],
-	"how": {
-		"text": "Boiling down the sour, lactic-acid-rich whey concentrates its acid and sugars until the mass darkens, and drying then leaves a black, brittle, very sour block.",
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Qaraqorut",
-					"url": "https://en.wikipedia.org/wiki/Qaraqorut"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "add",
-					"what": "milk",
-					"note": "To the sour whey left from straining kashk."
-				},
-				{
-					"type": "heat",
-					"does": "heat",
-					"note": "Boiled until it thickens."
-				},
-				{
-					"type": "dry",
-					"note": "Until brittle."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia: Qaraqorut",
-						"url": "https://en.wikipedia.org/wiki/Qaraqorut"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"facts": [
 		{
 			"k": "Texture",

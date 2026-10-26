@@ -1,0 +1,42 @@
+{
+	"from": [
+		"dulce"
+	],
+	"to": [
+		"cajeta"
+	],
+	"variant": true,
+	"text": "Cajeta is dulce de leche made with goat's milk, as used in Mexico and parts of Central America. The source describes no other difference in process.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Dulce de leche",
+				"url": "https://en.wikipedia.org/wiki/Dulce_de_leche"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"seconds": {
+					"min": 5400,
+					"max": 7200,
+					"about": true
+				},
+				"note": "A slow simmer with sugar."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Dulce de leche",
+					"url": "https://en.wikipedia.org/wiki/Dulce_de_leche"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

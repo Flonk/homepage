@@ -1,0 +1,65 @@
+{
+	"from": [
+		"cream"
+	],
+	"to": [
+		"whipping"
+	],
+	"text": "Nothing is added: cream is standardised to the fat grade and pasteurised. Enough fat is what lets the beaten cream trap air and hold it.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Cream (grades by country)",
+				"url": "https://en.wikipedia.org/wiki/Cream"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "standardise",
+				"fat": {
+					"min": 35,
+					"max": 40
+				},
+				"note": "Whipping cream is typically set to 35 to 40 % fat; the UK grade asks for at least 35 %."
+			},
+			{
+				"type": "pasteurise",
+				"temperature": {
+					"min": 82,
+					"max": 85,
+					"about": true
+				},
+				"seconds": {
+					"min": 15,
+					"max": 15
+				},
+				"note": "Whipping cream is heated above roughly 82 to 85 °C for 15 seconds, hot enough to keep it whippable."
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"min": 4,
+					"max": 6
+				},
+				"note": "It is cooled and held at 4 to 6 °C so the fat crystallises, which is what lets it whip later."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 9 Pasteurized and ESL dairy products",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/pasteurized-and-esl-dairy-products"
+				},
+				{
+					"name": "Wikipedia: Cream",
+					"url": "https://en.wikipedia.org/wiki/Cream"
+				}
+			],
+			"text": "Typical fat range, pasteurising and cooling of whipping cream from the handbook; the UK 35 % grade from Wikipedia's table of cream grades."
+		}
+	}
+}

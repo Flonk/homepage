@@ -1,0 +1,36 @@
+{
+	"from": [
+		"yoghurt"
+	],
+	"to": [
+		"fermButtermilk"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "water",
+				"note": "Dahi is thinned with about its own volume of water, warm or cold by the weather."
+			},
+			{
+				"type": "churn",
+				"note": "Churned by hand or motor at the ambient temperature, usually a cool morning."
+			},
+			{
+				"type": "separate",
+				"off": "fat",
+				"by": "gravity",
+				"note": "The fat gathers in lumps on top and is lifted off, leaving the sour buttermilk (chhach or lassi)."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Journal of Food Science and Technology (2020), review of makkhan and ghee",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8021505/"
+				}
+			],
+			"text": "The souring of milk to dahi, diluting and churning it, and collecting the butter, from this review."
+		}
+	}
+}

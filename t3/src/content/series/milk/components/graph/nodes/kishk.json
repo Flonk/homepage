@@ -4,8 +4,6 @@
 		"Kishk shami",
 		"Keshk"
 	],
-	"from": "yoghurt",
-	"step": "mix with bulgur, ferment, dry",
 	"about": {
 		"text": "A dried fermented food made from milk or yogurt and cereal, usually bulgur, and also known as tarhana or burghul yoghurt. It has been eaten for centuries across the Middle East, western Asia and parts of Africa. The cereal adds nutrients that milk lacks, and some versions include vegetables or spices.",
 		"sources": {
@@ -38,65 +36,6 @@
 		"JO",
 		"EG"
 	],
-	"how": {
-		"text": "Bulgur soaks up the yoghurt and ferments with it for several days, so the acidity keeps rising while the grain softens. Drying and milling turn the mixture into a powder that keeps and is cooked into soup.",
-		"sources": {
-			"links": [
-				{
-					"name": "Salameh et al., Options Méditerranéennes A 123 (CIHEAM 2019)",
-					"url": "https://ressources.ciheam.org/ressources/om/pdf/a123/00007901.pdf"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "add",
-					"note": "Bulgur and yoghurt about 1:3, plus strained yoghurt."
-				},
-				{
-					"type": "ferment",
-					"does": "incubate",
-					"kinds": [
-						"lactic"
-					],
-					"temperature": {
-						"min": 20,
-						"max": 25
-					},
-					"seconds": {
-						"max": 518400
-					},
-					"note": "The dough is kneaded daily, in the lab for 36 h and then 4 d."
-				},
-				{
-					"type": "salt"
-				},
-				{
-					"type": "mould",
-					"note": "Into balls."
-				},
-				{
-					"type": "dry",
-					"note": "Sun-dried."
-				},
-				{
-					"type": "cut",
-					"how": "mill"
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Salameh et al., Options Méditerranéennes A 123 (CIHEAM 2019)",
-						"url": "https://ressources.ciheam.org/ressources/om/pdf/a123/00007901.pdf"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"examples": [
 		"trahanas"
 	],

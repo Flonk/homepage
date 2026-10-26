@@ -1,0 +1,42 @@
+{
+	"from": [
+		"iceCream"
+	],
+	"to": [
+		"dondurma"
+	],
+	"variant": true,
+	"text": "The mix is heated with salep and then beaten hard until it reaches the texture wanted, rather than frozen in an ordinary churn. The source gives no quantities, temperatures or times.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Dondurma",
+				"url": "https://en.wikipedia.org/wiki/Dondurma"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"note": "Milk, sugar and salep, heated until the milk boils."
+			},
+			{
+				"type": "custom",
+				"name": "beat",
+				"note": "In the earliest recipe with snow, by street vendors with long-handled paddles."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Dondurma",
+					"url": "https://en.wikipedia.org/wiki/Dondurma"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

@@ -1,0 +1,42 @@
+{
+	"from": [
+		"caseinate"
+	],
+	"to": [
+		"caseinCoating"
+	],
+	"step": "mix with clay or pigment, coat",
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "coating clay and precipitated calcium carbonate pigment",
+				"note": "The dissolved casein and pigment are mixed to a coating of about 38 percent solids at pH 9 to 10.5."
+			},
+			{
+				"type": "custom",
+				"name": "roll coat",
+				"note": "A roll coater lays the coating on one side of the moving paper web."
+			},
+			{
+				"type": "dry",
+				"note": "The paper is dried in the usual way, hung in festoons."
+			},
+			{
+				"type": "custom",
+				"name": "supercalender",
+				"note": "Supercalendering presses the dried coat to a smooth, glossy label surface."
+			}
+		],
+		"text": "This is the paper coating; leather is coated with casein and pigment too, then glazed, which this source does not describe.",
+		"sources": {
+			"links": [
+				{
+					"name": "US 2,364,505, Method of making coated paper (Google Patents)",
+					"url": "https://patents.google.com/patent/US2364505A/en"
+				}
+			],
+			"text": "The steps and the figures from the example in this one patent, so they are one mill's method of its time; the alkali and its amount for dissolving the casein are not fully legible there."
+		}
+	}
+}

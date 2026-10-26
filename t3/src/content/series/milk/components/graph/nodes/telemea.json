@@ -44,65 +44,6 @@
 	"setting": "rennet",
 	"rind": "brine",
 	"confidence": "medium",
-	"how": {
-		"text": "Telemea curd is pressed, cut into squares and matured in brine, which makes it crisper, saltier and more flavoured with age; the PDO Telemea de Ibănești is distinguished by brine taken from a local salt-water spring.",
-		"sources": {
-			"links": [
-				{
-					"name": "Telemea de Ibănești PDO single document, OJ C 6, 10.1.2015 (DFAT copy)",
-					"url": "https://www.dfat.gov.au/sites/default/files/163f.pdf"
-				},
-				{
-					"name": "Wikipedia: Telemea",
-					"url": "https://en.wikipedia.org/wiki/Telemea"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "coagulate",
-					"by": "rennet",
-					"note": "Microbial rennet in the Ibănești PDO."
-				},
-				{
-					"type": "drain",
-					"by": "cloth"
-				},
-				{
-					"type": "press",
-					"note": "Overnight, then cut into squares."
-				},
-				{
-					"type": "salt",
-					"how": "brine",
-					"note": "In the Ibănești PDO the brine is drawn from a local salt-water spring."
-				},
-				{
-					"type": "ferment",
-					"does": "ripen",
-					"seconds": {
-						"min": 1728000
-					},
-					"note": "Matured in brine, fresh after 24 h in Ibănești and mature after at least 20 days."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Telemea de Ibănești PDO single document, OJ C 6, 10.1.2015 (DFAT copy)",
-						"url": "https://www.dfat.gov.au/sites/default/files/163f.pdf"
-					},
-					{
-						"name": "Wikipedia: Telemea",
-						"url": "https://en.wikipedia.org/wiki/Telemea"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"sources": {
 		"links": [
 			{

@@ -1,0 +1,43 @@
+{
+	"from": [
+		"condensed"
+	],
+	"to": [
+		"milkChocolate"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "cocoa liquor",
+				"note": "Mixed into sweetened condensed milk, as in Daniel Peter’s crumb method."
+			},
+			{
+				"type": "dry",
+				"note": "Dried to a hard, brittle, crumb-like powder, and the Maillard browning gives it a cooked caramel flavour."
+			},
+			{
+				"type": "add",
+				"what": "cocoa butter",
+				"note": "The crumb is melted back into a paste with more cocoa butter."
+			},
+			{
+				"type": "custom",
+				"name": "refine"
+			},
+			{
+				"type": "custom",
+				"name": "conche"
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Milk chocolate",
+					"url": "https://en.wikipedia.org/wiki/Milk_chocolate"
+				}
+			],
+			"text": "The crumb method of milk chocolate from condensed milk, from this article; it gives no temperatures or times for the drying or conching."
+		}
+	}
+}

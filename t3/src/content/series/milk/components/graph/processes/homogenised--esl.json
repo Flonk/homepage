@@ -1,0 +1,61 @@
+{
+	"from": [
+		"homogenised"
+	],
+	"to": [
+		"esl"
+	],
+	"step": "heat higher or microfilter",
+	"text": "ESL milk gets either a hotter heat than pasteurisation or a pass through a microfilter that holds back bacteria and spores. It still needs the fridge, but keeps for two to three weeks instead of one.",
+	"sources": {
+		"links": [
+			{
+				"name": "Tetra Pak Dairy Processing Handbook: Pasteurized and ESL dairy products",
+				"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/pasteurized-and-esl-dairy-products"
+			},
+			{
+				"name": "Verbraucherzentrale Niedersachsen: Milch – was verrät das Etikett?",
+				"url": "https://www.verbraucherzentrale-niedersachsen.de/node/120393"
+			},
+			{
+				"name": "Frontiers in Microbiology (2017): review of microfiltration for extended shelf life milk",
+				"url": "https://www.frontiersin.org/articles/10.3389/fmicb.2017.00135/pdf"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 120,
+					"max": 135
+				},
+				"seconds": {
+					"min": 1,
+					"max": 4
+				},
+				"note": "One optimised option: 130 °C for 1 s."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook: Pasteurized and ESL dairy products",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/pasteurized-and-esl-dairy-products"
+				},
+				{
+					"name": "Verbraucherzentrale Niedersachsen: Milch – was verrät das Etikett?",
+					"url": "https://www.verbraucherzentrale-niedersachsen.de/node/120393"
+				},
+				{
+					"name": "Frontiers in Microbiology (2017): review of microfiltration for extended shelf life milk",
+					"url": "https://www.frontiersin.org/articles/10.3389/fmicb.2017.00135/pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

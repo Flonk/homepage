@@ -1,0 +1,74 @@
+{
+	"from": [
+		"wpi"
+	],
+	"to": [
+		"wheyHydrolysate"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 85,
+					"max": 85
+				},
+				"seconds": {
+					"min": 120,
+					"max": 120
+				},
+				"note": "Heated to denature the protein so the enzymes reach it."
+			},
+			{
+				"type": "custom",
+				"name": "hydrolyse",
+				"temperature": {
+					"min": 55,
+					"max": 55
+				},
+				"seconds": {
+					"min": 10800,
+					"max": 10800
+				},
+				"note": "Alcalase, a bacterial protease, cuts the protein first."
+			},
+			{
+				"type": "custom",
+				"name": "hydrolyse",
+				"temperature": {
+					"min": 55,
+					"max": 55
+				},
+				"seconds": {
+					"min": 10800,
+					"max": 10800
+				},
+				"note": "Trypsin follows for a further 3 hours, so hydrolysis takes 6 hours in all."
+			},
+			{
+				"type": "separate",
+				"off": "solids",
+				"by": "centrifuge",
+				"note": "Centrifuged to clear the hydrolysate."
+			},
+			{
+				"type": "ultrafilter",
+				"note": "Passed through a membrane with a 10 kDa cut-off, and the permeate kept."
+			},
+			{
+				"type": "dry",
+				"note": "Spray-dried where it is sold as a powder."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "US patent 8,778,404 B2 (Google Patents), example 1",
+					"url": "https://patents.google.com/patent/US8778404B2/en"
+				}
+			],
+			"text": "One worked example of hydrolysing whey protein isolate; other makers choose other enzymes, times and pH."
+		}
+	}
+}

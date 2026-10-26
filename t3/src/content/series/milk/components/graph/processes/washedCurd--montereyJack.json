@@ -1,0 +1,114 @@
+{
+	"from": [
+		"washedCurd"
+	],
+	"to": [
+		"montereyJack"
+	],
+	"variant": true,
+	"text": "Washing the stirred curd with cold water leaches out lactose, so the cheese stops acidifying at about pH 5.0–5.2 and stays mild and moist. Pressing more lightly than Cheddar leaves it softer and less firm.",
+	"sources": {
+		"links": [
+			{
+				"name": "21 CFR 133.153 Monterey cheese",
+				"url": "https://www.law.cornell.edu/cfr/text/21/133.153"
+			},
+			{
+				"name": "Canadian Dairy Commission",
+				"url": "https://www.cdc-ccl.ca/en/node/791"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 61.6,
+					"max": 61.6
+				},
+				"seconds": {
+					"min": 1800,
+					"max": 1800
+				}
+			},
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "lactic acid bacteria",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						}
+					],
+					"by": [
+						"starter"
+					]
+				}
+			},
+			{
+				"type": "coagulate",
+				"by": "rennet",
+				"note": "With rennet."
+			},
+			{
+				"type": "cut",
+				"how": "cut"
+			},
+			{
+				"type": "custom",
+				"name": "stir"
+			},
+			{
+				"type": "heat",
+				"does": "cook"
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"min": 26,
+					"max": 26
+				},
+				"note": "The whey is replaced by cold water."
+			},
+			{
+				"type": "salt"
+			},
+			{
+				"type": "press",
+				"note": "Into blocks with less pressure than Cheddar, or as a cloth ball."
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"seconds": {
+					"min": 1814400,
+					"max": 3628800
+				}
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "21 CFR 133.153 Monterey cheese",
+					"url": "https://www.law.cornell.edu/cfr/text/21/133.153"
+				},
+				{
+					"name": "Canadian Dairy Commission",
+					"url": "https://www.cdc-ccl.ca/en/node/791"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

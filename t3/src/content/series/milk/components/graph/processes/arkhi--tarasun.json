@@ -1,0 +1,37 @@
+{
+	"from": [
+		"arkhi"
+	],
+	"to": [
+		"tarasun"
+	],
+	"variant": true,
+	"text": "Buryat milk spirit, made by fermenting and distilling mare's milk; the Buryat form (darasun) is distilled from the fermented milk drink khurenge. Wikipedia gives no strength or process numbers.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Tarasun",
+				"url": "https://en.wikipedia.org/wiki/Tarasun"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "distil",
+				"note": "The Buryat form, from the fermented milk drink khurenge."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Tarasun",
+					"url": "https://en.wikipedia.org/wiki/Tarasun"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

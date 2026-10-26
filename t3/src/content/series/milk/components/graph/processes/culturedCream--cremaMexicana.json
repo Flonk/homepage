@@ -1,0 +1,53 @@
+{
+	"from": [
+		"culturedCream"
+	],
+	"to": [
+		"cremaMexicana"
+	],
+	"text": "Heavy cream is mixed with buttermilk, whose lactic bacteria sour and thicken it; no ratios, temperatures or times are given by the source.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Crema (dairy product)",
+				"url": "https://en.wikipedia.org/wiki/Crema_(dairy_product)"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "lactic acid bacteria of the buttermilk",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						}
+					],
+					"by": [
+						"backslop"
+					]
+				}
+			}
+		],
+		"text": "Heavy cream is mixed with buttermilk, whose bacteria sour and thicken it; no ratios, temperatures or times are given.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Crema (dairy product)",
+					"url": "https://en.wikipedia.org/wiki/Crema_(dairy_product)"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

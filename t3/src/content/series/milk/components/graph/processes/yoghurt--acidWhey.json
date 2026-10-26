@@ -1,0 +1,31 @@
+{
+	"from": [
+		"yoghurt"
+	],
+	"to": [
+		"acidWhey"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "separate",
+				"off": "whey",
+				"by": "centrifuge",
+				"note": "Drawn off by nozzle separator, or as the permeate of ultrafiltration, which leaves the thick yoghurt behind."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products"
+				},
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 18 Milk and whey fractionation",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
+				}
+			],
+			"text": "The two ways of removing whey from yoghurt are from the fermented milk chapter; that the whey is acid (pH about 4.3–5) from the fractionation chapter."
+		}
+	}
+}

@@ -1,0 +1,59 @@
+{
+	"from": [
+		"cream"
+	],
+	"to": [
+		"posset"
+	],
+	"step": "curdle with wine or citrus",
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "cook",
+				"temperature": {
+					"min": 100,
+					"max": 100,
+					"about": true
+				},
+				"seconds": {
+					"min": 180,
+					"max": 180
+				},
+				"note": "Cream and sugar are brought to the boil and boiled for 3 minutes."
+			},
+			{
+				"type": "acidify",
+				"with": "lemon juice",
+				"note": "The lemon juice is stirred in off the heat, and its acid thickens the cream."
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"min": 1,
+					"max": 5,
+					"about": true
+				},
+				"seconds": {
+					"min": 14400,
+					"max": 14400
+				},
+				"note": "It is cooled, then chilled for at least 4 to 6 hours until set."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "GoodToKnow: Easy lemon posset",
+					"url": "https://www.goodto.com/recipes/easy-lemon-posset"
+				},
+				{
+					"name": "Wikipedia: Posset",
+					"url": "https://en.wikipedia.org/wiki/Posset"
+				}
+			],
+			"text": "GoodToKnow for the modern lemon posset method; Wikipedia for possets being made from citrus juice, cream and sugar. The fridge temperature is an assumption of 'refrigerate' and not a sourced figure."
+		}
+	}
+}

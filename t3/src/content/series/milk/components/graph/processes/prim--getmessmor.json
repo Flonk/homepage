@@ -1,0 +1,36 @@
+{
+	"from": [
+		"prim"
+	],
+	"to": [
+		"getmessmor"
+	],
+	"variant": true,
+	"text": "The goat-whey version of messmör.",
+	"sources": {
+		"links": [
+			{
+				"name": "Swedish Wikipedia: Messmör",
+				"url": "https://sv.wikipedia.org/wiki/Messm%C3%B6r"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "evaporate",
+				"note": "Until it caramelises, as for messmör."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Swedish Wikipedia: Messmör",
+					"url": "https://sv.wikipedia.org/wiki/Messm%C3%B6r"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

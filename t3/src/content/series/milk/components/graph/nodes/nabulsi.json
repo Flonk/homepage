@@ -57,66 +57,6 @@
 		"located": "hint"
 	},
 	"confidence": "medium",
-	"how": {
-		"label": "boil in brine",
-		"text": "Unlike most brined cheeses, the pressed curd of Nabulsi is boiled in brine.",
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Nabulsi cheese",
-					"url": "https://en.wikipedia.org/wiki/Nabulsi_cheese"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "heat",
-					"does": "heat"
-				},
-				{
-					"type": "coagulate",
-					"by": "rennet"
-				},
-				{
-					"type": "press"
-				},
-				{
-					"type": "heat",
-					"does": "cool"
-				},
-				{
-					"type": "cut",
-					"how": "cut"
-				},
-				{
-					"type": "heat",
-					"does": "cook",
-					"note": "In brine with mastic and mahleb.",
-					"temperature": {
-						"min": 100,
-						"max": 100,
-						"about": true
-					}
-				},
-				{
-					"type": "salt",
-					"how": "brine",
-					"note": "Stored in brine."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia: Nabulsi cheese",
-						"url": "https://en.wikipedia.org/wiki/Nabulsi_cheese"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"sources": {
 		"links": [
 			{

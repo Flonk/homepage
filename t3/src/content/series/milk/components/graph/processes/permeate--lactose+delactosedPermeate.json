@@ -1,0 +1,120 @@
+{
+	"from": [
+		"permeate"
+	],
+	"to": [
+		"lactose",
+		"delactosedPermeate"
+	],
+	"step": "crystallise",
+	"processing": {
+		"steps": [
+			{
+				"type": "evaporate",
+				"solids": {
+					"min": 60,
+					"max": 62,
+					"about": true
+				},
+				"note": "65 % if nanofiltered permeate."
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"min": 15,
+					"max": 60,
+					"about": true
+				},
+				"seconds": {
+					"min": 72000,
+					"max": 72000
+				},
+				"note": "Seeded, then cooled slowly, about 3 °C/h from 60 to 30 °C and about 1.5 °C/h to 15 °C, so the lactose crystallises out in crystals over 0.2 mm that separate best."
+			},
+			{
+				"type": "separate",
+				"off": "solids",
+				"by": "centrifuge",
+				"note": "The crystals go through a decanter, then a sieve centrifuge, and are washed; two decanter centrifuges in series leave a lactose cake under 9 % moisture, about 99 % dry solids."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "EP3302080B1, Second pass lactose crystallization (description of the conventional process)",
+					"url": "https://patents.google.com/patent/EP3302080B1/en"
+				},
+				{
+					"name": "Wikipedia, Lactose (permeate evaporated to 60–65 % solids)",
+					"url": "https://en.wikipedia.org/wiki/Lactose"
+				},
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 18 Milk and whey fractionation",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
+				},
+				{
+					"name": "US patent 10927390 B2",
+					"url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/10927390"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	},
+	"legs": {
+		"lactose": {
+			"step": "the crystals",
+			"text": "Lactose is much less soluble when cold, so a concentrated permeate is cooled slowly and the lactose crystallises out (as alpha-lactose monohydrate). The crystals are spun off, washed and dried; the mother liquor keeps the minerals and the rest of the sugar.",
+			"sources": {
+				"links": [
+					{
+						"name": "EP3302080B1, Second pass lactose crystallization (description of the conventional process)",
+						"url": "https://patents.google.com/patent/EP3302080B1/en"
+					},
+					{
+						"name": "Wikipedia, Lactose (permeate evaporated to 60–65 % solids)",
+						"url": "https://en.wikipedia.org/wiki/Lactose"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			},
+			"processing": {
+				"steps": [
+					{
+						"type": "dry",
+						"note": "In a fluid-bed dryer, which also cools the crystals."
+					}
+				],
+				"sources": {
+					"links": [
+						{
+							"name": "EP3302080B1, Second pass lactose crystallization (description of the conventional process)",
+							"url": "https://patents.google.com/patent/EP3302080B1/en"
+						},
+						{
+							"name": "Wikipedia, Lactose (permeate evaporated to 60–65 % solids)",
+							"url": "https://en.wikipedia.org/wiki/Lactose"
+						}
+					],
+					"text": "The table, the facts and the words on how it is made, from these."
+				}
+			}
+		},
+		"delactosedPermeate": {
+			"step": "what stays after the lactose crystallises",
+			"sources": {
+				"links": [
+					{
+						"name": "Tetra Pak Dairy Processing Handbook, ch. 18 Milk and whey fractionation",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
+					},
+					{
+						"name": "US patent 10927390 B2",
+						"url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/10927390"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	}
+}

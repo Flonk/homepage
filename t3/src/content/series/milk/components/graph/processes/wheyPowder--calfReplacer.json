@@ -1,0 +1,38 @@
+{
+	"from": [
+		"wheyPowder"
+	],
+	"to": [
+		"calfReplacer"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "fat",
+				"note": "Fat-filled whey powder carries 30–60 % fat, and a replacer is typically 20–26 % fat."
+			},
+			{
+				"type": "homogenise",
+				"note": "Homogenising the fat in helps against fouling in the drier."
+			},
+			{
+				"type": "dry",
+				"temperature": {
+					"min": 90,
+					"max": 95
+				},
+				"note": "Spray-dried in a wide-body drier with about 180 °C air in and 90–95 °C air out."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 19 Milk and whey powder",
+					"url": "http://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-powdered-ingredients"
+				}
+			],
+			"text": "The fat-filled whey powder, its fat, its homogenising and its drying conditions; the typical protein, lactose and fat shares of the table."
+		}
+	}
+}

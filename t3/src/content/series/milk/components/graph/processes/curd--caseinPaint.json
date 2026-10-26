@@ -1,0 +1,47 @@
+{
+	"from": [
+		"curd"
+	],
+	"to": [
+		"caseinPaint"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "drain",
+				"by": "cloth",
+				"note": "Soured nonfat milk is poured through cheesecloth and the whey is thrown off."
+			},
+			{
+				"type": "add",
+				"what": "hydrated lime (or borax)",
+				"note": "The alkali dissolves the casein into a binder, blended and strained free of lumps."
+			},
+			{
+				"type": "add",
+				"what": "water"
+			},
+			{
+				"type": "add",
+				"what": "earth pigment"
+			},
+			{
+				"type": "add",
+				"what": "whiting (chalk filler)"
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Casein paint",
+					"url": "https://en.wikipedia.org/wiki/Casein_paint"
+				},
+				{
+					"name": "Mother Earth News: casein paint",
+					"url": "https://www.motherearthnews.com/diy/casein-paint-zmaz06onzraw/"
+				}
+			],
+			"text": "The casein curd, its dissolving in lime (or borax) as the binder, and the pigment and whiting added, from these; they give amounts only per batch, so none are given here."
+		}
+	}
+}

@@ -1,0 +1,51 @@
+{
+	"from": [
+		"chhenaSweets"
+	],
+	"to": [
+		"pantua"
+	],
+	"variant": true,
+	"step": "knead, fry, soak in syrup",
+	"text": "Unlike rasgulla the balls are fried before the syrup, which browns them.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Pantua",
+				"url": "https://en.wikipedia.org/wiki/Pantua"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "knead",
+				"note": "Chhena with semolina, milk and ghee."
+			},
+			{
+				"type": "mould"
+			},
+			{
+				"type": "custom",
+				"name": "fry",
+				"note": "Deep-fried; the time sets the colour."
+			},
+			{
+				"type": "custom",
+				"name": "soak",
+				"note": "In syrup."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Pantua",
+					"url": "https://en.wikipedia.org/wiki/Pantua"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

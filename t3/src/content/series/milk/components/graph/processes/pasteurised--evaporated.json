@@ -1,0 +1,106 @@
+{
+	"from": [
+		"pasteurised"
+	],
+	"to": [
+		"evaporated"
+	],
+	"step": "evaporate, sterilise in can",
+	"text": "Milk is standardised, heated to make it stable, boiled down under vacuum to about twice its solids, homogenised and given a phosphate stabiliser. It is then filled into cans and sterilised in them, or sterilised by UHT and packed aseptically.",
+	"sources": {
+		"links": [
+			{
+				"name": "Tetra Pak Dairy Processing Handbook: Condensed milk",
+				"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/condensed-milk"
+			},
+			{
+				"name": "Wikipedia: Evaporated milk",
+				"url": "https://en.wikipedia.org/wiki/Evaporated_milk"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "standardise",
+				"note": "To double-concentrated milk: about 7.5 % fat, 17.5 % solids-not-fat, 25 % total solids."
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 100,
+					"max": 120
+				},
+				"seconds": {
+					"min": 60,
+					"max": 180
+				}
+			},
+			{
+				"type": "evaporate",
+				"under": "vacuum",
+				"temperature": {
+					"min": 65,
+					"max": 70
+				},
+				"note": "In a multistage falling-film evaporator, to about twice the solids."
+			},
+			{
+				"type": "homogenise",
+				"bar": {
+					"min": 50,
+					"max": 250
+				},
+				"note": "In-can lines use two stages at 12.5–25 MPa."
+			},
+			{
+				"type": "add",
+				"what": "disodium and sodium dihydrogen phosphate",
+				"note": "Dose set by sterilisation trials on samples."
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"min": 5,
+					"max": 8
+				},
+				"seconds": {
+					"max": 57600
+				}
+			},
+			{
+				"type": "custom",
+				"name": "fill"
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 110,
+					"max": 120
+				},
+				"seconds": {
+					"min": 900,
+					"max": 1200
+				},
+				"note": "In the cans, kept moving."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook: Condensed milk",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/condensed-milk"
+				},
+				{
+					"name": "Wikipedia: Evaporated milk",
+					"url": "https://en.wikipedia.org/wiki/Evaporated_milk"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

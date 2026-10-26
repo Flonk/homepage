@@ -1,6 +1,5 @@
 {
 	"label": "Kaffeerahm",
-	"from": "cream",
 	"at": 15,
 	"about": {
 		"text": "Switzerland’s coffee cream: UHT-treated cream with at least 15 % milk fat, sold in the small portion cups that go with coffee.",
@@ -17,50 +16,6 @@
 	"regions": [
 		"CH"
 	],
-	"how": {
-		"text": "Cream from the centrifuge is standardised to at least 15 % and UHT-treated, which gives it a longer shelf life in the portion cup. Stabilisers keep it from feathering in hot coffee.",
-		"sources": {
-			"links": [
-				{
-					"name": "Swissmilk: Crème fraîche, Kaffeerahm und Co.",
-					"url": "https://www.swissmilk.ch/de/nachhaltigkeit/milchprodukte/creme-fraiche-kaffeerahm-und-co/"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "heat",
-					"does": "heat",
-					"temperature": {
-						"min": 150,
-						"max": 150,
-						"about": true
-					},
-					"note": "UHT, for a few seconds."
-				},
-				{
-					"type": "heat",
-					"does": "cool"
-				},
-				{
-					"type": "add",
-					"what": "stabiliser",
-					"note": "So the cream does not curdle on the acids and tannins of coffee."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Swissmilk: Crème fraîche, Kaffeerahm und Co.",
-						"url": "https://www.swissmilk.ch/de/nachhaltigkeit/milchprodukte/creme-fraiche-kaffeerahm-und-co/"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"composition": {
 		"fat": {
 			"min": 15

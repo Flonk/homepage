@@ -1,0 +1,104 @@
+{
+	"from": [
+		"pastaFilata"
+	],
+	"to": [
+		"kasseri"
+	],
+	"variant": true,
+	"step": "dip in hot water",
+	"text": "Kasseri curd is left to acidify to about pH 5.2, then sliced and kneaded in hot water until it stretches. Kashkaval of the Balkans and kaşar of Turkey are the same kind of cheese.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Kasseri",
+				"url": "https://en.wikipedia.org/wiki/Kasseri"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "coagulate",
+				"by": "rennet",
+				"temperature": {
+					"min": 36,
+					"max": 36
+				},
+				"seconds": {
+					"min": 2700,
+					"max": 2700,
+					"about": true
+				}
+			},
+			{
+				"type": "cut",
+				"how": "cut"
+			},
+			{
+				"type": "heat",
+				"does": "cook",
+				"temperature": {
+					"min": 38,
+					"max": 40
+				}
+			},
+			{
+				"type": "drain"
+			},
+			{
+				"type": "cut",
+				"how": "grind"
+			},
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"pH": {
+					"min": 5.2,
+					"max": 5.2,
+					"about": true
+				},
+				"note": "The curd is left to reach pH about 5.2."
+			},
+			{
+				"type": "heat",
+				"does": "cook",
+				"temperature": {
+					"min": 70,
+					"max": 80
+				},
+				"note": "Sliced, dipped in hot water and kneaded until it stretches to a 1 m thread."
+			},
+			{
+				"type": "salt",
+				"seconds": {
+					"min": 172800,
+					"max": 259200
+				},
+				"note": "Kept in moulds."
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"temperature": {
+					"min": 18,
+					"max": 18
+				},
+				"seconds": {
+					"min": 7776000
+				}
+			}
+		],
+		"text": "The curd is left to acidify before it is stretched in hot water.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Kasseri",
+					"url": "https://en.wikipedia.org/wiki/Kasseri"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

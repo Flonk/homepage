@@ -3,8 +3,6 @@
 	"aka": [
 		"Bovine Lacto Transfer Technique Optimizer"
 	],
-	"from": "skimmedPowder",
-	"step": "dissolve at 5 %",
 	"about": {
 		"text": "Bovine Lacto Transfer Technique Optimizer: a solution of nonfat dry milk, usually 5 % in buffer, used in laboratories since 1984 to block the empty places on a blot membrane, so that antibodies or probes stick only to what they are meant to find.",
 		"sources": {
@@ -29,48 +27,6 @@
 				}
 			],
 			"text": "The photograph, its author and its licence, from its page."
-		}
-	},
-	"how": {
-		"text": "No cooking is involved: the skimmed milk powder is just stirred into buffer. The proteins coat the membrane so that antibodies bind only to the target.",
-		"sources": {
-			"links": [
-				{
-					"name": "Galva et al. 2012, Anal Biochem (milk as blocker, caveats)",
-					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3383026"
-				},
-				{
-					"name": "Wikipedia, Blotto (biology)",
-					"url": "https://en.wikipedia.org/wiki/Blotto_(biology)"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "add",
-					"note": "Into buffer; some protocols use 10 %.",
-					"what": "nonfat dry milk",
-					"share": {
-						"min": 5,
-						"max": 5
-					}
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Galva et al. 2012, Anal Biochem (milk as blocker, caveats)",
-						"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3383026"
-					},
-					{
-						"name": "Wikipedia, Blotto (biology)",
-						"url": "https://en.wikipedia.org/wiki/Blotto_(biology)"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	},
 	"facts": [

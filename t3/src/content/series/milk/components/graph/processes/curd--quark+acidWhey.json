@@ -1,0 +1,175 @@
+{
+	"from": [
+		"curd"
+	],
+	"to": [
+		"quark",
+		"acidWhey"
+	],
+	"step": "drain",
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "stir"
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 58,
+					"max": 60
+				},
+				"seconds": {
+					"max": 180
+				},
+				"note": "Thermisation; the Guelph home recipe holds 52 °C for about 1.5 h."
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"min": 38,
+					"max": 45
+				}
+			},
+			{
+				"type": "separate",
+				"off": "whey",
+				"by": "centrifuge",
+				"note": "Nozzle centrifuge (feed about 27 °C) or ultrafiltration today, cloth bags traditionally; the soured curd is spun apart into curd and acid whey, with a pH of about 4.3-5."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook: Cheese",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+				},
+				{
+					"name": "Hill & Ferrer, Cheese Making Technology (Univ. of Guelph), 8.6 Fresh cheese, acid-coagulated cheese",
+					"url": "https://books.lib.uoguelph.ca/cheesemakingtechnologyebook/chapter/8-6-fresh-cheese-acid-coagulated-cheese/"
+				},
+				{
+					"name": "Wikipedia (de): Quark (Lebensmittel)",
+					"url": "https://de.wikipedia.org/wiki/Quark_(Lebensmittel)"
+				},
+				{
+					"name": "Wikipedia: Quark (dairy product)",
+					"url": "https://en.wikipedia.org/wiki/Quark_(dairy_product)"
+				},
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 18 Milk and whey fractionation",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
+				},
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	},
+	"legs": {
+		"quark": {
+			"step": "the curd",
+			"text": "Skimmed milk is soured by mesophilic lactococci with a trace of rennet until it gels at about pH 4.6; the gel is stirred, warmed briefly and the curd is separated from the whey in a centrifuge. Fat is set by adding cream.",
+			"sources": {
+				"links": [
+					{
+						"name": "Tetra Pak Dairy Processing Handbook: Cheese",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+					},
+					{
+						"name": "Hill & Ferrer, Cheese Making Technology (Univ. of Guelph), 8.6 Fresh cheese, acid-coagulated cheese",
+						"url": "https://books.lib.uoguelph.ca/cheesemakingtechnologyebook/chapter/8-6-fresh-cheese-acid-coagulated-cheese/"
+					},
+					{
+						"name": "Wikipedia (de): Quark (Lebensmittel)",
+						"url": "https://de.wikipedia.org/wiki/Quark_(Lebensmittel)"
+					},
+					{
+						"name": "Wikipedia: Quark (dairy product)",
+						"url": "https://en.wikipedia.org/wiki/Quark_(dairy_product)"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			},
+			"processing": {
+				"steps": [
+					{
+						"type": "heat",
+						"does": "cool",
+						"temperature": {
+							"min": 10,
+							"max": 12
+						}
+					}
+				],
+				"sources": {
+					"links": [
+						{
+							"name": "Tetra Pak Dairy Processing Handbook: Cheese",
+							"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+						},
+						{
+							"name": "Hill & Ferrer, Cheese Making Technology (Univ. of Guelph), 8.6 Fresh cheese, acid-coagulated cheese",
+							"url": "https://books.lib.uoguelph.ca/cheesemakingtechnologyebook/chapter/8-6-fresh-cheese-acid-coagulated-cheese/"
+						},
+						{
+							"name": "Wikipedia (de): Quark (Lebensmittel)",
+							"url": "https://de.wikipedia.org/wiki/Quark_(Lebensmittel)"
+						},
+						{
+							"name": "Wikipedia: Quark (dairy product)",
+							"url": "https://en.wikipedia.org/wiki/Quark_(dairy_product)"
+						}
+					],
+					"text": "The table, the facts and the words on how it is made, from these."
+				}
+			}
+		},
+		"acidWhey": {
+			"step": "the whey",
+			"text": "Acid whey carries more minerals than sweet whey (ash 0.7–0.8 % against 0.5 %) and is far more sour.",
+			"sources": {
+				"links": [
+					{
+						"name": "Tetra Pak Dairy Processing Handbook, ch. 18 Milk and whey fractionation",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
+					},
+					{
+						"name": "Wikipedia: Whey",
+						"url": "https://en.wikipedia.org/wiki/Whey"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			},
+			"processing": {
+				"steps": [
+					{
+						"type": "heat",
+						"does": "cool",
+						"temperature": {
+							"max": 5
+						},
+						"note": "Whey that is kept for less than 8 hours is chilled below 5 °C."
+					}
+				],
+				"sources": {
+					"links": [
+						{
+							"name": "Tetra Pak Dairy Processing Handbook, ch. 18 Milk and whey fractionation",
+							"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
+						},
+						{
+							"name": "Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products",
+							"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products"
+						}
+					],
+					"text": "That whey is chilled below 5 °C when kept a short time, and that acid whey is of pH about 4.3-5, from these."
+				}
+			}
+		}
+	}
+}

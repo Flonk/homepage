@@ -1,0 +1,49 @@
+{
+	"from": [
+		"cream"
+	],
+	"to": [
+		"halfAndHalf"
+	],
+	"text": "Cream and milk are blended to the fat grade (10.5 to under 18 %) and heat-treated; nothing is soured or cultured. The figures are the US legal definition.",
+	"sources": {
+		"links": [
+			{
+				"name": "US 21 CFR 131.180 Half-and-half",
+				"url": "https://www.law.cornell.edu/cfr/text/21/131.180"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"note": "Blended to 10.5 to under 18 % milkfat.",
+				"what": "milk and cream"
+			},
+			{
+				"type": "pasteurise",
+				"note": "Or ultra-pasteurised."
+			},
+			{
+				"type": "homogenise",
+				"note": "Optional."
+			},
+			{
+				"type": "add",
+				"note": "Optional.",
+				"what": "emulsifiers, stabilisers, nutritive sweeteners and flavourings"
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "US 21 CFR 131.180 Half-and-half",
+					"url": "https://www.law.cornell.edu/cfr/text/21/131.180"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

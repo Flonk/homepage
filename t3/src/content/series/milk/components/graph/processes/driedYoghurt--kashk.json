@@ -1,0 +1,78 @@
+{
+	"from": [
+		"driedYoghurt"
+	],
+	"to": [
+		"kashk"
+	],
+	"variant": true,
+	"step": "churn, boil, dry",
+	"text": "In Iran, yoghurt is churned with water to remove the butter. The defatted drink is boiled, drained in linen bags, salted, shaped and sun-dried into hard, protein-rich kashk, which is later ground and rehydrated as liquid kashk.",
+	"sources": {
+		"links": [
+			{
+				"name": "Say, Soltani & Güzeler, Pamukkale Univ. J. Eng. Sci. (2015)",
+				"url": "https://doi.org/10.5505/pajes.2015.47048"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "churn",
+				"seconds": {
+					"min": 2700,
+					"max": 3600
+				},
+				"note": "With water, to remove the butter."
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"seconds": {
+					"min": 1500,
+					"max": 1800
+				},
+				"temperature": {
+					"min": 100,
+					"max": 100,
+					"about": true
+				}
+			},
+			{
+				"type": "drain",
+				"by": "cloth",
+				"seconds": {
+					"min": 86400,
+					"max": 172800
+				},
+				"note": "In linen bags."
+			},
+			{
+				"type": "salt"
+			},
+			{
+				"type": "mould",
+				"note": "Into balls of 20–50 g."
+			},
+			{
+				"type": "dry",
+				"seconds": {
+					"min": 604800,
+					"max": 1209600
+				},
+				"note": "Sun-dried."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Say, Soltani & Güzeler, Pamukkale Univ. J. Eng. Sci. (2015)",
+					"url": "https://doi.org/10.5505/pajes.2015.47048"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

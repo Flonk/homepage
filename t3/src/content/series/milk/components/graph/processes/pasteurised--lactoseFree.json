@@ -1,0 +1,73 @@
+{
+	"from": [
+		"pasteurised"
+	],
+	"to": [
+		"lactoseFree"
+	],
+	"step": "split the lactose with lactase",
+	"text": "Lactase is stirred into the milk, or a few drops go into the sealed carton, and splits each lactose molecule into glucose and galactose. The milk is the same milk, only sweeter.",
+	"sources": {
+		"links": [
+			{
+				"name": "MilchPQV § 58 (laktosefrei: under 0.1 g/100 g, labelled)",
+				"url": "https://www.gesetze-im-internet.de/milchpqv/__58.html"
+			},
+			{
+				"name": "US 8,354,259 B2 (Cornell), description of commercial lactase processes",
+				"url": "https://patents.google.com/patent/US8354259B2/en"
+			},
+			{
+				"name": "Wikipedia: Lactose-free milk",
+				"url": "https://en.wikipedia.org/wiki/Lactose-free_milk"
+			},
+			{
+				"name": "Valio: pioneer in lactose free dairy",
+				"url": "https://www.valio.com/articles/valio-pioneer-in-lactose-free-dairy/"
+			},
+			{
+				"name": "Wikipedia: Valio",
+				"url": "https://en.wikipedia.org/wiki/Valio"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "lactase",
+				"temperature": {
+					"min": 30,
+					"max": 35
+				},
+				"note": "Lactase, usually from the yeast Kluyveromyces lactis, splits lactose into glucose and galactose and is denatured above about 40 °C."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "MilchPQV § 58 (laktosefrei: under 0.1 g/100 g, labelled)",
+					"url": "https://www.gesetze-im-internet.de/milchpqv/__58.html"
+				},
+				{
+					"name": "US 8,354,259 B2 (Cornell), description of commercial lactase processes",
+					"url": "https://patents.google.com/patent/US8354259B2/en"
+				},
+				{
+					"name": "Wikipedia: Lactose-free milk",
+					"url": "https://en.wikipedia.org/wiki/Lactose-free_milk"
+				},
+				{
+					"name": "Valio: pioneer in lactose free dairy",
+					"url": "https://www.valio.com/articles/valio-pioneer-in-lactose-free-dairy/"
+				},
+				{
+					"name": "Wikipedia: Valio",
+					"url": "https://en.wikipedia.org/wiki/Valio"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

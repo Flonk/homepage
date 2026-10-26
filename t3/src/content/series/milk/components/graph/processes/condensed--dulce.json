@@ -1,0 +1,40 @@
+{
+	"from": [
+		"condensed"
+	],
+	"to": [
+		"dulce"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "pressure-cook",
+				"seconds": {
+					"min": 1200,
+					"max": 2700
+				},
+				"note": "The sealed can or box is covered with water and cooked, 20 to 25 minutes for a light, soft dulce and 40 to 45 for a dark, firm one."
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"seconds": {
+					"min": 7200,
+					"max": 7200,
+					"about": true
+				}
+			}
+		],
+		"text": "The milk and sugar can also be simmered down for 1.5 to 2 hours, stirred nearly all the time.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Dulce de leche",
+					"url": "https://en.wikipedia.org/wiki/Dulce_de_leche"
+				}
+			],
+			"text": "The pressure cooker times and cooling from this article, which gives no temperatures."
+		}
+	}
+}

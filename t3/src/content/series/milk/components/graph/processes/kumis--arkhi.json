@@ -1,0 +1,30 @@
+{
+	"from": [
+		"kumis"
+	],
+	"to": [
+		"arkhi"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "distil",
+				"note": "The fermented milk is heated in a pot under a cooled lid or vessel, and the vapour that condenses is caught as the spirit, at about 10-20 % alcohol."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Arkhi",
+					"url": "https://en.wikipedia.org/wiki/Arkhi"
+				},
+				{
+					"name": "Eternal Landscapes: Mongolia's traditional dairy products",
+					"url": "https://eternal-landscapes.co.uk/tsagaan-idee-discovering-mongolias-traditional-dairy-products/"
+				}
+			],
+			"text": "That arkhi is the distilled fermented milk (airag is one base), and the heating over a pot with condensation dripping into a bowl, giving 10-20 % alcohol, from the travel site (low authority); Wikipedia says up to 10 % depending on the distillation cycle."
+		}
+	}
+}

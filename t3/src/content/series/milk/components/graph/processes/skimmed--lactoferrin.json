@@ -1,0 +1,55 @@
+{
+	"from": [
+		"skimmed"
+	],
+	"to": [
+		"lactoferrin"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "microfilter",
+				"note": "Precipitates are removed first by clarifier, microfiltration or filtering; mildly heated milk is preferred."
+			},
+			{
+				"type": "custom",
+				"name": "cation exchange",
+				"temperature": {
+					"min": 4,
+					"max": 15
+				},
+				"note": "At pH 4-9 the positively charged lactoperoxidase and lactoferrin stick to a cation exchange resin (one example cycles skimmed milk of pH 6.8 through it for 3 h)."
+			},
+			{
+				"type": "wash",
+				"what": "the resin",
+				"in": "5 mM acetate, 0.07 M KCl, pH 4.0",
+				"note": "Washed before anything is eluted."
+			},
+			{
+				"type": "custom",
+				"name": "elute LPO",
+				"note": "Lactoperoxidase comes off first, in 0.3-0.4 M NaCl at pH 4-5."
+			},
+			{
+				"type": "custom",
+				"name": "elute secretory",
+				"note": "The secretory component follows, in 0.4 M NaCl at pH 6.5-7."
+			},
+			{
+				"type": "custom",
+				"name": "elute lactoferrin",
+				"note": "Lactoferrin comes off last, in stronger salt (1 M NaCl, or 0.75 M KCl at pH 7.5)."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "US5516675A, Separation of lactoperoxidase, secretory component and lactoferrin from milk or whey with a cation exchange resin",
+					"url": "https://patents.google.com/patent/US5516675A/en"
+				}
+			],
+			"text": "A patent on separating lactoperoxidase and lactoferrin from milk or whey with one cation exchange resin; its skimmed milk example is the basis here. The temperature given is the 15 degrees C or less it prefers for large volumes (4 to below 60 degrees C possible)."
+		}
+	}
+}

@@ -1,0 +1,32 @@
+{
+	"from": [
+		"acidWhey"
+	],
+	"to": [
+		"blaand"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"note": "The whey is left to sour by itself in large vats."
+			},
+			{
+				"type": "add",
+				"what": "water",
+				"note": "Some of the sour whey is mixed with water before drinking to lessen its acidity."
+			}
+		],
+		"text": "A second way dilutes the whey with water first and then lets it sour.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Blaand",
+					"url": "https://en.wikipedia.org/wiki/Blaand"
+				}
+			],
+			"text": "Both ways of making it from this article, which gives no time, temperature or starter."
+		}
+	}
+}

@@ -1,0 +1,71 @@
+{
+	"from": [
+		"ryazhenka"
+	],
+	"to": [
+		"varenets"
+	],
+	"variant": true,
+	"text": "Varenets is made from long-heated milk soured with thermophilic streptococci only, so it tastes clean and lactic with a distinct cooked-milk note. Traditionally it was baked milk set with smetana.",
+	"sources": {
+		"links": [
+			{
+				"name": "GOST 31667-2012 Varenets",
+				"url": "https://meganorm.ru/mega_doc/norm/gost_gosudarstvennyj-standart/21/gost_31667-2012_mezhgosudarstvennyy_standart_varenets.html"
+			},
+			{
+				"name": "Wikipedia (ru): Prostokvasha",
+				"url": "https://ru.wikipedia.org/wiki/%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%BA%D0%B2%D0%B0%D1%88%D0%B0"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 95,
+					"max": 99
+				},
+				"note": "Sterilised."
+			},
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "Streptococcus thermophilus",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						}
+					],
+					"by": [
+						"starter"
+					]
+				},
+				"note": "Soured with thermophilic streptococci only, to 80–120 °T; traditionally the baked milk was set with smetana."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "GOST 31667-2012 Varenets",
+					"url": "https://meganorm.ru/mega_doc/norm/gost_gosudarstvennyj-standart/21/gost_31667-2012_mezhgosudarstvennyy_standart_varenets.html"
+				},
+				{
+					"name": "Wikipedia (ru): Prostokvasha",
+					"url": "https://ru.wikipedia.org/wiki/%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%BA%D0%B2%D0%B0%D1%88%D0%B0"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

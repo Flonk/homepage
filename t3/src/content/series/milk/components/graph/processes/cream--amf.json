@@ -1,0 +1,79 @@
+{
+	"from": [
+		"cream"
+	],
+	"to": [
+		"amf"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "pasteurise",
+				"note": "Cream of 35–40 % fat, pasteurised or not, is heated in a plate heat exchanger."
+			},
+			{
+				"type": "separate",
+				"off": "fat",
+				"by": "centrifuge",
+				"fat": {
+					"min": 75,
+					"max": 75,
+					"about": true
+				},
+				"temperature": {
+					"min": 60,
+					"max": 60,
+					"about": true
+				},
+				"note": "Pre-concentrated at about 60 °C."
+			},
+			{
+				"type": "homogenise",
+				"note": "Phase inversion, which breaks the globules and frees the fat."
+			},
+			{
+				"type": "separate",
+				"off": "fat",
+				"by": "centrifuge",
+				"fat": {
+					"min": 99.5,
+					"max": 99.5,
+					"about": true
+				},
+				"note": "The final concentrator sends the oil out as the light phase."
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 95,
+					"max": 98
+				}
+			},
+			{
+				"type": "evaporate",
+				"under": "vacuum",
+				"note": "Dehydrated until the moisture is 0.1 % or less."
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"min": 40,
+					"max": 40,
+					"about": true
+				},
+				"note": "Cooled to packing temperature."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook: Anhydrous milk fat (AMF) and butter oil",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/anhydrous-milk-fat-amf-and-butter-oil"
+				}
+			],
+			"text": "The route from 35–40 % cream to oil of about 99.5 % fat, its temperatures and the vacuum drying, from this chapter; it gives no pressures for the homogeniser."
+		}
+	}
+}

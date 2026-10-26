@@ -1,7 +1,5 @@
 {
 	"label": "Paneer",
-	"from": "chhena",
-	"step": "press",
 	"niche": 0,
 	"cheese": true,
 	"about": {
@@ -40,56 +38,6 @@
 		"cow",
 		"buffalo"
 	],
-	"how": {
-		"text": "Chhena, drained in muslin, is pressed under a weight to squeeze out more whey, then dipped in chilled water to firm it. Because the casein was set hot by acid, it does not melt when fried or cooked.",
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Paneer",
-					"url": "https://en.wikipedia.org/wiki/Paneer"
-				},
-				{
-					"name": "Wikipedia: Chhena (FSSAI limits)",
-					"url": "https://en.wikipedia.org/wiki/Chhena"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "press",
-					"seconds": {
-						"min": 7200,
-						"max": 10800
-					},
-					"note": "Under a stone slab; soft paneer about 20 min."
-				},
-				{
-					"type": "heat",
-					"does": "cool",
-					"seconds": {
-						"min": 7200,
-						"max": 10800
-					},
-					"note": "In chilled water."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia: Paneer",
-						"url": "https://en.wikipedia.org/wiki/Paneer"
-					},
-					{
-						"name": "Wikipedia: Chhena (FSSAI limits)",
-						"url": "https://en.wikipedia.org/wiki/Chhena"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"examples": [
 		"rubing",
 		"kalari"

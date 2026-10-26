@@ -1,0 +1,39 @@
+{
+	"from": [
+		"colostrum"
+	],
+	"to": [
+		"colostrumPowder"
+	],
+	"step": "skim, dry gently",
+	"processing": {
+		"steps": [
+			{
+				"type": "pasteurise",
+				"temperature": {
+					"min": 60,
+					"max": 63
+				},
+				"seconds": {
+					"min": 1800,
+					"max": 3600
+				},
+				"note": "Kept low, since immunoglobulins start to denature at 72 °C and UHT destroys nearly all of them."
+			},
+			{
+				"type": "dry",
+				"note": "Spray drying costs about 2.5 times less than freeze drying, which keeps more immunoglobulin."
+			}
+		],
+		"text": "A shorter heat treatment, 72 °C for 15 s, is also used, at a greater loss of IgG.",
+		"sources": {
+			"links": [
+				{
+					"name": "Frontiers in Pharmacology (2021), review of bovine colostrum",
+					"url": "https://www.frontiersin.org/journals/pharmacology/articles/10.3389/fphar.2021.796824/full"
+				}
+			],
+			"text": "The pasteurising times, the drying methods and what each costs the antibodies, from this review; it does not describe skimming the colostrum, so no such step is shown."
+		}
+	}
+}

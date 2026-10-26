@@ -4,8 +4,6 @@
 		"Rabdi",
 		"Layered milk skins"
 	],
-	"from": "fresh",
-	"step": "reduce, layer the skins",
 	"niche": 1,
 	"about": {
 		"text": "Rabri, rabdi or rabidi is a sweet, condensed-milk-based dish, originating from the Indian subcontinent, made by boiling milk on low heat for a long time until it becomes dense and changes its colour to off-white or pale yellow. Jaggery, spices, and nuts are added to it to give it flavor. It is chilled and served as dessert. Rabri is the main ingredient in several desserts, such as rasabali, chhena kheeri, and khira sagara.",
@@ -38,50 +36,6 @@
 		"PK",
 		"BD"
 	],
-	"how": {
-		"text": "Milk is boiled down slowly until thick and pale yellow; the skins that form are collected and mixed back in, giving rabri its layered texture.",
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Rabri",
-					"url": "https://en.wikipedia.org/wiki/Rabri"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "heat",
-					"does": "heat",
-					"note": "Kept low for a long time."
-				},
-				{
-					"type": "separate",
-					"off": "skin",
-					"note": "The cream layer is lifted off as it forms."
-				},
-				{
-					"type": "add",
-					"what": "sugar",
-					"note": "Or jaggery, often with cardamom."
-				},
-				{
-					"type": "add",
-					"what": "cream layer (lachha)"
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia: Rabri",
-						"url": "https://en.wikipedia.org/wiki/Rabri"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"examples": [
 		"basundi",
 		"khurchan"

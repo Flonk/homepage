@@ -1,0 +1,104 @@
+{
+	"from": [
+		"buttermilkCheese"
+	],
+	"to": [
+		"dambalkhacho"
+	],
+	"variant": true,
+	"step": "dry, ripen in clay pot",
+	"sources": {
+		"links": [
+			{
+				"name": "Georgian GI no. 16: Dambalkhacho (GOV.UK)",
+				"url": "https://assets.publishing.service.gov.uk/media/641460b9d3bf7f79d6487bd7/Dambalkhacho.pdf"
+			},
+			{
+				"name": "Wikipedia: Dambalkhacho",
+				"url": "https://en.wikipedia.org/wiki/Dambalkhacho"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 60,
+					"max": 60
+				}
+			},
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"adds": {
+					"microbes": [
+						{
+							"name": "lactic cultures",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						},
+						{
+							"name": "Penicillium",
+							"kind": "mould"
+						}
+					]
+				}
+			},
+			{
+				"type": "custom",
+				"name": "squeeze",
+				"seconds": {
+					"min": 43200,
+					"max": 43200,
+					"about": true
+				}
+			},
+			{
+				"type": "salt",
+				"strength": {
+					"min": 2,
+					"max": 4
+				}
+			},
+			{
+				"type": "mould",
+				"note": "Balls of 150-250 g."
+			},
+			{
+				"type": "dry",
+				"note": "In a warm room, out of the sun."
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"kinds": [
+					"lactic",
+					"mould"
+				],
+				"seconds": {
+					"min": 2592000,
+					"max": 5184000
+				}
+			}
+		],
+		"text": "Made from cultured milk product; species are not named. Balls are dried several days in a warm room, then ripened in a ceramic pot in a cool place.",
+		"sources": {
+			"links": [
+				{
+					"name": "Georgian GI no. 16: Dambalkhacho (GOV.UK)",
+					"url": "https://assets.publishing.service.gov.uk/media/641460b9d3bf7f79d6487bd7/Dambalkhacho.pdf"
+				},
+				{
+					"name": "Wikipedia: Dambalkhacho",
+					"url": "https://en.wikipedia.org/wiki/Dambalkhacho"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

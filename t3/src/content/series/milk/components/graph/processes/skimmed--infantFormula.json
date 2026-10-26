@@ -1,0 +1,72 @@
+{
+	"from": [
+		"skimmed"
+	],
+	"to": [
+		"infantFormula"
+	],
+	"step": "blend with whey, lactose and oils, spray-dry",
+	"text": "Wet mixing is the most used route because it gives control of composition and microbial safety.",
+	"sources": {
+		"links": [
+			{
+				"name": "Murphy 2015, infant formula manufacture (Teagasc/UCC thesis)",
+				"url": "https://cora.ucc.ie/server/api/core/bitstreams/d714f4fc-a941-4744-8650-fc050287f509/content"
+			},
+			{
+				"name": "Wikipedia: Infant formula",
+				"url": "https://en.wikipedia.org/wiki/Infant_formula"
+			},
+			{
+				"name": "Vaisala: Infant formula production, wet mixing process",
+				"url": "https://www.vaisala.com/en/application-note/infant-formula-production-wet-mixing-process"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"note": "Dissolved in skim milk or water."
+			},
+			{
+				"type": "heat",
+				"does": "heat"
+			},
+			{
+				"type": "homogenise"
+			},
+			{
+				"type": "evaporate",
+				"note": "In a pilot study.",
+				"solids": {
+					"min": 55,
+					"max": 55,
+					"about": true
+				}
+			},
+			{
+				"type": "dry",
+				"note": "Spray-dried with air in at 187 °C and out at 85 °C in a pilot study (industry 150-220 °C in)."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Murphy 2015, infant formula manufacture (Teagasc/UCC thesis)",
+					"url": "https://cora.ucc.ie/server/api/core/bitstreams/d714f4fc-a941-4744-8650-fc050287f509/content"
+				},
+				{
+					"name": "Wikipedia: Infant formula",
+					"url": "https://en.wikipedia.org/wiki/Infant_formula"
+				},
+				{
+					"name": "Vaisala: Infant formula production, wet mixing process",
+					"url": "https://www.vaisala.com/en/application-note/infant-formula-production-wet-mixing-process"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

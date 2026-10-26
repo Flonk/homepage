@@ -1,0 +1,71 @@
+{
+	"from": [
+		"custard"
+	],
+	"to": [
+		"cremeBrulee"
+	],
+	"variant": true,
+	"step": "bake, burn sugar on top",
+	"sources": {
+		"unsourced": true,
+		"text": "No source recorded for how it is made yet."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"note": "Cream with vanilla is heated until it just bubbles at the edges."
+			},
+			{
+				"type": "add",
+				"what": "egg yolks whisked with sugar",
+				"note": "The hot cream is poured in slowly while whisking, so the yolks do not scramble."
+			},
+			{
+				"type": "mould",
+				"note": "The strained custard is divided among ramekins."
+			},
+			{
+				"type": "heat",
+				"does": "cook",
+				"temperature": {
+					"min": 150,
+					"max": 150
+				},
+				"seconds": {
+					"min": 1800,
+					"max": 2400
+				},
+				"note": "Baked in a water bath halfway up the ramekins until set with a slight wobble."
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"seconds": {
+					"min": 14400
+				},
+				"note": "Cooled for about an hour, then chilled uncovered for at least 4 hours until firm."
+			},
+			{
+				"type": "custom",
+				"name": "burn sugar top",
+				"note": "Sugar is sprinkled on and caramelised with a torch or a very hot grill."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Crème brûlée",
+					"url": "https://en.wikipedia.org/wiki/Crème_brûlée"
+				},
+				{
+					"name": "Joy of Baking: Crème Brûlée",
+					"url": "https://joyofbaking.com/printpages/CremeBruleeRecipeprint.html"
+				}
+			],
+			"text": "The cream and yolk custard, its baking in a water bath, the chilling and the burnt sugar top, from these."
+		}
+	}
+}

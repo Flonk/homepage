@@ -1,0 +1,71 @@
+{
+	"from": [
+		"washed"
+	],
+	"to": [
+		"herve"
+	],
+	"variant": true,
+	"step": "wash the rind",
+	"text": "The small curd cubes are washed in damp cellars, often at first and then weekly, so local smear ferments form a brown, slightly rosy rind. Ripening runs inward from that rind, leaving the paste more unctuous and mature under it than at the centre.",
+	"sources": {
+		"links": [
+			{
+				"name": "Fromage de Herve PDO registration summary (eAmbrosia)",
+				"url": "https://webgate.ec.europa.eu/eambrosia-api/api/v1/attachments/61136"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "coagulate",
+				"by": "rennet",
+				"seconds": {
+					"min": 5400,
+					"max": 5400,
+					"about": true
+				},
+				"note": "The curd is then cut into four."
+			},
+			{
+				"type": "cut",
+				"how": "cut",
+				"note": "To hazelnut size, 15 min later."
+			},
+			{
+				"type": "drain"
+			},
+			{
+				"type": "press",
+				"note": "Lightly, between wooden planks."
+			},
+			{
+				"type": "cut",
+				"how": "cut",
+				"note": "Into cubes of 50–400 g."
+			},
+			{
+				"type": "salt"
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"kinds": [
+					"smear"
+				],
+				"note": "In damp cellars, washed 2–3 times a week for the first fortnight and then weekly."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Fromage de Herve PDO registration summary (eAmbrosia)",
+					"url": "https://webgate.ec.europa.eu/eambrosia-api/api/v1/attachments/61136"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

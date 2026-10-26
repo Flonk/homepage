@@ -1,0 +1,83 @@
+{
+	"from": [
+		"rennetCurd"
+	],
+	"to": [
+		"pastaFilata"
+	],
+	"step": "stretch",
+	"text": "Once acid has built up, the curd becomes plastic in hot water. It can then be kneaded and stretched into a fibrous, elastic paste.",
+	"sources": {
+		"links": [
+			{
+				"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
+				"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+			},
+			{
+				"name": "ONAF sheet: Burrata di Andria IGP",
+				"url": "https://www.onaf.it/uploads/public/15494_burrata.pdf"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "coagulate",
+				"by": "rennet",
+				"temperature": {
+					"min": 35,
+					"max": 37
+				}
+			},
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"acidity": {
+					"min": 0.7,
+					"max": 0.8
+				},
+				"note": "The hazelnut-size grains rest until the whey has 0.7–0.8 % lactic acid."
+			},
+			{
+				"type": "heat",
+				"does": "cook",
+				"temperature": {
+					"min": 65,
+					"max": 70
+				},
+				"note": "Curd kneaded and stretched in the hot water."
+			},
+			{
+				"type": "mould",
+				"temperature": {
+					"min": 55,
+					"max": 65
+				}
+			},
+			{
+				"type": "salt",
+				"how": "brine",
+				"seconds": {
+					"min": 28800,
+					"max": 28800,
+					"about": true
+				},
+				"note": "Dry-salted about 2 h, or the stretching water is salted instead."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+				},
+				{
+					"name": "ONAF sheet: Burrata di Andria IGP",
+					"url": "https://www.onaf.it/uploads/public/15494_burrata.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

@@ -1,7 +1,5 @@
 {
 	"label": "Buttermilk cheese",
-	"from": "fermButtermilk",
-	"step": "heat, drain",
 	"cheese": true,
 	"about": {
 		"text": "Cheese made by heating the buttermilk left from churning soured milk until its proteins curdle, then draining the curd. The cheese of the Himalaya, Ethiopia and Anatolia: soft chhurpi, datshi, ayib and çökelek.",
@@ -27,93 +25,6 @@
 				}
 			],
 			"text": "The photograph, its author and its licence, from its page."
-		}
-	},
-	"how": {
-		"text": "The churned, already soured buttermilk is heated, so the heat-denatured proteins clump with the remaining acid; the solid is separated from the liquid and drained. No rennet. Himalayan kinds are boiled; ayib is warmed only to about 40-50 °C.",
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Chhurpi",
-					"url": "https://en.wikipedia.org/wiki/Chhurpi"
-				},
-				{
-					"name": "Bacterial community in naturally fermented milk products of Arunachal Pradesh and Sikkim (Frontiers in Microbiology 2017)",
-					"url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5784140/"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "heat",
-					"does": "heat",
-					"note": "Boiled until the protein curdles; ayib is warmed to only 40–50 °C."
-				},
-				{
-					"type": "drain",
-					"by": "hang"
-				},
-				{
-					"type": "ferment",
-					"does": "incubate",
-					"kinds": [
-						"lactic"
-					],
-					"adds": {
-						"microbes": [
-							{
-								"name": "Lactococcus lactis",
-								"kind": "bacterium",
-								"does": [
-									"acid"
-								]
-							},
-							{
-								"name": "Leuconostoc mesenteroides",
-								"kind": "bacterium"
-							},
-							{
-								"name": "Lactobacillus helveticus",
-								"kind": "bacterium",
-								"does": [
-									"acid"
-								]
-							},
-							{
-								"name": "Acetobacter",
-								"kind": "bacterium"
-							},
-							{
-								"name": "Gluconobacter",
-								"kind": "bacterium"
-							}
-						],
-						"by": [
-							"wild"
-						]
-					},
-					"pH": {
-						"min": 5.3,
-						"max": 6.1
-					},
-					"note": "Soft chhurpi is often left to ferment a little for tang."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia: Chhurpi",
-						"url": "https://en.wikipedia.org/wiki/Chhurpi"
-					},
-					{
-						"name": "Bacterial community in naturally fermented milk products of Arunachal Pradesh and Sikkim (Frontiers in Microbiology 2017)",
-						"url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5784140/"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	},
 	"examples": [

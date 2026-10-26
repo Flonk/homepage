@@ -1,0 +1,69 @@
+{
+	"from": [
+		"ultrafilteredMilk"
+	],
+	"to": [
+		"fairlife"
+	],
+	"variant": true,
+	"text": "The milk is split, the skim part runs through membranes that hold back the proteins and let water and lactose go, and lactase handles the lactose that is left. fairlife says its protein is only what was in the milk.",
+	"sources": {
+		"links": [
+			{
+				"name": "fairlife: FAQ",
+				"url": "https://fairlife.com/frequently-asked-questions"
+			},
+			{
+				"name": "Wikipedia: fairlife",
+				"url": "https://en.wikipedia.org/wiki/Fairlife"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "separate",
+				"off": "cream"
+			},
+			{
+				"type": "ultrafilter",
+				"note": "Soft membranes, no protein powder added."
+			},
+			{
+				"type": "add",
+				"what": "lactase",
+				"note": "Makes the milk lactose-free."
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"note": "Hotter than ordinary milk, for a few seconds; no figures given."
+			},
+			{
+				"type": "homogenise"
+			},
+			{
+				"type": "custom",
+				"name": "test"
+			},
+			{
+				"type": "custom",
+				"name": "bottle"
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "fairlife: FAQ",
+					"url": "https://fairlife.com/frequently-asked-questions"
+				},
+				{
+					"name": "Wikipedia: fairlife",
+					"url": "https://en.wikipedia.org/wiki/Fairlife"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

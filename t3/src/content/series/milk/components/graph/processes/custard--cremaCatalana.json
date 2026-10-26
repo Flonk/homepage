@@ -1,0 +1,74 @@
+{
+	"from": [
+		"custard"
+	],
+	"to": [
+		"cremaCatalana"
+	],
+	"variant": true,
+	"text": "Unlike crème brûlée it is cooked on the hob, not baked, and the cornstarch lets it be brought to the boil without curdling. Traditionally the sugar is burnt with a hot iron (cremador). Quantities are one blog recipe (Manu's Menu); ratios differ between recipes.",
+	"sources": {
+		"links": [
+			{
+				"name": "Manu's Menu: Crema catalana",
+				"url": "https://www.manusmenu.com/crema-catalana/"
+			},
+			{
+				"name": "Wikipedia: Crema catalana",
+				"url": "https://en.wikipedia.org/wiki/Crema_catalana"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"note": "With lemon zest and cinnamon.",
+				"temperature": {
+					"min": 100,
+					"max": 100,
+					"about": true
+				}
+			},
+			{
+				"type": "custom",
+				"name": "infuse",
+				"note": "Off the heat, then strained.",
+				"seconds": {
+					"min": 1800,
+					"max": 3600
+				}
+			},
+			{
+				"type": "heat",
+				"does": "cook",
+				"note": "Until it boils and thickens, the foam gone."
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"note": "To room temperature, then the fridge, not frozen."
+			},
+			{
+				"type": "custom",
+				"name": "burn",
+				"note": "Sugar, about 1/2 tbsp per portion, burnt with a torch."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Manu's Menu: Crema catalana",
+					"url": "https://www.manusmenu.com/crema-catalana/"
+				},
+				{
+					"name": "Wikipedia: Crema catalana",
+					"url": "https://en.wikipedia.org/wiki/Crema_catalana"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

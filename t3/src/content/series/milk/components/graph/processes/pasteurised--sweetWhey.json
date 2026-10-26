@@ -1,0 +1,87 @@
+{
+	"from": [
+		"pasteurised"
+	],
+	"to": [
+		"sweetWhey"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 31,
+					"max": 33
+				},
+				"note": "The milk is brought to renneting temperature."
+			},
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "cheese starter culture",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						}
+					],
+					"by": [
+						"starter"
+					]
+				},
+				"temperature": {
+					"min": 30,
+					"max": 33
+				},
+				"seconds": {
+					"min": 1800,
+					"max": 3600
+				},
+				"note": "The starter pre-ripens in the milk before the rennet goes in."
+			},
+			{
+				"type": "coagulate",
+				"by": "rennet",
+				"temperature": {
+					"min": 31,
+					"max": 33
+				},
+				"seconds": {
+					"min": 1800,
+					"max": 1800,
+					"about": true
+				},
+				"note": "Up to 30 ml of liquid rennet per 100 kg of milk, stirred in for about 5 minutes."
+			},
+			{
+				"type": "cut",
+				"how": "cut",
+				"size": {
+					"min": 1,
+					"max": 15
+				},
+				"note": "The coagulum is cut when it splits cleanly like glass."
+			},
+			{
+				"type": "drain",
+				"note": "About 30-50 % of the batch volume is drained as whey early on, and the rest shortly before the vat is emptied."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+				}
+			],
+			"text": "The renneting temperature, starter, rennet dose, coagulation time, cutting and whey draining are from this chapter, which pasteurises the cheese milk (72-73 °C) before these steps."
+		}
+	}
+}

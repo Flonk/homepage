@@ -1,7 +1,5 @@
 {
 	"label": "Sun-dried cheese",
-	"from": "rennetCurd",
-	"step": "drain, sun-dry",
 	"note": "Not pressed and not ripened: it is dried in the open air until hard and stored dry.",
 	"mapped": true,
 	"about": {
@@ -25,62 +23,6 @@
 		"cow",
 		"goat"
 	],
-	"how": {
-		"text": "Tchoukou is the Hausa and Fulani name, tikomart the Tamasheq. One process was found across all villages surveyed around Zinder. The same sun-drying is used for Klila in Morocco, Gapal in Burkina Faso and Gashi in Mali (Seini et al. 2018).",
-		"sources": {
-			"links": [
-				{
-					"name": "Oumarou et al. 2025, AJFAND 25(8)",
-					"url": "https://ajfand.net/Volume25/No8/Oumarou25240.pdf"
-				},
-				{
-					"name": "Seini et al. 2018, IJCMAS 7(12):317-328",
-					"url": "https://www.ijcmas.com/7-12-2018/Sabo%20Haoua%20Seini2,%20et%20al.pdf"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "custom",
-					"name": "prepare rennet",
-					"note": "Dried calf rennet steeped in water with ginger, hot pepper, garlic or onion, Guinea pepper, and millet and cowpea grain."
-				},
-				{
-					"type": "filter"
-				},
-				{
-					"type": "coagulate",
-					"seconds": {
-						"min": 43200,
-						"max": 86400
-					},
-					"note": "In a calabash."
-				},
-				{
-					"type": "drain"
-				},
-				{
-					"type": "dry",
-					"note": "In the open air, on mats of Deverra scoparia stalks."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Oumarou et al. 2025, AJFAND 25(8)",
-						"url": "https://ajfand.net/Volume25/No8/Oumarou25240.pdf"
-					},
-					{
-						"name": "Seini et al. 2018, IJCMAS 7(12):317-328",
-						"url": "https://www.ijcmas.com/7-12-2018/Sabo%20Haoua%20Seini2,%20et%20al.pdf"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"examples": [
 		"tchoukou"
 	],

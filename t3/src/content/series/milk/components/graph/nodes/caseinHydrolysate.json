@@ -1,7 +1,5 @@
 {
 	"label": "Casein hydrolysate\n(Nutramigen)",
-	"from": "acidCasein",
-	"step": "break down with enzymes",
 	"about": {
 		"text": "Casein broken down into short peptides, used as the protein in 'extensively hydrolysed' infant formulas for babies allergic to cow's-milk protein. Mead Johnson's Nutramigen is the long-standing reference product. Its peptides are mostly under about 2 kDa, too small to trigger the antibodies that cause an allergic reaction.",
 		"sources": {
@@ -26,56 +24,6 @@
 				}
 			],
 			"text": "The photograph, its author and its licence, from its page."
-		}
-	},
-	"how": {
-		"text": "The allergen is the intact protein, so the casein is chopped small enough that the immune system no longer recognises it. The exact process of Nutramigen is the maker's own and not published.",
-		"sources": {
-			"links": [
-				{
-					"name": "Patent US 5,405,637, milk protein partial hydrolysate (process background)",
-					"url": "https://www.google.com.ua/patents/US5405637"
-				},
-				{
-					"name": "Nutramigen LGG German product information (Mead Johnson)",
-					"url": "https://cdn.shop-apotheke.com/PDF/D09/706/581/D09706581-lv.pdf"
-				},
-				{
-					"name": "Allergologia et Immunopathologia, clinical study of a casein hydrolysate formula",
-					"url": "https://www.elsevier.es/en-revista-allergologia-et-immunopathologia-105-pdf-download-S0301054609000470"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "custom",
-					"name": "hydrolyse",
-					"note": "With proteases, e.g. trypsin, chymotrypsin, pancreatic enzymes."
-				},
-				{
-					"type": "ultrafilter",
-					"note": "Removes the enzyme and leftover large protein."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Patent US 5,405,637, milk protein partial hydrolysate (process background)",
-						"url": "https://www.google.com.ua/patents/US5405637"
-					},
-					{
-						"name": "Nutramigen LGG German product information (Mead Johnson)",
-						"url": "https://cdn.shop-apotheke.com/PDF/D09/706/581/D09706581-lv.pdf"
-					},
-					{
-						"name": "Allergologia et Immunopathologia, clinical study of a casein hydrolysate formula",
-						"url": "https://www.elsevier.es/en-revista-allergologia-et-immunopathologia-105-pdf-download-S0301054609000470"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	},
 	"facts": [

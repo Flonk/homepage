@@ -1,0 +1,72 @@
+{
+	"from": [
+		"rawCream"
+	],
+	"to": [
+		"cream"
+	],
+	"step": "standardise, pasteurise",
+	"text": "The cream spun out of the milk is far richer than any grade sold, so the dairy blends it back with skimmed milk until the fat hits the legal figure, then heats it. Grades differ by country and by use: coffee, whipping, double. Cream is heated like milk, but because fat shields bacteria it is held a little hotter once it reaches 10 % fat. Equivalent time-temperature pairs are allowed; the figures are the US legal definitions (21 CFR 131.3).",
+	"sources": {
+		"links": [
+			{
+				"name": "US 21 CFR 131.3 Definitions (pasteurized, ultra-pasteurized)",
+				"url": "https://www.law.cornell.edu/cfr/text/21/131.3"
+			},
+			{
+				"name": "Wikipedia: Cream",
+				"url": "https://en.wikipedia.org/wiki/Cream"
+			},
+			{
+				"name": "German MilchPQV, Anlage 8 (Sahneerzeugnisse, Gruppe V)",
+				"url": "https://gesetze.legal/bund/milchpqv/anlage_8"
+			},
+			{
+				"name": "German Wikipedia: Rahm",
+				"url": "https://dewiki.de/Lexikon/Rahm"
+			}
+		],
+		"text": "How cream is standardised to its grade and heated, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "standardise",
+				"note": "Cream and skimmed milk mixed back to the grade's fat."
+			},
+			{
+				"type": "pasteurise",
+				"temperature": {
+					"min": 72,
+					"max": 72
+				},
+				"seconds": {
+					"min": 15,
+					"max": 15
+				},
+				"note": "Or a batch at 63 °C for 30 min (3 °C hotter from 10 % fat up), or ultra-pasteurised at 138 °C or more for 2 s or more, which keeps longer."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "US 21 CFR 131.3 Definitions (pasteurized, ultra-pasteurized)",
+					"url": "https://www.law.cornell.edu/cfr/text/21/131.3"
+				},
+				{
+					"name": "Wikipedia: Cream",
+					"url": "https://en.wikipedia.org/wiki/Cream"
+				},
+				{
+					"name": "German MilchPQV, Anlage 8 (Sahneerzeugnisse, Gruppe V)",
+					"url": "https://gesetze.legal/bund/milchpqv/anlage_8"
+				},
+				{
+					"name": "German Wikipedia: Rahm",
+					"url": "https://dewiki.de/Lexikon/Rahm"
+				}
+			],
+			"text": "How cream is standardised to its grade and heated, from these."
+		}
+	}
+}

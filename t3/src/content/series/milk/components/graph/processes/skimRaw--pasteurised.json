@@ -1,0 +1,42 @@
+{
+	"from": [
+		"skimRaw"
+	],
+	"to": [
+		"pasteurised"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "pasteurise",
+				"temperature": {
+					"min": 72,
+					"max": 75
+				},
+				"seconds": {
+					"min": 15,
+					"max": 20
+				},
+				"note": "Held in a separate holding tube, with the temperature recorded all the while."
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"note": "The incoming raw milk cools it first, then ice water."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook: Pasteurized and ESL dairy products",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/pasteurized-and-esl-dairy-products"
+				},
+				{
+					"name": "21 CFR 1240.61 (FDA pasteurization time-temperature table)",
+					"url": "https://www.law.cornell.edu/cfr/text/21/1240.61"
+				}
+			],
+			"text": "The Tetra Pak handbook gives 72-75 degrees C for 15-20 s and how the plant cools; the FDA table sets 72 degrees C for 15 s as the least."
+		}
+	}
+}

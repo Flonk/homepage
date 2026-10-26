@@ -1,0 +1,110 @@
+{
+	"from": [
+		"semiHard"
+	],
+	"to": [
+		"pecorinoToscano"
+	],
+	"variant": true,
+	"text": "Two types share one rule: the soft fresco is cut small and not cooked, ripened a few weeks; the semi-hard stagionato is cut finer, may be cooked a little, salted longer and ripened four months or more. Only whole sheep's milk of Tuscany and nearby areas may be used.",
+	"sources": {
+		"links": [
+			{
+				"name": "Disciplinare di produzione Pecorino Toscano DOP (2014 amendment), ONAF",
+				"url": "https://www.onaf.it/uploads/public/formaggi/1904_5-mod-rich-1-disciplinare-pecorino-toscano-26.9.2014.pdf"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "coagulate",
+				"by": "rennet",
+				"temperature": {
+					"min": 33,
+					"max": 38
+				},
+				"seconds": {
+					"min": 1200,
+					"max": 1500
+				},
+				"note": "With calf or vegetable rennet."
+			},
+			{
+				"type": "cut",
+				"how": "cut",
+				"note": "Hazelnut size for fresco, maize-kernel size for stagionato."
+			},
+			{
+				"type": "heat",
+				"does": "cook",
+				"temperature": {
+					"min": 40,
+					"max": 42
+				},
+				"seconds": {
+					"min": 600,
+					"max": 900
+				},
+				"note": "Only the stagionato curd may be cooked."
+			},
+			{
+				"type": "mould",
+				"note": "Whey drained by hand pressing or in a steam-heated room."
+			},
+			{
+				"type": "salt",
+				"how": "brine",
+				"strength": {
+					"min": 17,
+					"max": 19
+				},
+				"note": "Dry or in brine (15–17 °Bé), at least 8 h per kg for fresco, 12 h for stagionato."
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "native, natural or selected lactic cultures",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						}
+					],
+					"by": [
+						"starter"
+					]
+				},
+				"temperature": {
+					"min": 5,
+					"max": 15
+				},
+				"seconds": {
+					"min": 1728000
+				},
+				"humidity": {
+					"min": 75,
+					"max": 95
+				},
+				"note": "At least 20 days for the soft fresco or 4 months for the semi-hard stagionato."
+			}
+		],
+		"text": "Cultures are optional.",
+		"sources": {
+			"links": [
+				{
+					"name": "Disciplinare di produzione Pecorino Toscano DOP (2014 amendment), ONAF",
+					"url": "https://www.onaf.it/uploads/public/formaggi/1904_5-mod-rich-1-disciplinare-pecorino-toscano-26.9.2014.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

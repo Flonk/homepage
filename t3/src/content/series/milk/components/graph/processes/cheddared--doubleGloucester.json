@@ -1,0 +1,53 @@
+{
+	"from": [
+		"cheddared"
+	],
+	"to": [
+		"doubleGloucester"
+	],
+	"variant": true,
+	"text": "Double Gloucester is made with full-fat milk, whereas Single Gloucester is often made from part-skimmed milk. It is aged longer than Single, which gives a stronger, more savoury flavour.",
+	"sources": {
+		"links": [
+			{
+				"name": "Slow Food UK: Artisan Single and Double Gloucester",
+				"url": "https://www.slowfood.org.uk/ff-products/artisan-single-and-double-gloucester-cheese/"
+			},
+			{
+				"name": "Single Gloucester PDO summary (eAmbrosia), for contrast",
+				"url": "https://webgate.ec.europa.eu/eambrosia-api/api/v1/attachments/62118"
+			},
+			{
+				"name": "Wikipedia: Gloucester cheese",
+				"url": "https://en.wikipedia.org/wiki/Gloucester_cheese"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "ferment",
+				"does": "ripen"
+			}
+		],
+		"text": "Aged longer than Single Gloucester.",
+		"sources": {
+			"links": [
+				{
+					"name": "Slow Food UK: Artisan Single and Double Gloucester",
+					"url": "https://www.slowfood.org.uk/ff-products/artisan-single-and-double-gloucester-cheese/"
+				},
+				{
+					"name": "Single Gloucester PDO summary (eAmbrosia), for contrast",
+					"url": "https://webgate.ec.europa.eu/eambrosia-api/api/v1/attachments/62118"
+				},
+				{
+					"name": "Wikipedia: Gloucester cheese",
+					"url": "https://en.wikipedia.org/wiki/Gloucester_cheese"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

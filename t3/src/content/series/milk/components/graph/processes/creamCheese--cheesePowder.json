@@ -1,0 +1,50 @@
+{
+	"from": [
+		"creamCheese"
+	],
+	"to": [
+		"cheesePowder"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "water and emulsifying salts",
+				"note": "The cheese is dissolved into a smooth emulsion with water and calcium-sequestering salts."
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"note": "How hot and how long depends on the cheese, its age and the recipe."
+			},
+			{
+				"type": "homogenise"
+			},
+			{
+				"type": "evaporate",
+				"solids": {
+					"min": 35,
+					"max": 45
+				},
+				"note": "The slurry is brought to 35-45 % total solids before it is dried."
+			},
+			{
+				"type": "dry",
+				"note": "Spray drying turns the slurry into a powder, at the cost of some aroma."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Cheese powder",
+					"url": "https://en.wikipedia.org/wiki/Cheese_powder"
+				},
+				{
+					"name": "A Review on the Production and Characteristics of Cheese Powders (Foods 13, 2204)",
+					"url": "https://mdpi-res.com/d_attachment/foods/foods-13-02204/article_deploy/foods-13-02204.pdf"
+				}
+			],
+			"text": "That the cheese is made into an emulsion with water and calcium-sequestering (emulsifying) salts, concentrated to 35-45 % solids, homogenised and spray dried, from these; the review abstract gives no temperatures, so none are given here."
+		}
+	}
+}

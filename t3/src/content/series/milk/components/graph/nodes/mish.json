@@ -3,8 +3,6 @@
 	"aka": [
 		"Mish cheese"
 	],
-	"from": "quark",
-	"step": "pickle for years",
 	"cheese": true,
 	"about": {
 		"text": "An Egyptian cheese made by fermenting salted soft cheese, traditionally Areesh, for a year or more in an earthenware jar under a pickle of buttermilk, sour milk, whey and peppers. It turns yellowish-brown, sharp and pungent. The jar can be topped up with fresh cheese for years.",
@@ -34,56 +32,5 @@
 	},
 	"regions": [
 		"EG"
-	],
-	"how": {
-		"text": "Salted fresh cheese is packed into a jar and covered with a sour pickle; fermentation runs for a year or more, giving a very salty, sharp, soft cheese.",
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Mish",
-					"url": "https://en.wikipedia.org/wiki/Mish"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "drain",
-					"note": "Areesh, in some sources Karish."
-				},
-				{
-					"type": "wash"
-				},
-				{
-					"type": "salt",
-					"note": "Layered with salt."
-				},
-				{
-					"type": "ferment",
-					"does": "incubate",
-					"adds": {
-						"microbes": [],
-						"by": [
-							"backslop"
-						]
-					},
-					"seconds": {
-						"min": 31536000
-					},
-					"note": "Sealed in an earthenware jar under a pickle of buttermilk, sour skimmed milk, whey and red and green peppers, with a little older mish as starter."
-				}
-			],
-			"text": "The jar is topped up as cheese is taken out and fresh added, so there is no fixed age.",
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia: Mish",
-						"url": "https://en.wikipedia.org/wiki/Mish"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	}
+	]
 }

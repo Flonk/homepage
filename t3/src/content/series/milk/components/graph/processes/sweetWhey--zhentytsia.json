@@ -1,0 +1,82 @@
+{
+	"from": [
+		"sweetWhey"
+	],
+	"to": [
+		"zhentytsia"
+	],
+	"step": "heat, skim, ferment",
+	"text": "Heating the whey to 90 °C makes its proteins coagulate and rise as a thin skin, which is skimmed off and set aside as a cheese-like curd (urda); the whey left behind is poured into a wooden barrel, where the natural microflora of whey and barrel sour it over several days. This account is second-hand, from a summary of the żentyca papers.",
+	"sources": {
+		"links": [
+			{
+				"name": "Nutritional value of żentyca, J. Elem.",
+				"url": "https://jsite.uwm.edu.pl/articles/view/2039"
+			},
+			{
+				"name": "Bundz, Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Bundz"
+			},
+			{
+				"name": "Bintsis & Papademas 2022, Table 2, Fermentation 8:679",
+				"url": "https://doi.org/10.3390/fermentation8120679"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 90,
+					"max": 90
+				}
+			},
+			{
+				"type": "separate",
+				"off": "curd",
+				"by": "gravity",
+				"note": "The skin that rises is set aside as a cheese-like curd (urda)."
+			},
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [],
+					"by": [
+						"wild",
+						"vessel"
+					],
+					"vessel": "wooden barrel"
+				},
+				"seconds": {
+					"min": 259200,
+					"about": true
+				}
+			}
+		],
+		"text": "Soured by the natural microflora of the whey and the barrel.",
+		"sources": {
+			"links": [
+				{
+					"name": "Nutritional value of żentyca, J. Elem.",
+					"url": "https://jsite.uwm.edu.pl/articles/view/2039"
+				},
+				{
+					"name": "Bundz, Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Bundz"
+				},
+				{
+					"name": "Bintsis & Papademas 2022, Table 2, Fermentation 8:679",
+					"url": "https://doi.org/10.3390/fermentation8120679"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

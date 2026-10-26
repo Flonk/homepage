@@ -1,0 +1,81 @@
+{
+	"from": [
+		"acidCasein"
+	],
+	"to": [
+		"lanital"
+	],
+	"step": "spin into fibre",
+	"text": "Casein is dissolved in alkali, pushed through spinnerets into an acid bath where it sets as filaments, then made insoluble with formaldehyde.",
+	"sources": {
+		"links": [
+			{
+				"name": "US patent 2,338,917 (Ferretti), casein artificial fibres",
+				"url": "https://patents.google.com/patent/US2338917A/en"
+			},
+			{
+				"name": "US patent 2,312,998 (de Kadt), hardening fibrous protein",
+				"url": "https://patents.google.com/patent/US2312998A/en"
+			},
+			{
+				"name": "Museum of Design in Plastics, Casein fibre",
+				"url": "https://www.modip.ac.uk/projects/curators-guide-synthetic-garments/featured-fibres-and-materials/casein-fibre"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "dissolve",
+				"note": "In alkali to a spinning dope."
+			},
+			{
+				"type": "custom",
+				"name": "spin",
+				"note": "Through spinnerets into an acid bath, where it sets as filaments."
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 35,
+					"max": 40
+				},
+				"note": "In a hardening bath of sodium chloride or other salts."
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 60,
+					"max": 70
+				},
+				"seconds": {
+					"min": 18000,
+					"max": 18000,
+					"about": true
+				},
+				"note": "In a formaldehyde hardening bath."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "US patent 2,338,917 (Ferretti), casein artificial fibres",
+					"url": "https://patents.google.com/patent/US2338917A/en"
+				},
+				{
+					"name": "US patent 2,312,998 (de Kadt), hardening fibrous protein",
+					"url": "https://patents.google.com/patent/US2312998A/en"
+				},
+				{
+					"name": "Museum of Design in Plastics, Casein fibre",
+					"url": "https://www.modip.ac.uk/projects/curators-guide-synthetic-garments/featured-fibres-and-materials/casein-fibre"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

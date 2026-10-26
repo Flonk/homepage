@@ -1,0 +1,40 @@
+{
+	"from": [
+		"nativeWhey"
+	],
+	"to": [
+		"wpi"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "ultrafilter",
+				"note": "Whey proteins stay in the retentate while lactose, ash and non-protein nitrogen pass through."
+			},
+			{
+				"type": "diafilter",
+				"note": "Water is washed through to carry off more lactose and ash, until the retentate is above 90 % protein in dry matter."
+			},
+			{
+				"type": "evaporate",
+				"solids": {
+					"min": 36,
+					"max": 37
+				}
+			},
+			{
+				"type": "dry",
+				"note": "Spray dried to no more than 4 % moisture."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. Milk and whey fractionation",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
+				}
+			],
+			"text": "The route from native whey through ultrafiltration with diafiltration, concentration and drying is from this chapter, which gives the figures."
+		}
+	}
+}

@@ -56,65 +56,6 @@
 		"located": "knowledge"
 	},
 	"confidence": "medium",
-	"how": {
-		"label": "press, salt, rub",
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia, Majorero",
-					"url": "https://en.wikipedia.org/wiki/Majorero"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "coagulate",
-					"by": "rennet",
-					"seconds": {
-						"min": 3600,
-						"max": 3600,
-						"about": true
-					},
-					"note": "With lamb rennet."
-				},
-				{
-					"type": "custom",
-					"name": "beat and drain"
-				},
-				{
-					"type": "press",
-					"note": "Pressed heavily."
-				},
-				{
-					"type": "salt",
-					"how": "dry"
-				},
-				{
-					"type": "dry"
-				},
-				{
-					"type": "ferment",
-					"does": "ripen"
-				},
-				{
-					"type": "custom",
-					"name": "rub",
-					"note": "With oil, gofio or paprika, after ageing."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia, Majorero",
-						"url": "https://en.wikipedia.org/wiki/Majorero"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"sources": {
 		"links": [
 			{

@@ -3,8 +3,6 @@
 	"aka": [
 		"Vorzugsmilch"
 	],
-	"from": "raw",
-	"step": "bottle raw, certified",
 	"note": "In Germany only Vorzugsmilch, with its stricter production and testing rules, may be sold raw in shops. Ordinary raw milk (Rohmilch ab Hof) may be sold only at the farm gate and must carry a boil-before-drinking notice.",
 	"niche": 1,
 	"light": true,
@@ -39,40 +37,6 @@
 		"sources": {
 			"unsourced": true,
 			"text": "Raw milk sold under licence from a few farms, such as Germany’s Vorzugsmilch. My own rough estimate."
-		}
-	},
-	"how": {
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia (de): Rohmilch",
-					"url": "https://de.wikipedia.org/wiki/Rohmilch"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "heat",
-					"does": "cool",
-					"temperature": {
-						"max": 8
-					},
-					"seconds": {
-						"max": 345600
-					}
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia (de): Rohmilch",
-						"url": "https://de.wikipedia.org/wiki/Rohmilch"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	},
 	"facts": [

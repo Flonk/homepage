@@ -1,0 +1,42 @@
+{
+	"from": [
+		"cheesecake"
+	],
+	"to": [
+		"newYorkCheesecake"
+	],
+	"variant": true,
+	"text": "Cream cheese, sugar and eggs are mixed, poured on a crumb base and baked until the eggs set it; the cream cheese is what gives it the dense, creamy body. Cream cheese itself was only invented in the 1870s, so earlier cheese pies used cottage cheese.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Cheesecake",
+				"url": "https://en.wikipedia.org/wiki/Cheesecake"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"note": "Poured on a crumb base.",
+				"what": "cream cheese, sugar and eggs"
+			},
+			{
+				"type": "custom",
+				"name": "bake",
+				"note": "Set by the eggs, not cold with cream or gelatin."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Cheesecake",
+					"url": "https://en.wikipedia.org/wiki/Cheesecake"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

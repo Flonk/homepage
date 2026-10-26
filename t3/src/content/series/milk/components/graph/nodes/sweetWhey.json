@@ -5,11 +5,6 @@
 		"Labmolke",
 		"Süßmolke"
 	],
-	"from": "raw",
-	"step": "the whey",
-	"alsoFrom": [
-		"pasteurised"
-	],
 	"niche": 0,
 	"about": {
 		"text": "The whey that drains from curd set with rennet, in making most cheeses and rennet casein: only mildly acidic, at pH 5.9 to 6.6, and carrying the milk's sugar, its whey proteins and its minerals. About half of processed whey solids now go into whey protein concentrates, isolates, lactose and permeate.",
@@ -47,51 +42,6 @@
 				}
 			],
 			"text": "The rest of the 222 Mt of cheese milk; most of the world’s whey comes from cheese."
-		}
-	},
-	"how": {
-		"text": "Rennet sets the casein but leaves the whey proteins in solution, so the liquid that drains off keeps nearly all the milk's lactose and whey protein and is only mildly acidic. Little acid has formed, so the whey proteins and the caseinomacropeptide stay intact, which is why this whey is the starting point for most whey products.",
-		"sources": {
-			"links": [
-				{
-					"name": "Tetra Pak Dairy Processing Handbook, ch. 18 Milk and whey fractionation",
-					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
-				},
-				{
-					"name": "Wikipedia: Whey",
-					"url": "https://en.wikipedia.org/wiki/Whey"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "coagulate",
-					"by": "rennet",
-					"note": "Rennet (calf, microbial or plant) cuts casein at the kappa-casein bond."
-				},
-				{
-					"type": "cut",
-					"how": "cut"
-				},
-				{
-					"type": "drain"
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Tetra Pak Dairy Processing Handbook, ch. 18 Milk and whey fractionation",
-						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
-					},
-					{
-						"name": "Wikipedia: Whey",
-						"url": "https://en.wikipedia.org/wiki/Whey"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	},
 	"composition": {

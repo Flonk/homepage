@@ -1,0 +1,54 @@
+{
+	"from": [
+		"wpc"
+	],
+	"to": [
+		"infantFormula"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "skim milk, whey protein, lactose, oils and emulsifiers",
+				"note": "Blended in tanks with skim milk warmed to about 60 °C, minerals and vitamins going in by how heat-sensitive they are."
+			},
+			{
+				"type": "pasteurise",
+				"temperature": {
+					"min": 85,
+					"max": 94
+				},
+				"seconds": {
+					"min": 30,
+					"max": 30,
+					"about": true
+				}
+			},
+			{
+				"type": "homogenise",
+				"note": "Two-stage, at 100–120 bar then 20–40 bar, to make a stable emulsion."
+			},
+			{
+				"type": "dry",
+				"temperature": {
+					"min": 85,
+					"max": 95
+				},
+				"note": "Spray-dried to 2.5–3.5 % moisture with air at 160–190 °C going in and 85–95 °C coming out."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Infant formula",
+					"url": "https://en.wikipedia.org/wiki/Infant_formula"
+				},
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 19 Milk and whey powder",
+					"url": "http://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-powdered-ingredients"
+				}
+			],
+			"text": "The mixing, heat treatment and homogenising of formula are from Wikipedia; the homogenising pressures and the spray drying of baby-food powder from Tetra Pak."
+		}
+	}
+}

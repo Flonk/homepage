@@ -1,0 +1,100 @@
+{
+	"from": [
+		"raw"
+	],
+	"to": [
+		"mursik"
+	],
+	"step": "ferment in gourd",
+	"text": "Lactic acid bacteria and yeasts sour the milk in a gourd lined with charcoal dust. The charcoal absorbs the 'cowy' flavours of fresh milk, adds its own smoky taste and turns the milk the bluish-grey colour that Kalenjin farmers prize.",
+	"sources": {
+		"links": [
+			{
+				"name": "Mureithi et al., Journal of Ethnobiology 20(1) (2000)",
+				"url": "http://ethnobiology.org/sites/default/files/pdfs/JoE/20-1/Mureithi.pdf"
+			},
+			{
+				"name": "Wikipedia: Mursik",
+				"url": "https://en.wikipedia.org/wiki/Mursik"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"note": "Boiled today, traditionally raw."
+			},
+			{
+				"type": "heat",
+				"does": "cool"
+			},
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic",
+					"yeast",
+					"mould"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "Lactobacillus plantarum",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						},
+						{
+							"name": "Leuconostoc",
+							"kind": "bacterium",
+							"does": [
+								"aroma"
+							]
+						},
+						{
+							"name": "Enterococcus",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						},
+						{
+							"name": "yeasts",
+							"kind": "yeast"
+						},
+						{
+							"name": "Geotrichum",
+							"kind": "mould"
+						}
+					],
+					"by": [
+						"wild",
+						"vessel"
+					],
+					"vessel": "corked gourd, scraped and coated with charcoal"
+				},
+				"seconds": {
+					"min": 259200
+				},
+				"note": "Wild cultures sour it in a corked gourd, scraped and coated with charcoal from Senna didymobotrya sticks."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Mureithi et al., Journal of Ethnobiology 20(1) (2000)",
+					"url": "http://ethnobiology.org/sites/default/files/pdfs/JoE/20-1/Mureithi.pdf"
+				},
+				{
+					"name": "Wikipedia: Mursik",
+					"url": "https://en.wikipedia.org/wiki/Mursik"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

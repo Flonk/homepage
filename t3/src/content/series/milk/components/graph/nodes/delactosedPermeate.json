@@ -4,8 +4,6 @@
 		"Delac",
 		"Lactose mother liquor"
 	],
-	"from": "permeate",
-	"step": "what stays after the lactose crystallises",
 	"note": "Despite the name it still holds a lot of lactose and most of the salts, chloride and phosphate above all.",
 	"about": {
 		"text": "What is left of whey permeate after lactose has been crystallised out and spun off. It keeps the minerals, the lactose that would not crystallise and small nitrogen compounds, and goes mostly into animal feed, or on to milk-mineral and lactic acid production.",
@@ -17,57 +15,6 @@
 				}
 			],
 			"text": "Written from this source."
-		}
-	},
-	"how": {
-		"sources": {
-			"links": [
-				{
-					"name": "Tetra Pak Dairy Processing Handbook, ch. 18 Milk and whey fractionation",
-					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
-				},
-				{
-					"name": "US patent 10927390 B2",
-					"url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/10927390"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "evaporate",
-					"solids": {
-						"min": 60,
-						"max": 62
-					},
-					"note": "65 % if nanofiltered permeate."
-				},
-				{
-					"type": "heat",
-					"does": "cool",
-					"note": "Seeded, cooled slowly; crystals over 0.2 mm separate best."
-				},
-				{
-					"type": "separate",
-					"off": "solids",
-					"by": "centrifuge",
-					"note": "Two decanter centrifuges in series leave a lactose cake under 9 % moisture, about 99 % dry solids."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Tetra Pak Dairy Processing Handbook, ch. 18 Milk and whey fractionation",
-						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
-					},
-					{
-						"name": "US patent 10927390 B2",
-						"url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/10927390"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	}
 }

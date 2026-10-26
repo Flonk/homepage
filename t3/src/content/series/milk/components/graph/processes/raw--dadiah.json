@@ -1,0 +1,78 @@
+{
+	"from": [
+		"raw"
+	],
+	"to": [
+		"dadiah"
+	],
+	"step": "ferment in bamboo",
+	"text": "Lactic acid bacteria from the raw milk, the bamboo and the banana leaves sour the milk without any added starter. Because every tube starts from a different set of bacteria, the microbes differ from tube to tube even in one village.",
+	"sources": {
+		"links": [
+			{
+				"name": "Sukma et al., Milk Science International (dadiah 16S study)",
+				"url": "https://openjournals.hs-hannover.de/milkscience/article/view/104/73"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "Lactococcus",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						},
+						{
+							"name": "Lactobacillus",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						},
+						{
+							"name": "Leuconostoc",
+							"kind": "bacterium",
+							"does": [
+								"aroma"
+							]
+						}
+					],
+					"by": [
+						"wild",
+						"vessel"
+					],
+					"vessel": "fresh bamboo tube under banana leaves"
+				},
+				"temperature": {
+					"min": 28,
+					"max": 32
+				},
+				"seconds": {
+					"min": 172800,
+					"max": 172800
+				}
+			}
+		],
+		"text": "Cultures are wild, from the raw milk, the bamboo and the banana leaves; no starter.",
+		"sources": {
+			"links": [
+				{
+					"name": "Sukma et al., Milk Science International (dadiah 16S study)",
+					"url": "https://openjournals.hs-hannover.de/milkscience/article/view/104/73"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

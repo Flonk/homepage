@@ -45,54 +45,6 @@
 	"setting": "acid-heat",
 	"rind": "none",
 	"confidence": "high",
-	"how": {
-		"text": "The same method as ricotta: acidify the whey, heat it to about 90 °C so the whey proteins clot, then drain the curd. The Spanish article gives no fermentation time.",
-		"sources": {
-			"links": [
-				{
-					"name": "Spanish Wikipedia: Requesón",
-					"url": "https://es.wikipedia.org/wiki/Requesón"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "acidify",
-					"with": "vinegar or citrus juice",
-					"note": "About 5–10 % of the whey's volume at home, or citric or tartaric acid in industry."
-				},
-				{
-					"type": "heat",
-					"does": "heat",
-					"temperature": {
-						"min": 90,
-						"max": 90,
-						"about": true
-					}
-				},
-				{
-					"type": "drain",
-					"seconds": {
-						"min": 36000,
-						"max": 36000,
-						"about": true
-					},
-					"note": "In industry."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Spanish Wikipedia: Requesón",
-						"url": "https://es.wikipedia.org/wiki/Requesón"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"sources": {
 		"links": [
 			{

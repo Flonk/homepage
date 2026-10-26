@@ -1,0 +1,83 @@
+{
+	"from": [
+		"plantCheese"
+	],
+	"to": [
+		"queijoDeAzeitao"
+	],
+	"variant": true,
+	"text": "Figures are from a University of Évora report and the 1986 decree as seen in search summaries; one recipe page gives 30 d of ripening.",
+	"sources": {
+		"links": [
+			{
+				"name": "University of Évora report",
+				"url": "https://rdpc.uevora.pt/bitstream/10174/10627/1/SUBPROJECTOCrisjan2013DezembroULTIMO.pdf"
+			},
+			{
+				"name": "Decreto Regulamentar 49/1986",
+				"url": "https://diariodarepublica.pt/dr/detalhe/decreto-regulamentar/49-1986-221723"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "filter"
+			},
+			{
+				"type": "coagulate",
+				"temperature": {
+					"min": 30,
+					"max": 30
+				},
+				"seconds": {
+					"min": 2700,
+					"max": 2700
+				},
+				"note": "Dried cardoon flower (Cynara cardunculus), about 0.5 g per kg of milk, with salt added to the milk.",
+				"by": "plant"
+			},
+			{
+				"type": "drain"
+			},
+			{
+				"type": "press"
+			},
+			{
+				"type": "dry"
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"temperature": {
+					"min": 10,
+					"max": 12
+				},
+				"seconds": {
+					"min": 1728000,
+					"max": 1728000,
+					"about": true
+				},
+				"humidity": {
+					"min": 85,
+					"max": 90
+				}
+			}
+		],
+		"text": "Sheep milk set with dried cardoon flower at 30 °C for 45 min; one recipe page gives 30 d of ripening.",
+		"sources": {
+			"links": [
+				{
+					"name": "University of Évora report",
+					"url": "https://rdpc.uevora.pt/bitstream/10174/10627/1/SUBPROJECTOCrisjan2013DezembroULTIMO.pdf"
+				},
+				{
+					"name": "Decreto Regulamentar 49/1986",
+					"url": "https://diariodarepublica.pt/dr/detalhe/decreto-regulamentar/49-1986-221723"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

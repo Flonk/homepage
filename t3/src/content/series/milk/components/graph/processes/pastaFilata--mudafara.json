@@ -1,0 +1,70 @@
+{
+	"from": [
+		"pastaFilata"
+	],
+	"to": [
+		"mudafara"
+	],
+	"variant": true,
+	"step": "stretch, braid",
+	"text": "The curd is scalded and stretched into threads, then plaited. It is pickled in brine rather than ripened dry. Plant coagulants (Solanum dubium, S. torvum) have also been tried for white and mudaffara cheese.",
+	"sources": {
+		"links": [
+			{
+				"name": "FAO, The technology of traditional milk products in developing countries, ch. 7",
+				"url": "https://www.fao.org/4/t0251e/t0251e12.htm"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "coagulate",
+				"by": "rennet",
+				"temperature": {
+					"min": 37,
+					"max": 38
+				},
+				"note": "The braided type is set at 30–40 °C for about 5 h."
+			},
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [],
+					"by": [
+						"wild"
+					]
+				},
+				"note": "No culture is added; the acidity comes from the milk's own flora."
+			},
+			{
+				"type": "custom",
+				"name": "stretch",
+				"note": "In boiled water, close to the curd's melting point."
+			},
+			{
+				"type": "custom",
+				"name": "plait"
+			},
+			{
+				"type": "salt",
+				"how": "brine",
+				"note": "In tins at room temperature."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "FAO, The technology of traditional milk products in developing countries, ch. 7",
+					"url": "https://www.fao.org/4/t0251e/t0251e12.htm"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

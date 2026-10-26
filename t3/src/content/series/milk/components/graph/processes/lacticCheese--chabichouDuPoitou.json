@@ -1,0 +1,62 @@
+{
+	"from": [
+		"lacticCheese"
+	],
+	"to": [
+		"chabichouDuPoitou"
+	],
+	"variant": true,
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Chabichou du Poitou",
+				"url": "https://en.wikipedia.org/wiki/Chabichou_du_Poitou"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"temperature": {
+					"min": 20,
+					"max": 22
+				},
+				"seconds": {
+					"min": 86400,
+					"max": 86400,
+					"about": true
+				}
+			},
+			{
+				"type": "drain",
+				"seconds": {
+					"min": 64800,
+					"max": 86400
+				}
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"temperature": {
+					"min": 10,
+					"max": 12
+				},
+				"seconds": {
+					"min": 864000
+				}
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Chabichou du Poitou",
+					"url": "https://en.wikipedia.org/wiki/Chabichou_du_Poitou"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

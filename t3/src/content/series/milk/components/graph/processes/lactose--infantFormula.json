@@ -1,0 +1,64 @@
+{
+	"from": [
+		"lactose"
+	],
+	"to": [
+		"infantFormula"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "separate",
+				"off": "cream",
+				"by": "centrifuge",
+				"note": "A centrifuge takes the fat off the milk, leaving skimmed milk."
+			},
+			{
+				"type": "pasteurise",
+				"note": "The skimmed milk gets a short, gentle heat treatment."
+			},
+			{
+				"type": "evaporate",
+				"under": "vacuum",
+				"temperature": {
+					"min": 50,
+					"max": 50,
+					"about": true
+				},
+				"solids": {
+					"min": 50,
+					"max": 50,
+					"about": true
+				},
+				"note": "The skimmed milk is concentrated under vacuum."
+			},
+			{
+				"type": "add",
+				"what": "lactose, minerals, fats and vitamins",
+				"note": "The milk concentrate is blended with lactose and the others in a wet mix, where order, temperature and standing time matter."
+			},
+			{
+				"type": "homogenise",
+				"note": "The wet mix is homogenised again before drying."
+			},
+			{
+				"type": "dry",
+				"temperature": {
+					"min": 200,
+					"max": 200,
+					"about": true
+				},
+				"note": "The mix is atomised in a spray tower with air heated to about 200 °C, and the powder is finished on a fluid bed."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Hochdorf: From the meadow to baby's tummy",
+					"url": "https://inside.hochdorf.com/en/from-the-meadow-to-babys-tummy"
+				}
+			],
+			"text": "The sequence from skimmed milk through evaporation, wet mixing with lactose and the rest, homogenisation and spray drying, from an infant formula maker's blog. Whey demineralisation, which is also done, is not drawn."
+		}
+	}
+}

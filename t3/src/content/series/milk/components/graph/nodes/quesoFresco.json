@@ -47,63 +47,6 @@
 	"setting": "rennet",
 	"rind": "none",
 	"confidence": "high",
-	"how": {
-		"label": "mill the curd",
-		"text": "The rennet curd is ground fine, salted and packed into moulds instead of being pressed into a solid block, so the cheese stays moist (46–57%) and crumbles. It is eaten unripened, so it tastes of fresh milk and salt.",
-		"sources": {
-			"links": [
-				{
-					"name": "Van Hekken & Farkye, Hispanic Cheeses: The Quest for Queso, Food Technology (IFT)",
-					"url": "https://www.ift.org/food-technology-magazine/hispanic-cheeses-the-quest-for-queso"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "coagulate",
-					"by": "rennet",
-					"temperature": {
-						"min": 30,
-						"max": 32
-					}
-				},
-				{
-					"type": "cut",
-					"how": "cut"
-				},
-				{
-					"type": "heat",
-					"does": "cook",
-					"note": "Until the desired firmness."
-				},
-				{
-					"type": "drain"
-				},
-				{
-					"type": "cut",
-					"how": "mill"
-				},
-				{
-					"type": "salt",
-					"how": "dry"
-				},
-				{
-					"type": "mould"
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Van Hekken & Farkye, Hispanic Cheeses: The Quest for Queso, Food Technology (IFT)",
-						"url": "https://www.ift.org/food-technology-magazine/hispanic-cheeses-the-quest-for-queso"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"sources": {
 		"links": [
 			{

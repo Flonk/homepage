@@ -1,0 +1,96 @@
+{
+	"from": [
+		"semiHard"
+	],
+	"to": [
+		"roncal"
+	],
+	"variant": true,
+	"step": "press, brine, ripen",
+	"text": "Only milk, rennet, a starter and salt go in per the article (starter species not named).",
+	"sources": {
+		"links": [
+			{
+				"name": "Spanish Wikipedia, Queso Roncal (describes the DOP protocol)",
+				"url": "https://es.wikipedia.org/wiki/Queso_Roncal"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [],
+					"by": [
+						"starter"
+					]
+				}
+			},
+			{
+				"type": "coagulate",
+				"by": "rennet",
+				"temperature": {
+					"min": 30,
+					"max": 37
+				},
+				"seconds": {
+					"max": 3600
+				},
+				"note": "Animal rennet, formerly kid's."
+			},
+			{
+				"type": "cut",
+				"how": "cut"
+			},
+			{
+				"type": "drain"
+			},
+			{
+				"type": "press",
+				"note": "In beech moulds."
+			},
+			{
+				"type": "salt",
+				"how": "brine",
+				"seconds": {
+					"min": 108000,
+					"max": 108000
+				}
+			},
+			{
+				"type": "dry",
+				"temperature": {
+					"min": 12,
+					"max": 12
+				},
+				"seconds": {
+					"min": 3456000,
+					"max": 3456000
+				}
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"seconds": {
+					"min": 10368000
+				}
+			}
+		],
+		"text": "A starter goes in with the rennet, species not named. The 40 d of airing and rind care is at 12 C.",
+		"sources": {
+			"links": [
+				{
+					"name": "Spanish Wikipedia, Queso Roncal (describes the DOP protocol)",
+					"url": "https://es.wikipedia.org/wiki/Queso_Roncal"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

@@ -39,51 +39,5 @@
 		"KZ",
 		"AZ",
 		"TR"
-	],
-	"how": {
-		"text": "Denser than ayran. Strained, it gives suzma, and dried suzma is kurut; it is also used in the Uzbek chalop soup. The sources do not name the cultures.",
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Qatiq",
-					"url": "https://en.wikipedia.org/wiki/Qatiq"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "heat",
-					"does": "heat",
-					"temperature": {
-						"min": 100,
-						"max": 100,
-						"about": true
-					}
-				},
-				{
-					"type": "ferment",
-					"does": "incubate",
-					"kinds": [
-						"lactic"
-					],
-					"seconds": {
-						"min": 21600,
-						"max": 36000
-					}
-				}
-			],
-			"text": "Boiled milk set in a warm place; the sources do not name the cultures. It keeps 2-3 days cool, then turns very sour.",
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia: Qatiq",
-						"url": "https://en.wikipedia.org/wiki/Qatiq"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	}
+	]
 }

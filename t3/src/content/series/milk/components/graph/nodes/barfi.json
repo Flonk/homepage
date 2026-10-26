@@ -31,49 +31,6 @@
 		"IN",
 		"PK"
 	],
-	"how": {
-		"text": "Khoa and sugar are cooked together over low heat, stirred until the mass thickens and leaves the sides of the pan, then spread, cooled and cut. The sources give no quantities, temperatures or times.",
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Barfi",
-					"url": "https://en.wikipedia.org/wiki/Barfi"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "heat",
-					"does": "cook",
-					"note": "Khoa and sugar together, until the mass pulls away from the pan."
-				},
-				{
-					"type": "custom",
-					"name": "spread"
-				},
-				{
-					"type": "heat",
-					"does": "cool"
-				},
-				{
-					"type": "cut",
-					"how": "cut",
-					"note": "Into squares, diamonds or circles."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia: Barfi",
-						"url": "https://en.wikipedia.org/wiki/Barfi"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"facts": [
 		{
 			"k": "Flavours",

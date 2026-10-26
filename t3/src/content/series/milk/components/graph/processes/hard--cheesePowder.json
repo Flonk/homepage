@@ -1,0 +1,43 @@
+{
+	"from": [
+		"hard"
+	],
+	"to": [
+		"cheesePowder"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "cut",
+				"how": "grind",
+				"note": "Aged cheese is ground up, as drying loses some of the aroma of a young one."
+			},
+			{
+				"type": "add",
+				"what": "water and emulsifying salts",
+				"note": "The cheese is melted with water and emulsifying salts into a slurry."
+			},
+			{
+				"type": "homogenise",
+				"note": "The slurry, concentrated to 35-45 % total solids, is homogenised before drying."
+			},
+			{
+				"type": "dry",
+				"note": "It is spray-dried, or in some cases foam-mat dried, to a powder."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Cheese powder",
+					"url": "https://en.wikipedia.org/wiki/Cheese_powder"
+				},
+				{
+					"name": "Korean J. Food Sci. Anim. Resour. 38(5): 866 (review of cheese powders; outline of steps only)",
+					"url": "https://gcris.iyte.edu.tr/bitstream/11147/9175/1/kosfa-38-5-866.pdf"
+				}
+			],
+			"text": "Aged cheese, a slurry of 35-45 % solids, homogenisation and spray or foam-mat drying are from Wikipedia; the melting with water and emulsifying salts is from the topic list of the review, whose full text was not readable."
+		}
+	}
+}

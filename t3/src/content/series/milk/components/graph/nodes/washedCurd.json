@@ -1,7 +1,5 @@
 {
 	"label": "Washed-curd cheese",
-	"from": "semiHard",
-	"step": "wash the curd",
 	"mapped": true,
 	"niche": 1,
 	"about": {
@@ -28,61 +26,6 @@
 				}
 			],
 			"text": "The photograph, its author and its licence, from its page."
-		}
-	},
-	"how": {
-		"text": "Replacing whey with water washes out lactose, so less lactic acid forms later and the cheese avoids a sour, brittle texture. This gives the smooth, supple body of Gouda- and Havarti-type cheeses.",
-		"sources": {
-			"links": [
-				{
-					"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
-					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "washCurd",
-					"share": {
-						"min": 30,
-						"max": 50
-					},
-					"note": "Replaced by water, which sets the scald temperature and makes the curd milder."
-				},
-				{
-					"type": "salt",
-					"how": "brine",
-					"strength": {
-						"min": 1.5,
-						"max": 2.2
-					}
-				},
-				{
-					"type": "ferment",
-					"does": "ripen",
-					"temperature": {
-						"min": 12
-					},
-					"seconds": {
-						"min": 2419200
-					},
-					"humidity": {
-						"min": 75,
-						"max": 80
-					}
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
-						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	},
 	"examples": [

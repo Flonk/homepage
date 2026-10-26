@@ -1,0 +1,79 @@
+{
+	"from": [
+		"freshCheese"
+	],
+	"to": [
+		"panela"
+	],
+	"variant": true,
+	"step": "drain in baskets",
+	"text": "Large, gently handled curds are salted in the vat and left to drain in woven baskets without pressing, so the cheese keeps a high moisture content and takes the basket pattern on its surface. It is sold straight away, unripened.",
+	"sources": {
+		"links": [
+			{
+				"name": "Van Hekken & Farkye, Hispanic Cheeses: The Quest for Queso, Food Technology (IFT)",
+				"url": "https://www.ift.org/food-technology-magazine/hispanic-cheeses-the-quest-for-queso"
+			},
+			{
+				"name": "NMX-F-742-COFOCALEC-2012 Queso panela (catalogue entry)",
+				"url": "https://platiica.economia.gob.mx/normalizacion/?p=36296"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "calcium chloride"
+			},
+			{
+				"type": "coagulate",
+				"by": "rennet",
+				"temperature": {
+					"min": 30,
+					"max": 40
+				}
+			},
+			{
+				"type": "cut",
+				"how": "cut",
+				"size": {
+					"min": 25.4,
+					"max": 25.4,
+					"about": true
+				}
+			},
+			{
+				"type": "heat",
+				"does": "cook"
+			},
+			{
+				"type": "drain",
+				"note": "Half the whey is drained."
+			},
+			{
+				"type": "salt",
+				"how": "brine",
+				"note": "Dry salt or concentrated brine."
+			},
+			{
+				"type": "mould",
+				"note": "Drains overnight in basket-weave moulds."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Van Hekken & Farkye, Hispanic Cheeses: The Quest for Queso, Food Technology (IFT)",
+					"url": "https://www.ift.org/food-technology-magazine/hispanic-cheeses-the-quest-for-queso"
+				},
+				{
+					"name": "NMX-F-742-COFOCALEC-2012 Queso panela (catalogue entry)",
+					"url": "https://platiica.economia.gob.mx/normalizacion/?p=36296"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

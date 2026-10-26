@@ -1,0 +1,60 @@
+{
+	"from": [
+		"homogenised"
+	],
+	"to": [
+		"pasteurised"
+	],
+	"step": "pasteurise",
+	"text": "A short heat to 72 °C kills the disease-causing bacteria but not all spoilage organisms, so the milk must stay chilled and keeps for about a week. The destroyed milk enzyme alkaline phosphatase is the test that proves it was heated enough.",
+	"sources": {
+		"links": [
+			{
+				"name": "Regulation (EC) No 853/2004, Annex III, Section IX, Ch. II",
+				"url": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:02004R0853-20230215"
+			},
+			{
+				"name": "21 CFR 1240.61 (FDA pasteurization time-temperature table)",
+				"url": "https://www.law.cornell.edu/cfr/text/21/1240.61"
+			},
+			{
+				"name": "Tetra Pak Dairy Processing Handbook: Pasteurized and ESL dairy products",
+				"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/pasteurized-and-esl-dairy-products"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "pasteurise",
+				"explain": true,
+				"temperature": {
+					"min": 72,
+					"max": 72
+				},
+				"seconds": {
+					"min": 15,
+					"max": 15
+				}
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Regulation (EC) No 853/2004, Annex III, Section IX, Ch. II",
+					"url": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:02004R0853-20230215"
+				},
+				{
+					"name": "21 CFR 1240.61 (FDA pasteurization time-temperature table)",
+					"url": "https://www.law.cornell.edu/cfr/text/21/1240.61"
+				},
+				{
+					"name": "Tetra Pak Dairy Processing Handbook: Pasteurized and ESL dairy products",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/pasteurized-and-esl-dairy-products"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

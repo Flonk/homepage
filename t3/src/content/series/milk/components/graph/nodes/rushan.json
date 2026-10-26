@@ -4,8 +4,6 @@
 		"Milk fan",
 		"乳扇"
 	],
-	"from": "chhena",
-	"step": "stretch into sheets, dry",
 	"about": {
 		"text": "Rushan is a cow's milk cheese of Yunnan, China. It is traditionally made by the Bai people, who call it nvxseiz, the etymology of which is unclear.",
 		"sources": {
@@ -34,39 +32,5 @@
 	},
 	"regions": [
 		"CN"
-	],
-	"how": {
-		"text": "Fresh curd is pulled into thin sheets, wrapped on long bamboo sticks and hung to dry. The acid or coagulant used was not found in any opened source, so none is named.",
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Rushan cheese (process text marked citation needed)",
-					"url": "https://en.wikipedia.org/wiki/Rushan_cheese"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "custom",
-					"name": "stretch",
-					"note": "Into thin sheets."
-				},
-				{
-					"type": "dry",
-					"note": "Wrapped round bamboo sticks and hung until yellow and leather-dry."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia: Rushan cheese (process text marked citation needed)",
-						"url": "https://en.wikipedia.org/wiki/Rushan_cheese"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	}
+	]
 }

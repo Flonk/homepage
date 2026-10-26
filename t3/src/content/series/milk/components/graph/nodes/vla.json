@@ -31,54 +31,6 @@
 	"regions": [
 		"NL"
 	],
-	"how": {
-		"text": "Milk is thickened with starch (or egg) and sweetened, then cooled until it sets to a soft spoonable cream. Industrial vla is heat-treated, but no temperatures or times were found in an opened source.",
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia (nl): Vla",
-					"url": "https://nl.wikipedia.org/wiki/Vla"
-				},
-				{
-					"name": "Wikipedia: Vla",
-					"url": "https://en.wikipedia.org/wiki/Vla"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "heat",
-					"does": "heat",
-					"note": "With eggs or maize starch (maizena), sugar and vanilla.",
-					"temperature": {
-						"min": 100,
-						"max": 100,
-						"about": true
-					}
-				},
-				{
-					"type": "heat",
-					"does": "cool",
-					"note": "Cooled until it sets to a soft spoonable cream."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia (nl): Vla",
-						"url": "https://nl.wikipedia.org/wiki/Vla"
-					},
-					{
-						"name": "Wikipedia: Vla",
-						"url": "https://en.wikipedia.org/wiki/Vla"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"composition": {
 		"fat": {
 			"min": 2.6

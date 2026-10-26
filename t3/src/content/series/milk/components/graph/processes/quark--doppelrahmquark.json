@@ -1,0 +1,122 @@
+{
+	"from": [
+		"quark"
+	],
+	"to": [
+		"doppelrahmquark"
+	],
+	"sources": {
+		"unsourced": true,
+		"text": "No source recorded for how it is made yet."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "pasteurise",
+				"temperature": {
+					"min": 85,
+					"max": 95
+				},
+				"seconds": {
+					"min": 300,
+					"max": 900
+				},
+				"note": "Skim milk is heated harder than for drinking milk."
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"min": 20,
+					"max": 30
+				}
+			},
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "Lactococcus lactis",
+							"formerly": [
+								"Lactobacillus lactis"
+							],
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						}
+					],
+					"by": [
+						"starter"
+					]
+				},
+				"temperature": {
+					"min": 20,
+					"max": 30
+				},
+				"seconds": {
+					"min": 57600,
+					"max": 57600,
+					"about": true
+				},
+				"pH": {
+					"min": 4.5,
+					"max": 4.7
+				},
+				"note": "About 1 ml of liquid rennet per 100 kg of milk firms the curd for separation."
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 58,
+					"max": 60
+				},
+				"seconds": {
+					"min": 0,
+					"max": 180
+				},
+				"note": "It is then cooled to 38-45 °C for separating."
+			},
+			{
+				"type": "separate",
+				"off": "whey",
+				"by": "centrifuge",
+				"temperature": {
+					"min": 38,
+					"max": 45
+				}
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"min": 10,
+					"max": 12
+				}
+			},
+			{
+				"type": "add",
+				"what": "cream",
+				"note": "Cream is mixed in after cooling, the more the richer the grade."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+				},
+				{
+					"name": "Wikipedia: Quark (dairy product)",
+					"url": "https://en.wikipedia.org/wiki/Quark_(dairy_product)"
+				}
+			],
+			"text": "The quark line (heat, souring with a little rennet, thermising, separating, cooling) is from the handbook, and cream stirred in after cooling for the richer grades from Wikipedia."
+		}
+	}
+}

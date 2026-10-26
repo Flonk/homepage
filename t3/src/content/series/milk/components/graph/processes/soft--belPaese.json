@@ -1,0 +1,142 @@
+{
+	"from": [
+		"soft"
+	],
+	"to": [
+		"belPaese"
+	],
+	"variant": true,
+	"step": "stew the curd",
+	"text": "A warm, fast rennet set with thermophilic starter, then a warm 'stewing' while the curd drains, gives a moist (45–48%), elastic, buttery paste. A short, cold, surface-wiped ripening keeps the flavour mild, in the style of Saint-Paulin and Port Salut.",
+	"sources": {
+		"links": [
+			{
+				"name": "ONAF fact sheet: Italico (generic type)",
+				"url": "https://www.onaf.it/uploads/public/11929_italico.pdf"
+			},
+			{
+				"name": "Oxford Companion to Food: Bel Paese (via ckbk)",
+				"url": "https://app.ckbk.com/reference/food77337c02s001e133"
+			},
+			{
+				"name": "Store norske leksikon: Bel Paese",
+				"url": "https://snl.no/bel_paese"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "pasteurise"
+			},
+			{
+				"type": "coagulate",
+				"by": "rennet",
+				"temperature": {
+					"min": 40,
+					"max": 43
+				},
+				"seconds": {
+					"min": 600,
+					"max": 900
+				},
+				"note": "With liquid calf rennet."
+			},
+			{
+				"type": "cut",
+				"how": "cut",
+				"size": {
+					"min": 20,
+					"max": 30
+				},
+				"note": "Then to hazelnut size, and not cooked."
+			},
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "Streptococcus thermophilus",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							],
+							"grows": "thermophilic"
+						}
+					],
+					"by": [
+						"starter"
+					]
+				},
+				"temperature": {
+					"min": 25,
+					"max": 30
+				},
+				"seconds": {
+					"min": 18000,
+					"max": 18000,
+					"about": true
+				},
+				"humidity": {
+					"min": 90,
+					"max": 95
+				},
+				"note": "Stewed in perforated moulds, in wheels of about 2 kg."
+			},
+			{
+				"type": "salt",
+				"how": "brine",
+				"strength": {
+					"min": 18,
+					"max": 20
+				},
+				"temperature": {
+					"min": 10,
+					"max": 12
+				},
+				"seconds": {
+					"min": 25200,
+					"max": 36000
+				}
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"temperature": {
+					"min": 4,
+					"max": 6
+				},
+				"seconds": {
+					"min": 1728000,
+					"max": 4838400
+				},
+				"humidity": {
+					"min": 85
+				},
+				"note": "Turned and wiped; the Italico type ripens 20–40 d, Galbani's Bel Paese 6–8 wk."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "ONAF fact sheet: Italico (generic type)",
+					"url": "https://www.onaf.it/uploads/public/11929_italico.pdf"
+				},
+				{
+					"name": "Oxford Companion to Food: Bel Paese (via ckbk)",
+					"url": "https://app.ckbk.com/reference/food77337c02s001e133"
+				},
+				{
+					"name": "Store norske leksikon: Bel Paese",
+					"url": "https://snl.no/bel_paese"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

@@ -1,0 +1,61 @@
+{
+	"from": [
+		"skimmedPowder"
+	],
+	"to": [
+		"reconstituted"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "water",
+				"temperature": {
+					"min": 40,
+					"max": 60
+				},
+				"note": "Stirred in at no more than 35–40 % solids and kept under 65 °C, which would denature the whey proteins."
+			},
+			{
+				"type": "custom",
+				"name": "hydrate",
+				"temperature": {
+					"min": 40,
+					"max": 50
+				},
+				"seconds": {
+					"min": 1200,
+					"about": true
+				},
+				"note": "Left with little or no stirring to hydrate and let the air out."
+			},
+			{
+				"type": "pasteurise",
+				"temperature": {
+					"min": 72
+				},
+				"seconds": {
+					"min": 15,
+					"max": 15
+				}
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"max": 4
+				}
+			}
+		],
+		"text": "The handbook describes these steps for recombined milk; reconstituted milk is the same without the added fat.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook: Recombined milk products",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/recombined-milk-products"
+				}
+			],
+			"text": "Water temperature, solids, hydration, and pasteurising, from the handbook’s account of recombining skim powder."
+		}
+	}
+}

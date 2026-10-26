@@ -1,0 +1,44 @@
+{
+	"from": [
+		"lactose"
+	],
+	"to": [
+		"lactobionicAcid"
+	],
+	"step": "oxidise",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Lactobionic acid",
+				"url": "https://en.wikipedia.org/wiki/Lactobionic_acid"
+			},
+			{
+				"name": "Wu et al., Microbial Cell Factories 2022 (numbers from a search summary)",
+				"url": "https://microbialcellfactories.biomedcentral.com/articles/10.1186/s12934-022-01907-0"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "oxidise",
+				"note": "Catalytic or electrochemical."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Lactobionic acid",
+					"url": "https://en.wikipedia.org/wiki/Lactobionic_acid"
+				},
+				{
+					"name": "Wu et al., Microbial Cell Factories 2022 (numbers from a search summary)",
+					"url": "https://microbialcellfactories.biomedcentral.com/articles/10.1186/s12934-022-01907-0"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

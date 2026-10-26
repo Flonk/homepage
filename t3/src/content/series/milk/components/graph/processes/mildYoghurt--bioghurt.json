@@ -1,0 +1,79 @@
+{
+	"from": [
+		"mildYoghurt"
+	],
+	"to": [
+		"bioghurt"
+	],
+	"variant": true,
+	"text": "Leaving out L. bulgaricus and using gentler-acidifying lactobacilli gives a yoghurt that is only mildly sour. Bioghurt was introduced in the 1950s as a German sour-milk speciality.",
+	"sources": {
+		"links": [
+			{
+				"name": "Austrian Food Codex B32, Milch und Milchprodukte (2018)",
+				"url": "https://web.archive.org/web/20180202190103/https://www.verbrauchergesundheit.gv.at/lebensmittel/buch/codex/B_32_Milch_und_Milchprodukte_18_1_2018.pdf"
+			},
+			{
+				"name": "'Über die neue Sauermilch-Spezialität Bioghurt' (1956), Fette Seifen",
+				"url": "https://doi.org/10.1002/lipi.19560580808"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 85
+				}
+			},
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "Streptococcus thermophilus",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						},
+						{
+							"name": "mild Lactobacillus",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						}
+					],
+					"by": [
+						"starter"
+					]
+				},
+				"pH": {
+					"min": 4,
+					"max": 4.7
+				}
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Austrian Food Codex B32, Milch und Milchprodukte (2018)",
+					"url": "https://web.archive.org/web/20180202190103/https://www.verbrauchergesundheit.gv.at/lebensmittel/buch/codex/B_32_Milch_und_Milchprodukte_18_1_2018.pdf"
+				},
+				{
+					"name": "'Über die neue Sauermilch-Spezialität Bioghurt' (1956), Fette Seifen",
+					"url": "https://doi.org/10.1002/lipi.19560580808"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

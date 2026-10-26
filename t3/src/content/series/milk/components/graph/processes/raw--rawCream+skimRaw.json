@@ -1,0 +1,81 @@
+{
+	"from": [
+		"raw"
+	],
+	"to": [
+		"rawCream",
+		"skimRaw"
+	],
+	"step": "separate",
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 55,
+					"max": 65
+				}
+			},
+			{
+				"type": "separate",
+				"off": "cream",
+				"by": "centrifuge",
+				"note": "The lighter butterfat rises and is skimmed off before homogenisation, industrially spun out."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Cream",
+					"url": "https://en.wikipedia.org/wiki/Cream"
+				},
+				{
+					"name": "Tetra Pak Dairy Processing Handbook: Centrifugal separators and milk standardization",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/centrifugal-separators-and-milk-standardization"
+				},
+				{
+					"name": "Regulation (EU) No 1308/2013, Annex VII Part IV (UK retained copy)",
+					"url": "https://www.legislation.gov.uk/eur/2013/1308/annex/VII/part/IV/division/III"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	},
+	"legs": {
+		"rawCream": {
+			"step": "the fat",
+			"text": "The fat is lighter than the rest of the milk. Left to stand it floats up as a layer; in a dairy a centrifugal separator does the same in seconds and sends cream and skimmed milk out of separate outlets. In the hermetic type the bowl stays full of milk and cream leaves from the centre.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Cream",
+						"url": "https://en.wikipedia.org/wiki/Cream"
+					},
+					{
+						"name": "Tetra Pak Dairy Processing Handbook: Centrifugal separators and milk standardization",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/centrifugal-separators-and-milk-standardization"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		},
+		"skimRaw": {
+			"step": "the rest",
+			"text": "The skim milk is what is left of raw milk when the cream has been spun off: it is the other half of the same separating step and still raw until it is heat-treated.",
+			"sources": {
+				"links": [
+					{
+						"name": "Tetra Pak Dairy Processing Handbook: Centrifugal separators and milk standardization",
+						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/centrifugal-separators-and-milk-standardization"
+					},
+					{
+						"name": "Regulation (EU) No 1308/2013, Annex VII Part IV (UK retained copy)",
+						"url": "https://www.legislation.gov.uk/eur/2013/1308/annex/VII/part/IV/division/III"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		}
+	}
+}

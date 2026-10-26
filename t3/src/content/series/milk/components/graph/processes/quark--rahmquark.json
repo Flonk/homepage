@@ -1,0 +1,30 @@
+{
+	"from": [
+		"quark"
+	],
+	"to": [
+		"rahmquark"
+	],
+	"sources": {
+		"unsourced": true,
+		"text": "No source recorded for how it is made yet."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "cream",
+				"note": "Cream is mixed into the finished skimmed-milk quark to bring it to the grade (Rahmstufe, 50 % fat in dry matter)."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Quark (Lebensmittel), German Wikipedia",
+					"url": "https://de.wikipedia.org/wiki/Quark_(Lebensmittel)"
+				}
+			],
+			"text": "That the fat grades are not set in the milk but by mixing cream into the finished skimmed-milk quark, since standardising the milk would lose fat with the whey."
+		}
+	}
+}

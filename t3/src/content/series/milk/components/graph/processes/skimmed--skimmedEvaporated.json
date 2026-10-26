@@ -1,0 +1,86 @@
+{
+	"from": [
+		"skimmed"
+	],
+	"to": [
+		"skimmedEvaporated"
+	],
+	"step": "evaporate, sterilise in can",
+	"text": "The same process as evaporated milk, but started from skimmed milk, so the can holds the milk solids without the fat. In the US it must have vitamins A and D put back.",
+	"sources": {
+		"links": [
+			{
+				"name": "Directive 2001/114/EC, Annex I (legislation.gov.uk)",
+				"url": "https://www.legislation.gov.uk/eudr/2001/114/annex/I"
+			},
+			{
+				"name": "21 CFR 131.132 Evaporated skimmed milk (govinfo, 1996 edition)",
+				"url": "https://www.govinfo.gov/content/pkg/CFR-1996-title21-vol2/html/CFR-1996-title21-vol2-part131.htm"
+			},
+			{
+				"name": "Tetra Pak Dairy Processing Handbook: Condensed milk",
+				"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/condensed-milk"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"temperature": {
+					"min": 100,
+					"max": 120
+				},
+				"seconds": {
+					"min": 60,
+					"max": 180
+				},
+				"does": "heat"
+			},
+			{
+				"type": "evaporate",
+				"under": "vacuum",
+				"temperature": {
+					"min": 65,
+					"max": 70
+				}
+			},
+			{
+				"type": "add",
+				"what": "stabiliser",
+				"note": "Sodium phosphates, the dose set by sterilisation trials."
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 110,
+					"max": 120
+				},
+				"seconds": {
+					"min": 900,
+					"max": 1200
+				},
+				"note": "In the can."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Directive 2001/114/EC, Annex I (legislation.gov.uk)",
+					"url": "https://www.legislation.gov.uk/eudr/2001/114/annex/I"
+				},
+				{
+					"name": "21 CFR 131.132 Evaporated skimmed milk (govinfo, 1996 edition)",
+					"url": "https://www.govinfo.gov/content/pkg/CFR-1996-title21-vol2/html/CFR-1996-title21-vol2-part131.htm"
+				},
+				{
+					"name": "Tetra Pak Dairy Processing Handbook: Condensed milk",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/condensed-milk"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

@@ -1,8 +1,6 @@
 {
 	"label": "Ropy milk",
 	"comment": "Soured by the same lactococci as soured milk is, but strains of them that give off slime.",
-	"from": "pasteurised",
-	"step": "with slime-making lactococci",
 	"about": {
 		"text": "A Scandinavian type of fermented milk with a stringy, slimy ('ropy') texture. It is soured at room temperature by mesophilic Lactococcus lactis strains that give off exopolysaccharides, long sugar chains that form the slime. The Finnish viili is the best-studied example.",
 		"sources": {
@@ -34,78 +32,6 @@
 		"FI",
 		"NO"
 	],
-	"how": {
-		"text": "Mesophilic lactococci sour the milk at room temperature while special strains give off slime, long sugar chains that make the gel stringy and 'long'. Diacetylactis strains and Leuconostoc add the buttery aroma.",
-		"sources": {
-			"links": [
-				{
-					"name": "Food Chemistry: Molecular Sciences (2021), on viili",
-					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8991987"
-				},
-				{
-					"name": "Tetra Pak Dairy Processing Handbook, ch. 12 Cultures",
-					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cultures-and-starter-manufacture"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "ferment",
-					"does": "incubate",
-					"kinds": [
-						"lactic"
-					],
-					"adds": {
-						"microbes": [
-							{
-								"name": "Lactococcus lactis",
-								"kind": "bacterium",
-								"does": [
-									"acid",
-									"slime"
-								]
-							},
-							{
-								"name": "Leuconostoc",
-								"kind": "bacterium",
-								"does": [
-									"aroma"
-								]
-							}
-						],
-						"by": [
-							"starter"
-						]
-					},
-					"temperature": {
-						"min": 20,
-						"max": 20,
-						"about": true
-					},
-					"seconds": {
-						"min": 57600,
-						"max": 86400
-					},
-					"note": "In the lab, 1 g of starter per litre at 22.5 °C for 24 h."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Food Chemistry: Molecular Sciences (2021), on viili",
-						"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8991987"
-					},
-					{
-						"name": "Tetra Pak Dairy Processing Handbook, ch. 12 Cultures",
-						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cultures-and-starter-manufacture"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"examples": [
 		"langfil",
 		"viili",

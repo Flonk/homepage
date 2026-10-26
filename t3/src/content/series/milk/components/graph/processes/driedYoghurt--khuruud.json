@@ -1,0 +1,58 @@
+{
+	"from": [
+		"driedYoghurt"
+	],
+	"to": [
+		"khuruud"
+	],
+	"variant": true,
+	"step": "press, dry hard",
+	"text": "Milk is soured, the curds drained (chagaa) and pressed in sacks under weight into semi-solid aarts; sun-dried it becomes khuruud, a rock-hard cheese; ground through a meat grinder with sugar it becomes aaruul.",
+	"sources": {
+		"links": [
+			{
+				"name": "Mongolian dairy products, mongoliantour.guide",
+				"url": "https://www.mongoliantour.guide/post/short-information-about-mongolian-dairy-products"
+			},
+			{
+				"name": "Wikipedia, Kashk",
+				"url": "https://en.wikipedia.org/wiki/Kashk"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"note": "The milk is soured."
+			},
+			{
+				"type": "drain",
+				"note": "The drained curd is chagaa."
+			},
+			{
+				"type": "press",
+				"note": "In sacks under weight, into semi-solid aarts."
+			},
+			{
+				"type": "dry",
+				"note": "Sun-dried to khuruud, a rock-hard cheese."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Mongolian dairy products, mongoliantour.guide",
+					"url": "https://www.mongoliantour.guide/post/short-information-about-mongolian-dairy-products"
+				},
+				{
+					"name": "Wikipedia, Kashk",
+					"url": "https://en.wikipedia.org/wiki/Kashk"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

@@ -4,11 +4,6 @@
 		"WPH",
 		"Hydrolysed whey protein"
 	],
-	"from": "wpc",
-	"step": "break down with enzymes",
-	"alsoFrom": [
-		"wpi"
-	],
 	"note": "Partial hydrolysates are made to be less allergenic; extensive ones (over 90 % hydrolysed in patent wording) for babies with cow milk protein allergy. The price is bitterness.",
 	"about": {
 		"text": "Whey protein that enzymes have chopped into short peptides, so that it is easier to digest and less allergenic than the intact protein. It goes into infant formulas, medical foods and sports drinks.",
@@ -34,59 +29,6 @@
 				}
 			],
 			"text": "The photograph, its author and its licence, from its page."
-		}
-	},
-	"how": {
-		"sources": {
-			"links": [
-				{
-					"name": "Tatua: protein hydrolysates",
-					"url": "https://www.tatua.com/protein-hydrolysates"
-				},
-				{
-					"name": "US patent 5405637",
-					"url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/5405637"
-				},
-				{
-					"name": "US patent 4981704",
-					"url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/4981704"
-				},
-				{
-					"name": "Wikipedia: Whey protein",
-					"url": "https://en.wikipedia.org/wiki/Whey_protein"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "custom",
-					"name": "hydrolyse",
-					"note": "With a porcine trypsin and chymotrypsin mix (activity ratio 0.33–0.66 in a patent); other proteases are also used."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Tatua: protein hydrolysates",
-						"url": "https://www.tatua.com/protein-hydrolysates"
-					},
-					{
-						"name": "US patent 5405637",
-						"url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/5405637"
-					},
-					{
-						"name": "US patent 4981704",
-						"url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/4981704"
-					},
-					{
-						"name": "Wikipedia: Whey protein",
-						"url": "https://en.wikipedia.org/wiki/Whey_protein"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	},
 	"examples": [

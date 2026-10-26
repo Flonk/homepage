@@ -1,0 +1,47 @@
+{
+	"from": [
+		"ayran"
+	],
+	"to": [
+		"tan"
+	],
+	"variant": true,
+	"text": "Tan is the Armenian drink of yoghurt (matsun) thinned with water and salted, close to ayran.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Ayran (incl. Armenian t'an)",
+				"url": "https://en.wikipedia.org/wiki/Ayran"
+			},
+			{
+				"name": "Codex Standard for Fermented Milks CXS 243-2003",
+				"url": "https://www.fao.org/input/download/standards/400/CXS_243e.pdf"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "water"
+			},
+			{
+				"type": "salt"
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Ayran (incl. Armenian t'an)",
+					"url": "https://en.wikipedia.org/wiki/Ayran"
+				},
+				{
+					"name": "Codex Standard for Fermented Milks CXS 243-2003",
+					"url": "https://www.fao.org/input/download/standards/400/CXS_243e.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

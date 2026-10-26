@@ -1,0 +1,59 @@
+{
+	"from": [
+		"cheddared"
+	],
+	"to": [
+		"processed"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "cut",
+				"how": "grind",
+				"note": "The cheese is scraped clean, washed and ground before it is melted."
+			},
+			{
+				"type": "add",
+				"what": "emulsifying salts, water and salt",
+				"note": "Emulsifying salts, about 1 to 3 percent of the blend, let the casein hold the fat and water as one smooth mass."
+			},
+			{
+				"type": "heat",
+				"does": "cook",
+				"temperature": {
+					"min": 70,
+					"max": 95
+				},
+				"seconds": {
+					"min": 240,
+					"max": 900
+				},
+				"note": "It is cooked under constant agitation, often under vacuum, for 4 to 5 minutes for blocks and 10 to 15 for spreads."
+			},
+			{
+				"type": "custom",
+				"name": "hot-pack",
+				"note": "The molten cheese is packed at cooking temperature."
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"note": "Spreads are cooled quickly in a tunnel, blocks slowly at room temperature after moulding."
+			}
+		],
+		"text": "The pH is brought to 5.6 to 5.9 for spreads and 5.4 to 5.6 for sliced types.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese (processed cheese section)",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+				},
+				{
+					"name": "US 7,547,457 B2, Methods of fortifying process cheese (description of process cheese making)",
+					"url": "https://patents.google.com/patent/US7547457B2/en"
+				}
+			],
+			"text": "The steps, cooking temperatures and times, pH and packing from the handbook; the share of emulsifying salts from the patent, which describes the usual process."
+		}
+	}
+}

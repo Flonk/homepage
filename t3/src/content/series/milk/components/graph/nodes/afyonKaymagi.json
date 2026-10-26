@@ -23,66 +23,6 @@
 	"beasts": [
 		"buffalo"
 	],
-	"how": {
-		"label": "heat to 90 °C, rest overnight",
-		"text": "Buffalo milk is heated slowly, then left to stand overnight; the cream that has gathered on top is lifted off in the morning. The figures are those of the Turkish geographical indication.",
-		"sources": {
-			"links": [
-				{
-					"name": "Grasas y Aceites: Afyon kaymagi",
-					"url": "https://grasasyaceites.revistas.csic.es/index.php/grasasyaceites/article/download/1337/1335/1333"
-				},
-				{
-					"name": "Kure Ansiklopedi: Afyon kaymagi",
-					"url": "https://kureansiklopedi.com/en/detay/afyon-kaymagi-ddae2"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "drain",
-					"by": "cloth",
-					"note": "Twice, into copper containers."
-				},
-				{
-					"type": "heat",
-					"does": "heat",
-					"temperature": {
-						"min": 90,
-						"max": 90
-					},
-					"seconds": {
-						"min": 1800,
-						"max": 1800
-					}
-				},
-				{
-					"type": "custom",
-					"name": "rest",
-					"note": "Overnight, at room temperature."
-				},
-				{
-					"type": "separate",
-					"off": "skin"
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Grasas y Aceites: Afyon kaymagi",
-						"url": "https://grasasyaceites.revistas.csic.es/index.php/grasasyaceites/article/download/1337/1335/1333"
-					},
-					{
-						"name": "Kure Ansiklopedi: Afyon kaymagi",
-						"url": "https://kureansiklopedi.com/en/detay/afyon-kaymagi-ddae2"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"composition": {
 		"fat": {
 			"min": 60

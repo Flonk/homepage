@@ -1,0 +1,39 @@
+{
+	"from": [
+		"butterSculpture"
+	],
+	"to": [
+		"butterLamb"
+	],
+	"variant": true,
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Butter_lamb"
+			}
+		],
+		"text": "How it is shaped and dressed, from its article."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "mould",
+				"note": "By hand or in a lamb-shaped mould."
+			},
+			{
+				"type": "add",
+				"what": "peppercorn or clove eyes and a red-cross banner"
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Butter_lamb"
+				}
+			],
+			"text": "How it is shaped and dressed, from its article."
+		}
+	}
+}

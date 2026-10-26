@@ -3,8 +3,6 @@
 	"aka": [
 		"Säurekasein"
 	],
-	"from": "skimmed",
-	"step": "the casein",
 	"niche": 1,
 	"about": {
 		"text": "Casein, milk's main protein, precipitated out of skimmed milk by acid at its isoelectric point, pH 4.6 to 4.7, then washed and dried. Used in foods and industry, dissolved in alkali to make caseinates, and once the base of casein glues.",
@@ -30,88 +28,6 @@
 				}
 			],
 			"text": "The photograph, its author and its licence, from its page."
-		}
-	},
-	"how": {
-		"text": "Casein carries a negative charge in milk (pH 6.6). At pH 4.6 the charge is gone, the micelles collapse and clump into curd, which is washed free of lactose and minerals, then dried and ground. Lactic acid from a starter can do the same job, but industrial acid casein is mostly made with mineral acid.",
-		"sources": {
-			"links": [
-				{
-					"name": "US4075196A, Production of casein and caseinates (examples of the conventional process)",
-					"url": "https://patents.google.com/patent/US4075196A/en"
-				},
-				{
-					"name": "Wikipedia, Casein (isoelectric point 4.6, milk pH 6.6)",
-					"url": "https://en.wikipedia.org/wiki/Casein"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "pasteurise",
-					"temperature": {
-						"min": 78,
-						"max": 78
-					},
-					"seconds": {
-						"min": 20,
-						"max": 20
-					}
-				},
-				{
-					"type": "acidify",
-					"with": "10% HCl",
-					"pH": {
-						"min": 4.6,
-						"max": 4.6
-					},
-					"note": "To the isoelectric point of casein."
-				},
-				{
-					"type": "heat",
-					"does": "cool",
-					"temperature": {
-						"min": 20,
-						"max": 20,
-						"about": true
-					}
-				},
-				{
-					"type": "separate",
-					"off": "cream"
-				},
-				{
-					"type": "washCurd",
-					"temperature": {
-						"min": 45,
-						"max": 50
-					},
-					"note": "Up to 1 l of water per l of milk."
-				},
-				{
-					"type": "dry",
-					"note": "In a fluid bed, from about 45 % to about 90 % dry matter."
-				},
-				{
-					"type": "cut",
-					"how": "grind"
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "US4075196A, Production of casein and caseinates (examples of the conventional process)",
-						"url": "https://patents.google.com/patent/US4075196A/en"
-					},
-					{
-						"name": "Wikipedia, Casein (isoelectric point 4.6, milk pH 6.6)",
-						"url": "https://en.wikipedia.org/wiki/Casein"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	}
 }

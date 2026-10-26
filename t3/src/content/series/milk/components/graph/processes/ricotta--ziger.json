@@ -1,0 +1,58 @@
+{
+	"from": [
+		"ricotta"
+	],
+	"to": [
+		"ziger"
+	],
+	"variant": true,
+	"text": "Hot whey plus acid makes the whey proteins flocculate; the flocs are ladled into moulds and drained. No starter and no rennet. Schabziger from Glarus is a related but separate cheese, flavoured with Zigerklee.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia (de): Ziger",
+				"url": "https://de.wikipedia.org/wiki/Ziger"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 90,
+					"max": 92,
+					"about": true
+				}
+			},
+			{
+				"type": "acidify",
+				"with": "acetic acid"
+			},
+			{
+				"type": "mould",
+				"note": "In sieve moulds, pressed lightly."
+			},
+			{
+				"type": "custom",
+				"name": "rest",
+				"seconds": {
+					"min": 86400,
+					"max": 86400,
+					"about": true
+				}
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia (de): Ziger",
+					"url": "https://de.wikipedia.org/wiki/Ziger"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

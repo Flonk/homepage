@@ -3,8 +3,6 @@
 	"aka": [
 		"Weißschimmelkäse"
 	],
-	"from": "soft",
-	"step": "grow white mould",
 	"mapped": true,
 	"niche": 1,
 	"about": {
@@ -31,114 +29,6 @@
 				}
 			],
 			"text": "The photograph, its author and its licence, from its page."
-		}
-	},
-	"how": {
-		"text": "White Penicillium mould covers the surface in about 10–12 days at high humidity. The ripening comes mainly from this surface mould, which makes these 'mould ripened' cheeses under Codex. P. candidum is the commercial name for white strains of P. camemberti.",
-		"sources": {
-			"links": [
-				{
-					"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
-					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
-				},
-				{
-					"name": "Codex General Standard for Cheese (CXS 283-1978)",
-					"url": "https://www.fao.org/input/download/standards/175/CXS_283e.pdf"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "ferment",
-					"does": "incubate",
-					"adds": {
-						"microbes": [
-							{
-								"name": "Lactococcus lactis subsp. lactis",
-								"kind": "bacterium",
-								"does": [
-									"acid"
-								]
-							},
-							{
-								"name": "Lactococcus lactis subsp. cremoris",
-								"kind": "bacterium",
-								"does": [
-									"acid"
-								]
-							},
-							{
-								"name": "Penicillium camemberti",
-								"kind": "mould",
-								"does": [
-									"rind"
-								],
-								"formerly": [
-									"Penicillium candidum"
-								]
-							},
-							{
-								"name": "Geotrichum candidum",
-								"kind": "yeast"
-							}
-						],
-						"by": [
-							"starter"
-						]
-					},
-					"note": "Geotrichum candidum is optional, for a creamy, wrinkled rind."
-				},
-				{
-					"type": "dry",
-					"temperature": {
-						"min": 18,
-						"max": 18
-					},
-					"seconds": {
-						"min": 172800,
-						"max": 172800
-					},
-					"humidity": {
-						"min": 75,
-						"max": 80
-					}
-				},
-				{
-					"type": "ferment",
-					"does": "ripen",
-					"kinds": [
-						"lactic",
-						"mould"
-					],
-					"temperature": {
-						"min": 12,
-						"max": 13
-					},
-					"seconds": {
-						"min": 864000,
-						"max": 1036800
-					},
-					"humidity": {
-						"min": 90,
-						"max": 90
-					}
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
-						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
-					},
-					{
-						"name": "Codex General Standard for Cheese (CXS 283-1978)",
-						"url": "https://www.fao.org/input/download/standards/175/CXS_283e.pdf"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	},
 	"examples": [

@@ -4,7 +4,6 @@
 		"Crème fraîche fluide",
 		"Crème entière"
 	],
-	"from": "cream",
 	"at": 30,
 	"about": {
 		"text": "France’s plain cream, at least 30 % fat: sold as crème fraîche fluide when it is only pasteurised, for in France crème fraîche need not be soured; only the épaisse, thick, kind is.",
@@ -35,40 +34,6 @@
 	"regions": [
 		"FR"
 	],
-	"how": {
-		"text": "Crème fluide is whole cream left liquid: separated, standardised to 30 % or more and heated. Lactic ferments are what make the thick kind (crème épaisse); thickness and fat are separate properties.",
-		"sources": {
-			"links": [
-				{
-					"name": "French Wikipedia: Crème (produit laitier)",
-					"url": "https://fr.wikipedia.org/wiki/Cr%C3%A8me_(produit_laitier)"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "heat",
-					"does": "heat",
-					"temperature": {
-						"min": 65,
-						"max": 85
-					},
-					"note": "Pasteurised at this heat, or UHT at 150 °C, or sterilised (non-UHT) at 115 °C."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "French Wikipedia: Crème (produit laitier)",
-						"url": "https://fr.wikipedia.org/wiki/Cr%C3%A8me_(produit_laitier)"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"composition": {
 		"fat": {
 			"min": 30,

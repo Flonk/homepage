@@ -4,8 +4,6 @@
 		"MCC",
 		"Milk colloidal casein concentrate"
 	],
-	"from": "skimmed",
-	"step": "what the filter holds",
 	"note": "Same casein as in milk, still in micelles, unlike caseinate; dried it goes into cheese milk and high-protein drinks.",
 	"about": {
 		"text": "The casein micelles of skim milk, kept back on a microfiltration membrane with pores so fine that the whey proteins slip through, washed with water and dried to about 85–90 % protein.",
@@ -31,47 +29,6 @@
 				}
 			],
 			"text": "The photograph, its author and its licence, from its page."
-		}
-	},
-	"how": {
-		"text": "Skim milk flows along a fine ceramic membrane: the whey proteins, lactose and minerals go through, the casein micelles stay, and water is added and filtered out again to wash the whey proteins out.",
-		"sources": {
-			"links": [
-				{
-					"name": "Tetra Pak Dairy Processing Handbook: Milk and whey fractionation",
-					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
-				},
-				{
-					"name": "1997 microfiltration study (search abstract only, not opened)",
-					"url": "https://acnpsearch.tweb-dev.unibo.it/singlejournalindex/10965175"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "microfilter",
-					"note": "Whey proteins, lactose and minerals go through a ceramic membrane of about 0.1 µm; the casein micelles stay."
-				},
-				{
-					"type": "diafilter",
-					"note": "In 3 stages with water at 200 % of feed, removing over 95 % of serum proteins."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Tetra Pak Dairy Processing Handbook: Milk and whey fractionation",
-						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
-					},
-					{
-						"name": "1997 microfiltration study (search abstract only, not opened)",
-						"url": "https://acnpsearch.tweb-dev.unibo.it/singlejournalindex/10965175"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	}
 }

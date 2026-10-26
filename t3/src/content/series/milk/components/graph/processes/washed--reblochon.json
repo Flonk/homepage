@@ -1,0 +1,48 @@
+{
+	"from": [
+		"washed"
+	],
+	"to": [
+		"reblochon"
+	],
+	"variant": true,
+	"step": "wash the rind",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Reblochon",
+				"url": "https://en.wikipedia.org/wiki/Reblochon"
+			},
+			{
+				"name": "INAO: Reblochon specification",
+				"url": "https://extranet.inao.gouv.fr/fichier/PNOCDCReblochon.pdf"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"seconds": {
+					"min": 1296000
+				}
+			}
+		],
+		"text": "Usually sold at 3-4 weeks.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Reblochon",
+					"url": "https://en.wikipedia.org/wiki/Reblochon"
+				},
+				{
+					"name": "INAO: Reblochon specification",
+					"url": "https://extranet.inao.gouv.fr/fichier/PNOCDCReblochon.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

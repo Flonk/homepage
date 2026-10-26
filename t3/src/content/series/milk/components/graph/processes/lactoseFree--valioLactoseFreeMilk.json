@@ -1,0 +1,46 @@
+{
+	"from": [
+		"lactoseFree"
+	],
+	"to": [
+		"valioLactoseFreeMilk"
+	],
+	"variant": true,
+	"step": "take the lactose out",
+	"text": "The lactose is taken out of the milk physically, not split in it, so the milk keeps its ordinary taste. How exactly this is done is not stated on Valio own pages.",
+	"sources": {
+		"links": [
+			{
+				"name": "Valio: pioneer in lactose free dairy",
+				"url": "https://www.valio.com/articles/valio-pioneer-in-lactose-free-dairy/"
+			},
+			{
+				"name": "Wikipedia: Valio",
+				"url": "https://en.wikipedia.org/wiki/Valio"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "remove lactose",
+				"note": "Lactose is taken out physically, not split, by chromatographic separation (Valio's patent) or, in some markets, ultrafiltration."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Valio: pioneer in lactose free dairy",
+					"url": "https://www.valio.com/articles/valio-pioneer-in-lactose-free-dairy/"
+				},
+				{
+					"name": "Wikipedia: Valio",
+					"url": "https://en.wikipedia.org/wiki/Valio"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

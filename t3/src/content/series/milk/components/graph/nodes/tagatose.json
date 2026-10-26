@@ -4,8 +4,6 @@
 		"D-tagatose"
 	],
 	"comment": "Made from lactose here; today it is mostly made from starch or sugar instead.",
-	"from": "lactose",
-	"step": "split, then isomerise the galactose",
 	"note": "About 92 % as sweet as sugar with 38 % of the calories. Today CJ CheilJedang (Korea) makes it from starch or sugar by enzymes; the lactose route is the Arla and Nutrilab one.",
 	"about": {
 		"text": "A rare sugar, a hexose that sweetens almost like sucrose with far fewer calories. From milk it is made by splitting lactose into glucose and galactose and then isomerising the galactose into tagatose.",
@@ -17,61 +15,6 @@
 				}
 			],
 			"text": "The first paragraph of its article, shortened."
-		}
-	},
-	"how": {
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Tagatose",
-					"url": "https://en.wikipedia.org/wiki/Tagatose"
-				},
-				{
-					"name": "US patent 6991923",
-					"url": "https://patents.google.com/patent/US6991923"
-				},
-				{
-					"name": "US patent 5002612",
-					"url": "https://patents.google.com/patent/US5002612"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "custom",
-					"name": "hydrolyse",
-					"note": "Immobilised lactase splits lactose into equal glucose and galactose."
-				},
-				{
-					"type": "custom",
-					"name": "isomerise",
-					"note": "By L-arabinose isomerase (thermophile) or alkaline calcium hydroxide; about 30 % converts in an example."
-				},
-				{
-					"type": "custom",
-					"name": "fractionate",
-					"note": "By chromatography, or by fermenting the glucose away."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia: Tagatose",
-						"url": "https://en.wikipedia.org/wiki/Tagatose"
-					},
-					{
-						"name": "US patent 6991923",
-						"url": "https://patents.google.com/patent/US6991923"
-					},
-					{
-						"name": "US patent 5002612",
-						"url": "https://patents.google.com/patent/US5002612"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	},
 	"examples": [

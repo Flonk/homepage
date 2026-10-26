@@ -14,43 +14,6 @@
 			"text": "Written from this source."
 		}
 	},
-	"how": {
-		"sources": {
-			"links": [
-				{
-					"name": "FSAI 2017 opinion on GOS",
-					"url": "https://www.fsai.ie/getattachment/e18a9025-620a-4af8-a501-7d5952b7b9ce/2017-SE-opinion-GOS.pdf?lang=en-IE"
-				},
-				{
-					"name": "UK ACNFP paper on Vivinal GOS",
-					"url": "https://acnfp.food.gov.uk/sites/default/files/131-05vivinal.pdf"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "custom",
-					"name": "join with enzyme",
-					"note": "With beta-galactosidase from Bacillus circulans in the original grade; newer grades use enzyme from Pichia pastoris expressing a Sporobolomyces singularis gene (Vivinal GOS B) or from Papiliotrema terrestris (Vivinal GOS PT)."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "FSAI 2017 opinion on GOS",
-						"url": "https://www.fsai.ie/getattachment/e18a9025-620a-4af8-a501-7d5952b7b9ce/2017-SE-opinion-GOS.pdf?lang=en-IE"
-					},
-					{
-						"name": "UK ACNFP paper on Vivinal GOS",
-						"url": "https://acnfp.food.gov.uk/sites/default/files/131-05vivinal.pdf"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"facts": [
 		{
 			"k": "Products",

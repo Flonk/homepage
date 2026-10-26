@@ -1,0 +1,60 @@
+{
+	"from": [
+		"amf"
+	],
+	"to": [
+		"recombined"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 55,
+					"max": 60
+				},
+				"note": "The fat is melted first, since solid fat or fat added to a cold base emulsifies badly."
+			},
+			{
+				"type": "add",
+				"what": "melted anhydrous milk fat, into skimmed milk powder dissolved in water",
+				"temperature": {
+					"min": 45,
+					"max": 50
+				},
+				"note": "A high-shear mixer turns the fat into an emulsion in the water and powder base."
+			},
+			{
+				"type": "homogenise",
+				"note": "Where the mixing leaves the emulsion fine enough, homogenising is left to the heat treatment that follows."
+			},
+			{
+				"type": "pasteurise",
+				"temperature": {
+					"min": 72
+				},
+				"seconds": {
+					"min": 15
+				}
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"max": 4
+				}
+			}
+		],
+		"text": "For long life it is heated by UHT instead, indirectly at 138 to 140 °C for 4 s.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook: Recombined milk products",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/recombined-milk-products"
+				}
+			],
+			"text": "The temperatures, the order of melting, mixing and heat treatment, and the UHT alternative, from this chapter; it gives no homogenising pressure."
+		}
+	}
+}

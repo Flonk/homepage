@@ -1,0 +1,80 @@
+{
+	"from": [
+		"demineralisedWhey"
+	],
+	"to": [
+		"infantFormula"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "standardise",
+				"note": "Skimmed milk and cream are mixed to the fat and solids of the recipe, and vegetable oils are added."
+			},
+			{
+				"type": "pasteurise",
+				"temperature": {
+					"min": 110,
+					"max": 110
+				},
+				"seconds": {
+					"max": 60
+				}
+			},
+			{
+				"type": "evaporate",
+				"under": "vacuum",
+				"solids": {
+					"min": 30,
+					"max": 34
+				},
+				"note": "The base is concentrated in a falling-film evaporator."
+			},
+			{
+				"type": "homogenise",
+				"bar": {
+					"min": 98,
+					"max": 147
+				},
+				"temperature": {
+					"min": 50,
+					"max": 50
+				}
+			},
+			{
+				"type": "add",
+				"what": "demineralised whey powder and whey proteins",
+				"note": "They are dissolved in a turbomixer to 40-45 % dry matter, then vitamins, calcium and trace minerals are stirred in."
+			},
+			{
+				"type": "pasteurise",
+				"temperature": {
+					"min": 70,
+					"max": 80
+				},
+				"note": "The mix is heated again, with no holding time."
+			},
+			{
+				"type": "dry",
+				"note": "It is spray dried in a tower with hot air, and the powder is dry blended with glucose and packed under nitrogen."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "US patent 4,216,236, Infant milk formula and process for its manufacture (Google Patents)",
+					"url": "https://patents.google.com/patent/US4216236A/en"
+				},
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 18 Milk and whey fractionation",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
+				},
+				{
+					"name": "Fonterra SureStart Demineralised Whey Powder 90%",
+					"url": "https://www.nzmp.com/global/en/ingredients/powders-concentrates/paediatric-grade-powders/surestart-demineralised-whey-powder-90.html"
+				}
+			],
+			"text": "The order of the steps and their figures are from the patent's worked example, one maker's route; the handbook and the supplier page confirm that 90 % demineralised whey goes into infant formula, wet or dry blended."
+		}
+	}
+}

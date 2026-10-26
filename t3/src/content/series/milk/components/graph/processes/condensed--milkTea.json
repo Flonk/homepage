@@ -1,0 +1,31 @@
+{
+	"from": [
+		"condensed"
+	],
+	"to": [
+		"milkTea"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "brew tea",
+				"note": "Tea is infused and strained before the milk goes in."
+			},
+			{
+				"type": "add",
+				"what": "sweetened condensed milk",
+				"note": "Stirred into the tea in a set ratio, as in Burmese laphet yay."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Milk tea",
+					"url": "https://en.wikipedia.org/wiki/Milk_tea"
+				}
+			],
+			"text": "That tea is infused and strained, and that Burmese milk tea is sweetened with condensed milk; Hong Kong-style milk tea is finished with evaporated milk instead, and no times or temperatures are given."
+		}
+	}
+}

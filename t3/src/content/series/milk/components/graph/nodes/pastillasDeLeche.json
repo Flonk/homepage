@@ -37,40 +37,5 @@
 	"beasts": [
 		"buffalo",
 		"cow"
-	],
-	"how": {
-		"label": "boil down with sugar",
-		"text": "Milk and sugar are cooked together until a stiff paste forms; it is then shaped and rolled in sugar.",
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Pastillas",
-					"url": "https://en.wikipedia.org/wiki/Pastillas"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "heat",
-					"does": "heat",
-					"note": "With sugar, until a stiff paste forms."
-				},
-				{
-					"type": "mould",
-					"note": "Rolled in sugar."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia: Pastillas",
-						"url": "https://en.wikipedia.org/wiki/Pastillas"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	}
+	]
 }

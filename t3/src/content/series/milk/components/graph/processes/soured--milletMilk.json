@@ -1,0 +1,53 @@
+{
+	"from": [
+		"soured"
+	],
+	"to": [
+		"milletMilk"
+	],
+	"step": "stir in millet",
+	"text": "Millet adds starch and thickens the nono, so the drink is also a meal.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia, Fura (food)",
+				"url": "https://en.wikipedia.org/wiki/Fura_(food)"
+			},
+			{
+				"name": "Wikipedia, Brukina",
+				"url": "https://en.wikipedia.org/wiki/Brukina"
+			},
+			{
+				"name": "Foods 13:3030 (2024), nono microbiology",
+				"url": "https://mdpi-res.com/d_attachment/foods/foods-13-03030/article_deploy/foods-13-03030.pdf"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"note": "Ground millet rolled into balls, mashed into the nono.",
+				"what": "fura"
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia, Fura (food)",
+					"url": "https://en.wikipedia.org/wiki/Fura_(food)"
+				},
+				{
+					"name": "Wikipedia, Brukina",
+					"url": "https://en.wikipedia.org/wiki/Brukina"
+				},
+				{
+					"name": "Foods 13:3030 (2024), nono microbiology",
+					"url": "https://mdpi-res.com/d_attachment/foods/foods-13-03030/article_deploy/foods-13-03030.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

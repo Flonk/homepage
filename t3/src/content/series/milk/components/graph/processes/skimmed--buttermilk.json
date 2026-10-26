@@ -1,0 +1,80 @@
+{
+	"from": [
+		"skimmed"
+	],
+	"to": [
+		"buttermilk"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "homogenise"
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 90,
+					"max": 95
+				},
+				"seconds": {
+					"min": 300,
+					"max": 300,
+					"about": true
+				}
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"note": "Cooled to the temperature of the culture; the sources give none."
+			},
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "Lactococcus lactis",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						},
+						{
+							"name": "Leuconostoc mesenteroides subsp. cremoris",
+							"kind": "bacterium",
+							"does": [
+								"aroma"
+							]
+						}
+					],
+					"by": [
+						"starter"
+					]
+				},
+				"note": "Lactic acid lowers the pH until the casein curdles and thickens the milk, as in yoghurt."
+			},
+			{
+				"type": "heat",
+				"does": "cool"
+			}
+		],
+		"text": "This is the cultured buttermilk of a dairy, made from skimmed milk without churning, not the liquid left over from churning butter.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products"
+				},
+				{
+					"name": "Wikipedia: Buttermilk",
+					"url": "https://en.wikipedia.org/wiki/Buttermilk"
+				}
+			],
+			"text": "Tetra Pak gives the heat treatment of skim or low-fat milk; Wikipedia the pasteurising, homogenising, culture and souring. Neither gives an incubation temperature, time or final pH."
+		}
+	}
+}

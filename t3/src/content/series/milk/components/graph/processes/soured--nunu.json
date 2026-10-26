@@ -1,0 +1,90 @@
+{
+	"from": [
+		"soured"
+	],
+	"to": [
+		"nunu"
+	],
+	"variant": true,
+	"text": "In the Upper East region L. fermentum led the whole fermentation and L. plantarum and Leuconostoc were prominent early. Fast acidifiers were L. helveticus and L. plantarum.",
+	"sources": {
+		"links": [
+			{
+				"name": "Nunu, Int. J. Food Sci. (2014)",
+				"url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4745485/"
+			},
+			{
+				"name": "Nunu, Food Microbiol. (2013)",
+				"url": "https://ugspace.ug.edu.gh/handle/123456789/26403"
+			},
+			{
+				"name": "Bintsis & Papademas 2022, Table 2, Fermentation 8:679",
+				"url": "https://doi.org/10.3390/fermentation8120679"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic",
+					"yeast"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "Limosilactobacillus fermentum",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						},
+						{
+							"name": "Lactiplantibacillus plantarum",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						},
+						{
+							"name": "Leuconostoc mesenteroides",
+							"kind": "bacterium",
+							"does": [
+								"aroma"
+							]
+						},
+						{
+							"name": "Pichia kudriavzevii",
+							"kind": "yeast"
+						},
+						{
+							"name": "Saccharomyces cerevisiae",
+							"kind": "yeast"
+						}
+					]
+				}
+			}
+		],
+		"text": "L. fermentum led the whole fermentation; Leuconostoc was prominent in the first 6–8 h. Fast acidifiers were L. helveticus and L. plantarum.",
+		"sources": {
+			"links": [
+				{
+					"name": "Nunu, Int. J. Food Sci. (2014)",
+					"url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4745485/"
+				},
+				{
+					"name": "Nunu, Food Microbiol. (2013)",
+					"url": "https://ugspace.ug.edu.gh/handle/123456789/26403"
+				},
+				{
+					"name": "Bintsis & Papademas 2022, Table 2, Fermentation 8:679",
+					"url": "https://doi.org/10.3390/fermentation8120679"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

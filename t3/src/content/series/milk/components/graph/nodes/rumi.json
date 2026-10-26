@@ -52,67 +52,6 @@
 	"setting": "rennet",
 	"rind": "natural",
 	"confidence": "medium",
-	"how": {
-		"text": "A hard, crumbly, salty Egyptian cheese of the pecorino/manchego family, made from raw milk without starter.",
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Rumi cheese",
-					"url": "https://en.wikipedia.org/wiki/Rumi_cheese"
-				},
-				{
-					"name": "Hammam et al. 2020, IJCMAS 9(6):3338",
-					"url": "https://doi.org/10.20546/ijcmas.2020.906.397"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "coagulate",
-					"by": "rennet",
-					"note": "Calf or microbial rennet; the source names no standard coagulant."
-				},
-				{
-					"type": "add",
-					"note": "Only sometimes.",
-					"what": "peppercorns"
-				},
-				{
-					"type": "ferment",
-					"does": "ripen",
-					"temperature": {
-						"min": 9,
-						"max": 12
-					},
-					"seconds": {
-						"min": 7776000,
-						"max": 15552000
-					},
-					"humidity": {
-						"min": 90,
-						"max": 95
-					},
-					"note": "Glycolysis, lipolysis and proteolysis give an open texture and a sharp, pungent flavour after 3–4 months."
-				}
-			],
-			"text": "Raw milk, no starter.",
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia: Rumi cheese",
-						"url": "https://en.wikipedia.org/wiki/Rumi_cheese"
-					},
-					{
-						"name": "Hammam et al. 2020, IJCMAS 9(6):3338",
-						"url": "https://doi.org/10.20546/ijcmas.2020.906.397"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"sources": {
 		"links": [
 			{

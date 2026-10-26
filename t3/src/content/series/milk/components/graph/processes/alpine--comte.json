@@ -1,0 +1,108 @@
+{
+	"from": [
+		"alpine"
+	],
+	"to": [
+		"comte"
+	],
+	"variant": true,
+	"step": "ripen in stages",
+	"text": "After pre-ripening, Comté goes through a separate fermentation stage and then ripening, and its paste can show some openings up to the size of a small cherry. Long ripening with a rubbed smear rind builds fruity (hazelnut, citrus) and toasted aromas.",
+	"sources": {
+		"links": [
+			{
+				"name": "Comté PDO amendment and single document (2026)",
+				"url": "http://data.europa.eu/eli/C/2026/2773/oj"
+			},
+			{
+				"name": "Comté PDO registration summary (eAmbrosia)",
+				"url": "https://webgate.ec.europa.eu/eambrosia-api/api/v1/attachments/71716"
+			},
+			{
+				"name": "Comté, CNAOL produits laitiers AOP",
+				"url": "https://www.produits-laitiers-aop.fr/fromage/comte/"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic",
+					"smear"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "lactic acid bacteria",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						}
+					],
+					"by": [
+						"starter"
+					],
+					"dose": {
+						"max": 0.5
+					}
+				},
+				"seconds": {
+					"min": 2400,
+					"max": 2400
+				},
+				"note": "The milk is pre-ripened for at least 40 min before the rennet."
+			},
+			{
+				"type": "coagulate",
+				"by": "rennet",
+				"note": "In copper vats."
+			},
+			{
+				"type": "heat",
+				"does": "cook",
+				"temperature": {
+					"max": 57
+				}
+			},
+			{
+				"type": "press",
+				"note": "Into wheels of 50–70 cm, 35–45 kg at day 50."
+			},
+			{
+				"type": "salt",
+				"how": "brine",
+				"note": "Or dry-salted on the surface."
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"seconds": {
+					"min": 10368000
+				},
+				"note": "Pre-ripened to day 21 or later, fermented, then ripened, with a smear rind rubbed with a solution kept at 13 °C or below."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Comté PDO amendment and single document (2026)",
+					"url": "http://data.europa.eu/eli/C/2026/2773/oj"
+				},
+				{
+					"name": "Comté PDO registration summary (eAmbrosia)",
+					"url": "https://webgate.ec.europa.eu/eambrosia-api/api/v1/attachments/71716"
+				},
+				{
+					"name": "Comté, CNAOL produits laitiers AOP",
+					"url": "https://www.produits-laitiers-aop.fr/fromage/comte/"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

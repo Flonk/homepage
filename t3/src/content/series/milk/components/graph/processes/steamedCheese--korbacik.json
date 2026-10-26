@@ -1,0 +1,57 @@
+{
+	"from": [
+		"steamedCheese"
+	],
+	"to": [
+		"korbacik"
+	],
+	"variant": true,
+	"sources": {
+		"links": [
+			{
+				"name": "Čubon et al., J Microbiol Biotechnol Food Sci",
+				"url": "https://doi.org/10.55251/jmbfs.12714"
+			},
+			{
+				"name": "Wikipedia, Korbáčik",
+				"url": "https://en.wikipedia.org/wiki/Korb%C3%A1%C4%8Dik"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "cut",
+				"how": "shred"
+			},
+			{
+				"type": "heat",
+				"does": "cook",
+				"note": "Steamed in hot water."
+			},
+			{
+				"type": "custom",
+				"name": "pull",
+				"note": "Pulled into threads about 3 mm thick."
+			},
+			{
+				"type": "custom",
+				"name": "braid"
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Čubon et al., J Microbiol Biotechnol Food Sci",
+					"url": "https://doi.org/10.55251/jmbfs.12714"
+				},
+				{
+					"name": "Wikipedia, Korbáčik",
+					"url": "https://en.wikipedia.org/wiki/Korb%C3%A1%C4%8Dik"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

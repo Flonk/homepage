@@ -1,7 +1,5 @@
 {
 	"label": "Brigadeiro",
-	"from": "condensed",
-	"step": "cook with cocoa and butter, roll",
 	"note": "Created in the 1940s to support Brigadier Eduardo Gomes’s 1945 presidential candidacy (Heloísa Nabuco de Oliveira). Eaten with a spoon it is brigadeiro de colher.",
 	"about": {
 		"text": "A Brazilian sweet of condensed milk, cocoa powder and butter, cooked to a soft-ball stage, rolled into balls and coated in chocolate sprinkles.",
@@ -32,49 +30,6 @@
 	"regions": [
 		"BR"
 	],
-	"how": {
-		"text": "The condensed milk mix is cooked, stirred, until it pulls from the pan, cooled, rolled into balls and coated so they do not stick.",
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Brigadeiro",
-					"url": "https://en.wikipedia.org/wiki/Brigadeiro"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "heat",
-					"does": "cook",
-					"note": "To the soft-ball stage, until it pulls from the pan."
-				},
-				{
-					"type": "heat",
-					"does": "cool"
-				},
-				{
-					"type": "custom",
-					"name": "roll"
-				},
-				{
-					"type": "custom",
-					"name": "coat",
-					"note": "In chocolate sprinkles."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia: Brigadeiro",
-						"url": "https://en.wikipedia.org/wiki/Brigadeiro"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"examples": [
 		"beijinho",
 		"brigadeiroDeColher",

@@ -1,7 +1,5 @@
 {
 	"label": "Cheddared cheese",
-	"from": "rennetCurd",
-	"step": "cheddar",
 	"mapped": true,
 	"niche": 1,
 	"about": {
@@ -28,81 +26,6 @@
 				}
 			],
 			"text": "The photograph, its author and its licence, from its page."
-		}
-	},
-	"how": {
-		"text": "During cheddaring the drained curd mats and fuses, which aligns the protein strands and gives a dense, close texture.",
-		"sources": {
-			"links": [
-				{
-					"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
-					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
-				},
-				{
-					"name": "FAO: proposed draft Codex standard for Cheddar",
-					"url": "https://www.fao.org/4/j2366e/j2366e06.htm"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "heat",
-					"does": "cook",
-					"note": "Raised 0.2–0.5 °C per min."
-				},
-				{
-					"type": "drain",
-					"note": "At pH 6.0–6.1, about 2 h after the rennet."
-				},
-				{
-					"type": "custom",
-					"name": "cheddar",
-					"note": "The curd mats and fuses into slabs."
-				},
-				{
-					"type": "cut",
-					"how": "mill"
-				},
-				{
-					"type": "salt",
-					"how": "dry",
-					"note": "To 1.75–1.95 % salt."
-				},
-				{
-					"type": "press",
-					"note": "Into blocks of 18–20 kg."
-				},
-				{
-					"type": "ferment",
-					"does": "ripen",
-					"temperature": {
-						"min": 5,
-						"max": 10
-					},
-					"seconds": {
-						"min": 10368000,
-						"max": 31104000
-					},
-					"humidity": {
-						"max": 80
-					}
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Tetra Pak Dairy Processing Handbook, ch. Cheese",
-						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
-					},
-					{
-						"name": "FAO: proposed draft Codex standard for Cheddar",
-						"url": "https://www.fao.org/4/j2366e/j2366e06.htm"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	},
 	"examples": [

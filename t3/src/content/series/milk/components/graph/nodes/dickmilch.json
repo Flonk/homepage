@@ -6,8 +6,6 @@
 		"Tykmælk"
 	],
 	"comment": "Soured milks of their own, each made with its own culture of lactococci beside soured milk, not from it (see KINDS).",
-	"from": "pasteurised",
-	"step": "set to spoon",
 	"about": {
 		"text": "German soured milk that has set thick enough to spoon, made from milk with mesophilic lactic cultures and not heated after fermentation. The standard variety has at least 3.5 % fat.",
 		"sources": {
@@ -37,84 +35,6 @@
 	"regions": [
 		"DE"
 	],
-	"how": {
-		"text": "Unlike yoghurt, Dickmilch is soured by mesophilic lactococci at room-like temperatures over most of a day, giving a mild, aromatic sour set curd. Traditionally raw milk was simply left to thicken.",
-		"sources": {
-			"links": [
-				{
-					"name": "Austrian Food Codex B32, Milch und Milchprodukte (2018)",
-					"url": "https://web.archive.org/web/20180202190103/https://www.verbrauchergesundheit.gv.at/lebensmittel/buch/codex/B_32_Milch_und_Milchprodukte_18_1_2018.pdf"
-				},
-				{
-					"name": "Wikipedia (de): Dickmilch",
-					"url": "https://de.wikipedia.org/wiki/Dickmilch"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "homogenise"
-				},
-				{
-					"type": "ferment",
-					"does": "incubate",
-					"kinds": [
-						"lactic"
-					],
-					"adds": {
-						"microbes": [
-							{
-								"name": "Lactococcus lactis",
-								"kind": "bacterium",
-								"does": [
-									"acid"
-								]
-							},
-							{
-								"name": "Lactococcus lactis subsp. cremoris",
-								"kind": "bacterium",
-								"does": [
-									"acid"
-								]
-							}
-						],
-						"by": [
-							"starter"
-						]
-					},
-					"temperature": {
-						"min": 25,
-						"max": 28
-					},
-					"seconds": {
-						"min": 54000,
-						"max": 72000
-					},
-					"pH": {
-						"min": 4,
-						"max": 4.7
-					},
-					"note": "Long-set process takes 12–20 h."
-				}
-			],
-			"text": "Traditionally raw milk was left to thicken by itself.",
-			"sources": {
-				"links": [
-					{
-						"name": "Austrian Food Codex B32, Milch und Milchprodukte (2018)",
-						"url": "https://web.archive.org/web/20180202190103/https://www.verbrauchergesundheit.gv.at/lebensmittel/buch/codex/B_32_Milch_und_Milchprodukte_18_1_2018.pdf"
-					},
-					{
-						"name": "Wikipedia (de): Dickmilch",
-						"url": "https://de.wikipedia.org/wiki/Dickmilch"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"facts": [
 		{
 			"k": "Texture",

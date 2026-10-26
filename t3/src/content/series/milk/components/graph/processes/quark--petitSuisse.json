@@ -1,0 +1,44 @@
+{
+	"from": [
+		"quark"
+	],
+	"to": [
+		"petitSuisse"
+	],
+	"variant": true,
+	"text": "Unripened and unsalted: the curd is smoothed and drained in a centrifuge.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Petit-suisse",
+				"url": "https://en.wikipedia.org/wiki/Petit-suisse"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "cream"
+			},
+			{
+				"type": "custom",
+				"name": "smooth"
+			},
+			{
+				"type": "drain",
+				"note": "In a centrifuge."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Petit-suisse",
+					"url": "https://en.wikipedia.org/wiki/Petit-suisse"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

@@ -1,0 +1,58 @@
+{
+	"from": [
+		"hard"
+	],
+	"to": [
+		"insect"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"kinds": [
+					"animal"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "cheese mites (Acarus siro)",
+							"kind": "animal",
+							"does": [
+								"rind",
+								"ripening"
+							]
+						}
+					],
+					"by": [
+						"place"
+					]
+				},
+				"note": "In Mimolette, mites feed on the rind during ageing and pit it, which lets air in."
+			},
+			{
+				"type": "custom",
+				"name": "turn and brush",
+				"note": "The cheeses are turned and brushed regularly to keep the mites in check."
+			}
+		],
+		"text": "Casu marzu is the other way: a pecorino with a hole in its rind is left to the cheese fly (Piophila casei), whose larvae break the paste down until it is creamy.",
+		"sources": {
+			"links": [
+				{
+					"name": "The Cheese Scientist: Mimolette, a story of cheese mites",
+					"url": "https://cheesescientist.com/?p=26842"
+				},
+				{
+					"name": "The Cheese Scientist: Casu Marzu",
+					"url": "https://cheesescientist.com/?p=29466"
+				},
+				{
+					"name": "Wikipedia: Casu martzu",
+					"url": "https://en.wikipedia.org/wiki/Casu_martzu"
+				}
+			],
+			"text": "Mimolette is a cow's-milk cheese ripened 3 to 18 months or more with mites, regularly turned and brushed; casu marzu is a pecorino opened to cheese flies. A blog source, so low authority. Neither is made from a hard cheese in the sense used here; the arrow's start from \"hard\" is loose."
+		}
+	}
+}

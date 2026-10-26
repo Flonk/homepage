@@ -1,0 +1,49 @@
+{
+	"from": [
+		"washed"
+	],
+	"to": [
+		"vacherinMontDOr"
+	],
+	"variant": true,
+	"step": "bind in spruce",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Vacherin Mont d'Or",
+				"url": "https://en.wikipedia.org/wiki/Vacherin_Mont_d%27Or"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "bind",
+				"seconds": {
+					"min": 1209600,
+					"about": true
+				},
+				"note": "In a band of spruce cambium."
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"seconds": {
+					"min": 3024000,
+					"max": 4233600
+				}
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Vacherin Mont d'Or",
+					"url": "https://en.wikipedia.org/wiki/Vacherin_Mont_d%27Or"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

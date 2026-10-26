@@ -1,0 +1,58 @@
+{
+	"from": [
+		"sweetWhey"
+	],
+	"to": [
+		"wheyCream"
+	],
+	"step": "separate",
+	"text": "A whey separator spins the cheese fat that escaped the vat out of the whey. It is also what defatting for WPC needs. Separation temperature is not given in the pages opened.",
+	"sources": {
+		"links": [
+			{
+				"name": "Tetra Pak Dairy Processing Handbook, ch. 18 Milk and whey fractionation",
+				"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
+			},
+			{
+				"name": "Wikipedia: Whey",
+				"url": "https://en.wikipedia.org/wiki/Whey"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "filter",
+				"note": "Curd fines are taken out first with a coarse filter or fines clarifier, as they upset the separating."
+			},
+			{
+				"type": "separate",
+				"off": "cream",
+				"by": "centrifuge",
+				"temperature": {
+					"min": 40,
+					"max": 50
+				}
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"max": 5
+				},
+				"note": "Chilled if the cream is kept for less than 8 hours."
+			}
+		],
+		"text": "Whey cream usually holds 25–30 % fat, against about 40 % for milk cream.",
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 18 Milk and whey fractionation",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
+				}
+			],
+			"text": "Fines removal, separating temperature, fat content and chilling, from the handbook."
+		}
+	}
+}

@@ -1,0 +1,58 @@
+{
+	"from": [
+		"fresh"
+	],
+	"to": [
+		"clotted"
+	],
+	"step": "heat slowly, skim the crust",
+	"text": "Gentle prolonged heat and slow cooling make the fat clot into a golden crust that is skimmed off. No culture, no acid.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Clotted cream",
+				"url": "https://en.wikipedia.org/wiki/Clotted_cream"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "stand",
+				"note": "In a shallow pan for hours, so the cream rises."
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"seconds": {
+					"max": 3600
+				},
+				"note": "Floated on milk over steam or very hot water, or scalded as separated cream alone at a lower temperature."
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"seconds": {
+					"min": 43200
+				},
+				"note": "Slowly in the float method, simply chilled in the scald method."
+			},
+			{
+				"type": "separate",
+				"off": "skin",
+				"note": "Clots skimmed with a reamer."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Clotted cream",
+					"url": "https://en.wikipedia.org/wiki/Clotted_cream"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

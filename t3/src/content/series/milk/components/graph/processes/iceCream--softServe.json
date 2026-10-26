@@ -1,0 +1,51 @@
+{
+	"from": [
+		"iceCream"
+	],
+	"to": [
+		"softServe"
+	],
+	"variant": true,
+	"text": "The chilled mix is drawn into a freezing chamber at the point of sale with the chosen amount of air, churned, frozen quickly and dispensed at once, so it is never hardened.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Soft serve",
+				"url": "https://en.wikipedia.org/wiki/Soft_serve"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"min": 3,
+					"max": 3
+				},
+				"note": "Held unfrozen in the machine."
+			},
+			{
+				"type": "custom",
+				"name": "aerate",
+				"note": "Air worked in: 0–60 % overrun, ideal 33–45 %."
+			},
+			{
+				"type": "custom",
+				"name": "freeze",
+				"note": "Frozen quickly and dispensed at once, never hardened."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Soft serve",
+					"url": "https://en.wikipedia.org/wiki/Soft_serve"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

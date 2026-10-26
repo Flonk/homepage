@@ -37,54 +37,6 @@
 	"beasts": [
 		"yak"
 	],
-	"how": {
-		"label": "ferment, churn",
-		"text": "As with Makhan the whole soured milk, not separated cream, goes into the churn; the leftover buttermilk is boiled into a soft cheese (chura loenpa, soft chhurpi).",
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Yak butter",
-					"url": "https://en.wikipedia.org/wiki/Yak_butter"
-				},
-				{
-					"name": "Oxford Companion to Food via ckbk",
-					"url": "https://app.ckbk.com/reference/food77337c24s001e003"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "ferment",
-					"does": "incubate",
-					"note": "Yak milk is left overnight to form a yoghurt-like mass."
-				},
-				{
-					"type": "churn",
-					"seconds": {
-						"min": 3600,
-						"max": 3600,
-						"about": true
-					},
-					"note": "In a tall wooden churn in summer."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia: Yak butter",
-						"url": "https://en.wikipedia.org/wiki/Yak_butter"
-					},
-					{
-						"name": "Oxford Companion to Food via ckbk",
-						"url": "https://app.ckbk.com/reference/food77337c24s001e003"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"facts": [
 		{
 			"k": "Winter",

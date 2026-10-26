@@ -1,0 +1,40 @@
+{
+	"from": [
+		"sweetWhey"
+	],
+	"to": [
+		"prim"
+	],
+	"step": "boil down",
+	"text": "Norwegian prim is whey and cream boiled down with sugar added (Store norske leksikon).",
+	"sources": {
+		"links": [
+			{
+				"name": "Store norske leksikon: prim",
+				"url": "https://snl.no/prim"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "evaporate",
+				"note": "Whey and cream."
+			},
+			{
+				"type": "add",
+				"what": "sugar"
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Store norske leksikon: prim",
+					"url": "https://snl.no/prim"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

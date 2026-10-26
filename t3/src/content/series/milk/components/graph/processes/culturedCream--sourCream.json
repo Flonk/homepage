@@ -1,0 +1,39 @@
+{
+	"from": [
+		"culturedCream"
+	],
+	"to": [
+		"sourCream"
+	],
+	"text": "In the United States, sour cream is cultured cream of at least 18 % fat; it may be thickened with stabilisers such as starch or gelatine.",
+	"sources": {
+		"links": [
+			{
+				"name": "US 21 CFR 131.160 Sour cream",
+				"url": "https://www.law.cornell.edu/cfr/text/21/131.160"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"acidity": {
+					"min": 0.5
+				}
+			}
+		],
+		"text": "Cultured cream of at least 18 % fat (US).",
+		"sources": {
+			"links": [
+				{
+					"name": "US 21 CFR 131.160 Sour cream",
+					"url": "https://www.law.cornell.edu/cfr/text/21/131.160"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

@@ -35,57 +35,5 @@
 	},
 	"regions": [
 		"CN"
-	],
-	"how": {
-		"text": "Poured into about fifty small bowls, stacked against the wall of a yoghurt barrel and heated about 30 min, then cooled. No starter species are named in the sources.",
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Nai lao",
-					"url": "https://en.wikipedia.org/wiki/Nai_lao"
-				},
-				{
-					"name": "The World of Chinese: history of yogurt’s rise in China",
-					"url": "https://www.theworldofchinese.com/2025/06/history-of-yogurts-rise-in-china/"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "ferment",
-					"does": "incubate"
-				},
-				{
-					"type": "heat",
-					"does": "heat",
-					"seconds": {
-						"min": 1800,
-						"max": 1800,
-						"about": true
-					},
-					"note": "Poured into about fifty small bowls, stacked against the wall of a yoghurt barrel."
-				},
-				{
-					"type": "heat",
-					"does": "cool"
-				}
-			],
-			"text": "Poured into about fifty small bowls, stacked against the wall of a yoghurt barrel and heated, then cooled. No starter species are named.",
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia: Nai lao",
-						"url": "https://en.wikipedia.org/wiki/Nai_lao"
-					},
-					{
-						"name": "The World of Chinese: history of yogurt’s rise in China",
-						"url": "https://www.theworldofchinese.com/2025/06/history-of-yogurts-rise-in-china/"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	}
+	]
 }

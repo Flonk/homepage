@@ -1,0 +1,45 @@
+{
+	"from": [
+		"lactose"
+	],
+	"to": [
+		"lactoseDerivatives"
+	],
+	"step": "join with an enzyme",
+	"text": "The same enzyme that splits lactose into glucose and galactose also, at high lactose concentration, hooks the galactose onto other sugars instead of water. The result is a mix of short galactose chains with a glucose at the end. Yield depends on enzyme, lactose concentration and how far the reaction is run.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia, Galactooligosaccharide (enzymatic conversion of lactose, DP 2–8)",
+				"url": "https://en.wikipedia.org/wiki/Galactooligosaccharide"
+			},
+			{
+				"name": "Comparison of GOS-forming activity of different beta-galactosidases (openagrar; yields from a search excerpt, page not opened)",
+				"url": "https://www.openagrar.de/receive/openagrar_mods_00009405"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "join with enzyme",
+				"note": "Beta-galactosidase from Bacillus circulans, Aspergillus oryzae, Aspergillus aculeatus or Kluyveromyces lactis hooks galactose onto other sugars at high lactose concentration."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia, Galactooligosaccharide (enzymatic conversion of lactose, DP 2–8)",
+					"url": "https://en.wikipedia.org/wiki/Galactooligosaccharide"
+				},
+				{
+					"name": "Comparison of GOS-forming activity of different beta-galactosidases (openagrar; yields from a search excerpt, page not opened)",
+					"url": "https://www.openagrar.de/receive/openagrar_mods_00009405"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

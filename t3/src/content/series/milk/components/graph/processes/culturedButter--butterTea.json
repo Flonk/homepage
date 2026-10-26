@@ -1,0 +1,35 @@
+{
+	"from": [
+		"culturedButter"
+	],
+	"to": [
+		"butterTea"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "brew strong tea",
+				"note": "Tea, often pu-erh, is boiled or steeped until nearly black and then strained."
+			},
+			{
+				"type": "add",
+				"what": "butter and salt"
+			},
+			{
+				"type": "custom",
+				"name": "churn with tea",
+				"note": "The brew is churned in a wooden churn, or shaken, until it is as thick as stew or thick oil."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Butter tea",
+					"url": "https://en.wikipedia.org/wiki/Butter_tea"
+				}
+			],
+			"text": "The brewing of strong tea, the butter and salt, and the churning, from its article; it gives no amounts."
+		}
+	}
+}

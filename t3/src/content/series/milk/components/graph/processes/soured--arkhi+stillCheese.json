@@ -1,0 +1,101 @@
+{
+	"from": [
+		"soured"
+	],
+	"to": [
+		"arkhi",
+		"stillCheese"
+	],
+	"step": "distil",
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "distil",
+				"note": "Under an open-ended barrel with a cold-water pan on top, the water swapped 2–4 times per run."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "National Center for Cultural Heritage (Mongolia): The traditional technique of distilling milk alcohol (Shimiin arkhi)",
+					"url": "https://www.irci.jp/rdb/item/13428"
+				},
+				{
+					"name": "Wikipedia: Arkhi",
+					"url": "https://en.wikipedia.org/wiki/Arkhi"
+				},
+				{
+					"name": "Selena Travel: A country made of milk",
+					"url": "https://www.selenatravel.com/blog/a-country-made-of-milk"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	},
+	"legs": {
+		"arkhi": {
+			"step": "what boils over",
+			"text": "Nothing is added here; the fermented milk already holds the alcohol. It is heated in a pot under an open-ended barrel; vapour condenses on a pan of cold water at the top and drips into a vessel hung in the barrel (closed) or runs out through a tap (open). The first spirit is the strongest, later runs weaker. What stays in the pot is the still-residue cheese. Sources disagree on the strength; no temperatures are given.",
+			"sources": {
+				"links": [
+					{
+						"name": "National Center for Cultural Heritage (Mongolia): The traditional technique of distilling milk alcohol (Shimiin arkhi)",
+						"url": "https://www.irci.jp/rdb/item/13428"
+					},
+					{
+						"name": "Wikipedia: Arkhi",
+						"url": "https://en.wikipedia.org/wiki/Arkhi"
+					},
+					{
+						"name": "Selena Travel: A country made of milk",
+						"url": "https://www.selenatravel.com/blog/a-country-made-of-milk"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		},
+		"stillCheese": {
+			"step": "left in the still, dried",
+			"text": "Nothing is added: the heated, soured milk curd stays in the pot while the alcohol leaves. It is pressed by hand or bagged, drained and dried in the sun.",
+			"sources": {
+				"links": [
+					{
+						"name": "Cambridge Kalmyk Cultural Heritage: Purvya Volod'kina, Milk Products and Vodka",
+						"url": "https://www.repository.cam.ac.uk/handle/1810/277951"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			},
+			"processing": {
+				"steps": [
+					{
+						"type": "press"
+					},
+					{
+						"type": "dry",
+						"note": "Hung in cloth bags outside, the solids drying in the sun."
+					},
+					{
+						"type": "cut",
+						"how": "cut",
+						"note": "Squares called khurskh."
+					},
+					{
+						"type": "dry",
+						"note": "Into shuurmg."
+					}
+				],
+				"sources": {
+					"links": [
+						{
+							"name": "Cambridge Kalmyk Cultural Heritage: Purvya Volod'kina, Milk Products and Vodka",
+							"url": "https://www.repository.cam.ac.uk/handle/1810/277951"
+						}
+					],
+					"text": "The table, the facts and the words on how it is made, from these."
+				}
+			}
+		}
+	}
+}

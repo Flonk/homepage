@@ -51,65 +51,6 @@
 		"located": "knowledge"
 	},
 	"confidence": "high",
-	"how": {
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Livarot cheese",
-					"url": "https://en.wikipedia.org/wiki/Livarot_cheese"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "ferment",
-					"does": "smear",
-					"kinds": [
-						"smear"
-					],
-					"adds": {
-						"microbes": [
-							{
-								"name": "Brevibacterium linens",
-								"kind": "bacterium",
-								"does": [
-									"rind",
-									"ripening"
-								]
-							}
-						],
-						"by": [
-							"starter"
-						]
-					}
-				},
-				{
-					"type": "custom",
-					"name": "wrap",
-					"note": "In 3–5 rings of dried reedmace (Typha latifolia)."
-				},
-				{
-					"type": "ferment",
-					"does": "ripen",
-					"seconds": {
-						"min": 3628800,
-						"max": 4838400
-					}
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia: Livarot cheese",
-						"url": "https://en.wikipedia.org/wiki/Livarot_cheese"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"sources": {
 		"links": [
 			{

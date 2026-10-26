@@ -1,0 +1,63 @@
+{
+	"from": [
+		"ricotta"
+	],
+	"to": [
+		"ricottaInfornata"
+	],
+	"variant": true,
+	"step": "bake",
+	"sources": {
+		"unsourced": true,
+		"text": "No source recorded for how it is made yet."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "coagulate",
+				"by": "acid-heat",
+				"temperature": {
+					"min": 90,
+					"max": 90,
+					"about": true
+				},
+				"note": "Buffalo whey with a little whey starter from mozzarella is heated to about 90 °C, where its albumins flocculate."
+			},
+			{
+				"type": "mould",
+				"note": "The ricotta is taken off as it floats and filled into baskets without pressing."
+			},
+			{
+				"type": "drain",
+				"seconds": {
+					"min": 14400,
+					"max": 18000
+				},
+				"note": "It drains 4–5 hours at room temperature and then about 10 hours at 4 °C."
+			},
+			{
+				"type": "custom",
+				"name": "bake",
+				"seconds": {
+					"min": 43200,
+					"max": 43200,
+					"about": true
+				},
+				"note": "It is baked about 12 hours in a wood-fired oven, unsalted, until it has the baked aroma and no rind."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Ricotta di bufala (salata, infornata, affumicata), PAT Lazio, in the Atlante dei prodotti tipici (ONAF)",
+					"url": "https://www.onaf.it/uploads/public/10149_ricotta-di-bufala-salata-infornata-affumicata-.pdf"
+				},
+				{
+					"name": "Wikipedia: Ricotta",
+					"url": "https://en.wikipedia.org/wiki/Ricotta"
+				}
+			],
+			"text": "The steps and times of the Lazio buffalo-whey ricotta infornata from the regional list of traditional products; Wikipedia for the ricotta baked to a brown, lightly charred crust, with no oven temperature given by either."
+		}
+	}
+}

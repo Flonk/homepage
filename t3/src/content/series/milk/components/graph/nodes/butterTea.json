@@ -5,11 +5,6 @@
 		"Suja",
 		"Bho jha"
 	],
-	"from": "butter",
-	"step": "churn with salted tea",
-	"alsoFrom": [
-		"culturedButter"
-	],
 	"about": {
 		"text": "Butter tea is a salty drink of the Himalayas and Tibet: strongly brewed tea, often pu-erh, churned with butter and salt in a wooden churn (mdong mo) until it is thick. Yak butter is traditional, cow butter is increasingly used, and it is drunk in many bowls a day for its calories at altitude.",
 		"sources": {
@@ -44,52 +39,5 @@
 	],
 	"beasts": [
 		"yak"
-	],
-	"how": {
-		"text": "The butter is not melted down first: it is churned straight into the hot salted tea until the two emulsify.",
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Butter tea",
-					"url": "https://en.wikipedia.org/wiki/Butter_tea"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "heat",
-					"does": "heat",
-					"note": "Brick or pu-erh tea.",
-					"temperature": {
-						"min": 100,
-						"max": 100,
-						"about": true
-					}
-				},
-				{
-					"type": "drain",
-					"by": "sieve"
-				},
-				{
-					"type": "salt"
-				},
-				{
-					"type": "add",
-					"what": "butter",
-					"note": "Churned into the hot tea until it emulsifies, in a mdong mo."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia: Butter tea",
-						"url": "https://en.wikipedia.org/wiki/Butter_tea"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	}
+	]
 }

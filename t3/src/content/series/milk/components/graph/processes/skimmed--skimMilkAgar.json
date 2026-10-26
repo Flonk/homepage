@@ -1,0 +1,46 @@
+{
+	"from": [
+		"skimmed"
+	],
+	"to": [
+		"skimMilkAgar"
+	],
+	"step": "add agar, sterilise, pour plates",
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "skim milk powder, tryptone, yeast extract, dextrose and agar",
+				"note": "Per litre: 28 g skim milk powder, 5 g tryptone, 2.5 g yeast extract, 1 g dextrose and 15 g agar."
+			},
+			{
+				"type": "custom",
+				"name": "autoclave apart",
+				"note": "The agar solution and the milk solution are autoclaved in separate flasks, never mixed before."
+			},
+			{
+				"type": "add",
+				"what": "the molten agar, into the stirring milk",
+				"note": "Poured in slowly, with the milk stirred all the while."
+			},
+			{
+				"type": "mould",
+				"note": "Poured into plates to set."
+			}
+		],
+		"text": "The recipe is for skim milk powder; the separate sterilising comes from an OpenWetware protocol with a different agar recipe (LB and milk).",
+		"sources": {
+			"links": [
+				{
+					"name": "Microbe Online: Casein hydrolysis test",
+					"url": "https://microbeonline.com/casein-hydrolysis-test-principle-procedure-and-uses/"
+				},
+				{
+					"name": "OpenWetware: Dandekar & Chandler, selective media",
+					"url": "https://openwetware.org/wiki/Dandekar_&_Chandler:_Selective_Media"
+				}
+			],
+			"text": "The ingredients from Microbe Online; the separate autoclaving, combining and pouring from OpenWetware. Neither gives an autoclave temperature or time."
+		}
+	}
+}

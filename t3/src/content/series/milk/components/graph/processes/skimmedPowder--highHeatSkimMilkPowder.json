@@ -1,0 +1,43 @@
+{
+	"from": [
+		"skimmedPowder"
+	],
+	"to": [
+		"highHeatSkimMilkPowder"
+	],
+	"variant": true,
+	"sources": {
+		"links": [
+			{
+				"name": "US Dairy Export Council: Non-fat dry milk and skim milk powder",
+				"url": "https://www.thinkusadairy.org/products/milk-powders/milk-powder-categories/non-fat-dry-milk-and-skim-milk-powder"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 88,
+					"max": 88
+				},
+				"seconds": {
+					"min": 1800,
+					"max": 1800
+				}
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "US Dairy Export Council: Non-fat dry milk and skim milk powder",
+					"url": "https://www.thinkusadairy.org/products/milk-powders/milk-powder-categories/non-fat-dry-milk-and-skim-milk-powder"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

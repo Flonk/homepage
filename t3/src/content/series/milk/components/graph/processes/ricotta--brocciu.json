@@ -1,0 +1,72 @@
+{
+	"from": [
+		"ricotta"
+	],
+	"to": [
+		"brocciu"
+	],
+	"variant": true,
+	"text": "The whey is heated in a cauldron over a strong fire, stirred all the time. Milk and salt go in around 40 °C, and at about 90 °C the proteins flocculate and rise; the liquid must never touch the cauldron wall or boil. The French page gives no whey-to-milk ratio, no acid or rennet, and no times, so none are stated. (The English page's 'just below 100 °F / 93 °C' is garbled and was not used.)",
+	"sources": {
+		"links": [
+			{
+				"name": "French Wikipedia: Brocciu",
+				"url": "https://fr.wikipedia.org/wiki/Brocciu"
+			},
+			{
+				"name": "Wikipedia: Brocciu",
+				"url": "https://en.wikipedia.org/wiki/Brocciu"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "milk and salt",
+				"temperature": {
+					"min": 40,
+					"max": 40,
+					"about": true
+				},
+				"note": "Ewe's and/or goat's milk (at most 25 % under the AOP), water (at most 15 %) and salt."
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 90,
+					"max": 90,
+					"about": true
+				},
+				"note": "The proteins flocculate at about 90 °C; it never boils."
+			},
+			{
+				"type": "mould",
+				"note": "Into rush moulds (fattoghje, casgiaghji), or plastic for sale."
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"seconds": {
+					"min": 1814400
+				},
+				"note": "Only the brocciu passu, salted on the surface, is ripened, for at least 21 days."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "French Wikipedia: Brocciu",
+					"url": "https://fr.wikipedia.org/wiki/Brocciu"
+				},
+				{
+					"name": "Wikipedia: Brocciu",
+					"url": "https://en.wikipedia.org/wiki/Brocciu"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

@@ -8,11 +8,8 @@ import type * as S from './schema';
  * and round again to colostrum beside the milks. Every product but milk is
  * in exactly one.
  *
- * A family with a `hub` is drawn as one branch where a parent has two or
- * more of it: a single arrow out of the parent, labelled with the hub, that
- * then splits into the family, each with its own step (pasteurised milk,
- * "ferment", then soured milk, kefir, yoghurt). A family without one already
- * starts at a product of its own (cream at raw cream, cheese at rennet curd).
+ * Its own slice and colour only: what is drawn together within it is
+ * what starts out made the same way (see the layout's sort of siblings).
  */
 export const GROUPS: S.Group[] = [
 	{
@@ -29,19 +26,16 @@ export const GROUPS: S.Group[] = [
 	},
 	{
 		name: 'Cooked & sweet',
-		hub: 'cook down',
 		ids: ['condensed', 'dulce', 'khoa', 'khoaSweets', 'rabri', 'kulfi', 'nimish', 'kheer', 'milkPudding', 'iceCream', 'milkshake', 'frozenYoghurt', 'gomme', 'junket', 'custard', 'milkChocolate', 'milkCaramel', 'brigadeiro'],
 	},
 	{
 		name: 'Fermented',
-		hub: 'ferment',
 		ids: ['soured', 'dickmilch', 'filmjolk', 'dahi', 'ymer', 'ymerWhey', 'cultureButtermilk', 'piima', 'ropy', 'ryazhenka', 'kefir', 'mildYoghurt', 'probioticYoghurt', 'probioticDrink', 'yoghurt', 'mishtiDoi', 'creamYoghurt', 'heatTreatedYoghurt', 'shanklish', 'zhentytsia', 'greek', 'greekWhey', 'ayran', 'fermButter', 'fermButtermilk', 'driedYoghurt', 'kishk', 'qaraqurut', 'dadiah', 'mursik', 'choormog', 'milletMilk', 'calpis'],
 	},
-	{ name: 'Alcohol', hub: 'make alcohol', ids: ['kumis', 'arkhi', 'arkhiGrades', 'stillCheese', 'blaand', 'wheyVodka', 'creamLiqueur'] },
+	{ name: 'Alcohol', ids: ['kumis', 'arkhi', 'arkhiGrades', 'stillCheese', 'blaand', 'wheyVodka', 'creamLiqueur'] },
 	{
 		name: 'Acid & heat-set',
-		hub: 'set with acid',
-		ids: ['curd', 'quark', 'cottageCheese', 'creamCheese', 'skyr', 'skyrWhey', 'sourMilkCheese', 'cookedCheese', 'mish', 'byaslag', 'eezgii', 'rushan', 'chhena', 'chhenaWhey', 'paneer', 'chhenaSweets', 'sweetCurd', 'cheesecake', 'plantCheese', 'buttermilkCheese', 'hardChhurpi'],
+		ids: ['curd', 'quark', 'magerquark', 'speisequark20', 'sahnequark', 'rahmquark', 'doppelrahmquark', 'cottageCheese', 'creamCheese', 'skyr', 'skyrWhey', 'sourMilkCheese', 'cookedCheese', 'mish', 'byaslag', 'eezgii', 'rushan', 'chhena', 'chhenaWhey', 'paneer', 'chhenaSweets', 'sweetCurd', 'cheesecake', 'plantCheese', 'buttermilkCheese', 'hardChhurpi'],
 	},
 	{
 		name: 'Cheese',
@@ -53,100 +47,14 @@ export const GROUPS: S.Group[] = [
 	},
 	{
 		name: 'Sugars & proteins',
-		hub: 'fractionate',
 		ids: ['lactose', 'lactoseDerivatives', 'lactitol', 'lactobionicAcid', 'tagatose', 'milkMinerals', 'alphaLactalbumin', 'betaLactoglobulin', 'acidCasein', 'acidCaseinWhey', 'rennetCasein', 'caseinWhey', 'caseinate', 'lactoferrin', 'mpc', 'milkPermeate', 'mcc', 'mfgm'],
 	},
-	{ name: 'Materials', hub: 'make materials', ids: ['caseinGlue', 'beerLabelGlue', 'caseinPaint', 'galalith', 'lanital', 'blotto', 'wineFiningCasein', 'butterSculpture', 'litmusMilk', 'skimMilkAgar', 'milkSpray', 'caseinCoating'] },
+	{ name: 'Materials', ids: ['caseinGlue', 'beerLabelGlue', 'caseinPaint', 'galalith', 'lanital', 'blotto', 'wineFiningCasein', 'butterSculpture', 'litmusMilk', 'skimMilkAgar', 'milkSpray', 'caseinCoating'] },
 	{
 		name: 'Medicine',
 		ids: ['lactulose', 'inhalers', 'glycomacropeptide', 'caseinHydrolysate', 'wheyHydrolysate', 'cppAcp', 'milkDrugs', 'travelan', 'lactotripeptide', 'lactoperoxidase', 'tabletLactose', 'donorMilk', 'ghrita'],
 	},
 	{ name: 'Colostrum', ids: ['colostrum', 'colostrumPudding', 'colostrumPowder'] },
-];
-
-/**
- * Products made together by one step, from one parent: the step drawn as
- * one arrow out of the parent, split into each of them, its own words on
- * each part. Separating milk makes the cream and the skimmed milk at once,
- * not one and then the other, as churning cream makes the butter and the
- * liquid it leaves.
- */
-/**
- * Kinds of one family's step: those of a family made by one kind of it
- * drawn as one branch off the family's hub, the kind's name on it, before
- * each splits off with its own step. Fermented milks by what ferments them
- * and how warm, after Robinson and Tamime: lactococci at room temperature,
- * yoghurt's bacteria warm. (Kefir, with yeasts besides, is alone in its kind
- * here, so its own step says so.) `how` is told of when the kind's arrow is
- * clicked, as a product's step is (see How in the schema).
- */
-export const KINDS: S.Kind[] = [
-	{
-		step: 'mesophilic, 20–30 °C',
-		ids: ['soured', 'dickmilch', 'filmjolk', 'dahi', 'ymer', 'cultureButtermilk', 'piima', 'ropy'],
-		how: {
-			processing: {
-				steps: [
-					{
-						type: 'ferment',
-						does: 'incubate',
-						kinds: ['lactic'],
-						adds: { microbes: [{ name: 'Lactococcus lactis', kind: 'bacterium', does: ['acid'] }, { name: 'Leuconostoc', kind: 'bacterium', does: ['aroma'] }] },
-						temperature: { min: 20, max: 30 },
-						seconds: { min: 54000, max: 86400, about: true },
-						note: 'At room temperature, Leuconostoc often with the lactococci.',
-					},
-				],
-				sources: { links: [{ name: 'Bintsis & Papademas 2022, Fermentation 8:679', url: 'https://doi.org/10.3390/fermentation8120679' }, { name: 'Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products', url: 'https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products' }], text: 'The bacteria, how warm and how long, and what they make, from these.' },
-			},
-			text: 'Lactococci grow best at room temperature, so they sour milk slowly and gently, into a soft set curd with a fresh, often buttery aroma. Where it is cool, as in northern Europe, milk left to stand sours this way, and the fermented milks there are mostly of this kind.',
-			sources: { links: [{ name: 'Bintsis & Papademas 2022, Fermentation 8:679', url: 'https://doi.org/10.3390/fermentation8120679' }, { name: 'Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products', url: 'https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products' }], text: 'The bacteria, how warm and how long, and what they make, from these.' },
-		},
-	},
-	{
-		step: 'thermophilic, 40–45 °C',
-		ids: ['yoghurt', 'mildYoghurt', 'probioticYoghurt', 'creamYoghurt', 'heatTreatedYoghurt'],
-		how: {
-			processing: {
-				steps: [
-					{
-						type: 'ferment',
-						does: 'incubate',
-						kinds: ['lactic'],
-						adds: { microbes: [{ name: 'Streptococcus thermophilus', kind: 'bacterium', does: ['acid'] }, { name: 'Lactobacillus delbrueckii subsp. bulgaricus', kind: 'bacterium', does: ['acid'] }] },
-						temperature: { min: 40, max: 45 },
-						seconds: { min: 10800, max: 18000, about: true },
-						note: 'In yoghurt the lactobacillus is L. bulgaricus; other yoghurts take others besides or instead.',
-					},
-				],
-				sources: { links: [{ name: 'Bintsis & Papademas 2022, Fermentation 8:679', url: 'https://doi.org/10.3390/fermentation8120679' }, { name: 'Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products', url: 'https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products' }, { name: 'Codex Standard for Fermented Milks (CXS 243-2003)', url: 'https://www.fao.org/input/download/standards/400/CXS_243e.pdf' }], text: 'The bacteria, how warm and how long, and what they make, from these.' },
-			},
-			text: 'These bacteria grow best warm, so they sour milk fast and sharply, into a firmer gel. Where it is hot, from the Balkans and the Middle East to Central Asia, milk kept warm sours this way, and the fermented milks there are mostly of this kind.',
-			sources: { links: [{ name: 'Bintsis & Papademas 2022, Fermentation 8:679', url: 'https://doi.org/10.3390/fermentation8120679' }, { name: 'Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products', url: 'https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products' }, { name: 'Codex Standard for Fermented Milks (CXS 243-2003)', url: 'https://www.fao.org/input/download/standards/400/CXS_243e.pdf' }], text: 'The bacteria, how warm and how long, and what they make, from these.' },
-		},
-	},
-];
-
-export const SPLITS: S.Split[] = [
-	{ from: 'raw', step: 'separate', ids: ['rawCream', 'skimRaw'] },
-	{ from: 'cream', step: 'churn', ids: ['butter', 'churn'] },
-	{ from: 'cream', step: 'cook with flour, stir', ids: ['staka', 'stakovoutiro'] },
-	{ from: 'butter', step: 'simmer until brown', ids: ['butterfat', 'gheeResidue'] },
-	{ from: 'soured', step: 'churn', ids: ['fermButter', 'fermButtermilk'] },
-	{ from: 'skimmed', step: 'set with rennet', ids: ['rennetCasein', 'caseinWhey'] },
-	{ from: 'raw', step: 'set with rennet', ids: ['rennetCurd', 'sweetWhey'] },
-	{ from: 'sweetWhey', step: 'ultrafilter', ids: ['wpc', 'permeate'] },
-	{ from: 'permeate', step: 'crystallise', ids: ['lactose', 'delactosedPermeate'] },
-	{ from: 'skimmed', step: 'ultrafilter', ids: ['mpc', 'milkPermeate'] },
-	{ from: 'skimmed', step: 'microfilter', ids: ['mcc', 'nativeWhey'] },
-	{ from: 'skimmed', step: 'ferment, drain', ids: ['ymer', 'ymerWhey'] },
-	{ from: 'yoghurt', step: 'strain', ids: ['greek', 'greekWhey'] },
-	{ from: 'curd', step: 'drain', ids: ['quark', 'acidWhey'] },
-	{ from: 'curd', step: 'strain', ids: ['skyr', 'skyrWhey'] },
-	{ from: 'pasteurised', step: 'curdle hot with acid', ids: ['chhena', 'chhenaWhey'] },
-	{ from: 'skimmed', step: 'precipitate with acid', ids: ['acidCasein', 'acidCaseinWhey'] },
-	{ from: 'cream', step: 'culture, ripen, churn', ids: ['culturedButter', 'culturedButtermilk'] },
-	{ from: 'soured', step: 'distil', ids: ['arkhi', 'stillCheese'] },
 ];
 
 // What a light step counts for, against 1 for any other (see light in the schema's Node).

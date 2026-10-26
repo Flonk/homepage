@@ -1,0 +1,45 @@
+{
+	"from": [
+		"skimmed"
+	],
+	"to": [
+		"litmusMilk"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "skim milk powder, 100 g per litre of water, with litmus and sodium sulfite",
+				"note": "Litmus at 0.5 g per litre (0.075 g in another recipe), sodium sulfite 0.5 g per litre, pH about 6.8."
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 121,
+					"max": 121,
+					"about": true
+				},
+				"seconds": {
+					"min": 900,
+					"max": 900
+				},
+				"note": "Autoclaved at 12 lb pressure for 15 min, in one recipe."
+			}
+		],
+		"text": "The medium is made from skim milk powder in water, not from liquid skimmed milk.",
+		"sources": {
+			"links": [
+				{
+					"name": "Microbe Online: Litmus milk test",
+					"url": "https://microbeonline.com/litmus-milk-test-principle-procedure-and-results/"
+				},
+				{
+					"name": "Virtual Labs: Litmus milk test, procedure",
+					"url": "https://mvii-au.vlabs.ac.in/exp/litmus-milk-test/procedure.html"
+				}
+			],
+			"text": "Microbe Online for the ingredients and pH; Virtual Labs for the autoclaving, whose pressure I read as about 121 degrees C. Neither gives the tube volume, and the two differ on how much litmus."
+		}
+	}
+}

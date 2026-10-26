@@ -1,10 +1,5 @@
 {
 	"label": "Stracciatella",
-	"from": "pastaFilata",
-	"step": "tear, add cream",
-	"alsoFrom": [
-		"cream"
-	],
 	"mapped": true,
 	"niche": 1,
 	"about": {
@@ -36,90 +31,6 @@
 	"regions": [
 		"IT"
 	],
-	"how": {
-		"text": "Part of the stretched curd is torn by hand into strips and soaked in cream. This spongy, half-liquid filling (stracciatella) spills out when a burrata is cut.",
-		"sources": {
-			"links": [
-				{
-					"name": "ONAF sheet: Burrata di Andria IGP (Reg. EU 2103/2016)",
-					"url": "https://www.onaf.it/uploads/public/15494_burrata.pdf"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "pasteurise",
-					"temperature": {
-						"min": 72,
-						"max": 72
-					},
-					"seconds": {
-						"min": 15,
-						"max": 15
-					}
-				},
-				{
-					"type": "coagulate",
-					"by": "rennet",
-					"temperature": {
-						"min": 35,
-						"max": 37
-					},
-					"seconds": {
-						"max": 600
-					}
-				},
-				{
-					"type": "custom",
-					"name": "stretch",
-					"note": "In boiling water."
-				},
-				{
-					"type": "custom",
-					"name": "tear",
-					"note": "Part of the curd is torn into strips."
-				},
-				{
-					"type": "heat",
-					"does": "cool"
-				},
-				{
-					"type": "salt",
-					"how": "brine",
-					"note": "Or the cream or stretching water is salted."
-				},
-				{
-					"type": "add",
-					"what": "cream"
-				},
-				{
-					"type": "custom",
-					"name": "fill",
-					"note": "For burrata, into a pouch of at least 2 mm, 100–1000 g."
-				},
-				{
-					"type": "heat",
-					"does": "cool",
-					"temperature": {
-						"min": 2,
-						"max": 6
-					},
-					"note": "With no ripening."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "ONAF sheet: Burrata di Andria IGP (Reg. EU 2103/2016)",
-						"url": "https://www.onaf.it/uploads/public/15494_burrata.pdf"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"examples": [
 		"burrata",
 		"stracciatellaDiBufala"

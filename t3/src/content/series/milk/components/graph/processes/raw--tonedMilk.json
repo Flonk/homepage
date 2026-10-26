@@ -1,0 +1,56 @@
+{
+	"from": [
+		"raw"
+	],
+	"to": [
+		"tonedMilk"
+	],
+	"step": "dilute with skim milk and water",
+	"text": "Water and skim powder take the place of fat and volume: three litres of toned milk come from about one litre of buffalo milk.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Toned milk",
+				"url": "https://en.wikipedia.org/wiki/Toned_milk"
+			},
+			{
+				"name": "Consumer Affairs India: Packaged Toned Milk test report",
+				"url": "https://consumeraffairs.nic.in/sites/default/files/file-uploads/ctocpas/Packaged%20Toned%20Milk.pdf"
+			},
+			{
+				"name": "Wikipedia: Dara Nusserwanji Khurody",
+				"url": "https://en.wikipedia.org/wiki/Dara_Nusserwanji_Khurody"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"note": "Buffalo milk of 7–8 % fat is stretched to 3 % fat (toned) or 1.5 % (double-toned), restoring non-fat solids to 8.5 % or 9.0 %.",
+				"what": "skim milk or skim milk powder, and water"
+			},
+			{
+				"type": "pasteurise"
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Toned milk",
+					"url": "https://en.wikipedia.org/wiki/Toned_milk"
+				},
+				{
+					"name": "Consumer Affairs India: Packaged Toned Milk test report",
+					"url": "https://consumeraffairs.nic.in/sites/default/files/file-uploads/ctocpas/Packaged%20Toned%20Milk.pdf"
+				},
+				{
+					"name": "Wikipedia: Dara Nusserwanji Khurody",
+					"url": "https://en.wikipedia.org/wiki/Dara_Nusserwanji_Khurody"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

@@ -1,0 +1,40 @@
+{
+	"from": [
+		"cream"
+	],
+	"to": [
+		"stracciatella"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "stretch curd",
+				"note": "Warm mozzarella-type curd is pulled into long thin strands, by hand or by machine."
+			},
+			{
+				"type": "cut",
+				"how": "shred",
+				"note": "The stretched curd is shredded."
+			},
+			{
+				"type": "add",
+				"what": "cream",
+				"note": "The shreds are mixed into cream, which they thicken a little as it soaks in."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Stracciatella (cheese)",
+					"url": "https://en.wikipedia.org/wiki/Stracciatella_(cheese)"
+				},
+				{
+					"name": "Chowhound: How stracciatella gets its texture",
+					"url": "https://www.chowhound.com/1936665/how-stracciatella-cheese-gets-smooth-texture"
+				}
+			],
+			"text": "Both for shredding stretched curd and mixing it with cream; neither gives temperatures or times. The arrow comes from cream, which is only the last ingredient: the cheese itself starts from pasta filata curd."
+		}
+	}
+}

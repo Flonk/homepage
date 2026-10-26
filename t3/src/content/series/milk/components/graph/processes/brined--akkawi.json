@@ -1,0 +1,48 @@
+{
+	"from": [
+		"brined"
+	],
+	"to": [
+		"akkawi"
+	],
+	"variant": true,
+	"text": "Akkawi is a Levantine white cheese pressed into blocks and kept in a fairly weak brine, and is usually eaten fresh; this gives a semi-hard, chalky-white, firm curd with a salty taste.",
+	"sources": {
+		"links": [
+			{
+				"name": "Kamleh et al., J. Sci. Food Agric. 95 (2015)",
+				"url": "https://doi.org/10.1002/jsfa.6906"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "pasteurise"
+			},
+			{
+				"type": "press",
+				"note": "Into rectangular blocks."
+			},
+			{
+				"type": "salt",
+				"how": "brine",
+				"strength": {
+					"min": 10,
+					"max": 12
+				},
+				"note": "In a pasteurised brine."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Kamleh et al., J. Sci. Food Agric. 95 (2015)",
+					"url": "https://doi.org/10.1002/jsfa.6906"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

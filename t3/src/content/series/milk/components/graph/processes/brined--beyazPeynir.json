@@ -1,0 +1,65 @@
+{
+	"from": [
+		"brined"
+	],
+	"to": [
+		"beyazPeynir"
+	],
+	"variant": true,
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Beyaz peynir",
+				"url": "https://en.wikipedia.org/wiki/Beyaz_peynir"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "coagulate",
+				"by": "rennet",
+				"note": "Traditionally calf or lamb abomasum rennet, or microbial rennet in industrial dairies."
+			},
+			{
+				"type": "press"
+			},
+			{
+				"type": "cut",
+				"how": "cut"
+			},
+			{
+				"type": "drain",
+				"by": "sieve"
+			},
+			{
+				"type": "cut",
+				"how": "cut"
+			},
+			{
+				"type": "salt",
+				"how": "brine"
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"seconds": {
+					"min": 15552000,
+					"max": 15552000,
+					"about": true
+				},
+				"note": "About 6 months in brine for the strong mature kind."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Beyaz peynir",
+					"url": "https://en.wikipedia.org/wiki/Beyaz_peynir"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

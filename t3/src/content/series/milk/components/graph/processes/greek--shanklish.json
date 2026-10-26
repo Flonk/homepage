@@ -1,0 +1,60 @@
+{
+	"from": [
+		"greek"
+	],
+	"to": [
+		"shanklish"
+	],
+	"step": "salt, shape, age",
+	"text": "Strained yoghurt (labneh) is salted, rolled into balls and coated in dried herbs and spices, then air-dried and aged; it is often kept in olive oil.",
+	"sources": {
+		"links": [
+			{
+				"name": "Shanklish, Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Shanklish"
+			},
+			{
+				"name": "Bintsis & Papademas 2022, Table 2, Fermentation 8:679",
+				"url": "https://doi.org/10.3390/fermentation8120679"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "salt"
+			},
+			{
+				"type": "mould",
+				"note": "Rolled into balls of about 6 cm."
+			},
+			{
+				"type": "custom",
+				"name": "coat",
+				"note": "Dried thyme, za'atar and Aleppo pepper."
+			},
+			{
+				"type": "dry"
+			},
+			{
+				"type": "ferment",
+				"does": "ripen"
+			}
+		],
+		"text": "Strained yoghurt (S. thermophilus and L. delbrueckii subsp. bulgaricus) is salted, rolled into balls, coated in herbs, then air-dried and aged.",
+		"sources": {
+			"links": [
+				{
+					"name": "Shanklish, Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Shanklish"
+				},
+				{
+					"name": "Bintsis & Papademas 2022, Table 2, Fermentation 8:679",
+					"url": "https://doi.org/10.3390/fermentation8120679"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

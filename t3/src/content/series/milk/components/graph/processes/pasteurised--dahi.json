@@ -1,0 +1,131 @@
+{
+	"from": [
+		"pasteurised"
+	],
+	"to": [
+		"dahi"
+	],
+	"step": "with lactococci",
+	"text": "Mesophilic lactococci sour boiled milk into a soft set curd; diacetyl-forming Lc. diacetylactis and Leuconostoc give mild dahi its buttery note, while added thermophiles make a sourer dahi. Household dahi is backslopped from the previous batch, so its flora varies, with Lactobacillus and Streptococcus often dominant. The 37 °C, 5–8 h route with added thermophiles gives a sourer, yoghurt-like dahi.",
+	"sources": {
+		"links": [
+			{
+				"name": "Rasane et al., J. Pure Appl. Microbiol. (2017)",
+				"url": "https://doi.org/10.22207/JPAM.11.2.68"
+			},
+			{
+				"name": "Dahi 16S metagenomics, J. Food Sci. Technol. (2025)",
+				"url": "https://doi.org/10.1007/s13197-024-06050-9"
+			},
+			{
+				"name": "FAO: Traditional milk products of India (T0251E, ch. 4)",
+				"url": "https://www.fao.org/4/T0251E/T0251E04.htm"
+			},
+			{
+				"name": "Tamang et al., Frontiers in Microbiology (2017), Bhutanese fermented foods",
+				"url": "https://www.frontiersin.org/journals/microbiology/articles/10.3389/fmicb.2017.00116/full"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 80,
+					"max": 85
+				}
+			},
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "Lactococcus lactis subsp. lactis",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							],
+							"grows": "mesophilic"
+						},
+						{
+							"name": "Lactococcus lactis subsp. cremoris",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							],
+							"grows": "mesophilic"
+						},
+						{
+							"name": "Lactococcus lactis subsp. lactis biovar diacetylactis",
+							"kind": "bacterium",
+							"does": [
+								"aroma"
+							],
+							"grows": "mesophilic"
+						},
+						{
+							"name": "Leuconostoc",
+							"kind": "bacterium",
+							"does": [
+								"aroma"
+							],
+							"grows": "mesophilic"
+						}
+					],
+					"by": [
+						"starter"
+					]
+				},
+				"temperature": {
+					"min": 22,
+					"max": 22
+				},
+				"seconds": {
+					"min": 43200,
+					"max": 50400
+				},
+				"pH": {
+					"min": 4.4,
+					"max": 4.5
+				}
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"min": 3,
+					"max": 4
+				}
+			}
+		],
+		"text": "Household dahi is backslopped from the previous batch. A 37 °C, 5–8 h route with added thermophiles gives a sourer, yoghurt-like dahi.",
+		"sources": {
+			"links": [
+				{
+					"name": "Rasane et al., J. Pure Appl. Microbiol. (2017)",
+					"url": "https://doi.org/10.22207/JPAM.11.2.68"
+				},
+				{
+					"name": "Dahi 16S metagenomics, J. Food Sci. Technol. (2025)",
+					"url": "https://doi.org/10.1007/s13197-024-06050-9"
+				},
+				{
+					"name": "FAO: Traditional milk products of India (T0251E, ch. 4)",
+					"url": "https://www.fao.org/4/T0251E/T0251E04.htm"
+				},
+				{
+					"name": "Tamang et al., Frontiers in Microbiology (2017), Bhutanese fermented foods",
+					"url": "https://www.frontiersin.org/journals/microbiology/articles/10.3389/fmicb.2017.00116/full"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

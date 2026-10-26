@@ -1,0 +1,31 @@
+{
+	"from": [
+		"skyr"
+	],
+	"to": [
+		"acidWhey"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "drain",
+				"by": "cloth",
+				"note": "The liquid that runs off the skyr is the acid whey."
+			}
+		],
+		"text": "Dairies strain concentrated yoghurts in a nozzle separator, or by ultrafiltration after about 3 minutes at 55 °C; the handbook does not name skyr.",
+		"sources": {
+			"links": [
+				{
+					"name": "Skyr, Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Skyr"
+				},
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products"
+				}
+			],
+			"text": "Skyr is strained through fabric; the dairy ways of straining are from the handbook’s concentrated yoghurt."
+		}
+	}
+}

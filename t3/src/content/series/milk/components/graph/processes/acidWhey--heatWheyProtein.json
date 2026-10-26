@@ -1,0 +1,53 @@
+{
+	"from": [
+		"acidWhey"
+	],
+	"to": [
+		"heatWheyProtein"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "acidify",
+				"note": "Acid is added to bring the whey to a lower pH before and during the hold, so the whey protein will come out."
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 90,
+					"max": 95
+				},
+				"seconds": {
+					"min": 180,
+					"max": 240
+				},
+				"note": "The whey is warmed in a heat exchanger, then taken up to temperature by direct steam injection and held in a tube while the protein precipitates."
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"min": 40,
+					"max": 40,
+					"about": true
+				}
+			},
+			{
+				"type": "separate",
+				"off": "solids",
+				"by": "centrifuge",
+				"note": "A solids-ejecting centrifuge takes out the soft coagulum as a 12 to 15 percent solids concentrate, 90 to 95 percent of the coagulable protein."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 18 Milk and whey fractionation",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-fractionation"
+				}
+			],
+			"text": "The temperature, hold, cooling and separation, and the recovery, from the handbook; it gives no pH setpoint and no drying conditions, so none are shown."
+		}
+	}
+}

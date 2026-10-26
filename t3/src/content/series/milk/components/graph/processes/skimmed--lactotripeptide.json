@@ -1,0 +1,84 @@
+{
+	"from": [
+		"skimmed"
+	],
+	"to": [
+		"lactotripeptide"
+	],
+	"step": "ferment with L. helveticus",
+	"text": "The bacterium's cell-wall proteinase cuts casein into a peptide of about 28 amino acids holding both sequences; the cell takes it up and its peptidases trim out VPP and IPP. Falling pH switches the proteinase off, and added amino acids lower the yield.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Lactotripeptides",
+				"url": "https://en.wikipedia.org/wiki/Lactotripeptides"
+			},
+			{
+				"name": "Patent EP1581062 (strain, 38-42 °C, times; Evolus = Valio; Calpis sour milk = L. helveticus + S. cerevisiae)",
+				"url": "https://patents.google.com/patent/EP1581062"
+			},
+			{
+				"name": "IntechOpen chapter 29734 (mechanism, 3.4 mg dose, FOSHU)",
+				"url": "https://www.intechopen.com/chapters/29734"
+			},
+			{
+				"name": "Patent WO2004060073A1",
+				"url": "https://patents.google.com/patent/WO2004060073A1/en"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "Lactobacillus helveticus",
+							"kind": "bacterium"
+						}
+					],
+					"by": [
+						"starter"
+					]
+				},
+				"temperature": {
+					"min": 38,
+					"max": 42
+				},
+				"seconds": {
+					"min": 21600,
+					"max": 360000
+				},
+				"note": "Strains named are CNRZ 244 in the Dutch patent, CM4 in the Calpis work, and one isolated from Evolus."
+			}
+		],
+		"text": "Skimmed milk or 9 % reconstituted skim milk powder; preferably 15-50 h. Calpis sour milk also holds Saccharomyces cerevisiae. A run reached pH 4.6 after 9-11 h, was held 5-7 h, then went to pH 4.0.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Lactotripeptides",
+					"url": "https://en.wikipedia.org/wiki/Lactotripeptides"
+				},
+				{
+					"name": "Patent EP1581062 (strain, 38-42 °C, times; Evolus = Valio; Calpis sour milk = L. helveticus + S. cerevisiae)",
+					"url": "https://patents.google.com/patent/EP1581062"
+				},
+				{
+					"name": "IntechOpen chapter 29734 (mechanism, 3.4 mg dose, FOSHU)",
+					"url": "https://www.intechopen.com/chapters/29734"
+				},
+				{
+					"name": "Patent WO2004060073A1",
+					"url": "https://patents.google.com/patent/WO2004060073A1/en"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

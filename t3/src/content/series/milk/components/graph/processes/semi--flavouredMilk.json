@@ -1,0 +1,51 @@
+{
+	"from": [
+		"semi"
+	],
+	"to": [
+		"flavouredMilk"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "cocoa, sugar and carrageenan",
+				"note": "A concentrate of cocoa, sweetener and lambda carrageenan, which keeps the cocoa suspended, is mixed into part of the milk."
+			},
+			{
+				"type": "pasteurise",
+				"temperature": {
+					"min": 77,
+					"max": 85
+				},
+				"seconds": {
+					"min": 15,
+					"max": 60
+				},
+				"note": "The mix is pasteurised, in the HTST way or in a vat at about 71 °C for 20–30 minutes."
+			},
+			{
+				"type": "homogenise",
+				"note": "It may be homogenised, if wanted."
+			},
+			{
+				"type": "add",
+				"what": "pasteurised milk",
+				"note": "The concentrate is diluted with more pasteurised milk and stirred for 15–30 minutes before it is packed."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "US patent 4,910,035: Process and product for making flavored milk",
+					"url": "https://patents.google.com/patent/US4910035"
+				},
+				{
+					"name": "Wikipedia: Flavored milk",
+					"url": "https://en.wikipedia.org/wiki/Flavored_milk"
+				}
+			],
+			"text": "The steps and figures are those of one chocolate-milk patent; Wikipedia for flavoured milk sold pasteurised and chilled or UHT-treated, which the patent does not cover."
+		}
+	}
+}

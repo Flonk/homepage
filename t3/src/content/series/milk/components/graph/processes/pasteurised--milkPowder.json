@@ -1,0 +1,84 @@
+{
+	"from": [
+		"pasteurised"
+	],
+	"to": [
+		"milkPowder"
+	],
+	"step": "concentrate, spray-dry",
+	"text": "Pasteurised milk is boiled down under vacuum to about half solids, then sprayed as a fine mist into hot air, where the water leaves in a moment and a dry powder falls out. It keeps unchilled because it holds so little water.",
+	"sources": {
+		"links": [
+			{
+				"name": "Tetra Pak Dairy Processing Handbook: Milk and whey powdered ingredients",
+				"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-powdered-ingredients"
+			},
+			{
+				"name": "Codex Alimentarius CXS 207-1999, Standard for Milk Powders and Cream Powder",
+				"url": "https://www.fao.org/fao-who-codexalimentarius/codex-texts/list-standards/en/"
+			},
+			{
+				"name": "Wikipedia: Powdered milk",
+				"url": "https://en.wikipedia.org/wiki/Powdered_milk"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "pasteurise",
+				"temperature": {
+					"min": 75,
+					"max": 75
+				},
+				"seconds": {
+					"min": 15,
+					"max": 15
+				}
+			},
+			{
+				"type": "evaporate",
+				"under": "vacuum",
+				"solids": {
+					"min": 50,
+					"max": 52
+				}
+			},
+			{
+				"type": "homogenise",
+				"note": "To cut the free fat in the powder."
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 10,
+					"max": 80
+				},
+				"note": "To set its viscosity before it is atomised."
+			},
+			{
+				"type": "dry",
+				"note": "Sprayed into hot air that enters at 200–220 °C and leaves at 75–80 °C."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook: Milk and whey powdered ingredients",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/milk-and-whey-powdered-ingredients"
+				},
+				{
+					"name": "Codex Alimentarius CXS 207-1999, Standard for Milk Powders and Cream Powder",
+					"url": "https://www.fao.org/fao-who-codexalimentarius/codex-texts/list-standards/en/"
+				},
+				{
+					"name": "Wikipedia: Powdered milk",
+					"url": "https://en.wikipedia.org/wiki/Powdered_milk"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

@@ -1,0 +1,55 @@
+{
+	"from": [
+		"permeate"
+	],
+	"to": [
+		"lactobionicAcid"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"adds": {
+					"microbes": [
+						{
+							"name": "Pseudomonas taetrolens",
+							"kind": "bacterium"
+						}
+					],
+					"by": [
+						"starter"
+					],
+					"dose": {
+						"min": 10,
+						"max": 25
+					}
+				},
+				"temperature": {
+					"min": 30,
+					"max": 30
+				},
+				"pH": {
+					"min": 6.5,
+					"max": 6.7
+				},
+				"seconds": {
+					"min": 180000,
+					"max": 180000,
+					"about": true
+				},
+				"note": "Aerated and stirred, the bacteria oxidise the lactose to lactobionic acid, with the pH held up by sodium hydroxide."
+			}
+		],
+		"text": "The study used whey rather than permeate itself; its best batch reached about 21 g/l in 50 hours, and how the acid is then recovered is not sourced here.",
+		"sources": {
+			"links": [
+				{
+					"name": "Pseudomonas taetrolens lactobionic acid from whey (PMC4133020)",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4133020/"
+				}
+			],
+			"text": "The temperature, pH, inoculum and time are from this study of lactobionic acid made from whey by Pseudomonas taetrolens."
+		}
+	}
+}

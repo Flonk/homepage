@@ -1,0 +1,62 @@
+{
+	"from": [
+		"bryndza"
+	],
+	"to": [
+		"bryndzaPodhalanska"
+	],
+	"variant": true,
+	"text": "The Polish PDO covers the Podhale highlands. The cheese is made only in the grazing season, from sheep's milk with at most 40 % cow's milk, and the matured rennet cheese is ground with salt to a paste. The registered specification keeps temperatures, salt and ripening time to the producers, and the public summaries do not state them.",
+	"sources": {
+		"links": [
+			{
+				"name": "Ministry of Agriculture (PL): Bryndza podhalańska",
+				"url": "https://www.gov.pl/web/rolnictwo/bryndza-podhalanska"
+			},
+			{
+				"name": "Visit Małopolska: Bryndza podhalańska",
+				"url": "https://visitmalopolska.pl/en/-/bryndza-podhalanska"
+			},
+			{
+				"name": "Commission Regulation (EC) No 642/2007; application OJ C 230/2006",
+				"url": "https://biznesstandard.inforlex.pl/download/akty_ue,site,pl,oj,2006,c_230,c_23020060923pl00020004.pdf"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "coagulate",
+				"by": "rennet"
+			},
+			{
+				"type": "ferment",
+				"does": "ripen"
+			},
+			{
+				"type": "custom",
+				"name": "grind with salt",
+				"note": "Into a soft, creamy, uniform paste."
+			}
+		],
+		"text": "The matured rennet cheese is ground with salt to a paste; the registered specification keeps ripening time and temperature to the producers.",
+		"sources": {
+			"links": [
+				{
+					"name": "Ministry of Agriculture (PL): Bryndza podhalańska",
+					"url": "https://www.gov.pl/web/rolnictwo/bryndza-podhalanska"
+				},
+				{
+					"name": "Visit Małopolska: Bryndza podhalańska",
+					"url": "https://visitmalopolska.pl/en/-/bryndza-podhalanska"
+				},
+				{
+					"name": "Commission Regulation (EC) No 642/2007; application OJ C 230/2006",
+					"url": "https://biznesstandard.inforlex.pl/download/akty_ue,site,pl,oj,2006,c_230,c_23020060923pl00020004.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

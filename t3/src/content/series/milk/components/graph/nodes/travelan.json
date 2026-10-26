@@ -4,8 +4,6 @@
 		"Travelan",
 		"Immune milk"
 	],
-	"from": "colostrum",
-	"step": "from vaccinated cows, dry",
 	"about": {
 		"text": "Colostrum from pregnant cows vaccinated against the strains of E. coli that cause traveller's diarrhoea, so that their first milk is full of antibodies against them. Freeze-dried to a powder and pressed into tablets, sold as Travelan; a large trial in 2025 found it gave little protection.",
 		"sources": {
@@ -21,52 +19,6 @@
 	"regions": [
 		"AU"
 	],
-	"how": {
-		"text": "The cow is the antibody factory: vaccinated while pregnant, she puts the antibodies into her colostrum. That is dried and sold as tablets, taken with meals while travelling.",
-		"sources": {
-			"links": [
-				{
-					"name": "Immuron: NZ dairy for colostrum production, Lab Online",
-					"url": "https://www.labonline.com.au/content/life-scientist/news/immuron-taps-nz-dairy-for-colostrum-production-1253930461"
-				},
-				{
-					"name": "Immuron Ltd, MTEC member page",
-					"url": "https://mtec-sc.org/members/immuron-ltd"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "custom",
-					"name": "vaccinate",
-					"note": "Cows are vaccinated during pregnancy with antigens from 13 human-derived ETEC strains."
-				},
-				{
-					"type": "dry",
-					"note": "Freeze-dried."
-				},
-				{
-					"type": "press",
-					"note": "Into tablets."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Immuron: NZ dairy for colostrum production, Lab Online",
-						"url": "https://www.labonline.com.au/content/life-scientist/news/immuron-taps-nz-dairy-for-colostrum-production-1253930461"
-					},
-					{
-						"name": "Immuron Ltd, MTEC member page",
-						"url": "https://mtec-sc.org/members/immuron-ltd"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"facts": [
 		{
 			"k": "Antibodies aimed at",

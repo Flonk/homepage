@@ -55,65 +55,6 @@
 		"located": "knowledge"
 	},
 	"confidence": "medium",
-	"how": {
-		"text": "Mató is the Catalan fresh cheese. The milk is heated far hotter than for other cheeses, which keeps the whey proteins in the curd and makes it rich and moist, then set with rennet, cardoon, calcium chloride or acid, and the curd is drained in a cloth or basket without pressing. It is neither salted nor fermented.",
-		"sources": {
-			"links": [
-				{
-					"name": "Viquipèdia: Mató",
-					"url": "https://ca.wikipedia.org/wiki/Mat%C3%B3"
-				},
-				{
-					"name": "Wikipedia: Mató",
-					"url": "https://en.wikipedia.org/wiki/Mat%C3%B3"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "heat",
-					"does": "heat",
-					"temperature": {
-						"min": 80,
-						"max": 95
-					},
-					"seconds": {
-						"min": 60,
-						"max": 180
-					},
-					"note": "Far above normal cheese-milk heating, so the whey proteins stay in the curd."
-				},
-				{
-					"type": "coagulate",
-					"by": "rennet",
-					"note": "Animal rennet or cardoon thistle extract; at home lemon juice or other organic acid, to pH about 4.6."
-				},
-				{
-					"type": "cut",
-					"how": "cut"
-				},
-				{
-					"type": "drain",
-					"note": "Without pressing."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Viquipèdia: Mató",
-						"url": "https://ca.wikipedia.org/wiki/Mat%C3%B3"
-					},
-					{
-						"name": "Wikipedia: Mató",
-						"url": "https://en.wikipedia.org/wiki/Mat%C3%B3"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"sources": {
 		"links": [
 			{

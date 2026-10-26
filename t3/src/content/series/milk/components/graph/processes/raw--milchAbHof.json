@@ -1,0 +1,49 @@
+{
+	"from": [
+		"raw"
+	],
+	"to": [
+		"milchAbHof"
+	],
+	"variant": true,
+	"text": "There is no step at all: the milk goes from the cooler or machine into the customer own bottle, which is exactly why the law demands the boil-before-drinking notice.",
+	"sources": {
+		"links": [
+			{
+				"name": "BfR: Rohmilch abkochen schützt vor Infektionen",
+				"url": "https://www.bfr.bund.de/presseinformation/rohmilch-abkochen-schuetzt-vor-infektionen/"
+			},
+			{
+				"name": "Landkreis München: Direktvermarktung von Rohmilch ab Hof melden",
+				"url": "https://www.landkreis-muenchen.de/buergerservice/dienstleistung/direktvermarktung-von-rohmilch-ab-hof-melden/"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "filter",
+				"note": "After milking the milk is only filtered, with no other treatment."
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"note": "It is cooled and sold on the day it is milked or the day after, with no heating at all."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "BfR: Rohmilch abkochen schützt vor Infektionen",
+					"url": "https://www.bfr.bund.de/presseinformation/rohmilch-abkochen-schuetzt-vor-infektionen/"
+				},
+				{
+					"name": "Landkreis München: Direktvermarktung von Rohmilch ab Hof melden",
+					"url": "https://www.landkreis-muenchen.de/buergerservice/dienstleistung/direktvermarktung-von-rohmilch-ab-hof-melden/"
+				}
+			],
+			"text": "That the milk is only filtered and cooled, sold the day it is obtained or the day after, and not heated (which is why it must be boiled before drinking); neither page gives a cooling temperature."
+		}
+	}
+}

@@ -1,0 +1,33 @@
+{
+	"from": [
+		"chhenaSweets"
+	],
+	"to": [
+		"rasgulla"
+	],
+	"variant": true,
+	"step": "poach in syrup",
+	"text": "The chhena balls are boiled in light sugar syrup, where they swell.",
+	"sources": {
+		"unsourced": true,
+		"text": "No source recorded for how it is made yet."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"note": "In light sugar syrup, where the chhena balls swell.",
+				"does": "heat",
+				"temperature": {
+					"min": 100,
+					"max": 100,
+					"about": true
+				}
+			}
+		],
+		"sources": {
+			"unsourced": true,
+			"text": "No source recorded for how it is made yet."
+		}
+	}
+}

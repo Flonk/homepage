@@ -4,8 +4,6 @@
 		"Sweet yoghurt",
 		"Misti dahi"
 	],
-	"from": "fresh",
-	"step": "boil down, sweeten, ferment",
 	"about": {
 		"text": "Mishti doi is a fermented sweet doi (curd) originating from the Bengal region of the Indian subcontinent. It is popular in Bangladesh and in the Indian states of West Bengal, Tripura, Assam's Barak Valley. It is made with milk and sugar or jaggery. It differs from plain yogurt because of the technique of preparation. There are many variations of mishti doi according to their popularity. Sweet curd of Nabadwip, Kolkata, Bogra, etc are very popular.",
 		"sources": {
@@ -36,85 +34,6 @@
 		"IN",
 		"BD"
 	],
-	"how": {
-		"text": "Boiling the milk down thickens it before a dahi starter sours it, and in trials 10–12 % sugar gave the best sweetened curd (more sugar slowed setting). Unglazed clay pots draw off water as it sets, which makes it denser still.",
-		"sources": {
-			"links": [
-				{
-					"name": "Akter et al., J. Bangladesh Agric. Univ. 8(2) (2010)",
-					"url": "https://www.banglajol.info/index.php/JBAU/article/view/7933"
-				},
-				{
-					"name": "Wikipedia: Mishti doi",
-					"url": "https://en.wikipedia.org/wiki/Mishti_doi"
-				},
-				{
-					"name": "FAO: Traditional milk products of India (T0251E, ch. 4)",
-					"url": "https://www.fao.org/4/T0251E/T0251E04.htm"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "evaporate",
-					"note": "Boiled down by about 20 %."
-				},
-				{
-					"type": "add",
-					"what": "sugar",
-					"note": "Or gur or date molasses."
-				},
-				{
-					"type": "ferment",
-					"does": "incubate",
-					"kinds": [
-						"lactic"
-					],
-					"adds": {
-						"microbes": [],
-						"by": [
-							"starter"
-						],
-						"dose": {
-							"min": 2,
-							"max": 3
-						},
-						"vessel": "earthenware pot"
-					},
-					"temperature": {
-						"min": 37,
-						"max": 37
-					},
-					"seconds": {
-						"min": 28800,
-						"max": 43200,
-						"about": true
-					},
-					"note": "Set at 37 °C in trials, traditionally overnight in earthenware pots."
-				}
-			],
-			"text": "The FAO route adds 6.0–6.5 % cane sugar before boiling, cools to 40–45 °C and incubates for 12–15 h.",
-			"sources": {
-				"links": [
-					{
-						"name": "Akter et al., J. Bangladesh Agric. Univ. 8(2) (2010)",
-						"url": "https://www.banglajol.info/index.php/JBAU/article/view/7933"
-					},
-					{
-						"name": "Wikipedia: Mishti doi",
-						"url": "https://en.wikipedia.org/wiki/Mishti_doi"
-					},
-					{
-						"name": "FAO: Traditional milk products of India (T0251E, ch. 4)",
-						"url": "https://www.fao.org/4/T0251E/T0251E04.htm"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"examples": [
 		"jujuDhau",
 		"bogurarDoi",

@@ -37,36 +37,6 @@
 		"JO",
 		"PS"
 	],
-	"how": {
-		"label": "pound and stretch while freezing",
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Booza",
-					"url": "https://en.wikipedia.org/wiki/Booza"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "custom",
-					"name": "stretch",
-					"note": "Pounded in a freezer drum rather than churned."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia: Booza",
-						"url": "https://en.wikipedia.org/wiki/Booza"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"facts": [
 		{
 			"k": "Texture",

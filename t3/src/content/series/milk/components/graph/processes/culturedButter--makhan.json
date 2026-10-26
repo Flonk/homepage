@@ -1,0 +1,101 @@
+{
+	"from": [
+		"culturedButter"
+	],
+	"to": [
+		"makhan"
+	],
+	"variant": true,
+	"step": "set dahi, churn",
+	"text": "Whole milk is soured into dahi with a spoonful of yesterday's dahi or chhach, and the lactic bacteria supply the diacetyl that gives makkhan its aroma. The whole curd, not separated cream, is churned, so makkhan keeps more moisture, curd and lactic acid than butter.",
+	"sources": {
+		"links": [
+			{
+				"name": "Halder et al., J Food Sci Technol (makkhan review)",
+				"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8021505/"
+			},
+			{
+				"name": "FAO: Traditional milk products of India (T0251E, ch. 4)",
+				"url": "https://www.fao.org/4/T0251E/T0251E04.htm"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 100,
+					"max": 100,
+					"about": true
+				}
+			},
+			{
+				"type": "heat",
+				"does": "cool"
+			},
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "Lactococcus lactis subsp. lactis biovar diacetylactis",
+							"kind": "bacterium",
+							"does": [
+								"aroma"
+							]
+						},
+						{
+							"name": "Leuconostoc mesenteroides subsp. cremoris",
+							"kind": "bacterium",
+							"does": [
+								"aroma"
+							]
+						}
+					],
+					"by": [
+						"backslop"
+					]
+				},
+				"seconds": {
+					"min": 28800,
+					"max": 57600
+				},
+				"acidity": {
+					"min": 0.9,
+					"max": 1.1
+				},
+				"note": "Set at room temperature overnight with a spoonful of the previous day's dahi or chhach, best for churning at 0.9–1.1 % acidity and up to 2 % when uncontrolled."
+			},
+			{
+				"type": "add",
+				"what": "water"
+			},
+			{
+				"type": "churn"
+			},
+			{
+				"type": "wash"
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Halder et al., J Food Sci Technol (makkhan review)",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8021505/"
+				},
+				{
+					"name": "FAO: Traditional milk products of India (T0251E, ch. 4)",
+					"url": "https://www.fao.org/4/T0251E/T0251E04.htm"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

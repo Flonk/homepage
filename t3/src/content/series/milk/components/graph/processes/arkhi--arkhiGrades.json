@@ -1,0 +1,37 @@
+{
+	"from": [
+		"arkhi"
+	],
+	"to": [
+		"arkhiGrades"
+	],
+	"step": "distil again",
+	"text": "The arkhi is run through the still again. In the Mongolian heritage description, distilling fermented milk makes arz and distilling zar again makes khorz, a strong spirit. No temperatures or strengths were found in an opened source, so no table.",
+	"sources": {
+		"links": [
+			{
+				"name": "National Center for Cultural Heritage (Mongolia): The traditional technique of distilling milk alcohol (Shimiin arkhi)",
+				"url": "https://www.irci.jp/rdb/item/13428"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "distil",
+				"note": "Run through the still again."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "National Center for Cultural Heritage (Mongolia): The traditional technique of distilling milk alcohol (Shimiin arkhi)",
+					"url": "https://www.irci.jp/rdb/item/13428"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

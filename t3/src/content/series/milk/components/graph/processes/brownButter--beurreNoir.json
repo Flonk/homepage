@@ -1,0 +1,41 @@
+{
+	"from": [
+		"brownButter"
+	],
+	"to": [
+		"beurreNoir"
+	],
+	"variant": true,
+	"text": "Made like brown butter, only cooked darker, then stopped with an acid. No temperature or time is given in the source; the colour is the guide.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia (fr): Beurre noir",
+				"url": "https://fr.wikipedia.org/wiki/Beurre_noir"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "evaporate",
+				"note": "Until the water has evaporated and the butter is dark, past brown butter."
+			},
+			{
+				"type": "add",
+				"what": "acid",
+				"note": "Vinegar, lemon juice or white wine (capers also) stirred in after the cooking, and parsley at the end."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia (fr): Beurre noir",
+					"url": "https://fr.wikipedia.org/wiki/Beurre_noir"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

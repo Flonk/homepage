@@ -1,0 +1,67 @@
+{
+	"from": [
+		"semiHard"
+	],
+	"to": [
+		"cheesePowder"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "cut",
+				"how": "grind",
+				"note": "The cheese is comminuted and mixed with water."
+			},
+			{
+				"type": "add",
+				"what": "water and calcium-sequestering salts",
+				"share": {
+					"min": 3,
+					"max": 4
+				},
+				"note": "Phosphates such as disodium phosphate bind the cheese's calcium so the fat emulsifies, in a feed of 25–45 % dry matter."
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 80,
+					"max": 85
+				},
+				"seconds": {
+					"min": 45,
+					"max": 1200
+				},
+				"note": "The mix is held hot, in studies from 80 °C for 1–10 minutes to 85 °C for 45 seconds, and kept below 85 °C where possible to save volatile flavour."
+			},
+			{
+				"type": "filter",
+				"note": "The hot mix is passed through a sieve, and the undissolved cheese left behind."
+			},
+			{
+				"type": "homogenise",
+				"bar": {
+					"min": 50,
+					"max": 150
+				},
+				"note": "It is usually homogenised in two stages, at about 150 and 50 bar, to make the emulsion stable."
+			},
+			{
+				"type": "pasteurise"
+			},
+			{
+				"type": "dry",
+				"note": "It is spray-dried, often in two stages, a lab-scale dryer giving a soluble powder at 174 °C inlet and 68 °C outlet air."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Deshwal et al. (2024), A Review on the Production and Characteristics of Cheese Powders, Foods 13, 2204",
+					"url": "https://mdpi-res.com/d_attachment/foods/foods-13-02204/article_deploy/foods-13-02204.pdf"
+				}
+			],
+			"text": "The steps of a cheese emulsion and its spray-drying and the ranges quoted from the studies the review lists; the review gives no single standard."
+		}
+	}
+}

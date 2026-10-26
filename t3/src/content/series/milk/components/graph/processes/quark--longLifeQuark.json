@@ -1,0 +1,43 @@
+{
+	"from": [
+		"quark"
+	],
+	"to": [
+		"longLifeQuark"
+	],
+	"variant": true,
+	"step": "heat after draining",
+	"text": "Stabilisers are added to the finished quark, which is then heat-treated in a plate, tubular or scraped-surface heat exchanger to keep longer.",
+	"sources": {
+		"links": [
+			{
+				"name": "Tetra Pak Dairy Processing Handbook: Cheese",
+				"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "stabilisers",
+				"note": "In the buffer tank."
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"note": "To inactivate all microorganisms."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook: Cheese",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

@@ -1,7 +1,5 @@
 {
 	"label": "Milk permeate",
-	"from": "skimmed",
-	"step": "what passes the filter",
 	"note": "Mostly lactose and minerals; like whey permeate it is dried and used as a cheap filler and sweetener base.",
 	"about": {
 		"text": "What passes through the membrane when skimmed milk is ultrafiltered to make milk protein: water, lactose and minerals, with no protein to speak of. It is dried or concentrated and used as a lactose and mineral ingredient.",
@@ -13,46 +11,6 @@
 				}
 			],
 			"text": "Written from this source."
-		}
-	},
-	"how": {
-		"text": "The membrane holds back the proteins and lets water, lactose, minerals and small nitrogen compounds through. That liquid is then concentrated and dried, often with a controlled crystallisation step first, into a powder of roughly 80 % lactose, 3 % protein and 8.5 % ash. It stands in for other dairy solids, sugar or corn syrup in bakery, pizza dough and confectionery, and is a lactose and mineral supply in animal feed.",
-		"sources": {
-			"links": [
-				{
-					"name": "ADPI: Dairy milk permeate (typical values and standard limits)",
-					"url": "https://adpi.org/ingredient-resources/dairy-milk-permeate/"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "ultrafilter",
-					"note": "Of pasteurised skim milk; the permeate is what passes through."
-				},
-				{
-					"type": "evaporate"
-				},
-				{
-					"type": "custom",
-					"name": "crystallise",
-					"note": "Controlled, often before drying."
-				},
-				{
-					"type": "dry"
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "ADPI: Dairy milk permeate (typical values and standard limits)",
-						"url": "https://adpi.org/ingredient-resources/dairy-milk-permeate/"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	},
 	"composition": {

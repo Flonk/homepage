@@ -1,0 +1,49 @@
+{
+	"from": [
+		"milkPowder"
+	],
+	"to": [
+		"reconstituted"
+	],
+	"step": "add water",
+	"text": "Water is stirred into milk powder until it is liquid milk again. With whole milk powder the fat is already in it.",
+	"sources": {
+		"links": [
+			{
+				"name": "Tetra Pak Dairy Processing Handbook: Recombined milk products",
+				"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/recombined-milk-products"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "water",
+				"note": "Added to skim milk powder, whole milk powder or both, which supplies the fat."
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 72
+				},
+				"seconds": {
+					"min": 15,
+					"max": 15
+				},
+				"note": "Pasteurised, or UHT."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook: Recombined milk products",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/recombined-milk-products"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

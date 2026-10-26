@@ -1,0 +1,38 @@
+{
+	"from": [
+		"lacticCheese"
+	],
+	"to": [
+		"poulignySaintPierre"
+	],
+	"variant": true,
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Pouligny-Saint-Pierre cheese",
+				"url": "https://en.wikipedia.org/wiki/Pouligny-Saint-Pierre_cheese"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"seconds": {
+					"min": 1209600
+				}
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Pouligny-Saint-Pierre cheese",
+					"url": "https://en.wikipedia.org/wiki/Pouligny-Saint-Pierre_cheese"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

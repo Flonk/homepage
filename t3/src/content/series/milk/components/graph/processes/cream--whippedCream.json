@@ -1,0 +1,50 @@
+{
+	"from": [
+		"cream"
+	],
+	"to": [
+		"whippedCream"
+	],
+	"step": "whip in air",
+	"text": "Chill cream and bowl, beat air in; sugar and vanilla make it Chantilly.",
+	"sources": {
+		"links": [
+			{
+				"name": "Tetra Pak Dairy Processing Handbook, ch. 9 Pasteurized and ESL dairy products (whipping cream)",
+				"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/pasteurized-and-esl-dairy-products"
+			},
+			{
+				"name": "Wikipedia: Whipped cream",
+				"url": "https://en.wikipedia.org/wiki/Whipped_cream"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "cool",
+				"note": "The bowl is chilled too."
+			},
+			{
+				"type": "custom",
+				"name": "whip",
+				"note": "Sugar and vanilla make it Chantilly."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 9 Pasteurized and ESL dairy products (whipping cream)",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/pasteurized-and-esl-dairy-products"
+				},
+				{
+					"name": "Wikipedia: Whipped cream",
+					"url": "https://en.wikipedia.org/wiki/Whipped_cream"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

@@ -1,0 +1,65 @@
+{
+	"from": [
+		"ropy"
+	],
+	"to": [
+		"tatmjolk"
+	],
+	"variant": true,
+	"step": "ferment with leaves",
+	"text": "Traditionally, warm milk was poured over fresh butterwort leaves, whose surface carries Lactococcus with exopolysaccharide genes. These seed the ropy fermentation that thickens the milk.",
+	"sources": {
+		"links": [
+			{
+				"name": "Porcellato et al. 2016, J Dairy Sci (tettemelk, Pinguicula)",
+				"url": "https://doi.org/10.3168/jds.2016-11280"
+			},
+			{
+				"name": "Wikipedia (sv): Långfil (after Fondén, Leporanta & Svensson 2007)",
+				"url": "https://sv.wikipedia.org/wiki/L%C3%A5ngfil"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "Lactococcus lactis subsp. cremoris",
+							"kind": "bacterium",
+							"does": [
+								"acid",
+								"slime"
+							]
+						}
+					],
+					"by": [
+						"vessel"
+					],
+					"vessel": "butterwort (Pinguicula vulgaris) leaves"
+				},
+				"note": "Warm milk is poured over the leaves, whose surface carries the ropy lactococci."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Porcellato et al. 2016, J Dairy Sci (tettemelk, Pinguicula)",
+					"url": "https://doi.org/10.3168/jds.2016-11280"
+				},
+				{
+					"name": "Wikipedia (sv): Långfil (after Fondén, Leporanta & Svensson 2007)",
+					"url": "https://sv.wikipedia.org/wiki/L%C3%A5ngfil"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

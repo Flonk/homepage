@@ -1,0 +1,30 @@
+{
+	"from": [
+		"soured"
+	],
+	"to": [
+		"culturedButter"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "churn",
+				"note": "The whole soured milk is churned, as in Morocco where it yields butter and lben."
+			}
+		],
+		"text": "In a dairy the cream is soured first: heated to at least 85 °C for 15 s, ripened 12–15 hours with a starter, then churned.",
+		"sources": {
+			"links": [
+				{
+					"name": "Ouadghiri et al., J. Applied Microbiology (2008)",
+					"url": "https://staff.najah.edu/media/sites/default/files/OuadghiriJAM2008.pdf"
+				},
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 14 Butter",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/butter"
+				}
+			],
+			"text": "Churning soured milk into butter, from the Moroccan paper; the dairy way with cream from the handbook."
+		}
+	}
+}

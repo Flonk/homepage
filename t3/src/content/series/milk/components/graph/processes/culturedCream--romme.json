@@ -1,0 +1,54 @@
+{
+	"from": [
+		"culturedCream"
+	],
+	"to": [
+		"romme"
+	],
+	"text": "Cream, or whole milk mixed with cream, is soured by natural or added lactic acid bacteria. The source gives no species, temperatures or times.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia (no): Rømme",
+				"url": "https://no.wikipedia.org/wiki/R%C3%B8mme"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "lactic acid bacteria",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						}
+					],
+					"by": [
+						"wild",
+						"starter"
+					]
+				}
+			}
+		],
+		"text": "Soured by natural bacteria or an added lactic acid culture.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia (no): Rømme",
+					"url": "https://no.wikipedia.org/wiki/R%C3%B8mme"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

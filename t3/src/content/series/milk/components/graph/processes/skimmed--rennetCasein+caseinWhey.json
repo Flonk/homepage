@@ -1,0 +1,99 @@
+{
+	"from": [
+		"skimmed"
+	],
+	"to": [
+		"rennetCasein",
+		"caseinWhey"
+	],
+	"step": "set with rennet",
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"min": 10,
+					"max": 12
+				}
+			},
+			{
+				"type": "coagulate",
+				"by": "rennet",
+				"note": "Chymosin cuts kappa-casein, so the para-casein left keeps its calcium; about 20 g of rennet per 1,000 l of skimmed milk.",
+				"seconds": {
+					"min": 7200,
+					"max": 7200,
+					"about": true
+				}
+			},
+			{
+				"type": "heat",
+				"does": "cook",
+				"temperature": {
+					"min": 45,
+					"max": 45
+				}
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 70,
+					"max": 71
+				},
+				"note": "Pasteurising the curd and serum together."
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"min": 30,
+					"max": 35
+				},
+				"note": "Cooled before the separation."
+			},
+			{
+				"type": "separate",
+				"off": "whey",
+				"by": "centrifuge",
+				"note": "A horizontal decanter takes the serum off a curd of about 45 % solids."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "US4075196A, Production of casein and caseinates (rennet casein examples)",
+					"url": "https://patents.google.com/patent/US4075196A/en"
+				},
+				{
+					"name": "Wikipedia, Casein (chymosin cleaves kappa-casein)",
+					"url": "https://en.wikipedia.org/wiki/Casein"
+				}
+			],
+			"text": "The rennet casein examples of the patent, up to where the whey is spun off the curd."
+		}
+	},
+	"legs": {
+		"rennetCasein": {
+			"step": "the curd, washed",
+			"text": "Unlike acid casein, rennet casein is not demineralised: the curd keeps its calcium phosphate, so it is insoluble in water and is not made into caseinate directly. It was the raw material for casein plastics such as Galalith.",
+			"sources": {
+				"links": [
+					{
+						"name": "US4075196A, Production of casein and caseinates (rennet casein examples)",
+						"url": "https://patents.google.com/patent/US4075196A/en"
+					},
+					{
+						"name": "Wikipedia, Casein (chymosin cleaves kappa-casein)",
+						"url": "https://en.wikipedia.org/wiki/Casein"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		},
+		"caseinWhey": {
+			"step": "the whey"
+		}
+	}
+}

@@ -1,0 +1,60 @@
+{
+	"from": [
+		"fresh"
+	],
+	"to": [
+		"milkCaramel"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "sugar, glucose (corn) syrup, fat and flavour",
+				"note": "Milk, sugar, corn syrup and fat are weighed and blended in a batch."
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"note": "Steam heats the mixture to a preset temperature while agitators dissolve it."
+			},
+			{
+				"type": "evaporate",
+				"note": "The mix passes through a steam-jacketed scraped-surface heat exchanger that takes out much of its water."
+			},
+			{
+				"type": "heat",
+				"does": "cook",
+				"temperature": {
+					"min": 118,
+					"max": 118,
+					"about": true
+				},
+				"note": "The thickening batch is recirculated in a steam-jacketed tank until it browns, cooked to about the firm-ball stage."
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"min": 116,
+					"max": 116,
+					"about": true
+				},
+				"note": "The caramel is spread about 3.2 mm thick on a water-cooled wheel, where it sets."
+			},
+			{
+				"type": "cut",
+				"how": "cut",
+				"note": "A roller shapes the film into a rope, from which pieces are cut and then wrapped one by one."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "How Products Are Made: Caramel",
+					"url": "https://www.madehow.com/Volume-6/Caramel.html"
+				}
+			],
+			"text": "The factory sequence of mixing, evaporating, caramelising, cooling on a wheel, cutting and wrapping, with its temperatures. It describes caramels in general, not a version made from fresh milk specifically."
+		}
+	}
+}

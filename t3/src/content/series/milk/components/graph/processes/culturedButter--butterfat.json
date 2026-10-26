@@ -1,0 +1,46 @@
+{
+	"from": [
+		"culturedButter"
+	],
+	"to": [
+		"butterfat"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"note": "The butter is melted first and then pumped to the ghee boiler."
+			},
+			{
+				"type": "heat",
+				"does": "cook",
+				"temperature": {
+					"min": 110,
+					"max": 120
+				},
+				"note": "It is stirred and boiled until the froth subsides and the curd particles turn golden yellow or brown."
+			},
+			{
+				"type": "separate",
+				"off": "solids",
+				"by": "gravity",
+				"note": "The residue settles and the clear fat is poured off."
+			},
+			{
+				"type": "filter",
+				"by": "cloth",
+				"note": "Remaining residue is taken out by cloth, pressure filter or centrifuge."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Technology of ghee making: direct cream, creamery butter, continuous method (e-PG Pathshala / INFLIBNET)",
+					"url": "https://ebooks.inflibnet.ac.in/ftp04/chapter/technology-of-ghee-making-direct-cream-creamery-butter-continuous-method/"
+				}
+			],
+			"text": "Heating the melted butter to 110-120 °C to drive off the water, stopping when the residue is golden to brown, and clearing it, from this chapter."
+		}
+	}
+}

@@ -4,8 +4,6 @@
 		"Milk calcium",
 		"Milk mineral concentrate"
 	],
-	"from": "permeate",
-	"step": "heat, precipitate calcium phosphate",
 	"note": "A calcium supplement and fortifier made from the minerals of whey, not from milk powder.",
 	"about": {
 		"text": "The calcium and phosphate of whey, collected as a powder. Heated whey permeate drops its calcium phosphate, which is washed, dried and sold as a milk calcium for fortifying foods and supplements.",
@@ -17,72 +15,6 @@
 				}
 			],
 			"text": "Written from this source."
-		}
-	},
-	"how": {
-		"sources": {
-			"links": [
-				{
-					"name": "University of Waikato: Calcium phosphate precipitation from whey permeate",
-					"url": "https://researchcommons.waikato.ac.nz/handle/10289/13383"
-				},
-				{
-					"name": "Patent WO2006135983: Process for producing a mineral whey product",
-					"url": "https://patents.google.com/patent/WO2006135983A1/enExample"
-				},
-				{
-					"name": "Patent US20100062124",
-					"url": "https://patents.google.com/patent/US20100062124A1/cg-RX-API-DMAC7.html"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "evaporate",
-					"solids": {
-						"min": 20,
-						"max": 60
-					}
-				},
-				{
-					"type": "custom",
-					"name": "raise pH",
-					"note": "To about 6.5–9.0, to help precipitation."
-				},
-				{
-					"type": "heat",
-					"does": "heat",
-					"temperature": {
-						"min": 80,
-						"max": 80,
-						"about": true
-					},
-					"seconds": {
-						"min": 1200,
-						"max": 1200,
-						"about": true
-					}
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "University of Waikato: Calcium phosphate precipitation from whey permeate",
-						"url": "https://researchcommons.waikato.ac.nz/handle/10289/13383"
-					},
-					{
-						"name": "Patent WO2006135983: Process for producing a mineral whey product",
-						"url": "https://patents.google.com/patent/WO2006135983A1/enExample"
-					},
-					{
-						"name": "Patent US20100062124",
-						"url": "https://patents.google.com/patent/US20100062124A1/cg-RX-API-DMAC7.html"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	},
 	"examples": [

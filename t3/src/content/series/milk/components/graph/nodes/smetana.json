@@ -5,7 +5,6 @@
 		"Smântână",
 		"Śmietana"
 	],
-	"from": "culturedCream",
 	"at": 20,
 	"about": {
 		"text": "Smetana is the English-language name for the different types of sour cream traditionally prevalent in Central, Eastern, and Southeastern Europe, and Central Asia. It is a dairy product produced by souring heavy cream. It is similar to crème fraîche, but nowadays mainly sold with 9% to 42% milkfat content depending on the country. Its cooking properties are different from crème fraîche and sour cream sold in the US, which contain 18% butterfat. It is widely used in cooking and baking.",
@@ -37,69 +36,6 @@
 		"RU",
 		"UA"
 	],
-	"how": {
-		"text": "Smetana is cream soured by lactic acid bacteria and not homogenised. In Romania, smantana is instead the cream left from decanted milk fat.",
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Smetana (dairy product)",
-					"url": "https://en.wikipedia.org/wiki/Smetana_(dairy_product)"
-				},
-				{
-					"name": "EAEU Technical Regulation TR TS 033/2013 (English translation)",
-					"url": "https://agriexchange.apeda.gov.in/ImportRegulations/CustomsUnionTechnicalRegulationonMilkandDairyProductsMoscowRussianFederation11182013.pdf"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "ferment",
-					"does": "incubate",
-					"kinds": [
-						"lactic"
-					],
-					"adds": {
-						"microbes": [
-							{
-								"name": "Lactococci",
-								"kind": "bacterium",
-								"does": [
-									"acid"
-								]
-							},
-							{
-								"name": "thermophilic lactic streptococci",
-								"kind": "bacterium",
-								"does": [
-									"acid"
-								],
-								"grows": "thermophilic"
-							}
-						],
-						"by": [
-							"starter"
-						]
-					}
-				}
-			],
-			"text": "Lactococci, sometimes with thermophilic lactic streptococci. Not homogenised.",
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia: Smetana (dairy product)",
-						"url": "https://en.wikipedia.org/wiki/Smetana_(dairy_product)"
-					},
-					{
-						"name": "EAEU Technical Regulation TR TS 033/2013 (English translation)",
-						"url": "https://agriexchange.apeda.gov.in/ImportRegulations/CustomsUnionTechnicalRegulationonMilkandDairyProductsMoscowRussianFederation11182013.pdf"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"composition": {
 		"fat": {
 			"min": 9,

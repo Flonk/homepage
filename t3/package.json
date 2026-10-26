@@ -3,12 +3,15 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
+    "predev": "npm run milk:graph -- build",
     "dev": "astro dev",
+    "prebuild": "npm run milk:graph -- build",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
     "textures": "node scripts/chrome-textures.mjs",
-    "test": "vitest run"
+    "test": "vitest run",
+    "milk:graph": "tsx scripts/milk-graph.ts"
   },
   "dependencies": {
     "@astrojs/markdown-remark": "^7.2.4",
@@ -37,6 +40,7 @@
     "@types/d3-selection": "^3.0.12",
     "@types/d3-transition": "^3.0.9",
     "@types/d3-zoom": "^3.0.9",
+    "tsx": "^4.23.15",
     "typescript": "^6.0.3",
     "vitest": "^5.0.5"
   }

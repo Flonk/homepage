@@ -1,0 +1,48 @@
+{
+	"from": [
+		"soured"
+	],
+	"to": [
+		"curd"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "coagulate",
+				"by": "acid",
+				"pH": {
+					"min": 4.6,
+					"max": 4.7
+				},
+				"note": "The acid of soured milk sets the casein without rennet."
+			},
+			{
+				"type": "cut",
+				"how": "cut",
+				"note": "The set milk is broken into large portions."
+			},
+			{
+				"type": "heat",
+				"does": "cook",
+				"note": "Lightly warmed to control the moisture."
+			},
+			{
+				"type": "drain",
+				"note": "The whey is drained off."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 16 Cheese",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/cheese"
+				},
+				{
+					"name": "Curd, Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Curd"
+				}
+			],
+			"text": "The acid-set curd and its handling from the handbook’s account of tvorog and cottage cheese; souring and whey from Wikipedia."
+		}
+	}
+}

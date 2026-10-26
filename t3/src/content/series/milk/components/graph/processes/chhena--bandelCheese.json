@@ -1,0 +1,54 @@
+{
+	"from": [
+		"chhena"
+	],
+	"to": [
+		"bandelCheese"
+	],
+	"variant": true,
+	"step": "salt, mould, smoke",
+	"text": "Lemon juice curdles the hot milk as for chhena; the curd is moulded, salted and optionally smoked. Heat of the milk and smoking method are not given.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Bandel cheese",
+				"url": "https://en.wikipedia.org/wiki/Bandel_cheese"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "coagulate",
+				"by": "acid-heat",
+				"note": "With lemon juice."
+			},
+			{
+				"type": "drain"
+			},
+			{
+				"type": "mould",
+				"note": "In small baskets or perforated pots."
+			},
+			{
+				"type": "salt",
+				"note": "Heavily, so it keeps."
+			},
+			{
+				"type": "custom",
+				"name": "smoke",
+				"note": "Optional; smoked cheese is brown."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Bandel cheese",
+					"url": "https://en.wikipedia.org/wiki/Bandel_cheese"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

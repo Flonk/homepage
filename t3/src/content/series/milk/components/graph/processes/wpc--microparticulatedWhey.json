@@ -1,0 +1,49 @@
+{
+	"from": [
+		"wpc"
+	],
+	"to": [
+		"microparticulatedWhey"
+	],
+	"step": "heat and shear into tiny particles",
+	"text": "Heat partly coagulates the protein into a micro dispersion; the article gives no temperatures.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Simplesse",
+				"url": "https://en.wikipedia.org/wiki/Simplesse"
+			},
+			{
+				"name": "Biesterfeld: whey protein",
+				"url": "https://www.biesterfeld.com/en/gb/product/whey-protein"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"note": "Heat partly coagulates the protein into a micro dispersion."
+			},
+			{
+				"type": "custom",
+				"name": "shear"
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Simplesse",
+					"url": "https://en.wikipedia.org/wiki/Simplesse"
+				},
+				{
+					"name": "Biesterfeld: whey protein",
+					"url": "https://www.biesterfeld.com/en/gb/product/whey-protein"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

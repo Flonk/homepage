@@ -1,0 +1,60 @@
+{
+	"from": [
+		"semiHard"
+	],
+	"to": [
+		"idiazabal"
+	],
+	"variant": true,
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Idiazábal cheese",
+				"url": "https://en.wikipedia.org/wiki/Idiaz%C3%A1bal_cheese"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "coagulate",
+				"by": "rennet",
+				"temperature": {
+					"min": 25,
+					"max": 35
+				},
+				"note": "Lamb rennet."
+			},
+			{
+				"type": "heat",
+				"does": "cook",
+				"temperature": {
+					"min": 34,
+					"max": 38
+				}
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"seconds": {
+					"min": 5184000
+				}
+			},
+			{
+				"type": "custom",
+				"name": "smoke",
+				"note": "Optional, with beech, birch, cherry or pine wood."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Idiazábal cheese",
+					"url": "https://en.wikipedia.org/wiki/Idiaz%C3%A1bal_cheese"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

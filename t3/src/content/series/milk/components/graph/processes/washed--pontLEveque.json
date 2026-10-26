@@ -1,0 +1,50 @@
+{
+	"from": [
+		"washed"
+	],
+	"to": [
+		"pontLEveque"
+	],
+	"variant": true,
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Pont-l'Évêque cheese",
+				"url": "https://en.wikipedia.org/wiki/Pont-l%27%C3%89v%C3%AAque_cheese"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "divide"
+			},
+			{
+				"type": "custom",
+				"name": "knead"
+			},
+			{
+				"type": "drain"
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"seconds": {
+					"min": 1209600
+				}
+			}
+		],
+		"text": "Most is ripened over 6 weeks.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Pont-l'Évêque cheese",
+					"url": "https://en.wikipedia.org/wiki/Pont-l%27%C3%89v%C3%AAque_cheese"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

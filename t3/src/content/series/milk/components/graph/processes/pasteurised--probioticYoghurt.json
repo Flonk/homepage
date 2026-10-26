@@ -1,0 +1,76 @@
+{
+	"from": [
+		"pasteurised"
+	],
+	"to": [
+		"probioticYoghurt"
+	],
+	"step": "with a probiotic too",
+	"text": "Made as yoghurt is, with both its bacteria, so it sours as much; the probiotic strain is added with them and chosen to survive in large numbers until it is eaten.",
+	"sources": {
+		"links": [
+			{
+				"name": "Codex Standard for Fermented Milks (CXS 243-2003)",
+				"url": "https://www.fao.org/input/download/standards/400/CXS_243e.pdf"
+			},
+			{
+				"name": "Agarwal & Bhasin 2002, Eur J Clin Nutr (Actimel)",
+				"url": "https://doi.org/10.1038/sj.ejcn.1601664"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "Streptococcus thermophilus",
+							"kind": "bacterium",
+							"does": [
+								"acid"
+							]
+						},
+						{
+							"name": "Lactobacillus delbrueckii subsp. bulgaricus",
+							"kind": "bacterium",
+							"does": [
+								"acid",
+								"aroma"
+							]
+						},
+						{
+							"name": "a probiotic strain, e.g. Lacticaseibacillus paracasei (formerly L. casei) or a bifidobacterium",
+							"kind": "bacterium",
+							"does": [
+								"probiotic"
+							]
+						}
+					],
+					"by": [
+						"starter"
+					]
+				}
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Codex Standard for Fermented Milks (CXS 243-2003)",
+					"url": "https://www.fao.org/input/download/standards/400/CXS_243e.pdf"
+				},
+				{
+					"name": "Agarwal & Bhasin 2002, Eur J Clin Nutr (Actimel)",
+					"url": "https://doi.org/10.1038/sj.ejcn.1601664"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

@@ -53,51 +53,6 @@
 		"located": "hint"
 	},
 	"confidence": "high",
-	"how": {
-		"label": "fill a mozzarella pouch",
-		"text": "The stretched curd is formed into a pouch and filled with stracciatella, the shredded curd mixed with cream, then closed.",
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Burrata",
-					"url": "https://en.wikipedia.org/wiki/Burrata"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "cut",
-					"how": "shred",
-					"note": "For the filling."
-				},
-				{
-					"type": "add",
-					"what": "cream",
-					"note": "Mixed with the shredded curd, into stracciatella."
-				},
-				{
-					"type": "mould",
-					"note": "Into a pouch."
-				},
-				{
-					"type": "custom",
-					"name": "fill and close",
-					"note": "With stracciatella."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia: Burrata",
-						"url": "https://en.wikipedia.org/wiki/Burrata"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"sources": {
 		"links": [
 			{

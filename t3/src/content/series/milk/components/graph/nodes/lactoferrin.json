@@ -4,11 +4,6 @@
 		"Bovine lactoferrin",
 		"bLF"
 	],
-	"from": "sweetWhey",
-	"step": "ion exchange",
-	"alsoFrom": [
-		"skimmed"
-	],
 	"about": {
 		"text": "Lactoferrin (LF), also known as lactotransferrin (LTF), is a multifunctional protein found in milk and mucus which is encoded by the LTF gene in humans. It functions as an antimicrobial protein and affects the body's immune response in a complex way, with both pro- and anti-inflammatory effects.",
 		"sources": {
@@ -19,49 +14,6 @@
 				}
 			],
 			"text": "The first paragraph of its article, shortened."
-		}
-	},
-	"how": {
-		"text": "Lactoferrin is a small fraction of milk protein, so it is fished out of the flow with a cation-exchange column and eluted with salt. Membrane filtration and salt extraction are also used.",
-		"sources": {
-			"links": [
-				{
-					"name": "US5861491A, Isolation of lactoferrin from milk (0.4 M NaCl load, gradient 0.4–1.0 M, bovine at 0.75 M)",
-					"url": "https://patents.google.com/patent/US5861491A/en"
-				},
-				{
-					"name": "Wikipedia, Lactoferrin (150 mg/L in cow milk; salt extraction, chromatography, membrane filtration)",
-					"url": "https://en.wikipedia.org/wiki/Lactoferrin"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "custom",
-					"name": "ion exchange",
-					"note": "On a strong cation exchanger (S Sepharose Fast Flow, Mono S in the patent)."
-				},
-				{
-					"type": "custom",
-					"name": "elute",
-					"note": "With NaCl, stepwise or gradient; bovine lactoferrin comes off at about 0.75 M (patent: loaded at 0.4 M, gradient 0.4–1.0 M)."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "US5861491A, Isolation of lactoferrin from milk (0.4 M NaCl load, gradient 0.4–1.0 M, bovine at 0.75 M)",
-						"url": "https://patents.google.com/patent/US5861491A/en"
-					},
-					{
-						"name": "Wikipedia, Lactoferrin (150 mg/L in cow milk; salt extraction, chromatography, membrane filtration)",
-						"url": "https://en.wikipedia.org/wiki/Lactoferrin"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	},
 	"facts": [

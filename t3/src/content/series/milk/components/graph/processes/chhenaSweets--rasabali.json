@@ -1,0 +1,48 @@
+{
+	"from": [
+		"chhenaSweets"
+	],
+	"to": [
+		"rasabali"
+	],
+	"variant": true,
+	"step": "flatten, fry, soak in thickened milk",
+	"text": "Like rasmalai but fried first.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Rasabali",
+				"url": "https://en.wikipedia.org/wiki/Rasabali"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "flatten",
+				"note": "Palm-sized patties, so they take up the milk."
+			},
+			{
+				"type": "custom",
+				"name": "fry",
+				"note": "Deep-fried to reddish-brown."
+			},
+			{
+				"type": "custom",
+				"name": "soak",
+				"note": "In rabri flavoured with cardamom."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Rasabali",
+					"url": "https://en.wikipedia.org/wiki/Rasabali"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

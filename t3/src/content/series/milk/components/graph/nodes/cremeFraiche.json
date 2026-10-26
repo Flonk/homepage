@@ -3,7 +3,6 @@
 	"aka": [
 		"Crème épaisse"
 	],
-	"from": "culturedCream",
 	"at": 30,
 	"niche": 1,
 	"about": {
@@ -35,60 +34,6 @@
 	"regions": [
 		"FR"
 	],
-	"how": {
-		"text": "The same mesophilic cultures sour cream with at least 30 % fat. So much fat makes it very thick and rich, with a mild acidity.",
-		"sources": {
-			"links": [
-				{
-					"name": "German MilchPQV, Anlage 8 (2025)",
-					"url": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html"
-				},
-				{
-					"name": "Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products",
-					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "ferment",
-					"does": "incubate",
-					"kinds": [
-						"lactic"
-					],
-					"adds": {
-						"microbes": [
-							{
-								"name": "Lactococcus lactis",
-								"kind": "bacterium",
-								"does": [
-									"acid"
-								]
-							}
-						],
-						"by": [
-							"starter"
-						]
-					}
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "German MilchPQV, Anlage 8 (2025)",
-						"url": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html"
-					},
-					{
-						"name": "Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products",
-						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"composition": {
 		"fat": {
 			"min": 30

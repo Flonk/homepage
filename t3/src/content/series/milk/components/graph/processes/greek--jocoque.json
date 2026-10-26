@@ -1,0 +1,52 @@
+{
+	"from": [
+		"greek"
+	],
+	"to": [
+		"jocoque"
+	],
+	"variant": true,
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Jocoque",
+				"url": "https://en.wikipedia.org/wiki/Jocoque"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [],
+					"by": [
+						"wild"
+					],
+					"vessel": "clay vessel by a fire"
+				},
+				"note": "Traditionally soured spontaneously in a clay vessel by a fire with no culture added; today a mix of dairy cultures (species not given) is added to pasteurised milk."
+			},
+			{
+				"type": "drain",
+				"by": "sieve",
+				"note": "To firm the curd."
+			}
+		],
+		"text": "Traditionally no cultures are added; today a mix of dairy cultures (species not given) goes into pasteurised milk. The curd is then strained to firm it.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Jocoque",
+					"url": "https://en.wikipedia.org/wiki/Jocoque"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

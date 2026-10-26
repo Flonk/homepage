@@ -5,8 +5,6 @@
 		"Leche condensada"
 	],
 	"comment": "The sugar goes in before the milk is boiled down, and keeps it.",
-	"from": "fresh",
-	"step": "add sugar, evaporate",
 	"niche": 0,
 	"about": {
 		"text": "Condensed milk is cow's milk from which water has been removed. It is most often found with sugar added, in the form of sweetened condensed milk, to the extent that the terms \"condensed milk\" and \"sweetened condensed milk\" are often used interchangeably today. Sweetened condensed milk is a very thick, sweet product, which when canned can last for years without refrigeration if not opened. The product is used in numerous dessert dishes in many countries.",
@@ -32,61 +30,6 @@
 				}
 			],
 			"text": "The photograph, its author and its licence, from its page."
-		}
-	},
-	"how": {
-		"text": "Milk is standardised, heated, evaporated and sweetened, then cooled while lactose crystallisation is induced to keep the texture smooth.",
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Condensed milk",
-					"url": "https://en.wikipedia.org/wiki/Condensed_milk"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "standardise"
-				},
-				{
-					"type": "heat",
-					"does": "heat",
-					"temperature": {
-						"min": 85,
-						"max": 90
-					}
-				},
-				{
-					"type": "evaporate",
-					"note": "About 60 % of the milk is removed as water."
-				},
-				{
-					"type": "add",
-					"what": "sugar",
-					"note": "Sugar and evaporated milk 9 : 11.",
-					"share": {
-						"min": 45,
-						"max": 45,
-						"about": true
-					}
-				},
-				{
-					"type": "heat",
-					"does": "cool",
-					"note": "Lactose crystallisation is induced to keep it smooth."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia: Condensed milk",
-						"url": "https://en.wikipedia.org/wiki/Condensed_milk"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	},
 	"examples": [

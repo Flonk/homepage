@@ -1,0 +1,73 @@
+{
+	"from": [
+		"fresh"
+	],
+	"to": [
+		"nimish"
+	],
+	"step": "boil, chill overnight, whip to a foam",
+	"text": "The milk is boiled and cooled without stirring in a skin, left in the cold overnight, then beaten to a foam at dawn. The foam is skimmed off and sweetened.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Makhan malai",
+				"url": "https://en.wikipedia.org/wiki/Makhan_malai"
+			},
+			{
+				"name": "Atlas Obscura: Nimish",
+				"url": "https://assets.atlasobscura.com/foods/nimish"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 100,
+					"max": 100,
+					"about": true
+				}
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"seconds": {
+					"min": 28800,
+					"max": 43200,
+					"about": true
+				},
+				"note": "Outdoors overnight, traditionally in the dew."
+			},
+			{
+				"type": "custom",
+				"name": "whip",
+				"seconds": {
+					"min": 10800,
+					"max": 10800,
+					"about": true
+				}
+			},
+			{
+				"type": "add",
+				"what": "sugar, saffron, cardamom, rose water",
+				"note": "Nuts and silver leaf on top."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Makhan malai",
+					"url": "https://en.wikipedia.org/wiki/Makhan_malai"
+				},
+				{
+					"name": "Atlas Obscura: Nimish",
+					"url": "https://assets.atlasobscura.com/foods/nimish"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

@@ -1,0 +1,49 @@
+{
+	"from": [
+		"lactulose"
+	],
+	"to": [
+		"duphalac"
+	],
+	"variant": true,
+	"text": "The liquid form of the same isomerised lactose: the syrup is the purified reaction liquid, standardised to 667 g/l, so the other sugars of the process stay in it in small, capped amounts. That is why it is not given in galactosaemia.",
+	"sources": {
+		"links": [
+			{
+				"name": "Abbott Brazil professional leaflet, Duphalac 667 mg/ml",
+				"url": "https://dam.abbott.com/pt-br/documents/pdfs/nossas-bulas/D/BU-17-Duphalac-bula-profissional-final.pdf"
+			},
+			{
+				"name": "UK SmPC, Duphalac 3.335 g/5 ml",
+				"url": "https://www.medicines.org.uk/emc/product/5525/smpc"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "purify"
+			},
+			{
+				"type": "custom",
+				"name": "standardise",
+				"note": "To 667 g/l, so the other sugars stay small and capped."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Abbott Brazil professional leaflet, Duphalac 667 mg/ml",
+					"url": "https://dam.abbott.com/pt-br/documents/pdfs/nossas-bulas/D/BU-17-Duphalac-bula-profissional-final.pdf"
+				},
+				{
+					"name": "UK SmPC, Duphalac 3.335 g/5 ml",
+					"url": "https://www.medicines.org.uk/emc/product/5525/smpc"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

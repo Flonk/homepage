@@ -3,7 +3,6 @@
 	"aka": [
 		"Rahm, sauer"
 	],
-	"from": "culturedCream",
 	"at": 15,
 	"about": {
 		"text": "Austria’s soured cream: made as sour milk is, but from cream of at least 10 % fat, and mostly from cream of 15 %, the fat it is usually sold at.",
@@ -34,55 +33,6 @@
 	"regions": [
 		"AT"
 	],
-	"how": {
-		"text": "Cream is soured with a mesophilic lactic starter and sold without further heating, so the culture is alive. The details are the German legal standard; the Austrian Codex text could not be read, and a lexicon gives the same 10 % minimum.",
-		"sources": {
-			"links": [
-				{
-					"name": "German MilchPQV, Anlage 8 (Sahnesauermilch / Saure Sahne / Sauerrahm, Gruppe I, Nr. 7)",
-					"url": "https://gesetze.legal/bund/milchpqv/anlage_8"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "ferment",
-					"does": "incubate",
-					"kinds": [
-						"lactic"
-					],
-					"adds": {
-						"microbes": [
-							{
-								"name": "mesophilic lactic acid bacteria",
-								"kind": "bacterium",
-								"does": [
-									"acid"
-								],
-								"grows": "mesophilic"
-							}
-						],
-						"by": [
-							"starter"
-						]
-					},
-					"note": "Mesophilic lactic acid bacteria of Group I (MilchPQV)."
-				}
-			],
-			"text": "Sold without any heating after souring, so the culture is alive.",
-			"sources": {
-				"links": [
-					{
-						"name": "German MilchPQV, Anlage 8 (Sahnesauermilch / Saure Sahne / Sauerrahm, Gruppe I, Nr. 7)",
-						"url": "https://gesetze.legal/bund/milchpqv/anlage_8"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"composition": {
 		"fat": {
 			"min": 10

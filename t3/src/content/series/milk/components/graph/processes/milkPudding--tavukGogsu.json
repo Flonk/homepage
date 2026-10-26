@@ -1,0 +1,51 @@
+{
+	"from": [
+		"milkPudding"
+	],
+	"to": [
+		"tavukGogsu"
+	],
+	"variant": true,
+	"step": "add shredded chicken breast",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Tavuk göğsü",
+				"url": "https://en.wikipedia.org/wiki/Tavuk_g%C3%B6%C4%9Fs%C3%BC"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"note": "White chicken breast.",
+				"does": "heat",
+				"temperature": {
+					"min": 100,
+					"max": 100,
+					"about": true
+				}
+			},
+			{
+				"type": "cut",
+				"how": "shred",
+				"note": "To fine fibres, or pounded smooth."
+			},
+			{
+				"type": "add",
+				"what": "milk, sugar, cracked rice or other thickeners"
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Tavuk göğsü",
+					"url": "https://en.wikipedia.org/wiki/Tavuk_g%C3%B6%C4%9Fs%C3%BC"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

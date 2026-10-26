@@ -1,0 +1,61 @@
+{
+	"from": [
+		"cream"
+	],
+	"to": [
+		"schlagsahne"
+	],
+	"text": "Cream standardised to at least 30 % fat and heat-treated; whippability is the legal requirement.",
+	"sources": {
+		"links": [
+			{
+				"name": "German MilchPQV, Anlage 8",
+				"url": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "standardise",
+				"fat": {
+					"min": 30,
+					"max": 40
+				},
+				"note": "Whipping is easy at 40 % fat and gets harder at 30 % and below, so a cream that must whip sits in this range."
+			},
+			{
+				"type": "pasteurise",
+				"temperature": {
+					"min": 82,
+					"max": 85,
+					"about": true
+				},
+				"seconds": {
+					"min": 15,
+					"max": 15
+				},
+				"note": "Whipping cream is heated above roughly 82 to 85 °C for 15 seconds, hot enough to keep it whippable."
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"min": 4,
+					"max": 6
+				},
+				"note": "It is cooled and held at 4 to 6 °C so the fat crystallises, which is what lets it whip later."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Tetra Pak Dairy Processing Handbook, ch. 9 Pasteurized and ESL dairy products",
+					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/pasteurized-and-esl-dairy-products"
+				}
+			],
+			"text": "Whipping cream's fat range, pasteurising and cooling from the handbook; the German 30 % minimum is the one already cited on the arrow."
+		}
+	}
+}

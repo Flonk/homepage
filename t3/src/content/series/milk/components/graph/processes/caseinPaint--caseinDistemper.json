@@ -1,0 +1,50 @@
+{
+	"from": [
+		"caseinPaint"
+	],
+	"to": [
+		"caseinDistemper"
+	],
+	"variant": true,
+	"text": "Distemper is a water-based wall paint of chalk bound by a protein. Using casein rather than animal glue gives the harder, more wear-resistant kind; cold-water paint powders of casein, lime and filler were mixed with water on site.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia, Distemper (paint)",
+				"url": "https://en.wikipedia.org/wiki/Distemper_(paint)"
+			},
+			{
+				"name": "Wikipedia, Casein paint",
+				"url": "https://en.wikipedia.org/wiki/Casein_paint"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "dissolve",
+				"note": "In lime, to make the binder."
+			},
+			{
+				"type": "add",
+				"note": "As pigment and base.",
+				"what": "calcium carbonate (whiting)"
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia, Distemper (paint)",
+					"url": "https://en.wikipedia.org/wiki/Distemper_(paint)"
+				},
+				{
+					"name": "Wikipedia, Casein paint",
+					"url": "https://en.wikipedia.org/wiki/Casein_paint"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

@@ -1,0 +1,68 @@
+{
+	"from": [
+		"sourMilkCheese"
+	],
+	"to": [
+		"milbenkase"
+	],
+	"variant": true,
+	"step": "ripen with mites",
+	"text": "Small shapes of dried lean quark are kept in boxes with cheese mites, which are fed rye flour so they nibble only the surface; their activity and secretions ripen the cheese, giving a sharp, slightly bitter taste and a lemony note from the mite compound neral.",
+	"sources": {
+		"links": [
+			{
+				"name": "Slow Food Deutschland, Ark of Taste: Würchwitzer Milbenkäse",
+				"url": "https://www.slowfood.de/was-wir-tun/arche_des_geschmacks/die_arche_passagiere/wuerchwitzer_milbenkaese"
+			},
+			{
+				"name": "Shimano et al., Exp. Appl. Acarol. (2022), JST summary",
+				"url": "https://sj.jst.go.jp/news/202209/n0922-03k.html"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"kinds": [
+					"animal"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "Tyrolichus casei",
+							"kind": "animal",
+							"does": [
+								"ripening"
+							]
+						}
+					],
+					"by": [
+						"vessel"
+					],
+					"vessel": "wooden boxes with rye flour"
+				},
+				"seconds": {
+					"min": 7776000,
+					"max": 15552000
+				},
+				"note": "Kept in wooden boxes with the mites, which are fed rye flour."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Slow Food Deutschland, Ark of Taste: Würchwitzer Milbenkäse",
+					"url": "https://www.slowfood.de/was-wir-tun/arche_des_geschmacks/die_arche_passagiere/wuerchwitzer_milbenkaese"
+				},
+				{
+					"name": "Shimano et al., Exp. Appl. Acarol. (2022), JST summary",
+					"url": "https://sj.jst.go.jp/news/202209/n0922-03k.html"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

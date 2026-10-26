@@ -1,0 +1,67 @@
+{
+	"from": [
+		"greek"
+	],
+	"to": [
+		"labneh"
+	],
+	"variant": true,
+	"step": "salt, strain",
+	"text": "Labneh is yoghurt that has been salted and then drained of whey in cloth, which concentrates the protein into a thick, tangy spread. Codex lists it as a concentrated fermented milk, with at least 5.6 % protein.",
+	"sources": {
+		"links": [
+			{
+				"name": "Codex Standard for Fermented Milks CXS 243-2003",
+				"url": "https://www.fao.org/input/download/standards/400/CXS_243e.pdf"
+			},
+			{
+				"name": "Labneh market analysis, Foods (2024)",
+				"url": "https://doi.org/10.3390/foods13213461"
+			},
+			{
+				"name": "Bintsis & Papademas 2022, Table 2, Fermentation 8:679",
+				"url": "https://doi.org/10.3390/fermentation8120679"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "salt",
+				"note": "Helps it keep.",
+				"strength": {
+					"min": 1.5,
+					"max": 1.5,
+					"about": true
+				}
+			},
+			{
+				"type": "drain",
+				"by": "cloth",
+				"seconds": {
+					"min": 36000,
+					"max": 50400
+				}
+			}
+		],
+		"text": "Industrially it is centrifuged or ultrafiltered instead.",
+		"sources": {
+			"links": [
+				{
+					"name": "Codex Standard for Fermented Milks CXS 243-2003",
+					"url": "https://www.fao.org/input/download/standards/400/CXS_243e.pdf"
+				},
+				{
+					"name": "Labneh market analysis, Foods (2024)",
+					"url": "https://doi.org/10.3390/foods13213461"
+				},
+				{
+					"name": "Bintsis & Papademas 2022, Table 2, Fermentation 8:679",
+					"url": "https://doi.org/10.3390/fermentation8120679"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

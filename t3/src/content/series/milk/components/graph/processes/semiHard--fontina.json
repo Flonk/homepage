@@ -1,0 +1,75 @@
+{
+	"from": [
+		"semiHard"
+	],
+	"to": [
+		"fontina"
+	],
+	"variant": true,
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia (it): Fontina",
+				"url": "https://it.wikipedia.org/wiki/Fontina"
+			},
+			{
+				"name": "Wikipedia: Fontina",
+				"url": "https://en.wikipedia.org/wiki/Fontina"
+			},
+			{
+				"name": "Disciplinare di produzione Fontina DOP",
+				"url": "https://www.regione.vda.it/allegato.aspx?pk=72468"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"note": "Raw milk, not heated above this before coagulation.",
+				"temperature": {
+					"max": 36
+				}
+			},
+			{
+				"type": "heat",
+				"does": "cook"
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"temperature": {
+					"min": 4,
+					"max": 12
+				},
+				"seconds": {
+					"min": 7776000
+				},
+				"humidity": {
+					"min": 90
+				},
+				"note": "At least 80–90 days (90 in the 2023 amendment) and 180 days for the long-aged name, in caves."
+			}
+		],
+		"text": "Natural fermentation acidity, no named starter in the sources. Ripened in caves; sources differ on 80 or 90 days, 180 days for the long-aged name.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia (it): Fontina",
+					"url": "https://it.wikipedia.org/wiki/Fontina"
+				},
+				{
+					"name": "Wikipedia: Fontina",
+					"url": "https://en.wikipedia.org/wiki/Fontina"
+				},
+				{
+					"name": "Disciplinare di produzione Fontina DOP",
+					"url": "https://www.regione.vda.it/allegato.aspx?pk=72468"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

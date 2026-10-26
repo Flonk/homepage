@@ -1,0 +1,66 @@
+/* On a wide screen the panel is tall and has the room: the photograph
+   leaves the name's side for the foot of the panel, under everything
+   said, its credit just above, within the panel's padding and centred.
+   The header's own box goes, so its picture can be placed apart from the
+   rest of it; the name keeps the room the header gave it. */
+@media (min-width: 1100px) {
+	/* And the panel only the upper half of the picture's left, so the
+	   picture below it stays in sight: a card of its own, set in from the
+	   corner and rounded as the panel round the picture is (DeckViz's
+	   corner), its words clipped to that round. Slid out past the inset. */
+	.milk-about {
+		top: 0.75rem;
+		left: 0.75rem;
+		bottom: auto;
+		height: calc(50% - 0.75rem);
+		border: 1px solid var(--pill-rim);
+		border-radius: var(--viz-corner, 10px);
+		overflow: hidden;
+		transform: translateX(calc(-100% - 0.75rem));
+	}
+	/* Lifted well off the picture, a close shadow under its edge and a
+	   long soft one round it. */
+	.milk-about.is-open {
+		box-shadow:
+			0 4px 12px rgb(0 0 0 / 0.35),
+			0 12px 32px rgb(0 0 0 / 0.45),
+			0 32px 80px rgb(0 0 0 / 0.55);
+	}
+	.milk-about-body {
+		display: flex;
+		flex-direction: column;
+	}
+	.milk-about header.has-image {
+		display: contents;
+	}
+	.milk-about header.has-image > div {
+		margin-bottom: 0.8rem;
+	}
+	.milk-about .milk-about-credit {
+		margin-bottom: 0.8rem;
+	}
+	.milk-about header.has-image img {
+		order: 1;
+		align-self: center;
+		/* The width of what is said over it, however small the photograph
+		   itself; a tall one cut down to a band rather than a column. */
+		width: 100%;
+		height: auto;
+		max-height: 12rem;
+		object-fit: cover;
+		margin-top: auto;
+		border-radius: var(--radius-large);
+	}
+}
+
+/* The picture, drawn by the script (see paint) in the colours above. */
+canvas.milk-canvas {
+	display: block;
+	width: 100%;
+	height: 100%;
+	touch-action: none;
+	cursor: grab;
+}
+canvas.milk-canvas:active {
+	cursor: grabbing;
+}

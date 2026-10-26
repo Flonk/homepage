@@ -1,0 +1,54 @@
+{
+	"from": [
+		"cream"
+	],
+	"to": [
+		"rommegrot"
+	],
+	"step": "sour, cook with flour, skim the butterfat",
+	"text": "Cooking the rømme with flour breaks the cream emulsion: the butterfat rises and is lifted off. The porridge underneath is thick and sweetish.",
+	"sources": {
+		"links": [
+			{
+				"name": "Store norske leksikon: rømmegrøt",
+				"url": "https://snl.no/rømmegrøt"
+			},
+			{
+				"name": "Wikipedia: Rømmegrøt",
+				"url": "https://en.wikipedia.org/wiki/R%C3%B8mmegr%C3%B8t"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "cook",
+				"note": "With some of the flour, until the fat starts to separate."
+			},
+			{
+				"type": "add",
+				"what": "the rest of the flour and the milk"
+			},
+			{
+				"type": "separate",
+				"off": "fat",
+				"note": "The fat is served warm on the side."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Store norske leksikon: rømmegrøt",
+					"url": "https://snl.no/rømmegrøt"
+				},
+				{
+					"name": "Wikipedia: Rømmegrøt",
+					"url": "https://en.wikipedia.org/wiki/R%C3%B8mmegr%C3%B8t"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

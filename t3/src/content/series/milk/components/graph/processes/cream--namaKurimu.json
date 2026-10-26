@@ -1,0 +1,57 @@
+{
+	"from": [
+		"cream"
+	],
+	"to": [
+		"namaKurimu"
+	],
+	"text": "Cream with fat set to the grade and nothing added; sold chilled in 200 ml cartons.",
+	"sources": {
+		"links": [
+			{
+				"name": "Commons: Meiji brand fresh cream (photo of the carton label)",
+				"url": "https://commons.wikimedia.org/wiki/File:Meiji_brand_fresh_cream.JPG"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "standardise",
+				"fat": {
+					"min": 18,
+					"max": 18
+				},
+				"note": "Japanese cream is at least 18 % milk fat with nothing added."
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"note": "The cream is sterilised by the maker's own method, following the dairy ordinance, with no temperature given."
+			},
+			{
+				"type": "homogenise",
+				"note": "Homogenising evens out the size of the fat globules and steadies the cream."
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"note": "It is cooled and left to age so that it settles before filling."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Meiji: クリーム",
+					"url": "https://www.meiji.co.jp/meiji-shokuiku/know/lovable-milk/cream/"
+				},
+				{
+					"name": "Meiji: クリームができるまで",
+					"url": "https://www.meiji.co.jp/meiji-shokuiku/know/lovable-milk/cream/manufacture/"
+				}
+			],
+			"text": "Meiji's two pages: the 18 % minimum with nothing added, and the order of separating, sterilising, homogenising, cooling and ageing, then filling."
+		}
+	}
+}

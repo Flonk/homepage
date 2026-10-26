@@ -1,10 +1,5 @@
 {
 	"label": "Lactobionic acid",
-	"from": "lactose",
-	"step": "oxidise",
-	"alsoFrom": [
-		"permeate"
-	],
 	"note": "Potassium lactobionate is the osmotic support in organ-preservation solutions such as Viaspan and CoStorSol.",
 	"about": {
 		"text": "A sugar acid formed when the glucose half of lactose is oxidised. Its salts go into organ-transplant preservation fluids, calcium lactobionate is a food stabiliser and mineral source (E399), and the acid is used in cosmetics.",
@@ -16,43 +11,6 @@
 				}
 			],
 			"text": "The first paragraph of its article, shortened."
-		}
-	},
-	"how": {
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Lactobionic acid",
-					"url": "https://en.wikipedia.org/wiki/Lactobionic_acid"
-				},
-				{
-					"name": "Wu et al., Microbial Cell Factories 2022 (numbers from a search summary)",
-					"url": "https://microbialcellfactories.biomedcentral.com/articles/10.1186/s12934-022-01907-0"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "custom",
-					"name": "oxidise",
-					"note": "Catalytic or electrochemical."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia: Lactobionic acid",
-						"url": "https://en.wikipedia.org/wiki/Lactobionic_acid"
-					},
-					{
-						"name": "Wu et al., Microbial Cell Factories 2022 (numbers from a search summary)",
-						"url": "https://microbialcellfactories.biomedcentral.com/articles/10.1186/s12934-022-01907-0"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	},
 	"examples": [

@@ -4,11 +4,6 @@
 		"Wine fining casein",
 		"Kaseinschönung"
 	],
-	"from": "caseinate",
-	"step": "stir into wine, settle",
-	"alsoFrom": [
-		"acidCasein"
-	],
 	"note": "Milk protein fining agents may need to be declared as allergens; Australia and New Zealand require declaration of fining agents that may be allergenic (Wikipedia); the EU rule was not opened.",
 	"about": {
 		"text": "A milk protein used to clean up white wine: it binds the polyphenols that make wine brown and bitter, clumps, and sinks. It is racked off with the lees, so little or none should remain.",
@@ -20,56 +15,6 @@
 				}
 			],
 			"text": "The first paragraph of its article, shortened."
-		}
-	},
-	"how": {
-		"text": "Fining also runs the other way: protein fining agents tame tannin in red wine.",
-		"sources": {
-			"links": [
-				{
-					"name": "AWRI, Fining agents",
-					"url": "https://nggw.org/wp-content/uploads/2021/03/fining-agents.pdf"
-				},
-				{
-					"name": "Douro white-wine fining study",
-					"url": "https://repositorio.utad.pt/handle/10348/8897"
-				},
-				{
-					"name": "Wikipedia: Fining (wine)",
-					"url": "https://en.wikipedia.org/wiki/Fining_(wine)"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "add",
-					"note": "At 50–250 mg/L for white wine (AWRI fining table), about 5–25 g/hL.",
-					"what": "casein"
-				},
-				{
-					"type": "custom",
-					"name": "settle"
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "AWRI, Fining agents",
-						"url": "https://nggw.org/wp-content/uploads/2021/03/fining-agents.pdf"
-					},
-					{
-						"name": "Douro white-wine fining study",
-						"url": "https://repositorio.utad.pt/handle/10348/8897"
-					},
-					{
-						"name": "Wikipedia: Fining (wine)",
-						"url": "https://en.wikipedia.org/wiki/Fining_(wine)"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	},
 	"facts": [

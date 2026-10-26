@@ -1,0 +1,102 @@
+{
+	"from": [
+		"hard"
+	],
+	"to": [
+		"gravieraKritis"
+	],
+	"variant": true,
+	"step": "cook, press, brine",
+	"sources": {
+		"links": [
+			{
+				"name": "PDO summary, Graviera Kritis (Ministerial Decision 313047/1994), as quoted in a search result; the PDF itself could not be opened",
+				"url": "https://old.dalrrd.gov.za/doaDev/sideMenu/foodSafety/doc/Graviera Kritis.pdf"
+			},
+			{
+				"name": "Wikipedia, Graviera",
+				"url": "https://en.wikipedia.org/wiki/Graviera"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "coagulate",
+				"temperature": {
+					"min": 34,
+					"max": 36,
+					"about": true
+				},
+				"seconds": {
+					"min": 1800,
+					"max": 1800,
+					"about": true
+				}
+			},
+			{
+				"type": "cut",
+				"how": "cut"
+			},
+			{
+				"type": "heat",
+				"does": "cook",
+				"temperature": {
+					"min": 50,
+					"max": 52,
+					"about": true
+				}
+			},
+			{
+				"type": "press"
+			},
+			{
+				"type": "custom",
+				"name": "rest",
+				"temperature": {
+					"min": 14,
+					"max": 16
+				},
+				"seconds": {
+					"min": 86400,
+					"max": 86400
+				}
+			},
+			{
+				"type": "salt",
+				"how": "brine",
+				"seconds": {
+					"min": 172800,
+					"max": 432000
+				},
+				"note": "Time depends on size."
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"temperature": {
+					"min": 14,
+					"max": 18
+				},
+				"seconds": {
+					"min": 7776000
+				}
+			}
+		],
+		"text": "Popular guides say 5 months.",
+		"sources": {
+			"links": [
+				{
+					"name": "PDO summary, Graviera Kritis (Ministerial Decision 313047/1994), as quoted in a search result; the PDF itself could not be opened",
+					"url": "https://old.dalrrd.gov.za/doaDev/sideMenu/foodSafety/doc/Graviera Kritis.pdf"
+				},
+				{
+					"name": "Wikipedia, Graviera",
+					"url": "https://en.wikipedia.org/wiki/Graviera"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

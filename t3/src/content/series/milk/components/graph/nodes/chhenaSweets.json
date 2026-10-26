@@ -1,7 +1,5 @@
 {
 	"label": "Chhena sweets",
-	"from": "chhena",
-	"step": "knead, shape, sweeten",
 	"niche": 1,
 	"about": {
 		"text": "The sweets of eastern India and Bangladesh made from chhena kneaded smooth: rolled into balls and cooked in syrup as rasgulla, soaked in sweetened, thickened milk as rasmalai, or cooked with sugar and shaped as sandesh.",
@@ -33,41 +31,6 @@
 		"IN",
 		"BD"
 	],
-	"how": {
-		"text": "Chhena is kneaded smooth, with a little binder for some sweets, and shaped. It is then cooked in syrup (rasgulla), cooked dry with sugar (sandesh) or soaked in thickened milk (rasmalai).",
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Chhena",
-					"url": "https://en.wikipedia.org/wiki/Chhena"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "custom",
-					"name": "knead",
-					"note": "To a smooth paste, with arrowroot or semolina as a binder for some."
-				},
-				{
-					"type": "custom",
-					"name": "roll",
-					"note": "Into balls without cracks."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia: Chhena",
-						"url": "https://en.wikipedia.org/wiki/Chhena"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"examples": [
 		"rasgulla",
 		"sandesh",

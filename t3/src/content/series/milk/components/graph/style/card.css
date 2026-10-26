@@ -1,0 +1,136 @@
+/* The card telling of what was clicked: a panel on the pills' own white,
+   slid in over the left of the picture, edge to edge, top to bottom; most
+   of the pane where it is too narrow for the card and the picture side
+   by side (below). */
+.milk-about {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 3;
+	box-sizing: border-box;
+	width: min(23rem, 100%);
+	color: var(--deck-ink);
+	background: var(--pill);
+	border-right: 1px solid var(--pill-rim);
+	font-family: var(--font-sans);
+	font-size: 0.85rem;
+	line-height: 1.5;
+	/* Out of sight to the left until opened, and gone once it is out. */
+	transform: translateX(-100%);
+	visibility: hidden;
+	transition:
+		transform 0.25s ease,
+		visibility 0s 0.25s;
+}
+.milk-about.is-open {
+	transform: none;
+	visibility: visible;
+	box-shadow: 0.5rem 0 1.5rem rgb(0 0 0 / 0.1);
+	transition: transform 0.25s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+	.milk-about,
+	.milk-about.is-open {
+		transition: none;
+	}
+}
+/* Where the pane is too narrow for the card and the picture side by
+   side, the card takes most of it but not all: a strip of the picture
+   is left at its side to tap, which shuts it. */
+@container (max-width: 40rem) {
+	.milk-about {
+		width: 80%;
+	}
+}
+/* What scrolls, under the close button, which stays put. */
+.milk-about-body {
+	box-sizing: border-box;
+	height: 100%;
+	overflow-y: auto;
+	overscroll-behavior: contain;
+	padding: 1rem 1.1rem 0.9rem;
+}
+.milk-about-close {
+	position: absolute;
+	top: 0.5rem;
+	right: 0.5rem;
+	z-index: 1;
+	width: 1.75rem;
+	height: 1.75rem;
+	padding: 0.35rem;
+	color: var(--deck-ink-dim);
+	background: none;
+	border: 0;
+	border-radius: var(--radius-medium);
+	cursor: pointer;
+}
+.milk-about-close:hover {
+	color: var(--deck-ink);
+}
+.milk-about-close svg {
+	display: block;
+	width: 100%;
+	height: 100%;
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 1.6;
+	stroke-linecap: round;
+}
+/* Written by the script as it tells of each. */
+.milk-about header {
+	display: flex;
+	align-items: center;
+	gap: 0.9rem;
+	margin-bottom: 0.8rem;
+}
+/* The photograph in the panel's corner, out to its edges, the name and
+   other names beside it. */
+.milk-about header.has-image {
+	margin: -1rem 0 0.8rem -1.1rem;
+}
+/* Clear of the close button. */
+.milk-about header > div {
+	padding-right: 1.5rem;
+}
+/* Without the frame and the "###" the site gives an image and a heading in a post. */
+.milk-about header img {
+	flex: none;
+	width: 8rem;
+	height: 8rem;
+	padding: 0;
+	border: 0;
+	/* Rounded where it meets the panel, as the pane round it is (see DeckViz). */
+	border-radius: 0 0 var(--viz-corner, 10px) 0;
+	object-fit: cover;
+}
+.milk-about header .milk-about-aka {
+	margin: 0.3rem 0 0;
+}
+.milk-about h3 {
+	margin: 0;
+	font-size: 1.15rem;
+	line-height: 1.25;
+}
+.milk-about h3::before {
+	content: none;
+}
+.milk-about p {
+	margin: 0 0 0.6rem;
+}
+.milk-about .milk-about-kind,
+.milk-about .milk-about-aka,
+.milk-about .milk-about-source,
+.milk-about .milk-about-credit,
+.milk-about dt {
+	color: var(--deck-ink-dim);
+	font-size: 0.9em;
+}
+.milk-about .milk-about-kind {
+	margin: 0 0 0.1rem;
+}
+.milk-about dl {
+	margin: 0.8rem 0 0.6rem;
+	padding-top: 0.6rem;
+	border-top: 1px solid var(--pill-rim);
+}

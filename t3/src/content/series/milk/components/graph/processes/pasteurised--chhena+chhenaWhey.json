@@ -1,0 +1,72 @@
+{
+	"from": [
+		"pasteurised"
+	],
+	"to": [
+		"chhena",
+		"chhenaWhey"
+	],
+	"step": "curdle hot with acid",
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"seconds": {
+					"min": 600,
+					"max": 600
+				},
+				"note": "The milk is boiled for 10 minutes."
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"min": 75,
+					"max": 80
+				}
+			},
+			{
+				"type": "acidify",
+				"with": "lemon juice",
+				"temperature": {
+					"min": 75,
+					"max": 80
+				},
+				"note": "Or citric or lactic acid, calcium lactate, or aged acid whey from an earlier batch."
+			},
+			{
+				"type": "drain",
+				"by": "cloth",
+				"note": "The whey floats to the top as the curd forms and is strained off through muslin; longer draining gives firmer chhena."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Chhena",
+					"url": "https://en.wikipedia.org/wiki/Chhena"
+				}
+			],
+			"text": "The boiling, the cooling to 75-80 °C, the acid and the straining are from this article."
+		}
+	},
+	"legs": {
+		"chhena": {
+			"step": "the curd",
+			"text": "Milk is boiled, cooled slightly to 75–80 °C, and a food acid is stirred in. The curd separates at once from the greenish whey and is drained in a cloth.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Chhena",
+						"url": "https://en.wikipedia.org/wiki/Chhena"
+					}
+				],
+				"text": "The table, the facts and the words on how it is made, from these."
+			}
+		},
+		"chhenaWhey": {
+			"step": "the whey"
+		}
+	}
+}

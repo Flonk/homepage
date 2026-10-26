@@ -1,0 +1,104 @@
+{
+	"from": [
+		"hard"
+	],
+	"to": [
+		"granaPadano"
+	],
+	"variant": true,
+	"step": "cook fine grains",
+	"text": "Like Parmigiano it is a cooked, slowly ripened grana from partly skimmed raw milk, but its rules allow the preservative lysozyme and a shorter 9‑month minimum. That gives a younger, milder cheese from a much larger area.",
+	"sources": {
+		"links": [
+			{
+				"name": "Grana Padano DOP disciplinare (2022)",
+				"url": "https://www.granapadano.it/public/file/DisciplinareGranaPadanoDOP2022-50232.pdf"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"min": 8,
+					"max": 20
+				},
+				"note": "Natural creaming partly skims the milk."
+			},
+			{
+				"type": "ferment",
+				"does": "incubate",
+				"kinds": [
+					"lactic"
+				],
+				"adds": {
+					"microbes": [],
+					"by": [
+						"backslop"
+					]
+				},
+				"note": "A natural whey starter."
+			},
+			{
+				"type": "coagulate",
+				"by": "rennet",
+				"note": "Calf rennet, and lysozyme up to 2.5 g per 100 kg."
+			},
+			{
+				"type": "cut",
+				"how": "cut",
+				"note": "To fine granules."
+			},
+			{
+				"type": "heat",
+				"does": "cook",
+				"temperature": {
+					"max": 56
+				},
+				"seconds": {
+					"max": 4200
+				},
+				"note": "Under the whey."
+			},
+			{
+				"type": "mould",
+				"seconds": {
+					"min": 129600
+				},
+				"note": "In moulds 35–45 cm across, 24–40 kg."
+			},
+			{
+				"type": "salt",
+				"how": "brine",
+				"seconds": {
+					"min": 1209600,
+					"max": 2592000
+				}
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"temperature": {
+					"min": 15,
+					"max": 22
+				},
+				"seconds": {
+					"min": 23328000
+				},
+				"note": "Riserva after over 20 mo."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Grana Padano DOP disciplinare (2022)",
+					"url": "https://www.granapadano.it/public/file/DisciplinareGranaPadanoDOP2022-50232.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

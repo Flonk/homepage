@@ -4,11 +4,6 @@
 		"Fromage lactique",
 		"Lactic cheese"
 	],
-	"from": "raw",
-	"step": "set slowly with acid, ladle unpressed",
-	"alsoFrom": [
-		"pasteurised"
-	],
 	"niche": 1,
 	"cheese": true,
 	"ripened": true,
@@ -46,118 +41,6 @@
 		"sources": {
 			"unsourced": true,
 			"text": "Mostly French goat’s cheeses: a few hundred thousand tonnes of cheese, at about 6 kg of milk a kilo. My own rough estimate."
-		}
-	},
-	"how": {
-		"text": "The milk is soured for a day or more at cool room temperature with only a few drops of rennet, so the gel is fragile and is ladled into moulds, where it drains under its own weight. Moulds and yeasts then grow on the salted, ash-coated surface.",
-		"sources": {
-			"links": [
-				{
-					"name": "Sainte-Maure de Touraine AOP cahier des charges (INAO)",
-					"url": "https://extranet.inao.gouv.fr/fichier/CDCPNOSainteMauredeTouraine.pdf"
-				},
-				{
-					"name": "Hill & Ferrer, Cheese Making Technology (Guelph), Cheese families",
-					"url": "https://books.lib.uoguelph.ca/cheesemakingtechnologyebook/chapter/cheese-families/"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "ferment",
-					"does": "incubate",
-					"kinds": [
-						"lactic",
-						"yeast",
-						"mould"
-					],
-					"adds": {
-						"microbes": [
-							{
-								"name": "Leuconostoc",
-								"kind": "bacterium"
-							}
-						],
-						"by": [
-							"wild"
-						]
-					},
-					"temperature": {
-						"max": 25
-					},
-					"seconds": {
-						"min": 64800,
-						"max": 172800
-					},
-					"pH": {
-						"min": 4.6,
-						"max": 4.8
-					},
-					"note": "Only a little rennet is added, at most 5 ml of 520 mg/L chymosin per 100 L."
-				},
-				{
-					"type": "custom",
-					"name": "ladle",
-					"note": "Into perforated truncated moulds in several passes, no pressing."
-				},
-				{
-					"type": "drain",
-					"seconds": {
-						"min": 64800
-					},
-					"note": "Under its own weight."
-				},
-				{
-					"type": "salt",
-					"how": "dry",
-					"note": "With charcoal ash, on the surface."
-				},
-				{
-					"type": "ferment",
-					"does": "ripen",
-					"adds": {
-						"microbes": [
-							{
-								"name": "Candida",
-								"kind": "yeast"
-							},
-							{
-								"name": "moulds",
-								"kind": "mould"
-							}
-						]
-					},
-					"temperature": {
-						"min": 10,
-						"max": 15
-					},
-					"seconds": {
-						"min": 864000
-					},
-					"humidity": {
-						"min": 80,
-						"max": 80,
-						"about": true
-					},
-					"note": "In a humid cellar; Valençay is matured at 80 % RH for several weeks (Guelph)."
-				}
-			],
-			"text": "Soured by the natural flora of the raw milk and cheese-dairy whey (heterofermentative), or by a lactic starter. Moulds and Candida yeasts on the surface come from the milk, the whey or bought cultures.",
-			"sources": {
-				"links": [
-					{
-						"name": "Sainte-Maure de Touraine AOP cahier des charges (INAO)",
-						"url": "https://extranet.inao.gouv.fr/fichier/CDCPNOSainteMauredeTouraine.pdf"
-					},
-					{
-						"name": "Hill & Ferrer, Cheese Making Technology (Guelph), Cheese families",
-						"url": "https://books.lib.uoguelph.ca/cheesemakingtechnologyebook/chapter/cheese-families/"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	},
 	"examples": [

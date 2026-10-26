@@ -1,0 +1,61 @@
+{
+	"from": [
+		"iceCream"
+	],
+	"to": [
+		"gelato"
+	],
+	"variant": true,
+	"text": "A milk-heavy custard base is pasteurised, cooled and batch-frozen with little air, and served warmer than ice cream.",
+	"sources": {
+		"links": [
+			{
+				"name": "Wikipedia: Gelato",
+				"url": "https://en.wikipedia.org/wiki/Gelato"
+			},
+			{
+				"name": "Wikipedia: Ice cream",
+				"url": "https://en.wikipedia.org/wiki/Ice_cream"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "heat",
+				"does": "heat",
+				"temperature": {
+					"min": 85,
+					"max": 85
+				}
+			},
+			{
+				"type": "heat",
+				"does": "cool",
+				"temperature": {
+					"min": 5,
+					"max": 5
+				}
+			},
+			{
+				"type": "custom",
+				"name": "freeze",
+				"note": "Batch-frozen with little air."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Gelato",
+					"url": "https://en.wikipedia.org/wiki/Gelato"
+				},
+				{
+					"name": "Wikipedia: Ice cream",
+					"url": "https://en.wikipedia.org/wiki/Ice_cream"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

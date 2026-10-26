@@ -1,7 +1,5 @@
 {
 	"label": "Drugs from\ntransgenic milk",
-	"from": "raw",
-	"step": "transgenic goat or rabbit milk, purify",
 	"note": "The goats (and rabbits) carry a human gene.",
 	"about": {
 		"text": "Human proteins made in the milk of genetically modified animals and purified from it as medicines. The first approved was ATryn, an anticoagulant from goats' milk (2006); Ruconest, for hereditary angioedema, is made in rabbits' milk. Ruconest is made by the Dutch company Pharming.",
@@ -23,80 +21,6 @@
 		"sources": {
 			"unsourced": true,
 			"text": "The milk of a few herds of transgenic goats and rabbits. My own rough estimate."
-		}
-	},
-	"how": {
-		"text": "The milk is only the carrier: it is collected as usual, the human protein is separated from all the animal's own milk proteins, and then it is tested and filled as an ordinary injectable drug.",
-		"sources": {
-			"links": [
-				{
-					"name": "EMA: ATryn EPAR scientific discussion",
-					"url": "https://www.ema.europa.eu/documents/scientific-discussion/atryn-epar-scientific-discussion_en.pdf"
-				},
-				{
-					"name": "EMA: Ruconest EPAR",
-					"url": "https://www.ema.europa.eu/en/medicines/human/EPAR/ruconest"
-				},
-				{
-					"name": "Wikipedia: Conestat alfa",
-					"url": "https://en.wikipedia.org/wiki/Conestat_alfa"
-				},
-				{
-					"name": "Wikipedia: Antithrombin",
-					"url": "https://en.wikipedia.org/wiki/Antithrombin"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "custom",
-					"name": "heparin affinity"
-				},
-				{
-					"type": "custom",
-					"name": "ion exchange"
-				},
-				{
-					"type": "custom",
-					"name": "hydrophobic"
-				},
-				{
-					"type": "nanofilter"
-				},
-				{
-					"type": "heat",
-					"does": "heat",
-					"note": "For virus safety."
-				},
-				{
-					"type": "custom",
-					"name": "fill",
-					"note": "Tested and filled like any injectable drug."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "EMA: ATryn EPAR scientific discussion",
-						"url": "https://www.ema.europa.eu/documents/scientific-discussion/atryn-epar-scientific-discussion_en.pdf"
-					},
-					{
-						"name": "EMA: Ruconest EPAR",
-						"url": "https://www.ema.europa.eu/en/medicines/human/EPAR/ruconest"
-					},
-					{
-						"name": "Wikipedia: Conestat alfa",
-						"url": "https://en.wikipedia.org/wiki/Conestat_alfa"
-					},
-					{
-						"name": "Wikipedia: Antithrombin",
-						"url": "https://en.wikipedia.org/wiki/Antithrombin"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	},
 	"examples": [

@@ -38,44 +38,6 @@
 		"buffalo",
 		"cow"
 	],
-	"how": {
-		"label": "lift the cream layers, sweeten",
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Khurchan",
-					"url": "https://en.wikipedia.org/wiki/Khurchan"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "heat",
-					"does": "cook"
-				},
-				{
-					"type": "custom",
-					"name": "layer",
-					"note": "The malai forming on top is pushed aside again and again, stacking flaky layers."
-				},
-				{
-					"type": "add",
-					"what": "sugar"
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia: Khurchan",
-						"url": "https://en.wikipedia.org/wiki/Khurchan"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"facts": [
 		{
 			"k": "Season",

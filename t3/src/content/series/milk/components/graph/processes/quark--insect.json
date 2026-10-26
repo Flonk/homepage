@@ -1,0 +1,71 @@
+{
+	"from": [
+		"quark"
+	],
+	"to": [
+		"insect"
+	],
+	"processing": {
+		"steps": [
+			{
+				"type": "drain",
+				"note": "Low-fat quark is drained thoroughly."
+			},
+			{
+				"type": "dry",
+				"seconds": {
+					"min": 172800,
+					"about": true
+				},
+				"note": "It is then dried for several days."
+			},
+			{
+				"type": "add",
+				"what": "salt and caraway"
+			},
+			{
+				"type": "mould",
+				"note": "Shaped into bars or hand-sized balls, each with an elderflower panicle stuck in so the mites can get inside."
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"kinds": [
+					"animal"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "Tyrophagus casei",
+							"formerly": [
+								"Tyrolichus casei"
+							],
+							"kind": "animal",
+							"does": [
+								"ripening"
+							]
+						}
+					],
+					"by": [
+						"vessel"
+					]
+				},
+				"seconds": {
+					"min": 2592000,
+					"max": 31536000,
+					"about": true
+				},
+				"note": "The cheeses sit one to twelve months in a box with the mites and rye flour, which feeds them and keeps them from eating too much cheese."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Milbenkäse, German Wikipedia",
+					"url": "https://de.wikipedia.org/wiki/Milbenkäse"
+				}
+			],
+			"text": "The steps from drained quark to mite-ripened Milbenkäse and the one to twelve months of ripening; the source gives no temperature or humidity."
+		}
+	}
+}

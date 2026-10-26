@@ -1,0 +1,48 @@
+{
+	"from": [
+		"cream"
+	],
+	"to": [
+		"cremeLegere"
+	],
+	"text": "Light cream is cream standardised to 12-30 % fat. The fluid UHT kind is sterilised for shelf life and thickened with starch and guar. Temperatures are not given by the sources opened.",
+	"sources": {
+		"links": [
+			{
+				"name": "Auchan: Bridélice crème légère fluide UHT 12 % MG",
+				"url": "https://www.auchan.fr/bridelice-creme-legere-fluide-uht-12-mg/pr-C1177965"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "standardise",
+				"fat": {
+					"min": 12
+				},
+				"note": "Sold as 12 % fat in the fluid UHT kind."
+			},
+			{
+				"type": "add",
+				"what": "modified starch and guar gum",
+				"note": "Thickens the light cream, which makes up 98 % of the product."
+			},
+			{
+				"type": "heat",
+				"does": "heat",
+				"note": "Sterilised by UHT so that it keeps unrefrigerated."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Auchan: Bridélice crème légère fluide UHT 12 % MG",
+					"url": "https://www.auchan.fr/bridelice-creme-legere-fluide-uht-12-mg/pr-C1177965"
+				}
+			],
+			"text": "The fat, the thickeners and the UHT sterilising of one brand’s fluid light cream from its label; the page does not say in what order, or at what temperatures."
+		}
+	}
+}

@@ -1,0 +1,48 @@
+{
+	"from": [
+		"lanital"
+	],
+	"to": [
+		"aralac"
+	],
+	"variant": true,
+	"text": "Made on the same principle as Lanital: casein spun to filaments and hardened.",
+	"sources": {
+		"links": [
+			{
+				"name": "Vintage Fashion Guild, azlon",
+				"url": "https://forums.vintagefashionguild.org/threads/fabric-friday-other-protein-fibers-azlon.75910/"
+			},
+			{
+				"name": "Wikipedia, Milk fiber",
+				"url": "https://en.wikipedia.org/wiki/Milk_fiber"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "spin"
+			},
+			{
+				"type": "custom",
+				"name": "harden"
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Vintage Fashion Guild, azlon",
+					"url": "https://forums.vintagefashionguild.org/threads/fabric-friday-other-protein-fibers-azlon.75910/"
+				},
+				{
+					"name": "Wikipedia, Milk fiber",
+					"url": "https://en.wikipedia.org/wiki/Milk_fiber"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

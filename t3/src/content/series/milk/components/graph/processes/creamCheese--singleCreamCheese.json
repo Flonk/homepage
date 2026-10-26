@@ -1,0 +1,38 @@
+{
+	"from": [
+		"creamCheese"
+	],
+	"to": [
+		"singleCreamCheese"
+	],
+	"variant": true,
+	"sources": {
+		"links": [
+			{
+				"name": "Phadungath 2005, Cream cheese products: A review",
+				"url": "https://sjst.psu.ac.th/index.php/article/317/PaperPDFw-Links/download"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "standardise",
+				"fat": {
+					"min": 4.5,
+					"max": 5
+				}
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Phadungath 2005, Cream cheese products: A review",
+					"url": "https://sjst.psu.ac.th/index.php/article/317/PaperPDFw-Links/download"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

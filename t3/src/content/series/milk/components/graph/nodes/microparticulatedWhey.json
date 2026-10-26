@@ -1,7 +1,5 @@
 {
 	"label": "Microparticulated\nwhey protein",
-	"from": "wpc",
-	"step": "heat and shear into tiny particles",
 	"note": "About 1-1.3 kcal per gram against 9 for fat; it gels like egg white when cooked, so it goes into cold or lightly heated foods.",
 	"about": {
 		"text": "Whey protein concentrate heated in a controlled way so that the protein partly sets into a dispersion of microscopic particles. They feel creamy on the tongue and stand in for fat in ice cream, yoghurt, dressings and spreads.",
@@ -13,48 +11,6 @@
 				}
 			],
 			"text": "The first paragraph of its article, shortened."
-		}
-	},
-	"how": {
-		"text": "Heat partly coagulates the protein into a micro dispersion; the article gives no temperatures.",
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Simplesse",
-					"url": "https://en.wikipedia.org/wiki/Simplesse"
-				},
-				{
-					"name": "Biesterfeld: whey protein",
-					"url": "https://www.biesterfeld.com/en/gb/product/whey-protein"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "heat",
-					"does": "heat",
-					"note": "Heat partly coagulates the protein into a micro dispersion."
-				},
-				{
-					"type": "custom",
-					"name": "shear"
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "Wikipedia: Simplesse",
-						"url": "https://en.wikipedia.org/wiki/Simplesse"
-					},
-					{
-						"name": "Biesterfeld: whey protein",
-						"url": "https://www.biesterfeld.com/en/gb/product/whey-protein"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	},
 	"examples": [

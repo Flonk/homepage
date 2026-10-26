@@ -3,11 +3,6 @@
 	"aka": [
 		"Sahnejoghurt"
 	],
-	"from": "pasteurised",
-	"step": "add cream, ferment",
-	"alsoFrom": [
-		"cream"
-	],
 	"niche": 1,
 	"about": {
 		"text": "Yoghurt made from milk enriched with cream, fermented with the usual yoghurt cultures, to at least 10 % fat. Sold in Germany as Sahnejoghurt.",
@@ -19,86 +14,6 @@
 				}
 			],
 			"text": "Written from this source."
-		}
-	},
-	"how": {
-		"text": "Pasteurised milk enriched with cream is soured by the ordinary yoghurt cultures, so the gel carries at least three times the fat of whole-milk yoghurt.",
-		"sources": {
-			"links": [
-				{
-					"name": "German MilchPQV, Anlage 8 (2025)",
-					"url": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html"
-				},
-				{
-					"name": "Codex Standard for Fermented Milks (CXS 243-2003)",
-					"url": "https://www.fao.org/input/download/standards/400/CXS_243e.pdf"
-				},
-				{
-					"name": "Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products",
-					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "add",
-					"what": "cream",
-					"note": "To at least 10 % fat."
-				},
-				{
-					"type": "ferment",
-					"does": "incubate",
-					"kinds": [
-						"lactic"
-					],
-					"adds": {
-						"microbes": [
-							{
-								"name": "Streptococcus thermophilus",
-								"kind": "bacterium",
-								"does": [
-									"acid"
-								]
-							},
-							{
-								"name": "Lactobacillus delbrueckii subsp. bulgaricus",
-								"kind": "bacterium",
-								"does": [
-									"acid",
-									"aroma"
-								]
-							}
-						],
-						"by": [
-							"starter"
-						]
-					},
-					"temperature": {
-						"min": 40,
-						"max": 45
-					},
-					"note": "Inoculated at 40–45 °C as for yoghurt."
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "German MilchPQV, Anlage 8 (2025)",
-						"url": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html"
-					},
-					{
-						"name": "Codex Standard for Fermented Milks (CXS 243-2003)",
-						"url": "https://www.fao.org/input/download/standards/400/CXS_243e.pdf"
-					},
-					{
-						"name": "Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products",
-						"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	},
 	"composition": {

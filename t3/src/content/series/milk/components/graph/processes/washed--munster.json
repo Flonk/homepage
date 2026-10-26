@@ -1,0 +1,88 @@
+{
+	"from": [
+		"washed"
+	],
+	"to": [
+		"munster"
+	],
+	"variant": true,
+	"text": "The acidified curd is first left to deacidify, then repeatedly wetted and rubbed with water that may carry Brevibacterium linens, so red bacteria and yeasts colonise the rind. This gives the thin orange smear and pungent, slightly ammoniac smell over a sweet, melting paste.",
+	"sources": {
+		"links": [
+			{
+				"name": "Munster PDO amendment and single document, OJ C 295 (2020)",
+				"url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=uriserv:OJ.C_.2020.295.01.0005.01.ENG"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "coagulate",
+				"by": "rennet",
+				"note": "Calf rennet, on acidified curd."
+			},
+			{
+				"type": "mould",
+				"seconds": {
+					"min": 54000
+				},
+				"note": "In moulds 7.5–19 cm across, drained unpressed."
+			},
+			{
+				"type": "salt"
+			},
+			{
+				"type": "ferment",
+				"does": "smear",
+				"kinds": [
+					"smear"
+				],
+				"adds": {
+					"microbes": [
+						{
+							"name": "Brevibacterium linens",
+							"kind": "bacterium",
+							"does": [
+								"rind"
+							]
+						},
+						{
+							"name": "yeasts",
+							"kind": "yeast"
+						}
+					],
+					"by": [
+						"starter"
+					]
+				},
+				"note": "Rubbed in two or three wet treatments or more, so the rind turns ivory-orange to red-orange."
+			},
+			{
+				"type": "ferment",
+				"does": "ripen",
+				"temperature": {
+					"min": 10,
+					"max": 16
+				},
+				"seconds": {
+					"min": 1814400
+				},
+				"humidity": {
+					"min": 90
+				},
+				"note": "At least 21 d, or 14 d for small cheeses."
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Munster PDO amendment and single document, OJ C 295 (2020)",
+					"url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=uriserv:OJ.C_.2020.295.01.0005.01.ENG"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

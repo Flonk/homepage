@@ -1,6 +1,5 @@
 {
 	"label": "Saurer Halbrahm",
-	"from": "culturedCream",
 	"at": 15,
 	"about": {
 		"text": "Switzerland’s lighter soured cream, at least 15 % fat; its full soured cream is sold as crème fraîche, at least 35 %.",
@@ -17,54 +16,6 @@
 	"regions": [
 		"CH"
 	],
-	"how": {
-		"text": "Swiss half cream (Halbrahm) is pasteurised and lightly soured with lactic acid bacteria. Swissmilk names no species, temperatures or times.",
-		"sources": {
-			"links": [
-				{
-					"name": "Swissmilk: Crème fraîche, Kaffeerahm und Co.",
-					"url": "https://www.swissmilk.ch/de/nachhaltigkeit/milchprodukte/creme-fraiche-kaffeerahm-und-co/"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "pasteurise"
-				},
-				{
-					"type": "ferment",
-					"does": "incubate",
-					"kinds": [
-						"lactic"
-					],
-					"adds": {
-						"microbes": [
-							{
-								"name": "lactic acid bacteria",
-								"kind": "bacterium",
-								"does": [
-									"acid"
-								]
-							}
-						]
-					},
-					"note": "Light souring by lactic acid bacteria."
-				}
-			],
-			"text": "Pasteurised half cream, lightly soured; the source names no species, temperatures or times.",
-			"sources": {
-				"links": [
-					{
-						"name": "Swissmilk: Crème fraîche, Kaffeerahm und Co.",
-						"url": "https://www.swissmilk.ch/de/nachhaltigkeit/milchprodukte/creme-fraiche-kaffeerahm-und-co/"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
-		}
-	},
 	"composition": {
 		"fat": {
 			"min": 15

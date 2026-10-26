@@ -1,10 +1,5 @@
 {
 	"label": "Ayran",
-	"from": "yoghurt",
-	"step": "dilute, salt",
-	"alsoFrom": [
-		"dahi"
-	],
 	"niche": 1,
 	"about": {
 		"text": "Ayran is a cold savory yogurt-based beverage found throughout Central Asia, the Balkans, and the Middle East. The drink is a heterogeneous mixture that has been consumed by Turkic peoples for approximately 1,000 years. The principal ingredients are yogurt, water and salt. Herbs such as mint may be added, and some varieties are carbonated. It is a national drink of Turkey and is served in most restaurants in Bulgaria.",
@@ -30,50 +25,6 @@
 				}
 			],
 			"text": "The photograph, its author and its licence, from its page."
-		}
-	},
-	"how": {
-		"text": "Ayran is yoghurt thinned with water and lightly salted after fermentation, so it keeps the yoghurt cultures' acidity and flavour in a thin, drinkable form.",
-		"sources": {
-			"links": [
-				{
-					"name": "German MilchPQV, Anlage 8 (2025)",
-					"url": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html"
-				},
-				{
-					"name": "Codex Standard for Fermented Milks (CXS 243-2003)",
-					"url": "https://www.fao.org/input/download/standards/400/CXS_243e.pdf"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		},
-		"processing": {
-			"steps": [
-				{
-					"type": "add",
-					"note": "To a protein above 1.6 %.",
-					"what": "water"
-				},
-				{
-					"type": "salt",
-					"strength": {
-						"max": 1.1
-					}
-				}
-			],
-			"sources": {
-				"links": [
-					{
-						"name": "German MilchPQV, Anlage 8 (2025)",
-						"url": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html"
-					},
-					{
-						"name": "Codex Standard for Fermented Milks (CXS 243-2003)",
-						"url": "https://www.fao.org/input/download/standards/400/CXS_243e.pdf"
-					}
-				],
-				"text": "The table, the facts and the words on how it is made, from these."
-			}
 		}
 	},
 	"examples": [
