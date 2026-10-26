@@ -1,4 +1,4 @@
-import { spacing, type Arrow } from '../client/base';
+import { spacing, type Arrow, type Node } from '../client/base';
 import type { Box } from '../layout';
 import type { Pen } from '../render/canvas';
 import { pixelRatio } from '../../../../../../lib/canvas';
@@ -201,11 +201,18 @@ export const makeFramePainter = (G: Drawing): FramePainter => {
 			setArrowStroke(ctx, s);
 			for (const a of highlight.litArrows) fillArrow(ctx, a, colours.litLine);
 			// The step labels on a lit arrow drawn again over it, as they are over every arrow zoomed in.
-			const relabel = new Set([...highlight.litArrows].map((a) => a.target));
+			// The branch points too, a split's step and chain being on the double arrow before it parts.
+			const relabel = new Set<Node>();
+			for (const a of highlight.litArrows)
+				for (let n: Node | undefined = a.target; n && n !== a.source; n = layout.parent.get(n)) relabel.add(n);
 			if (highlight.inkedStep) relabel.add(highlight.inkedStep);
+			/* Read as legible as the overview has them, which is drawn sharper than
+			   the screen: a chain the overview shows is drawn again over its lit
+			   arrow, not left under it. */
+			const asOverview = Math.max(s, overviewScale / dpr);
 			for (const n of relabel) {
-				if (layout.hasStepLabel(n) && inSight(layout.stepLabelBox(n))) pillPainter.drawStepLabel(ctx, n, s);
-				if (layout.hasCardChain(n) && inSight(layout.cardChainOf(n).area)) pillPainter.drawCardChain(ctx, n, s);
+				if (layout.hasStepLabel(n) && inSight(layout.stepLabelBox(n))) pillPainter.drawStepLabel(ctx, n, asOverview);
+				if (layout.hasCardChain(n) && inSight(layout.cardChainOf(n).area)) pillPainter.drawCardChain(ctx, n, asOverview);
 			}
 			drawSelectedOnTop(s);
 			G.devMarks.draw(s, inSight);

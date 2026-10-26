@@ -1,0 +1,273 @@
+# The graph's products
+
+Every product in the milk graph, as a tree: each under what it is made from. Id, name, other names, and what it is. Examples hang under these; they are not listed.
+
+- raw — Milk (also Raw milk, Rohmilch): Milk is usually a white liquid food produced by the mammary glands of lactating mammals.
+  - byaslag — Byaslag (also Biyaslag, Tsagaan byaslag, Mongolian cheese): A Mongolian cheese made by adding fermented milk to foaming heated milk, straining the curds through cloth and pressing them under a stone.
+  - certified — Certified raw milk (also Vorzugsmilch): Raw milk or unpasteurized milk is milk that has not undergone pasteurization, a process of heating foods to kill pathogens for safe consumption and extension of
+  - choormog — Fermented camel milk: Camel's milk soured into a slightly acidic, sometimes fizzy and faintly alcoholic drink wherever camels are herded: shubat in Kazakhstan, chal in Turkmenistan, 
+  - dadiah — Dadiah (also Dadih, Buffalo milk in bamboo): Dadiah (Minangkabau) or dadih is a traditional fermented milk popular among people of West Sumatra, Indonesia.
+  - donorMilk — Donor human milk (also Pasteurised donor milk, Milk-bank milk, Lactarium milk): Milk given by screened mothers to a milk bank, heated gently and handed out on prescription to babies, mostly premature ones, whose own mothers cannot supply en
+  - eezgii — Eezgii (also Ээзгий, Browned curd): A Mongolian cheese of cow's, sheep's or goat's milk: the curd is boiled in its own whey until the whey has soaked in and cooked away, leaving it brown and light
+  - homogenised — Homogenised milk (also Homogenisierte Milch): Milk pumped at high pressure through a narrow gap, which breaks its fat globules so small that they stay spread through it instead of rising as a layer of cream
+    - esl — ESL milk (also Extended shelf life milk, Länger frische Milch): Extended shelf life milk: heated higher than pasteurised milk, to about 120–135 °C for a second or two, or filtered through fine membranes, so that unopened in 
+    - pasteurised — Pasteurised milk (also Pasteurisierte Milch): Milk heated briefly to kill the bacteria that make people ill and spoil it, usually to about 72 °C for 15 seconds, and cooled again at once.
+      - bakedMilk — Baked milk (also Toplyonoye moloko, Топлёное молоко): Baked milk is a variety of boiled milk that has been particularly popular in Russia, Ukraine and Belarus.
+        - ryazhenka — Ryazhenka (also Baked fermented milk, Ряженка): Ryazhenka or ryazhanka, is a traditional fermented milk product in Ukraine, Russia, and Belarus.
+      - chhena — Chhena (also Chhana, Chena): Chhena ଛେନ୍ନା in Odia or chhana ছানা in Bengali, is a kind of acid-set cheese originating in the Indian subcontinent that is made from water buffalo or cow milk
+        - chhenaSweets — Chhena sweets: The sweets of eastern India and Bangladesh made from chhena kneaded smooth: rolled into balls and cooked in syrup as rasgulla, soaked in sweetened, thickened mi
+        - paneer — Paneer: Paneer is a fresh acid-set cheese, common in South Asian cuisine, made from cow milk or buffalo milk.
+        - rushan — Rushan (also Milk fan, 乳扇): Rushan is a cow's milk cheese of Yunnan, China.
+      - chhenaWhey — Acid whey: The whey left after milk is curdled with acid instead of rennet, from fresh cheeses such as cottage cheese and quark, from Greek-style yogurt, or from acid case
+      - creamYoghurt — Cream yoghurt (also Sahnejoghurt): Yoghurt made from milk enriched with cream, fermented with the usual yoghurt cultures, to at least 10 % fat.
+      - dahi — Dahi (also Curd): Dahi is a traditional yogurt or fermented milk product originating from and popular throughout the Indian subcontinent.
+      - dickmilch — Dickmilch (also Dickete, Dicke Milch, Tykmælk): German soured milk that has set thick enough to spoon, made from milk with mesophilic lactic cultures and not heated after fermentation.
+      - evaporated — Evaporated milk (also Kondensmilch): Evaporated milk, known in some countries as "unsweetened condensed milk", is a shelf-stable canned cow’s milk product, consisting of fresh milk from which appro
+      - filmjolk — Filmjölk (also Fil): Filmjölk, also known as fil, is a traditional fermented milk product from Sweden, and a common dairy product within most of the Nordic countries.
+      - flavouredMilk — Flavoured milk: Milk sweetened and flavoured, most often with cocoa, but also with coffee, malt, vanilla, strawberry or banana.
+      - fresh — Fresh whole milk (also Frischmilch, Frische Vollmilch): Pasteurised whole milk with its full fat, at least 3.5 % in the EU, chilled and keeping about a week unopened in the fridge.
+        - clotted — Clotted cream (kaymak): Clotted cream is a thick cream made by heating full-cream cow's milk using steam or a water bath and then leaving it in shallow pans to cool slowly.
+        - condensed — Sweetened condensed milk (also Gezuckerte Kondensmilch, Leche condensada): Condensed milk is cow's milk from which water has been removed.
+          - brigadeiro — Brigadeiro: A Brazilian sweet of condensed milk, cocoa powder and butter, cooked to a soft-ball stage, rolled into balls and coated in chocolate sprinkles.
+          - milkCaramel — Milk caramel (and fudge) (also Chewy caramel, Milchkaramell): A chewy sweet cooked from milk or cream, sugar, glucose syrup and butter; sold as milk caramels or cream caramels.
+        - custard — Custard (also Crème anglaise, Pouring custard): A sweet milk or cream cooked with egg or egg yolk until it thickens or sets.
+        - dulce — Dulce de leche: Dulce de leche, caramelized milk, milk candy, or milk jam is a confection commonly made by heating sugar and milk over several hours.
+        - frozenYoghurt — Frozen yoghurt (also Frozen yogurt): A frozen dessert made from yoghurt, sweetened and stabilised, then whipped and frozen like ice cream.
+        - gomme — Gomme (also Gumme, Gubbost): Gomme is a traditional Norwegian dish usually served as a spread or a dessert.
+        - kheer — Kheer (also Khir): Kheer is a sweet rice pudding of the Indian subcontinent, made by boiling milk, sugar or jaggery and rice together and flavoured with cardamom, saffron, nuts an
+        - khoa — Khoa (also Khoya, Mawa, Khowa): Khoa, khoya, khowa or mawa is a soft cheese widely used in South Asian cuisine, encompassing India, Nepal, and Pakistan.
+          - khoaSweets — Khoa sweets: Sweets made from khoa, milk boiled down in an open pan to a stiff dough: cooked with sugar into peda and burfi, or kneaded with flour, fried and soaked in syrup
+        - kulfi — Kulfi: Kulfi is a frozen dairy dessert from the Indian subcontinent.
+        - milkPudding — Milk pudding: Milk set or thickened into a soft sweet dessert with starch, flour, egg or gelatin: blancmange, rice pudding, muhallebi and double-skin milk are all milk puddin
+        - milkTea — Milk tea (also Milchtee): A family of drinks that combine tea and milk, hot or cold, often with spices or sweetener.
+        - mishtiDoi — Mishti doi (also Sweet yoghurt, Misti dahi): Mishti doi is a fermented sweet doi (curd) originating from the Bengal region of the Indian subcontinent.
+        - nimish — Nimish (milk foam) (also Malaiyo, Malai makkhan, Makhan malai, Daulat ki chaat): Nimish, also called malaiyo or makhan malai, is a winter sweet of Uttar Pradesh: milk boiled, cooled overnight in the open and whipped at dawn into a light foam
+        - rabri — Rabri (also Rabdi, Layered milk skins): Rabri, rabdi or rabidi is a sweet, condensed-milk-based dish, originating from the Indian subcontinent, made by boiling milk on low heat for a long time until i
+      - junket — Junket (also Jonquet, Renneted milk): Junket is a milk-based dessert with a jelly texture, made with sweetened milk and rennet, the digestive enzyme that curdles milk.
+      - kefir — Kefir: Kefir is a fermented milk drink similar to a thin yogurt or ayran that is made from kefir grains, a specific type of mesophilic symbiotic culture.
+      - lactoseFree — Lactose-free milk (also Laktosefreie Milch): Milk in which the lactose has been split into glucose and galactose by the enzyme lactase, or largely removed by membranes, so that people who cannot digest lac
+      - mildYoghurt — Mild yoghurt (also Joghurt mild): Yoghurt made with milder-souring cultures, often Lactobacillus acidophilus and bifidobacteria, in place of the usual Lactobacillus delbrueckii subsp.
+      - milkPowder — Milk powder (also Dried milk, Whole milk powder, Milchpulver): Powdered milk, also called milk powder, dried milk, dry milk, or milk solids, is a manufactured dairy product made by evaporating milk to a state of dryness.
+        - maltedMilk — Malted milk (also Malted milk powder): A powder of malted barley, wheat flour and dried whole milk, stirred into hot or cold milk or water.
+        - milkChocolate — Milk chocolate (also Milchschokolade): Solid chocolate made of cocoa products, sugar and milk or milk products.
+        - reconstituted — Reconstituted milk: Liquid milk made by adding water to skim milk powder, whole milk powder or a mix of the two.
+      - piima — Piimä: The Finnish soured milk drink, tart and thicker than milk.
+      - probioticYoghurt — Probiotic yoghurt (also Joghurt probiotisch): Yoghurt fermented by both the usual yoghurt bacteria, Streptococcus thermophilus and Lactobacillus delbrueckii subsp.
+      - ropy — Ropy milk: A Scandinavian type of fermented milk with a stringy, slimy ('ropy') texture.
+      - soured — Soured milk (also Sauermilch): Soured milk, sour milk, spontaneously soured milk, or naturally soured milk is the milk product fermented with indigenous microorganisms, as opposed to cultured
+        - arkhi — Arkhi (also Milk vodka, Yark, Araky): Arkhi is a liquor made from airag, fermented milk brandy, or isgelen tarag which then gets distilled.
+          - arkhiGrades — Re-distilled arkhi (artz, khorz): Arkhi distilled again to make it stronger.
+        - fermButter — Cultured butter: Butter churned from cream that has first been soured with lactic acid bacteria, giving it a fuller, slightly tangy taste and the aroma of diacetyl.
+        - fermButtermilk — Fermented buttermilk: What is left when butter is churned from whole milk that has first been soured, rather than from cream: from dahi in South Asia, from ergo in Ethiopia and from 
+          - buttermilkCheese — Buttermilk cheese: Cheese made by heating the buttermilk left from churning soured milk until its proteins curdle, then draining the curd.
+            - hardChhurpi — Hard chhurpi (also Durkha, Chugo): Chhurpi, otherwise known as durkha and chogo/chugo, is a traditional cheese consumed in Nepal, Bhutan, Tibet and parts of Northeastern India.
+        - milletMilk — Milk with millet: Drinks of the Sahel made by mashing millet into milk: fura da nono, millet balls (fura) stirred into fermented milk (nono), is served as a meal or on special oc
+        - stillCheese — Still-residue cheese (shuurmg) (also Bozo, Khurskh, Shuurmg, Arsa): What is left in the pot after soured milk has been distilled into milk spirit.
+      - yoghurt — Yoghurt (also Yogurt, Joghurt): Yogurt, also spelled yoghurt, is a food produced by bacterial fermentation of milk.
+        - ayran — Ayran: Ayran is a cold savory yogurt-based beverage found throughout Central Asia, the Balkans, and the Middle East.
+        - driedYoghurt — Dried yoghurt (kashk, qurut) (also Getrockneter Joghurt, Kurt, Aarul): Strained yoghurt, buttermilk or soured milk, shaped and dried until hard: a family of keeping foods of Iran, the Caucasus and Central Asia, rolled into balls, s
+        - greek — Greek yoghurt (also Strained yoghurt, Griechischer Joghurt, Stragisto): Strained yogurt, Labneh, Greek or Greek-style yogurt, yogurt cheese, sack yogurt, hung curd, or kerned yogurt is yogurt that has been strained to remove most of
+          - shanklish — Shanklish (also Chanklish, Shinklish, Shankleesh): A ball-shaped cheese of the Levant made from strained yoghurt, about 6 cm across, rolled in thyme, za'atar or Aleppo pepper and aged and dried.
+        - greekWhey — Acid whey: The whey left after milk is curdled with acid instead of rennet, from fresh cheeses such as cottage cheese and quark, from Greek-style yogurt, or from acid case
+        - heatTreatedYoghurt — Heat-treated yoghurt (also Haltbarer Joghurt): Yoghurt that is heated again after it has set, so that its bacteria are killed and it keeps for weeks or, with a hotter heat and a sterile fill, months without 
+        - kishk — Kishk (also Kishk shami, Keshk): A dried fermented food made from milk or yogurt and cereal, usually bulgur, and also known as tarhana or burghul yoghurt.
+    - sterilised — Sterilised milk (also Sterilmilch): Milk heated in its sealed bottle or can to around 110–120 °C for 20 minutes or more, which kills everything in it and lets it keep for months unopened without c
+    - uht — UHT milk (also Long-life milk, H-Milch, H-Vollmilch, Haltbarmilch): Ultra-high temperature processing (UHT), ultra-heat treatment, or ultra-pasteurization is a food processing technology that sterilizes liquid food by heating it
+  - kumis — Kumis / airag (mare's milk) (also Kumis, Koumiss, Kymyz, Airag): Kumis, alternatively spelled coumis or kumyz, also known as airag, is a traditional fermented dairy product made from mare milk.
+  - lacticCheese — Lactic-set cheese (also Fromage lactique, Lactic cheese): Cheese whose milk is set mainly by lactic acid after a day or more at cool room temperature, with only a trace of rennet; the curd is ladled into moulds, drains
+  - milkDrugs — Drugs from transgenic milk: Human proteins made in the milk of genetically modified animals and purified from it as medicines.
+  - milkSpray — Milk spray (garden fungicide) (also Milk fungicide): Fresh milk diluted with water and sprayed on squash or zucchini leaves to hold back powdery mildew.
+  - mursik — Mursik (also Gourd-fermented milk): Mursik is a traditional fermented milk variant of the Kalenjin people of Kenya.
+  - plantCheese — Plant-set cheese: Cheese set not by rennet from a calf's stomach or by acid but by an enzyme from a plant: cardoon thistle flowers in the cheeses of Portugal and Spain, Calotropi
+  - rawCream — Raw cream (also Rahm): The fat-rich part of raw milk, skimmed off as it rises or spun off in a separator, usually at 35–40 % fat.
+    - cream — Cream (also Sahne, Rahm, Obers, Crème liquide): Cream is a dairy product composed of the higher-fat layer skimmed from the top of milk before homogenization. [ruler: fat]
+      - butter — Butter: Butter is a dairy product made from the fat and protein components of churned cream.
+        - amf — Anhydrous milk fat (also AMF, Anhydrous butter oil, Butterreinfett, Butterschmalz): Pure milk fat, with at least 99.8 % fat and next to no water or milk solids, made by separating melted butter or cream and drying the oil under vacuum.
+          - milkFatFractions — Milk fat fractions (also High-melting and low-melting fractions): AMF split by melting point: high-melting and low-melting fats with different properties, made for bakery, chocolate and other uses.
+        - bogButter — Bog butter (also Im portaigh): Bog butter is an ancient waxy substance found buried in peat bogs, particularly in Ireland and Scotland.
+        - brownButter — Brown butter (also Beurre noisette, Browned butter, Braune Butter): Butter melted and heated until the milk solids that sink to the bottom turn a deep, toasty hazelnut brown, which gives it a nutty smell and flavour.
+        - butterSculpture — Butter sculpture (also Butter art): Butter shaped into figures.
+        - butterTea — Butter tea (also Po cha, Suja, Bho jha): Butter tea is a salty drink of the Himalayas and Tibet: strongly brewed tea, often pu-erh, churned with butter and salt in a wooden churn (mdong mo) until it is
+        - butterfat — Ghee (also Desi ghee): Ghee is a type of clarified butter, originating in the Indian Subcontinent.
+          - ghrita — Medicated ghee (ghrita) (also Ghrita, Medicated ghrita, Sneha kalpana): Ghee cooked slowly with a herb paste and water or a decoction, then strained, as a classical Ayurvedic preparation.
+        - clarified — Clarified butter (also Butterschmalz, Geklärte Butter, Samneh): Clarified butter is butter from which all milk solids have been removed.
+        - gheeResidue — Ghee residue: The brown solids that settle and are filtered off when ghee is made: heat-denatured milk protein, caramelised milk sugar, minerals, some fat and moisture.
+        - mildButter — Mildly soured butter (also Mildgesäuerte Butter): Butter churned from sweet cream, with an aromatic culture and a concentrate of lactic acid worked into it afterwards.
+        - nitirKibbeh — Spiced butter (niter kibbeh) (also Niter kibbeh, Niter qibe, Tesmi): Niter kibbeh, or niter qibe, also called tesmi, is a seasoned, clarified butter used in Ethiopian and Eritrean cuisine and of Indian origin.
+        - smen — Smen (also Aged butter, Semn): Smen is a salted, fermented butter native to North African cuisine, as well as a traditional Yemeni dish.
+      - churn — Churning liquid (also Sweet buttermilk, Süßrahmbuttermilch): The liquid left in the churn when cream turns to butter: thin and low in fat, with most of the cream's other milk solids still in it.
+        - buttermilk — Buttermilk (also Buttermilch, Babeurre, Lait ribot, Lait battu): Buttermilk is a dairy drink made by adding lactic acid bacteria to milk to produce a fermented dairy drink.
+          - mfgm — MFGM concentrate (milk phospholipids) (also Milk fat globule membrane, Phospholipid concentrate): The thin skin that wraps each fat globule in milk, rich in phospholipids and special proteins.
+      - coffeeCream — Kaffeesahne: Cream standardised to at least 10 % fat, usually 10–15 %, homogenised and UHT-treated or sterilised so that it keeps and stays smooth in hot coffee.
+      - creamCheese — Cream cheese: A soft, mild, unripened cheese made from cream, or milk with cream, soured by lactic bacteria and drained; the US standard demands at least 33 % milk fat and at
+        - cheesecake — Cheesecake (also Käsekuchen, Sernik): A dessert of soft fresh cheese, sugar and eggs or cream, on a crumb or pastry base, baked or set cold.
+      - creamLiqueur — Cream liqueur (also Sahnelikör, Irish cream): A liqueur made from dairy cream and a flavoured spirit: whiskey in Irish cream, marula-fruit spirit in Amarula, rum in several others.
+      - cremeDeLeite — Creme de leite: Brazil’s cream, sold above all in cans and UHT cartons that keep without cooling, and stirred into strogonoff and desserts; by law it has at least 10 % fat.
+      - cremeDouble — Crème double: A particularly rich sweet cream of 40 to 55 % fat, firm enough to spoon and to cook with without splitting, used to finish soups, sauces and desserts.
+      - cremeFluide — Crème fluide (also Crème fraîche fluide, Crème entière): France’s plain cream, at least 30 % fat: sold as crème fraîche fluide when it is only pasteurised, for in France crème fraîche need not be soured; only the épai
+      - cremeLegere — Crème légère: France’s light cream: at least 12 % and less than 30 % fat, poured or thickened, as the full crème has at least 30 %.
+      - culturedButter — Cultured butter (also Sauerrahmbutter): Butter churned from cream that has first been soured with lactic acid bacteria, giving it a fuller, slightly tangy taste and the aroma of diacetyl.
+      - culturedButtermilk — Buttermilk: Buttermilk is a dairy drink made by adding lactic acid bacteria to milk to produce a fermented dairy drink.
+      - culturedCream — Cultured cream (also Soured cream, Sauerrahmerzeugnisse): Cream soured with lactic acid bacteria, which thicken it and give it its tang. [ruler: fat]
+        - cremaMexicana — Crema (also Crema fresca, Crema espesa, Mexican crema): Mexican and Central American cultured cream, prepared from heavy cream and buttermilk and sold fresh; thinner, tangier and softer than US sour cream, closer to 
+        - cremeFraiche — Crème fraîche (also Crème épaisse): Crème fraîche is a dairy product similar to sour cream; it is a soured cream containing 10–45% butterfat, with a pH of approximately 4.5.
+        - graddfil — Gräddfil: Sweden’s soured cream: cream of usually 12 % fat, homogenised, pasteurised and then soured with a culture.
+        - romme — Rømme: Norway's soured cream, made from cream, or a mix of whole milk and cream, soured with a natural or added lactic culture.
+        - sauerrahm — Sauerrahm (also Rahm, sauer): Austria’s soured cream: made as sour milk is, but from cream of at least 10 % fat, and mostly from cream of 15 %, the fat it is usually sold at.
+        - saureSahne — Saure Sahne (also Sahnesauermilch): Germany’s everyday soured cream, sold as Saure Sahne or Sauerrahm: cream soured with lactic acid bacteria to at least 10 % fat, and not heated again after souri
+        - saurerHalbrahm — Saurer Halbrahm: Switzerland’s lighter soured cream, at least 15 % fat; its full soured cream is sold as crème fraîche, at least 35 %.
+        - schmand — Schmand: Schmand is cream soured with lactic acid bacteria with at least 20 % fat: thicker and richer than sour cream, leaner than crème fraîche, and, unlike them, it ma
+        - smetana — Smetana (also Сметана, Smântână, Śmietana): Smetana is the English-language name for the different types of sour cream traditionally prevalent in Central, Eastern, and Southeastern Europe, and Central Asi
+        - sourCream — Sour cream (also Cultured sour cream): Sour cream is a dairy product obtained by fermenting regular cream with certain kinds of lactic acid bacteria.
+        - tejfol — Tejföl: Hungary’s soured cream, bone-white, thick and pourable: by the Hungarian food code, cream made from milk with added cream or butter, homogenised and set by a pu
+      - doppelrahm — Doppelrahm: Switzerland’s double cream, at least 45 % fat, thick enough to spoon; the double crème of the Gruyère is eaten with meringues.
+      - double — Double cream: British cream with at least 48 % fat, the richest after clotted cream: thick enough to spoon, it whips easily and can go into hot sauces without splitting.
+      - evaporatedCream — Evaporated cream (also Kondenssahne): Milk or cream concentrated by evaporation to at least 15 % fat and sterilised in the can or bottle, so that it keeps without cooling; the richest grade of conde
+      - halfAndHalf — Half-and-half: A mixture of milk and cream with at least 10.5 % and less than 18 % milkfat, poured into coffee in the United States.
+      - heavyCream — Heavy cream (also Heavy whipping cream): Cream with at least 36 % milkfat, the richest of the creams defined in the United States, often sold as heavy whipping cream.
+      - iceCream — Ice cream (also Eiscreme): Ice cream is a frozen dessert typically made from milk or cream that has been flavoured with a sweetener, either sugar or an alternative, and a spice, such as c
+        - milkshake — Milkshake (also Shake, Thick shake): A cold, thick, sweet drink made by blending milk and ice cream with flavourings such as chocolate, caramel, malt or fruit.
+      - kaffeeobers — Kaffeeobers: Austria’s coffee cream: cream of at least 10 % fat, to which nothing is added when it is pasteurised.
+      - kaffeerahm — Kaffeerahm: Switzerland’s coffee cream: UHT-treated cream with at least 15 % milk fat, sold in the small portion cups that go with coffee.
+      - lightCream — Light cream (also Coffee cream, Table cream): Cream with at least 18 % and less than 30 % milkfat, also sold in the United States as coffee cream or table cream.
+      - mascarpone — Mascarpone: Mascarpone is a soft Italian dairy product obtained by acid-heat coagulation of cream.
+      - mediaCrema — Media crema (also Table cream): Mexico’s “half cream”: a sweet table cream of about 20 % fat, sold in small cans that keep, and spooned over fruit, soups and enchiladas.
+      - namaKurimu — Nama kurīmu (also 生クリーム, Fresh cream): Japan’s “fresh cream”: what the milk ordinance calls cream, at least 18 % fat with nothing added.
+      - pannaCotta — Panna cotta: An Italian dessert of sweetened cream, sometimes with milk, set with gelatin in a mould, flavoured with vanilla, coffee or other things.
+      - pannaDaCucina — Panna da cucina (also Cooking cream): Italy’s cooking cream: UHT cream of at least 20 % fat, too lean and too processed to whip, kept in the cupboard for sauces; the cream for whipping has at least 
+      - posset — Posset: A posset, was originally a popular hot drink made of milk curdled with wine or ale, often spiced, which was often used as a remedy.
+      - rommegrot — Rømmegrøt (also Rømmegraut, Römmegröt): A thick Norwegian porridge of soured cream, whole milk and wheat flour, eaten with sugar and cinnamon on festive occasions.
+      - schlagobers — Schlagobers (also Schlagrahm): Austria’s whipping cream: at least 30 % fat, or 36 % sold as “extra schlagfähig”, extra whippable.
+      - schlagsahne — Schlagsahne: German whipping cream: at least 30 % fat, and it must whip; its protein may not be raised by adding any.
+      - singleCream — Single cream: Britain’s pouring cream, with at least 18 % fat: too lean to whip, used in coffee and over puddings.
+      - staka — Staka (also Στάκα): Staka is a Cretan speciality made by cooking sheep or goat cream with a little flour over low heat.
+      - stakovoutiro — Stakovoutiro (also Staka butter, Σταχοβούτυρο): The fat that separates when Cretan cream is cooked into staka.
+      - thickenedCream — Thickened cream: Australia’s everyday cream: at least 35 % fat, as all cream there must have, with gelatine or another thickener added so that it whips firmer and holds.
+      - vispgradde — Vispgrädde: Sweden’s whipping cream, at 40 % fat richer than most countries’, with nothing in it but pasteurised cream.
+      - vollrahm — Vollrahm (also Schlagrahm): Switzerland’s full cream for whipping, at least 35 % fat, more than the 30 % of German Schlagsahne.
+      - whippedCream — Whipped cream: Cream whipped until it is light and holds its shape: air bubbles are trapped in a foam stiffened by the cream's fat globules.
+      - whipping — Whipping cream: Britain’s whipping cream: at least 35 % fat, enough to trap air when beaten and hold it as whipped cream.
+  - rennetCurd — Rennet curd (also Bruch, Käsebruch): Milk set into a soft gel by rennet, an extract of calves' stomachs whose working enzyme is chymosin, or by a substitute enzyme: it turns casein into paracasein,
+    - cheese — Cheese (also Käse, Alpine cheese, Bergkäse, Bloomy-rind cheese): Rennet curd cut, drained of its whey, salted, shaped and, for most, ripened.
+      - cheesePowder — Cheese powder: Cheese melted with water and emulsifying salts into a smooth liquid and spray-dried to a powder.
+      - processed — Processed cheese (also Schmelzkäse): Processed cheese is a product made from cheese mixed with an emulsifying agent.
+      - steamedCheese — Steamed cheese (parenica) (also Parený syr): Steamed cheese is the Slovak way of turning matured sheep lump cheese into a plastic mass by working it in hot water, then pulling it into ribbons or strings.
+  - skimRaw — Skimmed raw milk (also Fettarme bis magere Rohmilch): Raw milk with some or all of its cream taken off, once by letting it rise and skimming it by hand, now by spinning it off in a centrifugal separator.
+    - semi — Semi-skimmed milk (also Fettarme Milch): Milk with part of its fat taken out: in the EU it must have between 1.5 and 1.8 % fat, against at least 3.5 % for whole milk and no more than 0.5 % for skimmed.
+      - semiEvaporated — Semi-skimmed evaporated milk (also Teilentrahmte Kondensmilch): Semi-skimmed milk with more than half its water evaporated off under low pressure, then canned and sterilised; in Germany it has between 1 and 7.5 % fat.
+      - semiUht — Semi-skimmed UHT milk (also Fettarme H-Milch): Semi-skimmed milk heated to 135–150 °C for a few seconds and packed sterile, so that it keeps for months unopened without a fridge.
+    - skimmed — Skimmed milk (also Skim milk, Magermilch): Skimmed milk, or skim milk, is made when all the milkfat is removed from whole milk.
+      - acidCasein — Acid casein (also Säurekasein): Casein, milk's main protein, precipitated out of skimmed milk by acid at its isoelectric point, pH 4.6 to 4.7, then washed and dried.
+        - caseinGlue — Casein glue (also Kaseinleim, Cold-water glue): Glue made from casein mixed with water, hydrated lime and often caustic soda; with enough lime it resists water.
+        - caseinHydrolysate — Casein hydrolysate (Nutramigen): Casein broken down into short peptides, used as the protein in 'extensively hydrolysed' infant formulas for babies allergic to cow's-milk protein.
+        - caseinPaint — Casein & milk paint (also Kaseinfarbe): Casein paint, occasionally marketed as milk paint, derived from casein, is a fast-drying, water-soluble medium used by artists.
+        - caseinate — Caseinate: The water-soluble form of casein.
+          - beerLabelGlue — Beer-label glue (also Casein label adhesive): A casein-based adhesive long established for labelling glass bottles: it holds the label through condensation and chilling, yet comes off cleanly in the hot cau
+          - caseinCoating — Casein coating (paper, leather) (also Casein finish, Casein leather glaze): Dissolved casein used as the glue in a coating: with clay on art paper in the late 19th to mid 20th century, and with pigment on leather, which is then glazed u
+          - cppAcp — CPP-ACP (Recaldent): Casein phosphopeptide–amorphous calcium phosphate: a material made from the milk protein casein that holds calcium and phosphate in a form the body can use.
+          - wineFiningCasein — Casein for fining wine (also Wine fining casein, Kaseinschönung): A milk protein used to clean up white wine: it binds the polyphenols that make wine brown and bitter, clumps, and sinks.
+        - lanital — Casein fibre (Lanital) (also Lanital): Milk fiber or milk wool is a type of Azlon, a regenerated protein fiber based on the casein protein found in milk.
+      - acidCaseinWhey — Acid whey: The whey left after milk is curdled with acid instead of rennet, from fresh cheeses such as cottage cheese and quark, from Greek-style yogurt, or from acid case
+      - calpis — Calpis-type milk concentrate: A Japanese soft-drink concentrate made by fermenting skimmed milk with lactic acid bacteria and then, after sugar is added, with yeast.
+      - caseinWhey — Sweet whey: The whey that drains from curd set with rennet, in making most cheeses and rennet casein: only mildly acidic, at pH 5.9 to 6.6, and carrying the milk's sugar, i
+      - cottageCheese — Cottage cheese (also Hüttenkäse): A soft, unripened, rindless cheese of separate, near-white curd grains about 3–12 mm across, made from skimmed milk that is soured, cut and cooked, then usually
+      - cultureButtermilk — Cultured buttermilk: Milk soured with lactic acid-producing cultures to a titratable acidity of at least 0.5 % as lactic acid.
+      - curd — Acid curd (also Curd): Curd is obtained by coagulating milk in a sequential process called curdling.
+        - acidWhey — Acid whey (also Sauermolke): The whey left after milk is curdled with acid instead of rennet, from fresh cheeses such as cottage cheese and quark, from Greek-style yogurt, or from acid case
+          - qaraqurut — Qaraqurut: A black, highly acidic dairy product of Iran, Afghanistan and Central Asia, made by boiling down the sour whey left from making kashk, or qurut, until it thicke
+        - quark — Quark (also Topfen): Quark or quarg is a type of fresh dairy product made from milk. [ruler: fat in dry matter]
+          - cookedCheese — Cooked cheese (also Kochkäse): A spreadable German cheese made from drained quark.
+          - doppelrahmquark — Doppelrahmquark (also Doppelrahmstufe): Quark of the Doppelrahmstufe, the richest German grade, with more than 60 % fat in dry matter (German Wikipedia gives 65 to 85 %).
+          - magerquark — Magerquark (also Lean quark, Magerstufe): The lean grade of German quark, made from skimmed milk with no cream stirred in, so it holds under 10 % fat in dry matter.
+          - mish — Mish (also Mish cheese): An Egyptian cheese made by fermenting salted soft cheese, traditionally Areesh, for a year or more in an earthenware jar under a pickle of buttermilk, sour milk
+          - rahmquark — Rahmquark (also Rahmstufe): Quark of the Rahmstufe: 50 % fat in dry matter, about 10 g fat per 100 g since quark is roughly 80 % water.
+          - sahnequark — Sahnequark (also Speisequark 40 %, Quark Fettstufe, Fettstufe): Quark of the Fettstufe, 40 % fat in dry matter, also called Sahnequark.
+          - sourMilkCheese — Sour milk cheese (also Sauermilchkäse): Acid-set or sour milk cheese is cheese that has been curdled (coagulated) by natural souring, often from lactic acid bacteria, or by the addition of acid.
+          - speisequark20 — Speisequark 20 % (also Halbfettstufe): Quark of the Halbfettstufe: 20 % fat in dry matter, which is a low-fat quark, made by adding some cream to skimmed-milk quark at the end of the process.
+          - sweetCurd — Sweet curd desserts (also Tvorozhnaya massa, Sweet curd mass): Curd (tvorog or quark) pressed, sieved and mixed with sugar, butter, sour cream or egg, sometimes cooked, and set in a mould; the East Slavic Easter dish paskha
+        - skyr — Skyr: Skyr is a traditional Icelandic cultured dairy product.
+        - skyrWhey — Acid whey: The whey left after milk is curdled with acid instead of rennet, from fresh cheeses such as cottage cheese and quark, from Greek-style yogurt, or from acid case
+      - infantFormula — Infant formula (also Infant milk formula, IMF, Säuglingsmilch, Anfangsnahrung): A manufactured food that replaces breast milk for babies under 12 months.
+      - lactotripeptide — Lactotripeptide milk (Ameal S, Evolus) (also Blood-pressure sour milk): Milk soured with Lactobacillus helveticus, whose enzymes cut the casein so that two tiny peptides, Val-Pro-Pro (VPP) and Ile-Pro-Pro (IPP), come free.
+      - mcc — Micellar casein concentrate (also MCC, Milk colloidal casein concentrate): The casein micelles of skim milk, kept back on a microfiltration membrane with pores so fine that the whey proteins slip through, washed with water and dried to
+      - milkPermeate — Milk permeate: What passes through the membrane when skimmed milk is ultrafiltered to make milk protein: water, lactose and minerals, with no protein to speak of.
+      - mpc — Milk protein concentrate (also MPC): Skimmed milk run through an ultrafiltration membrane, often with water added to wash more lactose out, and then dried: a powder of 40 to 90 % milk protein that 
+      - nativeWhey — Native whey (also Ideal whey, Serum protein solution): The whey proteins of skim milk that pass through a microfiltration membrane which holds back the casein: whey made without rennet or acid, and so the cleanest s
+      - probioticDrink — Probiotic milk drink: Milk fermented with a single strain of probiotic bacteria rather than with yoghurt cultures, such as acidophilus milk, made with Lactobacillus acidophilus, or Y
+      - rennetCasein — Rennet casein (also Labkasein): Casein set out of skimmed milk with rennet rather than acid, then washed and dried.
+        - galalith — Galalith (also Casein plastic, Kunsthorn): Galalith is a synthetic plastic material manufactured by the interaction of casein and formaldehyde.
+      - skimMilkAgar — Skim milk agar (test medium): Skim milk with agar (and nutrients such as tryptone, yeast extract and dextrose) set as a solid plate.
+      - skimmedEvaporated — Evaporated skimmed milk (also Kondensmagermilch): Skimmed milk with more than half its water evaporated off and sterilised in the can, with no more than 1 % fat; used in coffee and for cooking.
+      - skimmedPowder — Skimmed milk powder (also Nonfat dry milk, Magermilchpulver): Skimmed milk dried, mostly by spraying it into hot air, to a fine powder with no more than 1.5 % fat, which keeps for up to three years if stored cool and dry.
+        - blotto — Blotto (blocking buffer) (also Bovine Lacto Transfer Technique Optimizer): Bovine Lacto Transfer Technique Optimizer: a solution of nonfat dry milk, usually 5 % in buffer, used in laboratories since 1984 to block the empty places on a 
+        - calfReplacer — Calf milk replacer (also Milk replacer, Kälbermilchaustauscher, Milchaustauscher): A powder that replaces the cow's milk for a calf, so the cow's milk can be sold.
+        - litmusMilk — Litmus milk (test medium) (also Litmus SM broth): Skim milk with the dye litmus, kept in tubes to see what a bacterium does to milk: sours the lactose, clots or digests the casein, or bleaches the dye.
+        - recombined — Recombined milk: Milk made again from its dried parts: skimmed milk powder dissolved in water and anhydrous milk fat emulsified into it.
+      - ultrafilteredMilk — Ultrafiltered milk (also Ultra-filtered milk): Milk pushed through a fine membrane that keeps the proteins and lets much of the water, lactose and minerals through, so it ends up with more protein and less s
+      - ymer — Ymer: A Danish concentrated soured milk, first sold commercially in the 1930s: skimmed milk fermented with mesophilic cultures, drained of about half its volume as wh
+      - ymerWhey — Acid whey: The whey left after milk is curdled with acid instead of rennet, from fresh cheeses such as cottage cheese and quark, from Greek-style yogurt, or from acid case
+  - sweetWhey — Sweet whey (also Rennet whey, Labmolke, Süßmolke): The whey that drains from curd set with rennet, in making most cheeses and rennet casein: only mildly acidic, at pH 5.9 to 6.6, and carrying the milk's sugar, i
+    - blaand — Blaand (also Fermented whey drink): Blaand, or bland is a fermented milk product made from whey.
+    - demineralisedWhey — Demineralised whey (also Demin whey, Entmineralisierte Molke): Sweet whey with most of its mineral salts removed, then evaporated and spray-dried.
+    - glycomacropeptide — Glycomacropeptide (PKU food) (also GMP): Glycomacropeptide (GMP) is a glycosylated peptide formed during renneting as a fragment of sweet whey.
+    - heatWheyProtein — Heat-precipitated whey protein (also Denatured whey protein, Whey protein coagulum): Whey protein pushed out of whey by heat and acid as a soft coagulum, then separated by centrifuge.
+    - lactoferrin — Lactoferrin (also Bovine lactoferrin, bLF): Lactoferrin (LF), also known as lactotransferrin (LTF), is a multifunctional protein found in milk and mucus which is encoded by the LTF gene in humans.
+    - lactoperoxidase — Lactoperoxidase (also LPO): An enzyme that milk carries to defend itself: with hydrogen peroxide it oxidises thiocyanate into compounds that stop bacteria.
+    - permeate — Whey permeate (also Permeat, Milchserum): What passes through the membrane when whey is ultrafiltered to make whey protein: water, lactose and the milk's minerals, with some acids, but no protein.
+      - delactosedPermeate — Delactosed permeate (also Delac, Lactose mother liquor): What is left of whey permeate after lactose has been crystallised out and spun off.
+      - lactose — Lactose (also Milk sugar, Milchzucker): Lactose is a disaccharide composed of galactose and glucose and has the molecular formula C12H22O11.
+        - inhalers — Inhalation lactose (inhaler carrier) (also Inhalation-grade lactose, Inhaler lactose, DPI carrier lactose): Inhalation-grade lactose is crystalline alpha-lactose monohydrate, milled and sieved to a controlled particle size.
+        - lactitol — Lactitol (also E966): Lactitol is a disaccharide sugar alcohol produced from lactose.
+        - lactobionicAcid — Lactobionic acid: A sugar acid formed when the glucose half of lactose is oxidised.
+        - lactoseDerivatives — GOS (also Galacto-oligosaccharides): Galactooligosaccharides (GOS), also known as oligogalactosyllactose, oligogalactose, oligolactose or transgalactooligosaccharides (TOS), belong to the group of 
+        - lactulose — Lactulose: Lactulose is a non-absorbable sugar used in the treatment of constipation and hepatic encephalopathy.
+        - tabletLactose — Tablet lactose (excipient) (also Pharmaceutical lactose, Direct-compression lactose, Excipient lactose): Milk sugar is the filler that gives tablets and capsules their bulk and lets the powder flow and press.
+        - tagatose — Tagatose (also D-tagatose): A rare sugar, a hexose that sweetens almost like sucrose with far fewer calories.
+      - milkMinerals — Milk minerals (also Milk calcium, Milk mineral concentrate): The calcium and phosphate of whey, collected as a powder.
+      - milkSerumDrink — Milk-serum soft drink (also Whey soft drink, Tafelgetränk auf Milchserumbasis): A soft drink in which about a third is milk serum, the clear, protein-free liquid left of whey, soured with lactic acid and flavoured with fruit extracts and he
+    - prim — Prim (also Mysmør): A soft, sweet, light golden-brown spread from Norway, called mysmør or prim.
+    - ricotta — Ricotta: Ricotta is an Italian whey cheese made from sheep, cow, goat, or Italian water buffalo milk whey left over from the production of other cheeses.
+    - wheyCheese — Brunost (also Mysost, Braunkäse): Brunost is a common Norwegian name for mysost, a family of soft cheese-related foods made with whey, milk, and/or cream.
+    - wheyCream — Whey cream (also Molkenrahm): The fat left in whey, spun off in a separator: a cream of usually 25–30 % fat, against about 40 % for milk cream.
+      - wheyButter — Whey butter (also Molkenbutter): Butter churned from whey cream, the fat skimmed off cheese whey.
+    - wheyPowder — Whey powder (also Molkepulver): Sweet whey concentrated and spray-dried to a powder, still holding its lactose, proteins and minerals.
+    - wheyVodka — Whey vodka: Vodka distilled from cheese whey.
+    - wpc — Whey protein concentrate (also WPC): Whey with much of its lactose and minerals filtered out through an ultrafiltration membrane that holds back the proteins, then dried: a powder of 35 to 80 % pro
+      - alphaLactalbumin — alpha-Lactalbumin (also alpha-lac, α-La): The smaller of the two big whey proteins (14.2 kDa, about 20 % of whey protein in cow milk), made into enriched ingredients for infant formula, where it brings 
+      - betaLactoglobulin — beta-Lactoglobulin (also BLG, beta-lg, β-Lg): The most abundant whey protein of cow milk, made into a pure ingredient for sports and medical drinks; it carries more leucine than ordinary whey isolate.
+      - microparticulatedWhey — Microparticulated whey protein: Whey protein concentrate heated in a controlled way so that the protein partly sets into a dispersion of microscopic particles.
+      - wheyHydrolysate — Whey protein hydrolysate (also WPH, Hydrolysed whey protein): Whey protein that enzymes have chopped into short peptides, so that it is easier to digest and less allergenic than the intact protein.
+    - wpi — Whey protein isolate (also WPI): Whey protein separated from whey by microfiltration or ion exchange, a route parallel to whey protein concentrate, to more than 90 % protein in its dry matter, 
+    - zhentytsia — Żentyca (zhentytsia) (also Żętyca, Zhentytsa): A sour drink of the Polish and Ukrainian Carpathians made from sheep's whey left over from making bundz cheese in the shepherds' huts.
+  - thermised — Thermised milk (also Thermisierte Milch): Raw milk heated briefly to 57–68 °C (usually 63–65 °C for 15 s), enough to cut the spoilage bacteria but not to pasteurise it, so it keeps its taste and its enz
+  - tonedMilk — Toned milk: Toned milk is milk, usually from buffalo, whose fat is brought down to about 3 % by adding skim milk, skim milk powder and water, while the non-fat solids are r
+- colostrum — Colostrum (also Beestings, Biestmilch, Råmjölk, Uurag): Colostrum, also called first milk, is the milk expressed by the mammary glands of a female mammal during the first few days following delivery of the newborn.
+  - colostrumPowder — Colostrum powder: Cow's colostrum, the first milk after calving, pasteurised at a low temperature and spray- or freeze-dried to a powder, kept gentle so as not to destroy its ant
+  - colostrumPudding — Colostrum pudding (also Råmjölkspudding, Beestings pudding): A Swedish baked pudding (kalvdans) made from colostrum, the first milk a cow gives after calving.
+  - travelan — Hyperimmune colostrum (also Travelan, Immune milk): Colostrum from pregnant cows vaccinated against the strains of E.
+
+# Cheese families on the map
+
+Every cheese that is an example gets one of these as its `family` (also products above that cheeses are examples of, such as quark, paneer, ricotta, chhena). Id, name, how many cheeses it has now, and what it is.
+
+- alpine — Alpine cheese (37 cheeses): Swiss-type cheeses, also known as Alpine cheeses, are a group of hard or semi-hard cheeses with a distinct character, whose origins lie in the Alps of Europe, a
+- bloomy — Bloomy-rind cheese (61 cheeses): Soft cheese ripened under a white rind of mould, Penicillium camemberti, whose enzymes break down its protein from the surface towards the centre, so that it so
+- blue — Blue cheese (73 cheeses): Blue cheese is any cheese made with the addition of cultures of edible molds, which create blue-green spots or veins through the cheese.
+- brined — Brined cheese (feta) (42 cheeses): Brined cheese, also sometimes referred to as pickled cheese for some varieties, is cheese that is matured in brine in an airtight or semi-permeable container.
+- bryndza — Bryndza (2 cheeses): Bryndza or brynza is a sheep milk cheese made across the countries in Central and Eastern Europe, most notably in Slovakia and Poland.
+- cheddared — Cheddared cheese (32 cheeses): The manufacture of Cheddar cheese includes the process of cheddaring, which contributes significantly to the unique flavour profile of the eponymous cheese, but
+- freshCheese — Fresh cheese (61 cheeses): Cheese eaten young, with little or no ripening, so it stays soft, moist and mild and keeps only briefly: under German cheese law it holds more than 73 % water i
+- grilling — Grilling cheese (3 cheeses): Cheese made with little or no acid and heated hard, boiled in its whey or baked, so that its protein network holds and it softens when grilled or fried instead 
+- hard — Hard cheese (74 cheeses): Cheese whose curd is cut to the size of wheat grains, heated to around 50 °C and pressed, then ripened for three months to over three years, until it holds no m
+- insect — Insect- or mite- ripened cheese (1 cheeses): Cheese ripened with the help of insects or mites: the larvae of the cheese fly, Piophila casei, that work through Sardinia's sheep's-milk casu marzu, or the mit
+- lumpCheese — Lump cheese (hrudkový syr) (2 cheeses): Lump cheese (hrudkový syr) is the matured, drained curd of sheep's milk, or sheep's milk with cow's milk, that is made in Slovak mountain huts and then ground w
+- pastaFilata — Pasta filata (mozzarella) (58 cheeses): Stretch-curd cheeses are those prepared using the pasta filata technique.
+- semiHard — Semi-hard cheese (304 cheeses): Cheese whose curd is pressed and ripened for about one to three months, firm enough to cut cleanly into slices: under German cheese law it holds more than 54 an
+- soft — Soft cheese (104 cheeses): Cheese that keeps much of its water, more than 67 % in the cheese without its fat under German cheese law, so that it stays soft and, as it ripens from the outs
+- stracciatella — Stracciatella (1 cheeses): Stracciatella is a fresh cheese originating from Apulia, Italy, made by shredding stretched curd and, traditionally, mixing it with cream.
+- sunDriedCheese — Sun-dried cheese (2 cheeses): Cheese set with rennet and dried hard in the sun instead of being pressed and ripened, so it keeps through the dry season.
+- tulum — Tulum (8 cheeses): Tulum cheese is a traditional Turkish goat's milk cheese ripened in a goatskin casing, called tulum in Turkish.
+- washed — Washed-rind cheese (85 cheeses): Washed-rind or smear-ripened cheeses are cheeses which are periodically treated with brine or mold-bearing agents.
+- washedCurd — Washed-curd cheese (43 cheeses): Cheese whose curd has part of its whey drawn off and replaced with water while it is being made, diluting its milk sugar so that less lactic acid forms: the che
+
+Also used as a family: buttermilkCheese (2), byaslag (1), chhena (3), cookedCheese (6), cottageCheese (2), creamCheese (5), hardChhurpi (1), lacticCheese (53), mascarpone (3), mish (1), paneer (5), plantCheese (18), processed (6), quark (9), ricotta (31), sourMilkCheese (16), steamedCheese (8), wheyCheese (5).

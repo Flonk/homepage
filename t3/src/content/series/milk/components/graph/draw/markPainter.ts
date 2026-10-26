@@ -7,6 +7,8 @@ import type { Drawing, MarkPainter, Remark, Spot } from './types';
 // The protected names' seals, coloured as the EU's are.
 const SEAL_COLOUR: Record<string, string> = { PDO: '#b8102a', PGI: '#1d4f9c' };
 const SEAL_GOLD = '#f2c200';
+// How many times an animal is drawn over its own glow, to make it dense.
+const GLOW_PASSES = 3;
 
 // The marks on a pill's corners: its flags, its animals, its remarks, its seal.
 export const makeMarkPainter = (G: Drawing): MarkPainter => {
@@ -54,7 +56,7 @@ export const makeMarkPainter = (G: Drawing): MarkPainter => {
 	};
 
 	/* The animals whose milk it is, on the bottom left corner: bare emoji,
-	   bigger than a flag, with a soft shadow, each a little in from the
+	   bigger than a flag, with a shadow and a glow, each a little in from the
 	   one before. */
 	const animalSpots = (n: Node) => corner(n, n.beasts!.length, false, true, 0.3, 1.5).map((at, i) => ({ ...at, emoji: ANIMAL_EMOJI[n.beasts![i]] }));
 	const drawAnimals = (g: Pen, n: Node, s: number) => {
@@ -64,10 +66,15 @@ export const makeMarkPainter = (G: Drawing): MarkPainter => {
 			g.textAlign = 'center';
 			g.textBaseline = 'middle';
 			g.fillStyle = '#000';
+			// A soft shadow under each; over it a small, dense glow in the pills' white, drawn over itself to thicken it.
 			g.shadowColor = 'rgb(0 0 0 / 0.35)';
 			g.shadowBlur = r * 0.25 * shadowPx(s);
 			g.shadowOffsetY = r * 0.1 * shadowPx(s);
 			g.fillText(emoji, x, y);
+			g.shadowColor = colours.pill;
+			g.shadowBlur = r * 0.06 * shadowPx(s);
+			g.shadowOffsetY = 0;
+			for (let i = 0; i < GLOW_PASSES; i++) g.fillText(emoji, x, y);
 			g.shadowColor = 'transparent';
 		}
 		return true;
