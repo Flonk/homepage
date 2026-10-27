@@ -49,12 +49,13 @@ export function draw(figure: HTMLElement, signal: AbortSignal, data: Graph, filt
 	G.frames.resizeObserver.observe(G.viewport.canvas);
 	G.frames.paintNow();
 	G.frames.buildOverview();
-	/* Opened on the product in the address (see link.ts); else on the card's
-	   product. Unless filtered, which is framed whole. */
+	/* Opened on the product in the address (see link.ts), lit but without
+	   its card; else on the card's product. Unless filtered, which is
+	   framed whole. */
 	const link = linked();
 	const open = link ? G.layout.nodes.find((n) => n.id === link) : undefined;
 	if (link && !open) console.warn(`MilkGraph: no node ${link} to open on`);
 	if (filtered) return;
-	if (open) G.search.goTo(open);
+	if (open) G.search.goTo(open, true);
 	else if (figure.dataset.focus) G.infoCard.focusOn(figure.dataset.focus, false);
 }
