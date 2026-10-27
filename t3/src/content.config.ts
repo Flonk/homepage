@@ -115,6 +115,8 @@ const series = defineCollection({
 		   of the feed and the sitemap, not indexed; there for whoever has the
 		   link, its chapters listed and linked among themselves. */
 		hidden: z.boolean().default(false),
+		// The post tree folded to its bar on its chapters, unless the reader has unfolded it (see SplitPane).
+		foldTree: z.boolean().default(false),
 	}),
 });
 

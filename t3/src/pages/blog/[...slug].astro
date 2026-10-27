@@ -75,6 +75,7 @@ const Layout = page?.data.format === 'deck' ? DeckPost : BlogPost;
 			prevPart={prevPart}
 			nextPart={nextPart}
 			seriesParts={seriesParts}
+			foldTree={page.series?.data.foldTree}
 		>
 			<Content />
 		</Layout>

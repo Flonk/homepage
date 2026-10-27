@@ -12,28 +12,32 @@ import PostIndex from './PostIndex.astro';
 interface Props {
 	mode: 'post' | 'home' | 'deck';
 	current?: string;
+	// The tree folded unless the reader has unfolded it: for a series that wants the room.
+	foldTree?: boolean;
 }
 
-const { mode, current } = Astro.props;
+const { mode, current, foldTree = false } = Astro.props;
 
 // Font Awesome Free 6, "angles-left" (solid): https://fontawesome.com, CC BY 4.0.
 const ANGLES =
 	'M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160zm352-160l-160 160c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L301.3 256 438.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0z';
 ---
 
-<script is:inline>
+<script is:inline define:vars={{ foldTree }}>
 	// The split is set before anything below paints, so a page never opens at
 	// the default and then jumps to where the reader left it.
 	try {
 		const split = Number(localStorage.getItem('split-rem'));
 		if (split >= 14 && split <= 40)
 			document.documentElement.style.setProperty('--split', `${split}rem`);
-		// And the tree folded down to its bar, if that is how it was left.
-		if (localStorage.getItem('tree') === 'folded') document.documentElement.dataset.tree = 'folded';
+		/* And the tree folded down to its bar, if that is how it was left; or,
+		   on a page that folds it, unless the reader unfolded it. */
+		const tree = localStorage.getItem('tree');
+		if (tree === 'folded' || (foldTree && tree !== 'open')) document.documentElement.dataset.tree = 'folded';
 	} catch {}
 </script>
 
-<div class:list={['split', `is-${mode}`]}>
+<div class:list={['split', `is-${mode}`]} data-fold-tree={foldTree || undefined}>
 	<aside class="split-list" transition:persist="tree">
 		<div class="pane-dots" aria-hidden="true"></div>
 		<div class="tree-bar">
@@ -494,12 +498,19 @@ const ANGLES =
 		else delete document.documentElement.dataset.tree;
 		labelFold();
 		try {
-			if (folded) localStorage.setItem('tree', 'folded');
-			else localStorage.removeItem('tree');
+			// Unfolded kept too, so a page that folds the tree by default leaves it open.
+			localStorage.setItem('tree', folded ? 'folded' : 'open');
 		} catch {}
 	};
+	/* Folded on the next page as the reader left it, or, where they have not
+	   said, as that page has it (see foldTree). */
 	document.addEventListener('astro:before-swap', (e) => {
-		const folded = isFolded();
+		let tree: string | null = null;
+		try {
+			tree = localStorage.getItem('tree');
+		} catch {}
+		const folds = !!e.newDocument.querySelector('.split[data-fold-tree]');
+		const folded = tree ? tree === 'folded' : folds;
 		const swap = e.swap;
 		e.swap = () => {
 			swap();

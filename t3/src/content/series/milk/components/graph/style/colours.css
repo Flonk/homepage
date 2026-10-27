@@ -5,8 +5,8 @@
    pills are a rung up the ground's ladder, edged in the FLB, and a lit
    arrow is the accent. */
 .milk-graph {
-	/* Wider than a picture is let be (see DeckViz): it is a whole map. */
-	--viz-max: 80rem;
+	/* As wide as the stage, however wide (see DeckViz): it is a whole map. */
+	--viz-max: none;
 	--pill: color-mix(in oklab, var(--deck-ground), white 70%);
 	--pill-rim: rgb(0 0 0 / 0.14);
 	--pill-shadow: 0 0.25rem 0.75rem rgb(0 0 0 / 0.1);
@@ -32,7 +32,6 @@
    map's card. The search's on glass on a dark ground (below). */
 .milk-search input,
 .milk-beasts button,
-.milk-dev,
 .milk-search ul,
 .milk-note {
 	background: var(--field, var(--pill));

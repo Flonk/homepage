@@ -10,7 +10,6 @@ import { makeMarkPainter } from './markPainter';
 import { makePanelPainter } from './panelPainter';
 import { makeSpriteCache } from './sprites';
 import { makeFramePainter } from './frames';
-import { makeDevMarks } from './dev';
 import { makePointer } from './pointer';
 import { makeCamera } from './camera';
 import { makeSearch } from './search';
@@ -37,7 +36,6 @@ export function draw(figure: HTMLElement, signal: AbortSignal, data: Graph, filt
 	G.panelPainter = makePanelPainter(G);
 	G.sprites = makeSpriteCache(G);
 	G.frames = makeFramePainter(G);
-	G.devMarks = makeDevMarks(G);
 	G.pointer = makePointer(G);
 	G.camera = makeCamera(G);
 	G.search = makeSearch(G);

@@ -24,6 +24,8 @@ type Props = CollectionEntry<'posts'>['data'] & {
 	prevPart?: SeriesLink;
 	nextPart?: SeriesLink;
 	seriesParts?: SeriesLink[];
+	// Its series folds the post tree away unless the reader has unfolded it.
+	foldTree?: boolean;
 };
 
 const {
@@ -44,6 +46,7 @@ const {
 	prevPart,
 	nextPart,
 	seriesParts = [],
+	foldTree = false,
 } = Astro.props;
 // The post's colour on <html>, where the chrome is worked out from it; the
 // home page keeps the site's.
@@ -148,7 +151,7 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 
 	<body>
 		<Header />
-		<SplitPane mode={home ? 'home' : 'post'} current={home ? undefined : href}>
+		<SplitPane mode={home ? 'home' : 'post'} current={home ? undefined : href} foldTree={foldTree}>
 			<main class="post-main">
 				<header class="masthead">
 					<span class="masthead-dots" aria-hidden="true"></span>

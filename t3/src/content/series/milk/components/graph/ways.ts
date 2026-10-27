@@ -27,7 +27,5 @@ export const waysOf = (processes: Record<string, S.Process>, rankings: Record<st
 			r.ways.filter((w) => !(into.get(node) ?? []).includes(w.process)).map((w) => `rankings/${node}.json ranks ${w.process}, which does not lead to ${node}`),
 		);
 	const unranked = (node: string) => (rankings[node] ? ranked(node).filter((w) => !rankings[node].ways.some((r) => r.process === w)) : []);
-	// Whether the way it is drawn along was picked by a share: not, where it is made several ways and that one has none.
-	const rated = (node: string) => (into.get(node)?.length ?? 0) < 2 || rankings[node]?.ways.find((w) => w.process === drawn(node))?.share !== undefined;
-	return { into, outOf, ranked, drawn, problems, unranked, rated };
+	return { into, outOf, ranked, drawn, problems, unranked };
 };

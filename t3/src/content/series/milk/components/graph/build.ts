@@ -9,7 +9,7 @@ import { herdOf } from './build/herd';
 import { waysOf } from './ways';
 import { WORLD_MILK } from '../../data/world';
 import { page as howPage, type Told } from './render/How';
-import { sourcingOf, tellUnsourced } from './build/sources';
+import { tellUnsourced } from './build/sources';
 import { panelsOf } from './build/panels';
 import { mustAll, placed } from './build/must';
 import { withoutMinorBrands } from './build/brands';
@@ -82,18 +82,6 @@ const major = (processing: Told['processing']) => {
 	return steps.length ? { ...processing!, steps } : undefined;
 };
 const told = ({ text, sources, processing }: Told) => (text || sources || major(processing) ? howPage({ text, sources, processing: major(processing) }) : undefined);
-/* For the page's dev mode, of the way a node is drawn along: that it has
-   no sources at all, or something on it has none yet; that it was not
-   picked by a share, where it is made several ways. */
-const devOf = (id: string) => {
-	const p = drawnWay.get(id);
-	if (!p) return undefined;
-	const said = [p, ...(p.to.length > 1 && p.legs?.[id] ? [p.legs[id]] : [])].flatMap(sourcingOf);
-	const unsourced = !said.length || said.some((x) => 'unsourced' in x);
-	// How many ways lead in, where the one drawn was picked by no share.
-	const unranked = ways.rated(id) ? undefined : ways.into.get(id)!.length;
-	return unsourced || unranked ? { ...(unsourced && { unsourced: true as const }), ...(unranked && { unranked }) } : undefined;
-};
 // A label on one line, its line breaks spaces.
 const flat = (label: string) => label.replace(/\n/g, ' ');
 
@@ -225,7 +213,6 @@ const exampleOf = (id: string) => {
 		unsure: unsure.has(id) || tables.unsure.has(id) ? UNSURE_SAID : undefined,
 		step: wayIn(id)?.step,
 		how: wayIn(id) && told(wayIn(id)!),
-		dev: devOf(id),
 		example: true as const,
 		niche: 2 as const,
 	};
@@ -263,7 +250,6 @@ export const graph = S.Payload.parse({
 				about: own.about,
 				regions: own.regions,
 				how: wayIn(id) && told(wayIn(id)!),
-				dev: devOf(id),
 				// All its examples, for the card that tells of it, by name.
 				named: named.map((x) => nodes[x].label),
 				step: wayIn(id)?.step,

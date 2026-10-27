@@ -37,9 +37,8 @@ export const makePointer = (G: Drawing): Pointer => {
 			if (d.beasts?.length && markPainter.animalSpots(d).some((b) => hit(b))) hint = animalsSaid(d.beasts);
 			if (d.protected && hit(markPainter.sealSpot(d))) hint = SEAL[d.protected] ?? d.protected;
 		}
-		// Dev mode's marks are on arrows, so looked for on every node; then remarks on the pills near. A little past the mark, to be tapped.
+		// A remark on a pill near, a little past its mark, to be tapped.
 		const remark =
-			(G.devMarks.enabled() ? layout.nodesWithPills.flatMap((d) => G.devMarks.marksOf(d)).find((m) => hit(m, 1.3)) : undefined) ??
 			near.flatMap((d) => (d.unsure ? markPainter.remarksOf(d) : [])).find((m) => hit(m, 1.3)) ??
 			null;
 		// A story's bubble, over everything on its pill.

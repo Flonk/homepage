@@ -21,6 +21,8 @@ type Props = CollectionEntry<'chapters'>['data'] & {
 	prevPart?: SeriesLink;
 	nextPart?: SeriesLink;
 	seriesParts?: SeriesLink[];
+	// Its series folds the post tree away unless the reader has unfolded it.
+	foldTree?: boolean;
 };
 
 const {
@@ -41,6 +43,7 @@ const {
 	prevPart,
 	nextPart,
 	seriesParts = [],
+	foldTree = false,
 	hidden,
 } = Astro.props;
 // The post's colour on <html>, where the chrome is worked out from it.
@@ -66,7 +69,7 @@ const own = [accent && `--accent: ${accent}`, chromeShift != null && `--chrome-s
 		<div class="deck-site-header">
 			<Header />
 		</div>
-		<SplitPane mode="deck" current={href}>
+		<SplitPane mode="deck" current={href} foldTree={foldTree}>
 			<main class="deck-main">
 				<div class="deck-head">
 					<a class="deck-home" href="/" aria-label="Back to the home page">T3</a>

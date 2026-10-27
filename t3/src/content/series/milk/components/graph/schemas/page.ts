@@ -69,8 +69,6 @@ export const PageNode = z.strictObject({
 	fame: z.number().int().positive().optional(),
 	// Why its place is a guess, where it is.
 	unsure: z.string().optional(),
-	// For dev mode: what is still to be done on the way it is drawn along (see devOf in build.ts).
-	dev: z.strictObject({ unsourced: z.literal(true).optional(), unranked: z.number().int().min(2).optional() }).optional(),
 });
 /* Products made together by one process, from one parent: each drawn
    with an arrow of its own, side by side. */

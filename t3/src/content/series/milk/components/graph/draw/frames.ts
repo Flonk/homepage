@@ -184,7 +184,6 @@ export const makeFramePainter = (G: Drawing): FramePainter => {
 			}
 			drawSelectedOnTop(s);
 			for (const n of storied) if (inSight(G.markPainter.storyBox(n))) G.markPainter.drawStory(ctx, n, s);
-			G.devMarks.draw(s, inSight);
 			return;
 		}
 
@@ -199,7 +198,6 @@ export const makeFramePainter = (G: Drawing): FramePainter => {
 		for (const sprite of frames.sprites) if (inSight(sprite.box)) stamp(sprite, s);
 		// A story's bubble off the ground, over the rest (see rise in pointer.ts).
 		for (const n of G.pointer.raised.keys()) G.markPainter.drawStory(ctx, n, s);
-		G.devMarks.draw(s, inSight);
 
 		// Some not yet kept at this zoom: on with them in the next frame; all of them: the zooms either side.
 		if (frames.moving) return;

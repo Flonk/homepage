@@ -25,7 +25,6 @@ export interface Drawing {
 	panelPainter: PanelPainter;
 	sprites: SpriteCache;
 	frames: FramePainter;
-	devMarks: DevMarks;
 	pointer: Pointer;
 	camera: Camera;
 	search: Search;
@@ -130,8 +129,8 @@ export interface PillPainter {
 }
 
 /* A round mark on a pill's corner that says something when pointed at:
-   a remark, a guess, or (in dev mode) something still to be done. */
-export type Remark = { node: Node; kind: 'unsure' | 'unsourced' | 'unranked'; text: string; r: number; x: number; y: number };
+   a remark, a guess about where it is placed. */
+export type Remark = { node: Node; kind: 'unsure'; text: string; r: number; x: number; y: number };
 // Where a round mark is, and how big.
 export type Spot = { r: number; x: number; y: number };
 
@@ -203,13 +202,6 @@ export interface FramePainter {
 	sprites: Sprite[] | null;
 	// Draws the whole picture into one image, for zoomed far out, when there is time.
 	buildOverview(): void;
-}
-
-// Dev mode's marks, on what is still to be done in the data.
-export interface DevMarks {
-	enabled(): boolean;
-	marksOf(n: Node): (Remark & { glyph: string; colour: string })[];
-	draw(s: number, inSight: (b: Box) => boolean): void;
 }
 
 /* ---- Looking round ---- */
