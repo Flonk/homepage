@@ -22,16 +22,17 @@
 				"fat": {
 					"min": 10
 				},
-				"note": "Cream and skim milk are blended to at least 10 % fat."
+				"of": "cream"
 			},
 			{
 				"type": "homogenise",
-				"note": "Breaks up the fat globules so that they cream and flocculate less."
+				"of": "cream"
 			},
 			{
 				"type": "heat",
 				"does": "heat",
-				"note": "Pasteurised, UHT-treated or sterilised, which sets how long it keeps."
+				"note": "The cream is pasteurised, ultra-heat treated or sterilised, which sets how long it keeps.",
+				"minor": true
 			}
 		],
 		"sources": {

@@ -10,8 +10,7 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "ultrafilter",
-				"note": "Of pasteurised skim milk, on a membrane that keeps the casein and whey proteins and lets lactose, minerals and water through."
+				"type": "ultrafilter"
 			}
 		],
 		"sources": {
@@ -60,12 +59,10 @@
 			"processing": {
 				"steps": [
 					{
-						"type": "diafilter",
-						"note": "Needed above about 70 % protein."
+						"type": "diafilter"
 					},
 					{
 						"type": "evaporate",
-						"note": "Before drying (MPC85/MCC85).",
 						"solids": {
 							"min": 12,
 							"max": 18
@@ -113,8 +110,8 @@
 					},
 					{
 						"type": "custom",
-						"name": "crystallise",
-						"note": "Controlled, often before drying."
+						"name": "form crystals",
+						"note": "The liquid is crystallised in a controlled way, often before drying."
 					},
 					{
 						"type": "dry"

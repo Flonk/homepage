@@ -9,22 +9,13 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "cut",
-				"how": "cut",
-				"size": {
-					"min": 1,
-					"max": 15
-				},
-				"note": "The gel is cut into grains, finer for a drier cheese, at the price of more fat and protein lost to the whey."
-			},
-			{
 				"type": "heat",
 				"does": "cook",
-				"note": "How far the grains are heated depends on the cheese, from not at all to a scald of 50–56 °C for Emmental, Gruyère and Parmesan."
+				"note": "The curd grains are heated as far as the cheese needs: not at all, or to a scald of 50–56 °C for Emmental, Gruyère and Parmesan."
 			},
 			{
 				"type": "drain",
-				"note": "Whey is drawn off, typically 30–50 % of the batch volume at a time, and for Gouda-type cheeses replaced in part by wash water."
+				"note": "Whey is drawn off, typically 30–50 % of the batch volume at a time; for Gouda-type cheeses, wash water replaces part of it."
 			},
 			{
 				"type": "mould",
@@ -32,11 +23,12 @@
 					"min": 3600,
 					"max": 6000
 				},
-				"note": "The curd stays in the moulds for about 60–100 minutes, while it acidifies."
+				"note": "The curd is left in the moulds for about 60–100 minutes, while it acidifies.",
+				"minor": true
 			},
 			{
 				"type": "press",
-				"note": "Pressing runs in 3 to 10 steps of rising pressure, about 50–450 g/cm² depending on the cheese."
+				"note": "The cheese is pressed in 3 to 10 steps of rising pressure, about 50–450 g/cm² depending on the cheese."
 			},
 			{
 				"type": "salt",
@@ -46,16 +38,12 @@
 					"max": 23,
 					"about": true
 				},
-				"temperature": {
-					"min": 10,
-					"max": 16
-				},
-				"note": "Cheese ends up with 0.5–2 % salt, and semi-hard cheese is usually brined, with a longer time for larger cheeses."
+				"note": "Semi-hard cheese is usually brined and ends with 0.5–2 % salt; larger cheeses stay in longer."
 			},
 			{
 				"type": "ferment",
 				"does": "ripen",
-				"note": "Ripening varies most, from none for fresh cheese to months, for Gouda 2–12 months at 12–15 °C."
+				"note": "The cheese is ripened for periods from none, for fresh cheese, up to months; Gouda is ripened for 2–12 months at 12–15 °C."
 			}
 		],
 		"sources": {

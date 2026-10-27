@@ -1,0 +1,152 @@
+{
+	"label": "Sarda sheep",
+	"aka": [
+		"Sardinian",
+		"Pecora sarda",
+		"Sicilo-Sarde"
+	],
+	"names": {
+		"links": [
+			{
+				"name": "Wikipedia: Sarda sheep",
+				"url": "https://en.wikipedia.org/wiki/Sarda_sheep"
+			}
+		],
+		"text": "The article gives Sardinian as another name and Sicilo-Sarde as the name in Tunisia. Pecora sarda is the Italian name, from the task brief, not from a page I opened."
+	},
+	"kind": "breed",
+	"parent": "sheep",
+	"about": {
+		"text": "The Sarda is a sheep native to the island of Sardinia, and the most numerous and economically most significant Italian sheep breed. It is also raised in parts of mainland Italy and in Tunisia. It is kept mainly for milk, which is mostly made into pecorino cheese, and for milk lambs.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Sarda sheep",
+					"url": "https://en.wikipedia.org/wiki/Sarda_sheep"
+				}
+			],
+			"text": "Taken from the article's lead and its sections on distribution and use."
+		}
+	},
+	"origin": {
+		"regions": [
+			"IT"
+		],
+		"place": "The island of Sardinia, Italy",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Sarda sheep",
+					"url": "https://en.wikipedia.org/wiki/Sarda_sheep"
+				}
+			],
+			"text": "The article calls it indigenous to Sardinia. It gives no date for the breed's formation, only that the national herdbook was set up in 1928, so no formation years are given."
+		}
+	},
+	"head": [
+		{
+			"count": 5000000,
+			"year": 2013,
+			"where": "IT",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Sarda sheep",
+						"url": "https://en.wikipedia.org/wiki/Sarda_sheep"
+					}
+				],
+				"text": "The article gives the total as estimated at 5,000,000 without a clear year; 2013 is only the year of the herdbook count beside it, so treat the year as uncertain. The herdbook recorded 225,207 animals in 2013."
+			}
+		}
+	],
+	"yield": {
+		"perLactation": {
+			"min": 100,
+			"max": 180
+		},
+		"lactationDays": {
+			"min": 180,
+			"max": 180
+		},
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Sarda sheep",
+					"url": "https://en.wikipedia.org/wiki/Sarda_sheep"
+				}
+			],
+			"text": "The article says pluriparous ewes yield 100 to 180 kg per lactation of 180 days. A WebSearch summary also reported other figures, not opened: 220 litres over 155 days (Farmers Journal, citing a Sardinian breeding scheme) and 279 litres over 180 days (Sassari trial)."
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 5.8,
+			"max": 6.56,
+			"about": true
+		},
+		"protein": {
+			"min": 4.7,
+			"max": 5.82,
+			"about": true
+		},
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Sarda sheep",
+					"url": "https://en.wikipedia.org/wiki/Sarda_sheep"
+				},
+				{
+					"name": "Farmers Journal: Italy's sheep sector driven by milk and cheese production",
+					"url": "https://www.farmersjournal.ie/italy-s-sheep-sector-driven-by-milk-and-cheese-production-427650"
+				}
+			],
+			"text": "Wikipedia gives an average of 6% fat and about 5.3% protein (opened). The other figures were found in the text of a WebSearch summary, not in the pages: Farmers Journal 6.56% fat and 5.82% protein; a University of Sassari trial 5.8% fat and 4.7% protein. The ranges combine these and are approximate."
+		}
+	},
+	"purposes": {
+		"purposes": [
+			"dairy",
+			"meat",
+			"wool"
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Sarda sheep",
+					"url": "https://en.wikipedia.org/wiki/Sarda_sheep"
+				}
+			],
+			"text": "The article says it is reared mainly for milk, with milk lambs slaughtered at about 10 kg; the long, coarse wool has little value."
+		}
+	},
+	"facts": [
+		{
+			"k": "Cheeses",
+			"v": "Its milk is mostly made into pecorino, including Pecorino Sardo and Pecorino Romano, both with DOP status.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Sarda sheep",
+						"url": "https://en.wikipedia.org/wiki/Sarda_sheep"
+					}
+				],
+				"text": "The article names both cheeses with DOP status. It does not mention Fiore Sardo."
+			}
+		},
+		{
+			"k": "Herdbook",
+			"v": "The national herdbook was established in 1928, and early crossbreeding attempts hurt milk production.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Sarda sheep",
+						"url": "https://en.wikipedia.org/wiki/Sarda_sheep"
+					}
+				],
+				"text": "The article gives 1928 for the herdbook and says late 19th and early 20th century crossbreeding had a negative effect on milk production."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "FAO DAD-IS risk status, the breed's formation date, a dated breed-wide population figure, and any page on Fiore Sardo were not found or opened. The Farmers Journal and Sassari figures come from search-result text only."
+}

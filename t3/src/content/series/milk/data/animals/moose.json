@@ -1,0 +1,153 @@
+{
+	"label": "Moose",
+	"aka": [
+		"elk"
+	],
+	"names": {
+		"links": [
+			{
+				"name": "Wikipedia: Moose",
+				"url": "https://en.wikipedia.org/wiki/Moose"
+			}
+		],
+		"text": "The lead sentence of the fetched article reads 'The moose or elk (Alces alces)'. 'Elk' is the other name given there. 'Moose' is the item's given label."
+	},
+	"kind": "species",
+	"parent": "deer",
+	"taxon": {
+		"name": "Alces alces",
+		"rank": "species",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Moose",
+					"url": "https://en.wikipedia.org/wiki/Moose"
+				}
+			],
+			"text": "Scientific name Alces alces from the lead sentence; family Cervidae and tribe Alceini from the infobox, as fetched with WebFetch."
+		}
+	},
+	"about": {
+		"text": "The moose is the largest extant deer, living in circumpolar boreal and mixed forests of the Northern Hemisphere. It has never been widely domesticated, but a few animals are milked, in Russia and at a farm in Sweden, and their milk is rich in butterfat and solids.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Moose",
+					"url": "https://en.wikipedia.org/wiki/Moose"
+				},
+				{
+					"name": "Wikipedia: Moose milk",
+					"url": "https://en.wikipedia.org/wiki/Moose_milk"
+				}
+			],
+			"text": "Lead sentence, distribution, and 'never been widely domesticated' (a claim the article tags [citation needed]), from the Moose article as fetched with WebFetch. The milking in Russia and Sweden and the butterfat and solids come from the Moose milk article as fetched with WebFetch."
+		}
+	},
+	"domestication": {
+		"where": "Pechora-Ilych reserve, outside Yaksha in the Komi Republic, Russia, where the first experimental moose farm was launched",
+		"regions": [
+			"RU"
+		],
+		"yearsAgo": {
+			"min": 77,
+			"max": 77
+		},
+		"text": "The first experimental moose farm was launched in 1949 by staff of the Pechora-Ilych Nature Reserve, led by Yevgeny Knorre; moose have otherwise never been widely domesticated.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Kostroma Moose Farm",
+					"url": "https://en.wikipedia.org/wiki/Kostroma_Moose_Farm"
+				},
+				{
+					"name": "Wikipedia: Moose",
+					"url": "https://en.wikipedia.org/wiki/Moose"
+				}
+			],
+			"text": "The 1949 launch, the Pechora-Ilych staff and Knorre come from a WebSearch result text on moose farming history (the Kostroma Moose Farm page was not opened, so its wording is not confirmed). 'Never been widely domesticated' is from the Moose article as fetched with WebFetch. The years-ago figure is 2026 minus 1949 = 77, the date of this record (27 October 2026)."
+		}
+	},
+	"milk": {
+		"mt": 0.00001,
+		"year": 2023,
+		"estimated": true,
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Moose milk",
+					"url": "https://en.wikipedia.org/wiki/Moose_milk"
+				},
+				{
+					"name": "The Elk House (Algens Hus) farm, Bjurholm, Sweden (search text)",
+					"url": "https://culturecheesemag.com/farm-animal/farm-animal-moose/"
+				}
+			],
+			"text": "Estimate, not a FAOSTAT figure (FAOSTAT has no moose milk line). No farm count or production figure was found for any country. Working: the only farms named are a Swedish farm with three milking moose (2007 figures) and a Russian commercial farm of unknown size. Assumed: 50 milked moose worldwide (assumption, not sourced; the true count is unknown) x about 245 kg of milk a lactation (midpoint of 140 to 350 kg per animal from a WebSearch result text on a Russian farm study) = about 12,000 kg, i.e. 0.0000123 million tonnes, rounded to 0.00001. The result is a placeholder of the right order of magnitude, not a measured figure; confidence in the number is very low."
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 10,
+			"max": 10
+		},
+		"solids": {
+			"min": 21.5,
+			"max": 21.5
+		},
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Moose milk",
+					"url": "https://en.wikipedia.org/wiki/Moose_milk"
+				}
+			],
+			"text": "'High in butterfat (10%) and solids (21.5%)', based on data from Russian moose (Moose milk article, as fetched with WebFetch). Protein and lactose are not given in the article, so they are left out."
+		}
+	},
+	"yield": {
+		"perLactation": {
+			"min": 140,
+			"max": 350
+		},
+		"where": "RU",
+		"sources": {
+			"links": [
+				{
+					"name": "Pechora-Ilych reserve moose farm study (search text)",
+					"url": "https://alcesjournal.org/index.php/alces/article/download/1831/1899/3765"
+				}
+			],
+			"text": "'Total lactation production of about 140 to 350 kg' across eight domesticated cows on a Pechora-Ilych reserve farm, from a WebSearch result text on the study (the paper itself was not opened). The year of the study is not given in the search text, so no year is recorded. Note the figure is per animal, total for the lactation, as the study describes it."
+		}
+	},
+	"facts": [
+		{
+			"k": "Moose cheese",
+			"v": "The Elk House in Bjurholm, Sweden, makes cheese from its three milking moose, believed to be the only moose cheese producer in the world (as of 2007).",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Moose milk",
+						"url": "https://en.wikipedia.org/wiki/Moose_milk"
+					}
+				],
+				"text": "From the Moose milk article as fetched with WebFetch, which gives the three-moose figure and the 2007 date. The article attributes the claim to the farm's own status as believed the only producer."
+			}
+		},
+		{
+			"k": "Sanatorium use",
+			"v": "Moose milk is commercially farmed in Russia, and the Ivan Susanin Sanitorium serves it to residents.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Moose milk",
+						"url": "https://en.wikipedia.org/wiki/Moose_milk"
+					}
+				],
+				"text": "From the Moose milk article as fetched with WebFetch. The article reports that residents believe it helps recovery; that belief is not stated as fact here."
+			}
+		}
+	],
+	"confidence": "low",
+	"gaps": "No world or national count of farmed moose, and no FAOSTAT or FAO figure for moose milk, was found, so the 2023 milk figure is a placeholder estimate. No head record is given. The protein and lactose composition were not found in any source. The Russian yield study's year was not found, and no lactation length in days was found in a reliable source (Wikipedia says June to August; a magazine text says about five months, which is not checked). No domestication record is given, since the article says moose have never been widely domesticated."
+}

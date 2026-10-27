@@ -20,12 +20,13 @@
 		"steps": [
 			{
 				"type": "heat",
-				"does": "heat"
+				"does": "heat",
+				"minor": true
 			},
 			{
 				"type": "heat",
 				"does": "heat",
-				"note": "Until hazelnut brown."
+				"note": "The solids are cooked until they turn hazelnut brown."
 			}
 		],
 		"sources": {

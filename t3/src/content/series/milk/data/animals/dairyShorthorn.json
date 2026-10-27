@@ -1,0 +1,162 @@
+{
+	"label": "Dairy Shorthorn",
+	"aka": [
+		"Durham",
+		"Teeswater",
+		"Milking Shorthorn",
+		"Dairy Shorthorn (Original Population)"
+	],
+	"names": {
+		"links": [
+			{
+				"name": "Wikipedia: Dairy Shorthorn",
+				"url": "https://en.wikipedia.org/wiki/Dairy_Shorthorn"
+			}
+		],
+		"text": "Wikipedia article, read with WebFetch: 'first known as the Durham or Teeswater'; 'Milking Shorthorn (New Zealand)'; 'Dairy Shorthorn (Original Population), the UK remnant'. Durham and Teeswater are the older names of the Shorthorn breed as a whole, as the article gives them."
+	},
+	"kind": "breed",
+	"parent": "taurineCattle",
+	"about": {
+		"text": "The British dairy line of the Shorthorn breed, from Shorthorn cattle of north-eastern England, with dairy selection from the late eighteenth century. Its numbers fell so far that the UK remnant, the Dairy Shorthorn (Original Population), is critically endangered. Its milk averages about 7,000 kg in a 305-day lactation, with fat of 3.5 to 4.0 percent.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Dairy Shorthorn",
+					"url": "https://en.wikipedia.org/wiki/Dairy_Shorthorn"
+				},
+				{
+					"name": "RBST: Dairy Shorthorn (Original Population)",
+					"url": "https://www.rbst.org.uk/dairy-shorthorn-original-population"
+				}
+			],
+			"text": "Wikipedia, read with WebFetch: origin in north-eastern England, dairy selection in the late 18th and early 19th centuries, the critically endangered UK remnant, and the yield of about 7,000 kg per 305-day lactation. The RBST page was opened, but it had no breed figures; the description rests on Wikipedia."
+		}
+	},
+	"origin": {
+		"regions": ["GB"],
+		"place": "North-eastern England (Teesside, the North Riding of Yorkshire and Northumbria), from Shorthorn cattle first known as Durham or Teeswater",
+		"formed": {
+			"min": 1775,
+			"max": 1800
+		},
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Dairy Shorthorn",
+					"url": "https://en.wikipedia.org/wiki/Dairy_Shorthorn"
+				}
+			],
+			"text": "Wikipedia, read with WebFetch: 'Selective breeding for dairy traits began in the late 18th century.' The article gives no year, so the range 1775 to 1800 is my reading of 'late 18th century'. The Coates Herd Book of 1822 is recording, not formation."
+		}
+	},
+	"head": [
+		{
+			"count": 50,
+			"year": 2012,
+			"where": "GB",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Dairy Shorthorn",
+						"url": "https://en.wikipedia.org/wiki/Dairy_Shorthorn"
+					}
+				],
+				"text": "Wikipedia, read with WebFetch: '2012: No more than 50 breeding cows remained.' The count is the upper limit the article gives for the UK remnant, not an exact census."
+			}
+		}
+	],
+	"yield": {
+		"perLactation": {
+			"min": 7000,
+			"max": 7000
+		},
+		"lactationDays": {
+			"min": 305,
+			"max": 305
+		},
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Dairy Shorthorn",
+					"url": "https://en.wikipedia.org/wiki/Dairy_Shorthorn"
+				}
+			],
+			"text": "Wikipedia, read with WebFetch: 'Average of about 7,000 kg per 305-day lactation.' The article gives no year or country for this average, so the record leaves those out."
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 3.5,
+			"max": 4.0
+		},
+		"protein": {
+			"min": 3.0,
+			"max": 3.5
+		},
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Dairy Shorthorn",
+					"url": "https://en.wikipedia.org/wiki/Dairy_Shorthorn"
+				}
+			],
+			"text": "Wikipedia, read with WebFetch: 'Milk fat of roughly 3.5%-4.0%' and 'Protein of roughly 3.0%-3.5%'. Both are ranges the article gives without a year."
+		}
+	},
+	"purposes": {
+		"purposes": ["dairy"],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Dairy Shorthorn",
+					"url": "https://en.wikipedia.org/wiki/Dairy_Shorthorn"
+				}
+			],
+			"text": "Wikipedia, read with WebFetch: the breed is the dairy line of the Shorthorn, with separate beef and dairy sections from 1958."
+		}
+	},
+	"risk": {
+		"status": "critical",
+		"year": 2021,
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Dairy Shorthorn",
+					"url": "https://en.wikipedia.org/wiki/Dairy_Shorthorn"
+				}
+			],
+			"text": "Wikipedia, read with WebFetch: 'DAD-IS (2021): Critical.' The article also says the UK Original Population is 'critically endangered'. The FAO DAD-IS page itself was not opened."
+		}
+	},
+	"facts": [
+		{
+			"k": "Herd book",
+			"v": "George Coates began the Coates Herd Book in 1822, covering all Shorthorn types. The Shorthorn Society of Great Britain and Ireland, formed in 1874, took it over.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Dairy Shorthorn",
+						"url": "https://en.wikipedia.org/wiki/Dairy_Shorthorn"
+					}
+				],
+				"text": "Wikipedia, read with WebFetch: the 1822 Coates Herd Book and the society formed in 1874."
+			}
+		},
+		{
+			"k": "Cross-breeding",
+			"v": "In 1969 the breed society approved cross-breeding with other European breeds, which led to the composite Blended Red-and-White Shorthorn.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Dairy Shorthorn",
+						"url": "https://en.wikipedia.org/wiki/Dairy_Shorthorn"
+					}
+				],
+				"text": "Wikipedia, read with WebFetch: the 1969 decision and the composite breed it led to."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "No year or country was found for the yield and composition figures. No current UK head count was found beyond the 2012 limit of 50 breeding cows. The FAO DAD-IS page was not opened, and the RBST watchlist was not checked for a current status."
+}

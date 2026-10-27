@@ -19,15 +19,16 @@
 			{
 				"type": "add",
 				"what": "skim milk powder",
-				"note": "Mixed into the warm water."
+				"note": "The powder is mixed into the warm water."
 			},
 			{
 				"type": "add",
 				"what": "whole buffalo milk",
-				"note": "Brings the milk to about 3 % fat with non-fat solids restored to their old level (at least 8.5 %)."
+				"note": "Whole buffalo milk is added, which brings the fat to about 3 % and the solids other than fat back to at least 8.5 %."
 			},
 			{
-				"type": "filter"
+				"type": "filter",
+				"minor": true
 			},
 			{
 				"type": "pasteurise",
@@ -38,7 +39,8 @@
 				"seconds": {
 					"min": 1800,
 					"max": 1800
-				}
+				},
+				"note": "The milk undergoes heat treatment to kill harmful bacteria like Listeria, Salmonella and E. coli."
 			},
 			{
 				"type": "heat",
@@ -46,7 +48,8 @@
 				"temperature": {
 					"min": 5,
 					"max": 5
-				}
+				},
+				"minor": true
 			}
 		],
 		"text": "Single toned milk is not always pasteurised; double-toned milk always is.",

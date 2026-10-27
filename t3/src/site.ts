@@ -95,13 +95,15 @@ export async function loadSite(): Promise<Site> {
 		const s: Series = { slug, href: `/blog/${slug}/`, data, chapters: [], hasIndex: own[0].slug === null };
 		s.chapters = own.map((c, i) => {
 			const { title, part: named } = c.entry.data;
+			// A hidden series' every chapter hidden with it.
+			const chapterData = data.hidden ? { ...c.entry.data, hidden: true } : c.entry.data;
 			if (c.slug === null)
-				return { href: s.href, entry: c.entry, data: c.entry.data, series: s, fullTitle: title };
+				return { href: s.href, entry: c.entry, data: chapterData, series: s, fullTitle: title };
 			const part = named ?? String(i + 1);
 			return {
 				href: `/blog/${slug}/${c.slug}/`,
 				entry: c.entry,
-				data: c.entry.data,
+				data: chapterData,
 				series: s,
 				part,
 				fullTitle: `${data.title} #${part}${title ? `: ${title}` : ''}`,

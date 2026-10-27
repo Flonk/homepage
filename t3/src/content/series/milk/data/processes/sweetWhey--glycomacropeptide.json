@@ -20,8 +20,8 @@
 		"steps": [
 			{
 				"type": "custom",
-				"name": "cation exchange",
-				"note": "At pH 4, where the GMP runs through."
+				"name": "catch others",
+				"note": "The whey is run over a resin at pH 4, where the glycomacropeptide is not held."
 			},
 			{
 				"type": "ultrafilter",
@@ -29,7 +29,7 @@
 					"min": 60,
 					"max": 60
 				},
-				"note": "With diafiltration, 3 kDa membrane."
+				"of": "whey"
 			},
 			{
 				"type": "dry",
@@ -37,12 +37,14 @@
 					"min": 172800,
 					"max": 172800
 				},
-				"note": "Freeze-dried."
+				"note": "The glycomacropeptide is freeze-dried.",
+				"minor": true
 			},
 			{
 				"type": "add",
 				"what": "histidine, tryptophan, tyrosine, arginine and cysteine",
-				"note": "As GMP lacks them, for a complete PKU food."
+				"note": "They are added as the glycomacropeptide lacks them, so the food is complete for phenylketonuria.",
+				"minor": true
 			}
 		],
 		"sources": {

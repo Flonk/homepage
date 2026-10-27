@@ -6,8 +6,8 @@
 		"pecorinoRomano"
 	],
 	"variant": true,
-	"step": "set with lamb rennet",
-	"text": "Whole sheep milk set with lamb rennet paste and a cooked curd give a hard, compact cheese with a sharp, piquant taste. Heavy salting and longer ripening make the grating version more intense than the table cheese.",
+	"step": "cook the curd, brine, age",
+	"text": "Whole sheep milk and a cooked curd give a hard, compact cheese with a sharp, piquant taste. Heavy salting and longer ripening make the grating version more intense than the table cheese.",
 	"sources": {
 		"links": [
 			{
@@ -20,34 +20,6 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic"
-				],
-				"adds": {
-					"microbes": [
-						{
-							"name": "native lactic cultures",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							]
-						}
-					]
-				},
-				"note": "The cultures are optional."
-			},
-			{
-				"type": "coagulate",
-				"by": "rennet",
-				"temperature": {
-					"min": 38,
-					"max": 40
-				},
-				"note": "With lamb rennet paste."
-			},
-			{
 				"type": "heat",
 				"does": "cook",
 				"temperature": {
@@ -57,12 +29,12 @@
 			},
 			{
 				"type": "mould",
-				"note": "Cylinder 25–35 cm across, 25–40 cm tall, 20–35 kg."
+				"note": "The curd is put into cylinders 25–35 cm across and 25–40 cm tall, weighing 20–35 kg."
 			},
 			{
 				"type": "salt",
 				"how": "brine",
-				"note": "Dry and/or in brine."
+				"note": "The cheese is salted dry, in brine, or both."
 			},
 			{
 				"type": "ferment",
@@ -70,7 +42,7 @@
 				"seconds": {
 					"min": 12960000
 				},
-				"note": "Table cheese at least 5 mo, grating cheese at least 8."
+				"note": "A grating cheese is ripened longer, for at least 8 months."
 			}
 		],
 		"sources": {

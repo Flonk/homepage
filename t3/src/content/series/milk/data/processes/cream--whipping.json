@@ -5,7 +5,7 @@
 	"to": [
 		"whipping"
 	],
-	"text": "Nothing is added: cream is standardised to the fat grade and pasteurised. Enough fat is what lets the beaten cream trap air and hold it.",
+	"text": "Nothing is added: cream is standardised to the fat grade. Enough fat is what lets the beaten cream trap air and hold it.",
 	"sources": {
 		"links": [
 			{
@@ -23,20 +23,7 @@
 					"min": 35,
 					"max": 40
 				},
-				"note": "Whipping cream is typically set to 35 to 40 % fat; the UK grade asks for at least 35 %."
-			},
-			{
-				"type": "pasteurise",
-				"temperature": {
-					"min": 82,
-					"max": 85,
-					"about": true
-				},
-				"seconds": {
-					"min": 15,
-					"max": 15
-				},
-				"note": "Whipping cream is heated above roughly 82 to 85 °C for 15 seconds, hot enough to keep it whippable."
+				"of": "cream"
 			},
 			{
 				"type": "heat",
@@ -45,7 +32,8 @@
 					"min": 4,
 					"max": 6
 				},
-				"note": "It is cooled and held at 4 to 6 °C so the fat crystallises, which is what lets it whip later."
+				"note": "The fat crystallises in the cold, which is what lets it whip later.",
+				"minor": true
 			}
 		],
 		"sources": {

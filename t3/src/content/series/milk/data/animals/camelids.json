@@ -1,0 +1,45 @@
+{
+	"label": "Camels",
+	"kind": "group",
+	"parent": "milk",
+	"taxon": {
+		"name": "Camelidae",
+		"rank": "family",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Camelidae",
+					"url": "https://en.wikipedia.org/wiki/Camelidae"
+				}
+			],
+			"text": "Camelidae (Gray, 1821), a family in the suborder Tylopoda of the order Artiodactyla; the only living family in that suborder, as given in the article."
+		}
+	},
+	"names": {
+		"links": [
+			{
+				"name": "Wikipedia: Camelidae",
+				"url": "https://en.wikipedia.org/wiki/Camelidae"
+			}
+		],
+		"text": "'Camels' is the item's given label. The article's own name is the family name Camelidae, with no separate common name for the family taken from it."
+	},
+	"about": {
+		"text": "The family of camels and llamas. Its milk-giving members are the dromedary and the Bactrian camel, which the article lists as the two camel species of the genus Camelus.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Camelidae",
+					"url": "https://en.wikipedia.org/wiki/Camelidae"
+				},
+				{
+					"name": "FAOSTAT: Crops and livestock products (QCL), world, 2023",
+					"url": "https://www.fao.org/faostat/en/#data/QCL"
+				}
+			],
+			"text": "The family's living species and genera are from the Wikipedia article as fetched (camels in tribe Camelini, genus Camelus; llamas and relatives in tribe Lamini, genus Lama). The milk claim is limited to camels: FAOSTAT's 2023 camel figure (4.08 million t, dromedary and Bactrian together) is in research/herd/faostat-2023.json. The llama and alpaca are not milked in the species table here."
+		}
+	},
+	"confidence": "high",
+	"gaps": "The article was read to character 100000 of 102173; the last 2173 characters were not read. The llamas and alpacas are not claimed to be milked for any figure here. No family-level milk total is given, since the species records carry it."
+}

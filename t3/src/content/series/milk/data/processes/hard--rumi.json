@@ -23,14 +23,10 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "coagulate",
-				"by": "rennet",
-				"note": "Calf or microbial rennet; the source names no standard coagulant."
-			},
-			{
 				"type": "add",
-				"note": "Only sometimes.",
-				"what": "peppercorns"
+				"note": "Peppercorns are only sometimes added.",
+				"what": "peppercorns",
+				"minor": true
 			},
 			{
 				"type": "ferment",
@@ -47,7 +43,7 @@
 					"min": 90,
 					"max": 95
 				},
-				"note": "Glycolysis, lipolysis and proteolysis give an open texture and a sharp, pungent flavour after 3–4 months."
+				"note": "The cheese's sugar, fat and protein are broken down, which gives an open texture and a sharp, pungent flavour after 3–4 months."
 			}
 		],
 		"text": "Raw milk, no starter.",

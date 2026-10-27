@@ -23,17 +23,8 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "separate",
-				"off": "cream"
-			},
-			{
-				"type": "ferment",
-				"does": "incubate",
-				"note": "Inoculated and coagulated at a controlled temperature."
-			},
-			{
 				"type": "mould",
-				"note": "Into metton loaves."
+				"note": "The curd is shaped into metton loaves."
 			},
 			{
 				"type": "cut",
@@ -42,7 +33,7 @@
 			{
 				"type": "ferment",
 				"does": "ripen",
-				"note": "At a controlled temperature, stirred, until the metton forms hard grains."
+				"note": "The metton is stirred at a controlled temperature until it forms hard, yellowish grains."
 			},
 			{
 				"type": "heat",
@@ -52,7 +43,7 @@
 					"max": 90,
 					"about": true
 				},
-				"note": "With water, salt, melting salts and a little butter."
+				"note": "The grains are melted with water, salt, melting salts and a little butter."
 			}
 		],
 		"text": "The first steps make the metton, the curd the spread is melted from.",

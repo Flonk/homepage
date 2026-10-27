@@ -7,7 +7,7 @@
 	],
 	"variant": true,
 	"step": "cool the curd",
-	"text": "Adding water to cool the stirred curd stops the pieces from matting together into slabs, the step that defines cheddaring. The pieces are then drained, salted and pressed, giving a cheese with up to 40% moisture.",
+	"text": "Adding water to cool the stirred curd stops the pieces from matting together into slabs, the step that defines cheddaring. This gives a cheese with up to 40% moisture.",
 	"sources": {
 		"links": [
 			{
@@ -22,20 +22,11 @@
 			{
 				"type": "heat",
 				"does": "cool",
-				"note": "By adding water, so the pieces do not mat."
-			},
-			{
-				"type": "drain"
-			},
-			{
-				"type": "salt"
+				"note": "Water is added to the curd, so its pieces do not mat together."
 			},
 			{
 				"type": "custom",
 				"name": "stir"
-			},
-			{
-				"type": "press"
 			},
 			{
 				"type": "ferment",
@@ -46,7 +37,7 @@
 				"seconds": {
 					"min": 5184000
 				},
-				"note": "Cured this long only if made from raw milk."
+				"note": "The cheese is ripened this long only if it is made from raw milk."
 			}
 		],
 		"sources": {

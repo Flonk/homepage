@@ -38,7 +38,7 @@
 					"min": 780,
 					"max": 900
 				},
-				"note": "So that only L. acidophilus grows."
+				"note": "The milk is sterilised so that only the starter can grow."
 			},
 			{
 				"type": "ferment",
@@ -73,7 +73,7 @@
 				"acidity": {
 					"min": 0.6
 				},
-				"note": "Held at 37 ± 1 °C until it forms a solid coagulum."
+				"note": "The milk is left to sour until it sets firm."
 			},
 			{
 				"type": "heat",
@@ -81,16 +81,19 @@
 				"temperature": {
 					"min": 10,
 					"max": 15
-				}
+				},
+				"minor": true
 			},
 			{
 				"type": "custom",
 				"name": "stir",
-				"note": "Until creamy."
+				"note": "The drink is stirred until creamy.",
+				"minor": true
 			},
 			{
 				"type": "custom",
-				"name": "bottle"
+				"name": "bottle",
+				"minor": true
 			}
 		],
 		"sources": {

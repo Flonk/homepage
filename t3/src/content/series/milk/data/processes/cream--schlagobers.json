@@ -5,7 +5,7 @@
 	"to": [
 		"schlagobers"
 	],
-	"text": "Cream standardised to the whipping grade and pasteurised; nothing is cultured. A lexicon gives 36 % as the minimum for pasteurised Schlagobers, which differs from the Codex figure in the about text.",
+	"text": "Cream standardised to the whipping grade; nothing is cultured. A lexicon gives 36 % as the minimum for pasteurised Schlagobers, which differs from the Codex figure in the about text.",
 	"sources": {
 		"links": [
 			{
@@ -21,15 +21,14 @@
 				"type": "standardise",
 				"fat": {
 					"min": 30
-				}
+				},
+				"of": "cream"
 			},
 			{
 				"type": "add",
-				"note": "Permitted, to stop creaming.",
-				"what": "carrageenan (E407)"
-			},
-			{
-				"type": "pasteurise"
+				"note": "Carrageenan may be added to the cream, to stop its fat rising.",
+				"what": "carrageenan (E407)",
+				"minor": true
 			}
 		],
 		"sources": {

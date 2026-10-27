@@ -23,8 +23,8 @@ export async function getStaticPaths() {
 				page,
 				prevPart: link(run[at - 1]),
 				nextPart: link(run[at + 1]),
-				// Every part, for the series menu; a hidden one only on its own page.
-				seriesParts: run.flatMap((p) => (!p.data.hidden || p === page ? [link(p)!] : [])),
+				// Every part, for the series menu; a hidden one only on its own page, unless the whole series is hidden.
+				seriesParts: run.flatMap((p) => (!p.data.hidden || p === page || page.series?.data.hidden ? [link(p)!] : [])),
 			},
 		};
 	});

@@ -1,0 +1,90 @@
+{
+	"label": "Awassi",
+	"aka": ["Baladi", "Deiri", "Shami"],
+	"names": {
+		"links": [
+			{"name": "Wikipedia: Awassi sheep", "url": "https://en.wikipedia.org/wiki/Awassi_sheep"}
+		],
+		"text": "The article gives the name Awassi as deriving from Al-ʿAwās, a Bedouin tribe of northern Syria. The other names (Baladi, Deiri, Shami) are from the known record's aka, which cites the same article; they were not confirmed on the page."
+	},
+	"kind": "breed",
+	"parent": "sheep",
+	"about": {
+		"text": "A sheep of the Near East, thought to originate in historic Mesopotamia and now present in about eighteen countries in Africa, Asia and Europe. It is reared for milk, meat and wool, and in Syria it supplies about 30% of the country's milk.",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Awassi sheep", "url": "https://en.wikipedia.org/wiki/Awassi_sheep"}
+			],
+			"text": "Taken from the article's lead and uses section. The 30% Syria figure is the article's, citing Amin and Peters (2006)."
+		}
+	},
+	"origin": {
+		"regions": ["SY", "IQ", "TR"],
+		"place": "Historic Mesopotamia; the name is thought to derive from Al-ʿAwās, a Bedouin tribe of northern Syria",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Awassi sheep", "url": "https://en.wikipedia.org/wiki/Awassi_sheep"}
+			],
+			"text": "The article says the breed's origins are unknown but that it is thought to originate in historic Mesopotamia. It gives no dates of formation."
+		}
+	},
+	"head": [
+		{
+			"count": 2850000,
+			"year": 2024,
+			"where": "world",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: Awassi sheep", "url": "https://en.wikipedia.org/wiki/Awassi_sheep"}
+				],
+				"text": "The article gives a total of about 2.85 million, estimated in 2024, and cites FAO DAD-IS as the source. The figure is used as the article reports it. The DAD-IS page itself was not opened. The article's country counts (Turkey, Palestine, Lebanon, Syria 2006) are not used, since they do not sum to a world figure."
+			}
+		}
+	],
+	"yield": {
+		"perLactation": {"min": 91.2, "max": 168.1},
+		"lactationDays": {"min": 100.39, "max": 166.1},
+		"year": 2022,
+		"sources": {
+			"links": [
+				{"name": "Awassi genotypes, ICARDA flock (2017)", "url": "https://repo.mel.cgiar.org/handle/20.500.11766/12509"},
+				{"name": "Awassi milk yield under semi-intensive conditions (2022)", "url": "https://dergipark.org.tr/tr/pub/vetbio/article/1000968"}
+			],
+			"text": "Two study flocks, not a breed-wide mean. The ICARDA flock at Tal Hadya, Syria, over nine years (Haile et al., 2017, published 2017): lactation length 100.39 days and lactation milk yield 91.2 kg, both overall means. Turkish flock, semi-intensive, 46 ewes aged 2 and 3 (Das et al., 2022): lactation milk yield 168.10 kg over 166.10 days. The yield range is the two studies' means, and the year is that of the later one."
+		}
+	},
+	"composition": {
+		"fat": {"min": 5.87, "max": 6.27},
+		"protein": {"min": 5.12, "max": 5.44},
+		"sources": {
+			"links": [
+				{"name": "Awassi milk yield under semi-intensive conditions (2022)", "url": "https://dergipark.org.tr/tr/pub/vetbio/article/1000968"},
+				{"name": "PMC review, cross-breed comparison table", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7204986/table/tbl2"}
+			],
+			"text": "Fat 6.27% and protein 5.12% are the Turkish 2022 study's means (opened). Fat 5.87% and protein 5.44% are the mean for Awassi in a cross-breed comparison table (n = 43 ewes), found in the text of a WebSearch result. The PMC page could not be opened (reCAPTCHA), so those two figures are from search text only."
+		}
+	},
+	"purposes": {
+		"purposes": ["dairy", "meat", "wool"],
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Awassi sheep", "url": "https://en.wikipedia.org/wiki/Awassi_sheep"}
+			],
+			"text": "The article says the breed is commonly reared for milk, meat and wool, in that order."
+		}
+	},
+	"facts": [
+		{
+			"k": "Syria",
+			"v": "In Syria it supplies about 30% of all milk, all the wool and about 80% of red meat.",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: Awassi sheep", "url": "https://en.wikipedia.org/wiki/Awassi_sheep"}
+				],
+				"text": "Taken from the article. It cites Amin and Peters (2006), Awassi Sheep Production and the Development of breeding Program Options in Syria, Tropentag 2006. That source was not opened."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "Risk status: the DAD-IS entry was not reached, and the search gave no Awassi status. Date of formation. Breed-wide yield: the two figures are from two study flocks, not a national or breed mean. The PMC table could not be opened, so its fat and protein figures are from search text only."
+}

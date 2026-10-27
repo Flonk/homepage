@@ -24,12 +24,14 @@
 		"steps": [
 			{
 				"type": "filter",
-				"note": "After milking the milk is only filtered, with no other treatment."
+				"note": "The milk is filtered after milking and is given no other treatment.",
+				"minor": true
 			},
 			{
 				"type": "heat",
 				"does": "cool",
-				"note": "It is cooled and sold on the day it is milked or the day after, with no heating at all."
+				"note": "The milk is sold on the day it is milked or the day after, with no heating at all.",
+				"minor": true
 			}
 		],
 		"sources": {

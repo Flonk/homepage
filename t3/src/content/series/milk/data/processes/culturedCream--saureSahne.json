@@ -14,41 +14,5 @@
 			}
 		],
 		"text": "The table, the facts and the words on how it is made, from these."
-	},
-	"processing": {
-		"steps": [
-			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic"
-				],
-				"adds": {
-					"by": [
-						"starter"
-					],
-					"microbes": [
-						{
-							"name": "mesophilic lactic acid bacteria",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							],
-							"grows": "mesophilic"
-						}
-					]
-				}
-			}
-		],
-		"text": "Not heated after souring, so the culture stays alive.",
-		"sources": {
-			"links": [
-				{
-					"name": "German MilchPQV, Anlage 8",
-					"url": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		}
 	}
 }

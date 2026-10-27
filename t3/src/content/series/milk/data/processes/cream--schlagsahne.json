@@ -5,7 +5,7 @@
 	"to": [
 		"schlagsahne"
 	],
-	"text": "Cream standardised to at least 30 % fat and heat-treated; whippability is the legal requirement.",
+	"text": "Cream standardised to at least 30 % fat; whippability is the legal requirement.",
 	"sources": {
 		"links": [
 			{
@@ -23,20 +23,7 @@
 					"min": 30,
 					"max": 40
 				},
-				"note": "Whipping is easy at 40 % fat and gets harder at 30 % and below, so a cream that must whip sits in this range."
-			},
-			{
-				"type": "pasteurise",
-				"temperature": {
-					"min": 82,
-					"max": 85,
-					"about": true
-				},
-				"seconds": {
-					"min": 15,
-					"max": 15
-				},
-				"note": "Whipping cream is heated above roughly 82 to 85 °C for 15 seconds, hot enough to keep it whippable."
+				"of": "cream"
 			},
 			{
 				"type": "heat",
@@ -45,7 +32,8 @@
 					"min": 4,
 					"max": 6
 				},
-				"note": "It is cooled and held at 4 to 6 °C so the fat crystallises, which is what lets it whip later."
+				"note": "The cream is held cold, so its fat forms crystals, which is what lets it whip later.",
+				"minor": true
 			}
 		],
 		"sources": {

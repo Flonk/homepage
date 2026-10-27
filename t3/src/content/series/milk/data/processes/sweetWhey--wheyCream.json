@@ -24,7 +24,8 @@
 		"steps": [
 			{
 				"type": "filter",
-				"note": "Curd fines are taken out first with a coarse filter or fines clarifier, as they upset the separating."
+				"note": "Tiny bits of curd are taken out first with a coarse filter, as they upset the separating.",
+				"minor": true
 			},
 			{
 				"type": "separate",
@@ -33,7 +34,8 @@
 				"temperature": {
 					"min": 40,
 					"max": 50
-				}
+				},
+				"of": "whey"
 			},
 			{
 				"type": "heat",
@@ -41,7 +43,8 @@
 				"temperature": {
 					"max": 5
 				},
-				"note": "Chilled if the cream is kept for less than 8 hours."
+				"note": "Chilled if the cream is kept for less than 8 hours.",
+				"minor": true
 			}
 		],
 		"text": "Whey cream usually holds 25–30 % fat, against about 40 % for milk cream.",

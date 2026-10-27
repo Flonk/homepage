@@ -23,47 +23,17 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic",
-					"yeast",
-					"smear"
-				],
-				"adds": {
-					"microbes": [
-						{
-							"name": "lactic acid bacteria",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							]
-						}
-					],
-					"by": [
-						"starter"
-					]
-				},
-				"temperature": {
-					"min": 38,
-					"max": 40
-				}
-			},
-			{
-				"type": "drain"
-			},
-			{
 				"type": "cut",
 				"how": "grind"
 			},
 			{
 				"type": "add",
-				"note": "Sodium bicarbonate (Natron) or calcium carbonate, to neutralise part of the acid.",
+				"note": "Sodium bicarbonate (Natron) or calcium carbonate is added, which takes up part of the acid.",
 				"what": "salt, spices (caraway) and a ripening agent"
 			},
 			{
 				"type": "mould",
-				"note": "Into small loaves."
+				"note": "The curd is shaped into small loaves."
 			},
 			{
 				"type": "ferment",
@@ -76,7 +46,7 @@
 						}
 					]
 				},
-				"note": "Sweated a few days, warm and very humid, the film yeasts coming first."
+				"note": "The loaves are kept a few days, warm and very humid, with the film yeasts coming first."
 			},
 			{
 				"type": "ferment",
@@ -95,15 +65,15 @@
 						"starter"
 					]
 				},
-				"note": "Smeared with salted water and red cultures."
+				"note": "The surface of the loaf is given salted water and red cultures."
 			},
 			{
 				"type": "ferment",
 				"does": "ripen",
-				"note": "Kept cooler a few more days."
+				"note": "The loaves are kept a few more days, cooler than before."
 			}
 		],
-		"text": "The quark is soured within a few hours, then sweated a few days warm and very humid, smeared with salted water and red cultures and kept cooler a few more days. Mould sorts are ripened 6-7 days at 17-19 °C.",
+		"text": "The quark is sweated a few days warm and very humid, smeared with salted water and red cultures and kept cooler a few more days. Mould sorts are ripened 6-7 days at 17-19 °C.",
 		"sources": {
 			"links": [
 				{

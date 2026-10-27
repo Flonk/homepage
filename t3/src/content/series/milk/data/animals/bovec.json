@@ -1,0 +1,132 @@
+{
+	"label": "Bovec",
+	"aka": [
+		"Bovška ovca",
+		"Plezzana",
+		"Krainer Steinschaf"
+	],
+	"names": {
+		"links": [
+			{
+				"name": "Wikipedia: Bovec sheep",
+				"url": "https://en.wikipedia.org/wiki/Bovec_sheep"
+			}
+		],
+		"text": "The alternative names are as given in the item's known list, from the Wikipedia article on the breed. The article uses Plezzana for the Italian population and Krainer Steinschaf for the Austrian one, which is how they are listed there; not separately confirmed on a second page."
+	},
+	"kind": "breed",
+	"parent": "sheep",
+	"about": {
+		"text": "The Bovec is a Slovene sheep breed from the upper Soča valley, named for the town of Bovec (Plezzo). It is kept in the Trenta valley and a few small valleys near Bovec, and it is raised for both milk and meat. Its milk is about 6.3 percent fat.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Bovec sheep",
+					"url": "https://en.wikipedia.org/wiki/Bovec_sheep"
+				},
+				{
+					"name": "Oklahoma State: Bovska sheep",
+					"url": "https://breeds.okstate.edu/sheep/bovska-sheep"
+				}
+			],
+			"text": "Upper Soča valley, the town's name, and meat and milk use from the Wikipedia article. The Trenta valley and small valleys near Bovec are from a search result summarising the Oklahoma State breed profile, which was not reachable (403). The 6.3 percent fat figure is from Wikipedia citing the DAD-IS breed data sheet."
+		}
+	},
+	"origin": {
+		"regions": [
+			"SI"
+		],
+		"place": "The upper Soča (Isonzo) valley in Slovenia",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Bovec sheep",
+					"url": "https://en.wikipedia.org/wiki/Bovec_sheep"
+				}
+			],
+			"text": "Place from the Wikipedia article; the article gives no year of formation."
+		}
+	},
+	"head": [
+		{
+			"count": 3500,
+			"year": 2012,
+			"where": "SI",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Bovec sheep",
+						"url": "https://en.wikipedia.org/wiki/Bovec_sheep"
+					}
+				],
+				"text": "3,500 head reported to DAD-IS in 2012 for Slovenia, as the article gives it. The article also gives about 1,200 pure-bred animals with no year, and Austria's Krainer Steinschaf count, which is a different population and is not used here."
+			}
+		}
+	],
+	"composition": {
+		"fat": {
+			"min": 6.3,
+			"max": 6.3
+		},
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Bovec sheep",
+					"url": "https://en.wikipedia.org/wiki/Bovec_sheep"
+				}
+			],
+			"text": "Fat 6.3 percent as the Wikipedia article gives it, from the FAO DAD-IS breed data sheet (accessed September 2013). No protein, lactose or solids figures are given in the article."
+		}
+	},
+	"yield": {
+		"perLactation": {
+			"min": 221,
+			"max": 221
+		},
+		"lactationDays": {
+			"min": 210,
+			"max": 210
+		},
+		"where": "SI",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Bovec sheep",
+					"url": "https://en.wikipedia.org/wiki/Bovec_sheep"
+				}
+			],
+			"text": "A breeding ewe yields 221 kg (487 lb) of milk over a 210-day lactation, per the FAO DAD-IS breed data sheet accessed September 2013, as the Wikipedia article gives it. The year the figure refers to is not stated, so no year is given here."
+		}
+	},
+	"purposes": {
+		"purposes": [
+			"dual-purpose"
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Bovec sheep",
+					"url": "https://en.wikipedia.org/wiki/Bovec_sheep"
+				}
+			],
+			"text": "The article gives meat and milk as the uses; recorded here as dual-purpose."
+		}
+	},
+	"facts": [
+		{
+			"k": "Lifetime milk against the crossbred",
+			"v": "In a comparison with the Improved Bovec, a crossbreed with East Friesian sheep, the Bovec breed produced about 200 kg less milk over its lifetime; once metabolic body weight is accounted for, the gap is about 6 percent.",
+			"sources": {
+				"links": [
+					{
+						"name": "Hrčak: Gorjanc et al. (search result)",
+						"url": "https://hrcak.srce.hr/clanak/59136"
+					}
+				],
+				"text": "Found in WebSearch result text summarising Gorjanc and colleagues' comparison; the paper itself was not opened, so the figures are as the search summary gives them. The authors concluded the breed suits extensive farming in hill and mountain areas."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "No formal FAO risk status found on Wikipedia or in search; the DAD-IS entry was not reachable, so risk is left out. Oklahoma State returned 403 and was not opened. Protein, lactose and solids not found. The yield year is not stated in the source. Population estimates differ (3,500 head in 2012 per DAD-IS, about 1,200 pure-bred with no year, about 3,700 in one study, about 800 in an older Oklahoma State profile), so only the 2012 DAD-IS figure is recorded. No year of formation found."
+}

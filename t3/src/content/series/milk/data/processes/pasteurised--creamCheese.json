@@ -8,8 +8,7 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "standardise",
-				"note": "Cream is added to bring the fat up; US law asks for at least 33 % milk fat in the cheese."
+				"type": "standardise"
 			},
 			{
 				"type": "homogenise"
@@ -43,12 +42,12 @@
 					"min": 4.4,
 					"max": 4.9
 				},
-				"note": "The acid makes the proteins lose their charge and the milk coagulates into a curd."
+				"note": "The milk is soured, so the acid makes the proteins lose their charge and the milk coagulates into a curd."
 			},
 			{
 				"type": "heat",
 				"does": "heat",
-				"note": "It is heated to stop the culture once the curd has formed."
+				"note": "The curd is heated to stop the culture once it has formed."
 			},
 			{
 				"type": "separate",
@@ -62,7 +61,7 @@
 					"min": 0,
 					"max": 0.5
 				},
-				"note": "Gums keep water from separating and extend shelf life."
+				"note": "The cheese is given guar or carob gum, which keeps water from separating and extends shelf life."
 			}
 		],
 		"sources": {

@@ -1,0 +1,99 @@
+{
+	"label": "Brown Swiss",
+	"aka": ["Braunvieh", "American Brown Swiss", "Swiss Brown"],
+	"names": {
+		"links": [
+			{"name": "Brown Swiss cattle, Wikipedia", "url": "https://en.wikipedia.org/wiki/Brown_Swiss_cattle"}
+		],
+		"text": "The Wikipedia page gives American Brown Swiss as a name, names the traditional breed Braunvieh, and says Swiss Brown refers to the original Braunvieh."
+	},
+	"kind": "breed",
+	"parent": "taurineCattle",
+	"about": {
+		"text": "The Brown Swiss is a dairy breed that descends from the traditional Alpine Braunvieh of Switzerland, and is distributed worldwide. Its milk has about 4% butterfat and 3.5% protein.",
+		"sources": {
+			"links": [
+				{"name": "Brown Swiss cattle, Wikipedia", "url": "https://en.wikipedia.org/wiki/Brown_Swiss_cattle"},
+				{"name": "List of dairy cattle breeds, Wikipedia", "url": "https://en.wikipedia.org/wiki/List_of_dairy_cattle_breeds"}
+			],
+			"text": "Read from the Brown Swiss Wikipedia page: the descent from the Alpine Braunvieh, the American Brown Swiss derivation, the worldwide distribution, and the milk composition summary. The list page names Brown Swiss among popular dairy breeds."
+		}
+	},
+	"origin": {
+		"regions": ["CH"],
+		"place": "Switzerland, Alpine region (the traditional Braunvieh)",
+		"sources": {
+			"links": [
+				{"name": "Brown Swiss cattle, Wikipedia", "url": "https://en.wikipedia.org/wiki/Brown_Swiss_cattle"}
+			],
+			"text": "The Wikipedia page describes the Braunvieh as a traditional breed of triple-purpose cattle from the Alpine region, particularly Switzerland. It names no canton and gives no founding date for the breed itself."
+		}
+	},
+	"head": [
+		{
+			"count": 7000000,
+			"year": 1990,
+			"where": "world",
+			"sources": {
+				"links": [
+					{"name": "Brown Swiss cattle, Wikipedia", "url": "https://en.wikipedia.org/wiki/Brown_Swiss_cattle"}
+				],
+				"text": "The page says the global population was estimated at approximately seven million head in 1990. This is old and not a current figure."
+			}
+		}
+	],
+	"yield": {
+		"perLactation": {"min": 10231, "max": 10231},
+		"lactationDays": {"min": 305, "max": 305},
+		"year": 2013,
+		"sources": {
+			"links": [
+				{"name": "Brown Swiss cattle, Wikipedia", "url": "https://en.wikipedia.org/wiki/Brown_Swiss_cattle"}
+			],
+			"text": "The page says an average milk yield of 10231 kg per cow in a lactation of 305 days was reported in 2013. The country of that record is not given. The same page also says 10231 kg per year, so the per-lactation reading is the one used here."
+		}
+	},
+	"composition": {
+		"fat": {"min": 4.0, "max": 4.03, "about": true},
+		"protein": {"min": 3.5, "max": 3.5},
+		"sources": {
+			"links": [
+				{"name": "Brown Swiss cattle, Wikipedia", "url": "https://en.wikipedia.org/wiki/Brown_Swiss_cattle"}
+			],
+			"text": "The page gives a milk-fat content of 4.03% and summarises the milk as about 4% butterfat and 3.5% protein."
+		}
+	},
+	"purposes": {
+		"purposes": ["dairy"],
+		"sources": {
+			"links": [
+				{"name": "List of dairy cattle breeds, Wikipedia", "url": "https://en.wikipedia.org/wiki/List_of_dairy_cattle_breeds"}
+			],
+			"text": "The Wikipedia list places Brown Swiss among dairy cattle breeds. The Brown Swiss page describes its Alpine ancestor, the Braunvieh, as triple-purpose cattle, which is not used here as a statement about the modern breed."
+		}
+	},
+	"risk": {
+		"status": "not at risk",
+		"year": 2007,
+		"sources": {
+			"links": [
+				{"name": "Brown Swiss cattle, Wikipedia", "url": "https://en.wikipedia.org/wiki/Brown_Swiss_cattle"}
+			],
+			"text": "The Wikipedia page gives the FAO (2007) conservation status as not at risk. A WebSearch did not reach a current DAD-IS record for Brown Swiss itself, so this status is from the 2007 FAO assessment as quoted on Wikipedia."
+		}
+	},
+	"facts": [
+		{
+			"k": "American history",
+			"v": "The first US import of the breed was in 1869. The breed society was formed in 1880, and the first herd-book dates from 1889.",
+			"sources": {
+				"links": [
+					{"name": "Brown Swiss cattle, Wikipedia", "url": "https://en.wikipedia.org/wiki/Brown_Swiss_cattle"}
+				],
+				"text": "Stated on the Wikipedia page for the American Brown Swiss."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "No canton and no founding date for the breed in Switzerland were found on the Wikipedia page, so formed is left out. No DAD-IS record for the breed was reached (search returned only the parent Braunvieh's 2025 DAD-IS status), so the risk status rests on the 2007 FAO assessment quoted on Wikipedia. The population figure is from 1990 and no current world or country count was found. The yield's country and lactation source are not stated on the page."
+}

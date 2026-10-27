@@ -1,0 +1,39 @@
+{
+	"label": "Jiulong yak",
+	"kind": "breed",
+	"parent": "yak",
+	"about": {
+		"text": "A Chinese yak breed kept in Sichuan. Its milk is recorded with fat of 6.9 to 7.2 percent and milk solids of 17.3 to 17.8 percent.",
+		"sources": {
+			"links": [
+				{"name": "PMC10252990 (Table 1, milk composition of Chinese yak)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10252990"},
+				{"name": "dagris.info breed listing for China (page 6)", "url": "https://dagris.info/ko/countries/358/breeds?page=6"}
+			],
+			"text": "Composition from Table 1 of the article, row 'Jiulong (China)'. Sichuan from the dagris.info listing, which describes it as 'The Jiulong Yak in Sichuan.'"
+		}
+	},
+	"origin": {
+		"regions": ["CN"],
+		"place": "Sichuan, China",
+		"sources": {
+			"links": [
+				{"name": "dagris.info breed listing for China (page 6)", "url": "https://dagris.info/ko/countries/358/breeds?page=6"}
+			],
+			"text": "The listing's description, 'The Jiulong Yak in Sichuan.' No formation date was found."
+		}
+	},
+	"composition": {
+		"fat": {"min": 6.9, "max": 7.2},
+		"protein": {"min": 4.9, "max": 4.9},
+		"lactose": {"min": 4.7, "max": 4.8},
+		"solids": {"min": 17.3, "max": 17.8},
+		"sources": {
+			"links": [
+				{"name": "PMC10252990 (Table 1)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10252990"}
+			],
+			"text": "Table 1, row 'Jiulong (China)': milk solids 17.3-17.8, fat 6.9-7.2, protein 4.9, lactose 4.7-4.8 (percent)."
+		}
+	},
+	"confidence": "medium",
+	"gaps": "Searched for a current population count (none found; the only regional figure, 4.07 million yak in north-west Sichuan, does not break out Jiulong), DAD-IS risk status (the DAD-IS record was not reachable), milk yield (a 1980 figure of 347 kg per 150-day lactation appeared only in a search summary, with no page to cite, so it is left out), and purposes. The alternative name Jiulong maoniu was not found in the pages read, so it is left out."
+}

@@ -33,21 +33,21 @@
 					"min": 7200,
 					"max": 7200
 				},
-				"note": "Trypsin at 0.2 % of the casein weight, in a 10 % casein solution, pH held at 8.0 with NaOH."
+				"note": "Trypsin, an enzyme, is added at 0.2 % of the casein weight to a 10 % casein solution, with pH held at 8.0 by sodium hydroxide."
 			},
 			{
 				"type": "custom",
 				"name": "clarify",
-				"note": "Acidified to pH 4.6 and the precipitate removed by centrifuge or microfilter, or microfiltered at pH 8.0 instead."
+				"note": "The solution is acidified to pH 4.6 and what falls out is spun off or membrane-filtered, or it is membrane-filtered at pH 8.0 instead."
 			},
 			{
 				"type": "add",
 				"what": "calcium",
-				"note": "The supernatant is taken to pH 9.0, then CaCl₂ (1.6 M) and Na₂HPO₄ (1 M) are added slowly."
+				"note": "The clear liquid is taken to pH 9.0, then calcium chloride (1.6 M) and disodium phosphate (1 M) are added slowly."
 			},
 			{
 				"type": "microfilter",
-				"note": "Keeps only the peptide–calcium phosphate complexes, by microfiltration and diafiltration."
+				"of": "mix"
 			}
 		],
 		"sources": {

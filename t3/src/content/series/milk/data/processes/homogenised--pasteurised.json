@@ -28,7 +28,6 @@
 		"steps": [
 			{
 				"type": "pasteurise",
-				"explain": true,
 				"temperature": {
 					"min": 72,
 					"max": 72
@@ -36,7 +35,8 @@
 				"seconds": {
 					"min": 15,
 					"max": 15
-				}
+				},
+				"note": "The milk undergoes heat treatment to kill harmful bacteria like Listeria, Salmonella and E. coli."
 			}
 		],
 		"sources": {

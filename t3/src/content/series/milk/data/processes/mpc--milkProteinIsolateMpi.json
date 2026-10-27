@@ -22,11 +22,8 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "ultrafilter"
-			},
-			{
 				"type": "diafilter",
-				"note": "Heavily, to wash lactose and minerals out."
+				"of": "mix"
 			}
 		],
 		"sources": {

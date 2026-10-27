@@ -8,28 +8,27 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "microfilter",
-				"note": "Precipitates are removed first by clarifier, microfiltration or filtering; mildly heated milk is preferred."
+				"type": "microfilter"
 			},
 			{
 				"type": "custom",
-				"name": "cation exchange",
+				"name": "bind",
 				"temperature": {
 					"min": 4,
 					"max": 15
 				},
-				"note": "At pH 4-9 the positively charged lactoperoxidase and lactoferrin stick to a cation exchange resin (one example cycles skimmed milk of pH 6.8 through it for 3 h)."
+				"note": "The positively charged lactoperoxidase and lactoferrin are bound to the resin at pH 4 to 9; in one example, skimmed milk at pH 6.8 is run through it for 3 h."
 			},
 			{
 				"type": "wash",
 				"what": "the resin",
 				"in": "5 mM acetate, 0.07 M KCl, pH 4.0",
-				"note": "Washed before anything is eluted."
+				"note": "The resin is rinsed before anything is taken off it."
 			},
 			{
 				"type": "custom",
-				"name": "elute LPO",
-				"note": "Lactoperoxidase comes off first, in 0.3-0.4 M NaCl at pH 4-5."
+				"name": "take off",
+				"note": "The lactoperoxidase is released from the resin first, in salt water of 0.3 to 0.4 M (NaCl, common salt) at pH 4 to 5."
 			}
 		],
 		"sources": {

@@ -33,7 +33,7 @@
 					"min": 10800,
 					"max": 10800
 				},
-				"note": "Stirred so no fat layer or protein clumps form on top."
+				"note": "The milk is stirred, so no fat layer or protein clumps form on top."
 			},
 			{
 				"type": "heat",
@@ -42,7 +42,8 @@
 					"min": 40,
 					"max": 40,
 					"about": true
-				}
+				},
+				"minor": true
 			}
 		],
 		"sources": {

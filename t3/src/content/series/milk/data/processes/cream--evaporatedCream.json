@@ -23,20 +23,23 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "homogenise"
+				"type": "homogenise",
+				"of": "cream"
 			},
 			{
 				"type": "evaporate",
-				"note": "About half the milk's weight in water is removed."
+				"of": "cream"
 			},
 			{
 				"type": "add",
 				"what": "stabilisers",
-				"note": "Disodium phosphate stops coagulation, carrageenan stops settling."
+				"note": "The cream is given stabilisers: disodium phosphate, a salt, which stops it curdling, and carrageenan, a seaweed extract, which stops it settling.",
+				"minor": true
 			},
 			{
 				"type": "custom",
-				"name": "fill"
+				"name": "fill",
+				"minor": true
 			},
 			{
 				"type": "heat",
@@ -49,7 +52,7 @@
 					"min": 900,
 					"max": 900
 				},
-				"note": "Sterilised in the can or bottle."
+				"note": "The cream is sterilised in its can or bottle."
 			}
 		],
 		"sources": {

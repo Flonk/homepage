@@ -23,10 +23,8 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "standardise"
-			},
-			{
-				"type": "homogenise"
+				"type": "standardise",
+				"minor": true
 			},
 			{
 				"type": "heat",
@@ -38,7 +36,8 @@
 				"seconds": {
 					"min": 120,
 					"max": 300
-				}
+				},
+				"minor": true
 			},
 			{
 				"type": "ferment",
@@ -94,14 +93,16 @@
 			},
 			{
 				"type": "custom",
-				"name": "stir"
+				"name": "stir",
+				"minor": true
 			},
 			{
 				"type": "heat",
 				"does": "cool",
 				"temperature": {
 					"max": 8
-				}
+				},
+				"minor": true
 			}
 		],
 		"sources": {

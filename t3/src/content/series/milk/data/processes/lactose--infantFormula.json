@@ -11,11 +11,11 @@
 				"type": "separate",
 				"off": "cream",
 				"by": "centrifuge",
-				"note": "A centrifuge takes the fat off the milk, leaving skimmed milk."
+				"of": "milk"
 			},
 			{
 				"type": "pasteurise",
-				"note": "The skimmed milk gets a short, gentle heat treatment."
+				"note": "The mix undergoes heat treatment to kill harmful bacteria like Listeria, Salmonella and E. coli."
 			},
 			{
 				"type": "evaporate",
@@ -30,7 +30,7 @@
 					"max": 50,
 					"about": true
 				},
-				"note": "The skimmed milk is concentrated under vacuum."
+				"of": "mix"
 			},
 			{
 				"type": "add",
@@ -39,7 +39,7 @@
 			},
 			{
 				"type": "homogenise",
-				"note": "The wet mix is homogenised again before drying."
+				"of": "milk"
 			},
 			{
 				"type": "dry",
@@ -48,7 +48,7 @@
 					"max": 200,
 					"about": true
 				},
-				"note": "The mix is atomised in a spray tower with air heated to about 200 °C, and the powder is finished on a fluid bed."
+				"note": "The mix is sprayed into a tower of hot air, and the powder is finished on a fluid bed."
 			}
 		],
 		"sources": {

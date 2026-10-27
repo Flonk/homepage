@@ -1,0 +1,85 @@
+{
+	"label": "Belgian Red",
+	"aka": ["Rode Belgische", "Rood West-Vlaams"],
+	"names": {
+		"links": [
+			{"name": "Belgian Red, Wikipedia", "url": "https://en.wikipedia.org/wiki/Belgian_Red"}
+		],
+		"text": "The Dutch names Rood West-Vlaams and Rode Belgische are given in the WebSearch result text for the Belgian Red Wikipedia page (not seen in the page read). The Wikipedia page read gives the breed's name and says it is distinct from the Flemish Red and other Belgian red breeds."
+	},
+	"kind": "breed",
+	"parent": "taurineCattle",
+	"about": {
+		"text": "The Belgian Red is a breed from Flanders in Belgium and northern France. It was formerly dual-purpose and is now mainly dairy. Cows averaged 5,522 kg a lactation in 2004, with milk fat of 4.27 per cent.",
+		"sources": {
+			"links": [
+				{"name": "Belgian Red, Wikipedia", "url": "https://en.wikipedia.org/wiki/Belgian_Red"}
+			],
+			"text": "Read from the Wikipedia page: Flanders and northern France origin, the formerly dual-purpose and now mainly dairy use, and the 2004 average of 5,522 kg per lactation with 4.27 per cent milk fat."
+		}
+	},
+	"origin": {
+		"regions": ["BE", "FR"],
+		"place": "Flanders, Belgium, and northern France (Cassel and Hazebrouck areas of French Flanders)",
+		"formed": {"min": 1919, "max": 1920},
+		"sources": {
+			"links": [
+				{"name": "Belgian Red, Wikipedia", "url": "https://en.wikipedia.org/wiki/Belgian_Red"}
+			],
+			"text": "The Wikipedia page says the breed is thought to derive from local cattle of the Cassel and Hazebrouck areas of French Flanders, with British Shorthorn influence. It says a herd-book was started in 1919. The formation is given as 1919 to 1920 because another account in the search snippets gives 1920 for the first stud book; the range is what is sourced."
+		}
+	},
+	"yield": {
+		"perLactation": {"min": 5522, "max": 5522},
+		"where": "BE",
+		"year": 2004,
+		"sources": {
+			"links": [
+				{"name": "Belgian Red, Wikipedia", "url": "https://en.wikipedia.org/wiki/Belgian_Red"}
+			],
+			"text": "The Wikipedia page gives the cows' average milk yield, measured in 2004, as 5,522 kg per lactation. The lactation length is not stated. The WebSearch snippets give 4,089 kg for 1978 and about 5,000 kg for 2004; these were not opened and are not used."
+		}
+	},
+	"composition": {
+		"fat": {"min": 4.27, "max": 4.27},
+		"sources": {
+			"links": [
+				{"name": "Belgian Red, Wikipedia", "url": "https://en.wikipedia.org/wiki/Belgian_Red"}
+			],
+			"text": "The Wikipedia page gives a milk-fat content of 4.27 per cent with the 2004 yield. No protein figure was found on the page read."
+		}
+	},
+	"purposes": {
+		"purposes": ["dairy", "dual-purpose"],
+		"sources": {
+			"links": [
+				{"name": "Belgian Red, Wikipedia", "url": "https://en.wikipedia.org/wiki/Belgian_Red"}
+			],
+			"text": "The Wikipedia page says the breed was formerly dual-purpose and is now mainly dairy. After the 1980s, breeders selected separate dual-purpose and dairy strains."
+		}
+	},
+	"risk": {
+		"status": "unknown",
+		"year": 2025,
+		"sources": {
+			"links": [
+				{"name": "Belgian Red, Wikipedia", "url": "https://en.wikipedia.org/wiki/Belgian_Red"}
+			],
+			"text": "The Wikipedia page lists the DAD-IS status as unknown in 2025. Its other figures are EAAP 2007 endangered and FAO 2007 not listed, which are not used here. The DAD-IS page itself could not be opened."
+		}
+	},
+	"facts": [
+		{
+			"k": "Herd-book",
+			"v": "A herd-book was started in 1919, after the First World War had left the cattle of West Flanders largely destroyed.",
+			"sources": {
+				"links": [
+					{"name": "Belgian Red, Wikipedia", "url": "https://en.wikipedia.org/wiki/Belgian_Red"}
+				],
+				"text": "The herd-book date comes from the Wikipedia page. The war damage to the cattle population is from the search snippets of a regional breed source and is not verified on a page opened here, so the fact states only the herd-book date."
+			}
+		}
+	],
+	"confidence": "low",
+	"gaps": "The population figures conflict. The 1986 count of about 50,000 is regional and old, and a claim of fewer than 100 in the world in 2001 has no source on the page, so it is left out. Current breed-wide population was not found; the only count found, about 50,000 in 1986, is regional and is left out of head. No protein figure was found on the page read. The DAD-IS page could not be opened, so its status is taken from Wikipedia. The Okstate Breeds of Livestock page returned HTTP 403 and was not read. The formation date is given as 1919 to 1920 because sources differ."
+}

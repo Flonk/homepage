@@ -24,17 +24,9 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "coagulate",
-				"by": "rennet",
-				"note": "Animal rennet only."
-			},
-			{
 				"type": "salt",
 				"how": "dry",
-				"note": "Each side in turn.",
-				"seconds": {
-					"min": 43200
-				}
+				"note": "Each side is salted in turn."
 			},
 			{
 				"type": "dry",
@@ -42,7 +34,8 @@
 					"min": 1296000,
 					"max": 1296000,
 					"about": true
-				}
+				},
+				"minor": true
 			},
 			{
 				"type": "ferment",
@@ -71,12 +64,13 @@
 				"humidity": {
 					"min": 90
 				},
-				"note": "Two months or more in all counting the airing, turned and cleaned on wooden shelves."
+				"note": "The cheese is turned and cleaned on wooden shelves, for two months or more in all, counting the airing."
 			},
 			{
 				"type": "custom",
 				"name": "wrap",
-				"note": "In leaf-printed paper."
+				"note": "The cheese is wrapped in paper printed with leaves.",
+				"minor": true
 			}
 		],
 		"sources": {

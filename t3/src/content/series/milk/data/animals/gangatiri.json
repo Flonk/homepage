@@ -1,0 +1,124 @@
+{
+	"label": "Gangatiri",
+	"aka": [
+		"Eastern Hariana",
+		"Shahabadi"
+	],
+	"names": {
+		"links": [
+			{
+				"name": "Gangatiri, Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/Gangatiri"
+			},
+			{
+				"name": "Dairy Knowledge Portal, Gangatiri",
+				"url": "https://dairyknowledge.in/dkp/node/2066"
+			}
+		],
+		"text": "Read from the Wikipedia page, which gives Eastern Hariana and Shahabadi as alternative names, and from the Dairy Knowledge Portal page, which gives the same two names among the breed's details."
+	},
+	"kind": "breed",
+	"parent": "zebuCattle",
+	"about": {
+		"text": "The Gangatiri is an Indian dairy breed from the Ganges plains, in eastern Uttar Pradesh and western Bihar. The Dairy Knowledge Portal describes it as a medium milk producer with good draught ability. Its milk averages about 1,050 kg a lactation, with fat of about 4.1 to 5.2 per cent.",
+		"sources": {
+			"links": [
+				{
+					"name": "Gangatiri, Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Gangatiri"
+				},
+				{
+					"name": "Dairy Knowledge Portal, Gangatiri",
+					"url": "https://dairyknowledge.in/dkp/node/2066"
+				}
+			],
+			"text": "Origin and region from the Wikipedia page (banks of the Ganga in eastern Uttar Pradesh and western Bihar) and from the Dairy Knowledge Portal page (home tract). Medium milk producer and good draught ability from the Dairy Knowledge Portal. The 1,050 kg average and fat range come from the same Dairy Knowledge Portal page."
+		}
+	},
+	"origin": {
+		"regions": [
+			"IN"
+		],
+		"place": "Banks of the Ganga in eastern Uttar Pradesh and western Bihar",
+		"sources": {
+			"links": [
+				{
+					"name": "Gangatiri, Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Gangatiri"
+				},
+				{
+					"name": "Dairy Knowledge Portal, Gangatiri",
+					"url": "https://dairyknowledge.in/dkp/node/2066"
+				}
+			],
+			"text": "The Wikipedia page says the breed is indigenous to the area along the banks of the Ganga in eastern Uttar Pradesh and western Bihar. The Dairy Knowledge Portal names the home tract as Bhojpur district of Bihar and Varanasi, Mirzapur, Ghazipur and Ballia districts of Uttar Pradesh."
+		}
+	},
+	"yield": {
+		"perLactation": {
+			"min": 900,
+			"max": 1200
+		},
+		"where": "IN",
+		"sources": {
+			"links": [
+				{
+					"name": "Dairy Knowledge Portal, Gangatiri",
+					"url": "https://dairyknowledge.in/dkp/node/2066"
+				}
+			],
+			"text": "The Dairy Knowledge Portal page gives an average of 1050 kg per lactation, varying from 900 to 1200 kg. The lactation length and the year of recording are not stated on the page, so they are left out."
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 4.1,
+			"max": 5.2
+		},
+		"sources": {
+			"links": [
+				{
+					"name": "Dairy Knowledge Portal, Gangatiri",
+					"url": "https://dairyknowledge.in/dkp/node/2066"
+				}
+			],
+			"text": "The Dairy Knowledge Portal page gives an average fat of 4.9 per cent, varying from 4.1 to 5.2 per cent. Only the range is recorded here. The average is not used."
+		}
+	},
+	"purposes": {
+		"purposes": [
+			"dual-purpose",
+			"draught"
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Gangatiri, Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/Gangatiri"
+				},
+				{
+					"name": "Dairy Knowledge Portal, Gangatiri",
+					"url": "https://dairyknowledge.in/dkp/node/2066"
+				}
+			],
+			"text": "The Wikipedia page calls the Gangatiri an important dual-purpose breed of India. The Dairy Knowledge Portal page says it has good draftability."
+		}
+	},
+	"facts": [
+		{
+			"k": "Breeding tract",
+			"v": "The home tract is Bhojpur district of Bihar, and Varanasi, Mirzapur, Ghazipur and Ballia districts of Uttar Pradesh.",
+			"sources": {
+				"links": [
+					{
+						"name": "Dairy Knowledge Portal, Gangatiri",
+						"url": "https://dairyknowledge.in/dkp/node/2066"
+					}
+				],
+				"text": "Read from the Dairy Knowledge Portal page."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "No FAO DAD-IS risk status was found, so risk is left out. No population figure with a year was found on either page, so head is left out. The lactation length and the formation date were not found, so they are left out. A WebSearch snippet gave about 67,000 animals in the breeding tract and an average fat of 4.33 per cent (3.1 to 6.0), but the pages were not opened for these and they conflict with the page figures, so they are left out. The Gangatiri's own first-lactation study (946.57 kg, least squares mean) was seen only in a search snippet, so it is left out too."
+}

@@ -26,18 +26,6 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "heat",
-				"does": "heat",
-				"note": "Raw milk, not heated above this before coagulation.",
-				"temperature": {
-					"max": 36
-				}
-			},
-			{
-				"type": "heat",
-				"does": "cook"
-			},
-			{
 				"type": "ferment",
 				"does": "ripen",
 				"temperature": {
@@ -50,7 +38,7 @@
 				"humidity": {
 					"min": 90
 				},
-				"note": "At least 80–90 days (90 in the 2023 amendment) and 180 days for the long-aged name, in caves."
+				"note": "The wheels are ripened in caves; the long-aged name takes 180 days."
 			}
 		],
 		"text": "Natural fermentation acidity, no named starter in the sources. Ripened in caves; sources differ on 80 or 90 days, 180 days for the long-aged name.",

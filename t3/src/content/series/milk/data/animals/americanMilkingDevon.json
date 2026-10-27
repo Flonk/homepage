@@ -1,0 +1,88 @@
+{
+	"label": "American Milking Devon",
+	"aka": ["Milking Devon", "Milking (Red) Devon Cattle"],
+	"names": {
+		"links": [
+			{"name": "Wikipedia: American Milking Devon", "url": "https://en.wikipedia.org/wiki/American_Milking_Devon"}
+		],
+		"text": "Names as used on the Wikipedia page: 'Milking Devon' is used there, and a Mount Vernon source is titled 'Milking (Red) Devon Cattle'. The Mount Vernon source was seen only as a title on the Wikipedia page and was not fetched."
+	},
+	"kind": "breed",
+	"parent": "taurineCattle",
+	"about": {
+		"text": "A traditional American dual-purpose breed of red Devon cattle, descended from animals brought from Devon, England, to the Plymouth Colony in 1624. It is kept for milk and beef and as a heritage breed, and is hardy on low-input, forage-based diets.",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: American Milking Devon", "url": "https://en.wikipedia.org/wiki/American_Milking_Devon"}
+			],
+			"text": "Summarised from the Wikipedia page: the 1624 import, the dual-purpose use for milk and beef, the heritage role, and the hardiness on forage-based diets."
+		}
+	},
+	"origin": {
+		"regions": ["US", "GB"],
+		"place": "Plymouth Colony, Massachusetts, from stock brought from Devon, England",
+		"formed": {"min": 1624, "max": 1978},
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: American Milking Devon", "url": "https://en.wikipedia.org/wiki/American_Milking_Devon"}
+			],
+			"text": "The Wikipedia page says three heifers and a bull were brought to Plymouth Colony in 1624 by Edward Winslow, and the breed was established as separate in 1978 with the formation of the American Milking Devon Cattle Association. The range is those two dates."
+		}
+	},
+	"head": [
+		{
+			"count": 211,
+			"year": 2016,
+			"where": "US",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: American Milking Devon", "url": "https://en.wikipedia.org/wiki/American_Milking_Devon"}
+				],
+				"text": "211 head in 2016, as stated on the Wikipedia page, which cites FAO DAD-IS. The DAD-IS page itself was not fetched. The Wikipedia page also gives about 500 in 2021 from the Livestock Conservancy, but that is a different source and is not used here."
+			}
+		}
+	],
+	"purposes": {
+		"purposes": ["dual-purpose"],
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: American Milking Devon", "url": "https://en.wikipedia.org/wiki/American_Milking_Devon"}
+			],
+			"text": "Listed on the Wikipedia page as dual-purpose, for milk and beef."
+		}
+	},
+	"risk": {
+		"status": "endangered",
+		"year": 2007,
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: American Milking Devon", "url": "https://en.wikipedia.org/wiki/American_Milking_Devon"}
+			],
+			"text": "FAO (2007) lists the breed as endangered, as stated on the Wikipedia page. The same page gives conflicting DAD-IS (2022) and Livestock Conservancy (2022, critical) statuses, which are not recorded here."
+		}
+	},
+	"facts": [
+		{
+			"k": "Heritage",
+			"v": "Its colonial type is kept as a multi-purpose animal, and it has been kept at Mount Vernon and at the National Colonial Farm in Piscataway Park.",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: American Milking Devon", "url": "https://en.wikipedia.org/wiki/American_Milking_Devon"}
+				],
+				"text": "As stated on the Wikipedia page."
+			}
+		},
+		{
+			"k": "Ark of Taste",
+			"v": "The breed was formerly on the Slow Food Ark of Taste.",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: American Milking Devon", "url": "https://en.wikipedia.org/wiki/American_Milking_Devon"}
+				],
+				"text": "As stated on the Wikipedia page."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "No milk yield, lactation length, or butterfat and protein figures were found in a source fit to record. Homestead websites from search results were left out as not reliable. The DAD-IS page itself was not fetched, and its status for 2022 conflicts with the FAO 2007 entry. The 1978 date is when the association was formed, not when the breed was created."
+}

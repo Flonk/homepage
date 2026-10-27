@@ -1,0 +1,131 @@
+{
+	"label": "Mehsana",
+	"aka": [],
+	"names": {
+		"links": [
+			{
+				"name": "List of water buffalo breeds (Wikipedia)",
+				"url": "https://en.wikipedia.org/wiki/List_of_water_buffalo_breeds"
+			},
+			{
+				"name": "Mehsana buffalo (Wikipedia)",
+				"url": "https://en.wikipedia.org/wiki/Mehsana_buffalo"
+			}
+		],
+		"text": "No other names found. The Wikipedia breed page and the list both give only \"Mehsana\"."
+	},
+	"kind": "breed",
+	"parent": "riverBuffalo",
+	"about": {
+		"text": "A dairy water buffalo from Gujarat, India, named for the town of Mehsana in the north of the state, where it is still concentrated. It is known as one of the best milk breeds in India and is kept for milk production.",
+		"sources": {
+			"links": [
+				{
+					"name": "Mehsana buffalo (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Mehsana_buffalo"
+				},
+				{
+					"name": "Dudhsagar Dairy: Mehsana buffalo",
+					"url": "https://dudhsagardairy.coop/mehsana-buffalo/"
+				}
+			],
+			"text": "Wikipedia article (concentration in the Mehsana area, dairy use, the milk-breed description) read on WebFetch. The Dudhsagar Dairy page (native tract, the Mehsana Buffalo Breeders Association) read on WebFetch. Milk-production wording from the Wikipedia article."
+		}
+	},
+	"origin": {
+		"regions": ["IN"],
+		"place": "Gujarat, India. Native tract includes Mehsana, Patan, Banaskantha, Sabarkantha, Gandhinagar, Ahmedabad and Panchmahal.",
+		"sources": {
+			"links": [
+				{
+					"name": "Mehsana buffalo (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Mehsana_buffalo"
+				},
+				{
+					"name": "Dudhsagar Dairy: Mehsana buffalo",
+					"url": "https://dudhsagardairy.coop/mehsana-buffalo/"
+				}
+			],
+			"text": "Place from the Wikipedia article and the Dudhsagar Dairy page's native-tract list. The Dudhsagar page says the breed is a natural cross between Murrah and Surti buffaloes. No formation dates were found."
+		}
+	},
+	"head": [
+		{
+			"count": 3625125,
+			"year": 2019,
+			"where": "IN",
+			"sources": {
+				"links": [
+					{
+						"name": "Mehsana buffalo: Dudhsagar Dairy",
+						"url": "https://dudhsagardairy.coop/mehsana-buffalo/"
+					}
+				],
+				"text": "Figure 36,25,125 from the Dudhsagar Dairy page, which credits the 20th Livestock Census of India. The page does not state the census year; 2019 is the year of that census, from general knowledge, not from the page."
+			}
+		}
+	],
+	"yield": {
+		"perLactation": {"min": 598, "max": 3597},
+		"lactationDays": {"min": 270, "max": 300},
+		"where": "IN",
+		"sources": {
+			"links": [
+				{
+					"name": "Mehsana buffalo: Dudhsagar Dairy",
+					"url": "https://dudhsagardairy.coop/mehsana-buffalo/"
+				}
+			],
+			"text": "Dudhsagar Dairy breed profile: average lactation yield about 1,986 kg, range 598 to 3,597 kg; lactation length approximately 270 to 300 days. The range is of individual records; the average is 1,986 kg. The page does not give a year."
+		}
+	},
+	"composition": {
+		"fat": {"min": 5.2, "max": 9.5},
+		"sources": {
+			"links": [
+				{
+					"name": "Mehsana buffalo: Dudhsagar Dairy",
+					"url": "https://dudhsagardairy.coop/mehsana-buffalo/"
+				}
+			],
+			"text": "Dudhsagar Dairy breed profile: average fat about 6.83%, range 5.2% to 9.5%."
+		}
+	},
+	"purposes": {
+		"purposes": ["dairy"],
+		"sources": {
+			"links": [
+				{
+					"name": "Mehsana buffalo (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Mehsana_buffalo"
+				},
+				{
+					"name": "List of water buffalo breeds (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/List_of_water_buffalo_breeds"
+				}
+			],
+			"text": "Wikipedia article says the breed is raised for milk production. The list gives use as dairy."
+		}
+	},
+	"facts": [
+		{
+			"k": "Ancestry",
+			"v": "A mixture of Murrah and Surti buffalo blood, per the Wikipedia article; the Dudhsagar Dairy page calls it a natural cross between the two.",
+			"sources": {
+				"links": [
+					{
+						"name": "Mehsana buffalo (Wikipedia)",
+						"url": "https://en.wikipedia.org/wiki/Mehsana_buffalo"
+					},
+					{
+						"name": "Dudhsagar Dairy: Mehsana buffalo",
+						"url": "https://dudhsagardairy.coop/mehsana-buffalo/"
+					}
+				],
+				"text": "Both pages, read on WebFetch."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "Searched for an FAO DAD-IS risk status and found none in the pages read. No formation dates. The head figure's year is not on the source page. A 2023 Buffalo Bulletin study of 7,782 Mehsana buffaloes from Dudhsagar Dairy (first lactation about 1,900 litres, fat about 7.11%) was seen in search results only and is not used. Older 1,200 to 1,500 kg estimate seen in search text only. No other names found beyond Mehsana."
+}

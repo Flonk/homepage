@@ -23,27 +23,11 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "custom",
-				"name": "prepare rennet",
-				"note": "Dried calf rennet steeped in water with ginger, hot pepper, garlic or onion, Guinea pepper, and millet and cowpea grain."
-			},
-			{
-				"type": "filter"
-			},
-			{
-				"type": "coagulate",
-				"seconds": {
-					"min": 43200,
-					"max": 86400
-				},
-				"note": "In a calabash."
-			},
-			{
 				"type": "drain"
 			},
 			{
 				"type": "dry",
-				"note": "In the open air, on mats of Deverra scoparia stalks."
+				"note": "The cheese is dried in the open air, on mats of the stalks of Deverra scoparia, a plant."
 			}
 		],
 		"sources": {

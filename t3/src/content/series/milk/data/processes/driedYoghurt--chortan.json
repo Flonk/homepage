@@ -25,18 +25,13 @@
 		"steps": [
 			{
 				"type": "add",
-				"what": "water"
+				"what": "water",
+				"note": "The yoghurt is diluted with it."
 			},
 			{
 				"type": "heat",
-				"does": "heat"
-			},
-			{
-				"type": "drain",
-				"by": "sieve"
-			},
-			{
-				"type": "dry"
+				"does": "heat",
+				"note": "The diluted yoghurt is heated."
 			}
 		],
 		"sources": {

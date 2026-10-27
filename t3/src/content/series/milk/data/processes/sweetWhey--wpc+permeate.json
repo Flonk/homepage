@@ -12,10 +12,12 @@
 			{
 				"type": "separate",
 				"off": "solids",
-				"note": "Defatted and clarified, fat and casein fines removed; microfiltration is an option."
+				"note": "The whey is defatted and clarified, taking out its fat and tiny bits of casein; microfiltration is an option.",
+				"minor": true
 			},
 			{
-				"type": "ultrafilter"
+				"type": "ultrafilter",
+				"of": "whey"
 			}
 		],
 		"sources": {
@@ -53,11 +55,11 @@
 				"steps": [
 					{
 						"type": "diafilter",
-						"note": "Water added during UF to wash out more lactose and minerals."
+						"of": "whey"
 					},
 					{
 						"type": "dry",
-						"note": "Spray-dried."
+						"note": "The concentrate is spray-dried to a powder."
 					}
 				],
 				"sources": {
@@ -94,7 +96,8 @@
 						"solids": {
 							"min": 60,
 							"max": 62
-						}
+						},
+						"of": "whey"
 					},
 					{
 						"type": "custom",
@@ -103,11 +106,11 @@
 							"min": 14400,
 							"max": 21600
 						},
-						"note": "Over 75 % of it crystallises before spray-drying."
+						"note": "The lactose is crystallised before spray-drying, and over 75 % of it crystallises."
 					},
 					{
 						"type": "dry",
-						"note": "Spray-dried."
+						"note": "The permeate is spray-dried to a powder."
 					}
 				],
 				"sources": {

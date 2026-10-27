@@ -41,12 +41,13 @@ export const strip = (chips: Chip[], f: number): Strip => {
 };
 export const drawStrip = (g: Pen, laid: Strip, left: number, top: number, f: number, paint: Paint) => {
 	for (const c of laid.cards) drawCard(g, c, left + c.x, top + c.y, f, paint);
-	// In the ground's colour, as if cut out of the line they are on (see JOIN in layout).
+	/* In the ground's colour, as if cut out of the line they are on (see JOIN
+	   in layout); a screen pixel down, the glyph sitting high of its middle. */
 	g.textAlign = 'center';
 	g.textBaseline = 'middle';
 	g.fillStyle = paint.ink.ground;
 	g.font = font(CARD.said * f, '700', MONO());
-	for (const j of laid.joins) g.fillText('→', left + j.x, top + j.y);
+	for (const j of laid.joins) g.fillText('→', left + j.x, top + j.y + 1 / paint.s);
 };
 
 /* ---- On a card ---- */

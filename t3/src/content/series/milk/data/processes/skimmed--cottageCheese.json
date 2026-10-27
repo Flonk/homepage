@@ -31,16 +31,6 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "pasteurise",
-				"temperature": {
-					"min": 72
-				},
-				"seconds": {
-					"min": 16,
-					"max": 16
-				}
-			},
-			{
 				"type": "ferment",
 				"does": "incubate",
 				"kinds": [
@@ -85,12 +75,11 @@
 				"pH": {
 					"max": 4.6
 				},
-				"note": "A mesophilic culture that must not be gassy (heterofermentative) or ropy."
+				"note": "The milk is soured by a starter that must not make gas or slime."
 			},
 			{
 				"type": "coagulate",
-				"by": "rennet",
-				"note": "A little rennet, 50 IMCU per 100 kg, is added about 90 min after the culture."
+				"by": "rennet"
 			},
 			{
 				"type": "cut",
@@ -99,7 +88,7 @@
 					"min": 12,
 					"max": 12
 				},
-				"note": "At pH about 4.8, then rested 15–20 min."
+				"note": "The curd is cut at about pH 4.8, then left to rest for 15–20 min."
 			},
 			{
 				"type": "heat",
@@ -112,44 +101,19 @@
 					"min": 900,
 					"max": 1200
 				},
-				"note": "Raised 0.5 °C per 5 min for the first 30 min, faster later, over about 2 h; the heat stops the culture."
+				"note": "The curd is raised 0.5 °C every 5 min for the first 30 min, then faster, over about 2 h; the heat stops the culture."
 			},
 			{
 				"type": "drain"
 			},
 			{
-				"type": "washCurd",
-				"temperature": {
-					"min": 20,
-					"max": 25
-				},
-				"seconds": {
-					"min": 900,
-					"max": 1200
-				},
-				"note": "First of three washes, to wash out lactic acid; Tetra Pak: 30, 16 and 4 °C."
+				"type": "washCurd"
 			},
 			{
-				"type": "washCurd",
-				"temperature": {
-					"min": 10,
-					"max": 10
-				},
-				"seconds": {
-					"min": 900,
-					"max": 1200
-				}
+				"type": "washCurd"
 			},
 			{
-				"type": "washCurd",
-				"temperature": {
-					"min": 1.5,
-					"max": 5
-				},
-				"seconds": {
-					"min": 900,
-					"max": 1200
-				}
+				"type": "washCurd"
 			},
 			{
 				"type": "heat",
@@ -157,12 +121,13 @@
 				"temperature": {
 					"min": 4,
 					"max": 6
-				}
+				},
+				"minor": true
 			},
 			{
 				"type": "add",
 				"what": "cream and salt",
-				"note": "They decide most of the flavour (Tetra Pak: pasteurised cream with a little salt, heated to 80–90 °C, added at 4 °C)."
+				"note": "The grains are mixed with cream and salt, which together decide most of the flavour."
 			}
 		],
 		"text": "Some blends also carry Streptococcus thermophilus. The culture must not be gassy or ropy; rennet goes in about 90 min after it. Industrial North American cottage cheese is often set by direct acid instead.",

@@ -6,7 +6,7 @@
 		"blancmange"
 	],
 	"variant": true,
-	"text": "The cornflour is stirred smooth in a little cold milk, then into the hot sweetened milk. Boiling gelatinises the starch, which then sets to a gel as it cools. Home recipes differ a lot in proportions; Wikipedia gives no numbers.",
+	"text": "Boiling gelatinises the starch, which then sets to a gel as it cools.",
 	"sources": {
 		"links": [
 			{
@@ -19,46 +19,5 @@
 			}
 		],
 		"text": "The table, the facts and the words on how it is made, from these."
-	},
-	"processing": {
-		"steps": [
-			{
-				"type": "custom",
-				"name": "infuse",
-				"note": "Bay leaf or lemon peel in the hot milk."
-			},
-			{
-				"type": "add",
-				"note": "2 tablespoons, mixed with 1/4 cup of the cold milk first.",
-				"what": "cornflour"
-			},
-			{
-				"type": "heat",
-				"does": "heat",
-				"seconds": {
-					"min": 180,
-					"max": 180
-				},
-				"note": "Brought to the boil, then simmered."
-			},
-			{
-				"type": "custom",
-				"name": "set",
-				"note": "In a mould rinsed with cold water, chilled until set."
-			}
-		],
-		"sources": {
-			"links": [
-				{
-					"name": "Sydney Living Museums: Blancmange made with cornflour (1961 recipe)",
-					"url": "https://blogs.sydneylivingmuseums.com.au/cook/recipe/blancmange-version-1/"
-				},
-				{
-					"name": "Wikipedia: Blancmange",
-					"url": "https://en.wikipedia.org/wiki/Blancmange"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		}
 	}
 }

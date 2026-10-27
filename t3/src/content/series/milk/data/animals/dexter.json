@@ -1,0 +1,93 @@
+{
+	"label": "Dexter",
+	"aka": [],
+	"names": {
+		"unsourced": true,
+		"text": "No alternative names were given in the Wikipedia page read for this record, so none are listed."
+	},
+	"kind": "breed",
+	"parent": "taurineCattle",
+	"about": {
+		"text": "The Dexter is a small Irish breed from County Kerry, reared for both milk and beef. Its milk averages about 2,250 kg a lactation, and some farms reach about 3,000 kg. The largest populations reported to FAO DAD-IS in 2023 are in Denmark and the United Kingdom.",
+		"sources": {
+			"links": [
+				{"name": "Dexter cattle, Wikipedia", "url": "https://en.wikipedia.org/wiki/Dexter_cattle"}
+			],
+			"text": "Read from the Wikipedia page: County Kerry origin, dual-purpose use, the milk figures (citing Porter et al., 2016, p. 169, Mason's World Encyclopedia of Livestock Breeds and Breeding) and the 2023 DAD-IS reporting with the largest populations in Denmark and the United Kingdom."
+		}
+	},
+	"origin": {
+		"regions": ["IE"],
+		"place": "County Kerry, south-western Ireland",
+		"formed": {"min": 1700, "max": 1799},
+		"sources": {
+			"links": [
+				{"name": "Dexter cattle, Wikipedia", "url": "https://en.wikipedia.org/wiki/Dexter_cattle"}
+			],
+			"text": "The Wikipedia page says the Dexter originated in the eighteenth century in County Kerry, south-western Ireland. The Livestock Conservancy, seen only in a search snippet, dates it to the early 1800s, so that date is not used."
+		}
+	},
+	"yield": {
+		"perLactation": {"min": 2250, "max": 3000},
+		"year": 2016,
+		"sources": {
+			"links": [
+				{"name": "Dexter cattle, Wikipedia", "url": "https://en.wikipedia.org/wiki/Dexter_cattle"}
+			],
+			"text": "The Wikipedia page gives an average of about 2,250 kg per lactation, with some farms reaching an average of 3,000 kg, citing Porter et al. 2016, p. 169, Mason's World Encyclopedia of Livestock Breeds and Breeding. The figure is not given for a named country, so no country is recorded. The lactation length is not stated."
+		}
+	},
+	"purposes": {
+		"purposes": ["dual-purpose"],
+		"sources": {
+			"links": [
+				{"name": "Dexter cattle, Wikipedia", "url": "https://en.wikipedia.org/wiki/Dexter_cattle"}
+			],
+			"text": "The Wikipedia page says the breed is dual-purpose, reared for both milk and beef."
+		}
+	},
+	"risk": {
+		"status": "not at risk",
+		"year": 2022,
+		"sources": {
+			"links": [
+				{"name": "Dexter cattle, Wikipedia", "url": "https://en.wikipedia.org/wiki/Dexter_cattle"}
+			],
+			"text": "The Wikipedia page, which cites FAO DAD-IS, gives the worldwide status as not at risk and the transboundary status as not at risk, both for 2022. Its Ireland entry, also for 2022, reads at risk/critical, which is not a value this record uses. DAD-IS itself could not be opened, so the status is taken from Wikipedia."
+		}
+	},
+	"facts": [
+		{
+			"k": "Name",
+			"v": "The breed is apparently named after a man named Dexter, factor of Lord Hawarden's estates on Valentia Island. It was brought to England in 1882.",
+			"sources": {
+				"links": [
+					{"name": "Dexter cattle, Wikipedia", "url": "https://en.wikipedia.org/wiki/Dexter_cattle"}
+				],
+				"text": "Read from the Wikipedia page, which says the name is apparently after the factor; the page gives no more certain source for the name."
+			}
+		},
+		{
+			"k": "Size",
+			"v": "Bulls are typically 102 to 112 cm at the withers, and cows about 5 cm shorter. Cows average about 325 kg.",
+			"sources": {
+				"links": [
+					{"name": "Dexter cattle, Wikipedia", "url": "https://en.wikipedia.org/wiki/Dexter_cattle"}
+				],
+				"text": "Read from the Wikipedia page's description of the breed."
+			}
+		},
+		{
+			"k": "Genetic testing",
+			"v": "Some Dexters carry a semilethal chondrodysplasia gene. Mating two carriers gives a 25 per cent chance of premature abortion. A DNA test on tail hair can detect it.",
+			"sources": {
+				"links": [
+					{"name": "Dexter cattle, Wikipedia", "url": "https://en.wikipedia.org/wiki/Dexter_cattle"}
+				],
+				"text": "Read from the Wikipedia page's description of the breed's health issues."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "No headcount for the breed was found in the page read. The Wikipedia infobox figure of 144 (FAO, 2007) does not say what it counts, so it is left out. No breed-wide milk fat or protein figures were found, so composition is left out. The Okstate Breeds of Livestock page returned HTTP 403 and was not read. A search snippet gave a house-cow figure of 2,450 to 3,050 litres per 305-day lactation, which describes house cows rather than the breed and is left out. The Ireland DAD-IS entry (at risk/critical) is not a value in the enum, so the worldwide status is used and the difference is noted in the risk text."
+}

@@ -1,0 +1,170 @@
+{
+	"label": "Comisana",
+	"aka": [
+		"Faccia Rossa",
+		"Lentinese"
+	],
+	"names": {
+		"links": [
+			{
+				"name": "Wikipedia: Comisana",
+				"url": "https://en.wikipedia.org/wiki/Comisana"
+			}
+		],
+		"text": "Taken from the English Wikipedia Comisana page, which gives Faccia Rossa and Lentinese as other names."
+	},
+	"kind": "breed",
+	"parent": "sheep",
+	"about": {
+		"text": "The Comisana is an indigenous Sicilian sheep, named after the comune of Comiso in Ragusa province, and kept mainly in the provinces of Caltanissetta, Enna and Palermo. It is a triple-purpose breed, primarily kept for milk, whose milk is about 6.5% fat and 5.2% protein.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Comisana",
+					"url": "https://en.wikipedia.org/wiki/Comisana"
+				}
+			],
+			"text": "Origin, provinces, triple-purpose status and milk composition as stated on the English Wikipedia Comisana page."
+		}
+	},
+	"origin": {
+		"regions": [
+			"IT"
+		],
+		"place": "Sicily, mainly Caltanissetta, Enna and Palermo provinces; named after Comiso (Ragusa)",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Comisana",
+					"url": "https://en.wikipedia.org/wiki/Comisana"
+				}
+			],
+			"text": "Taken from the English Wikipedia Comisana page. The page says it is indigenous to central and northern Sicily and gives the name's origin in Comiso."
+		}
+	},
+	"yield": {
+		"perLactation": {
+			"min": 104,
+			"max": 189
+		},
+		"where": "IT",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Comisana",
+					"url": "https://en.wikipedia.org/wiki/Comisana"
+				}
+			],
+			"text": "The page gives 104 ± 30 kg per lactation for primiparous ewes and 189 ± 51 kg for pluriparous ewes. The min and max above are those two means, not a spread. Lactation length and year are not stated on the page. The page cites DAD-IS datasheets and an ASPA publication for these figures; neither was readable here."
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 6.5,
+			"max": 6.5
+		},
+		"protein": {
+			"min": 5.2,
+			"max": 5.2
+		},
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Comisana",
+					"url": "https://en.wikipedia.org/wiki/Comisana"
+				}
+			],
+			"text": "Milk fat 6.5% and protein 5.2% as stated on the Wikipedia Comisana page. Lactose and total solids were not stated."
+		}
+	},
+	"purposes": {
+		"purposes": [
+			"dairy",
+			"meat",
+			"wool"
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Comisana",
+					"url": "https://en.wikipedia.org/wiki/Comisana"
+				}
+			],
+			"text": "The page calls it triple-purpose, primarily for milk. It does not name the other two uses, so meat and wool are included on the strength of the triple-purpose label, and their order is not sourced."
+		}
+	},
+	"risk": {
+		"status": "vulnerable",
+		"year": 2025,
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Comisana",
+					"url": "https://en.wikipedia.org/wiki/Comisana"
+				}
+			],
+			"text": "The page says DAD-IS listed it as at risk/vulnerable in 2025. An older FAO listing (2007) is not at risk. The DAD-IS datasheet URL cited on the page did not load here."
+		}
+	},
+	"head": [
+		{
+			"count": 3968,
+			"year": 2023,
+			"where": "IT",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Comisana",
+						"url": "https://en.wikipedia.org/wiki/Comisana"
+					}
+				],
+				"text": "Herdbook registrations, from the Wikipedia page citing ASPA. The count is registered animals in the herdbook, not the whole population."
+			}
+		},
+		{
+			"count": 28428,
+			"year": 2013,
+			"where": "IT",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Comisana",
+						"url": "https://en.wikipedia.org/wiki/Comisana"
+					}
+				],
+				"text": "Herdbook registrations in 2013, from the Wikipedia page citing an ASPA 2013 herdbook count."
+			}
+		},
+		{
+			"count": 350000,
+			"year": 1983,
+			"where": "IT",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Comisana",
+						"url": "https://en.wikipedia.org/wiki/Comisana"
+					}
+				],
+				"text": "Total population estimated at 350,000 in 1983, from the Wikipedia page citing Bigi and Zanon (2008). That book was not opened and has no URL."
+			}
+		}
+	],
+	"facts": [
+		{
+			"k": "Milk output",
+			"v": "Some individual ewes reportedly yield more than 500 kg of milk per lactation.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Comisana",
+						"url": "https://en.wikipedia.org/wiki/Comisana"
+					}
+				],
+				"text": "The page says yield may exceed 500 kg. It does not say how many ewes or over what period."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "Lactation length and year of the yield figures: not stated. The DAD-IS datasheet did not load, and the 2013 herdbook page and ASPA publication cited by Wikipedia were not opened directly. The herdbook counts disagree between sources: a WebSearch result gave 2,105 in 2019, which is not used here. The 3,968 figure for 2023 is far below the 2013 count of 28,428, and the page does not explain why. The FAO 2007 'not at risk' status is noted but not used as the current status. The 1983 population estimate has no URL."
+}

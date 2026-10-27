@@ -6,7 +6,7 @@
 		"tvorog"
 	],
 	"variant": true,
-	"text": "Milk is soured with a starter (and sometimes a little pepsin) for about 8 hours until it forms a curd block, which is cut, warmed a little to drain and pressed. The sources opened do not name the starter species.",
+	"text": "The soured curd is cut, warmed a little to drain and pressed.",
 	"sources": {
 		"links": [
 			{
@@ -23,41 +23,6 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "pasteurise",
-				"note": "Standardised to the wanted fat first; classic acid-set curd is often from skimmed milk."
-			},
-			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic"
-				],
-				"adds": {
-					"microbes": [
-						{
-							"name": "lactic acid bacteria",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							]
-						}
-					],
-					"by": [
-						"starter"
-					]
-				},
-				"temperature": {
-					"min": 28,
-					"max": 34
-				},
-				"seconds": {
-					"min": 28800,
-					"max": 28800,
-					"about": true
-				},
-				"note": "In the acid-rennet kind rennet (chymosin) or pepsin is added with the starter."
-			},
-			{
 				"type": "cut",
 				"how": "cut"
 			},
@@ -72,13 +37,13 @@
 			{
 				"type": "drain",
 				"by": "hang",
-				"note": "Traditionally in free-hanging bags; industrially cut with strings, squeezed, cooled and packed."
+				"note": "The curd is left to drip in free-hanging bags in the traditional way; in industrial making, it is cut with strings, squeezed, cooled and packed."
 			},
 			{
 				"type": "press"
 			}
 		],
-		"text": "Species are not named. The acid-rennet kind adds rennet or pepsin with the starter; the curd is then cut, warmed to 40-45 °C and drained.",
+		"text": "The curd is cut, warmed to 40-45 °C and drained.",
 		"sources": {
 			"links": [
 				{

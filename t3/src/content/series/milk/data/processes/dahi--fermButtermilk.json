@@ -14,17 +14,12 @@
 			},
 			{
 				"type": "churn",
-				"temperature": {
-					"min": 11,
-					"max": 19
-				},
-				"note": "The dahi is churned with a wooden or motor-driven beater."
+				"of": "dahi"
 			},
 			{
 				"type": "separate",
 				"off": "fat",
-				"by": "gravity",
-				"note": "The fat floats up in lumps and is lifted off, leaving the buttermilk (chhach or lassi)."
+				"by": "gravity"
 			}
 		],
 		"sources": {

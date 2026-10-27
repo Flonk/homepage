@@ -30,12 +30,13 @@
 					"min": 9000,
 					"max": 10800
 				},
-				"note": "The unopened tin of sweetened condensed milk is simmered fully under water, topped up as it drops."
+				"note": "The unopened tin of sweetened condensed milk is simmered fully under water, which is topped up as the level drops."
 			},
 			{
 				"type": "heat",
 				"does": "cool",
-				"note": "The tin cools completely before it is opened, as it can burst while hot."
+				"note": "The tin cools completely before it is opened, as it can burst while hot.",
+				"minor": true
 			}
 		],
 		"sources": {

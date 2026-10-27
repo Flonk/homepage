@@ -1,0 +1,71 @@
+{
+	"label": "Jiali yak",
+	"kind": "breed",
+	"parent": "yak",
+	"about": {
+		"text": "The Jiali yak is one of the milked yak populations of China, named in a study of Chinese yak milk. In that study its milk had about 6.8 percent fat, 5.0 percent protein and 16.3 percent milk solids.",
+		"sources": {
+			"links": [
+				{
+					"name": "PMC10252990",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10252990"
+				}
+			],
+			"text": "Opened with WebFetch. Table 1, 'Composition of substances in different types of yak milk (%)', gives Jiali (China): milk solids 16.3, fat 6.8, protein 5.0, lactose 3.6, ash 0.95. The table cites refs 7, 16 and 17 for the whole table; the paper gives no sample size or year for this population. The Tibet location is not in this paper; see origin."
+		}
+	},
+	"origin": {
+		"regions": ["CN"],
+		"place": "Tibet (per DAGRIS breed listing text)",
+		"sources": {
+			"links": [
+				{
+					"name": "DAGRIS country 358 breeds listing",
+					"url": "https://dagris.info/countries/358/breeds?page=6"
+				}
+			],
+			"text": "Found in WebSearch text only (page not opened): the DAGRIS country breed pages describe Jiali yak in Tibet. A WebSearch summary of a 2020 Y-chromosome study also places the Jiali-named population in Jiali county. No formation date was found."
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 6.8,
+			"max": 6.8
+		},
+		"protein": {
+			"min": 5.0,
+			"max": 5.0
+		},
+		"lactose": {
+			"min": 3.6,
+			"max": 3.6
+		},
+		"solids": {
+			"min": 16.3,
+			"max": 16.3
+		},
+		"sources": {
+			"links": [
+				{
+					"name": "PMC10252990",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10252990"
+				}
+			],
+			"text": "Table 1 of the paper, read through WebFetch: fat 6.8, protein 5.0, lactose 3.6, milk solids 16.3 (all %). Single figures, so min equals max."
+		}
+	},
+	"purposes": {
+		"purposes": ["dairy"],
+		"sources": {
+			"links": [
+				{
+					"name": "PMC10252990",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10252990"
+				}
+			],
+			"text": "The paper reports the milk composition of this population, so it is treated as a milked dairy population. No other use was researched."
+		}
+	},
+	"confidence": "medium",
+	"gaps": "Not found: a population count for this breed (the only counts found were for all Tibetan yak), any formation date, the herdbook or DAD-IS entry, the yield per lactation, the risk status, and sample size or year for the composition figures. The paper's Table 1 cites refs 7, 16 and 17 for all rows, not for this row alone. Aka names, domestication and facts were not researched."
+}

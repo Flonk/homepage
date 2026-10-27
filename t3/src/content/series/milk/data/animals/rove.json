@@ -1,0 +1,99 @@
+{
+	"label": "Rove",
+	"aka": [
+		"Cabra dau Rove"
+	],
+	"names": {
+		"links": [
+			{
+				"name": "Rove goat (Wikipedia)",
+				"url": "https://en.wikipedia.org/wiki/Rove_goat"
+			}
+		],
+		"text": "Taken from the Wikipedia article, read on WebFetch: the article gives the Occitan name \"Cabra dau Rove\"."
+	},
+	"kind": "breed",
+	"parent": "goat",
+	"about": {
+		"text": "A goat breed from the scrublands around Le Rove, a village near Marseille in France. It was first bred for meat, but farmers turned to dairying because the French goat-meat market was poor. Its whole milk is the base of the protected cheese Brousse du Rove.",
+		"sources": {
+			"links": [
+				{
+					"name": "Rove goat (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Rove_goat"
+				},
+				{
+					"name": "Brousse du Rove (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Brousse_du_Rove"
+				}
+			],
+			"text": "Rove goat article, read on WebFetch: the meat origin, the switch to dairying and the Le Rove village. Brousse du Rove article, read on WebFetch: the cheese is \"based on whole goat's milk of the breed Rove\" and the goats live on the scrublands of Rove, l'Étoile and other massifs around Marseille."
+		}
+	},
+	"origin": {
+		"regions": [
+			"FR"
+		],
+		"place": "Le Rove, a village near Marseille in Provence. The goats live on the scrublands of Rove, l'Étoile and other massifs around Marseille.",
+		"sources": {
+			"links": [
+				{
+					"name": "Rove goat (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Rove_goat"
+				},
+				{
+					"name": "Brousse du Rove (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Brousse_du_Rove"
+				}
+			],
+			"text": "Rove goat article: the name comes from Le Rove, a small village near Marseille, and the breed is \"first domesticated in France\". Brousse du Rove article: the scrubland massifs. Origin accounts found in search text conflict (Provençal landrace, Phoenician introduction), so they are not used. No formation dates are sourced."
+		}
+	},
+	"head": [
+		{
+			"count": 5000,
+			"year": 2003,
+			"where": "FR",
+			"sources": {
+				"links": [
+					{
+						"name": "Rove goat (Wikipedia)",
+						"url": "https://en.wikipedia.org/wiki/Rove_goat"
+					}
+				],
+				"text": "Wikipedia article, read on WebFetch: \"as of 2003, more than 5,000 registered Roves are on French farms.\" The count is a floor, and it is more than twenty years old."
+			}
+		}
+	],
+	"purposes": {
+		"purposes": [
+			"dairy"
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Rove goat (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Rove_goat"
+				}
+			],
+			"text": "Wikipedia article, read on WebFetch: \"The goat was originally bred for meat\" and farmers switched to dairying because \"the French market for goat meat was poor\". The article does not call it dual-purpose."
+		}
+	},
+	"facts": [
+		{
+			"k": "Protected cheese",
+			"v": "Brousse du Rove, a fresh goat's milk cheese, received AOC (AOP) status on 31 May 2018.",
+			"sources": {
+				"links": [
+					{
+						"name": "Brousse du Rove (Wikipedia)",
+						"url": "https://en.wikipedia.org/wiki/Brousse_du_Rove"
+					}
+				],
+				"text": "Brousse du Rove article, read on WebFetch: \"On 31 May 2018, Brousse du Rove received an Appellation d'origine contrôlée.\" and \"(AOC and AOP)\". The article describes it as a fresh cheese, which the search text also says is unaged."
+			}
+		}
+	],
+	"confidence": "low",
+	"gaps": "No milk yield per lactation or per year and no lactation length; no current risk status (the Wikipedia article says only that the breed was \"previously considered endangered\", with no year, and no DAD-IS record was readable); no population count after 2003; no formation dates; no composition figures. The Brousse du Rove article does not state the herd-only rule that search text mentioned, so it is not used."
+}

@@ -20,36 +20,11 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "heat",
-				"does": "heat",
-				"temperature": {
-					"max": 40
-				},
-				"note": "Never above this."
-			},
-			{
-				"type": "coagulate",
-				"by": "rennet",
-				"temperature": {
-					"max": 37
-				},
-				"note": "Animal rennet."
-			},
-			{
-				"type": "cut",
-				"how": "cut",
-				"size": {
-					"min": 25,
-					"max": 25
-				},
-				"note": "Lightly, then moulded at once."
-			},
-			{
 				"type": "mould",
 				"seconds": {
 					"min": 64800
 				},
-				"note": "Ladled in at least 5 passes 40 min apart, into moulds of 10.5–11 cm, at least 250 g."
+				"note": "The curd is ladled in at least five passes, 40 minutes apart, into moulds of 10.5–11 cm, for cheeses of at least 250 g."
 			},
 			{
 				"type": "salt",
@@ -82,7 +57,7 @@
 				"seconds": {
 					"min": 1900800
 				},
-				"note": "In the hâloir, boxed from day 13 and sold from day 22."
+				"note": "The cheese is ripened in the hâloir, a drying room, boxed from day 13 and sold from day 22."
 			}
 		],
 		"sources": {

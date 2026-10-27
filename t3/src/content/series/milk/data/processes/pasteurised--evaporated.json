@@ -24,7 +24,7 @@
 		"steps": [
 			{
 				"type": "standardise",
-				"note": "To double-concentrated milk: about 7.5 % fat, 17.5 % solids-not-fat, 25 % total solids."
+				"minor": true
 			},
 			{
 				"type": "heat",
@@ -36,7 +36,8 @@
 				"seconds": {
 					"min": 60,
 					"max": 180
-				}
+				},
+				"minor": true
 			},
 			{
 				"type": "evaporate",
@@ -44,21 +45,20 @@
 				"temperature": {
 					"min": 65,
 					"max": 70
-				},
-				"note": "In a multistage falling-film evaporator, to about twice the solids."
+				}
 			},
 			{
 				"type": "homogenise",
 				"bar": {
 					"min": 50,
 					"max": 250
-				},
-				"note": "In-can lines use two stages at 12.5–25 MPa."
+				}
 			},
 			{
 				"type": "add",
 				"what": "disodium and sodium dihydrogen phosphate",
-				"note": "Dose set by sterilisation trials on samples."
+				"note": "The phosphates are added in the dose that sterilising trials on samples found.",
+				"minor": true
 			},
 			{
 				"type": "heat",
@@ -69,11 +69,13 @@
 				},
 				"seconds": {
 					"max": 57600
-				}
+				},
+				"minor": true
 			},
 			{
 				"type": "custom",
-				"name": "fill"
+				"name": "fill",
+				"minor": true
 			},
 			{
 				"type": "heat",
@@ -86,7 +88,7 @@
 					"min": 900,
 					"max": 1200
 				},
-				"note": "In the cans, kept moving."
+				"note": "The cans are kept moving while they are heated."
 			}
 		],
 		"sources": {

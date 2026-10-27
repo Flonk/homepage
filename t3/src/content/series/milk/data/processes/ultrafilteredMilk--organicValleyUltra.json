@@ -27,18 +27,14 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "ultrafilter",
-				"note": "Keeps protein and calcium, lets water and part of the lactose through."
-			},
-			{
 				"type": "add",
 				"what": "lactase",
-				"note": "Makes the milk lactose-free."
+				"note": "The milk sugar that is left is broken down, which makes the milk lactose-free."
 			},
 			{
 				"type": "add",
 				"what": "fat back",
-				"note": "To the skim milk, to make 1 %, 2 % or whole; said by a single source only."
+				"note": "The fat is put back into the skim milk, to make 1 %, 2 % or whole milk."
 			}
 		],
 		"sources": {

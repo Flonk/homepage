@@ -24,7 +24,7 @@
 		"steps": [
 			{
 				"type": "add",
-				"note": "Takes up acid.",
+				"note": "The acid in the quark is taken up by it.",
 				"what": "sodium bicarbonate (Natron)"
 			},
 			{
@@ -33,7 +33,7 @@
 				"seconds": {
 					"min": 3600
 				},
-				"note": "Up to several days, until glassy and yellowish."
+				"note": "The quark is left, up to several days, until it turns glassy and yellowish."
 			},
 			{
 				"type": "heat",
@@ -41,12 +41,12 @@
 				"temperature": {
 					"max": 42
 				},
-				"note": "Until it runs."
+				"note": "The quark is stirred as it warms, until it runs."
 			},
 			{
 				"type": "custom",
 				"name": "season",
-				"note": "With butter, salt and caraway."
+				"note": "Butter, salt and caraway are added to it."
 			}
 		],
 		"sources": {

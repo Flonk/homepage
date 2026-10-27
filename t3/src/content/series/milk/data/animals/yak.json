@@ -1,0 +1,123 @@
+{
+	"label": "Yak",
+	"aka": [
+		"domestic yak"
+	],
+	"names": {
+		"unsourced": true,
+		"text": "Common name for Bos grunniens; the label is the item's given label."
+	},
+	"kind": "species",
+	"parent": "bovines",
+	"taxon": {
+		"name": "Bos grunniens",
+		"rank": "species",
+		"sources": {
+			"unsourced": true,
+			"text": "Common knowledge: the domestic yak is Bos grunniens, as given in the item."
+		}
+	},
+	"about": {
+		"text": "Yaks are kept on the Qinghai-Tibet Plateau and across the Himalayan region, Mongolia and Central Asia, with about 14 to 15 million head worldwide, most in China. Their milk is rich in fat and protein, and most of it comes from small-scale farmers in traditional systems.",
+		"sources": {
+			"links": [
+				{
+					"name": "FAO: Yak monograph (ad347e)",
+					"url": "https://www.fao.org/4/ad347e/ad347e00.htm"
+				},
+				{
+					"name": "Yak population search results (League for Pastoral Peoples map, Mountain Research Initiative)",
+					"url": "https://mountainresearchinitiative.org/news/new-world-map-of-yaks-and-the-communities-who-keep-them/"
+				}
+			],
+			"text": "Regions from the FAO monograph (opened with WebFetch, section headings only). The 14 to 15 million total and the China share are from WebSearch text summarising the League for Pastoral Peoples map and other secondary sources; the map page itself was not opened. Fat-rich and small-scale milk production come from the FAO search summary."
+		}
+	},
+	"domestication": {
+		"where": "Tibetan Plateau and the Himalayan region (the place of first domestication is not sourced)",
+		"regions": [
+			"CN",
+			"MN",
+			"NP",
+			"BT",
+			"IN"
+		],
+		"yearsAgo": {
+			"min": 2500,
+			"max": 2500
+		},
+		"text": "The oldest dated physical evidence of yak domestication is about 2,500 years old.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Yak",
+					"url": "https://en.wikipedia.org/wiki/Yak"
+				}
+			],
+			"text": "Taken from the Wikipedia article as fetched with WebFetch, which cites a ScienceDaily report (13 December 2023): oldest dated physical evidence of yak domestication is from 2,500 years BP. The article gives no place of domestication, so the where field describes the range only, and the region list is the range from the article."
+		}
+	},
+	"milk": {
+		"mt": 2.18,
+		"year": 2023,
+		"estimated": true,
+		"sources": {
+			"links": [
+				{
+					"name": "FAO: Yak monograph (ad347e)",
+					"url": "https://www.fao.org/4/ad347e/ad347e00.htm"
+				}
+			],
+			"text": "Estimated. Working: 14.5 million yaks (midpoint of 14 to 15 million, from search text), times an assumed 50% of them being milked cows (an assumption, not sourced), times 0.3 tonnes per cow per year (rounded from the 150 to 500 kg per lactation range in the FAO search summary, taking one lactation a year). 14.5 x 0.5 x 0.3 = 2.175, rounded to 2.18. Each input is uncertain, so treat this as a rough order of magnitude."
+		}
+	},
+	"yield": {
+		"perLactation": {
+			"min": 147.6,
+			"max": 487.2
+		},
+		"lactationDays": {
+			"min": 231,
+			"max": 283
+		},
+		"where": "CN",
+		"sources": {
+			"links": [
+				{
+					"name": "Milking performance of China yak (Case.edu PDF, search result)",
+					"url": "https://www.Case.edu/artsci/tibet/sites/default/files/2022-10/Milking%20performance%20of%20China%20yak.pdf"
+				},
+				{
+					"name": "FAO: Yak monograph (ad347e)",
+					"url": "https://www.fao.org/4/ad347e/ad347e00.htm"
+				}
+			],
+			"text": "From WebSearch text, not opened pages: a Chinese study gave 147.6 kg (Jiali, Tibet) to 487.2 kg (Batang, Qinghai) fresh milk per lactation. Lactation of 231 to 283 days is from Mongolian data in the search text. The FAO monograph notes there is no agreed method for measuring yak lactation yield. No year is given for the study."
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 5.5,
+			"max": 7.5
+		},
+		"protein": {
+			"min": 4,
+			"max": 5.9
+		},
+		"lactose": {
+			"min": 4,
+			"max": 5.9
+		},
+		"sources": {
+			"links": [
+				{
+					"name": "PMC10252990 (search result)",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10252990"
+				}
+			],
+			"text": "Ranges for primary lactation, found in WebSearch text citing a review: fat 5.5 to 7.5%, protein 4.0 to 5.9%, lactose 4.0 to 5.9%. The review's exact URL was not confirmed, and PMC10252990 was opened with WebFetch but did not contain these figures, so the attribution is uncertain."
+		}
+	},
+	"confidence": "low",
+	"gaps": "No year for the world population (14 to 15 million, secondary estimates), so no head record is written; the milk estimate uses that midpoint. No year for the lactation study. Milk total is an estimate with an unsourced share of milked cows. The place of domestication was not found; the date is only the oldest dated evidence (about 2,500 years). Purposes and risk status were not researched. The composition source is uncertain."
+}

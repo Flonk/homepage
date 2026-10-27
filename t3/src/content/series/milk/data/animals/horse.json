@@ -1,0 +1,176 @@
+{
+	"label": "Horse",
+	"kind": "species",
+	"parent": "equids",
+	"taxon": {
+		"name": "Equus caballus",
+		"rank": "species",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Horse",
+					"url": "https://en.wikipedia.org/wiki/Horse"
+				}
+			],
+			"text": "Opened with WebFetch. Wikipedia gives the scientific name as Equus ferus caballus (Linnaeus, 1758); Equus caballus is the name given for this item and is the one used here."
+		}
+	},
+	"about": {
+		"text": "The domestic horse, Equus caballus, is the species the milk here comes from. Mares in Central Asia, above all Kazakhstan, are milked for kumis, a fermented drink. Mare's milk is low in fat and high in lactose compared with cow's milk.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Horse milk",
+					"url": "https://en.wikipedia.org/wiki/Horse_milk"
+				},
+				{
+					"name": "Mare's Milk: Composition, Properties, and Application in Medicine",
+					"url": "https://archrazi.areeo.ac.ir/article_124733.html"
+				}
+			],
+			"text": "Horse milk page opened with WebFetch: kumis is a key use; the milk is sold powdered in some European countries. The composition statement is from Table 1 of the Mare's Milk article, opened with WebFetch. No claim about riding or work is made here; purposes were not sourced."
+		}
+	},
+	"domestication": {
+		"where": "Central Asia, with the Western Eurasian steppe (lower Volga-Don) named as the likely homeland of modern domestic horses",
+		"regions": [
+			"KZ",
+			"RU"
+		],
+		"yearsAgo": {
+			"min": 5026,
+			"max": 6026
+		},
+		"text": "Horses began to be domesticated in Central Asia around 4000 BCE, linked to the Botai culture, and were widespread by about 3000 BCE; the Botai claim is disputed by genetic work.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Horse",
+					"url": "https://en.wikipedia.org/wiki/Horse"
+				}
+			],
+			"text": "Opened with WebFetch. The introduction gives 4000 BCE in Central Asia (Botai), widespread by 3000 BCE, and the lower Volga-Don steppe as the homeland of modern horses, citing Librado 2021 (not opened). The dispute over Botai horses (Przewalski's horse versus domestic horse) is from WebSearch result text, not an opened page. Years ago are counted from 2026: 3000 BCE is 5026 years, 4000 BCE is 6026 years."
+		}
+	},
+	"milk": {
+		"mt": 0.11,
+		"year": 2023,
+		"estimated": true,
+		"sources": {
+			"links": [
+				{
+					"name": "News.MN: Mongolia produces nearly billion liters of milk (2018 figures)",
+					"url": "https://news.mn/en/?p=790429"
+				},
+				{
+					"name": "DairyNews: 6.4 million tonnes of milk of all kinds produced in Kazakhstan in 2022",
+					"url": "https://dairynews.today/kz/news/v-2022-godu-v-kazakhstane-proizvedeno-6-4-mln-tonn-moloka-vsekh-vidov.html"
+				},
+				{
+					"name": "Kapital.kz: kumis prices in Kazakhstan up 21% (mare milk yields 2017 and 2022)",
+					"url": "https://kapital.kz/economic/118289/tseny-na-kumys-v-kazakhstane-vyrosli-na-21.html"
+				},
+				{
+					"name": "Blanco-Doval, Barron and Aldai 2024, Nutritional Quality and Socio-Ecological Benefits of Mare Milk Produced under Grazing Management (Foods 13:1412)",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11083796/"
+				},
+				{
+					"name": "Agroberichten Buitenland: Kazakh dried kumys and horse meat (2025)",
+					"url": "https://www.agroberichtenbuitenland.nl/actueel/nieuws/2025/06/25/kazakh-dried-kumys-and-horse-meat-adapted-to-foreign-market-requirements"
+				},
+				{
+					"name": "FAO APCAS 26: Livestock statistics in Mongolia (NSO Mongolia)",
+					"url": "https://www.fao.org/fileadmin/templates/ess/documents/apcas26/presentations/APCAS-16-6.3.5_-_Mongolia_-_Livestock_Statistics_in_Mongolia.pdf"
+				}
+			],
+			"text": "Estimated: no world figure for mare milk exists (FAOSTAT has no horse milk item, and the 2024 Foods review says 'there are no official data about mare milk production and consumption worldwide'), so this is the sum of the national figures that could be found, all opened. Mongolia: 83,900 t of mare milk in 2018 (News.MN, from Mongolia's milk statistics by species; no later year found). Kazakhstan: 29.4 thousand t in 2022 (DairyNews, citing the Infographic handbook of Kazakhstan's agro-industrial complex 2022; Kapital.kz gives the same 29.4 thousand t, up from 26.6 in 2017, from energyprom.kz). Europe: 1 to 1.3 million L of equine milk a year (Uniacke-Lowe and Fox, as cited in the Foods review), about 1.0 to 1.35 thousand t at roughly 1.03 kg per litre. 83.9 + 29.4 + 1.3 = 114.6 thousand t, rounded to 0.11 million tonnes. The years are 2018 and 2022, the nearest found to 2023. It is a floor: Kyrgyzstan, China (Xinjiang, Inner Mongolia), Russia (Bashkortostan, Yakutia, Kalmykia) and the rest of Central Asia have no figure found and are left out, and a 2025 report gives Kazakhstan 33,400 t after a 21% rise over five years (year not stated). Check on Mongolia: NSO yields for 2011 (in the FAO APCAS presentation) are 2.4 L a day over 2.9 months milked, about 210 L a mare a season, so 83,900 t means about 400,000 milked mares out of 3.9 to 4.8 million horses, which is plausible. Ceiling: the Foods review cites Faye and Konuspayeva that mare milk is under 0.1% of world milk, which against FAOSTAT's 971 million t for 2023 is under 0.97 million t."
+		}
+	},
+	"head": [
+		{
+			"count": 56710675,
+			"year": 2023,
+			"where": "world",
+			"sources": {
+				"links": [
+					{
+						"name": "FAOSTAT: Crops and livestock products (QCL), world, 2023",
+						"url": "https://www.fao.org/faostat/en/#data/QCL"
+					}
+				],
+				"text": "Horse stock, world 2023, as recorded in research/herd/faostat-2023.json (stocks, horse). Not milked count."
+			}
+		}
+	],
+	"composition": {
+		"fat": {
+			"min": 1.2,
+			"max": 1.6
+		},
+		"protein": {
+			"min": 2.1,
+			"max": 2.2,
+			"about": true
+		},
+		"lactose": {
+			"min": 5.8,
+			"max": 7.7
+		},
+		"sources": {
+			"links": [
+				{
+					"name": "Mare's Milk: Composition, Properties, and Application in Medicine",
+					"url": "https://archrazi.areeo.ac.ir/article_124733.html"
+				}
+			],
+			"text": "Fat: 1.21% in Table 1 (opened with WebFetch, single value); 1.6% from another review and roughly 1.2 to 1.6 from WebSearch result text, not opened. Protein: 2.14% in Table 1 (opened); range of about 2.1 to 2.2 from WebSearch result text, not opened. Lactose: 6.37% in Table 1 (opened); ranges of 6.4 to 7.7 and 5.8 to 7.0 from WebSearch result text, not opened; the range 5.8 to 7.7 spans them."
+		}
+	},
+	"facts": [
+		{
+			"k": "Record lactation",
+			"v": "A 2020 study reported a Kazakh-breed mare yielding about 1,445 litres over a 105-day lactation.",
+			"sources": {
+				"links": [
+					{
+						"name": "SciELO: Kazakh mare lactation study",
+						"url": "https://scielo.br/j/bjb/a/pBQ8zbFgS7qMmhrbG63j34L/?lang=en"
+					}
+				],
+				"text": "From WebSearch result text, not opened."
+			}
+		},
+		{
+			"k": "Kumis output",
+			"v": "Kazakhstan's Bureau of National Statistics reported 2,463 tonnes of kumis in 2023, 10.6% more than in 2022. It is a small part of the country's mare milk: most is drunk or fermented at home.",
+			"sources": {
+				"links": [
+					{
+						"name": "DairyNews: kumis production in Kazakhstan up 10.6% in 2023",
+						"url": "https://dairynews.today/kz/news/za-2023-god-proizvodstvo-kumysa-v-kazakhstane-vyroslo-na-10-6.html"
+					},
+					{
+						"name": "Kapital.kz: kumis prices in Kazakhstan up 21%",
+						"url": "https://kapital.kz/economic/118289/tseny-na-kumys-v-kazakhstane-vyrosli-na-21.html"
+					}
+				],
+				"text": "DairyNews (19 March 2024), opened: 2,463 t in 2023, up 10.6% or 236 t, from the Bureau of National Statistics. This replaces an earlier 1,812 t taken from search text. That most mare milk is not made into factory kumis: Kapital.kz, opened, gives 29.4 thousand t of mare milk in 2022, 58% of it from households, against 2.1 to 2.2 thousand t of kumis a year."
+			}
+		},
+		{
+			"k": "Mongolian milking season",
+			"v": "Mongolian mares were milked for 2.9 months of the year on average, at 2.4 litres a day, in national figures for 2011.",
+			"sources": {
+				"links": [
+					{
+						"name": "FAO APCAS 26: Livestock statistics in Mongolia (NSO Mongolia)",
+						"url": "https://www.fao.org/fileadmin/templates/ess/documents/apcas26/presentations/APCAS-16-6.3.5_-_Mongolia_-_Livestock_Statistics_in_Mongolia.pdf"
+					}
+				],
+				"text": "Opened (PDF text extracted): table 'Average Yearly Milk Output of Female Animals, Except Cows, by type of breed and seasons, 2011', mare row: national average daily output 2.4 litres, milking 2.9 months a year; regions 2.2 to 2.9 litres and 2.3 to 3.1 months."
+			}
+		}
+	],
+	"confidence": "low",
+	"gaps": "No world mare milk statistic exists. The 0.11 million tonnes adds Mongolia (2018) and Kazakhstan (2022) to an estimate for Europe; no figure was found for Kyrgyzstan, China, Russia, Tajikistan or Uzbekistan, so the world total is higher, by an unknown amount, and below the 0.97 million t ceiling. Mongolia has no year after 2018 found, and the Foods review cites a much lower 8 million L for Mongolia (Minjigdorj and Austbø), against 83,900 t in the statistics. Kazakhstan revised its household livestock figures for 2022 and 2023 (total milk fell from about 6.2 to 3.4 million t in the Bureau's series), and whether the 29.4 thousand t for mare milk was revised was not checked. No count of milked mares, world or national. Typical yield per mare outside Mongolia, purposes (riding, draught) and total solids were not found. Composition ranges rest partly on search text, not opened pages."
+}

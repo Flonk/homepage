@@ -9,7 +9,7 @@
 		"steps": [
 			{
 				"type": "pasteurise",
-				"note": "Cream of 35–40 % fat, pasteurised or not, is heated in a plate heat exchanger."
+				"note": "The cream undergoes heat treatment to kill harmful bacteria like Listeria, Salmonella and E. coli."
 			},
 			{
 				"type": "separate",
@@ -25,11 +25,11 @@
 					"max": 60,
 					"about": true
 				},
-				"note": "Pre-concentrated at about 60 °C."
+				"of": "cream"
 			},
 			{
 				"type": "homogenise",
-				"note": "Phase inversion, which breaks the globules and frees the fat."
+				"of": "cream"
 			},
 			{
 				"type": "separate",
@@ -40,7 +40,7 @@
 					"max": 99.5,
 					"about": true
 				},
-				"note": "The final concentrator sends the oil out as the light phase."
+				"of": "cream"
 			},
 			{
 				"type": "heat",
@@ -53,7 +53,7 @@
 			{
 				"type": "evaporate",
 				"under": "vacuum",
-				"note": "Dehydrated until the moisture is 0.1 % or less."
+				"of": "oil"
 			},
 			{
 				"type": "heat",
@@ -63,7 +63,8 @@
 					"max": 40,
 					"about": true
 				},
-				"note": "Cooled to packing temperature."
+				"note": "The oil is brought to packing temperature.",
+				"minor": true
 			}
 		],
 		"sources": {

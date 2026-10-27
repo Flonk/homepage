@@ -20,33 +20,36 @@
 		"steps": [
 			{
 				"type": "microfilter",
-				"note": "Crossflow filtration at 1.4 µm gives a whey free of particles."
+				"minor": true,
+				"of": "whey"
 			},
 			{
 				"type": "custom",
-				"name": "ion exchange",
-				"note": "Lactoperoxidase and lactoferrin bind to a cation-exchange resin at pH 6.2–6.6."
+				"name": "catch",
+				"note": "The lactoperoxidase and lactoferrin are held by a resin at pH 6.2–6.6."
 			},
 			{
 				"type": "custom",
-				"name": "elute",
-				"note": "Salt solutions wash them off, concentrating them about 500 times in about 1 % protein."
+				"name": "release",
+				"note": "They are released by salt solution into a liquid about 500 times as concentrated, at about 1 % protein."
 			},
 			{
 				"type": "ultrafilter",
-				"note": "The eluate is concentrated."
+				"of": "whey"
 			},
 			{
 				"type": "diafilter",
-				"note": "Washed to about 95 % purity."
+				"minor": true,
+				"of": "whey"
 			},
 			{
 				"type": "microfilter",
-				"note": "Sterile-filtered through 0.1–0.2 µm membranes."
+				"minor": true,
+				"of": "whey"
 			},
 			{
 				"type": "dry",
-				"note": "Freeze-dried or spray-dried."
+				"note": "The protein is freeze-dried or spray-dried."
 			}
 		],
 		"text": "The enzyme comes out together with lactoferrin, which is then separated from it.",

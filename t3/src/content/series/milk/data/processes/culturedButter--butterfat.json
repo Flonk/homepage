@@ -19,7 +19,7 @@
 					"min": 110,
 					"max": 120
 				},
-				"note": "It is stirred and boiled until the froth subsides and the curd particles turn golden yellow or brown."
+				"note": "The melted butter is stirred and boiled until the froth subsides and the milk solids turn golden yellow or brown."
 			},
 			{
 				"type": "separate",
@@ -30,7 +30,8 @@
 			{
 				"type": "filter",
 				"by": "cloth",
-				"note": "Remaining residue is taken out by cloth, pressure filter or centrifuge."
+				"note": "The remaining residue is taken out by cloth, a pressure filter or a centrifuge.",
+				"minor": true
 			}
 		],
 		"sources": {

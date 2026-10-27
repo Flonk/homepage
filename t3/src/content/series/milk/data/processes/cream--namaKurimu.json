@@ -23,21 +23,23 @@
 					"min": 18,
 					"max": 18
 				},
-				"note": "Japanese cream is at least 18 % milk fat with nothing added."
+				"of": "cream"
 			},
 			{
 				"type": "heat",
 				"does": "heat",
-				"note": "The cream is sterilised by the maker's own method, following the dairy ordinance, with no temperature given."
+				"note": "The cream is sterilised by the maker's own method, following the dairy ordinance.",
+				"minor": true
 			},
 			{
 				"type": "homogenise",
-				"note": "Homogenising evens out the size of the fat globules and steadies the cream."
+				"of": "cream"
 			},
 			{
 				"type": "heat",
 				"does": "cool",
-				"note": "It is cooled and left to age so that it settles before filling."
+				"note": "The cream is cooled and left to age, so that it settles before filling.",
+				"minor": true
 			}
 		],
 		"sources": {

@@ -1,0 +1,85 @@
+{
+	"label": "Jamaica Hope",
+	"aka": [],
+	"kind": "breed",
+	"parent": "taurineCattle",
+	"about": {
+		"text": "The Jamaica Hope is a dairy breed developed at Hope Farm in Jamaica for milk in the tropics. It is heat tolerant and tick resistant and was made from a Bos taurus by Bos indicus cross. It is fairly widely distributed on the island, with some 6,000 registered females.",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Jamaica Hope", "url": "https://en.wikipedia.org/wiki/Jamaica_Hope"},
+				{"name": "Jamaica Ministry of Agriculture: Ja Hope Cattle brochure", "url": "https://www.moa.gov.jm/sites/default/files/pdfs/Ja Hope Cattle Brochure.pdf"}
+			],
+			"text": "Hope Farm origin, heat and tick traits, Bos taurus x Bos indicus cross, 6,000 registered females and wide distribution from the Wikipedia article (found in WebSearch result text, page not opened). The brochure link is the Ministry's own document, found in WebSearch results (not opened)."
+		}
+	},
+	"origin": {
+		"regions": ["JM"],
+		"place": "Hope Farm, Jamaica",
+		"formed": {"min": 1910, "max": 1952},
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Jamaica Hope", "url": "https://en.wikipedia.org/wiki/Jamaica_Hope"},
+				{"name": "FAO: Wellington and Mahadevan (Jamaica Hope)", "url": "https://www.fao.org/4/X6500E/X6500E11.htm"}
+			],
+			"text": "Breeding started around 1910 at Hope Farm, and the animals were officially elevated to breed status in 1952; both from the Wikipedia article's text, found in WebSearch result text (page not opened). The FAO chapter was listed in WebSearch results and not opened."
+		}
+	},
+	"purposes": {
+		"purposes": ["dairy"],
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Jamaica Hope", "url": "https://en.wikipedia.org/wiki/Jamaica_Hope"}
+			],
+			"text": "Described as a dairy breed in the Wikipedia article's text, found in WebSearch result text (page not opened)."
+		}
+	},
+	"yield": {
+		"perLactation": {"min": 2102, "max": 2390},
+		"lactationDays": {"min": 322, "max": 322},
+		"where": "JM",
+		"year": 1968,
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Jamaica Hope", "url": "https://en.wikipedia.org/wiki/Jamaica_Hope"},
+				{"name": "FAO: Wellington and Mahadevan (Jamaica Hope)", "url": "https://www.fao.org/4/X6500E/X6500E11.htm"},
+				{"name": "Jamaica Ministry of Agriculture: Ja Hope Cattle brochure", "url": "https://www.moa.gov.jm/sites/default/files/pdfs/Ja Hope Cattle Brochure.pdf"}
+			],
+			"text": "Per-lactation range 2,102 to 2,390 kg: average lactation yields in a 1965-1973 FAO table, rising to 2,390 kg by 1968 (WebSearch result text, FAO page not opened). Lactation length 322 days from the Ministry brochure (WebSearch result text, not opened). Both figures are from the research summary and should be checked against the source pages."
+		}
+	},
+	"facts": [
+		{
+			"k": "Herd milk average",
+			"v": "A 2007 Ministry of Agriculture presentation estimated an average annual yield of 2,540 litres for the national herd, and said productivity was 21 to 27 percent below the herd's potential.",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: Jamaica Hope", "url": "https://en.wikipedia.org/wiki/Jamaica_Hope"}
+				],
+				"text": "Found in WebSearch result text summarising the Ministry's 2007 presentation (not opened). Units are litres, not kg."
+			}
+		},
+		{
+			"k": "Record cows",
+			"v": "Individual top cows reached about 9,000 to 9,300 kg in their best 305-day lactations.",
+			"sources": {
+				"links": [
+					{"name": "FAO: Wellington and Mahadevan (Jamaica Hope)", "url": "https://www.fao.org/4/X6500E/X6500E11.htm"}
+				],
+				"text": "Attributed to FAO in WebSearch result text (page not opened)."
+			}
+		},
+		{
+			"k": "Recent revival",
+			"v": "In 2024 the Ministry of Agriculture launched a project to safeguard the breed's genetic potential, aiming to raise milk yield, fertility and environmental adaptability.",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: Jamaica Hope", "url": "https://en.wikipedia.org/wiki/Jamaica_Hope"}
+				],
+				"text": "From the Wikipedia article's text, found in WebSearch result text (page not opened)."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "The '6,000 registered females' figure has no year in the source text, so no head record was written. No DAD-IS risk status found. The Jamaica Hope brochure and FAO pages were not opened, only seen in WebSearch results. Yield figures come from different years and measures, and the lactation range is a 1965-1973 FAO average, so it is not a current figure. No composition data found (the brochure gives a 80% Jersey, 15% Sahiwal, 5% Holstein makeup, which is not needed here). The 'aka' field is empty. No other names were found."
+}

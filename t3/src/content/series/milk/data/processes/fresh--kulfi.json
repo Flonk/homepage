@@ -20,16 +20,17 @@
 		"steps": [
 			{
 				"type": "evaporate",
-				"note": "Sweetened, flavoured milk."
+				"of": "mix"
 			},
 			{
 				"type": "mould",
-				"note": "Often in small clay cups (kulhar), sealed."
+				"note": "The kulfi is often put into small clay cups (kulhar), which are sealed.",
+				"minor": true
 			},
 			{
 				"type": "custom",
 				"name": "freeze",
-				"note": "In a matka of ice and salt, not churned."
+				"note": "The kulfi is frozen in ice and salt, and not churned."
 			}
 		],
 		"sources": {

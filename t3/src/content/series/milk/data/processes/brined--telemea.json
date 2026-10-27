@@ -23,22 +23,18 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "coagulate",
-				"by": "rennet",
-				"note": "Microbial rennet in the Ibănești PDO."
-			},
-			{
 				"type": "drain",
 				"by": "cloth"
 			},
 			{
 				"type": "press",
-				"note": "Overnight, then cut into squares."
+				"note": "The curd is pressed overnight, then cut into squares."
 			},
 			{
 				"type": "salt",
 				"how": "brine",
-				"note": "In the Ibănești PDO the brine is drawn from a local salt-water spring."
+				"note": "The brine is drawn from a local salt-water spring in the Ibănești PDO.",
+				"minor": true
 			},
 			{
 				"type": "ferment",
@@ -46,7 +42,7 @@
 				"seconds": {
 					"min": 1728000
 				},
-				"note": "Matured in brine, fresh after 24 h in Ibănești and mature after at least 20 days."
+				"note": "The cheese is matured in brine, and in Ibănești it is fresh after 24 hours."
 			}
 		],
 		"sources": {

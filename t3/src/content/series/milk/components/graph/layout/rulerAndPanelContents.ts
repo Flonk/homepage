@@ -1,7 +1,7 @@
 import type { Node } from '../client/base';
 import type { ProductTree, RulerAndPanelContents } from './types';
 import { group } from './util';
-import { BUS_LEAST, hardness } from './bus';
+import { BUS_LEAST, ripening } from './bus';
 
 /* Takes out of the tree's children what is laid out apart from its
    branches, once it has counted towards the sizes: the products hung
@@ -17,21 +17,21 @@ export const takeOutRulerAndPanelContents = ({ parent, children }: ProductTree):
 			if (rest.length) children.set(p, rest);
 			else children.delete(p);
 		}
-	// A panel's cheeses: a grid's, its examples; the map's, those on it. Its products stay.
+	// A panel's cheeses: its examples. Its products stay.
 	const panelContents = new Map<Node, Node[]>();
 	for (const [p, kids] of children)
-		if (p.panel || p.map) {
-			const inPanel = (k: Node) => (p.map ? !!k.onMap : k.example);
+		if (p.panel) {
+			const inPanel = (k: Node) => !!k.example;
 			panelContents.set(p, kids.filter(inPanel));
 			children.set(p, kids.filter((k) => !inPanel(k)));
 			if (!children.get(p)!.length) children.delete(p);
 		}
-	// Many tables under one parent: out of its branches, into a row, softest first.
+	// Many tables under one parent: out of its branches, into a row, the quickest ripened first.
 	const busUnder = new Map<Node, Node[]>();
 	for (const [p, kids] of [...children]) {
 		const tables = kids.filter((k) => panelContents.has(k));
 		if (tables.length < BUS_LEAST) continue;
-		busUnder.set(p, tables.sort((a, b) => hardness(panelContents.get(a)!) - hardness(panelContents.get(b)!)));
+		busUnder.set(p, tables.sort((a, b) => ripening(panelContents.get(a)!) - ripening(panelContents.get(b)!)));
 		const rest = kids.filter((k) => !tables.includes(k));
 		if (rest.length) children.set(p, rest);
 		else children.delete(p);

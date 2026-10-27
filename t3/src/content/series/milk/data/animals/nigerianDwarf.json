@@ -1,0 +1,101 @@
+{
+	"label": "Nigerian Dwarf",
+	"kind": "breed",
+	"parent": "goat",
+	"about": {
+		"text": "The Nigerian Dwarf is a small dairy goat, developed in the United States from West African Dwarf goats that were first imported for zoos. It was first bred for showing and as a companion animal, and later kept for small-scale dairy. Its milk is rich, with about 6 to 10 percent butterfat, and it is also used for meat.",
+		"sources": {
+			"links": [
+				{"name": "Ceva: goat breeds", "url": "https://ruminants.ceva.pro/goat-breeds"},
+				{"name": "Wikipedia: Nigerian Dwarf goat", "url": "https://en.wikipedia.org/wiki/Nigerian_Dwarf_goat"}
+			],
+			"text": "Origin, history and uses from the Wikipedia article (which it fetched); the 6 to 10 percent butterfat from the Ceva page."
+		}
+	},
+	"origin": {
+		"regions": ["US", "NG"],
+		"place": "Developed in the United States from West African Dwarf goats imported from Africa between about 1930 and 1960. The West African group is the ancestry; the country of origin is the United States.",
+		"formed": {"min": 1930, "max": 1980},
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Nigerian Dwarf goat", "url": "https://en.wikipedia.org/wiki/Nigerian_Dwarf_goat"}
+			],
+			"text": "Import years 1930 to 1960 and the herd-book established in 1980 from the Wikipedia article. The max year is the herd-book date, not a date of formation the source gives. NG is listed for the West African ancestry, not as the country of origin."
+		}
+	},
+	"yield": {
+		"perYear": {"min": 340, "max": 340},
+		"where": "US",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Nigerian Dwarf goat", "url": "https://en.wikipedia.org/wiki/Nigerian_Dwarf_goat"}
+			],
+			"text": "Average dairy-stock yield of 340 kg a year, as the article gives it. The year is not stated in the source."
+		}
+	},
+	"composition": {
+		"fat": {"min": 6, "max": 10},
+		"protein": {"min": 3.9, "max": 3.9},
+		"sources": {
+			"links": [
+				{"name": "Ceva: goat breeds", "url": "https://ruminants.ceva.pro/goat-breeds"},
+				{"name": "Wikipedia: Nigerian Dwarf goat", "url": "https://en.wikipedia.org/wiki/Nigerian_Dwarf_goat"}
+			],
+			"text": "Fat range 6 to 10 percent from the Ceva page. The Wikipedia article gives a single typical fat figure of 6.5 percent and protein of 3.9 percent."
+		}
+	},
+	"purposes": {
+		"purposes": ["dairy", "meat", "companionship"],
+		"sources": {
+			"links": [
+				{"name": "Ceva: goat breeds", "url": "https://ruminants.ceva.pro/goat-breeds"},
+				{"name": "Wikipedia: Nigerian Dwarf goat", "url": "https://en.wikipedia.org/wiki/Nigerian_Dwarf_goat"}
+			],
+			"text": "Wikipedia lists uses as milk, meat, show and companion animal. Ceva says it was bred for exhibition and as a companion animal and later used as a dairy animal, and calls its milk creamy and nutritious."
+		}
+	},
+	"risk": {
+		"status": "not at risk",
+		"year": 2023,
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Nigerian Dwarf goat", "url": "https://en.wikipedia.org/wiki/Nigerian_Dwarf_goat"}
+			],
+			"text": "DAD-IS (2023) status as the Wikipedia article reports it. The same article gives FAO (2007) as critical, which has since changed."
+		}
+	},
+	"facts": [
+		{
+			"k": "Record yield",
+			"v": "993 kg in a 305-day lactation, recorded in 2018",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: Nigerian Dwarf goat", "url": "https://en.wikipedia.org/wiki/Nigerian_Dwarf_goat"}
+				],
+				"text": "Only record the article notes."
+			}
+		},
+		{
+			"k": "Yield in litres",
+			"v": "378 to 567 litres per lactation",
+			"sources": {
+				"links": [
+					{"name": "Ceva: goat breeds", "url": "https://ruminants.ceva.pro/goat-breeds"}
+				],
+				"text": "Quoted as the page gives it, in litres."
+			}
+		},
+		{
+			"k": "Recognition",
+			"v": "A herd-book was established in 1980, and the American Dairy Goat Association recognised the breed in 2005",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: Nigerian Dwarf goat", "url": "https://en.wikipedia.org/wiki/Nigerian_Dwarf_goat"}
+				],
+				"text": "From the Wikipedia article's history section."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "No FAO DAD-IS world population or head count was found. The US population of just under 40,000 in 2023 (Wikipedia) is not entered as a head record because the source gives it only as just under that figure. Lactation length is given in the source as about ten months, not in days. Yield per lactation was only found in litres on the Ceva page, so it is not converted to kg. The known region NG is the West African ancestry; the Wikipedia article gives the United States as the country of origin."
+}

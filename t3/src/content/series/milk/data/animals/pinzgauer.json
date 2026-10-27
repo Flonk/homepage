@@ -1,0 +1,100 @@
+{
+	"label": "Pinzgauer",
+	"kind": "breed",
+	"parent": "taurineCattle",
+	"about": {
+		"text": "An Alpine breed from the Pinzgau region of Salzburg state in Austria. It was once triple-purpose, for meat, milk and draught, and is now mainly bred as a beef suckler cow. Austrian milk recording gave an average of 5,356 kg of milk in 2005, at 3.89% fat and 3.28% protein.",
+		"sources": {
+			"links": [{"name": "Wikipedia: Pinzgauer cattle", "url": "https://en.wikipedia.org/wiki/Pinzgauer_cattle"}],
+			"text": "Wikipedia: origin in the Pinzgau region of Salzburg state; formerly triple-purpose, now mainly a beef suckler cow; Austrian average milk performance 5,356 kg with 3.89% fat and 3.28% protein (2005)."
+		}
+	},
+	"origin": {
+		"regions": ["AT"],
+		"place": "Pinzgau region, Salzburg state, Austria",
+		"sources": {
+			"links": [{"name": "Wikipedia: Pinzgauer cattle", "url": "https://en.wikipedia.org/wiki/Pinzgauer_cattle"}],
+			"text": "Wikipedia: the breed comes from the Pinzgau region of Salzburg state. The article gives no year for when the breed formed."
+		}
+	},
+	"purposes": {
+		"purposes": ["meat", "dual-purpose"],
+		"sources": {
+			"links": [{"name": "Wikipedia: Pinzgauer cattle", "url": "https://en.wikipedia.org/wiki/Pinzgauer_cattle"}],
+			"text": "Wikipedia: formerly triple-purpose (meat, milk and draught); now mainly bred as a beef suckler cow."
+		}
+	},
+	"head": [
+		{
+			"count": 53874,
+			"year": 1995,
+			"where": "AT",
+			"sources": {
+				"links": [{"name": "Wikipedia: Pinzgauer cattle", "url": "https://en.wikipedia.org/wiki/Pinzgauer_cattle"}],
+				"text": "Wikipedia: Austria, 1995: 53,874 animals, 9,883 of them registered in stud books."
+			}
+		},
+		{
+			"count": 36000,
+			"year": 2001,
+			"where": "DE",
+			"sources": {
+				"links": [{"name": "Wikipedia: Pinzgauer cattle", "url": "https://en.wikipedia.org/wiki/Pinzgauer_cattle"}],
+				"text": "Wikipedia: Germany, 2001: 36,000 animals."
+			}
+		}
+	],
+	"yield": {
+		"perYear": {"min": 5356, "max": 5356},
+		"where": "AT",
+		"year": 2005,
+		"sources": {
+			"links": [{"name": "Wikipedia: Pinzgauer cattle", "url": "https://en.wikipedia.org/wiki/Pinzgauer_cattle"}],
+			"text": "Wikipedia: the average milk performance in Austria is 5,356 kg of milk (2005). The breeding goal is 6,000 kg. No lactation length is given."
+		}
+	},
+	"composition": {
+		"fat": {"min": 3.89, "max": 3.89},
+		"protein": {"min": 3.28, "max": 3.28},
+		"sources": {
+			"links": [{"name": "Wikipedia: Pinzgauer cattle", "url": "https://en.wikipedia.org/wiki/Pinzgauer_cattle"}],
+			"text": "Wikipedia: average Austrian milk performance (2005) at 3.89% milk fat and 3.28% protein."
+		}
+	},
+	"risk": {
+		"status": "not at risk",
+		"year": 2007,
+		"sources": {
+			"links": [{"name": "Wikipedia: Pinzgauer cattle", "url": "https://en.wikipedia.org/wiki/Pinzgauer_cattle"}],
+			"text": "Wikipedia: FAO (2007) listed it as not at risk. The same article also says it is considered endangered, with the population falling about 10% a year; that statement has no source of its own, and the article is tagged as needing more citations."
+		}
+	},
+	"facts": [
+		{
+			"k": "Earliest mention",
+			"v": "The breed was first referred to as a breed in 1846.",
+			"sources": {
+				"links": [{"name": "Wikipedia: Pinzgauer cattle", "url": "https://en.wikipedia.org/wiki/Pinzgauer_cattle"}],
+				"text": "Wikipedia."
+			}
+		},
+		{
+			"k": "Polled subtype",
+			"v": "The naturally polled Jochberger Hummel was treated as a separate breed until 1997, when it was merged into the Pinzgauer herd-book. A 2020 study found it genetically distinct.",
+			"sources": {
+				"links": [{"name": "Wikipedia: Pinzgauer cattle", "url": "https://en.wikipedia.org/wiki/Pinzgauer_cattle"}],
+				"text": "Wikipedia, which cites Brenig 2020 (Animal Genetics 51(4): 590-594, doi 10.1111/age.12949) for the genetic finding; that paper was not opened here."
+			}
+		},
+		{
+			"k": "Red Holstein crossing",
+			"v": "Red Holstein has been crossed in since 1969 to raise milk output.",
+			"sources": {
+				"links": [{"name": "Wikipedia: Pinzgauer cattle", "url": "https://en.wikipedia.org/wiki/Pinzgauer_cattle"}],
+				"text": "Wikipedia."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "No lactation length, so no per-lactation yield. No year for when the breed formed. The worldwide figure of about 1.3 million has no year, so it is left out. The endangered statement in the article has no source and conflicts with FAO's not-at-risk rating, which is the one used. Only one source was opened for this record."
+}

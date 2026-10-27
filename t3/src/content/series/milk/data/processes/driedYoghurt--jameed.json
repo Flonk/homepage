@@ -24,54 +24,20 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "heat",
-				"does": "heat"
-			},
-			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic"
-				],
-				"adds": {
-					"microbes": [],
-					"by": [
-						"wild"
-					]
-				},
-				"note": "Soured by its own flora."
-			},
-			{
-				"type": "churn"
+				"type": "churn",
+				"of": "yoghurt"
 			},
 			{
 				"type": "heat",
-				"does": "heat"
+				"does": "heat",
+				"note": "The buttermilk is heated."
 			},
 			{
-				"type": "drain",
-				"by": "cloth"
-			},
-			{
-				"type": "custom",
-				"name": "knead",
-				"note": "With salt."
-			},
-			{
-				"type": "mould",
-				"note": "Into balls."
-			},
-			{
-				"type": "dry",
-				"seconds": {
-					"min": 1296000,
-					"max": 1296000,
-					"about": true
-				},
-				"note": "In the sun, to about 20 % moisture."
+				"type": "salt",
+				"note": "The curd is kneaded with a heavy amount of salt."
 			}
 		],
-		"text": "Mostly sheep milk, weakly heated and soured by its own flora, then churned; the heated buttermilk curd is strained, salted and sun-dried.",
+		"text": "The sour yoghurt is churned, and the heated buttermilk curd is kneaded with salt.",
 		"sources": {
 			"links": [
 				{

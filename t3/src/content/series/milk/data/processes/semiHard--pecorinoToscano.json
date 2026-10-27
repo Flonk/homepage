@@ -19,24 +19,6 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "coagulate",
-				"by": "rennet",
-				"temperature": {
-					"min": 33,
-					"max": 38
-				},
-				"seconds": {
-					"min": 1200,
-					"max": 1500
-				},
-				"note": "With calf or vegetable rennet."
-			},
-			{
-				"type": "cut",
-				"how": "cut",
-				"note": "Hazelnut size for fresco, maize-kernel size for stagionato."
-			},
-			{
 				"type": "heat",
 				"does": "cook",
 				"temperature": {
@@ -47,20 +29,11 @@
 					"min": 600,
 					"max": 900
 				},
-				"note": "Only the stagionato curd may be cooked."
+				"note": "The curd is cooked only for the semi-hard type, aged four months or more."
 			},
 			{
 				"type": "mould",
-				"note": "Whey drained by hand pressing or in a steam-heated room."
-			},
-			{
-				"type": "salt",
-				"how": "brine",
-				"strength": {
-					"min": 17,
-					"max": 19
-				},
-				"note": "Dry or in brine (15–17 °Bé), at least 8 h per kg for fresco, 12 h for stagionato."
+				"note": "The whey is drained by hand pressing, or in a steam-heated room."
 			},
 			{
 				"type": "ferment",
@@ -93,7 +66,7 @@
 					"min": 75,
 					"max": 95
 				},
-				"note": "At least 20 days for the soft fresco or 4 months for the semi-hard stagionato."
+				"note": "The cheese is ripened at least 20 days for the soft type, or 4 months for the semi-hard one."
 			}
 		],
 		"text": "Cultures are optional.",

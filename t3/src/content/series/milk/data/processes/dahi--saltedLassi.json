@@ -24,46 +24,13 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "heat",
-				"does": "heat",
-				"temperature": {
-					"min": 85,
-					"max": 85
-				},
-				"seconds": {
-					"min": 1800,
-					"max": 1800
-				},
-				"note": "Or 91 °C for 2.5–5 min."
-			},
-			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic"
-				],
-				"adds": {
-					"microbes": [],
-					"by": [
-						"starter"
-					]
-				},
-				"temperature": {
-					"min": 22,
-					"max": 22
-				},
-				"pH": {
-					"max": 4.5
-				},
-				"note": "Inoculated at 31 °C and fermented at 22 °C."
-			},
-			{
 				"type": "cut",
-				"how": "cut"
+				"how": "cut",
+				"note": "The set yoghurt is broken up into a drink."
 			},
 			{
 				"type": "add",
-				"note": "After fermentation.",
+				"note": "The lassi is seasoned after fermentation, instead of sweetened with sugar.",
 				"what": "salt and spices such as cumin"
 			}
 		],

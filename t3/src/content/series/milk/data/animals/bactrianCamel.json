@@ -1,0 +1,127 @@
+{
+	"label": "Bactrian camel",
+	"aka": ["two-humped camel"],
+	"names": {
+		"links": [
+			{"name": "Review of genetic diversity in Bactrian camel (PMC)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9374477"}
+		],
+		"text": "The common name and the two-humped alternative come from a WebSearch result on the taxonomy of Camelus bactrianus (the wild form is named Camelus ferus there). The name was not checked on a page opened with WebFetch."
+	},
+	"kind": "species",
+	"parent": "camelids",
+	"taxon": {
+		"name": "Camelus bactrianus",
+		"rank": "species",
+		"sources": {
+			"links": [
+				{"name": "Review of genetic diversity in Bactrian camel (PMC)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9374477"}
+			],
+			"text": "Family Camelidae, genus Camelus, species Camelus bactrianus, as listed in the article's taxonomy section. The article gives no citation for these ranks. A WebSearch result notes that the IUCN uses Camelus ferus for the wild form and keeps Camelus bactrianus for the domestic animal; that was not checked on a page opened with WebFetch."
+		}
+	},
+	"about": {
+		"text": "The Bactrian camel is the two-humped camel of Central Asia, with over 90% of its domestic population in China, Mongolia and Kazakhstan. Its milk is one use among several, alongside meat, wool and transport. In Mongolia, milk is taken over a lactation of about 480 days and its fat content is highest in winter.",
+		"sources": {
+			"links": [
+				{"name": "Review of genetic diversity in Bactrian camel (PMC)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9374477"},
+				{"name": "Tsognemekh et al. 2025, Pastoralism: camel milk in Mongolia", "url": "https://www.frontierspartnerships.org/journals/pastoralism-research-policy-and-practice/articles/10.3389/past.2025.14815/full"}
+			],
+			"text": "Population share, countries and uses from the PMC review (the milk use is one of several uses it lists). Lactation length, and winter fat being highest, from the Mongolia study."
+		}
+	},
+	"domestication": {
+		"where": "Central Asia; earlier evidence points to northern Iran and southern Turkmenistan",
+		"regions": ["TM", "IR"],
+		"yearsAgo": {"min": 4450, "max": 4500},
+		"text": "Domesticated about 4,500 years ago, or less than 4,450 years ago on a whole-genome study that proposes Central Asia.",
+		"sources": {
+			"links": [
+				{"name": "Review of genetic diversity in Bactrian camel (PMC)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9374477"}
+			],
+			"text": "The review gives 4,500 years ago (Reitz and Wing, 2008, fossil data), earlier evidence for northern Iran and southern Turkmenistan (Bulliet, 1975), and a whole-genome study (Ming et al., 2020a) that puts domestication under 4.45 thousand years ago in Central Asia."
+		}
+	},
+	"milk": {
+		"mt": 0.09,
+		"year": 2023,
+		"estimated": true,
+		"sources": {
+			"links": [
+				{"name": "FAOSTAT: Crops and livestock products (QCL), world, 2023", "url": "https://www.fao.org/faostat/en/#data/QCL"},
+				{"name": "Review of genetic diversity in Bactrian camel (PMC)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9374477"}
+			],
+			"text": "FAOSTAT does not split camel milk between dromedary and Bactrian; its 2023 camels total is 4,076,534.54 tonnes (flag E). Working: 952,000 Bactrian head in China, Mongolia and Kazakhstan (FAO 2016 counts as cited in the PMC review), divided by FAOSTAT's 2023 world camel stock of 42,590,576 (both species), times 4,076,534.54 tonnes, is about 91,000 tonnes, or 0.09 Mt. This is a lower bound: it leaves out Russia and other countries, and it assumes the same milk per head for both camels and uses 2016 counts against 2023 stock."
+		}
+	},
+	"head": [
+		{
+			"count": 381000,
+			"year": 2016,
+			"where": "CN",
+			"sources": {
+				"links": [{"name": "Review of genetic diversity in Bactrian camel (PMC)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9374477"}],
+				"text": "FAO figure for 2016 as quoted in the PMC review (citing Jirimutu et al., 2022)."
+			}
+		},
+		{
+			"count": 401000,
+			"year": 2016,
+			"where": "MN",
+			"sources": {
+				"links": [{"name": "Review of genetic diversity in Bactrian camel (PMC)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9374477"}],
+				"text": "FAO figure for 2016 as quoted in the PMC review (citing Jirimutu et al., 2022)."
+			}
+		},
+		{
+			"count": 170000,
+			"year": 2016,
+			"where": "KZ",
+			"sources": {
+				"links": [{"name": "Review of genetic diversity in Bactrian camel (PMC)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9374477"}],
+				"text": "FAO figure for 2016 as quoted in the PMC review (citing Jirimutu et al., 2022)."
+			}
+		}
+	],
+	"yield": {
+		"perLactation": {"min": 543, "max": 543},
+		"lactationDays": {"min": 150, "max": 480},
+		"where": "MN",
+		"year": 2025,
+		"sources": {
+			"links": [
+				{"name": "Tsognemekh et al. 2025, Pastoralism: camel milk in Mongolia", "url": "https://www.frontierspartnerships.org/journals/pastoralism-research-policy-and-practice/articles/10.3389/past.2025.14815/full"}
+			],
+			"text": "Mongolia, 278 lactating camels sampled at 16 time points; the study's Test Interval Method estimate of about 543 kg for 150 to 480 days in milk. The year is the study's publication year; the sampling year was not in the text read. Lactation of about 480 days is from the same study. The figure is for the milked days shown, not a full year."
+		}
+	},
+	"composition": {
+		"fat": {"min": 6.4, "max": 9, "about": true},
+		"sources": {
+			"links": [
+				{"name": "Tsognemekh et al. 2025, Pastoralism: camel milk in Mongolia", "url": "https://www.frontierspartnerships.org/journals/pastoralism-research-policy-and-practice/articles/10.3389/past.2025.14815/full"}
+			],
+			"text": "Seasonal fat values from the Mongolia study: 6.4 to 6.8% in summer and autumn, about 9% at the winter peak, and about 7.4% in spring. Read from the article's text, so approximate. Protein, lactose and solids are described only relatively, with no numbers in the text read."
+		}
+	},
+	"purposes": {
+		"purposes": ["dairy", "meat", "wool", "transport"],
+		"sources": {
+			"links": [
+				{"name": "Review of genetic diversity in Bactrian camel (PMC)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9374477"}
+			],
+			"text": "The PMC review lists milk, meat, wool, transport and racing as uses, in that order. Racing is left out because it is not in the purposes list."
+		}
+	},
+	"facts": [
+		{
+			"k": "Peak yield",
+			"v": "About 2 litres a day at peak, in summer and early autumn (120 to 240 days in milk) in Mongolia.",
+			"sources": {
+				"links": [{"name": "Tsognemekh et al. 2025, Pastoralism: camel milk in Mongolia", "url": "https://www.frontierspartnerships.org/journals/pastoralism-research-policy-and-practice/articles/10.3389/past.2025.14815/full"}],
+				"text": "Mongolia study abstract and daily yield section: peak about 2.0 L/day in summer and early autumn, 120 to 240 days in milk."
+			}
+		}
+	],
+	"confidence": "low",
+	"gaps": "Looked for: a world Bactrian head count and a Bactrian-only FAOSTAT milk figure, neither found (FAOSTAT lumps both camels). The 0.09 Mt milk figure is a lower bound from three countries' 2016 counts. Also not found: protein, lactose and solids values for Bactrians, a per-lactation figure from another country, and a Bactrian-only risk status (IUCN lists the wild form as critically endangered, which is not the domestic one; no DAD-IS record was opened). Milk comparisons with the Russian and Chinese herds were not read in full. The taxonomy is contested (wild Camelus ferus vs domestic Camelus bactrianus), so the ranks are as the PMC article gives them."
+}

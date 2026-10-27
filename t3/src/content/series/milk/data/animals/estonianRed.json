@@ -1,0 +1,78 @@
+{
+	"label": "Estonian Red",
+	"aka": ["Eesti punane veis"],
+	"names": {
+		"links": [{"name": "Wikipedia: Estonian Red", "url": "https://en.wikipedia.org/wiki/Estonian_Red"}],
+		"text": "The native name is given on the Wikipedia page (Eesti punane veis)."
+	},
+	"kind": "breed",
+	"parent": "taurineCattle",
+	"about": {
+		"text": "The Estonian Red is a red dairy cattle breed developed in Estonia. It is kept on Estonian farms, where it makes up about 63.3 percent of the country's cattle (an undated figure). Its milk is bred for yield and fat content.",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Estonian Red", "url": "https://en.wikipedia.org/wiki/Estonian_Red"},
+				{"name": "KMR Livestock: Estonian Red", "url": "https://kmrlivestock.ee/?p=641"}
+			],
+			"text": "Dairy purpose and the 1885 herd book from the KMR Livestock page; the Wikipedia page calls it a dairy cattle breed. The 63.3 percent share of Estonia's cattle comes from the KMR Livestock page, year not stated. The yield focus is from the KMR Livestock page, which says the breeding aimed at high-fat, high-yield milk and later at weight and body size."
+		}
+	},
+	"origin": {
+		"regions": ["EE"],
+		"place": "Estonia",
+		"formed": {"min": 1850, "max": 1899},
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Estonian Red", "url": "https://en.wikipedia.org/wiki/Estonian_Red"},
+				{"name": "KMR Livestock: Estonian Red", "url": "https://kmrlivestock.ee/?p=641"}
+			],
+			"text": "Wikipedia: developed in Estonia in the second half of the 19th century by crossing local cattle with imported Angeln, Danish Red and North Slesvig Red stock. KMR Livestock: crossbreeding with Angler and Danish Red from the mid-1800s; first animals in the herd book in 1885. The range 1850 to 1899 combines these; the renaming to Estonian Red in 1928 is not used as the formation date."
+		}
+	},
+	"yield": {
+		"perLactation": {"min": 4127, "max": 5029},
+		"lactationDays": {"min": 305, "max": 305},
+		"sources": {
+			"links": [{"name": "KMR Livestock: Estonian Red", "url": "https://kmrlivestock.ee/?p=641"}],
+			"text": "From the KMR Livestock page: the high-producing herds (12 of them) reached 4,127 to 5,029 kg in a 305-day lactation. The page gives no year, so year is left out. The page's all-cow average of 3,456 kg has no stated lactation length and is not used here."
+		}
+	},
+	"composition": {
+		"fat": {"min": 3.92, "max": 3.98},
+		"protein": {"min": 3.30, "max": 3.30},
+		"sources": {
+			"links": [{"name": "KMR Livestock: Estonian Red", "url": "https://kmrlivestock.ee/?p=641"}],
+			"text": "From the KMR Livestock page: 3.92 percent fat for all evaluated cows, and 3.98 percent fat and 3.30 percent protein for the average of 77 breeding farms. No year is given."
+		}
+	},
+	"purposes": {
+		"purposes": ["dairy"],
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Estonian Red", "url": "https://en.wikipedia.org/wiki/Estonian_Red"},
+				{"name": "KMR Livestock: Estonian Red", "url": "https://kmrlivestock.ee/?p=641"}
+			],
+			"text": "Wikipedia calls it a dairy cattle breed and does not mention dual-purpose use. The KMR Livestock page does not state a main purpose but its emphasis is on milk yield and fat. The original item had dual-purpose in its known data; that is not confirmed by the pages opened."
+		}
+	},
+	"risk": {
+		"status": "endangered",
+		"year": 2021,
+		"sources": {
+			"links": [{"name": "Wikipedia: Estonian Red", "url": "https://en.wikipedia.org/wiki/Estonian_Red"}],
+			"text": "Wikipedia: the FAO did not list the breed's conservation status in 2007, and in 2021 it was reported to DAD-IS as endangered."
+		}
+	},
+	"facts": [
+		{
+			"k": "Record cow",
+			"v": "Cow 5338 gave 9,610 kg of milk in her 5th lactation at 4.14 percent fat. The year is not stated.",
+			"sources": {
+				"links": [{"name": "KMR Livestock: Estonian Red", "url": "https://kmrlivestock.ee/?p=641"}],
+				"text": "From the KMR Livestock page's record table."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "No current head count with a year: the 164,900 evaluated cows figure has no year, and the 63.3 percent share is undated. Where it is kept (regions within Estonia) is not stated. No milk protein figure for all cows. The okstate breed page (breeds.okstate.edu) was not reachable (HTTP 403), so it was not used. The yield and composition years were not found."
+}

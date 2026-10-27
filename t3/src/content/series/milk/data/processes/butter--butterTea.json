@@ -15,40 +15,5 @@
 			}
 		],
 		"text": "The table, the facts and the words on how it is made, from these."
-	},
-	"processing": {
-		"steps": [
-			{
-				"type": "heat",
-				"does": "heat",
-				"note": "Brick or pu-erh tea.",
-				"temperature": {
-					"min": 100,
-					"max": 100,
-					"about": true
-				}
-			},
-			{
-				"type": "drain",
-				"by": "sieve"
-			},
-			{
-				"type": "salt"
-			},
-			{
-				"type": "add",
-				"what": "butter",
-				"note": "Churned into the hot tea until it emulsifies, in a mdong mo."
-			}
-		],
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Butter tea",
-					"url": "https://en.wikipedia.org/wiki/Butter_tea"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		}
 	}
 }

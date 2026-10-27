@@ -23,41 +23,9 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "pasteurise",
-				"temperature": {
-					"min": 72,
-					"max": 75
-				},
-				"seconds": {
-					"min": 15,
-					"max": 15
-				}
-			},
-			{
-				"type": "heat",
-				"does": "cool",
-				"temperature": {
-					"min": 40,
-					"max": 45
-				}
-			},
-			{
-				"type": "coagulate",
-				"by": "rennet",
-				"seconds": {
-					"min": 1800,
-					"max": 3600
-				},
-				"note": "Calf or carabao rennet (PCC/Laguna), or vinegar or citrus juice (Bulacan, Cavite)."
-			},
-			{
-				"type": "cut",
-				"how": "cut",
-				"note": "In 1–2 in cubes, rested 10 min, then cut smaller and rested 15 min."
-			},
-			{
 				"type": "salt",
-				"note": "400 g salt in 5 L boiled, cooled (35–40 °C) water added to the cut curd for 20 min, or 1–4 tsp salt in the milk at home."
+				"note": "Salt, 400 g in 5 L of water boiled and cooled, is added to the cut curd; at home, 1–4 tsp of salt is put into the milk instead.",
+				"minor": true
 			},
 			{
 				"type": "drain",

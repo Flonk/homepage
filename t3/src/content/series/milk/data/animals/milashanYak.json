@@ -1,0 +1,38 @@
+{
+	"label": "Milashan yak",
+	"kind": "breed",
+	"parent": "yak",
+	"about": {
+		"text": "The Milashan is a Chinese yak population that is milked. A 2023 review of yak milk lists it as having the highest milk solids of the Chinese breeds it compares, at about 19.0 percent, with fat at about 7.4 percent.",
+		"sources": {
+			"links": [
+				{ "name": "Yak Milk: Nutritional Value, Functional Activity, and Current Applications (Foods, 2023)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10252990" }
+			],
+			"text": "Table 1 of the review, which gives per-breed composition for Chinese milked yak populations. The review does not describe the Milashan's range or husbandry in the parts read."
+		}
+	},
+	"origin": {
+		"regions": ["CN"],
+		"place": "China",
+		"sources": {
+			"links": [
+				{ "name": "Yak Milk: Nutritional Value, Functional Activity, and Current Applications (Foods, 2023)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10252990" }
+			],
+			"text": "The review is by Chinese authors and covers Chinese yak populations, including the Milashan."
+		}
+	},
+	"composition": {
+		"solids": { "min": 19.0, "max": 19.0 },
+		"fat": { "min": 7.4, "max": 7.4 },
+		"protein": { "min": 5.2, "max": 5.2 },
+		"lactose": { "min": 5.2, "max": 5.2 },
+		"sources": {
+			"links": [
+				{ "name": "Yak Milk: Nutritional Value, Functional Activity, and Current Applications (Foods, 2023)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10252990" }
+			],
+			"text": "Table 1 values for the Milashan, read directly from the table cells."
+		}
+	},
+	"confidence": "medium",
+	"gaps": "Single source. Not found: the Milashan's head count, lactation yield, origin dates, and DAD-IS risk status. Not searched for in depth."
+}

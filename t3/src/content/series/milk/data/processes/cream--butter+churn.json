@@ -18,7 +18,8 @@
 				"seconds": {
 					"min": 15
 				},
-				"note": "Negative peroxidase test."
+				"note": "The cream is heated until a test for one of its enzymes comes back negative.",
+				"minor": true
 			},
 			{
 				"type": "heat",
@@ -27,7 +28,8 @@
 					"min": 43200,
 					"max": 54000
 				},
-				"note": "By a temperature programme set to the fat's iodine value (for example 8-21-16 °C for iodine value 28-29; 6-17-11 °C for 35-37), as in a study aged 10 °C for 17 h."
+				"note": "The cream is chilled in steps set to its fat, so the right fat crystals form.",
+				"minor": true
 			},
 			{
 				"type": "churn",
@@ -41,7 +43,7 @@
 					"max": 2400,
 					"about": true
 				},
-				"note": "The fat globule membranes break and the cream clumps into butter grains and this liquid."
+				"of": "cream"
 			}
 		],
 		"sources": {
@@ -69,7 +71,7 @@
 	"legs": {
 		"butter": {
 			"step": "the fat",
-			"text": "Pasteurise hot, ripen cold for the right fat crystals, churn, drain, work, salt.",
+			"text": "Ripen cold for the right fat crystals, churn, drain, work, salt.",
 			"sources": {
 				"links": [
 					{
@@ -95,12 +97,12 @@
 					{
 						"type": "salt",
 						"how": "dry",
-						"note": "Unsalted, salted or extra salted; sprinkled on in a batch churn, added as a slurry in a continuous buttermaker."
+						"note": "The salt is sprinkled on in a batch churn, or added as a slurry in a continuous buttermaker."
 					},
 					{
 						"type": "custom",
 						"name": "work",
-						"note": "Until no water droplets are visible."
+						"note": "The butter is worked until no water droplets are visible."
 					}
 				],
 				"sources": {

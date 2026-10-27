@@ -14,49 +14,5 @@
 			}
 		],
 		"text": "The table, the facts and the words on how it is made, from these."
-	},
-	"processing": {
-		"steps": [
-			{
-				"type": "pasteurise"
-			},
-			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic"
-				],
-				"adds": {
-					"microbes": [
-						{
-							"name": "lactic ferments",
-							"kind": "bacterium",
-							"does": [
-								"acid",
-								"aroma"
-							]
-						}
-					]
-				},
-				"seconds": {
-					"min": 64800,
-					"max": 64800
-				},
-				"note": "The ferments give hazelnut notes."
-			},
-			{
-				"type": "churn",
-				"note": "In wooden churns."
-			}
-		],
-		"sources": {
-			"links": [
-				{
-					"name": "Niort Marais Poitevin: Échiré cooperative dairy",
-					"url": "https://www.niortmaraispoitevin.com/en/patrimoine-culturel/laiterie-cooperative-dechire/"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		}
 	}
 }

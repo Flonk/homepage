@@ -1,0 +1,54 @@
+{
+	"from": [
+		"dahi"
+	],
+	"to": [
+		"makhan"
+	],
+	"variant": true,
+	"step": "churn",
+	"text": "The whole dahi, not separated cream, is churned, with a little water, so makkhan keeps more moisture, curd and lactic acid than butter; the lactic bacteria of the dahi give it its aroma.",
+	"sources": {
+		"links": [
+			{
+				"name": "Halder et al., J Food Sci Technol (makkhan review)",
+				"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8021505/"
+			},
+			{
+				"name": "FAO: Traditional milk products of India (T0251E, ch. 4)",
+				"url": "https://www.fao.org/4/T0251E/T0251E04.htm"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "add",
+				"what": "water",
+				"minor": true
+			},
+			{
+				"type": "churn",
+				"of": "dahi"
+			},
+			{
+				"type": "wash",
+				"minor": true
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Halder et al., J Food Sci Technol (makkhan review)",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8021505/"
+				},
+				{
+					"name": "FAO: Traditional milk products of India (T0251E, ch. 4)",
+					"url": "https://www.fao.org/4/T0251E/T0251E04.htm"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

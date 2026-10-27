@@ -1,0 +1,139 @@
+{
+	"label": "Alpine goat",
+	"aka": [
+		"French Alpine",
+		"Alpine goat"
+	],
+	"names": {
+		"links": [
+			{
+				"name": "Wikipedia: Alpine goat (American breed)",
+				"url": "https://en.wikipedia.org/wiki/Alpine_(American_goat_breed)"
+			},
+			{
+				"name": "Ceva: goat breeds",
+				"url": "https://ruminants.ceva.pro/goat-breeds"
+			}
+		],
+		"text": "'French Alpine' is the given aka, and the Wikipedia article uses it for purebred animals under ADGA rules. 'Alpine goat' is the title of the Wikipedia article's subject. 'Alpine' is the item's label."
+	},
+	"kind": "breed",
+	"parent": "goat",
+	"about": {
+		"text": "The Alpine is a dairy goat developed from stock from the French Alps and other European breeds, and it is bred in Canada and the United States. Its milk is among the most productive of dairy goats.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Alpine goat (American breed)",
+					"url": "https://en.wikipedia.org/wiki/Alpine_(American_goat_breed)"
+				},
+				{
+					"name": "Ceva: goat breeds",
+					"url": "https://ruminants.ceva.pro/goat-breeds"
+				}
+			],
+			"text": "From the fetched Wikipedia article: 'The Alpine derives from stock of several types of dairy goats from the French Alps as well as other goat breeds', the Canada and United States countries, 'one of the most productive dairy goats', and milkfat 'averages 3.4%'. The 3.4% figure is the article's and is not used in the composition field, which uses the Penn State table. The Ceva page's French Alps origin is the same statement."
+		}
+	},
+	"origin": {
+		"regions": [
+			"FR",
+			"CA",
+			"US"
+		],
+		"place": "French Alps, with the breed established in Canada and the United States from imported European stock",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Alpine goat (American breed)",
+					"url": "https://en.wikipedia.org/wiki/Alpine_(American_goat_breed)"
+				},
+				{
+					"name": "Ceva: goat breeds",
+					"url": "https://ruminants.ceva.pro/goat-breeds"
+				}
+			],
+			"text": "Ceva: 'As the name suggests, the Alpine breed originates from the French Alps.' Wikipedia: the breed's countries are Canada and the United States, and it derives from French Alps stock and other European imports. The article gives no region within the Alps or formation date, so no 'formed' range is recorded."
+		}
+	},
+	"yield": {
+		"perLactation": {
+			"min": 1231,
+			"max": 1231
+		},
+		"where": "US",
+		"year": 2019,
+		"sources": {
+			"links": [
+				{
+					"name": "Penn State Extension: dairy goat production",
+					"url": "https://extension.psu.edu/dairy-goat-production"
+				}
+			],
+			"text": "Table 2 of the page, 2019 DHIR data: Alpine average 2,715 lb per lactation, converted by multiplying by 0.45359237 and rounding to about 1,231 kg. Min and max hold the average. The page's individual-record range is 750 to 5,720 lb (about 340 to 2,595 kg), not used here. The page's 275 to 305-day records are not adjusted for age. The page gives no breed-specific lactation length. The Ceva page's 950 kg in 150 days is not used because it is undated and unsourced by a dataset."
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 3.3,
+			"max": 3.3
+		},
+		"protein": {
+			"min": 2.9,
+			"max": 2.9
+		},
+		"sources": {
+			"links": [
+				{
+					"name": "Penn State Extension: dairy goat production",
+					"url": "https://extension.psu.edu/dairy-goat-production"
+				}
+			],
+			"text": "Table 2 of the page, 2019 DHIR data: Alpine fat 3.3% and protein 2.9%, both averages. Min and max hold the average. The Wikipedia article's 3.4% milkfat is not used so that the Alpine and Saanen values come from one table."
+		}
+	},
+	"purposes": {
+		"purposes": [
+			"dairy"
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Alpine goat (American breed)",
+					"url": "https://en.wikipedia.org/wiki/Alpine_(American_goat_breed)"
+				}
+			],
+			"text": "The article calls the Alpine 'one of the most productive dairy goats', alongside the Saanen and Toggenburg. Dairy is the only purpose the article names for it in the text fetched."
+		}
+	},
+	"facts": [
+		{
+			"k": "Coat and ears",
+			"v": "The only breed with erect ears that comes in all colours and combinations of colours.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Alpine goat (American breed)",
+						"url": "https://en.wikipedia.org/wiki/Alpine_(American_goat_breed)"
+					}
+				],
+				"text": "From the fetched article: 'It is the only breed with erect ears that comes in all colors and combinations of colors.' The article also notes that ADGA penalizes all-white and Toggenburg-patterned animals."
+			}
+		},
+		{
+			"k": "Peak milk",
+			"v": "Peak production comes four to six weeks after kidding.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Alpine goat (American breed)",
+						"url": "https://en.wikipedia.org/wiki/Alpine_(American_goat_breed)"
+					}
+				],
+				"text": "From the fetched article: 'Peak production comes four to six weeks after kidding.' It is a general statement about the breed's milk curve, not a US record."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "No DAD-IS breed-level risk status was found. The article gives country-level DAD-IS figures only (USA at risk/vulnerable, Canada at risk/endangered, both 2026), so no breed-level status is recorded. No world or country population count was found; the Wikipedia article gives none. No region within the French Alps or formation date was found. No protein or lactose figure from Wikipedia was used; the Penn State table gives protein. No lactose or solids figure was found. The Ceva page's 950 kg per lactation figure is undated and is not used."
+}

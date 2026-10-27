@@ -9,37 +9,37 @@
 		"steps": [
 			{
 				"type": "microfilter",
-				"note": "Precipitates are removed first by clarifier, microfiltration or filtering; mildly heated milk is preferred."
+				"minor": true
 			},
 			{
 				"type": "custom",
-				"name": "cation exchange",
+				"name": "bind",
 				"temperature": {
 					"min": 4,
 					"max": 15
 				},
-				"note": "At pH 4-9 the positively charged lactoperoxidase and lactoferrin stick to a cation exchange resin (one example cycles skimmed milk of pH 6.8 through it for 3 h)."
+				"note": "Positively charged proteins, lactoferrin among them, are bound to the resin at pH 4 to 9; in one example, skimmed milk of pH 6.8 is cycled through it for 3 h."
 			},
 			{
 				"type": "wash",
 				"what": "the resin",
 				"in": "5 mM acetate, 0.07 M KCl, pH 4.0",
-				"note": "Washed before anything is eluted."
+				"note": "Nothing is taken off the resin before this."
 			},
 			{
 				"type": "custom",
-				"name": "elute LPO",
-				"note": "Lactoperoxidase comes off first, in 0.3-0.4 M NaCl at pH 4-5."
+				"name": "release",
+				"note": "Lactoperoxidase is released first, in salt at 0.3 to 0.4 molar and pH 4 to 5."
 			},
 			{
 				"type": "custom",
-				"name": "elute secretory",
-				"note": "The secretory component follows, in 0.4 M NaCl at pH 6.5-7."
+				"name": "release",
+				"note": "The secretory component is released next, in salt at 0.4 molar and pH 6.5 to 7."
 			},
 			{
 				"type": "custom",
-				"name": "elute lactoferrin",
-				"note": "Lactoferrin comes off last, in stronger salt (1 M NaCl, or 0.75 M KCl at pH 7.5)."
+				"name": "release",
+				"note": "Lactoferrin is released last, in stronger salt: 1 molar, or 0.75 molar at pH 7.5."
 			}
 		],
 		"sources": {

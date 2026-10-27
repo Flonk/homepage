@@ -31,16 +31,16 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "custom",
-				"name": "heparin affinity"
+				"type": "separate",
+				"note": "The human protein is separated from all the animal's own milk proteins."
 			},
 			{
 				"type": "custom",
-				"name": "ion exchange"
+				"name": "sort"
 			},
 			{
 				"type": "custom",
-				"name": "hydrophobic"
+				"name": "purify"
 			},
 			{
 				"type": "nanofilter"
@@ -48,12 +48,14 @@
 			{
 				"type": "heat",
 				"does": "heat",
-				"note": "For virus safety."
+				"note": "The protein is heated, which makes it safe against viruses.",
+				"minor": true
 			},
 			{
 				"type": "custom",
 				"name": "fill",
-				"note": "Tested and filled like any injectable drug."
+				"note": "The milk is tested like any other injectable drug.",
+				"minor": true
 			}
 		],
 		"sources": {

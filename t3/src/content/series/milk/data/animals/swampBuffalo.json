@@ -1,0 +1,71 @@
+{
+	"label": "Swamp buffalo",
+	"aka": ["swamp-type water buffalo", "carabao"],
+	"names": {
+		"links": [
+			{ "name": "Wikipedia: Water buffalo", "url": "https://en.wikipedia.org/wiki/Water_buffalo" },
+			{ "name": "NAST 1998: Proposal, new scientific name of the domesticated swamp buffalo, the carabao", "url": "https://nast.dost.gov.ph/images/pdf%20files/Publications/NAST%20Transactions/NAST%201998%20Transactions%20Volume%2020/AS%203%20%20Proposal%20New%20Scientific%20Name%20of%20the%20Domesticated%20Swamp%20Buffalo,%20The%20Carabao%20-%20(%20%20Bubalus%20Bubalis%20Carabanensis%20)%20.pdf" }
+		],
+		"text": "'Swamp-type water buffalo' is from Wikipedia's type section, which was opened. 'Carabao' is from the title of the NAST 1998 paper, seen in WebSearch result titles only, not opened."
+	},
+	"kind": "type",
+	"parent": "waterBuffalo",
+	"taxon": {
+		"name": "Bubalus bubalis carabanensis",
+		"rank": "subspecies",
+		"sources": {
+			"links": [
+				{ "name": "NAST 1998: Proposal, new scientific name of the domesticated swamp buffalo, the carabao", "url": "https://nast.dost.gov.ph/images/pdf%20files/Publications/NAST%20Transactions/NAST%201998%20Transactions%20Volume%2020/AS%203%20%20Proposal%20New%20Scientific%20Name%20of%20the%20Domesticated%20Swamp%20Buffalo,%20The%20Carabao%20-%20(%20%20Bubalus%20Bubalis%20Carabanensis%20)%20.pdf" }
+			],
+			"text": "The name appears in the title of the NAST 1998 proposal, seen in WebSearch result titles only, not opened."
+		}
+	},
+	"about": {
+		"text": "The swamp buffalo is the water buffalo type with 48 chromosomes, kept mainly for work in rice-growing areas, with a small amount of milk. In 2003 China had about 22.76 million swamp-type buffaloes and the Philippines about 3.2 million.",
+		"sources": {
+			"links": [
+				{ "name": "Wikipedia: Water buffalo", "url": "https://en.wikipedia.org/wiki/Water_buffalo" },
+				{ "name": "Wikipedia: Water buffalo populations", "url": "https://en.wikipedia.org/wiki/Water_buffalo_populations" }
+			],
+			"text": "Chromosomes, work and milk from the Wikipedia article. The 2003 counts for China (22.76 million, all swamp-type) and the Philippines (3.2 million swamp-type carabao) are from the populations article as fetched."
+		}
+	},
+	"domestication": {
+		"where": "Mainland Southeast Asia",
+		"regions": ["TH", "VN", "LA", "KH", "MM"],
+		"yearsAgo": { "min": 3000, "max": 7000 },
+		"text": "The swamp type originated independently in mainland Southeast Asia and was domesticated between 3,000 and 7,000 years ago.",
+		"sources": {
+			"links": [
+				{ "name": "Wikipedia: Water buffalo", "url": "https://en.wikipedia.org/wiki/Water_buffalo" }
+			],
+			"text": "Place and dates from the article's swamp type section. The country list is my own mapping of mainland Southeast Asia to today's countries, not from the article."
+		}
+	},
+	"milk": {
+		"mt": 45.21,
+		"year": 2023,
+		"estimated": true,
+		"sources": {
+			"links": [
+				{ "name": "FAOSTAT: Crops and livestock products (QCL), world, 2023", "url": "https://www.fao.org/faostat/en/#data/QCL" },
+				{ "name": "FAO: Gateway to dairy production and products, buffaloes", "url": "https://www.fao.org/dairy-production-products/dairy/buffaloes/en" }
+			],
+			"text": "Estimated as what is left of FAOSTAT's 2023 water buffalo milk (150.69 Mt, flag A) after the river type's estimate (105.48 Mt): 150.69 − 105.48 = 45.21. The river estimate rests on the FAO gateway's 70% head share (no year) and equal milk per head. That probably overstates swamp milk, since the sources say swamp buffaloes give little milk."
+		}
+	},
+	"facts": [
+		{
+			"k": "Population in 2003",
+			"v": "China had about 22.76 million swamp-type buffaloes and the Philippines about 3.2 million carabao.",
+			"sources": {
+				"links": [
+					{ "name": "Wikipedia: Water buffalo populations", "url": "https://en.wikipedia.org/wiki/Water_buffalo_populations" }
+				],
+				"text": "From the populations article as fetched, which gives both figures for 2003."
+			}
+		}
+	],
+	"confidence": "low",
+	"gaps": "No head count for the swamp type from an opened source. The 21.8% world share (about 37.6 million, year not given) was seen in WebSearch text only and was not used. No swamp-type milk figure or yield per lactation was found in an opened source; the 2023 milk figure is a residual estimate and is probably high. No breed records from FAO DAD-IS were found."
+}

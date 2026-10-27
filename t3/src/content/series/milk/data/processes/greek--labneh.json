@@ -6,7 +6,7 @@
 		"labneh"
 	],
 	"variant": true,
-	"step": "salt, strain",
+	"step": "salt",
 	"text": "Labneh is yoghurt that has been salted and then drained of whey in cloth, which concentrates the protein into a thick, tangy spread. Codex lists it as a concentrated fermented milk, with at least 5.6 % protein.",
 	"sources": {
 		"links": [
@@ -29,7 +29,7 @@
 		"steps": [
 			{
 				"type": "salt",
-				"note": "Helps it keep.",
+				"note": "Salt is added, which helps it keep.",
 				"strength": {
 					"min": 1.5,
 					"max": 1.5,
@@ -39,13 +39,9 @@
 			{
 				"type": "drain",
 				"by": "cloth",
-				"seconds": {
-					"min": 36000,
-					"max": 50400
-				}
+				"note": "The yoghurt is drained of its whey, which concentrates its protein."
 			}
 		],
-		"text": "Industrially it is centrifuged or ultrafiltered instead.",
 		"sources": {
 			"links": [
 				{

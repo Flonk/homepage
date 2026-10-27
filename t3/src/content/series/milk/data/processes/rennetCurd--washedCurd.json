@@ -27,37 +27,15 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "press",
-				"note": "In 3–10 steps at about 50–450 g/cm²."
-			},
-			{
-				"type": "salt",
-				"how": "brine",
-				"strength": {
-					"min": 18,
-					"max": 23
-				},
-				"temperature": {
-					"min": 10,
-					"max": 16
-				}
-			},
-			{
-				"type": "ferment",
-				"does": "ripen",
-				"seconds": {
-					"min": 2592000,
-					"max": 7776000
-				},
-				"note": "Weeks to months by type, and the Gouda line ripens at 12–15 °C and 75–80 % RH."
-			},
-			{
 				"type": "washCurd",
 				"share": {
 					"min": 30,
 					"max": 50
-				},
-				"note": "Replaced by water, which sets the scald temperature and makes the curd milder."
+				}
+			},
+			{
+				"type": "press",
+				"note": "The cheese is pressed in 3–10 steps, at about 50–450 g/cm²."
 			},
 			{
 				"type": "salt",

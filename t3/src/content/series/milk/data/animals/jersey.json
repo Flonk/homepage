@@ -1,0 +1,63 @@
+{
+	"label": "Jersey",
+	"aka": ["Miniature Jersey"],
+	"names": {
+		"links": [
+			{"name": "Wikipedia: Jersey cattle", "url": "https://en.wikipedia.org/wiki/Jersey_(cattle)"}
+		],
+		"text": "The article says the original 'Island' type may also be called 'Miniature Jersey', and distinguishes it from the American Jersey."
+	},
+	"kind": "breed",
+	"parent": "taurineCattle",
+	"about": {
+		"text": "The Jersey is a dairy breed from the island of Jersey in the Channel Islands. Its milk is high in butterfat and protein and has a yellowish tinge.",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Jersey cattle", "url": "https://en.wikipedia.org/wiki/Jersey_(cattle)"}
+			],
+			"text": "Wikipedia's Jersey cattle article, opened with WebFetch: bred on the island of Jersey; the milk has high butterfat and a 'characteristic yellowish tinge'. The 'dairy breed' wording is the purposes field's claim, not stated in the fetched text."
+		}
+	},
+	"origin": {
+		"regions": ["GB"],
+		"place": "The island of Jersey, British Channel Islands (a Crown Dependency; GB used because JE is not in the country list)",
+		"formed": {"min": 1700, "max": 1700, "about": true},
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Jersey cattle", "url": "https://en.wikipedia.org/wiki/Jersey_(cattle)"}
+			],
+			"text": "The article says the breed descended from cattle brought from the 'nearby Norman mainland' and was first recorded as a separate breed around 1700."
+		}
+	},
+	"composition": {
+		"fat": {"min": 4.84, "max": 4.84},
+		"protein": {"min": 3.95, "max": 3.95},
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Jersey cattle", "url": "https://en.wikipedia.org/wiki/Jersey_(cattle)"}
+			],
+			"text": "The article gives the milk's butterfat as 4.84% and protein as 3.95%. It names no year or source for these figures."
+		}
+	},
+	"purposes": {
+		"purposes": ["dairy"],
+		"sources": {
+			"unsourced": true,
+			"text": "Common knowledge that the Jersey is a dairy breed, valued for its milk. The fetched article discusses only its milk."
+		}
+	},
+	"facts": [
+		{
+			"k": "Island census",
+			"v": "The States of Jersey census of 1866 counted 12,037 head of cattle on the island, including 611 bulls. These are all cattle on the island, not only Jersey cattle.",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: Jersey cattle", "url": "https://en.wikipedia.org/wiki/Jersey_(cattle)"}
+				],
+				"text": "Wikipedia's Jersey cattle article, as fetched, citing the 1866 States of Jersey census."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "Not found: a modern population or registration count; any milk yield per lactation or per year; FAO/DAD-IS risk status; a country-level figure. The Jersey region code is not in the countries list, so regions are left out. The 2024 trade-site claim that Jersey milk has more calcium, protein and fat than Holstein milk is left out as not from a source suited to the record."
+}

@@ -23,18 +23,6 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "coagulate",
-				"by": "rennet",
-				"temperature": {
-					"min": 30,
-					"max": 34
-				},
-				"seconds": {
-					"min": 1800,
-					"max": 2700
-				}
-			},
-			{
 				"type": "press"
 			},
 			{
@@ -43,11 +31,12 @@
 				"seconds": {
 					"min": 1800
 				},
-				"note": "In hot whey."
+				"note": "The pressed curd is cooked in hot whey."
 			},
 			{
 				"type": "salt",
-				"note": "Folded with mint."
+				"note": "Mint is folded into the cheese.",
+				"minor": true
 			},
 			{
 				"type": "custom",
@@ -56,7 +45,8 @@
 					"min": 28800,
 					"max": 259200
 				},
-				"note": "In salted whey."
+				"note": "The cheese is left in salted whey.",
+				"minor": true
 			}
 		],
 		"sources": {

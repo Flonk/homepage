@@ -25,26 +25,11 @@
 			{
 				"type": "add",
 				"what": "milk and salt",
-				"temperature": {
-					"min": 40,
-					"max": 40,
-					"about": true
-				},
-				"note": "Ewe's and/or goat's milk (at most 25 % under the AOP), water (at most 15 %) and salt."
-			},
-			{
-				"type": "heat",
-				"does": "heat",
-				"temperature": {
-					"min": 90,
-					"max": 90,
-					"about": true
-				},
-				"note": "The proteins flocculate at about 90 °C; it never boils."
+				"note": "Ewe's and/or goat's milk (at most 25 % under its protected-name rules), water (at most 15 %) and salt are added at about 40 °C."
 			},
 			{
 				"type": "mould",
-				"note": "Into rush moulds (fattoghje, casgiaghji), or plastic for sale."
+				"note": "The cheese is put into rush moulds (fattoghje, casgiaghji), or into plastic for sale."
 			},
 			{
 				"type": "ferment",
@@ -52,7 +37,7 @@
 				"seconds": {
 					"min": 1814400
 				},
-				"note": "Only the brocciu passu, salted on the surface, is ripened, for at least 21 days."
+				"note": "The brocciu passu, salted on the surface, is ripened, and no other brocciu is."
 			}
 		],
 		"sources": {

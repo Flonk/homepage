@@ -1,0 +1,109 @@
+{
+	"label": "Beetal",
+	"aka": [
+		"Lahori"
+	],
+	"names": {
+		"links": [
+			{
+				"name": "Wikipedia: Beetal goat",
+				"url": "https://en.wikipedia.org/wiki/Beetal_goat"
+			}
+		],
+		"text": "The fetched article says the breed is 'also known as Lahori goat'. 'Beetal' is the item's given label."
+	},
+	"kind": "breed",
+	"parent": "goat",
+	"about": {
+		"text": "A large dual-purpose goat from the Punjab region of India and Pakistan, kept for milk and meat. The article calls it a good milker with large body size, and says it has been widely used to improve local goats across the subcontinent.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Beetal goat",
+					"url": "https://en.wikipedia.org/wiki/Beetal_goat"
+				}
+			],
+			"text": "From the fetched article: the Punjab origin, the milk and meat use, 'considered to be a good milker with large body size', and the use in improving local goats."
+		}
+	},
+	"origin": {
+		"regions": [
+			"IN",
+			"PK"
+		],
+		"place": "The Punjab region of India and Pakistan",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Beetal goat",
+					"url": "https://en.wikipedia.org/wiki/Beetal_goat"
+				}
+			],
+			"text": "From the fetched article: 'The breed comes from the Punjab region of India and Pakistan.' No formation dates were given."
+		}
+	},
+	"yield": {
+		"perLactation": {
+			"min": 156.9,
+			"max": 156.9
+		},
+		"lactationDays": {
+			"min": 186,
+			"max": 186
+		},
+		"year": 1984,
+		"sources": {
+			"links": [
+				{
+					"name": "Search result: Beetal goats in their native tract (Cambridge, Animal Genetic Resources)",
+					"url": "https://www.cambridge.org/core/journals/animal-genetic-resources-resources-genetiques-animales-recursos-geneticos-animales/article/beetal-goats-in-their-native-tract/247581BFDD5CE094F31D7A243FEC157B"
+				}
+			],
+			"text": "Found in WebSearch result text only, not opened. A 1984 stall-fed study of 91 Beetal does (records 1971 to 1982) gives total actual milk yield of 156.9 +/- 6.8 kg over an average lactation of 186 days. The study's country of recording is not stated in the text seen, so 'where' is left out. Year is the study's year as given in the search text."
+		}
+	},
+	"purposes": {
+		"purposes": [
+			"dual-purpose"
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Beetal goat",
+					"url": "https://en.wikipedia.org/wiki/Beetal_goat"
+				}
+			],
+			"text": "From the fetched article: 'used for milk and meat production'."
+		}
+	},
+	"facts": [
+		{
+			"k": "Hide",
+			"v": "The skin is considered high quality and is used for fine leather such as velour, suede and chamois.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Beetal goat",
+						"url": "https://en.wikipedia.org/wiki/Beetal_goat"
+					}
+				],
+				"text": "From the fetched article, the hide paragraph."
+			}
+		},
+		{
+			"k": "Improving local goats",
+			"v": "Beetal goats have been widely used to improve local goats across the subcontinent, and adapt well to stall feeding for intensive farming.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Beetal goat",
+						"url": "https://en.wikipedia.org/wiki/Beetal_goat"
+					}
+				],
+				"text": "From the fetched article."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "Searched for a DAD-IS entry, a national population count, a risk status and a formation date. The DAD-IS page was not reachable through search, and the Wikipedia article gives none of these. The Punjab survey (20,772 animals in 1997) covers only two districts, so it was not used as a breed total. Another study gives 1.8 kg a day over 161 days, which conflicts with the 1984 lactation total and was left out."
+}

@@ -24,28 +24,21 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "ferment",
-				"does": "ripen",
-				"seconds": {
-					"min": 1728000,
-					"max": 2592000
-				},
-				"note": "Matured 20-30 days before burying, though the PDO rules are reported as at least 80 days."
-			},
-			{
 				"type": "custom",
 				"name": "prepare pit",
-				"note": "Straw is burned in it to dry and sanitise it, then it is lined with straw, reeds and planks."
+				"note": "Straw is burned in it to dry and sanitise it, then it is lined with straw, reeds and planks.",
+				"minor": true
 			},
 			{
 				"type": "custom",
 				"name": "bag",
-				"note": "White cotton or linen bags, about ten wheels each."
+				"note": "The wheels are put into white cotton or linen bags, about ten to each bag.",
+				"minor": true
 			},
 			{
 				"type": "custom",
 				"name": "bury",
-				"note": "In mid-to-late August, sealed with plaster, wood and sand."
+				"note": "The pit is sealed with plaster, wood and sand in mid-to-late August."
 			},
 			{
 				"type": "ferment",
@@ -65,12 +58,13 @@
 					"min": 6912000,
 					"max": 8640000
 				},
-				"note": "Without air the fermentation is anaerobic, and the cheese softens and loses lactose, water and fat."
+				"note": "The cheese is kept with no air to reach it, so it softens as it loses lactose, water and fat."
 			},
 			{
 				"type": "custom",
 				"name": "unearth",
-				"note": "On St Catherine (25 Nov) in Sogliano, St Martin (11 Nov) in Perticara."
+				"note": "The cheeses are unearthed on St Catherine's day (25 Nov) in Sogliano, and on St Martin's (11 Nov) in Perticara.",
+				"minor": true
 			}
 		],
 		"sources": {

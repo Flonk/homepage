@@ -19,35 +19,12 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic"
-				],
-				"adds": {
-					"microbes": [],
-					"by": [
-						"wild"
-					],
-					"vessel": "earthenware pot (matared), sealed with oil or an egg-white and oil coat"
-				},
-				"temperature": {
-					"min": 20,
-					"max": 25
-				},
-				"seconds": {
-					"min": 86400,
-					"max": 345600
-				}
-			},
-			{
 				"type": "separate",
 				"off": "cream",
-				"by": "gravity",
-				"note": "Skimmed off for butter."
+				"by": "gravity"
 			}
 		],
-		"text": "Raw cow or buffalo milk soured by its own flora; the fat that rises is skimmed off for butter.",
+		"text": "The fat that rises is skimmed off for butter.",
 		"sources": {
 			"links": [
 				{

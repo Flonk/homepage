@@ -1,0 +1,137 @@
+{
+	"label": "Rathi",
+	"aka": [
+		"राठी"
+	],
+	"names": {
+		"links": [
+			{
+				"name": "Wikipedia: Rathi cattle",
+				"url": "https://en.wikipedia.org/wiki/Rathi_cattle"
+			}
+		],
+		"text": "The fetched article gives the Hindi form राठी as the only name for the breed, and names it after the nomadic Rath people. It also mentions a different, older Rath draught breed, which is not the same breed and is left out."
+	},
+	"kind": "breed",
+	"parent": "zebuCattle",
+	"about": {
+		"text": "A dairy breed of the Thar Desert in Rajasthan, India, named after the nomadic Rath people who keep it. According to DAD-IS 2024 as cited in Wikipedia, a lactation of about 1,530 kg takes 309 days, at 5.3% fat.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Rathi cattle",
+					"url": "https://en.wikipedia.org/wiki/Rathi_cattle"
+				}
+			],
+			"text": "From the fetched article: its region (Bikaner, Ganganagar and Jaisalmer districts), the naming after the Rath people, and the lactation and fat figures, which the article attributes to DAD-IS (2024). The DAD-IS page itself was not opened; the figures are secondhand."
+		}
+	},
+	"origin": {
+		"regions": [
+			"IN"
+		],
+		"place": "Rajasthan, in the Thar Desert (Bikaner, Ganganagar and Jaisalmer districts)",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Rathi cattle",
+					"url": "https://en.wikipedia.org/wiki/Rathi_cattle"
+				}
+			],
+			"text": "Districts from the fetched article, which says the breed is most numerous in the Lunkaransar tehsil of Bikaner District."
+		}
+	},
+	"yield": {
+		"perLactation": {
+			"min": 1530,
+			"max": 1530
+		},
+		"lactationDays": {
+			"min": 309,
+			"max": 309
+		},
+		"where": "IN",
+		"year": 2024,
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Rathi cattle",
+					"url": "https://en.wikipedia.org/wiki/Rathi_cattle"
+				}
+			],
+			"text": "'About 1,530 kg per 309-day lactation, with 5.3% fat (DAD-IS, 2024)', as stated in the fetched article. The DAD-IS page was not opened, so this is from Wikipedia's citation. Recorded as a single figure, not a range."
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 5.3,
+			"max": 5.3
+		},
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Rathi cattle",
+					"url": "https://en.wikipedia.org/wiki/Rathi_cattle"
+				}
+			],
+			"text": "5.3% fat, as stated in the fetched article and attributed there to DAD-IS (2024). No protein figure was given."
+		}
+	},
+	"purposes": {
+		"purposes": [
+			"dairy"
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Rathi cattle",
+					"url": "https://en.wikipedia.org/wiki/Rathi_cattle"
+				}
+			],
+			"text": "'Dairy (Department of Animal Husbandry & Dairying, 2005)', as stated in the fetched article."
+		}
+	},
+	"risk": {
+		"status": "not at risk",
+		"year": 2024,
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Rathi cattle",
+					"url": "https://en.wikipedia.org/wiki/Rathi_cattle"
+				}
+			],
+			"text": "'Not at risk, per FAO (2007) and DAD-IS (2024)', as stated in the fetched article. The DAD-IS page was not opened; this is secondhand."
+		}
+	},
+	"facts": [
+		{
+			"k": "Population",
+			"v": "An estimated 878,852 to 1,169,828 head in 2022.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Rathi cattle",
+						"url": "https://en.wikipedia.org/wiki/Rathi_cattle"
+					}
+				],
+				"text": "The range as stated in the fetched article, attributed there to DAD-IS (2024). Not opened directly."
+			}
+		},
+		{
+			"k": "Weight",
+			"v": "Males average 386 kg and females 327 kg; females stand 115 cm at the withers.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Rathi cattle",
+						"url": "https://en.wikipedia.org/wiki/Rathi_cattle"
+					}
+				],
+				"text": "From the fetched article, attributed there to Mason's World Encyclopedia of Livestock Breeds and Breeding (CABI, 2016). The article says 'female height' and does not say at the withers, so 'at the withers' is my wording."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "A DAD-IS breed data sheet was searched for but not found, so the population, yield, fat and risk figures rest on Wikipedia's citations to DAD-IS (2024) and were not checked against DAD-IS itself. No protein figure and no founding date or history beyond the name were found."
+}

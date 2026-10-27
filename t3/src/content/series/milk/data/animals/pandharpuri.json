@@ -1,0 +1,116 @@
+{
+	"label": "Pandharpuri",
+	"aka": [
+		"Dharwari"
+	],
+	"names": {
+		"links": [
+			{
+				"name": "List of water buffalo breeds (Wikipedia)",
+				"url": "https://en.wikipedia.org/wiki/List_of_water_buffalo_breeds"
+			},
+			{
+				"name": "Pandharpuri buffalo (Wikipedia)",
+				"url": "https://en.wikipedia.org/wiki/Pandharpuri_buffalo"
+			}
+		],
+		"text": "\"Dharwari\" taken from the alternate-name column of the breeds list (listed as \"Dharwari (in Mysore)\") and from the Pandharpuri article. The article's list of names is the same."
+	},
+	"kind": "breed",
+	"parent": "riverBuffalo",
+	"about": {
+		"text": "A dairy buffalo of Maharashtra, India, native to the dry districts of Solapur, Kolhapur, Satara and Sangli. Its milk is said to be high in protein and calcium and lower in fat.",
+		"sources": {
+			"links": [
+				{
+					"name": "Pandharpuri buffalo (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Pandharpuri_buffalo"
+				}
+			],
+			"text": "Wikipedia article, read on WebFetch: the districts, the dry-region setting, and the protein and calcium claim with the lower fat claim (no numbers given)."
+		}
+	},
+	"origin": {
+		"regions": [
+			"IN"
+		],
+		"place": "The dry regions of Solapur, Kolhapur, Satara and Sangli districts in Maharashtra. The name comes from the town of Pandharpur in Solapur.",
+		"sources": {
+			"links": [
+				{
+					"name": "Pandharpuri buffalo (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Pandharpuri_buffalo"
+				}
+			],
+			"text": "Wikipedia article, read on WebFetch. The article gives no formation dates."
+		}
+	},
+	"yield": {
+		"perLactation": {
+			"min": 1400,
+			"max": 1400
+		},
+		"lactationDays": {
+			"min": 305,
+			"max": 305
+		},
+		"where": "IN",
+		"sources": {
+			"links": [
+				{
+					"name": "Pandharpuri buffalo (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Pandharpuri_buffalo"
+				}
+			],
+			"text": "Wikipedia article, read on WebFetch: milk yield 1,400 kg per 305 days, with the Central Institute for Research on Buffaloes cited. The article also gives a lactation length of 350 days and a calving interval of 465 days; the 305-day yield is taken as the lactation figure, as the standard 305-day basis. No year is given."
+		}
+	},
+	"purposes": {
+		"purposes": [
+			"dairy"
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Pandharpuri buffalo (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Pandharpuri_buffalo"
+				},
+				{
+					"name": "List of water buffalo breeds (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/List_of_water_buffalo_breeds"
+				}
+			],
+			"text": "The Pandharpuri article, read on WebFetch, gives dairy as its use. The breeds list gives dairy for the Pandharpuri entry. No draught use was confirmed in either page, so it is left out."
+		}
+	},
+	"facts": [
+		{
+			"k": "Name",
+			"v": "Its name comes from the town of Pandharpur in Solapur district.",
+			"sources": {
+				"links": [
+					{
+						"name": "Pandharpuri buffalo (Wikipedia)",
+						"url": "https://en.wikipedia.org/wiki/Pandharpuri_buffalo"
+					}
+				],
+				"text": "Wikipedia article, read on WebFetch."
+			}
+		},
+		{
+			"k": "Build and coat",
+			"v": "Adult females average 416 kg and 130 cm at the withers. The coat is black and the horns are 60 to 100 cm long.",
+			"sources": {
+				"links": [
+					{
+						"name": "Pandharpuri buffalo (Wikipedia)",
+						"url": "https://en.wikipedia.org/wiki/Pandharpuri_buffalo"
+					}
+				],
+				"text": "Wikipedia article, read on WebFetch. The article gives no year."
+			}
+		}
+	],
+	"confidence": "low",
+	"gaps": "Searched the Wikipedia article, the breeds list and one search for a DAD-IS risk status. No DAD-IS or FAO risk status found: the search returned only general DAD-IS pages and a 2020 genetic study with no census figure. No population or head count. No formation or origin history or dates. No fat, protein or solids figures: the article describes the milk as high in protein and calcium but gives no numbers. The yield has no year. The breeds list cites DAD-IS in general for the entry but gives no page for this breed."
+}

@@ -6,7 +6,7 @@
 		"adygheCheese"
 	],
 	"variant": true,
-	"step": "scald, add sour whey, mould",
+	"step": "press, salt",
 	"text": "Sourced from a Russian technological instruction quoted in a patent and an agrarian article; no second source seen.",
 	"sources": {
 		"links": [
@@ -28,24 +28,8 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "heat",
-				"does": "heat",
-				"temperature": {
-					"min": 93,
-					"max": 95
-				}
-			},
-			{
-				"type": "acidify",
-				"with": "sour whey",
-				"note": "8–10 % sour whey, by pH shock, with no rennet and no starter."
-			},
-			{
-				"type": "drain"
-			},
-			{
 				"type": "press",
-				"note": "In baskets."
+				"note": "The curd is pressed in baskets."
 			},
 			{
 				"type": "salt"
@@ -57,7 +41,8 @@
 					"min": 259200,
 					"max": 259200,
 					"about": true
-				}
+				},
+				"minor": true
 			}
 		],
 		"sources": {

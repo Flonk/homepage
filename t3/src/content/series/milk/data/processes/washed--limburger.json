@@ -19,29 +19,8 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "pasteurise"
-			},
-			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic",
-					"smear"
-				],
-				"adds": {
-					"microbes": [],
-					"by": [
-						"starter"
-					]
-				}
-			},
-			{
-				"type": "coagulate",
-				"by": "rennet"
-			},
-			{
 				"type": "mould",
-				"note": "In wooden forms, cut into blocks of about 250 g."
+				"note": "The curd is put into wooden forms and cut into blocks of about 250 g."
 			},
 			{
 				"type": "salt",
@@ -65,7 +44,8 @@
 							"kind": "bacterium"
 						}
 					]
-				}
+				},
+				"note": "The surface is smeared with yeasts, then bacteria, which grow on it and break the paste down from outside."
 			},
 			{
 				"type": "ferment",
@@ -79,7 +59,7 @@
 					"min": 1814400,
 					"max": 2419200
 				},
-				"note": "In high humidity, rubbed a few times."
+				"note": "The cheese ripens in high humidity and is rubbed a few times."
 			}
 		],
 		"sources": {

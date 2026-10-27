@@ -23,18 +23,6 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "heat",
-				"does": "heat",
-				"temperature": {
-					"min": 85,
-					"max": 99
-				},
-				"seconds": {
-					"min": 10800
-				},
-				"note": "Baked, which browns it."
-			},
-			{
 				"type": "ferment",
 				"does": "incubate",
 				"kinds": [
@@ -61,7 +49,7 @@
 					"min": 10800,
 					"max": 21600
 				},
-				"note": "Households seed it with smetana instead of a starter, and L. bulgaricus may join S. thermophilus."
+				"note": "The milk is seeded with smetana, a sour cream, instead of a starter, and a second souring bacterium may join the first."
 			}
 		],
 		"sources": {

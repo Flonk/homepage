@@ -23,22 +23,9 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "heat",
-				"does": "heat",
-				"temperature": {
-					"min": 50,
-					"max": 95
-				},
-				"seconds": {
-					"min": 600,
-					"max": 1800
-				},
-				"note": "Casein and a base in water, heated until clear."
-			},
-			{
 				"type": "add",
 				"what": "additives",
-				"note": "Water-soluble extenders, resin derivatives, an alcohol; often urea, borax, antifoam, preservative."
+				"note": "The casein is given water-soluble extenders (fillers that bulk it out), resin derivatives and an alcohol, often with urea, borax, an antifoam and a preservative."
 			}
 		],
 		"sources": {

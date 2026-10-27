@@ -19,23 +19,6 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "coagulate",
-				"temperature": {
-					"min": 30,
-					"max": 30,
-					"about": true
-				},
-				"seconds": {
-					"min": 3600,
-					"max": 3600,
-					"about": true
-				}
-			},
-			{
-				"type": "cut",
-				"how": "cut"
-			},
-			{
 				"type": "drain",
 				"by": "hang",
 				"seconds": {
@@ -45,7 +28,8 @@
 				}
 			},
 			{
-				"type": "press"
+				"type": "press",
+				"minor": true
 			},
 			{
 				"type": "cut",
@@ -53,17 +37,18 @@
 			},
 			{
 				"type": "custom",
-				"name": "knead"
+				"name": "knead",
+				"minor": true
 			},
 			{
 				"type": "custom",
 				"name": "pack in skin",
-				"note": "Into a salted goatskin (tulum)."
+				"note": "The curd is put into a salted goatskin, called a tulum."
 			},
 			{
 				"type": "salt",
 				"how": "brine",
-				"note": "Plus salt on top in the skin."
+				"note": "Salt is also put on top, in the skin."
 			},
 			{
 				"type": "ferment",
@@ -77,7 +62,7 @@
 					"max": 15552000,
 					"about": true
 				},
-				"note": "In a cave or cellar."
+				"note": "The cheese is ripened in a cave or cellar."
 			}
 		],
 		"sources": {

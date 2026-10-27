@@ -24,49 +24,5 @@
 			}
 		],
 		"text": "The table, the facts and the words on how it is made, from these."
-	},
-	"processing": {
-		"steps": [
-			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic"
-				],
-				"adds": {
-					"microbes": [
-						{
-							"name": "Lactococcus lactis subsp. cremoris",
-							"kind": "bacterium",
-							"does": [
-								"acid",
-								"slime"
-							]
-						}
-					],
-					"by": [
-						"backslop"
-					]
-				},
-				"note": "Set at a low temperature and ripened long to keep the acidity mild."
-			}
-		],
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia (sv): Långfil (after Fondén, Leporanta & Svensson 2007)",
-					"url": "https://sv.wikipedia.org/wiki/L%C3%A5ngfil"
-				},
-				{
-					"name": "Toba et al. 1991, Int J Food Microbiol (långfil strain)",
-					"url": "https://pubmed.ncbi.nlm.nih.gov/1904758/"
-				},
-				{
-					"name": "Neve et al. 1988, Biochimie (ropy Scandinavian strains)",
-					"url": "https://pubmed.ncbi.nlm.nih.gov/3139063/"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		}
 	}
 }

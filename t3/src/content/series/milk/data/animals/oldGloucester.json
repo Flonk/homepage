@@ -1,0 +1,108 @@
+{
+	"label": "Old Gloucester",
+	"aka": ["Gloucester cattle", "Gloucestershire"],
+	"names": {
+		"links": [
+			{"name": "Wikipedia: Old Gloucester", "url": "https://en.wikipedia.org/wiki/Old_Gloucester"}
+		],
+		"text": "Alternative names as listed on the Wikipedia page (fetched)."
+	},
+	"kind": "breed",
+	"parent": "taurineCattle",
+	"about": {
+		"text": "A traditional English dual-purpose breed from Gloucestershire and nearby areas of the West Country. Originally kept for milk, beef and draught work, it is now kept for milk and meat. Its milk is used to make Single Gloucester and Stinking Bishop cheeses.",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Old Gloucester", "url": "https://en.wikipedia.org/wiki/Old_Gloucester"}
+			],
+			"text": "Fetched page for the origin, the uses and the cheeses."
+		}
+	},
+	"origin": {
+		"regions": ["GB"],
+		"place": "Gloucestershire and nearby areas of England's West Country",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Old Gloucester", "url": "https://en.wikipedia.org/wiki/Old_Gloucester"}
+			],
+			"text": "Place as stated on the fetched page. The page says its origins are unknown. Recognition (1911) and society dates are not formation dates, so none are recorded."
+		}
+	},
+	"head": [
+		{
+			"count": 500,
+			"year": 2007,
+			"where": "GB",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: Old Gloucester", "url": "https://en.wikipedia.org/wiki/Old_Gloucester"}
+				],
+				"text": "About 500 breeding cows by 2007, as stated on the fetched page. Breeding cows, not the whole population, and not only those milked."
+			}
+		}
+	],
+	"composition": {
+		"fat": {"min": 3.9, "max": 3.9},
+		"protein": {"min": 3.3, "max": 3.3},
+		"lactose": {"min": 4.6, "max": 4.6},
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Old Gloucester", "url": "https://en.wikipedia.org/wiki/Old_Gloucester"}
+			],
+			"text": "Butterfat 3.9%, protein 3.3% and lactose 4.6%, as stated on the fetched page. The page does not give the recording country or year."
+		}
+	},
+	"purposes": {
+		"purposes": ["dual-purpose"],
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Old Gloucester", "url": "https://en.wikipedia.org/wiki/Old_Gloucester"}
+			],
+			"text": "Described on the fetched page as now dual-purpose, for milk and meat."
+		}
+	},
+	"risk": {
+		"status": "endangered",
+		"year": 2022,
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Old Gloucester", "url": "https://en.wikipedia.org/wiki/Old_Gloucester"}
+			],
+			"text": "DAD-IS (2022): endangered, as given on the fetched page's conservation status section. The page also gives FAO (2007) endangered-maintained and RBST (2022) priority. The DAD-IS entry itself was not opened."
+		}
+	},
+	"facts": [
+		{
+			"k": "Lactation",
+			"v": "Average of 3,860 litres per lactation, some cows up to 5,000 litres, lactation close to 300 days.",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: Old Gloucester", "url": "https://en.wikipedia.org/wiki/Old_Gloucester"}
+				],
+				"text": "Stated on the fetched page in litres, not converted to kg, so kept as a fact rather than a yield record. The Oklahoma State profile's 8,850 gallons per cow looks like a transcription error and is not used."
+			}
+		},
+		{
+			"k": "Cheese",
+			"v": "Its milk is used to make Single Gloucester and Stinking Bishop cheeses. Single Gloucester once held EU Protected Designation of Origin status.",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: Old Gloucester", "url": "https://en.wikipedia.org/wiki/Old_Gloucester"}
+				],
+				"text": "Stated on the fetched page. The page says it was unclear whether the PDO required the milk to come from Gloucester cows."
+			}
+		},
+		{
+			"k": "Ark of Taste",
+			"v": "Listed in the Slow Food Foundation's Ark of Taste.",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: Old Gloucester", "url": "https://en.wikipedia.org/wiki/Old_Gloucester"}
+				],
+				"text": "Stated on the fetched page."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "Looked for a current DAD-IS population count and a per-lactation yield in kg with its recording country. The only yield figures are in litres from Wikipedia, so they sit in a fact rather than a yield record. The WebSearch snippet claiming over 700 registered females was not opened, so it is left out."
+}

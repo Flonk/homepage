@@ -20,25 +20,16 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "coagulate",
-				"by": "acid-heat",
-				"note": "With lemon juice."
-			},
-			{
-				"type": "drain"
-			},
-			{
 				"type": "mould",
-				"note": "In small baskets or perforated pots."
+				"note": "The curd is put into small baskets or perforated pots."
 			},
 			{
 				"type": "salt",
-				"note": "Heavily, so it keeps."
+				"note": "The cheese is salted heavily, so that it keeps."
 			},
 			{
-				"type": "custom",
-				"name": "smoke",
-				"note": "Optional; smoked cheese is brown."
+				"type": "smoke",
+				"minor": true
 			}
 		],
 		"sources": {

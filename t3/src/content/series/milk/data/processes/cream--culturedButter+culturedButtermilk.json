@@ -18,7 +18,8 @@
 				},
 				"seconds": {
 					"min": 15
-				}
+				},
+				"minor": true
 			},
 			{
 				"type": "ferment",
@@ -62,15 +63,17 @@
 					"min": 43200,
 					"max": 54000
 				},
-				"note": "Soured during the ripening, in summer at 20 °C for about 5 h."
+				"note": "The cream is soured during its ripening, in summer at 20 °C for about 5 h."
 			},
 			{
 				"type": "heat",
 				"does": "cool",
-				"note": "In summer, cooled at about 22 °SH."
+				"note": "The cream is cooled in summer, once it reaches about 22 Soxhlet-Henkel degrees, a scale of sourness.",
+				"minor": true
 			},
 			{
-				"type": "churn"
+				"type": "churn",
+				"of": "cream"
 			}
 		],
 		"sources": {
@@ -132,7 +135,7 @@
 				"steps": [
 					{
 						"type": "drain",
-						"note": "Drained off once the butter grains reach the right size, and collected on its own."
+						"note": "The buttermilk is drained off once the butter grains reach the right size, and collected on its own."
 					}
 				],
 				"sources": {

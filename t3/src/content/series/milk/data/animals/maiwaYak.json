@@ -1,0 +1,38 @@
+{
+	"label": "Maiwa yak",
+	"kind": "breed",
+	"parent": "yak",
+	"about": {
+		"text": "A Chinese yak breed. Its milk is recorded with milk solids of about 17.5 percent and fat of about 6.3 percent.",
+		"sources": {
+			"links": [
+				{"name": "PMC10252990 (Table 1, milk composition of Chinese yak)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10252990"}
+			],
+			"text": "Composition from Table 1, row 'Maiwa (China)'. The article gives no region for this breed."
+		}
+	},
+	"origin": {
+		"regions": ["CN"],
+		"place": "China (the province is not given in the source read)",
+		"sources": {
+			"links": [
+				{"name": "PMC10252990 (Table 1)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10252990"}
+			],
+			"text": "The article labels the breed 'Maiwa (China)'. No province or formation date is given in the article."
+		}
+	},
+	"composition": {
+		"fat": {"min": 6.3, "max": 6.3},
+		"protein": {"min": 4.9, "max": 4.9},
+		"lactose": {"min": 5.4, "max": 5.4},
+		"solids": {"min": 17.5, "max": 17.5},
+		"sources": {
+			"links": [
+				{"name": "PMC10252990 (Table 1)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10252990"}
+			],
+			"text": "Table 1, row 'Maiwa (China)': milk solids 17.5, fat 6.3, protein 4.9, lactose 5.4 (percent). The article gives single values."
+		}
+	},
+	"confidence": "medium",
+	"gaps": "Searched for DAD-IS risk status (the DAD-IS record was not reachable), a current census count, milk yield, and purposes. A search summary gave a 1995 head count (about 300 000 in Hongyuan, Sichuan) and a 1981 yield (365 kg over 150 days), but no page with those figures was opened, so both are left out. The alternative name Maiwa maoniu was not found in the pages read, so it is left out. The article uses 'Maiwa Yak' in its tables."
+}

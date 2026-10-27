@@ -39,21 +39,18 @@
 					"max": 43200,
 					"about": true
 				},
-				"note": "Outdoors overnight, traditionally in the dew."
+				"note": "The milk is left outdoors overnight to cool, traditionally in the dew, and not stirred."
 			},
 			{
 				"type": "custom",
 				"name": "whip",
-				"seconds": {
-					"min": 10800,
-					"max": 10800,
-					"about": true
-				}
+				"note": "The milk is beaten to a foam at dawn."
 			},
 			{
 				"type": "add",
 				"what": "sugar, saffron, cardamom, rose water",
-				"note": "Nuts and silver leaf on top."
+				"note": "Nuts and silver leaf are put on top.",
+				"minor": true
 			}
 		],
 		"sources": {

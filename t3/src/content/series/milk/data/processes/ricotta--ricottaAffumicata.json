@@ -14,40 +14,22 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "coagulate",
-				"by": "acid-heat",
-				"temperature": {
-					"min": 80,
-					"max": 90
-				},
-				"note": "Filtered whey is brought almost to the boil in the kettle, with magnesium sulphate or citric acid added so its proteins flocculate."
-			},
-			{
-				"type": "drain",
-				"by": "cloth",
-				"note": "The ricotta that rises is lifted off, rinsed and left to drip in cloth bags."
-			},
-			{
 				"type": "press",
-				"note": "It is pressed lightly, harder for a drier grating ricotta."
+				"note": "The ricotta is pressed lightly, or harder to make it drier for grating."
 			},
 			{
 				"type": "salt",
 				"how": "dry",
-				"seconds": {
-					"min": 86400,
-					"max": 172800
-				},
-				"note": "The ricottas lie on wooden boards in a cool stone room while they are dry-salted."
+				"note": "The ricottas are left to lie for one to two days on wooden boards in a cool stone room, while they are dry-salted."
 			},
 			{
-				"type": "custom",
-				"name": "smoke",
+				"type": "smoke",
+				"over": "oak or chestnut",
+				"of": "ricotta",
 				"seconds": {
 					"min": 86400,
 					"max": 172800
-				},
-				"note": "They are smoked in a separate room on grates over a wood fire, oak or chestnut being usual and beech with juniper in Friuli."
+				}
 			}
 		],
 		"sources": {

@@ -1,6 +1,7 @@
 ---
 import { herd } from './graph';
 import { MARK, titled } from './graph/render/Beasts';
+import { STORIES } from './graph/stories';
 
 /**
  * What milk becomes: every product as a node and every making-of as an arrow,
@@ -39,6 +40,7 @@ import './graph/style/notes.css';
 import './graph/style/card.css';
 import './graph/style/table.css';
 import './graph/style/wide.css';
+import './graph/style/story.css';
 ---
 
 <figure class="milk-graph" data-milk-graph="/milk-graph.json" data-focus={focus}>
@@ -72,10 +74,6 @@ import './graph/style/wide.css';
 		<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 8s2.5-4.5 7-4.5S15 8 15 8s-2.5 4.5-7 4.5S1 8 1 8z"></path><circle cx="8" cy="8" r="2.2"></circle></svg>
 	</button>
 	<div class="milk-note" role="tooltip" hidden></div>
-	<section class="milk-map-card" aria-label="The map's cheeses" data-no-swipe hidden>
-		<strong>Cheeses of the world</strong>
-		<p>Filters to come.</p>
-	</section>
 	<canvas class="milk-canvas" role="img" aria-label="Milk products and how each is made from another" data-no-swipe></canvas>
 	<aside class="milk-about" data-no-swipe inert>
 		<button type="button" class="milk-about-close" aria-label="Close">
@@ -83,6 +81,19 @@ import './graph/style/wide.css';
 		</button>
 		<div class="milk-about-body"></div>
 	</aside>
+	<aside class="milk-story" role="dialog" data-no-swipe inert>
+		<button type="button" class="milk-story-close" aria-label="Close">
+			<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4L12 12M12 4L4 12"></path></svg>
+		</button>
+		<div class="milk-story-body"></div>
+	</aside>
+	{
+		Object.entries(STORIES).map(([id, Story]) => (
+			<template data-milk-story={id}>
+				<Story />
+			</template>
+		))
+	}
 </figure>
 <script>
 	import './graph/draw/main';

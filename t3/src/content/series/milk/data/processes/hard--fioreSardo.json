@@ -23,15 +23,6 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "coagulate",
-				"by": "rennet",
-				"temperature": {
-					"min": 33,
-					"max": 36
-				},
-				"note": "With lamb or kid rennet paste, the milk raw."
-			},
-			{
 				"type": "ferment",
 				"does": "ripen",
 				"kinds": [

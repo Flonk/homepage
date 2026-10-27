@@ -21,7 +21,7 @@
 			{
 				"type": "add",
 				"what": "water",
-				"note": "Added to skim milk powder, whole milk powder or both, which supplies the fat."
+				"note": "The water is added to skim milk powder, whole milk powder or both; with whole powder the fat is already in it."
 			},
 			{
 				"type": "heat",
@@ -33,7 +33,8 @@
 					"min": 15,
 					"max": 15
 				},
-				"note": "Pasteurised, or UHT."
+				"note": "The milk is heated as pasteurised or UHT (ultra-high-temperature) milk is.",
+				"minor": true
 			}
 		],
 		"sources": {

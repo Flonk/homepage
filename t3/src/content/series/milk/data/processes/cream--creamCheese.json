@@ -6,7 +6,7 @@
 		"creamCheese"
 	],
 	"step": "homogenise, culture, drain hot",
-	"text": "Cream is homogenised, pasteurised and soured with a mesophilic starter (O- or DL-type) at room temperature overnight until it gels at pH 4.5–4.8. The gel is warmed and the whey is spun or drained off; the cold curd is salted and packed, or hot-packed for a longer shelf life.",
+	"text": "Cream is homogenised and soured with a mesophilic starter (O- or DL-type) at room temperature overnight until it gels at pH 4.5–4.8. The gel is warmed and the whey is spun or drained off; the cold curd is salted and packed, or hot-packed for a longer shelf life.",
 	"sources": {
 		"links": [
 			{
@@ -28,7 +28,7 @@
 		"steps": [
 			{
 				"type": "standardise",
-				"note": "Fat standardised to 8–14 % (double cream cheese) or 3–5 % (single); Guelph: cream of 11–20 % fat."
+				"of": "cream"
 			},
 			{
 				"type": "homogenise",
@@ -36,19 +36,7 @@
 					"min": 50,
 					"max": 55
 				},
-				"note": "At 12–14 MPa (Guelph: 6.9–10.3 MPa at 63 °C)."
-			},
-			{
-				"type": "pasteurise",
-				"temperature": {
-					"min": 72,
-					"max": 75
-				},
-				"seconds": {
-					"min": 30,
-					"max": 90
-				},
-				"note": "Or 66–68 °C for 30 min."
+				"of": "cream"
 			},
 			{
 				"type": "ferment",
@@ -109,7 +97,7 @@
 					"min": 4.5,
 					"max": 4.8
 				},
-				"note": "Optionally a little rennet is added too (Canadian rules allow chymosin, pepsin, rennet; the Tetra Pak liquid-filled route adds it in the pack)."
+				"note": "A little rennet may also be added to the cream."
 			},
 			{
 				"type": "heat",
@@ -117,12 +105,13 @@
 				"temperature": {
 					"min": 70,
 					"max": 85
-				}
+				},
+				"minor": true
 			},
 			{
 				"type": "drain",
 				"by": "cloth",
-				"note": "Stirred and heated to 50–70 °C, then drained: cloth bags overnight at 75–90 °C, a centrifugal separator at 70–85 °C, or ultrafiltration at 50–55 °C."
+				"note": "The curd is stirred and heated to 50–70 °C, then drained: in cloth bags overnight at 75–90 °C, in a centrifugal separator at 70–85 °C, or by ultrafiltration at 50–55 °C."
 			},
 			{
 				"type": "heat",
@@ -130,15 +119,17 @@
 				"temperature": {
 					"min": 10,
 					"max": 20
-				}
+				},
+				"minor": true
 			},
 			{
 				"type": "salt",
-				"note": "With a stabiliser under 0.5 % (locust bean, guar, xanthan, alginate, carrageenan).",
+				"note": "A stabiliser under 0.5 % is added with the salt, such as locust bean, guar, xanthan, alginate or carrageenan.",
 				"strength": {
 					"min": 0.5,
 					"max": 1
-				}
+				},
+				"minor": true
 			}
 		],
 		"text": "Mesophilic starter, O-type (acid only) or DL-type (with the two aroma organisms). A faster set is 31 °C for about 5 h with 5 % starter.",

@@ -27,42 +27,6 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "pasteurise",
-				"note": "The milk is part-skim."
-			},
-			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic"
-				],
-				"adds": {
-					"microbes": [
-						{
-							"name": "lactic acid-producing bacteria",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							]
-						}
-					],
-					"by": [
-						"starter"
-					]
-				}
-			},
-			{
-				"type": "coagulate",
-				"by": "rennet"
-			},
-			{
-				"type": "cut",
-				"how": "cut"
-			},
-			{
-				"type": "drain"
-			},
-			{
 				"type": "heat",
 				"does": "cook",
 				"temperature": {
@@ -70,12 +34,10 @@
 					"max": 60,
 					"about": true
 				},
-				"note": "In hot water or with steam."
+				"note": "The curd is heated in hot water or with steam."
 			},
 			{
-				"type": "custom",
-				"name": "stretch",
-				"note": "Until smooth and free of lumps, lining the proteins up in parallel so strips peel off."
+				"type": "stretch"
 			},
 			{
 				"type": "heat",

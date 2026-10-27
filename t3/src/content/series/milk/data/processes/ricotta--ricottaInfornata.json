@@ -14,26 +14,8 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "coagulate",
-				"by": "acid-heat",
-				"temperature": {
-					"min": 90,
-					"max": 90,
-					"about": true
-				},
-				"note": "Buffalo whey with a little whey starter from mozzarella is heated to about 90 °C, where its albumins flocculate."
-			},
-			{
 				"type": "mould",
 				"note": "The ricotta is taken off as it floats and filled into baskets without pressing."
-			},
-			{
-				"type": "drain",
-				"seconds": {
-					"min": 14400,
-					"max": 18000
-				},
-				"note": "It drains 4–5 hours at room temperature and then about 10 hours at 4 °C."
 			},
 			{
 				"type": "custom",
@@ -43,7 +25,7 @@
 					"max": 43200,
 					"about": true
 				},
-				"note": "It is baked about 12 hours in a wood-fired oven, unsalted, until it has the baked aroma and no rind."
+				"note": "The ricotta is baked in a wood-fired oven, unsalted, until it smells baked and has no rind."
 			}
 		],
 		"sources": {

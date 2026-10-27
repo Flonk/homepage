@@ -1,0 +1,37 @@
+{
+	"from": [
+		"soured"
+	],
+	"to": [
+		"zebda"
+	],
+	"variant": true,
+	"step": "churn",
+	"text": "Churning milk soured on its own separates zebda beldia from the skimmed lben; the lactococci and leuconostocs that soured it give its acid and aroma.",
+	"sources": {
+		"links": [
+			{
+				"name": "Ouadghiri et al. 2009, J Appl Microbiol (LAB in Moroccan lben)",
+				"url": "https://staff.najah.edu/media/sites/default/files/OuadghiriJAM2008.pdf"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "churn",
+				"of": "soured milk"
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Ouadghiri et al. 2009, J Appl Microbiol (LAB in Moroccan lben)",
+					"url": "https://staff.najah.edu/media/sites/default/files/OuadghiriJAM2008.pdf"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

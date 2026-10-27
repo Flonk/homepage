@@ -1,0 +1,158 @@
+{
+	"label": "Gir",
+	"aka": [
+		"Bhodah",
+		"Desan",
+		"Gujarati",
+		"Kathiawari",
+		"Sorthi",
+		"Surti"
+	],
+	"names": {
+		"links": [
+			{
+				"name": "Gir cattle (Wikipedia)",
+				"url": "https://en.wikipedia.org/wiki/Gir_cattle"
+			}
+		],
+		"text": "Taken from the infobox, lead and history section of the Wikipedia article. The infobox spells Bhodah as \"Bhodali\"; the lead and history section use \"Bhodah\"."
+	},
+	"kind": "breed",
+	"parent": "zebuCattle",
+	"about": {
+		"text": "A zebu breed from the Kathiawar peninsula of Gujarat, India, named after the Gir Hills. Its traditional range was Amreli, Bhavnagar, Junagadh and Rajkot districts, and it has since spread to Maharashtra and Rajasthan. Its milk is used for dairy, and it is known for milk production.",
+		"sources": {
+			"links": [
+				{
+					"name": "Gir cattle (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Gir_cattle"
+				}
+			],
+			"text": "Wikipedia article, read on WebFetch: origin, range, spread, and the dairy use. The article's milk-production statement cites Porter et al. (2016)."
+		}
+	},
+	"origin": {
+		"regions": ["IN"],
+		"place": "Kathiawar peninsula, Gujarat, India; named after the Gir Hills. Traditional range Amreli, Bhavnagar, Junagadh and Rajkot districts, since spread to Maharashtra and Rajasthan.",
+		"sources": {
+			"links": [
+				{
+					"name": "Gir cattle (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Gir_cattle"
+				}
+			],
+			"text": "Wikipedia article, read on WebFetch. No formation dates given."
+		}
+	},
+	"head": [
+		{
+			"count": 5000000,
+			"year": 2010,
+			"where": "BR",
+			"sources": {
+				"links": [
+					{
+						"name": "Holy cow! Gir gai goes global via Brazil (Times of India)",
+						"url": "https://timesofindia.indiatimes.com/city/rajkot/Holy-cow-Gir-gai-goes-global-via-Brazil/articleshow/6633109.cms"
+					},
+					{
+						"name": "Mason's World Encyclopedia of Livestock Breeds and Breeding (Porter et al. 2016)",
+						"url": "https://books.google.it/books?id=2UEJDAAAQBAJ&hl=en"
+					}
+				],
+				"text": "Figure found in the Wikipedia article: \"approximately five million\" Gir in Brazil in 2010 (Parmar, Times of India, 2010). Porter et al. (2016) give \"about five million head\" for Brazil, undated. This is the Brazilian population, not India's. The figure is approximate and is not worked out."
+			}
+		}
+	],
+	"yield": {
+		"perLactation": {
+			"min": 2110,
+			"max": 2110
+		},
+		"where": "IN",
+		"sources": {
+			"links": [
+				{
+					"name": "Mason's World Encyclopedia of Livestock Breeds and Breeding (Porter et al. 2016)",
+					"url": "https://books.google.it/books?id=2UEJDAAAQBAJ&hl=en"
+				},
+				{
+					"name": "Gir cattle (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Gir_cattle"
+				}
+			],
+			"text": "Wikipedia article, read on WebFetch, citing Porter et al. (2016): \"Average of 2,110 kg per lactation in India\". Lactation length and year are not stated."
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 4.5,
+			"max": 4.5,
+			"about": true
+		},
+		"sources": {
+			"links": [
+				{
+					"name": "Gir cattle (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Gir_cattle"
+				}
+			],
+			"text": "Wikipedia article, read on WebFetch: fat \"approximately 4.5%\". The citation for this figure was not identified in the fetched text. Only fat is given."
+		}
+	},
+	"purposes": {
+		"purposes": ["dairy"],
+		"sources": {
+			"links": [
+				{
+					"name": "Gir cattle (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Gir_cattle"
+				}
+			],
+			"text": "Wikipedia article: dairy is the listed use. Brazilian selective breeding since the 1960s produced separate dairy (Gir Leiteiro) and beef strains. Draught and dual-purpose use are not mentioned."
+		}
+	},
+	"risk": {
+		"status": "not at risk",
+		"year": 2007,
+		"sources": {
+			"links": [
+				{
+					"name": "FAO Global Databank list of breeds (2007)",
+					"url": "https://web.archive.org/web/20200623201209/http://www.fao.org/3/a1250e/annexes/List%20of%20breeds%20documented%20in%20the%20Global%20Databank%20for%20Animal%20Genetic%20Resources/List_breeds.pdf"
+				}
+			],
+			"text": "Wikipedia article, read on WebFetch, gives \"not at risk\" (FAO, 2007; Rischkowsky and Pilling 2007)."
+		}
+	},
+	"facts": [
+		{
+			"k": "Girolando",
+			"v": "Often crossed with Holstein-Friesian cows to produce the Girolando breed.",
+			"sources": {
+				"links": [
+					{
+						"name": "Gir cattle (Wikipedia)",
+						"url": "https://en.wikipedia.org/wiki/Gir_cattle"
+					}
+				],
+				"text": "Wikipedia article, read on WebFetch. No citation identified for this statement in the fetched text."
+			}
+		},
+		{
+			"k": "Brazil",
+			"v": "Brazilian selective breeding from the 1960s produced separate dairy (Gir Leiteiro) and beef strains.",
+			"sources": {
+				"links": [
+					{
+						"name": "Gir cattle (Wikipedia)",
+						"url": "https://en.wikipedia.org/wiki/Gir_cattle"
+					}
+				],
+				"text": "Wikipedia article, read on WebFetch. No citation identified for this statement in the fetched text."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "No formation dates. The India population figure found (about 917,000 in 2000) is for Gujarat's Saurashtra region, not India, so it is left out. No lactation length. No protein, lactose or solids figures. No world population figure. The 2,110 kg yield is given without a year."
+}

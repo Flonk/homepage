@@ -1,0 +1,101 @@
+{
+	"label": "Sheep",
+	"aka": [
+		"domestic sheep"
+	],
+	"names": {
+		"unsourced": true,
+		"text": "Common name for Ovis aries; the label is the item's given label."
+	},
+	"kind": "species",
+	"parent": "caprines",
+	"taxon": {
+		"name": "Ovis aries",
+		"rank": "species",
+		"sources": {
+			"unsourced": true,
+			"text": "Common knowledge: the domestic sheep is Ovis aries, as given in the item."
+		}
+	},
+	"about": {
+		"text": "Sheep are kept across the world. In 2023, about 256 million sheep were milked, giving roughly 10 million tonnes of milk that year.",
+		"sources": {
+			"links": [
+				{
+					"name": "FAOSTAT: Crops and livestock products (QCL), world, 2023",
+					"url": "https://www.fao.org/faostat/en/#data/QCL"
+				}
+			],
+			"text": "Milked head count and milk tonnes for sheep, 2023, from the FAOSTAT world figures in research/herd/faostat-2023.json. The 'kept across the world' wording is general and not drawn from a page."
+		}
+	},
+	"domestication": {
+		"where": "Northern Fertile Crescent, Anatolia and Mesopotamia; the Anatolian plateau is argued for in a 2020s review",
+		"regions": [
+			"TR",
+			"IQ",
+			"SY",
+			"IR"
+		],
+		"yearsAgo": {
+			"min": 8000,
+			"max": 11000
+		},
+		"text": "Sheep were domesticated from the Asiatic mouflon in the Fertile Crescent, with estimates of 8,000 to 11,000 years ago, though the place and date are still debated.",
+		"sources": {
+			"links": [
+				{
+					"name": "Sheep domestication search results (vavilov.elpub.ru, PMC4670089, PMC4576706)",
+					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4670089"
+				}
+			],
+			"text": "Figures found in the WebSearch text for 'sheep domestication Fertile Crescent', not from opened pages: an older view of 8 to 11 thousand years ago in the Fertile Crescent; 11,000 to 8,000 BCE in Mesopotamia; a 2020s review placing it on the Anatolian plateau. The mouflon ancestry is also from the search text. The PMC link is the first of the search results and was not opened."
+		}
+	},
+	"milk": {
+		"mt": 9.97,
+		"year": 2023,
+		"sources": {
+			"links": [
+				{
+					"name": "FAOSTAT: Crops and livestock products (QCL), world, 2023",
+					"url": "https://www.fao.org/faostat/en/#data/QCL"
+				}
+			],
+			"text": "Taken from research/herd/faostat-2023.json: sheep 9,969,643.63 tonnes, divided by 1,000,000 and rounded to 2 decimals. FAOSTAT flag E (FAO estimate)."
+		}
+	},
+	"head": [
+		{
+			"count": 1357014834,
+			"year": 2023,
+			"where": "world",
+			"sources": {
+				"links": [
+					{
+						"name": "FAOSTAT: Crops and livestock products (QCL), world, 2023",
+						"url": "https://www.fao.org/faostat/en/#data/QCL"
+					}
+				],
+				"text": "Sheep stocks, world, 2023, from research/herd/faostat-2023.json."
+			}
+		},
+		{
+			"count": 256160191,
+			"year": 2023,
+			"where": "world",
+			"milked": true,
+			"sources": {
+				"links": [
+					{
+						"name": "FAOSTAT: Crops and livestock products (QCL), world, 2023",
+						"url": "https://www.fao.org/faostat/en/#data/QCL"
+					}
+				],
+				"text": "Sheep milked, world, 2023, from research/herd/faostat-2023.json."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "Milk composition, yield per animal, purposes and sheep-specific facts were not researched within the budget, so those fields are left out. Domestication dates were only found in WebSearch text and the place is debated; the PMC source was not opened."
+}

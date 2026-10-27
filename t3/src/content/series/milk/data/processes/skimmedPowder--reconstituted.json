@@ -14,7 +14,7 @@
 					"min": 40,
 					"max": 60
 				},
-				"note": "Stirred in at no more than 35–40 % solids and kept under 65 °C, which would denature the whey proteins."
+				"note": "The water is stirred in, keeping the mix at no more than 35–40 % solids and under 65 °C, which would unfold the whey proteins."
 			},
 			{
 				"type": "custom",
@@ -27,7 +27,7 @@
 					"min": 1200,
 					"about": true
 				},
-				"note": "Left with little or no stirring to hydrate and let the air out."
+				"note": "The mix is left with little or no stirring, so the powder can take up water and the air can escape."
 			},
 			{
 				"type": "pasteurise",
@@ -37,14 +37,16 @@
 				"seconds": {
 					"min": 15,
 					"max": 15
-				}
+				},
+				"note": "The milk undergoes heat treatment to kill harmful bacteria like Listeria, Salmonella and E. coli."
 			},
 			{
 				"type": "heat",
 				"does": "cool",
 				"temperature": {
 					"max": 4
-				}
+				},
+				"minor": true
 			}
 		],
 		"text": "The handbook describes these steps for recombined milk; reconstituted milk is the same without the added fat.",

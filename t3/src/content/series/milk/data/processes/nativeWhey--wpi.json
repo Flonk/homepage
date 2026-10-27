@@ -9,22 +9,23 @@
 		"steps": [
 			{
 				"type": "ultrafilter",
-				"note": "Whey proteins stay in the retentate while lactose, ash and non-protein nitrogen pass through."
+				"of": "whey"
 			},
 			{
 				"type": "diafilter",
-				"note": "Water is washed through to carry off more lactose and ash, until the retentate is above 90 % protein in dry matter."
+				"of": "whey"
 			},
 			{
 				"type": "evaporate",
 				"solids": {
 					"min": 36,
 					"max": 37
-				}
+				},
+				"of": "whey"
 			},
 			{
 				"type": "dry",
-				"note": "Spray dried to no more than 4 % moisture."
+				"note": "The concentrate is spray dried, to no more than 4 % moisture."
 			}
 		],
 		"sources": {

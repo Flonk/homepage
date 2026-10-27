@@ -10,7 +10,7 @@
 			{
 				"type": "add",
 				"what": "cocoa, sugar and carrageenan",
-				"note": "A concentrate of cocoa, sweetener and lambda carrageenan, which keeps the cocoa suspended, is mixed into part of the milk."
+				"note": "The cocoa and sweetener are made into a concentrate with lambda carrageenan, which keeps the cocoa suspended, and the concentrate is mixed into part of the milk."
 			},
 			{
 				"type": "pasteurise",
@@ -22,16 +22,17 @@
 					"min": 15,
 					"max": 60
 				},
-				"note": "The mix is pasteurised, in the HTST way or in a vat at about 71 °C for 20–30 minutes."
+				"note": "The milk undergoes heat treatment to kill harmful bacteria like Listeria, Salmonella and E. coli."
 			},
 			{
 				"type": "homogenise",
-				"note": "It may be homogenised, if wanted."
+				"minor": true,
+				"of": "mix"
 			},
 			{
 				"type": "add",
 				"what": "pasteurised milk",
-				"note": "The concentrate is diluted with more pasteurised milk and stirred for 15–30 minutes before it is packed."
+				"note": "The concentrate is diluted and stirred for 15–30 minutes before it is packed."
 			}
 		],
 		"sources": {

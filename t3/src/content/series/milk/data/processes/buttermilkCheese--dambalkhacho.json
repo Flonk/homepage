@@ -23,35 +23,7 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "heat",
-				"does": "heat",
-				"temperature": {
-					"min": 60,
-					"max": 60
-				}
-			},
-			{
-				"type": "ferment",
-				"does": "incubate",
-				"adds": {
-					"microbes": [
-						{
-							"name": "lactic cultures",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							]
-						},
-						{
-							"name": "Penicillium",
-							"kind": "mould"
-						}
-					]
-				}
-			},
-			{
-				"type": "custom",
-				"name": "squeeze",
+				"type": "press",
 				"seconds": {
 					"min": 43200,
 					"max": 43200,
@@ -67,11 +39,11 @@
 			},
 			{
 				"type": "mould",
-				"note": "Balls of 150-250 g."
+				"note": "The cheese is shaped into balls of 150–250 g."
 			},
 			{
 				"type": "dry",
-				"note": "In a warm room, out of the sun."
+				"note": "The balls are dried in a warm room, out of the sun."
 			},
 			{
 				"type": "ferment",

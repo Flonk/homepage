@@ -1,5 +1,5 @@
 import type { Node, Graph } from '../client/base';
-import type { Box, Bounds, GraphLayout } from './types';
+import type { Box, Bounds, GraphLayout, LayoutOptions } from './types';
 import { buildProductTree } from './tree';
 import { measureNodeSizes } from './sizes';
 import { orderSiblings } from './order';
@@ -13,7 +13,7 @@ import { placeNodes } from './place';
 import { routeArrows } from './arrows';
 import { placeStepLabels } from './labelPlacement';
 
-export type { Box, Bounds, Point, Pin, Panel, GraphLayout, CardChainPlacement } from './types';
+export type { Box, Bounds, Point, Panel, GraphLayout, CardChainPlacement } from './types';
 
 // A pill and its shadow, which reaches a quarter of its height round it.
 const pillShadowBox = (n: Node): Box => {
@@ -30,9 +30,9 @@ const boundsOf = (boxes: Box[]): Bounds => {
    the shape of every arrow, before anything is drawn (see draw/). The same
    for a filtered copy of the data as for the whole. Sets each node's x, y,
    w and h. */
-export function layout(data: Graph): GraphLayout {
+export function layout(data: Graph, opts: LayoutOptions = {}): GraphLayout {
 	const tree = buildProductTree(data);
-	const sizes = measureNodeSizes(tree);
+	const sizes = measureNodeSizes(tree, opts);
 	orderSiblings(tree, sizes);
 	const contents = takeOutRulerAndPanelContents(tree);
 	const pills = measurePills(tree, sizes, contents);
@@ -42,7 +42,7 @@ export function layout(data: Graph): GraphLayout {
 	const rulers = hangUnderRulers(sizes, contents);
 	const panels = layCheesePanels(data, sizes, contents);
 	const comeInBy = placeNodes({ tree, sizes, labels, gaps, strands, contents, rulers, panels });
-	const arrows = routeArrows({ tree, sizes, labels, gaps, strands, contents, rulers });
+	const arrows = routeArrows({ tree, sizes, labels, gaps, strands, contents, rulers, inward: opts.inward });
 	const placed = placeStepLabels({ sizes, labels, gaps, strands, arrows, comeInBy, contents });
 
 	const stepLabelled = new Set(labels.nodesWithStepLabel);
@@ -69,6 +69,7 @@ export function layout(data: Graph): GraphLayout {
 
 		...pills,
 		milkRadius: sizes.milkRadius,
+		allMilk: sizes.allMilk,
 		scaleOf: sizes.scaleOf,
 		photoSize: sizes.photoSize,
 		thickness: sizes.thickness,

@@ -27,13 +27,14 @@
 		"steps": [
 			{
 				"type": "add",
-				"note": "Skim milk powder about 100 g/L with litmus at 0.5–5 g/L, some adding 0.5 g/L sodium sulphite.",
+				"note": "Skim milk powder is added at about 100 g/L, with litmus (a dye) at 0.5–5 g/L; some add 0.5 g/L of sodium sulphite, a salt.",
 				"what": "skim milk powder and litmus"
 			},
 			{
 				"type": "custom",
 				"name": "fill",
-				"note": "10 ml in 15 x 150 mm tubes."
+				"note": "The milk is put into 15 x 150 mm tubes, 10 ml in each.",
+				"minor": true
 			},
 			{
 				"type": "heat",

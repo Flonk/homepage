@@ -1,0 +1,167 @@
+{
+	"label": "Barbari",
+	"aka": [
+		"Bari",
+		"Sai Bari",
+		"Thori Bari",
+		"Titri Bari",
+		"Wadi Bari"
+	],
+	"names": {
+		"links": [
+			{
+				"name": "Wikipedia: Barbari goat",
+				"url": "https://en.wikipedia.org/wiki/Barbari_goat"
+			}
+		],
+		"text": "The fetched article lists Bari, Sai Bari, Thori Bari, Titri Bari and Wadi Bari as alternative names. 'Barbari' is the item's given label."
+	},
+	"kind": "breed",
+	"parent": "goat",
+	"about": {
+		"text": "A dual-purpose goat of the arid north-west of India and Pakistan, kept for both meat and milk. The article describes it as a seasonal breeder used in intensive farming, and says it is one of twenty classified breeds in India.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Barbari goat",
+					"url": "https://en.wikipedia.org/wiki/Barbari_goat"
+				}
+			],
+			"text": "From the fetched article: the regions, the dual-purpose use, the seasonal breeding and intensive farming, and the twenty classified breeds in India."
+		}
+	},
+	"origin": {
+		"regions": [
+			"IN",
+			"PK"
+		],
+		"place": "The Indian subcontinent, reported from Haryana, Punjab and Uttar Pradesh in India and Punjab and Sindh in Pakistan",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Barbari goat",
+					"url": "https://en.wikipedia.org/wiki/Barbari_goat"
+				}
+			],
+			"text": "From the fetched article: 'Believed to have originated in the Indian subcontinent.' The article gives no origin dates. It says the claim that the breed came from the Somali port of Berbera is disputed, and that the breed is also reported from Mauritius, Nepal and Vietnam; those are left out of 'regions'."
+		}
+	},
+	"head": [
+		{
+			"count": 3400000,
+			"year": 2024,
+			"where": "world",
+			"estimated": true,
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Barbari goat",
+						"url": "https://en.wikipedia.org/wiki/Barbari_goat"
+					}
+				],
+				"text": "From the fetched article: 'In 2024 the world population was estimated at about 3.4 million, based on data reported by India alone.' Marked estimated because the source says it is based on India alone."
+			}
+		},
+		{
+			"count": 2300000,
+			"year": 2006,
+			"where": "PK",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Barbari goat",
+						"url": "https://en.wikipedia.org/wiki/Barbari_goat"
+					}
+				],
+				"text": "From the fetched article: 'Population data for Pakistan dates from 2006, when the total was estimated at about 2.3 million.'"
+			}
+		}
+	],
+	"purposes": {
+		"purposes": [
+			"dual-purpose"
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Barbari goat",
+					"url": "https://en.wikipedia.org/wiki/Barbari_goat"
+				}
+			],
+			"text": "From the fetched article: 'Dual-purpose, raised for both meat and milk.'"
+		}
+	},
+	"risk": {
+		"status": "not at risk",
+		"year": 2007,
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Barbari goat",
+					"url": "https://en.wikipedia.org/wiki/Barbari_goat"
+				}
+			],
+			"text": "From the fetched article, which cites FAO (2007) as listing the breed 'not at risk'. The FAO DAD-IS page itself was not opened."
+		}
+	},
+	"facts": [
+		{
+			"k": "Milk per lactation",
+			"v": "The milk yield is about 107 litres in a lactation of about 150 days. The article gives litres, not kilograms, and cites R.M. Acharya (1982) and FAO. A 2021 Indian study of first-parity records gave about 57.3 litres over about 123 days, so the headline figure may come from a different dataset.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Barbari goat",
+						"url": "https://en.wikipedia.org/wiki/Barbari_goat"
+					},
+					{
+						"name": "Search result: Indian Journal of Animal Sciences, Barbari first-parity records (epubs.icar.org.in)",
+						"url": "https://epubs.icar.org.in/index.php/IJAnS/article/view/113820"
+					}
+				],
+				"text": "The 107 litre and 150 day figures are from the fetched Wikipedia article. The 2021 study figures (57.3 litres, 123 days) come from WebSearch result text only; the article itself was not opened. Litres were not converted to kilograms, so the value is not in the yield field."
+			}
+		},
+		{
+			"k": "Classified breed",
+			"v": "It is one of twenty classified breeds in India, mainly found in the arid and semi-arid north-west.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Barbari goat",
+						"url": "https://en.wikipedia.org/wiki/Barbari_goat"
+					}
+				],
+				"text": "From the fetched article."
+			}
+		},
+		{
+			"k": "Thori Bari",
+			"v": "A polled (hornless) strain, the Thori Bari, exists.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Barbari goat",
+						"url": "https://en.wikipedia.org/wiki/Barbari_goat"
+					}
+				],
+				"text": "From the fetched article."
+			}
+		},
+		{
+			"k": "Size",
+			"v": "Males average 38 kg and 71 cm; females average 23 kg and 56 cm.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Barbari goat",
+						"url": "https://en.wikipedia.org/wiki/Barbari_goat"
+					}
+				],
+				"text": "From the infobox of the fetched article, which gives the FAO source."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "Searched for a DAD-IS entry and an FAO breed description, but neither was opened. The 107 litre yield is in litres and cited to a 1982 book via Wikipedia; it was not converted to kilograms, so no yield field was set. No origin or formation dates were found. The Pakistan population is 2006 and the world total rests on India alone."
+}

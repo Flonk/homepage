@@ -23,48 +23,6 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic"
-				],
-				"adds": {
-					"microbes": [
-						{
-							"name": "lactic ferments",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							]
-						}
-					],
-					"by": [
-						"starter"
-					]
-				},
-				"pH": {
-					"max": 5.5
-				}
-			},
-			{
-				"type": "coagulate",
-				"by": "rennet",
-				"temperature": {
-					"min": 28,
-					"max": 35
-				},
-				"note": "Under 3 cm³ of rennet per 10 L."
-			},
-			{
-				"type": "cut",
-				"how": "cut",
-				"seconds": {
-					"min": 3600,
-					"max": 3600,
-					"about": true
-				}
-			},
-			{
 				"type": "heat",
 				"does": "cook",
 				"temperature": {
@@ -73,7 +31,7 @@
 			},
 			{
 				"type": "press",
-				"note": "Demoulded when the pH is below 5.5."
+				"note": "The cheese is taken out of its moulds once its pH is below 5.5."
 			},
 			{
 				"type": "ferment",

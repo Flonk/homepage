@@ -9,11 +9,7 @@
 		"steps": [
 			{
 				"type": "ultrafilter",
-				"temperature": {
-					"min": 10,
-					"max": 25
-				},
-				"note": "Native whey is concentrated about 27-fold over a 10 kDa and then a 5 kDa membrane, kept cold."
+				"of": "whey"
 			},
 			{
 				"type": "acidify",
@@ -22,11 +18,11 @@
 					"min": 4.6,
 					"max": 4.6
 				},
-				"note": "This step is optional; at the whey's own pH of about 6.5 the purity is far lower."
+				"note": "The whey is acidified, since at its own pH of about 6.5 the purity is far lower."
 			},
 			{
 				"type": "custom",
-				"name": "high pressure",
+				"name": "pressurise",
 				"temperature": {
 					"min": 23,
 					"max": 23
@@ -35,7 +31,7 @@
 					"min": 240,
 					"max": 240
 				},
-				"note": "Held at 600 MPa, which makes beta-lactoglobulin aggregate and fall out while alpha-lactalbumin stays dissolved."
+				"note": "The whey is held at 600 megapascals, which makes the beta-lactoglobulin clump and settle out, while the alpha-lactalbumin stays dissolved."
 			},
 			{
 				"type": "separate",
@@ -49,7 +45,7 @@
 					"min": 1200,
 					"max": 1200
 				},
-				"note": "The pellet holds the precipitated beta-lactoglobulin, while the supernatant goes to alpha-lactalbumin."
+				"of": "whey"
 			}
 		],
 		"text": "These are the conditions of one pilot-scale study, in which beta-lactoglobulin is the fraction that precipitates; whether it is made this way commercially is not sourced.",

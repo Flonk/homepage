@@ -9,7 +9,7 @@
 		"steps": [
 			{
 				"type": "ultrafilter",
-				"note": "Takes out the proteins and fat, leaving a clear liquid with lactose, minerals and organic acids."
+				"of": "whey"
 			},
 			{
 				"type": "acidify",
@@ -18,11 +18,11 @@
 			{
 				"type": "add",
 				"what": "fruit extracts, herb extracts, flavourings and sugar or sweeteners",
-				"note": "The serum is about 35 % of the drink."
+				"note": "The drink is about 35 % serum."
 			},
 			{
 				"type": "pasteurise",
-				"note": "Pasteurising keeps the drink."
+				"note": "The drink undergoes heat treatment to kill harmful bacteria like Listeria, Salmonella and E. coli."
 			}
 		],
 		"sources": {

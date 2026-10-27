@@ -6,7 +6,7 @@
 		"instantSkimMilkPowder"
 	],
 	"variant": true,
-	"text": "Agglomerated so it dissolves in cold water.",
+	"text": "Agglomerated, that is clumped into larger grains, so it dissolves in cold water.",
 	"sources": {
 		"links": [
 			{
@@ -19,13 +19,9 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "dry",
-				"note": "Spray-dried."
-			},
-			{
 				"type": "custom",
-				"name": "agglomerate",
-				"note": "So it dissolves in cold water."
+				"name": "clump",
+				"note": "The powder is clumped into larger grains, which dissolve in cold water."
 			}
 		],
 		"sources": {

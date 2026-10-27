@@ -24,12 +24,12 @@
 		"steps": [
 			{
 				"type": "filter",
-				"note": "To remove curd grains."
+				"note": "Curd grains are strained out of the ricotta."
 			},
 			{
 				"type": "add",
 				"what": "cream",
-				"note": "To bring the fat to at least 2.5 %."
+				"note": "Enough is added to bring the fat to at least 2.5 %."
 			},
 			{
 				"type": "add",
@@ -38,29 +38,7 @@
 					"min": 70,
 					"max": 75
 				},
-				"note": "About 1 % salt, and milk or cream up to 25 %."
-			},
-			{
-				"type": "heat",
-				"does": "heat",
-				"temperature": {
-					"min": 88,
-					"max": 90
-				},
-				"seconds": {
-					"min": 2400,
-					"max": 2700
-				},
-				"note": "The first flakes form near 80 °C."
-			},
-			{
-				"type": "drain",
-				"by": "cloth",
-				"seconds": {
-					"min": 14400,
-					"max": 18000
-				},
-				"note": "In cylindrical cloth bags."
+				"note": "Salt, about 1 %, is added, with milk or cream up to 25 %."
 			},
 			{
 				"type": "heat",
@@ -68,7 +46,8 @@
 				"temperature": {
 					"min": 4,
 					"max": 5
-				}
+				},
+				"minor": true
 			}
 		],
 		"sources": {

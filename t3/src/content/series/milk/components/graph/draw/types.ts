@@ -1,5 +1,5 @@
 import type { Node, Arrow, Graph } from '../client/base';
-import type { Pin, Box, GraphLayout } from '../layout';
+import type { Box, GraphLayout } from '../layout';
 import type { Pen } from '../render/canvas';
 import type { Selection } from 'd3-selection';
 import type { Transition } from 'd3-transition';
@@ -30,6 +30,7 @@ export interface Drawing {
 	camera: Camera;
 	search: Search;
 	infoCard: InfoCard;
+	story: Story;
 }
 
 /* ---- Seeing it ---- */
@@ -140,6 +141,8 @@ export interface MarkPainter {
 	animalSpots(n: Node): (Spot & { emoji: string })[];
 	remarksOf(n: Node): Remark[];
 	sealSpot(n: Node): Spot;
+	// A story's speech bubble, without its tail.
+	storyBox(n: Node): Box;
 	sameRemark(a: Remark | null, b: Remark | null): boolean;
 	// The box round a row of marks with their shadows, `below` of their size under them.
 	markRowBox(spots: Spot[], below: number): Box;
@@ -147,21 +150,16 @@ export interface MarkPainter {
 	drawAnimals: Painter;
 	drawRemarks: Painter;
 	drawSeal: Painter;
+	drawSealTails: Painter;
+	drawStory: Painter;
 	drawDisc(g: Pen, x: number, y: number, r: number, fill: string, s: number): void;
 	drawDiscRim(g: Pen, n: Node, x: number, y: number, r: number): void;
 }
 
 
-// A family's panel under its pill: a ripening grid, or the world map with its pins.
+// A family's panel under its pill: a ripening grid.
 export interface PanelPainter {
 	drawPanel: Painter;
-	drawMapLand(g: Pen, family: Node, left: number, top: number): void;
-	// The pins shown at a zoom: those of a country that would overlap merged into one.
-	pinsAtZoom(family: Node, s: number): Pin[];
-	// A pin's head at a zoom: its radius, and the y of its middle.
-	pinHead(pin: Pin, s: number): { r: number; headY: number };
-	pinBox(pin: Pin): Box;
-	drawPin(g: Pen, pin: Pin, s: number): boolean;
 }
 
 /* A piece of the picture drawn once at a zoom, kept as a bitmap, and
@@ -169,15 +167,16 @@ export interface PanelPainter {
    looks, so a lit one is kept apart from an unlit one. */
 export type Sprite = { key: string; box: Box; draw: (g: Pen, s: number) => boolean | void };
 
-/* Sprites kept per zoom, a zoom to every doubling; and the world map
-   kept as tiles, as a map on the web is. */
+/* Sprites kept per zoom, a zoom to every doubling. */
 export interface SpriteCache {
-	bitmaps: Map<string, ImageBitmap>;
+	// Each kept at a zoom, with the zooms what shows in it holds for (see shownAt).
+	bitmaps: Map<string, { bitmap: ImageBitmap; from: number; to: number }>;
+	keptFor(key: string, level: number, s: number): ImageBitmap | undefined;
 	// The zoom to a doubling that `s` is kept at.
 	zoomLevelOf(s: number): number;
 	// Too big to keep at that zoom, close in: drawn as it is.
 	tooBigToKeep(box: Box, level: number): boolean;
-	drawAndKeep(sprite: Sprite, level: number): ImageBitmap | OffscreenCanvas;
+	drawAndKeep(sprite: Sprite, level: number, s: number): ImageBitmap | OffscreenCanvas;
 	// A canvas of its own, w × h pixels, drawing the picture from (x0, y0) at k pixels to a unit.
 	offscreenCanvas(w: number, h: number, k: number, x0: number, y0: number): { canvas: OffscreenCanvas; g: OffscreenCanvasRenderingContext2D };
 	evictFarZooms<T>(from: Map<string, T>, level: number, levelOfKey: (key: string) => number, close: (t: T) => void, spared?: (level: number) => boolean): void;
@@ -185,9 +184,6 @@ export interface SpriteCache {
 	allSprites(): Sprite[];
 	// A pill's sprites: the pill, its flags, its remarks, its animals and its seal.
 	pillSpritesOf(nodes: Node[]): Sprite[];
-	pinSpritesAt(s: number): Sprite[];
-	mapTiles: Map<string, { bitmap: ImageBitmap; whole: boolean; tries: number }>;
-	drawMapTiles(family: Node, s: number, from: PicturePoint, to: PicturePoint): void;
 }
 
 // Painting a frame, and keeping up with the pane.
@@ -219,7 +215,7 @@ export interface DevMarks {
 /* ---- Looking round ---- */
 
 // What is under the pointer.
-export type Hit = { pill: Node | null; step: Node | null; hint: string; remark: Remark | null; pin: Pin | null };
+export type Hit = { pill: Node | null; step: Node | null; hint: string; remark: Remark | null; story: Node | null };
 
 export interface Pointer {
 	hitTest(e: MouseEvent): Hit;
@@ -227,7 +223,9 @@ export interface Pointer {
 	showRemark(r: Remark | null, pin?: boolean): void;
 	shownRemark: Remark | null;
 	remarkPinned: boolean;
-	hovered: { pill: Node | null; step: Node | null };
+	hovered: { pill: Node | null; step: Node | null; story: Node | null };
+	// Stories' bubbles off the ground, each how far up, 0 to 1.
+	raised: Map<Node, number>;
 }
 
 export interface Camera {
@@ -247,6 +245,13 @@ export interface Search {
 	zoomToRead(n: Node): ZoomTransform;
 }
 
+// A story told in a popover out of a pill's T3 bubble: open, of the node it is told of.
+export interface Story {
+	shown: Node | null;
+	open(n: Node): void;
+	close(): void;
+}
+
 // The card over the picture telling of a product, an example, or a step.
 export interface InfoCard {
 	showNode(n: Node | null): void;
@@ -254,5 +259,4 @@ export interface InfoCard {
 	close(): void;
 	// Frames a product and everything made from it; or the whole, for null.
 	focusOn(id: string | null, glide: boolean): void;
-	zoomToPin(pin: Pin): void;
 }

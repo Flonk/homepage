@@ -20,13 +20,6 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "coagulate",
-				"temperature": {
-					"min": 32,
-					"max": 34
-				}
-			},
-			{
 				"type": "heat",
 				"does": "cook",
 				"temperature": {
@@ -41,11 +34,8 @@
 			{
 				"type": "custom",
 				"name": "stir",
-				"seconds": {
-					"min": 1200,
-					"max": 1500
-				},
-				"note": "Then 30 % of the whey is removed."
+				"note": "The curd is stirred for 20–25 min, then 30 % of its whey is removed.",
+				"minor": true
 			},
 			{
 				"type": "press",
@@ -53,16 +43,12 @@
 					"min": 10800,
 					"max": 14400
 				},
-				"note": "Self-pressing."
+				"note": "The cheese is left to press under its own weight."
 			},
 			{
 				"type": "salt",
 				"how": "brine",
-				"temperature": {
-					"min": 8,
-					"max": 12
-				},
-				"note": "In 16 Baumé brine."
+				"note": "The cheese is put into a brine of 16 Baumé (a strength scale)."
 			}
 		],
 		"sources": {

@@ -20,48 +20,8 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic"
-				],
-				"adds": {
-					"microbes": [],
-					"by": [
-						"starter"
-					]
-				}
-			},
-			{
-				"type": "coagulate",
-				"by": "rennet",
-				"temperature": {
-					"min": 30,
-					"max": 37
-				},
-				"seconds": {
-					"max": 3600
-				},
-				"note": "Animal rennet, formerly kid's."
-			},
-			{
-				"type": "cut",
-				"how": "cut"
-			},
-			{
-				"type": "drain"
-			},
-			{
-				"type": "press",
-				"note": "In beech moulds."
-			},
-			{
 				"type": "salt",
-				"how": "brine",
-				"seconds": {
-					"min": 108000,
-					"max": 108000
-				}
+				"how": "brine"
 			},
 			{
 				"type": "dry",
@@ -82,7 +42,7 @@
 				}
 			}
 		],
-		"text": "A starter goes in with the rennet, species not named. The 40 d of airing and rind care is at 12 C.",
+		"text": "The 40 d of airing and rind care is at 12 C.",
 		"sources": {
 			"links": [
 				{

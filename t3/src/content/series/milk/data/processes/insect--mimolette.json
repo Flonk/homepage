@@ -24,43 +24,9 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "pasteurise"
-			},
-			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic",
-					"animal"
-				],
-				"adds": {
-					"microbes": [
-						{
-							"name": "lactic acid bacteria",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							]
-						}
-					],
-					"by": [
-						"starter"
-					]
-				}
-			},
-			{
-				"type": "coagulate",
-				"by": "rennet",
-				"note": "Animal rennet, 0.04–0.25 mL per litre."
-			},
-			{
 				"type": "add",
 				"what": "annatto",
-				"note": "Up to 0.35 mL per litre, for the orange colour."
-			},
-			{
-				"type": "cut",
-				"how": "cut"
+				"note": "Annatto is added at up to 0.35 mL per litre, for the orange colour."
 			},
 			{
 				"type": "washCurd",
@@ -74,20 +40,12 @@
 			},
 			{
 				"type": "press",
-				"note": "Into a sphere flattened at the poles, 2–4 kg."
+				"note": "The cheese is pressed into a sphere flattened at the poles, weighing 2–4 kg."
 			},
 			{
 				"type": "salt",
 				"how": "brine",
-				"temperature": {
-					"min": 10,
-					"max": 15
-				},
-				"seconds": {
-					"min": 172800,
-					"max": 259200
-				},
-				"note": "In saturated brine."
+				"note": "The cheese is put into saturated brine."
 			},
 			{
 				"type": "ferment",
@@ -114,7 +72,7 @@
 					"min": 80,
 					"max": 95
 				},
-				"note": "Turned and brushed; vieille ripens 13 mo or more, extra-vieille 18."
+				"note": "The cheese is turned and brushed; it ripens 13 months or more if vieille, 18 if extra-vieille."
 			}
 		],
 		"sources": {

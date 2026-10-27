@@ -23,44 +23,5 @@
 			}
 		],
 		"text": "The table, the facts and the words on how it is made, from these."
-	},
-	"processing": {
-		"steps": [
-			{
-				"type": "heat",
-				"does": "heat",
-				"temperature": {
-					"min": 70,
-					"max": 99
-				},
-				"seconds": {
-					"min": 900,
-					"max": 3600
-				},
-				"note": "One recipe heats to about 82 °C (180 °F)."
-			},
-			{
-				"type": "add",
-				"what": "egg white and sugar",
-				"note": "To the milk poured out from under the first skin."
-			}
-		],
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Double skin milk",
-					"url": "https://en.wikipedia.org/wiki/Double_skin_milk"
-				},
-				{
-					"name": "The Hong Kong Cookery: double skin milk pudding",
-					"url": "https://www.thehongkongcookery.com/2025/05/double-skin-milk-pudding.html"
-				},
-				{
-					"name": "Patent CN1826918A",
-					"url": "https://eureka.patsnap.com/patent-CN1826918A"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		}
 	}
 }

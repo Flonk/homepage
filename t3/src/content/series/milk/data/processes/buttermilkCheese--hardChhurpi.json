@@ -24,16 +24,17 @@
 		"steps": [
 			{
 				"type": "press",
-				"note": "In a jute bag."
+				"note": "The cheese is pressed in a jute bag."
 			},
 			{
 				"type": "dry",
-				"note": "Smoke-dried, hung over a fire."
+				"note": "The cheese is hung over a fire, which smoke-dries it."
 			},
 			{
 				"type": "cut",
 				"how": "cut",
-				"note": "Into small cuboids."
+				"note": "The cheese is cut into small cuboids.",
+				"minor": true
 			}
 		],
 		"sources": {

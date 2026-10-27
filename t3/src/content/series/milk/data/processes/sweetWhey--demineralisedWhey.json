@@ -24,15 +24,16 @@
 		"steps": [
 			{
 				"type": "custom",
-				"name": "demineralise",
+				"name": "remove salts",
 				"temperature": {
 					"min": 21,
 					"max": 21
 				},
-				"note": "By nanofiltration (about 30 % of the ash at 22 % dry matter, 4x, 2.5 MPa), electrodialysis, ion exchange or a mix."
+				"note": "The whey is treated by nanofiltration, electrodialysis or ion exchange, or a mix of these."
 			},
 			{
-				"type": "evaporate"
+				"type": "evaporate",
+				"of": "whey"
 			},
 			{
 				"type": "dry"

@@ -19,25 +19,13 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "acidify",
-				"with": "lactic, citric or acetic acid",
-				"note": "Added directly to the milk, with no rennet and no culture."
-			},
-			{
-				"type": "drain"
-			},
-			{
-				"type": "washCurd",
-				"note": "With hot water or hot milk."
-			},
-			{
 				"type": "custom",
 				"name": "melt"
 			},
 			{
 				"type": "add",
 				"what": "fat",
-				"note": "Only manteiga da terra or manteiga de garrafa, and salt."
+				"note": "The cheese is given butter (manteiga da terra) or bottled butterfat (manteiga de garrafa), and salt, and nothing else."
 			},
 			{
 				"type": "mould"
@@ -48,7 +36,8 @@
 			},
 			{
 				"type": "custom",
-				"name": "pack"
+				"name": "pack",
+				"minor": true
 			}
 		],
 		"sources": {

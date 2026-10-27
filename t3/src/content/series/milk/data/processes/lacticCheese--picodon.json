@@ -22,10 +22,6 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "coagulate",
-				"by": "rennet-acid"
-			},
-			{
 				"type": "ferment",
 				"does": "ripen",
 				"kinds": [
@@ -45,7 +41,8 @@
 				},
 				"seconds": {
 					"min": 1036800
-				}
+				},
+				"minor": true
 			}
 		],
 		"text": "Unwashed may be sold after 12 d, washed (Dieulefit) after at least 30 d. White, ivory, blue, grey or brown moulds depending on age.",

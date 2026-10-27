@@ -25,51 +25,8 @@
 			{
 				"type": "drain",
 				"by": "sieve",
-				"note": "The raw milk is not heated."
-			},
-			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic",
-					"yeast"
-				],
-				"adds": {
-					"microbes": [
-						{
-							"name": "Lactobacillus kefiranofaciens",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							]
-						},
-						{
-							"name": "Lactobacillus plantarum",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							]
-						},
-						{
-							"name": "yeasts",
-							"kind": "yeast",
-							"does": [
-								"alcohol"
-							]
-						}
-					],
-					"by": [
-						"backslop"
-					]
-				},
-				"temperature": {
-					"min": 20,
-					"max": 25
-				},
-				"seconds": {
-					"min": 86400,
-					"max": 172800
-				}
+				"note": "The raw milk is not heated.",
+				"minor": true
 			}
 		],
 		"sources": {

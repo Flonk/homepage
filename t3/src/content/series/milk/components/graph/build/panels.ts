@@ -4,7 +4,7 @@ import type * as S from '../schema';
    its cheeses apart is drawn as a panel, once it has enough of them; each
    placed where its sources put it, else where most of its family's go,
    and marked so (see unsure). */
-export const panelsOf = (nodes: Record<string, S.Node>, ofProduct: Map<string, string>) => {
+export const panelsOf = (nodes: Record<string, S.Node>) => {
 	const all = Object.entries(nodes);
 	const products = all.filter(([, n]) => !n.example);
 	const panelled = (id: string) => !!nodes[id].panel || (!!nodes[id].ripened && (nodes[id].examples?.length ?? 0) >= 6);
@@ -18,11 +18,8 @@ export const panelsOf = (nodes: Record<string, S.Node>, ofProduct: Map<string, s
 	};
 	const unsure = new Set<string>();
 	const axesOf = new Map<string, { firm: S.Firm; days: [number, number]; timeless?: true }>();
-	for (const [id, n] of all) {
-		// Drawn under its product, placed by a guess; on the map, it is where it is made.
-		if (ofProduct.has(id) && (n.estimated || n.confidence === 'low')) unsure.add(id);
-		if (n.example && n.firm && n.days) axesOf.set(id, { firm: n.firm, days: n.days });
-	}
+	// Marked unsure only where it is placed by its firmness and ripening, in a panel (below) or a table (see tables.ts).
+	for (const [id, n] of all) if (n.example && n.firm && n.days) axesOf.set(id, { firm: n.firm, days: n.days });
 	for (const [id, n] of products) {
 		if (!panelled(id)) continue;
 		const names = n.examples ?? [];

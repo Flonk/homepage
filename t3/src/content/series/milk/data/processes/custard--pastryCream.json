@@ -20,31 +20,5 @@
 			}
 		],
 		"text": "The table, the facts and the words on how it is made, from these."
-	},
-	"processing": {
-		"steps": [
-			{
-				"type": "heat",
-				"does": "heat",
-				"temperature": {
-					"min": 100,
-					"max": 100,
-					"about": true
-				}
-			}
-		],
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Pastry cream",
-					"url": "https://en.wikipedia.org/wiki/Pastry_cream"
-				},
-				{
-					"name": "Wikipedia: Custard",
-					"url": "https://en.wikipedia.org/wiki/Custard"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		}
 	}
 }

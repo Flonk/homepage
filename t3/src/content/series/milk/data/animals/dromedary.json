@@ -1,0 +1,137 @@
+{
+	"label": "Dromedary",
+	"aka": [
+		"one-humped camel",
+		"Arabian camel"
+	],
+	"names": {
+		"unsourced": true,
+		"text": "Common names for Camelus dromedarius; the label is the item's given label."
+	},
+	"kind": "species",
+	"parent": "camelids",
+	"taxon": {
+		"name": "Camelus dromedarius",
+		"rank": "species",
+		"sources": {
+			"unsourced": true,
+			"text": "Common knowledge: the one-humped camel is Camelus dromedarius, as given in the item."
+		}
+	},
+	"about": {
+		"text": "The dromedary is the one-humped camel, milked in arid lands. Somalia and Kenya led world camel milk output in 2017, and Australia has a feral population above 600,000.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Camel milk",
+					"url": "https://en.wikipedia.org/wiki/Camel_milk"
+				}
+			],
+			"text": "Opened with WebFetch. The 2017 FAOSTAT leaders (Somalia 953,673 t, Kenya 876,224 t) and the feral population 'in excess of 600,000' (ABC News, 2013, as cited there) are from that page. 'Milked in arid lands' is a general description not drawn from a page."
+		}
+	},
+	"domestication": {
+		"where": "Southeast Arabian Peninsula",
+		"regions": [
+			"OM",
+			"AE"
+		],
+		"yearsAgo": {
+			"min": 3000,
+			"max": 7000
+		},
+		"text": "Ancient DNA from bones up to about 7,000 years old points to the Southeast Arabian Peninsula as the first domestication region; the wild ancestor went extinct about 2,000 years after that.",
+		"sources": {
+			"links": [
+				{
+					"name": "Phys.org: Origin of dromedary domestication discovered",
+					"url": "https://phys.org/news/2016-05-dromedary-domestication.html"
+				},
+				{
+					"name": "Jordan Times: unveiling Arabia's legendary camel (2023 report on Brusgaard)",
+					"url": "https://jordantimes.com/news/local/unveiling-arabias-legendary-camel-through-rock-art-archaeological-exploration"
+				}
+			],
+			"text": "Phys.org (2016, Burger and colleagues, PNAS) was opened with WebFetch: 'analysed up to 7,000-year-old DNA', Southeast Arabian Peninsula, wild ancestor extinct around 2,000 years after the first domestication. The 3,000 minimum comes from the WebSearch text of the Jordan Times report: domesticated dromedary probably late second millennium BC, not widely present before about 1000 BC (the cutoff is uncertain in that text). The Jordan Times page was not opened."
+		}
+	},
+	"milk": {
+		"mt": 3.99,
+		"year": 2023,
+		"estimated": true,
+		"sources": {
+			"links": [
+				{
+					"name": "FAOSTAT: Crops and livestock products (QCL), world, 2023",
+					"url": "https://www.fao.org/faostat/en/#data/QCL"
+				}
+			],
+			"text": "Estimated. FAOSTAT does not split dromedary from Bactrian camels, so the camels total for 2023 (4,076,534.54 tonnes, flag E, from research/herd/faostat-2023.json) is taken as the dromedary figure, rounded to 4.08. This is an upper bound: it assumes the Bactrian share is small, which is common knowledge and not from a page. Since corrected: less the Bactrian estimate of 0.09 Mt (see bactrianCamel), so the two together are FAOSTAT's camels total, 4.08 Mt."
+		}
+	},
+	"head": [
+		{
+			"count": 9009782,
+			"year": 2023,
+			"where": "world",
+			"milked": true,
+			"estimated": true,
+			"sources": {
+				"links": [
+					{
+						"name": "FAOSTAT: Crops and livestock products (QCL), world, 2023",
+						"url": "https://www.fao.org/faostat/en/#data/QCL"
+					}
+				],
+				"text": "Camels milked, world, 2023, from research/herd/faostat-2023.json. This covers dromedary and Bactrian together, so it is marked estimated as a dromedary figure."
+			}
+		},
+		{
+			"count": 42590576,
+			"year": 2023,
+			"where": "world",
+			"estimated": true,
+			"sources": {
+				"links": [
+					{
+						"name": "FAOSTAT: Crops and livestock products (QCL), world, 2023",
+						"url": "https://www.fao.org/faostat/en/#data/QCL"
+					}
+				],
+				"text": "Camel stocks, world, 2023, from research/herd/faostat-2023.json. This covers dromedary and Bactrian together, so it is marked estimated as a dromedary figure."
+			}
+		}
+	],
+	"composition": {
+		"fat": {
+			"min": 1.2,
+			"max": 6.4
+		},
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Camel milk",
+					"url": "https://en.wikipedia.org/wiki/Camel_milk"
+				}
+			],
+			"text": "Fat range 1.2% to 6.4% for dromedary milk, from a 2015 systematic review as cited in the Wikipedia article (opened with WebFetch). Protein and lactose were not sourced and are left out."
+		}
+	},
+	"facts": [
+		{
+			"k": "Milk per day",
+			"v": "A dromedary produces an average of about 20 litres of milk a day, according to a San Diego Zoo Global Library factsheet cited on Wikipedia.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Camel milk",
+						"url": "https://en.wikipedia.org/wiki/Camel_milk"
+					}
+				],
+				"text": "Taken from the Wikipedia article as fetched with WebFetch, which cites the San Diego Zoo factsheet. The factsheet itself was not opened."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "Yield per year and per lactation, purposes, protein and lactose were not found in opened pages, so they are left out. The 2023 dromedary milk figure is an upper-bound estimate. Domestication dates are a range from two sources, one of them only in search text."
+}

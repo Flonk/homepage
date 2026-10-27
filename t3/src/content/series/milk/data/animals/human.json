@@ -1,0 +1,104 @@
+{
+	"label": "Human",
+	"aka": [
+		"modern human"
+	],
+	"names": {
+		"links": [
+			{
+				"name": "Wikipedia: Human",
+				"url": "https://en.wikipedia.org/wiki/Human"
+			}
+		],
+		"text": "The Human article says 'All modern humans are classified into the species Homo sapiens'. 'Modern human' is the article's term for the same group. 'Human' is the item's given label."
+	},
+	"kind": "species",
+	"parent": "primates",
+	"taxon": {
+		"name": "Homo sapiens",
+		"rank": "species",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Human",
+					"url": "https://en.wikipedia.org/wiki/Human"
+				}
+			],
+			"text": "'All modern humans are classified into the species Homo sapiens, coined by Carl Linnaeus in his 1735 work Systema Naturae', and 'Humans belong to the biological family of great apes (family Hominidae, superfamily Hominoidea)'. The order Primates is from the infobox, as fetched with WebFetch."
+		}
+	},
+	"about": {
+		"text": "Breast milk is the milk humans produce for their infants. The Human milk article gives its make-up as about 4.5% fat, 0.8 to 0.9% protein and 7.1% carbohydrate, mainly lactose.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Human milk",
+					"url": "https://en.wikipedia.org/wiki/Human_milk"
+				}
+			],
+			"text": "'Human milk contains 0.8 to 0.9% protein, 4.5% fat, 7.1% carbohydrates' and 'carbohydrates are mainly lactose', from the Human milk article as fetched with WebFetch."
+		}
+	},
+	"milk": {
+		"mt": 8.1,
+		"year": 2023,
+		"estimated": true,
+		"sources": {
+			"links": [
+				{
+					"name": "World Population Prospects 2024 births (search text, secondary sites)",
+					"url": "https://www.statisticstimes.com/demographics/world-death-and-birth-rate.php"
+				},
+				{
+					"name": "UNICEF and WHO Global Breastfeeding Scorecard 2023",
+					"url": "https://www.unicef.org/media/150586/file/Global%20breastfeeding%20scorecard%202023.pdf"
+				},
+				{
+					"name": "Breastfeeding Medicine 2023 systematic review of breast milk intake (search text)",
+					"url": "https://lacted.org/questions/typical-volumes-of-human-milk-intake-among-infants-and-young-children/"
+				}
+			],
+			"text": "Estimate. Working: 2023 live births of about 132.1 million (secondary sites citing WPP 2024, from WebSearch text; the UN primary page was not opened). Infants under six months at any time are about half a year's births, 66.0 million. Share exclusively breastfed under six months: 48% (UNICEF and WHO 2023 scorecard, from WebSearch text; the PDF was not opened). Intake: 0.70 litres a day, the midpoint of 624 to 735 mL a day for exclusively breastfed infants in a 2023 systematic review in Breastfeeding Medicine (from WebSearch text). Calculation: 66.0 million x 0.48 = 31.7 million infants x 0.70 L = 22.2 million litres a day x 365 days = 8.1 billion litres, taken as 1 kg per litre, = 8.1 million tonnes. This counts exclusively breastfed infants only, so mixed feeding is left out and the figure is a lower bound on the total."
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 3.2,
+			"max": 4.8
+		},
+		"protein": {
+			"min": 0.8,
+			"max": 1.4
+		},
+		"lactose": {
+			"min": 6.7,
+			"max": 7.8
+		},
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Human milk",
+					"url": "https://en.wikipedia.org/wiki/Human_milk"
+				}
+			],
+			"text": "Per-100 mL ranges from the composition table in the Human milk article, as fetched with WebFetch: fat 3.2 to 4.8 g, protein 0.8 to 1.4 g, lactose 6.7 to 7.8 g. The article's text gives a single figure of 4.5% fat and 0.8 to 0.9% protein, which falls inside these ranges."
+		}
+	},
+	"facts": [
+		{
+			"k": "Exclusive breastfeeding",
+			"v": "48% of infants under six months were exclusively breastfed worldwide in 2023, close to the 50% target for 2025.",
+			"sources": {
+				"links": [
+					{
+						"name": "UNICEF and WHO Global Breastfeeding Scorecard 2023",
+						"url": "https://www.unicef.org/media/150586/file/Global%20breastfeeding%20scorecard%202023.pdf"
+					}
+				],
+				"text": "From the 2023 scorecard as summarised in a WebSearch result text (the PDF itself was not opened)."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "No primary UN figure for 2023 births was opened, so the births figure comes from secondary sites. The 48% exclusive rate and the intake figure come from search texts, not from opened pages. The estimate counts only exclusively breastfed infants and leaves out mixed feeding and feeding after six months, so it is a lower bound. No count of breastfed infants or a global breast milk figure was found in any source, so the figure is worked out. No daily intake was found in the Human milk article itself. No head record is given."
+}

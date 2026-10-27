@@ -23,14 +23,9 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "add",
-				"what": "lactase",
-				"note": "Lactase splits the lactose into glucose and galactose."
-			},
-			{
 				"type": "heat",
 				"does": "heat",
-				"note": "UHT-treated."
+				"note": "The milk is treated at ultra-high temperature (UHT)."
 			},
 			{
 				"type": "homogenise"

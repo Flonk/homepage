@@ -1,0 +1,59 @@
+{
+	"label": "Irish Moiled",
+	"kind": "breed",
+	"parent": "taurineCattle",
+	"about": {
+		"text": "The Irish Moiled is a rare, hornless (polled) dual-purpose cattle breed from Ireland, kept for both milk and beef. It is one of Ireland's oldest native breeds and recovered from a near-collapse in the late 20th century through breeder efforts.",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: List of dairy cattle breeds", "url": "https://en.wikipedia.org/wiki/List_of_dairy_cattle_breeds"},
+				{"name": "Irish Moiled Cattle Society: breed history", "url": "https://irishmoiledcattlesociety.com/the-breed/history"},
+				{"name": "Rare Breeds Survival Trust of Australia: Irish Moiled", "url": "https://rarebreedstrust.com.au/public/pages/irish-moiled"}
+			],
+			"text": "Dual-purpose use and rarity from the Wikipedia list (opened). Oldest native breed, hornless name, 1970s low and revival from the Irish Moiled Cattle Society history page (opened). Kept across Ireland and in parts of Britain from the Wikipedia Irish Moiled article, found in WebSearch result text (page not opened). The Australian RBST page rates the breed critical in Australia (opened)."
+		}
+	},
+	"origin": {
+		"regions": ["IE"],
+		"place": "Ireland; the hill farms of South Ulster and the drumlins of the north",
+		"sources": {
+			"links": [
+				{"name": "Irish Moiled Cattle Society: breed history", "url": "https://irishmoiledcattlesociety.com/the-breed/history"}
+			],
+			"text": "Origin and hill-farm distribution from the breed society's history page (opened). No formation date given: the society cites polled skeletal remains dated to 640 AD, which is a find, not a formation date, so it is in facts instead."
+		}
+	},
+	"purposes": {
+		"purposes": ["dual-purpose"],
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: List of dairy cattle breeds", "url": "https://en.wikipedia.org/wiki/List_of_dairy_cattle_breeds"}
+			],
+			"text": "The list row reads 'Rare breed and can be dual purpose, meat and milk' (opened). Dual-purpose is the only use stated for this breed; no separate meat-only or dairy-only statement was found."
+		}
+	},
+	"facts": [
+		{
+			"k": "Ancient polled cattle",
+			"v": "The breed society cites polled skeletal remains dated to 640 AD as evidence of the hornless type in Ireland.",
+			"sources": {
+				"links": [
+					{"name": "Irish Moiled Cattle Society: breed history", "url": "https://irishmoiledcattlesociety.com/the-breed/history"}
+				],
+				"text": "Taken from the society's history page (opened). The date is the society's claim and was not checked against an archaeological source."
+			}
+		},
+		{
+			"k": "Near-collapse",
+			"v": "By the late 1970s the pedigree herd in Northern Ireland was down to about thirty breeding females and two bulls, and the Rare Breeds Survival Trust listed the breed as critical in 1979.",
+			"sources": {
+				"links": [
+					{"name": "Irish Moiled Cattle Society: breed history", "url": "https://irishmoiledcattlesociety.com/the-breed/history"}
+				],
+				"text": "From the breed society's history page (opened). Wikipedia gives a different low (about 20 breeding females in two dairy herds), found in WebSearch result text; the two sources disagree, so the society's figure is used here."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "No current global population count found, so no head record. Risk status from DAD-IS not found (the Australian RBST rating is national only), so risk is left out. The list article's milk figure (7.5 L a day) has no citation and was not used. No sourced milk yield or composition found. No formation date found."
+}

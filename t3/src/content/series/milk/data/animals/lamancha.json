@@ -1,0 +1,121 @@
+{
+	"label": "LaMancha",
+	"aka": [
+		"American Lamancha",
+		"Lamancha"
+	],
+	"names": {
+		"links": [
+			{
+				"name": "Wikipedia: American Lamancha",
+				"url": "https://en.wikipedia.org/wiki/American_Lamancha"
+			}
+		],
+		"text": "The article gives Lamancha, LaMancha and American Lamancha as names, and says that at registration in 1958 it was listed as 'Lamancha or American Lamancha'. Read with WebFetch."
+	},
+	"kind": "breed",
+	"parent": "goat",
+	"about": {
+		"text": "An American short-eared dairy goat, first bred in California around 1927 by Eula Fay Frey and later developed at Glide, Oregon. Its milk averaged about 3.9% fat and 3.1% protein in ADGA's 2010 lactation averages.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: American Lamancha",
+					"url": "https://en.wikipedia.org/wiki/American_Lamancha"
+				},
+				{
+					"name": "Purdue University: LaMancha factsheet",
+					"url": "https://www.ansc.purdue.edu/goat/factsheet/LaMancha.htm"
+				}
+			],
+			"text": "Wikipedia article read with WebFetch for the breeding history in California and Oregon. The Purdue factsheet read with WebFetch for the ADGA 2010 averages of fat and protein."
+		}
+	},
+	"origin": {
+		"regions": ["US"],
+		"place": "Glide, Oregon, USA; first bred in California by Eula Fay Frey around 1927",
+		"formed": {
+			"min": 1927,
+			"max": 1958
+		},
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: American Lamancha",
+					"url": "https://en.wikipedia.org/wiki/American_Lamancha"
+				},
+				{
+					"name": "Purdue University: LaMancha factsheet",
+					"url": "https://www.ansc.purdue.edu/goat/factsheet/LaMancha.htm"
+				}
+			],
+			"text": "Wikipedia, read with WebFetch: first bred in California by Mrs. Eula Fay Frey about 1927, moved to Glide, Oregon; formally registered on 27 January 1958. The 1927 to 1958 range runs from first breeding to registration. Purdue says it originated in Oregon from crosses of short-eared goats with Nubians, which conflicts with Wikipedia's account of its ancestry."
+		}
+	},
+	"yield": {
+		"perLactation": {
+			"min": 1019,
+			"max": 1019
+		},
+		"year": 2010,
+		"where": "US",
+		"sources": {
+			"links": [
+				{
+					"name": "Purdue University: LaMancha factsheet",
+					"url": "https://www.ansc.purdue.edu/goat/factsheet/LaMancha.htm"
+				}
+			],
+			"text": "Purdue factsheet, read with WebFetch: 'ADGA Production Averages (2010 lactations)': 2,246 lbs of milk per lactation. Converted at 0.4536 kg per lb to 1,019 kg, so estimated. Lactation length not stated on the page."
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 3.9,
+			"max": 3.9
+		},
+		"protein": {
+			"min": 3.1,
+			"max": 3.1
+		},
+		"sources": {
+			"links": [
+				{
+					"name": "Purdue University: LaMancha factsheet",
+					"url": "https://www.ansc.purdue.edu/goat/factsheet/LaMancha.htm"
+				}
+			],
+			"text": "Purdue factsheet, read with WebFetch: ADGA 2010 lactation averages, fat 3.9%, protein 3.1%."
+		}
+	},
+	"facts": [
+		{
+			"k": "First 3,000 lb doe",
+			"v": "Fay's Spider L-85 in 1961 was the first LaMancha doe to pass 3,000 lb on an official test, with 3,295 lb of milk in 305 days. That record stood for twelve years.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: American Lamancha",
+						"url": "https://en.wikipedia.org/wiki/American_Lamancha"
+					}
+				],
+				"text": "Wikipedia, read with WebFetch: 'Fay's Spider L-85 became the first Lamancha doe to exceed 3000 pounds on an official test, with 305-day figures of 3295 and 115.8. The record stood for twelve years.' The article does not label the units, and pounds are taken from its 3000 pounds wording."
+			}
+		},
+		{
+			"k": "Breeding goal",
+			"v": "Frey's goal was 3½ to six quarts of fine-flavored milk with 3.5% or more butterfat per period of one to four years between freshenings.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: American Lamancha",
+						"url": "https://en.wikipedia.org/wiki/American_Lamancha"
+					}
+				],
+				"text": "Wikipedia, read with WebFetch: Frey's breeding goal, quoted as '3½ to six quarts of fine-flavored milk with 3.5% or more butterfat'."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "No DAD-IS population figure or risk status found, and the Wikipedia article gives no conservation status. The original-stock count conflicts within the article (about 200 at registration, and 130 in the foundation herd), so it is left out. The origin accounts conflict on ancestry (Wikipedia: short-eared Spanish goats; Purdue: short-eared goats crossed with Nubians). The ADGA average has no lactation length. Purposes are left out because no opened page stated them. The yield is the only ADGA figure found; the 2100 lb figures from search text were not used."
+}

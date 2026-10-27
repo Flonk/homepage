@@ -2,7 +2,6 @@ import { spacing, type Arrow, type Node } from '../client/base';
 import type { Box } from '../layout';
 import type { Pen } from '../render/canvas';
 import { pixelRatio } from '../../../../../../lib/canvas';
-import { mapPillsReadable } from '../layout/worldMap';
 import type { Drawing, FramePainter, Sprite } from './types';
 
 // The overview's longest side, in pixels.
@@ -17,7 +16,7 @@ const KEEPING_TIME = 6;
    card chains, pills and their marks), each stamped from where it is
    kept at this zoom. Zoomed far out, one image of the whole instead. */
 export const makeFramePainter = (G: Drawing): FramePainter => {
-	const { figure, signal, layout, viewport, highlight, pillPainter, panelPainter, sprites } = G;
+	const { figure, signal, layout, viewport, highlight, pillPainter, sprites } = G;
 	const colours = G.appearance.colours;
 	const { ctx, canvas } = viewport;
 
@@ -30,7 +29,10 @@ export const makeFramePainter = (G: Drawing): FramePainter => {
 	signal.addEventListener('abort', () => cancelIdleCallback(idleKeeping));
 	const keepAhead = () => {
 		cancelIdleCallback(idleKeeping);
-		const level = sprites.zoomLevelOf(viewport.screenScale());
+		const now = viewport.screenScale();
+		const level = sprites.zoomLevelOf(now);
+		// Decided at the zoom nearest this one that its doubling is stamped at, a guess the stamp checks (see keptFor).
+		const seenAt = (at: number) => Math.min(at * Math.SQRT2 * 0.999, Math.max(at / Math.SQRT2, now));
 		const middle = viewport.screenToPicture(viewport.paneWidth / 2, viewport.paneHeight / 2);
 		const distance = (p: Sprite) => Math.hypot((p.box.x0 + p.box.x1) / 2 - middle.x, (p.box.y0 + p.box.y1) / 2 - middle.y);
 		const todo = [
@@ -43,7 +45,7 @@ export const makeFramePainter = (G: Drawing): FramePainter => {
 		const keepSome = (deadline: IdleDeadline) => {
 			while (todo.length && deadline.timeRemaining() > 2 && !frames.moving) {
 				const [p, at] = todo.pop()!;
-				sprites.drawAndKeep(p, at);
+				sprites.drawAndKeep(p, at, seenAt(at));
 			}
 			if (todo.length && !frames.moving) idleKeeping = requestIdleCallback(keepSome);
 		};
@@ -58,11 +60,12 @@ export const makeFramePainter = (G: Drawing): FramePainter => {
 			return;
 		}
 		spritesInSight.push(sprite);
-		let bitmap: ImageBitmap | OffscreenCanvas | undefined = sprites.bitmaps.get(`${key}@${level}`);
-		if (!bitmap && !frames.moving && performance.now() < frames.keepUntil) bitmap = sprites.drawAndKeep(sprite, level);
+		let bitmap: ImageBitmap | OffscreenCanvas | undefined = sprites.keptFor(key, level, s);
+		if (!bitmap && !frames.moving && performance.now() < frames.keepUntil) bitmap = sprites.drawAndKeep(sprite, level, s);
 		if (!bitmap) {
 			frames.keepingBehind = true;
-			for (const near of [level / 2, level * 2, level / 4, level * 4]) bitmap ??= sprites.bitmaps.get(`${key}@${near}`);
+			// Moving: as it was kept, at this zoom or the nearest, though what shows in it may be a step behind.
+			for (const near of [level, level / 2, level * 2, level / 4, level * 4]) bitmap ??= sprites.bitmaps.get(`${key}@${near}`)?.bitmap;
 			if (!bitmap) {
 				draw(ctx, s);
 				return;
@@ -76,7 +79,7 @@ export const makeFramePainter = (G: Drawing): FramePainter => {
 		const level = sprites.zoomLevelOf(s);
 		if (sprites.bitmaps.size < MOST_KEPT || level === evictedAtLevel) return;
 		evictedAtLevel = level;
-		sprites.evictFarZooms(sprites.bitmaps, level, (key) => Number(key.slice(key.lastIndexOf('@') + 1)), (bitmap) => bitmap.close());
+		sprites.evictFarZooms(sprites.bitmaps, level, (key) => Number(key.slice(key.lastIndexOf('@') + 1)), (kept) => kept.bitmap.close());
 	};
 
 	/* The whole of it, drawn plain once into a single image when there is
@@ -87,6 +90,7 @@ export const makeFramePainter = (G: Drawing): FramePainter => {
 	const box = viewport.framedBox;
 	const overviewScale = OVERVIEW_PX / Math.max(box.width, box.height);
 	let overview: ImageBitmap | null = null;
+	const storied = layout.nodesWithPills.filter((n) => n.story);
 	let overviewTimer = 0;
 	const buildOverview = () => {
 		cancelIdleCallback(overviewTimer);
@@ -98,9 +102,8 @@ export const makeFramePainter = (G: Drawing): FramePainter => {
 				for (const a of layout.arrows) fillArrow(g, a, colours.line);
 			},
 			() => pillPainter.drawMilk(g, layout.root, overviewScale / viewport.pixelRatio),
-			// A map's land; its cheeses are not drawn so far out, and its pins are drawn over it, as big as the zoom has them.
-			...[...layout.panels.keys()].filter((p) => p.map).map((p) => () => panelPainter.drawMapLand(g, p, p.x - p.w / 2, p.y + p.h / 2)),
-			...sprites.allSprites().map((p) => () => {
+			// Not the stories' bubbles, which rise when hovered: drawn over it, each frame (below).
+			...sprites.allSprites().filter((p) => !p.key.startsWith('t3:')).map((p) => () => {
 				if (p.draw(g, overviewScale / viewport.pixelRatio) === false) whole = false;
 			}),
 		].reverse();
@@ -125,50 +128,6 @@ export const makeFramePainter = (G: Drawing): FramePainter => {
 		clearTimeout(overviewTimer);
 	});
 
-	/* The map's card (see .milk-map-card): in the map's top left, a little
-	   in from its edges; once the map is panned past that, held in the
-	   pane's top left, under the search, as a sticky header is, until the
-	   map's far edges push it out. Hidden while the map is too small on
-	   the screen to hold it. */
-	const mapCard = figure.querySelector<HTMLElement>('.milk-map-card')!;
-	const maps = [...layout.panels.keys()].filter((p) => p.map);
-	const mapTitle = mapCard.querySelector('strong')!;
-	// Its size and the search's foot, measured as it is first shown and as the pane changes size, not each frame.
-	let mapCardSize: { w: number; h: number; top: number } | null = null;
-	let mapCardTransform = '';
-	const placeMapCard = () => {
-		// The map most on the screen, its family named.
-		const onScreen = (p: Node) => {
-			const b = layout.panelBox(p);
-			const [l, t] = viewport.pictureToScreen(b.x0, b.y0);
-			const [r, d] = viewport.pictureToScreen(b.x1, b.y1);
-			return Math.max(0, Math.min(r, viewport.paneWidth) - Math.max(l, 0)) * Math.max(0, Math.min(d, viewport.paneHeight) - Math.max(t, 0));
-		};
-		const worldMap = maps.reduce<Node | null>((best, p) => (onScreen(p) > (best ? onScreen(best) : 0) ? p : best), null);
-		if (!worldMap) return void (mapCard.hidden = true);
-		const title = worldMap.label.replace(/\n/g, ' ');
-		if (mapTitle.textContent !== title) mapTitle.textContent = title;
-		const area = layout.panelBox(worldMap);
-		const [left, top] = viewport.pictureToScreen(area.x0, area.y0);
-		const [right, bottom] = viewport.pictureToScreen(area.x1, area.y1);
-		const inset = 12;
-		// Three of its 15rem across, at the least; hidden, it has no width of its own to go by.
-		const hide = right - left < 720;
-		if (mapCard.hidden !== hide) mapCard.hidden = hide;
-		if (hide) return;
-		if (!mapCardSize) {
-			// Under the search where it is in the pane; at the pane's top where it has gone to the deck's tools.
-			const under = figure.querySelector<HTMLElement>('.milk-search .milk-beasts') ?? figure.querySelector<HTMLElement>('.milk-search input');
-			const below = under ? under.getBoundingClientRect().bottom - canvas.getBoundingClientRect().top + inset : inset;
-			mapCardSize = { w: mapCard.offsetWidth, h: mapCard.offsetHeight, top: below };
-		}
-		const { w, h, top: least } = mapCardSize;
-		const x = Math.round(Math.min(Math.max(left + inset, inset), right - inset - w));
-		const y = Math.round(Math.min(Math.max(top + inset, least), bottom - inset - h));
-		const transform = `translate(${canvas.offsetLeft + x}px, ${canvas.offsetTop + y}px)`;
-		if (transform !== mapCardTransform) mapCard.style.transform = mapCardTransform = transform;
-	};
-	signal.addEventListener('abort', () => (mapCard.hidden = true));
 
 	// An arrow filled, and edged in a hairline of its own colour, at a zoom.
 	const setArrowStroke = (g: Pen, s: number) => {
@@ -199,7 +158,6 @@ export const makeFramePainter = (G: Drawing): FramePainter => {
 		const topLeft = viewport.screenToPicture(0, 0);
 		const bottomRight = viewport.screenToPicture(viewport.paneWidth, viewport.paneHeight);
 		const inSight = (b: Box) => b.x1 >= topLeft.x && b.x0 <= bottomRight.x && b.y1 >= topLeft.y && b.y0 <= bottomRight.y;
-		placeMapCard();
 		frames.keepingBehind = false;
 		spritesInSight = [];
 		evictOnZoom(s);
@@ -208,7 +166,6 @@ export const makeFramePainter = (G: Drawing): FramePainter => {
 		if (overview && s * dpr <= overviewScale) {
 			ctx.drawImage(overview, box.x, box.y, box.width, box.height);
 			frames.keepUntil = performance.now() + KEEPING_TIME;
-			for (const sprite of sprites.pinSpritesAt(s)) if (inSight(sprite.box)) stamp(sprite, s);
 			setArrowStroke(ctx, s);
 			for (const a of highlight.litArrows) fillArrow(ctx, a, colours.litLine);
 			// The step labels on a lit arrow drawn again over it, as they are over every arrow zoomed in.
@@ -226,6 +183,7 @@ export const makeFramePainter = (G: Drawing): FramePainter => {
 				if (layout.hasCardChain(n) && inSight(layout.cardChainOf(n).area)) pillPainter.drawCardChain(ctx, n, asOverview);
 			}
 			drawSelectedOnTop(s);
+			for (const n of storied) if (inSight(G.markPainter.storyBox(n))) G.markPainter.drawStory(ctx, n, s);
 			G.devMarks.draw(s, inSight);
 			return;
 		}
@@ -237,11 +195,10 @@ export const makeFramePainter = (G: Drawing): FramePainter => {
 		// Milk under the rest.
 		if (inSight(layout.pillShadowBox(layout.root))) pillPainter.drawMilk(ctx, layout.root, s);
 		frames.keepUntil = performance.now() + KEEPING_TIME;
-		for (const p of layout.panels.keys()) if (p.map && inSight(layout.panelBox(p))) sprites.drawMapTiles(p, s, topLeft, bottomRight);
 		frames.sprites ??= sprites.allSprites();
-		for (const list of [frames.sprites, sprites.pinSpritesAt(s)]) for (const sprite of list) if (inSight(sprite.box)) stamp(sprite, s);
-		// One selected on the map, lit over its tile.
-		if (highlight.selected?.onMap && mapPillsReadable(s)) drawSelectedOnTop(s);
+		for (const sprite of frames.sprites) if (inSight(sprite.box)) stamp(sprite, s);
+		// A story's bubble off the ground, over the rest (see rise in pointer.ts).
+		for (const n of G.pointer.raised.keys()) G.markPainter.drawStory(ctx, n, s);
 		G.devMarks.draw(s, inSight);
 
 		// Some not yet kept at this zoom: on with them in the next frame; all of them: the zooms either side.
@@ -266,11 +223,9 @@ export const makeFramePainter = (G: Drawing): FramePainter => {
 		const h = canvas.clientHeight;
 		const was = viewport.pixelRatio;
 		viewport.pixelRatio = pixelRatio();
-		// Tiles and sprites are drawn in the screen's pixels: on a screen with more to them, drawn again.
+		// Sprites are drawn in the screen's pixels: on a screen with more to them, drawn again.
 		if (viewport.pixelRatio !== was) {
-			for (const tile of sprites.mapTiles.values()) tile.bitmap.close();
-			sprites.mapTiles.clear();
-			for (const bitmap of sprites.bitmaps.values()) bitmap.close();
+			for (const kept of sprites.bitmaps.values()) kept.bitmap.close();
 			sprites.bitmaps.clear();
 		}
 		if (canvas.width !== Math.round(w * viewport.pixelRatio) || canvas.height !== Math.round(h * viewport.pixelRatio)) {
@@ -279,7 +234,6 @@ export const makeFramePainter = (G: Drawing): FramePainter => {
 		}
 		// Only a real change moves the picture: anything else would cut short a glide under way.
 		if (!w || !h || (w === viewport.paneWidth && h === viewport.paneHeight)) return;
-		mapCardSize = null;
 		const middleWas = viewport.screenToPicture(viewport.paneWidth / 2, viewport.paneHeight / 2);
 		viewport.paneWidth = w;
 		viewport.paneHeight = h;

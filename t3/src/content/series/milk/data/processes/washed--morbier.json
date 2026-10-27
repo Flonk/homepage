@@ -20,62 +20,18 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "heat",
-				"does": "heat",
-				"temperature": {
-					"max": 40
-				}
-			},
-			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic"
-				],
-				"adds": {
-					"microbes": [
-						{
-							"name": "lactic acid bacteria",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							]
-						}
-					],
-					"by": [
-						"starter"
-					]
-				}
-			},
-			{
-				"type": "coagulate",
-				"by": "rennet",
-				"temperature": {
-					"max": 40
-				}
-			},
-			{
-				"type": "cut",
-				"how": "cut",
-				"size": {
-					"min": 10,
-					"max": 10
-				},
-				"note": "To grains of about 1 cm."
-			},
-			{
 				"type": "add",
 				"what": "charcoal",
-				"note": "On half a cake, leaving the horizontal black line."
+				"note": "One face of the curd is coated with vegetable charcoal, which leaves a black line through the pressed paste."
 			},
 			{
 				"type": "press",
-				"note": "Lightly, into cakes of 5–8 kg and 30–40 cm."
+				"note": "The curd is pressed lightly into cakes of 5–8 kg and 30–40 cm."
 			},
 			{
 				"type": "custom",
 				"name": "rub",
-				"note": "With salt water, which may carry lactic starters; no colourings are used."
+				"note": "The wheels are rubbed with salt water, which may carry lactic starters; no colourings are used."
 			},
 			{
 				"type": "ferment",

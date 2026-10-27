@@ -19,21 +19,8 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "heat",
-				"does": "heat",
-				"temperature": {
-					"min": 90,
-					"max": 92,
-					"about": true
-				}
-			},
-			{
-				"type": "acidify",
-				"with": "acetic acid"
-			},
-			{
 				"type": "mould",
-				"note": "In sieve moulds, pressed lightly."
+				"note": "The protein flakes are ladled into sieve moulds and pressed lightly."
 			},
 			{
 				"type": "custom",
@@ -42,7 +29,8 @@
 					"min": 86400,
 					"max": 86400,
 					"about": true
-				}
+				},
+				"minor": true
 			}
 		],
 		"sources": {

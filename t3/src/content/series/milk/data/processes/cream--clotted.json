@@ -8,14 +8,6 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "separate",
-				"off": "cream",
-				"fat": {
-					"min": 55
-				},
-				"note": "Milk is warmed to bring the cream up, which must have at least 55 % fat."
-			},
-			{
 				"type": "heat",
 				"does": "cook",
 				"temperature": {
@@ -25,7 +17,7 @@
 				"seconds": {
 					"min": 3600
 				},
-				"note": "Scalded without boiling, for at least an hour, while a thick crust forms."
+				"note": "The cream is scalded without boiling, while a thick crust forms on it."
 			},
 			{
 				"type": "heat",
@@ -33,9 +25,10 @@
 				"temperature": {
 					"max": 5
 				},
-				"note": "The crust hardens and the cream beneath it thickens."
+				"note": "The crust is left to harden, and the cream beneath it is left to thicken."
 			}
 		],
+		"text": "The cream must have at least 55 % fat.",
 		"sources": {
 			"links": [
 				{

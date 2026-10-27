@@ -20,41 +20,9 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "pasteurise"
-			},
-			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic",
-					"mould"
-				],
-				"adds": {
-					"microbes": [
-						{
-							"name": "Penicillium roqueforti",
-							"kind": "mould"
-						}
-					],
-					"by": [
-						"starter"
-					]
-				},
-				"note": "The mould is added to the milk and/or sprayed on the curds."
-			},
-			{
-				"type": "coagulate",
-				"by": "rennet",
-				"note": "With animal or non-animal rennet."
-			},
-			{
-				"type": "cut",
-				"how": "cut"
-			},
-			{
 				"type": "cut",
 				"how": "mill",
-				"note": "The next day, to walnut-sized pieces."
+				"note": "The next day, the curd is cut into pieces the size of walnuts."
 			},
 			{
 				"type": "salt",
@@ -65,21 +33,17 @@
 				"seconds": {
 					"max": 604800
 				},
-				"note": "No pressure applied, turned."
+				"note": "The cheese is turned, with no pressure applied."
 			},
 			{
 				"type": "custom",
 				"name": "seal",
-				"note": "The cheese forms its own slightly wrinkled coat."
+				"note": "The cheese is left to form its own slightly wrinkled coat."
 			},
 			{
 				"type": "ferment",
 				"does": "pierce",
-				"seconds": {
-					"min": 3628800,
-					"max": 3628800,
-					"about": true
-				}
+				"note": "The cheese is pierced with steel needles at about six weeks, so air gets in and the mould veins from the centre."
 			},
 			{
 				"type": "ferment",

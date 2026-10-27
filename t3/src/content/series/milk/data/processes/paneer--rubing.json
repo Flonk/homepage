@@ -6,7 +6,7 @@
 		"rubing"
 	],
 	"variant": true,
-	"text": "Heated milk is curdled with a plant-based sour mixture, then pressed into cakes. Wikipedia gives no temperatures, times or pressing details, so none are given here.",
+	"text": "Milk is curdled with a plant-based sour mixture. Wikipedia gives no temperatures, times or pressing details, so none are given here.",
 	"sources": {
 		"links": [
 			{
@@ -19,16 +19,9 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "heat",
-				"does": "heat"
-			},
-			{
 				"type": "coagulate",
-				"note": "With nǎiténg (奶藤, 'milk vine'), made from a cultivated vine, and no rennet.",
-				"by": "plant"
-			},
-			{
-				"type": "press"
+				"by": "plant",
+				"with": "a milk vine"
 			}
 		],
 		"sources": {

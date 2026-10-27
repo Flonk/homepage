@@ -20,7 +20,7 @@
 		"steps": [
 			{
 				"type": "add",
-				"note": "Bulgur and yoghurt about 1:3, plus strained yoghurt."
+				"note": "Bulgur is mixed with yoghurt at about 1 part to 3, and strained yoghurt is added."
 			},
 			{
 				"type": "ferment",
@@ -38,19 +38,22 @@
 				"note": "The dough is kneaded daily, in the lab for 36 h and then 4 d."
 			},
 			{
-				"type": "salt"
+				"type": "salt",
+				"minor": true
 			},
 			{
 				"type": "mould",
-				"note": "Into balls."
+				"note": "The dough is shaped into balls.",
+				"minor": true
 			},
 			{
 				"type": "dry",
-				"note": "Sun-dried."
+				"note": "The balls are left out in the sun."
 			},
 			{
 				"type": "cut",
-				"how": "mill"
+				"how": "mill",
+				"minor": true
 			}
 		],
 		"sources": {

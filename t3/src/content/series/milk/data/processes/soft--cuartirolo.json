@@ -20,61 +20,6 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "pasteurise",
-				"temperature": {
-					"min": 73,
-					"max": 73
-				},
-				"seconds": {
-					"min": 15,
-					"max": 15
-				}
-			},
-			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic"
-				],
-				"adds": {
-					"microbes": [
-						{
-							"name": "lactic acid bacteria",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							]
-						}
-					],
-					"by": [
-						"starter"
-					]
-				},
-				"note": "A thermophilic starter was used in the trial."
-			},
-			{
-				"type": "coagulate",
-				"by": "rennet",
-				"temperature": {
-					"min": 35,
-					"max": 35,
-					"about": true
-				},
-				"seconds": {
-					"min": 1200,
-					"max": 1200,
-					"about": true
-				}
-			},
-			{
-				"type": "cut",
-				"how": "cut",
-				"size": {
-					"min": 20,
-					"max": 30
-				}
-			},
-			{
 				"type": "heat",
 				"does": "cook",
 				"temperature": {
@@ -83,7 +28,7 @@
 			},
 			{
 				"type": "mould",
-				"note": "Into a block or flat cylinder of 2–5 kg."
+				"note": "The curd is put into a block or flat cylinder of 2–5 kg."
 			},
 			{
 				"type": "press"
@@ -94,14 +39,6 @@
 				"strength": {
 					"min": 25,
 					"max": 28
-				},
-				"temperature": {
-					"min": 2,
-					"max": 4
-				},
-				"seconds": {
-					"min": 10800,
-					"max": 14400
 				}
 			},
 			{
@@ -113,7 +50,7 @@
 				"seconds": {
 					"min": 1728000
 				},
-				"note": "At least 20 d for up to 2.5 kg, 30 d for 2.5–5 kg."
+				"note": "The cheese is ripened for at least 20 days if it is up to 2.5 kg, and 30 days if 2.5–5 kg."
 			}
 		],
 		"sources": {

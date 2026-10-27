@@ -1,0 +1,121 @@
+{
+	"label": "Banni",
+	"aka": [
+		"Kutchi",
+		"Kundi"
+	],
+	"names": {
+		"links": [
+			{
+				"name": "Banni buffalo (Wikipedia)",
+				"url": "https://en.wikipedia.org/wiki/Banni_buffalo"
+			}
+		],
+		"text": "\"Kutchi\" and \"Kundi\" taken from the infobox-style opening of the Wikipedia article, read on WebFetch."
+	},
+	"kind": "breed",
+	"parent": "riverBuffalo",
+	"about": {
+		"text": "A dairy buffalo bred by the Maldhari herders of the Kachchh (Kutch) region of Gujarat, India. It is kept on the Banni grassland and is the main source of livelihood for the Maldharis. Its milk is sold mainly to the dairy industry.",
+		"sources": {
+			"links": [
+				{
+					"name": "Banni buffalo (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Banni_buffalo"
+				},
+				{
+					"name": "List of water buffalo breeds (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/List_of_water_buffalo_breeds"
+				}
+			],
+			"text": "Wikipedia article on Banni buffalo, read on WebFetch: location, the Maldhari herders and the dairy sales. The breeds list, read on WebFetch, gives the region as the Kachchh region of Gujarat and the use as dairy."
+		}
+	},
+	"origin": {
+		"regions": [
+			"IN"
+		],
+		"place": "The Banni grassland of the Kachchh (Kutch) district of Gujarat. The Wikipedia article says the breed is said to come from Sind, now in Pakistan, but it is found today mainly in Kutch.",
+		"sources": {
+			"links": [
+				{
+					"name": "Banni buffalo (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Banni_buffalo"
+				}
+			],
+			"text": "Wikipedia article, read on WebFetch. The Sind origin is given as \"said to\" and is not confirmed in the article; it is recorded here only as the article's statement."
+		}
+	},
+	"yield": {
+		"perLactation": {
+			"min": 2575,
+			"max": 2781
+		},
+		"lactationDays": {
+			"min": 290,
+			"max": 295
+		},
+		"perYear": {
+			"min": 6180,
+			"max": 6180
+		},
+		"where": "IN",
+		"sources": {
+			"links": [
+				{
+					"name": "Banni buffalo (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Banni_buffalo"
+				}
+			],
+			"text": "Wikipedia article, read on WebFetch, gives a lactation yield of 2,500 to 2,700 litres over 290 to 295 days and an average annual yield of 6,000 litres. The article tags the lactation figures \"citation needed\" and gives no year. Estimated: the litres are converted to kilograms at a milk density of 1.03 kg per litre (a common figure for buffalo milk, not from the sources). Per lactation: 2,500 L = 2,575 kg and 2,700 L = 2,781 kg. Per year: 6,000 L = 6,180 kg."
+		}
+	},
+	"purposes": {
+		"purposes": [
+			"dairy"
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "List of water buffalo breeds (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/List_of_water_buffalo_breeds"
+				},
+				{
+					"name": "Banni buffalo (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Banni_buffalo"
+				}
+			],
+			"text": "Use listed as dairy in the breeds list, read on WebFetch; the article describes the breeders selling milk to the dairy industry. No draught or meat use is given in the article."
+		}
+	},
+	"facts": [
+		{
+			"k": "Milk sales",
+			"v": "The breeders' cooperative sells more than 250,000 litres of milk a day to the dairy industry, at Rs 45 to 55 a litre.",
+			"sources": {
+				"links": [
+					{
+						"name": "Banni buffalo (Wikipedia)",
+						"url": "https://en.wikipedia.org/wiki/Banni_buffalo"
+					}
+				],
+				"text": "Wikipedia article, read on WebFetch. The article gives no year for this figure."
+			}
+		},
+		{
+			"k": "Recognition",
+			"v": "Recognised as a distinct buffalo breed in 2011, after a pilot project from 2002 by K. P. Singh and colleagues with the NGO Sahjeevan, funded by ICAR; the Banni Breeders' Association was formed in 2008.",
+			"sources": {
+				"links": [
+					{
+						"name": "Banni buffalo (Wikipedia)",
+						"url": "https://en.wikipedia.org/wiki/Banni_buffalo"
+					}
+				],
+				"text": "Wikipedia article, read on WebFetch. The article gives 2010 for recognition in one place and 2011 elsewhere, and tags the 2010 claim \"citation needed\"; 2011 is used here."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "Searched the Wikipedia article and the list of breeds. No formation date for the breed as such (recognition dates are not formation). No population figure specific to Banni: the article's 3,190,000 (Gujarat) and 1,780,000 (Kutch) are from the 2003 livestock census and appear to count buffaloes in general, so they are left out. No DAD-IS or FAO risk status. No fat or protein composition. No draught or meat use. The yield figures have no year, and the lactation figures are tagged \"citation needed\" in the article. The article also gives a 500-year and a 700-year figure for the Maldharis' grazing, which conflict; neither is used."
+}

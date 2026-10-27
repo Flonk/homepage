@@ -15,17 +15,12 @@
 				"temperature": {
 					"min": 10,
 					"max": 12
-				}
+				},
+				"minor": true
 			},
 			{
 				"type": "coagulate",
-				"by": "rennet",
-				"note": "Chymosin cuts kappa-casein, so the para-casein left keeps its calcium; about 20 g of rennet per 1,000 l of skimmed milk.",
-				"seconds": {
-					"min": 7200,
-					"max": 7200,
-					"about": true
-				}
+				"by": "rennet"
 			},
 			{
 				"type": "heat",
@@ -42,7 +37,8 @@
 					"min": 70,
 					"max": 71
 				},
-				"note": "Pasteurising the curd and serum together."
+				"note": "The curd and its serum, the liquid round it, are pasteurised together.",
+				"minor": true
 			},
 			{
 				"type": "heat",
@@ -51,13 +47,14 @@
 					"min": 30,
 					"max": 35
 				},
-				"note": "Cooled before the separation."
+				"note": "The curd and its serum are cooled before they are separated.",
+				"minor": true
 			},
 			{
 				"type": "separate",
 				"off": "whey",
 				"by": "centrifuge",
-				"note": "A horizontal decanter takes the serum off a curd of about 45 % solids."
+				"of": "curd"
 			}
 		],
 		"sources": {

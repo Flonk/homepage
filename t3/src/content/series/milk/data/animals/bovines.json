@@ -1,0 +1,48 @@
+{
+	"label": "Bovines",
+	"aka": [
+		"wild cattle"
+	],
+	"names": {
+		"links": [
+			{
+				"name": "Wikipedia: Bovini",
+				"url": "https://en.wikipedia.org/wiki/Bovini"
+			}
+		],
+		"text": "The article gives 'wild cattle' as the common name for the tribe. 'Bovines' is the item's given label."
+	},
+	"kind": "group",
+	"parent": "milk",
+	"taxon": {
+		"name": "Bovini",
+		"rank": "tribe",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Bovini",
+					"url": "https://en.wikipedia.org/wiki/Bovini"
+				}
+			],
+			"text": "Bovini, a tribe, authority Gray 1821, within subfamily Bovinae, as given in the article."
+		}
+	},
+	"about": {
+		"text": "The tribe of medium to massive bovines native to Eurasia, North America and Africa: cattle of the genus Bos, water buffaloes and anoas of Bubalus, African buffalo, bison and the saola. Among them are the cattle and water buffalo that give most of the world's milk.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Bovini",
+					"url": "https://en.wikipedia.org/wiki/Bovini"
+				},
+				{
+					"name": "FAOSTAT: Crops and livestock products (QCL), world, 2023",
+					"url": "https://www.fao.org/faostat/en/#data/QCL"
+				}
+			],
+			"text": "The genera and the description of the tribe are from the Wikipedia article as fetched with WebFetch. The milk claim rests on the FAOSTAT 2023 figures in the cattle and water buffalo records (cattle 785.84 million t, water buffalo 150.69 million t), from FAOSTAT's bulk file as recorded in research/herd/faostat-2023.json; 'most' is my reading of those two figures against the world total of 971.42 million t."
+		}
+	},
+	"confidence": "high",
+	"gaps": "Whether Bison belongs in Bos is unsettled, per the article. Milk figures are taken from the species records and not repeated here. No group-level population or milk total was looked for, since the group is defined by taxonomy."
+}

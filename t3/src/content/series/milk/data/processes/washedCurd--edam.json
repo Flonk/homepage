@@ -28,51 +28,8 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "separate",
-				"off": "cream"
-			},
-			{
-				"type": "pasteurise"
-			},
-			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic"
-				],
-				"adds": {
-					"microbes": [
-						{
-							"name": "Lactococcus lactis",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							],
-							"grows": "mesophilic"
-						},
-						{
-							"name": "Leuconostoc",
-							"kind": "bacterium",
-							"grows": "mesophilic"
-						}
-					],
-					"by": [
-						"starter"
-					]
-				}
-			},
-			{
-				"type": "coagulate",
-				"by": "rennet",
-				"note": "With calf rennet."
-			},
-			{
 				"type": "mould",
-				"note": "A sphere with flat ends, 1.7–1.9 kg."
-			},
-			{
-				"type": "salt",
-				"how": "brine"
+				"note": "The curd is moulded as a sphere with flat ends, 1.7–1.9 kg."
 			},
 			{
 				"type": "ferment",
@@ -80,7 +37,7 @@
 				"seconds": {
 					"min": 2419200
 				},
-				"note": "Baby Edam ripens at least 21 d."
+				"note": "Baby Edam is ripened for at least 21 days."
 			}
 		],
 		"sources": {

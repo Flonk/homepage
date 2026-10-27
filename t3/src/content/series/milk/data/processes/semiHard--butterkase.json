@@ -6,8 +6,8 @@
 		"butterkase"
 	],
 	"variant": true,
-	"step": "set hot, ripen cold",
-	"text": "Heavy renneting at a high temperature followed by cold ripening keeps the paste moist, supple and evenly ripened, with a mild, slightly tangy taste. That buttery texture gives the cheese its name.",
+	"step": "ripen cold",
+	"text": "Cold ripening keeps the paste moist, supple and evenly ripened, with a mild, slightly tangy taste. That buttery texture gives the cheese its name.",
 	"sources": {
 		"links": [
 			{
@@ -24,55 +24,8 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic"
-				],
-				"adds": {
-					"microbes": [
-						{
-							"name": "mesophilic lactic acid bacteria",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							],
-							"grows": "mesophilic"
-						},
-						{
-							"name": "thermophilic lactic acid bacteria",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							],
-							"grows": "thermophilic"
-						}
-					],
-					"by": [
-						"starter"
-					]
-				}
-			},
-			{
-				"type": "coagulate",
-				"by": "rennet",
-				"temperature": {
-					"min": 40,
-					"max": 42
-				},
-				"note": "A large dose of rennet."
-			},
-			{
 				"type": "mould",
-				"temperature": {
-					"min": 38,
-					"max": 40
-				},
-				"note": "Mostly round loaves, 250 g to 20 kg."
-			},
-			{
-				"type": "salt",
-				"how": "brine"
+				"note": "The curd is put into moulds at 38–40 °C, mostly for round loaves of 250 g to 20 kg."
 			},
 			{
 				"type": "ferment",

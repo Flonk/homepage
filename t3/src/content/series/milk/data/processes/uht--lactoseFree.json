@@ -10,17 +10,17 @@
 			{
 				"type": "add",
 				"what": "lactase",
-				"note": "Dosed aseptically after the UHT treatment, 0.2–0.6 g per litre through a 0.2 µm sterile filter."
+				"note": "The lactase, an enzyme, is dosed in after the UHT treatment, 0.2–0.6 g per litre, through a 0.2 µm sterile filter."
 			},
 			{
 				"type": "custom",
-				"name": "hydrolyse",
+				"name": "break down",
 				"temperature": {
 					"min": 20,
 					"max": 20,
 					"about": true
 				},
-				"note": "Lactose is split into glucose and galactose in the package during ambient storage."
+				"note": "The lactose is broken down by the enzyme into glucose and galactose in the package, during storage."
 			}
 		],
 		"text": "For a more neutral taste part of the lactose is first taken out by ultrafiltration; no heat step follows the lactase.",

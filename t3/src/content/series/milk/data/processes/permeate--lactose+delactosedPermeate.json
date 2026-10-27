@@ -10,15 +10,6 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "evaporate",
-				"solids": {
-					"min": 60,
-					"max": 62,
-					"about": true
-				},
-				"note": "65 % if nanofiltered permeate."
-			},
-			{
 				"type": "heat",
 				"does": "cool",
 				"temperature": {
@@ -30,13 +21,13 @@
 					"min": 72000,
 					"max": 72000
 				},
-				"note": "Seeded, then cooled slowly, about 3 °C/h from 60 to 30 °C and about 1.5 °C/h to 15 °C, so the lactose crystallises out in crystals over 0.2 mm that separate best."
+				"note": "The permeate is seeded, then cooled slowly, about 3 °C/h from 60 to 30 °C and about 1.5 °C/h to 15 °C, so the lactose comes out as crystals over 0.2 mm, which separate best."
 			},
 			{
 				"type": "separate",
 				"off": "solids",
 				"by": "centrifuge",
-				"note": "The crystals go through a decanter, then a sieve centrifuge, and are washed; two decanter centrifuges in series leave a lactose cake under 9 % moisture, about 99 % dry solids."
+				"of": "syrup"
 			}
 		],
 		"sources": {
@@ -82,7 +73,7 @@
 				"steps": [
 					{
 						"type": "dry",
-						"note": "In a fluid-bed dryer, which also cools the crystals."
+						"note": "The crystals are dried in a fluid-bed dryer, which also cools them."
 					}
 				],
 				"sources": {

@@ -26,51 +26,18 @@
 			{
 				"type": "add",
 				"what": "cream",
-				"note": "Cow's cream, before the milk sets."
-			},
-			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic",
-					"mould"
-				],
-				"adds": {
-					"microbes": [
-						{
-							"name": "mesophilic lactic acid bacteria",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							],
-							"grows": "mesophilic"
-						}
-					],
-					"by": [
-						"starter"
-					]
-				},
-				"temperature": {
-					"max": 32
-				},
-				"seconds": {
-					"min": 43200
-				},
-				"pH": {
-					"max": 4.9
-				},
-				"note": "Set mostly lactic, with calf rennet of up to 20 ml per 100 L."
+				"note": "The milk is enriched with cow's cream before it sets."
 			},
 			{
 				"type": "mould",
 				"seconds": {
 					"min": 72000
 				},
-				"note": "At pH 4.9 or less, drained by gravity without pressing, as cylinders of 100–250 g or 500 g and more."
+				"note": "The curd drains by its own weight, without pressing, and is moulded into cylinders of 100–250 g or 500 g and more, at a pH of 4.9 or less."
 			},
 			{
 				"type": "salt",
-				"note": "Optional, on one face.",
+				"note": "The cheese may be salted on one face only.",
 				"strength": {
 					"max": 2
 				}
@@ -106,7 +73,7 @@
 				"seconds": {
 					"min": 432000
 				},
-				"note": "Only the affiné version is ripened, for at least 5 d (small) or 8 d (large), while the fresh one is sold from day 3."
+				"note": "The matured version, called affiné, is the only one ripened for at least 5 days if small or 8 if large; the fresh one is sold from day 3."
 			}
 		],
 		"sources": {

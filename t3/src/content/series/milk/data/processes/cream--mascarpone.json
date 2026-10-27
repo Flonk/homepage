@@ -27,12 +27,14 @@
 				"seconds": {
 					"min": 300,
 					"max": 300
-				}
+				},
+				"note": "The cream undergoes heat treatment to kill harmful bacteria like Listeria, Salmonella and E. coli."
 			},
 			{
-				"type": "acidify",
+				"type": "coagulate",
+				"by": "acid",
 				"with": "tartaric acid",
-				"note": "2.4 g per 1 kg cream, dissolved in a little hot water."
+				"of": "cream"
 			},
 			{
 				"type": "drain",
@@ -44,7 +46,8 @@
 				"seconds": {
 					"min": 21600
 				},
-				"note": "Sets firm in the fridge."
+				"note": "The mascarpone is set firm in the fridge.",
+				"minor": true
 			}
 		],
 		"sources": {

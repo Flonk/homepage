@@ -1,0 +1,74 @@
+{
+	"label": "Guernsey",
+	"kind": "breed",
+	"parent": "taurineCattle",
+	"about": {
+		"text": "The Guernsey is a dairy breed from the island of Guernsey in the Channel Islands. Its milk is golden-yellow from a high content of beta-carotene, and it is high in fat.",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Guernsey cattle", "url": "https://en.wikipedia.org/wiki/Guernsey_(cattle)"}
+			],
+			"text": "Wikipedia's Guernsey cattle article, opened with WebFetch: origin on the island of Guernsey; the milk has a golden-yellow tinge from high beta-carotene; the milk has 5% fat, citing a 2004 source."
+		}
+	},
+	"origin": {
+		"regions": ["GB"],
+		"place": "The island of Guernsey, Channel Islands (a Crown Dependency; GB used because GG is not in the country list)",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Guernsey cattle", "url": "https://en.wikipedia.org/wiki/Guernsey_(cattle)"}
+			],
+			"text": "The article says the breed is first documented in the nineteenth century and its origins are unknown. It may descend from Normandy and Brittany stock, and Dutch influence in the eighteenth century is possible."
+		}
+	},
+	"yield": {
+		"perYear": {"min": 6000, "max": 6000, "about": true},
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Guernsey cattle", "url": "https://en.wikipedia.org/wiki/Guernsey_(cattle)"}
+			],
+			"text": "The article says 'Guernsey cows produce around 6000 litres per cow per year', citing a South African Guernsey breeders' source. It gives no year and no country beyond that citation."
+		}
+	},
+	"composition": {
+		"fat": {"min": 5, "max": 5},
+		"protein": {"min": 3.7, "max": 3.7},
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Guernsey cattle", "url": "https://en.wikipedia.org/wiki/Guernsey_(cattle)"}
+			],
+			"text": "The article gives the milk's fat as 5% and protein as 3.7%, cited to a 2004 source that the article names but that was not opened."
+		}
+	},
+	"purposes": {
+		"purposes": ["dairy"],
+		"sources": {
+			"unsourced": true,
+			"text": "Common knowledge that the Guernsey is a dairy breed. The fetched article discusses only its milk."
+		}
+	},
+	"risk": {
+		"status": "not at risk",
+		"year": 2007,
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Guernsey cattle", "url": "https://en.wikipedia.org/wiki/Guernsey_(cattle)"}
+			],
+			"text": "The article's infobox lists the FAO (2007) status as 'not at risk'. This is not confirmed in FAO DAD-IS, which did not return a Guernsey entry. The article also places the breed on the American Livestock Breeds Conservancy watch list."
+		}
+	},
+	"facts": [
+		{
+			"k": "Population",
+			"v": "The American Livestock Breeds Conservancy's 2012 list gives fewer than 2,500 annual US registrations and an estimated global population of fewer than 10,000 animals.",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: Guernsey cattle", "url": "https://en.wikipedia.org/wiki/Guernsey_(cattle)"}
+				],
+				"text": "Wikipedia's Guernsey cattle article, as fetched, citing the ALBC 2012 list. Not opened at the ALBC itself."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "Not found: a population count and year from FAO DAD-IS or a breed society; a recording country and year for the yield; a date of formation; any aka names (the article lists none). The Guernsey region code is not in the countries list, so regions are left out. The FAO risk status is taken from Wikipedia's infobox and not confirmed in DAD-IS."
+}

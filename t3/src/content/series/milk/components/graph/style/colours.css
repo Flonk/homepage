@@ -34,8 +34,7 @@
 .milk-beasts button,
 .milk-dev,
 .milk-search ul,
-.milk-note,
-.milk-map-card {
+.milk-note {
 	background: var(--field, var(--pill));
 	border: 1px solid var(--field-rim, var(--pill-rim));
 	border-radius: var(--radius-medium);

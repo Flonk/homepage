@@ -23,80 +23,10 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic"
-				],
-				"adds": {
-					"microbes": [
-						{
-							"name": "Lactococcus lactis subsp. lactis",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							]
-						},
-						{
-							"name": "Leuconostoc mesenteroides subsp. dextranicum",
-							"kind": "bacterium"
-						},
-						{
-							"name": "Leuconostoc lactis",
-							"kind": "bacterium"
-						},
-						{
-							"name": "Leuconostoc citreum",
-							"kind": "bacterium"
-						},
-						{
-							"name": "Lactiplantibacillus plantarum",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							]
-						},
-						{
-							"name": "Lactobacillus helveticus",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							],
-							"grows": "thermophilic"
-						},
-						{
-							"name": "Lactobacillus delbrueckii subsp. lactis",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							],
-							"grows": "thermophilic"
-						},
-						{
-							"name": "Lacticaseibacillus casei subsp. casei",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							]
-						}
-					],
-					"by": [
-						"wild",
-						"vessel"
-					],
-					"vessel": "smoked calabash or hide sack"
-				},
-				"seconds": {
-					"min": 86400,
-					"max": 432000
-				}
-			},
-			{
 				"type": "drain",
 				"note": "The whey (umlaza) is poured off."
 			}
 		],
-		"text": "Traditional amasi sours raw cow milk on its own flora over 1-5 d. Commercial amasi is pasteurised (72 °C, 15 s), cooled to 30 °C and set with a Lactococcus lactis starter (about 10^6 cfu/ml) for 16-24 h at 30 °C.",
 		"sources": {
 			"links": [
 				{

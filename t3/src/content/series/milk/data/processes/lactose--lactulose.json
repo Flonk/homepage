@@ -33,7 +33,7 @@
 					"min": 50,
 					"max": 130
 				},
-				"note": "Warmed with an alkaline catalyst (NaOH, Na₂CO₃, (NH₄)₂CO₃ or sodium aluminate, borate also used) for minutes to a few hours, so the glucose half of lactose becomes fructose."
+				"note": "The lactose solution is warmed with an alkali (sodium hydroxide, sodium carbonate, ammonium carbonate, sodium aluminate or borate) for minutes to a few hours, so the glucose half of lactose becomes fructose."
 			},
 			{
 				"type": "custom",
@@ -42,7 +42,8 @@
 			{
 				"type": "custom",
 				"name": "crystallise",
-				"note": "For the crystalline product."
+				"note": "The syrup is crystallised, to make the crystalline product.",
+				"minor": true
 			}
 		],
 		"sources": {

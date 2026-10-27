@@ -14,23 +14,21 @@
 					"max": 20,
 					"about": true
 				},
-				"note": "The can lists cream of 20 % butterfat."
+				"of": "cream"
 			},
 			{
 				"type": "add",
 				"what": "carrageenan, sodium alginate, soy lecithin, phosphate and citrate",
-				"note": "These stabilisers and salts are on the ingredient list."
+				"minor": true
 			},
 			{
-				"type": "pasteurise"
-			},
-			{
-				"type": "homogenise"
+				"type": "homogenise",
+				"of": "cream"
 			},
 			{
 				"type": "custom",
 				"name": "sterilise",
-				"note": "The label says the cream is also sterilised, which is why it keeps unopened without a fridge."
+				"note": "The cream is sterilised as well, so it keeps unopened without a fridge."
 			}
 		],
 		"sources": {

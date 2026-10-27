@@ -20,19 +20,9 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "coagulate",
-				"by": "rennet-acid"
-			},
-			{
-				"type": "drain"
-			},
-			{
-				"type": "washCurd"
-			},
-			{
 				"type": "heat",
 				"does": "heat",
-				"note": "Melted with cream, butter or milkfat; citrate or phosphate salts are allowed."
+				"note": "The cheese is melted with cream, butter or milkfat, and citrate or phosphate salts may be added."
 			}
 		],
 		"sources": {

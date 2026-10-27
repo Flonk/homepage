@@ -6,7 +6,7 @@
 		"provoleta"
 	],
 	"variant": true,
-	"step": "spin the curd",
+	"step": "mould",
 	"text": "Provoleta is an Argentine provolone-type spun-curd cheese sold in small thick discs; the spun curd is dense enough to hold its shape when grilled whole at an asado.",
 	"sources": {
 		"links": [
@@ -24,13 +24,8 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "custom",
-				"name": "spin",
-				"note": "As for provolone."
-			},
-			{
 				"type": "mould",
-				"note": "Discs 10–15 cm across, 1–1.5 cm thick."
+				"note": "The cheese is shaped into discs 10–15 cm across and 1–1.5 cm thick."
 			}
 		],
 		"sources": {

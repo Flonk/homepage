@@ -11,21 +11,22 @@
 			{
 				"type": "add",
 				"what": "coating clay and precipitated calcium carbonate pigment",
-				"note": "The dissolved casein and pigment are mixed to a coating of about 38 percent solids at pH 9 to 10.5."
+				"note": "The dissolved casein is mixed with it to a coating of about 38 percent solids at pH 9 to 10.5."
 			},
 			{
 				"type": "custom",
-				"name": "roll coat",
-				"note": "A roll coater lays the coating on one side of the moving paper web."
+				"name": "coat",
+				"note": "The coating is laid on one side of the moving paper by rollers."
 			},
 			{
 				"type": "dry",
-				"note": "The paper is dried in the usual way, hung in festoons."
+				"note": "The coated paper is hung in loops, in the usual way.",
+				"minor": true
 			},
 			{
-				"type": "custom",
-				"name": "supercalender",
-				"note": "Supercalendering presses the dried coat to a smooth, glossy label surface."
+				"type": "press",
+				"note": "The dried coat is pressed until it is smooth and glossy, for label surfaces.",
+				"minor": true
 			}
 		],
 		"text": "This is the paper coating; leather is coated with casein and pigment too, then glazed, which this source does not describe.",

@@ -1,6 +1,6 @@
 import { z } from 'astro/zod';
 import { Sourcing } from './sourcing';
-import { Country, ProductId, Firm, Protected, Days, About, Beasts, WorldMap } from './terms';
+import { Country, ProductId, Firm, Protected, Days, About, Beasts } from './terms';
 import { Composition, Node } from './node';
 
 /* ---- The page: what the graph is given (see build.ts, and render/ for how each is made) ---- */
@@ -41,7 +41,6 @@ export const PageNode = z.strictObject({
 	panel: z.boolean().optional(),
 	// A cheese type's table (see table in Node): its rows down, top first, and its columns, where it is not set out by time.
 	table: z.strictObject({ down: z.enum(['firm', 'beast']), rows: z.array(z.string()), columns: z.array(z.string()).optional() }).optional(),
-	map: z.boolean().optional(),
 	below: ProductId.optional(),
 	link: ProductId.optional(),
 	beasts: Beasts.optional(),
@@ -72,13 +71,6 @@ export const PageNode = z.strictObject({
 	unsure: z.string().optional(),
 	// For dev mode: what is still to be done on the way it is drawn along (see devOf in build.ts).
 	dev: z.strictObject({ unsourced: z.literal(true).optional(), unranked: z.number().int().min(2).optional() }).optional(),
-	// A cheese on the map: the country it is put in, the region there, where on the map, whether that is a guess, its family's name.
-	onMap: z.literal(true).optional(),
-	place: Country.optional(),
-	area: z.string().optional(),
-	spot: z.tuple([z.number(), z.number()]).optional(),
-	guessed: z.boolean().optional(),
-	family: z.string().optional(),
 });
 /* Products made together by one process, from one parent: each drawn
    with an arrow of its own, side by side. */
@@ -93,7 +85,8 @@ export const Payload = z.strictObject({
 	firms: z.array(Firm),
 	nodes: z.array(PageNode),
 	links: z.array(z.strictObject({ source: z.string(), target: z.string(), weight: z.number() })),
-	map: WorldMap.pick({ height: true, countries: true }),
+	// The herd, the animals milk comes from: a tree of its own into milk, on its left (see build/herd.ts).
+	animals: z.strictObject({ nodes: z.array(PageNode), links: z.array(z.strictObject({ source: z.string(), target: z.string(), weight: z.number() })) }).optional(),
 });
 export type SplitPage = z.infer<typeof SplitPage>;
 export type Chip = z.infer<typeof Chip>;

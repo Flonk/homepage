@@ -24,10 +24,8 @@
 		"steps": [
 			{
 				"type": "custom",
-				"name": "raise solids"
-			},
-			{
-				"type": "homogenise"
+				"name": "thicken",
+				"minor": true
 			},
 			{
 				"type": "heat",
@@ -85,7 +83,7 @@
 				"acidity": {
 					"min": 0.6
 				},
-				"note": "Set 3–3.5 h in the pot, or stirred 4–5 h."
+				"note": "The milk is left to set in the pot, or stirred as it sours, which takes longer."
 			},
 			{
 				"type": "heat",
@@ -94,7 +92,7 @@
 					"min": 15,
 					"max": 22
 				},
-				"note": "Set yoghurt to 18–20 °C."
+				"minor": true
 			},
 			{
 				"type": "heat",
@@ -103,7 +101,8 @@
 					"min": 5,
 					"max": 5,
 					"about": true
-				}
+				},
+				"minor": true
 			}
 		],
 		"sources": {

@@ -6,7 +6,7 @@
 		"harzer"
 	],
 	"variant": true,
-	"text": "Yeasts eat the lactic acid on the surface and raise its pH; the red-smear bacteria then take over and give the yellow rind and strong smell. The ripening salts neutralise part of the acid first.",
+	"text": "Yeasts eat the lactic acid on the surface and raise its pH; the red-smear bacteria then take over and give the yellow rind and strong smell.",
 	"sources": {
 		"links": [
 			{
@@ -18,70 +18,6 @@
 	},
 	"processing": {
 		"steps": [
-			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic",
-					"yeast",
-					"smear"
-				],
-				"adds": {
-					"microbes": [
-						{
-							"name": "Lactobacillus delbrueckii subsp. bulgaricus",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							],
-							"formerly": [
-								"Lactobacillus bulgaricus"
-							]
-						},
-						{
-							"name": "Streptococcus thermophilus",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							]
-						},
-						{
-							"name": "wild yeast flora",
-							"kind": "yeast"
-						},
-						{
-							"name": "Kluyveromyces marxianus",
-							"kind": "yeast"
-						},
-						{
-							"name": "Candida krusei",
-							"kind": "yeast"
-						},
-						{
-							"name": "Saccharomyces cerevisiae",
-							"kind": "yeast"
-						}
-					],
-					"by": [
-						"starter"
-					]
-				},
-				"temperature": {
-					"min": 30,
-					"max": 30,
-					"about": true
-				},
-				"seconds": {
-					"min": 86400,
-					"max": 86400,
-					"about": true
-				}
-			},
-			{
-				"type": "add",
-				"note": "As ripening salts.",
-				"what": "salt (NaCl), sodium bicarbonate (NaHCO₃), calcium carbonate (CaCO₃) and some ripened cheese (Kulturkäse)"
-			},
 			{
 				"type": "ferment",
 				"does": "smear",
@@ -104,7 +40,7 @@
 						"starter"
 					]
 				},
-				"note": "Sprayed on with a red-smear culture (Brevibacterium linens)."
+				"note": "A culture of the red-smear bacteria is sprayed on, which gives the rind its yellow colour and a strong smell."
 			},
 			{
 				"type": "ferment",
@@ -119,7 +55,7 @@
 				}
 			}
 		],
-		"text": "Ripening salts neutralise part of the acid first; the yeasts then raise the surface pH and the red-smear bacteria take over. Some ripened cheese is mixed in. Ripening goes on in the pack, best at 2-4 weeks.",
+		"text": "Ripening goes on in the pack, best at 2-4 weeks.",
 		"sources": {
 			"links": [
 				{

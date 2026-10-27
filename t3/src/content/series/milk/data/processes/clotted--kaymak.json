@@ -19,41 +19,5 @@
 			}
 		],
 		"text": "The table, the facts and the words on how it is made, from these."
-	},
-	"processing": {
-		"steps": [
-			{
-				"type": "heat",
-				"does": "heat",
-				"seconds": {
-					"min": 7200,
-					"max": 7200,
-					"about": true
-				},
-				"note": "A slow boil, then simmering."
-			},
-			{
-				"type": "separate",
-				"off": "skin",
-				"note": "The skin that gathers is lifted off."
-			},
-			{
-				"type": "heat",
-				"does": "cool"
-			}
-		],
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Kaymak",
-					"url": "https://en.wikipedia.org/wiki/Kaymak"
-				},
-				{
-					"name": "Wikipedia: Qishta",
-					"url": "https://en.wikipedia.org/wiki/Qishta"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		}
 	}
 }

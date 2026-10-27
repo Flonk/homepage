@@ -1,0 +1,78 @@
+{
+	"label": "Lacaune",
+	"aka": ["La Cauna"],
+	"names": {
+		"links": [
+			{"name": "Wikipedia: Lacaune sheep", "url": "https://en.wikipedia.org/wiki/Lacaune_sheep"}
+		],
+		"text": "The name La Cauna is from the known record's source, the Wikipedia article on the Lacaune sheep, which was opened."
+	},
+	"kind": "breed",
+	"parent": "sheep",
+	"about": {
+		"text": "A dual-purpose sheep from the Lacaune area of southern France, in the Tarn and Aveyron departments, kept for milk and lamb meat. Its milk is the only milk used to make Roquefort cheese, and the breed is the predominant one for that cheese.",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Lacaune sheep", "url": "https://en.wikipedia.org/wiki/Lacaune_sheep"}
+			],
+			"text": "Taken from the article's lead and its section on the Roquefort sector. The article says the Lacaune is the predominant breed for Roquefort and that its milk is the only milk used to produce the cheese."
+		}
+	},
+	"origin": {
+		"regions": ["FR"],
+		"place": "Near Lacaune in southern France: the Tarn and Aveyron departments and the surrounding Roquefort sector",
+		"formed": {"min": 1840, "max": 1860, "about": true},
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Lacaune sheep", "url": "https://en.wikipedia.org/wiki/Lacaune_sheep"}
+			],
+			"text": "The article says the dual-purpose breed was developed in the mid-19th century. The years 1840 to 1860 are my reading of that phrase, so they are marked about."
+		}
+	},
+	"yield": {
+		"perLactation": {"min": 307, "max": 323},
+		"lactationDays": {"min": 150, "max": 150},
+		"where": "CZ",
+		"year": 2014,
+		"sources": {
+			"links": [
+				{"name": "Lacaune yield search (Czech farm study)", "url": "https://mnet.mendelu.cz/mendelnet09agro/files/articles/zoo_konecna.pdf"}
+			],
+			"text": "Found in the text of a WebSearch result for Lacaune milk yield, not in the page itself: one Czech farm's Lacaune ewes gave 323 kg in 2013 and 307.4 kg in 2014, with lactation standardised at 150 days. The search result link is one of several returned, and I could not confirm it is the page that carries this figure. This is one farm, not a breed-wide mean."
+		}
+	},
+	"composition": {
+		"fat": {"min": 7.3, "max": 7.75},
+		"protein": {"min": 5.61, "max": 5.89},
+		"solids": {"min": 18.62, "max": 18.62},
+		"sources": {
+			"links": [
+				{"name": "Lacaune composition search (Czech farm and Estonian study)", "url": "https://mnet.mendelu.cz/mendelnet09agro/files/articles/zoo_konecna.pdf"}
+			],
+			"text": "Found in the text of WebSearch results for Lacaune milk yield and composition, not in the pages themselves. Czech farm: fat 7.36% at three years and 7.3% at four; protein 5.61% at three and 5.89% at four. Estonian study of 51 second-parity ewes: total solids 18.62%, fat 7.75%, total protein 5.74%. The fat range 7.3 to 7.75 and protein range 5.61 to 5.89 combine these. Neither figure is a breed-wide mean, and the link is one of several results, not confirmed as the source."
+		}
+	},
+	"purposes": {
+		"purposes": ["dairy", "meat"],
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Lacaune sheep", "url": "https://en.wikipedia.org/wiki/Lacaune_sheep"}
+			],
+			"text": "The article says the breed's main use is milk for Roquefort cheese, and lamb meat is also named."
+		}
+	},
+	"facts": [
+		{
+			"k": "Roquefort",
+			"v": "Its milk is the only milk used to make Roquefort cheese.",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: Lacaune sheep", "url": "https://en.wikipedia.org/wiki/Lacaune_sheep"}
+				],
+				"text": "Taken from the article's text on Roquefort."
+			}
+		}
+	],
+	"confidence": "low",
+	"gaps": "Breed population: the only figure is an undated count of about 800,000 ewes in France, which was not used. Breed-wide lactation length and yield: the yield given is one Czech farm's, and the Wikipedia page gives only litres (about 280 per year, late 1990s), not kg per lactation. Conservation status: not mentioned in the article. The France Genetique Elevage page and the breed's own herdbook were not opened."
+}

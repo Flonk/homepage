@@ -1,0 +1,93 @@
+{
+	"label": "Sahiwal",
+	"aka": [
+		"Lambi Bar",
+		"Lola",
+		"Montgomery",
+		"Ravi",
+		"Teli"
+	],
+	"names": {
+		"links": [
+			{
+				"name": "Sahiwal cattle (Wikipedia)",
+				"url": "https://en.wikipedia.org/wiki/Sahiwal_cattle"
+			}
+		],
+		"text": "Taken from the infobox \"Other names\" field of the Wikipedia article. The lead and body do not repeat them."
+	},
+	"kind": "breed",
+	"parent": "zebuCattle",
+	"about": {
+		"text": "A zebu breed from the Indian subcontinent, named after Sahiwal District in Punjab, now in Pakistan. It is kept mainly in Pakistan's Punjab and in the Indian states of Punjab, Haryana and Rajasthan. It is reared for milk, meat and draught work.",
+		"sources": {
+			"links": [
+				{
+					"name": "Sahiwal cattle (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Sahiwal_cattle"
+				}
+			],
+			"text": "Wikipedia article: origin, distribution and the three uses (milk, meat, draught), read on WebFetch."
+		}
+	},
+	"origin": {
+		"regions": ["PK", "IN"],
+		"place": "Named after Sahiwal District of Punjab, now in Pakistan. Distributed mainly in Pakistan's Punjab and in the Indian states of Punjab, Haryana and Rajasthan.",
+		"sources": {
+			"links": [
+				{
+					"name": "Sahiwal cattle (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Sahiwal_cattle"
+				}
+			],
+			"text": "Wikipedia article, read on WebFetch. The article gives the country of origin as India and Pakistan. It gives no formation dates."
+		}
+	},
+	"head": [
+		{
+			"count": 2750000,
+			"year": 2006,
+			"where": "PK",
+			"sources": {
+				"links": [
+					{
+						"name": "DAD-IS breed data sheet: Sahiwal, Pakistan",
+						"url": "https://dadis-breed-datasheet-ws.firebaseapp.com/?country=PAK&specie=Cattle&breed=Sahiwal&external=1&lang=en"
+					}
+				],
+				"text": "Figure found in the Wikipedia article, which cites DAD-IS: Pakistan recorded \"over 2.75 million head\" in 2006 and has reported no figures since. The article notes the figure may include crossbred stock. This is a floor, not an exact count."
+			}
+		}
+	],
+	"purposes": {
+		"purposes": ["dairy", "meat", "draught"],
+		"sources": {
+			"links": [
+				{
+					"name": "Sahiwal cattle (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Sahiwal_cattle"
+				}
+			],
+			"text": "Wikipedia article: described as triple-purpose (milk, meat, draught). The infobox lists dairy, meat and draught."
+		}
+	},
+	"risk": {
+		"status": "not at risk",
+		"year": 2025,
+		"sources": {
+			"links": [
+				{
+					"name": "DAD-IS transboundary breed: Sahiwal",
+					"url": "https://dadis-transboundary-ext-ws.web.app/?species=Cattle&transboundary=Sahiwal&lang=en"
+				},
+				{
+					"name": "FAO Global Databank list of breeds (2007)",
+					"url": "https://web.archive.org/web/20200623201209/http://www.fao.org/3/a1250e/annexes/List%20of%20breeds%20documented%20in%20the%20Global%20Databank%20for%20Animal%20Genetic%20Resources/List_breeds.pdf"
+				}
+			],
+			"text": "Wikipedia article, read on WebFetch, lists \"not at risk\" for DAD-IS (2025) and for FAO (2007)."
+		}
+	},
+	"confidence": "medium",
+	"gaps": "No milk yield per lactation or per year found; the Wikipedia article gives none. The claim that it is the strongest zebu milker is not supported by the article, so it is not used. No formation dates. No composition figures. The world population (about 4.25 million, DAD-IS, accessed 2025) has no year for the figure, so it is left out. No facts beyond the uses and distribution."
+}

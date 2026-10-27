@@ -25,20 +25,22 @@
 			{
 				"type": "add",
 				"what": "colourants",
-				"note": "Into dry casein powder."
+				"note": "Colourants are mixed into the dry casein powder.",
+				"minor": true
 			},
 			{
 				"type": "heat",
 				"does": "heat",
-				"note": "Until it agglomerates."
+				"note": "The casein is heated until it clumps together."
 			},
 			{
 				"type": "press",
-				"note": "Into bars, re-extruded, then pressed into blocks."
+				"note": "The casein is pressed into bars, which are pushed out again through a shaping opening, then pressed into blocks."
 			},
 			{
 				"type": "cut",
-				"how": "cut"
+				"how": "cut",
+				"minor": true
 			},
 			{
 				"type": "custom",
@@ -46,11 +48,12 @@
 				"seconds": {
 					"max": 31536000
 				},
-				"note": "In about 5 % formalin, weeks to months and up to a year for 25 mm thickness."
+				"note": "The casein is soaked in about 5 % formalin, a formaldehyde solution, which hardens it from the outside in."
 			},
 			{
 				"type": "dry",
-				"note": "Slowly, to avoid cracking and warping."
+				"note": "The galalith is dried slowly, so it does not crack or warp.",
+				"minor": true
 			}
 		],
 		"sources": {

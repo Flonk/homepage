@@ -1,0 +1,75 @@
+{
+	"label": "Hérens",
+	"kind": "breed",
+	"parent": "taurineCattle",
+	"about": {
+		"text": "The Hérens is a small Swiss Alpine cattle breed named after the Val d'Hérens in the Valais, where its cows compete in organised cow fights, as they do in the Aosta Valley. It is thought to descend from old Alpine cattle found between Austria and Savoy. The sources found give no milk yield or composition figures for it.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Hérens (cattle)",
+					"url": "https://en.wikipedia.org/wiki/Herens_(cattle)"
+				}
+			],
+			"text": "Wikipedia: the breed 'is named after the Val d'Hérens in Switzerland'; 'thought to descend from an old Alpine cattle population found between Austria and Savoy'; 'The cows are used in organised cow fights', held in Valais and the Aosta Valley. The 'about' text keeps only these Wikipedia claims."
+		}
+	},
+	"origin": {
+		"regions": [
+			"CH"
+		],
+		"place": "Val d'Hérens, Valais, Switzerland",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Hérens (cattle)",
+					"url": "https://en.wikipedia.org/wiki/Herens_(cattle)"
+				}
+			],
+			"text": "Wikipedia: named after the Val d'Hérens; thought to descend from an old Alpine cattle population between Austria and Savoy, with ancestors present 'by about 3000 BCE'. That is an ancestral date, not a formation date, so no 'formed' range is recorded."
+		}
+	},
+	"facts": [
+		{
+			"k": "Cow fights",
+			"v": "Cows compete in weight classes in organised fights in Valais and the Aosta Valley. Class winners advance to a national final, held annually since 1922.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Hérens (cattle)",
+						"url": "https://en.wikipedia.org/wiki/Herens_(cattle)"
+					}
+				],
+				"text": "Wikipedia: 'Cows compete in weight classes in organised fights in Valais and the Aosta Valley'; 'Class winners advance to a national final held annually since 1922.'"
+			}
+		},
+		{
+			"k": "Queen of queens",
+			"v": "Each class winner receives a ceremonial bell, and one cow is named 'queen of queens'. At season's end the herders choose a queen who leads the désalpe procession back to the valley.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Hérens (cattle)",
+						"url": "https://en.wikipedia.org/wiki/Herens_(cattle)"
+					}
+				],
+				"text": "Wikipedia: each class winner receives a ceremonial bell; one cow is named 'queen of queens'; at season's end the herders choose a queen who leads the désalpe procession."
+			}
+		},
+		{
+			"k": "Distinct genetics",
+			"v": "Blood type studies found the breed distinct from other Swiss cattle but similar to the Tuxer cattle of Austria's Zillertal.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Hérens (cattle)",
+						"url": "https://en.wikipedia.org/wiki/Herens_(cattle)"
+					}
+				],
+				"text": "Wikipedia: 'Blood type studies found the breed distinct from other Swiss cattle but similar to the Tuxer cattle of Austria's Zillertal.'"
+			}
+		}
+	],
+	"confidence": "low",
+	"gaps": "Looked for population, milk yield, milk fat and protein, risk status and milk use, and found none on the Wikipedia article or the Valais pages opened (valdherens.ch, which mentions alpine cheese only in passing). The search summaries gave a 3,200 kg a year milk figure and a 13,500 population in 2000, both attributed to Wikipedia, but the Wikipedia article as opened has neither, so they are not recorded. The known claim that the breed was milked for cheese in the Valais is not confirmed by any opened source. The German Wikipedia page and the Swiss herdbook (Swissherdbook) were not reachable."
+}

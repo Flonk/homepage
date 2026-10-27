@@ -8,16 +8,12 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "drain",
-				"note": "Low-fat quark is drained thoroughly."
-			},
-			{
 				"type": "dry",
 				"seconds": {
 					"min": 172800,
 					"about": true
 				},
-				"note": "It is then dried for several days."
+				"note": "The quark is left to lose its water."
 			},
 			{
 				"type": "add",
@@ -25,7 +21,7 @@
 			},
 			{
 				"type": "mould",
-				"note": "Shaped into bars or hand-sized balls, each with an elderflower panicle stuck in so the mites can get inside."
+				"note": "The cheese is shaped into bars or hand-sized balls, each with an elderflower head stuck in so the mites can get inside."
 			},
 			{
 				"type": "ferment",
@@ -55,7 +51,7 @@
 					"max": 31536000,
 					"about": true
 				},
-				"note": "The cheeses sit one to twelve months in a box with the mites and rye flour, which feeds them and keeps them from eating too much cheese."
+				"note": "The cheeses are left in a box with the mites and rye flour, which feeds them and keeps them from eating too much cheese."
 			}
 		],
 		"sources": {

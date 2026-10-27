@@ -5,7 +5,7 @@
 	"to": [
 		"halfAndHalf"
 	],
-	"text": "Cream and milk are blended to the fat grade (10.5 to under 18 %) and heat-treated; nothing is soured or cultured. The figures are the US legal definition.",
+	"text": "Cream and milk are blended to the fat grade (10.5 to under 18 %); nothing is soured or cultured. The figures are the US legal definition.",
 	"sources": {
 		"links": [
 			{
@@ -19,21 +19,19 @@
 		"steps": [
 			{
 				"type": "add",
-				"note": "Blended to 10.5 to under 18 % milkfat.",
+				"note": "The blend is brought to between 10.5 % and under 18 % milkfat.",
 				"what": "milk and cream"
 			},
 			{
-				"type": "pasteurise",
-				"note": "Or ultra-pasteurised."
-			},
-			{
 				"type": "homogenise",
-				"note": "Optional."
+				"minor": true,
+				"of": "cream"
 			},
 			{
 				"type": "add",
-				"note": "Optional.",
-				"what": "emulsifiers, stabilisers, nutritive sweeteners and flavourings"
+				"note": "Emulsifiers, stabilisers, sweeteners and flavourings may be added, though none is required.",
+				"what": "emulsifiers, stabilisers, nutritive sweeteners and flavourings",
+				"minor": true
 			}
 		],
 		"sources": {

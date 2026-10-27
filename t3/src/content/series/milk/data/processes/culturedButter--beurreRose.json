@@ -23,50 +23,10 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic"
-				],
-				"adds": {
-					"microbes": [
-						{
-							"name": "mesophilic lactic acid bacteria",
-							"kind": "bacterium",
-							"does": [
-								"acid",
-								"aroma"
-							],
-							"grows": "mesophilic"
-						}
-					],
-					"by": [
-						"starter"
-					]
-				},
-				"pH": {
-					"min": 4.4,
-					"max": 4.8
-				},
-				"note": "Ripened biologically under a strictly controlled temperature profile, no figures given."
-			},
-			{
-				"type": "churn",
-				"note": "Continuously, today."
-			},
-			{
-				"type": "separate",
-				"off": "cream"
-			},
-			{
-				"type": "wash"
-			},
-			{
-				"type": "custom",
-				"name": "knead"
+				"type": "wash",
+				"minor": true
 			}
 		],
-		"text": "The cream is ripened biologically under a controlled temperature profile before churning; the pH is that of the finished butter. Strains and figures are not given.",
 		"sources": {
 			"links": [
 				{

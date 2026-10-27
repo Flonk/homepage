@@ -25,13 +25,15 @@ export interface ArrowInputs {
 	strands: TrunkStrands;
 	contents: RulerAndPanelContents;
 	rulers: RulerLists;
+	// Each arrow's head at what it is of, not at what it leads to (see LayoutOptions).
+	inward?: boolean;
 }
 
 /* Every arrow's route, once all is placed. Every line runs straight
    across or straight up and down, never slantwise: out of the parent's
    side, along its strand in the parent's trunk, round a corner, up or
    down to the child's row, and round again into it. */
-export const routeArrows = ({ tree, sizes, labels, gaps, strands: trunk, contents, rulers }: ArrowInputs): ArrowPaths => {
+export const routeArrows = ({ tree, sizes, labels, gaps, strands: trunk, contents, rulers, inward }: ArrowInputs): ArrowPaths => {
 	const labelHeight = labelRoom(labels);
 	const { root, parent, childrenOf } = tree;
 	const { lineWidth, arrowheadLength, milkRadius } = sizes;
@@ -177,6 +179,11 @@ export const routeArrows = ({ tree, sizes, labels, gaps, strands: trunk, content
 	};
 	turnAllStrands(root);
 
+	// As drawn: the other way round where its head is at what it is of.
+	const drawn = (t: Node): ArrowRoute => {
+		const r = routeOf(t);
+		return inward ? { points: [...r.points].reverse(), bends: [...r.bends].reverse() } : r;
+	};
 	const boxAround = (points: Point[], pad: number): Box => ({
 		x0: Math.min(...points.map(([x]) => x)) - pad,
 		x1: Math.max(...points.map(([x]) => x)) + pad,
@@ -191,7 +198,7 @@ export const routeArrows = ({ tree, sizes, labels, gaps, strands: trunk, content
 		hasStepDetails,
 		strands,
 		routeOf,
-		arrowOutline: new Map(arrows.map((a) => [a, new Path2D(arrowOutlinePath(routeOf(a.target), lineWidth(a.target), a.made))])),
+		arrowOutline: new Map(arrows.map((a) => [a, new Path2D(arrowOutlinePath(drawn(a.target), lineWidth(a.target), a.made))])),
 		arrowCentreLine: new Map(arrows.map((a) => [a, new Path2D(centreLinePath(routeOf(a.target)))])),
 		arrowBox: new Map(arrows.map((a) => [a, boxAround(routeOf(a.target).points, lineWidth(a.target) + headWidth(lineWidth(a.target)))])),
 	};

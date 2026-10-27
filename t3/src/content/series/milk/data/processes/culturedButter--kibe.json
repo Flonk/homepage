@@ -58,11 +58,11 @@
 					"min": 86400,
 					"max": 259200
 				},
-				"note": "Raw milk is accumulated over days in smoked clay pots and sours spontaneously or by back-slopping."
+				"note": "Raw milk is kept in smoked clay pots, where it sours on its own or with a little of the last batch."
 			},
 			{
 				"type": "churn",
-				"note": "Shaken in a clay-pot churn."
+				"of": "soured milk"
 			},
 			{
 				"type": "custom",

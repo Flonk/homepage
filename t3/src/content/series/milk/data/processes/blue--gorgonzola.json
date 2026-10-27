@@ -23,68 +23,17 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "pasteurise"
-			},
-			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic",
-					"mould",
-					"yeast"
-				],
-				"adds": {
-					"microbes": [
-						{
-							"name": "lactic acid bacteria",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							]
-						},
-						{
-							"name": "Penicillium",
-							"kind": "mould"
-						},
-						{
-							"name": "selected yeasts",
-							"kind": "yeast"
-						}
-					],
-					"by": [
-						"starter"
-					]
-				}
-			},
-			{
-				"type": "coagulate",
-				"by": "rennet",
-				"temperature": {
-					"min": 28,
-					"max": 36
-				},
-				"note": "With calf rennet."
-			},
-			{
 				"type": "mould",
 				"seconds": {
 					"min": 86400,
 					"max": 86400
 				},
-				"note": "In perforated moulds (fasceruoli)."
+				"note": "The curd is put into perforated moulds."
 			},
 			{
 				"type": "salt",
 				"how": "dry",
-				"temperature": {
-					"min": 18,
-					"max": 24
-				},
-				"note": "For several days."
-			},
-			{
-				"type": "ferment",
-				"does": "pierce"
+				"note": "The cheese is salted dry."
 			},
 			{
 				"type": "ferment",
@@ -101,7 +50,7 @@
 					"min": 85,
 					"max": 100
 				},
-				"note": "Dolce ripens 50–150 d, piccante 80–270 d."
+				"note": "The soft, sweet dolce is ripened for 50–150 days, the firmer, sharper piccante for 80–270 days."
 			}
 		],
 		"sources": {

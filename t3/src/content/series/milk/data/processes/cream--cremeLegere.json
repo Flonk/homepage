@@ -22,17 +22,18 @@
 				"fat": {
 					"min": 12
 				},
-				"note": "Sold as 12 % fat in the fluid UHT kind."
+				"of": "cream"
 			},
 			{
 				"type": "add",
 				"what": "modified starch and guar gum",
-				"note": "Thickens the light cream, which makes up 98 % of the product."
+				"note": "The cream, which is 98 % of the product, is thickened with them."
 			},
 			{
 				"type": "heat",
 				"does": "heat",
-				"note": "Sterilised by UHT so that it keeps unrefrigerated."
+				"note": "The cream is sterilised at ultra-high temperature, so that it keeps without refrigeration.",
+				"minor": true
 			}
 		],
 		"sources": {

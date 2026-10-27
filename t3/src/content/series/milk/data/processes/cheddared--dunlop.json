@@ -20,102 +20,12 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "pasteurise",
-				"temperature": {
-					"min": 72,
-					"max": 72
-				},
-				"seconds": {
-					"min": 15,
-					"max": 15
-				}
-			},
-			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic"
-				],
-				"adds": {
-					"microbes": [
-						{
-							"name": "lactic acid bacteria",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							]
-						}
-					],
-					"by": [
-						"starter"
-					]
-				},
-				"temperature": {
-					"min": 30,
-					"max": 30
-				},
-				"seconds": {
-					"min": 3600,
-					"max": 3600
-				},
-				"note": "A lactic starter ripened for an hour."
-			},
-			{
-				"type": "coagulate",
-				"by": "rennet",
-				"seconds": {
-					"min": 2400,
-					"max": 3000
-				}
-			},
-			{
-				"type": "cut",
-				"how": "cut",
-				"note": "To ¼ in cubes."
-			},
-			{
-				"type": "heat",
-				"does": "cook",
-				"temperature": {
-					"min": 38,
-					"max": 38
-				},
-				"seconds": {
-					"min": 3600,
-					"max": 5400
-				}
-			},
-			{
-				"type": "custom",
-				"name": "turn",
-				"note": "The slabs are cut and turned."
-			},
-			{
-				"type": "cut",
-				"how": "mill",
-				"note": "Pegmilled at 0.55–0.65 % acidity."
-			},
-			{
-				"type": "salt",
-				"note": "Sea salt, about 1 kg per 100 gal."
-			},
-			{
-				"type": "press",
-				"note": "Overnight."
-			},
-			{
-				"type": "custom",
-				"name": "scald",
-				"note": "In hot water, then bound in a scalded cloth."
-			},
-			{
 				"type": "ferment",
 				"does": "ripen",
 				"seconds": {
 					"min": 15552000,
 					"max": 46656000
-				},
-				"note": "Most popular at 10–12 months."
+				}
 			}
 		],
 		"sources": {

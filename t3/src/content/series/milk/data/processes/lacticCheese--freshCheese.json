@@ -8,33 +8,9 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "coagulate",
-				"by": "rennet-acid",
-				"temperature": {
-					"max": 25
-				},
-				"seconds": {
-					"min": 64800,
-					"max": 172800
-				},
-				"note": "Raw goat's milk is set mainly by its own mesophilic lactic flora, with at most 5 ml of rennet per 100 l."
-			},
-			{
-				"type": "mould",
-				"note": "The curd is ladled by hand into perforated moulds in several goes."
-			},
-			{
-				"type": "drain",
-				"by": "mould",
-				"seconds": {
-					"min": 64800
-				},
-				"note": "It drains by itself, with no pressure, for at least 18 hours from the start of moulding."
-			},
-			{
 				"type": "salt",
 				"how": "dry",
-				"note": "The cheeses are turned out and salted over all their faces, and eaten fresh instead of being ripened."
+				"note": "The cheeses are salted over all their faces, and eaten fresh instead of being ripened."
 			}
 		],
 		"sources": {

@@ -24,7 +24,8 @@
 		"steps": [
 			{
 				"type": "pasteurise",
-				"note": "Pasteurised at anything from 63 °C for 30 min to 110 °C for a few seconds, depending on the cream."
+				"note": "The cream undergoes heat treatment to kill harmful bacteria like Listeria, Salmonella and E. coli.",
+				"minor": true
 			},
 			{
 				"type": "heat",
@@ -33,7 +34,8 @@
 					"min": 4,
 					"max": 8
 				},
-				"note": "Cooled and held for several hours before churning."
+				"note": "The cream is held for several hours before churning.",
+				"minor": true
 			},
 			{
 				"type": "heat",
@@ -42,7 +44,8 @@
 					"min": 18,
 					"max": 22
 				},
-				"note": "Warmed for at least 2 to 4 hours, then cooled gradually to 6–8 °C, to set the fat."
+				"note": "The cream is kept warm for at least 2 to 4 hours, then cooled gradually to 6–8 °C, which sets the fat.",
+				"minor": true
 			},
 			{
 				"type": "churn",
@@ -50,7 +53,7 @@
 					"min": 10,
 					"max": 13
 				},
-				"note": "Whey cream from copper vats oxidises faster, so its butter keeps for a shorter time."
+				"of": "cream"
 			}
 		],
 		"sources": {

@@ -24,45 +24,27 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic"
-				],
-				"adds": {
-					"microbes": [
-						{
-							"name": "lactic acid bacteria",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							]
-						}
-					]
-				},
-				"note": "Lactic acid bacteria only, no rennet; no species named."
-			},
-			{
 				"type": "heat",
 				"does": "cook",
 				"temperature": {
 					"min": 72,
 					"max": 77
 				},
-				"note": "Until the curds separate from the clear whey, which is drawn off."
+				"note": "The mass is cooked until the curds separate from the clear whey, which is drawn off."
 			},
 			{
 				"type": "add",
-				"note": "Into a firm ball.",
+				"note": "The curd is stirred into a firm ball.",
 				"what": "egg, butter or cream, salt and caraway seeds"
 			},
 			{
 				"type": "custom",
 				"name": "rest",
-				"note": "In cheesecloth, often pressed, for a few days."
+				"note": "The cheese is left to rest in cheesecloth, often pressed, for a few days.",
+				"minor": true
 			}
 		],
-		"text": "Lactic acid bacteria only, no rennet; no species named. The soured-milk curd is then cooked.",
+		"text": "The soured-milk curd is cooked.",
 		"sources": {
 			"links": [
 				{

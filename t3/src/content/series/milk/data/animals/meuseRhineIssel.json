@@ -1,0 +1,99 @@
+{
+	"label": "Meuse-Rhine-Issel",
+	"aka": ["Maas-Rijn-IJssel", "Rotbunt"],
+	"names": {
+		"links": [
+			{"name": "Wikipedia: Meuse-Rhine-Issel", "url": "https://en.wikipedia.org/wiki/Meuse-Rhine-Issel"},
+			{"name": "The Cattle Site: Meuse Rhine Issel", "url": "https://thecattlesite.com/breeds/dairy/111/meuse-rhine-issel"}
+		],
+		"text": "Maas-Rijn-IJssel is the Dutch form of the name in the Wikipedia article. Rotbunt is the German name given by The Cattle Site."
+	},
+	"kind": "breed",
+	"parent": "taurineCattle",
+	"about": {
+		"text": "A red-pied Dutch-German breed named after the Meuse, Rhine and IJssel rivers, developed in the eastern Netherlands. It was once bred for beef and dairy, but breeders have since concentrated on dairy qualities. It is kept in the Netherlands, Germany, the UK and Ireland.",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Meuse-Rhine-Issel", "url": "https://en.wikipedia.org/wiki/Meuse-Rhine-Issel"},
+				{"name": "The Cattle Site: Meuse Rhine Issel", "url": "https://thecattlesite.com/breeds/dairy/111/meuse-rhine-issel"}
+			],
+			"text": "Wikipedia: developed in the eastern Netherlands near the three rivers, which gives the name; dual-purpose for beef and milk. The Cattle Site: origin in the Netherlands and Germany; grown in the UK and Ireland since the 1970s; breeders have concentrated on dairy qualities."
+		}
+	},
+	"origin": {
+		"regions": ["NL", "DE"],
+		"place": "Eastern Noord-Brabant, Overijssel and the IJssel region (Achterhoek, Drenthe), Netherlands",
+		"formed": {"min": 1874, "max": 1905},
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Meuse-Rhine-Issel", "url": "https://en.wikipedia.org/wiki/Meuse-Rhine-Issel"},
+				{"name": "Regional Cattle Breeds: MRY", "url": "https://www.regionalcattlebreeds.eu/breeds/MRY.html"}
+			],
+			"text": "Wikipedia: developed mainly in eastern Noord-Brabant and the IJssel region; entered in the herd-book of the Nederlands Rundvee Syndicaat in 1874 and recognised as a breed in 1905. Regional Cattle Breeds: developed in Overijssel and eastern Brabant; registered from 1874; herd-book created 1905. Germany is named as a country of origin by The Cattle Site."
+		}
+	},
+	"purposes": {
+		"purposes": ["dual-purpose", "dairy"],
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Meuse-Rhine-Issel", "url": "https://en.wikipedia.org/wiki/Meuse-Rhine-Issel"},
+				{"name": "The Cattle Site: Meuse Rhine Issel", "url": "https://thecattlesite.com/breeds/dairy/111/meuse-rhine-issel"}
+			],
+			"text": "Wikipedia calls it dual-purpose, for beef and milk. The Cattle Site says it was originally dual-purpose but breeders have concentrated on dairy qualities."
+		}
+	},
+	"head": [
+		{
+			"count": 9938,
+			"year": 2021,
+			"where": "NL",
+			"sources": {
+				"links": [{"name": "Wikipedia: Meuse-Rhine-Issel", "url": "https://en.wikipedia.org/wiki/Meuse-Rhine-Issel"}],
+				"text": "Wikipedia gives 9,938 in 2021, citing FAO DAD-IS. The article does not name the country for this figure; NL is taken from the DAD-IS data sheet it cites, which is for the Netherlands. Earlier figures in the same article: 31,000 in 1999 and 14,000 in 2004."
+			}
+		}
+	],
+	"yield": {
+		"perLactation": {"min": 8000, "max": 9000},
+		"sources": {
+			"links": [{"name": "The Cattle Site: Meuse Rhine Issel", "url": "https://thecattlesite.com/breeds/dairy/111/meuse-rhine-issel"}],
+			"text": "The Cattle Site: yields of 8000 to 9000 kg are not uncommon, at 4.0% protein. This is a breed-promotion site, so it describes good herds rather than a population average. No lactation length, recording country or year is given."
+		}
+	},
+	"composition": {
+		"fat": {"min": 4, "max": 4, "about": true},
+		"protein": {"min": 4, "max": 4, "about": true},
+		"sources": {
+			"links": [{"name": "The Cattle Site: Meuse Rhine Issel", "url": "https://thecattlesite.com/breeds/dairy/111/meuse-rhine-issel"}],
+			"text": "The Cattle Site: butterfat is over 4%; protein is approaching 4%. Both are given as approximate, so the figure of 4 is marked about."
+		}
+	},
+	"risk": {
+		"status": "not at risk",
+		"year": 2022,
+		"sources": {
+			"links": [{"name": "Wikipedia: Meuse-Rhine-Issel", "url": "https://en.wikipedia.org/wiki/Meuse-Rhine-Issel"}],
+			"text": "Wikipedia: DAD-IS (2022) lists it as not at risk. The same article says FAO (2007) also listed it as not at risk, and that CGN (2020) describes it as declining."
+		}
+	},
+	"facts": [
+		{
+			"k": "Cryoconserved semen",
+			"v": "About 925,000 semen doses are cryo-conserved, representing almost 250 bulls.",
+			"sources": {
+				"links": [{"name": "Wikipedia: Meuse-Rhine-Issel", "url": "https://en.wikipedia.org/wiki/Meuse-Rhine-Issel"}],
+				"text": "Wikipedia, citing Woelders et al. 2009 on cryoconservation of Dutch cattle breeds."
+			}
+		},
+		{
+			"k": "Shorthorn crossing",
+			"v": "In the twentieth century it was one of five breeds approved for crossbreeding with the British Dairy Shorthorn, contributing to the Blended Red-and-White Shorthorn.",
+			"sources": {
+				"links": [{"name": "Wikipedia: Meuse-Rhine-Issel", "url": "https://en.wikipedia.org/wiki/Meuse-Rhine-Issel"}],
+				"text": "Wikipedia, as stated in the article's history section."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "No lactation length, recording country or year for the yield; the 8,000 to 9,000 kg figure comes from a breed-promotion site. No worldwide population figure; the 9,938 is the 2021 DAD-IS figure as cited by Wikipedia. No lactose or solids figures. A Belgian farm report giving about 7,000 litres a year appeared only in search snippets, so it is not used."
+}

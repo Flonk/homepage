@@ -1,0 +1,76 @@
+{
+	"label": "Pie Rouge des Plaines",
+	"kind": "breed",
+	"parent": "taurineCattle",
+	"about": {
+		"text": "A French red-and-white dual-purpose breed begun in Brittany around 1970 by crossing Armorican cattle with German Rotbunt and Dutch Meuse-Rhine-Yssel stock, aiming at a dairy breed with good meat qualities. Brittany holds about 80% of the herd, with some in Normandy and the Massif Central. Its milk is about 4.3% fat and 3.3% protein.",
+		"sources": {
+			"links": [{"name": "Wikipedia: Pie Rouge des Plaines", "url": "https://en.wikipedia.org/wiki/Pie_Rouge_des_Plaines"}],
+			"text": "Wikipedia, drawing on Dervillé et al. 2009 and Porter et al. 2016. The 80% share and the regions are from Dervillé et al. 2009 as cited there."
+		}
+	},
+	"origin": {
+		"regions": ["FR"],
+		"place": "Brittany (Côtes-d'Armor, Finistère, Morbihan), France",
+		"formed": {"min": 1970, "max": 1971},
+		"sources": {
+			"links": [{"name": "Wikipedia: Pie Rouge des Plaines", "url": "https://en.wikipedia.org/wiki/Pie_Rouge_des_Plaines"}],
+			"text": "Wikipedia: farmers in Brittany's three western départements began the breed around 1970; the breeders' association was formed and the herd-book opened in 1970 or 1971, per FAO DAD-IS as cited there."
+		}
+	},
+	"purposes": {
+		"purposes": ["dual-purpose"],
+		"sources": {
+			"links": [{"name": "Wikipedia: Pie Rouge des Plaines", "url": "https://en.wikipedia.org/wiki/Pie_Rouge_des_Plaines"}],
+			"text": "Wikipedia: dual-purpose, for both milk and meat."
+		}
+	},
+	"head": [
+		{
+			"count": 65000,
+			"year": 2015,
+			"where": "FR",
+			"estimated": true,
+			"sources": {
+				"links": [{"name": "Wikipedia: Pie Rouge des Plaines", "url": "https://en.wikipedia.org/wiki/Pie_Rouge_des_Plaines"}],
+				"text": "Wikipedia, citing the Bureau des Ressources Génétiques: the 2015 total was estimated at 62,500 to 67,500, with about 25,000 breeding cows. The count given is the midpoint of that range, worked out here, so it is estimated."
+			}
+		}
+	],
+	"yield": {
+		"perLactation": {"min": 8000, "max": 8000},
+		"lactationDays": {"min": 329, "max": 329},
+		"sources": {
+			"links": [{"name": "Wikipedia: Pie Rouge des Plaines", "url": "https://en.wikipedia.org/wiki/Pie_Rouge_des_Plaines"}],
+			"text": "Wikipedia, citing Dervillé et al. 2009: about 8,000 kg per lactation of 329 days. The article does not name the recording country."
+		}
+	},
+	"composition": {
+		"fat": {"min": 4.3, "max": 4.3},
+		"protein": {"min": 3.3, "max": 3.3},
+		"sources": {
+			"links": [{"name": "Wikipedia: Pie Rouge des Plaines", "url": "https://en.wikipedia.org/wiki/Pie_Rouge_des_Plaines"}],
+			"text": "Wikipedia, citing Dervillé et al. 2009: 4.3% fat and 3.3% protein with the yield above."
+		}
+	},
+	"facts": [
+		{
+			"k": "Herd-book",
+			"v": "The breeders' association was formed and a herd-book opened in 1970 or 1971.",
+			"sources": {
+				"links": [{"name": "Wikipedia: Pie Rouge des Plaines", "url": "https://en.wikipedia.org/wiki/Pie_Rouge_des_Plaines"}],
+				"text": "Wikipedia, citing FAO DAD-IS for the herd-book date."
+			}
+		},
+		{
+			"k": "Red Holstein blood",
+			"v": "From 1982 breeders introduced Red Holstein blood to increase size and udder quality; the resulting stock was less successful for beef production.",
+			"sources": {
+				"links": [{"name": "Wikipedia: Pie Rouge des Plaines", "url": "https://en.wikipedia.org/wiki/Pie_Rouge_des_Plaines"}],
+				"text": "Wikipedia, citing Dervillé et al. 2009."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "No conservation status for this breed itself; the FAO's critically endangered rating is for the Armorican, its ancestor. The yield's recording country and year are not given. The 2015 population is a range, so the count is its midpoint, flagged as estimated."
+}

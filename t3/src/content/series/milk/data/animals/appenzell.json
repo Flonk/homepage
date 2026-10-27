@@ -1,0 +1,156 @@
+{
+	"label": "Appenzell",
+	"aka": [
+		"Appenzellerziege",
+		"Chèvre d'Appenzell",
+		"Appenzeller"
+	],
+	"names": {
+		"links": [
+			{
+				"name": "Wikipedia: Appenzell goat",
+				"url": "https://en.wikipedia.org/wiki/Appenzell_goat"
+			},
+			{
+				"name": "SZZV: Statistische Auswertung Ziegenjahr 2022",
+				"url": "https://www.szzv.ch/fileadmin/user_upload/Statistische_Auswertung_Ziegenjahr_2022_detailliert_final.pdf"
+			}
+		],
+		"text": "'Appenzellerziege' is in the Wikipedia article's title line, and 'Appenzeller' is used in its history text (the Appenzeller cross-bred with the Saanen in the 1920s). 'Chèvre d'Appenzell' is the breed's French name in the SZZV 2022 statistics table, as seen in a WebSearch result snippet; the PDF itself could not be read, so that name rests on the snippet. 'Appenzell' is the item's label."
+	},
+	"kind": "breed",
+	"parent": "goat",
+	"about": {
+		"text": "The Appenzell is a rare, white Swiss dairy goat from the historic Appenzell half-cantons, which spread into the Canton of St. Gallen. It is kept for milk and vegetation management, and its milk averages just over 800 kg a year.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Appenzell goat",
+					"url": "https://en.wikipedia.org/wiki/Appenzell_goat"
+				}
+			],
+			"text": "From the fetched Wikipedia article: 'a rare and endangered indigenous breed of white domestic goat from Switzerland', the Appenzell half-cantons and St. Gallen, the 'just over 800 kg per year' milk yield, and the uses 'Milk and vegetation management' (cited there to DAD-IS). The DAD-IS page itself returned HTTP 404 and could not be opened, so the uses are Wikipedia's citation of DAD-IS."
+		}
+	},
+	"origin": {
+		"regions": [
+			"CH"
+		],
+		"place": "The historic Appenzell half-cantons (Appenzell Ausserrhoden and Appenzell Innerrhoden) and the Canton of St. Gallen, Switzerland",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Appenzell goat",
+					"url": "https://en.wikipedia.org/wiki/Appenzell_goat"
+				}
+			],
+			"text": "From the fetched Wikipedia article: the breed 'originating in the historic Appenzell half-cantons (Appenzell Ausserrhoden and Appenzell Innerrhoden) and spread into the Canton of St. Gallen'. The article gives breeders' associations founded in 1902 and 1914 but no formation date for the breed itself, so no 'formed' range is recorded."
+		}
+	},
+	"yield": {
+		"perYear": {
+			"min": 800,
+			"max": 800,
+			"about": true
+		},
+		"perLactation": {
+			"min": 622,
+			"max": 622
+		},
+		"lactationDays": {
+			"min": 220,
+			"max": 220
+		},
+		"where": "CH",
+		"year": 2022,
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Appenzell goat",
+					"url": "https://en.wikipedia.org/wiki/Appenzell_goat"
+				},
+				{
+					"name": "SZZV: Statistische Auswertung Ziegenjahr 2022",
+					"url": "https://www.szzv.ch/fileadmin/user_upload/Statistische_Auswertung_Ziegenjahr_2022_detailliert_final.pdf"
+				}
+			],
+			"text": "perYear: from the fetched Wikipedia article, 'The milk yield averages just over 800 kg per year' (cited there to the SZZV 'Tableaux des races'), entered as about 800 kg. perLactation 622 kg and lactationDays 220 (standard lactation): from a WebSearch result snippet quoting the SZZV Ziegenjahr 2022 statistics, 'Appenzellerziege / Chèvre d'Appenzell 622 2.8 2.9 2.6' (milk kg, kg per day, fat %, protein %), with 220 days stated for the standard lactation. The SZZV PDF was fetched but could not be read as text, so the 622 kg figure is from the search snippet only. The 2022 figure (622 kg) is about 180 kg below Wikipedia's 'just over 800 kg per year'; the two are not reconciled and both are kept as given. The 2018 value (564 kg) is not used."
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 2.9,
+			"max": 2.9
+		},
+		"protein": {
+			"min": 2.6,
+			"max": 2.6
+		},
+		"sources": {
+			"links": [
+				{
+					"name": "SZZV: Statistische Auswertung Ziegenjahr 2022",
+					"url": "https://www.szzv.ch/fileadmin/user_upload/Statistische_Auswertung_Ziegenjahr_2022_detailliert_final.pdf"
+				}
+			],
+			"text": "From a WebSearch result snippet quoting the SZZV Ziegenjahr 2022 standard-lactation table: Appenzellerziege fat 2.9% and protein 2.6% (2022). The PDF could not be read as text to check the row directly. Min and max hold the one figure."
+		}
+	},
+	"purposes": {
+		"purposes": [
+			"dairy"
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Appenzell goat",
+					"url": "https://en.wikipedia.org/wiki/Appenzell_goat"
+				}
+			],
+			"text": "From the fetched Wikipedia article's uses, 'Milk and vegetation management' (cited to DAD-IS). Only milk is recorded here, since vegetation management is not a purpose on the list."
+		}
+	},
+	"risk": {
+		"status": "endangered-maintained",
+		"year": 2007,
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Appenzell goat",
+					"url": "https://en.wikipedia.org/wiki/Appenzell_goat"
+				}
+			],
+			"text": "From the fetched Wikipedia article: 'The FAO listed the breed in 2007 as endangered-maintained' (citing FAO, The State of the World's Animal Genetic Resources, annex list). This is the 2007 FAO listing as cited by Wikipedia. The current DAD-IS status could not be checked, because the DAD-IS page returned 404."
+		}
+	},
+	"facts": [
+		{
+			"k": "Appearance",
+			"v": "Completely white, with a medium-long to long coat. Usually polled, though horned animals are accepted.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Appenzell goat",
+						"url": "https://en.wikipedia.org/wiki/Appenzell_goat"
+					}
+				],
+				"text": "From the fetched Wikipedia article, which quotes DAD-IS for the traits: 'Completely white with a medium-long to long coat. Usually polled, though horned animals are accepted.'"
+			}
+		},
+		{
+			"k": "Herd book",
+			"v": "A herd book for the breed was started in 1926, and in 1938 the remaining stock was merged into the Appenzeller.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Appenzell goat",
+						"url": "https://en.wikipedia.org/wiki/Appenzell_goat"
+					}
+				],
+				"text": "From the fetched Wikipedia article: 'A herd-book was started in 1926, and in 1938 the remaining stock was merged into the Appenzeller' (cited there to Porter et al., Mason's World Encyclopedia, 2016, and DAD-IS)."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "No head count or population figure is recorded: the DAD-IS figures reported by Wikipedia are a range (1,233 to 4,167 in 2021, with 77 breeding males) and the page could not be opened to confirm them. The current DAD-IS risk status is unknown (the page returned 404), so the 2007 FAO listing is used. The SZZV 2022 PDF could not be read as text, so the lactation and composition figures come from a WebSearch snippet. The Wikipedia 'just over 800 kg per year' and the SZZV 2022 standard lactation of 622 kg are not reconciled. No breed formation date was found. No lactation range or lactose or solids figures were found."
+}

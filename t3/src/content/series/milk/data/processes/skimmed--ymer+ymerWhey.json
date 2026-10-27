@@ -72,7 +72,7 @@
 			},
 			{
 				"type": "drain",
-				"note": "About half the volume runs off as whey."
+				"note": "The curd is drained, with about half its volume run off as whey."
 			}
 		],
 		"text": "Inoculated at 19–23 °C.",
@@ -110,15 +110,15 @@
 			"processing": {
 				"steps": [
 					{
-						"type": "add",
+						"type": "custom",
+						"name": "blend",
 						"temperature": {
 							"min": 35
-						},
-						"note": "While it is blended smooth."
+						}
 					},
 					{
 						"type": "add",
-						"note": "To about 3.5 % fat.",
+						"note": "Cream is added, so the fat is brought to about 3.5 %.",
 						"what": "cream"
 					}
 				],

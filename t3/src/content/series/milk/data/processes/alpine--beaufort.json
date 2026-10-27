@@ -24,43 +24,13 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "coagulate",
-				"by": "rennet",
-				"note": "With rennet from calf stomachs."
-			},
-			{
-				"type": "cut",
-				"how": "cut"
-			},
-			{
-				"type": "heat",
-				"does": "cook"
-			},
-			{
 				"type": "press",
 				"seconds": {
 					"min": 72000,
 					"max": 72000,
 					"about": true
 				},
-				"note": "In a linen cloth inside a wooden hoop, which gives the concave heel; 20–70 kg."
-			},
-			{
-				"type": "salt",
-				"how": "brine"
-			},
-			{
-				"type": "salt",
-				"note": "On the surface."
-			},
-			{
-				"type": "ferment",
-				"does": "ripen",
-				"seconds": {
-					"min": 12960000,
-					"max": 31104000
-				},
-				"note": "In a cold cellar."
+				"note": "The wheel is set in a linen cloth inside a wooden hoop, which gives it its concave heel."
 			}
 		],
 		"sources": {

@@ -5,7 +5,7 @@
 	"to": [
 		"vollrahm"
 	],
-	"text": "Cream standardised to 35 % fat and heat-treated; in Switzerland it is the cream for whipping.",
+	"text": "Cream standardised to 35 % fat; in Switzerland it is the cream for whipping.",
 	"sources": {
 		"links": [
 			{
@@ -27,20 +27,7 @@
 					"min": 35,
 					"max": 35
 				},
-				"note": "Vollrahm is set to 35 % fat, a Swiss grade that suits whipping."
-			},
-			{
-				"type": "pasteurise",
-				"temperature": {
-					"min": 82,
-					"max": 85,
-					"about": true
-				},
-				"seconds": {
-					"min": 15,
-					"max": 15
-				},
-				"note": "Whipping cream is heated above roughly 82 to 85 °C for 15 seconds, hot enough to keep it whippable."
+				"of": "cream"
 			},
 			{
 				"type": "heat",
@@ -49,7 +36,8 @@
 					"min": 4,
 					"max": 6
 				},
-				"note": "It is cooled and held at 4 to 6 °C so the fat crystallises, which is what lets it whip later."
+				"note": "The fat crystallises in the cold, which is what lets it whip later.",
+				"minor": true
 			}
 		],
 		"sources": {

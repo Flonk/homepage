@@ -1,0 +1,86 @@
+{
+	"label": "Florida goat",
+	"kind": "breed",
+	"parent": "goat",
+	"about": {
+		"text": "Florida is a Spanish dairy goat breed whose morphology allows high production in grazing systems. Its milk is intended for typical goat cheeses in the south of Spain, and it is recorded at 4.9 percent fat and 3.4 percent protein.",
+		"sources": {
+			"links": [
+				{
+					"name": "CEVA Ruminants: goat breeds",
+					"url": "https://ruminants.ceva.pro/goat-breeds"
+				}
+			],
+			"text": "Taken from the Florida entry: the Spanish origin, the grazing-system wording, the use of its milk for typical goat cheeses in the south of Spain, and the 4.9 percent fat and 3.4 percent protein figures."
+		}
+	},
+	"origin": {
+		"regions": [
+			"ES"
+		],
+		"place": "Spain",
+		"sources": {
+			"links": [
+				{
+					"name": "CEVA Ruminants: goat breeds",
+					"url": "https://ruminants.ceva.pro/goat-breeds"
+				}
+			],
+			"text": "The Florida entry says the breed originates from Spain. No date of formation was given."
+		}
+	},
+	"yield": {
+		"perLactation": {
+			"min": 575,
+			"max": 575
+		},
+		"lactationDays": {
+			"min": 274,
+			"max": 274
+		},
+		"sources": {
+			"links": [
+				{
+					"name": "CEVA Ruminants: goat breeds",
+					"url": "https://ruminants.ceva.pro/goat-breeds"
+				}
+			],
+			"text": "The Florida entry gives 575 kg of milk per lactation period of 274 days. The year and recording country were not stated."
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 4.9,
+			"max": 4.9
+		},
+		"protein": {
+			"min": 3.4,
+			"max": 3.4
+		},
+		"sources": {
+			"links": [
+				{
+					"name": "CEVA Ruminants: goat breeds",
+					"url": "https://ruminants.ceva.pro/goat-breeds"
+				}
+			],
+			"text": "The Florida entry gives 4.9 percent fat and 3.4 percent protein."
+		}
+	},
+	"purposes": {
+		"purposes": [
+			"dairy"
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "CEVA Ruminants: goat breeds",
+					"url": "https://ruminants.ceva.pro/goat-breeds"
+				}
+			],
+			"text": "The Florida entry says its milk is intended for typical goat cheeses, so the purpose is dairy."
+		}
+	},
+	"confidence": "medium",
+	"gaps": "Searched the CEVA goat-breeds page only; no population figures, founding date, DAD-IS risk status or recording year for the yield were given there, and no second source was opened."
+}

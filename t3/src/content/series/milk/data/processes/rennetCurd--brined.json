@@ -27,18 +27,9 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "coagulate",
-				"by": "rennet",
-				"temperature": {
-					"min": 35,
-					"max": 35,
-					"about": true
-				}
-			},
-			{
 				"type": "salt",
 				"how": "dry",
-				"note": "Ending at 3.5–7 % salt in the finished cheese.",
+				"note": "The cheese is salted dry; the finished cheese ends at 3.5–7 % salt.",
 				"strength": {
 					"min": 3,
 					"max": 3,
@@ -48,7 +39,7 @@
 			{
 				"type": "ferment",
 				"does": "ripen",
-				"note": "In a brine of about 7 %, for weeks at room temperature."
+				"note": "The cheese is ripened in a brine of about 7 % salt, for weeks at room temperature."
 			},
 			{
 				"type": "ferment",
@@ -56,7 +47,8 @@
 				"seconds": {
 					"min": 5184000
 				},
-				"note": "Then chilled."
+				"note": "The cheese is then chilled.",
+				"minor": true
 			}
 		],
 		"sources": {

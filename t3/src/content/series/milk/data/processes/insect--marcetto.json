@@ -24,10 +24,6 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "coagulate",
-				"by": "rennet"
-			},
-			{
 				"type": "ferment",
 				"does": "ripen",
 				"kinds": [
@@ -52,12 +48,12 @@
 					"min": 85,
 					"max": 90
 				},
-				"note": "The larvae colonise young or cracked wheels and break down the proteins."
+				"note": "Young or cracked wheels are colonised by the larvae, which break down the proteins."
 			},
 			{
 				"type": "custom",
 				"name": "scrape",
-				"note": "Once the wheel is creamy, into terracotta or glass jars."
+				"note": "Once the wheel is creamy, its paste is scraped into terracotta or glass jars."
 			}
 		],
 		"sources": {

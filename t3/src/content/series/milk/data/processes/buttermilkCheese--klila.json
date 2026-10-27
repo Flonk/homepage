@@ -6,7 +6,7 @@
 		"klila"
 	],
 	"variant": true,
-	"step": "heat, drain, sun-dry",
+	"step": "cut, sun-dry",
 	"text": "Klila is made like soft buttermilk cheese, but the curd is cut and left in the sun until it is almost dry, so it keeps for months and was food for nomads and travellers. A separate account heats the whey of a curd at 50–60 °C for 30 min with no starter.",
 	"sources": {
 		"links": [
@@ -28,21 +28,12 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "heat",
-				"does": "heat",
-				"note": "Lben, the soured churned milk, heated until it curdles."
-			},
-			{
-				"type": "drain",
-				"by": "cloth"
-			},
-			{
 				"type": "cut",
 				"how": "cut"
 			},
 			{
 				"type": "dry",
-				"note": "In the sun to very hard pieces."
+				"note": "The pieces are dried in the sun until very hard."
 			}
 		],
 		"sources": {

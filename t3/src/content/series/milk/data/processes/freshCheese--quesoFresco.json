@@ -20,24 +20,10 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "coagulate",
-				"by": "rennet",
-				"temperature": {
-					"min": 30,
-					"max": 32
-				}
-			},
-			{
-				"type": "cut",
-				"how": "cut"
-			},
-			{
 				"type": "heat",
 				"does": "cook",
-				"note": "Until the desired firmness."
-			},
-			{
-				"type": "drain"
+				"note": "The curd is cooked until it is as firm as wanted.",
+				"minor": true
 			},
 			{
 				"type": "cut",

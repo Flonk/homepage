@@ -29,11 +29,12 @@
 					"min": 5,
 					"max": 7
 				},
-				"note": "First against the incoming raw milk, then with ice water."
+				"note": "The milk is first cooled against the incoming raw milk, then with ice water."
 			},
 			{
 				"type": "custom",
-				"name": "fill"
+				"name": "fill",
+				"minor": true
 			}
 		],
 		"sources": {

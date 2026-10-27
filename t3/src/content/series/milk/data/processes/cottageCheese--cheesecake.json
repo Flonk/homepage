@@ -10,20 +10,21 @@
 			{
 				"type": "add",
 				"what": "sugar and eggs",
-				"note": "Eggs set a baked cheesecake; an unbaked one is set with cream instead."
+				"note": "The cheese is set by the eggs in a baked cheesecake, and by cream in an unbaked one."
 			},
 			{
 				"type": "mould",
-				"note": "Filled onto a crushed-biscuit or pastry base, or none at all."
+				"note": "The mixture is filled onto a crushed-biscuit or pastry base, or onto no base at all."
 			},
 			{
-				"type": "custom",
-				"name": "bake"
+				"type": "heat",
+				"does": "cook",
+				"note": "The cheesecake is baked."
 			},
 			{
 				"type": "heat",
 				"does": "cool",
-				"note": "Usually served chilled."
+				"note": "The cheesecake is chilled, since it is usually served cold."
 			}
 		],
 		"sources": {

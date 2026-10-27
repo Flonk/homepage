@@ -5,7 +5,7 @@
 	"to": [
 		"mpc70"
 	],
-	"text": "Made like any MPC: pasteurised skim milk is ultrafiltered and the retentate evaporated and spray dried. About 70 % protein is roughly where plain ultrafiltration stops being enough and diafiltration (water added to wash lactose out) comes in; see the mpc and MPC80 entries for the membrane and diafiltration facts.",
+	"text": "An MPC with about 70 % protein, roughly where plain ultrafiltration stops being enough and diafiltration (water added to wash lactose out) comes in; see the mpc and MPC80 entries for the membrane and diafiltration facts.",
 	"sources": {
 		"links": [
 			{
@@ -14,35 +14,5 @@
 			}
 		],
 		"text": "The table, the facts and the words on how it is made, from these."
-	},
-	"processing": {
-		"steps": [
-			{
-				"type": "separate",
-				"off": "cream",
-				"note": "Whole milk is first split into cream and skim milk."
-			},
-			{
-				"type": "ultrafilter",
-				"note": "Lactose, minerals and water pass through the membrane while casein and whey proteins are held back."
-			},
-			{
-				"type": "evaporate",
-				"note": "Evaporation concentrates the retained liquid further."
-			},
-			{
-				"type": "dry",
-				"note": "The concentrate is spray dried to a powder."
-			}
-		],
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Milk protein concentrate",
-					"url": "https://en.wikipedia.org/wiki/Milk_protein_concentrate"
-				}
-			],
-			"text": "The order of separating, ultrafiltering, evaporating and spray drying is from this article; it gives no figures, and does not say how the 70 % grade is reached."
-		}
 	}
 }

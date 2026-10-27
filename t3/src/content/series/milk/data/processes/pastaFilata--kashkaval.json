@@ -25,62 +25,6 @@
 		"steps": [
 			{
 				"type": "heat",
-				"does": "heat",
-				"temperature": {
-					"min": 60,
-					"max": 63
-				},
-				"seconds": {
-					"min": 20,
-					"max": 20
-				}
-			},
-			{
-				"type": "coagulate",
-				"by": "rennet",
-				"seconds": {
-					"min": 1800,
-					"max": 2400
-				},
-				"note": "With starter as well as rennet."
-			},
-			{
-				"type": "cut",
-				"how": "cut",
-				"note": "To pea size."
-			},
-			{
-				"type": "heat",
-				"does": "cook",
-				"temperature": {
-					"min": 38,
-					"max": 39
-				}
-			},
-			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic"
-				],
-				"adds": {
-					"microbes": [],
-					"by": [
-						"starter"
-					]
-				},
-				"temperature": {
-					"min": 35,
-					"max": 37
-				},
-				"seconds": {
-					"min": 7200,
-					"max": 10800
-				},
-				"note": "The curd is cheddared until plastic."
-			},
-			{
-				"type": "heat",
 				"does": "cook",
 				"temperature": {
 					"min": 72,
@@ -90,12 +34,12 @@
 					"min": 180,
 					"max": 240
 				},
-				"note": "Scalded in hot brine of 5–6 % salt."
+				"note": "The curd is scalded in hot brine of 5–6 % salt, which salts it as it is stretched."
 			},
 			{
 				"type": "custom",
 				"name": "knead",
-				"note": "Moulded into wheels."
+				"note": "The cheese is moulded into wheels."
 			},
 			{
 				"type": "ferment",

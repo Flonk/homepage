@@ -1,0 +1,110 @@
+{
+	"label": "Kenana",
+	"aka": [],
+	"names": {
+		"links": [
+			{"name": "Wikipedia: Butana cattle", "url": "https://en.wikipedia.org/wiki/Butana_cattle"}
+		],
+		"text": "The Wikipedia Butana cattle page names the breed Kenana, found between the Blue Nile and White Nile, and says the page also covers Butana and Kenana together. No other names were found in the sources read."
+	},
+	"kind": "breed",
+	"parent": "zebuCattle",
+	"about": {
+		"text": "Kenana is a zebu dairy breed kept in central Sudan, mainly between the Blue Nile and White Nile, just south of the Butana region. Its calves are deep red and turn white as adults. In mixed crop-livestock systems its milk gives regular cash income and is also used at home, though yields in the field are low.",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Butana cattle", "url": "https://en.wikipedia.org/wiki/Butana_cattle"},
+				{"name": "Musa, Peters and Ahmed 2006, LRRD 18(12)", "url": "https://lrrd.org/lrrd18/12/musa18177.htm"}
+			],
+			"text": "Wikipedia's Butana cattle article: Kenana found just south of Butana, mainly between the Blue Nile and White Nile; calves deep red and turning white as adults. The LRRD 2006 abstract (via WebFetch): in Butana and Kenana areas, cattle are central to mixed crop-livestock systems, milk gives regular cash income and home consumption, and low milk yields reflect harsh production conditions."
+		}
+	},
+	"origin": {
+		"regions": ["SD"],
+		"place": "The Kenana area of central Sudan, between the Blue Nile and White Nile, south of Butana",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Butana cattle", "url": "https://en.wikipedia.org/wiki/Butana_cattle"}
+			],
+			"text": "Wikipedia's Butana cattle article places Kenana between the Blue Nile and White Nile in Sudan. The page gives no formation date for the breed, so none is recorded."
+		}
+	},
+	"head": [
+		{
+			"count": 1500000,
+			"year": 1999,
+			"where": "SD",
+			"sources": {
+				"links": [
+					{"name": "Musa, Peters and Ahmed 2006, LRRD 18(12)", "url": "https://lrrd.org/lrrd18/12/musa18177.htm"}
+				],
+				"text": "The LRRD 2006 paper gives the Kenana population as 1.5 million head, citing Rege 1999; it classes the breed as not at risk. The WebSearch text also reports a 1994 figure of 1,500,000 (DAD-IS 2005) and a 3 million estimate from a 2019 Gezira Journal paper with no clear date; those are not recorded here as they were not read on a page opened directly."
+			}
+		}
+	],
+	"yield": {
+		"perLactation": {"min": 599, "max": 1932},
+		"lactationDays": {"min": 202.5, "max": 202.5},
+		"where": "SD",
+		"year": 2006,
+		"sources": {
+			"links": [
+				{"name": "Musa, Peters and Ahmed 2006, LRRD 18(12)", "url": "https://lrrd.org/lrrd18/12/musa18177.htm"}
+			],
+			"text": "From the LRRD 2006 paper (opened via WebFetch): estimated field lactation milk yield 598.73 kg (min); Table 11 gives lactation length 202.50 ± 4.50 days for 176 cows; the paper also cites a station yield of 1423.58 ± 551.70 kg per lactation at Um-Benein (El-Habeeb 1991). The maximum of 1932 kg is the average from a 28-study meta-analysis as reported in WebSearch text, not read on a page opened directly; it is a range of averages across settings, not a single survey. The year is the publication year, as the field survey year is not stated in the page read. Per-year yield is not given."
+		}
+	},
+	"purposes": {
+		"purposes": ["dairy"],
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Butana cattle", "url": "https://en.wikipedia.org/wiki/Butana_cattle"}
+			],
+			"text": "Wikipedia's Butana cattle article calls the Butana and Kenana 'dairy breeds', unlike Boran, Baggara and Fung cattle."
+		}
+	},
+	"risk": {
+		"status": "not at risk",
+		"year": 2006,
+		"sources": {
+			"links": [
+				{"name": "Musa, Peters and Ahmed 2006, LRRD 18(12)", "url": "https://lrrd.org/lrrd18/12/musa18177.htm"}
+			],
+			"text": "The LRRD 2006 paper states the Kenana population is 1.5 million and that the breed is classed as not at risk. The paper's own citation is to Rege 1999 and DAD-IS. The year is the publication year. The WebSearch text also notes heavy crossbreeding with other breeds over 2-3 decades, which is not a risk status."
+		}
+	},
+	"facts": [
+		{
+			"k": "Coat",
+			"v": "Calves are deep red and turn white as adults, the breed's distinguishing trait.",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: Butana cattle", "url": "https://en.wikipedia.org/wiki/Butana_cattle"}
+				],
+				"text": "Wikipedia's Butana cattle article: 'Kenana calves are also deep red but turn white as adults'."
+			}
+		},
+		{
+			"k": "Reputation",
+			"v": "Wikipedia describes Butana and Kenana as 'by far the best dairy breeds in Africa'; this is a claim in that article, not a measured ranking.",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: Butana cattle", "url": "https://en.wikipedia.org/wiki/Butana_cattle"}
+				],
+				"text": "Wikipedia's Butana cattle article, quoted as its claim. No independent comparison was read to support it."
+			}
+		},
+		{
+			"k": "Reproduction",
+			"v": "In the Kenana area survey, cows calved first at about 4.23 years and had a calving interval of about 17 months.",
+			"sources": {
+				"links": [
+					{"name": "Musa, Peters and Ahmed 2006, LRRD 18(12)", "url": "https://lrrd.org/lrrd18/12/musa18177.htm"}
+				],
+				"text": "LRRD 2006 Table 11 (via WebFetch): age at first calving 4.23 ± 0.05 years; calving interval 17.01 ± 0.39 months; n not stated for these figures in the excerpt read."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "No taxon (breeds only if one exists; none found). No origin formation date found. No composition (fat, protein, lactose, solids) found. No per-year yield found. The 1960 Alim paper (J. Agric. Sci., 55(2)) gives 338 gal in 224 days, unit conversion unclear, so not recorded. A 2019 Gezira Journal figure of about 3 million head was seen only in search text, and the current DAD-IS record was not read because the FAO search did not return it. The 2006 LRRD yield figures come from a small 2006 field survey of 90 owners, not a national recording scheme."
+}

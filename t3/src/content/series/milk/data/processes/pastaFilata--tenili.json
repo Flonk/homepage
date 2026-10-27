@@ -19,36 +19,11 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "separate",
-				"off": "cream",
-				"by": "gravity"
-			},
-			{
-				"type": "custom",
-				"name": "rest",
-				"seconds": {
-					"min": 86400,
-					"max": 86400
-				}
-			},
-			{
-				"type": "custom",
-				"name": "stretch",
-				"seconds": {
-					"max": 1500
-				},
-				"note": "Folded while dipped in hot whey."
-			},
-			{
 				"type": "heat",
 				"does": "cool"
 			},
 			{
 				"type": "salt",
-				"seconds": {
-					"min": 900,
-					"max": 900
-				},
 				"how": "brine"
 			},
 			{
@@ -69,12 +44,13 @@
 				"seconds": {
 					"min": 86400,
 					"max": 172800
-				}
+				},
+				"minor": true
 			},
 			{
 				"type": "custom",
 				"name": "coat",
-				"note": "With the skimmed cream."
+				"note": "The cheese is coated with skimmed cream."
 			},
 			{
 				"type": "ferment",
@@ -84,7 +60,7 @@
 					"max": 5184000,
 					"about": true
 				},
-				"note": "Stuffed into a clay pot stood upside down on ash."
+				"note": "The cheese is stuffed into a clay pot, which stands upside down on ash."
 			}
 		],
 		"sources": {

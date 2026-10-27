@@ -23,9 +23,6 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "homogenise"
-			},
-			{
 				"type": "ferment",
 				"does": "incubate",
 				"kinds": [
@@ -63,8 +60,7 @@
 				"pH": {
 					"min": 4,
 					"max": 4.7
-				},
-				"note": "Long-set process takes 12–20 h."
+				}
 			}
 		],
 		"text": "Traditionally raw milk was left to thicken by itself.",

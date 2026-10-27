@@ -2,8 +2,9 @@ import { CORNER, headLength, type Node } from '../client/base';
 import type { StepLabelSizes } from './types';
 
 /* A parent with this many tables (cheese types with their panels) or
-   more sets them out below all else made from it, softest to hardest, in
-   rows of about as many each, and feeds them by a bus: one arrow out of
+   more sets them out below all else made from it, the quickest ripened
+   first, in rows each one shorter than the one above, and feeds them by
+   a bus: one arrow out of
    its pill's right side below its trunk, down before the trunk and on
    down beside the rows. At each row its strands turn off along over it,
    each dropping off into the top of its table's header. The rows' strands
@@ -12,12 +13,16 @@ import type { StepLabelSizes } from './types';
    leftmost table's lowest, so it drops off first and crosses none. */
 export const BUS_LEAST = 3;
 const BUS_ROWS = 3;
-// How firm, by its cheeses: the middle of their firmness, then of their ripening.
-const FIRMNESS = ['fresh', 'soft', 'semi-soft', 'semi-hard', 'hard', 'extra-hard'];
-export const hardness = (cheeses: Node[]) => {
-	const firm = cheeses.flatMap((k) => (k.axes ? [FIRMNESS.indexOf(k.axes.firm)] : [])).sort((a, b) => a - b);
+/* How long ripened, by its cheeses: the mean of the middles of their
+   ripening, the quickest and slowest tenth left out, so one aged far
+   longer than the rest (as among the pasta filata) does not drag
+   the whole along. */
+const TRIM = 0.1;
+export const ripening = (cheeses: Node[]) => {
 	const days = cheeses.flatMap((k) => (k.axes ? [(k.axes.days[0] + k.axes.days[1]) / 2] : [])).sort((a, b) => a - b);
-	return (firm[Math.floor(firm.length / 2)] ?? 0) + Math.min(1, (days[Math.floor(days.length / 2)] ?? 0) / 1000);
+	const cut = Math.floor(days.length * TRIM);
+	const kept = days.slice(cut, days.length - cut);
+	return kept.length ? kept.reduce((t, d) => t + d, 0) / kept.length : 0;
 };
 
 /* Where its lines go, from where all is placed: the vertical out of the
@@ -25,8 +30,9 @@ export const hardness = (cheeses: Node[]) => {
    left the more) and in its row's bus (lower the more), and each row's
    room between its bus and its tables for the drop, its head, its label. */
 export const busGeometry = (p: Node, tables: Node[], lineWidth: (n: Node) => number, labelHeight: (n: Node) => number, straightRun: number) => {
-	const perRow = Math.ceil(tables.length / BUS_ROWS);
-	const rows = Array.from({ length: Math.ceil(tables.length / perRow) }, (_, i) => tables.slice(i * perRow, (i + 1) * perRow));
+	// Each row one shorter than the one above it (6, 5, 4 for fifteen), the first as short as that lets it be.
+	const rows: Node[][] = [];
+	for (let at = 0, n = Math.ceil(tables.length / BUS_ROWS + (BUS_ROWS - 1) / 2); at < tables.length; at += n, n = Math.max(1, n - 1)) rows.push(tables.slice(at, at + n));
 	const widthOf = (ks: Node[]) => ks.reduce((t, k) => t + lineWidth(k), 0);
 	const width = widthOf(tables);
 	// Down once clear of the pill by as much as any line runs straight out of it, round as tight as all its strands together let it.

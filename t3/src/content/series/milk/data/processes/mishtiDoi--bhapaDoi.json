@@ -15,49 +15,5 @@
 			}
 		],
 		"text": "The table, the facts and the words on how it is made, from these."
-	},
-	"processing": {
-		"steps": [
-			{
-				"type": "drain",
-				"by": "hang",
-				"seconds": {
-					"min": 7200,
-					"max": 7200,
-					"about": true
-				}
-			},
-			{
-				"type": "add",
-				"what": "sugar",
-				"note": "Or sweetened condensed milk, or nolen gur."
-			},
-			{
-				"type": "heat",
-				"does": "cook",
-				"seconds": {
-					"min": 1200,
-					"max": 1200,
-					"about": true
-				}
-			},
-			{
-				"type": "heat",
-				"does": "cool",
-				"seconds": {
-					"min": 10800,
-					"max": 14400
-				}
-			}
-		],
-		"sources": {
-			"links": [
-				{
-					"name": "Jeyashri's Kitchen (recipe)",
-					"url": "https://www.jeyashriskitchen.com/bhapa-doi-recipe-bengali-steamed-yogurt/"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		}
 	}
 }

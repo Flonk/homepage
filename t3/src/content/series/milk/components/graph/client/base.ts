@@ -1,4 +1,5 @@
 import type * as S from '../schema';
+import { SIZE_EXPONENT, MILK } from '../settings';
 
 /* A product, an example or a branch point: as the page is given it (see
    PageNode), and as it is laid out here, where it is, how big, how many
@@ -11,6 +12,8 @@ export type Node = S.PageNode & {
 	// Steps of making from milk, a treatment counting light (see light in the schema's Node).
 	dist: number;
 	hub?: true;
+	// A story to tell of it, behind the T3 bubble on its pill (see stories/index.ts).
+	story?: true;
 };
 export type Made = S.Payload['links'][number];
 export type Arrow = { source: Node; target: Node; made: boolean };
@@ -45,13 +48,9 @@ export const LINK_ROOM = LINK_MARK + 6;
 export const APART = 40;
 // The room left under each pill, between it and the next row.
 export const ROW_GAP = 8;
-/* A product is drawn the bigger the more is made from it, all the way
-   down: as a little more than the square root of one more than that, so
-   a product with nothing under it is 1×, three under it about 2.1×,
-   fifteen 4.6×. Milk is twice what that makes it. The picture is meant to be zoomed into: the great
-   branch points read from afar, the ends of the branches close up. */
-export const sizeOf = (made: number) => (1 + made) ** 0.55;
-export const MILK = 2;
+// A product drawn the bigger the more is made from it, all the way down (see settings.ts).
+export const sizeOf = (made: number) => (1 + made) ** SIZE_EXPONENT;
+export { MILK };
 /* How thick a line is for each thing at the end of it: a line carries
    everything made down its branch, so it is this many times as thick as
    that is many, and a line out of a product splits into its children's
@@ -68,8 +67,6 @@ export const MARGIN = 16;
 /* How far in it can be zoomed: until the smallest words, a step's table
    on a thin arrow, read. */
 export const MAX_ZOOM = 2000;
-// How big a cheese is drawn on the map (see layWorldMap), against a product's least.
-export const MAP_PILL = 0.06;
 /* A ruler in a kind (see Product), along the bottom of its pill: this
    long a unit, room either end for what it measures; its products this far under it and their rows this far apart, and products
    side by side this far apart. */

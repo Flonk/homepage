@@ -1,0 +1,123 @@
+{
+	"label": "Red Sindhi",
+	"aka": [
+		"Las Bela",
+		"Malir",
+		"Sindhi",
+		"Red Karachi"
+	],
+	"names": {
+		"links": [
+			{
+				"name": "Red Sindhi (Wikipedia)",
+				"url": "https://en.wikipedia.org/wiki/Red_Sindhi"
+			}
+		],
+		"text": "Taken from the infobox \"Other names\" field and the lead of the Wikipedia article. Red Karachi appears only in the infobox."
+	},
+	"kind": "breed",
+	"parent": "zebuCattle",
+	"about": {
+		"text": "A zebu dairy breed believed to come from western Sindh and the Las Bela area of Balochistan, now in Pakistan. It is used for dairy and has been crossed with Jersey cattle in several countries to combine tropical adaptations with higher milk production.",
+		"sources": {
+			"links": [
+				{
+					"name": "Red Sindhi (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Red_Sindhi"
+				}
+			],
+			"text": "Wikipedia article, read on WebFetch: origin, dairy use, and the Jersey crossbreeding."
+		}
+	},
+	"origin": {
+		"regions": ["PK"],
+		"place": "Believed to come from western Sindh and the Las Bela area of Balochistan, in undivided India and now in Pakistan.",
+		"sources": {
+			"links": [
+				{
+					"name": "Red Sindhi (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Red_Sindhi"
+				}
+			],
+			"text": "Wikipedia article, read on WebFetch: \"believed to originate in western Sindh and in the Las Bela area of Balochistan\". No formation dates given."
+		}
+	},
+	"yield": {
+		"perLactation": {
+			"min": 1188,
+			"max": 1675
+		},
+		"lactationDays": {
+			"min": 270,
+			"max": 270
+		},
+		"sources": {
+			"links": [
+				{
+					"name": "Red Sindhi (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Red_Sindhi"
+				},
+				{
+					"name": "Dairy Knowledge Portal: Red Sindhi",
+					"url": "http://dairyknowledge.in/article/red-sindhi"
+				}
+			],
+			"text": "Wikipedia article, read on WebFetch, quoting the Dairy Knowledge Portal: \"Milk production figures vary from 1188 to 1675 kg in a lactation of 270 days\". The country and year of the figures are not stated."
+		}
+	},
+	"purposes": {
+		"purposes": ["dairy"],
+		"sources": {
+			"links": [
+				{
+					"name": "Red Sindhi (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Red_Sindhi"
+				}
+			],
+			"text": "Wikipedia article: dairy is the listed use. Crossbreeding for beef and dual-purpose cattle in tropical countries is mentioned, but draught use is not."
+		}
+	},
+	"risk": {
+		"status": "not at risk",
+		"year": 2007,
+		"sources": {
+			"links": [
+				{
+					"name": "FAO Global Databank list of breeds (2007)",
+					"url": "https://web.archive.org/web/20200623201209/http://www.fao.org/3/a1250e/annexes/List%20of%20breeds%20documented%20in%20the%20Global%20Databank%20for%20Animal%20Genetic%20Resources/List_breeds.pdf"
+				}
+			],
+			"text": "Wikipedia article, read on WebFetch, gives \"no concern\" (FAO, 2007). That is recorded here as \"not at risk\"."
+		}
+	},
+	"facts": [
+		{
+			"k": "Crossbreeding",
+			"v": "Crossed with Jersey cattle in Australia, Brazil, India, Sri Lanka, the United States and elsewhere, to combine tropical adaptations with higher milk production.",
+			"sources": {
+				"links": [
+					{
+						"name": "Red Sindhi (Wikipedia)",
+						"url": "https://en.wikipedia.org/wiki/Red_Sindhi"
+					}
+				],
+				"text": "Wikipedia article, read on WebFetch. The article gives this in its breeding section and cites Ahlawat et al. (2007) and McDowell et al. (1961) for the crosses."
+			}
+		},
+		{
+			"k": "Herd replacement",
+			"v": "Some Indian and Pakistani commercial dairies have been phasing out Red Sindhi herds in favour of Sahiwal bulls.",
+			"sources": {
+				"links": [
+					{
+						"name": "Red Sindhi (Wikipedia)",
+						"url": "https://en.wikipedia.org/wiki/Red_Sindhi"
+					}
+				],
+				"text": "Wikipedia article, read on WebFetch. The article gives this without a specific citation."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "No formation dates. No population figure found in the article. No fat, protein, lactose or solids figures. The article's yield is not tied to a country or year."
+}

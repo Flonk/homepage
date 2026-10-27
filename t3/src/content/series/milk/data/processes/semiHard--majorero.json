@@ -6,7 +6,7 @@
 		"majorero"
 	],
 	"variant": true,
-	"step": "press, salt, rub",
+	"step": "salt, rub",
 	"sources": {
 		"links": [
 			{
@@ -19,29 +19,16 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "coagulate",
-				"by": "rennet",
-				"seconds": {
-					"min": 3600,
-					"max": 3600,
-					"about": true
-				},
-				"note": "With lamb rennet."
-			},
-			{
 				"type": "custom",
 				"name": "beat and drain"
-			},
-			{
-				"type": "press",
-				"note": "Pressed heavily."
 			},
 			{
 				"type": "salt",
 				"how": "dry"
 			},
 			{
-				"type": "dry"
+				"type": "dry",
+				"minor": true
 			},
 			{
 				"type": "ferment",
@@ -50,7 +37,7 @@
 			{
 				"type": "custom",
 				"name": "rub",
-				"note": "With oil, gofio or paprika, after ageing."
+				"note": "The cheese is coated with oil, gofio (a toasted cereal flour), or paprika after ageing."
 			}
 		],
 		"sources": {

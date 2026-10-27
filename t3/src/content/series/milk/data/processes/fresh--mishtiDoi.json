@@ -27,13 +27,12 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "evaporate",
-				"note": "Boiled down by about 20 %."
+				"type": "evaporate"
 			},
 			{
 				"type": "add",
 				"what": "sugar",
-				"note": "Or gur or date molasses."
+				"note": "Jaggery (gur) or date molasses may be used instead."
 			},
 			{
 				"type": "ferment",
@@ -61,7 +60,7 @@
 					"max": 43200,
 					"about": true
 				},
-				"note": "Set at 37 °C in trials, traditionally overnight in earthenware pots."
+				"note": "The milk is soured by a starter of dahi (yoghurt), traditionally overnight in earthenware pots."
 			}
 		],
 		"text": "The FAO route adds 6.0–6.5 % cane sugar before boiling, cools to 40–45 °C and incubates for 12–15 h.",

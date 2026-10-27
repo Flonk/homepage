@@ -18,11 +18,11 @@
 					"min": 120,
 					"max": 120
 				},
-				"note": "Heated to denature the protein so the enzymes reach it."
+				"note": "The protein is unfolded by the heat, so the enzymes can reach it."
 			},
 			{
 				"type": "custom",
-				"name": "hydrolyse",
+				"name": "break down",
 				"temperature": {
 					"min": 55,
 					"max": 55
@@ -31,11 +31,11 @@
 					"min": 10800,
 					"max": 10800
 				},
-				"note": "Alcalase, a bacterial protease, cuts the protein first."
+				"note": "The protein is first cut by Alcalase, an enzyme made by bacteria."
 			},
 			{
 				"type": "custom",
-				"name": "hydrolyse",
+				"name": "break down",
 				"temperature": {
 					"min": 55,
 					"max": 55
@@ -44,21 +44,21 @@
 					"min": 10800,
 					"max": 10800
 				},
-				"note": "Trypsin follows for a further 3 hours, so hydrolysis takes 6 hours in all."
+				"note": "The whey protein is broken down by trypsin, another enzyme, for a further 3 hours, so the cutting takes 6 hours in all."
 			},
 			{
 				"type": "separate",
 				"off": "solids",
 				"by": "centrifuge",
-				"note": "Centrifuged to clear the hydrolysate."
+				"of": "mix"
 			},
 			{
 				"type": "ultrafilter",
-				"note": "Passed through a membrane with a 10 kDa cut-off, and the permeate kept."
+				"of": "mix"
 			},
 			{
 				"type": "dry",
-				"note": "Spray-dried where it is sold as a powder."
+				"note": "The hydrolysate is dried by spraying into hot air, if it is sold as a powder."
 			}
 		],
 		"sources": {

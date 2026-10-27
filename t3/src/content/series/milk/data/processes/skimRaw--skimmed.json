@@ -6,7 +6,7 @@
 		"skimmed"
 	],
 	"step": "pasteurise",
-	"text": "The cream is spun off the warm raw milk, which leaves almost no fat; what is left is then pasteurised like any milk. The fat on the label is whatever the dairy leaves in.",
+	"text": "Once the cream is spun off the warm raw milk almost no fat is left; what is left is then pasteurised like any milk. The fat on the label is whatever the dairy leaves in.",
 	"sources": {
 		"links": [
 			{
@@ -27,24 +27,6 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "heat",
-				"temperature": {
-					"min": 55,
-					"max": 65
-				},
-				"note": "Before the milk goes to the separator.",
-				"does": "heat"
-			},
-			{
-				"type": "separate",
-				"off": "cream",
-				"by": "centrifuge",
-				"fat": {
-					"min": 0.04,
-					"max": 0.07
-				}
-			},
-			{
 				"type": "pasteurise",
 				"temperature": {
 					"min": 72,
@@ -53,7 +35,8 @@
 				"seconds": {
 					"min": 15,
 					"max": 15
-				}
+				},
+				"note": "The milk undergoes heat treatment to kill harmful bacteria like Listeria, Salmonella and E. coli."
 			}
 		],
 		"sources": {

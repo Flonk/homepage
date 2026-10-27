@@ -11,13 +11,14 @@
 		"steps": [
 			{
 				"type": "custom",
-				"name": "stir"
+				"name": "stir",
+				"minor": true
 			},
 			{
 				"type": "separate",
 				"off": "whey",
 				"by": "centrifuge",
-				"note": "By nozzle separator, or as the permeate of ultrafiltration."
+				"of": "yoghurt"
 			}
 		],
 		"sources": {

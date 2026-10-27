@@ -8,15 +8,6 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "coagulate",
-				"by": "acid",
-				"pH": {
-					"min": 4.6,
-					"max": 4.7
-				},
-				"note": "The acid of soured milk sets the casein without rennet."
-			},
-			{
 				"type": "cut",
 				"how": "cut",
 				"note": "The set milk is broken into large portions."
@@ -24,7 +15,7 @@
 			{
 				"type": "heat",
 				"does": "cook",
-				"note": "Lightly warmed to control the moisture."
+				"note": "The curd is lightly warmed, to control its moisture."
 			},
 			{
 				"type": "drain",

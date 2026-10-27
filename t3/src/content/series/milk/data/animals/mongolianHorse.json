@@ -1,0 +1,60 @@
+{
+	"label": "Mongolian horse",
+	"aka": ["Mongol horse", "Mongolian Horse"],
+	"names": {
+		"links": [{"name": "Wikipedia: Mongolian horse", "url": "https://en.wikipedia.org/wiki/Mongolian_horse"}],
+		"text": "Alternate names as given in the research input. The fetched article text did not list them, so the page does not confirm them; 'Mongolian horse' is the article title."
+	},
+	"kind": "breed",
+	"parent": "horse",
+	"about": {
+		"text": "The native horse of Mongolia and northern China (Inner Mongolia). In summer its mares are milked six times a day, and the milk is made into airag and kumis.",
+		"sources": {
+			"links": [{"name": "Wikipedia: Mongolian horse", "url": "https://en.wikipedia.org/wiki/Mongolian_horse"}],
+			"text": "Article text: mares milked six times a day in summer (once every two hours); milk becomes airag and kumis; country of origin Mongolia and northern China (Inner Mongolia)."
+		}
+	},
+	"origin": {
+		"regions": ["MN", "CN"],
+		"place": "Mongolia and Inner Mongolia, China",
+		"sources": {
+			"links": [{"name": "Wikipedia: Mongolian horse", "url": "https://en.wikipedia.org/wiki/Mongolian_horse"}],
+			"text": "Country of origin given as Mongolia and northern China (Inner Mongolia). The article gives no formation dates; it says the breed is largely unchanged since Genghis Khan's time, which is not a date range and is not used here."
+		}
+	},
+	"yield": {
+		"perYear": {"min": 300, "max": 300},
+		"year": 1984,
+		"sources": {
+			"links": [{"name": "Wikipedia: Mongolian horse", "url": "https://en.wikipedia.org/wiki/Mongolian_horse"}],
+			"text": "The article gives 0.11 lb of milk per milking and a yearly production of 662 lb, citing Cheng 1984 (FAO). 662 lb converted to kg is about 300 kg; the conversion is mine, not the source's. Year is that of the cited source. Lactation length and the place of the measurement are not given."
+		}
+	},
+	"purposes": {
+		"purposes": ["dairy", "riding"],
+		"sources": {
+			"links": [{"name": "Wikipedia: Mongolian horse", "url": "https://en.wikipedia.org/wiki/Mongolian_horse"}],
+			"text": "Dairy: the milk becomes airag and kumis. Riding: the article says nomads of the central Asian steppes are documented as riding horses from 2000 BC."
+		}
+	},
+	"facts": [
+		{
+			"k": "Winter losses",
+			"v": "In winter 2009 to 2010, 188,270 Mongol horses died.",
+			"sources": {
+				"links": [{"name": "Wikipedia: Mongolian horse", "url": "https://en.wikipedia.org/wiki/Mongolian_horse"}],
+				"text": "Article text: 'Winter 2009–2010: 188,270 Mongol horses died.'"
+			}
+		},
+		{
+			"k": "Climate",
+			"v": "Kept outdoors in temperatures from 30 °C in summer to −40 °C in winter, losing about 30% of body weight in winter and early spring.",
+			"sources": {
+				"links": [{"name": "Wikipedia: Mongolian horse", "url": "https://en.wikipedia.org/wiki/Mongolian_horse"}],
+				"text": "Article text: temperature range 30 °C (86 °F) in summer to −40 °C in winter; winter and early spring weight loss about 30% of body weight. No year given."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "Current population and its year, the DAD-IS risk status, lactation length and milk composition were not found in the article. A 2021 Journal of Equine Science study of grazing Mongolian mares (doi 10.1294/jes.32.91) turned up in search, but its full text could not be opened (the page showed only the abstract), so its figures are not used."
+}

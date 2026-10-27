@@ -8,8 +8,9 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "acidify",
-				"note": "Acid is added to bring the whey to a lower pH before and during the hold, so the whey protein will come out."
+				"type": "coagulate",
+				"by": "acid",
+				"of": "whey"
 			},
 			{
 				"type": "heat",
@@ -22,7 +23,7 @@
 					"min": 180,
 					"max": 240
 				},
-				"note": "The whey is warmed in a heat exchanger, then taken up to temperature by direct steam injection and held in a tube while the protein precipitates."
+				"note": "The whey is warmed in a heat exchanger, then steam is blown into it to reach temperature, and it is held in a tube while the protein comes out of solution."
 			},
 			{
 				"type": "heat",
@@ -37,7 +38,7 @@
 				"type": "separate",
 				"off": "solids",
 				"by": "centrifuge",
-				"note": "A solids-ejecting centrifuge takes out the soft coagulum as a 12 to 15 percent solids concentrate, 90 to 95 percent of the coagulable protein."
+				"of": "whey"
 			}
 		],
 		"sources": {

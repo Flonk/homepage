@@ -23,42 +23,23 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "coagulate",
-				"by": "rennet",
-				"temperature": {
-					"min": 30,
-					"max": 36
-				}
-			},
-			{
-				"type": "cut",
-				"how": "cut",
-				"note": "Cut twice to hazelnut size."
-			},
-			{
 				"type": "mould",
-				"seconds": {
-					"min": 36000
-				}
+				"note": "The cheese is kept in the mould for at least 10 h."
 			},
 			{
 				"type": "salt",
-				"how": "dry",
-				"seconds": {
-					"min": 14400,
-					"max": 18000
-				}
+				"how": "dry"
 			},
 			{
 				"type": "wash",
 				"what": "cheese",
 				"in": "hot salted water",
-				"note": "After 10–12 h."
+				"note": "The cheese is washed after 10–12 h."
 			},
 			{
 				"type": "custom",
 				"name": "stack",
-				"note": "Into the tower."
+				"note": "The cheese is put into the tower."
 			},
 			{
 				"type": "ferment",

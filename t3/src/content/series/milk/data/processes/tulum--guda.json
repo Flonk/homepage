@@ -19,32 +19,13 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "drain",
-				"by": "sieve",
-				"note": "Through herbs."
-			},
-			{
-				"type": "coagulate",
-				"by": "rennet",
-				"seconds": {
-					"min": 3600,
-					"max": 3600
-				},
-				"note": "Covered in felt to keep the milk warm."
-			},
-			{
-				"type": "drain",
-				"by": "cloth",
-				"note": "Squeezed in a linen bag."
-			},
-			{
 				"type": "salt",
-				"note": "Packed in a wineskin with salt between layers, air pressed out."
+				"note": "The cheese is packed in a wineskin with salt between the layers, and the air is pressed out."
 			},
 			{
 				"type": "custom",
 				"name": "turn",
-				"note": "Three times daily for the first days."
+				"note": "The cheese is turned three times daily for the first days."
 			},
 			{
 				"type": "ferment",

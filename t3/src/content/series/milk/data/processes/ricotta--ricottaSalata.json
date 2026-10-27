@@ -14,40 +14,13 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "coagulate",
-				"by": "acid-heat",
-				"temperature": {
-					"min": 90,
-					"max": 90,
-					"about": true
-				},
-				"note": "Buffalo whey with a little whey starter from mozzarella is heated to about 90 °C, where its albumins flocculate."
-			},
-			{
-				"type": "salt",
-				"note": "Salt, 2 kg per 100 litres of whey, goes into the kettle."
-			},
-			{
 				"type": "mould",
 				"note": "The ricotta is taken off as it floats and filled into baskets."
 			},
 			{
-				"type": "drain",
-				"seconds": {
-					"min": 14400,
-					"max": 18000
-				},
-				"temperature": {
-					"min": 4,
-					"max": 4,
-					"about": true
-				},
-				"note": "It drains 4–5 hours in a cold room."
-			},
-			{
 				"type": "salt",
 				"how": "dry",
-				"note": "The forms are salted a second time by sprinkling, on wooden boards in the cold room."
+				"note": "The cheeses are salted by sprinkling, on wooden boards in the cold room."
 			},
 			{
 				"type": "ferment",
@@ -56,7 +29,7 @@
 					"min": 2592000,
 					"max": 10368000
 				},
-				"note": "It ripens on wooden boards in a cold room or a dry, cold cellar, 120 days for the buffalo ricotta and 30–90 days given for sheep's."
+				"note": "The ricotta is ripened on wooden boards in a cold room or a dry, cold cellar, for 120 days for buffalo ricotta and 30–90 days for sheep's."
 			}
 		],
 		"sources": {

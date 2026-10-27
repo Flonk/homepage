@@ -1,0 +1,108 @@
+{
+	"label": "Ayrshire",
+	"aka": ["Dunlop", "Cunningham"],
+	"names": {
+		"links": [
+			{"name": "Ayrshire (cattle), Wikipedia", "url": "https://en.wikipedia.org/wiki/Ayrshire_(cattle)"}
+		],
+		"text": "The former names Dunlop and Cunningham are given on the Wikipedia page as earlier names of the breed, all within County Ayr, before it took the name Ayrshire."
+	},
+	"kind": "breed",
+	"parent": "taurineCattle",
+	"about": {
+		"text": "The Ayrshire is a dairy breed from Ayrshire in south-western Scotland, recognised as a distinct breed by the Highland and Agricultural Society in 1814. Its milk is valued for its high fat content, which Canadian pay systems reward. Ayrshires are also kept in the United States and Canada, where Canada had it as the second most popular dairy breed in 2001.",
+		"sources": {
+			"links": [
+				{"name": "Ayrshire (cattle), Wikipedia", "url": "https://en.wikipedia.org/wiki/Ayrshire_(cattle)"}
+			],
+			"text": "Read from the Wikipedia page: origin in Ayrshire, the 1814 recognition by the Highland and Agricultural Society, the Canadian pay systems that reward high-fat milk, and the Canadian ranking (second behind Holstein in 2001)."
+		}
+	},
+	"origin": {
+		"regions": ["GB"],
+		"place": "Ayrshire, south-western Scotland",
+		"sources": {
+			"links": [
+				{"name": "Ayrshire (cattle), Wikipedia", "url": "https://en.wikipedia.org/wiki/Ayrshire_(cattle)"}
+			],
+			"text": "The Wikipedia page says the breed originated in the county of Ayrshire in Scotland before 1800."
+		}
+	},
+	"head": [
+		{
+			"count": 63356,
+			"year": 2008,
+			"where": "GB",
+			"sources": {
+				"links": [
+					{"name": "Ayrshire (cattle), Wikipedia", "url": "https://en.wikipedia.org/wiki/Ayrshire_(cattle)"}
+				],
+				"text": "The page says that in 2008, 63,356 Ayrshire cattle were registered in the United Kingdom. This is a registration count, not a total population, and the 2008 date is old."
+			}
+		},
+		{
+			"count": 28000,
+			"year": 2001,
+			"where": "US",
+			"sources": {
+				"links": [
+					{"name": "Ayrshire (cattle), Wikipedia", "url": "https://en.wikipedia.org/wiki/Ayrshire_(cattle)"}
+				],
+				"text": "The page says there were an estimated 28,000 Ayrshires in the United States in 2001."
+			}
+		}
+	],
+	"composition": {
+		"fat": {"min": 4.24, "max": 4.24},
+		"protein": {"min": 3.33, "max": 3.33},
+		"sources": {
+			"links": [
+				{"name": "The Ayrshire Breed, Ayrshire Cattle Society", "url": "https://www.ayrshirescs.org/society/breed"}
+			],
+			"text": "Figures taken from WebSearch result text quoting the Ayrshire society's statement of NBDC production trends from 09/21: the breed averages 4.24% butterfat and 3.33% protein from about 11,000 milk-recorded lactating females in the UK. The search text did not show the page itself, so these figures come from the search snippet."
+		}
+	},
+	"purposes": {
+		"purposes": ["dairy"],
+		"sources": {
+			"links": [
+				{"name": "List of dairy cattle breeds, Wikipedia", "url": "https://en.wikipedia.org/wiki/List_of_dairy_cattle_breeds"}
+			],
+			"text": "The Wikipedia list places Ayrshire among dairy cattle breeds."
+		}
+	},
+	"facts": [
+		{
+			"k": "Milk recorded average",
+			"v": "The UK breed average is about 7,249 kg of milk, 4.24% butterfat and 3.33% protein from roughly 11,000 milk-recorded lactating females; the top 10% average over 9,668 kg, with 4.91% fat and 3.63% protein.",
+			"sources": {
+				"links": [
+					{"name": "The Ayrshire Breed, Ayrshire Cattle Society", "url": "https://www.ayrshirescs.org/society/breed"}
+				],
+				"text": "From WebSearch result text quoting the Ayrshire society (NBDC production trends from 09/21). The search text did not show the page itself. The 7,249 kg figure is not labelled as per lactation or per year in the source."
+			}
+		},
+		{
+			"k": "Recognition",
+			"v": "The Highland and Agricultural Society recognised the Ayrshire as a distinct breed in 1814.",
+			"sources": {
+				"links": [
+					{"name": "Ayrshire (cattle), Wikipedia", "url": "https://en.wikipedia.org/wiki/Ayrshire_(cattle)"}
+				],
+				"text": "The Wikipedia page states the 1814 recognition."
+			}
+		},
+		{
+			"k": "Earlier names",
+			"v": "The breed was formerly known as Dunlop, then Cunningham, before taking the name Ayrshire, all within County Ayr.",
+			"sources": {
+				"links": [
+					{"name": "Ayrshire (cattle), Wikipedia", "url": "https://en.wikipedia.org/wiki/Ayrshire_(cattle)"}
+				],
+				"text": "The Wikipedia page gives the former names. It also says some historians believe the breed originated in Holland, which is not established here."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "No DAD-IS risk status was found for the breed (a WebSearch for DAD-IS returned only a Finnish Ayrshire entry), so risk is left out. No lactation length or per-lactation figure from a country's recording was found, so the yield field is left out. The Wikipedia yield (12,000 lb a year) is flagged on the page as needing a better source and is not used. No formation date beyond before 1800 was found, so formed is left out. The head counts are old (2001 and 2008) and not current population figures."
+}

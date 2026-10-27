@@ -1,0 +1,148 @@
+{
+	"label": "Anatolian buffalo",
+	"aka": [
+		"Anadolu Mandası",
+		"Camız",
+		"Camış",
+		"Kömüş",
+		"Dombay"
+	],
+	"names": {
+		"links": [
+			{
+				"name": "Wikipedia: List of water buffalo breeds",
+				"url": "https://en.wikipedia.org/wiki/List_of_water_buffalo_breeds"
+			}
+		],
+		"text": "The list page gives Anadolu Mandası as the Turkish name, and Camız, Camış, Kömüş and Dombay as regional names."
+	},
+	"kind": "breed",
+	"parent": "riverBuffalo",
+	"about": {
+		"text": "The Anatolian buffalo is a Turkish water buffalo kept for milk and draught, mainly in the Marmara and Black Sea regions and in southern Turkey. It is classed as a Mediterranean-type buffalo.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: List of water buffalo breeds",
+					"url": "https://en.wikipedia.org/wiki/List_of_water_buffalo_breeds"
+				}
+			],
+			"text": "Stated on the list page: use as dairy and draught, the regions, and the Mediterranean-type classification."
+		}
+	},
+	"origin": {
+		"regions": [
+			"TR"
+		],
+		"place": "Turkey: the Marmara and Black Sea regions and south Turkey",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: List of water buffalo breeds",
+					"url": "https://en.wikipedia.org/wiki/List_of_water_buffalo_breeds"
+				}
+			],
+			"text": "The list page places the breed in 'the Marmara and Black Sea regions, and South Turkey'. No formation date is given."
+		}
+	},
+	"head": [
+		{
+			"count": 110000,
+			"year": 2004,
+			"where": "TR",
+			"sources": {
+				"links": [
+					{
+						"name": "FAO: Domestic buffalo breeds (ah847e01)",
+						"url": "https://fao.org/docrep/pdf/010/ah847e/ah847e01.pdf"
+					}
+				],
+				"text": "Found in WebSearch text only, not opened: a FAO buffalo breeds chapter lists about 110,000 Anatolian buffaloes, from 1999-2004 data. The year given is the end of that range."
+			}
+		}
+	],
+	"yield": {
+		"perLactation": {
+			"min": 763.99,
+			"max": 763.99
+		},
+		"lactationDays": {
+			"min": 262.63,
+			"max": 262.63
+		},
+		"where": "TR",
+		"year": 2017,
+		"sources": {
+			"links": [
+				{
+					"name": "Avesis: A research on milk yield, milk composition and body weights of Anatolian buffaloes",
+					"url": "https://avesis.yyu.edu.tr/yayin/0c4a18b0-4d31-465c-b370-28d73fd4ccf6/a-research-on-milk-yield-milk-composition-and-body-weights-of-anatolian-buffaloes"
+				}
+			],
+			"text": "Bitlis province, 1,448 Anatolian buffaloes, Indian Journal of Animal Research 2017. The abstract gives least-squares means of 763.99 +/- 18.66 kg lactation milk yield and 262.63 +/- 8.37 days lactation length. A search snippet of the same paper shows 163.99 kg, which looks like a typo."
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 7.09,
+			"max": 7.09
+		},
+		"protein": {
+			"min": 3.4,
+			"max": 3.4
+		},
+		"sources": {
+			"links": [
+				{
+					"name": "Avesis: A research on milk yield, milk composition and body weights of Anatolian buffaloes",
+					"url": "https://avesis.yyu.edu.tr/yayin/0c4a18b0-4d31-465c-b370-28d73fd4ccf6/a-research-on-milk-yield-milk-composition-and-body-weights-of-anatolian-buffaloes"
+				}
+			],
+			"text": "Bitlis study, 2017: fat 7.09 +/- 1.38%, protein 3.40 +/- 0.67%. Single-province figures."
+		}
+	},
+	"purposes": {
+		"purposes": [
+			"dairy",
+			"draught"
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: List of water buffalo breeds",
+					"url": "https://en.wikipedia.org/wiki/List_of_water_buffalo_breeds"
+				}
+			],
+			"text": "The list page gives the use as 'Dairy and draught'."
+		}
+	},
+	"risk": {
+		"status": "unknown",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: List of water buffalo breeds",
+					"url": "https://en.wikipedia.org/wiki/List_of_water_buffalo_breeds"
+				}
+			],
+			"text": "The list page gives no risk status. DAD-IS was not reachable (404), and a search did not find the breed's entry."
+		}
+	},
+	"facts": [
+		{
+			"k": "Herd trend",
+			"v": "Turkey's total water buffalo population is reported to have risen from about 84,000 to 142,000 over a decade, linked to a gene-resource protection programme. This is the national total, not the Anatolian breed alone.",
+			"sources": {
+				"links": [
+					{
+						"name": "PMC: Turkish water buffalo genetic resources (PMC8738919)",
+						"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8738919"
+					}
+				],
+				"text": "Found in WebSearch text only, not opened. The text cites FAO 2021 for the national total."
+			}
+		}
+	],
+	"confidence": "low",
+	"gaps": "No DAD-IS entry or risk status found. The only breed-level count (110,000) is a 1999-2004 figure from search text. No formation date. The yield and composition come from one province (Bitlis, 2017), and the same paper's 163.99 kg figure in a search snippet looks like a typo. Other Turkish studies gave different yields, but I did not open their pages, so they are not used."
+}

@@ -27,17 +27,6 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "pasteurise",
-				"temperature": {
-					"min": 75,
-					"max": 75
-				},
-				"seconds": {
-					"min": 15,
-					"max": 15
-				}
-			},
-			{
 				"type": "evaporate",
 				"under": "vacuum",
 				"solids": {
@@ -47,7 +36,7 @@
 			},
 			{
 				"type": "homogenise",
-				"note": "To cut the free fat in the powder."
+				"minor": true
 			},
 			{
 				"type": "heat",
@@ -56,11 +45,12 @@
 					"min": 10,
 					"max": 80
 				},
-				"note": "To set its viscosity before it is atomised."
+				"note": "The concentrate's thickness is fixed before it is sprayed.",
+				"minor": true
 			},
 			{
 				"type": "dry",
-				"note": "Sprayed into hot air that enters at 200–220 °C and leaves at 75–80 °C."
+				"note": "The milk is sprayed into hot air that enters at 200–220 °C and leaves at 75–80 °C."
 			}
 		],
 		"sources": {

@@ -36,12 +36,13 @@
 				"temperature": {
 					"min": 5,
 					"max": 5
-				}
+				},
+				"minor": true
 			},
 			{
 				"type": "custom",
 				"name": "freeze",
-				"note": "Batch-frozen with little air."
+				"note": "The base is frozen in batches, with little air in it."
 			}
 		],
 		"sources": {

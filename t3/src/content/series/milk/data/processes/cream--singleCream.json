@@ -5,7 +5,7 @@
 	"to": [
 		"singleCream"
 	],
-	"text": "Cream standardised to 18 % fat and pasteurised, not homogenised unless sold as extra-thick. Too lean to whip, it is poured.",
+	"text": "Cream standardised to 18 % fat, not homogenised unless sold as extra-thick. Too lean to whip, it is poured.",
 	"sources": {
 		"links": [
 			{
@@ -23,19 +23,7 @@
 					"min": 18,
 					"max": 18
 				},
-				"note": "Single cream is set to 18 % fat, too lean to whip."
-			},
-			{
-				"type": "pasteurise",
-				"temperature": {
-					"min": 85,
-					"max": 95
-				},
-				"seconds": {
-					"min": 15,
-					"max": 20
-				},
-				"note": "At this fat the handbook's coffee-cream heating of 85 to 95 °C for up to 15 to 20 seconds applies."
+				"of": "cream"
 			},
 			{
 				"type": "heat",
@@ -45,7 +33,7 @@
 					"max": 5,
 					"about": true
 				},
-				"note": "It is cooled to about 5 °C straight after heating."
+				"minor": true
 			}
 		],
 		"sources": {

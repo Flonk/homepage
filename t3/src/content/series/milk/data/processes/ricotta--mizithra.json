@@ -19,24 +19,9 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "heat",
-				"does": "heat",
-				"note": "A slow boil for a few minutes."
-			},
-			{
-				"type": "coagulate",
-				"by": "rennet",
-				"note": "With rennet, whey from a previous batch, or acid (lemon juice, vinegar, fresh fig sprig)."
-			},
-			{
-				"type": "drain",
-				"by": "hang",
-				"note": "The drip can curdle the next batch."
-			},
-			{
 				"type": "ferment",
 				"does": "ripen",
-				"note": "Only the salted and aged xynomizithra is ripened, and it turns drier, denser, saltier and more sour and is grated."
+				"note": "The salted, aged cheese is ripened, and it turns drier, denser, saltier and more sour before it is grated."
 			}
 		],
 		"sources": {

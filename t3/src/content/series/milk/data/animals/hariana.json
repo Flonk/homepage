@@ -1,0 +1,90 @@
+{
+	"label": "Hariana",
+	"aka": [
+		"Haryanvi",
+		"हरियाना"
+	],
+	"names": {
+		"links": [
+			{
+				"name": "Wikipedia: Hariana cattle",
+				"url": "https://en.wikipedia.org/wiki/Hariana_cattle"
+			}
+		],
+		"text": "The article's title line gives 'Hariana cattle (Haryanvi)', and its infobox gives the Hindi name हरियाना. Both were taken from the fetched page."
+	},
+	"kind": "breed",
+	"parent": "zebuCattle",
+	"about": {
+		"text": "A dual-purpose milk and draught breed of northern India, kept mainly in Haryana and nearby districts. Cows are fairly good milk yielders, giving 10 to 15 litres of milk a day, and the bulls are good at work.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Hariana cattle",
+					"url": "https://en.wikipedia.org/wiki/Hariana_cattle"
+				}
+			],
+			"text": "Taken from the fetched article: its region (Rohtak, Jhajjar, Karnal, Kurukshetra, Jind, Hisar, Nuh and Gurugram districts, and eastern Punjab), its description as 'an important dual-purpose, milk and draught, cattle breed of India', the daily yield, and the bulls' work. The article attributes the yield to The Times of India (2015)."
+		}
+	},
+	"origin": {
+		"regions": [
+			"IN"
+		],
+		"place": "Haryana and neighbouring districts of northern India",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Hariana cattle",
+					"url": "https://en.wikipedia.org/wiki/Hariana_cattle"
+				}
+			],
+			"text": "Districts named in the fetched article. The article's Pakistan navigation template lists Hariana as a Pakistani breed, but its text gives no Pakistani origin, so Pakistan is left out."
+		}
+	},
+	"purposes": {
+		"purposes": [
+			"dual-purpose",
+			"draught"
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Hariana cattle",
+					"url": "https://en.wikipedia.org/wiki/Hariana_cattle"
+				}
+			],
+			"text": "'An important dual-purpose, milk and draught, cattle breed of India', and 'bulls are good at work', from the fetched article."
+		}
+	},
+	"facts": [
+		{
+			"k": "Daily yield",
+			"v": "10 to 15 litres of milk a day, for comparison with 8.9 litres a day for crossbreds with Holstein Friesian, which the article cites.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Hariana cattle",
+						"url": "https://en.wikipedia.org/wiki/Hariana_cattle"
+					}
+				],
+				"text": "From the fetched article, which attributes the figures to The Times of India (2015)."
+			}
+		},
+		{
+			"k": "Appearance",
+			"v": "Medium to large, generally white to grey, with short horns and a narrow, long face.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Hariana cattle",
+						"url": "https://en.wikipedia.org/wiki/Hariana_cattle"
+					}
+				],
+				"text": "From the fetched article's description of the breed."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "Looked for a DAD-IS breed entry (WebSearch returned none for Hariana), so there is no population figure, no risk status, and no lactation yield or length. No composition figures and no founding dates were found: the Wikipedia article gives none, only that it is one of 75 known zebu breeds, citing Porter (1991). The yield figure is a daily one, so it is not put in the per-lactation field."
+}

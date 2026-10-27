@@ -27,7 +27,7 @@
 				"seconds": {
 					"max": 1800
 				},
-				"note": "By indirect heat, as direct steam clouds the emulsion."
+				"note": "The butter is warmed indirectly, as direct steam would make it cloudy."
 			},
 			{
 				"type": "separate",
@@ -40,7 +40,7 @@
 					"min": 90,
 					"max": 95
 				},
-				"note": "Vacuum dried to 0.1 % moisture or less (95–98 °C on the cream route)."
+				"note": "The fat is dried under vacuum to 0.1 % moisture or less (95–98 °C on the cream route)."
 			},
 			{
 				"type": "heat",
@@ -50,7 +50,8 @@
 					"max": 40,
 					"about": true
 				},
-				"note": "Packed in 200 L drums under nitrogen."
+				"note": "The fat is packed in 200 L drums under nitrogen.",
+				"minor": true
 			}
 		],
 		"sources": {

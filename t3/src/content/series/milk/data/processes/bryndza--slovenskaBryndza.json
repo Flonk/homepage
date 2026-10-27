@@ -23,19 +23,6 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "coagulate",
-				"by": "rennet",
-				"temperature": {
-					"min": 29,
-					"max": 31
-				},
-				"seconds": {
-					"min": 1800,
-					"max": 1800
-				},
-				"note": "With chymosin or chymosin-identical enzymes."
-			},
-			{
 				"type": "wash"
 			},
 			{
@@ -83,6 +70,22 @@
 							"does": [
 								"acid"
 							]
+						},
+						{
+							"name": "Lactiplantibacillus paraplantarum",
+							"kind": "bacterium"
+						},
+						{
+							"name": "Enterococcus hirae",
+							"kind": "bacterium"
+						},
+						{
+							"name": "Enterococcus faecalis",
+							"kind": "bacterium"
+						},
+						{
+							"name": "Pediococcus acidilactici",
+							"kind": "bacterium"
 						}
 					]
 				},
@@ -90,26 +93,10 @@
 					"min": 20,
 					"max": 20,
 					"about": true
-				},
-				"note": "Over 3,700 isolates in one study came from the raw milk and the dairy, not from a starter; they include L. paraplantarum, Enterococcus hirae, Enterococcus faecalis and Pediococcus acidilactici."
-			},
-			{
-				"type": "custom",
-				"name": "trim"
-			},
-			{
-				"type": "drain"
-			},
-			{
-				"type": "cut",
-				"how": "grind"
-			},
-			{
-				"type": "salt",
-				"note": "The pulp is spread on rollers."
+				}
 			}
 		],
-		"text": "The lump cheese is ripened before it is ground with salt; the flora comes from the raw milk and the dairy, not a starter.",
+		"text": "The lump cheese is ripened; the flora comes from the raw milk and the dairy, not a starter.",
 		"sources": {
 			"links": [
 				{

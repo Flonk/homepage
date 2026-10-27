@@ -28,12 +28,12 @@
 		"steps": [
 			{
 				"type": "custom",
-				"name": "hydrolyse",
-				"note": "With proteases, e.g. trypsin, chymotrypsin, pancreatic enzymes."
+				"name": "break down",
+				"note": "The casein is chopped into small pieces by pancreatic enzymes, such as trypsin and chymotrypsin."
 			},
 			{
 				"type": "ultrafilter",
-				"note": "Removes the enzyme and leftover large protein."
+				"of": "mix"
 			}
 		],
 		"sources": {

@@ -1,0 +1,82 @@
+{
+	"label": "Surti",
+	"kind": "breed",
+	"parent": "riverBuffalo",
+	"about": {
+		"text": "The Surti is a dairy buffalo from the southwest of Gujarat in India, between the Mahi and Sabarmati rivers, and is also found in south Rajasthan. Its milk has a high fat content, about 7.9 to 8.1 percent in Buffalopedia's figures. Buffalopedia notes its average productivity is not as good as other Indian buffalo breeds.",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Surti buffalo", "url": "https://en.wikipedia.org/wiki/Surti_buffalo"},
+				{"name": "Buffalopedia: Surti", "url": "https://buffalopedianew.cirb.res.in/surti/"}
+			],
+			"text": "Home tract and rivers from Wikipedia (Kaira and Vadodara districts, between the Mahi and Sabarmati) and Buffalopedia (southwestern Gujarat, also south Rajasthan). Fat range and productivity note from Buffalopedia. Wikipedia's fat figures conflict with Buffalopedia's and are not used."
+		}
+	},
+	"origin": {
+		"regions": ["IN"],
+		"place": "Southwestern Gujarat, India, between the Mahi and Sabarmati rivers, with the best animals in Anand, Nadiad, Kaira and Baroda districts",
+		"sources": {
+			"links": [
+				{"name": "Buffalopedia: Surti", "url": "https://buffalopedianew.cirb.res.in/surti/"},
+				{"name": "Wikipedia: Surti buffalo", "url": "https://en.wikipedia.org/wiki/Surti_buffalo"}
+			],
+			"text": "Home tract and best districts from Buffalopedia; the Mahi-Sabarmati and Kaira/Vadodara locations from Wikipedia. No formation date was found, so formed is left out."
+		}
+	},
+	"head": [
+		{
+			"count": 1557000,
+			"year": 2007,
+			"where": "IN",
+			"sources": {
+				"links": [
+					{"name": "Buffalopedia: Surti", "url": "https://buffalopedianew.cirb.res.in/surti/"}
+				],
+				"text": "15.57 lakh Surti buffaloes in Gujarat, from the table titled \"Surti Buffalo Population in Gujarat (2007)\" on Buffalopedia, which makes up 17.74 percent of the state's buffaloes. This is Gujarat state only, not India, and the page cites no source for it."
+			}
+		}
+	],
+	"yield": {
+		"perLactation": {"min": 1547, "max": 1745},
+		"lactationDays": {"min": 292, "max": 311},
+		"where": "IN",
+		"sources": {
+			"links": [
+				{"name": "Buffalopedia: Surti", "url": "https://buffalopedianew.cirb.res.in/surti/"},
+				{"name": "Wikipedia: Surti buffalo", "url": "https://en.wikipedia.org/wiki/Surti_buffalo"}
+			],
+			"text": "Buffalopedia gives a weighted average of 1547 plus or minus 50 to 1745 plus or minus 60 kg per lactation, over 292 plus or minus 8.0 to 311 plus or minus 7.0 days, citing Sethi (2003) and Kharadi et al. (2006). Wikipedia gives 1,600 to 1,800 litres per lactation in its lead, and 1,500 to 1,600 kg (first lactation) and 1,900 to 2,000 kg (later lactations) in its performance section; these do not reconcile and are not used."
+		}
+	},
+	"composition": {
+		"fat": {"min": 7.85, "max": 8.1},
+		"sources": {
+			"links": [
+				{"name": "Buffalopedia: Surti", "url": "https://buffalopedianew.cirb.res.in/surti/"},
+				{"name": "Wikipedia: Surti buffalo", "url": "https://en.wikipedia.org/wiki/Surti_buffalo"}
+			],
+			"text": "Buffalopedia gives 7.85 to 8.10 percent fat, citing Sethi (2003) and Kharadi et al. (2006). Wikipedia gives 7 to 7.5 percent in its performance section and about 8 to 10 percent in its lead, which conflict with each other and with Buffalopedia; not used. Wikipedia also gives SNF of 9 to 9.15 percent, not used here."
+		}
+	},
+	"purposes": {
+		"purposes": ["dairy"],
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Surti buffalo", "url": "https://en.wikipedia.org/wiki/Surti_buffalo"}
+			],
+			"text": "Wikipedia gives dairy as the purpose."
+		}
+	},
+	"facts": [
+		{
+			"k": "Breeding",
+			"v": "Breeding is seasonal, from September to April, with a calving interval of 400 to 425 days.",
+			"sources": {
+				"links": [{"name": "Wikipedia: Surti buffalo", "url": "https://en.wikipedia.org/wiki/Surti_buffalo"}],
+				"text": "Taken from the Wikipedia page."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "No national population figure, and no DAD-IS risk status: searches did not reach a DAD-IS entry. A 2006 NBAGR estimate of five lakh (about 500,000) was seen in WebSearch text but not on an opened page, and it conflicts with the 2007 Gujarat census figure, so it is not used. No formation date found. Milk fat and yield sources conflict within Wikipedia and with Buffalopedia, so Buffalopedia's figures are used. No protein or lactose figures found."
+}

@@ -1,0 +1,74 @@
+{
+	"label": "Illawarra Shorthorn",
+	"aka": ["Illawarra", "Australian Illawarra Shorthorn"],
+	"names": {
+		"links": [
+			{"name": "Wikipedia: Illawarra Shorthorn", "url": "https://en.wikipedia.org/wiki/Illawarra_Shorthorn"}
+		],
+		"text": "Alternative names from the Wikipedia article, which says the name was shortened from Australian Illawarra Shorthorn."
+	},
+	"kind": "breed",
+	"parent": "taurineCattle",
+	"about": {
+		"text": "The Illawarra Shorthorn is a dairy cattle breed named after the Illawarra region of New South Wales, Australia. Its ancestry is thought to include Ayrshire, Devon and Dairy Shorthorn cattle, and it is valued for its docile temperament and suitability for showing.",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Illawarra Shorthorn", "url": "https://en.wikipedia.org/wiki/Illawarra_Shorthorn"}
+			],
+			"text": "Name origin, likely ancestry, dairy use and temperament, from the Wikipedia article (fetched with WebFetch). The article says its origins are undocumented."
+		}
+	},
+	"origin": {
+		"regions": ["AU"],
+		"place": "The Illawarra region of New South Wales, Australia.",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Illawarra Shorthorn", "url": "https://en.wikipedia.org/wiki/Illawarra_Shorthorn"}
+			],
+			"text": "Region of origin from the Wikipedia article (fetched with WebFetch). No formation dates are given, so none are entered."
+		}
+	},
+	"composition": {
+		"fat": {"min": 3.95, "max": 4, "about": true},
+		"protein": {"min": 3.29, "max": 3.4},
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Illawarra Shorthorn", "url": "https://en.wikipedia.org/wiki/Illawarra_Shorthorn"}
+			],
+			"text": "Butterfat and protein from two Australian tests quoted in the Wikipedia article (fetched with WebFetch). The 1998 official test gave slightly over 4% butterfat and 3.4% protein, and the 2010 Australian Dairy Herd Improvement Report gave 3.95% butterfat and 3.29% protein. The fat maximum of 4 is the rounded value of 'slightly over 4%', hence about: true."
+		}
+	},
+	"purposes": {
+		"purposes": ["dairy"],
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Illawarra Shorthorn", "url": "https://en.wikipedia.org/wiki/Illawarra_Shorthorn"}
+			],
+			"text": "The article describes the breed as dairy cattle."
+		}
+	},
+	"facts": [
+		{
+			"k": "Milk yield 2010",
+			"v": "The 2010 Australian Dairy Herd Improvement Report gave an average of 6,733 litres per cow.",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: Illawarra Shorthorn", "url": "https://en.wikipedia.org/wiki/Illawarra_Shorthorn"}
+				],
+				"text": "From the Wikipedia article (fetched with WebFetch), which cites the 2010 report. Given in litres as the source gives it."
+			}
+		},
+		{
+			"k": "Milk yield 1998",
+			"v": "The 1998 official test gave an average of 4,829 litres under Australia's pasture production system.",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: Illawarra Shorthorn", "url": "https://en.wikipedia.org/wiki/Illawarra_Shorthorn"}
+				],
+				"text": "From the Wikipedia article (fetched with WebFetch). Given in litres as the source gives it."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "Searched for population figures, a DAD-IS risk status, lactation length, and formation dates. The Wikipedia article gives none of these. The Oklahoma State and breed society pages returned HTTP 403 and were not read. Yields are only in litres with no lactation length, so no yield range in kg is entered."
+}

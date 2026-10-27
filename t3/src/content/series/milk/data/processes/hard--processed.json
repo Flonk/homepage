@@ -10,7 +10,7 @@
 			{
 				"type": "cut",
 				"how": "shred",
-				"note": "Natural cheeses of different types and ages are shredded and blended."
+				"note": "Natural cheeses of different types and ages are blended together."
 			},
 			{
 				"type": "add",
@@ -19,7 +19,7 @@
 					"min": 1.5,
 					"max": 4
 				},
-				"note": "The emulsifying salts, which bind calcium so the casein can hold the fat, are usually used at no more than 3-4 %."
+				"note": "The emulsifying salts are usually used at no more than 3–4 %, since they bind calcium so the milk protein can hold the fat."
 			},
 			{
 				"type": "heat",
@@ -32,11 +32,13 @@
 					"min": 240,
 					"max": 480
 				},
-				"note": "The blend is heated with constant stirring until it is homogeneous; one source gives 80-85 °C for 4-8 min."
+				"note": "The blend is stirred constantly as it heats, until it is uniform."
 			},
 			{
-				"type": "mould",
-				"note": "It is packaged hot, then cooled and stored at 5-10 °C."
+				"type": "custom",
+				"name": "package",
+				"note": "The processed cheese is packaged while hot, then cooled and stored at 5–10 °C.",
+				"minor": true
 			}
 		],
 		"sources": {

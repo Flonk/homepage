@@ -1,0 +1,110 @@
+{
+	"label": "Kankrej",
+	"aka": ["Bannai", "Nagar", "Vagadia", "Wagad", "Kankaraj", "Talabda"],
+	"names": {
+		"links": [
+			{"name": "Wikipedia: Kankrej", "url": "https://en.wikipedia.org/wiki/Kankrej"}
+		],
+		"text": "Names listed on the Wikipedia page (Kankaraj for Pakistan; Talabda, Vadhiyar, Waged and others omitted here for the six-name limit)."
+	},
+	"kind": "breed",
+	"parent": "zebuCattle",
+	"about": {
+		"text": "A dual-purpose zebu breed of the arid Rann of Kutch in Gujarat and neighbouring Rajasthan, India, also found in Tharparkar District, Sindh, Pakistan. It is used for draught work and for milk. Kankrej cattle were exported to Brazil from about 1870 onwards.",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Kankrej", "url": "https://en.wikipedia.org/wiki/Kankrej"}
+			],
+			"text": "Summarised from the Wikipedia page, which cites Mason's World Encyclopedia of Livestock Breeds and Breeding (2016) and DAD-IS."
+		}
+	},
+	"origin": {
+		"regions": ["IN", "PK"],
+		"place": "Rann of Kutch, Gujarat, and neighbouring Rajasthan, India; also Tharparkar District, Sindh, Pakistan",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Kankrej", "url": "https://en.wikipedia.org/wiki/Kankrej"}
+			],
+			"text": "Origin place as stated on the Wikipedia page. The page gives no year of formation or first record."
+		}
+	},
+	"head": [
+		{
+			"count": 465000,
+			"year": 1977,
+			"where": "IN",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: Kankrej", "url": "https://en.wikipedia.org/wiki/Kankrej"}
+				],
+				"text": "India, 465,000 in 1977, the last official census as the page states; the page cites Mason's (2016) and DAD-IS. A 2022 DAD-IS estimate of 1.58 to 2.22 million is also mentioned on the page but is a range, so it is not recorded here."
+			}
+		},
+		{
+			"count": 273000,
+			"year": 2006,
+			"where": "PK",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: Kankrej", "url": "https://en.wikipedia.org/wiki/Kankrej"}
+				],
+				"text": "Pakistan, 273,000 in 2006, as stated on the Wikipedia page, citing Mason's and DAD-IS."
+			}
+		}
+	],
+	"yield": {
+		"perLactation": {"min": 2295, "max": 2627},
+		"lactationDays": {"min": 307.57, "max": 312.13},
+		"where": "IN",
+		"year": 2018,
+		"sources": {
+			"links": [
+				{"name": "Singh et al. 2018, Indian Journal of Animal Sciences (ICAR abstract)", "url": "https://epubs.icar.org.in/index.php/IJAnS/article/view/78297"}
+			],
+			"text": "Fetched abstract (Vol. 88 No. 3, 2018) of a Kankrej study of the home tract. The 2,295 kg figure is the first-lactation 305-day milk yield (lactation length 312.13 days), and 2,627 kg is the all-lactation 305-day yield (lactation length 307.57 days). Both are 305-day yields from recorded herds, not full-lactation totals. The number of records and herd location were not given in the abstract."
+		}
+	},
+	"purposes": {
+		"purposes": ["dual-purpose", "draught"],
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Kankrej", "url": "https://en.wikipedia.org/wiki/Kankrej"}
+			],
+			"text": "Listed as dual-purpose, for draught work and milk production, on the Wikipedia page."
+		}
+	},
+	"risk": {
+		"status": "not at risk",
+		"year": 2026,
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Kankrej", "url": "https://en.wikipedia.org/wiki/Kankrej"}
+			],
+			"text": "Not at risk in FAO's 2007 global databank list and in DAD-IS, as stated on the Wikipedia page, which cites the DAD-IS breed data sheet (2026)."
+		}
+	},
+	"facts": [
+		{
+			"k": "Brazil",
+			"v": "Exported to Brazil from about 1870 onwards and used to create the Guzerá breed, which later contributed to the American Brahman.",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: Kankrej", "url": "https://en.wikipedia.org/wiki/Kankrej"}
+				],
+				"text": "From the Wikipedia page, which cites Joshi & Phillips (1953) and Porter et al. (2016)."
+			}
+		},
+		{
+			"k": "Size",
+			"v": "Adult males average about 590 kg and females about 431 kg; horned in both sexes, with a dark skin and a grey coat ranging from silver to dark.",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: Kankrej", "url": "https://en.wikipedia.org/wiki/Kankrej"}
+				],
+				"text": "Weights and traits as stated on the Wikipedia page, citing DAD-IS."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "No year of formation or first record found on the Wikipedia page or in the abstract. No milk composition (fat, protein, lactose, solids) found. Yield figures are 305-day values from a research herd, not a breed-wide average. The current DAD-IS population figure could not be fetched directly, only as quoted on Wikipedia."
+}

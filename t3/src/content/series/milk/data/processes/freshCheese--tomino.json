@@ -19,69 +19,9 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "pasteurise",
-				"note": "Whole cow milk, raw in the past."
-			},
-			{
-				"type": "coagulate",
-				"by": "rennet",
-				"temperature": {
-					"min": 30,
-					"max": 35
-				},
-				"seconds": {
-					"min": 3600,
-					"max": 7200
-				},
-				"note": "Calf rennet."
-			},
-			{
-				"type": "cut",
-				"how": "cut",
-				"note": "To hazelnut size, and not cooked."
-			},
-			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic",
-					"mould"
-				],
-				"adds": {
-					"microbes": [
-						{
-							"name": "mesophilic lactic acid bacteria",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							],
-							"grows": "mesophilic"
-						},
-						{
-							"name": "Geotrichum candidum",
-							"kind": "yeast"
-						}
-					],
-					"by": [
-						"starter"
-					]
-				},
-				"temperature": {
-					"min": 20,
-					"max": 20,
-					"about": true
-				},
-				"seconds": {
-					"min": 64800,
-					"max": 64800,
-					"about": true
-				},
-				"note": "Ladled into small plastic moulds 10 cm across and drained, with optional Geotrichum candidum spores."
-			},
-			{
 				"type": "salt",
-				"how": "brine",
-				"note": "Dry-salted or brined during the draining."
+				"note": "The curds are salted, dry or in brine, while they drain.",
+				"minor": true
 			},
 			{
 				"type": "ferment",
@@ -90,7 +30,8 @@
 					"min": 259200,
 					"max": 345600
 				},
-				"note": "Turned daily in cold rooms, and a light white Geotrichum bloom grows if it is kept longer."
+				"note": "The cheese is turned daily in cold rooms, and if it is kept longer a light white mould grows on it.",
+				"minor": true
 			}
 		],
 		"sources": {

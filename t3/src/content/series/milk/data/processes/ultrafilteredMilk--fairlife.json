@@ -6,7 +6,7 @@
 		"fairlife"
 	],
 	"variant": true,
-	"text": "The milk is split, the skim part runs through membranes that hold back the proteins and let water and lactose go, and lactase handles the lactose that is left. fairlife says its protein is only what was in the milk.",
+	"text": "The milk is heated hotter than ordinary milk and homogenised after the membrane step. fairlife says its protein is only what was in the milk.",
 	"sources": {
 		"links": [
 			{
@@ -23,33 +23,22 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "separate",
-				"off": "cream"
-			},
-			{
-				"type": "ultrafilter",
-				"note": "Soft membranes, no protein powder added."
-			},
-			{
-				"type": "add",
-				"what": "lactase",
-				"note": "Makes the milk lactose-free."
-			},
-			{
 				"type": "heat",
 				"does": "heat",
-				"note": "Hotter than ordinary milk, for a few seconds; no figures given."
+				"note": "The milk is heated hotter than ordinary milk, for a few seconds."
 			},
 			{
 				"type": "homogenise"
 			},
 			{
 				"type": "custom",
-				"name": "test"
+				"name": "test",
+				"minor": true
 			},
 			{
 				"type": "custom",
-				"name": "bottle"
+				"name": "bottle",
+				"minor": true
 			}
 		],
 		"sources": {

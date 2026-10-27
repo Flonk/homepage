@@ -17,7 +17,7 @@
 					"min": 15,
 					"max": 15
 				},
-				"note": "Lactase can go in before or after the heat treatment, in any order the dairy likes."
+				"note": "The milk undergoes heat treatment to kill harmful bacteria like Listeria, Salmonella and E. coli."
 			},
 			{
 				"type": "add",
@@ -26,11 +26,11 @@
 					"min": 0.01,
 					"max": 0.5
 				},
-				"note": "Usually from the yeasts Kluyveromyces fragilis or K. lactis; the patent gives its dose as w/v."
+				"note": "The lactase is usually made by yeasts."
 			},
 			{
 				"type": "custom",
-				"name": "hydrolyse lactose",
+				"name": "break down",
 				"temperature": {
 					"min": 37,
 					"max": 40
@@ -39,7 +39,7 @@
 					"min": 7200,
 					"max": 129600
 				},
-				"note": "Lactose splits into glucose and galactose; at 0.02 % lactase and 40 degrees C it is all split in about 8 h."
+				"note": "The lactose is split into glucose and galactose by the lactase; at 0.02 % lactase and 40 °C, all of it is split in about 8 h."
 			}
 		],
 		"text": "Valio's milk is made the other way, by filtering out the lactose with membranes and splitting what is left.",

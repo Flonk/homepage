@@ -1,0 +1,113 @@
+{
+	"label": "Danish Jersey",
+	"aka": [],
+	"kind": "breed",
+	"parent": "taurineCattle",
+	"about": {
+		"text": "A Danish dairy breed descended from Jersey cattle brought from the Channel Island of Jersey. About 5,200 head were imported to Denmark between about 1896 and 1909, and early breeding centred on Fünen. The breed makes about 13 percent of the Danish dairy herd, and its milk averaged 7,626 kg per lactation in 2023, with 6.00 percent fat.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Danish Jersey",
+					"url": "https://en.wikipedia.org/wiki/Danish_Jersey"
+				}
+			],
+			"text": "Wikipedia, read with WebFetch: the import figure of about 5,200 head between 1896 and 1909, the Fünen centre, the 13 percent share of the Danish dairy herd, and the 2023 average of 7626 kg per lactation with 6.00 percent fat."
+		}
+	},
+	"origin": {
+		"regions": ["DK"],
+		"place": "Denmark, from Jersey stock imported from the island of Jersey in the Channel Islands",
+		"formed": {
+			"min": 1896,
+			"max": 1909
+		},
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Danish Jersey",
+					"url": "https://en.wikipedia.org/wiki/Danish_Jersey"
+				}
+			],
+			"text": "Wikipedia, read with WebFetch: 'approximately 5200 head were imported to Denmark' between about 1896 and 1909. The formed range is that import period, read as the breed's start. The herd-book start is disputed (1911, 1918 or 1925), so it is not used here."
+		}
+	},
+	"yield": {
+		"perLactation": {
+			"min": 7626,
+			"max": 7626
+		},
+		"where": "DK",
+		"year": 2023,
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Danish Jersey",
+					"url": "https://en.wikipedia.org/wiki/Danish_Jersey"
+				}
+			],
+			"text": "Wikipedia, read with WebFetch: 'the average milk yield per lactation recorded in 2023 ... was 7626 kg'. The article's wording on the cow count is ambiguous, so no herd size is taken from it."
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 6.0,
+			"max": 6.0
+		},
+		"protein": {
+			"min": 4.35,
+			"max": 4.35
+		},
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Danish Jersey",
+					"url": "https://en.wikipedia.org/wiki/Danish_Jersey"
+				}
+			],
+			"text": "Wikipedia, read with WebFetch: '6.00% butter-fat and 4.35% protein', from the same 2023 recording as the yield."
+		}
+	},
+	"purposes": {
+		"purposes": ["dairy"],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Danish Jersey",
+					"url": "https://en.wikipedia.org/wiki/Danish_Jersey"
+				}
+			],
+			"text": "Wikipedia, read with WebFetch: the breed is presented as a dairy breed, with the Danish herd's milk recording as its main use."
+		}
+	},
+	"facts": [
+		{
+			"k": "Share of the herd",
+			"v": "About 13 percent of the Danish dairy herd.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Danish Jersey",
+						"url": "https://en.wikipedia.org/wiki/Danish_Jersey"
+					}
+				],
+				"text": "Wikipedia, read with WebFetch: 'About 13% of the Danish dairy herd.' The page gives no year for this figure."
+			}
+		},
+		{
+			"k": "Breed society",
+			"v": "Danmarks Jerseyforening, the Danish Jersey society, was formed in 1902.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Danish Jersey",
+						"url": "https://en.wikipedia.org/wiki/Danish_Jersey"
+					}
+				],
+				"text": "Wikipedia, read with WebFetch: the society formed in 1902. The herd-book date is disputed, so it is not given here."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "No head count or year for the population was found. No DAD-IS risk status was found for the Danish Jersey. Wikipedia is the only source opened, and its yield wording is ambiguous. The Danish herd-book start date is disputed between 1911, 1918 and 1925."
+}

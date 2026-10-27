@@ -37,7 +37,8 @@
 					"min": 300,
 					"max": 300,
 					"about": true
-				}
+				},
+				"minor": true
 			},
 			{
 				"type": "ferment",
@@ -63,7 +64,8 @@
 			},
 			{
 				"type": "add",
-				"note": "Up to 10 % water and 15 % skim milk may be added."
+				"note": "Water, up to 10 %, and skim milk, up to 15 %, may be added to the buttermilk.",
+				"minor": true
 			}
 		],
 		"text": "EU buttermilk is the low-fat liquid left from churning sweet cream, soured; US and Canadian cultured buttermilk is skim or low-fat milk soured with a mesophilic aroma culture, never churned.",

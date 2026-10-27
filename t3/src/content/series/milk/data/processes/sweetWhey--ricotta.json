@@ -42,7 +42,7 @@
 					"min": 43200,
 					"max": 86400
 				},
-				"note": "Or acid is added instead."
+				"note": "The whey is left to ferment on its own for its acid, or acid is added instead."
 			},
 			{
 				"type": "heat",
@@ -55,17 +55,17 @@
 					"min": 600,
 					"max": 1200
 				},
-				"note": "Hotter than for the first cheese, so the whey proteins coagulate."
+				"note": "The whey is heated until its proteins clot into a curd."
 			},
 			{
 				"type": "separate",
 				"off": "curd",
-				"by": "gravity",
-				"note": "Skimmed once the curd floats; acid to pH about 5.9 gives a second, coarser rise."
+				"by": "gravity"
 			},
 			{
 				"type": "heat",
-				"does": "cool"
+				"does": "cool",
+				"minor": true
 			},
 			{
 				"type": "drain",

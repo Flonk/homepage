@@ -16,7 +16,8 @@
 				"seconds": {
 					"min": 15,
 					"max": 20
-				}
+				},
+				"note": "The milk undergoes heat treatment to kill harmful bacteria like Listeria, Salmonella and E. coli."
 			},
 			{
 				"type": "heat",
@@ -28,8 +29,7 @@
 			},
 			{
 				"type": "coagulate",
-				"by": "rennet",
-				"note": "A little rennet goes in beside the culture."
+				"by": "rennet"
 			},
 			{
 				"type": "ferment",
@@ -68,7 +68,7 @@
 					"max": 18000,
 					"about": true
 				},
-				"note": "A little of the last batch of skyr is the culture."
+				"note": "The milk is soured with a little of the last batch of skyr, whose bacteria make acid in it."
 			},
 			{
 				"type": "heat",
@@ -81,7 +81,7 @@
 			{
 				"type": "drain",
 				"by": "cloth",
-				"note": "The whey is strained off through cloth."
+				"note": "The whey runs off, and what stays in the cloth is the skyr."
 			}
 		],
 		"text": "A dairy may strain the soured milk by ultrafiltration instead, after thermising it at about 55 degrees C for 3 min, as it does concentrated yoghurt.",

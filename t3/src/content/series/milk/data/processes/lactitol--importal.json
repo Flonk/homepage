@@ -6,7 +6,7 @@
 		"importal"
 	],
 	"variant": true,
-	"text": "Made like any lactitol: lactose from whey permeate is hydrogenated over a nickel catalyst; the crystals are then packed as unit-dose sachets. Nothing further is done to the sugar alcohol.",
+	"text": "Made like any lactitol; the crystals are packed as unit-dose sachets. Nothing further is done to the sugar alcohol.",
 	"sources": {
 		"links": [
 			{
@@ -16,40 +16,12 @@
 			{
 				"name": "Wikipedia: Lactitol",
 				"url": "https://en.wikipedia.org/wiki/Lactitol"
-			}
-		],
-		"text": "The table, the facts and the words on how it is made, from these."
-	},
-	"processing": {
-		"steps": [
-			{
-				"type": "custom",
-				"name": "hydrogenate",
-				"temperature": {
-					"min": 100,
-					"max": 100,
-					"about": true
-				},
-				"note": "A lactose solution of about 30 % dry matter is hydrogenated over a Raney nickel catalyst at about 40 bar of hydrogen."
 			},
 			{
-				"type": "custom",
-				"name": "crystallise",
-				"note": "The lactitol is crystallised, as the monohydrate or dihydrate."
+				"name": "US patent 6,090,429: Process for the manufacture of a lactitol syrup (background)",
+				"url": "https://patents.google.com/patent/US6090429"
 			}
 		],
-		"sources": {
-			"links": [
-				{
-					"name": "US patent 6,090,429: Process for the manufacture of a lactitol syrup (background)",
-					"url": "https://patents.google.com/patent/US6090429"
-				},
-				{
-					"name": "Wikipedia: Lactitol",
-					"url": "https://en.wikipedia.org/wiki/Lactitol"
-				}
-			],
-			"text": "The patent's background gives the industrial hydrogenation of lactose over Raney nickel at about 100 °C and 40 bar and says crystallisation is the hard part; Wikipedia that lactitol comes as anhydrous, monohydrate and dihydrate. The sachet packing is not sourced here."
-		}
+		"text": "The table, the facts and the words on how it is made, from these. The patent's background gives the industrial hydrogenation of lactose over Raney nickel at about 100 °C and 40 bar and says crystallisation is the hard part; Wikipedia that lactitol comes as anhydrous, monohydrate and dihydrate. The sachet packing is not sourced here."
 	}
 }

@@ -23,14 +23,6 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "heat",
-				"does": "heat",
-				"temperature": {
-					"min": 63,
-					"max": 90
-				}
-			},
-			{
 				"type": "ferment",
 				"does": "incubate",
 				"kinds": [

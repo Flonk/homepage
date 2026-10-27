@@ -32,10 +32,12 @@
 				"seconds": {
 					"min": 300,
 					"max": 300
-				}
+				},
+				"minor": true
 			},
 			{
-				"type": "homogenise"
+				"type": "homogenise",
+				"of": "cream"
 			},
 			{
 				"type": "ferment",
@@ -88,7 +90,7 @@
 					"min": 64800,
 					"max": 72000
 				},
-				"note": "In the pot at 20 °C for 16–18 h."
+				"note": "The cream is soured in the pot at 20 °C."
 			},
 			{
 				"type": "heat",
@@ -100,7 +102,8 @@
 				},
 				"seconds": {
 					"min": 86400
-				}
+				},
+				"minor": true
 			}
 		],
 		"sources": {

@@ -24,42 +24,17 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "add",
-				"what": "calcium chloride"
-			},
-			{
-				"type": "coagulate",
-				"by": "rennet",
-				"temperature": {
-					"min": 30,
-					"max": 40
-				}
-			},
-			{
-				"type": "cut",
-				"how": "cut",
-				"size": {
-					"min": 25.4,
-					"max": 25.4,
-					"about": true
-				}
-			},
-			{
 				"type": "heat",
-				"does": "cook"
-			},
-			{
-				"type": "drain",
-				"note": "Half the whey is drained."
+				"does": "cook",
+				"minor": true
 			},
 			{
 				"type": "salt",
-				"how": "brine",
-				"note": "Dry salt or concentrated brine."
+				"note": "The curds are salted in the vat, with dry salt or a concentrated brine."
 			},
 			{
 				"type": "mould",
-				"note": "Drains overnight in basket-weave moulds."
+				"note": "The curds are put into basket-weave moulds and drain overnight."
 			}
 		],
 		"sources": {

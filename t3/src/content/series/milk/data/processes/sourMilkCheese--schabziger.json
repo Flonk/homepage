@@ -7,7 +7,7 @@
 	],
 	"variant": true,
 	"step": "ripen the Ziger, add blue fenugreek, press into cones",
-	"text": "The sources disagree on the order and timing (Wikipedia: heat milk with fenugreek sap, acidify, curdle the whey at 90 °C, press, dry; Swiss press: long ripening of the Ziger before grinding).",
+	"text": "The sources disagree on the order and timing (Wikipedia: press, dry; Swiss press: long ripening of the Ziger before grinding).",
 	"sources": {
 		"links": [
 			{
@@ -24,24 +24,6 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "acidify",
-				"with": "lactic, citric or acetic acid",
-				"temperature": {
-					"min": 32,
-					"max": 32,
-					"about": true
-				}
-			},
-			{
-				"type": "heat",
-				"does": "heat",
-				"temperature": {
-					"min": 90,
-					"max": 90
-				},
-				"note": "The whey is curdled, giving the Ziger."
-			},
-			{
 				"type": "ferment",
 				"does": "ripen",
 				"seconds": {
@@ -53,7 +35,7 @@
 			{
 				"type": "cut",
 				"how": "grind",
-				"note": "With blue fenugreek (Trigonella caerulea)."
+				"note": "Blue fenugreek (Trigonella caerulea), a plant, is added to it."
 			},
 			{
 				"type": "salt"
@@ -71,7 +53,7 @@
 					"min": 5184000,
 					"max": 15552000
 				},
-				"note": "Stored 3–8 months after grinding, per the Swiss press sources."
+				"note": "The ground cheese is stored to dry."
 			}
 		],
 		"text": "The Ziger is ripened 4-12 weeks (Swiss press sources), then ground with fenugreek, salted and stored; Wikipedia gives pressing 6-8 days and drying 2-6 months instead, and the sources disagree on the order.",

@@ -5,7 +5,7 @@
 	"to": [
 		"tejfol"
 	],
-	"text": "Industrial tejföl is cream heated to 75 °C, homogenised at 100-160 bar so that it does not separate, and set with a lactic culture, either in the cup or in a tank. Fermentation temperature and time are not given by the source. The article is inconsistent on the minimum fat (10, 12 and 16 % all appear).",
+	"text": "Industrial tejföl is cream set with a lactic culture, either in the cup or in a tank. Fermentation temperature and time are not given by the source. The article is inconsistent on the minimum fat (10, 12 and 16 % all appear).",
 	"sources": {
 		"links": [
 			{
@@ -14,56 +14,5 @@
 			}
 		],
 		"text": "The table, the facts and the words on how it is made, from these."
-	},
-	"processing": {
-		"steps": [
-			{
-				"type": "heat",
-				"does": "heat",
-				"temperature": {
-					"min": 75,
-					"max": 75
-				}
-			},
-			{
-				"type": "homogenise",
-				"bar": {
-					"min": 100,
-					"max": 160
-				}
-			},
-			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic"
-				],
-				"adds": {
-					"microbes": [
-						{
-							"name": "lactic acid bacteria (butter culture)",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							]
-						}
-					],
-					"by": [
-						"starter"
-					]
-				},
-				"note": "Set with a lactic culture, in the cup (firm tejföl) or in the tank and then stirred (smooth, habart tejföl)."
-			}
-		],
-		"text": "Industrially set with a pure lactic culture, in the cup or in a tank. Traditionally the cream rose on warm milk for 2-3 days in summer, 6-7 in winter, and soured by itself.",
-		"sources": {
-			"links": [
-				{
-					"name": "Hungarian Wikipedia: Tejföl",
-					"url": "https://hu.wikipedia.org/wiki/Tejf%C3%B6l"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		}
 	}
 }

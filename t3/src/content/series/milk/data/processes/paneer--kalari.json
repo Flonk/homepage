@@ -28,21 +28,9 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "heat",
-				"does": "heat",
-				"note": "Raw full-fat milk."
-			},
-			{
 				"type": "coagulate",
 				"by": "acid",
-				"note": "Sour whey (matthar) from earlier batches, or sour milk."
-			},
-			{
-				"type": "drain"
-			},
-			{
-				"type": "press",
-				"note": "Into discs."
+				"with": "sour whey"
 			},
 			{
 				"type": "dry",
@@ -50,7 +38,7 @@
 					"min": 86400,
 					"max": 172800
 				},
-				"note": "In strong sun in pine-leaf bowls (donas)."
+				"note": "The cheese is dried in strong sun, in bowls of pine leaves called donas."
 			}
 		],
 		"sources": {

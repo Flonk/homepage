@@ -5,19 +5,26 @@
  *   watch                       build, and again on every change to the data
  *   in <node>                   the arrows into a node, best ranked first (an id, or a pattern on ids and labels)
  *   out <node>                  the arrows out of it
- *   check <id or file>...       those processes, or nodes (nodes/<id>), alone against the schema, writing nothing
+ *   check <id or file>...       those processes, nodes (nodes/<id>) or animals (animals/<id>), alone against the schema, writing nothing
  *   rate <node> <way> <share>   how much of a node is made one way, in percent ("-" unrates);
  *                               the way by its process id or what it is made from
  *     --why <text>                     the reasoning from the sources to the figure (needed)
  *     --source <url> [--name <name>]   a source it rests on, as many as there are, each
  *                                      with its name; none, and it is kept as unsourced
+ *   reconcile plan [<node or process>...]   the drawn arrows to reconcile, as JSON by how far down they are, each
+ *                                           with its chain: those into the nodes named and above, else all
+ *     --all                                 not only the stale ones
+ *   reconcile stamp [<process>...]          those reconciled, or each written since, stamped with its chain's hash
+ *   notes                                   every step note that does not read as "The X is …", one per line
  */
 import fs from 'node:fs';
 import path from 'node:path';
 import { spawn } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import { DIR, CODE, FOLDERS, load, write } from '../src/content/series/milk/components/graph/source';
+import { DIR, CODE, FOLDERS, load, loadReconciled, write } from '../src/content/series/milk/components/graph/source';
 import { waysOf } from '../src/content/series/milk/components/graph/ways';
+import { withoutMinorBrands } from '../src/content/series/milk/components/graph/build/brands';
+import { chainsOf } from '../src/content/series/milk/components/graph/build/reconcile';
 import * as S from '../src/content/series/milk/components/graph/schema';
 
 const SELF = fileURLToPath(import.meta.url);
@@ -145,6 +152,22 @@ const check = () => {
 		const id = path.basename(arg).replace(/\.json$/, '');
 		const before = wrong;
 		const said = (why: string) => (wrong++, console.log(red(`${id}: ${why}`)));
+		// An animal of the herd: against its schema, and what it is of there.
+		if (/(^|\/)animals\//.test(arg)) {
+			let animal: unknown;
+			try {
+				animal = JSON.parse(fs.readFileSync(path.join(DIR, 'animals', `${id}.json`), 'utf8'));
+			} catch (e) {
+				said((e as Error).message);
+				continue;
+			}
+			const a = S.Animal.safeParse(animal);
+			if (!a.success) for (const x of a.error.issues) said(`at ${x.path.join('.') || 'top'}: ${x.message}`);
+			// Its parent may be being written alongside it: said, not counted wrong.
+			else if (a.data.parent !== 'milk' && !fs.existsSync(path.join(DIR, 'animals', `${a.data.parent}.json`))) console.log(dim(`${id}: its parent ${a.data.parent} is not written yet`));
+			if (wrong === before) console.log(`${id}: ok`);
+			continue;
+		}
 		// A node: against its schema, and every node it names there.
 		if (/(^|\/)nodes\//.test(arg)) {
 			let node: unknown;
@@ -220,6 +243,71 @@ const rate = () => {
 	look('in');
 };
 
+
+/* ---- Reconciling ---- */
+
+/* The drawn arrows to reconcile (see schemas/reconciled.ts), as JSON, by
+   how far down from milk they are, the nearest first, as they are to be
+   done: each with the chain down to it. Those named, or the arrows into
+   the nodes named and all above them; else every stale one. */
+const plan = () => {
+	const all = args.includes('--all') && !!args.splice(args.indexOf('--all'), 1);
+	const { nodes, processes, rankings } = withoutMinorBrands(data());
+	const ways = waysOf(processes, rankings);
+	const chains = chainsOf(processes, ways);
+	const named = args.flatMap((a) => (a in processes ? [a] : find(nodes, a).flatMap((id) => (ways.drawn(id) ? chains.chainOf(ways.drawn(id)!) : []))));
+	const stale = new Set(chains.stale(loadReconciled()));
+	const picked = [...new Set(args.length ? named : chains.drawn)].filter((w) => all || stale.has(w));
+	const levels: Record<number, { process: string; chain: string[] }[]> = {};
+	for (const w of picked) (levels[chains.chainOf(w).length] ??= []).push({ process: w, chain: chains.chainOf(w) });
+	console.log(JSON.stringify(levels, null, '\t'));
+	console.error(dim(`${picked.length} arrows, ${stale.size} of ${chains.drawn.length} drawn stale`));
+};
+
+/* Each reconciling written since (one with no hash), or those named,
+   stamped with its chain's hash as it is now: once all above it are done,
+   so their changes are in it. */
+const stamp = () => {
+	const { processes, rankings } = withoutMinorBrands(data());
+	const chains = chainsOf(processes, waysOf(processes, rankings));
+	const reconciled = loadReconciled();
+	const ids = args.length ? args : Object.keys(reconciled).filter((w) => !reconciled[w].hash);
+	for (const w of ids) {
+		if (!reconciled[w]) fail(`reconciled/${w}.json is not written`);
+		if (!chains.drawn.includes(w)) fail(`${w} is no arrow drawn`);
+		write('reconciled', w, { ...reconciled[w], hash: chains.hashOf(w) });
+	}
+	console.log(`stamped ${ids.length}`);
+};
+
+
+/* ---- Notes ---- */
+
+/* A step's note as the cards want it (see research/prompts/steps.md): a
+   whole sentence, saying what is done to what, "The cheese is put into
+   brine.", "Annatto, a seed dye, is added to the milk." So: its subject
+   first, then "is" or "are" before any colon or semicolon, within its
+   first thirty words, not begun with a word that leaves the subject out ("In",
+   "With", "Up to", "This", "It"). */
+const NOT_A_SUBJECT = /^(In|With|Without|Up|By|At|For|From|To|Until|Under|Over|After|Before|Then|This|These|It|Its|Here|Only|Usually|Often|Traditionally|Industrially|Sometimes|Also|Or|And|Where|When|If|As|About|Around|Most)\b/;
+const noteReads = (note: string) => {
+	const head = note.split(/[;:]/)[0].split(/\s+/).slice(0, 30).join(' ');
+	return /^[A-Z]/.test(note) && !NOT_A_SUBJECT.test(note) && /\b(is|are|undergoes|undergo|(may|can|must)( also)? be)\b/.test(head);
+};
+// Every note that does not read so, by its process: "<process>\t<step>\t<note>".
+const notes = () => {
+	const { processes } = data();
+	let bad = 0;
+	for (const [id, p] of Object.entries(processes))
+		for (const [leg, steps] of [['', p.processing?.steps ?? []], ...Object.entries(p.legs ?? {}).map(([k, l]) => [k, l.processing?.steps ?? []] as const)] as const)
+			steps.forEach((s, i) => {
+				if (!s.note || noteReads(s.note)) return;
+				bad++;
+				console.log(`${id}${leg ? `:${leg}` : ''}\t${i}\t${s.note}`);
+			});
+	console.error(dim(`${bad} notes do not read as "The X is …"`));
+};
+
 switch (command) {
 	case 'build':
 		await build().catch((e: Error) => fail(e.message));
@@ -236,6 +324,14 @@ switch (command) {
 		break;
 	case 'rate':
 		rate();
+		break;
+	case 'notes':
+		notes();
+		break;
+	case 'reconcile':
+		if (args[0] === 'plan') args.shift(), plan();
+		else if (args[0] === 'stamp') args.shift(), stamp();
+		else fail('reconcile plan or reconcile stamp');
 		break;
 	default:
 		console.log(fs.readFileSync(SELF, 'utf8').match(/\/\*([\s\S]*?)\*\//)![1].replace(/^ \* ?/gm, '').trim());

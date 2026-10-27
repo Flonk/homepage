@@ -19,15 +19,12 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "drain",
-				"note": "Areesh, in some sources Karish."
-			},
-			{
-				"type": "wash"
+				"type": "wash",
+				"minor": true
 			},
 			{
 				"type": "salt",
-				"note": "Layered with salt."
+				"note": "The cheese is layered with salt."
 			},
 			{
 				"type": "ferment",
@@ -41,7 +38,7 @@
 				"seconds": {
 					"min": 31536000
 				},
-				"note": "Sealed in an earthenware jar under a pickle of buttermilk, sour skimmed milk, whey and red and green peppers, with a little older mish as starter."
+				"note": "The cheese is sealed in an earthenware jar under a sour liquid of buttermilk, sour skimmed milk, whey and red and green peppers, with a little older mish as starter."
 			}
 		],
 		"text": "The jar is topped up as cheese is taken out and fresh added, so there is no fixed age.",

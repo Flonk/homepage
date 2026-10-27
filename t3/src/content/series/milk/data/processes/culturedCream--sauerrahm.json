@@ -14,42 +14,5 @@
 			}
 		],
 		"text": "The table, the facts and the words on how it is made, from these."
-	},
-	"processing": {
-		"steps": [
-			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic"
-				],
-				"adds": {
-					"microbes": [
-						{
-							"name": "mesophilic lactic acid bacteria",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							],
-							"grows": "mesophilic"
-						}
-					],
-					"by": [
-						"starter"
-					]
-				},
-				"note": "Mesophilic lactic acid bacteria of Group I (MilchPQV)."
-			}
-		],
-		"text": "Sold without any heating after souring, so the culture is alive.",
-		"sources": {
-			"links": [
-				{
-					"name": "German MilchPQV, Anlage 8 (Sahnesauermilch / Saure Sahne / Sauerrahm, Gruppe I, Nr. 7)",
-					"url": "https://gesetze.legal/bund/milchpqv/anlage_8"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		}
 	}
 }

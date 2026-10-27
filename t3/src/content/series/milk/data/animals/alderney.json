@@ -1,0 +1,67 @@
+{
+	"label": "Alderney",
+	"kind": "breed",
+	"parent": "taurineCattle",
+	"about": {
+		"text": "A dairy breed from Alderney in the Channel Islands, named for the island. It was kept for rich milk and butter-making, and was used for draught work before horses replaced oxen. The breed was absorbed into the Guernsey breed after the Second World War and is now listed as extinct.",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Alderney cattle", "url": "https://en.wikipedia.org/wiki/Alderney_(cattle)"}
+			],
+			"text": "Summarised from the Wikipedia page (revision of 11 June 2026): the island origin, the draught and butter history, the absorption into Guernsey, and the extinct listing. The word 'small' is not stated on that page and is left out of the text."
+		}
+	},
+	"origin": {
+		"regions": ["GB"],
+		"place": "Alderney, Channel Islands",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Alderney cattle", "url": "https://en.wikipedia.org/wiki/Alderney_(cattle)"}
+			],
+			"text": "The Wikipedia page places the breed on Alderney in the Channel Islands. The Channel Islands are not in countries.json, so GB (the nearest listed code, the United Kingdom) is used as a stand-in; the Channel Islands are not part of the UK, so this code is approximate."
+		}
+	},
+	"risk": {
+		"status": "extinct",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Alderney cattle", "url": "https://en.wikipedia.org/wiki/Alderney_(cattle)"}
+			],
+			"text": "The Wikipedia page lists the breed as extinct and gives no FAO DAD-IS entry or year. The Wikipedia page says it was absorbed into Guernsey after the Second World War."
+		}
+	},
+	"facts": [
+		{
+			"k": "Herd book",
+			"v": "580 animals were registered in 1910, kept by 75 farmers, about half of whom had four or fewer cattle.",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: Alderney cattle", "url": "https://en.wikipedia.org/wiki/Alderney_(cattle)"}
+				],
+				"text": "As stated on the Wikipedia page. This is a registration count from 1910, not a current population."
+			}
+		},
+		{
+			"k": "Origin story",
+			"v": "Cattle may have been introduced to the Channel Islands by monks from Mont-Saint-Michel, reportedly sent around AD 960 by Richard I of Normandy.",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: Alderney cattle", "url": "https://en.wikipedia.org/wiki/Alderney_(cattle)"}
+				],
+				"text": "The Wikipedia page gives this as a possibility and says 'reportedly', so the claim is kept hedged."
+			}
+		},
+		{
+			"k": "Breeding",
+			"v": "The breed contributed to the Ayrshire and South Devon, and possibly to the Dairy Shorthorn, Kerry and Suffolk Dun.",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: Alderney cattle", "url": "https://en.wikipedia.org/wiki/Alderney_(cattle)"}
+				],
+				"text": "As stated on the Wikipedia page."
+			}
+		}
+	],
+	"confidence": "low",
+	"gaps": "No milk yield, lactation length, or butterfat and protein figures were found. The WebSearch results held only an 1895 newspaper item that covers Jersey and Guernsey cows and was not used. No origin regions were recorded, because the Channel Islands are not in countries.json (GG is not a listed code). No DAD-IS entry, year of formation, or current population was found. The known regions were GG, which is not in countries.json, so no regions are set."
+}

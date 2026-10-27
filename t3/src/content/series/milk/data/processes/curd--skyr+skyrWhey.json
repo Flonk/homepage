@@ -15,11 +15,12 @@
 				"temperature": {
 					"min": 18,
 					"max": 18
-				}
+				},
+				"minor": true
 			},
 			{
 				"type": "drain",
-				"note": "Strained through a sieve or fabric until the protein is at least 8 %, and the liquid that runs off is the whey."
+				"note": "The curd is strained through a sieve or fabric until its protein is at least 8 %, and the liquid that runs off is the whey."
 			}
 		],
 		"sources": {
@@ -43,7 +44,7 @@
 	"legs": {
 		"skyr": {
 			"step": "what is left when the whey goes",
-			"text": "Skimmed milk is set by lactic acid bacteria, sometimes helped by a little rennet, and then strained hard, so the result is a fat-free but very high-protein, thick curd.",
+			"text": "The set curd is strained hard, so the result is a fat-free but very high-protein, thick curd.",
 			"sources": {
 				"links": [
 					{

@@ -1,0 +1,96 @@
+{
+	"label": "Water buffalo",
+	"kind": "species",
+	"parent": "bovines",
+	"taxon": {
+		"name": "Bubalus bubalis",
+		"rank": "species",
+		"sources": {
+			"links": [
+				{ "name": "Wikipedia: Water buffalo", "url": "https://en.wikipedia.org/wiki/Water_buffalo" }
+			],
+			"text": "The article gives the domestic form as Bubalus bubalis, and says the ICZN's March 2003 ruling kept B. bubalis valid for the domestic form."
+		}
+	},
+	"about": {
+		"text": "Water buffalo are domesticated bovines kept for milk, work and meat, in two types: the river buffalo, kept mainly for milk and transport, and the swamp buffalo, kept mainly for work. Most are in Asia, and India and Pakistan are the largest milk producers.",
+		"sources": {
+			"links": [
+				{ "name": "Wikipedia: Water buffalo", "url": "https://en.wikipedia.org/wiki/Water_buffalo" },
+				{ "name": "FAO: Gateway to dairy production and products, buffaloes", "url": "https://www.fao.org/dairy-production-products/dairy/buffaloes/en" }
+			],
+			"text": "The two types and their uses are from the Wikipedia article as fetched. India and Pakistan as the largest milk producers, and the milk-and-work uses, are from the FAO gateway page, which gives no year."
+		}
+	},
+	"domestication": {
+		"where": "Western India (river type) and mainland Southeast Asia (swamp type), two separate domestications",
+		"regions": ["IN", "TH", "VN", "LA", "KH", "MM"],
+		"yearsAgo": { "min": 3000, "max": 7000 },
+		"text": "The river type was probably domesticated about 6,300 years ago in western India, and the swamp type was domesticated separately 3,000 to 7,000 years ago in mainland Southeast Asia.",
+		"sources": {
+			"links": [
+				{ "name": "Wikipedia: Water buffalo", "url": "https://en.wikipedia.org/wiki/Water_buffalo" }
+			],
+			"text": "Places and dates from the article's river and swamp type sections. The country list for mainland Southeast Asia is my own mapping of that region to today's countries, not from the article."
+		}
+	},
+	"milk": {
+		"mt": 150.69,
+		"year": 2023,
+		"sources": {
+			"links": [
+				{ "name": "FAOSTAT: Crops and livestock products (QCL), world, 2023", "url": "https://www.fao.org/faostat/en/#data/QCL" }
+			],
+			"text": "Raw milk of water buffalo, world, 2023: 150,694,311 t (FAO official, flag A), from FAOSTAT's bulk file, divided by 1,000,000 and rounded to 2 decimals."
+		}
+	},
+	"head": [
+		{
+			"count": 211568902,
+			"year": 2023,
+			"where": "world",
+			"sources": {
+				"links": [
+					{ "name": "FAOSTAT: Crops and livestock products (QCL), world, 2023", "url": "https://www.fao.org/faostat/en/#data/QCL" }
+				],
+				"text": "Water buffalo stocks, world, 2023, from FAOSTAT's bulk file."
+			}
+		},
+		{
+			"count": 75615439,
+			"year": 2023,
+			"where": "world",
+			"milked": true,
+			"sources": {
+				"links": [
+					{ "name": "FAOSTAT: Crops and livestock products (QCL), world, 2023", "url": "https://www.fao.org/faostat/en/#data/QCL" }
+				],
+				"text": "Raw milk of water buffalo, milk animals, world, 2023, from FAOSTAT's bulk file."
+			}
+		}
+	],
+	"purposes": {
+		"purposes": ["dairy", "draught", "meat"],
+		"sources": {
+			"links": [
+				{ "name": "Wikipedia: Water buffalo", "url": "https://en.wikipedia.org/wiki/Water_buffalo" },
+				{ "name": "FAO: Gateway to dairy production and products, buffaloes", "url": "https://www.fao.org/dairy-production-products/dairy/buffaloes/en" }
+			],
+			"text": "Milk and work from both pages. Meat from the Wikipedia article's sentence on meat, which gives no year; its order follows the article's emphasis on milk first."
+		}
+	},
+	"facts": [
+		{
+			"k": "Largest dairy herds",
+			"v": "India, Pakistan, China, Nepal and Egypt have the largest numbers of dairy buffaloes.",
+			"sources": {
+				"links": [
+					{ "name": "FAO: Gateway to dairy production and products, buffaloes", "url": "https://www.fao.org/dairy-production-products/dairy/buffaloes/en" }
+				],
+				"text": "From the FAO gateway page, which gives no year."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "No composition (fat, protein, lactose, solids) or yield figures for the species as a whole were found in the opened pages. Wikipedia's 208 million (2020) and 72 million tonnes of milk (no year) differ from FAOSTAT's 2023 figures, so FAOSTAT's figures were used. Milk and head figures for the river and swamp types are in their own records; the swamp-type milk split was not found in an opened source."
+}

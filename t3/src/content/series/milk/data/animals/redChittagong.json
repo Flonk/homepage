@@ -1,0 +1,112 @@
+{
+	"label": "Red Chittagong",
+	"aka": [
+		"Lal Birish",
+		"Red Chattogram"
+	],
+	"names": {
+		"links": [
+			{
+				"name": "Wikipedia: Red Chittagong",
+				"url": "https://en.wikipedia.org/wiki/Red_Chittagong"
+			},
+			{
+				"name": "Frontiers in Sustainable Food Systems, 2021",
+				"url": "https://www.frontiersin.org/articles/10.3389/fsufs.2021.688641"
+			}
+		],
+		"text": "Wikipedia (seen in WebSearch text, not opened) gives 'Lal Birish' as the local name and 'Red Chittagong' as the breed name. The Frontiers review uses 'Red Chittagong Cattle' (RCC). 'Red Chattogram' is from the TBS News headline (WebSearch text, not opened)."
+	},
+	"kind": "breed",
+	"parent": "zebuCattle",
+	"about": {
+		"text": "A Bangladeshi cattle breed mainly from Chittagong District, used for milk, draught and beef. The 2021 review reports a mean milk yield of 618 litres over a 228-day lactation, and says the breed is resistant to local parasites and diseases. The breed is declining through crossbreeding, and a government improvement and conservation project ran from 2007 to 2012.",
+		"sources": {
+			"links": [
+				{
+					"name": "Frontiers in Sustainable Food Systems, 2021",
+					"url": "https://www.frontiersin.org/articles/10.3389/fsufs.2021.688641"
+				},
+				{
+					"name": "Wikipedia: Red Chittagong",
+					"url": "https://en.wikipedia.org/wiki/Red_Chittagong"
+				}
+			],
+			"text": "Frontiers review (opened with WebFetch): main habitat Chittagong; hardiness and the 2007-2012 BLRI project; 2008 survey. Triple-purpose (milk, draught, beef) and the local name Lal Birish from the Wikipedia article (WebSearch text, not opened). The 'declining through crossbreeding' point is from the Frontiers text as fetched."
+		}
+	},
+	"origin": {
+		"regions": [
+			"BD"
+		],
+		"place": "Chittagong District, Bangladesh",
+		"sources": {
+			"links": [
+				{
+					"name": "Frontiers in Sustainable Food Systems, 2021",
+					"url": "https://www.frontiersin.org/articles/10.3389/fsufs.2021.688641"
+				}
+			],
+			"text": "Frontiers review, opened with WebFetch: 'The main habitat of RCC is in Chittagong.' The article also says the breed is 'closely linked to Indian zebu cattle genotypes'."
+		}
+	},
+	"purposes": {
+		"purposes": [
+			"dairy",
+			"draught",
+			"meat"
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Red Chittagong",
+					"url": "https://en.wikipedia.org/wiki/Red_Chittagong"
+				}
+			],
+			"text": "Wikipedia, seen in WebSearch text (not opened): 'a Bangladeshi triple-purpose breed (milk, draught, beef)'. Order given as milk, draught, beef."
+		}
+	},
+	"facts": [
+		{
+			"k": "Mean milk yield",
+			"v": "Mean of 618 litres per lactation across the studies in the review, with a single-cow record of 1,436 litres from a BLRI herd. Units are litres, as in the source.",
+			"sources": {
+				"links": [
+					{
+						"name": "Frontiers in Sustainable Food Systems, 2021",
+						"url": "https://www.frontiersin.org/articles/10.3389/fsufs.2021.688641"
+					}
+				],
+				"text": "Frontiers review, opened with WebFetch: mean 618 L (abstract and Table 6); the 618-1,436 L spread is from the text. The review's own Table 6 gives 453-838 L across 21 studies, which conflicts with the text, so both are shown in the gaps."
+			}
+		},
+		{
+			"k": "Population",
+			"v": "41,730 animals counted in a 2008 survey in Chittagong, where the breed made up 9% of cattle. The review calls for a national survey.",
+			"sources": {
+				"links": [
+					{
+						"name": "Frontiers in Sustainable Food Systems, 2021",
+						"url": "https://www.frontiersin.org/articles/10.3389/fsufs.2021.688641"
+					}
+				],
+				"text": "Frontiers review, opened with WebFetch: Table 1, 'Number of Red Chittagong cattle at Chittagong, Bangladesh (2008)'. The count covers Chittagong only, so it is not a national figure."
+			}
+		},
+		{
+			"k": "Conservation",
+			"v": "A news report says the breed faces extinction through hybridisation, and that the Department of Livestock Services has no special project to protect it.",
+			"sources": {
+				"links": [
+					{
+						"name": "TBS News: Hybridization threatens extinction of Red Chattogram cattle breed",
+						"url": "https://www.tbsnews.net/bangladesh/hybridization-threatens-extinction-red-chattogram-cattle-breed"
+					}
+				],
+				"text": "Seen in WebSearch text, not opened. The report cites Business Standard for the claim."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "No FAO DAD-IS record, DAD-IS population figure or risk status found (DAD-IS was not searched directly). The formation date is not in the sources read, so 'formed' is left out. The Frontiers review gives mean yield in litres, not kg, and its two yield ranges (618-1,436 L in the text, 453-838 L in Table 6) disagree, so no yield range is entered. No national population count was found. Purposes are from Wikipedia text seen in search results, not from an opened page. Yield is left out: the review gives its mean (618 L per lactation) in litres, and no kg figure was made, so no yield object is written."
+}

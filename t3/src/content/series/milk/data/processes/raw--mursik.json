@@ -25,11 +25,12 @@
 			{
 				"type": "heat",
 				"does": "heat",
-				"note": "Boiled today, traditionally raw."
+				"note": "Today the milk is boiled; traditionally it is left raw."
 			},
 			{
 				"type": "heat",
-				"does": "cool"
+				"does": "cool",
+				"minor": true
 			},
 			{
 				"type": "ferment",
@@ -80,7 +81,7 @@
 				"seconds": {
 					"min": 259200
 				},
-				"note": "Wild cultures sour it in a corked gourd, scraped and coated with charcoal from Senna didymobotrya sticks."
+				"note": "Wild cultures sour the milk in a corked gourd that is scraped and coated with charcoal from the sticks of the plant Senna didymobotrya."
 			}
 		],
 		"sources": {

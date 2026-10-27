@@ -14,12 +14,12 @@
 					"min": 110,
 					"max": 120
 				},
-				"note": "Boiled in a steam-jacketed ghee boiler with constant stirring, hotter (120–140 °C) in southern India, until frothing stops and the curd particles turn golden to brown."
+				"note": "The cream is boiled, stirred constantly, until its frothing stops and the curd particles turn golden to brown."
 			},
 			{
 				"type": "separate",
 				"off": "solids",
-				"note": "The browned residue is removed by stack or pressure filters or by a centrifuge."
+				"note": "The browned residue is removed by filters or by a centrifuge."
 			},
 			{
 				"type": "heat",
@@ -28,7 +28,8 @@
 					"min": 40,
 					"max": 42
 				},
-				"note": "Cooled before it is packed."
+				"note": "The butterfat is brought to packing temperature.",
+				"minor": true
 			}
 		],
 		"sources": {

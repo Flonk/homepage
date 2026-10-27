@@ -5,11 +5,13 @@
 	"to": [
 		"frozenYoghurt"
 	],
+	"step": "sweeten, freeze with air",
 	"processing": {
 		"steps": [
 			{
 				"type": "add",
-				"what": "sweetener and stabiliser"
+				"what": "sweetener and stabiliser",
+				"note": "Sugar and a stabiliser are added to the yoghurt."
 			},
 			{
 				"type": "homogenise",
@@ -17,7 +19,8 @@
 					"min": 120,
 					"max": 140
 				},
-				"note": "Preferred pressure; the patent allows 40–200 bar."
+				"minor": true,
+				"of": "mix"
 			},
 			{
 				"type": "heat",
@@ -25,12 +28,12 @@
 				"temperature": {
 					"max": 10
 				},
-				"note": "Cooled to 10 °C or below before freezing."
+				"minor": true
 			},
 			{
 				"type": "custom",
 				"name": "freeze",
-				"note": "Whipped and frozen in an ice-cream freezer to 30–60 % overrun, then optionally hardened."
+				"note": "Air is whipped into it in an ice-cream freezer until it is 30–60 % bigger, then it is optionally hardened."
 			}
 		],
 		"sources": {

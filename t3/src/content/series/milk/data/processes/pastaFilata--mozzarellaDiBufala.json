@@ -19,48 +19,6 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "coagulate",
-				"by": "rennet",
-				"temperature": {
-					"min": 34,
-					"max": 38
-				},
-				"note": "With liquid calf rennet."
-			},
-			{
-				"type": "cut",
-				"how": "cut",
-				"size": {
-					"min": 30,
-					"max": 60
-				},
-				"note": "To walnut size."
-			},
-			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic"
-				],
-				"adds": {
-					"microbes": [],
-					"by": [
-						"backslop"
-					]
-				},
-				"seconds": {
-					"min": 18000,
-					"max": 18000,
-					"about": true
-				},
-				"note": "Natural whey starter from previous buffalo-milk batches, and the curd is soured under whey until it can stretch."
-			},
-			{
-				"type": "custom",
-				"name": "stretch",
-				"note": "In boiling water, torn off by hand into pieces of 10–800 g, plaits up to 3 kg."
-			},
-			{
 				"type": "salt",
 				"how": "brine",
 				"strength": {

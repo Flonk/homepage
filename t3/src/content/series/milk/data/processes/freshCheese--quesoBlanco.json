@@ -26,23 +26,10 @@
 				}
 			},
 			{
-				"type": "acidify",
-				"with": "an organic acid",
-				"pH": {
-					"min": 5.3,
-					"max": 5.3,
-					"about": true
-				},
-				"note": "The acid, not rennet, precipitates the protein."
-			},
-			{
 				"type": "drain"
 			},
 			{
 				"type": "salt"
-			},
-			{
-				"type": "press"
 			}
 		],
 		"sources": {

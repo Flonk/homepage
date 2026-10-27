@@ -1,0 +1,101 @@
+{
+	"label": "Italian Mediterranean",
+	"aka": ["Bufala Mediterranea Italiana", "Italian Mediterranean buffalo", "Mediterranean Italian"],
+	"names": {
+		"links": [
+			{ "name": "Wikipedia: Italian Mediterranean buffalo", "url": "https://en.wikipedia.org/wiki/Italian_Mediterranean_buffalo" },
+			{ "name": "Wikipedia: List of water buffalo breeds", "url": "https://en.wikipedia.org/wiki/List_of_water_buffalo_breeds" }
+		],
+		"text": "'Bufala Mediterranea Italiana' is from the breed article's Commons link. 'Italian Mediterranean' and 'Mediterranean Italian' are from the list page."
+	},
+	"kind": "breed",
+	"parent": "riverBuffalo",
+	"about": {
+		"text": "The Italian Mediterranean is the only native water buffalo breed of Italy, kept mainly in Campania. Its milk is used for mozzarella di bufala, and some animals are raised for meat.",
+		"sources": {
+			"links": [
+				{ "name": "Wikipedia: Italian Mediterranean buffalo", "url": "https://en.wikipedia.org/wiki/Italian_Mediterranean_buffalo" },
+				{ "name": "Wikipedia: List of water buffalo breeds", "url": "https://en.wikipedia.org/wiki/List_of_water_buffalo_breeds" }
+			],
+			"text": "Breed article: 'the only indigenous water buffalo breed in Italy', kept 'throughout Italy, principally Campania', and the use for mozzarella di bufala. The meat use is also from the article."
+		}
+	},
+	"origin": {
+		"regions": ["IT"],
+		"place": "Italy, principally Campania",
+		"formed": { "min": 1979, "max": 2000 },
+		"sources": {
+			"links": [{ "name": "Wikipedia: Italian Mediterranean buffalo", "url": "https://en.wikipedia.org/wiki/Italian_Mediterranean_buffalo" }],
+			"text": "The breeders' association was formed in 1979, the herd-book opened in 1980, and the breed was 'officially recognised in 2000'. The min is the association year and the max the recognition year. The article gives no origin region within Italy."
+		}
+	},
+	"head": [
+		{
+			"count": 402659,
+			"year": 2013,
+			"where": "IT",
+			"sources": {
+				"links": [{ "name": "Wikipedia: Italian Mediterranean buffalo", "url": "https://en.wikipedia.org/wiki/Italian_Mediterranean_buffalo" }],
+				"text": "402,659 for 2013 from ISTAT, as cited in the article. ISTAT itself was not opened."
+			}
+		}
+	],
+	"yield": {
+		"perLactation": { "min": 1600, "max": 1800 },
+		"lactationDays": { "min": 277, "max": 277 },
+		"sources": {
+			"links": [{ "name": "Wikipedia: Italian Mediterranean buffalo", "url": "https://en.wikipedia.org/wiki/Italian_Mediterranean_buffalo" }],
+			"text": "'Typical yield is 1,600-1,800 kg per lactation'; lactation 'lasts on average 277 days'. The article gives no year for these figures, and they are not tied to a recording country."
+		}
+	},
+	"composition": {
+		"fat": { "min": 7.92, "max": 7.92 },
+		"sources": {
+			"links": [{ "name": "Wikipedia: Italian Mediterranean buffalo", "url": "https://en.wikipedia.org/wiki/Italian_Mediterranean_buffalo" }],
+			"text": "'The fat content was an average of 7.92%'. The article gives no protein, lactose or solids figures."
+		}
+	},
+	"purposes": {
+		"purposes": ["dairy", "meat"],
+		"sources": {
+			"links": [{ "name": "Wikipedia: Italian Mediterranean buffalo", "url": "https://en.wikipedia.org/wiki/Italian_Mediterranean_buffalo" }],
+			"text": "'Mainly dairy' (buffalo milk for mozzarella and other products) and meat. The article notes historical draught use, which is left out."
+		}
+	},
+	"risk": {
+		"status": "not at risk",
+		"year": 2022,
+		"sources": {
+			"links": [{ "name": "Wikipedia: Italian Mediterranean buffalo", "url": "https://en.wikipedia.org/wiki/Italian_Mediterranean_buffalo" }],
+			"text": "The article gives DAD-IS (2022) as 'not at risk'. The DAD-IS page itself was not opened."
+		}
+	},
+	"facts": [
+		{
+			"k": "Protected product",
+			"v": "Mozzarella di bufala Campana holds protected designation of origin (PDO) status.",
+			"sources": {
+				"links": [{ "name": "Wikipedia: Italian Mediterranean buffalo", "url": "https://en.wikipedia.org/wiki/Italian_Mediterranean_buffalo" }],
+				"text": "Stated in the article."
+			}
+		},
+		{
+			"k": "Exports",
+			"v": "Italian Mediterranean buffaloes have been exported to Brazil and other parts of Latin America.",
+			"sources": {
+				"links": [{ "name": "Wikipedia: List of water buffalo breeds", "url": "https://en.wikipedia.org/wiki/List_of_water_buffalo_breeds" }],
+				"text": "Stated on the list page."
+			}
+		},
+		{
+			"k": "Herd size",
+			"v": "The median herd was about 90 animals in 2005 and over 210 by 2023.",
+			"sources": {
+				"links": [{ "name": "Wikipedia: Italian Mediterranean buffalo", "url": "https://en.wikipedia.org/wiki/Italian_Mediterranean_buffalo" }],
+				"text": "Stated in the article; the herd-size trend is from its statistics section."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "No year for the yield figures. No protein, lactose or solids found. The DAD-IS page was not opened, so the 2022 status is as Wikipedia reports it. The ISTAT count is cited second-hand through Wikipedia."
+}

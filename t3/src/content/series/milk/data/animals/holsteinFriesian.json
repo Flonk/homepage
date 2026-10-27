@@ -1,0 +1,71 @@
+{
+	"label": "Holstein Friesian",
+	"aka": ["Holstein", "Friesian"],
+	"names": {
+		"links": [
+			{"name": "Wikipedia: Holstein Friesian cattle", "url": "https://en.wikipedia.org/wiki/Holstein_Friesian_cattle"}
+		],
+		"text": "The article gives 'Holstein cattle' and 'Friesian cattle' as the breed's other names."
+	},
+	"kind": "breed",
+	"parent": "taurineCattle",
+	"about": {
+		"text": "The Holstein Friesian is a dairy breed of cattle, with the Netherlands and Germany given as its country of origin. Wikipedia reports that American Holsteins give about 10,000 kg of milk a year and European ones 7,000 to 8,000 litres.",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Holstein Friesian cattle", "url": "https://en.wikipedia.org/wiki/Holstein_Friesian_cattle"}
+			],
+			"text": "Wikipedia's Holstein Friesian cattle article, opened with WebFetch: country of origin Netherlands and Germany; US Holsteins 'about 22,000 pounds (10,000 kg) of milk per annum'; European Holsteins 7,000 to 8,000 litres a year. The page carries accuracy-dispute and citation-needed tags, so these figures are not checked against primary sources."
+		}
+	},
+	"origin": {
+		"regions": ["NL", "DE"],
+		"place": "The Netherlands and Germany, per the article's country-of-origin field",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Holstein Friesian cattle", "url": "https://en.wikipedia.org/wiki/Holstein_Friesian_cattle"}
+			],
+			"text": "The article's infobox gives the country of origin as the Netherlands and Germany. It gives no region or date of formation."
+		}
+	},
+	"yield": {
+		"perYear": {"min": 7000, "max": 10000},
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Holstein Friesian cattle", "url": "https://en.wikipedia.org/wiki/Holstein_Friesian_cattle"}
+			],
+			"text": "The article gives European Holsteins 7,000 to 8,000 litres a year and US Holsteins about 10,000 kg a year. It names no recording year or source. The range is the two figures in kg and litres treated as equal, so no single country is given."
+		}
+	},
+	"purposes": {
+		"purposes": ["dairy"],
+		"sources": {
+			"unsourced": true,
+			"text": "Common knowledge that the Holstein is a dairy breed. The fetched article is about its milk yields, but no single sentence states the purpose."
+		}
+	},
+	"facts": [
+		{
+			"k": "Offspring",
+			"v": "The bull Round Oak Rag Apple Elevation (born 1965, US) fathered over 70,000 offspring through artificial insemination.",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: Holstein Friesian cattle", "url": "https://en.wikipedia.org/wiki/Holstein_Friesian_cattle"}
+				],
+				"text": "Wikipedia's Holstein Friesian cattle article, as fetched. The article carries citation-needed tags on some record claims."
+			}
+		},
+		{
+			"k": "Semen sales",
+			"v": "The bull Kian (1997 to 2013) was the first red Holstein whose semen sold more than one million units worldwide.",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: Holstein Friesian cattle", "url": "https://en.wikipedia.org/wiki/Holstein_Friesian_cattle"}
+				],
+				"text": "Wikipedia's Holstein Friesian cattle article, as fetched. The article carries citation-needed tags on some record claims."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "Not found: the breed's worldwide or national population and its year (holsteinusa.com returned 403; the FAO DAD-IS pages did not return a Holstein entry); its FAO/DAD-IS risk status; a date or place of formation; fat and protein composition; the recording country and year for the yield figures. The 'Black and White' alias from the research notes was not verified and is left out. The parent placement under taurine cattle rests on the parent record's sources."
+}

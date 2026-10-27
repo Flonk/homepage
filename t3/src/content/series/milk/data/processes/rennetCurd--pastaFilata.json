@@ -23,21 +23,13 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "coagulate",
-				"by": "rennet",
-				"temperature": {
-					"min": 35,
-					"max": 37
-				}
-			},
-			{
 				"type": "ferment",
 				"does": "incubate",
 				"acidity": {
 					"min": 0.7,
 					"max": 0.8
 				},
-				"note": "The hazelnut-size grains rest until the whey has 0.7–0.8 % lactic acid."
+				"note": "The curd, in grains the size of hazelnuts, is left until the whey has 0.7–0.8 % lactic acid."
 			},
 			{
 				"type": "heat",
@@ -46,24 +38,18 @@
 					"min": 65,
 					"max": 70
 				},
-				"note": "Curd kneaded and stretched in the hot water."
+				"note": "The curd is kneaded and stretched in the hot water."
 			},
 			{
 				"type": "mould",
-				"temperature": {
-					"min": 55,
-					"max": 65
-				}
+				"note": "The curd is shaped at 55–65 °C.",
+				"minor": true
 			},
 			{
 				"type": "salt",
 				"how": "brine",
-				"seconds": {
-					"min": 28800,
-					"max": 28800,
-					"about": true
-				},
-				"note": "Dry-salted about 2 h, or the stretching water is salted instead."
+				"note": "The cheese is dry-salted, or the stretching water is salted instead.",
+				"minor": true
 			}
 		],
 		"sources": {

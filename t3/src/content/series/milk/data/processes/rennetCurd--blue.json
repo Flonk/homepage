@@ -40,11 +40,7 @@
 						"starter"
 					]
 				},
-				"note": "The mould is added to the milk or curd, or settles from the cave air."
-			},
-			{
-				"type": "coagulate",
-				"by": "rennet"
+				"note": "Blue mould is added to the milk or curd, or settles from the cave air."
 			},
 			{
 				"type": "salt",
@@ -53,17 +49,17 @@
 					"min": 3.5,
 					"max": 7
 				},
-				"note": "Dry or brine salted."
+				"note": "The cheese is salted dry instead, as an alternative to brining."
 			},
 			{
 				"type": "ferment",
 				"does": "pierce",
-				"note": "With needles, to let air in."
+				"note": "Holes are pierced into the cheese with needles, which lets air in."
 			},
 			{
 				"type": "ferment",
 				"does": "ripen",
-				"note": "Time, temperature and humidity vary by cheese."
+				"note": "The cheese is ripened while the blue mould grows along the needle channels."
 			}
 		],
 		"sources": {

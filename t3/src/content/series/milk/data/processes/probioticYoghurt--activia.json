@@ -19,58 +19,5 @@
 			}
 		],
 		"text": "The table, the facts and the words on how it is made, from these."
-	},
-	"processing": {
-		"steps": [
-			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic"
-				],
-				"adds": {
-					"microbes": [
-						{
-							"name": "Streptococcus thermophilus",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							]
-						},
-						{
-							"name": "Lactobacillus delbrueckii subsp. bulgaricus",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							]
-						},
-						{
-							"name": "Bifidobacterium animalis subsp. lactis DN-173 010",
-							"kind": "bacterium",
-							"does": [
-								"probiotic"
-							]
-						}
-					],
-					"by": [
-						"starter"
-					]
-				}
-			}
-		],
-		"text": "The bifidobacterium strain is deposited as CNCM I-2494 and sold as Bifidus ActiRegularis.",
-		"sources": {
-			"links": [
-				{
-					"name": "Tabbers et al. 2009, BMC Pediatrics (Activia, DN-173 010)",
-					"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2662858"
-				},
-				{
-					"name": "Wikipedia: Activia",
-					"url": "https://en.wikipedia.org/wiki/Activia"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		}
 	}
 }

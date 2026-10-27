@@ -1,0 +1,132 @@
+{
+	"label": "Jaffarabadi",
+	"aka": [
+		"Jaffrabadi",
+		"Gir",
+		"Bhavnagri",
+		"Jaffari"
+	],
+	"names": {
+		"links": [
+			{
+				"name": "Jafarabadi buffalo (Wikipedia)",
+				"url": "https://en.wikipedia.org/wiki/Jafarabadi_buffalo"
+			},
+			{
+				"name": "Jaffarabadi (Buffalopedia)",
+				"url": "https://buffalopedianew.cirb.res.in/jaffarabadi/"
+			}
+		],
+		"text": "\"Jaffrabadi\" and \"Gir\" from the Wikipedia article's other-names line. \"Bhavnagri\", \"Gir\" and \"Jaffari\" from the Buffalopedia page. \"Bhavanegri\" and \"Palitana\" from the first pass were not found on either page, so they are left out."
+	},
+	"kind": "breed",
+	"parent": "riverBuffalo",
+	"about": {
+		"text": "A water buffalo from the Saurashtra region of Gujarat, India, around Gir forest, named after the town of Jaffarabad. It is kept for milk and draught work, and its milk is high in butterfat. It is one of the important buffalo breeds of India and Pakistan.",
+		"sources": {
+			"links": [
+				{
+					"name": "Jafarabadi buffalo (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Jafarabadi_buffalo"
+				},
+				{
+					"name": "Jaffarabadi (Buffalopedia)",
+					"url": "https://buffalopedianew.cirb.res.in/jaffarabadi/"
+				}
+			],
+			"text": "Wikipedia article: \"one of the important buffalo breeds of India and Pakistan\", named after Jafarabad. Buffalopedia page: native tract in Saurashtra around Gir, good milkers that convert roughage into high-butterfat milk, males used for draught."
+		}
+	},
+	"origin": {
+		"regions": ["IN"],
+		"place": "Saurashtra region of Gujarat, around Gir forest: Junagarh, Bhavnagar, Jamnagar, Porbandar, Amreli and Rajkot districts. Named after the town of Jaffarabad.",
+		"sources": {
+			"links": [
+				{
+					"name": "Jaffarabadi (Buffalopedia)",
+					"url": "https://buffalopedianew.cirb.res.in/jaffarabadi/"
+				},
+				{
+					"name": "Jafarabadi buffalo (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Jafarabadi_buffalo"
+				}
+			],
+			"text": "Districts and breeding tract from the Buffalopedia page (credited there to NBAGR). The Wikipedia article gives Gujarat, India, and the name's origin. No formation dates were found."
+		}
+	},
+	"head": [
+		{
+			"count": 600000,
+			"year": 2005,
+			"where": "world",
+			"sources": {
+				"links": [
+					{
+						"name": "Jafarabadi buffalo (Wikipedia)",
+						"url": "https://en.wikipedia.org/wiki/Jafarabadi_buffalo"
+					}
+				],
+				"text": "Wikipedia: \"around 600,000 Jafarabadi buffaloes in the world\", with no survey year on the page. Its citations include Borghese (2005); the year 2005 is taken from that citation and is not confirmed for the figure."
+			}
+		}
+	],
+	"yield": {
+		"perLactation": {"min": 2238.7, "max": 2238.7},
+		"lactationDays": {"min": 305.1, "max": 364.64},
+		"where": "IN",
+		"sources": {
+			"links": [
+				{
+					"name": "Jaffarabadi (Buffalopedia)",
+					"url": "https://buffalopedianew.cirb.res.in/jaffarabadi/"
+				}
+			],
+			"text": "Buffalopedia trait table: lactation milk yield 2238.7 kg (n = 70, Nivsarkar et al., 2000); lactation length 364.64 days (n = 110, Patel et al., 1996) and 305.1 days (n = 70, Nivsarkar et al., 2000). The lactation length range is the two studies' means. No year is given for the records."
+		}
+	},
+	"composition": {
+		"fat": {"min": 7.68, "max": 7.68},
+		"sources": {
+			"links": [
+				{
+					"name": "Jaffarabadi (Buffalopedia)",
+					"url": "https://buffalopedianew.cirb.res.in/jaffarabadi/"
+				}
+			],
+			"text": "Buffalopedia trait table: fat 7.68 ± 0.04% (n = 2060, Nivsarkar et al., 2000). Protein not given on the page."
+		}
+	},
+	"purposes": {
+		"purposes": ["dairy", "draught"],
+		"sources": {
+			"links": [
+				{
+					"name": "Jaffarabadi (Buffalopedia)",
+					"url": "https://buffalopedianew.cirb.res.in/jaffarabadi/"
+				},
+				{
+					"name": "List of water buffalo breeds (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/List_of_water_buffalo_breeds"
+				}
+			],
+			"text": "Buffalopedia: good milkers, high-butterfat milk, males used as draught animals. The Wikipedia list gives use as dairy."
+		}
+	},
+	"facts": [
+		{
+			"k": "Brazil",
+			"v": "The first buffalo breed exported to Brazil, per the Wikipedia article; as of 2017 it was one of four buffalo breeds raised there.",
+			"sources": {
+				"links": [
+					{
+						"name": "Jafarabadi buffalo (Wikipedia)",
+						"url": "https://en.wikipedia.org/wiki/Jafarabadi_buffalo"
+					}
+				],
+				"text": "Wikipedia article, read on WebFetch. The 2017 count is from the article's citation to Pylro and Roesch, not checked directly."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "Searched for an FAO DAD-IS risk status and found none; the Buffalopedia page gives none either. No breed-level population for a recent year: the 2007 Gujarat figure on the Buffalopedia page (1,926 thousand for Saurashtra, 8,774 thousand for Gujarat) is for all buffaloes in those regions, not the breed. The 600,000 figure is undated on its page. No protein or per-year yield found. \"Palitana\" from the first pass was not found on either page."
+}

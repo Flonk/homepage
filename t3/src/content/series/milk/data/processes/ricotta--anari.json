@@ -21,36 +21,11 @@
 			{
 				"type": "add",
 				"what": "milk",
-				"temperature": {
-					"min": 65,
-					"max": 65,
-					"about": true
-				},
 				"share": {
 					"min": 5,
 					"max": 10
-				}
-			},
-			{
-				"type": "heat",
-				"does": "heat",
-				"temperature": {
-					"min": 80,
-					"max": 85
 				},
-				"seconds": {
-					"min": 3600,
-					"max": 3600,
-					"about": true
-				},
-				"note": "Until small crumbly curds appear."
-			},
-			{
-				"type": "separate",
-				"off": "curd"
-			},
-			{
-				"type": "drain"
+				"note": "The milk is added when the whey is at about 65 °C."
 			},
 			{
 				"type": "cut",
@@ -58,11 +33,12 @@
 			},
 			{
 				"type": "salt",
-				"note": "Often added."
+				"note": "Salt is often added."
 			},
 			{
 				"type": "ferment",
-				"does": "ripen"
+				"does": "ripen",
+				"note": "The dried kind is ripened, and not the fresh, until it is too hard to cut."
 			}
 		],
 		"text": "Only the dried kind is matured: gently heated or sun-dried and matured until too hard to cut. No time given.",

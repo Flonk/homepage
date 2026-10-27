@@ -6,7 +6,7 @@
 		"natillas"
 	],
 	"variant": true,
-	"text": "The eggs are mixed with a little cool milk first and stirred slowly into the warm milk. The custard thickens as the yolk proteins set; a few degrees too much and it splits. A water bath lowers the heat but can set it too soon.",
+	"text": "The custard thickens as the yolk proteins set; a few degrees too much and it splits. A water bath lowers the heat but can set it too soon.",
 	"sources": {
 		"links": [
 			{
@@ -19,44 +19,5 @@
 			}
 		],
 		"text": "The table, the facts and the words on how it is made, from these."
-	},
-	"processing": {
-		"steps": [
-			{
-				"type": "add",
-				"note": "First mixed with a little cool milk.",
-				"what": "eggs"
-			},
-			{
-				"type": "heat",
-				"does": "heat",
-				"seconds": {
-					"min": 1800,
-					"max": 1800,
-					"about": true
-				}
-			},
-			{
-				"type": "heat",
-				"does": "cool",
-				"seconds": {
-					"min": 7200
-				},
-				"note": "To room temperature, then in the fridge."
-			}
-		],
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia (es): Natillas",
-					"url": "https://es.wikipedia.org/wiki/Natillas"
-				},
-				{
-					"name": "Wikipedia: Natillas",
-					"url": "https://en.wikipedia.org/wiki/Natillas"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		}
 	}
 }

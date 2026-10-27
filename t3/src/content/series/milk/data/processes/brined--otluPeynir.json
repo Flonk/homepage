@@ -23,12 +23,8 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "coagulate",
-				"by": "rennet"
-			},
-			{
 				"type": "add",
-				"note": "The herbs are antimicrobial and lengthen shelf life.",
+				"note": "Microbes are held back by the herbs, so the cheese keeps longer.",
 				"what": "alliums, thyme, Silene vulgaris, Chaerophyllum and others"
 			},
 			{
@@ -36,7 +32,8 @@
 			},
 			{
 				"type": "salt",
-				"how": "brine"
+				"how": "brine",
+				"minor": true
 			},
 			{
 				"type": "ferment",
@@ -45,7 +42,7 @@
 					"min": 5184000,
 					"max": 7776000
 				},
-				"note": "Stored underground."
+				"note": "The cheese is stored underground."
 			}
 		],
 		"text": "No starter cultures are named.",

@@ -22,10 +22,6 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "salt",
-				"how": "brine"
-			},
-			{
 				"type": "ferment",
 				"does": "ripen",
 				"kinds": [
@@ -34,7 +30,7 @@
 				"seconds": {
 					"min": 6480000
 				},
-				"note": "On spruce boards."
+				"note": "The cheeses are ripened on spruce boards."
 			}
 		],
 		"text": "Ripened on spruce boards with a smeared brown-red rind; the source names no microbes or how they arrive.",

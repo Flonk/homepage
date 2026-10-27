@@ -1,0 +1,77 @@
+{
+	"label": "East Friesian",
+	"aka": ["Ostfriesisches Milchschaf", "East Friesland Milch", "German Milksheep", "Fries Melkschaap"],
+	"names": {
+		"links": [
+			{"name": "Wikipedia: East Friesian sheep", "url": "https://en.wikipedia.org/wiki/East_Friesian_sheep"}
+		],
+		"text": "Opened the Wikipedia article. The German and Dutch names and the name Fries Melkschaap are as the article gives them. The known record's names were checked against it."
+	},
+	"kind": "breed",
+	"parent": "sheep",
+	"about": {
+		"text": "A dairy sheep from Frisia, on the border of the north-east Netherlands and north-west Germany. It is used purebred and in crosses to raise milk yield and lambs born per ewe.",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: East Friesian sheep", "url": "https://en.wikipedia.org/wiki/East_Friesian_sheep"}
+			],
+			"text": "Taken from the article's lead and its section on use. The article says it is a dairy breed, used purebred or as a crossing breed to improve milk yield and lambs born per ewe."
+		}
+	},
+	"origin": {
+		"regions": ["DE", "NL"],
+		"place": "Frisia: parts of the north-east Netherlands and north-west Germany",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: East Friesian sheep", "url": "https://en.wikipedia.org/wiki/East_Friesian_sheep"}
+			],
+			"text": "Taken from the article's lead. It gives no date of formation."
+		}
+	},
+	"yield": {
+		"perLactation": {
+			"min": 310,
+			"max": 620
+		},
+		"lactationDays": {"min": 200, "max": 300},
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: East Friesian sheep", "url": "https://en.wikipedia.org/wiki/East_Friesian_sheep"}
+			],
+			"text": "The article says the breed produces roughly 300 to 600 litres of milk over a 200- to 300-day lactation. The figures here are those litres taken as kg at about 1.03 kg per litre (300 x 1.03 = 309, rounded to 310; 600 x 1.03 = 618, rounded to 620). That conversion is worked out, not read off the page; the schema has no estimated flag on yield, so the working here is the only marker. The article gives no year for these figures."
+		}
+	},
+	"purposes": {
+		"purposes": ["dairy"],
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: East Friesian sheep", "url": "https://en.wikipedia.org/wiki/East_Friesian_sheep"}
+			],
+			"text": "The article calls it a dairy breed."
+		}
+	},
+	"risk": {
+		"status": "endangered-maintained",
+		"year": 2023,
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: East Friesian sheep", "url": "https://en.wikipedia.org/wiki/East_Friesian_sheep"}
+			],
+			"text": "The article's infobox gives DAD-IS (2023) as at risk, endangered-maintained, and FAO (2007) as not at risk. The DAD-IS figure is used here, as the article reports it. The DAD-IS breed page itself was not opened."
+		}
+	},
+	"facts": [
+		{
+			"k": "Record",
+			"v": "Some individual animals have reportedly given 900 litres, counting milk suckled by lambs and machine milking.",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: East Friesian sheep", "url": "https://en.wikipedia.org/wiki/East_Friesian_sheep"}
+				],
+				"text": "Taken from the article's section on milk yield. The article calls it a reported figure."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "Breed population count: the only figure on the article is an unlabelled FAO (2007) value of 147, which was not used. Date of formation. Fat, protein, lactose and solids percentages: searches returned only figures for crossbred or mixed flocks, which were not used. Year for the yield figure. The DAD-IS breed page was not opened."
+}

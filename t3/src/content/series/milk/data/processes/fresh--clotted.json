@@ -21,7 +21,7 @@
 			{
 				"type": "custom",
 				"name": "stand",
-				"note": "In a shallow pan for hours, so the cream rises."
+				"note": "The milk is left in a shallow pan for hours, so its cream rises."
 			},
 			{
 				"type": "heat",
@@ -29,7 +29,7 @@
 				"seconds": {
 					"max": 3600
 				},
-				"note": "Floated on milk over steam or very hot water, or scalded as separated cream alone at a lower temperature."
+				"note": "The cream is heated, floating on milk over steam or very hot water, or scalded alone at a lower temperature."
 			},
 			{
 				"type": "heat",
@@ -37,12 +37,11 @@
 				"seconds": {
 					"min": 43200
 				},
-				"note": "Slowly in the float method, simply chilled in the scald method."
+				"note": "The cream is cooled slowly in the float method, or simply chilled in the scald method."
 			},
 			{
 				"type": "separate",
-				"off": "skin",
-				"note": "Clots skimmed with a reamer."
+				"off": "skin"
 			}
 		],
 		"sources": {

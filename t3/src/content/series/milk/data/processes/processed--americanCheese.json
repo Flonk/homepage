@@ -19,37 +19,5 @@
 			}
 		],
 		"text": "The table, the facts and the words on how it is made, from these."
-	},
-	"processing": {
-		"steps": [
-			{
-				"type": "cut",
-				"how": "grind",
-				"note": "Of cheddar, washed-curd, colby or granular cheese, mixed."
-			},
-			{
-				"type": "pasteurise",
-				"temperature": {
-					"min": 66
-				},
-				"seconds": {
-					"min": 30
-				},
-				"note": "With up to 3 % emulsifying salts (citrates, phosphates)."
-			}
-		],
-		"sources": {
-			"links": [
-				{
-					"name": "21 CFR 133.169 Pasteurized process cheese",
-					"url": "https://www.law.cornell.edu/cfr/text/21/133.169"
-				},
-				{
-					"name": "21 CFR 133.173 Pasteurized process cheese food",
-					"url": "https://www.law.cornell.edu/cfr/text/21/133.173"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		}
 	}
 }

@@ -24,18 +24,6 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"yeast"
-				],
-				"seconds": {
-					"min": 86400,
-					"max": 172800
-				},
-				"note": "Skimmed milk soured without rennet."
-			},
-			{
 				"type": "heat",
 				"does": "cook",
 				"temperature": {
@@ -47,7 +35,14 @@
 					"min": 18000,
 					"max": 21600
 				},
-				"note": "At nearly 60 °C the curd hardens into a raft."
+				"note": "The curd is cooked, and it hardens into a raft as it nears 60 °C."
+			},
+			{
+				"type": "drain"
+			},
+			{
+				"type": "cut",
+				"how": "crumble"
 			},
 			{
 				"type": "ferment",
@@ -72,7 +67,7 @@
 			},
 			{
 				"type": "salt",
-				"note": "With caraway."
+				"note": "Caraway is added with the salt."
 			},
 			{
 				"type": "ferment",

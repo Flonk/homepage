@@ -21,11 +21,12 @@
 			{
 				"type": "heat",
 				"does": "cook",
-				"note": "To the soft-ball stage, until it pulls from the pan."
+				"note": "The mix is stirred as it cooks, until it pulls from the pan."
 			},
 			{
 				"type": "heat",
-				"does": "cool"
+				"does": "cool",
+				"minor": true
 			},
 			{
 				"type": "custom",
@@ -34,7 +35,7 @@
 			{
 				"type": "custom",
 				"name": "coat",
-				"note": "In chocolate sprinkles."
+				"note": "The balls are coated in chocolate sprinkles, so they do not stick."
 			}
 		],
 		"sources": {

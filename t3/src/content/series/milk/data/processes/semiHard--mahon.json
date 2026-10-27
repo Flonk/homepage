@@ -24,65 +24,26 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "coagulate",
-				"by": "rennet",
-				"temperature": {
-					"min": 30,
-					"max": 34
-				},
-				"seconds": {
-					"min": 1800
-				}
-			},
-			{
-				"type": "cut",
-				"how": "cut",
-				"size": {
-					"min": 10,
-					"max": 10
-				}
-			},
-			{
-				"type": "custom",
-				"name": "rest",
-				"temperature": {
-					"min": 30,
-					"max": 34
-				},
-				"seconds": {
-					"min": 600,
-					"max": 600,
-					"about": true
-				}
-			},
-			{
 				"type": "press",
 				"seconds": {
 					"min": 36000,
 					"max": 36000,
 					"about": true
 				},
-				"note": "Tied in a square cotton cloth (fogasser), 0.6–4 kg."
-			},
-			{
-				"type": "salt",
-				"how": "brine",
-				"seconds": {
-					"max": 172800
-				},
-				"note": "In saturated brine."
+				"note": "The curd is tied in a square cotton cloth, for cheeses of 0.6–4 kg."
 			},
 			{
 				"type": "dry",
 				"seconds": {
 					"min": 259200,
 					"max": 345600
-				}
+				},
+				"minor": true
 			},
 			{
 				"type": "custom",
 				"name": "rub",
-				"note": "With butter, olive oil, or oil with paprika; the rind turns yellow to brownish."
+				"note": "The rind is coated with butter, olive oil, or oil with paprika, and turns yellow to brownish."
 			},
 			{
 				"type": "ferment",
@@ -90,7 +51,7 @@
 				"seconds": {
 					"min": 5184000
 				},
-				"note": "Turned; semicurado under 150 d, curado over 150 d, Artesano at least 60 d."
+				"note": "The cheese is turned as it ages: under 150 days it is semi-cured Mahón, over 150 days it is cured, and an artisan one ages at least 60 days."
 			}
 		],
 		"sources": {

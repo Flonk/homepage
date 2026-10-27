@@ -10,7 +10,7 @@
 			{
 				"type": "add",
 				"what": "skim milk, whey protein, lactose, oils and emulsifiers",
-				"note": "Blended in tanks with skim milk warmed to about 60 °C, minerals and vitamins going in by how heat-sensitive they are."
+				"note": "The ingredients are blended in tanks with skim milk warmed to about 60 °C; minerals and vitamins go in at a point set by how heat-sensitive they are."
 			},
 			{
 				"type": "pasteurise",
@@ -22,11 +22,12 @@
 					"min": 30,
 					"max": 30,
 					"about": true
-				}
+				},
+				"note": "The mix undergoes heat treatment to kill harmful bacteria like Listeria, Salmonella and E. coli."
 			},
 			{
 				"type": "homogenise",
-				"note": "Two-stage, at 100–120 bar then 20–40 bar, to make a stable emulsion."
+				"of": "mix"
 			},
 			{
 				"type": "dry",
@@ -34,7 +35,7 @@
 					"min": 85,
 					"max": 95
 				},
-				"note": "Spray-dried to 2.5–3.5 % moisture with air at 160–190 °C going in and 85–95 °C coming out."
+				"note": "The mix is sprayed into hot air to dry it to 2.5–3.5 % moisture, with air at 160–190 °C going in."
 			}
 		],
 		"sources": {

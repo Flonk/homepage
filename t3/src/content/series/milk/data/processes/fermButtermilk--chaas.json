@@ -6,7 +6,7 @@
 		"chaas"
 	],
 	"variant": true,
-	"step": "dilute, churn",
+	"step": "dilute",
 	"text": "Chhach (lassi) is the watery liquid left when diluted dahi is churned for makkhan. With an equal volume of water, about 80% of the dahi's acid and nearly all its microflora wash out into the chhach.",
 	"sources": {
 		"links": [
@@ -26,11 +26,7 @@
 			{
 				"type": "add",
 				"what": "water",
-				"note": "About as much as the dahi."
-			},
-			{
-				"type": "churn",
-				"note": "The makkhan is lifted off."
+				"note": "The dahi is thinned with an equal volume, which washes out most of its acid and microflora."
 			}
 		],
 		"sources": {

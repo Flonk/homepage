@@ -25,10 +25,12 @@
 			{
 				"type": "add",
 				"what": "skim milk (or skim powder) and water",
-				"note": "So the fat falls to 1.5 % and the non-fat solids rise to 9 %."
+				"note": "The milk is blended so the fat falls to 1.5 % and the non-fat solids rise to 9 %."
 			},
 			{
-				"type": "pasteurise"
+				"type": "pasteurise",
+				"minor": true,
+				"note": "The milk undergoes heat treatment to kill harmful bacteria like Listeria, Salmonella and E. coli."
 			}
 		],
 		"sources": {

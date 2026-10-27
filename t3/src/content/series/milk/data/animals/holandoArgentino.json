@@ -1,0 +1,58 @@
+{
+	"label": "Holando-Argentino",
+	"aka": [],
+	"kind": "breed",
+	"parent": "taurineCattle",
+	"about": {
+		"text": "The Holando-Argentino is a Holstein-Friesian derived dairy cattle breed of Argentina, first introduced from the Netherlands in 1880 to the Pampas. It is now kept mainly for milk, chiefly in Buenos Aires, Santa Fe, Córdoba and Entre Ríos, and mature cows weigh 600 to 650 kg.",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Holando-Argentino", "url": "https://en.wikipedia.org/wiki/Holando-Argentino"}
+			],
+			"text": "Origin, introduction year, distribution, current use and cow weights, from the Wikipedia article (fetched with WebFetch)."
+		}
+	},
+	"origin": {
+		"regions": ["AR"],
+		"place": "The Pampas region of Argentina, from Holstein-Friesian cattle first introduced from the Netherlands in 1880.",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Holando-Argentino", "url": "https://en.wikipedia.org/wiki/Holando-Argentino"}
+			],
+			"text": "Origin and introduction year from the Wikipedia article (fetched with WebFetch). The article gives 1880 as the introduction, not a formation date, so no formed range is entered."
+		}
+	},
+	"purposes": {
+		"purposes": ["dairy"],
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Holando-Argentino", "url": "https://en.wikipedia.org/wiki/Holando-Argentino"}
+			],
+			"text": "The article says the breed was originally bred for both beef and milk, and is now primarily kept for milk production."
+		}
+	},
+	"facts": [
+		{
+			"k": "Breeders' association",
+			"v": "The breeders' association, ACHA, was founded in 1944.",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: Holando-Argentino", "url": "https://en.wikipedia.org/wiki/Holando-Argentino"}
+				],
+				"text": "From the Wikipedia article (fetched with WebFetch)."
+			}
+		},
+		{
+			"k": "Inbreeding",
+			"v": "A 2017 RIA study reported average inbreeding of 3.38% across 422,563 animals in the national dairy control system, with a rising trend.",
+			"sources": {
+				"links": [
+					{"name": "RIA: Revista Investigaciones Agropecuarias (Jan 2017)", "url": "https://doaj.org/article/884e4324a00540e68b069a2554233e73"}
+				],
+				"text": "Figure found in WebSearch result text for this article. The page itself returned HTTP 403 and was not opened, so the figure is taken from the search summary."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "Searched for a DAD-IS entry, population figures, milk yield per lactation, and composition. The DAD-IS search did not find the breed's entry, so no risk status is entered. The breed's yield figures could not be read from the sources reached (the study and the Oklahoma State page returned HTTP 403), so none are entered. No alternate names are given by the Wikipedia article."
+}

@@ -9,17 +9,7 @@
 		"steps": [
 			{
 				"type": "coagulate",
-				"by": "rennet-acid",
-				"temperature": {
-					"min": 17,
-					"max": 20
-				},
-				"seconds": {
-					"min": 86400,
-					"max": 86400,
-					"about": true
-				},
-				"note": "The milk is warmed a little and left to set for about 24 hours."
+				"by": "rennet-acid"
 			},
 			{
 				"type": "mould",
@@ -28,7 +18,7 @@
 			{
 				"type": "drain",
 				"by": "mould",
-				"note": "It drains by itself in the moulds."
+				"note": "The whey is left to run off by itself."
 			},
 			{
 				"type": "salt",
@@ -52,7 +42,7 @@
 					"max": 864000,
 					"about": true
 				},
-				"note": "It is turned daily in a cool, damp cellar for about 10 days."
+				"note": "The cheese is turned daily in a cool, damp cellar."
 			}
 		],
 		"text": "This is the way of Sainte-Maure de Touraine, a goat's cheese; the 24 hours, the cellar and the 10 days are as given there.",

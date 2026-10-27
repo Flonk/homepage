@@ -1,0 +1,116 @@
+{
+	"label": "Fleckvieh",
+	"aka": [],
+	"names": {
+		"links": [
+			{
+				"name": "Fleckvieh (Wikipedia)",
+				"url": "https://en.wikipedia.org/wiki/Fleckvieh"
+			}
+		],
+		"text": "The Wikipedia article gives \"Fleckvieh\" as the name, meaning \"spotted cattle\" in German. It lists no other aka names, read on WebFetch. The item's \"Simmental\" alias from the harness was not confirmed on a page I opened, so it is left out."
+	},
+	"kind": "breed",
+	"parent": "taurineCattle",
+	"about": {
+		"text": "A large dual-purpose Alpine breed for milk and meat, formerly triple-purpose including draught. It is milked widely across Europe, and the Wikipedia article gives a worldwide population of 41 million animals.",
+		"sources": {
+			"links": [
+				{
+					"name": "Fleckvieh (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Fleckvieh"
+				}
+			],
+			"text": "Wikipedia article, read on WebFetch: dual-purpose breed for milk and meat, formerly triple-purpose (meat, milk and draught); worldwide population of 41 million (no year given). \"Large\" and \"Alpine\" are from the harness's description and are not confirmed on the article."
+		}
+	},
+	"origin": {
+		"regions": [
+			"AT",
+			"DE"
+		],
+		"place": "The Austrian Empire and the Kingdom of Bavaria",
+		"formed": {
+			"min": 1830,
+			"max": 1830
+		},
+		"sources": {
+			"links": [
+				{
+					"name": "Fleckvieh (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Fleckvieh"
+				}
+			],
+			"text": "Wikipedia article, read on WebFetch: origin in the Austrian Empire and the Kingdom of Bavaria, with Austria and Germany as countries of origin; crossbreeding of local stock with Simmental cattle imported from Switzerland, beginning \"from about 1830\"."
+		}
+	},
+	"yield": {
+		"perLactation": {
+			"min": 7260,
+			"max": 7282
+		},
+		"lactationDays": {
+			"min": 305,
+			"max": 305
+		},
+		"where": "CH",
+		"year": 2021,
+		"sources": {
+			"links": [
+				{
+					"name": "ICAR milk recording survey 2020 and 2021 (PDF)",
+					"url": "https://www.icar.org/wp-content/uploads/documents/Survey-on-milk-recording-systems-in-cows-sheep-and-goats-2020-and-2021.pdf"
+				}
+			],
+			"text": "ICAR survey PDF, seen as WebSearch result text only (not opened): the Swiss Fleckvieh rows for 2020 and 2021 give about 7,260 to 7,282 kg milk per cow at 305 days. The figure is a range over the two years, and the year recorded is 2021 as the later one. Not from the Wikipedia page, which gives no yield."
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 4.12,
+			"max": 4.16
+		},
+		"protein": {
+			"min": 3.32,
+			"max": 3.33
+		},
+		"sources": {
+			"links": [
+				{
+					"name": "ICAR milk recording survey 2020 and 2021 (PDF)",
+					"url": "https://www.icar.org/wp-content/uploads/documents/Survey-on-milk-recording-systems-in-cows-sheep-and-goats-2020-and-2021.pdf"
+				}
+			],
+			"text": "ICAR survey PDF, seen as WebSearch result text only (not opened): Swiss Fleckvieh fat 4.12 to 4.16 percent and protein 3.32 to 3.33 percent, 2020 and 2021. German herdbook figures from a 2019 BRS brochure and a 2025 breed brochure (WebSearch text only) were about 4.13 to 4.17 percent fat and 3.50 percent protein, and are not used here."
+		}
+	},
+	"purposes": {
+		"purposes": [
+			"dual-purpose",
+			"meat"
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Fleckvieh (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Fleckvieh"
+				}
+			],
+			"text": "Wikipedia article, read on WebFetch: \"a dual-purpose breed for milk and meat\", formerly triple-purpose."
+		}
+	},
+	"risk": {
+		"status": "not at risk",
+		"sources": {
+			"links": [
+				{
+					"name": "Fleckvieh (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Fleckvieh"
+				}
+			],
+			"text": "Wikipedia article infobox, read on WebFetch: conservation status \"not at risk\". No year is given."
+		}
+	},
+	"confidence": "low",
+	"gaps": "The worldwide population of 41 million on the Wikipedia page has no year, so it is not recorded as a head count. No facts were found that were sourced to pages I opened. The yield and composition are from Switzerland, not a worldwide or Austrian/German figure, and come from an ICAR survey seen only as search text. No German or Austrian herdbook figure was opened. The Wikipedia page has no per-lactation or fat/protein figures, so those are not in its sources. Alias Simmental not confirmed."
+}

@@ -10,17 +10,16 @@
 			{
 				"type": "add",
 				"what": "water",
-				"note": "Dahi is thinned with about its own volume of water, warm or cold by the weather."
+				"note": "The yoghurt is thinned with about its own volume of water, warm or cold by the weather."
 			},
 			{
 				"type": "churn",
-				"note": "Churned by hand or motor at the ambient temperature, usually a cool morning."
+				"of": "yoghurt"
 			},
 			{
 				"type": "separate",
 				"off": "fat",
-				"by": "gravity",
-				"note": "The fat gathers in lumps on top and is lifted off, leaving the sour buttermilk (chhach or lassi)."
+				"by": "gravity"
 			}
 		],
 		"sources": {

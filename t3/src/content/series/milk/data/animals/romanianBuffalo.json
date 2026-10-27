@@ -1,0 +1,70 @@
+{
+	"label": "Romanian buffalo",
+	"kind": "breed",
+	"parent": "riverBuffalo",
+	"about": {
+		"text": "The Romanian buffalo is a Mediterranean-type water buffalo from Romania, kept for milk, meat and draught power. Its population is recorded as slightly decreasing.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Romanian buffalo",
+					"url": "https://en.wikipedia.org/wiki/Romanian_buffalo"
+				}
+			],
+			"text": "From the Wikipedia article. The origin and population statements are tagged [citation needed] on the page, so confidence is low."
+		}
+	},
+	"origin": {
+		"regions": [
+			"RO"
+		],
+		"place": "Romania",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Romanian buffalo",
+					"url": "https://en.wikipedia.org/wiki/Romanian_buffalo"
+				}
+			],
+			"text": "The page says the breed originates from the Mediterranean type of water buffalo, with a Romanian origin. Tagged [citation needed]."
+		}
+	},
+	"purposes": {
+		"purposes": [
+			"dairy",
+			"meat",
+			"draught"
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Romanian buffalo",
+					"url": "https://en.wikipedia.org/wiki/Romanian_buffalo"
+				}
+			],
+			"text": "The page gives milk, meat and draught power as the main uses. Milk is named first on the page, so dairy is listed first."
+		}
+	},
+	"yield": {
+		"perLactation": {
+			"min": 958,
+			"max": 1455
+		},
+		"lactationDays": {
+			"min": 252,
+			"max": 285
+		},
+		"where": "RO",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Romanian buffalo",
+					"url": "https://en.wikipedia.org/wiki/Romanian_buffalo"
+				}
+			],
+			"text": "Lactation milk yield 958 to 1,455 kg and 252 to 285 lactation days a year, both tagged [citation needed] on the page. No year is given for these ranges."
+		}
+	},
+	"confidence": "low",
+	"gaps": "Breed-level population and FAO DAD-IS risk status: not found. The 1996 count (209,432) is for all buffalo in Romania and a 2004 figure (100,000) is for the national herd, so neither is used. Formation dates: the page gives 1960 (Murrah introgression began) and 1987 (herdbook) but both are tagged [citation needed] and not breed formation dates, so left out. Year for the yield ranges: not stated. Composition: a 2024 Dairy article on this breed returned HTTP 403, so no fat or protein figures. Calving age (38 to 42 months) and the 2023 Cluj lactation mean were not opened as sources, so left out. No aka names known."
+}

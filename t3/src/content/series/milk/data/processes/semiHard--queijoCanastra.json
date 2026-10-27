@@ -24,19 +24,9 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "coagulate",
-				"by": "rennet",
-				"note": "With coalho and the pingo, the previous day's drained whey."
-			},
-			{
-				"type": "press"
-			},
-			{
 				"type": "custom",
-				"name": "turn"
-			},
-			{
-				"type": "salt"
+				"name": "turn",
+				"minor": true
 			},
 			{
 				"type": "ferment",

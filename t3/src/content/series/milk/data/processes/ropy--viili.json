@@ -28,9 +28,6 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "pasteurise"
-			},
-			{
 				"type": "ferment",
 				"does": "incubate",
 				"kinds": [
@@ -87,7 +84,8 @@
 				"seconds": {
 					"min": 86400,
 					"max": 86400
-				}
+				},
+				"note": "The cream, which has not been homogenised, is left to rise, and a velvety skin is grown on it by a mould."
 			}
 		],
 		"sources": {

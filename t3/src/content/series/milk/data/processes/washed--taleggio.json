@@ -24,20 +24,6 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "coagulate",
-				"by": "rennet",
-				"temperature": {
-					"min": 32,
-					"max": 35
-				},
-				"note": "Liquid calf rennet, after the lactic starters."
-			},
-			{
-				"type": "cut",
-				"how": "cut",
-				"note": "In stages to hazelnut size."
-			},
-			{
 				"type": "ferment",
 				"does": "incubate",
 				"kinds": [
@@ -66,12 +52,12 @@
 					"min": 28800,
 					"max": 57600
 				},
-				"note": "Stewed in square moulds, 1.5–2.5 kg."
+				"note": "The curd is left to sour in square moulds of 1.5–2.5 kg."
 			},
 			{
 				"type": "salt",
 				"how": "brine",
-				"note": "Dry and/or in brine."
+				"note": "The cheese is also salted dry, as an option."
 			},
 			{
 				"type": "ferment",
@@ -86,7 +72,7 @@
 				"humidity": {
 					"min": 80
 				},
-				"note": "Often on wooden boards, turned and wiped with salt water only."
+				"note": "The cheese is often ripened on wooden boards, turned and wiped with salt water only."
 			}
 		],
 		"sources": {

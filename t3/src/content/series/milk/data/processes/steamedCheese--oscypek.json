@@ -20,33 +20,29 @@
 		"steps": [
 			{
 				"type": "salt",
-				"how": "milk"
+				"how": "milk",
+				"minor": true
 			},
 			{
 				"type": "custom",
-				"name": "rinse",
-				"note": "With boiling water."
-			},
-			{
-				"type": "custom",
-				"name": "squeeze"
+				"name": "squeeze",
+				"minor": true
 			},
 			{
 				"type": "press",
-				"note": "In wooden spindle-shaped moulds."
+				"note": "The cheese is pressed in wooden spindle-shaped moulds."
 			},
 			{
 				"type": "salt",
 				"how": "brine",
-				"note": "Soaked a night or two."
+				"note": "The cheese is left in the brine a night or two.",
+				"minor": true
 			},
 			{
-				"type": "custom",
-				"name": "smoke",
+				"type": "smoke",
 				"seconds": {
 					"max": 1209600
-				},
-				"note": "Hot-smoked."
+				}
 			}
 		],
 		"sources": {

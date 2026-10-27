@@ -40,7 +40,8 @@
 				"seconds": {
 					"min": 300,
 					"max": 300
-				}
+				},
+				"minor": true
 			},
 			{
 				"type": "ferment",
@@ -281,7 +282,7 @@
 				"alcohol": {
 					"min": 0.05
 				},
-				"note": "Ends at 110–120 °Th with at least 0.05 % ethanol, as German law asks."
+				"note": "The kefir is ripened until it has at least 0.05 % alcohol, as German law asks."
 			},
 			{
 				"type": "heat",
@@ -290,7 +291,8 @@
 					"min": 5,
 					"max": 8
 				},
-				"note": "Cooled quickly."
+				"note": "The kefir is cooled quickly.",
+				"minor": true
 			}
 		],
 		"sources": {

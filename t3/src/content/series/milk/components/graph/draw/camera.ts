@@ -17,6 +17,7 @@ export const makeCamera = (G: Drawing): Camera => {
 		.on('zoom', (e) => {
 			viewport.zoom = e.transform;
 			if (G.pointer.shownRemark) G.pointer.showRemark(null);
+			if (G.story.shown) G.story.close();
 			G.frames.moving = true;
 			clearTimeout(stillTimer);
 			stillTimer = window.setTimeout(() => {

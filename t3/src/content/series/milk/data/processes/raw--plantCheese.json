@@ -39,7 +39,8 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "filter"
+				"type": "filter",
+				"minor": true
 			},
 			{
 				"type": "heat",
@@ -48,12 +49,12 @@
 					"min": 32,
 					"max": 100
 				},
-				"note": "Warmed to a median of about 57 °C."
+				"note": "The milk is warmed to a median of about 57 °C."
 			},
 			{
 				"type": "coagulate",
-				"note": "With Calotropis procera leaf extract (77.1 % of studies), or papaya or citrus juice.",
-				"by": "plant"
+				"by": "plant",
+				"with": "Calotropis leaves"
 			},
 			{
 				"type": "heat",
@@ -66,7 +67,7 @@
 					"min": 600,
 					"max": 3900
 				},
-				"note": "To expel whey and kill the enzyme."
+				"note": "The curd is heated, which expels its whey and kills the enzyme."
 			},
 			{
 				"type": "mould"

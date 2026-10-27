@@ -24,47 +24,7 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "separate",
-				"off": "spores",
-				"by": "centrifuge",
-				"note": "To remove spores."
-			},
-			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic",
-					"propionic"
-				],
-				"adds": {
-					"microbes": [
-						{
-							"name": "Lactococcus",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							]
-						},
-						{
-							"name": "Lactobacillus helveticus",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							]
-						}
-					],
-					"by": [
-						"starter"
-					]
-				}
-			},
-			{
-				"type": "washCurd",
-				"note": "To lower the lactose and the final pH."
-			},
-			{
-				"type": "press",
-				"note": "Under the whey, for a closed, round-eyed body."
+				"type": "washCurd"
 			},
 			{
 				"type": "ferment",
@@ -83,7 +43,7 @@
 						"starter"
 					]
 				},
-				"note": "In a warm-room stage the propionic bacteria multiply and ferment lactate to CO2, propionate and acetate, making large round eyes."
+				"note": "The cheese is ripened in a warm room, where the bacteria multiply and make gas from lactic acid, which forms its large round eyes."
 			}
 		],
 		"sources": {

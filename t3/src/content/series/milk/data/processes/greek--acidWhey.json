@@ -8,42 +8,10 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "heat",
-				"does": "heat",
-				"note": "The milk is heated and held, as in ordinary yoghurt making."
-			},
-			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic"
-				],
-				"adds": {
-					"microbes": [
-						{
-							"name": "yoghurt culture",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							]
-						}
-					],
-					"by": [
-						"starter"
-					]
-				},
-				"note": "Culture is added after cooling to fermentation temperature, and the milk ferments until it reaches the target pH."
-			},
-			{
 				"type": "separate",
 				"off": "whey",
 				"by": "centrifuge",
-				"note": "The curd is taken at fermentation temperature to a fresh cheese separator, which draws off the acid whey."
-			},
-			{
-				"type": "heat",
-				"does": "cool",
-				"note": "The curd is cooled at once in a heat exchanger to stop the souring."
+				"of": "yoghurt"
 			}
 		],
 		"sources": {

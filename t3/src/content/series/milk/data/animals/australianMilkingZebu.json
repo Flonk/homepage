@@ -1,0 +1,59 @@
+{
+	"label": "Australian Milking Zebu",
+	"aka": [],
+	"kind": "breed",
+	"parent": "taurineCattle",
+	"about": {
+		"text": "A composite dairy breed developed by CSIRO in Australia in the mid-1950s for hot climates. It was built from Sahiwal and Red Sindhi cattle crossed with Jersey and other European breeds, and selected for heat tolerance, tick resistance and milk. Cows are reported to give about 2,700 kg of milk per lactation.",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Australian Milking Zebu", "url": "https://en.wikipedia.org/wiki/Australian_Milking_Zebu"}
+			],
+			"text": "Origin, parent breeds, selection goals and the 2,700 kg per lactation figure taken from the Wikipedia article (fetched). The article gives no population or status."
+		}
+	},
+	"origin": {
+		"regions": ["AU"],
+		"place": "Australia, developed by CSIRO",
+		"formed": {"min": 1954, "max": 1956},
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Australian Milking Zebu", "url": "https://en.wikipedia.org/wiki/Australian_Milking_Zebu"},
+				{"name": "Oklahoma State: Australian Milking Zebu Cattle", "url": "https://breeds.okstate.edu/cattle/australian-milking-zebu-cattle.html"}
+			],
+			"text": "'Developed by CSIRO in the mid-1950s' from the Wikipedia article (fetched). The 1954 start of the programme is from WebSearch result text summarising the Wikipedia and CSIRO pages; the Oklahoma State page returned HTTP 403 when opened."
+		}
+	},
+	"yield": {
+		"perLactation": {"min": 2700, "max": 2700},
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Australian Milking Zebu", "url": "https://en.wikipedia.org/wiki/Australian_Milking_Zebu"}
+			],
+			"text": "'Cows produce approximately 2,700 kg of milk per lactation' (Wikipedia, fetched). No year, lactation length or recording country is given in that article."
+		}
+	},
+	"purposes": {
+		"purposes": ["dairy"],
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Australian Milking Zebu", "url": "https://en.wikipedia.org/wiki/Australian_Milking_Zebu"}
+			],
+			"text": "The article describes the breed as 'a composite of dairy cattle' and lists no other use."
+		}
+	},
+	"facts": [
+		{
+			"k": "Base cattle",
+			"v": "Built from Sahiwal and Red Sindhi cattle from Pakistan, crossed with Jersey, with some Illawarra, Guernsey and Friesian blood.",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: Australian Milking Zebu", "url": "https://en.wikipedia.org/wiki/Australian_Milking_Zebu"}
+				],
+				"text": "From the Wikipedia article's account of the breed's parent stocks (fetched)."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "The Oklahoma State profile gives an average of 2,700 litres a year (12 months) for mature purebred cows, which conflicts with the Wikipedia 2,700 kg per lactation. That page returned HTTP 403, so the conflict is recorded but not resolved. No population, DAD-IS risk status, composition, or year for the yield was found."
+}

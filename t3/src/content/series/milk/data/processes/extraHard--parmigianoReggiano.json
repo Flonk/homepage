@@ -25,44 +25,21 @@
 		"steps": [
 			{
 				"type": "separate",
-				"off": "cream",
-				"note": "Evening milk, skimmed by natural creaming."
-			},
-			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic"
-				],
-				"adds": {
-					"microbes": [],
-					"by": [
-						"backslop"
-					]
-				},
-				"note": "A natural whey starter from the previous day, with no selected cultures."
-			},
-			{
-				"type": "coagulate",
-				"by": "rennet",
-				"note": "With calf rennet only, in copper vats."
-			},
-			{
-				"type": "cut",
-				"how": "cut"
+				"off": "cream"
 			},
 			{
 				"type": "heat",
-				"does": "cook"
+				"does": "cook",
+				"note": "The curd is cooked in copper."
 			},
 			{
 				"type": "mould",
-				"note": "Moulds marking the origin, 35–45 cm across, at least 30 kg."
+				"note": "The curd is put into moulds that mark its origin, 35–45 cm across, for a cheese of at least 30 kg."
 			},
 			{
 				"type": "salt",
 				"how": "brine",
-				"note": "Saturated brine."
+				"note": "The cheese is put into saturated brine, with as much salt dissolved as it will hold."
 			},
 			{
 				"type": "ferment",
@@ -70,7 +47,7 @@
 				"seconds": {
 					"min": 31536000
 				},
-				"note": "Stored not below 16 °C in summer."
+				"note": "The cheese is kept at 16 °C or warmer in summer."
 			}
 		],
 		"sources": {

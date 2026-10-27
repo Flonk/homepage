@@ -63,7 +63,7 @@
 					"min": 50,
 					"max": 56
 				},
-				"note": "The thermophilic cultures survive the scald."
+				"note": "The curd is scalded, and the heat-loving cultures survive it."
 			},
 			{
 				"type": "press"
@@ -74,8 +74,7 @@
 				"strength": {
 					"min": 0.4,
 					"max": 1.2
-				},
-				"note": "Emmental ends at 0.4–1.2 % salt."
+				}
 			},
 			{
 				"type": "ferment",
@@ -83,14 +82,6 @@
 				"seconds": {
 					"min": 7776000,
 					"about": true
-				}
-			},
-			{
-				"type": "heat",
-				"does": "cook",
-				"temperature": {
-					"min": 50,
-					"max": 56
 				}
 			},
 			{
@@ -114,7 +105,8 @@
 				"temperature": {
 					"min": 19,
 					"max": 24
-				}
+				},
+				"minor": true
 			},
 			{
 				"type": "ferment",
@@ -122,7 +114,8 @@
 				"seconds": {
 					"min": 7776000,
 					"about": true
-				}
+				},
+				"minor": true
 			}
 		],
 		"sources": {

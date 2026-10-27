@@ -10,11 +10,11 @@
 			{
 				"type": "add",
 				"what": "fat",
-				"note": "Fat-filled whey powder carries 30–60 % fat, and a replacer is typically 20–26 % fat."
+				"note": "Fat is added to the whey, and a replacer typically has 20–26 % fat."
 			},
 			{
 				"type": "homogenise",
-				"note": "Homogenising the fat in helps against fouling in the drier."
+				"of": "mix"
 			},
 			{
 				"type": "dry",
@@ -22,7 +22,7 @@
 					"min": 90,
 					"max": 95
 				},
-				"note": "Spray-dried in a wide-body drier with about 180 °C air in and 90–95 °C air out."
+				"note": "The whey is sprayed into hot air to dry it, with air at about 180 °C going in."
 			}
 		],
 		"sources": {

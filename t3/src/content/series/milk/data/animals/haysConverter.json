@@ -1,0 +1,117 @@
+{
+	"label": "Hays Converter",
+	"kind": "breed",
+	"parent": "taurineCattle",
+	"about": {
+		"text": "The Hays Converter is a Canadian beef breed developed in Alberta from Hereford, Holstein and Brown Swiss cattle, with a later Angus influence, to reach market weight quickly while giving a calf milk after the first flush of lactation. It is bred in Canada, where its registered herd book is kept by the Canadian Livestock Records Corporation. The sources found give its milk only in general terms, with no yield or composition figures.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Hays Converter",
+					"url": "https://en.wikipedia.org/wiki/Hays_Converter"
+				},
+				{
+					"name": "CLRC: Hays Converter herd book statistics 2020",
+					"url": "https://www.clrc.ca/sites/default/files/associations/statistics/highland2020.pdf"
+				},
+				{
+					"name": "University of Alberta: genetic characterization of Hays Converter",
+					"url": "https://era.library.ualberta.ca/items/d6cfa6f9-827c-45e8-97a9-b9b8939e6ceb"
+				}
+			],
+			"text": "Wikipedia: the breed was developed in Alberta from Holstein, Brown Swiss and Hereford cattle, and it was 'a hardy beef cattle breed'; Holstein chosen for butterfat and Brown Swiss for udders and milk output through the end of lactation; 'excellent milk production' among its final traits. The University of Alberta thesis abstract (from WebSearch text, not opened) gives the parents as Hereford, Holstein and Brown Swiss with a later Angus introgression. The CLRC herd book statistics (from WebSearch text, the PDF returned 403 when opened) name the herd book as the Canadian Hays Converter Herd Book. The 'about' statement that the herd book is kept by CLRC rests on that WebSearch text."
+		}
+	},
+	"origin": {
+		"regions": [
+			"CA"
+		],
+		"place": "Alberta, Canada, named for Senator Harry Hays",
+		"formed": {
+			"min": 1959,
+			"max": 1975
+		},
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Hays Converter",
+					"url": "https://en.wikipedia.org/wiki/Hays_Converter"
+				}
+			],
+			"text": "Wikipedia: 'the first pure breed of cattle created in Canada'; breeding began in 1959 and the breed was officially recognized in December 1975 under the Canada Livestock Pedigree Act. Hays is 'the agriculturalist and politician who developed the breed'. 'formed' is the start of breeding to official recognition."
+		}
+	},
+	"head": [
+		{
+			"count": 5282,
+			"year": 2020,
+			"where": "CA",
+			"sources": {
+				"links": [
+					{
+						"name": "CLRC: Hays Converter herd book statistics 2020",
+						"url": "https://www.clrc.ca/sites/default/files/associations/statistics/highland2020.pdf"
+					}
+				],
+				"text": "From WebSearch text (the PDF returned 403 when opened): cumulative purebred registrations to 31 December 2020 were 5,282, with 766 percentage animals and 14 member herds. These are cumulative registrations, not a census of living animals, so the milked flag is false and the figure is not a population count."
+			}
+		}
+	],
+	"purposes": {
+		"purposes": [
+			"meat"
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Hays Converter",
+					"url": "https://en.wikipedia.org/wiki/Hays_Converter"
+				}
+			],
+			"text": "Wikipedia calls it 'a hardy beef cattle breed'. It says dairy breeds were used in its development but does not classify it as dairy or dual-purpose, so only meat is recorded."
+		}
+	},
+	"facts": [
+		{
+			"k": "First Canadian pure breed",
+			"v": "The first pure breed of cattle created in Canada, developed in Alberta from 1959.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Hays Converter",
+						"url": "https://en.wikipedia.org/wiki/Hays_Converter"
+					}
+				],
+				"text": "Wikipedia: 'the first pure breed of cattle created in Canada'; breeding began in 1959."
+			}
+		},
+		{
+			"k": "Early maturity",
+			"v": "It matures early, so it can breed and produce offspring sooner than many other breeds.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Hays Converter",
+						"url": "https://en.wikipedia.org/wiki/Hays_Converter"
+					}
+				],
+				"text": "Wikipedia: 'It is an early-maturing breed, so it can breed and produce offspring sooner than many other breeds.'"
+			}
+		},
+		{
+			"k": "Closed breed",
+			"v": "Once the desired traits were reached the breed was closed to outside breeding.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Hays Converter",
+						"url": "https://en.wikipedia.org/wiki/Hays_Converter"
+					}
+				],
+				"text": "Wikipedia: 'Once the desired traits were achieved, the breed was closed to outside breeding.'"
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "No milk yield or composition figure for the breed was found; the Wikipedia article gives only qualitative milk statements. No Canadian live population count was found, only cumulative registrations to 2020 (the 2021 and later reports were not found). No DAD-IS risk status was found, and the DAD-IS record was not reachable. The CLRC PDF and the University of Alberta thesis were not opened, so their text is from WebSearch excerpts."
+}

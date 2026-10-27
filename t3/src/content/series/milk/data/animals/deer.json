@@ -1,0 +1,53 @@
+{
+	"label": "Deer",
+	"aka": [
+		"true deer",
+		"deer family"
+	],
+	"names": {
+		"links": [
+			{
+				"name": "Wikipedia: Deer",
+				"url": "https://en.wikipedia.org/wiki/Deer"
+			}
+		],
+		"text": "The article's lead calls a deer 'a hoofed ruminant ungulate of the family Cervidae', also 'true deer', and says Cervidae is informally the 'deer family'. 'Deer' is the item's given label."
+	},
+	"kind": "group",
+	"parent": "milk",
+	"taxon": {
+		"name": "Cervidae",
+		"rank": "family",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Deer",
+					"url": "https://en.wikipedia.org/wiki/Deer"
+				}
+			],
+			"text": "The lead places deer in the family Cervidae. The item's given taxon is Cervidae (family)."
+		}
+	},
+	"about": {
+		"text": "Deer are hoofed ruminants of the family Cervidae. Many species are wild, but some have been domesticated on deer farms since the late 1960s, and red deer hinds have been milked on New Zealand farms and in captive studies, where lactation ran about three months.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Deer",
+					"url": "https://en.wikipedia.org/wiki/Deer"
+				},
+				{
+					"name": "Nature Scientific Reports: red deer milk study (s41598-022-17978-3)",
+					"url": "https://www.nature.com/articles/s41598-022-17978-3"
+				},
+				{
+					"name": "NZ Farm Life: deer milking farm (October 2022)",
+					"url": "https://issuu.com/nzfarmlifemedia/docs/dxp_october_2022/s/17044111"
+				}
+			],
+			"text": "The domestication sentence is from the Deer article as fetched with WebFetch. The milking sentences come from WebSearch result text for the red deer milk studies and a New Zealand farm report, not from pages opened in full; the Nature link was listed in search results and not opened. The three-month figure is from the NZ farm's description of its lactation."
+		}
+	},
+	"confidence": "medium",
+	"gaps": "The Deer article was fetched only up to its first 100,000 characters, so the species and genus counts were not read. No world milk figure for deer was found, and the group is not given a milk total. Milk composition and yields are from small captive herds and are not representative."
+}

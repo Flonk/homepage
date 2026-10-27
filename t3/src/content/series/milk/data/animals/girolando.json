@@ -1,0 +1,58 @@
+{
+	"label": "Girolando",
+	"aka": [],
+	"kind": "breed",
+	"parent": "taurineCattle",
+	"about": {
+		"text": "The Girolando is a Brazilian crossbred dairy cattle breed from Gir (zebu) bulls and Holstein cows, with founding proportions of 3/8 Gir and 5/8 Holstein. It is kept in Brazil and is used for milk production. Its crossbred vigour suits tropical dairy systems.",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Girolando", "url": "https://en.wikipedia.org/wiki/Girolando"},
+				{"name": "Revista Brasileira de Zootecnia 2022 (DOAJ)", "url": "https://doaj.org/article/57db0514d94049a399528bb7ebb3ee67"}
+			],
+			"text": "Wikipedia gives the Gir and Holstein crossing, the 3/8 and 5/8 proportions and milk as the main purpose. The tropical suitability and heterosis for production traits come from the 2022 Revista Brasileira de Zootecnia abstract (35,582 Brazilian Girolando cows, 1998 to 2014), which was seen as a search result text, not an opened page."
+		}
+	},
+	"origin": {
+		"regions": ["BR"],
+		"place": "Brazil",
+		"sources": {
+			"links": [{"name": "Wikipedia: Girolando", "url": "https://en.wikipedia.org/wiki/Girolando"}],
+			"text": "Wikipedia gives Brazil as the country of origin. No formation year is given, so formed is left out."
+		}
+	},
+	"yield": {
+		"perLactation": {"min": 5208, "max": 5208},
+		"lactationDays": {"min": 155, "max": 385},
+		"sources": {
+			"links": [{"name": "Wikipedia: Girolando", "url": "https://en.wikipedia.org/wiki/Girolando"}],
+			"text": "From the Wikipedia page: an average of 5,208 kg per lactation (range 2,625 to 7,791 kg), lactations of 155 to 385 days (average 270). No year and no recording country are given, so year and where are left out. The range of the yield is not used as the perLactation range; only the average is."
+		}
+	},
+	"composition": {
+		"fat": {"min": 3.7, "max": 4.0},
+		"sources": {
+			"links": [{"name": "Wikipedia: Girolando", "url": "https://en.wikipedia.org/wiki/Girolando"}],
+			"text": "From the Wikipedia page: milk fat 3.7 to 4.0 percent, average 3.9 percent. No year is given. No protein figure was found."
+		}
+	},
+	"purposes": {
+		"purposes": ["dairy"],
+		"sources": {
+			"links": [{"name": "Wikipedia: Girolando", "url": "https://en.wikipedia.org/wiki/Girolando"}],
+			"text": "Wikipedia gives its main purpose as milk production."
+		}
+	},
+	"facts": [
+		{
+			"k": "Share of Brazilian milk",
+			"v": "Roughly 80 percent of Brazil's milk comes from Girolando or other Holstein-Gir crosses.",
+			"sources": {
+				"links": [{"name": "Wikipedia: Girolando", "url": "https://en.wikipedia.org/wiki/Girolando"}],
+				"text": "Taken from the WebSearch result text that summarised the Wikipedia page; not confirmed on the opened page, so treat as unverified."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "No population or head count was found. No risk status was found. No year was given for the yield or composition figures. No protein figure was found. The 2022 Revista Brasileira de Zootecnia paper's full text was not opened, so its 305-day yield figures are not used."
+}

@@ -19,68 +19,6 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "pasteurise",
-				"temperature": {
-					"min": 72
-				},
-				"seconds": {
-					"min": 15,
-					"max": 15
-				}
-			},
-			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic"
-				],
-				"adds": {
-					"microbes": [
-						{
-							"name": "lactic acid-forming cultures",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							]
-						},
-						{
-							"name": "aroma-forming cultures",
-							"kind": "bacterium",
-							"does": [
-								"aroma"
-							]
-						}
-					],
-					"by": [
-						"starter"
-					]
-				}
-			},
-			{
-				"type": "coagulate",
-				"by": "rennet",
-				"temperature": {
-					"min": 30,
-					"max": 30,
-					"about": true
-				}
-			},
-			{
-				"type": "drain"
-			},
-			{
-				"type": "washCurd",
-				"note": "To set the moisture and pH."
-			},
-			{
-				"type": "press",
-				"note": "Flattened cylinder or block of 2.5–20 kg."
-			},
-			{
-				"type": "salt",
-				"how": "brine"
-			},
-			{
 				"type": "ferment",
 				"does": "ripen",
 				"temperature": {
@@ -89,7 +27,7 @@
 				"seconds": {
 					"min": 2419200
 				},
-				"note": "On a natural rind, without foil."
+				"note": "The cheese is left on a natural rind, not wrapped in foil."
 			}
 		],
 		"sources": {

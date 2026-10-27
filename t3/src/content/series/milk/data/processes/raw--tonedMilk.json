@@ -28,11 +28,13 @@
 		"steps": [
 			{
 				"type": "add",
-				"note": "Buffalo milk of 7–8 % fat is stretched to 3 % fat (toned) or 1.5 % (double-toned), restoring non-fat solids to 8.5 % or 9.0 %.",
+				"note": "Buffalo milk of 7–8 % fat is stretched to 3 % fat (toned) or 1.5 % (double-toned), which brings the solids other than fat back to 8.5 % or 9.0 %.",
 				"what": "skim milk or skim milk powder, and water"
 			},
 			{
-				"type": "pasteurise"
+				"type": "pasteurise",
+				"minor": true,
+				"note": "The milk undergoes heat treatment to kill harmful bacteria like Listeria, Salmonella and E. coli."
 			}
 		],
 		"sources": {

@@ -10,17 +10,18 @@
 			{
 				"type": "add",
 				"what": "cream to the whey",
-				"note": "Cream added to whey makes the firmer, fattier fløtemysost."
+				"note": "The cream is added to the whey, which makes the cheese firmer and fattier."
 			},
 			{
 				"type": "evaporate",
 				"under": "open",
-				"note": "It is boiled for several hours until the water has gone and the milk sugar caramelises."
+				"of": "cream"
 			},
 			{
 				"type": "heat",
 				"does": "cool",
-				"note": "The brown mass is packed and refrigerated."
+				"note": "The brown mass is packed and refrigerated.",
+				"minor": true
 			}
 		],
 		"sources": {

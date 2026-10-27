@@ -34,15 +34,15 @@
 					"max": 80,
 					"about": true
 				},
-				"note": "About 75 °C in an indirect plant, about 80 °C in a direct one."
+				"note": "The milk is first warmed to about 75 °C in an indirect plant, or about 80 °C in a direct one.",
+				"minor": true
 			},
 			{
 				"type": "homogenise",
 				"bar": {
 					"min": 180,
 					"max": 250
-				},
-				"note": "In indirect plants before UHT, or aseptically after."
+				}
 			},
 			{
 				"type": "heat",
@@ -55,12 +55,13 @@
 					"min": 4,
 					"max": 6
 				},
-				"note": "Continuous flow; an indirect plant holds about 4 s at about 138 °C, a direct plant steam-injects to 140–150 °C and flash-cools in vacuum."
+				"note": "The milk is run through continuously, and in an indirect plant it is held for about 4 s at about 138 °C, while in a direct one it is steam-injected to 140–150 °C and flash-cooled in vacuum."
 			},
 			{
 				"type": "custom",
 				"name": "fill",
-				"note": "Aseptically, into sterilised cartons."
+				"note": "The milk is filled aseptically into sterilised cartons.",
+				"minor": true
 			}
 		],
 		"sources": {

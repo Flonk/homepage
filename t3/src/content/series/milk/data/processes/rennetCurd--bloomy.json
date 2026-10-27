@@ -28,11 +28,12 @@
 		"steps": [
 			{
 				"type": "drain",
-				"note": "Under its own weight, unpressed."
+				"note": "The curd is left to drain under its own weight, without pressing."
 			},
 			{
 				"type": "ferment",
-				"does": "ripen"
+				"does": "ripen",
+				"minor": true
 			},
 			{
 				"type": "ferment",
@@ -72,7 +73,7 @@
 						"starter"
 					]
 				},
-				"note": "Geotrichum candidum is optional, for a creamy, wrinkled rind."
+				"note": "A yeast is optional; it gives a creamy, wrinkled rind."
 			},
 			{
 				"type": "dry",
@@ -87,7 +88,8 @@
 				"humidity": {
 					"min": 75,
 					"max": 80
-				}
+				},
+				"minor": true
 			},
 			{
 				"type": "ferment",

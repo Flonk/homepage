@@ -28,18 +28,18 @@
 		"steps": [
 			{
 				"type": "add",
-				"note": "Dissolved in skim milk or water."
+				"note": "The whey, lactose and oils are dissolved in skimmed milk or water."
 			},
 			{
 				"type": "heat",
 				"does": "heat"
 			},
 			{
-				"type": "homogenise"
+				"type": "homogenise",
+				"of": "mix"
 			},
 			{
 				"type": "evaporate",
-				"note": "In a pilot study.",
 				"solids": {
 					"min": 55,
 					"max": 55,
@@ -48,7 +48,7 @@
 			},
 			{
 				"type": "dry",
-				"note": "Spray-dried with air in at 187 °C and out at 85 °C in a pilot study (industry 150-220 °C in)."
+				"note": "The milk is spray-dried, with air going in at 187 °C and out at 85 °C."
 			}
 		],
 		"sources": {

@@ -25,7 +25,8 @@
 			{
 				"type": "custom",
 				"name": "fill",
-				"note": "Sealed in the bottle first."
+				"note": "The milk is sealed in the bottle first.",
+				"minor": true
 			},
 			{
 				"type": "heat",
@@ -38,7 +39,7 @@
 					"min": 180,
 					"max": 2400
 				},
-				"note": "In a batch autoclave, bottle and all."
+				"note": "The sealed bottle is heated whole, in a pressure oven that takes a batch at a time."
 			}
 		],
 		"sources": {

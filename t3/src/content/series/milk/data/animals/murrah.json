@@ -1,0 +1,69 @@
+{
+	"label": "Murrah",
+	"kind": "breed",
+	"parent": "riverBuffalo",
+	"about": {
+		"text": "The Murrah is a dairy buffalo from Haryana in northern India and the Delhi capital region, where its home tract lies. It is one of the main dairy buffalo breeds. In Brazil it is kept for both meat and milk.",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Murrah buffalo", "url": "https://en.wikipedia.org/wiki/Murrah_buffalo"},
+				{"name": "Buffalopedia: Murrah", "url": "https://buffalopedianew.cirb.res.in/murrah/"}
+			],
+			"text": "Wikipedia gives the Brazil use for meat and milk, dairy as main purpose, and the 2,200 litre lactation. Buffalopedia gives the home tract in southern Haryana (Rohtak, Jind, Hisar, Jhajhar, Fatehabad, Gurgaon) and the Union Territory of Delhi."
+		}
+	},
+	"origin": {
+		"regions": ["IN"],
+		"place": "Southern Haryana and the Delhi region, northern India",
+		"sources": {
+			"links": [
+				{"name": "Buffalopedia: Murrah", "url": "https://buffalopedianew.cirb.res.in/murrah/"},
+				{"name": "Wikipedia: Murrah buffalo", "url": "https://en.wikipedia.org/wiki/Murrah_buffalo"}
+			],
+			"text": "Home tract from the Buffalopedia page; the Wikipedia infobox places it in Haryana, India. No formation date was found, so formed is left out."
+		}
+	},
+	"yield": {
+		"perLactation": {"min": 2148, "max": 2230},
+		"year": 2012,
+		"sources": {
+			"links": [
+				{"name": "Journal of Buffalo Science 2012 (Murrah herd, GADVASU 2004-2008)", "url": "https://www.lifescienceglobal.com/pms/index.php/JBS/article/view/86"},
+				{"name": "Wikipedia: Murrah buffalo", "url": "https://en.wikipedia.org/wiki/Murrah_buffalo"}
+			],
+			"text": "From WebSearch text, not an opened page: a 515-animal Punjab herd study (2004-2008, published Journal of Buffalo Science 2012) gives a 305-day yield of 2,147.6 kg and a total lactation yield of 2,229.87 kg, so the range is 2,148 to 2,230 kg. Wikipedia gives about 2,200 litres over a 310-day lactation, which agrees but is in litres and was not converted."
+		}
+	},
+	"composition": {
+		"fat": {"min": 7.12, "max": 7.88},
+		"sources": {
+			"links": [
+				{"name": "Journal of Buffalo Science 2012 (Murrah herd, GADVASU 2004-2008)", "url": "https://www.lifescienceglobal.com/pms/index.php/JBS/article/view/86"},
+				{"name": "Om Singh et al. 2013, Journal of Agricultural Science", "url": "https://ideas.repec.org/a/ibn/jasjnl/v5y2013i11p246.html"}
+			],
+			"text": "From WebSearch text, not opened pages: 7.12 percent fat in the 2012 Punjab herd study, and 7.88 percent fat in the 2013 Om Singh et al. paper. The range covers these two studies only."
+		}
+	},
+	"purposes": {
+		"purposes": ["dairy"],
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Murrah buffalo", "url": "https://en.wikipedia.org/wiki/Murrah_buffalo"},
+				{"name": "Buffalopedia: Murrah", "url": "https://buffalopedianew.cirb.res.in/murrah/"}
+			],
+			"text": "Wikipedia gives dairy as the main use. Buffalopedia gives the same, with its large-herd average of 1800 kg (no year or source given)."
+		}
+	},
+	"facts": [
+		{
+			"k": "Record yield",
+			"v": "A Murrah at the Lakshmi Dairy Farm in Punjab set a record of 26.335 kg of milk at the 2016 National Livestock Competition and Expo. The page does not say whether this is a day or a lactation.",
+			"sources": {
+				"links": [{"name": "Wikipedia: Murrah buffalo", "url": "https://en.wikipedia.org/wiki/Murrah_buffalo"}],
+				"text": "Taken from the Wikipedia page."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "No population figure with a year and source: Buffalopedia gives 20.48 million Murrah females in India with no year or source, so it is not used. No DAD-IS risk status found in searches (dad.fao.org was not reached). No formation date found. No Murrah milk fat figure taken from an opened page. Wikipedia gives litres, not kg, so the yield uses the study figures instead."
+}

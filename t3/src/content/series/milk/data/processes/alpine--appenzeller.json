@@ -20,94 +20,9 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "separate",
-				"off": "cream",
-				"note": "Partly skimmed."
-			},
-			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic"
-				],
-				"adds": {
-					"microbes": [
-						{
-							"name": "lactic acid bacteria",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							]
-						}
-					],
-					"by": [
-						"starter"
-					]
-				},
-				"temperature": {
-					"min": 31,
-					"max": 31
-				},
-				"seconds": {
-					"min": 1800,
-					"max": 1800,
-					"about": true
-				},
-				"note": "Set with rennet together with the lactic bacteria."
-			},
-			{
-				"type": "cut",
-				"how": "cut",
-				"note": "To maize-grain size."
-			},
-			{
-				"type": "heat",
-				"does": "cook",
-				"temperature": {
-					"min": 40,
-					"max": 42
-				},
-				"note": "The curd is lifted from the vat at that temperature."
-			},
-			{
-				"type": "press",
-				"seconds": {
-					"min": 900,
-					"max": 900,
-					"about": true
-				},
-				"note": "Twice, in round moulds of 6–8 kg and about 30 cm."
-			},
-			{
-				"type": "salt",
-				"how": "brine",
-				"seconds": {
-					"min": 172800,
-					"max": 172800,
-					"about": true
-				}
-			},
-			{
 				"type": "custom",
 				"name": "rub",
-				"note": "Every 2 days, with a secret herbal brine, the Kräutersulz."
-			},
-			{
-				"type": "ferment",
-				"does": "ripen",
-				"temperature": {
-					"min": 13,
-					"max": 14
-				},
-				"seconds": {
-					"min": 7776000
-				},
-				"humidity": {
-					"min": 92,
-					"max": 92,
-					"about": true
-				},
-				"note": "Classic is ripened 3 mo at least, Surchoix 4 and Extra 6."
+				"note": "The rind is treated every 2 days with a secret herbal brine, the Kräutersulz."
 			}
 		],
 		"sources": {

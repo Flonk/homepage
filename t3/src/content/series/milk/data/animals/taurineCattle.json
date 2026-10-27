@@ -1,0 +1,68 @@
+{
+	"label": "Taurine cattle",
+	"kind": "type",
+	"parent": "cattle",
+	"taxon": {
+		"name": "Bos taurus taurus",
+		"rank": "subspecies",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Cattle",
+					"url": "https://en.wikipedia.org/wiki/Cattle"
+				}
+			],
+			"text": "Wikipedia's Cattle article gives B. t. taurus as the subspecies name for taurine cattle under the one-species view, and notes the taxonomy is contested."
+		}
+	},
+	"about": {
+		"text": "Taurine cattle descend from the aurochs domesticated in the Near East about 10,500 years ago. They are widely kept across Europe and temperate Asia, in the Americas and in Australia.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Cattle",
+					"url": "https://en.wikipedia.org/wiki/Cattle"
+				}
+			],
+			"text": "Wikipedia's Cattle article: taurine cattle domesticated from aurochs about 10,500 years ago; taurine cattle 'widely distributed across Europe and temperate areas of Asia', plus the Americas and Australia; the Holstein-Friesian is 'the breed of dairy cow most common in the UK, Europe and the United States'. The article does not itself label the Holstein-Friesian as taurine; that link is an inference from the cattle sources and should be checked."
+		}
+	},
+	"milk": {
+		"mt": 585.82,
+		"year": 2023,
+		"estimated": true,
+		"sources": {
+			"links": [
+				{
+					"name": "FAOSTAT: Crops and livestock products (QCL), raw milk of cattle by region, 2023",
+					"url": "https://www.fao.org/faostat/en/#data/QCL"
+				}
+			],
+			"text": "Estimated as the world's 2023 cattle milk, 785.84 Mt, less the zebu estimate of 200.02 Mt (the cattle milk of Southern Asia and of Eastern, Western and Middle Africa), all from FAOSTAT's bulk file of 23 December 2025: 585.82 Mt. Rough, as the zebu estimate is."
+		}
+	},
+	"domestication": {
+		"where": "Central Anatolia, the Levant and western Iran",
+		"regions": [
+			"TR",
+			"SY",
+			"IR"
+		],
+		"yearsAgo": {
+			"min": 10500,
+			"max": 10500
+		},
+		"text": "Domesticated from the wild aurochs about 10,500 years ago in the Near East.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Cattle",
+					"url": "https://en.wikipedia.org/wiki/Cattle"
+				}
+			],
+			"text": "Wikipedia's Cattle article, citing its refs 69 and 70: taurine cattle domesticated from wild aurochs 'approximately 10,500 years ago' in central Anatolia, the Levant and western Iran."
+		}
+	},
+	"confidence": "low",
+	"gaps": "No source found for the 2023 milk volume of taurine cattle alone; FAOSTAT lumps all cattle, and no split of the cattle milk total by type was found in the sources read. No taurine head count, yield or composition figures were found. A PMC review on taurine domestication (PMC4626031) was blocked by a browser check and could not be read."
+}

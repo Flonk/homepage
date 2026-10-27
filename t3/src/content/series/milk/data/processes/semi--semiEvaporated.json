@@ -23,9 +23,6 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "standardise"
-			},
-			{
 				"type": "heat",
 				"temperature": {
 					"min": 100,
@@ -35,7 +32,8 @@
 					"min": 60,
 					"max": 180
 				},
-				"does": "heat"
+				"does": "heat",
+				"minor": true
 			},
 			{
 				"type": "evaporate",
@@ -59,7 +57,7 @@
 					"min": 900,
 					"max": 1200
 				},
-				"note": "In the can, or by UHT."
+				"note": "The milk is sterilised in the can, or by UHT instead."
 			}
 		],
 		"sources": {

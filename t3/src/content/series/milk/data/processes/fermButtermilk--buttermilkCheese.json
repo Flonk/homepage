@@ -25,11 +25,12 @@
 			{
 				"type": "heat",
 				"does": "heat",
-				"note": "Boiled until the protein curdles; ayib is warmed to only 40–50 °C."
+				"note": "The buttermilk is boiled until its protein curdles, but for ayib it is only warmed to 40–50 °C."
 			},
 			{
 				"type": "drain",
-				"by": "hang"
+				"by": "hang",
+				"note": "The curd is hung so the whey drips away from it."
 			},
 			{
 				"type": "ferment",
@@ -74,7 +75,8 @@
 					"min": 5.3,
 					"max": 6.1
 				},
-				"note": "Soft chhurpi is often left to ferment a little for tang."
+				"note": "Soft chhurpi is often left to ferment a little, for its tang.",
+				"minor": true
 			}
 		],
 		"sources": {

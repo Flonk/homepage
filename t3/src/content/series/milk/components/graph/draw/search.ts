@@ -2,6 +2,7 @@ import { type Node, MAX_ZOOM, FOUND_HEIGHT, nextUid } from '../client/base';
 import { el } from '../render/dom';
 import type { Drawing, Search } from './types';
 import { searchOf } from './page';
+import { keepLinked } from './link';
 
 // How many matches the list shows.
 const MOST_MATCHES = 8;
@@ -123,6 +124,7 @@ export const makeSearch = (G: Drawing): Search => {
 			highlight.lightArrowsOf(n);
 		} else G.infoCard.showNode(n);
 		camera.glideTo(zoomToRead(n));
+		keepLinked(n.id);
 	};
 	return { field, displayName, goTo, zoomToRead };
 };

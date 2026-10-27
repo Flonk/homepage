@@ -21,10 +21,12 @@
 			{
 				"type": "heat",
 				"does": "cool",
-				"note": "Cooled or pasteurised first so it does not ferment."
+				"note": "The whey is cooled or pasteurised first, so it does not ferment.",
+				"minor": true
 			},
 			{
-				"type": "evaporate"
+				"type": "evaporate",
+				"of": "whey"
 			},
 			{
 				"type": "heat",
@@ -37,11 +39,11 @@
 					"min": 14400,
 					"max": 28800
 				},
-				"note": "Flash-cooled to start lactose crystals, then held in crystallisers."
+				"note": "The whey is cooled quickly so lactose crystals start to form, then it is held while they grow."
 			},
 			{
 				"type": "dry",
-				"note": "Spray-dried; drum drying exists, with bran as filler."
+				"note": "The whey is spray-dried to a powder."
 			}
 		],
 		"sources": {

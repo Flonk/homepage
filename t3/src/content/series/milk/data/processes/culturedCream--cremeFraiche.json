@@ -18,43 +18,5 @@
 			}
 		],
 		"text": "The table, the facts and the words on how it is made, from these."
-	},
-	"processing": {
-		"steps": [
-			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic"
-				],
-				"adds": {
-					"microbes": [
-						{
-							"name": "Lactococcus lactis",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							]
-						}
-					],
-					"by": [
-						"starter"
-					]
-				}
-			}
-		],
-		"sources": {
-			"links": [
-				{
-					"name": "German MilchPQV, Anlage 8 (2025)",
-					"url": "https://www.gesetze-im-internet.de/milchpqv/anlage_8.html"
-				},
-				{
-					"name": "Tetra Pak Dairy Processing Handbook, ch. 13 Fermented milk products",
-					"url": "https://dairyprocessinghandbook.tetrapak.com/chapter/fermented-milk-products"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		}
 	}
 }

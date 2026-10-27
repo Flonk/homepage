@@ -6,8 +6,8 @@
 		"robiola"
 	],
 	"variant": true,
-	"step": "set with lactic",
-	"text": "A long, cool, mostly lactic set gives a soft, acidic, creamy paste with live lactic bacteria that is never cooked or pressed. If left longer, natural moulds on the surface turn it creamy under the rind and give it a more pronounced taste.",
+	"step": "mould, salt, ripen",
+	"text": "Never cooked or pressed, the long, cool, mostly lactic set is moulded, salted and left to ripen into a soft, acidic, creamy paste with live lactic bacteria. If left longer, natural moulds on the surface turn it creamy under the rind and give it a more pronounced taste.",
 	"sources": {
 		"links": [
 			{
@@ -24,42 +24,8 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic",
-					"mould"
-				],
-				"adds": {
-					"microbes": [
-						{
-							"name": "lactic acid bacteria",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							]
-						}
-					],
-					"by": [
-						"starter"
-					]
-				},
-				"temperature": {
-					"min": 18,
-					"max": 24
-				},
-				"seconds": {
-					"min": 28800,
-					"max": 129600
-				},
-				"note": "Set lactic with animal rennet, and an optional local natural milk or whey starter."
-			},
-			{
 				"type": "mould",
-				"seconds": {
-					"max": 172800
-				},
-				"note": "Cylindrical plastic moulds, 10–14 cm across, 250–400 g."
+				"note": "The curd is put into cylindrical plastic moulds, 10–14 cm across, for up to 2 days, to make cheeses of 250–400 g."
 			},
 			{
 				"type": "salt",
@@ -75,7 +41,7 @@
 				"seconds": {
 					"min": 259200
 				},
-				"note": "Fresco is ready after 3–10 d, affinato after more than 10 d, when natural moulds bloom on the surface."
+				"note": "The cheese is ripened until natural moulds bloom on its surface: after 3–10 days it is fresh, after more than 10 days it is aged."
 			}
 		],
 		"sources": {

@@ -24,27 +24,6 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "pasteurise"
-			},
-			{
-				"type": "coagulate",
-				"by": "rennet",
-				"temperature": {
-					"min": 30,
-					"max": 32
-				},
-				"seconds": {
-					"min": 1800,
-					"max": 2400
-				},
-				"note": "With liquid calf rennet."
-			},
-			{
-				"type": "cut",
-				"how": "cut",
-				"note": "A coarse first cut, then to walnut size, and no cooking."
-			},
-			{
 				"type": "ferment",
 				"does": "incubate",
 				"kinds": [
@@ -71,12 +50,12 @@
 				"humidity": {
 					"min": 95
 				},
-				"note": "In square moulds, 18–20 cm a side and 4–5 cm high, about 2 kg."
+				"note": "The curd is soured in square moulds, 18–20 cm a side and 4–5 cm high, for cheeses of about 2 kg."
 			},
 			{
 				"type": "salt",
 				"how": "brine",
-				"note": "Or the salt goes into the milk in the vat."
+				"note": "The salt is put into the milk in the vat instead, as an alternative to brine."
 			},
 			{
 				"type": "ferment",

@@ -1,6 +1,5 @@
-import { type Node, FONT, MAP_PILL } from '../client/base';
+import { type Node } from '../client/base';
 import { el, fact, commas } from '../render/dom';
-import { nameOf } from '../render/Regions';
 import { html as shareHtml } from '../render/Share';
 import { html as sourcesHtml } from '../render/Sourcing';
 import { html as compositionHtml } from '../render/Composition';
@@ -9,9 +8,9 @@ import { html as axesHtml } from '../render/Axes';
 import { html as howHtml } from '../render/How';
 import { credit } from '../render/Picture';
 import { zoomIdentity } from 'd3-zoom';
-import type { Pin } from '../layout';
 import type { Drawing, InfoCard } from './types';
 import { focusOf } from './page';
+import { keepLinked } from './link';
 
 /* The card over the picture telling of a product or an example: its
    photograph and name, what else it is called, what it is, and where it
@@ -56,12 +55,7 @@ export const makeInfoCard = (G: Drawing): InfoCard => {
 		}
 		const title = el('div');
 		const p = madeFrom(n);
-		if (n.onMap) {
-			const where = (n.regions ?? []).map(nameOf);
-			if (n.area) where[0] = `${n.area}, ${where[0]}`;
-			const place = where.join('; ') + (n.guessed ? ' (place estimated)' : '');
-			title.append(el('p', 'milk-about-kind', n.family ? `${n.family} · ${place}` : place));
-		} else if (n.example && p) {
+		if (n.example && p) {
 			const kind = el('p', 'milk-about-kind', 'Example of ');
 			kind.append(linkTo(p));
 			title.append(kind);
@@ -82,7 +76,7 @@ export const makeInfoCard = (G: Drawing): InfoCard => {
 		/* A cheese in a panel has no arrow to show its card chain on: shown
 		   here instead, after where the panel puts it, with the rest of how
 		   it is made and where that is from. */
-		if ((n.axes && layout.panelContaining(n)) || n.onMap) {
+		if (n.axes && layout.panelContaining(n)) {
 			const how = n.how;
 			if (n.axes) parts.push(axesHtml(n.axes));
 			if (how) parts.push(...howHtml(how));
@@ -107,6 +101,7 @@ export const makeInfoCard = (G: Drawing): InfoCard => {
 		if (facts.childElementCount) parts.push(facts);
 		if (n.image) parts.push(credit(n.image));
 		fill(displayName(n), parts);
+		keepLinked(n.id);
 	};
 	// Closed, and the step selected with it let go of.
 	const close = () => {
@@ -176,11 +171,6 @@ export const makeInfoCard = (G: Drawing): InfoCard => {
 		// Nothing made from it: into it alone, as a link to it goes.
 		camera.glideTo(madeFromIt.size === 1 ? search.zoomToRead(n) : camera.framing([...madeFromIt], 0.5), glide);
 	};
-	// Into a pin's cheeses: its country's in its regions, or those with none known if it stands for those; at least as far in as they read.
-	const zoomToPin = (pin: Pin) => {
-		const cheeses = [...layout.panelContents.values()].flat().filter((k) => k.onMap && k.place === pin.iso && pin.areas.includes(k.area));
-		if (cheeses.length) camera.glideTo(camera.framing(cheeses, 5 / (FONT * MAP_PILL * G.viewport.fitScale)));
-	};
 	// Asked by a card of the deck to focus on another product, or the whole.
 	const host = G.figure.closest<HTMLElement>('[data-viz-phase]') ?? G.figure.closest<HTMLElement>('[data-viz-stage]');
 	host?.addEventListener(
@@ -191,5 +181,5 @@ export const makeInfoCard = (G: Drawing): InfoCard => {
 		},
 		{ signal: G.signal },
 	);
-	return { showNode, showStep, close, focusOn, zoomToPin };
+	return { showNode, showStep, close, focusOn };
 };

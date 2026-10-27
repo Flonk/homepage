@@ -8,19 +8,17 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "custom",
-				"name": "stretch curd",
-				"note": "Warm mozzarella-type curd is pulled into long thin strands, by hand or by machine."
+				"type": "stretch",
+				"into": "strands"
 			},
 			{
 				"type": "cut",
-				"how": "shred",
-				"note": "The stretched curd is shredded."
+				"how": "shred"
 			},
 			{
 				"type": "add",
 				"what": "cream",
-				"note": "The shreds are mixed into cream, which they thicken a little as it soaks in."
+				"note": "The cream is thickened a little as the shreds soak into it."
 			}
 		],
 		"sources": {

@@ -10,12 +10,12 @@
 			{
 				"type": "cut",
 				"how": "grind",
-				"note": "The cheese is scraped clean, washed and ground before it is melted."
+				"note": "The cheese is scraped clean and washed before it is melted."
 			},
 			{
 				"type": "add",
 				"what": "emulsifying salts, water and salt",
-				"note": "Emulsifying salts, about 1 to 3 percent of the blend, let the casein hold the fat and water as one smooth mass."
+				"note": "Emulsifying salts (salts that help fat and water mix), about 1 to 3 percent of the blend, are added so the casein holds the fat and water as one smooth mass."
 			},
 			{
 				"type": "heat",
@@ -28,17 +28,18 @@
 					"min": 240,
 					"max": 900
 				},
-				"note": "It is cooked under constant agitation, often under vacuum, for 4 to 5 minutes for blocks and 10 to 15 for spreads."
+				"note": "The blend is cooked while constantly stirred, often under vacuum, for 4 to 5 minutes for blocks and 10 to 15 for spreads."
 			},
 			{
 				"type": "custom",
-				"name": "hot-pack",
-				"note": "The molten cheese is packed at cooking temperature."
+				"name": "pack",
+				"note": "The molten cheese is put into its packs while still at cooking heat.",
+				"minor": true
 			},
 			{
 				"type": "heat",
 				"does": "cool",
-				"note": "Spreads are cooled quickly in a tunnel, blocks slowly at room temperature after moulding."
+				"note": "Spreads are passed quickly through a cooling tunnel, and blocks are left to stand slowly at room temperature after moulding."
 			}
 		],
 		"text": "The pH is brought to 5.6 to 5.9 for spreads and 5.4 to 5.6 for sliced types.",

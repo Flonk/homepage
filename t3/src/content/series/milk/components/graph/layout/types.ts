@@ -47,7 +47,19 @@ export interface ProductTree {
 /* ---- Sizes ---- */
 
 // How big each node is drawn, and how thick the arrow into it.
+/* How one laying out differs from the usual: the herd's (see
+   layoutWithHerd) takes milk's size and the whole width of milk from the
+   products', so its arrows are by the same measure; and its arrows point
+   in, towards milk, not out. */
+export interface LayoutOptions {
+	milkRadius?: number;
+	allMilk?: number;
+	inward?: boolean;
+}
+
 export interface NodeSizes {
+	// How many strands all of milk is, which a share is of.
+	allMilk: number;
 	// Its scale: 1 is a pill of the usual size. By how much is made from it, or its share of the world's milk.
 	scaleOf(n: Node): number;
 	// How much the arrow into it carries: it and everything made from it, in strands.
@@ -73,7 +85,7 @@ export interface NodeSizes {
 export interface RulerAndPanelContents {
 	hungUnderRuler: Map<Node, Node[]>;
 	panelContents: Map<Node, Node[]>;
-	// A parent's tables in a row off a bus, softest first (see bus.ts); and the parent a table hangs off so.
+	// A parent's tables in a row off a bus, the quickest ripened first (see bus.ts); and the parent a table hangs off so.
 	busUnder: Map<Node, Node[]>;
 	busAbove(n: Node): Node | null;
 	panelContaining(n: Node): Node | null;
@@ -164,16 +176,10 @@ export interface RulerLists {
 	hangUnder(ruler: Node): void;
 }
 
-/* A map pin: a region's cheeses, or a country's whose region is not
-   known, where they are and how many. Zoomed out, a country's pins near
-   each other are drawn as one (see pinsAtZoom in draw/panelPainter.ts). */
-export type Pin = { iso: string; areas: (string | undefined)[]; name: string; x: number; y: number; r: number; n: number };
 /* A family's cheeses laid out under its pill: on a grid, ripening time
-   across and firmness down; or on the world map, each in its country.
-   Coordinates are the panel's own, its top left at 0. */
+   across and firmness down. Coordinates are the panel's own, its top left at 0. */
 export type Panel = {
-	kind: 'grid' | 'map';
-	pins?: Pin[];
+	kind: 'grid';
 	w: number;
 	h: number;
 	rows: { firm: string; y: number; h: number }[];
@@ -184,8 +190,6 @@ export type Panel = {
 	// What is set out across.
 	named?: string;
 	at: Map<Node, { x: number; y: number }>;
-	// A map's: where the world's top left is in the panel, the world being cut to the family's cheeses.
-	origin?: { x: number; y: number };
 };
 export interface CheesePanels {
 	panels: Map<Node, Panel>;
@@ -246,6 +250,7 @@ export interface GraphLayout {
 	milkLabel: string;
 	milkLabelFont: number;
 	milkRadius: number;
+	allMilk: number;
 	scaleOf(n: Node): number;
 	photoSize(n: Node): number;
 	thickness(n: Node): number;

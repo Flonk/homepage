@@ -14,7 +14,7 @@
 					"min": 90,
 					"max": 95
 				},
-				"note": "Skimmed milk is heated before it is cooled for the starter."
+				"note": "The skimmed milk is heated to this temperature, then cooled for the starter."
 			},
 			{
 				"type": "heat",
@@ -71,11 +71,11 @@
 					"max": 45,
 					"about": true
 				},
-				"note": "The curd is cut and warmed over several hours, which squeezes the whey out."
+				"note": "The curd is cut and kept warm over several hours, which squeezes the whey out."
 			},
 			{
 				"type": "drain",
-				"note": "About half the volume leaves as whey."
+				"note": "The ymer is drained, and about half its volume leaves as whey."
 			},
 			{
 				"type": "standardise",
@@ -84,15 +84,14 @@
 					"max": 3.5,
 					"about": true
 				},
-				"note": "Cream is added back, which is the part of ymer that comes from cream."
+				"of": "cream"
 			},
 			{
 				"type": "custom",
 				"name": "blend smooth",
 				"temperature": {
 					"min": 35
-				},
-				"note": "The curd and cream are kept above 35 °C while they are mixed smooth."
+				}
 			}
 		],
 		"sources": {

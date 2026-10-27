@@ -15,44 +15,5 @@
 			}
 		],
 		"text": "The table, the facts and the words on how it is made, from these."
-	},
-	"processing": {
-		"steps": [
-			{
-				"type": "press",
-				"note": "Tvorog is pressed dry."
-			},
-			{
-				"type": "custom",
-				"name": "sieve",
-				"note": "Twice."
-			},
-			{
-				"type": "add",
-				"what": "butter, sugar, sour cream, eggs, raisins, nuts and vanilla"
-			},
-			{
-				"type": "mould",
-				"note": "In a wooden pasochnitsa lined with cheesecloth, draining the rest of the whey."
-			},
-			{
-				"type": "heat",
-				"does": "cool",
-				"seconds": {
-					"min": 43200,
-					"max": 43200
-				},
-				"note": "Cold but not freezing."
-			}
-		],
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Paskha",
-					"url": "https://en.wikipedia.org/wiki/Paskha"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		}
 	}
 }

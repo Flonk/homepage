@@ -1,0 +1,141 @@
+{
+	"label": "Nagpuri",
+	"aka": [
+		"Berar",
+		"Gauli",
+		"Marathwada",
+		"Varadi",
+		"Ellichpuri",
+		"Gaulani"
+	],
+	"names": {
+		"links": [
+			{
+				"name": "List of water buffalo breeds (Wikipedia)",
+				"url": "https://en.wikipedia.org/wiki/List_of_water_buffalo_breeds"
+			},
+			{
+				"name": "Nagpuri (buffalo) (Wikipedia)",
+				"url": "https://en.wikipedia.org/wiki/Nagpuri_(buffalo)"
+			}
+		],
+		"text": "Berar, Gauli, Marathwada, Varadi, Ellichpuri and Gaulani taken from the alternate-name column of the breeds list, read on WebFetch. The Nagpuri (buffalo) article gives further synonyms (Berari, Gaorani, Purnathadi, Varhadi, Gaolavi and others), not used here."
+	},
+	"kind": "breed",
+	"parent": "riverBuffalo",
+	"about": {
+		"text": "A river-type buffalo of the Vidarbha region of Maharashtra, India, adapted to the semi-arid conditions there. It is kept on farms and is used for milk, and its males are used for draught work. Its milk is rich in fat, averaging about 8 percent.",
+		"sources": {
+			"links": [
+				{
+					"name": "Nagpuri (buffalo) (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Nagpuri_(buffalo)"
+				},
+				{
+					"name": "List of water buffalo breeds (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/List_of_water_buffalo_breeds"
+				}
+			],
+			"text": "Nagpuri (buffalo) article, read on WebFetch: the Vidarbha setting, the semi-arid adaptation, the farm keeping, the draught males and the average fat figure. The breeds list gives the use as dairy and draught, read on WebFetch."
+		}
+	},
+	"origin": {
+		"regions": [
+			"IN"
+		],
+		"place": "The Vidarbha region of Maharashtra, India.",
+		"sources": {
+			"links": [
+				{
+					"name": "Nagpuri (buffalo) (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Nagpuri_(buffalo)"
+				}
+			],
+			"text": "Nagpuri (buffalo) article, read on WebFetch. The article gives no formation dates."
+		}
+	},
+	"yield": {
+		"perLactation": {
+			"min": 760,
+			"max": 1500
+		},
+		"where": "IN",
+		"sources": {
+			"links": [
+				{
+					"name": "Nagpuri (buffalo) (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Nagpuri_(buffalo)"
+				},
+				{
+					"name": "Nagpuri (buffalo) search results (WebSearch)",
+					"url": "https://lifescienceglobal.com/pms/index.php/JBS/article/view/6473"
+				}
+			],
+			"text": "Nagpuri (buffalo) article, read on WebFetch: average 1,039 kg per lactation, range 760 to 1,500 kg, no year and no lactation length. The range is the article's. The average of 1,039 kg is also from the article. Strain-level figures found in WebSearch's text only (not opened): Shahi strain, Chandrapur, 1,220.84 kg per lactation over 240 females, and the Gaolao or Guali strain, Wardha, 1,212.87 kg. These are not breed-wide."
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 7.0,
+			"max": 8.8
+		},
+		"sources": {
+			"links": [
+				{
+					"name": "Nagpuri (buffalo) (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Nagpuri_(buffalo)"
+				}
+			],
+			"text": "Nagpuri (buffalo) article, read on WebFetch: fat range 7.0 to 8.8 percent, average 8.25 percent, no year. The article gives no protein figure, so protein is left out."
+		}
+	},
+	"purposes": {
+		"purposes": [
+			"dairy",
+			"draught"
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "List of water buffalo breeds (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/List_of_water_buffalo_breeds"
+				},
+				{
+					"name": "Nagpuri (buffalo) (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Nagpuri_(buffalo)"
+				}
+			],
+			"text": "Breeds list, read on WebFetch: uses \"dairy, draught\". The Nagpuri (buffalo) article, read on WebFetch, says the buffaloes are reared mainly for fat production and the males are used for draught work."
+		}
+	},
+	"facts": [
+		{
+			"k": "Heat tolerance",
+			"v": "The article says the breed can keep producing milk and breeding in conditions up to 47 °C.",
+			"sources": {
+				"links": [
+					{
+						"name": "Nagpuri (buffalo) (Wikipedia)",
+						"url": "https://en.wikipedia.org/wiki/Nagpuri_(buffalo)"
+					}
+				],
+				"text": "Nagpuri (buffalo) article, read on WebFetch. The article gives no year."
+			}
+		},
+		{
+			"k": "Build",
+			"v": "Average body weight is 525 kg for males and 425 kg for females; average height is 145 cm for males and 135 cm for females.",
+			"sources": {
+				"links": [
+					{
+						"name": "Nagpuri (buffalo) (Wikipedia)",
+						"url": "https://en.wikipedia.org/wiki/Nagpuri_(buffalo)"
+					}
+				],
+				"text": "Nagpuri (buffalo) article, read on WebFetch. The article gives no year."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "Searched the Nagpuri (buffalo) article, the breeds list and one search. The breeds list has no risk-status column and gives no DAD-IS link for this entry, and no DAD-IS or FAO risk status was found in the article, so risk is left out. No population or head count. No formation dates. No protein or solids figures. The per-lactation range has no year and no lactation length. The search turned up strain-level studies only, which are not breed-wide, so they are not used as the breed's yield. The Wikipedia article is the main source and cites no primary study for the yield range."
+}

@@ -18,23 +18,6 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "coagulate",
-				"by": "rennet",
-				"temperature": {
-					"min": 25,
-					"max": 35
-				},
-				"note": "Lamb rennet."
-			},
-			{
-				"type": "heat",
-				"does": "cook",
-				"temperature": {
-					"min": 34,
-					"max": 38
-				}
-			},
-			{
 				"type": "ferment",
 				"does": "ripen",
 				"seconds": {
@@ -42,9 +25,8 @@
 				}
 			},
 			{
-				"type": "custom",
-				"name": "smoke",
-				"note": "Optional, with beech, birch, cherry or pine wood."
+				"type": "smoke",
+				"over": "beech, birch, cherry or pine"
 			}
 		],
 		"sources": {

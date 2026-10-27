@@ -18,18 +18,9 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "ferment",
-				"does": "incubate",
-				"note": "The curd rests in its own whey for hours to acidify."
-			},
-			{
-				"type": "custom",
-				"name": "stretch"
-			},
-			{
 				"type": "drain",
 				"by": "hang",
-				"note": "Tied by a string, which makes it pear-shaped."
+				"note": "The cheese is tied with a string, which makes it pear-shaped."
 			}
 		],
 		"sources": {

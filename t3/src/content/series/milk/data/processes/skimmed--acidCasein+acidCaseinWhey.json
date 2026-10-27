@@ -10,24 +10,8 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "pasteurise",
-				"temperature": {
-					"min": 78,
-					"max": 78
-				},
-				"seconds": {
-					"min": 20,
-					"max": 20
-				}
-			},
-			{
-				"type": "acidify",
-				"with": "10% HCl",
-				"pH": {
-					"min": 4.6,
-					"max": 4.6
-				},
-				"note": "To the isoelectric point of casein, where the curd forms."
+				"type": "coagulate",
+				"by": "acid"
 			},
 			{
 				"type": "heat",
@@ -36,17 +20,14 @@
 					"min": 20,
 					"max": 20,
 					"about": true
-				}
-			},
-			{
-				"type": "separate",
-				"off": "cream"
+				},
+				"minor": true
 			},
 			{
 				"type": "separate",
 				"off": "whey",
 				"by": "centrifuge",
-				"note": "A horizontal decanter leaves a serum of about 6 % solids and a curd of about 45 %."
+				"of": "curd"
 			}
 		],
 		"sources": {
@@ -83,16 +64,11 @@
 			"processing": {
 				"steps": [
 					{
-						"type": "washCurd",
-						"temperature": {
-							"min": 45,
-							"max": 50
-						},
-						"note": "Up to 1 l of water per l of milk."
+						"type": "washCurd"
 					},
 					{
 						"type": "dry",
-						"note": "In a fluid bed, from about 45 % to about 90 % dry matter."
+						"note": "The curd is dried in a stream of air, from about 45 % to about 90 % solids."
 					},
 					{
 						"type": "cut",

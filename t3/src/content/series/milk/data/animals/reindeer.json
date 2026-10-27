@@ -1,0 +1,152 @@
+{
+	"label": "Reindeer",
+	"aka": [
+		"caribou"
+	],
+	"names": {
+		"links": [
+			{
+				"name": "Wikipedia: Reindeer",
+				"url": "https://en.wikipedia.org/wiki/Reindeer"
+			}
+		],
+		"text": "The lead sentence of the fetched article reads 'The reindeer or caribou (Rangifer tarandus)'. 'Caribou' is the North American name, as given in the same sentence. 'Reindeer' is the item's given label."
+	},
+	"kind": "species",
+	"parent": "deer",
+	"taxon": {
+		"name": "Rangifer tarandus",
+		"rank": "species",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Reindeer",
+					"url": "https://en.wikipedia.org/wiki/Reindeer"
+				}
+			],
+			"text": "Scientific name Rangifer tarandus from the lead sentence; family Cervidae from the taxobox, as fetched with WebFetch. The item gives the taxon as given."
+		}
+	},
+	"about": {
+		"text": "The reindeer is the only deer semi-domesticated on a large scale, and herders across the Arctic keep domestic reindeer for food, transport and milk. The wild species is native to the Arctic, subarctic, tundra and boreal regions of Northern Europe, Siberia and North America.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Reindeer",
+					"url": "https://en.wikipedia.org/wiki/Reindeer"
+				}
+			],
+			"text": "'The only successfully semi-domesticated deer on a large scale' and the distribution from the lead; food, clothing and shelter for Arctic peoples, and the milk, meat and transport uses, from the article as fetched with WebFetch (the milk, meat and transport list was taken from a WebSearch result text citing an FAO-related page). The 'kept for milk' wording is a summary of those sources."
+		}
+	},
+	"domestication": {
+		"where": "Eurasian tundra and taiga: Northwest Siberia (Yamal) and Fennoscandia, with domestic reindeer arising separately in Russia and Fennoscandia",
+		"regions": [
+			"RU",
+			"NO",
+			"SE",
+			"FI"
+		],
+		"yearsAgo": {
+			"min": 1000,
+			"max": 2000
+		},
+		"text": "Herding is dated from about 2,000 years ago at Ust'-Polui near Salekhard in Siberia to about 1,000 years ago in Russian reviews, and the Sami herding began around the 7th century AD, but the date and place are still debated.",
+		"sources": {
+			"links": [
+				{
+					"name": "UAlberta: reindeer domesticated much earlier than previously thought",
+					"url": "https://www.ualberta.ca/en/folio/2020/06/reindeer-were-domesticated-much-earlier-than-previously-thought-new-study-suggests.html"
+				},
+				{
+					"name": "Roed et al. 2008, Proceedings of the Royal Society B",
+					"url": "https://www.consevol.org/pdf/Roed_2008_ProcRSocB.pdf"
+				}
+			],
+			"text": "The Ust'-Polui dating (about 2,000 years ago) and the Sami date (7th century AD) come from WebSearch result texts, not from the pages opened; the Russian review's 'at least a thousand years ago' also comes from search text. The Roed et al. 2008 finding of independent domestic origins in Russia and Fennoscandia comes from a WebSearch result text summarising it. The range 1,000 to 2,000 years is the span of those search-text dates, taken as min and max. Opened sources were not able to give a single date."
+		}
+	},
+	"milk": {
+		"mt": 0.06,
+		"year": 2023,
+		"estimated": true,
+		"sources": {
+			"links": [
+				{
+					"name": "A-Z Animals: How many reindeer are there in the world?",
+					"url": "https://a-z-animals.com/blog/how-many-reindeer-are-there-in-the-world/"
+				},
+				{
+					"name": "Reindeer milk study (septentrio.uit.no Rangifer article)",
+					"url": "https://septentrio.uit.no/index.php/rangifer/article/download/913/874/3488"
+				}
+			],
+			"text": "Estimate, not a FAOSTAT figure (FAOSTAT has no reindeer milk line). Working: about 3,000,000 domestic reindeer (A-Z Animals, which cites no primary data; an FAO Soviet-era figure gives 2.3 million in the USSR, 74% of the world's domesticated stock, so about 3.1 million in total) x 0.5 assumed to be milked females (assumption, not sourced) x 0.72 litres a day (average over a lactation, from a WebSearch result text reviewing reindeer milk yields) x 60 days of lactation (assumption, not sourced; the milking season is given as July to August in search text) = about 65 million litres, taken as 65,000 tonnes times 1,000 = 0.065 million tonnes, rounded to 0.06. Low confidence: every factor but the 0.72 litres is an assumption or a secondary figure."
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 9.3,
+			"max": 20
+		},
+		"protein": {
+			"min": 6.9,
+			"max": 10
+		},
+		"sources": {
+			"links": [
+				{
+					"name": "Reindeer milk composition (septentrio.uit.no Rangifer article)",
+					"url": "https://septentrio.uit.no/index.php/rangifer/article/download/913/874/3488"
+				}
+			],
+			"text": "From WebSearch result texts on reindeer milk: fat about 20% and protein about 10% in one study; a later hind-milking study gave fat 9.3 to 9.7% and protein 6.9 to 7.1%. The range covers both. The article texts themselves were not opened. Lactose is only described as moderately low, so no lactose figure is given."
+		}
+	},
+	"purposes": {
+		"purposes": [
+			"meat",
+			"dairy",
+			"transport"
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Reindeer",
+					"url": "https://en.wikipedia.org/wiki/Reindeer"
+				}
+			],
+			"text": "Food, clothing and shelter for Arctic peoples (Wikipedia, as fetched). The order meat, milk, transport is the order in the search-text summary of an FAO-related page that says reindeer provide milk, meat and transport."
+		}
+	},
+	"facts": [
+		{
+			"k": "Two origins",
+			"v": "Domestic reindeer appear to have arisen independently in Russia and in Fennoscandia.",
+			"sources": {
+				"links": [
+					{
+						"name": "Roed et al. 2008, Proceedings of the Royal Society B",
+						"url": "https://www.consevol.org/pdf/Roed_2008_ProcRSocB.pdf"
+					}
+				],
+				"text": "From a WebSearch result text on a 2008 genetic study that concluded domestic reindeer arose independently in Russia and Fennoscandia. The article itself was not opened."
+			}
+		},
+		{
+			"k": "Wild status",
+			"v": "Rangifer as a whole is listed as Vulnerable by the IUCN.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Reindeer",
+						"url": "https://en.wikipedia.org/wiki/Reindeer"
+					}
+				],
+				"text": "The infobox cites Gunn, IUCN Red List (2016) for the IUCN 3.1 Vulnerable listing, as fetched with WebFetch."
+			}
+		}
+	],
+	"confidence": "low",
+	"gaps": "No FAOSTAT or FAO figure for domestic reindeer numbers or reindeer milk was found, so the head count (about 3 million) and the 2023 milk figure are secondary estimates. No reindeer lactation length was found in a reliable source (the red deer figures found are a different species). Lactose was not given a figure. No domestic head count with a year was found, so no head record is given. The domestication dates rest on search texts and were not checked in the opened pages."
+}

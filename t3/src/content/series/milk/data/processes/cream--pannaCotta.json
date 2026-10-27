@@ -6,7 +6,7 @@
 		"pannaCotta"
 	],
 	"step": "sweeten, set with gelatin",
-	"text": "Warm cream and sugar are mixed with bloomed gelatin and poured into moulds; it sets on cooling. Too much gelatin makes it rubbery; recipes range from about 3 g to 8 g of gelatin sheet per 500 ml cream.",
+	"text": "Sweetened cream set with gelatin in a mould. Too much gelatin makes it rubbery.",
 	"sources": {
 		"links": [
 			{
@@ -23,46 +23,5 @@
 			}
 		],
 		"text": "The table, the facts and the words on how it is made, from these."
-	},
-	"processing": {
-		"steps": [
-			{
-				"type": "custom",
-				"name": "bloom",
-				"note": "Gelatin in cold water."
-			},
-			{
-				"type": "heat",
-				"does": "heat",
-				"note": "Only until the sugar and gelatin dissolve, not to a boil."
-			},
-			{
-				"type": "mould"
-			},
-			{
-				"type": "heat",
-				"does": "cool",
-				"seconds": {
-					"min": 14400
-				}
-			}
-		],
-		"sources": {
-			"links": [
-				{
-					"name": "Wikipedia: Panna cotta",
-					"url": "https://en.wikipedia.org/wiki/Panna_cotta"
-				},
-				{
-					"name": "ricetta.it: Panna cotta",
-					"url": "https://italian-recipes.ricetta.it/panna-cotta"
-				},
-				{
-					"name": "Observatory wiki: Panna Cotta",
-					"url": "https://observatory.wiki/wiki/Recipe:Italian/Panna_Cotta"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		}
 	}
 }

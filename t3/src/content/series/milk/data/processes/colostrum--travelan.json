@@ -23,17 +23,13 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "custom",
-				"name": "vaccinate",
-				"note": "Cows are vaccinated during pregnancy with antigens from 13 human-derived ETEC strains."
-			},
-			{
 				"type": "dry",
-				"note": "Freeze-dried."
+				"note": "The colostrum is freeze dried."
 			},
 			{
 				"type": "press",
-				"note": "Into tablets."
+				"note": "The dried colostrum is pressed into tablets.",
+				"minor": true
 			}
 		],
 		"sources": {

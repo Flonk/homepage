@@ -5,7 +5,7 @@
 	"to": [
 		"graddfil"
 	],
-	"text": "Cream of about 12 % fat is homogenised and pasteurised, then soured with a culture. Temperatures, times and species are not given by the source; the general mesophilic cultured-cream method is under Cultured cream grades.",
+	"text": "Cream of about 12 % fat is soured with a culture. Temperatures, times and species are not given by the source; the general mesophilic cultured-cream method is under Cultured cream grades.",
 	"sources": {
 		"links": [
 			{
@@ -14,40 +14,5 @@
 			}
 		],
 		"text": "The table, the facts and the words on how it is made, from these."
-	},
-	"processing": {
-		"steps": [
-			{
-				"type": "homogenise",
-				"note": "Of the cream."
-			},
-			{
-				"type": "pasteurise"
-			},
-			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic"
-				],
-				"adds": {
-					"microbes": [],
-					"by": [
-						"starter"
-					]
-				},
-				"note": "Soured with a souring culture, no species named in the source."
-			}
-		],
-		"text": "Cream of about 12 % fat, homogenised and pasteurised, is soured with a culture whose species the source does not name.",
-		"sources": {
-			"links": [
-				{
-					"name": "Swedish Wikipedia: Gräddfil",
-					"url": "https://sv.wikipedia.org/wiki/Gr%C3%A4ddfil"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		}
 	}
 }

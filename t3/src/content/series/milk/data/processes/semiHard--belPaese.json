@@ -28,31 +28,6 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "pasteurise"
-			},
-			{
-				"type": "coagulate",
-				"by": "rennet",
-				"temperature": {
-					"min": 40,
-					"max": 43
-				},
-				"seconds": {
-					"min": 600,
-					"max": 900
-				},
-				"note": "With liquid calf rennet."
-			},
-			{
-				"type": "cut",
-				"how": "cut",
-				"size": {
-					"min": 20,
-					"max": 30
-				},
-				"note": "Then to hazelnut size, and not cooked."
-			},
-			{
 				"type": "ferment",
 				"does": "incubate",
 				"kinds": [
@@ -86,23 +61,7 @@
 					"min": 90,
 					"max": 95
 				},
-				"note": "Stewed in perforated moulds, in wheels of about 2 kg."
-			},
-			{
-				"type": "salt",
-				"how": "brine",
-				"strength": {
-					"min": 18,
-					"max": 20
-				},
-				"temperature": {
-					"min": 10,
-					"max": 12
-				},
-				"seconds": {
-					"min": 25200,
-					"max": 36000
-				}
+				"note": "The curd is stewed in perforated moulds, in wheels of about 2 kg."
 			},
 			{
 				"type": "ferment",
@@ -118,7 +77,7 @@
 				"humidity": {
 					"min": 85
 				},
-				"note": "Turned and wiped; the Italico type ripens 20–40 d, Galbani's Bel Paese 6–8 wk."
+				"note": "The cheese is turned and wiped; the Italico type ripens for 20–40 days, Galbani's Bel Paese for 6–8 weeks."
 			}
 		],
 		"sources": {

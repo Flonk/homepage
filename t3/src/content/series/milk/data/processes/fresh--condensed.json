@@ -19,7 +19,8 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "standardise"
+				"type": "standardise",
+				"minor": true
 			},
 			{
 				"type": "heat",
@@ -27,16 +28,16 @@
 				"temperature": {
 					"min": 85,
 					"max": 90
-				}
+				},
+				"minor": true
 			},
 			{
-				"type": "evaporate",
-				"note": "About 60 % of the milk is removed as water."
+				"type": "evaporate"
 			},
 			{
 				"type": "add",
 				"what": "sugar",
-				"note": "Sugar and evaporated milk 9 : 11.",
+				"note": "Sugar is added, in a ratio of 9 parts sugar to 11 parts evaporated milk.",
 				"share": {
 					"min": 45,
 					"max": 45,
@@ -46,7 +47,8 @@
 			{
 				"type": "heat",
 				"does": "cool",
-				"note": "Lactose crystallisation is induced to keep it smooth."
+				"note": "The milk is cooled while its milk sugar is made to crystallise, which keeps it smooth.",
+				"minor": true
 			}
 		],
 		"sources": {

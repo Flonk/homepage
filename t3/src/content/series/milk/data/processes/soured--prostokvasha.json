@@ -19,51 +19,5 @@
 			}
 		],
 		"text": "The table, the facts and the words on how it is made, from these."
-	},
-	"processing": {
-		"steps": [
-			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic"
-				],
-				"adds": {
-					"microbes": [
-						{
-							"name": "Lactococcus",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							]
-						},
-						{
-							"name": "Streptococcus thermophilus",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							]
-						}
-					],
-					"by": [
-						"starter"
-					]
-				}
-			}
-		],
-		"text": "Variants add L. bulgaricus (Mechnikov type) or L. acidophilus.",
-		"sources": {
-			"links": [
-				{
-					"name": "GOST 31456-2013 Prostokvasha",
-					"url": "https://docs.cntd.ru/document/1200102734"
-				},
-				{
-					"name": "Wikipedia (ru): Prostokvasha",
-					"url": "https://ru.wikipedia.org/wiki/%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%BA%D0%B2%D0%B0%D1%88%D0%B0"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		}
 	}
 }

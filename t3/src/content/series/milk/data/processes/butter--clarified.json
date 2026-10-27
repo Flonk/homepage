@@ -24,16 +24,15 @@
 		"steps": [
 			{
 				"type": "evaporate",
-				"note": "Melted so water evaporates, whey proteins float and casein sinks."
+				"of": "butter"
 			},
 			{
 				"type": "separate",
-				"off": "skin",
-				"note": "Whey protein foam skimmed off."
+				"off": "skin"
 			},
 			{
 				"type": "drain",
-				"note": "Clear butterfat poured off the top, leaving the solids behind."
+				"note": "The clear butterfat is poured off the top, leaving the solids behind."
 			}
 		],
 		"sources": {

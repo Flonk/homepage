@@ -8,34 +8,6 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "pasteurise"
-			},
-			{
-				"type": "coagulate",
-				"by": "rennet",
-				"note": "Lactic and maturation ferments, annatto for colour and rennet go into the vat, with at least two hours of ripening before the rennet."
-			},
-			{
-				"type": "cut",
-				"how": "cut",
-				"note": "The curd is cut, washed and stirred."
-			},
-			{
-				"type": "mould",
-				"note": "The curd is cut into blocks and put into moulds."
-			},
-			{
-				"type": "press"
-			},
-			{
-				"type": "salt",
-				"how": "brine"
-			},
-			{
-				"type": "dry",
-				"note": "The wheels are dried to take the moisture off their surface."
-			},
-			{
 				"type": "ferment",
 				"does": "ripen",
 				"kinds": [
@@ -59,7 +31,7 @@
 				"seconds": {
 					"min": 7776000
 				},
-				"note": "The wheels are turned and brushed through months of ageing while mites feed on the rind, pitting it so that air reaches the paste."
+				"note": "Moisture is taken off the surface of the wheels."
 			}
 		],
 		"sources": {

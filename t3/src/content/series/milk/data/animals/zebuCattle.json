@@ -1,0 +1,80 @@
+{
+	"label": "Zebu",
+	"aka": [
+		"Bos indicus",
+		"Indicine cattle",
+		"Humped cattle"
+	],
+	"names": {
+		"links": [
+			{
+				"name": "Wikipedia: Zebu",
+				"url": "https://en.wikipedia.org/wiki/Zebu"
+			}
+		],
+		"text": "Wikipedia's Zebu article: the scientific name Bos indicus was introduced by Linnaeus in 1758; the article also calls zebu 'indicine cattle and humped cattle'."
+	},
+	"kind": "type",
+	"parent": "cattle",
+	"taxon": {
+		"name": "Bos taurus indicus",
+		"rank": "subspecies",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Cattle",
+					"url": "https://en.wikipedia.org/wiki/Cattle"
+				}
+			],
+			"text": "Wikipedia's Cattle article: under the one-species view zebu are B. t. indicus, while the article notes that some authorities treat Bos indicus as a separate species."
+		}
+	},
+	"about": {
+		"text": "Zebu are humped cattle derived from the Indian aurochs, raised across much of Asia and throughout the tropics, including Brazil's beef herds and Madagascar. They are used as draught and riding animals, for dairy and for beef. Zebu cows commonly give little milk, and milk yield generally rises when they are crossed with taurine cattle.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Zebu",
+					"url": "https://en.wikipedia.org/wiki/Zebu"
+				}
+			],
+			"text": "Wikipedia's Zebu article: zebu 'are derived from the Indian aurochs'; 'very common in much of Asia, including Pakistan, India, Nepal, Bangladesh and China'; 'raised throughout the tropics'; zebu outnumber people in Madagascar; about 80% of Brazil's beef cattle are purebred or hybrid Ongole cattle, a zebu-related breed; 'Zebu cows commonly have low production of milk'; 'When zebus are crossed with taurine cattle, milk production generally increases'; used 'as a draught and riding animal, as dairy cattle and beef cattle'."
+		}
+	},
+	"milk": {
+		"mt": 200.02,
+		"year": 2023,
+		"estimated": true,
+		"sources": {
+			"links": [
+				{
+					"name": "FAOSTAT: Crops and livestock products (QCL), raw milk of cattle by region, 2023",
+					"url": "https://www.fao.org/faostat/en/#data/QCL"
+				}
+			],
+			"text": "Estimated as the 2023 cattle milk of the regions where zebu cattle make up most herds: Southern Asia 174.90 Mt, Eastern Africa 21.24 Mt, Western Africa 3.08 Mt and Middle Africa 0.80 Mt, together 200.02 Mt (FAOSTAT, from its bulk file of 23 December 2025). Rough: it counts the crossbred and exotic cows of those regions (many in India) as zebu, and leaves out the zebu of Brazil, Northern Africa and elsewhere."
+		}
+	},
+	"domestication": {
+		"where": "Mehrgarh, northwest Pakistan, with possible secondary domestication in other parts of South Asia",
+		"regions": [
+			"PK"
+		],
+		"yearsAgo": {
+			"min": 6000,
+			"max": 7000
+		},
+		"text": "Zebu were domesticated between 6,000 and 7,000 years ago at Mehrgarh in northwest Pakistan.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Zebu",
+					"url": "https://en.wikipedia.org/wiki/Zebu"
+				}
+			],
+			"text": "Wikipedia's Zebu article: 'were domesticated between 6,000 and 7,000 YBP at Mehrgarh in Northern west Pakistan, with possible secondary domestication events in other parts of South Asia', cited to Bradley et al. 1996, Van Vuure 2005 and Gangal et al. 2014. Other sources found place zebu domestication in the Indus region with dates from about 6,000 to 9,000 years ago; the 6,000 to 7,000 range is the one with a citation in the article read."
+		}
+	},
+	"confidence": "low",
+	"gaps": "No source found for the 2023 world milk volume of zebu alone; FAOSTAT lumps all cattle, and no split was found in the sources read. No zebu head count or yield figures were found. The Wikipedia Zebu article gives no global population figure, and the Madagascar and Brazil figures are as stated in that article, not verified against a primary source."
+}

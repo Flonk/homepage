@@ -10,15 +10,16 @@
 			{
 				"type": "add",
 				"what": "water and emulsifying salts",
-				"note": "The cheese is dissolved into a smooth emulsion with water and calcium-sequestering salts."
+				"note": "The cheese is dissolved into a smooth emulsion, with salts that bind up calcium."
 			},
 			{
 				"type": "heat",
 				"does": "heat",
-				"note": "How hot and how long depends on the cheese, its age and the recipe."
+				"note": "The mixture is heated, for a time and at a heat that depend on the cheese, its age and the recipe."
 			},
 			{
-				"type": "homogenise"
+				"type": "homogenise",
+				"of": "cheese slurry"
 			},
 			{
 				"type": "evaporate",
@@ -26,11 +27,11 @@
 					"min": 35,
 					"max": 45
 				},
-				"note": "The slurry is brought to 35-45 % total solids before it is dried."
+				"of": "cheese slurry"
 			},
 			{
 				"type": "dry",
-				"note": "Spray drying turns the slurry into a powder, at the cost of some aroma."
+				"note": "The slurry is spray dried into a powder, at the cost of some aroma."
 			}
 		],
 		"sources": {

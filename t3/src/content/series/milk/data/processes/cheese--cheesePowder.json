@@ -20,12 +20,13 @@
 		"steps": [
 			{
 				"type": "cut",
-				"how": "grind"
+				"how": "grind",
+				"minor": true
 			},
 			{
 				"type": "custom",
 				"name": "melt",
-				"note": "With water and emulsifying salts, usually phosphates (about 3.5 %), into a uniform cheese feed of about 38 % dry matter."
+				"note": "The cheese is melted with water and emulsifying salts, usually phosphates (about 3.5 %), into a uniform cheese feed of about 38 % dry matter."
 			},
 			{
 				"type": "heat",
@@ -37,7 +38,8 @@
 				"seconds": {
 					"min": 300,
 					"max": 300
-				}
+				},
+				"minor": true
 			},
 			{
 				"type": "dry",
@@ -45,7 +47,7 @@
 					"min": 60,
 					"max": 190
 				},
-				"note": "Sprayed into hot air, 190 °C in and 60 °C out."
+				"note": "The feed is sprayed into hot air, 190 °C in and 60 °C out."
 			}
 		],
 		"sources": {

@@ -1,0 +1,71 @@
+{
+	"label": "Australian Friesian Sahiwal",
+	"aka": [],
+	"kind": "breed",
+	"parent": "taurineCattle",
+	"about": {
+		"text": "A tropical dairy breed from Australia, crossed from Holstein-Friesian and Sahiwal cattle and bred for heat tolerance and milk. It was developed in Queensland, where it is kept, and its milk is high in fat and protein. Its population is uncertain: the Rare Breeds Trust reports one breeder in 2025.",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Australian Friesian Sahiwal", "url": "https://en.wikipedia.org/wiki/Australian_Friesian_Sahiwal"},
+				{"name": "Rare Breeds Trust of Australia: Australian Friesian Sahiwal", "url": "https://rarebreedstrust.com.au/public/pages/sc-australian-friesian-sahiwal"}
+			],
+			"text": "Breed description, Queensland origin and 50/50 Holstein-Friesian x Sahiwal mix from the Wikipedia article; 'high in fat and protein' and the 2025 breeder count from the Rare Breeds Trust page."
+		}
+	},
+	"origin": {
+		"regions": ["AU"],
+		"place": "Queensland, Australia",
+		"formed": {"min": 1961, "max": 1961},
+		"sources": {
+			"links": [
+				{"name": "Rare Breeds Trust of Australia: Australian Friesian Sahiwal", "url": "https://rarebreedstrust.com.au/public/pages/sc-australian-friesian-sahiwal"},
+				{"name": "Wikipedia: Australian Friesian Sahiwal", "url": "https://en.wikipedia.org/wiki/Australian_Friesian_Sahiwal"}
+			],
+			"text": "'Developed by the Queensland Department of Agriculture from 1961' (Rare Breeds Trust). Wikipedia says development commenced in the 1960s by the Queensland Government with CSIRO and QDPI, so the formed range is the single year 1961."
+		}
+	},
+	"composition": {
+		"fat": {"min": 4, "max": 4, "about": true},
+		"protein": {"min": 3.4, "max": 3.4},
+		"sources": {
+			"links": [
+				{"name": "Oklahoma State: Australian Friesian Sahiwal Cattle", "url": "https://breeds.okstate.edu/cattle/australian-friesian-sahiwal-cattle.html"}
+			],
+			"text": "Protein 3.4 percent and butterfat approximately four percent, taken from WebSearch result text summarising the Oklahoma State profile. The Oklahoma State page itself returned HTTP 403 when opened, so these figures are not checked against the page."
+		}
+	},
+	"purposes": {
+		"purposes": ["dairy"],
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Australian Friesian Sahiwal", "url": "https://en.wikipedia.org/wiki/Australian_Friesian_Sahiwal"}
+			],
+			"text": "The article covers the breed's dairy production (its 'Dairy Production' section, with Malaysian and Queensland milk-yield comparisons)."
+		}
+	},
+	"facts": [
+		{
+			"k": "Against Friesians",
+			"v": "Milk yield is up to 80% of Friesians, according to the Rare Breeds Trust. Other sources disagree on this, so it is noted as a claim, not a finding.",
+			"sources": {
+				"links": [
+					{"name": "Rare Breeds Trust of Australia: Australian Friesian Sahiwal", "url": "https://rarebreedstrust.com.au/public/pages/sc-australian-friesian-sahiwal"}
+				],
+				"text": "Quoted from the page: 'The milk yield is up to 80% of Friesians.'"
+			}
+		},
+		{
+			"k": "Yield per lactation",
+			"v": "About 3,000 litres per lactation under tropical pasture conditions. No year or lactation length is given.",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: Australian Friesian Sahiwal", "url": "https://en.wikipedia.org/wiki/Australian_Friesian_Sahiwal"}
+				],
+				"text": "Quoted from the article: 'approximately 3,000 litres of milk per lactation' under tropical pasture conditions (fetched). Recorded in litres as written, not converted to kg."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "No DAD-IS risk status was found; the Rare Breeds Trust gives 'probably extinct' in 2022 and 1 breeder in 2025, which is not a DAD-IS status, so risk is left out. No head count was found. The Oklahoma State profile (the source of the fat and protein figures) returned HTTP 403, so composition rests on search-result text. No lactation length was found, and the Wikipedia yield gives no year."
+}

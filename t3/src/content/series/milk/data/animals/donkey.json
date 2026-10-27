@@ -1,0 +1,135 @@
+{
+	"label": "Donkey",
+	"aka": ["ass", "burro"],
+	"names": {
+		"links": [
+			{ "name": "Wikipedia: Donkey", "url": "https://en.wikipedia.org/wiki/Donkey" }
+		],
+		"text": "The lead of the Wikipedia article gives 'donkey, ass, or burro' as the animal's names. 'Jack' and 'jenny' are the adult male and female, not other names, so they are left out."
+	},
+	"kind": "species",
+	"parent": "equids",
+	"taxon": {
+		"name": "Equus asinus",
+		"rank": "species",
+		"sources": {
+			"links": [
+				{ "name": "Wikipedia: Donkey", "url": "https://en.wikipedia.org/wiki/Donkey" }
+			],
+			"text": "The lead says the donkey may be classified either as a subspecies, Equus africanus asinus, or as a separate species, Equus asinus. The name given here is the species name; the subspecies name is the other option."
+		}
+	},
+	"about": {
+		"text": "The donkey is a domesticated equine descended from African wild asses. It is kept in many countries. A few donkeys are milked, and the milk is used for soaps and cosmetics as well as for food.",
+		"sources": {
+			"links": [
+				{ "name": "Wikipedia: Donkey", "url": "https://en.wikipedia.org/wiki/Donkey" }
+			],
+			"text": "Taken from the Wikipedia article's lead, uses section and nomenclature section. The 'many countries' wording is from the 2022 Science study's 31 countries (see facts)."
+		}
+	},
+	"domestication": {
+		"where": "Africa, probably the Nubian region and the Horn of Africa",
+		"regions": ["SD", "ET"],
+		"yearsAgo": { "min": 5000, "max": 7000 },
+		"text": "Donkeys were domesticated once, in Africa, about 5,000 to 7,000 years ago, probably by pastoral people in Nubia.",
+		"sources": {
+			"links": [
+				{ "name": "Science News: donkey domestication DNA", "url": "https://www.sciencenews.org/article/donkey-domestication-dna-east-africa" },
+				{ "name": "Wikipedia: Donkey", "url": "https://en.wikipedia.org/wiki/Donkey" }
+			],
+			"text": "Science News says donkeys were 'domesticated about 7,000 years ago in East Africa', 'perhaps in the Horn of Africa, around 5000 B.C.'. Wikipedia says 'domesticated in Africa some 5000–7000 years ago' and 'probably first domesticated by pastoral people in Nubia'. The region codes are for Sudan (Nubia) and Ethiopia (Horn of Africa), taken from those places in words; the 'once' follows the 2022 study as Science News reports it."
+		}
+	},
+	"milk": {
+		"mt": 0.07,
+		"year": 2023,
+		"estimated": true,
+		"sources": {
+			"links": [
+				{ "name": "FAOSTAT: donkey stock, world, 2023 (research file)", "url": "https://www.fao.org/faostat/en/#data/QCL" },
+				{ "name": "Wikipedia: Donkey", "url": "https://en.wikipedia.org/wiki/Donkey" },
+				{ "name": "ICAR journal article on milk yields (seen in search text only)", "url": "https://epubs.icar.org.in/index.php/IJAnS/article/download/135758/54264/408452" },
+				{ "name": "CPPCC News (rmzxw.com.cn): donkey milk in China, 2015", "url": "https://www.rmzxw.com.cn/c/2015-09-06/570012.shtml" }
+			],
+			"text": "UNSOURCED PLACEHOLDER. FAOSTAT publishes no milk figure for donkeys, and no national or world tonnage or count of milked jennies was found (searched October 2026: reviews, Wikipedia's Donkey milk page, Italian and Chinese industry reports). Working: donkeys in the world in 2023: 53,312,453 (FAOSTAT stock in the research file) × 1% milked, an assumption with no source (Wikipedia says only that 'a few donkeys are milked') × 125 kg a lactation (midpoint of 100–150 kg from a search summary of the ICAR article, not opened) × one lactation a year = 66,640 t ≈ 0.07 million tonnes. Yields that were opened agree in size: CPPCC News (rmzxw.com.cn, 2015) gives about 1 kg a day for six months for a Chinese jenny, about 180 kg. What is known of the scale suggests 1% (about 530,000 milked jennies) is too high: Italian dairy donkey farms are small, typically 5 to 30 milking jennies (search text), and Xinjiang's largest plants were built for 10 t of fresh milk a day and 500 t of liquid milk a year (rmzxw.com.cn, opened). Treat the figure as an order-of-magnitude guess, probably high."
+		}
+	},
+	"head": [
+		{
+			"count": 53312453,
+			"year": 2023,
+			"where": "world",
+			"sources": {
+				"links": [
+					{ "name": "FAOSTAT: Crops and livestock products (QCL), world, 2023", "url": "https://www.fao.org/faostat/en/#data/QCL" }
+				],
+				"text": "Donkey stocks in the research file's FAOSTAT 2023 world figures: 53,312,453 head. Stocks, not milked animals; FAOSTAT does not give a milked number for donkeys."
+			}
+		}
+	],
+	"yield": {
+		"perLactation": { "min": 100, "max": 150 },
+		"sources": {
+			"links": [
+				{ "name": "ICAR journal article on milk yields", "url": "https://epubs.icar.org.in/index.php/IJAnS/article/download/135758/54264/408452" }
+			],
+			"text": "A search summary of this ICAR article says a donkey yields roughly 100–150 kg of milk per lactation, which it calls relatively low. I could not open the PDF to check the wording, so this is from the search text only. No lactation length, country or year is sourced."
+		}
+	},
+	"composition": {
+		"fat": { "min": 0.7, "max": 0.7 },
+		"protein": { "min": 1.6, "max": 1.6 },
+		"lactose": { "min": 6.6, "max": 6.6 },
+		"solids": { "min": 9.5, "max": 9.5 },
+		"sources": {
+			"links": [
+				{ "name": "Review of equine and donkey milk, PMC (Table 1)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7070972" }
+			],
+			"text": "Table 1, donkey column: total solids 95.3 g/kg, fat 7 g/kg, protein 16 g/kg, lactose 66 g/kg. Converted to percent by dividing by 10 (9.5, 0.7, 1.6, 6.6). One source only, so each figure is a single value rather than a range."
+		}
+	},
+	"purposes": {
+		"purposes": ["dairy", "meat"],
+		"sources": {
+			"links": [
+				{ "name": "Wikipedia: Donkey", "url": "https://en.wikipedia.org/wiki/Donkey" }
+			],
+			"text": "Wikipedia's uses section: 'A few donkeys are milked or raised for meat.' Only these two uses were found in the text I read, so the order is not ranked by the source."
+		}
+	},
+	"facts": [
+		{
+			"k": "Genomic study",
+			"v": "A 2022 study in Science of 207 donkey genomes from 31 countries (plus 31 ancient donkeys) found one domestication in Africa, about 7,000 years ago.",
+			"sources": {
+				"links": [
+					{ "name": "Science News: donkey domestication DNA", "url": "https://www.sciencenews.org/article/donkey-domestication-dna-east-africa" }
+				],
+				"text": "Science News: '207 genomes from donkeys living in 31 countries', plus DNA from 31 donkeys, and the paper is E.T. Todd et al., Science, 2022, vol. 377."
+			}
+		},
+		{
+			"k": "Milk uses",
+			"v": "Donkey milk is used for soaps and cosmetics as well as for food.",
+			"sources": {
+				"links": [
+					{ "name": "Wikipedia: Donkey", "url": "https://en.wikipedia.org/wiki/Donkey" }
+				],
+				"text": "Wikipedia's uses section: the milk is used 'for soaps and cosmetics as well as dietary purposes'."
+			}
+		},
+		{
+			"k": "Price",
+			"v": "In Italy in 2009, donkey milk averaged €15 per litre, which Wikipedia says may command good prices.",
+			"sources": {
+				"links": [
+					{ "name": "Wikipedia: Donkey", "url": "https://en.wikipedia.org/wiki/Donkey" }
+				],
+				"text": "Wikipedia: 'Asses' milk may command good prices: the average price in Italy in 2009 was €15 per litre.' This is a 2009 price and may be out of date."
+			}
+		}
+	],
+	"confidence": "low",
+	"gaps": "No world milk figure for donkeys: FAOSTAT has none, and no national tonnage or milked-jenny count was found for any country (Italy, France, China, India, the Balkans). THE MILK FIGURE IS UNSOURCED: the 0.07 million tonnes rests on an assumed 1% of all donkeys milked, which the small scale of the known farms and plants suggests is too high; it needs a count of milked jennies or national tonnages (e.g. Italy's ISTAT or registry, China's Xinjiang and Shandong statistics) to replace it, and the 100–150 kg yield comes from a search summary of an ICAR article I could not open. No lactation length, no milked head count, no country yield, no DAD-IS data for the species. The composition comes from a single review."
+}

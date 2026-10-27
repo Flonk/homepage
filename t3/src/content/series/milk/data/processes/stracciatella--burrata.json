@@ -20,23 +20,13 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "cut",
-				"how": "shred",
-				"note": "For the filling."
-			},
-			{
-				"type": "add",
-				"what": "cream",
-				"note": "Mixed with the shredded curd, into stracciatella."
-			},
-			{
 				"type": "mould",
-				"note": "Into a pouch."
+				"note": "The stretched curd is formed into a pouch."
 			},
 			{
 				"type": "custom",
 				"name": "fill and close",
-				"note": "With stracciatella."
+				"note": "The pouch is filled with stracciatella, shredded curd mixed with cream."
 			}
 		],
 		"sources": {

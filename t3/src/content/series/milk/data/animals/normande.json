@@ -1,0 +1,153 @@
+{
+	"label": "Normande",
+	"aka": [
+		"Normande cattle",
+		"Normanna",
+		"Normanne (Rind)"
+	],
+	"names": {
+		"links": [
+			{
+				"name": "Normande cattle (Wikipedia)",
+				"url": "https://en.wikipedia.org/wiki/Normande_cattle"
+			}
+		],
+		"text": "\"Normande cattle\" is the English article title that redirects to the breed page; \"Normanna\" and \"Normanne (Rind)\" are the Italian and German article titles, read from the page's other-language links on WebFetch. The English name Normande is the page title."
+	},
+	"kind": "breed",
+	"parent": "taurineCattle",
+	"about": {
+		"text": "A dual-purpose dairy breed from the Normandy region of north-west France. It is kept mainly for milk, which suits butter and cheese, and its meat is also valued.",
+		"sources": {
+			"links": [
+				{
+					"name": "Normande cattle (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Normande_cattle"
+				}
+			],
+			"text": "Wikipedia article, read on WebFetch: origin in Normandy, north-west France; dual-purpose dairy breed kept mainly for milk, suited to butter and cheese; meat valued and marbled with fat."
+		}
+	},
+	"origin": {
+		"regions": [
+			"FR"
+		],
+		"place": "Normandy, north-west France",
+		"formed": {
+			"min": 1800,
+			"max": 1830
+		},
+		"sources": {
+			"links": [
+				{
+					"name": "Normande cattle (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Normande_cattle"
+				}
+			],
+			"text": "Wikipedia article, read on WebFetch: the breed \"originated in Normandy in the early nineteenth century\". The range 1800 to 1830 is my reading of \"early nineteenth century\", not a figure the page gives. Herd-book founded 1883 and bull performance testing from 1952 are also on the page but are not the formation date."
+		}
+	},
+	"head": [
+		{
+			"count": 2100000,
+			"year": 2005,
+			"where": "FR",
+			"sources": {
+				"links": [
+					{
+						"name": "Normande cattle (Wikipedia)",
+						"url": "https://en.wikipedia.org/wiki/Normande_cattle"
+					}
+				],
+				"text": "Wikipedia article, read on WebFetch: \"In 2005 the total number in France was estimated at approximately 2.1 million.\" This is the total breed number in France, not only milked cows."
+			}
+		}
+	],
+	"yield": {
+		"perLactation": {
+			"min": 6793,
+			"max": 6793
+		},
+		"lactationDays": {
+			"min": 316,
+			"max": 316
+		},
+		"sources": {
+			"links": [
+				{
+					"name": "Normande cattle (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Normande_cattle"
+				}
+			],
+			"text": "Wikipedia article, read on WebFetch: \"Annual yield is 6595 litres in a lactation of 316 days.\" No year or country is given on the page, so none is recorded here. Estimated: 6,595 L converted to kilograms at 1.03 kg per litre (a common figure for milk, not from the sources), giving 6,793 kg. The conversion is my own working."
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 4.4,
+			"max": 4.4
+		},
+		"protein": {
+			"min": 3.6,
+			"max": 3.6
+		},
+		"sources": {
+			"links": [
+				{
+					"name": "Normande cattle (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Normande_cattle"
+				},
+				{
+					"name": "Normande (TheCattleSite)",
+					"url": "https://www.thecattlesite.com/breeds/dairy/68/normande"
+				}
+			],
+			"text": "Wikipedia article, read on WebFetch: \"The milk has 4.4% fat and 3.6% protein.\" TheCattleSite, seen as a WebSearch result text only (not opened): about 4.2% butterfat and 3.5% protein for France. A 2023 study (WebSearch text only) found Normande protein higher than Holstein but gave no fat difference, and a Chile herd study gave 3.35% fat. The figures are a single value from the Wikipedia page, with sources differing."
+		}
+	},
+	"purposes": {
+		"purposes": [
+			"dairy",
+			"meat"
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Normande cattle (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Normande_cattle"
+				}
+			],
+			"text": "Wikipedia article, read on WebFetch: dual-purpose breed, kept mainly for milk, with valued meat."
+		}
+	},
+	"risk": {
+		"status": "not at risk",
+		"year": 2007,
+		"sources": {
+			"links": [
+				{
+					"name": "Normande cattle (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Normande_cattle"
+				}
+			],
+			"text": "Wikipedia article, read on WebFetch: \"The FAO listed the breed as 'not at risk' in 2007.\""
+		}
+	},
+	"facts": [
+		{
+			"k": "Population outside France",
+			"v": "Colombia has the largest population of Normande cattle outside France, reported at about 380,000 (no year given).",
+			"sources": {
+				"links": [
+					{
+						"name": "Normande cattle (Wikipedia)",
+						"url": "https://en.wikipedia.org/wiki/Normande_cattle"
+					}
+				],
+				"text": "Wikipedia article, read on WebFetch: \"Colombia has the largest population of Normande cattle outside France, reported at about 380,000.\" The page gives no year."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "The yield is for one lactation of 316 days on the Wikipedia page, with no recording country or year, so the 2005 year and FR recording are not sourced and the yield has no year. The per-lactation figure is a kg conversion I worked out. No FAO DAD-IS or breed-society figure was opened, so the population and milk figures rest on Wikipedia alone."
+}

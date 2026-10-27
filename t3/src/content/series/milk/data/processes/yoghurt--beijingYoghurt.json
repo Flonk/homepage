@@ -6,7 +6,7 @@
 		"beijingYoghurt"
 	],
 	"variant": true,
-	"text": "Poured into about fifty small bowls, stacked against the wall of a yoghurt barrel and heated about 30 min, then cooled. No starter species are named in the sources.",
+	"text": "The yoghurt is poured into about fifty small bowls, stacked against the wall of a yoghurt barrel and heated about 30 min, then cooled.",
 	"sources": {
 		"links": [
 			{
@@ -23,10 +23,6 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "ferment",
-				"does": "incubate"
-			},
-			{
 				"type": "heat",
 				"does": "heat",
 				"seconds": {
@@ -34,14 +30,15 @@
 					"max": 1800,
 					"about": true
 				},
-				"note": "Poured into about fifty small bowls, stacked against the wall of a yoghurt barrel."
+				"note": "The yoghurt is poured into about fifty small bowls, stacked against the wall of a yoghurt barrel."
 			},
 			{
 				"type": "heat",
-				"does": "cool"
+				"does": "cool",
+				"minor": true
 			}
 		],
-		"text": "Poured into about fifty small bowls, stacked against the wall of a yoghurt barrel and heated, then cooled. No starter species are named.",
+		"text": "The yoghurt is poured into about fifty small bowls, stacked against the wall of a yoghurt barrel and heated, then cooled.",
 		"sources": {
 			"links": [
 				{

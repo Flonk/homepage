@@ -25,7 +25,8 @@
 					"min": 1800,
 					"max": 3600
 				},
-				"note": "The starter is pre-ripened before the rennet goes in."
+				"note": "The starter culture is left to ripen before the rennet goes in.",
+				"minor": true
 			},
 			{
 				"type": "coagulate",
@@ -37,8 +38,7 @@
 				"seconds": {
 					"min": 300,
 					"max": 420
-				},
-				"note": "Rennet (calf, microbial or plant) cuts casein at the kappa-casein bond; cut after about 30 min."
+				}
 			},
 			{
 				"type": "cut",

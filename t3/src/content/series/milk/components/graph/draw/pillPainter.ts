@@ -1,10 +1,14 @@
-import { type Pen, legible, font, roundRect, pillBody } from '../render/canvas';
+import { type Pen, shownAt, font, roundRect, pillBody } from '../render/canvas';
+import { SHOWN } from '../settings';
 import { type Node, PICTURE_GAP, FONT, MONO, LINK_ROOM, LINE, LINK_MARK, PAD_X } from '../client/base';
 import { drawStrip } from '../render/Processing';
-import { mapPillsReadable } from '../layout/worldMap';
 import type { Drawing, PillPainter } from './types';
 
 // Painting a product's pill, milk's circle, and the step label and card chain on each arrow.
+// A caption's letters and a tick's value's, as tall as drawn and as shown by (see shownAt).
+export const CAPTION_FONT = 11;
+export const TICK_FONT = 10;
+
 export const makePillPainter = (G: Drawing): PillPainter => {
 	const { layout, highlight } = G;
 	const colours = G.appearance.colours;
@@ -14,7 +18,7 @@ export const makePillPainter = (G: Drawing): PillPainter => {
 
 	// In the ink while hovered or selected.
 	const drawStepLabel = (g: Pen, n: Node, s: number) => {
-		if (!legible(layout.stepLabelFont(n), s)) return true;
+		if (!shownAt(layout.stepLabelFont(n), s)) return true;
 		g.font = font(layout.stepLabelFont(n), 'italic 400');
 		g.textAlign = 'center';
 		g.textBaseline = 'alphabetic';
@@ -26,7 +30,7 @@ export const makePillPainter = (G: Drawing): PillPainter => {
 	// The step's processing, card by card (see render/Processing).
 	const drawCardChain = (g: Pen, n: Node, s: number) => {
 		const chain = layout.cardChainOf(n);
-		if (!legible(chain.font, s)) return true;
+		if (!shownAt(chain.font, s)) return true;
 		if (chain.strip) drawStrip(g, chain.strip, chain.left, chain.top, chain.font, { ink: colours, s, px: s * G.viewport.pixelRatio, on: isInked(n) });
 		return true;
 	};
@@ -75,7 +79,7 @@ export const makePillPainter = (G: Drawing): PillPainter => {
 	const drawCaption = (g: Pen, text: string, x: number, y: number) => {
 		const spaced = g.letterSpacing;
 		g.letterSpacing = '0.14em';
-		g.font = font(11, '600');
+		g.font = font(CAPTION_FONT, '600');
 		g.fillStyle = colours.text;
 		g.fillText(text.toUpperCase(), x, y);
 		g.letterSpacing = spaced;
@@ -86,15 +90,13 @@ export const makePillPainter = (G: Drawing): PillPainter => {
 	const drawTick = (g: Pen, x: number, edge: number, major: boolean) =>
 		drawLine(g, x, edge - (major ? 8 : 4), x, edge, major ? 1.5 : 1, major ? colours.text : colours.dim);
 	const drawTickLabel = (g: Pen, text: string, x: number, edge: number) => {
-		g.font = font(10);
+		g.font = font(TICK_FONT);
 		g.fillStyle = colours.dim;
 		g.fillText(text, x, edge - 12);
 	};
 
 	// Its shadow, its white, its photograph, its label, its edge, and a ruler's or a panel's scale.
 	const drawPill = (g: Pen, d: Node, s: number) => {
-		// A map's cheese only once it can be read; a pin for its country till then.
-		if (d.onMap && !mapPillsReadable(s)) return true;
 		let whole = true;
 		const x = d.x - d.w / 2;
 		const y = d.y - d.h / 2;
@@ -105,7 +107,7 @@ export const makePillPainter = (G: Drawing): PillPainter => {
 		   shadow is sized for the zoom it is drawn at. */
 		const px = s * G.viewport.pixelRatio;
 		// Square along the bottom where a panel hangs from it.
-		const corners = d.panel || d.map ? [r, r, 0, 0] : r;
+		const corners = d.panel ? [r, r, 0, 0] : r;
 		pillBody(g, x, y, d.w, d.h, corners, colours, px);
 		// The photograph filling its left end, edge to edge, its outer corners rounded as the pill's are.
 		let photoRoom = 0;
@@ -113,7 +115,7 @@ export const makePillPainter = (G: Drawing): PillPainter => {
 			const side = layout.photoSize(d);
 			photoRoom = side + PICTURE_GAP * scale;
 			// Fetched once it is a few pixels across on the screen.
-			const im = side * s >= 6 ? G.appearance.imageOf(d.image.src) : null;
+			const im = shownAt(side, s, SHOWN.photo) ? G.appearance.imageOf(d.image.src) : null;
 			if (im) {
 				const crop = Math.min(im.naturalWidth, im.naturalHeight);
 				g.save();
@@ -121,12 +123,12 @@ export const makePillPainter = (G: Drawing): PillPainter => {
 				g.clip();
 				g.drawImage(im, (im.naturalWidth - crop) / 2, (im.naturalHeight - crop) / 2, crop, crop, x, y, side, side);
 				g.restore();
-			} else if (side * s >= 6) whole = false;
+			} else if (shownAt(side, s, SHOWN.photo)) whole = false;
 		}
 		g.textAlign = 'center';
 		g.textBaseline = 'middle';
 		const big = scale * layout.thickness(d);
-		if (legible(FONT * big, s)) {
+		if (shownAt(FONT * big, s)) {
 			g.font = `400 ${FONT * big}px ${MONO()}`;
 			g.fillStyle = d.example && d.standing !== 'pick' && d.standing !== 'famous' ? colours.dim : colours.text;
 			const lines = d.label.split('\n');
@@ -157,7 +159,7 @@ export const makePillPainter = (G: Drawing): PillPainter => {
 		g.textAlign = 'center';
 		// A ripening grid's scale of time: a tick at each time, the time over it.
 		const panel = layout.panels.get(d);
-		if (d.panel && panel && legible(10, s)) {
+		if (d.panel && panel && shownAt(TICK_FONT, s)) {
 			for (const [days, label] of panel.times) {
 				const tx = d.x - d.w / 2 + panel.xOf(days);
 				drawTick(g, tx, edge, true);
@@ -171,7 +173,7 @@ export const makePillPainter = (G: Drawing): PillPainter => {
 			}
 		}
 		// A ruler: a tick every unit, deeper every step, the value over each.
-		if (d.scale && legible(10, s)) {
+		if (d.scale && shownAt(TICK_FONT, s)) {
 			const { to, every, unit, name: measures } = d.scale;
 			const tickX = (v: number) => layout.rulerTickX(d, v);
 			for (let v = 0; v <= to; v++) {

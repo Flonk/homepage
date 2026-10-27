@@ -6,7 +6,7 @@
 		"semi"
 	],
 	"step": "standardise the fat",
-	"text": "The dairy splits milk into skim and cream and puts back just enough cream to hit the fat on the label, all in one running line. The surplus cream is sold as cream or made into butter.",
+	"text": "The dairy puts just enough cream back into the skim to hit the fat on the label, all in one running line. The surplus cream is sold as cream or made into butter.",
 	"sources": {
 		"links": [
 			{
@@ -27,36 +27,19 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "heat",
-				"does": "heat",
-				"temperature": {
-					"min": 55,
-					"max": 65
-				},
-				"note": "Before the milk goes to the separator."
-			},
-			{
-				"type": "separate",
-				"off": "cream",
-				"fat": {
-					"min": 0.04,
-					"max": 0.07
-				}
-			},
-			{
 				"type": "homogenise",
-				"note": "The cream to be homogenised is at most 18 % fat."
+				"of": "cream"
 			},
 			{
 				"type": "standardise",
 				"fat": {
 					"min": 1.5,
 					"max": 1.8
-				},
-				"note": "In line, a ratio controller remixes cream into the skim."
+				}
 			},
 			{
-				"type": "pasteurise"
+				"type": "pasteurise",
+				"note": "The milk undergoes heat treatment to kill harmful bacteria like Listeria, Salmonella and E. coli."
 			}
 		],
 		"sources": {

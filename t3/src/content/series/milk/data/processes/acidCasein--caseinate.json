@@ -23,17 +23,9 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "cut",
-				"how": "mill",
-				"temperature": {
-					"max": 45
-				},
-				"note": "The curd at 25–30 % solids is milled to a slurry."
-			},
-			{
 				"type": "custom",
 				"name": "neutralise",
-				"note": "With NaOH 2.5 M (10 %), 1.7–2.2 % of casein solids, or Ca(OH)₂, KOH or ammonia, to pH about 6.7."
+				"note": "The casein is brought to about pH 6.7 with sodium hydroxide (10 %, 1.7–2.2 % of the casein solids), or with lime, potash or ammonia."
 			},
 			{
 				"type": "heat",
@@ -41,7 +33,8 @@
 				"temperature": {
 					"min": 60,
 					"max": 75
-				}
+				},
+				"minor": true
 			},
 			{
 				"type": "heat",
@@ -49,11 +42,12 @@
 				"temperature": {
 					"min": 90,
 					"max": 95
-				}
+				},
+				"minor": true
 			},
 			{
 				"type": "dry",
-				"note": "Spray dried from a feed of 20–22 % solids to a powder below 5 % moisture."
+				"note": "The liquid, at 20–22 % solids, is spray dried to a powder with under 5 % moisture."
 			}
 		],
 		"sources": {

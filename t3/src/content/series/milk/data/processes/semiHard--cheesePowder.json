@@ -10,16 +10,16 @@
 			{
 				"type": "cut",
 				"how": "grind",
-				"note": "The cheese is comminuted and mixed with water."
+				"note": "The cheese is ground and mixed with water."
 			},
 			{
 				"type": "add",
-				"what": "water and calcium-sequestering salts",
+				"what": "water and salts that bind calcium",
 				"share": {
 					"min": 3,
 					"max": 4
 				},
-				"note": "Phosphates such as disodium phosphate bind the cheese's calcium so the fat emulsifies, in a feed of 25–45 % dry matter."
+				"note": "The mix is kept at 25–45 % solids, with phosphates, such as disodium phosphate, which bind the cheese's calcium so the fat emulsifies."
 			},
 			{
 				"type": "heat",
@@ -32,11 +32,12 @@
 					"min": 45,
 					"max": 1200
 				},
-				"note": "The mix is held hot, in studies from 80 °C for 1–10 minutes to 85 °C for 45 seconds, and kept below 85 °C where possible to save volatile flavour."
+				"note": "The mix is held hot, in studies from 80 °C for 1–10 minutes to 85 °C for 45 seconds, and kept below 85 °C where possible so less flavour is lost."
 			},
 			{
 				"type": "filter",
-				"note": "The hot mix is passed through a sieve, and the undissolved cheese left behind."
+				"note": "The hot mix is passed through a sieve, which leaves the undissolved cheese behind.",
+				"minor": true
 			},
 			{
 				"type": "homogenise",
@@ -44,14 +45,11 @@
 					"min": 50,
 					"max": 150
 				},
-				"note": "It is usually homogenised in two stages, at about 150 and 50 bar, to make the emulsion stable."
-			},
-			{
-				"type": "pasteurise"
+				"of": "cheese slurry"
 			},
 			{
 				"type": "dry",
-				"note": "It is spray-dried, often in two stages, a lab-scale dryer giving a soluble powder at 174 °C inlet and 68 °C outlet air."
+				"note": "The mix is spray-dried, often in two stages, into a soluble powder; in a lab-scale dryer, the air goes in at 174 °C and out at 68 °C."
 			}
 		],
 		"sources": {

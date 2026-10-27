@@ -13,7 +13,7 @@
 					"min": 10,
 					"max": 10
 				},
-				"note": "Coffee cream of 10 to 18 % fat is made by mixing 40 % cream with skim milk to the wanted fat."
+				"of": "cream"
 			},
 			{
 				"type": "homogenise",
@@ -25,19 +25,7 @@
 					"min": 35,
 					"max": 65
 				},
-				"note": "Cream is homogenised at 10 to 20 MPa while the fat is still liquid, above 35 °C, so it does not feather in coffee."
-			},
-			{
-				"type": "pasteurise",
-				"temperature": {
-					"min": 85,
-					"max": 95
-				},
-				"seconds": {
-					"min": 15,
-					"max": 20
-				},
-				"note": "Coffee cream is heated to 85 to 95 °C for up to 15 to 20 seconds."
+				"of": "cream"
 			},
 			{
 				"type": "heat",
@@ -47,7 +35,7 @@
 					"max": 5,
 					"about": true
 				},
-				"note": "It is then cooled to about 5 °C."
+				"minor": true
 			}
 		],
 		"sources": {

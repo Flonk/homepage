@@ -1,0 +1,111 @@
+{
+	"label": "Abondance",
+	"aka": ["Chablaisienne", "Pie Rouge Française de Montagne"],
+	"names": {
+		"links": [
+			{"name": "Wikipedia: Abondance cattle", "url": "https://en.wikipedia.org/wiki/Abondance_(cattle)"}
+		],
+		"text": "Names as listed on the Wikipedia page: Chablaisienne (until the late 19th century) and Pie Rouge Française de Montagne."
+	},
+	"kind": "breed",
+	"parent": "taurineCattle",
+	"about": {
+		"text": "A French Alpine dairy breed from the high valleys of Haute-Savoie, kept mostly in Auvergne-Rhône-Alpes. Its milk is used for cheese, and about 80% of it traditionally goes to AOC and IGP cheeses such as Abondance, Reblochon, Tome des Bauges, Beaufort and Tomme de Savoie. Its milk is rich in fat and protein.",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Abondance cattle", "url": "https://en.wikipedia.org/wiki/Abondance_(cattle)"}
+			],
+			"text": "Summarised from the Wikipedia page: location, the AOC/IGP cheese share, and the composition figures given there. The 'rich in fat and protein' wording is a plain reading of the 3.74% fat and 3.29% protein figures on that page."
+		}
+	},
+	"origin": {
+		"regions": ["FR"],
+		"place": "High valleys of Haute-Savoie, France, within the former Chablais province of the Duchy of Savoy",
+		"formed": {"min": 1891, "max": 1894},
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Abondance cattle", "url": "https://en.wikipedia.org/wiki/Abondance_(cattle)"}
+			],
+			"text": "The Wikipedia page says a herd-book was started in 1891 or 1894, when the name changed to Abondance. The range is those two years."
+		}
+	},
+	"head": [
+		{
+			"count": 78000,
+			"year": 2021,
+			"where": "FR",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: Abondance cattle", "url": "https://en.wikipedia.org/wiki/Abondance_(cattle)"}
+				],
+				"text": "About 78,000 head in 2021, including 260 bulls and 44,148 breeding cows, in almost 2,000 herds, as stated on the Wikipedia page."
+			}
+		}
+	],
+	"yield": {
+		"perLactation": {"min": 5619, "max": 5619},
+		"lactationDays": {"min": 305, "max": 305},
+		"where": "FR",
+		"year": 2019,
+		"sources": {
+			"links": [
+				{"name": "IDELE: Attestation 2019 adult level 305d lactations", "url": "https://idele.fr/detail-article/attestation-2019-adult-level-305d-lactations"}
+			],
+			"text": "Figure taken from the WebSearch result text for the IDELE 2019 table, not from the fetched page (the IDELE page itself returned only a connection check, so the figure is unverified from the page). Adult-level 305-day lactations, Abondance: 24,184 lactations, 5,619 kg milk. Wikipedia's figure of 6,274 kg (average) or about 5,950 kg (302-day standardised) is not used here because it is on a different basis."
+		}
+	},
+	"composition": {
+		"fat": {"min": 3.61, "max": 3.74},
+		"protein": {"min": 3.29, "max": 3.44},
+		"sources": {
+			"links": [
+				{"name": "IDELE: Attestation 2019 adult level 305d lactations", "url": "https://idele.fr/detail-article/attestation-2019-adult-level-305d-lactations"},
+				{"name": "Wikipedia: Abondance cattle", "url": "https://en.wikipedia.org/wiki/Abondance_(cattle)"}
+			],
+			"text": "Fat: 3.61% (IDELE 2019, from WebSearch result text) and 3.74% (Wikipedia). Protein: 3.44% (IDELE 2019, from WebSearch result text; the table notes it is nitrogen-based) and 3.29% (Wikipedia). The range covers both sources."
+		}
+	},
+	"purposes": {
+		"purposes": ["dairy", "meat"],
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Abondance cattle", "url": "https://en.wikipedia.org/wiki/Abondance_(cattle)"}
+			],
+			"text": "Listed on the Wikipedia page as used for dairy, meat, and conservation grazing; the first two are recorded here."
+		}
+	},
+	"risk": {
+		"status": "not at risk",
+		"year": 2024,
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Abondance cattle", "url": "https://en.wikipedia.org/wiki/Abondance_(cattle)"}
+			],
+			"text": "FAO (2007) and DAD-IS (2024) both list the breed as not at risk, as stated on the Wikipedia page."
+		}
+	},
+	"facts": [
+		{
+			"k": "Cheese",
+			"v": "About 80% of its milk traditionally goes to AOC and IGP cheeses, including Abondance, Reblochon, Tome des Bauges, Beaufort and Tomme de Savoie.",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: Abondance cattle", "url": "https://en.wikipedia.org/wiki/Abondance_(cattle)"}
+				],
+				"text": "As stated on the Wikipedia page."
+			}
+		},
+		{
+			"k": "Export",
+			"v": "Some animals have been exported to Africa, Asia, Canada and South Africa.",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: Abondance cattle", "url": "https://en.wikipedia.org/wiki/Abondance_(cattle)"}
+				],
+				"text": "As stated on the Wikipedia page."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "Milk yield and composition come partly from WebSearch result text for the IDELE 2019 table, since the IDELE page could not be fetched. No lactose or solids figures found. Wikipedia's 6,274 kg average was left out because its basis is unclear. The DAD-IS page itself was not fetched."
+}

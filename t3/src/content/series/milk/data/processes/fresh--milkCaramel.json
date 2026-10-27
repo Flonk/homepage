@@ -10,16 +10,16 @@
 			{
 				"type": "add",
 				"what": "sugar, glucose (corn) syrup, fat and flavour",
-				"note": "Milk, sugar, corn syrup and fat are weighed and blended in a batch."
+				"note": "The milk is weighed and blended in a batch with the sugar, corn syrup and fat."
 			},
 			{
 				"type": "heat",
 				"does": "heat",
-				"note": "Steam heats the mixture to a preset temperature while agitators dissolve it."
+				"note": "The mixture is heated with steam to a preset temperature while agitators dissolve it."
 			},
 			{
 				"type": "evaporate",
-				"note": "The mix passes through a steam-jacketed scraped-surface heat exchanger that takes out much of its water."
+				"of": "mix"
 			},
 			{
 				"type": "heat",
@@ -29,7 +29,7 @@
 					"max": 118,
 					"about": true
 				},
-				"note": "The thickening batch is recirculated in a steam-jacketed tank until it browns, cooked to about the firm-ball stage."
+				"note": "The thickening batch is recirculated in a steam-jacketed tank until it browns."
 			},
 			{
 				"type": "heat",
@@ -44,7 +44,7 @@
 			{
 				"type": "cut",
 				"how": "cut",
-				"note": "A roller shapes the film into a rope, from which pieces are cut and then wrapped one by one."
+				"note": "A roller shapes the film into a rope, from which pieces are cut and then each is wrapped."
 			}
 		],
 		"sources": {

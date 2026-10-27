@@ -1,0 +1,86 @@
+{
+	"label": "Montbéliarde",
+	"aka": ["Franco-Swiss"],
+	"names": {
+		"links": [
+			{"name": "Montbéliarde, Wikipedia", "url": "https://en.wikipedia.org/wiki/Montbéliarde"}
+		],
+		"text": "The Wikipedia page says its earlier name was Franco-Swiss. Its ancestral local breeds were the Fémeline and the Tourache (later known as Comtoise), which are ancestors, not names of this breed."
+	},
+	"kind": "breed",
+	"parent": "taurineCattle",
+	"about": {
+		"text": "The Montbéliarde is a dairy breed from the Montbéliard area of the Doubs department in eastern France, used mainly for dairying and particularly for cheesemaking. Its milk has about 3.9% butterfat and 3.45% protein, a protein content well suited to cheese.",
+		"sources": {
+			"links": [
+				{"name": "Montbéliarde, Wikipedia", "url": "https://en.wikipedia.org/wiki/Montbéliarde"},
+				{"name": "List of dairy cattle breeds, Wikipedia", "url": "https://en.wikipedia.org/wiki/List_of_dairy_cattle_breeds"}
+			],
+			"text": "From the Montbéliarde Wikipedia page: the Montbéliard origin in the Doubs, its use for dairying and cheesemaking, and the milk figures at 3.9% butterfat and 3.45% protein. The list page places it among dairy breeds."
+		}
+	},
+	"origin": {
+		"regions": ["FR"],
+		"place": "Montbéliard area, Doubs department, Bourgogne-Franche-Comté, eastern France",
+		"formed": {"min": 1872, "max": 1889},
+		"sources": {
+			"links": [
+				{"name": "Montbéliarde, Wikipedia", "url": "https://en.wikipedia.org/wiki/Montbéliarde"}
+			],
+			"text": "The Wikipedia page says the name was first used in 1872 by Joseph Graber and the breed was officially recognised in 1889, when a stud book was started. The min is the year the name was first used and the max is when the stud book opened; the page says local stock was improved by Swiss Mennonite farmers before that, so the true formation may be earlier."
+		}
+	},
+	"composition": {
+		"fat": {"min": 3.9, "max": 3.9},
+		"protein": {"min": 3.45, "max": 3.45},
+		"sources": {
+			"links": [
+				{"name": "Montbéliarde, Wikipedia", "url": "https://en.wikipedia.org/wiki/Montbéliarde"}
+			],
+			"text": "The page gives an average adult annual lactation of 7,486 litres at 3.9% butterfat and 3.45% protein."
+		}
+	},
+	"purposes": {
+		"purposes": ["dairy"],
+		"sources": {
+			"links": [
+				{"name": "Montbéliarde, Wikipedia", "url": "https://en.wikipedia.org/wiki/Montbéliarde"}
+			],
+			"text": "The page says the breed is used mainly for dairying and particularly for cheesemaking."
+		}
+	},
+	"facts": [
+		{
+			"k": "Annual lactation",
+			"v": "An average adult annual lactation of 7,486 litres (1,978 US gallons) at 3.9% butterfat and 3.45% protein.",
+			"sources": {
+				"links": [
+					{"name": "Montbéliarde, Wikipedia", "url": "https://en.wikipedia.org/wiki/Montbéliarde"}
+				],
+				"text": "Quoted from the Wikipedia page. The figure is in litres and is not converted to kilograms here."
+			}
+		},
+		{
+			"k": "Recorded cows in France",
+			"v": "France has nearly 400,000 recorded Montbéliarde dairy cows.",
+			"sources": {
+				"links": [
+					{"name": "Montbéliarde, Wikipedia", "url": "https://en.wikipedia.org/wiki/Montbéliarde"}
+				],
+				"text": "Stated on the Wikipedia page without a year. Searches for an official, dated count from the Institut de l'Elevage found only older partial figures, such as 2016 Agreste totals for all dairy cows, so no dated Montbéliarde count is used."
+			}
+		},
+		{
+			"k": "Name history",
+			"v": "The breed was named in 1872 by Joseph Graber, and an earlier name was Franco-Swiss.",
+			"sources": {
+				"links": [
+					{"name": "Montbéliarde, Wikipedia", "url": "https://en.wikipedia.org/wiki/Montbéliarde"}
+				],
+				"text": "Stated on the Wikipedia page."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "No DAD-IS risk status was found (a WebSearch for DAD-IS did not return a Montbéliarde entry), so risk is left out. No dated population count for the breed in France was found; the Wikipedia figure of nearly 400,000 has no year, so the head field is left out. No per-lactation or per-year figure in kilograms from a country's recording was found, and the 7,486 litre figure is in litres with no lactation length, so yield is left out. The Wikipedia page does not mention Comté, Morbier or any PDO cheese."
+}

@@ -1,0 +1,151 @@
+{
+	"label": "Saanen",
+	"aka": [
+		"Saanen Goat",
+		"British Saanen",
+		"Banat White"
+	],
+	"names": {
+		"links": [
+			{
+				"name": "Wikipedia: Saanen goat",
+				"url": "https://en.wikipedia.org/wiki/Saanen_goat"
+			},
+			{
+				"name": "Ceva: goat breeds",
+				"url": "https://ruminants.ceva.pro/goat-breeds"
+			}
+		],
+		"text": "'Saanen Goat' is the given aka. 'British Saanen' and 'Banat White' are the local variants named in the Wikipedia article's 'Local variants' text. 'Saanen' is the item's label."
+	},
+	"kind": "breed",
+	"parent": "goat",
+	"about": {
+		"text": "The Saanen is a solid white Swiss dairy goat from the Saanen region of the Bernese Oberland, and the largest Swiss goat breed. It is kept in more than eighty countries, and its milk is the most productive of any Swiss milk goat.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Saanen goat",
+					"url": "https://en.wikipedia.org/wiki/Saanen_goat"
+				},
+				{
+					"name": "Ceva: goat breeds",
+					"url": "https://ruminants.ceva.pro/goat-breeds"
+				}
+			],
+			"text": "From the fetched Wikipedia article: 'the largest Swiss goat breed', 'kept in more than eighty countries', 'The Saanen is the most productive milk goat of Switzerland', and the Bernese Oberland origin. The Ceva page calls it the world's best developed and highest milk-producing goat breed, and gives Switzerland as its origin. The Ceva page does not describe the keeping area; that comes from Wikipedia only."
+		}
+	},
+	"origin": {
+		"regions": [
+			"CH"
+		],
+		"place": "Saanen region, Bernese Oberland, Canton of Bern, Switzerland",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Saanen goat",
+					"url": "https://en.wikipedia.org/wiki/Saanen_goat"
+				},
+				{
+					"name": "Ceva: goat breeds",
+					"url": "https://ruminants.ceva.pro/goat-breeds"
+				}
+			],
+			"text": "Wikipedia: 'The Saanen originates in the historic region of Saanen (French: Comté de Gessenay) and the neighbouring Simmental, both in the Bernese Oberland, southern Canton of Bern, western Switzerland.' Ceva lists Switzerland as the origin. The article gives no formation date, so no 'formed' range is recorded."
+		}
+	},
+	"yield": {
+		"perLactation": {
+			"min": 1226,
+			"max": 1226
+		},
+		"where": "US",
+		"year": 2019,
+		"sources": {
+			"links": [
+				{
+					"name": "Penn State Extension: dairy goat production",
+					"url": "https://extension.psu.edu/dairy-goat-production"
+				}
+			],
+			"text": "Table 2 of the page, 2019 DHIR data (US herd records): Saanen average 2,702 lb per lactation, converted to kg by multiplying by 0.45359237 and rounding (about 1,226 kg). The min and max both hold this average; the page gives an individual-record range of 920 to 4,870 lb (about 417 to 2,209 kg), which is not used here. The page's 275 to 305-day records are not adjusted for age. The page gives no Saanen-specific lactation length, so none is recorded. Wikipedia gives a different average, 838 kg in 264 days, from an unnamed source; it is not used because the yield table is from one dataset."
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 3.3,
+			"max": 3.3
+		},
+		"protein": {
+			"min": 2.9,
+			"max": 2.9
+		},
+		"sources": {
+			"links": [
+				{
+					"name": "Penn State Extension: dairy goat production",
+					"url": "https://extension.psu.edu/dairy-goat-production"
+				}
+			],
+			"text": "Table 2 of the page, 2019 DHIR data: Saanen fat 3.3% and protein 2.9%, both averages. Min and max hold the average. The Wikipedia article's 3.2% and 2.7% are breed-standard minimums, not measured composition, so they are not used."
+		}
+	},
+	"purposes": {
+		"purposes": [
+			"dairy"
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Saanen goat",
+					"url": "https://en.wikipedia.org/wiki/Saanen_goat"
+				}
+			],
+			"text": "The article calls it the most productive milk goat of Switzerland, and its see-also summary describes it as 'a solid white Swiss dairy breed developed in the Alps'."
+		}
+	},
+	"risk": {
+		"status": "vulnerable",
+		"year": 2026,
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Saanen goat",
+					"url": "https://en.wikipedia.org/wiki/Saanen_goat"
+				}
+			],
+			"text": "The article's conservation status: FAO (2007) not at risk; DAD-IS (2026) at risk/vulnerable. Mapped to 'vulnerable'. The DAD-IS figure was read from Wikipedia's text, not from a DAD-IS page; the DAD-IS breed page itself could not be opened."
+		}
+	},
+	"facts": [
+		{
+			"k": "World population",
+			"v": "Over 900,000 head, of which some 14,000 are in Switzerland. The article gives no year for this figure.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Saanen goat",
+						"url": "https://en.wikipedia.org/wiki/Saanen_goat"
+					}
+				],
+				"text": "Taken from the fetched article's population text: 'The total world population is reported to be over 900000 head. Of these, some 14000 are in Switzerland.'"
+			}
+		},
+		{
+			"k": "Pale skin",
+			"v": "It has white skin and does not tolerate strong sun well.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Saanen goat",
+						"url": "https://en.wikipedia.org/wiki/Saanen_goat"
+					}
+				],
+				"text": "From the fetched article: 'It has white skin, a short white coat, and white face colour' and 'Being pale-skinned, it does not tolerate strong sun.'"
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "No DAD-IS breed page could be opened, so the risk status and the world population are from Wikipedia, and the population has no year. No formation date was found. No composition figures for lactose or solids were found. The Ceva page gives a Saanen yield of 300 to 2,000 kg with 150 to 300 days of lactation, and an average of 1,285 kg, but that is not dated or sourced, so it is not used. Lactation length for the breed was not found in the Penn State table."
+}

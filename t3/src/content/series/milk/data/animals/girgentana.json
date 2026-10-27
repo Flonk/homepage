@@ -1,0 +1,124 @@
+{
+	"label": "Girgentana",
+	"aka": [
+		"Nturcina"
+	],
+	"names": {
+		"links": [
+			{
+				"name": "Girgentana goat (Wikipedia)",
+				"url": "https://en.wikipedia.org/wiki/Girgentana_goat"
+			}
+		],
+		"text": "Taken from the infobox and lead of the Wikipedia article, read on WebFetch: \"Other names: Nturcina.\""
+	},
+	"kind": "breed",
+	"parent": "goat",
+	"about": {
+		"text": "A goat breed indigenous to the province of Agrigento in southern Sicily. It is reared principally for milk, and its kids are also sold for meat. It is one of the eight autochthonous Italian goat breeds with a herdbook.",
+		"sources": {
+			"links": [
+				{
+					"name": "Girgentana goat (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Girgentana_goat"
+				}
+			],
+			"text": "Wikipedia article, read on WebFetch: the indigenous status, the principal use for milk, the kid meat in the infobox, and the herdbook with the Associazione Nazionale della Pastorizia."
+		}
+	},
+	"origin": {
+		"regions": [
+			"IT"
+		],
+		"place": "The province of Agrigento in southern Sicily. The article says the origins of the breed are unknown; it was first described by Arturo Magliano in 1930.",
+		"sources": {
+			"links": [
+				{
+					"name": "Girgentana goat (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Girgentana_goat"
+				}
+			],
+			"text": "Wikipedia article, read on WebFetch: the province, that the origins are unknown, and the 1930 description. The article gives no formation dates, so none are used."
+		}
+	},
+	"head": [
+		{
+			"count": 390,
+			"year": 2013,
+			"where": "IT",
+			"sources": {
+				"links": [
+					{
+						"name": "Girgentana goat (Wikipedia)",
+						"url": "https://en.wikipedia.org/wiki/Girgentana_goat"
+					}
+				],
+				"text": "Wikipedia article, read on WebFetch: \"At the end of 2013 the registered population was 390.\" This is the registered count, not a total."
+			}
+		}
+	],
+	"yield": {
+		"perLactation": {
+			"min": 400,
+			"max": 450
+		},
+		"lactationDays": {
+			"min": 150,
+			"max": 180
+		},
+		"sources": {
+			"links": [
+				{
+					"name": "Girgentana goat (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Girgentana_goat"
+				}
+			],
+			"text": "Wikipedia article, read on WebFetch: \"Yields are of the order of 400–450 kg in a lactation of 150–180 days.\" The article gives no year for this figure."
+		}
+	},
+	"purposes": {
+		"purposes": [
+			"dairy",
+			"meat"
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Girgentana goat (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Girgentana_goat"
+				}
+			],
+			"text": "Wikipedia article: the infobox lists \"milk, also kid meat\", and the text says it is \"reared principally for milk\"."
+		}
+	},
+	"risk": {
+		"status": "endangered",
+		"year": 2007,
+		"sources": {
+			"links": [
+				{
+					"name": "Girgentana goat (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Girgentana_goat"
+				}
+			],
+			"text": "Wikipedia article, read on WebFetch: \"listed as 'endangered' by the Food and Agriculture Organization of the United Nations in 2007.\" The article gives no current DAD-IS status. A 2016 review PDF was blocked (HTTP 403), so the later status is not used."
+		}
+	},
+	"facts": [
+		{
+			"k": "Population recovery",
+			"v": "About 50 animals were officially listed at the end of the 20th century; conservation breeding now supports around 900 in Italy and Germany.",
+			"sources": {
+				"links": [
+					{
+						"name": "Hellabrunn zoo: Girgentana",
+						"url": "https://www.hellabrunn.de/en/animals/europe/girgentana"
+					}
+				],
+				"text": "Zoo page, read on WebFetch: \"approx mately 50 individuals\" at the end of the 20th century, and \"around 900 individuals living in Italy and Germany\" today, thanks to conservation breeding. The zoo page is not an official registry."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "No year for the yield figure; no milk composition; no current DAD-IS risk status (the DAD-IS pages were not readable); no formation dates, as the origin is unknown; the 390 count is the registered population from 2013, and the 900 figure is from a zoo page that covers Italy and Germany together."
+}

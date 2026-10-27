@@ -1,0 +1,63 @@
+{
+	"label": "Butana",
+	"kind": "breed",
+	"parent": "zebuCattle",
+	"about": {
+		"text": "A zebu dairy breed of the Butana region of central Sudan, east of Khartoum. Farmers keep it mainly for milk, and they often cross it to raise yields. The Atbara Livestock Research Station has run a within-breed selection programme since 1945 to preserve and improve it.",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Butana and Kenana cattle", "url": "https://en.wikipedia.org/wiki/Butana_and_Kenana_cattle"},
+				{"name": "Omer et al. 2020, Exploration of production conditions for Butana cattle (PMC)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7671977"}
+			],
+			"text": "Wikipedia (opened): Butana found east of Khartoum in central Sudan, a dairy breed, Atbarah station has a special mission to preserve and improve it, and owners often cross-breed. Omer et al. 2020 (opened): all farmers kept Butana mainly for milk; Atbara Livestock Research Station began a within-breed selection programme in 1945; the Butana region lies between the Nile, the Atbara and the Blue Nile. Wikipedia's claim that the Butana is one of the few dairy breeds in Africa was not used, as it was not confirmed."
+		}
+	},
+	"origin": {
+		"regions": ["SD"],
+		"place": "The Butana region of central Sudan, east of Khartoum, between the Nile, the Atbara and the Blue Nile",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Butana and Kenana cattle", "url": "https://en.wikipedia.org/wiki/Butana_and_Kenana_cattle"},
+				{"name": "Omer et al. 2020 (PMC)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7671977"}
+			],
+			"text": "Place from Wikipedia (opened) and Omer et al. 2020 (opened). The Wikipedia article says the zebu basis was brought from medieval India to Sudan over a thousand years ago, but this is an origin of the stock, not a formation date for the breed, so no formed range is given."
+		}
+	},
+	"purposes": {
+		"purposes": ["dairy"],
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Butana and Kenana cattle", "url": "https://en.wikipedia.org/wiki/Butana_and_Kenana_cattle"},
+				{"name": "Omer et al. 2020 (PMC)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7671977"}
+			],
+			"text": "Both opened pages: Butana is a dairy breed and farmers keep it mainly for milk. Omer et al. also report that the farm households surveyed used the cattle for meat (42% of farmers, live animals sold for slaughter) and draught power (9%)."
+		}
+	},
+	"yield": {
+		"perLactation": {"min": 1500, "max": 1663, "about": true},
+		"lactationDays": {"min": 201, "max": 268},
+		"where": "SD",
+		"year": 2005,
+		"sources": {
+			"links": [
+				{"name": "Omer et al. 2020 (PMC)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7671977"},
+				{"name": "Musa et al. 2005, Archives of Animal Breeding (Copernicus)", "url": "https://aab.copernicus.org/articles/48/445/2005/"}
+			],
+			"text": "Omer et al. 2020 (opened): under improved management Butana cows can produce more than 1500 kg per lactation (citing Ahmed et al. 2007); the farmer-recalled lactation is 6.7 months (201 days), with recalled daily yield 6.6 ± 0.38 kg, which the authors think may be overestimated. Musa et al. 2005 (found in WebSearch text, not opened): Atbara herd records 1949 to 1999, 1662.57 ± 108.96 kg per lactation and 268.17 ± 5.56 days. The lower bound 1500 kg is a benchmark stated as 'more than 1500 kg', so the range is marked about. Farm yields under low input are lower and were not measured. No per-year figure was worked out."
+		}
+	},
+	"facts": [
+		{
+			"k": "Kenana",
+			"v": "The Kenana, a related breed, lives just south of the Butana between the Blue and White Nile and is probably derived from the Butana.",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: Butana and Kenana cattle", "url": "https://en.wikipedia.org/wiki/Butana_and_Kenana_cattle"}
+				],
+				"text": "Wikipedia (opened). The page gives no population, milk yield or conservation status for the Kenana."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "No breed population or census figure was found; the 31 million figure in Omer et al. 2020 covers all indigenous cattle in Sudan. No DAD-IS risk status was found; Wikipedia says only that conservation work is under way at Atbara. No formation date was found. Yield figures come from farm recall and from research-station records of different periods, so the range is wide."
+}

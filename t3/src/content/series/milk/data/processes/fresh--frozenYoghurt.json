@@ -6,7 +6,7 @@
 		"frozenYoghurt"
 	],
 	"step": "ferment or blend yoghurt in, freeze with air",
-	"text": "The mix of milk, sugar and stabiliser (gelatin, guar gum or carrageenan, which hold back ice crystals) is homogenised, set with the yoghurt culture (or blended with yoghurt), chilled, aged and then frozen with air whipped in, like ice cream.",
+	"text": "The mix of milk, sugar and stabiliser (gelatin, guar gum or carrageenan, which hold back ice crystals) is set with the yoghurt culture (or blended with yoghurt), chilled, aged and then frozen with air whipped in, like ice cream.",
 	"sources": {
 		"links": [
 			{
@@ -25,10 +25,7 @@
 			{
 				"type": "add",
 				"what": "milk, sugar and a stabiliser",
-				"note": "Stabiliser (gelatin, guar gum or carrageenan) holds back ice crystals."
-			},
-			{
-				"type": "homogenise"
+				"note": "The milk and sugar are given a stabiliser, gelatin, guar gum or carrageenan, which holds back ice crystals."
 			},
 			{
 				"type": "ferment",
@@ -62,7 +59,8 @@
 				"temperature": {
 					"min": 40,
 					"max": 45
-				}
+				},
+				"note": "The mix is set by the yoghurt culture, which sours it."
 			},
 			{
 				"type": "heat",
@@ -73,11 +71,13 @@
 				},
 				"seconds": {
 					"max": 14400
-				}
+				},
+				"minor": true
 			},
 			{
 				"type": "custom",
-				"name": "age"
+				"name": "age",
+				"minor": true
 			},
 			{
 				"type": "custom",
@@ -86,7 +86,7 @@
 					"min": -6,
 					"max": -2
 				},
-				"note": "With air whipped in."
+				"note": "Air is whipped in as it freezes."
 			}
 		],
 		"text": "Held until set. Some mixes blend finished yoghurt into the cold mix instead.",

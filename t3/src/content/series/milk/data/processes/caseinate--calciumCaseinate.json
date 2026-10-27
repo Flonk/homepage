@@ -27,11 +27,6 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "custom",
-				"name": "neutralise",
-				"note": "With calcium hydroxide (5 % solution), or ammonia first, then Ca(OH)₂ with sucrose."
-			},
-			{
 				"type": "pasteurise",
 				"temperature": {
 					"min": 80,
@@ -40,11 +35,9 @@
 				"seconds": {
 					"min": 20,
 					"max": 20
-				}
-			},
-			{
-				"type": "dry",
-				"note": "To about 4 % moisture."
+				},
+				"minor": true,
+				"note": "The caseinate undergoes heat treatment to kill harmful bacteria like Listeria, Salmonella and E. coli."
 			}
 		],
 		"sources": {

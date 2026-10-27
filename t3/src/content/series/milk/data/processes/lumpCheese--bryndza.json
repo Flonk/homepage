@@ -23,31 +23,9 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "coagulate",
-				"by": "rennet",
-				"temperature": {
-					"min": 29,
-					"max": 31
-				},
-				"seconds": {
-					"min": 1800,
-					"max": 1800,
-					"about": true
-				}
-			},
-			{
-				"type": "ferment",
-				"does": "ripen",
-				"temperature": {
-					"min": 20,
-					"max": 20,
-					"about": true
-				},
-				"note": "The lump cheese is washed and matured in a cheese bath."
-			},
-			{
 				"type": "custom",
-				"name": "trim"
+				"name": "trim",
+				"note": "The rind is removed."
 			},
 			{
 				"type": "cut",

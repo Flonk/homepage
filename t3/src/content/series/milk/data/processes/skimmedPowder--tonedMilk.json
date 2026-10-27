@@ -25,7 +25,8 @@
 				"what": "whole buffalo milk"
 			},
 			{
-				"type": "filter"
+				"type": "filter",
+				"minor": true
 			},
 			{
 				"type": "pasteurise",
@@ -36,7 +37,8 @@
 				"seconds": {
 					"min": 1800,
 					"max": 1800
-				}
+				},
+				"note": "The milk undergoes heat treatment to kill harmful bacteria like Listeria, Salmonella and E. coli."
 			},
 			{
 				"type": "heat",
@@ -44,7 +46,8 @@
 				"temperature": {
 					"min": 5,
 					"max": 5
-				}
+				},
+				"minor": true
 			}
 		],
 		"text": "The milk is to reach at least 3.0 % fat and 8.5 % solids-not-fat.",

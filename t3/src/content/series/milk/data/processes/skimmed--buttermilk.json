@@ -26,7 +26,7 @@
 			{
 				"type": "heat",
 				"does": "cool",
-				"note": "Cooled to the temperature of the culture; the sources give none."
+				"note": "The milk is cooled to the temperature of the culture."
 			},
 			{
 				"type": "ferment",
@@ -55,11 +55,12 @@
 						"starter"
 					]
 				},
-				"note": "Lactic acid lowers the pH until the casein curdles and thickens the milk, as in yoghurt."
+				"note": "The milk is soured with lactic acid until the casein curdles and thickens it, as in yoghurt."
 			},
 			{
 				"type": "heat",
-				"does": "cool"
+				"does": "cool",
+				"minor": true
 			}
 		],
 		"text": "This is the cultured buttermilk of a dairy, made from skimmed milk without churning, not the liquid left over from churning butter.",

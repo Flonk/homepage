@@ -23,22 +23,9 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "coagulate",
-				"by": "rennet",
-				"seconds": {
-					"min": 2400,
-					"max": 2400,
-					"about": true
-				},
-				"note": "Optionally with selected lactic bacteria."
-			},
-			{
-				"type": "cut",
-				"how": "cut"
-			},
-			{
 				"type": "custom",
-				"name": "stir"
+				"name": "stir",
+				"minor": true
 			},
 			{
 				"type": "drain"
@@ -49,7 +36,7 @@
 				"temperature": {
 					"max": 55
 				},
-				"note": "Curd heated with hot water or indirect steam."
+				"note": "The curd is heated with hot water or indirect steam."
 			},
 			{
 				"type": "salt"
@@ -62,7 +49,8 @@
 			},
 			{
 				"type": "custom",
-				"name": "pack"
+				"name": "pack",
+				"minor": true
 			}
 		],
 		"sources": {

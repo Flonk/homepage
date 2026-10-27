@@ -1,0 +1,127 @@
+{
+	"label": "Oberhasli",
+	"aka": [
+		"Swiss Alpine"
+	],
+	"names": {
+		"links": [
+			{
+				"name": "Wikipedia: Oberhasli goat",
+				"url": "https://en.wikipedia.org/wiki/Oberhasli_goat"
+			}
+		],
+		"text": "The infobox gives 'Swiss Alpine' as the other name, and the article says that before the 1970s the animals were registered as Swiss Alpine. Read with WebFetch."
+	},
+	"kind": "breed",
+	"parent": "goat",
+	"about": {
+		"text": "A Swiss dairy goat from the Oberhasli district of the Bernese Oberland in central Switzerland. In the United States the breed descends from five Chamois Colored Goats imported in 1936, and it is kept as a dairy goat.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Oberhasli goat",
+					"url": "https://en.wikipedia.org/wiki/Oberhasli_goat"
+				},
+				{
+					"name": "The Livestock Conservancy: Oberhasli",
+					"url": "https://livestockconservancy.org/oberhasli-goat/"
+				}
+			],
+			"text": "Wikipedia article read with WebFetch for the district and the 1936 import by H. O. Pence. The Livestock Conservancy page read with WebFetch for the description as a Swiss dairy goat."
+		}
+	},
+	"origin": {
+		"regions": ["CH"],
+		"place": "Oberhasli district of the Bernese Oberland, central Switzerland; the Livestock Conservancy places it in the mountainous cantons of Bern, Freiburg, Glarus and Graubunden.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Oberhasli goat",
+					"url": "https://en.wikipedia.org/wiki/Oberhasli_goat"
+				},
+				{
+					"name": "The Livestock Conservancy: Oberhasli",
+					"url": "https://livestockconservancy.org/oberhasli-goat/"
+				}
+			],
+			"text": "Wikipedia (the Oberhasli district, Bernese Oberland, and a Chamois Colored Goat subtype) and the Livestock Conservancy (the four cantons, quoted as a Swiss dairy goat developed in the mountainous cantons), both read with WebFetch. Neither opened page gave formation dates, so none is given."
+		}
+	},
+	"head": [
+		{
+			"count": 1729,
+			"year": 2010,
+			"where": "US",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Oberhasli goat",
+						"url": "https://en.wikipedia.org/wiki/Oberhasli_goat"
+					}
+				],
+				"text": "Wikipedia, read with WebFetch: 'In 2010 a total of 1729 head, distributed over approximately 30 states, was reported to DAD-IS', from one unspecified breed registry only. Placed in the US because the 30 states are US states. A single registry's count, not a full population."
+			}
+		}
+	],
+	"yield": {
+		"perLactation": {
+			"min": 748,
+			"max": 907
+		},
+		"lactationDays": {
+			"min": 265,
+			"max": 265
+		},
+		"sources": {
+			"links": [
+				{
+					"name": "The Livestock Conservancy: Oberhasli",
+					"url": "https://livestockconservancy.org/oberhasli-goat/"
+				}
+			],
+			"text": "Read with WebFetch: 'Oberhasli does can produce up to 2,000 lbs. of milk over 265 days, although the average is around 1,650 lbs.' Converted at 0.4536 kg per lb: 1,650 lb is about 748 kg and 2,000 lb is about 907 kg, so estimated. No year given on the page, and the figures are not stated as US records."
+		}
+	},
+	"purposes": {
+		"purposes": ["dairy"],
+		"sources": {
+			"links": [
+				{
+					"name": "The Livestock Conservancy: Oberhasli",
+					"url": "https://livestockconservancy.org/oberhasli-goat/"
+				}
+			],
+			"text": "Read with WebFetch: the page describes the breed as a Swiss dairy goat."
+		}
+	},
+	"facts": [
+		{
+			"k": "Milk record",
+			"v": "2,116 kg (4,665 lb) per lactation, the breed's milk production record. No year is given.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Oberhasli goat",
+						"url": "https://en.wikipedia.org/wiki/Oberhasli_goat"
+					}
+				],
+				"text": "Wikipedia, read with WebFetch: 'The Oberhasli milk production record per lactation is 2,116 kg (4,665 lb).' The article cites The Livestock Conservancy for it."
+			}
+		},
+		{
+			"k": "US founders",
+			"v": "All purebred American Oberhasli descend from five Chamois Colored Goats imported to the United States in 1936 by H. O. Pence.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Oberhasli goat",
+						"url": "https://en.wikipedia.org/wiki/Oberhasli_goat"
+					}
+				],
+				"text": "Wikipedia, read with WebFetch. The article notes that earlier imports in 1906 and 1920 were not kept pure."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "No butterfat or protein figures on the opened pages (a WebSearch summary gave 3.5 to 4% butterfat, but no page was opened to confirm it). No DAD-IS or FAO risk status: the Livestock Conservancy's 'recovering' is its own conservation category, so it is not used here. No year for the yield range or the milk record. No formation date. No world population figure."
+}

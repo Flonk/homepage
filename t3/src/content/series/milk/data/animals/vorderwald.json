@@ -1,0 +1,68 @@
+{
+	"label": "Vorderwald",
+	"aka": ["Vorderwälder Rind", "Wäldervieh"],
+	"names": {
+		"links": [
+			{"name": "Wikipedia: Vorderwald", "url": "https://en.wikipedia.org/wiki/Vorderwald"}
+		],
+		"text": "Alternative names as listed on the Wikipedia page (fetched). Wäldervieh is the breed's earlier name, first mentioned in 1544."
+	},
+	"kind": "breed",
+	"parent": "taurineCattle",
+	"about": {
+		"text": "A German cattle breed from the Black Forest, distinguished from the smaller Hinterwald. The Wikipedia page describes it as long-lived with strong legs and feet, suited to grazing mountain pastures. Its milk performance is not covered by the sources used for this record.",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Vorderwald", "url": "https://en.wikipedia.org/wiki/Vorderwald"}
+			],
+			"text": "Fetched page for the Black Forest origin, the long-lived and mountain grazing description and the herdbook history."
+		}
+	},
+	"origin": {
+		"regions": ["DE"],
+		"place": "Black Forest, Germany",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Vorderwald", "url": "https://en.wikipedia.org/wiki/Vorderwald"}
+			],
+			"text": "Place as stated on the fetched page. A herdbook was established in 1896, but that is not a formation date and is not recorded here."
+		}
+	},
+	"head": [
+		{
+			"count": 4826,
+			"year": 2004,
+			"where": "DE",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: Vorderwald", "url": "https://en.wikipedia.org/wiki/Vorderwald"}
+				],
+				"text": "4,826 females in the herdbook in 2004, with numbers described as slowly declining, as stated on the fetched page. This is herdbook females, not a total population."
+			}
+		}
+	],
+	"facts": [
+		{
+			"k": "Crossbreeding",
+			"v": "Crossbred with Ayrshire cattle after 1960.",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: Vorderwald", "url": "https://en.wikipedia.org/wiki/Vorderwald"}
+				],
+				"text": "Stated on the fetched page."
+			}
+		},
+		{
+			"k": "Appearance",
+			"v": "Forward-curving horns; head and legs generally white, with red, brown or black patches on the body.",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: Vorderwald", "url": "https://en.wikipedia.org/wiki/Vorderwald"}
+				],
+				"text": "Stated on the fetched page."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "Looked for a milk yield, milk composition, primary use, a current population count and a DAD-IS risk status. The Wikipedia page gives only the 2004 herdbook count and an undated Red List mention, and the search snippets for a 2004 paper (about 5,452 animals) and a 2015 Journal of Dairy Science study on milk yield were not opened, so they are left out. The 2004 Archiv fuer Tierzucht PDF could not be read."
+}

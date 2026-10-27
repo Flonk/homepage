@@ -111,6 +111,10 @@ const series = defineCollection({
 			.optional(),
 		// Still being written: marked so on its card.
 		wip: z.boolean().default(false),
+		/* Every chapter of it hidden (see hidden on a page): off the index, out
+		   of the feed and the sitemap, not indexed; there for whoever has the
+		   link, its chapters listed and linked among themselves. */
+		hidden: z.boolean().default(false),
 	}),
 });
 

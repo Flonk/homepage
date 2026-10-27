@@ -36,26 +36,13 @@
 				}
 			},
 			{
-				"type": "coagulate",
-				"by": "rennet",
-				"temperature": {
-					"min": 37,
-					"max": 49
-				},
-				"seconds": {
-					"min": 10800,
-					"max": 21600
-				},
-				"note": "With one rennet tablet in 1 L water per 100 L milk, or Solanum dubium fruit extract (25 ml per 50 L in one trial)."
-			},
-			{
 				"type": "drain",
 				"by": "cloth",
-				"note": "In a wooden frame, to about half its volume."
+				"note": "The curd is kept in a wooden frame until it is about half its volume."
 			},
 			{
 				"type": "press",
-				"note": "Overnight."
+				"note": "The curd is left under weight overnight."
 			},
 			{
 				"type": "cut",
@@ -63,7 +50,8 @@
 				"size": {
 					"min": 50,
 					"max": 80
-				}
+				},
+				"minor": true
 			},
 			{
 				"type": "ferment",
@@ -99,7 +87,7 @@
 					"min": 3.5,
 					"max": 4.2
 				},
-				"note": "Held in tins of whey or brine with no culture added: the milk's own bacteria ferment it, then salt-tolerant streptococci and lactobacilli."
+				"note": "The curd is held in tins of whey or brine with no culture added, so the milk's own bacteria sour it."
 			}
 		],
 		"sources": {

@@ -1,0 +1,93 @@
+{
+	"label": "Nili-Ravi",
+	"kind": "breed",
+	"parent": "riverBuffalo",
+	"about": {
+		"text": "The Nili-Ravi is a dairy buffalo of the Punjab region of Pakistan and India, a riverine breed of the belt between the Sutlej and Ravi rivers. It is one of Pakistan's major dairy buffaloes, and its milk is used for dairy.",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Nili-Ravi", "url": "https://en.wikipedia.org/wiki/Nili-Ravi"},
+				{"name": "Buffalopedia: Nili-Ravi", "url": "https://buffalopedianew.cirb.res.in/niliravi/"},
+				{"name": "PMC5937355 (Pakistani buffalo breeds paper)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5937355"}
+			],
+			"text": "Punjab origin and dairy use from Wikipedia and the PMC paper (\"a breed from the riverine Punjab\"). The Sutlej-Ravi belt is from the Buffalopedia page."
+		}
+	},
+	"origin": {
+		"regions": ["PK", "IN"],
+		"place": "The belt between the Sutlej and Ravi rivers of undivided Punjab Province, in Pakistan and India",
+		"sources": {
+			"links": [
+				{"name": "Buffalopedia: Nili-Ravi", "url": "https://buffalopedianew.cirb.res.in/niliravi/"},
+				{"name": "Wikipedia: Nili-Ravi", "url": "https://en.wikipedia.org/wiki/Nili-Ravi"}
+			],
+			"text": "Home tract from the Buffalopedia page. Wikipedia says the breed is of the Punjab region of Pakistan and India. No formation date was found, so formed is left out."
+		}
+	},
+	"head": [
+		{
+			"count": 200000,
+			"year": 2005,
+			"where": "IN",
+			"sources": {
+				"links": [
+					{"name": "Buffalopedia: Nili-Ravi", "url": "https://buffalopedianew.cirb.res.in/niliravi/"},
+					{"name": "FAO-hosted AGRI paper (Punjab survey, 2005)", "url": "https://fao.org/docrep/pdf/009/a0389t/a0389t08.pdf"}
+				],
+				"text": "About 0.2 million Nili-Ravi-type buffaloes in the breeding tract (Ferozepur, Amritsar and Gurdaspur districts of Indian Punjab), from a 2005 survey, as cited by Buffalopedia (Vij and Tantia, 2005). This is a regional estimate, not a national or DAD-IS figure. The FAO-hosted paper was found in WebSearch text and not opened."
+			}
+		}
+	],
+	"yield": {
+		"perLactation": {"min": 1688, "max": 2317},
+		"lactationDays": {"min": 262, "max": 319},
+		"perYear": {"min": 2000, "max": 2000, "about": true},
+		"sources": {
+			"links": [
+				{"name": "Buffalopedia: Nili-Ravi", "url": "https://buffalopedianew.cirb.res.in/niliravi/"},
+				{"name": "Wikipedia: Nili-Ravi", "url": "https://en.wikipedia.org/wiki/Nili-Ravi"}
+			],
+			"text": "Buffalopedia gives the weighted-average lactation yield as 1945 kg (range 1688 to 2317 kg) and the lactation length as 306 days (range 262 to 319), averaged across many reports, so the range is the spread of those reports. Wikipedia gives an average of about 2000 kg per year and a record of 6535 kg in a 378-day lactation. No year is given for the averages."
+		}
+	},
+	"composition": {
+		"fat": {"min": 6.6, "max": 7.2},
+		"sources": {
+			"links": [
+				{"name": "Buffalopedia: Nili-Ravi", "url": "https://buffalopedianew.cirb.res.in/niliravi/"}
+			],
+			"text": "Buffalopedia weighted average 6.9 percent, range 6.6 to 7.2 percent. Other studies in WebSearch text (1983 herd study at 6.55 percent) are not used here."
+		}
+	},
+	"purposes": {
+		"purposes": ["dairy"],
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Nili-Ravi", "url": "https://en.wikipedia.org/wiki/Nili-Ravi"}
+			],
+			"text": "Wikipedia gives dairy use as the purpose."
+		}
+	},
+	"risk": {
+		"status": "not at risk",
+		"year": 2025,
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Nili-Ravi", "url": "https://en.wikipedia.org/wiki/Nili-Ravi"}
+			],
+			"text": "Wikipedia reports FAO (2007) as listing the breed not at risk, and DAD-IS (2025) as also not at risk. The DAD-IS entry itself was not reached, so this rests on Wikipedia's citation."
+		}
+	},
+	"facts": [
+		{
+			"k": "Record lactation",
+			"v": "A yield of 6535 kg in a 378-day lactation is the record given for the breed.",
+			"sources": {
+				"links": [{"name": "Wikipedia: Nili-Ravi", "url": "https://en.wikipedia.org/wiki/Nili-Ravi"}],
+				"text": "Taken from the Wikipedia page."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "No national population figure with a year: the 2007 Punjab census figure on Buffalopedia has no units, so it is not used. No DAD-IS entry reached. No formation date found. Wikipedia's 2000 kg is per year, not per lactation, and Buffalopedia's averages are from many reports and not a single census. No protein or lactose figures found."
+}

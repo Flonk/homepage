@@ -18,25 +18,9 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic"
-				],
-				"adds": {
-					"microbes": [
-						{
-							"name": "lactic acid bacteria of the buttermilk",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							]
-						}
-					],
-					"by": [
-						"backslop"
-					]
-				}
+				"type": "add",
+				"what": "buttermilk",
+				"note": "The cream is mixed with buttermilk, whose bacteria sour and thicken it."
 			}
 		],
 		"text": "Heavy cream is mixed with buttermilk, whose bacteria sour and thicken it; no ratios, temperatures or times are given.",

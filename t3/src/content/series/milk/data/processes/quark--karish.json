@@ -24,33 +24,8 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "separate",
-				"off": "cream",
-				"note": "Skimmed for butter, from buffalo or cow milk."
-			},
-			{
-				"type": "ferment",
-				"does": "incubate",
-				"temperature": {
-					"min": 20,
-					"max": 25
-				},
-				"seconds": {
-					"min": 86400,
-					"max": 345600
-				},
-				"adds": {
-					"microbes": [],
-					"by": [
-						"vessel"
-					],
-					"vessel": "earthenware pots (matared)"
-				},
-				"note": "The milk is soured to laban rayeb."
-			},
-			{
 				"type": "drain",
-				"note": "On a reed mat, squeezed from time to time."
+				"note": "The soured skimmed milk sits on a reed mat, and is squeezed from time to time."
 			},
 			{
 				"type": "drain",
@@ -67,7 +42,7 @@
 			{
 				"type": "drain",
 				"by": "hang",
-				"note": "A few more hours."
+				"note": "The last of the whey is left to run out over a few more hours."
 			}
 		],
 		"sources": {

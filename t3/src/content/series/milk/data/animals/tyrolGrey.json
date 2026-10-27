@@ -1,0 +1,85 @@
+{
+	"label": "Tyrol Grey",
+	"aka": ["Tiroler Grauvieh", "Grigio Alpina", "Tyrolean Grey"],
+	"names": {
+		"links": [
+			{"name": "Wikipedia: Tyrol Grey", "url": "https://en.wikipedia.org/wiki/Tyrol_Grey"}
+		],
+		"text": "Alternative names as listed on the Wikipedia page (fetched)."
+	},
+	"kind": "breed",
+	"parent": "taurineCattle",
+	"about": {
+		"text": "An Alpine dual-purpose cattle breed of Tyrol in Austria and South Tyrol in Italy. Its milk is described as suitable for drinking and for cheese, butter and yogurt, and it is also kept for beef. The Wikipedia page describes its milk and beef performance as very good.",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Tyrol Grey", "url": "https://en.wikipedia.org/wiki/Tyrol_Grey"}
+			],
+			"text": "Fetched page for the dual-purpose use and the 'very good' milk and beef performance. The drinking and cheese, butter and yogurt uses come from the WebSearch text of the same page, not from a separate fetch."
+		}
+	},
+	"origin": {
+		"regions": ["AT", "IT"],
+		"place": "Tyrol (Austria) and South Tyrol (Italy)",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Tyrol Grey", "url": "https://en.wikipedia.org/wiki/Tyrol_Grey"}
+			],
+			"text": "Place as stated on the fetched page. The page gives no formation dates, so none are recorded."
+		}
+	},
+	"yield": {
+		"perYear": {"min": 4836, "max": 4836},
+		"where": "IT",
+		"year": 2002,
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Tyrol Grey", "url": "https://en.wikipedia.org/wiki/Tyrol_Grey"}
+			],
+			"text": "About 4,836 kg per cow per year in South Tyrol in 2002, from 8,491 control cows, as stated on the fetched page. No lactation figures are given."
+		}
+	},
+	"composition": {
+		"fat": {"min": 3.78, "max": 3.78},
+		"protein": {"min": 3.38, "max": 3.38},
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Tyrol Grey", "url": "https://en.wikipedia.org/wiki/Tyrol_Grey"}
+			],
+			"text": "Fat 3.78% and protein 3.38%, South Tyrol, 2002, as stated on the fetched page."
+		}
+	},
+	"purposes": {
+		"purposes": ["dual-purpose"],
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Tyrol Grey", "url": "https://en.wikipedia.org/wiki/Tyrol_Grey"}
+			],
+			"text": "Described on the fetched page as dual-purpose, for milk and beef."
+		}
+	},
+	"facts": [
+		{
+			"k": "Milk quality",
+			"v": "Described as having the best milk amount-to-quality ratio among Italian mountain cattle breeds.",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: Tyrol Grey", "url": "https://en.wikipedia.org/wiki/Tyrol_Grey"}
+				],
+				"text": "Claim as stated on the fetched page."
+			}
+		},
+		{
+			"k": "Traits",
+			"v": "Good forage instinct and feed conversion, robust, long-lived and very fertile; breeding goals include hardiness, mountain pasture ability and easy calving.",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: Tyrol Grey", "url": "https://en.wikipedia.org/wiki/Tyrol_Grey"}
+				],
+				"text": "Traits as stated on the fetched page."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "Looked for a current population count, a DAD-IS risk status, lactation length and a per-lactation yield. The only population figure seen was about 5,000 herdbook cows from an undated Austrian WebSearch snippet, which I did not open, so it is left out. The 2002 yield is the only yield figure found."
+}

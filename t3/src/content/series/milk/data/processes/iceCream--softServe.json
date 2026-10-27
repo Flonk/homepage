@@ -25,17 +25,18 @@
 					"min": 3,
 					"max": 3
 				},
-				"note": "Held unfrozen in the machine."
+				"note": "The mix is held unfrozen in the machine.",
+				"minor": true
 			},
 			{
 				"type": "custom",
 				"name": "aerate",
-				"note": "Air worked in: 0–60 % overrun, ideal 33–45 %."
+				"note": "Air is worked in, so the mix grows 0–60 % in volume, 33–45 % being ideal."
 			},
 			{
 				"type": "custom",
 				"name": "freeze",
-				"note": "Frozen quickly and dispensed at once, never hardened."
+				"note": "The mix is frozen quickly and dispensed at once, so it never hardens."
 			}
 		],
 		"sources": {

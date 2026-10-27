@@ -23,40 +23,5 @@
 			}
 		],
 		"text": "The table, the facts and the words on how it is made, from these."
-	},
-	"processing": {
-		"steps": [
-			{
-				"type": "add",
-				"what": "water",
-				"note": "To about 40 % yoghurt."
-			},
-			{
-				"type": "salt",
-				"strength": {
-					"min": 0.7,
-					"max": 0.7,
-					"about": true
-				}
-			}
-		],
-		"text": "Flavoured or carbonated variants exist.",
-		"sources": {
-			"links": [
-				{
-					"name": "Low-fat doogh study, Food Sci. Nutr. (2023)",
-					"url": "https://doi.org/10.1002/fsn3.3647"
-				},
-				{
-					"name": "Doogh BPA survey, Sci. Rep. (2025)",
-					"url": "https://doi.org/10.1038/s41598-025-25638-5"
-				},
-				{
-					"name": "Codex Standard for Fermented Milks CXS 243-2003",
-					"url": "https://www.fao.org/input/download/standards/400/CXS_243e.pdf"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		}
 	}
 }

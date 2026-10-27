@@ -1,0 +1,83 @@
+{
+	"label": "River buffalo",
+	"aka": ["river-type water buffalo"],
+	"names": {
+		"links": [
+			{ "name": "Wikipedia: Water buffalo", "url": "https://en.wikipedia.org/wiki/Water_buffalo" }
+		],
+		"text": "The article's river and swamp type sections call the river type the 'river-type' water buffalo. 'River buffalo' is the item's label."
+	},
+	"kind": "type",
+	"parent": "waterBuffalo",
+	"taxon": {
+		"name": "Bubalus bubalis bubalis",
+		"rank": "subspecies",
+		"sources": {
+			"unsourced": true,
+			"text": "The trinomial was given with the item. I did not confirm it in an opened page; it is the usual name for the river type."
+		}
+	},
+	"about": {
+		"text": "The river buffalo is the water buffalo type kept mainly for milk and for transport. It has 50 chromosomes and makes up about 70% of the world's water buffaloes, and it usually gives 1,500 to 4,500 litres per lactation.",
+		"sources": {
+			"links": [
+				{ "name": "Wikipedia: Water buffalo", "url": "https://en.wikipedia.org/wiki/Water_buffalo" },
+				{ "name": "FAO: Gateway to dairy production and products, buffaloes", "url": "https://www.fao.org/dairy-production-products/dairy/buffaloes/en" }
+			],
+			"text": "Uses and chromosome count from the Wikipedia article. The 70% share and the 1,500 to 4,500 litres per lactation are from the FAO gateway page, which gives no year for either."
+		}
+	},
+	"domestication": {
+		"where": "Western India",
+		"regions": ["IN"],
+		"yearsAgo": { "min": 6300, "max": 6300 },
+		"text": "The river type probably originated in western India and was probably domesticated about 6,300 years ago.",
+		"sources": {
+			"links": [
+				{ "name": "Wikipedia: Water buffalo", "url": "https://en.wikipedia.org/wiki/Water_buffalo" }
+			],
+			"text": "From the article's river type section, which says 'probably domesticated about 6,300 years ago' and also gives c. 4300 BCE."
+		}
+	},
+	"milk": {
+		"mt": 105.48,
+		"year": 2023,
+		"estimated": true,
+		"sources": {
+			"links": [
+				{ "name": "FAOSTAT: Crops and livestock products (QCL), world, 2023", "url": "https://www.fao.org/faostat/en/#data/QCL" },
+				{ "name": "FAO: Gateway to dairy production and products, buffaloes", "url": "https://www.fao.org/dairy-production-products/dairy/buffaloes/en" }
+			],
+			"text": "Estimated: river buffaloes are about 70% of the world's water buffaloes (FAO gateway, no year), applied to FAOSTAT's 2023 water buffalo milk of 150.69 Mt (flag A): 150.69 × 0.70 = 105.48. This assumes equal milk per head across the two types, which probably overstates the river type, since swamp buffaloes give less milk. No source gives the split of milk by type."
+		}
+	},
+	"head": [
+		{
+			"count": 148098231,
+			"year": 2023,
+			"where": "world",
+			"estimated": true,
+			"sources": {
+				"links": [
+					{ "name": "FAOSTAT: Crops and livestock products (QCL), world, 2023", "url": "https://www.fao.org/faostat/en/#data/QCL" },
+					{ "name": "FAO: Gateway to dairy production and products, buffaloes", "url": "https://www.fao.org/dairy-production-products/dairy/buffaloes/en" }
+				],
+				"text": "Estimated: 70% (FAO gateway, no year) of FAOSTAT's 2023 water buffalo stocks of 211,568,902: 211,568,902 × 0.70 = 148,098,231."
+			}
+		}
+	],
+	"facts": [
+		{
+			"k": "Yield",
+			"v": "Usually 1,500 to 4,500 litres of milk per lactation.",
+			"sources": {
+				"links": [
+					{ "name": "FAO: Gateway to dairy production and products, buffaloes", "url": "https://www.fao.org/dairy-production-products/dairy/buffaloes/en" }
+				],
+				"text": "From the FAO gateway page, which gives no year and no breed."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "No composition or yield in kg for the river type was found in an opened source. The milk and head figures are estimates from the 70% share, not counts. The trinomial was not confirmed in an opened page. The river type's own population count for 2023 was not found."
+}

@@ -1,0 +1,64 @@
+{
+	"from": [
+		"acidCasein"
+	],
+	"to": [
+		"qmilch"
+	],
+	"variant": true,
+	"text": "Casein powder and water are pushed through an extruder and spun through a jet, then cut or wound. This is melt-style spinning of a plasticised protein, unlike the wet spinning of Lanital.",
+	"sources": {
+		"links": [
+			{
+				"name": "Nonwovens News, The magic of milk (2013)",
+				"url": "https://www.nonwovensnews.com/2013/06/13/the-magic-of-milk/"
+			},
+			{
+				"name": "Patent application: Process for Producing Milk Protein Fibers (QMILCH IP GMBH)",
+				"url": "https://patents.justia.com/patent/20130256942"
+			}
+		],
+		"text": "The table, the facts and the words on how it is made, from these."
+	},
+	"processing": {
+		"steps": [
+			{
+				"type": "custom",
+				"name": "make pliable",
+				"note": "The casein powder is softened with water; the patent also names glycerol."
+			},
+			{
+				"type": "custom",
+				"name": "push through",
+				"temperature": {
+					"max": 140
+				},
+				"note": "The mix is forced through a shaped opening by an extruder, under mechanical stress."
+			},
+			{
+				"type": "custom",
+				"name": "spin",
+				"note": "The mix is sent out through a jet, a nozzle with small holes."
+			},
+			{
+				"type": "cut",
+				"how": "cut",
+				"note": "The fibre is cut into short lengths, or kept as one long filament.",
+				"minor": true
+			}
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Nonwovens News, The magic of milk (2013)",
+					"url": "https://www.nonwovensnews.com/2013/06/13/the-magic-of-milk/"
+				},
+				{
+					"name": "Patent application: Process for Producing Milk Protein Fibers (QMILCH IP GMBH)",
+					"url": "https://patents.justia.com/patent/20130256942"
+				}
+			],
+			"text": "The table, the facts and the words on how it is made, from these."
+		}
+	}
+}

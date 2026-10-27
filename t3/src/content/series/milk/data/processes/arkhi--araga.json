@@ -20,13 +20,9 @@
 		"steps": [
 			{
 				"type": "custom",
-				"name": "distil",
-				"note": "Steam condenses on the cold-water container and trickles out of the spout."
-			},
-			{
-				"type": "custom",
 				"name": "distil again",
-				"note": "Gives the stronger dan zarya."
+				"note": "The spirit is run through the still a second time, which makes it stronger.",
+				"minor": true
 			}
 		],
 		"sources": {

@@ -1,0 +1,117 @@
+{
+	"label": "Bionda dell'Adamello",
+	"aka": ["Bionda", "Mustàscia", "Capra Bionda"],
+	"names": {
+		"links": [
+			{"name": "Bionda dell'Adamello (Wikipedia)", "url": "https://en.wikipedia.org/wiki/Bionda_dell%27Adamello"}
+		],
+		"text": "Bionda and Mustàscia are the breed's names given in the Wikipedia article, which also says it was formerly known as the Capra Bionda or Mustàscia."
+	},
+	"kind": "breed",
+	"parent": "goat",
+	"about": {
+		"text": "The Bionda dell'Adamello is a goat breed from Val Camonica in Brescia province, Lombardy, northern Italy, named after the Adamello massif. Its milk goes mainly into Mascarpì, a kind of ricotta, and Fatulì, a smoked caprino cheese with PAT status. The herd book was activated in 1997.",
+		"sources": {
+			"links": [
+				{"name": "Bionda dell'Adamello (Wikipedia)", "url": "https://en.wikipedia.org/wiki/Bionda_dell%27Adamello"}
+			],
+			"text": "All from the Wikipedia article: region, Adamello name, Mascarpì as the main product, Fatulì with PAT status, herd book activated 1997."
+		}
+	},
+	"origin": {
+		"regions": ["IT"],
+		"place": "Val Camonica, Brescia province, Lombardy; mainly Val Saviore and the Brescia mountains, with some animals in Bergamo and Trento",
+		"sources": {
+			"links": [
+				{"name": "Bionda dell'Adamello (Wikipedia)", "url": "https://en.wikipedia.org/wiki/Bionda_dell%27Adamello"}
+			],
+			"text": "Wikipedia: region of origin and distribution. The article describes \"ancient origin\" and documents the breed before and after the Second World War. A c.1760 painting by Francesco Londonio shows a goat of this type, so the type existed by then; no formation date is given, so none is recorded."
+		}
+	},
+	"yield": {
+		"perLactation": {"min": 303, "max": 361},
+		"sources": {
+			"links": [
+				{"name": "Bionda dell'Adamello (Wikipedia)", "url": "https://en.wikipedia.org/wiki/Bionda_dell%27Adamello"}
+			],
+			"text": "Wikipedia: secondiparous nannies 303 ± 108 kg, pluriparous nannies 361 ± 122 kg per lactation. The min and max are those two means, not a spread. The recording place, year and lactation length are not given."
+		}
+	},
+	"composition": {
+		"fat": {"min": 3.16, "max": 3.16},
+		"protein": {"min": 2.97, "max": 2.97},
+		"sources": {
+			"links": [
+				{"name": "Bionda dell'Adamello (Wikipedia)", "url": "https://en.wikipedia.org/wiki/Bionda_dell%27Adamello"}
+			],
+			"text": "Wikipedia: averages 3.16% milk fat and 2.97% milk protein. Lactose and solids are not given."
+		}
+	},
+	"purposes": {
+		"purposes": ["dairy"],
+		"sources": {
+			"links": [
+				{"name": "Bionda dell'Adamello (Wikipedia)", "url": "https://en.wikipedia.org/wiki/Bionda_dell%27Adamello"}
+			],
+			"text": "Wikipedia: the milk is used mainly for cheese (Mascarpì and Fatulì)."
+		}
+	},
+	"head": [
+		{
+			"count": 2772,
+			"year": 2013,
+			"where": "IT",
+			"sources": {
+				"links": [
+					{"name": "Bionda dell'Adamello (Wikipedia)", "url": "https://en.wikipedia.org/wiki/Bionda_dell%27Adamello"}
+				],
+				"text": "Wikipedia: registered population at end of 2013 as reported by FAO's DAD-IS."
+			}
+		},
+		{
+			"count": 3148,
+			"year": 2013,
+			"where": "IT",
+			"sources": {
+				"links": [
+					{"name": "Bionda dell'Adamello (Wikipedia)", "url": "https://en.wikipedia.org/wiki/Bionda_dell%27Adamello"}
+				],
+				"text": "Wikipedia: registered population at end of 2013 as reported by the Associazione Nazionale della Pastorizia. The two sources disagree; both are kept."
+			}
+		}
+	],
+	"risk": {
+		"status": "not at risk",
+		"year": 2007,
+		"sources": {
+			"links": [
+				{"name": "Bionda dell'Adamello (Wikipedia)", "url": "https://en.wikipedia.org/wiki/Bionda_dell%27Adamello"}
+			],
+			"text": "Wikipedia: FAO (2007) listed the breed as not at risk. Not checked against the current DAD-IS record."
+		}
+	},
+	"facts": [
+		{
+			"k": "Fatulì",
+			"v": "A smoked caprino cheese made from the breed's milk, with PAT (traditional agri-food product) status, and listed in the Slow Food Ark of Taste.",
+			"sources": {
+				"links": [
+					{"name": "Bionda dell'Adamello (Wikipedia)", "url": "https://en.wikipedia.org/wiki/Bionda_dell%27Adamello"}
+				],
+				"text": "Wikipedia: Fatulì, PAT status, Ark of Taste (Slow Food Foundation)."
+			}
+		},
+		{
+			"k": "Mascarpì",
+			"v": "A kind of ricotta, and the main product made from the breed's milk.",
+			"sources": {
+				"links": [
+					{"name": "Bionda dell'Adamello (Wikipedia)", "url": "https://en.wikipedia.org/wiki/Bionda_dell%27Adamello"}
+				],
+				"text": "Wikipedia: Mascarpì described as a kind of ricotta and the main product. No protected status is given."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "Searched for: a formation date (none in the sources); the current DAD-IS population and risk status (only 2007 and 2013 figures found, and no DAD-IS page was fetched); lactation length (not in Wikipedia); recording place and year of the yield figures (not given); lactose and solids (not given). Everything here comes from one Wikipedia article, so confidence is medium."
+}

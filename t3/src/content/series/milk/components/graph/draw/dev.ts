@@ -1,5 +1,5 @@
 import { type Node, SANS } from '../client/base';
-import { legible, font } from '../render/canvas';
+import { shownAt, font } from '../render/canvas';
 import type { Drawing, DevMarks, Remark } from './types';
 
 // Where the eye button's state is kept between visits.
@@ -36,7 +36,7 @@ export const makeDevMarks = (G: Drawing): DevMarks => {
 	   its card chain where it has one (by the pill, for one in a panel,
 	   which has no arrow drawn); an unranked node's in its pill's middle. */
 	const marksOf = (n: Node): (Remark & { glyph: string; colour: string })[] => {
-		if (!n.dev || n.onMap) return [];
+		if (!n.dev) return [];
 		const r = n.h * 0.2;
 		const at = (kind: (typeof DEV_MARKS)[number][0]): [number, number] =>
 			kind === 'unranked'
@@ -60,7 +60,7 @@ export const makeDevMarks = (G: Drawing): DevMarks => {
 				if (!inSight({ x0: x - r, x1: x + r, y0: y - r, y1: y + r })) continue;
 				markPainter.drawDisc(ctx, x, y, r, colour, s);
 				markPainter.drawDiscRim(ctx, n, x, y, r);
-				if (!legible(r * 1.35, s)) continue;
+				if (!shownAt(r * 1.35, s)) continue;
 				ctx.fillStyle = '#fff';
 				ctx.font = font(r * 1.35, '700', SANS());
 				ctx.fillText(glyph, x, y + r * 0.08);

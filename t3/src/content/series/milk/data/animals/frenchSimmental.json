@@ -1,0 +1,70 @@
+{
+	"label": "French Simmental",
+	"aka": [],
+	"kind": "breed",
+	"parent": "taurineCattle",
+	"origin": {
+		"regions": ["FR", "CH"],
+		"place": "Franche-Comté, France, from Swiss Simmental cattle imported early in the 20th century",
+		"formed": {"min": 1900, "max": 1930},
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: French Simmental", "url": "https://en.wikipedia.org/wiki/French_Simmental"},
+				{"name": "Wikipedia: Simmental cattle", "url": "https://en.wikipedia.org/wiki/Simmental_cattle"}
+			],
+			"text": "French Simmental page: descends from Swiss Simmental imported at the beginning of the 20th century (no exact year); stud book opened in 1930; first bred in Franche-Comté. Simmental cattle page: the breed is named after the Simmental valley in canton Bern, Switzerland. The 1900 start of the range is taken from the 'beginning of the 20th century' wording; 1930 is the stud book date."
+		}
+	},
+	"about": {
+		"text": "A dual-purpose Simmental line kept in France, used mainly for dairy and also crossbred with beef breeds. Its milk goes into the AOC cheeses Comté and Laguiole. First bred in Franche-Comté, it is now also found in Auvergne.",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: French Simmental", "url": "https://en.wikipedia.org/wiki/French_Simmental"}
+			],
+			"text": "Paraphrased from the French Simmental page: primarily for dairy but used for beef and milk, crossbred with Charolais and Limousin, milk used for Comté and Laguiole, first bred in Franche-Comté and now found in Auvergne."
+		}
+	},
+	"yield": {
+		"perYear": {"min": 6400, "max": 6400},
+		"where": "FR",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: French Simmental", "url": "https://en.wikipedia.org/wiki/French_Simmental"}
+			],
+			"text": "'About 6,400 kg of milk every year' per cow, from the French Simmental page. No year or source given on the page, so no year is recorded. A French search for the Idele milk-recording figures for this breed found no breed-specific line (only an all-breed average of 8,887 kg per lactation in 2021), so that figure is not used."
+		}
+	},
+	"composition": {
+		"fat": {"min": 4, "max": 4},
+		"protein": {"min": 3.3, "max": 3.3},
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: French Simmental", "url": "https://en.wikipedia.org/wiki/French_Simmental"}
+			],
+			"text": "Milk composition of 4% fat and 3.3% protein, from the French Simmental page. No year or method given."
+		}
+	},
+	"purposes": {
+		"purposes": ["dairy", "dual-purpose"],
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: French Simmental", "url": "https://en.wikipedia.org/wiki/French_Simmental"}
+			],
+			"text": "The page says the breed is used 'primarily for dairy' and also for beef and milk production."
+		}
+	},
+	"facts": [
+		{
+			"k": "AOC cheese",
+			"v": "Its milk is used for the AOC cheeses Comté and Laguiole.",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: French Simmental", "url": "https://en.wikipedia.org/wiki/French_Simmental"}
+				],
+				"text": "Stated on the French Simmental page."
+			}
+		}
+	],
+	"confidence": "low",
+	"gaps": "No DAD-IS record found for the French Simmental, so no risk status. The population (about 35,000 cows, French Simmental page) is left out: the page gives no year or source, and a head record needs a year. The milk yield (about 6,400 kg a year) has no year either, so no year is recorded. No lactation length or per-lactation yield found. A French search (Idele milk recording) found no breed-specific figures in the extract seen."
+}

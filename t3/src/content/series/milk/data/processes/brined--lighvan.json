@@ -26,22 +26,15 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "coagulate",
-				"by": "rennet"
-			},
-			{
 				"type": "drain",
 				"by": "cloth",
-				"note": "Packed in triangular cloth bags."
+				"note": "The curd is packed into triangular cloth bags."
 			},
 			{
 				"type": "salt",
-				"seconds": {
-					"min": 172800,
-					"max": 172800
-				},
-				"note": "Blocks about 20 cm thick, covered with salt in earthenware pots.",
-				"how": "dry"
+				"note": "The blocks, about 20 cm thick, are covered with salt in earthenware pots.",
+				"how": "dry",
+				"minor": true
 			},
 			{
 				"type": "salt",
@@ -49,7 +42,8 @@
 				"strength": {
 					"min": 10,
 					"max": 12
-				}
+				},
+				"minor": true
 			},
 			{
 				"type": "ferment",
@@ -129,7 +123,7 @@
 					"min": 7776000,
 					"max": 10368000
 				},
-				"note": "No starter is added, only indigenous lactic bacteria; Lactococcus and Lactobacillus dominate early, Enterococcus at the end of ripening."
+				"note": "No starter is added; local bacteria sour it, one group early on and another at the end of ripening."
 			}
 		],
 		"text": "The species shares overlap the genus shares.",

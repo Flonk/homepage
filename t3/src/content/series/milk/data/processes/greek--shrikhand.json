@@ -20,34 +20,5 @@
 			}
 		],
 		"text": "The table, the facts and the words on how it is made, from these."
-	},
-	"processing": {
-		"steps": [
-			{
-				"type": "drain",
-				"by": "hang",
-				"seconds": {
-					"min": 14400,
-					"max": 28800
-				}
-			},
-			{
-				"type": "add",
-				"what": "sugar and flavourings"
-			}
-		],
-		"sources": {
-			"links": [
-				{
-					"name": "FAO: Traditional milk products of India (T0251E, ch. 4)",
-					"url": "https://www.fao.org/4/T0251E/T0251E04.htm"
-				},
-				{
-					"name": "Wikipedia: Shrikhand",
-					"url": "https://en.wikipedia.org/wiki/Shrikhand"
-				}
-			],
-			"text": "The table, the facts and the words on how it is made, from these."
-		}
 	}
 }

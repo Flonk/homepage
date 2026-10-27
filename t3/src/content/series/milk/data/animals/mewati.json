@@ -1,0 +1,56 @@
+{
+	"label": "Mewati",
+	"aka": ["Kosi"],
+	"names": {
+		"links": [
+			{"name": "Wikipedia: Mewati cattle", "url": "https://en.wikipedia.org/wiki/Mewati_cattle"}
+		],
+		"text": "Wikipedia's Mewati cattle article (opened): 'Mewati, also known as Kosi', an indigenous breed of cattle in India, named after the Mewat region. No other alternative name is given."
+	},
+	"kind": "breed",
+	"parent": "zebuCattle",
+	"about": {
+		"text": "An indigenous Indian cattle breed named after the Mewat region and related to the Gyr and Haryanvi breeds. Nearly all are white, with rare brown shades. Its cows are milked and its bulls work on farms, ploughing and carting, so it is a dual-purpose breed.",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Mewati cattle", "url": "https://en.wikipedia.org/wiki/Mewati_cattle"}
+			],
+			"text": "Wikipedia's Mewati cattle article, opened with WebFetch: indigenous breed of India, named after Mewat, related to Gyr and Haryanvi, nearly all white with rare brown shades, dual-purpose with milking and draft ability, bulls used for farm work and carting. The same article gives no population, milk yield or conservation figures."
+		}
+	},
+	"origin": {
+		"regions": ["IN"],
+		"place": "The Mewat region, India; Wikipedia's category puts it in Haryana, while a breed-profile site places its territory in Rajasthan with adjoining parts of Haryana and Uttar Pradesh",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Mewati cattle", "url": "https://en.wikipedia.org/wiki/Mewati_cattle"},
+				{"name": "creatures.com: Mewati", "url": "https://creatures.com/species/cattle/mewati"}
+			],
+			"text": "Place from the Wikipedia article (named after Mewat; category 'Animal husbandry in Haryana') and from creatures.com, found in WebSearch text and not opened: territory given as Rajasthan with adjoining Haryana and Uttar Pradesh. The sources disagree on the state; no formation date was found."
+		}
+	},
+	"purposes": {
+		"purposes": ["dual-purpose", "draught"],
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Mewati cattle", "url": "https://en.wikipedia.org/wiki/Mewati_cattle"},
+				{"name": "NDDB: breeds", "url": "https://www.nddb.coop/services/animalbreeding/geneticimprovement/breeds"}
+			],
+			"text": "Wikipedia (opened): dual-purpose, with milking and draft ability. NDDB's breed table (found in WebSearch text, not opened) lists it as draught only, and a Wikipedia list of Indian breeds (WebSearch text) calls it milch. The sources disagree; dual-purpose follows the article opened."
+		}
+	},
+	"facts": [
+		{
+			"k": "Endangerment study",
+			"v": "A 2017 study of Indian livestock breeds placed Mewati in the endangered category under FAO criteria, alongside Krishna Valley, Pullikulam and Punganur cattle, and flagged its inbreeding rate of 1.193% as high.",
+			"sources": {
+				"links": [
+					{"name": "ICAR: Assessment of degree of endangerment of livestock breeds in India", "url": "https://epubs.icar.org.in/index.php/IJAnS/article/view/68860"}
+				],
+				"text": "Taken from a WebSearch result's text for this ICAR journal article; the article itself was not opened. The 2017 year is from that text."
+			}
+		}
+	],
+	"confidence": "low",
+	"gaps": "No DAD-IS entry was reached, so no DAD-IS risk status is given. No population count was confirmed: a Rajya Sabha answer seen in search text gives 75,427 (2007 census) and 32,940 (2013 breed survey), but I could not confirm the source document. No milk yield or lactation figures were found. No formation date was found. The use (dual-purpose or draught) differs between sources."
+}

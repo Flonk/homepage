@@ -6,7 +6,7 @@
 		"ultrafilteredMilk"
 	],
 	"step": "ultrafilter, blend the cream back",
-	"text": "The milk is separated, the skim part is pushed through a membrane that holds back the proteins, and the cream and the minerals that went through are put back, so the milk keeps its fat and gets denser in protein.",
+	"text": "The skim milk is pushed through a membrane that holds back the proteins, and the cream and the minerals that went through are put back, so the milk keeps its fat and gets denser in protein.",
 	"sources": {
 		"links": [
 			{
@@ -31,18 +31,17 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "ultrafilter",
-				"note": "Cold, through a membrane that holds back the proteins (80 % casein, 20 % whey) and fat and passes water, lactose and some minerals."
+				"type": "ultrafilter"
 			},
 			{
 				"type": "custom",
 				"name": "return minerals",
-				"note": "The lactose-rich stream is split again by nanofiltration and reverse osmosis, and the minerals go back."
+				"note": "The stream rich in lactose (milk sugar) is split again through finer membranes, and the minerals go back."
 			},
 			{
 				"type": "add",
 				"what": "lactase",
-				"note": "For the lactose left over; it is on the label."
+				"note": "Lactase, an enzyme that breaks down milk sugar, is added for the lactose left over; it is on the label."
 			}
 		],
 		"sources": {

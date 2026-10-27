@@ -64,7 +64,7 @@ export const Node = z
 			.strictObject({
 				across: z.enum(['days', 'setting']),
 				down: z.enum(['firm', 'beast']),
-				picks: z.array(z.strictObject({ id: ProductId, why: z.string().min(1) })).min(1).max(5),
+				picks: z.array(z.strictObject({ id: ProductId, why: z.string().min(1) })).min(1).max(6),
 			})
 			.optional(),
 		below: ProductId.optional(),

@@ -24,47 +24,8 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "pasteurise"
-			},
-			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic",
-					"smear"
-				],
-				"adds": {
-					"microbes": [
-						{
-							"name": "lactic acid bacteria",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							]
-						},
-						{
-							"name": "flavour-producing starter bacteria",
-							"kind": "bacterium"
-						}
-					],
-					"by": [
-						"starter"
-					]
-				}
-			},
-			{
-				"type": "coagulate",
-				"by": "rennet",
-				"note": "Or other coagulating enzymes."
-			},
-			{
 				"type": "mould",
-				"temperature": {
-					"min": 41,
-					"max": 41,
-					"about": true
-				},
-				"note": "Pumped in, pressed very lightly or not at all."
+				"note": "The curd is pumped into moulds, kept at about 41 °C, and pressed very lightly or not at all."
 			},
 			{
 				"type": "ferment",
@@ -88,7 +49,7 @@
 					"min": 604800,
 					"max": 1209600
 				},
-				"note": "For the rinded type only; the rindless type ripens 3 wk at 12–20 °C under film."
+				"note": "The rind of the rinded type is formed by smear bacteria; the rindless type is ripened 3 weeks at 12–20 °C under film."
 			},
 			{
 				"type": "ferment",

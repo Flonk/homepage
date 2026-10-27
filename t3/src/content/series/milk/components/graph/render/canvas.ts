@@ -1,9 +1,10 @@
 import { measure, SANS } from '../client/base';
+import { SHOWN } from '../settings';
 
 /*
  * What every schema's drawing on the canvas shares: the pen it draws with,
  * the inks it reads from the page's colours, a font as the canvas wants it,
- * a rounded box, whether words are big enough to read at a zoom, and words
+ * a rounded box, whether a thing is big enough to show at a zoom, and words
  * broken onto lines no wider than so many of their letters.
  */
 export type Pen = CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D;
@@ -16,7 +17,35 @@ export const roundRect = (g: Pen, x: number, y: number, w: number, h: number, r:
 	g.beginPath();
 	g.roundRect(x, y, w, h, r);
 };
-export const legible = (px: number, s: number) => px * s >= 2.5;
+/* Whether a thing `px` units big shows at zoom `s`: once it is so many
+   pixels on the screen (see SHOWN in settings.ts), words by their letters'
+   height, a photograph or flag by its width. The one rule everything drawn
+   is shown by, so all of a size come in together.
+
+   A sprite is drawn once at a zoom to every doubling and stamped at any
+   zoom near it (see draw/sprites.ts); what shows in it is decided while it
+   is drawn (see decidedAt), at the zoom it is seen at, not the one it is
+   drawn at, so each thing comes in at its own zoom, not all at once when
+   the doubling turns. The zooms its decisions hold for are kept with it:
+   from the highest at which something in it came in, up to the lowest at
+   which something more would. */
+let deciding: { s: number; from: number; to: number } | null = null;
+export const shownAt = (px: number, s: number, least: number = SHOWN.text) => {
+	if (!deciding) return px * s >= least;
+	const at = least / px;
+	if (at <= deciding.s) deciding.from = Math.max(deciding.from, at);
+	else deciding.to = Math.min(deciding.to, at);
+	return px * deciding.s >= least;
+};
+// What `draw` gives, its decisions made at zoom `s`, and the zooms they hold for.
+export const decidedAt = <T,>(s: number, draw: () => T) => {
+	deciding = { s, from: 0, to: Infinity };
+	try {
+		return { drawn: draw(), from: deciding.from, to: deciding.to };
+	} finally {
+		deciding = null;
+	}
+};
 /* A pill's body, a product's or a step of processing's: on the pills'
    white, lifted off the ground by a soft shadow as deep as it is tall,
    none where too small to see one; at `px` of the screen's pixels to a

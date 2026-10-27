@@ -21,17 +21,12 @@
 			{
 				"type": "cut",
 				"how": "grind",
-				"note": "One or more natural cheeses."
+				"minor": true
 			},
 			{
-				"type": "pasteurise",
-				"temperature": {
-					"min": 65.6
-				},
-				"seconds": {
-					"min": 30
-				},
-				"note": "With emulsifying salts up to 3 % of the weight; factories usually melt at 80–95 °C for a few minutes."
+				"type": "custom",
+				"name": "melt",
+				"note": "The cheese is melted with emulsifying salts, up to 3 % of its weight; factories usually melt it at 80–95 °C for a few minutes."
 			}
 		],
 		"sources": {

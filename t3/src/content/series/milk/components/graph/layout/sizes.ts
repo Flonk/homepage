@@ -1,10 +1,10 @@
-import { STEP_FONT, NODE_H, RADIUS, PICTURE_GAP, sizeOf, headLength, MILK, STRAND, MAP_PILL, type Node } from '../client/base';
-import { CARD } from '../render/ProcessingStep';
-import type { ProductTree, NodeSizes } from './types';
+import { STEP_FONT, NODE_H, RADIUS, PICTURE_GAP, sizeOf, headLength, MILK, STRAND, type Node } from '../client/base';
+import { ARROW_LEAST, CARD_SIZE, FAME, FAME_TOP_10, FAME_TOP_50, STANDING } from '../settings';
+import type { ProductTree, NodeSizes, LayoutOptions } from './types';
 
 /* How big each node is, and how thick each arrow into it: by how much is
    made from it, or, where it is known, by its share of the world's milk. */
-export const measureNodeSizes = ({ root, nodes, byId, parent, childrenOf, productChildrenOf }: ProductTree): NodeSizes => {
+export const measureNodeSizes = ({ root, nodes, byId, parent, childrenOf, productChildrenOf }: ProductTree, opts: LayoutOptions = {}): NodeSizes => {
 	/* How many products are made from each, all the way down, not counting
 	   branch points; on a log scale (see sizeOf), so the great branches
 	   stand out without swamping the rest. */
@@ -25,17 +25,14 @@ export const measureNodeSizes = ({ root, nodes, byId, parent, childrenOf, produc
 	const asBigAsLinked = (n: Node, of: (n: Node) => number) => Math.min(of(byId.get(n.link!)!), Math.max(...siblingsOf(n).map(of), 0) || Infinity);
 	const treeScale = (n: Node): number =>
 		n.link ? asBigAsLinked(n, treeScale) : sizeOf(madeFrom.get(n)! + (timesLinked.get(n) ?? 0)) * (n === root ? MILK : 1);
-	// A cheese on the map small on it; any other as big as what is made from it.
 	/* The world's most made and best known cheeses biggest, the more so the
 	   higher their rank (see famous-cheeses.json); on a type's table, its
 	   most significant cheeses a little bigger, its outliers a little smaller. */
-	const FAME = 1.8;
-	const famed = (rank: number) => FAME * (rank <= 10 ? 2 : rank <= 50 ? 1.5 : 1);
-	const STANDING = { famous: FAME, pick: 1.35, outlier: 0.85 };
-	const scaleOf = (n: Node): number =>
-		n.onMap ? MAP_PILL : treeScale(n) * (n.fame ? famed(n.fame) : n.standing ? STANDING[n.standing] : 1);
-	// An example's a little bigger, its pill and arrow being small, so it reads zoomed out as far as a product's.
-	const cardChainFont = (n: Node) => STEP_FONT * scaleOf(n) * (n.example ? 0.5 : 0.35);
+	const famed = (rank: number) => FAME * (rank <= 10 ? FAME_TOP_10 : rank <= 50 ? FAME_TOP_50 : 1);
+	const ownScale = (n: Node): number => treeScale(n) * (n.fame ? famed(n.fame) : n.standing ? STANDING[n.standing] : 1);
+	/* An example's a little bigger, its pill and arrow being small, so it reads zoomed out as far as a product's.
+	   By its own scale, not grown to its arrows out (see scaleOf), as its arrow's thickness is from it. */
+	const cardChainFont = (n: Node) => STEP_FONT * CARD_SIZE * ownScale(n) * (n.example ? 0.5 : 0.35);
 
 	// How much an arrow carries: the product, and all made from it (a branch point only what it splits into).
 	const lineWeight = new Map<Node, number>();
@@ -60,7 +57,7 @@ export const measureNodeSizes = ({ root, nodes, byId, parent, childrenOf, produc
 		madeFrom.set(n, madeFrom.get(n)! * f);
 		for (const k of childrenOf(n)) scaleBranch(k, f);
 	};
-	const allMilk = lineWeight.get(root)!;
+	const allMilk = opts.allMilk ?? lineWeight.get(root)!;
 	const shareOut = (p: Node) => {
 		const kids = productChildrenOf(p);
 		if (kids.length && kids.every((k) => shareOf(k) !== undefined)) {
@@ -76,26 +73,31 @@ export const measureNodeSizes = ({ root, nodes, byId, parent, childrenOf, produc
 	};
 	shareOut(root);
 
-	/* An arrow with a card chain on it is at least as thick as the joins
-	   between its cards are tall, so they read as cut out of it (see
-	   drawStrip); and each arrow then at least as thick as all the strands
-	   it splits into. */
-	const CARD_JOIN = 1.1;
-	// A cheese in its type's panel has no arrow drawn to it, so no cards to hold.
-	const inPanel = (n: Node) => n.onMap || (n.example && !!parent.get(n)?.panel);
-	const leastWeight = (n: Node) =>
-		n.how?.holds && n.how.holds.length > 1 && !inPanel(n) ? (CARD_JOIN * CARD.said * cardChainFont(n)) / STRAND : 0;
-	const thickenToHoldCards = (n: Node): number => {
-		let grew = childrenOf(n).reduce((t, k) => t + thickenToHoldCards(k), 0);
+	/* Every arrow at least ARROW_LEAST thick, cards on it or not; and each
+	   arrow then at least as thick as all the strands it splits into. */
+	// A cheese in its type's panel has no arrow drawn to it.
+	const inPanel = (n: Node) => n.example && !!parent.get(n)?.panel;
+	const leastWeight = (n: Node) => (n === root || inPanel(n) ? 0 : ARROW_LEAST / STRAND);
+	const thickenToLeast = (n: Node): number => {
+		let grew = childrenOf(n).reduce((t, k) => t + thickenToLeast(k), 0);
 		let v = lineWeight.get(n)! + grew;
 		if (v < leastWeight(n)) {
-			grew += leastWeight(n) - v;
+			const short = leastWeight(n) - v;
+			grew += short;
 			v = leastWeight(n);
+			/* A branch point is only its strands (see settleBranchPoints): the
+			   arrows out of it thickened with it, each by its share, so they
+			   still fill it edge to edge, a split's double arrow too. */
+			if (n.hub) {
+				const kids = childrenOf(n);
+				const out = kids.reduce((t, k) => t + lineWeight.get(k)!, 0);
+				for (const k of kids) lineWeight.set(k, lineWeight.get(k)! + short * (out ? lineWeight.get(k)! / out : 1 / kids.length));
+			}
 		}
 		lineWeight.set(n, v);
 		return grew;
 	};
-	thickenToHoldCards(root);
+	thickenToLeast(root);
 	/* A branch point carries only what it leads to, so it is as thick as
 	   their arrows together, no thicker: its strands fill it edge to edge. */
 	const settleBranchPoints = (n: Node): number => {
@@ -108,6 +110,13 @@ export const measureNodeSizes = ({ root, nodes, byId, parent, childrenOf, produc
 	const lineWidth = (n: Node) => STRAND * lineWeight.get(n)!;
 	// A cheese type's pill over its table twice as thick, a header to it; its photograph as tall, its label as big.
 	const thickness = (n: Node) => (n.table ? 2 : 1);
+	/* Its scale, grown where it must be to be at least as tall as all the
+	   arrows out of it together and its two corners, so they all come out
+	   of its straight side. Not those in its panel, which have no arrows
+	   drawn. Its corners grow with it: NODE_H s t = out + 2 RADIUS s. */
+	const widthOut = (n: Node) => childrenOf(n).reduce((t, k) => t + (inPanel(k) ? 0 : lineWidth(k)), 0);
+	const scaleOf = (n: Node): number =>
+		n.hub ? ownScale(n) : Math.max(ownScale(n), widthOut(n) / (NODE_H * thickness(n) - 2 * RADIUS));
 	const pillHeight = (n: Node) => NODE_H * scaleOf(n) * thickness(n);
 	const photoSize = pillHeight;
 	return {
@@ -117,7 +126,8 @@ export const measureNodeSizes = ({ root, nodes, byId, parent, childrenOf, produc
 		arrowheadLength: (n) => headLength(lineWidth(n)),
 		cardChainFont,
 		// A circle half as wide again as a pill of its size is tall.
-		milkRadius: 1.5 * (NODE_H / 2) * scaleOf(root),
+		milkRadius: opts.milkRadius ?? 1.5 * (NODE_H / 2) * scaleOf(root),
+		allMilk,
 		photoSize,
 		pillHeight,
 		thickness,

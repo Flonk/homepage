@@ -26,16 +26,9 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "evaporate",
-				"solids": {
-					"min": 20,
-					"max": 60
-				}
-			},
-			{
 				"type": "custom",
 				"name": "raise pH",
-				"note": "To about 6.5–9.0, to help precipitation."
+				"note": "The permeate is brought to about pH 6.5–9.0, which helps the minerals fall out as a solid."
 			},
 			{
 				"type": "heat",

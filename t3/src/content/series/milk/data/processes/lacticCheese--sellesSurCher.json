@@ -19,34 +19,12 @@
 		"steps": [
 			{
 				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic"
-				],
-				"adds": {
-					"microbes": [],
-					"by": [
-						"starter"
-					]
-				},
-				"temperature": {
-					"min": 20,
-					"max": 20,
-					"about": true
-				},
-				"seconds": {
-					"min": 86400,
-					"max": 86400
-				},
-				"note": "Warmed to about 20 °C, a little rennet is added and the milk rests 24 h."
-			},
-			{
-				"type": "ferment",
 				"does": "ripen",
 				"seconds": {
 					"min": 864000,
 					"max": 2592000
-				}
+				},
+				"minor": true
 			}
 		],
 		"text": "Soured with a ferment, warmed, a little rennet added.",

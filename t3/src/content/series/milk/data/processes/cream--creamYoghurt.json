@@ -11,8 +11,7 @@
 				"type": "standardise",
 				"fat": {
 					"min": 10
-				},
-				"note": "Cream is added to the milk to bring it to at least 10 % fat."
+				}
 			},
 			{
 				"type": "homogenise",
@@ -23,7 +22,8 @@
 				"temperature": {
 					"min": 65,
 					"max": 70
-				}
+				},
+				"of": "cream"
 			},
 			{
 				"type": "heat",
@@ -78,7 +78,7 @@
 					"min": 4.2,
 					"max": 4.5
 				},
-				"note": "Stirred yoghurt takes 4–5 h; set yoghurt about 3–3.5 h in its pots."
+				"note": "The yoghurt is incubated, which takes 4–5 h when stirred and about 3–3.5 h when set in its pots."
 			},
 			{
 				"type": "heat",
@@ -87,7 +87,7 @@
 					"min": 15,
 					"max": 22
 				},
-				"note": "Stirred yoghurt is cooled at this pH and is not heated again afterwards."
+				"note": "Stirred yoghurt is chilled at this pH, and is not heated again afterwards."
 			}
 		],
 		"sources": {

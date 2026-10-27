@@ -25,16 +25,17 @@
 					"max": 150,
 					"about": true
 				},
-				"note": "UHT, for a few seconds."
+				"note": "The cream is heated to ultra-high temperature for a few seconds, which gives it a longer shelf life."
 			},
 			{
 				"type": "heat",
-				"does": "cool"
+				"does": "cool",
+				"minor": true
 			},
 			{
 				"type": "add",
 				"what": "stabiliser",
-				"note": "So the cream does not curdle on the acids and tannins of coffee."
+				"note": "The cream is kept from curdling on the acids and tannins of coffee."
 			}
 		],
 		"sources": {

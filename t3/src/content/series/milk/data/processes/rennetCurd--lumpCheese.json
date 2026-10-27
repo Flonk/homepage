@@ -6,7 +6,7 @@
 		"lumpCheese"
 	],
 	"step": "drain, ripen",
-	"text": "Sheep milk is set with rennet and the curd is drained and left to mature, which gives lump cheese (hrudkový syr), the raw material of bryndza.",
+	"text": "The curd is drained and left to mature, which gives lump cheese (hrudkový syr), the raw material of bryndza.",
 	"sources": {
 		"links": [
 			{
@@ -23,18 +23,6 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "coagulate",
-				"by": "rennet",
-				"temperature": {
-					"min": 29,
-					"max": 31
-				},
-				"seconds": {
-					"min": 1800,
-					"max": 1800
-				}
-			},
-			{
 				"type": "drain"
 			},
 			{
@@ -45,10 +33,10 @@
 					"max": 20,
 					"about": true
 				},
-				"note": "Matured in a cheese bath."
+				"note": "The cheese is matured in a cheese bath."
 			}
 		],
-		"text": "Sheep milk (or mixed with cow milk) is set with rennet at 29–31 °C for 30 min; the curd is drained and matured in a cheese bath.",
+		"text": "The curd is drained and matured in a cheese bath.",
 		"sources": {
 			"links": [
 				{

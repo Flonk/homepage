@@ -30,11 +30,9 @@
 				}
 			},
 			{
-				"type": "acidify",
-				"note": "So the protein precipitates.",
-				"seconds": {
-					"max": 60
-				}
+				"type": "coagulate",
+				"by": "acid",
+				"of": "whey"
 			},
 			{
 				"type": "heat",
@@ -43,12 +41,13 @@
 					"min": 40,
 					"max": 40,
 					"about": true
-				}
+				},
+				"minor": true
 			},
 			{
 				"type": "separate",
 				"off": "solids",
-				"note": "A solids-ejecting clarifier discharges about every 3 min."
+				"note": "The flakes are caught in a clarifier, which empties itself about every 3 min."
 			}
 		],
 		"sources": {

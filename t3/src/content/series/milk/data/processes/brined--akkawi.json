@@ -19,11 +19,8 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "pasteurise"
-			},
-			{
 				"type": "press",
-				"note": "Into rectangular blocks."
+				"note": "The curd is formed into rectangular blocks."
 			},
 			{
 				"type": "salt",
@@ -32,7 +29,8 @@
 					"min": 10,
 					"max": 12
 				},
-				"note": "In a pasteurised brine."
+				"note": "The cheese is put into a pasteurised brine.",
+				"minor": true
 			}
 		],
 		"sources": {

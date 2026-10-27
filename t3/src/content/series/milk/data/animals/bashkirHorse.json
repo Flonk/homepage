@@ -1,0 +1,91 @@
+{
+	"label": "Bashkir horse",
+	"aka": ["Bashkir Horse", "Bashkir Curly"],
+	"names": {
+		"links": [{"name": "Wikipedia: Bashkir horse", "url": "https://en.wikipedia.org/wiki/Bashkir_horse"}],
+		"text": "Alternate names as given in the research input. The fetched article text did not list them, so the page does not confirm them; 'Bashkir horse' is the article title."
+	},
+	"kind": "breed",
+	"parent": "horse",
+	"about": {
+		"text": "A horse of Bashkortostan in Russia, bred mainly there with the main breeding centre in Ufa. Its mares are good milk producers, and most of the milk becomes kumis, a national activity of the Bashkir people.",
+		"sources": {
+			"links": [{"name": "Wikipedia: Bashkir horse", "url": "https://en.wikipedia.org/wiki/Bashkir_horse"}],
+			"text": "Article text: mainly raised in Bashkortostan, main breeding centre in Ufa; most of the milk becomes kumis, 'a national activity of the Bashkiri people'."
+		}
+	},
+	"origin": {
+		"regions": ["RU"],
+		"place": "Bashkortostan, Russia",
+		"sources": {
+			"links": [{"name": "Wikipedia: Bashkir horse", "url": "https://en.wikipedia.org/wiki/Bashkir_horse"}],
+			"text": "Article text: 'The origins of the Bashkir horse are not known.' Breeding centres were established in 1845. No formation year range is given, so none is recorded."
+		}
+	},
+	"head": [
+		{
+			"count": 94470,
+			"year": 2003,
+			"where": "RU",
+			"sources": {
+				"links": [{"name": "Wikipedia: Bashkir horse", "url": "https://en.wikipedia.org/wiki/Bashkir_horse"}],
+				"text": "Article text: '2003: 94,470 horses reported.' The article does not say whether this is the breed alone; recorded as the breed's population as the article gives it."
+			}
+		},
+		{
+			"count": 137000,
+			"year": 2011,
+			"where": "RU",
+			"sources": {
+				"links": [{"name": "Wikipedia: Bashkir horse", "url": "https://en.wikipedia.org/wiki/Bashkir_horse"}],
+				"text": "Article text: 'Early 2011: almost 137,000.' The article's wording is approximate; 137,000 is the rounded figure. Same caveat on whether it is the breed alone."
+			}
+		}
+	],
+	"yield": {
+		"perYear": {"min": 1500, "max": 2100},
+		"lactationDays": {"min": 240, "max": 240},
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Bashkir horse", "url": "https://en.wikipedia.org/wiki/Bashkir_horse"},
+				{"name": "FAO breed description (Bashkir), as quoted in search results", "url": "https://www.fao.org/docrep/pdf/009/ah759e/ah759e28.pdf"}
+			],
+			"text": "Wikipedia gives an average of 1500 kg per year, and in another passage 2100 kg over a lactation of 240 days; the best mares reach 2700 kg. The FAO breed description (seen only as a WebSearch snippet, not fetched in full) gives an average of 1500 kg of marketable milk and 2700 kg for the best mares over 7 to 8 months of lactation. The two sources differ, so the range runs from 1500 to 2100 kg. Year and place of recording are not given. The best-mare figure of 2700 kg is kept in the text, not the range."
+		}
+	},
+	"purposes": {
+		"purposes": ["dairy"],
+		"sources": {
+			"links": [{"name": "Wikipedia: Bashkir horse", "url": "https://en.wikipedia.org/wiki/Bashkir_horse"}],
+			"text": "Article text: mares are abundant milk producers and most of the milk becomes kumis. The article names no other use."
+		}
+	},
+	"risk": {
+		"status": "unknown",
+		"year": 2022,
+		"sources": {
+			"links": [{"name": "Wikipedia: Bashkir horse", "url": "https://en.wikipedia.org/wiki/Bashkir_horse"}],
+			"text": "Article text: 'DAD-IS (2022): unknown'. It also gives FAO (2007) as 'not at risk' with a figure of 98. Taken as the article reports it; not checked against DAD-IS itself."
+		}
+	},
+	"facts": [
+		{
+			"k": "Breeding history",
+			"v": "Its economic value was recognised in the 19th century, and breeding centres were established in 1845.",
+			"sources": {
+				"links": [{"name": "Wikipedia: Bashkir horse", "url": "https://en.wikipedia.org/wiki/Bashkir_horse"}],
+				"text": "Article text: economic value recognised in the 19th century; breeding centres established in 1845."
+			}
+		},
+		{
+			"k": "Population rank",
+			"v": "Bashkortostan ranks third among Russian federal subjects for horse population, behind Altai Krai and the Sakha Republic.",
+			"sources": {
+				"links": [{"name": "Wikipedia: Bashkir horse", "url": "https://en.wikipedia.org/wiki/Bashkir_horse"}],
+				"text": "Article text ranks Bashkortostan third for horse population among Russian federal subjects. No year given."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "Milk composition, the lactation curve and the place and year of the yield figures were not found. The FAO description was seen only in a search snippet; its full text could not be read because the PDF did not come back as text. Breed-only population is not confirmed, since the article's figures may cover all horses in the region."
+}

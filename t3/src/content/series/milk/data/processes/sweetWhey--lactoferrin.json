@@ -24,13 +24,13 @@
 		"steps": [
 			{
 				"type": "custom",
-				"name": "ion exchange",
-				"note": "On a strong cation exchanger (S Sepharose Fast Flow, Mono S in the patent)."
+				"name": "catch",
+				"note": "The whey is run over a resin that holds the lactoferrin."
 			},
 			{
 				"type": "custom",
-				"name": "elute",
-				"note": "With NaCl, stepwise or gradient; bovine lactoferrin comes off at about 0.75 M (patent: loaded at 0.4 M, gradient 0.4–1.0 M)."
+				"name": "release",
+				"note": "Salt, sodium chloride, is run through, and cow's lactoferrin comes off at about 0.75 M, a strength of salt."
 			}
 		],
 		"sources": {

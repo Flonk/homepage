@@ -20,51 +20,14 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "heat",
-				"does": "cool",
-				"temperature": {
-					"max": 10
-				}
-			},
-			{
-				"type": "coagulate",
-				"by": "rennet",
-				"temperature": {
-					"min": 29,
-					"max": 30
-				},
-				"seconds": {
-					"min": 1800,
-					"max": 1800,
-					"about": true
-				}
-			},
-			{
-				"type": "cut",
-				"how": "cut"
-			},
-			{
-				"type": "heat",
-				"does": "cook",
-				"note": "By adding hot water."
-			},
-			{
 				"type": "add",
 				"what": "cumin",
-				"note": "About 75 g per 100 L of milk, plain curd kept for the white bottoms."
-			},
-			{
-				"type": "press",
-				"note": "In two stages."
+				"note": "Cumin is worked into the curd at about 75 g per 100 L of milk, and plain curd is kept for the flat faces, which stay white."
 			},
 			{
 				"type": "salt",
 				"how": "brine",
-				"seconds": {
-					"min": 432000,
-					"max": 518400
-				},
-				"note": "In a brine of 20 °Bé."
+				"note": "The cheese is put into a brine of 20 °Bé, a scale of brine strength, and left in it for 5 to 6 days."
 			},
 			{
 				"type": "ferment",

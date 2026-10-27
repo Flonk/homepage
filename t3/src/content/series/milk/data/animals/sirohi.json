@@ -1,0 +1,132 @@
+{
+	"label": "Sirohi",
+	"aka": [
+		"Ajmera"
+	],
+	"names": {
+		"links": [
+			{
+				"name": "Sirohi goat (Wikipedia)",
+				"url": "https://en.wikipedia.org/wiki/Sirohi_goat"
+			}
+		],
+		"text": "Taken from the livestock section of the Wikipedia article, read on WebFetch: it is also known as \"Sirohi/Ajmera goats\"."
+	},
+	"kind": "breed",
+	"parent": "goat",
+	"about": {
+		"text": "A dual-purpose goat from the Sirohi District of southern Rajasthan in India, with its range reaching into Palanpur District of Gujarat. It is reared for both milk and meat. A good doe gives about 0.75 to 1 kg of milk a day.",
+		"sources": {
+			"links": [
+				{
+					"name": "Sirohi goat (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Sirohi_goat"
+				}
+			],
+			"text": "Wikipedia article, read on WebFetch: the origin in Sirohi District, the Gujarat range, \"dual-purpose animals, being reared for both milk and meat\", and \"0.75–1 kg/day for a good does\". The daily figure has no year."
+		}
+	},
+	"origin": {
+		"regions": [
+			"IN"
+		],
+		"place": "Sirohi District of southern Rajasthan, India, with its range extending into Palanpur District of Gujarat.",
+		"sources": {
+			"links": [
+				{
+					"name": "Sirohi goat (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Sirohi_goat"
+				}
+			],
+			"text": "Wikipedia article, read on WebFetch: \"believed to have originated in the Sirohi District of southern Rajasthan\" and the Palanpur range. No formation dates are given."
+		}
+	},
+	"head": [
+		{
+			"count": 1820000,
+			"year": 2013,
+			"where": "IN",
+			"sources": {
+				"links": [
+					{
+						"name": "Sirohi goat (Wikipedia)",
+						"url": "https://en.wikipedia.org/wiki/Sirohi_goat"
+					}
+				],
+				"text": "Wikipedia article, read on WebFetch, citing DAD-IS: \"The population reported to DAD-IS for 2013 was 1.82–3.08 million.\" The lower end of that range is used, so the count is a floor."
+			}
+		}
+	],
+	"yield": {
+		"perLactation": {
+			"min": 71,
+			"max": 128
+		},
+		"lactationDays": {
+			"min": 167,
+			"max": 175
+		},
+		"where": "IN",
+		"sources": {
+			"links": [
+				{
+					"name": "FAO: Sheep and goat breeds of India, Sirohi (section 2.3.1)",
+					"url": "http://www.fao.org/4/X6532E/x6532e03.htm"
+				},
+				{
+					"name": "Effect of non-genetic factors on milk production of rural goats (ICAR)",
+					"url": "https://epubs.icar.org.in/index.php/IJAnS/article/view/34906"
+				}
+			],
+			"text": "The minimum (71 kg) and the length of 175 days come from the FAO survey page, read on WebFetch: \"Average lactation yield: 71.18 ± 1.55 kg\" and \"length: 174.8 ± 2.75 days\". The page's data largely come from the 1972 census and studies of the 1960s to late 1970s. The maximum (128 kg, 167 days) is the raw mean lactation yield of field-recorded goats in Bhilwara district, Rajasthan, from a 1997 study in the ICAR search result; the abstract was read in search text, not on an opened page. It is an unweighted field figure. No year is given for the range as a whole."
+		}
+	},
+	"purposes": {
+		"purposes": [
+			"dual-purpose"
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Sirohi goat (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Sirohi_goat"
+				}
+			],
+			"text": "Wikipedia article, read on WebFetch: \"Sirohi/Ajmera goats are dual-purpose animals, being reared for both milk and meat.\""
+		}
+	},
+	"risk": {
+		"status": "not at risk",
+		"year": 2021,
+		"sources": {
+			"links": [
+				{
+					"name": "Sirohi goat (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Sirohi_goat"
+				}
+			],
+			"text": "Wikipedia article infobox, read on WebFetch: \"not at risk\" for DAD-IS (2021), and \"not at risk\" for FAO (2007)."
+		}
+	},
+	"facts": [
+		{
+			"k": "Breed census",
+			"v": "A 1972 breed census in the Sirohi area found a total goat population of 295,000, of which more than 200,000 were breeding females.",
+			"sources": {
+				"links": [
+					{
+						"name": "Sirohi goat (Wikipedia)",
+						"url": "https://en.wikipedia.org/wiki/Sirohi_goat"
+					},
+					{
+						"name": "FAO: Sheep and goat breeds of India, Sirohi (section 2.3.1)",
+						"url": "http://www.fao.org/4/X6532E/x6532e03.htm"
+					}
+				],
+				"text": "Wikipedia article, read on WebFetch: \"In 1972 a breed census found a total population of 295 000, of which more than 200 000 were breeding females.\" The FAO page, also read on WebFetch, gives the same 0.295 m figure for the \"total goat population in the Sirohi distribution area\", so it is a count for the area, not a count of the breed alone."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "No composition figures; no yield per year; the 128 kg field figure is from a search abstract and not an opened page, and the FAO and field figures are from different populations and periods, so the range is wide; the 2013 DAD-IS count is a range and only its lower end is used; no formation dates."
+}

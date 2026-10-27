@@ -1,0 +1,76 @@
+{
+	"label": "Deoni",
+	"aka": ["Dongari", "Dongarpatti", "Devni", "Devani", "Surti"],
+	"names": {
+		"links": [
+			{"name": "Wikipedia: Deoni cattle", "url": "https://en.wikipedia.org/wiki/Deoni_cattle"}
+		],
+		"text": "Names as listed on the Wikipedia page, which cites Mason's (2016) for Devni, Devani and Surti."
+	},
+	"kind": "breed",
+	"parent": "zebuCattle",
+	"about": {
+		"text": "A horned dual-purpose breed of the Marathwada region of Maharashtra, India, named after the Deoni taluk of Latur district. It is found mainly in Latur, Nanded, Osmanabad and Parbhani districts, and also in Bidar district of Karnataka. It is used for milk and for draught work.",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Deoni cattle", "url": "https://en.wikipedia.org/wiki/Deoni_cattle"}
+			],
+			"text": "Summarised from the Wikipedia page, which cites Mason's (2016), Felius (1995) and FAO sources."
+		}
+	},
+	"origin": {
+		"regions": ["IN"],
+		"place": "Deoni taluk, Latur district, Maharashtra, India",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Deoni cattle", "url": "https://en.wikipedia.org/wiki/Deoni_cattle"}
+			],
+			"text": "Origin as stated on the Wikipedia page, which names the breed after the Deoni taluk. No year of formation or first record is given there."
+		}
+	},
+	"yield": {
+		"perLactation": {"min": 820, "max": 868},
+		"lactationDays": {"min": 195, "max": 195},
+		"where": "IN",
+		"year": 2013,
+		"sources": {
+			"links": [
+				{"name": "Basak & Das (2018), J. Anim. Health Prod. 6(1): 1-4", "url": "https://media.researcherslinks.com/nexus_uploads/htmlfiles/JAHP_6_1_1-4.html"}
+			],
+			"text": "Fetched paper. The 820 kg figure is the mean of 710 lactation records from 274 Deoni cows at NDRI Southern campus, Bangalore (not Maharashtra), calved 2002 to 2013 (819.98 kg, rounded), with a lactation length of 195.23 days. The 868 kg figure is the Singh et al. (2002) value quoted in that paper's introduction (868.24 kg per lactation, rounded). Both figures are from research herds, not a breed-wide average."
+		}
+	},
+	"risk": {
+		"status": "not at risk",
+		"year": 2007,
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Deoni cattle", "url": "https://en.wikipedia.org/wiki/Deoni_cattle"}
+			],
+			"text": "Listed as not at risk in the FAO (2007) assessment, citing Rischkowsky & Pilling (2007), p. 58, as stated on the Wikipedia page."
+		}
+	},
+	"purposes": {
+		"purposes": ["dual-purpose", "draught"],
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Deoni cattle", "url": "https://en.wikipedia.org/wiki/Deoni_cattle"}
+			],
+			"text": "Listed as dual-purpose, for draught work and milk, on the Wikipedia page."
+		}
+	},
+	"facts": [
+		{
+			"k": "Size",
+			"v": "Adult males weigh about 590 kg and stand 135 to 140 cm; females weigh about 295 kg and stand about 122 cm.",
+			"sources": {
+				"links": [
+					{"name": "Wikipedia: Deoni cattle", "url": "https://en.wikipedia.org/wiki/Deoni_cattle"}
+				],
+				"text": "From the Wikipedia page, citing Mason's World Encyclopedia of Livestock Breeds and Breeding (2016), p. 167."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "Looked for a Maharashtra-based milk yield and a population figure with year. Web search gave a government-farm figure (about 859 litres, Singhal 1980) and a 1996-1999 village survey total (about 118,945), but neither was fetched from its source, so neither is recorded. The DAD-IS breed data sheet could not be retrieved. No year of formation, milk composition, or breed-wide population was found."
+}

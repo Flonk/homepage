@@ -20,63 +20,22 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "coagulate",
-				"by": "rennet",
-				"temperature": {
-					"min": 36,
-					"max": 36
-				},
-				"seconds": {
-					"min": 2700,
-					"max": 2700,
-					"about": true
-				}
-			},
-			{
-				"type": "cut",
-				"how": "cut"
-			},
-			{
-				"type": "heat",
-				"does": "cook",
-				"temperature": {
-					"min": 38,
-					"max": 40
-				}
-			},
-			{
-				"type": "drain"
-			},
-			{
-				"type": "cut",
-				"how": "grind"
-			},
-			{
-				"type": "ferment",
-				"does": "incubate",
-				"pH": {
-					"min": 5.2,
-					"max": 5.2,
-					"about": true
-				},
-				"note": "The curd is left to reach pH about 5.2."
-			},
-			{
 				"type": "heat",
 				"does": "cook",
 				"temperature": {
 					"min": 70,
 					"max": 80
 				},
-				"note": "Sliced, dipped in hot water and kneaded until it stretches to a 1 m thread."
+				"note": "The curd is sliced and kneaded in hot water until it stretches to a 1 m thread."
 			},
 			{
-				"type": "salt",
+				"type": "custom",
+				"name": "rest",
 				"seconds": {
 					"min": 172800,
 					"max": 259200
 				},
-				"note": "Kept in moulds."
+				"note": "The cheese is kept in its moulds."
 			},
 			{
 				"type": "ferment",

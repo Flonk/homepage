@@ -24,44 +24,15 @@
 		"steps": [
 			{
 				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic"
-				],
-				"adds": {
-					"microbes": [],
-					"by": [
-						"starter"
-					]
-				},
-				"temperature": {
-					"min": 22,
-					"max": 32
-				},
-				"seconds": {
-					"min": 54000,
-					"max": 72000
-				},
-				"note": "Set mostly by acid, with a small dose of liquid rennet."
-			},
-			{
-				"type": "drain",
-				"by": "mould",
-				"seconds": {
-					"min": 43200,
-					"max": 86400
-				}
-			},
-			{
-				"type": "ferment",
 				"does": "ripen",
 				"seconds": {
 					"min": 432000,
 					"max": 15552000
-				}
+				},
+				"minor": true
 			}
 		],
-		"text": "Lactic starter is added when the milk is pasteurised; the set is mostly by acid. Ripening is 5 days (tierno) to 6 months (curado).",
+		"text": "Ripening is 5 days (tierno) to 6 months (curado).",
 		"sources": {
 			"links": [
 				{

@@ -28,11 +28,12 @@
 		"steps": [
 			{
 				"type": "drain",
-				"note": "Under its own weight, unpressed."
+				"note": "The curd is left under its own weight, not pressed."
 			},
 			{
 				"type": "ferment",
-				"does": "ripen"
+				"does": "ripen",
+				"minor": true
 			},
 			{
 				"type": "ferment",
@@ -68,7 +69,7 @@
 					"max": 90,
 					"about": true
 				},
-				"note": "Smeared with a salt solution, 5 % in the Codex example, and other types differ."
+				"note": "The rind is smeared with a salt solution, 5 % in the Codex example, which keeps it moist; other types differ."
 			},
 			{
 				"type": "ferment",

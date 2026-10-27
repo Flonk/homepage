@@ -16,7 +16,7 @@
 					"min": 600,
 					"max": 600
 				},
-				"note": "The milk is boiled for 10 minutes."
+				"note": "The milk is boiled."
 			},
 			{
 				"type": "heat",
@@ -24,21 +24,18 @@
 				"temperature": {
 					"min": 75,
 					"max": 80
-				}
+				},
+				"minor": true
 			},
 			{
-				"type": "acidify",
-				"with": "lemon juice",
-				"temperature": {
-					"min": 75,
-					"max": 80
-				},
-				"note": "Or citric or lactic acid, calcium lactate, or aged acid whey from an earlier batch."
+				"type": "coagulate",
+				"by": "acid",
+				"with": "lemon juice"
 			},
 			{
 				"type": "drain",
 				"by": "cloth",
-				"note": "The whey floats to the top as the curd forms and is strained off through muslin; longer draining gives firmer chhena."
+				"note": "The whey rises to the top as the curd forms and is strained off through muslin; longer draining gives firmer chhena."
 			}
 		],
 		"sources": {

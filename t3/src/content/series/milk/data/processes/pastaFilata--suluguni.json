@@ -18,45 +18,18 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic"
-				],
-				"adds": {
-					"microbes": [],
-					"by": [
-						"starter"
-					]
-				},
-				"note": "Set with starter and rennet."
-			},
-			{
-				"type": "custom",
-				"name": "cheddar",
-				"note": "In the whey."
-			},
-			{
-				"type": "cut",
-				"how": "cut"
-			},
-			{
 				"type": "heat",
 				"does": "cook",
 				"temperature": {
 					"min": 60,
 					"max": 80
 				},
-				"note": "In a rotating mixer, then kneaded and shaped."
+				"note": "The curd is worked in a rotating mixer, then kneaded and shaped."
 			},
 			{
 				"type": "salt",
 				"how": "brine",
-				"seconds": {
-					"min": 21600,
-					"max": 172800
-				},
-				"note": "In cold, mildly acid brine."
+				"note": "The cheese is put into cold, mildly acid brine."
 			}
 		],
 		"sources": {

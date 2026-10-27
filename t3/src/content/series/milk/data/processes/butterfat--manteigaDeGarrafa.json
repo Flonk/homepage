@@ -20,23 +20,9 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "evaporate",
-				"temperature": {
-					"min": 110,
-					"max": 120
-				},
-				"note": "Until bubbling stops and the non-fat solids settle as coffee-brown dregs (borra)."
-			},
-			{
 				"type": "custom",
-				"name": "decant"
-			},
-			{
-				"type": "filter"
-			},
-			{
-				"type": "custom",
-				"name": "bottle"
+				"name": "bottle",
+				"minor": true
 			}
 		],
 		"sources": {

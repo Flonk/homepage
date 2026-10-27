@@ -23,11 +23,12 @@
 					"min": 45,
 					"max": 50
 				},
-				"note": "A high-shear mixer turns the fat into an emulsion in the water and powder base."
+				"note": "The fat is blended into the water and powder base by a high-shear mixer."
 			},
 			{
 				"type": "homogenise",
-				"note": "Where the mixing leaves the emulsion fine enough, homogenising is left to the heat treatment that follows."
+				"minor": true,
+				"of": "mix"
 			},
 			{
 				"type": "pasteurise",
@@ -36,7 +37,8 @@
 				},
 				"seconds": {
 					"min": 15
-				}
+				},
+				"note": "The milk undergoes heat treatment to kill harmful bacteria like Listeria, Salmonella and E. coli."
 			},
 			{
 				"type": "heat",

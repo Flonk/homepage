@@ -30,70 +30,10 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic"
-				],
-				"adds": {
-					"microbes": [
-						{
-							"name": "Lactococcus lactis",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							]
-						},
-						{
-							"name": "Lactobacillus paracasei",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							]
-						},
-						{
-							"name": "Levilactobacillus brevis",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							],
-							"formerly": [
-								"Lactobacillus brevis"
-							]
-						},
-						{
-							"name": "Enterococcus faecium",
-							"kind": "bacterium"
-						},
-						{
-							"name": "Lactiplantibacillus plantarum",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							],
-							"formerly": [
-								"Lactobacillus plantarum"
-							]
-						},
-						{
-							"name": "Streptococcus infantarius",
-							"kind": "bacterium"
-						}
-					],
-					"by": [
-						"wild"
-					]
-				},
-				"seconds": {
-					"min": 86400,
-					"about": true
-				}
-			},
-			{
 				"type": "salt"
 			}
 		],
-		"text": "Raw cow milk soured by its native flora, with salt added. Yeasts rise early and lactic acid bacteria dominate by about 24 h; in a Cauca study L. paracasei and L. lactis at 30:70 or 40:60 gave least syneresis.",
+		"text": "Salt is added to the soured milk.",
 		"sources": {
 			"links": [
 				{

@@ -23,20 +23,8 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "filter"
-			},
-			{
-				"type": "coagulate",
-				"temperature": {
-					"min": 30,
-					"max": 30
-				},
-				"seconds": {
-					"min": 2700,
-					"max": 2700
-				},
-				"note": "Dried cardoon flower (Cynara cardunculus), about 0.5 g per kg of milk, with salt added to the milk.",
-				"by": "plant"
+				"type": "filter",
+				"minor": true
 			},
 			{
 				"type": "drain"
@@ -45,7 +33,8 @@
 				"type": "press"
 			},
 			{
-				"type": "dry"
+				"type": "dry",
+				"minor": true
 			},
 			{
 				"type": "ferment",
@@ -65,7 +54,7 @@
 				}
 			}
 		],
-		"text": "Sheep milk set with dried cardoon flower at 30 °C for 45 min; one recipe page gives 30 d of ripening.",
+		"text": "The milk is sheep's; one recipe page gives 30 d of ripening.",
 		"sources": {
 			"links": [
 				{

@@ -24,52 +24,8 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic",
-					"smear"
-				],
-				"adds": {
-					"microbes": [
-						{
-							"name": "lactic acid bacteria",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							]
-						}
-					],
-					"by": [
-						"starter"
-					]
-				}
-			},
-			{
-				"type": "coagulate",
-				"by": "rennet"
-			},
-			{
 				"type": "mould",
-				"note": "As a wheel or loaf, the Holsteiner loaf or box 3.5–5.0 kg."
-			},
-			{
-				"type": "ferment",
-				"does": "smear",
-				"adds": {
-					"microbes": [
-						{
-							"name": "Brevibacterium linens",
-							"kind": "bacterium",
-							"does": [
-								"rind"
-							]
-						}
-					],
-					"by": [
-						"starter"
-					]
-				}
+				"note": "The cheese is moulded as a wheel or loaf, the Holsteiner loaf or box at 3.5–5.0 kg."
 			},
 			{
 				"type": "ferment",
@@ -81,7 +37,7 @@
 				"seconds": {
 					"min": 1814400
 				},
-				"note": "The Codex asks for 3 wk, the Holsteiner for at least 5 wk."
+				"note": "The cheese is ripened for 3 weeks to the international standard, and for at least 5 for the Holsteiner one."
 			}
 		],
 		"sources": {

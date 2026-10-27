@@ -1,0 +1,133 @@
+/* A story, grown out of the T3 bubble on a pill: whatever the deck's
+   ground, on the page's own, dark and grained, in its book serif, bright;
+   edged as the page's panels are. Placed and grown from its bubble by the
+   script (see draw/story.ts). */
+.milk-story {
+	position: absolute;
+	z-index: 4;
+	box-sizing: border-box;
+	width: min(24rem, calc(100% - 1.5rem));
+	max-height: calc(100% - 1.5rem);
+	overflow: auto;
+	padding: 1rem 1.25rem 0.75rem;
+	color: var(--ink-100);
+	background: url('/assets/grain.png') 0 0 / 128px 128px, var(--ground-100);
+	border: 1px solid var(--edge-100);
+	border-radius: var(--radius-large);
+	box-shadow: 0 0.75rem 2rem rgb(0 0 0 / 0.35);
+	font-family: var(--font-prose);
+	font-size: 1rem;
+	line-height: 1.55;
+	text-align: left;
+	/* Shrunk into its bubble until opened, and gone once it is. */
+	scale: 0.1;
+	opacity: 0;
+	visibility: hidden;
+	transition:
+		scale 0.2s ease,
+		opacity 0.15s ease,
+		visibility 0s 0.2s;
+}
+.milk-story.is-open {
+	scale: 1;
+	opacity: 1;
+	visibility: visible;
+	transition:
+		scale 0.22s cubic-bezier(0.2, 0.9, 0.3, 1.15),
+		opacity 0.12s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+	.milk-story,
+	.milk-story.is-open {
+		transition: none;
+	}
+}
+.milk-story h3 {
+	margin: 0 2rem 0.5rem 0;
+	color: var(--ink-accent);
+	font-family: var(--font-mono);
+	font-size: 0.75rem;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+.milk-story h3::before {
+	content: none;
+}
+.milk-story p {
+	margin: 0 0 0.75rem;
+}
+/* A picture in a story, as wide as it, with its credit small under it. */
+.milk-story-picture {
+	margin: 0 0 0.75rem;
+}
+.milk-story-picture img {
+	display: block;
+	box-sizing: border-box;
+	width: 100%;
+	height: auto;
+	/* Not the frame the site puts round a picture in a post. */
+	padding: 0;
+	border: 0;
+	border-radius: var(--radius-medium);
+}
+.milk-story-picture figcaption {
+	margin-top: 0.3rem;
+	color: var(--ink-400);
+	font-family: var(--font-sans);
+	font-size: 0.75rem;
+}
+/* A video in a story, as wide as it, at its shape. */
+.milk-story-video {
+	margin: 0 0 0.75rem;
+	aspect-ratio: 16 / 9;
+	border-radius: var(--radius-medium);
+	overflow: hidden;
+	background: #000;
+}
+/* A phone's, upright: as tall as the pane lets it be, and as wide as that makes it, in the middle. */
+.milk-story-video.is-portrait {
+	aspect-ratio: 9 / 16;
+	height: min(26rem, 55dvh);
+	margin-inline: auto;
+}
+.milk-story-video iframe {
+	display: block;
+	width: 100%;
+	height: 100%;
+	border: 0;
+}
+.milk-story .milk-story-source {
+	margin: 0.25rem 0 0;
+	color: var(--ink-400);
+	font-family: var(--font-sans);
+	font-size: 0.8rem;
+}
+.milk-story a {
+	color: var(--ink-link);
+}
+.milk-story-close {
+	position: absolute;
+	top: 0.5rem;
+	right: 0.5rem;
+	width: 1.75rem;
+	height: 1.75rem;
+	padding: 0.35rem;
+	color: var(--ink-400);
+	background: none;
+	border: 0;
+	border-radius: var(--radius-medium);
+	cursor: pointer;
+}
+.milk-story-close:hover {
+	color: var(--ink-100);
+}
+.milk-story-close svg {
+	display: block;
+	width: 100%;
+	height: 100%;
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 1.6;
+	stroke-linecap: round;
+}

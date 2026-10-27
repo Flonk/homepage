@@ -6,7 +6,7 @@
 		"cheddar"
 	],
 	"variant": true,
-	"text": "Turning and stacking the curd slabs by hand (cheddaring) comes before milling, salting and mechanical pressing. At least nine months of natural maturing gives a nutty, full, rounded flavour with a hint of sharpness.",
+	"text": "At least nine months of natural maturing gives a nutty, full, rounded flavour with a hint of sharpness.",
 	"sources": {
 		"links": [
 			{
@@ -19,54 +19,9 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic"
-				],
-				"adds": {
-					"microbes": [],
-					"by": [
-						"starter"
-					]
-				}
-			},
-			{
-				"type": "coagulate",
-				"by": "rennet"
-			},
-			{
-				"type": "cut",
-				"how": "cut"
-			},
-			{
-				"type": "heat",
-				"does": "cook",
-				"temperature": {
-					"min": 39,
-					"max": 41,
-					"about": true
-				}
-			},
-			{
 				"type": "custom",
-				"name": "cheddar",
-				"note": "Slabs of curd turned and stacked."
-			},
-			{
-				"type": "cut",
-				"how": "mill"
-			},
-			{
-				"type": "salt",
-				"note": "Mixed into the milled curd."
-			},
-			{
-				"type": "press"
-			},
-			{
-				"type": "custom",
-				"name": "wrap"
+				"name": "wrap",
+				"minor": true
 			},
 			{
 				"type": "ferment",
@@ -74,7 +29,7 @@
 				"seconds": {
 					"min": 23328000
 				},
-				"note": "In the area where it is made."
+				"note": "The cheese ripens where it is made."
 			}
 		],
 		"sources": {

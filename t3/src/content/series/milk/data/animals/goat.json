@@ -1,0 +1,144 @@
+{
+	"label": "Goat",
+	"aka": [
+		"domestic goat"
+	],
+	"names": {
+		"links": [
+			{
+				"name": "Wikipedia: Goat",
+				"url": "https://en.wikipedia.org/wiki/Goat"
+			}
+		],
+		"text": "The article's lead gives 'The domestic goat' and the scientific name Capra hircus. 'Goat' is the item's given label."
+	},
+	"kind": "species",
+	"parent": "caprines",
+	"taxon": {
+		"name": "Capra hircus",
+		"rank": "species",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Goat",
+					"url": "https://en.wikipedia.org/wiki/Goat"
+				}
+			],
+			"text": "Scientific name Capra hircus; family Bovidae, subfamily Caprinae, genus Capra, as given in the article."
+		}
+	},
+	"about": {
+		"text": "The domestic goat is kept for milk, meat, specialty wool and goatskin. Goats supply about 2% of the world's total annual milk, according to Wikipedia.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Goat",
+					"url": "https://en.wikipedia.org/wiki/Goat"
+				}
+			],
+			"text": "Uses and the about-2% share taken from the article as fetched with WebFetch. The article gives no year for the 2% share."
+		}
+	},
+	"domestication": {
+		"where": "Zagros Mountains of Iran (Ganj Dareh and Tepe Abdul Hosein), within the Fertile Crescent",
+		"regions": [
+			"IR",
+			"TR"
+		],
+		"yearsAgo": {
+			"min": 9500,
+			"max": 11600
+		},
+		"text": "Goats were first domesticated in the central Zagros about 10,000 years ago, and a 2025 mitogenome study points to Turkey as a further centre, though sources disagree on the date and the number of centres.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Goat",
+					"url": "https://en.wikipedia.org/wiki/Goat"
+				},
+				{
+					"name": "EurekAlert: traces of goat domestication in the Zagros Mountains",
+					"url": "https://www.eurekalert.org/news-releases/504256"
+				}
+			],
+			"text": "Iran and about 10,000 years ago from Wikipedia (citing Zeder and Hesse 2000, Science, and Naderi et al. 2008, PNAS). The 9,500 to 11,600 years range is the Fertile Crescent window of 9600 to 7500 BCE from a WebSearch result text (the EurekAlert page's wording was found in search text, not opened). The Turkey region comes from a WebSearch result text citing a 2025 mitogenome study in Ecology and Evolution. The Zagros sites were dated to 8200 to 7600 BCE in search text, which is within the range."
+		}
+	},
+	"milk": {
+		"mt": 20.84,
+		"year": 2023,
+		"sources": {
+			"links": [
+				{
+					"name": "FAOSTAT: Crops and livestock products (QCL), world, 2023",
+					"url": "https://www.fao.org/faostat/en/#data/QCL"
+				}
+			],
+			"text": "Raw milk of goats, world, 2023: 20,841,481 t (FAO estimate, flag E), from FAOSTAT's bulk file of 23 December 2025."
+		}
+	},
+	"head": [
+		{
+			"count": 1162134809,
+			"year": 2023,
+			"where": "world",
+			"sources": {
+				"links": [
+					{
+						"name": "FAOSTAT: Crops and livestock products (QCL), world, 2023",
+						"url": "https://www.fao.org/faostat/en/#data/QCL"
+					}
+				],
+				"text": "Goats, stocks, world, 2023 (flag E), from FAOSTAT's bulk file."
+			}
+		},
+		{
+			"count": 215623406,
+			"year": 2023,
+			"where": "world",
+			"milked": true,
+			"sources": {
+				"links": [
+					{
+						"name": "FAOSTAT: Crops and livestock products (QCL), world, 2023",
+						"url": "https://www.fao.org/faostat/en/#data/QCL"
+					}
+				],
+				"text": "Raw milk of goats, milk animals, world, 2023 (flag E), from FAOSTAT's bulk file."
+			}
+		}
+	],
+	"purposes": {
+		"purposes": [
+			"dairy",
+			"meat",
+			"wool"
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Goat",
+					"url": "https://en.wikipedia.org/wiki/Goat"
+				}
+			],
+			"text": "Goats are raised for milk, specialty wool, meat and goatskin, in that order as the article lists them. The order given here follows the article's listing."
+		}
+	},
+	"facts": [
+		{
+			"k": "Top goat milk producer",
+			"v": "India, at 6.25 million tonnes in 2022.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Goat",
+						"url": "https://en.wikipedia.org/wiki/Goat"
+					}
+				],
+				"text": "From the fetched article, which names India (6.25 million metric tons) as the top producer in 2022. The article's citation for this figure was not visible in the fetched text."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "FAOSTAT could not be opened (HTTP 521 on each request), so the world milk figure (2023) and the population counts are from secondary pages, one from WebSearch text only. No world goat population figure for 2023 was found. The protein, lactose and solids composition ranges were not found in any opened source. The source for Wikipedia's 1.18 billion (2024) figure was not visible. No lactation or yield figures for the species were found. The milked share of the goat population was not found. Milk and head figures since replaced by FAOSTAT's own, from its bulk file."
+}

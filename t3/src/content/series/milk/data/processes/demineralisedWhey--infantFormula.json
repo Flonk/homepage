@@ -9,7 +9,7 @@
 		"steps": [
 			{
 				"type": "standardise",
-				"note": "Skimmed milk and cream are mixed to the fat and solids of the recipe, and vegetable oils are added."
+				"of": "mix"
 			},
 			{
 				"type": "pasteurise",
@@ -19,7 +19,8 @@
 				},
 				"seconds": {
 					"max": 60
-				}
+				},
+				"note": "The mix undergoes heat treatment to kill harmful bacteria like Listeria, Salmonella and E. coli."
 			},
 			{
 				"type": "evaporate",
@@ -28,7 +29,7 @@
 					"min": 30,
 					"max": 34
 				},
-				"note": "The base is concentrated in a falling-film evaporator."
+				"of": "mix"
 			},
 			{
 				"type": "homogenise",
@@ -39,12 +40,13 @@
 				"temperature": {
 					"min": 50,
 					"max": 50
-				}
+				},
+				"of": "mix"
 			},
 			{
 				"type": "add",
 				"what": "demineralised whey powder and whey proteins",
-				"note": "They are dissolved in a turbomixer to 40-45 % dry matter, then vitamins, calcium and trace minerals are stirred in."
+				"note": "The powders are dissolved in a mixer to 40–45 % solids, then the vitamins, calcium and trace minerals are stirred in."
 			},
 			{
 				"type": "pasteurise",
@@ -52,11 +54,11 @@
 					"min": 70,
 					"max": 80
 				},
-				"note": "The mix is heated again, with no holding time."
+				"note": "The mix undergoes heat treatment to kill harmful bacteria like Listeria, Salmonella and E. coli."
 			},
 			{
 				"type": "dry",
-				"note": "It is spray dried in a tower with hot air, and the powder is dry blended with glucose and packed under nitrogen."
+				"note": "The mix is sprayed into hot air in a tower, which dries it to a powder, and the dry powder is mixed with glucose."
 			}
 		],
 		"sources": {

@@ -22,23 +22,9 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "heat",
-				"does": "heat",
-				"temperature": {
-					"min": 40,
-					"max": 50,
-					"about": true
-				}
-			},
-			{
-				"type": "drain",
-				"by": "cloth",
-				"note": "Through straw, enset fibre or cloth."
-			},
-			{
 				"type": "add",
 				"what": "herbs",
-				"note": "Koseret, black cumin, korarima, rue and fenugreek, for flavour and keeping."
+				"note": "Five herbs, koseret, black cumin, korarima, rue and fenugreek, are added for flavour and keeping."
 			}
 		],
 		"sources": {

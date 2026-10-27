@@ -6,7 +6,7 @@
 		"tabletLactose"
 	],
 	"step": "spray-dry, agglomerate or dehydrate",
-	"text": "Lactose itself comes from whey permeate: evaporated to 60-65 % solids and crystallised on cooling (Wikipedia: Lactose). Grade details are from supplier literature (Meggle), which is low authority.",
+	"text": "Lactose itself comes from whey permeate, crystallised upstream. Grade details are from supplier literature (Meggle), which is low authority.",
 	"sources": {
 		"links": [
 			{
@@ -31,31 +31,18 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "evaporate",
-				"solids": {
-					"min": 60,
-					"max": 65
-				},
-				"note": "Whey permeate is concentrated by evaporation; this is how the lactose itself is made."
-			},
-			{
-				"type": "custom",
-				"name": "crystallise",
-				"note": "The lactose crystallises as the concentrate cools, which also purifies it."
-			},
-			{
 				"type": "cut",
 				"how": "mill",
-				"note": "For the spray-dried grade, the crystals of alpha-lactose monohydrate are milled finely."
+				"note": "The lactose crystals are milled finely, for the spray-dried grade."
 			},
 			{
 				"type": "add",
 				"what": "water",
-				"note": "The milled lactose is suspended in water."
+				"note": "The milled lactose is mixed into water."
 			},
 			{
 				"type": "dry",
-				"note": "The suspension is spray-dried to spherical grains of crystalline lactose in a matrix of amorphous lactose."
+				"note": "The mixture is spray-dried into round grains, crystals of lactose held in lactose that has not crystallised."
 			}
 		],
 		"sources": {

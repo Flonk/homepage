@@ -1,0 +1,74 @@
+{
+	"label": "Cattle",
+	"kind": "species",
+	"parent": "bovines",
+	"taxon": {
+		"name": "Bos taurus",
+		"rank": "species",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Cattle", "url": "https://en.wikipedia.org/wiki/Cattle"}
+			],
+			"text": "Wikipedia's Cattle article: cattle are Bos taurus, in the genus Bos, named by Linnaeus in 1758. It says the taxonomy is contested: some authorities split Bos taurus, Bos indicus (zebu) and Bos primigenius (aurochs), while others treat them as one species with subspecies B. t. taurus, B. t. indicus and B. t. primigenius."
+		}
+	},
+	"about": {
+		"text": "Cattle are the domestic form of the aurochs, kept worldwide for milk, meat, leather and draught work. Taurine cattle are most common in temperate regions and zebu in some tropical ones.",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Cattle", "url": "https://en.wikipedia.org/wiki/Cattle"},
+				{"name": "FAOSTAT: Crops and livestock products", "url": "https://www.fao.org/faostat/en/#data/QCL"}
+			],
+			"text": "Wikipedia: cattle are commonly raised for meat, dairy products and leather and pull carts and implements; taurine cattle are most common in temperate locations and zebu in some tropical regions. The claim that the most cattle milk comes from taurine dairy breeds is not made by the sources read and is not stated here as a figure; the milk total is FAOSTAT's 2023 world cattle figure only."
+		}
+	},
+	"domestication": {
+		"where": "Central Anatolia, the Levant and western Iran, from the wild aurochs (taurine line); a second domestication in the area of present-day Pakistan gave the zebu line",
+		"regions": ["TR", "SY", "IR"],
+		"yearsAgo": {"min": 10500, "max": 10500},
+		"text": "Taurine cattle were domesticated from the aurochs about 10,500 years ago, in central Anatolia, the Levant and western Iran.",
+		"sources": {
+			"links": [
+				{"name": "Wikipedia: Cattle", "url": "https://en.wikipedia.org/wiki/Cattle"}
+			],
+			"text": "Wikipedia's Cattle article: taurine cattle were domesticated from wild aurochs 'approximately 10,500 years ago' in central Anatolia, the Levant and western Iran (cited to its refs 69 and 70); a second domestication area, 'the area that is now Pakistan', produced the indicine (zebu) line."
+		}
+	},
+	"milk": {
+		"mt": 785.84,
+		"year": 2023,
+		"sources": {
+			"links": [
+				{"name": "FAOSTAT: Crops and livestock products (QCL), world, 2023", "url": "https://www.fao.org/faostat/en/#data/QCL"}
+			],
+			"text": "FAOSTAT 2023 world cattle milk: 785,839,487.72 tonnes, divided by 1,000,000 and rounded to 2 decimals. FAO flag A (official). Read from research/herd/faostat-2023.json."
+		}
+	},
+	"head": [
+		{
+			"count": 1574141046,
+			"year": 2023,
+			"where": "world",
+			"sources": {
+				"links": [
+					{"name": "FAOSTAT: Crops and livestock products (QCL), world, 2023", "url": "https://www.fao.org/faostat/en/#data/QCL"}
+				],
+				"text": "FAOSTAT 2023 world cattle stocks (head), as read from research/herd/faostat-2023.json."
+			}
+		},
+		{
+			"count": 292723257,
+			"year": 2023,
+			"where": "world",
+			"milked": true,
+			"sources": {
+				"links": [
+					{"name": "FAOSTAT: Crops and livestock products (QCL), world, 2023", "url": "https://www.fao.org/faostat/en/#data/QCL"}
+				],
+				"text": "FAOSTAT 2023 world cattle milked animals (head), as read from research/herd/faostat-2023.json."
+			}
+		}
+	],
+	"confidence": "high",
+	"gaps": "The Wikipedia Cattle article gives a 2023 world cattle count of 942.6 million, which does not match FAOSTAT's 1,574,141,046 stocks; FAOSTAT is used here. No source found for the 2023 split of cattle milk between taurine and zebu types, so the taurine and zebu types have no milk figure."
+}

@@ -24,7 +24,8 @@
 			},
 			{
 				"type": "salt",
-				"how": "dry"
+				"how": "dry",
+				"minor": true
 			},
 			{
 				"type": "ferment",
@@ -42,7 +43,7 @@
 				"humidity": {
 					"min": 85
 				},
-				"note": "Packed in barrels or tins in a brine of 7 % NaCl."
+				"note": "The cheese is packed in barrels or tins, in a brine of 7 % salt."
 			},
 			{
 				"type": "ferment",
@@ -53,7 +54,8 @@
 				},
 				"seconds": {
 					"min": 5184000
-				}
+				},
+				"minor": true
 			}
 		],
 		"sources": {

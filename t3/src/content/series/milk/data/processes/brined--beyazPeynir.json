@@ -18,16 +18,7 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "coagulate",
-				"by": "rennet",
-				"note": "Traditionally calf or lamb abomasum rennet, or microbial rennet in industrial dairies."
-			},
-			{
 				"type": "press"
-			},
-			{
-				"type": "cut",
-				"how": "cut"
 			},
 			{
 				"type": "drain",
@@ -35,11 +26,13 @@
 			},
 			{
 				"type": "cut",
-				"how": "cut"
+				"how": "cut",
+				"minor": true
 			},
 			{
 				"type": "salt",
-				"how": "brine"
+				"how": "brine",
+				"minor": true
 			},
 			{
 				"type": "ferment",
@@ -49,7 +42,7 @@
 					"max": 15552000,
 					"about": true
 				},
-				"note": "About 6 months in brine for the strong mature kind."
+				"note": "The cheese is left in its brine for the strong, mature kind."
 			}
 		],
 		"sources": {

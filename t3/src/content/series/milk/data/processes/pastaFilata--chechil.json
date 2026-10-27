@@ -20,54 +20,9 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "separate",
-				"off": "cream",
-				"note": "Skimmed cow milk; sheep and goat mixes also used."
-			},
-			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic"
-				],
-				"adds": {
-					"microbes": [],
-					"by": [
-						"backslop"
-					]
-				},
-				"temperature": {
-					"min": 35,
-					"max": 40
-				},
-				"note": "Soured by warming, or acid whey, sour milk or matsoni is added instead."
-			},
-			{
-				"type": "coagulate",
-				"by": "rennet",
-				"temperature": {
-					"min": 38,
-					"max": 40
-				},
-				"seconds": {
-					"min": 300,
-					"max": 600
-				},
-				"note": "With rennet or pepsin, added at 45–50 T for cow milk or 100–110 T for sheep milk."
-			},
-			{
-				"type": "heat",
-				"does": "cook",
-				"temperature": {
-					"min": 48,
-					"max": 54
-				},
-				"note": "Until it flakes and sticks into a ribbon."
-			},
-			{
 				"type": "custom",
-				"name": "stretch",
-				"note": "Tied into skeins."
+				"name": "tie in skeins",
+				"note": "The curd is tied into skeins."
 			},
 			{
 				"type": "salt",

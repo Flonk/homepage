@@ -23,21 +23,8 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "pasteurise"
-			},
-			{
-				"type": "coagulate",
-				"by": "rennet"
-			},
-			{
-				"type": "drain",
-				"by": "mould"
-			},
-			{
 				"type": "mould",
-				"seconds": {
-					"max": 259200
-				}
+				"note": "The cheese is kept in its moulds for up to 3 days."
 			},
 			{
 				"type": "ferment",
@@ -47,7 +34,7 @@
 					"max": 2592000,
 					"about": true
 				},
-				"note": "In a maturation room."
+				"note": "The cheese is kept in a maturation room."
 			}
 		],
 		"sources": {

@@ -1,0 +1,85 @@
+{
+	"label": "Murciano-Granadina",
+	"aka": ["Murcia-Granada", "Murciana-Granadina"],
+	"names": {
+		"links": [
+			{ "name": "Wikipedia: Murciano-Granadina", "url": "https://en.wikipedia.org/wiki/Murciano-Granadina" }
+		],
+		"text": "Alternative names taken from the infobox of the Murciano-Granadina page: Murcia-Granada and Murciana-Granadina."
+	},
+	"kind": "breed",
+	"parent": "goat",
+	"about": {
+		"text": "The Murciano-Granadina is a Spanish dairy goat from the semi-arid south-east of Spain, formed in 1975 when the Murciana and Granadina were joined in one flock-book. Its milk, at 5.6 percent fat and 3.6 percent protein, is used mainly for cheese in Spain, and its kids grow quickly and are also used for meat.",
+		"sources": {
+			"links": [
+				{ "name": "Wikipedia: Murciano-Granadina", "url": "https://en.wikipedia.org/wiki/Murciano-Granadina" }
+			],
+			"text": "Taken from the lead, Characteristics and infobox of the Murciano-Granadina page: the south-east Spanish origin, the 1975 formation, the milk composition, the cheese use, and the meat use of kids."
+		}
+	},
+	"origin": {
+		"regions": ["ES"],
+		"place": "Semi-arid south-east Spain (parts of Murcia, Almería, Granada and Alicante)",
+		"formed": { "min": 1975, "max": 1975 },
+		"sources": {
+			"links": [
+				{ "name": "Wikipedia: Murciano-Granadina", "url": "https://en.wikipedia.org/wiki/Murciano-Granadina" }
+			],
+			"text": "The lead says it originated in semi-arid south-eastern Spain, including parts of Murcia, Almería, Granada and Alicante. The lead also says the Murciana and Granadina began to be hybridised in 1975, after official recognition of a single flock-book covering both."
+		}
+	},
+	"yield": {
+		"perYear": { "min": 500, "max": 1000, "about": true },
+		"lactationDays": { "min": 210, "max": 210, "about": true },
+		"sources": {
+			"links": [
+				{ "name": "Wikipedia: Murciano-Granadina", "url": "https://en.wikipedia.org/wiki/Murciano-Granadina" }
+			],
+			"text": "The Characteristics section says lactation lasts around 210 days and that the breed is often producing 500 kg of milk annually, with some individuals producing as much as twice that (so up to about 1000 kg). The year and recording country were not stated."
+		}
+	},
+	"composition": {
+		"fat": { "min": 5.6, "max": 5.6 },
+		"protein": { "min": 3.6, "max": 3.6 },
+		"sources": {
+			"links": [
+				{ "name": "Wikipedia: Murciano-Granadina", "url": "https://en.wikipedia.org/wiki/Murciano-Granadina" }
+			],
+			"text": "The Characteristics section says their milk has 5.6 percent fat and 3.6 percent protein."
+		}
+	},
+	"purposes": {
+		"purposes": ["dairy", "meat"],
+		"sources": {
+			"links": [
+				{ "name": "Wikipedia: Murciano-Granadina", "url": "https://en.wikipedia.org/wiki/Murciano-Granadina" }
+			],
+			"text": "The lead and infobox describe it as bred mainly for milk, with the milk mainly used for cheese in Spain; the Characteristics section says the kids grow quickly and are used for meat."
+		}
+	},
+	"risk": {
+		"status": "not at risk",
+		"year": 2007,
+		"sources": {
+			"links": [
+				{ "name": "Wikipedia: Murciano-Granadina", "url": "https://en.wikipedia.org/wiki/Murciano-Granadina" }
+			],
+			"text": "The infobox says FAO (2007): not a risk, citing the FAO 2007 global databank list. DAD-IS was not checked directly."
+		}
+	},
+	"facts": [
+		{
+			"k": "Milk",
+			"v": "Its milk is said to have better fat and protein content than most other goat breeds in Mediterranean Europe.",
+			"sources": {
+				"links": [
+					{ "name": "Wikipedia: Murciano-Granadina", "url": "https://en.wikipedia.org/wiki/Murciano-Granadina" }
+				],
+				"text": "The Characteristics section compares its milk with most other goat breeds in Mediterranean Europe."
+			}
+		}
+	],
+	"confidence": "medium",
+	"gaps": "The population of more than 500,000 milking females is given in the lead with no year, so no head record was written. The page's weight figures disagree between the infobox and the Characteristics section, so none is recorded. No DAD-IS record was opened directly."
+}

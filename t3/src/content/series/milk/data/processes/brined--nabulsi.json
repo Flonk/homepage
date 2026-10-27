@@ -20,19 +20,12 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "heat",
-				"does": "heat"
-			},
-			{
-				"type": "coagulate",
-				"by": "rennet"
-			},
-			{
 				"type": "press"
 			},
 			{
 				"type": "heat",
-				"does": "cool"
+				"does": "cool",
+				"minor": true
 			},
 			{
 				"type": "cut",
@@ -41,7 +34,7 @@
 			{
 				"type": "heat",
 				"does": "cook",
-				"note": "In brine with mastic and mahleb.",
+				"note": "The curd is cooked in brine with mastic and mahleb.",
 				"temperature": {
 					"min": 100,
 					"max": 100,
@@ -51,7 +44,7 @@
 			{
 				"type": "salt",
 				"how": "brine",
-				"note": "Stored in brine."
+				"minor": true
 			}
 		],
 		"sources": {

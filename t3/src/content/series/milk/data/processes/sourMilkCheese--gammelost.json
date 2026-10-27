@@ -7,7 +7,7 @@
 	],
 	"variant": true,
 	"step": "cook the curd, press, ripen with mould",
-	"text": "Skim milk is soured with lactic bacteria, the curd is heated, pressed, and left to be overgrown by a Mucor mould that does the ripening. Sources conflict on how hot the curd is cooked and for how long; no temperature found.",
+	"text": "The soured curd is heated, pressed, and left to be overgrown by a Mucor mould that does the ripening. Sources conflict on how hot the curd is cooked and for how long; no temperature found.",
 	"sources": {
 		"links": [
 			{
@@ -24,36 +24,9 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "separate",
-				"off": "cream"
-			},
-			{
-				"type": "ferment",
-				"does": "incubate",
-				"kinds": [
-					"lactic",
-					"mould"
-				],
-				"adds": {
-					"by": [
-						"starter"
-					],
-					"microbes": [
-						{
-							"name": "lactic acid bacteria",
-							"kind": "bacterium",
-							"does": [
-								"acid"
-							]
-						}
-					]
-				},
-				"note": "Soured with a lactic starter and no rennet, for several days until the milk sets."
-			},
-			{
 				"type": "heat",
 				"does": "cook",
-				"note": "Heated slowly or boiled in the whey for hours, which kills the starter and leaves the field clear for the mould."
+				"note": "The curd is heated slowly, or boiled in the whey for hours, which kills the souring bacteria and leaves the way clear for the mould."
 			},
 			{
 				"type": "press"
@@ -81,7 +54,7 @@
 					"min": 2419200,
 					"max": 3024000
 				},
-				"note": "Mucor mucedo gives the flavour, and ripening runs from the outside inwards so the centre can stay lighter."
+				"note": "The cheese is given its flavour by the mould, and ripening runs from the outside inwards, so the centre can stay lighter."
 			}
 		],
 		"text": "No rennet. The curd is heated or boiled in the whey, which kills the starter bacteria; the mould ripens it from the outside in. A modern dairy product is ready after about 2 weeks.",

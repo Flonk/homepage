@@ -8,30 +8,27 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "microfilter",
-				"note": "The casein is held back and the native whey passes through."
+				"type": "microfilter"
 			},
 			{
-				"type": "ultrafilter",
-				"note": "Concentrates the whey proteins."
+				"type": "ultrafilter"
 			},
 			{
-				"type": "diafilter",
-				"note": "Washed until the protein is over 90 % of the dry matter."
+				"type": "diafilter"
 			},
 			{
 				"type": "custom",
 				"name": "concentrate",
-				"note": "The retentate is brought to 36–37 % dry matter."
+				"note": "What the membrane holds back is brought to 36–37 % solids."
 			},
 			{
 				"type": "heat",
 				"does": "heat",
-				"note": "Preheated to set the functional properties of the protein."
+				"note": "The protein is preheated, which sets how it behaves in food."
 			},
 			{
 				"type": "dry",
-				"note": "Spray-dried to no more than 4 % moisture."
+				"note": "The protein is dried in a fine spray of hot air, to no more than 4 % moisture."
 			}
 		],
 		"sources": {

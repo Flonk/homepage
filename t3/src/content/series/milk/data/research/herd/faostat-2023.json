@@ -1,0 +1,22 @@
+{
+	"about": "World figures for 2023 from FAOSTAT's Production: Crops and livestock products (QCL), read from its bulk file Production_Crops_Livestock_E_All_Data_(Normalized), last updated 23 December 2025, downloaded 27 October 2026. Area: World (5000). Production in tonnes; Milk Animals and Stocks in head. Flags: A official, E FAO estimate.",
+	"source": { "name": "FAOSTAT: Crops and livestock products (QCL), world, 2023", "url": "https://www.fao.org/faostat/en/#data/QCL" },
+	"year": 2023,
+	"milk": {
+		"cattle": { "tonnes": 785839487.72, "flag": "A", "milked": 292723257 },
+		"waterBuffalo": { "tonnes": 150694311.21, "flag": "A", "milked": 75615439 },
+		"goat": { "tonnes": 20841481.03, "flag": "E", "milked": 215623406 },
+		"sheep": { "tonnes": 9969643.63, "flag": "E", "milked": 256160191 },
+		"camels": { "tonnes": 4076534.54, "flag": "E", "milked": 9009782, "note": "Dromedary and Bactrian together; FAOSTAT does not split them." }
+	},
+	"stocks": {
+		"cattle": 1574141046,
+		"waterBuffalo": 211568902,
+		"goat": 1162134809,
+		"sheep": 1357014834,
+		"camels": 42590576,
+		"horse": 56710675,
+		"donkey": 53312453
+	},
+	"allMilkTonnes": 971421458
+}

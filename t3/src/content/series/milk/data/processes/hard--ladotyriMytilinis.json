@@ -19,40 +19,9 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "coagulate",
-				"by": "rennet",
-				"temperature": {
-					"min": 32,
-					"max": 34
-				},
-				"seconds": {
-					"min": 1800,
-					"max": 1800
-				}
-			},
-			{
-				"type": "cut",
-				"how": "cut"
-			},
-			{
-				"type": "heat",
-				"does": "cook",
-				"temperature": {
-					"min": 45,
-					"max": 45
-				}
-			},
-			{
-				"type": "drain"
-			},
-			{
-				"type": "press",
-				"note": "In the vat, into a mass."
-			},
-			{
 				"type": "cut",
 				"how": "cut",
-				"note": "Into pieces of 5–7 kg, then to final size."
+				"note": "The cheese is first cut into pieces of 5–7 kg, then to its final size."
 			},
 			{
 				"type": "mould"

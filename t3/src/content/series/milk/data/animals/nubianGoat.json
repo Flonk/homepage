@@ -1,0 +1,127 @@
+{
+	"label": "Nubian goat",
+	"aka": [
+		"Anglo-Nubian"
+	],
+	"names": {
+		"links": [
+			{
+				"name": "Wikipedia: Anglo-Nubian goat",
+				"url": "https://en.wikipedia.org/wiki/Anglo-Nubian"
+			}
+		],
+		"text": "The article's title is Anglo-Nubian, and it says that in many countries the breed is known simply as the Nubian. Read with WebFetch."
+	},
+	"kind": "breed",
+	"parent": "goat",
+	"about": {
+		"text": "A British goat breed developed in the nineteenth century from native British goats crossed with large lop-eared goats from India, the Middle East and North Africa. Its milk has high butterfat, about 4.8% on average, and does give about 3.9 kg of milk a day.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Anglo-Nubian goat",
+					"url": "https://en.wikipedia.org/wiki/Anglo-Nubian"
+				}
+			],
+			"text": "Wikipedia article, read with WebFetch: the breeding history, the daily yield of about 3.9 kg and the average fat of around 4.8%."
+		}
+	},
+	"origin": {
+		"regions": [
+			"GB"
+		],
+		"place": "British Isles, from native British goats crossed with large lop-eared goats from India, the Middle East and North Africa",
+		"formed": {
+			"min": 1800,
+			"max": 1899
+		},
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Anglo-Nubian goat",
+					"url": "https://en.wikipedia.org/wiki/Anglo-Nubian"
+				}
+			],
+			"text": "Wikipedia, read with WebFetch: 'originated in the British Isles in the nineteenth century'. The formed range is that century. Herd-book registration began in 1910, which is recording, not formation."
+		}
+	},
+	"facts": [
+		{
+			"k": "Highest 24-hour yield",
+			"v": "Some 8.25 kg in 24 hours, the highest recorded.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Anglo-Nubian goat",
+						"url": "https://en.wikipedia.org/wiki/Anglo-Nubian"
+					}
+				],
+				"text": "Wikipedia, read with WebFetch: 'The highest recorded 24-hour yield is some 8.25 kg.' No year given."
+			}
+		},
+		{
+			"k": "Highest annual yield",
+			"v": "Over 2,500 kg in a year, the highest authenticated annual yield.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Anglo-Nubian goat",
+						"url": "https://en.wikipedia.org/wiki/Anglo-Nubian"
+					}
+				],
+				"text": "Wikipedia, read with WebFetch: 'The highest authenticated annual yield is over 2500 kg.' No year given."
+			}
+		},
+		{
+			"k": "Herd-book",
+			"v": "First herd-book registrations in 1910, and no further imported breeding stock was used after that.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Anglo-Nubian goat",
+						"url": "https://en.wikipedia.org/wiki/Anglo-Nubian"
+					}
+				],
+				"text": "Wikipedia, read with WebFetch. The article gives 1910 for the first registrations and says no further imported breeding stock was used after that."
+			}
+		}
+	],
+	"composition": {
+		"fat": {
+			"min": 4.8,
+			"max": 4.8
+		},
+		"protein": {
+			"min": 3.51,
+			"max": 3.51
+		},
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Anglo-Nubian goat",
+					"url": "https://en.wikipedia.org/wiki/Anglo-Nubian"
+				},
+				{
+					"name": "British Goat Society: Anglo Nubian",
+					"url": "https://www.britishgoatsociety.com/about-us/breeds/anglo-nubian/"
+				}
+			],
+			"text": "Fat 4.8% from Wikipedia, read with WebFetch ('average fat around 4.8%'). Protein 3.51% from the British Goat Society page as it appeared in WebSearch result text (the page itself returned HTTP 403 when opened), with its fat figure of 4.84% from the same text."
+		}
+	},
+	"risk": {
+		"status": "not at risk",
+		"year": 2022,
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Anglo-Nubian goat",
+					"url": "https://en.wikipedia.org/wiki/Anglo-Nubian"
+				}
+			],
+			"text": "Wikipedia, read with WebFetch: FAO (2007) 'not at risk' at world level; DAD-IS 'not at risk (world-wide)'. The infobox dates the DAD-IS entry 2022 and the body text 2020, so the infobox year is used. The same article gives DAD-IS UK as endangered, which is not used here."
+		}
+	},
+	"confidence": "medium",
+	"gaps": "No per-lactation or per-year yield found on the opened pages. The British Goat Society's 3.89 kg per 24 hours and the lactation records were only in WebSearch text and were not used. No DAD-IS population count (the Wikipedia article gives none and the DAD-IS database was not reachable through WebFetch). The source Wikipedia cites for 'not at risk' was not opened. The purposes field is left out because no opened page stated the purpose. Protein figure comes from search text only."
+}

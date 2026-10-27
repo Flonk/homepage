@@ -1,0 +1,79 @@
+{
+	"label": "Bulgarian Murrah",
+	"about": {
+		"text": "The Bulgarian Murrah is a dairy buffalo bred in Bulgaria from Indian Murrah stock imported between 1962 and 1990, crossed with local buffaloes. Its milk goes mainly into yoghurt and other dairy products, and the breed is now rare in its homeland.",
+		"sources": {
+			"links": [
+				{ "name": "Buffalopedia: Bulgarian Murrah", "url": "https://buffalopedianew.cirb.res.in/bulgarian-murrah/" },
+				{ "name": "Wikipedia: List of water buffalo breeds", "url": "https://en.wikipedia.org/wiki/List_of_water_buffalo_breeds" }
+			],
+			"text": "Buffalopedia gives the 1962-1990 imports, the use for yoghurt and dairy products, and the Indian Murrah origin. 'Now rare in its homeland' is from the list page."
+		}
+	},
+	"kind": "breed",
+	"parent": "riverBuffalo",
+	"origin": {
+		"regions": ["BG"],
+		"place": "Bulgaria",
+		"formed": { "min": 1962, "max": 1990 },
+		"sources": {
+			"links": [
+				{ "name": "Buffalopedia: Bulgarian Murrah", "url": "https://buffalopedianew.cirb.res.in/bulgarian-murrah/" },
+				{ "name": "Wikipedia: List of water buffalo breeds", "url": "https://en.wikipedia.org/wiki/List_of_water_buffalo_breeds" }
+			],
+			"text": "Buffalopedia: 'From 1962 to 1990, Murrah buffaloes from India were imported into Bulgaria', and local buffaloes were upgraded with them. The list page says it derives from crosses of Mediterranean buffaloes with Indian Murrah and Surti buffaloes imported from 1962."
+		}
+	},
+	"yield": {
+		"perLactation": { "min": 1800, "max": 1800 },
+		"lactationDays": { "min": 270, "max": 305 },
+		"sources": {
+			"links": [{ "name": "Buffalopedia: Bulgarian Murrah", "url": "https://buffalopedianew.cirb.res.in/bulgarian-murrah/" }],
+			"text": "Buffalopedia breed profile: 'Milk yield per lactation: 1800 kg', lactation '270-305 days'. The page gives no year and no recording country."
+		}
+	},
+	"composition": {
+		"fat": { "min": 7.04, "max": 7.04 },
+		"sources": {
+			"links": [{ "name": "Buffalopedia: Bulgarian Murrah", "url": "https://buffalopedianew.cirb.res.in/bulgarian-murrah/" }],
+			"text": "Buffalopedia: 'Milk fat: 7.04 percent'. No protein figure is given there."
+		}
+	},
+	"purposes": {
+		"purposes": ["dairy", "meat"],
+		"sources": {
+			"links": [{ "name": "Buffalopedia: Bulgarian Murrah", "url": "https://buffalopedianew.cirb.res.in/bulgarian-murrah/" }],
+			"text": "Used for dairy products such as yoghurt, and 'processed meat products are very important'."
+		}
+	},
+	"risk": {
+		"status": "unknown",
+		"sources": {
+			"links": [
+				{ "name": "Buffalopedia: Bulgarian Murrah", "url": "https://buffalopedianew.cirb.res.in/bulgarian-murrah/" },
+				{ "name": "Wikipedia: List of water buffalo breeds", "url": "https://en.wikipedia.org/wiki/List_of_water_buffalo_breeds" }
+			],
+			"text": "Buffalopedia names no formal status. The list page says the breed 'is now rare in its homeland' but gives no status. No DAD-IS status was found."
+		}
+	},
+	"facts": [
+		{
+			"k": "Decline",
+			"v": "The buffalo population in Bulgaria has dramatically declined since the Second World War. Cooperative buffalo farms closed after privatization in 1989.",
+			"sources": {
+				"links": [{ "name": "Buffalopedia: Bulgarian Murrah", "url": "https://buffalopedianew.cirb.res.in/bulgarian-murrah/" }],
+				"text": "Stated on the Buffalopedia page."
+			}
+		},
+		{
+			"k": "Slaughter",
+			"v": "Average slaughter weight is 400 kg at 16 months, with a carcass yield of 50.4%.",
+			"sources": {
+				"links": [{ "name": "Buffalopedia: Bulgarian Murrah", "url": "https://buffalopedianew.cirb.res.in/bulgarian-murrah/" }],
+				"text": "Stated on the Buffalopedia page."
+			}
+		}
+	],
+	"confidence": "low",
+	"gaps": "No current head count and no survey year; no protein or lactose figures; no DAD-IS status. The item's 'Bulgarska murra' name and its 'udder suited to machine milking' claim were not found in the pages I opened, so both are left out. The farm-study figures from a search result (1,748 kg, 281 days, 7.39% fat, 1990-2002) are not used because I could not confirm their source page."
+}

@@ -28,7 +28,8 @@
 		"steps": [
 			{
 				"type": "heat",
-				"does": "heat"
+				"does": "heat",
+				"minor": true
 			},
 			{
 				"type": "ferment",
@@ -66,8 +67,7 @@
 				"seconds": {
 					"min": 129600,
 					"about": true
-				},
-				"note": "Yakult takes days, acidophilus milk about 1.5 d."
+				}
 			}
 		],
 		"sources": {

@@ -1,0 +1,102 @@
+{
+	"label": "Cholistani",
+	"aka": [],
+	"names": {
+		"links": [
+			{
+				"name": "Wikipedia: Cholistani cattle",
+				"url": "https://en.wikipedia.org/wiki/Cholistani_cattle"
+			}
+		],
+		"text": "The fetched article lists no alternative names for the breed. The label is the item's given label."
+	},
+	"kind": "breed",
+	"parent": "zebuCattle",
+	"about": {
+		"text": "A dairy-leaning breed of the Cholistan Desert in Punjab, Pakistan, thought to come from crossing Sahiwal cattle with other local breeds. Females give 7 to 12 litres of milk a day, and the breed is used for both milk and beef.",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Cholistani cattle",
+					"url": "https://en.wikipedia.org/wiki/Cholistani_cattle"
+				}
+			],
+			"text": "From the fetched article: its area (Cholistan Desert, around Rahim Yar Khan, Bahawalpur and Bahawalnagar), the Sahiwal crossing (which the article calls a belief, and it calls the breed 'recently discovered'), the daily yield, and the milk and beef use. The article is a stub, and its cited sources were not checked."
+		}
+	},
+	"origin": {
+		"regions": [
+			"PK"
+		],
+		"place": "Cholistan Desert, Punjab, Pakistan (around Rahim Yar Khan, Bahawalpur and Bahawalnagar)",
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Cholistani cattle",
+					"url": "https://en.wikipedia.org/wiki/Cholistani_cattle"
+				}
+			],
+			"text": "Districts from the fetched article. The article gives no dates for the breed's formation."
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 4.8,
+			"max": 4.8
+		},
+		"sources": {
+			"links": [
+				{
+					"name": "Pak Vet J 2010, 30(2): 126-130, Abstract",
+					"url": "https://pvj.com.pk/abstract/30_2/16.htm"
+				}
+			],
+			"text": "4.8% fat in milk, from Farooq, Samad, Sher, Asim and Khan (2010), 'Cholistan and Cholistani Breed of Cattle', abstract opened with WebFetch. Based on preliminary 2005 to 2009 data from the Government Livestock Station, Jugait Peer, Bahawalpur. No protein figure is in the abstract."
+		}
+	},
+	"purposes": {
+		"purposes": [
+			"dairy",
+			"meat"
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Wikipedia: Cholistani cattle",
+					"url": "https://en.wikipedia.org/wiki/Cholistani_cattle"
+				}
+			],
+			"text": "The fetched article's lead calls it 'primarily a dairy breed', and says it is used for both milk and beef. Draught use is in the infobox, and is left out here as the lead does not give it."
+		}
+	},
+	"facts": [
+		{
+			"k": "Lactation yield",
+			"v": "1,235 litres over a 165-day lactation, in preliminary herd records from 2005 to 2009 at Jugait Peer, Bahawalpur.",
+			"sources": {
+				"links": [
+					{
+						"name": "Pak Vet J 2010, 30(2): 126-130, Abstract",
+						"url": "https://pvj.com.pk/abstract/30_2/16.htm"
+					}
+				],
+				"text": "Lactation yield 1235 litres and lactation length 165 days, from the abstract opened with WebFetch (Farooq et al., 2010). Recorded as litres, since the study reports litres and this record's yield fields are in kg."
+			}
+		},
+		{
+			"k": "Daily yield",
+			"v": "Females give 7 to 12 litres of milk a day; the article also gives 1,200 to 1,800 litres per lactation.",
+			"sources": {
+				"links": [
+					{
+						"name": "Wikipedia: Cholistani cattle",
+						"url": "https://en.wikipedia.org/wiki/Cholistani_cattle"
+					}
+				],
+				"text": "From the fetched article. Its figures are not sourced in the article's text; the infobox tags a Holstein-cross claim with 'clarification needed', which is not used here."
+			}
+		}
+	],
+	"confidence": "low",
+	"gaps": "DAD-IS was searched for (WebSearch returned no Cholistani entry), so no population figure, no risk status and no DAD-IS yield were found. A 2006 livestock total for all of Cholistan (a 2010 review) covers every animal in the region, not the breed alone, so it is left out. The fetched Wikipedia article is a stub and conflicts with itself on the taxon (the infobox says 'Bos (primigenius) taurus', the lead calls it a zebu), so the parent 'zebuCattle' is as given but unconfirmed. No protein figure and no formation date were found."
+}

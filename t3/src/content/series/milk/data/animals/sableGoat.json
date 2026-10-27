@@ -1,0 +1,82 @@
+{
+	"label": "Sable goat",
+	"kind": "breed",
+	"parent": "goat",
+	"about": {
+		"text": "The Sable is a dairy goat from the United States, descended from the Saanen. Its milk is kept for dairy production, with about 3.5 to 4 percent butterfat. It performs well on pasture or in confined housing.",
+		"sources": {
+			"links": [
+				{
+					"name": "Ceva: goat breeds",
+					"url": "https://ruminants.ceva.pro/goat-breeds"
+				}
+			],
+			"text": "Origin, descent from Saanen stock, butterfat, dairy use and housing from the Ceva page."
+		}
+	},
+	"origin": {
+		"regions": [
+			"US"
+		],
+		"place": "United States, derived from Saanen stock. The Saanen originated in the Saanen region of Switzerland's Bernese Oberland.",
+		"sources": {
+			"links": [
+				{
+					"name": "Ceva: goat breeds",
+					"url": "https://ruminants.ceva.pro/goat-breeds"
+				},
+				{
+					"name": "Saanen goat (Wikipedia, via search)",
+					"url": "https://en.wikipedia.org/wiki/Saanen_goat"
+				}
+			],
+			"text": "Country of origin from the Ceva page. The Saanen ancestry in Switzerland is from a WebSearch result that summarises the Wikipedia Saanen article; the Wikipedia page was not opened with WebFetch. No founding date was found."
+		}
+	},
+	"composition": {
+		"fat": {
+			"min": 3.5,
+			"max": 4
+		},
+		"sources": {
+			"links": [
+				{
+					"name": "Ceva: goat breeds",
+					"url": "https://ruminants.ceva.pro/goat-breeds"
+				}
+			],
+			"text": "Butterfat of 3.5 to 4 percent from the Ceva page. A WebSearch result also gives 3 to 4 percent for Sable milk fat, and the page was not opened with WebFetch for that figure."
+		}
+	},
+	"purposes": {
+		"purposes": [
+			"dairy"
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Ceva: goat breeds",
+					"url": "https://ruminants.ceva.pro/goat-breeds"
+				}
+			],
+			"text": "The Ceva page describes the breed as for dairy production."
+		}
+	},
+	"facts": [
+		{
+			"k": "Yield in litres",
+			"v": "681 to 1,134 litres per lactation",
+			"sources": {
+				"links": [
+					{
+						"name": "Ceva: goat breeds",
+						"url": "https://ruminants.ceva.pro/goat-breeds"
+					}
+				],
+				"text": "Quoted as the page gives it, in litres. Lactation length is not stated on the page."
+			}
+		}
+	],
+	"confidence": "low",
+	"gaps": "No FAO DAD-IS entry or population figure was found for the Sable. The conservation status was not found, so the risk field is left out. The search result says some dairy goat clubs accept the Sable as its own breed and others treat it as a Saanen variety; that is not recorded here. No founding date or protein figure was found. The yield was only found in litres, so no kg figure is given."
+}

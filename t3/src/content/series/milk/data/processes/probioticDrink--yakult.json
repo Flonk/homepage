@@ -30,7 +30,9 @@
 				"type": "pasteurise",
 				"temperature": {
 					"min": 100
-				}
+				},
+				"minor": true,
+				"note": "The milk undergoes heat treatment to kill harmful bacteria like Listeria, Salmonella and E. coli."
 			},
 			{
 				"type": "ferment",
@@ -61,10 +63,11 @@
 					"min": 518400,
 					"max": 604800
 				},
-				"note": "L. paracasei grows best at 30–38 °C, so the fermentation is long and makes acid but little aroma."
+				"note": "The milk is soured for a long time by a bacterium that grows best at 30–38 °C, so it makes acid but little aroma."
 			},
 			{
-				"type": "homogenise"
+				"type": "homogenise",
+				"minor": true
 			},
 			{
 				"type": "add",

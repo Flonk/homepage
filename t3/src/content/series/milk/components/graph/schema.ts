@@ -18,3 +18,5 @@ export * from './schemas/process';
 export * from './schemas/node';
 export * from './schemas/regions';
 export * from './schemas/page';
+export * from './schemas/animal';
+export * from './schemas/reconciled';

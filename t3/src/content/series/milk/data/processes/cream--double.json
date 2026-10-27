@@ -5,7 +5,7 @@
 	"to": [
 		"double"
 	],
-	"text": "Cream standardised to at least 48 % fat and pasteurised. At that fat it is thick enough to spoon, whips easily and does not split in hot sauces.",
+	"text": "Cream standardised to at least 48 % fat. At that fat it is thick enough to spoon, whips easily and does not split in hot sauces.",
 	"sources": {
 		"links": [
 			{
@@ -23,16 +23,13 @@
 					"min": 48,
 					"max": 48
 				},
-				"note": "Double cream is cream brought to at least 48 % fat."
-			},
-			{
-				"type": "pasteurise",
-				"note": "The sources give no temperature for double cream, only that it is heat-treated."
+				"of": "cream"
 			},
 			{
 				"type": "heat",
 				"does": "cool",
-				"note": "Extra-thick double cream is heated and then cooled quickly."
+				"note": "The cream is heated and then cooled quickly, for the extra-thick kind.",
+				"minor": true
 			}
 		],
 		"sources": {

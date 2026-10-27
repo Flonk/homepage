@@ -28,14 +28,6 @@
 	"processing": {
 		"steps": [
 			{
-				"type": "pasteurise"
-			},
-			{
-				"type": "coagulate",
-				"by": "rennet",
-				"note": "Mostly recombinant bovine chymosin."
-			},
-			{
 				"type": "heat",
 				"does": "cook",
 				"temperature": {
@@ -45,10 +37,7 @@
 			{
 				"type": "salt",
 				"how": "brine",
-				"seconds": {
-					"min": 691200,
-					"max": 777600
-				}
+				"note": "The cheese is left in brine for 8 to 9 days."
 			},
 			{
 				"type": "ferment",
@@ -83,7 +72,8 @@
 				"humidity": {
 					"min": 82,
 					"max": 85
-				}
+				},
+				"note": "The cheese is usually given a whey starter from the last batch, whose heat-loving bacteria make it sour as it ripens."
 			}
 		],
 		"text": "Usually a natural whey starter from the previous batch; research compares it with defined Lactobacillus helveticus strains.",

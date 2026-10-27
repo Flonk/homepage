@@ -1,0 +1,90 @@
+{
+	"label": "Zalawadi",
+	"aka": [
+		"Tara Bakari"
+	],
+	"names": {
+		"links": [
+			{
+				"name": "Zalawadi goat (Wikipedia)",
+				"url": "https://en.wikipedia.org/wiki/Zalawadi"
+			}
+		],
+		"text": "\"Tara Bakari\" is from the Wikipedia article, read on WebFetch."
+	},
+	"kind": "breed",
+	"parent": "goat",
+	"about": {
+		"text": "A goat breed from Gujarat in western India, kept for milk, meat and fibre. It is long-legged, mostly black, and often bears twins.",
+		"sources": {
+			"links": [
+				{
+					"name": "Zalawadi goat (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Zalawadi"
+				}
+			],
+			"text": "Wikipedia article, read on WebFetch: Gujarat, milk, meat and fibre uses, the long-legged black coat, and twinning in about 55% of births."
+		}
+	},
+	"origin": {
+		"regions": [
+			"IN"
+		],
+		"place": "The Surendranagar and Rajkot regions of Gujarat, India. The article gives no formation dates.",
+		"sources": {
+			"links": [
+				{
+					"name": "Zalawadi goat (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Zalawadi"
+				}
+			],
+			"text": "Wikipedia article, read on WebFetch: the Surendranagar and Rajkot regions. No formation dates are given, so none are used."
+		}
+	},
+	"purposes": {
+		"purposes": [
+			"dual-purpose",
+			"meat",
+			"fibre"
+		],
+		"sources": {
+			"links": [
+				{
+					"name": "Zalawadi goat (Wikipedia)",
+					"url": "https://en.wikipedia.org/wiki/Zalawadi"
+				}
+			],
+			"text": "Wikipedia article, read on WebFetch: \"Milk, meat, and fiber\"."
+		}
+	},
+	"facts": [
+		{
+			"k": "Milk yield (as reported)",
+			"v": "The article reports a milk yield of 2.02 ± 0.18 kg over 197.2 ± 5.8 days of lactation, with an average productive life of 5 to 6 lactations. The unit looks doubtful for a goat, so it is not used as a per-lactation figure.",
+			"sources": {
+				"links": [
+					{
+						"name": "Kappa casein gene polymorphism in Zalawadi goats (IJBT 10(2), 235-237)",
+						"url": "https://nopr.niscair.res.in/bitstream/123456789/11455/1/IJBT%2010(2)%20235-237.pdf"
+					}
+				],
+				"text": "Figures as the Wikipedia article gives them, read on WebFetch; the cited paper was not opened, so the unit could not be checked."
+			}
+		},
+		{
+			"k": "Twinning",
+			"v": "About 55% of births are twins, and about 2% are triplets.",
+			"sources": {
+				"links": [
+					{
+						"name": "Zalawadi goat (Wikipedia)",
+						"url": "https://en.wikipedia.org/wiki/Zalawadi"
+					}
+				],
+				"text": "Wikipedia article, read on WebFetch."
+			}
+		}
+	],
+	"confidence": "low",
+	"gaps": "No head count: the article gives only 27.8% of the goats in Surendranagar, with no year, and it cites an archived ILRI page that was not opened. No DAD-IS risk status (the article does not mention one). No formation dates. No sourced per-lactation yield in kg, because the reported 2.02 kg figure looks like a unit error. The item's parent was given as sheep, but the breed is a goat, so it is written under goat."
+}
